@@ -243,8 +243,12 @@
         document.getElementById("resultText").innerText = '';
         var res = _pickMulti(document.formCount.text1.value);
         for (var i = 0; i < res.length; i++) {
-          document.getElementById("resultText").innerText += res[i].name + (i === res.length - 1 ? '' : '\n');
+          document.getElementById("resultText").innerHTML += '<a href="' + _makeDBURL(res[i].code) + '">' + res[i].name + '</a>' + (i === res.length - 1 ? '' : '<br>');
         }
+      }
+      
+      function _makeDBURL(code) {
+        return 'https://arkhamdb.com/card/' + code;
       }
 
       function onlyKorean() {
