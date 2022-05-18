@@ -252,8 +252,8 @@
           iter = document.formCount.text1.value;
           if (!(iter > 0))
             return;
-          document.getElementById("chooseUI").hide();
-          document.getElementById("selectUI").show();
+          _hide(document.getElementById("chooseUI"));
+          _show(document.getElementById("selectUI"));
           iter--;
           _fillSelect();
         }
@@ -266,8 +266,8 @@
         if (iter > 0) {
           _fillSelect();
         } else {
-          document.getElementById("selectUI").hide();
-          document.getElementById("chooseUI").show();
+          _hide(document.getElementById("selectUI"));
+          _show(document.getElementById("chooseUI"));
           for (var i = 0; i < finalRes.length; i++) {
             document.getElementById("resultText").innerHTML += '<a href="' + _makeDBURL(finalRes[i].code) + '">' + finalRes[i].name + '</a>' + (i === finalRes.length - 1 ? '' : '<br>');
           }
@@ -307,12 +307,18 @@
       
       function changeMode() {
         if (document.formCount.chooseMode.value) {
-          document.getElementById("chooseOption").show();
+          _show(document.getElementById("chooseOption"));
         } else {
-          document.getElementById("chooseOption").hide();
+          _hide(document.getElementById("chooseOption"));
         }
       }
-      changeMode();
+      
+      function _show(elem) {
+        elem.style.display = 'block';
+      }
+      function _hide(elem) {
+        elem.style.display = 'none';
+      }
     </script>
 	  </head>
 
@@ -344,7 +350,7 @@
         <option value="banOne">n장 중 1밴</option>
       </select>
       <input type="text" name="text1" id="text1" value="1" class="smallInput">개 <button type="button" onclick="run()">선택</button>
-      <span id="chooseOption"><br>선택지 <input type="text" name="text2" id="text2" value="3" class="smallInput">장</span>
+      <span id="chooseOption" style="display: none;"><br>선택지 <input type="text" name="text2" id="text2" value="3" class="smallInput">장</span>
 	    <br><input type="checkbox" name="ban_doomed"><label for="ban_doomed">비운 밴</label>
 	    <input type="checkbox" name="ban_sellsoul"><label for="ban_sellsoul">거부할 수 없는 제안 밴</label>
 	    <input type="checkbox" name="option_campaign_only" checked><label for="option_campaign_only">캠페인 전용 포함</label>
