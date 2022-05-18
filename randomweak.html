@@ -265,7 +265,7 @@
       
       function _chooseThis(idx) {
         document.getElementById("selectChoices").innerHTML = '';
-        if () {
+        if (document.formCount.chooseMode.value == 'selectOne') {
           finalRes.push(savedRes[i]);
         } else {
           savedRes.splice(i, 1);
