@@ -266,9 +266,9 @@
       function _chooseThis(idx) {
         document.getElementById("selectChoices").innerHTML = '';
         if (document.formCount.chooseMode.value == 'selectOne') {
-          finalRes.push(savedRes[i]);
+          finalRes.push(savedRes[idx]);
         } else {
-          savedRes.splice(i, 1);
+          savedRes.splice(idx, 1);
           var randVal = Math.random() * savedRes.length;
           finalRes.push(savedRes[Math.floor(randVal)]);
         }
