@@ -236,6 +236,7 @@
       function run() {
         var packMod = [];
         var bans = [];
+        finalRes = [];
         for (var i = 0; i < 15; i++) {
           packMod.push(document.formPack.elements[i].value);
         }
@@ -360,13 +361,13 @@
         <option value="banOne">n장 중 1밴</option>
       </select>
       <input type="text" name="text1" id="text1" value="1" class="smallInput">개 <button type="button" onclick="run()">선택</button>
-      <span id="chooseOption" style="display: none;"><br>선택지 <input type="text" name="text2" id="text2" value="3" class="smallInput">장</span>
+      <span id="chooseOption" style="display: none;">선택지 <input type="text" name="text2" id="text2" value="3" class="smallInput">장</span>
 	    <br><input type="checkbox" name="ban_doomed"><label for="ban_doomed">비운 밴</label>
 	    <input type="checkbox" name="ban_sellsoul"><label for="ban_sellsoul">거부할 수 없는 제안 밴</label>
 	    <input type="checkbox" name="option_campaign_only" checked><label for="option_campaign_only">캠페인 전용 포함</label>
           </form>
           <button type="button" onclick="onlyKorean()">한국어판만</button>
-          <button type="button" onclick="init()">초기화</button>
+          <button type="button" onclick="init()">초기화</button><br>
     </div>
       <div class="textBlock" id="resultText">
       </div>
