@@ -263,6 +263,14 @@
           document.formPack.elements[i].value = 1;
   }
       }
+      
+      function changeMode() {
+        if (document.formCount.chooseMode.value) {
+          document.formCount.chooseOption.show();
+        } else {
+          document.formCount.chooseOption.hide();
+        }
+      }
     </script>
 	  </head>
 
@@ -279,7 +287,13 @@
   <div class="pickRowBlock">
     <div class="textBlock">
     <form name="formCount">
+      <select name="chooseMode" onchange="changeMode()">
+        <option value="" selected>단일 선택</option>
+        <option value="selectOne">n장 중 선택</option>
+        <option value="banOne">n장 중 1밴</option>
+      </select>
       <input type="text" name="text1" id="text1" value="1" class="smallInput">개 <button type="button" onclick="run()">선택</button>
+      <span name="chooseOption"><br>선택지 <input type="text" name="text2" id="text2" value="3" class="smallInput">장</span>
 	    <br><input type="checkbox" name="ban_doomed"><label for="ban_doomed">비운 밴</label>
 	    <input type="checkbox" name="ban_sellsoul"><label for="ban_sellsoul">거부할 수 없는 제안 밴</label>
 	    <input type="checkbox" name="option_campaign_only" checked><label for="option_campaign_only">캠페인 전용 포함</label>
