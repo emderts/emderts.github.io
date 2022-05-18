@@ -136,7 +136,7 @@
         {name: '어둠의 계약', pack: PACK_TFA, code: '04038', count: 1, campaignOnly: true},
         {name: '비운', pack: PACK_TFA, code: '04040', count: 1, campaignOnly: true},
         {name: '열세 번째 환상', pack: PACK_TCU, code: '05041', count: 2},
-        {name: '탑', pack: PACK_TCU, code: '05042', count: 2},
+        {name: '탑 · XVI', pack: PACK_TCU, code: '05042', count: 2},
         {name: '이기심', pack: PACK_TDE, code: '06035', count: 1},
         {name: '도벽', pack: PACK_TDE, code: '06036', count: 1},
         {name: '기면증', pack: PACK_TDE, code: '06037', count: 1},
@@ -160,7 +160,7 @@
         {name: '수목화 변이', pack: PACK_RT_TFA, code: '53012', count: 1},
         {name: '거부할 수 없는 제안', pack: PACK_RT_TFA, code: '53013', count: 1, campaignOnly: true},
         {name: '나락으로 떨어지다', pack: PACK_RT_TCU, code: '54014', count: 1},
-        {name: '악마', pack: PACK_RT_TCU, code: '54015', count: 2}
+        {name: '악마 · XV', pack: PACK_RT_TCU, code: '54015', count: 2}
       ];
 
       var weightSum = 0;
@@ -180,7 +180,7 @@
           weightSum += weaknessData[i].weight;
           if (weaknessData[i].weight) {
             actCnt++;
-		        weaknessData[i].workCount = weaknessData[i].count;
+  	        weaknessData[i].workCount = weaknessData[i].count;
           }
         }
       }
@@ -265,7 +265,13 @@
       
       function _chooseThis(idx) {
         document.getElementById("selectChoices").innerHTML = '';
-        finalRes.push(savedRes[i]);
+        if () {
+          finalRes.push(savedRes[i]);
+        } else {
+          savedRes.splice(i, 1);
+          var randVal = Math.random() * savedRes.length;
+          finalRes.push(savedRes[Math.floor(randVal)]);
+        }
         iter--;
         if (iter > 0) {
           _fillSelect();
@@ -282,7 +288,7 @@
         savedRes = _pickMulti(document.formCount.text2.value);
         var htmlCons = '';
         for (var i = 0; i < savedRes.length; i++) {
-          htmlCons += '<div>' + savedRes[i].name + '<br><img src="' + _makeDBImageURL(savedRes[i].code) + '" onclick="_chooseThis(i)"></div>';
+          htmlCons += '<div>' + savedRes[i].name + '<br><img src="' + _makeDBImageURL(savedRes[i].code) + '" onclick="_chooseThis(' + i + ')"></div>';
         }
         document.getElementById("selectChoices").innerHTML = htmlCons;
       }
