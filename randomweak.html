@@ -227,6 +227,8 @@
         return res;
       }
 
+      var iter, savedRes, finalRes = [];
+      
       function run() {
         var packMod = [];
         var bans = [];
@@ -241,36 +243,76 @@
         }
         _setupWeights(packMod, {ban: bans, campaignOnly: document.formCount.option_campaign_only.checked});
         document.getElementById("resultText").innerText = '';
-        var res = _pickMulti(document.formCount.text1.value);
-        for (var i = 0; i < res.length; i++) {
-          document.getElementById("resultText").innerHTML += '<a href="' + _makeDBURL(res[i].code) + '">' + res[i].name + '</a>' + (i === res.length - 1 ? '' : '<br>');
+        if (!document.formCount.chooseMode.value) {
+          var res = _pickMulti(document.formCount.text1.value);
+          for (var i = 0; i < res.length; i++) {
+            document.getElementById("resultText").innerHTML += '<a href="' + _makeDBURL(res[i].code) + '">' + res[i].name + '</a>' + (i === res.length - 1 ? '' : '<br>');
+          }
+        } else {
+          iter = document.formCount.text1.value;
+          if (!(iter > 0))
+            return;
+          document.getElementById("chooseUI").hide();
+          document.getElementById("selectUI").show();
+          iter--;
+          _fillSelect();
         }
       }
+      
+      function _chooseThis(idx) {
+        document.getElementById("selectChoices").innerHTML = '';
+        finalRes.push(savedRes[i]);
+        iter--;
+        if (iter > 0) {
+          _fillSelect();
+        } else {
+          document.getElementById("selectUI").hide();
+          document.getElementById("chooseUI").show();
+          for (var i = 0; i < finalRes.length; i++) {
+            document.getElementById("resultText").innerHTML += '<a href="' + _makeDBURL(finalRes[i].code) + '">' + finalRes[i].name + '</a>' + (i === finalRes.length - 1 ? '' : '<br>');
+          }
+        }
+      }
+      
+      function _fillSelect() {
+        savedRes = _pickMulti(document.formCount.text2.value);
+        var htmlCons = '';
+        for (var i = 0; i < savedRes.length; i++) {
+          htmlCons += '<div>' + savedRes[i].name + '<br><img src="' + _makeDBImageURL(savedRes[i].code) + ' onclick="_chooseThis(i)"></div>';
+        }
+        document.getElementById("selectChoices").innerHTML = htmlCons;
+      }
+        
       
       function _makeDBURL(code) {
         return 'https://arkhamdb.com/card/' + code;
       }
+      
+      function _makeDBImageURL(code) {
+        return 'https://arkhamdb.com/bundles/cards/' + code + '.png';
+      }
 
       function onlyKorean() {
         document.formPack.elements[PACK_PARALLEL].value = 0;
-          document.formPack.elements[PACK_TDE].value = 0;
-              document.formPack.elements[PACK_TIC].value = 0;
-                document.formPack.elements[PACK_EOTE].value = 0;
+        document.formPack.elements[PACK_TDE].value = 0;
+        document.formPack.elements[PACK_TIC].value = 0;
+        document.formPack.elements[PACK_EOTE].value = 0;
       }
 
       function init() {
-  for (var i = 0; i < 15; i++) {
+        for (var i = 0; i < 15; i++) {
           document.formPack.elements[i].value = 1;
-  }
+        }
       }
       
       function changeMode() {
         if (document.formCount.chooseMode.value) {
-          document.formCount.chooseOption.show();
+          document.getElementById("chooseOption").show();
         } else {
-          document.formCount.chooseOption.hide();
+          document.getElementById("chooseOption").hide();
         }
       }
+      changeMode();
     </script>
 	  </head>
 
@@ -278,7 +320,16 @@
 
 <div class="col-md-8" id="rules">
 <div class="rules-reference" style="text-align: justify">
-<div>
+<div id="selectUI" style="display: none;">
+  <div class="titleRowBlock">
+    <div class="textBlock">
+      약점 랜덤 선택기
+    </div>
+  </div>
+  <div class="pickRowBlock" id="selectChoices">
+  </div>
+</div>
+<div id="chooseUI">
   <div class="titleRowBlock">
     <div class="textBlock">
       약점 랜덤 선택기
