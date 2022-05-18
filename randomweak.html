@@ -213,7 +213,9 @@
             picked = {name: '선택 불가'};
           }
           if (picked.workCount > 1) {
-            picked.weight = picked.weight * (picked.workCount - 1) / picked.workCount;
+            var reducedWeight = picked.weight * (picked.workCount - 1) / picked.workCount;
+            picked.weight -= reducedWeight;
+            weightSum -= reducedWeight;
             picked.workCount--;
           } else {
             banList.push(picked.name);
