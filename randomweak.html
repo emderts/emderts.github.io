@@ -40,6 +40,10 @@
         margin-bottom: 30px;
         border-bottom: 1px dotted black;
       }
+      
+      .selectCardBlock {
+        justify-content: space-around;
+      }
 
       .textBlock {
         margin: auto;
@@ -278,7 +282,7 @@
         savedRes = _pickMulti(document.formCount.text2.value);
         var htmlCons = '';
         for (var i = 0; i < savedRes.length; i++) {
-          htmlCons += '<div>' + savedRes[i].name + '<br><img src="' + _makeDBImageURL(savedRes[i].code) + ' onclick="_chooseThis(i)"></div>';
+          htmlCons += '<div>' + savedRes[i].name + '<br><img src="' + _makeDBImageURL(savedRes[i].code) + '" onclick="_chooseThis(i)"></div>';
         }
         document.getElementById("selectChoices").innerHTML = htmlCons;
       }
@@ -332,7 +336,7 @@
       약점 랜덤 선택기
     </div>
   </div>
-  <div class="pickRowBlock" id="selectChoices">
+  <div class="pickRowBlock selectCardBlock" id="selectChoices">
   </div>
 </div>
 <div id="chooseUI">
