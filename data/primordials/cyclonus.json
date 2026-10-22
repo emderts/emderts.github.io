@@ -1,0 +1,829 @@
+{
+ "id": "cyclonus",
+ "name": "Cyclonus",
+ "cycle": 2,
+ "type": "regular",
+ "sheetCode": "BU0724",
+ "_notes": [
+  "Transcribed from sheet BU0724 (front Lv I-IV / back Lv V-IX), AI BR0725-BR0744, BP BS0746-BS0763, Routine Infuriating Roar (BR0744 / Mnestis BR0744-M), Signature Maul Smash BR0743.",
+  "Combo track (Bred for War): Mauls (Knife/Shield/Slabsword/Whip) -> Chain (Club/Axe/Bow) -> Body (Spear/Sword/Cestus). Combo Break: a non-PT Titan exhausts an unexhausted Weapon of the listed class while in its effective range.",
+  "Kratos Roll: d10 >= Rage succeeds, otherwise draw a Kratos card (no Fate re-roll). Danger Zone (D): the 4 side-adjacent spaces."
+ ],
+ "footprint": {
+  "w": 2,
+  "h": 2,
+  "rear": "top-edge"
+ },
+ "ukb": 5,
+ "blindspots": "rear",
+ "combo": {
+  "track": [
+   "Mauls",
+   "Chain",
+   "Body"
+  ],
+  "classes": {
+   "Mauls": [
+    "Knife",
+    "Shield",
+    "Slabsword",
+    "Whip"
+   ],
+   "Chain": [
+    "Club",
+    "Axe",
+    "Bow"
+   ],
+   "Body": [
+    "Spear",
+    "Sword",
+    "Cestus"
+   ]
+  }
+ },
+ "levels": {
+  "1": {
+   "toHit": 7,
+   "speed": 7,
+   "wounds": 10,
+   "bonus": {},
+   "traits": [
+    "Bred for War",
+    "The Strong Eat"
+   ]
+  },
+  "2": {
+   "toHit": 7,
+   "speed": 7,
+   "wounds": 10,
+   "bonus": {},
+   "traits": [
+    "Eye for an Eye"
+   ]
+  },
+  "3": {
+   "toHit": 8,
+   "speed": 7,
+   "wounds": 10,
+   "bonus": {
+    "ESCALATION": 1,
+    "DANGER": 1
+   },
+   "traits": [
+    "Unbeatable Guard"
+   ]
+  },
+  "4": {
+   "toHit": 8,
+   "speed": 8,
+   "wounds": 10,
+   "bonus": {
+    "ESCALATION": 2,
+    "AT": 1,
+    "DANGER": 1
+   },
+   "traits": [
+    "Lesser Danger Sense"
+   ]
+  },
+  "5": {
+   "mnestis": true,
+   "toHit": 9,
+   "speed": 8,
+   "wounds": 11,
+   "bonus": {
+    "ESCALATION": 2,
+    "AT": 2,
+    "DANGER": 1
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "End of Hope",
+    "Hyperaggression"
+   ]
+  },
+  "6": {
+   "mnestis": true,
+   "toHit": 9,
+   "speed": 8,
+   "wounds": 11,
+   "bonus": {
+    "ESCALATION": 3,
+    "AT": 3,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Dreadnought"
+   ]
+  },
+  "7": {
+   "mnestis": true,
+   "toHit": 10,
+   "speed": 9,
+   "wounds": 12,
+   "bonus": {
+    "ESCALATION": 4,
+    "AT": 4,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Crimson Tide"
+   ]
+  },
+  "8": {
+   "mnestis": true,
+   "toHit": 10,
+   "speed": 9,
+   "wounds": 13,
+   "bonus": {
+    "ESCALATION": 4,
+    "AT": 5,
+    "EVADE_DICE": 1,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Beginning of the End"
+   ]
+  },
+  "9": {
+   "mnestis": true,
+   "toHit": 11,
+   "speed": 9,
+   "wounds": 14,
+   "bonus": {
+    "ESCALATION": 5,
+    "AT": 7,
+    "EVADE_DICE": 2,
+    "DANGER": 3
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Ruthless",
+    "Leleges Spin"
+   ]
+  }
+ },
+ "traits": {
+  "Bred for War": "Additional Setup: Place a Combo token on the Maul space of the Combo track. After resolving a Combo or Combo Break, move the token clockwise to the next space. Combo: After resolving the first AI card in a Round, perform ⚡ Combo: Draw and resolve another AI card. Combo Break: A Titan who is not the Priority Target, and has a Weapon with a Weapon class indicated by the Combo track, may exhaust this Weapon to break the Combo. The Titan must be within this Weapon's effective range. It gains the Priority Target token. Note: Rage gain doesn't trigger PT change.",
+  "The Strong Eat": "Additional Setup: Add 1 You died! Obol to the Obol deck.",
+  "Eye for an Eye": "Each time Cyclonus gains a Wound (a Double Wound is treated as 2 Wounds) or performs an unbroken Combo, place a token on this Trait. If there are 4 or more tokens on this Trait, finish resolving the current action, discard all tokens, then draw and resolve the top AI card.",
+  "Unbeatable Guard": "During the Titan Round, Cyclonus cannot be Wounded from the front and Combos cannot be broken from the front. Ignore this Trait during a Cyclonus Attack.",
+  "Lesser Danger Sense": "The D letters on the Primordial Diagram mark the Danger Zone spaces (the 4 side-adjacent spaces). If a Titan moves through the Danger Zone during the Titan Round, roll a d10. On a 7+, they manage to get through. Otherwise, they gain +2 Danger. Ignore this Trait during a Cyclonus Attack.",
+  "End of Hope": "End of Primordial Round: Perform Signature.",
+  "Hyperaggression": "Add +1 to all Pushbacks and Pulls and +2 to all Knockbacks performed by the Cyclonus.",
+  "Dreadnought": "During the Titan Round, Cyclonus can only be Wounded from its Blindspot. Combos can be broken only from the Blindspot.",
+  "Crimson Tide": "Start of Primordial Round: Perform Routine.",
+  "Beginning of the End": "End of Primordial Round: Before End of Hope, draw and perform another AI card. Additional Setup: Alternate Battle Diagram.",
+  "Ruthless": "Remove all positive Trauma cards from the Trauma decks (except Obols).",
+  "Leleges Spin": "Start of Primordial Round: Place one generic token on this Trait. Signature becomes a Zone Attack performed in Zone X, where X is the number of tokens on this Trait."
+ },
+ "ai": [
+  {
+   "code": "BR0726",
+   "tier": 1,
+   "name": "Basher",
+   "kind": "ATTACK",
+   "dice": 2,
+   "toHit": 10,
+   "target": [
+    "Last to Wound in sight, in range",
+    "Closest Titan in front, in range",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Deal 3 DANGER.\n| FATE 4+: 4 DANGER instead"
+   ],
+   "after": "Pushback 2. Gain +1 RAGE.",
+   "afterWindow": true
+  },
+  {
+   "code": "BR0729",
+   "tier": 1,
+   "name": "Chain Whip",
+   "kind": "RANGE ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Furthest Titan in front, in range",
+    "Furthest Titan in sight, in range"
+   ],
+   "steps": [
+    "RANGE ATTACK 6 | FATE 3+: Exhaust your Armor",
+    "One hit deals 1 DANGER, two hits deal 3 DANGER, three hits deal 5 DANGER."
+   ],
+   "range": 6,
+   "after": "Pull 2 per hit.",
+   "afterWindow": true
+  },
+  {
+   "code": "BR0727",
+   "tier": 1,
+   "name": "Head to Head",
+   "kind": "ATTACK",
+   "dice": 2,
+   "toHit": 8,
+   "target": [
+    "Titan in Blindspot",
+    "Closest Titan in front, in range"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Deal 4 DANGER.",
+    "Gain +1 RAGE.\n| FATE 4+: Gain +2 RAGE instead"
+   ],
+   "after": "Pushback 2. Perform a Kratos Roll.",
+   "afterWindow": false,
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR0728",
+   "tier": 1,
+   "name": "Maul Hook",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Titan in Blindspot",
+    "Closest Titan in front, in range",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 4+: Exhaust your Armor",
+    "Each hit deals 1 DANGER.",
+    "Gain +1 RAGE.",
+    "⚡ Knockdown."
+   ],
+   "after": "Knockback 7 towards the closest short Board Edge.",
+   "afterWindow": false,
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR0730",
+   "tier": 1,
+   "name": "Monstrous Bite",
+   "kind": "ATTACK",
+   "dice": 1,
+   "toHit": 11,
+   "target": [
+    "Titan in Blindspot",
+    "Closest Titan in front, in range",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "MOVE & ATTACK | LEVEL 4+: +1 EVADE_DICE",
+    "FATE 4+: Gain +1 RAGE.",
+    "Deal 5 DANGER."
+   ],
+   "after": "⚡ Pull 4.",
+   "afterWindow": true,
+   "afterAsStep": true
+  },
+  {
+   "code": "BR0725",
+   "tier": 1,
+   "name": "Throwing Punches",
+   "kind": "SIMULTANEOUS ATTACK",
+   "dice": 2,
+   "toHit": 9,
+   "target": [
+    "All adjacent Titans"
+   ],
+   "steps": [
+    "⚡ ATTACK | FATE 3+: Exhaust your Armor",
+    "Each hit deals 2 DANGER."
+   ],
+   "afterFinal": "Target with the most DANGER suffers Knockback 7 towards the closest short Board Edge.\n⚡ Pushback 3.",
+   "afterWindow": true
+  },
+  {
+   "code": "BR0734",
+   "tier": 2,
+   "name": "Ball Trick",
+   "kind": "RANGE ATTACK",
+   "dice": 2,
+   "toHit": 9,
+   "target": [
+    "Furthest Titan in front, in range",
+    "Furthest Titan in sight, in range"
+   ],
+   "steps": [
+    "RANGE ATTACK 6 | LEVEL 4+: Range +2\n| FATE 6+: Exhaust your Weapon",
+    "Each hit deals 3 DANGER."
+   ],
+   "range": 6,
+   "after": "Pull 3 per hit.",
+   "afterWindow": true
+  },
+  {
+   "code": "BR0735",
+   "tier": 2,
+   "name": "Chain Garrote",
+   "kind": "ATTACK",
+   "dice": 2,
+   "toHit": 8,
+   "target": [
+    "Titan in Blindspot",
+    "Last to Wound in sight",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 6+: +1 EVADE_DICE",
+    "Gain +2 RAGE.",
+    "One hit deals 3 DANGER, two hits deal 5 DANGER, three hits raise DANGER to 9 and draw a Kratos card instead of a Trauma card."
+   ],
+   "after": "If DANGER was dealt, Pull 4.",
+   "afterWindow": true,
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR0736",
+   "tier": 2,
+   "name": "Figurehead Skewer",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 7,
+   "target": [
+    "Furthest Titan in front, in range",
+    "Furthest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 5+: +1 EVADE_DICE",
+    "Gain +2 RAGE.",
+    "Each hit deals 2 DANGER.",
+    "⚡ Pushback 5."
+   ],
+   "after": "Pushback 2.",
+   "afterWindow": true,
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR0733",
+   "tier": 2,
+   "name": "Ground Zero",
+   "kind": "SIMULTANEOUS ATTACK",
+   "dice": 4,
+   "toHit": 10,
+   "target": [
+    "All adjacent Titans"
+   ],
+   "steps": [
+    "⚡ ATTACK",
+    "Each hit deals 1 DANGER.",
+    "Perform a Kratos Roll.",
+    "⚡ FATE 5+: Exhaust your Armor."
+   ],
+   "afterFinal": "Target with the most DANGER suffers Knockback 8 towards the closest short Board Edge.",
+   "afterWindow": true,
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR0731",
+   "tier": 2,
+   "name": "Knockout Punch",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Titan in Blindspot",
+    "Last to Wound in sight, in range",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "MOVE & ATTACK | FATE 5+: Exhaust your Armor",
+    "Gain +1 RAGE.",
+    "Deal 5 DANGER."
+   ],
+   "after": "Knockback 10 towards the closest short Board Edge.\n⚡ Pushback 4.",
+   "afterWindow": true,
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR0732",
+   "tier": 2,
+   "name": "Rage Uppercut",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Last to Wound in sight, in range",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Gain +1 RAGE. | FATE 5+: Gain +2 RAGE instead",
+    "Deal as many DANGER as you have RAGE.",
+    "⚡ Knockdown."
+   ],
+   "after": "Forced Vault. Discard Footwear Gear.\nPushback 2.",
+   "afterWindow": true,
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR0742",
+   "tier": 3,
+   "name": "Compactor",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 8,
+   "target": [
+    "Closest Titan in front, in range",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Each hit deals 3 DANGER.",
+    "Exhaust all your Gear.",
+    "FATE 6+: Gain +2 RAGE."
+   ],
+   "after": "Forced Vault. Pushback 3.",
+   "afterWindow": true,
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR0737",
+   "tier": 3,
+   "name": "Drop the Ball",
+   "kind": "SIMULTANEOUS ATTACK",
+   "dice": 1,
+   "toHit": 10,
+   "target": [
+    "All adjacent Titans"
+   ],
+   "steps": [
+    "⚡ ATTACK | FATE 7+: +1 EVADE_DICE | LEVEL 4+: +1 EVADE_DICE | FATE 6+: Exhaust all your Gear",
+    "Deal 7 DANGER.",
+    "Gain RAGE equal to the Primordial LVL."
+   ],
+   "afterFinal": "Target with the most DANGER suffers Knockback 10 towards the closest short Board Edge.",
+   "afterWindow": false,
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR0740",
+   "tier": 3,
+   "name": "Ghostpunch",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Last to Wound in sight, in range",
+    "Priority Target in range",
+    "Closest Titan in front, in range"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 7+: +1 EVADE_DICE",
+    "One hit deals 5 DANGER, two hits draw an Obol, three hits you die."
+   ],
+   "after": "Exhaust all your Gear. Forced Vault. Cyclonus moves 4 spaces directly away from the Target.",
+   "afterWindow": false
+  },
+  {
+   "code": "BR0739",
+   "tier": 3,
+   "name": "Gutmaul",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Titan in Blindspot",
+    "Last to Wound in sight, in range",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "MOVE & ATTACK | FATE 6+: +1 EVADE_DICE",
+    "Gain +1 RAGE per hit.",
+    "Deal as many DANGER as you have RAGE."
+   ],
+   "after": "Pushback 3.",
+   "afterWindow": true,
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR0741",
+   "tier": 3,
+   "name": "Headshot",
+   "kind": "ATTACK",
+   "dice": 1,
+   "toHit": 10,
+   "target": [
+    "Last to Wound in sight, in range",
+    "Priority Target in range",
+    "Closest Titan in front, in range",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 5+: +1 EVADE_DICE | LEVEL 4+: +1 EVADE_DICE",
+    "Headshot: Deal 5 DANGER and discard a Helm or Headgear Gear, otherwise deal 9 DANGER and draw an Obol."
+   ],
+   "after": "Knockdown. Gain +2 RAGE. Knockback 15 towards the closest short Board Edge. Discard Footwear Gear.",
+   "afterWindow": true
+  },
+  {
+   "code": "BR0738",
+   "tier": 3,
+   "name": "Old Ball and Chain",
+   "kind": "RANGE ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Furthest Titan in front, in range",
+    "Furthest Titan in sight, in range"
+   ],
+   "steps": [
+    "⚡ RANGE ATTACK 7 | LEVEL 4+: Range +2 | FATE 6+: Exhaust all your Gear",
+    "Each hit deals 3 DANGER.",
+    "Gain RAGE equal to the Primordial LVL."
+   ],
+   "range": 7,
+   "after": "Pull 3 per hit. Knockdown.",
+   "afterWindow": false,
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR0743",
+   "tier": "X",
+   "name": "Maul Smash",
+   "kind": "SIGNATURE",
+   "dice": 2,
+   "toHit": 10,
+   "target": [
+    "Closest Titan in front, in range",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Each hit deals 2 DANGER.",
+    "Perform a Kratos Roll."
+   ],
+   "after": "Knockback 7 towards the closest short Board Edge.",
+   "afterWindow": true,
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR0744",
+   "tier": "X",
+   "name": "Infuriating Roar",
+   "kind": "ROUTINE",
+   "text": "Each Titan gains +2 DANGER and +1 RAGE. Lose -1 Refugee (campaign). ⚡ Cyclonus moves to the center of the Board."
+  },
+  {
+   "code": "BR0744-M",
+   "tier": "X",
+   "name": "Infuriating Roar (Mnestis)",
+   "kind": "MNESTIS ROUTINE",
+   "text": "Each Titan gains +3 DANGER and +2 RAGE. ⚡ Cyclonus moves to the center of the Board."
+  }
+ ],
+ "bp": [
+  {
+   "code": "BS0749",
+   "tier": 1,
+   "name": "Ancilliary Cage Armor",
+   "at": 3,
+   "responses": {
+    "FAIL": "Escalate 1.",
+    "WOUND": "Lose -1 Humanity (campaign). Gain +1 RAGE."
+   },
+   "critical": "Gain +1 Humanity. Gain +1 Mnemos node (campaign).",
+   "prisoners": true,
+   "qeye": true
+  },
+  {
+   "code": "BS0750",
+   "tier": 1,
+   "name": "Bulging Biceps",
+   "at": 4,
+   "responses": {
+    "FAIL": "Escalate 1.",
+    "WOUND": "Gain +1 RAGE."
+   },
+   "critical": "Deal an additional Single Wound!"
+  },
+  {
+   "code": "BS0751",
+   "tier": 1,
+   "name": "Chiseled Gut",
+   "at": 4,
+   "responses": {
+    "FAIL": "Exhaust your active Weapon.",
+    "WOUND": "Cyclonus moves 4 spaces directly away from the Attacker (without turning)."
+   },
+   "critical": "During the second ability window, place 3 additional Opening or Break tokens in the Kratos Pool."
+  },
+  {
+   "code": "BS0748",
+   "tier": 1,
+   "name": "Mighty Pectoral Muscle",
+   "at": 5,
+   "responses": {
+    "INSTINCT": "Gain the Hatred Condition card."
+   },
+   "critical": "Until the end of Battle, Cyclonus Knockbacks are reduced by 2."
+  },
+  {
+   "code": "BS0747",
+   "tier": 1,
+   "name": "Monstrous Foot",
+   "at": 3,
+   "responses": {
+    "FAIL": "Gain +1 RAGE.",
+    "WOUND": "Cyclonus moves 4 spaces directly away from the Attacker (without turning)."
+   },
+   "critical": "You may perform a Bonus Attack!"
+  },
+  {
+   "code": "BS0746",
+   "tier": 1,
+   "name": "Right Maul",
+   "at": 5,
+   "responses": {
+    "FAIL": "Gain +1 RAGE. Exhaust your active Weapon.",
+    "WOUND": "Gain +1 RAGE."
+   },
+   "critical": "Disable Cyclonus Range Attacks.",
+   "qeye": true
+  },
+  {
+   "code": "BS0756",
+   "tier": 2,
+   "name": "Ironhide",
+   "at": 5,
+   "responses": {
+    "INSTINCT": "Exhaust your active Weapon."
+   },
+   "critical": "You may perform a Bonus Attack with +1 Power!",
+   "hardened": true
+  },
+  {
+   "code": "BS0755",
+   "tier": 2,
+   "name": "Armored Head",
+   "at": 7,
+   "responses": {
+    "INSTINCT": "Perform Signature against the Attacker."
+   },
+   "critical": "Treat Chains Combos as automatically broken.",
+   "qeye": true
+  },
+  {
+   "code": "BS0754",
+   "tier": 2,
+   "name": "Lower Cage Armor",
+   "at": 5,
+   "responses": {
+    "FAIL": "Gain +2 RAGE.",
+    "WOUND": "Lose -1 Humanity (campaign). Gain +2 RAGE."
+   },
+   "critical": "Gain +1 Humanity. Gain +1 Mnemos node (campaign).",
+   "prisoners": true
+  },
+  {
+   "code": "BS0753",
+   "tier": 2,
+   "name": "Wounded Back",
+   "at": 6,
+   "responses": {
+    "FAIL": "Escalate 1.",
+    "WOUND": "Cyclonus moves 4 spaces directly away from the Attacker (without turning)."
+   },
+   "critical": "Disable Hardened."
+  },
+  {
+   "code": "BS0752",
+   "tier": 2,
+   "name": "Left Maul",
+   "at": 6,
+   "responses": {
+    "FAIL": "Gain +2 RAGE. Exhaust your active Weapon.",
+    "WOUND": "Escalate 1."
+   },
+   "critical": "Gain one of the Maulfist Gear cards (campaign).",
+   "qeye": true
+  },
+  {
+   "code": "BS0757",
+   "tier": 2,
+   "name": "Powerful Jaw",
+   "at": 4,
+   "responses": {
+    "FAIL": "Exhaust all your Gear.",
+    "WOUND": "Gain +2 RAGE. Cyclonus moves 4 spaces directly away from the Attacker (without turning)."
+   },
+   "critical": "Cyclonus needs 5 tokens to perform an Eye for an Eye Attack."
+  },
+  {
+   "code": "BS0758",
+   "tier": 3,
+   "name": "Figurehead",
+   "at": 7,
+   "responses": {
+    "FAIL": "Exhaust all your Gear.",
+    "WOUND": "Exhaust your active Weapon. Cyclonus moves 4 spaces directly away from the Attacker (without turning)."
+   },
+   "critical": "You may perform a Bonus Attack with +1 Power!"
+  },
+  {
+   "code": "BS0759",
+   "tier": 3,
+   "name": "Ambrosia Sack",
+   "at": 7,
+   "responses": {
+    "FAIL": "Gain DANGER equal to twice the Primordial LVL.",
+    "WOUND": "Gain RAGE equal to the Primordial LVL."
+   },
+   "critical": "Gain one of the Maulfist Gear cards (campaign).",
+   "qeye": true
+  },
+  {
+   "code": "BS0760",
+   "tier": 3,
+   "name": "Heart Cage Armor",
+   "at": 8,
+   "responses": {
+    "FAIL": "Gain RAGE equal to the Primordial LVL. Escalate 1.",
+    "WOUND": "Lose -1 Humanity (campaign). Gain +3 RAGE."
+   },
+   "critical": "Gain +2 Humanity (campaign). +1 Progress (campaign).",
+   "prisoners": true
+  },
+  {
+   "code": "BS0761",
+   "tier": 3,
+   "name": "Bleeding Eyesocket",
+   "at": 6,
+   "responses": {
+    "INSTINCT": "Cyclonus moves 4 spaces directly away from the Attacker (without turning). Perform Signature against the Attacker."
+   },
+   "critical": "The Cyclonus dies.",
+   "qeye": true
+  },
+  {
+   "code": "BS0762",
+   "tier": 3,
+   "name": "Second Heart",
+   "at": 6,
+   "responses": {
+    "FAIL": "Cyclonus moves 4 spaces directly away from the Attacker (without turning).",
+    "WOUND": "Exhaust all your Gear. Gain RAGE equal to the Primordial LVL."
+   },
+   "critical": "Treat Body Combos as automatically broken."
+  },
+  {
+   "code": "BS0763",
+   "tier": 3,
+   "name": "Iron Endoskeleton",
+   "at": 7,
+   "responses": {
+    "INSTINCT": "Exhaust your active Weapon."
+   },
+   "critical": "You may perform a Bonus Attack with +1 Power!",
+   "hardened": true
+  }
+ ],
+ "dangerZone": [
+  [
+   -0.5,
+   -1.5
+  ],
+  [
+   0.5,
+   -1.5
+  ],
+  [
+   -0.5,
+   1.5
+  ],
+  [
+   0.5,
+   1.5
+  ]
+ ]
+}

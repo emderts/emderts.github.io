@@ -1,0 +1,151 @@
+{
+ "id": "hypertime",
+ "source": "ATO Cycle III Storybook — Hypertime Oracle Battle (p.128-129)",
+ "board": {
+  "cols": 20,
+  "rows": 14
+ },
+ "timefront": 1,
+ "_notes": [
+  "Timefront tiles (1x4 + 2x 1x5) fill column 1. Coloured squares (red, green, yellow, blue → Titan 1-4) = Time Anchor spaces. Flame tokens (J9, I9, F9, E9) = Titan start spaces, chosen freely by the players.",
+  "Terrain cards CI1310-CI1314: Timefront = Board Edge, Boundless, Indestructible (death by moving onto/beyond it → erased). Time-frozen City = Obscuring, Inhabited, Destructible, Cover (not an Obstacle; Thaw Time is campaign-only). Black Iceberg 1x1 / Giant 2x2 = Obstacle, Obscuring, Destructible, Trap, Black Ice. Flame tokens on column 9 not modelled (unknown)."
+ ],
+ "setup": [
+  "Standard Preparations.",
+  "Primordial Positioning: indicated space in the centre (G13-H14); it faces the Titans.",
+  "Additional Setup: set the Aeons Tsunami AI III card aside. Time Anchors on Titan start spaces."
+ ],
+ "center": "G10",
+ "variants": {
+  "lv1-2": {
+   "levels": [
+    1,
+    2
+   ],
+   "primordial": {
+    "anchor": "G13",
+    "faceTitans": true
+   },
+   "titanStarts": [
+    "L7",
+    "L10",
+    "J5",
+    "C11"
+   ],
+   "terrain": {
+    "iceberg": [
+     "L8",
+     "K10",
+     "J6",
+     "J14",
+     "H9",
+     "D11",
+     "B13"
+    ],
+    "frozenCity": [
+     [
+      "L15",
+      "L16",
+      "L17",
+      "M15",
+      "M16",
+      "M17",
+      "N15",
+      "N16",
+      "N17"
+     ],
+     [
+      "A17",
+      "A18",
+      "A19",
+      "B17",
+      "B18",
+      "B19",
+      "C17",
+      "C18",
+      "C19"
+     ]
+    ]
+   },
+   "startChoices": [
+    "J9",
+    "I9",
+    "F9",
+    "E9"
+   ]
+  },
+  "lv3+": {
+   "levels": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "primordial": {
+    "anchor": "G13",
+    "faceTitans": true
+   },
+   "titanStarts": [
+    "L7",
+    "L10",
+    "K14",
+    "C11"
+   ],
+   "terrain": {
+    "iceberg": [
+     "L8",
+     "K10",
+     "J14",
+     "K16",
+     "I17",
+     "G18",
+     "H9",
+     "F12",
+     "D11",
+     "B13"
+    ],
+    "giantIceberg": [
+     [
+      "D16",
+      "D17",
+      "E16",
+      "E17"
+     ]
+    ],
+    "frozenCity": [
+     [
+      "L18",
+      "L19",
+      "L20",
+      "M18",
+      "M19",
+      "M20",
+      "N18",
+      "N19",
+      "N20"
+     ],
+     [
+      "A17",
+      "A18",
+      "A19",
+      "B17",
+      "B18",
+      "B19",
+      "C17",
+      "C18",
+      "C19"
+     ]
+    ]
+   },
+   "startChoices": [
+    "J9",
+    "I9",
+    "F9",
+    "E9"
+   ]
+  }
+ }
+}

@@ -1,0 +1,1451 @@
+{
+ "_notes": [
+  "Tree of Knowledge, Cycle I portion (Core Rulebook p.74-75). Each won Battle also grants 1 Labyrinthized Tear (Cycle I ascending material).",
+  "Prerequisites read from the diagram: a horizontal bus between two columns is treated as both lower nodes requiring both upper nodes.",
+  "Cross-cycle links (user-corrected): Lab VII ← Chimera VI; Lab IX & Temenos VI ← Nietzschean II; Pursuer VI ← Temenos VI + Chimera VII; Pursuer VII ← Pursuer VI; Temenos VII ← Pursuer VII; Pursuer VIII → Burden V; Temenos IX → Burden VI. Cycle II prerequisites can be ignored in the app.",
+  "2026-10-20: Cycle II/III portion rebuilt from the full Tree of Knowledge diagram (Core Rulebook p.74, user scan). Ids: Y=Cyclonus C=Chimera B=Burden N=Nietzschean I=Icarian Harpy O=Hypertime Oracle S=Sun Descendant. Swirl icon = core (Ascended Core) battle. Cross links read from the diagram connectors (e.g. Oracle VII ← Burden III, Sun VI ← Nietzschean V, Nietzschean VI ← Sun IV).",
+  "2026-10-20: Cross links corrected by user (Burden V←Pursuer VIII, Burden VI/Nietzschean IV←Temenos IX, Burden IV←Oracle VII, Burden VII←Pursuer IX/Nietzschean IV, Burden VIII←Temenos IX/Nietzschean V, Nietzschean IV←Burden VI, Nietzschean V←Pursuer IX, Nietzschean VI←Temenos IX/Burden VII, Nietzschean VII←Sun IV, Nietzschean VIII←Burden IX, Sun VII←Nietzschean V). Cycle II = Excavated Tear/Core, Cycle III = Accursed Tear/Core.",
+  "2026-10-20: User corrections: Burden V←Pursuer VII, Burden VI←Temenos VIII, Nietzschean IV not linked to Temenos IX.",
+  "2026-10-20: Cycle IV/V portion added from the Tree of Knowledge p.72 scan. Ids: MC Midascore, DJ Demidjinn, DK Dahaka, BL Babelian Lunacy; Cycle V (not playable yet): OH Old Haunt, PH Dragon of Phobos, MK Meduketos, UF Ur-Fleece, TX Titan X. Old Haunt II-V give the Cycle IV tear (cycle:4). 'Old Haunt Unlocked' (campaign event) is not modelled. Cursed Mode checkbox not modelled.",
+  "2026-10-20: User corrections: Sun IV←Babelian III, Sun VII←Babelian V (not the reverse); Old Haunt VII←Titan X III; Meduketos/Dragon VIII not linked to Titan X II."
+ ],
+ "loot": {
+  "hekaton": [
+   "Shieldblade"
+  ],
+  "labyrinthauros": [
+   "Mazemace",
+   "Glimmer Shroud"
+  ],
+  "temenos": [
+   "Pyramidion"
+  ],
+  "pursuer": [
+   "Nail Spear",
+   "Vulture Mask"
+  ],
+  "chimera": [
+   "Muck Virus",
+   "Jaws of the Lion",
+   "Bellerophon",
+   "Remembrance"
+  ],
+  "cyclonus": [
+   "Left Maulfist",
+   "Right Maulfist"
+  ],
+  "nietzschean": [
+   "Umbral Virus",
+   "Fumeblade (Bared)",
+   "Elephantine Armor",
+   "Cowl of Char",
+   "Necrotic Virus"
+  ],
+  "burden": [
+   "Leg Khopesh",
+   "Sisyphus's Burden"
+  ],
+  "hypertime": [
+   "Eye of the Watcher",
+   "Paradox"
+  ],
+  "harpy": [
+   "Right Talon of Doom",
+   "Spherecast"
+  ],
+  "sun": [
+   "Icarus Lot",
+   "Icarus's Fall"
+  ],
+  "midascore": [
+   "Auric Cloak",
+   "Golden Harp",
+   "Bihorn Lance"
+  ],
+  "demidjinn": [
+   "Pocket Wishlamp",
+   "Djinn Cloak",
+   "Wishblade"
+  ],
+  "dahaka": [
+   "Shadowcleaver",
+   "Dahaka Mask",
+   "Dahaka Blade"
+  ],
+  "babel": [
+   "Molten Gold Kalasiris",
+   "Outrigger Bodysuit",
+   "Bailout"
+  ]
+ },
+ "nodes": [
+  {
+   "id": "H5",
+   "prim": "hekaton",
+   "level": 5,
+   "reward": null,
+   "pre": []
+  },
+  {
+   "id": "P2",
+   "prim": "pursuer",
+   "level": 2,
+   "reward": "Skyseer Titan",
+   "pre": [
+    "H5"
+   ]
+  },
+  {
+   "id": "L5",
+   "prim": "labyrinthauros",
+   "level": 5,
+   "reward": null,
+   "pre": [
+    "H5"
+   ]
+  },
+  {
+   "id": "T2",
+   "prim": "temenos",
+   "level": 2,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "P2"
+   ]
+  },
+  {
+   "id": "H6",
+   "prim": "hekaton",
+   "level": 6,
+   "reward": null,
+   "pre": [
+    "L5"
+   ]
+  },
+  {
+   "id": "L6",
+   "prim": "labyrinthauros",
+   "level": 6,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "H6"
+   ]
+  },
+  {
+   "id": "P3",
+   "prim": "pursuer",
+   "level": 3,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "T2",
+    "L6"
+   ]
+  },
+  {
+   "id": "T3",
+   "prim": "temenos",
+   "level": 3,
+   "reward": null,
+   "core": true,
+   "pre": [
+    "P3"
+   ]
+  },
+  {
+   "id": "H7",
+   "prim": "hekaton",
+   "level": 7,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "T3"
+   ]
+  },
+  {
+   "id": "T4",
+   "prim": "temenos",
+   "level": 4,
+   "reward": "Secret deck 5, card 44",
+   "core": true,
+   "pre": [
+    "H7"
+   ],
+   "rewardName": "Labyrinth Payload",
+   "rewardCard": true
+  },
+  {
+   "id": "L7",
+   "prim": "labyrinthauros",
+   "level": 7,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "H7",
+    "C6"
+   ]
+  },
+  {
+   "id": "P4",
+   "prim": "pursuer",
+   "level": 4,
+   "reward": "Secret deck 12, card 162",
+   "pre": [
+    "T4",
+    "L7"
+   ]
+  },
+  {
+   "id": "P5",
+   "prim": "pursuer",
+   "level": 5,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "P4"
+   ]
+  },
+  {
+   "id": "H8",
+   "prim": "hekaton",
+   "level": 8,
+   "reward": "Secret deck 12, card 147",
+   "pre": [
+    "P5"
+   ]
+  },
+  {
+   "id": "L8",
+   "prim": "labyrinthauros",
+   "level": 8,
+   "reward": "Secret deck 12, card 148",
+   "pre": [
+    "P5"
+   ]
+  },
+  {
+   "id": "T5",
+   "prim": "temenos",
+   "level": 5,
+   "reward": null,
+   "core": true,
+   "pre": [
+    "P5"
+   ]
+  },
+  {
+   "id": "H9",
+   "prim": "hekaton",
+   "level": 9,
+   "reward": "Secret deck 12, card 150",
+   "pre": [
+    "H8"
+   ]
+  },
+  {
+   "id": "L9",
+   "prim": "labyrinthauros",
+   "level": 9,
+   "reward": "Secret deck 12, card 165",
+   "pre": [
+    "L8",
+    "N2",
+    "T5"
+   ]
+  },
+  {
+   "id": "T6",
+   "prim": "temenos",
+   "level": 6,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "L8",
+    "N2",
+    "T5"
+   ]
+  },
+  {
+   "id": "T7",
+   "prim": "temenos",
+   "level": 7,
+   "reward": null,
+   "core": true,
+   "pre": [
+    "P7"
+   ]
+  },
+  {
+   "id": "P6",
+   "prim": "pursuer",
+   "level": 6,
+   "reward": "Secret deck 3, card 30",
+   "pre": [
+    "T6",
+    "C7"
+   ],
+   "rewardName": "Labyrinth Nymph",
+   "rewardCard": true
+  },
+  {
+   "id": "P7",
+   "prim": "pursuer",
+   "level": 7,
+   "reward": "Secret deck 12, card 163",
+   "pre": [
+    "P6"
+   ]
+  },
+  {
+   "id": "T8",
+   "prim": "temenos",
+   "level": 8,
+   "reward": "Secret deck 12, card 170",
+   "pre": [
+    "T7"
+   ]
+  },
+  {
+   "id": "P8",
+   "prim": "pursuer",
+   "level": 8,
+   "reward": "Secret deck 12, card 158",
+   "pre": [
+    "T8"
+   ]
+  },
+  {
+   "id": "P9",
+   "prim": "pursuer",
+   "level": 9,
+   "reward": "Secret deck 12, card 169",
+   "pre": [
+    "P8"
+   ]
+  },
+  {
+   "id": "T9",
+   "prim": "temenos",
+   "level": 9,
+   "reward": "Secret deck 12, card 153",
+   "pre": [
+    "P9"
+   ]
+  },
+  {
+   "id": "Y5",
+   "prim": "cyclonus",
+   "level": 5,
+   "reward": null,
+   "pre": [],
+   "cycle": 2
+  },
+  {
+   "id": "C5",
+   "prim": "chimera",
+   "level": 5,
+   "reward": null,
+   "pre": [],
+   "cycle": 2
+  },
+  {
+   "id": "C6",
+   "prim": "chimera",
+   "level": 6,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "Y5"
+   ],
+   "cycle": 2
+  },
+  {
+   "id": "Y6",
+   "prim": "cyclonus",
+   "level": 6,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "C5"
+   ],
+   "cycle": 2
+  },
+  {
+   "id": "Y7",
+   "prim": "cyclonus",
+   "level": 7,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "C6"
+   ],
+   "cycle": 2
+  },
+  {
+   "id": "B2",
+   "prim": "burden",
+   "level": 2,
+   "reward": "Secret deck 12, card 171",
+   "pre": [
+    "Y6"
+   ],
+   "cycle": 2
+  },
+  {
+   "id": "N2",
+   "prim": "nietzschean",
+   "level": 2,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "Y7",
+    "B2"
+   ],
+   "cycle": 2
+  },
+  {
+   "id": "C7",
+   "prim": "chimera",
+   "level": 7,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "N2"
+   ],
+   "cycle": 2
+  },
+  {
+   "id": "B3",
+   "prim": "burden",
+   "level": 3,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "N2"
+   ],
+   "cycle": 2
+  },
+  {
+   "id": "Y8",
+   "prim": "cyclonus",
+   "level": 8,
+   "reward": "Secret deck 12, card 154",
+   "pre": [
+    "C7",
+    "B3"
+   ],
+   "cycle": 2
+  },
+  {
+   "id": "B4",
+   "prim": "burden",
+   "level": 4,
+   "reward": "Secret deck 12, card 167",
+   "pre": [
+    "B3",
+    "O7"
+   ],
+   "cycle": 2
+  },
+  {
+   "id": "N3",
+   "prim": "nietzschean",
+   "level": 3,
+   "reward": null,
+   "pre": [
+    "B4",
+    "O7"
+   ],
+   "cycle": 2,
+   "core": true
+  },
+  {
+   "id": "B5",
+   "prim": "burden",
+   "level": 5,
+   "reward": "Secret deck 6, card 75",
+   "pre": [
+    "P7"
+   ],
+   "cycle": 2,
+   "rewardName": "Nietzschean Nymph",
+   "rewardCard": true
+  },
+  {
+   "id": "B6",
+   "prim": "burden",
+   "level": 6,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "B5",
+    "T8"
+   ],
+   "cycle": 2
+  },
+  {
+   "id": "B7",
+   "prim": "burden",
+   "level": 7,
+   "reward": "Secret deck 6, card 78",
+   "pre": [
+    "B6",
+    "P9",
+    "N4"
+   ],
+   "cycle": 2,
+   "rewardName": "Knowledge Nymph",
+   "rewardCard": true
+  },
+  {
+   "id": "B8",
+   "prim": "burden",
+   "level": 8,
+   "reward": "Secret deck 12, card 156",
+   "pre": [
+    "B7",
+    "T9",
+    "N5"
+   ],
+   "cycle": 2
+  },
+  {
+   "id": "B9",
+   "prim": "burden",
+   "level": 9,
+   "reward": "Secret deck 12, card 159",
+   "pre": [
+    "B8"
+   ],
+   "cycle": 2
+  },
+  {
+   "id": "C8",
+   "prim": "chimera",
+   "level": 8,
+   "reward": "Secret deck 12, card 151",
+   "pre": [
+    "N3"
+   ],
+   "cycle": 2
+  },
+  {
+   "id": "C9",
+   "prim": "chimera",
+   "level": 9,
+   "reward": "Secret deck 12, card 157",
+   "pre": [
+    "C8"
+   ],
+   "cycle": 2
+  },
+  {
+   "id": "Y9",
+   "prim": "cyclonus",
+   "level": 9,
+   "reward": "Secret deck 12, card 152",
+   "pre": [
+    "C9"
+   ],
+   "cycle": 2
+  },
+  {
+   "id": "N4",
+   "prim": "nietzschean",
+   "level": 4,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "Y9",
+    "B6"
+   ],
+   "cycle": 2
+  },
+  {
+   "id": "N5",
+   "prim": "nietzschean",
+   "level": 5,
+   "reward": null,
+   "pre": [
+    "N4",
+    "P9"
+   ],
+   "cycle": 2,
+   "core": true
+  },
+  {
+   "id": "N6",
+   "prim": "nietzschean",
+   "level": 6,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "N5",
+    "T9",
+    "B7"
+   ],
+   "cycle": 2
+  },
+  {
+   "id": "N7",
+   "prim": "nietzschean",
+   "level": 7,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "N6",
+    "S4"
+   ],
+   "cycle": 2,
+   "core": true
+  },
+  {
+   "id": "N8",
+   "prim": "nietzschean",
+   "level": 8,
+   "reward": "Secret deck 12, card 155",
+   "pre": [
+    "N7",
+    "B9"
+   ],
+   "cycle": 2
+  },
+  {
+   "id": "N9",
+   "prim": "nietzschean",
+   "level": 9,
+   "reward": "Secret deck 12, card 168",
+   "pre": [
+    "N8"
+   ],
+   "cycle": 2
+  },
+  {
+   "id": "I5",
+   "prim": "harpy",
+   "level": 5,
+   "reward": null,
+   "pre": [],
+   "cycle": 3
+  },
+  {
+   "id": "O5",
+   "prim": "hypertime",
+   "level": 5,
+   "reward": null,
+   "pre": [],
+   "cycle": 3
+  },
+  {
+   "id": "S2",
+   "prim": "sun",
+   "level": 2,
+   "reward": null,
+   "pre": [
+    "I5",
+    "O5"
+   ],
+   "cycle": 3,
+   "core": true
+  },
+  {
+   "id": "I6",
+   "prim": "harpy",
+   "level": 6,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "S2"
+   ],
+   "cycle": 3
+  },
+  {
+   "id": "O6",
+   "prim": "hypertime",
+   "level": 6,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "S2"
+   ],
+   "cycle": 3
+  },
+  {
+   "id": "O7",
+   "prim": "hypertime",
+   "level": 7,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "I6"
+   ],
+   "cycle": 3
+  },
+  {
+   "id": "I7",
+   "prim": "harpy",
+   "level": 7,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "O6"
+   ],
+   "cycle": 3
+  },
+  {
+   "id": "S3",
+   "prim": "sun",
+   "level": 3,
+   "reward": null,
+   "pre": [
+    "N3",
+    "I7"
+   ],
+   "cycle": 3,
+   "core": true
+  },
+  {
+   "id": "O8",
+   "prim": "hypertime",
+   "level": 8,
+   "reward": "Secret deck 12, card 172",
+   "pre": [
+    "S3"
+   ],
+   "cycle": 3
+  },
+  {
+   "id": "I8",
+   "prim": "harpy",
+   "level": 8,
+   "reward": "Secret deck 12, card 149",
+   "pre": [
+    "S3"
+   ],
+   "cycle": 3
+  },
+  {
+   "id": "O9",
+   "prim": "hypertime",
+   "level": 9,
+   "reward": "Secret deck 12, card 160",
+   "pre": [
+    "O8"
+   ],
+   "cycle": 3
+  },
+  {
+   "id": "I9",
+   "prim": "harpy",
+   "level": 9,
+   "reward": "Secret deck 12, card 164",
+   "pre": [
+    "I8"
+   ],
+   "cycle": 3
+  },
+  {
+   "id": "S4",
+   "prim": "sun",
+   "level": 4,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "O9",
+    "I9",
+    "BL3"
+   ],
+   "cycle": 3
+  },
+  {
+   "id": "S5",
+   "prim": "sun",
+   "level": 5,
+   "reward": null,
+   "pre": [
+    "S4"
+   ],
+   "cycle": 3,
+   "core": true
+  },
+  {
+   "id": "S6",
+   "prim": "sun",
+   "level": 6,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "S5"
+   ],
+   "cycle": 3
+  },
+  {
+   "id": "S7",
+   "prim": "sun",
+   "level": 7,
+   "reward": null,
+   "pre": [
+    "S6",
+    "N5",
+    "BL5"
+   ],
+   "cycle": 3,
+   "core": true
+  },
+  {
+   "id": "S8",
+   "prim": "sun",
+   "level": 8,
+   "reward": "Secret deck 12, card 166",
+   "pre": [
+    "S7"
+   ],
+   "cycle": 3
+  },
+  {
+   "id": "S9",
+   "prim": "sun",
+   "level": 9,
+   "reward": "Secret deck 12, card 161",
+   "pre": [
+    "S8"
+   ],
+   "cycle": 3
+  },
+  {
+   "id": "MC5",
+   "prim": "midascore",
+   "level": 5,
+   "reward": "Guaranteed Loot",
+   "pre": [],
+   "cycle": 4
+  },
+  {
+   "id": "DJ5",
+   "prim": "demidjinn",
+   "level": 5,
+   "reward": "Guaranteed Loot",
+   "pre": [],
+   "cycle": 4
+  },
+  {
+   "id": "DJ6",
+   "prim": "demidjinn",
+   "level": 6,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "MC5"
+   ],
+   "cycle": 4
+  },
+  {
+   "id": "MC6",
+   "prim": "midascore",
+   "level": 6,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "DJ5"
+   ],
+   "cycle": 4
+  },
+  {
+   "id": "DK2",
+   "prim": "dahaka",
+   "level": 2,
+   "reward": null,
+   "pre": [
+    "DJ6",
+    "MC6"
+   ],
+   "cycle": 4
+  },
+  {
+   "id": "DK3",
+   "prim": "dahaka",
+   "level": 3,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "DK2"
+   ],
+   "cycle": 4
+  },
+  {
+   "id": "BL2",
+   "prim": "babel",
+   "level": 2,
+   "reward": null,
+   "pre": [
+    "DJ6",
+    "MC6"
+   ],
+   "cycle": 4
+  },
+  {
+   "id": "DJ7",
+   "prim": "demidjinn",
+   "level": 7,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "BL2"
+   ],
+   "cycle": 4
+  },
+  {
+   "id": "MC7",
+   "prim": "midascore",
+   "level": 7,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "BL2"
+   ],
+   "cycle": 4
+  },
+  {
+   "id": "BL3",
+   "prim": "babel",
+   "level": 3,
+   "reward": null,
+   "pre": [
+    "DJ7",
+    "MC7"
+   ],
+   "cycle": 4,
+   "core": true
+  },
+  {
+   "id": "DJ8",
+   "prim": "demidjinn",
+   "level": 8,
+   "reward": "Secret deck 17, card 260",
+   "pre": [
+    "BL3"
+   ],
+   "cycle": 4
+  },
+  {
+   "id": "MC8",
+   "prim": "midascore",
+   "level": 8,
+   "reward": "Secret deck 17, card 262",
+   "pre": [
+    "BL3"
+   ],
+   "cycle": 4
+  },
+  {
+   "id": "BL4",
+   "prim": "babel",
+   "level": 4,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "DJ8",
+    "MC8",
+    "DK3"
+   ],
+   "cycle": 4,
+   "core": true
+  },
+  {
+   "id": "DK4",
+   "prim": "dahaka",
+   "level": 4,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "BL4"
+   ],
+   "cycle": 4
+  },
+  {
+   "id": "MC9",
+   "prim": "midascore",
+   "level": 9,
+   "reward": "Secret deck 17, card 263",
+   "pre": [
+    "DK4"
+   ],
+   "cycle": 4
+  },
+  {
+   "id": "DJ9",
+   "prim": "demidjinn",
+   "level": 9,
+   "reward": "Secret deck 17, card 261",
+   "pre": [
+    "DK4"
+   ],
+   "cycle": 4
+  },
+  {
+   "id": "BL5",
+   "prim": "babel",
+   "level": 5,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "MC9"
+   ],
+   "cycle": 4
+  },
+  {
+   "id": "DK5",
+   "prim": "dahaka",
+   "level": 5,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "DJ9"
+   ],
+   "cycle": 4
+  },
+  {
+   "id": "DK6",
+   "prim": "dahaka",
+   "level": 6,
+   "reward": null,
+   "pre": [
+    "BL5"
+   ],
+   "cycle": 4
+  },
+  {
+   "id": "BL6",
+   "prim": "babel",
+   "level": 6,
+   "reward": null,
+   "pre": [
+    "DK5"
+   ],
+   "cycle": 4,
+   "core": true
+  },
+  {
+   "id": "BL7",
+   "prim": "babel",
+   "level": 7,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "DK6"
+   ],
+   "cycle": 4
+  },
+  {
+   "id": "DK7",
+   "prim": "dahaka",
+   "level": 7,
+   "reward": null,
+   "pre": [
+    "BL6"
+   ],
+   "cycle": 4
+  },
+  {
+   "id": "DK8",
+   "prim": "dahaka",
+   "level": 8,
+   "reward": "Secret deck 17, card 266",
+   "pre": [
+    "BL7",
+    "DK7",
+    "OH5"
+   ],
+   "cycle": 4
+  },
+  {
+   "id": "BL8",
+   "prim": "babel",
+   "level": 8,
+   "reward": "Secret deck 17, card 264",
+   "pre": [
+    "DK8"
+   ],
+   "cycle": 4,
+   "core": true
+  },
+  {
+   "id": "BL9",
+   "prim": "babel",
+   "level": 9,
+   "reward": "Secret deck 17, card 265",
+   "pre": [
+    "BL8"
+   ],
+   "cycle": 4
+  },
+  {
+   "id": "DK9",
+   "prim": "dahaka",
+   "level": 9,
+   "reward": "Secret deck 17, card 267",
+   "pre": [
+    "BL8"
+   ],
+   "cycle": 4
+  },
+  {
+   "id": "OH2",
+   "prim": "oldhaunt",
+   "level": 2,
+   "reward": null,
+   "pre": [
+    "DK3",
+    "S5"
+   ],
+   "cycle": 4,
+   "name": "Old Haunt"
+  },
+  {
+   "id": "OH3",
+   "prim": "oldhaunt",
+   "level": 3,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "OH2"
+   ],
+   "cycle": 4,
+   "name": "Old Haunt"
+  },
+  {
+   "id": "OH4",
+   "prim": "oldhaunt",
+   "level": 4,
+   "reward": null,
+   "pre": [
+    "OH3",
+    "DK5"
+   ],
+   "cycle": 4,
+   "name": "Old Haunt"
+  },
+  {
+   "id": "OH5",
+   "prim": "oldhaunt",
+   "level": 5,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "OH4"
+   ],
+   "cycle": 4,
+   "name": "Old Haunt"
+  },
+  {
+   "id": "OH6",
+   "prim": "oldhaunt",
+   "level": 6,
+   "reward": null,
+   "pre": [
+    "OH5"
+   ],
+   "cycle": 5,
+   "name": "Old Haunt"
+  },
+  {
+   "id": "OH7",
+   "prim": "oldhaunt",
+   "level": 7,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "OH6",
+    "TX3"
+   ],
+   "cycle": 5,
+   "name": "Old Haunt"
+  },
+  {
+   "id": "OH8",
+   "prim": "oldhaunt",
+   "level": 8,
+   "reward": "Secret deck 17, card 268",
+   "pre": [
+    "OH7",
+    "BL9",
+    "DK9"
+   ],
+   "cycle": 5,
+   "name": "Old Haunt"
+  },
+  {
+   "id": "OH9",
+   "prim": "oldhaunt",
+   "level": 9,
+   "reward": "Secret deck 17, card 269",
+   "pre": [
+    "OH8"
+   ],
+   "cycle": 5,
+   "name": "Old Haunt"
+  },
+  {
+   "id": "PH5",
+   "prim": "phobos",
+   "level": 5,
+   "reward": "Guaranteed Loot",
+   "pre": [],
+   "cycle": 5,
+   "name": "Dragon of Phobos"
+  },
+  {
+   "id": "MK5",
+   "prim": "meduketos",
+   "level": 5,
+   "reward": "Guaranteed Loot",
+   "pre": [],
+   "cycle": 5,
+   "name": "Meduketos"
+  },
+  {
+   "id": "PH6",
+   "prim": "phobos",
+   "level": 6,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "PH5"
+   ],
+   "cycle": 5,
+   "name": "Dragon of Phobos"
+  },
+  {
+   "id": "MK6",
+   "prim": "meduketos",
+   "level": 6,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "MK5"
+   ],
+   "cycle": 5,
+   "name": "Meduketos"
+  },
+  {
+   "id": "MK7",
+   "prim": "meduketos",
+   "level": 7,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "PH6"
+   ],
+   "cycle": 5,
+   "name": "Meduketos"
+  },
+  {
+   "id": "PH7",
+   "prim": "phobos",
+   "level": 7,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "MK6"
+   ],
+   "cycle": 5,
+   "name": "Dragon of Phobos"
+  },
+  {
+   "id": "UF2",
+   "prim": "urfleece",
+   "level": 2,
+   "reward": null,
+   "pre": [
+    "MK7",
+    "PH7"
+   ],
+   "cycle": 5,
+   "core": true,
+   "name": "Ur-Fleece"
+  },
+  {
+   "id": "UF3",
+   "prim": "urfleece",
+   "level": 3,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "UF2"
+   ],
+   "cycle": 5,
+   "name": "Ur-Fleece"
+  },
+  {
+   "id": "TX2",
+   "prim": "titanx",
+   "level": 2,
+   "reward": null,
+   "pre": [
+    "UF2"
+   ],
+   "cycle": 5,
+   "name": "Titan X"
+  },
+  {
+   "id": "MK8",
+   "prim": "meduketos",
+   "level": 8,
+   "reward": "Secret deck 17, card 272",
+   "pre": [
+    "UF3"
+   ],
+   "cycle": 5,
+   "name": "Meduketos"
+  },
+  {
+   "id": "PH8",
+   "prim": "phobos",
+   "level": 8,
+   "reward": "Secret deck 17, card 270",
+   "pre": [
+    "UF3"
+   ],
+   "cycle": 5,
+   "name": "Dragon of Phobos"
+  },
+  {
+   "id": "UF4",
+   "prim": "urfleece",
+   "level": 4,
+   "reward": null,
+   "pre": [
+    "MK8",
+    "PH8",
+    "DK4"
+   ],
+   "cycle": 5,
+   "core": true,
+   "name": "Ur-Fleece"
+  },
+  {
+   "id": "TX3",
+   "prim": "titanx",
+   "level": 3,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "UF4"
+   ],
+   "cycle": 5,
+   "name": "Titan X"
+  },
+  {
+   "id": "PH9",
+   "prim": "phobos",
+   "level": 9,
+   "reward": "Secret deck 17, card 271",
+   "pre": [
+    "TX3"
+   ],
+   "cycle": 5,
+   "name": "Dragon of Phobos"
+  },
+  {
+   "id": "MK9",
+   "prim": "meduketos",
+   "level": 9,
+   "reward": "Secret deck 17, card 273",
+   "pre": [
+    "TX3"
+   ],
+   "cycle": 5,
+   "name": "Meduketos"
+  },
+  {
+   "id": "UF5",
+   "prim": "urfleece",
+   "level": 5,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "PH9",
+    "MK9",
+    "DK7"
+   ],
+   "cycle": 5,
+   "name": "Ur-Fleece"
+  },
+  {
+   "id": "TX4",
+   "prim": "titanx",
+   "level": 4,
+   "reward": null,
+   "pre": [
+    "PH9",
+    "MK9"
+   ],
+   "cycle": 5,
+   "name": "Titan X"
+  },
+  {
+   "id": "UF6",
+   "prim": "urfleece",
+   "level": 6,
+   "reward": null,
+   "pre": [
+    "UF5"
+   ],
+   "cycle": 5,
+   "core": true,
+   "name": "Ur-Fleece"
+  },
+  {
+   "id": "UF7",
+   "prim": "urfleece",
+   "level": 7,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "UF6"
+   ],
+   "cycle": 5,
+   "name": "Ur-Fleece"
+  },
+  {
+   "id": "TX5",
+   "prim": "titanx",
+   "level": 5,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "TX4"
+   ],
+   "cycle": 5,
+   "name": "Titan X"
+  },
+  {
+   "id": "TX6",
+   "prim": "titanx",
+   "level": 6,
+   "reward": null,
+   "pre": [
+    "TX5"
+   ],
+   "cycle": 5,
+   "name": "Titan X"
+  },
+  {
+   "id": "UF8",
+   "prim": "urfleece",
+   "level": 8,
+   "reward": "Secret deck 17, card 276",
+   "pre": [
+    "UF7",
+    "OH7"
+   ],
+   "cycle": 5,
+   "core": true,
+   "name": "Ur-Fleece"
+  },
+  {
+   "id": "TX7",
+   "prim": "titanx",
+   "level": 7,
+   "reward": "Guaranteed Loot",
+   "pre": [
+    "TX6",
+    "OH7"
+   ],
+   "cycle": 5,
+   "name": "Titan X"
+  },
+  {
+   "id": "TX8",
+   "prim": "titanx",
+   "level": 8,
+   "reward": "Secret deck 17, card 274",
+   "pre": [
+    "TX7"
+   ],
+   "cycle": 5,
+   "name": "Titan X"
+  },
+  {
+   "id": "TX9",
+   "prim": "titanx",
+   "level": 9,
+   "reward": "Secret deck 17, card 275",
+   "pre": [
+    "TX8",
+    "UF8"
+   ],
+   "cycle": 5,
+   "name": "Titan X"
+  },
+  {
+   "id": "UF9",
+   "prim": "urfleece",
+   "level": 9,
+   "reward": "Secret deck 17, card 277",
+   "pre": [
+    "UF8",
+    "OH9"
+   ],
+   "cycle": 5,
+   "name": "Ur-Fleece"
+  }
+ ]
+}

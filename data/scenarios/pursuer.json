@@ -1,0 +1,87 @@
+{
+ "id": "pursuer",
+ "source": "ATO Cycle I Storybook — Pursuer Battle (PDF p.59)",
+ "board": {
+  "cols": 20,
+  "rows": 14
+ },
+ "_notes": [
+  "Mnestis: Battle Track / Tease victory ignored; normal victory on Wounds. Toying is disabled at Lv II+ by the sheet."
+ ],
+ "setup": [
+  "Standard Preparations.",
+  "Primordial Positioning: centre (G10-H11), determine facing.",
+  "Additional Setup: shuffle the 4 Flare cards into the Flare deck."
+ ],
+ "center": "G10",
+ "variants": {
+  "all": {
+   "levels": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "primordial": {
+    "anchor": "G10"
+   },
+   "titanStarts": [
+    "J8",
+    "J13",
+    "E8",
+    "E13"
+   ],
+   "terrain": {
+    "column": [
+     "M9",
+     "M12",
+     "L4",
+     "L15",
+     "J18",
+     "I6",
+     "I15",
+     "I18",
+     "F3",
+     "F6",
+     "F15",
+     "E3",
+     "D5",
+     "C17",
+     "B9",
+     "B12"
+    ],
+    "ambrosia": [
+     [
+      "K10",
+      "K11",
+      "J10",
+      "J11"
+     ],
+     [
+      "H5",
+      "H6",
+      "G5",
+      "G6"
+     ],
+     [
+      "H14",
+      "H15",
+      "G14",
+      "G15"
+     ],
+     [
+      "C10",
+      "C11",
+      "B10",
+      "B11"
+     ]
+    ]
+   }
+  }
+ }
+}

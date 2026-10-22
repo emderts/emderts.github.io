@@ -1,0 +1,704 @@
+{
+ "id": "hekaton",
+ "name": "Hekaton",
+ "cycle": 1,
+ "type": "regular",
+ "sheetCode": "AU0447",
+ "_notes": [
+  "Transcribed from card scans (sheet AU0447, AI AR0394-AR0413, BP AS0415-AS0432).",
+  "Icon key: ⟁(flower) = Escalations at start of Battle, ⊚ = AT bonus, ◆ = Evasion dice bonus, Λ = Danger bonus (bonusPerHit: 'for each hit' on Lv5+). Lv0 AT -1; Lv3 Escalation 1 + Danger +1; Lv4 Escalation 2, AT +1, Danger +1, Evasion +1.",
+  "BP cards also carry a resource-type icon top-right (two variants); not transcribed yet - verify against rulebook p.46-53.",
+  "Sheet bottom-left: 2x2 footprint, R R = rear spaces along top edge; arrow-5 icon (base pushback/knockback? TBC).",
+  "'⚡ ' prefix on a step = Window of Opportunity (the diamond-! icon on the card) before that instruction; afterWindow = the After Attack section also opens a window. Lines without the prefix belong to the preceding block.",
+  "BP responses: '⚡ ' before Knockback/Knockdown = Window of Opportunity (◆! on the card)."
+ ],
+ "footprint": {
+  "w": 2,
+  "h": 2,
+  "rear": "top-edge"
+ },
+ "levels": {
+  "0": {
+   "toHit": 7,
+   "speed": 6,
+   "wounds": 6,
+   "bonus": {
+    "AT": -1
+   },
+   "traits": [
+    "Friendly Warning"
+   ]
+  },
+  "1": {
+   "toHit": 7,
+   "speed": 6,
+   "wounds": 10,
+   "bonus": {},
+   "traits": []
+  },
+  "2": {
+   "toHit": 7,
+   "speed": 6,
+   "wounds": 10,
+   "bonus": {},
+   "traits": [
+    "Clever Boy",
+    "A Fist for a Fist"
+   ],
+   "removeTraits": [
+    "Friendly Warning"
+   ]
+  },
+  "3": {
+   "toHit": 8,
+   "speed": 6,
+   "wounds": 10,
+   "bonus": {
+    "ESCALATION": 1,
+    "DANGER": 1
+   },
+   "traits": [
+    "Fleet of Hands"
+   ],
+   "rightColumn": 3
+  },
+  "4": {
+   "toHit": 8,
+   "speed": 7,
+   "wounds": 10,
+   "bonus": {
+    "ESCALATION": 2,
+    "AT": 1,
+    "DANGER": 1
+   },
+   "traits": [
+    "Fissures"
+   ],
+   "rightColumn": 12
+  },
+  "5": {
+   "mnestis": true,
+   "toHit": 9,
+   "speed": 7,
+   "wounds": 10,
+   "bonus": {
+    "ESCALATION": 2,
+    "AT": 2,
+    "DANGER": 1
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Starfish",
+    "End of Hope",
+    "Scourge of the Centimanes"
+   ]
+  },
+  "6": {
+   "mnestis": true,
+   "toHit": 9,
+   "speed": 8,
+   "wounds": 11,
+   "bonus": {
+    "ESCALATION": 3,
+    "AT": 3,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "A Wall of Fists"
+   ]
+  },
+  "7": {
+   "mnestis": true,
+   "toHit": 10,
+   "speed": 9,
+   "wounds": 12,
+   "bonus": {
+    "ESCALATION": 4,
+    "AT": 4,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Ram of Fists"
+   ]
+  },
+  "8": {
+   "mnestis": true,
+   "toHit": 10,
+   "speed": 10,
+   "wounds": 13,
+   "bonus": {
+    "ESCALATION": 4,
+    "AT": 5,
+    "EVADE_DICE": 1,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Supersonic Punch"
+   ],
+   "altBattleDiagram": true
+  },
+  "9": {
+   "mnestis": true,
+   "toHit": 11,
+   "speed": 11,
+   "wounds": 14,
+   "bonus": {
+    "ESCALATION": 5,
+    "AT": 6,
+    "EVADE_DICE": 2,
+    "DANGER": 3
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Ruthless",
+    "Megaton"
+   ]
+  }
+ },
+ "_levelNotes": "Traits are cumulative (+all previous). 'rightColumn' = the +3 / +12 value with the mound-like icon on levels III/IV (meaning TBC). 'bonusPerHit' = sheet says 'for each hit'.",
+ "traits": {
+  "Friendly Warning": "-2 to all Knockbacks performed by the Hekaton.",
+  "Clever Boy": "Board Edges gain Boundless: they are now high cliffs. If a Titan is moved beyond the edge, they die.",
+  "A Fist for a Fist": "Each time the Hekaton gains a Wound (a Double Wound is treated as 2 Wounds) place a token on this Trait. If there are 3 or more tokens on this Trait, finish resolving the current action, discard all tokens, then perform Signature.",
+  "Fleet of Hands": "+1 to all Pushbacks and +2 to all Knockbacks performed by the Hekaton.",
+  "Fissures": "Additional Setup: Alternate Battle Diagram. If you are playing an Ambush Battle, replace the Labyrinth tiles with Maze Fissure tiles of the corresponding size and shape.",
+  "Scourge of the Centimanes": "All BP cards without a Wound Response gain: WOUND: Pushback 3. All BP cards without a Fail Response gain: FAIL: Knockback 5.",
+  "End of Hope": "End of Primordial Round: Perform Signature.",
+  "Starfish": "Start of Primordial Round: If the Hekaton is adjacent to 2 or more Titans, all of those Titans suffer Knockback 5.",
+  "A Wall of Fists": "Titans cannot voluntarily move into spaces adjacent to the Hekaton.",
+  "Ram of Fists": "Disable all preceding Knockbacks.",
+  "Supersonic Punch": "If you are pushed into an Obstacle, you die. Additional setup: Alternate Battle Diagram (see Mnestis Battle Diagrams).",
+  "Megaton": "After End of Hope, draw and perform another AI card.",
+  "Ruthless": "Remove all positive Trauma cards from the Trauma decks (except Obols)."
+ },
+ "targetPresets": {
+  "FRONT": [
+   "Closest Titan in front, in range",
+   "Closest Titan in sight"
+  ],
+  "PRIORITY_FRONT": [
+   "Priority Target in range",
+   "Closest Titan in front, in range",
+   "Closest Titan in sight"
+  ]
+ },
+ "ai": [
+  {
+   "code": "AR0394",
+   "tier": 1,
+   "name": "Left Hook",
+   "kind": "ATTACK",
+   "dice": 2,
+   "toHit": 10,
+   "target": "FRONT",
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 3+: +1 EVADE_DICE",
+    "Each hit deals 1 DANGER."
+   ],
+   "after": "Knockback 5.",
+   "afterWindow": true
+  },
+  {
+   "code": "AR0395",
+   "tier": 1,
+   "name": "Right Hook",
+   "kind": "ATTACK",
+   "dice": 2,
+   "toHit": 10,
+   "target": "FRONT",
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 3+: +1 EVADE_DICE",
+    "Each hit deals 1 DANGER."
+   ],
+   "after": "Knockback 5.",
+   "afterWindow": true
+  },
+  {
+   "code": "AR0396",
+   "tier": 1,
+   "name": "One, Two Punch",
+   "kind": "ATTACK",
+   "dice": 2,
+   "toHit": 9,
+   "target": "FRONT",
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 3+: +1 EVADE_DICE",
+    "Each hit deals 1 DANGER."
+   ],
+   "after": "Perform Signature.",
+   "afterWindow": true
+  },
+  {
+   "code": "AR0397",
+   "tier": 1,
+   "name": "Thunderpunch",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": "FRONT",
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "FATE 3+: Pushback 3",
+    "Each hit deals 1 DANGER.",
+    "⚡ Knockdown."
+   ]
+  },
+  {
+   "code": "AR0398",
+   "tier": 1,
+   "name": "Cold Open",
+   "kind": "ATTACK",
+   "dice": 4,
+   "toHit": 6,
+   "target": "FRONT",
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 3+: +1 EVADE_DICE",
+    "Each hit deals 1 DANGER."
+   ],
+   "after": "Pushback 3.",
+   "afterWindow": true
+  },
+  {
+   "code": "AR0399",
+   "tier": 1,
+   "name": "Smash",
+   "kind": "ATTACK",
+   "dice": 2,
+   "toHit": 9,
+   "target": "PRIORITY_FRONT",
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 3+: +1 EVADE_DICE",
+    "Each hit deals 2 DANGER."
+   ],
+   "after": "Knockback 5.",
+   "afterWindow": true
+  },
+  {
+   "code": "AR0400",
+   "tier": 2,
+   "name": "Omnipunch",
+   "kind": "SIMULTANEOUS ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "All adjacent Titans"
+   ],
+   "noTarget": "Perform Signature",
+   "steps": [
+    "⚡ ATTACK",
+    "Each hit deals 1 DANGER. | FATE 4+: 2 DANGER instead",
+    "⚡ Knockback 5."
+   ]
+  },
+  {
+   "code": "AR0401",
+   "tier": 2,
+   "name": "Furious Smash",
+   "kind": "ATTACK",
+   "dice": 4,
+   "toHit": 8,
+   "target": "PRIORITY_FRONT",
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Each hit deals 1 DANGER. | FATE 4+: 2 DANGER instead"
+   ],
+   "after": "Pushback 3.",
+   "afterWindow": true
+  },
+  {
+   "code": "AR0402",
+   "tier": 2,
+   "name": "Rumble Strike",
+   "kind": "ZONE ATTACK",
+   "dice": 2,
+   "toHit": 9,
+   "target": [
+    "Zone 2"
+   ],
+   "steps": [
+    "⚡ ATTACK",
+    "Each hit deals 1 DANGER.",
+    "⚡ Knockdown."
+   ],
+   "afterFinal": "Perform Signature.",
+   "afterWindow": true
+  },
+  {
+   "code": "AR0403",
+   "tier": 2,
+   "name": "Chainfist",
+   "kind": "ATTACK",
+   "dice": 2,
+   "toHit": 9,
+   "target": "PRIORITY_FRONT",
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 3+: +1 EVADE_DICE",
+    "Each hit deals 1 DANGER."
+   ],
+   "after": "If DANGER was dealt, repeat Chainfist (once).",
+   "afterWindow": true
+  },
+  {
+   "code": "AR0404",
+   "tier": 2,
+   "name": "Suckerpunch",
+   "kind": "ATTACK",
+   "dice": 2,
+   "toHit": 8,
+   "target": "FRONT",
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Each hit deals 2 DANGER. | FATE 5+: 3 DANGER instead",
+    "⚡ Knockdown."
+   ],
+   "after": "Knockback 5.",
+   "afterWindow": true
+  },
+  {
+   "code": "AR0405",
+   "tier": 2,
+   "name": "Solarplexar",
+   "kind": "ATTACK",
+   "dice": 2,
+   "toHit": 8,
+   "target": "PRIORITY_FRONT",
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 3+: +1 EVADE_DICE",
+    "Each hit deals 2 DANGER.",
+    "⚡ Knockdown."
+   ],
+   "after": "If 2+ DANGER was dealt, draw a Kratos card.",
+   "afterWindow": true
+  },
+  {
+   "code": "AR0406",
+   "tier": 3,
+   "name": "Death from a Hundred Fists",
+   "kind": "ATTACK",
+   "dice": 5,
+   "toHit": 7,
+   "target": "PRIORITY_FRONT",
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Roll as many additional Evasion Dice as there are hits. Repeat until there are no hits. Then each hit deals 1 DANGER. | FATE 6+: 2 DANGER instead"
+   ],
+   "after": "Pushback 4.",
+   "afterWindow": true
+  },
+  {
+   "code": "AR0407",
+   "tier": 3,
+   "name": "Thunderclash",
+   "kind": "ATTACK",
+   "dice": 2,
+   "toHit": 8,
+   "target": "PRIORITY_FRONT",
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Each hit deals 3 DANGER. | FATE 6+: 4 DANGER instead",
+    "⚡ Knockdown."
+   ],
+   "after": "Knockback 8.",
+   "afterWindow": true
+  },
+  {
+   "code": "AR0408",
+   "tier": 3,
+   "name": "Backbreaker",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": "PRIORITY_FRONT",
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "FATE 8+: You Die. If you didn't die, each hit deals 2 DANGER, then draw an Obol instead of a regular Trauma Draw."
+   ],
+   "after": "Knockdown.",
+   "afterWindow": true
+  },
+  {
+   "code": "AR0409",
+   "tier": 3,
+   "name": "Solarsuplexar",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": "FRONT",
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 7+: +1 EVADE_DICE",
+    "Each hit deals 1 DANGER.",
+    "⚡ Forced Vault.",
+    "⚡ Knockdown."
+   ],
+   "after": "If DANGER was dealt, draw a Kratos card.",
+   "afterWindow": true
+  },
+  {
+   "code": "AR0410",
+   "tier": 3,
+   "name": "Skullcrusher",
+   "kind": "ATTACK",
+   "dice": 2,
+   "toHit": 8,
+   "target": "FRONT",
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 8+: +1 EVADE_DICE",
+    "Each hit deals 4 DANGER.",
+    "⚡ Knockdown."
+   ],
+   "after": "Knockback 8.",
+   "afterWindow": true
+  },
+  {
+   "code": "AR0411",
+   "tier": 3,
+   "name": "Hekatosmasher",
+   "kind": "ZONE ATTACK",
+   "dice": 2,
+   "toHit": 8,
+   "target": [
+    "Zone 3"
+   ],
+   "steps": [
+    "⚡ ATTACK | FATE 7+: +1 EVADE_DICE",
+    "Each hit deals 2 DANGER.",
+    "⚡ Knockdown.",
+    "⚡ FATE 5+: Knockback 5"
+   ],
+   "afterFinal": "Draw another AI card.",
+   "afterWindow": true
+  },
+  {
+   "code": "AR0412",
+   "tier": "X",
+   "name": "Swat",
+   "kind": "SIGNATURE",
+   "dice": 2,
+   "toHit": 9,
+   "target": "FRONT",
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 3+: +1 EVADE_DICE",
+    "Each hit deals 1 DANGER."
+   ],
+   "after": "Knockback 5.",
+   "afterWindow": true
+  },
+  {
+   "code": "AR0413",
+   "tier": "X",
+   "name": "Idle Hands",
+   "kind": "ROUTINE",
+   "text": "Argo loses -1 ARGO_LOSS."
+  },
+  {
+   "code": "AR0413-M",
+   "tier": "X",
+   "name": "Cow Toss",
+   "kind": "MNESTIS ROUTINE",
+   "text": "Furthest Titan suffers Knockdown, raises DANGER to 9 and draws an Obol. Hekaton moves adjacent to the Closest Titan with Unlimited Speed."
+  }
+ ],
+ "bp": [
+  {
+   "code": "AS0415",
+   "tier": 1,
+   "name": "One of a Hundred",
+   "at": 2,
+   "responses": {
+    "FAIL": "Pushback 2."
+   },
+   "critical": "Gain +2 RAGE.",
+   "qeye": false
+  },
+  {
+   "code": "AS0416",
+   "tier": 1,
+   "name": "The Runt",
+   "at": 2,
+   "responses": {
+    "FAIL": "Pushback 2."
+   },
+   "critical": "During the second ability window place 2 additional Opening or Break tokens in the Kratos Pool.",
+   "qeye": false
+  },
+  {
+   "code": "AS0417",
+   "tier": 1,
+   "name": "Right Mighty Fist",
+   "at": 3,
+   "responses": {
+    "WOUND": "Pushback 1. Gain +1 DANGER.\n⚡ Knockback 5."
+   },
+   "critical": "Hekaton gains 1 negative Precision token.",
+   "qeye": false
+  },
+  {
+   "code": "AS0418",
+   "tier": 1,
+   "name": "Left Mighty Fist",
+   "at": 3,
+   "responses": {
+    "WOUND": "Pushback 1. Gain +1 DANGER.\n⚡ Knockback 5."
+   },
+   "critical": "Gain 1 positive Precision token.",
+   "qeye": false
+  },
+  {
+   "code": "AS0419",
+   "tier": 1,
+   "name": "Right Shield Fist",
+   "at": 4,
+   "responses": {
+    "FAIL": "Gain +1 FATE.\n⚡ Knockdown."
+   },
+   "critical": "Until the end of Battle, when attacked from a Rear space, the Hekaton has -1 PRECISION.",
+   "qeye": false
+  },
+  {
+   "code": "AS0420",
+   "tier": 1,
+   "name": "Left Shield Fist",
+   "at": 4,
+   "responses": {
+    "WOUND": "Gain +1 FATE.\n⚡ Knockdown."
+   },
+   "critical": "Gain 1 Ancient Shell Rare resource. You may perform a Bonus Attack!",
+   "qeye": false
+  },
+  {
+   "code": "AS0421",
+   "tier": 2,
+   "name": "Shoulderhands",
+   "at": 5,
+   "responses": {
+    "WOUND": "Pushback 1. Gain +2 DANGER.\n⚡ Knockback 5."
+   },
+   "critical": "Disable Hekaton's Pushbacks.",
+   "qeye": false
+  },
+  {
+   "code": "AS0422",
+   "tier": 2,
+   "name": "Exposed Back Arms",
+   "at": 4,
+   "responses": {
+    "FAIL": "Pushback 1. Gain +2 DANGER.\n⚡ Knockback 5."
+   },
+   "critical": "Deal an additional Single Wound.",
+   "qeye": true
+  },
+  {
+   "code": "AS0423",
+   "tier": 2,
+   "name": "Calcified Maze Plates",
+   "at": 6,
+   "responses": {
+    "FAIL": "Gain DANGER equal to the Primordial LVL."
+   },
+   "critical": "Gain the Shieldblade card (Secret Deck 2, card 10), (Move the Adversary)!",
+   "qeye": false
+  },
+  {
+   "code": "AS0424",
+   "tier": 2,
+   "name": "Knuckle Teeth",
+   "at": 5,
+   "responses": {
+    "FAIL": "Gain DANGER equal to the Primordial LVL."
+   },
+   "critical": "Gain the Priority Target token. You may perform a Bonus Attack!",
+   "qeye": false
+  },
+  {
+   "code": "AS0425",
+   "tier": 2,
+   "name": "Muscular Biceps Thighs",
+   "at": 5,
+   "responses": {
+    "WOUND": "Pushback 1. Gain +2 DANGER.\n⚡ Knockback 5."
+   },
+   "critical": "Hekaton gains 1 negative To Hit token.",
+   "qeye": false
+  },
+  {
+   "code": "AS0426",
+   "tier": 2,
+   "name": "Hand-Feet",
+   "at": 4,
+   "responses": {
+    "FAIL": "Pushback 1. Gain +2 DANGER.\n⚡ Knockback 5."
+   },
+   "critical": "Hekaton gains 1 negative Speed token.",
+   "qeye": false
+  },
+  {
+   "code": "AS0427",
+   "tier": 3,
+   "name": "One in a Hundred",
+   "at": 6,
+   "responses": {
+    "FAIL": "Pushback 2. Gain +3 DANGER.\n⚡ Knockback 5."
+   },
+   "critical": "Deal an additional Single Wound.",
+   "qeye": true
+  },
+  {
+   "code": "AS0428",
+   "tier": 3,
+   "name": "Corruption's Root",
+   "at": 8,
+   "responses": {
+    "INSTINCT": "Gain +1 FATE. Pushback 2. Gain +3 DANGER.\n⚡ Knockback 5."
+   },
+   "critical": "The Hekaton dies!",
+   "qeye": true
+  },
+  {
+   "code": "AS0429",
+   "tier": 3,
+   "name": "Hand-Head",
+   "at": 5,
+   "responses": {
+    "INSTINCT": "Pushback 3. Gain +3 DANGER.\n⚡ Knockback 5."
+   },
+   "critical": "Hekaton gains 2 negative Precision tokens. Until the end of Battle, all AI cards target a random Titan in range.",
+   "qeye": false
+  },
+  {
+   "code": "AS0430",
+   "tier": 3,
+   "name": "Drum-Heart",
+   "at": 6,
+   "responses": {
+    "WOUND": "Pushback 2. Gain +3 DANGER.\n⚡ Knockback 5."
+   },
+   "critical": "At the start of each following Primordial Round, roll a d10. On a 7+ the Hekaton gains a Single Wound, then Escalate 1 and immediately end the Primordial Round.",
+   "qeye": false
+  },
+  {
+   "code": "AS0431",
+   "tier": 3,
+   "name": "Spinal Finger Column",
+   "at": 5,
+   "responses": {
+    "FAIL": "Gain +1 FATE. Pushback 2. Gain +3 DANGER.\n⚡ Knockback 5."
+   },
+   "critical": "Disable Hekaton's Zone Attacks.",
+   "qeye": false
+  },
+  {
+   "code": "AS0432",
+   "tier": 3,
+   "name": "Humanity",
+   "at": 7,
+   "responses": {
+    "INSTINCT": "Pushback 2. Gain +3 DANGER.\n⚡ Knockback 5."
+   },
+   "critical": "Hekaton gains 1 positive Danger token, 1 positive Attack Die token and 1 positive Precision token. After the fight resolve the 'No Mercy for the Centimanes' Special Event.",
+   "qeye": true
+  }
+ ]
+}

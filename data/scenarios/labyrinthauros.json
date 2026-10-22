@@ -1,0 +1,35 @@
+{
+  "id": "labyrinthauros",
+  "source": "ATO Cycle I Storybook p.110-111 (PDF p.55)",
+  "board": { "cols": 20, "rows": 14 },
+  "_notes": [
+    "Primordial Positioning: bottom Minor Trauma card arrow → or ↑: space A facing East; ← or ↓: space B facing West; ↻: choose.",
+    "Additional Setup: Gaze of Temenos (BP III deck) is set aside — it only enters via Eroded Breastplate's Critical.",
+    "Labyrinth tiles are double-sided mirror images: the printed L and Z are the flipped faces (flip = mirror left-right before rotating)."
+  ],
+  "setup": [
+    "Standard Preparations (Rulebook p.34).",
+    "Primordial Positioning: A (facing →) or B (facing ←) from the Minor Trauma arrow.",
+    "Additional Setup: set aside Gaze of Temenos; Labyrinth token on the topmost track space (O)."
+  ],
+  "variants": {
+    "all": {
+      "levels": [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      "primordialSpots": { "A": { "anchor": "G3", "facing": "E" }, "B": { "anchor": "G17", "facing": "W" } },
+      "titanStarts": ["I9", "I12", "F9", "F12"],
+      "terrain": {
+        "column": [],
+        "city": [
+          { "name": "City NE", "cells": ["J14", "J15", "J16", "K14", "K15", "K16", "L14", "L15", "L16"] },
+          { "name": "City SW", "cells": ["C2", "C3", "C4", "D2", "D3", "D4", "E2", "E3", "E4"] }
+        ],
+        "labyrinth": [
+          { "shape": "O", "rot": 0, "flip": false, "topLeft": "J7" },
+          { "shape": "L", "rot": 2, "flip": true, "topLeft": "J11" },
+          { "shape": "Z", "rot": 1, "flip": true, "topLeft": "F12" },
+          { "shape": "I", "rot": 0, "flip": false, "topLeft": "E6" }
+        ]
+      }
+    }
+  }
+}

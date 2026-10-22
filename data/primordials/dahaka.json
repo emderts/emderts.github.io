@@ -1,0 +1,846 @@
+{
+ "id": "dahaka",
+ "name": "Dahaka",
+ "cycle": 4,
+ "type": "Mnestis",
+ "sheetCode": "DU2514",
+ "dahakaD": true,
+ "_notes": [
+  "Transcribed from sheet DU2514 (Lv I-IX), combined AI/BP cards DR2514-DR2533 (AI on top, BP on bottom of the same card), status card DZ2584 (Fearful Hospitality / Outstaying Your Welcome).",
+  "Each deck card carries both parts: AI fields (name, aiTier, kind, steps...) and BP fields (bpName, tier = BP level, atLo = gold Interrupt AT, at = regular AT, responses incl. INTERRUPT ones). Deck building and escalation use the BP level only (Storybook p.11).",
+  "Level strip icons: lotus = ESCALATION, eye-shield = AT, diamond = EVADE_DICE, A = DANGER (per hit from Lv V). Lv I lotus +1."
+ ],
+ "footprint": {
+  "w": 2,
+  "h": 2,
+  "rear": "top-edge"
+ },
+ "ukb": 10,
+ "blindspots": "rear",
+ "levels": {
+  "1": {
+   "toHit": 10,
+   "speed": 99,
+   "wounds": 12,
+   "bonus": {
+    "ESCALATION": 1
+   },
+   "traits": [
+    "Shackles of Regret",
+    "Drifter of Wastes",
+    "End of Hope",
+    "Soulrend",
+    "Semicorporeal Wraith",
+    "Shadowstep X"
+   ]
+  },
+  "2": {
+   "toHit": 10,
+   "speed": 99,
+   "wounds": 12,
+   "bonus": {
+    "ESCALATION": 1,
+    "AT": 1
+   },
+   "traits": [
+    "Winnowing"
+   ],
+   "removeTraits": [
+    "Shackles of Regret"
+   ]
+  },
+  "3": {
+   "toHit": 11,
+   "speed": 99,
+   "wounds": 13,
+   "bonus": {
+    "ESCALATION": 2,
+    "AT": 2,
+    "DANGER": 1
+   },
+   "traits": [
+    "Land That Knows Nothing of the Sea"
+   ]
+  },
+  "4": {
+   "toHit": 11,
+   "speed": 99,
+   "wounds": 13,
+   "bonus": {
+    "ESCALATION": 2,
+    "AT": 3,
+    "DANGER": 1
+   },
+   "traits": [
+    "Forbidden Alchemy"
+   ]
+  },
+  "5": {
+   "toHit": 12,
+   "speed": 99,
+   "wounds": 14,
+   "bonus": {
+    "ESCALATION": 3,
+    "AT": 4,
+    "DANGER": 1
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Beginning of the End",
+    "Bane of Odysseus"
+   ],
+   "mnestis": true
+  },
+  "6": {
+   "toHit": 12,
+   "speed": 99,
+   "wounds": 14,
+   "bonus": {
+    "ESCALATION": 3,
+    "AT": 5,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Contaminated Cuts"
+   ],
+   "mnestis": true
+  },
+  "7": {
+   "toHit": 13,
+   "speed": 99,
+   "wounds": 15,
+   "bonus": {
+    "ESCALATION": 4,
+    "AT": 6,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Shadow Backstep"
+   ],
+   "mnestis": true
+  },
+  "8": {
+   "toHit": 13,
+   "speed": 99,
+   "wounds": 15,
+   "bonus": {
+    "ESCALATION": 4,
+    "AT": 7,
+    "EVADE_DICE": 1,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "The Dragon Does Not Sleep"
+   ],
+   "mnestis": true
+  },
+  "9": {
+   "toHit": 14,
+   "speed": 99,
+   "wounds": 17,
+   "bonus": {
+    "ESCALATION": 5,
+    "AT": 8,
+    "EVADE_DICE": 2,
+    "DANGER": 3
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Ruthless",
+    "Incorporeal Wraith"
+   ],
+   "mnestis": true
+  }
+ },
+ "traits": {
+  "Shackles of Regret": "See Additional Setup. Apply the following modifiers to all Dahaka Attacks: -1 EVADE_DICE and -1 DANGER per hit (minimum 1). As long as this Trait is active, the End of Hope Trait is disabled.",
+  "Drifter of Wastes": "The Dahaka ignores Line of Sight. Drift: When the Dahaka performs Drift, it moves through the Target stopping directly across the Target, then turns to face them. If the Dahaka cannot Drift across the Target, it stops adjacent to the Target and the Target dies. If the Dahaka moves through a Titan during Drift, that Titan gains a negative Precision token. Drift does not cause Crash. Dissipate: Move the Dahaka to the closest Ambrosia Cloud Terrain tile other than the one it is currently on, so that its base is fully placed on the Terrain tile, then turn it to face the most Titans. Triggers when prompted.",
+  "End of Hope": "End of Primordial Round: Perform Signature.",
+  "Soulrend": "Soulrend: Lose 1 Mnemos node from every Mnemos. Triggers when prompted.",
+  "Semicorporeal Wraith": "When the special ◆! comes up, a Titan adjacent to the Dahaka may perform an Interrupt Attack. If they do, they gain a Fatigue token. Bonus Attacks are always Interrupt Attacks (but you do not gain the Fatigue token). Chain Break doesn't disable the special ◆!.",
+  "Shadowstep X": "The Dahaka moves X spaces directly away from the Target, without turning. If it would move past the Board Edge, it appears on the other side of the Board in a straight line from its previous position and continues the movement in the same direction.",
+  "Winnowing": "Remove the Fearful Hospitality card and add the Trojan Ire and The Oar cards to the Battle (See Cycle IV Storybook, p. 171).",
+  "Land That Knows Nothing of the Sea": "When you gain The Oar card, immediately flip it.",
+  "Forbidden Alchemy": "When you gain Ambrosia tokens in any way, double the amount gained.",
+  "Beginning of the End": "End of Primordial Round: Before End of Hope, draw and perform another AI card.",
+  "Bane of Odysseus": "If you don't pass the Trojan Ire card, die. Then, random Titan gains the Trojan Ire.",
+  "Contaminated Cuts": "End of Titan turn: Gain DANGER equal to the number of Ambrosia tokens you have.",
+  "Shadow Backstep": "When the Dahaka Shadowsteps through the Board Edge, Heal 1.",
+  "The Dragon Does Not Sleep": "Additional Setup: Place a Combo token on the Cleaver space of the Combo track. After resolving a Combo or Combo Break, move the token clockwise to the next space. Combo: Dahaka AI cards cannot be Interrupt Attacked, unless you perform a Combo Break. Combo Break: A Titan who is not the Priority Target and has a Weapon with a Weapon class indicated by the Combo track may exhaust this Weapon to break the Combo. The Titan must be within this Weapon's effective range. They gain the Priority Target token. Note: RAGE gain doesn't trigger Priority Target change. CLEAVER: Slabsword, Knife, Shield, Whip. SMOKE: Spear, Sword, Kusarigama. AMBROSIA: Pistols, Club, Axe, Harpoon.",
+  "Ruthless": "Remove all positive Trauma cards from the Trauma decks (except Obols).",
+  "Incorporeal Wraith": "The Dahaka can only be Wounded by Interrupt Attacks. Always use the higher AT value of the BP cards."
+ },
+ "ai": [
+  {
+   "code": "DR2516",
+   "name": "Shadowpierce",
+   "aiTier": 1,
+   "tier": 1,
+   "kind": "ATTACK",
+   "bpName": "Shadowspicule",
+   "atLo": 7,
+   "at": 8,
+   "responses": {
+    "INTERRUPT WOUND": "Gain 2 Ambrosia tokens.",
+    "WOUND": "Perform next AI."
+   },
+   "critical": "Resolve a Fated Mnemos! Immediately resolve the Memory of the Boiling Sea Special Event.",
+   "dahaka": true,
+   "dice": 4,
+   "toHit": 10,
+   "target": [
+    "Closest Titan not in front",
+    "Closest Curse Affliction in sight",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ DRIFT & ATTACK",
+    "If the Attack hits, it deals 8 DANGER, gain 2 Ambrosia tokens, Pushback 1.",
+    "⚡ FATE 3+: Knockdown."
+   ],
+   "after": "⚡ Shadowstep 4.",
+   "drift": true
+  },
+  {
+   "code": "DR2515",
+   "name": "Shadowslash",
+   "aiTier": 1,
+   "tier": 1,
+   "kind": "ATTACK",
+   "bpName": "Folds of the Blackrobe",
+   "atLo": 6,
+   "at": 7,
+   "responses": {
+    "INTERRUPT FAIL": "Gain 2 Ambrosia tokens.",
+    "FAIL": "Perform next AI."
+   },
+   "critical": "Gain the Priority Target token. You may perform a Bonus Attack!",
+   "dahaka": true,
+   "dice": 5,
+   "toHit": 10,
+   "target": [
+    "Closest Titan in front",
+    "Closest Curse Affliction in sight",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ DRIFT & ATTACK",
+    "Each hit deals 3 DANGER. Gain 1 Ambrosia token.",
+    "⚡ FATE 2+: Knockdown."
+   ],
+   "after": "⚡ Shadowstep 4.",
+   "drift": true
+  },
+  {
+   "code": "DR2518",
+   "name": "Doomspeak",
+   "aiTier": 1,
+   "tier": 1,
+   "kind": "WISH JUDGEMENT",
+   "bpName": "Tattered Cowl",
+   "atLo": 7,
+   "at": 8,
+   "responses": {
+    "INTERRUPT FAIL": "Gain the Fear Condition card.",
+    "FAIL": "Gain the Wishkeen Condition card."
+   },
+   "critical": "Disable the Soulrend Trait!",
+   "dahaka": true,
+   "dice": 3,
+   "toHit": 9,
+   "wish": true,
+   "judge": [
+    "Courage",
+    "Will"
+   ],
+   "target": [
+    "Curse Affliction in sight",
+    "Priority Target in sight",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "JUDGE | FATE 5+: Soulrend",
+    "Courage/Will. One hit, gain the Covetous Condition card; two hits, gain the Greed-crazed Condition card; three hits, you die."
+   ],
+   "after": "⚡ The Dahaka moves to the center of the Board, then turns to face the most Titans.",
+   "noInterrupt": "next"
+  },
+  {
+   "code": "DR2517",
+   "name": "Shadepass",
+   "aiTier": 1,
+   "tier": 1,
+   "kind": "ATTACK",
+   "bpName": "Ephemeral Ghost Feet",
+   "atLo": 6,
+   "at": 7,
+   "responses": {
+    "INTERRUPT WOUND": "Perform next AI.",
+    "INSTINCT": "Perform next AI."
+   },
+   "critical": "Gain the Priority Target token. You may perform a Bonus Attack!",
+   "dahaka": true,
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Furthest Titan in front",
+    "Furthest Curse Affliction in sight",
+    "Furthest Titan in sight"
+   ],
+   "steps": [
+    "⚡ DRIFT & ATTACK",
+    "One hit deals 5 DANGER and 1 Ambrosia token; two or more hits deal 9 DANGER and 2 Ambrosia tokens.",
+    "⚡ FATE 4+: Knockdown. Knockback 10."
+   ],
+   "after": "⚡ Shadowstep 4.",
+   "drift": true
+  },
+  {
+   "code": "DR2519",
+   "name": "Fumewave",
+   "aiTier": 1,
+   "tier": 1,
+   "kind": "ATTACK",
+   "bpName": "Carcass of Hazes",
+   "atLo": 6,
+   "at": 7,
+   "responses": {
+    "INTERRUPT FAIL": "Knockdown. Knockback 10.",
+    "INTERRUPT WOUND": "⚡ Knockdown. Knockback 7."
+   },
+   "critical": "The Dahaka gains 1 negative To Hit token.",
+   "dahaka": true,
+   "dice": 4,
+   "toHit": 8,
+   "target": [
+    "Titan in Blindspot",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ DRIFT & ATTACK | FATE 3+: +1 EVADE_DICE",
+    "Each hit deals 3 DANGER and 1 Ambrosia token."
+   ],
+   "after": "⚡ Shadowstep 4.",
+   "drift": true
+  },
+  {
+   "code": "DR2521",
+   "name": "Blade Cloud",
+   "aiTier": 1,
+   "tier": 2,
+   "kind": "SIMULTANEOUS ATTACK",
+   "bpName": "Paracausal Trapmaw",
+   "atLo": 10,
+   "at": 12,
+   "responses": {
+    "INTERRUPT FAIL": "Gain the Covetous Condition card. Place this card on top of the AI deck.",
+    "INSTINCT": "Perform next AI."
+   },
+   "critical": "Disable the Shackles of Regret Trait. You may perform a Bonus Attack!",
+   "dahaka": true,
+   "dice": 5,
+   "toHit": 9,
+   "target": [
+    "Curse Affliction in sight",
+    "Highest FATE in sight"
+   ],
+   "steps": [
+    "⚡ DRIFT & ATTACK ALL ADJACENT TITANS",
+    "Each hit deals 3 DANGER. Gain 1 Ambrosia token.",
+    "FATE 5+: Gain 1 negative Precision token."
+   ],
+   "afterFinal": "⚡ Dissipate.",
+   "drift": true,
+   "driftAll": true
+  },
+  {
+   "code": "DR2522",
+   "name": "Fumestorm",
+   "aiTier": 2,
+   "tier": 2,
+   "kind": "ZONE ATTACK",
+   "bpName": "Roiling Shadowmass",
+   "atLo": 11,
+   "at": 13,
+   "responses": {
+    "FAIL": "Perform next AI.",
+    "INTERRUPT WOUND": "Reverse Unholy Alchemy."
+   },
+   "critical": "Drift becomes Move Unlimited.",
+   "dahaka": true,
+   "dice": 5,
+   "toHit": 9,
+   "target": [
+    "Zone 2"
+   ],
+   "steps": [
+    "⚡ ATTACK | FATE 5+: Soulrend",
+    "Each hit deals 3 DANGER and 1 Ambrosia token."
+   ],
+   "afterFinal": "⚡ Dissipate."
+  },
+  {
+   "code": "DR2520",
+   "name": "Blackdraught",
+   "aiTier": 2,
+   "tier": 1,
+   "kind": "ZONE ATTACK",
+   "bpName": "Coils of Smoke",
+   "atLo": 6,
+   "at": 7,
+   "responses": {
+    "INTERRUPT FAIL": "Perform next AI.",
+    "WOUND": "Gain 2 Ambrosia tokens."
+   },
+   "critical": "Gain 1 Mnemos node for a chosen Mnemos.",
+   "dahaka": true,
+   "dice": 5,
+   "toHit": 10,
+   "target": [
+    "Mnemos with the Voyage Trait",
+    "Priority Target in sight",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ DRIFT & ATTACK",
+    "Each hit deals 4 DANGER. Gain 1 Ambrosia token.",
+    "⚡ FATE 4+: Knockdown. Knockback 5."
+   ],
+   "afterFinal": "⚡ Shadowstep 5.",
+   "drift": true,
+   "pattern": [
+    [
+     1,
+     -0.5
+    ],
+    [
+     1,
+     0.5
+    ],
+    [
+     2,
+     -0.5
+    ],
+    [
+     2,
+     0.5
+    ],
+    [
+     3,
+     -0.5
+    ],
+    [
+     3,
+     0.5
+    ],
+    [
+     4,
+     -0.5
+    ],
+    [
+     4,
+     0.5
+    ],
+    [
+     5,
+     -0.5
+    ],
+    [
+     5,
+     0.5
+    ],
+    [
+     6,
+     -0.5
+    ],
+    [
+     6,
+     0.5
+    ]
+   ]
+  },
+  {
+   "code": "DR2523",
+   "name": "Ebonshard Whirlpool",
+   "aiTier": 2,
+   "tier": 2,
+   "kind": "ZONE ATTACK",
+   "bpName": "Bones of Smoke and Sand",
+   "atLo": 11,
+   "at": 13,
+   "responses": {
+    "FAIL": "Perform next AI.",
+    "INTERRUPT WOUND": "Reverse Unholy Alchemy."
+   },
+   "critical": "Another Titan may perform a Bonus Attack!",
+   "dahaka": true,
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Zone 2"
+   ],
+   "steps": [
+    "⚡ ATTACK",
+    "For each hit discard 1 Gear card. Each hit deals 3 DANGER."
+   ],
+   "afterFinal": "⚡ The Dahaka moves to the center of the Board, then turns to face the most Titans.",
+   "noInterrupt": "next"
+  },
+  {
+   "code": "DR2525",
+   "name": "Fire from the Depths",
+   "aiTier": 2,
+   "tier": 2,
+   "kind": "WISH ATTACK",
+   "bpName": "Floating Embers",
+   "atLo": 10,
+   "at": 12,
+   "responses": {
+    "FAIL": "Gain 3 Ambrosia tokens.",
+    "INTERRUPT WOUND": "Discard 1 Condition card."
+   },
+   "critical": "Remove all Ambrosia tokens from each Titan.",
+   "dahaka": true,
+   "dice": 4,
+   "toHit": 8,
+   "wish": true,
+   "target": [
+    "Titan in Blindspot",
+    "Closest Curse Affliction not in front, in sight",
+    "Closest Titan not in front, in sight",
+    "Closest Titan in front, in sight"
+   ],
+   "steps": [
+    "⚡ DRIFT & ATTACK | FATE 6+: +2 EVADE_DICE",
+    "If the Attack hits, gain 3 Ambrosia tokens. Then, gain +3 DANGER for each Ambrosia token you have."
+   ],
+   "after": "⚡ Dissipate.",
+   "drift": true
+  },
+  {
+   "code": "DR2526",
+   "name": "Shadowcleaver",
+   "aiTier": 2,
+   "tier": 2,
+   "kind": "ATTACK",
+   "bpName": "Blackflesh Arm",
+   "atLo": 9,
+   "at": 11,
+   "responses": {
+    "INTERRUPT WOUND": "Reverse Unholy Alchemy.",
+    "WOUND": "Perform next AI."
+   },
+   "critical": "Gain the Shadowcleaver card (Secret deck 11, card 197)! (campaign)",
+   "dahaka": true,
+   "dice": 4,
+   "toHit": 8,
+   "target": [
+    "Curse Affliction in sight",
+    "Highest FATE in sight"
+   ],
+   "steps": [
+    "⚡ DRIFT & ATTACK | FATE 3+: +1 EVADE_DICE",
+    "Each hit deals 4 DANGER. If you gain 10+ DANGER, you die without a Trauma Draw."
+   ],
+   "after": "⚡ Shadowstep 5.",
+   "drift": true
+  },
+  {
+   "code": "DR2524",
+   "name": "Doomwail",
+   "aiTier": 2,
+   "tier": 2,
+   "kind": "WISH JUDGEMENT",
+   "bpName": "Stolen Efreethead",
+   "atLo": 9,
+   "at": 11,
+   "responses": {
+    "INTERRUPT FAIL": "Gain the Dread Condition card.",
+    "INSTINCT": "Gain the Wishagog Condition card."
+   },
+   "critical": "Wish Attacks become normal Attacks!",
+   "dahaka": true,
+   "dice": 4,
+   "toHit": 10,
+   "wish": true,
+   "judge": [
+    "Courage",
+    "Will"
+   ],
+   "target": [
+    "Closest Curse Affliction in sight",
+    "Priority Target in sight",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "JUDGE | FATE 5+: Soulrend",
+    "Courage/Will. One hit, Death 2; two hits, Death 1; three or more hits, you die."
+   ],
+   "after": "⚡ The Dahaka moves to the center of the Board, then turns to face the most Titans.",
+   "noInterrupt": "next"
+  },
+  {
+   "code": "DR2527",
+   "name": "Tentacles of the Old Smog",
+   "aiTier": 3,
+   "tier": 3,
+   "kind": "ATTACK",
+   "bpName": "Head of Smogsludge",
+   "atLo": 13,
+   "at": 16,
+   "responses": {
+    "INTERRUPT FAIL": "Gain 4 Ambrosia tokens.",
+    "INTERRUPT INSTINCT": "Lose 1 Mnemos node."
+   },
+   "critical": "Gain the Dahaka Mask card (Secret deck 11, card 196)! (campaign)",
+   "dahaka": true,
+   "dice": 5,
+   "toHit": 8,
+   "target": [
+    "Curse Affliction in sight",
+    "Highest FATE in sight",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "DRIFT & ATTACK",
+    "Each hit deals 3 DANGER. | FATE 6+: 4 DANGER instead",
+    "Lose -1 RAGE and 1 Mnemos or Fated Mnemos node per hit."
+   ],
+   "after": "⚡ Shadowstep 6.",
+   "drift": true
+  },
+  {
+   "code": "DR2529",
+   "name": "Bodyflood",
+   "aiTier": 3,
+   "tier": 3,
+   "kind": "ATTACK",
+   "bpName": "Vapor of Godichor",
+   "atLo": 12,
+   "at": 15,
+   "responses": {
+    "INTERRUPT FAIL": "Gain 3 Ambrosia tokens.",
+    "FAIL": "Perform next AI."
+   },
+   "critical": "Permanently gain Ambrosia Limit 6 (once per Argonaut Lifetime).",
+   "dahaka": true,
+   "dice": 5,
+   "toHit": 10,
+   "target": [
+    "Titan in Blindspot",
+    "Mnemos with the Voyage Trait",
+    "Priority Target in sight",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ DRIFT & ATTACK | FATE 5+: Soulrend",
+    "Soulrend. One hit, raise DANGER to 9; two or three hits, you die; four or more hits, you die, and the Argonaut dies."
+   ],
+   "after": "⚡ Shadowstep 6.",
+   "drift": true
+  },
+  {
+   "code": "DR2530",
+   "name": "Endless Dragon",
+   "aiTier": 3,
+   "tier": 3,
+   "kind": "CURSE",
+   "bpName": "Stormcloud Heart",
+   "atLo": 14,
+   "at": 17,
+   "responses": {
+    "INTERRUPT FAIL": "Perform next AI.",
+    "INSTINCT": "Perform next AI."
+   },
+   "critical": "Gain the Dahaka Blade card (Secret deck 11, card 195)! (campaign)",
+   "dahaka": true,
+   "target": [],
+   "steps": [
+    "DROWN: Heal 1."
+   ],
+   "noInterrupt": "dragon",
+   "text": "DROWN: Heal 1. [◆ Interrupt Window] ⚡ AFTER CURSE: If no Interrupt Attack, shuffle this card and the discard pile into the deck, then draw another AI card."
+  },
+  {
+   "code": "DR2528",
+   "name": "Soot Nebula",
+   "aiTier": 3,
+   "tier": 3,
+   "kind": "ZONE ATTACK",
+   "bpName": "Starless Canvas",
+   "atLo": 14,
+   "at": 17,
+   "responses": {
+    "FAIL": "Raise DANGER to 9, draw an Obol.",
+    "INTERRUPT WOUND": "Reverse Unholy Alchemy."
+   },
+   "critical": "Deal an additional Single Wound! After the Battle, resolve the Trench and the Cosmos Special Event.",
+   "dahaka": true,
+   "dice": 4,
+   "toHit": 9,
+   "target": [
+    "Zone 3"
+   ],
+   "steps": [
+    "⚡ ATTACK | FATE 5+: Soulrend",
+    "Each hit deals 4 DANGER and 1 Ambrosia token."
+   ],
+   "afterFinal": "⚡ Dissipate."
+  },
+  {
+   "code": "DR2531",
+   "name": "Ur-Doom Unmake",
+   "aiTier": 3,
+   "tier": 3,
+   "kind": "WISH JUDGEMENT",
+   "bpName": "Memory of the First Trench",
+   "atLo": 12,
+   "at": 15,
+   "responses": {
+    "INTERRUPT INSTINCT": "Perform next AI.",
+    "INSTINCT": "Perform next AI."
+   },
+   "critical": "Draw an Obol. Then the Dahaka dies!",
+   "dahaka": true,
+   "dice": 2,
+   "toHit": 11,
+   "wish": true,
+   "doomed": true,
+   "judge": [
+    "Wisdom",
+    "Courage",
+    "Will"
+   ],
+   "target": [
+    "Mnemos with the Voyage Trait",
+    "Curse Affliction in sight",
+    "Priority Target in sight",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "JUDGE | FATE 8+: +1 EVADE_DICE",
+    "Doomed. Wisdom/Courage/Will. If the Attack hits, the Titan and the Argonaut die; gain +1 Argo token (campaign)."
+   ],
+   "after": "⚡ The Dahaka moves to the center of the Board, then turns to face the most Titans.",
+   "noInterrupt": "next"
+  },
+  {
+   "code": "DR2532",
+   "name": "Ghost of Luminous Irem",
+   "aiTier": 3,
+   "tier": 3,
+   "kind": "WISH ZONE ATTACK",
+   "bpName": "Barren Foam",
+   "atLo": 12,
+   "at": 15,
+   "responses": {
+    "INTERRUPT INSTINCT": "Disable the Shackles of Regret Trait.",
+    "INSTINCT": "Disable the Shackles of Regret Trait."
+   },
+   "critical": "Gain +1 Tides of Fate (campaign).",
+   "dahaka": true,
+   "dice": 4,
+   "toHit": 9,
+   "wish": true,
+   "target": [
+    "Zone 2"
+   ],
+   "steps": [
+    "⚡ ATTACK",
+    "Gain 1 Midas token for each hit and Ambrosia token you have. Each hit deals 5 DANGER.",
+    "⚡ FATE 7+: Float."
+   ],
+   "afterFinal": "⚡ The Dahaka moves to the center of the Board, then turns to face the most Titans.",
+   "noInterrupt": "next"
+  },
+  {
+   "code": "DR2514S",
+   "tier": "X",
+   "name": "Blackslash",
+   "kind": "SIGNATURE",
+   "dice": 4,
+   "toHit": 10,
+   "target": [
+    "Closest Titan in front",
+    "Closest Curse Affliction in sight",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ DRIFT & ATTACK",
+    "Each hit deals 3 DANGER. Gain 1 Ambrosia token.",
+    "⚡ FATE 2+: Knockdown."
+   ],
+   "after": "⚡ Shadowstep 4.",
+   "drift": true,
+   "dhSig": true
+  },
+  {
+   "code": "DR2533",
+   "tier": "X",
+   "name": "Right All Wrongs",
+   "kind": "ROUTINE",
+   "target": [],
+   "steps": [],
+   "text": "The Dahaka moves to the center of the Board and turns to face the most Titans. Lose -1 Hull and -1 Supplies (campaign). Random Titan dies.",
+   "dhRoutine": true
+  }
+ ],
+ "bp": [],
+ "statusCards": {
+  "Fearful Hospitality": {
+   "code": "DZ2584",
+   "text": "Start of Battle: Random Titan gains this card. The Titan gains the Precise keyword. Pass Fearful Hospitality: Can be passed to an adjacent Titan as a free action. When you pass Fearful Hospitality, gain a permanent positive Precision token. You cannot pass Fearful Hospitality to a Titan with a positive Precision token. If, at the end of your turn, there is no eligible Titan to pass Fearful Hospitality, discard this card and every positive Precision token in the game. If a Titan with the Fearful Hospitality dies, pass the Fearful Hospitality to the closest Titan. End of Titan turn: If you have this at the end of your turn, flip it."
+  },
+  "Outstaying Your Welcome": {
+   "code": "DZ2584 (back)",
+   "text": "End of Titan turn: If you have this at the end of your turn, discard this card and every positive Precision token in the game. Pass Outstaying Your Welcome: Can be passed to an adjacent Titan as a free action. When you pass Outstaying Your Welcome, flip it. You cannot pass Outstaying Your Welcome to a Titan with a positive Precision token. If, at the end of your turn, there is no eligible Titan to pass Outstaying Your Welcome, discard this card and every positive Precision token in the game. If a Titan with the Outstaying Your Welcome dies, pass the Outstaying Your Welcome to the closest Titan."
+  },
+  "Trojan Ire": {
+   "code": "Secret deck 13, card 219",
+   "text": "Start of Battle: Random Titan gains this card. You can be Targeted only if there are no other viable Targets. You cannot perform Attacks. Pass the Ire: Can be passed to an adjacent Titan as a free action. When you pass the Trojan Ire, gain the Oar Condition card. If, at the end of your turn, there is no eligible Titan to pass the Trojan Ire, every Titan dies. If a Titan with the Trojan Ire dies, pass the Trojan Ire to the closest Titan. End of Titan turn: If you have this at the end of your turn, flip it."
+  },
+  "Lotus Eaters Curse": {
+   "code": "Secret deck 13, card 219 (back)",
+   "text": "Start of Titan turn: If you have this at the start of your turn, permanently lose 1 Mnemos card and all associated nodes. This card does not return to the Mnemos Vault. If you can't lose a Mnemos card, you are erased from existence. Pass the Curse: Can be passed to an adjacent Titan as a free action. When you pass the Lotus Eaters Curse, flip it. You gain the Winnowed Condition card. If, at the end of your turn, there is no eligible Titan to pass the Lotus Eaters Curse, every Titan dies. If a Titan with the Lotus Eaters Curse dies, pass the Lotus Eaters Curse to the closest Titan."
+  },
+  "The Oar": {
+   "code": "Secret deck 13, cards 215-218",
+   "text": "When you gain this card, and there are no BP cards in the discard pile, you may discard the top BP card. You gain the Precise keyword. You cannot gain the Trojan Ire or Lotus Eaters Curse cards."
+  },
+  "Winnowed": {
+   "code": "The Oar (back)",
+   "text": "You cannot use Mnemos card abilities during this Battle. You cannot gain the Trojan Ire or Lotus Eaters Curse cards."
+  }
+ },
+ "comboTrack": [
+  [
+   "Cleaver",
+   [
+    "Slabsword",
+    "Knife",
+    "Shield",
+    "Whip"
+   ]
+  ],
+  [
+   "Smoke",
+   [
+    "Spear",
+    "Sword",
+    "Kusarigama"
+   ]
+  ],
+  [
+   "Ambrosia",
+   [
+    "Pistols",
+    "Club",
+    "Axe",
+    "Harpoon"
+   ]
+  ]
+ ]
+}

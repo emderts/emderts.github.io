@@ -1,0 +1,158 @@
+{
+ "id": "midascore",
+ "source": "ATO Cycle IV Storybook — Midascore Battle (p.160)",
+ "board": {
+  "cols": 20,
+  "rows": 14
+ },
+ "_notes": [
+  "Fire tokens = Titan start spaces (chosen freely). Lv II+: the battle takes place on the peaks of Irem Towers (Amongst the Bleached Bones).",
+  "Irem Tower / Irem City tile stats not scanned — placeholder: Elevated, Shifting, walkable, not Obstacle."
+ ],
+ "center": "G11",
+ "variants": {
+  "lv1": {
+   "levels": [
+    1
+   ],
+   "primordial": {
+    "anchor": "F10"
+   },
+   "titanStarts": [
+    "K9",
+    "K13",
+    "C9",
+    "C13"
+   ],
+   "startChoices": [
+    "K9",
+    "K13",
+    "C9",
+    "C13"
+   ],
+   "terrain": {
+    "iremTower": [
+     "M4",
+     "M15",
+     "L16",
+     "K11",
+     "J6",
+     "J13",
+     "I20",
+     "H3",
+     "H15",
+     "G19",
+     "F9",
+     "E2",
+     "E6",
+     "E11",
+     "C13",
+     "B2",
+     "B9",
+     "B20",
+     "A3",
+     "A14"
+    ],
+    "iremCity": [
+     [
+      "I3",
+      "I4",
+      "I5",
+      "J3",
+      "J4",
+      "J5",
+      "K3",
+      "K4",
+      "K5"
+     ],
+     [
+      "D15",
+      "D16",
+      "D17",
+      "E15",
+      "E16",
+      "E17",
+      "F15",
+      "F16",
+      "F17"
+     ]
+    ]
+   }
+  },
+  "lv2": {
+   "levels": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "primordial": {
+    "anchor": "F10"
+   },
+   "titanStarts": [
+    "K9",
+    "K13",
+    "C9",
+    "C13"
+   ],
+   "startChoices": [
+    "K9",
+    "K13",
+    "C9",
+    "C13"
+   ],
+   "terrain": {
+    "iremTower": [
+     "M4",
+     "M15",
+     "L16",
+     "K9",
+     "K13",
+     "J6",
+     "I20",
+     "H3",
+     "H15",
+     "G19",
+     "F9",
+     "E2",
+     "E6",
+     "E11",
+     "C9",
+     "C13",
+     "C20",
+     "B2",
+     "A3",
+     "A14"
+    ],
+    "iremCity": [
+     [
+      "I3",
+      "I4",
+      "I5",
+      "J3",
+      "J4",
+      "J5",
+      "K3",
+      "K4",
+      "K5"
+     ],
+     [
+      "D15",
+      "D16",
+      "D17",
+      "E15",
+      "E16",
+      "E17",
+      "F15",
+      "F16",
+      "F17"
+     ]
+    ]
+   }
+  }
+ }
+}

@@ -1,0 +1,1051 @@
+{
+ "id": "chimera",
+ "name": "Chimera Metastasios",
+ "cycle": 2,
+ "type": "regular",
+ "basicTraits": [
+  "Lumbering"
+ ],
+ "sheetCode": "BU0780",
+ "_notes": [
+  "Transcribed from sheet BU0780 (front Lv I-IV / back Lv V-IX), AI BR0781-BR0801, BP BS0803-BS0822, Routine Terrorize BR0800, Mnestis Routine Snakes and Ladders, Signature Trudge BR0799, Special Attack Three-headed Monstrosity BR0801, Status Absorbed BS0822.",
+  "3x3 footprint; rear row = Rear (no Blindspot). Zone patterns: [depth, lateral] from the front edge; the card diagrams are read with the skull facing right (black cells = in front).",
+  "OoR evade (Critical Mass) is counted when an Attack target ends up out of range (interpretation).",
+  "Ambrosia Trail tile = 3x3, placed centred against one edge of the Chimera."
+ ],
+ "footprint": {
+  "w": 3,
+  "h": 3,
+  "rear": "top-edge"
+ },
+ "ukb": 5,
+ "blindspots": null,
+ "vp": {
+  "name": "Chimeric Acropolis",
+  "slots": 2,
+  "byLevel": {
+   "1": {
+    "climb": [
+     "Fury",
+     8
+    ],
+    "holdOn": [
+     "Endurance",
+     6
+    ],
+    "holdFail": "rear",
+    "power": 1,
+    "responses": "ignore-all"
+   },
+   "5": {
+    "climb": [
+     "Fury",
+     9
+    ],
+    "holdOn": [
+     "Endurance",
+     6
+    ],
+    "holdFail": "rear",
+    "power": 1,
+    "responses": "ignore-all"
+   }
+  },
+  "text": "Climb: Test Fury (8+; Lv V+: 9+). If you are instructed to create a Vantage Point and both VPs are already created, place 1 generic token here instead. Each of these tokens lowers Climb and Hold On test difficulty by 1 (to a minimum of 1). VP Effects: When on a VP, each time you Wound, you deal an additional Single Wound that goes into the Secondary Wound Stack. Hold On: End of Primordial Round, if on VP, test Endurance (6+). Fail: Knockdown. Displace onto a Rear space."
+ },
+ "levels": {
+  "1": {
+   "toHit": 6,
+   "speed": 5,
+   "wounds": 12,
+   "bonus": {},
+   "traits": [
+    "Slime Trail",
+    "This Train",
+    "Metamorphosis",
+    "The Strong Eat"
+   ]
+  },
+  "2": {
+   "toHit": 6,
+   "speed": 5,
+   "wounds": 14,
+   "bonus": {},
+   "traits": [
+    "Critical Mass",
+    "Highly Toxic"
+   ]
+  },
+  "3": {
+   "toHit": 7,
+   "speed": 5,
+   "wounds": 16,
+   "bonus": {
+    "ESCALATION": 1,
+    "DANGER": 1
+   },
+   "traits": [
+    "Digestive Acids"
+   ]
+  },
+  "4": {
+   "toHit": 7,
+   "speed": 5,
+   "wounds": 16,
+   "bonus": {
+    "ESCALATION": 2,
+    "AT": 1,
+    "DANGER": 1
+   },
+   "traits": [
+    "Voracious Bog"
+   ]
+  },
+  "5": {
+   "mnestis": true,
+   "toHit": 8,
+   "speed": 6,
+   "wounds": 18,
+   "bonus": {
+    "ESCALATION": 2,
+    "AT": 2,
+    "DANGER": 1
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "End of Hope",
+    "Black Rain"
+   ]
+  },
+  "6": {
+   "mnestis": true,
+   "toHit": 8,
+   "speed": 6,
+   "wounds": 18,
+   "bonus": {
+    "ESCALATION": 3,
+    "AT": 3,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Insatiable Pull"
+   ]
+  },
+  "7": {
+   "mnestis": true,
+   "toHit": 9,
+   "speed": 7,
+   "wounds": 20,
+   "bonus": {
+    "ESCALATION": 4,
+    "AT": 4,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Primordial Plasma"
+   ]
+  },
+  "8": {
+   "mnestis": true,
+   "toHit": 9,
+   "speed": 7,
+   "wounds": 20,
+   "bonus": {
+    "ESCALATION": 4,
+    "AT": 5,
+    "EVADE_DICE": 1,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Living Fortress"
+   ]
+  },
+  "9": {
+   "mnestis": true,
+   "toHit": 10,
+   "speed": 8,
+   "wounds": 22,
+   "bonus": {
+    "ESCALATION": 5,
+    "AT": 6,
+    "EVADE_DICE": 2,
+    "DANGER": 3
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Ruthless",
+    "Three Point Six",
+    "Beginning of the End"
+   ]
+  }
+ },
+ "traits": {
+  "Slime Trail": "As the Chimera moves, it leaves behind a trail of black Ambrosia. After the Chimera ends its movement, place an Ambrosia Trail tile directly behind it.",
+  "This Train": "The Chimera always moves its full Speed value and that movement is considered a Pushback. The Pushback applies to the Target, as well as every Titan adjacent to the Chimera at the start of the move. If the Target is on the VP, the Chimera still moves in the direction it is currently facing. Titanwall: All Titans affected by Pushback can collectively use all effects that mitigate it. Nobody Stops: If the Pushback value is reduced below 3, the Chimera gains a positive Speed token.",
+  "Metamorphosis": "The Chimera's physical state is indicated by the last wounded BP card. Gelatinous: If attacked with a Weapon other than Club, Cestus, Slabsword or Shield, the Chimera has +1 AT (Level 2+: +2). Supersolid: If attacked with a Club, Cestus, Slabsword or Shield Weapon, +1 AT (Level 4+: +2). Corrosive: After you resolve a successful Attack (at least 1 hit), if your Weapon is not Stone, Relief, Divine, Hephaestum, Cyclopean, Mythic or Electrum, exhaust it and gain Danger equal to Chimera LVL.",
+  "The Strong Eat": "Additional Setup: Add 1 You died! Obol to the Obol deck.",
+  "Critical Mass": "Each time the Chimera gains a Wound on the Secondary Wound Stack or you OoR evade, place a generic token on this Trait. If there are 3 or more tokens, finish resolving the current action, discard all tokens, then draw and resolve the top AI card.",
+  "Highly Toxic": "The Chimera's Ambrosia is highly toxic and volatile. During this Battle, all Titans suffer the following penalty: Level 2-3: Ambrosia Limit -1. Level 4-6: Ambrosia Limit -2. Level 7+: Ambrosia Limit -3.",
+  "Digestive Acids": "End of Primordial Round: Each Titan gains as many Danger as they have Ambrosia tokens.",
+  "Voracious Bog": "During the Primordial Round, Ambrosia Pools and Ambrosia Trails have the Chasm keyword. If a Titan ends their turn on an Ambrosia Pool or Ambrosia Trail tile, they die.",
+  "End of Hope": "End of Primordial Round: Perform Signature.",
+  "Black Rain": "Start of Titan turn: If you are in front of the Chimera, unless you have an Umbrella Gear card, gain 1 Ambrosia token.",
+  "Insatiable Pull": "End of Primordial Round: Pull each Titan X spaces, where X is the number of Ambrosia tokens they have. If you are pulled adjacent to the Chimera and the Pull value was not lowered to 0, instead of continuing the Pull you are Absorbed.",
+  "Primordial Plasma": "If there are no Wound cards in the Wound Stack or the last card is a Single or Double Wound, the Chimera's state is Plasmous: if attacked with a Weapon other than Primordial, Divine, Mythic or Eldertech, the Chimera has +2 AT and you exhaust your Weapon after resolving this Attack.",
+  "Living Fortress": "You can only Wound the Chimera from a VP or when Absorbed.",
+  "Ruthless": "Remove all positive Trauma cards from the Trauma decks (except Obols).",
+  "Three Point Six": "When a Titan becomes adjacent to the Chimera, they gain 1 Ambrosia token. When a Titan is Absorbed, they immediately gain 1 Ambrosia token. When a Titan ends their turn on a VP, they gain 1 Ambrosia token.",
+  "Beginning of the End": "End of Primordial Round: Before End of Hope, draw and perform another AI card."
+ },
+ "ai": [
+  {
+   "code": "BR0781",
+   "tier": 1,
+   "name": "Shamble",
+   "kind": "ZONE ATTACK",
+   "dice": 3,
+   "toHit": 7,
+   "target": [
+    "Closest Titan in front, in range",
+    "Closest Titan not in Rear, in range",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ PUSHBACK & ATTACK",
+    "Gain 2 Ambrosia tokens.",
+    "Each hit deals 2 DANGER."
+   ],
+   "pattern": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ]
+   ],
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR0782",
+   "tier": 1,
+   "name": "Slither",
+   "kind": "ZONE ATTACK",
+   "dice": 2,
+   "toHit": 10,
+   "target": [
+    "Closest Titan in front, in range",
+    "Closest Titan not in Rear, in range",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ PUSHBACK & ATTACK",
+    "Gain 2 Ambrosia tokens.",
+    "Each hit deals 2 DANGER. | FATE 5+: 3 DANGER instead"
+   ],
+   "pattern": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ]
+   ],
+   "afterFinal": "Warriors: Gain 1 negative Precision token.",
+   "afterWindow": true
+  },
+  {
+   "code": "BR0783",
+   "tier": 1,
+   "name": "Palloralgor",
+   "kind": "RANGED SIMULTANEOUS ATTACK",
+   "dice": 2,
+   "toHit": 7,
+   "target": [
+    "All Titans in sight"
+   ],
+   "steps": [
+    "⚡ RANGE ATTACK UNLIMITED | FATE 3+: +1 EVADE_DICE",
+    "Gain 1 Ambrosia token.",
+    "Each hit deals 2 DANGER."
+   ],
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR0784",
+   "tier": 1,
+   "name": "Statue Swing",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 8,
+   "target": [
+    "Titan on Vantage Point",
+    "Closest Titan in front, in range",
+    "Closest Titan not in Rear, in range",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ PUSHBACK & ATTACK | FATE 3+: +1 EVADE_DICE",
+    "Each hit deals 2 DANGER.",
+    "If the Target is on a VP, displace it onto any Rear space, Knockdown."
+   ],
+   "after": "FATE 6+: Perform Signature.",
+   "afterWindow": true,
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR0785",
+   "tier": 1,
+   "name": "Goat's Spasm",
+   "kind": "ATTACK",
+   "dice": 2,
+   "toHit": 9,
+   "target": [
+    "Titan in the Rear",
+    "Closest Titan in front, in range",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ PUSHBACK & ATTACK",
+    "Gain 1 Ambrosia token.",
+    "Each hit deals 2 DANGER.\n| FATE 4+: 4 DANGER instead"
+   ],
+   "after": "Knockback 10.",
+   "afterWindow": true,
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR0786",
+   "tier": 1,
+   "name": "Ambrosia Expulsion",
+   "kind": "RANGE ZONE ATTACK",
+   "dice": 2,
+   "toHit": 8,
+   "target": [
+    "Furthest Titan in sight"
+   ],
+   "steps": [
+    "⚡ RANGE ATTACK UNLIMITED | FATE 3+: +1 EVADE_DICE",
+    "Gain 1 Ambrosia token.\n| FATE 4+: 2 Ambrosia tokens instead",
+    "Each hit deals 1 DANGER."
+   ],
+   "aroundTarget": 1
+  },
+  {
+   "code": "BR0787",
+   "tier": 2,
+   "name": "Putrefaction",
+   "kind": "ZONE ATTACK",
+   "dice": 5,
+   "toHit": 7,
+   "target": [
+    "Closest Titan in front, in range",
+    "Closest Titan not in Rear, in range",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ PUSHBACK & ATTACK | FATE 4+: +1 EVADE_DICE",
+    "Gain 1 Ambrosia token per hit.",
+    "Each hit deals 1 DANGER."
+   ],
+   "pattern": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ]
+   ]
+  },
+  {
+   "code": "BR0788",
+   "tier": 2,
+   "name": "Decomposition",
+   "kind": "ATTACK",
+   "dice": 4,
+   "toHit": 8,
+   "target": [
+    "Closest Titan in front, in range",
+    "Closest Titan not in Rear, in range",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ PUSHBACK & ATTACK | FATE 4+: +1 EVADE_DICE",
+    "Gain 2 Ambrosia tokens.",
+    "Each hit deals 1 DANGER."
+   ],
+   "after": "For each DANGER dealt, exhaust 1 Gear\n| FATE 7+: Discard instead.",
+   "afterWindow": true,
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR0789",
+   "tier": 2,
+   "name": "Temple Fall",
+   "kind": "ATTACK",
+   "dice": 4,
+   "toHit": 7,
+   "target": [
+    "Titan on Vantage Point",
+    "Closest Titan in front, in range",
+    "Closest Titan not in Rear, in range",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ PUSHBACK & ATTACK",
+    "Each hit deals 2 DANGER.",
+    "If the Target is on a VP, displace it onto any Rear space, Knockdown."
+   ],
+   "after": "FATE 6+: Perform Signature.",
+   "afterWindow": true,
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR0790",
+   "tier": 2,
+   "name": "Livor Pooling",
+   "kind": "ZONE ATTACK",
+   "dice": 2,
+   "toHit": 9,
+   "target": [
+    "Zone 2"
+   ],
+   "steps": [
+    "⚡ ATTACK",
+    "Gain 1 Ambrosia token per hit.",
+    "Each hit deals 2 DANGER. | FATE 6+: 3 DANGER instead"
+   ],
+   "afterFinal": "Place Ambrosia Trail tiles around the Chimera.",
+   "afterWindow": true,
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR0791",
+   "tier": 2,
+   "name": "Lion's Rigor",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Titan on Vantage Point",
+    "Closest Titan in front, in range",
+    "Closest Titan not in Rear, in range",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ PUSHBACK & ATTACK",
+    "Gain Ambrosia tokens equal to the Chimera LVL.",
+    "Each hit deals 2 DANGER.\n| FATE 5+: 3 DANGER instead",
+    "If the Target is on a VP, displace it onto any Rear space, Knockdown."
+   ],
+   "after": "If 3 or more DANGER was dealt, gain the Paralyzed Condition card.",
+   "afterWindow": true,
+   "stepJoin": [
+    2,
+    3
+   ]
+  },
+  {
+   "code": "BR0792",
+   "tier": 2,
+   "name": "Muddied Ambrosia Barrage",
+   "kind": "RANGE ZONE ATTACK",
+   "dice": 2,
+   "toHit": 8,
+   "target": [
+    "Furthest Titan in sight"
+   ],
+   "steps": [
+    "⚡ RANGE ATTACK UNLIMITED | FATE 5+: +1 EVADE_DICE",
+    "Gain 1 Ambrosia token.\n| FATE 6+: Gain Ambrosia tokens equal to the Chimera LVL instead",
+    "Each hit deals 2 DANGER."
+   ],
+   "aroundTarget": 1,
+   "after": "Knockdown.",
+   "afterWindow": true
+  },
+  {
+   "code": "BR0793",
+   "tier": 3,
+   "name": "Absorption",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 8,
+   "target": [
+    "Closest Titan in front, in range",
+    "Closest Titan not in Rear, in range",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ PUSHBACK & ATTACK | FATE 6+: +1 EVADE_DICE",
+    "Gain 1 Ambrosia token per hit.",
+    "You are Absorbed.",
+    "Each hit deals 3 DANGER."
+   ],
+   "stepJoin": [
+    2,
+    3
+   ]
+  },
+  {
+   "code": "BR0794",
+   "tier": 3,
+   "name": "Skeletonization",
+   "kind": "ZONE ATTACK",
+   "dice": 4,
+   "toHit": 9,
+   "target": [
+    "Closest Titan in front, in range",
+    "Closest Titan not in Rear, in range",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ PUSHBACK & ATTACK | FATE 6+: +1 EVADE_DICE",
+    "Gain 1 Ambrosia token per hit.",
+    "Discard one Gear per hit, if you cannot discard a Gear card you die.",
+    "Each hit deals 2 DANGER."
+   ],
+   "pattern": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ]
+   ],
+   "stepJoin": [
+    2,
+    3
+   ]
+  },
+  {
+   "code": "BR0795",
+   "tier": 3,
+   "name": "Acropolis Collapse",
+   "kind": "ZONE ATTACK",
+   "dice": 5,
+   "toHit": 7,
+   "target": [
+    "All Titans on Vantage Points",
+    "Closest Titan in front, in range",
+    "Closest Titan not in Rear, in range",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ PUSHBACK & ATTACK",
+    "Gain 1 Ambrosia token.",
+    "Each hit deals 3 DANGER."
+   ],
+   "pattern": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     -1
+    ],
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     3,
+     -1
+    ],
+    [
+     3,
+     0
+    ],
+    [
+     3,
+     1
+    ]
+   ],
+   "afterFinal": "Perform Signature.",
+   "afterWindow": true,
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR0796",
+   "tier": 3,
+   "name": "Snake's Kiss",
+   "kind": "RANGE ATTACK",
+   "dice": 2,
+   "toHit": 10,
+   "target": [
+    "Titan on Vantage Point",
+    "Furthest Titan in front, in range",
+    "Closest Titan not in Rear, in range",
+    "Furthest Titan in sight"
+   ],
+   "steps": [
+    "PUSHBACK & RANGE ATTACK 3 | FATE 6+: +1 EVADE_DICE",
+    "Gain Ambrosia tokens equal to the Chimera LVL.",
+    "If hit, raise DANGER to 9 and resolve an Obol Draw."
+   ],
+   "range": 3,
+   "after": "FATE 7+: Perform Routine.",
+   "afterWindow": true,
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR0797",
+   "tier": 3,
+   "name": "Fossilization",
+   "kind": "ZONE ATTACK",
+   "dice": 3,
+   "toHit": 8,
+   "target": [
+    "Titan on Vantage Point",
+    "Closest Titan in front, in range",
+    "Closest Titan not in Rear, in range",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ PUSHBACK & ATTACK | FATE 6+: +1 EVADE_DICE",
+    "Gain 1 Ambrosia token per hit.",
+    "Each hit deals 2 DANGER.",
+    "⚡ For each hit, gain 1 negative Precision token and 1 negative Evasion token."
+   ],
+   "pattern": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ]
+   ],
+   "lastStepIsAfter": true
+  },
+  {
+   "code": "BR0798",
+   "tier": 3,
+   "name": "Ambrosia Hail",
+   "kind": "RANGE ZONE ATTACK",
+   "dice": 3,
+   "toHit": 7,
+   "target": [
+    "Furthest Titan in sight"
+   ],
+   "steps": [
+    "⚡ RANGE ATTACK UNLIMITED | FATE 6+: +1 EVADE_DICE",
+    "Gain 2 Ambrosia tokens.",
+    "Each hit deals 2 DANGER."
+   ],
+   "aroundTarget": 1,
+   "after": "Knockdown.",
+   "afterWindow": false,
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR0799",
+   "tier": "X",
+   "name": "Trudge",
+   "kind": "SIGNATURE",
+   "dice": 3,
+   "toHit": 7,
+   "target": [
+    "Closest Titan in front, in range",
+    "Closest Titan not in Rear, in range",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ PUSHBACK & ATTACK",
+    "Gain Ambrosia tokens equal to the Chimera LVL.",
+    "Each hit deals 2 DANGER."
+   ],
+   "pattern": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ]
+   ],
+   "zoneSig": true,
+   "afterFinal": "Gain 1 Ambrosia token.",
+   "afterWindow": true,
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR0801",
+   "tier": "X",
+   "name": "Three-headed Monstrosity",
+   "kind": "SPECIAL ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Attacking Titan"
+   ],
+   "steps": [
+    "ATTACK",
+    "Gain 1 Ambrosia token.",
+    "Each hit deals 2 DANGER."
+   ],
+   "after": "If 3 or more DANGER was dealt, Knockback 10. If 5 or more DANGER was dealt, gain the Paralyzed Condition card.",
+   "afterWindow": false,
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR0800",
+   "tier": "X",
+   "name": "Terrorize",
+   "kind": "ROUTINE",
+   "text": "All Titans on Vantage Points suffer Displacement onto a Rear space and Knockdown. Lose -1 Humanity (campaign)."
+  },
+  {
+   "code": "BR0800-M",
+   "tier": "X",
+   "name": "Snakes and Ladders",
+   "kind": "MNESTIS ROUTINE",
+   "dice": 2,
+   "toHit": 10,
+   "target": [
+    "All Titans on Vantage Points"
+   ],
+   "steps": [
+    "⚡ ATTACK | FATE 6+: +1 EVADE_DICE",
+    "Gain Ambrosia tokens equal to the Chimera LVL.",
+    "If hit, raise DANGER to 9 and resolve an Obol Draw."
+   ],
+   "routineAttack": true,
+   "allOnVP": true,
+   "noTarget": "Random Titan dies",
+   "afterFinal": "The Chimera moves adjacent to the closest Titan with unlimited Speed and performs Signature.",
+   "afterWindow": true
+  }
+ ],
+ "bp": [
+  {
+   "code": "BS0803",
+   "tier": 1,
+   "name": "Ares Metope",
+   "at": 3,
+   "responses": {
+    "FAIL": "Exhaust your active Weapon.",
+    "WOUND": "Gain +1 RAGE. Create a Vantage Point."
+   },
+   "critical": "Create a Vantage Point. Gain RAGE equal to the Chimera LVL. Gain Relief resources equal to the Chimera LVL (campaign).",
+   "state": "Corrosive",
+   "qeye": false
+  },
+  {
+   "code": "BS0804",
+   "tier": 1,
+   "name": "Shapeless Mass",
+   "at": 3,
+   "responses": {
+    "FAIL": "Gain 2 Ambrosia tokens.",
+    "WOUND": "Exhaust your active Weapon."
+   },
+   "critical": "Place an Ambrosia Pool tile on an empty space adjacent to the Chimera. Until the end of Battle, Chimera has -1 AT during attacks performed by Absorbed Titans.",
+   "state": "Gelatinous",
+   "absorbOffer": true,
+   "qeye": false
+  },
+  {
+   "code": "BS0805",
+   "tier": 1,
+   "name": "Tidal Mass",
+   "at": 4,
+   "responses": {
+    "WOUND": "Create a Vantage Point.",
+    "INSTINCT": "Gain 2 Ambrosia tokens."
+   },
+   "critical": "Create a Vantage Point. Gain the Muck Virus Gear card (campaign).",
+   "state": "Corrosive",
+   "absorbOffer": true,
+   "qeye": false
+  },
+  {
+   "code": "BS0806",
+   "tier": 1,
+   "name": "Peribolos Wall Remains",
+   "at": 4,
+   "responses": {
+    "FAIL": "Warriors: Gain 1 negative Precision token.",
+    "WOUND": "Create a Vantage Point."
+   },
+   "critical": "Create a Vantage Point. Until the end of Battle, Chimera has -1 AT when attacked from this VP.",
+   "state": "Supersolid",
+   "qeye": false
+  },
+  {
+   "code": "BS0807",
+   "tier": 1,
+   "name": "Goat Head",
+   "at": 4,
+   "responses": {
+    "FAIL": "Perform the Three-headed Monstrosity Special Attack against the Attacker.",
+    "WOUND": "Gain the Bellerophonic Condition card. Create a Vantage Point."
+   },
+   "critical": "Create a Vantage Point. Gain +1 Mnemos node (campaign). Disable the Goat's Spasm AI card.",
+   "state": "Gelatinous",
+   "axeBreak": true,
+   "pre": [
+    "If your Weapon has the Axe Trait, immediately place 1 Break token in the Kratos Pool."
+   ],
+   "qeye": true
+  },
+  {
+   "code": "BS0808",
+   "tier": 1,
+   "name": "Lesser Temple",
+   "at": 5,
+   "responses": {
+    "FAIL": "Warriors: Gain 1 negative Evasion token.",
+    "WOUND": "Create a Vantage Point."
+   },
+   "critical": "Create a Vantage Point. Lose -1 Argo Fate (campaign). Place 1 charge token on any Argo Ability.",
+   "state": "Supersolid",
+   "qeye": false
+  },
+  {
+   "code": "BS0809",
+   "tier": 2,
+   "name": "Cult Statue",
+   "at": 7,
+   "responses": {
+    "FAIL": "Warriors: Gain 2 negative Precision tokens.",
+    "WOUND": "Gain the Bellerophonic Condition card."
+   },
+   "critical": "Gain the Remembrance Gear card (campaign).",
+   "state": "Supersolid",
+   "qeye": false
+  },
+  {
+   "code": "BS0810",
+   "tier": 2,
+   "name": "Lion Head",
+   "at": 5,
+   "responses": {
+    "FAIL": "Perform the Three-headed Monstrosity Special Attack against the Attacker.",
+    "WOUND": "Gain the Bellerophonic Condition card."
+   },
+   "critical": "Gain the Jaws of the Lion Gear card (campaign). Disable the Lion's Rigor AI card.",
+   "state": "Gelatinous",
+   "axeBreak": true,
+   "pre": [
+    "If your Weapon has the Axe Trait, immediately place 1 Break token in the Kratos Pool."
+   ],
+   "qeye": true
+  },
+  {
+   "code": "BS0811",
+   "tier": 2,
+   "name": "Snake Head",
+   "at": 4,
+   "responses": {
+    "FAIL": "Perform the Three-headed Monstrosity Special Attack against the Attacker.",
+    "WOUND": "Gain the Bellerophonic Condition card. Create a Vantage Point."
+   },
+   "critical": "Create a Vantage Point. You may perform a Bonus Attack! Disable the Snake's Kiss AI card.",
+   "state": "Supersolid",
+   "axeBreak": true,
+   "pre": [
+    "If your Weapon has the Axe Trait, immediately place 1 Break token in the Kratos Pool."
+   ],
+   "qeye": true
+  },
+  {
+   "code": "BS0812",
+   "tier": 2,
+   "name": "Eosinophil Parasite",
+   "at": 6,
+   "responses": {
+    "FAIL": "Gain 2 Ambrosia tokens.",
+    "WOUND": "If your Weapon is not Relief, Stone, Divine, Hephaestum, Cyclopean or Electrum, discard it."
+   },
+   "critical": "Disable Chimera's Range Attacks.",
+   "state": "Corrosive",
+   "absorbOffer": true,
+   "qeye": false
+  },
+  {
+   "code": "BS0813",
+   "tier": 2,
+   "name": "Frothing Mass",
+   "at": 5,
+   "responses": {
+    "FAIL": "Gain 2 Ambrosia tokens. Place an Ambrosia Pool tile under the Attacker.",
+    "WOUND": "Create a Vantage Point."
+   },
+   "critical": "Create a Vantage Point. Until the end of Battle, Chimera has -1 AT when attacked from this VP.",
+   "state": "Gelatinous",
+   "absorbOffer": true,
+   "qeye": false
+  },
+  {
+   "code": "BS0814",
+   "tier": 2,
+   "name": "Ruined Peristasis",
+   "at": 7,
+   "responses": {
+    "FAIL": "Warriors: Gain 1 negative Evasion token. Make a Kratos roll.",
+    "WOUND": "Create a Vantage Point."
+   },
+   "critical": "Create a Vantage Point. Deal an additional Single Wound!",
+   "state": "Corrosive",
+   "qeye": false
+  },
+  {
+   "code": "BS0815",
+   "tier": 3,
+   "name": "Macrophages",
+   "at": 7,
+   "responses": {
+    "FAIL": "You are Absorbed.",
+    "WOUND": "Exhaust all your Gear."
+   },
+   "critical": "Discard all Ambrosia tokens from each Titan.",
+   "state": "Corrosive",
+   "absorbOffer": true,
+   "qeye": false
+  },
+  {
+   "code": "BS0816",
+   "tier": 3,
+   "name": "Osteoclast Colony",
+   "at": 6,
+   "responses": {
+    "FAIL": "Discard your Weapon Gear card.",
+    "WOUND": "Remove 1 Single Wound from the Secondary Wound Stack."
+   },
+   "critical": "Deal an additional Single Wound!",
+   "state": "Supersolid",
+   "qeye": false
+  },
+  {
+   "code": "BS0817",
+   "tier": 3,
+   "name": "Defiled Naos",
+   "at": 9,
+   "responses": {
+    "FAIL": "Gain +3 FATE.",
+    "WOUND": "Each Titan loses 2 FATE. Each Titan gains a node for 1 Fated Mnemos (campaign)."
+   },
+   "critical": "You Awaken!",
+   "state": "Supersolid",
+   "qeye": true
+  },
+  {
+   "code": "BS0818",
+   "tier": 3,
+   "name": "Thymus",
+   "at": 7,
+   "responses": {
+    "INSTINCT": "Draw and resolve the top AI card."
+   },
+   "critical": "You may perform a Bonus Attack!",
+   "state": "Gelatinous",
+   "absorbOffer": true,
+   "qeye": true
+  },
+  {
+   "code": "BS0819",
+   "tier": 3,
+   "name": "Stem Cells Cluster",
+   "at": 6,
+   "responses": {
+    "FAIL": "Heal.",
+    "WOUND": "Perform Signature against the Attacker."
+   },
+   "critical": "Disable the Metamorphosis Trait.",
+   "state": "Gelatinous",
+   "qeye": false
+  },
+  {
+   "code": "BS0820",
+   "tier": 3,
+   "name": "Cancerous Core",
+   "at": 8,
+   "responses": {
+    "FAIL": "You die."
+   },
+   "critical": "Gain +1 Humanity. The Chimera dies.",
+   "state": "Corrosive",
+   "pre": [
+    "You may voluntarily end this Attack before performing a Power Roll. If you do, clear the Kratos Pool."
+   ],
+   "qeye": false
+  }
+ ],
+ "status": {
+  "Absorbed": "When you are Absorbed, place your Titan here. As long as you are Absorbed, you cannot move (voluntarily or involuntarily) and you attack as if you were on a VP. Indigestion: If there are any Absorbed Titans, when the Chimera suffers a Secondary Stack Wound, place 1 generic token under each Titan miniature here. Then, if there are 2 or more generic tokens under a miniature, that Titan is regurgitated! Place their miniature on an empty space adjacent to the Chimera. End of Titan Round: Each Absorbed Titan gains 1 Ambrosia token and draws an Obol. Discard all generic tokens under the Absorbed Titans. Zeus Godform has +1 Power when Absorbed. If you are ever Absorbed while being Absorbed, you die. End of Battle: Bellynaut Special Event (campaign)."
+ }
+}

@@ -1,0 +1,339 @@
+{
+ "id": "hekaton",
+ "source": "ATO Cycle I Storybook p.108-109 (PDF p.54)",
+ "board": {
+  "cols": 20,
+  "rows": 14,
+  "colLabels": "1-20",
+  "rowLabels": "A (bottom) - N (top)"
+ },
+ "_notes": [
+  "Coordinates as 'RowCol' e.g. H10. Rows A..N bottom-to-top, columns 1..20 left-to-right, matching the printed board.",
+  "Primordial: Hekaton (2x2) on the centre space; facing determined by the arrow on the bottom Minor Trauma card (random direction).",
+  "Titan starting positions = the four flame markers.",
+  "Column = 1x1 Destructible Obstacle (Trap: push the Primordial onto it and roll d10 for negative Precision tokens). City = 3x3 tile; fissure shapes for level 4+ to be verified against the diagram (see TBC)."
+ ],
+ "setup": [
+  "Standard Preparations (Rulebook p.34).",
+  "Primordial Positioning: place the Hekaton on the indicated centre space; facing = arrow on bottom card of Minor Trauma deck.",
+  "Evolution: (campaign only - in Mnestis Theatre the level is chosen).",
+  "Additional Setup from Traits (e.g. Fissures at level IV+)."
+ ],
+ "aftermath": {
+  "victory": "Primordial slain: BP cards in the Wound Stack >= Primordial's Wounds value.",
+  "defeat": "All Titans died.",
+  "retreat": "If 2+ Titans died, may retreat at the beginning of any Titan Round."
+ },
+ "variants": {
+  "lv1-3": {
+   "levels": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "primordial": {
+    "anchor": "G10",
+    "cells": [
+     "H10",
+     "H11",
+     "G10",
+     "G11"
+    ]
+   },
+   "titanStarts": [
+    "J8",
+    "I7",
+    "F14",
+    "E13"
+   ],
+   "terrain": {
+    "column": [
+     "M9",
+     "M12",
+     "L4",
+     "L17",
+     "J6",
+     "I15",
+     "H3",
+     "G3",
+     "H18",
+     "G18",
+     "F6",
+     "E15",
+     "C4",
+     "C17",
+     "B9",
+     "B12"
+    ],
+    "city": [
+     {
+      "name": "City NW",
+      "cells": [
+       "K3",
+       "K4",
+       "K5",
+       "J3",
+       "J4",
+       "J5",
+       "I3",
+       "I4",
+       "I5"
+      ]
+     },
+     {
+      "name": "City SE",
+      "cells": [
+       "F16",
+       "F17",
+       "F18",
+       "E16",
+       "E17",
+       "E18",
+       "D16",
+       "D17",
+       "D18"
+      ]
+     }
+    ]
+   },
+   "required": {
+    "Column": 16,
+    "City": 2
+   }
+  },
+  "lv4-7": {
+   "levels": [
+    4,
+    5,
+    6,
+    7
+   ],
+   "primordial": {
+    "anchor": "G10",
+    "cells": [
+     "H10",
+     "H11",
+     "G10",
+     "G11"
+    ]
+   },
+   "titanStarts": [
+    "J8",
+    "I7",
+    "F14",
+    "E13"
+   ],
+   "terrain": {
+    "column": [
+     "M12",
+     "L4",
+     "L17",
+     "J6",
+     "I15",
+     "H18",
+     "F6",
+     "E15",
+     "C4",
+     "C17",
+     "B9"
+    ],
+    "city": [
+     {
+      "name": "City NW",
+      "cells": [
+       "K3",
+       "K4",
+       "K5",
+       "J3",
+       "J4",
+       "J5",
+       "I3",
+       "I4",
+       "I5"
+      ]
+     },
+     {
+      "name": "City SE",
+      "cells": [
+       "F16",
+       "F17",
+       "F18",
+       "E16",
+       "E17",
+       "E18",
+       "D16",
+       "D17",
+       "D18"
+      ]
+     }
+    ],
+    "mazeFissure": [
+     {
+      "shape": "O",
+      "cells": [
+       "M8",
+       "M9",
+       "L8",
+       "L9"
+      ]
+     },
+     {
+      "shape": "L",
+      "cells": [
+       "I9",
+       "I10",
+       "H9",
+       "G9"
+      ]
+     },
+     {
+      "shape": "I",
+      "cells": [
+       "H3",
+       "G3",
+       "F3",
+       "E3"
+      ]
+     },
+     {
+      "shape": "I",
+      "cells": [
+       "G15",
+       "G16",
+       "G17",
+       "G18"
+      ]
+     },
+     {
+      "shape": "L",
+      "cells": [
+       "C14",
+       "B12",
+       "B13",
+       "B14"
+      ]
+     }
+    ]
+   },
+   "required": {
+    "Column": 11,
+    "City": 2,
+    "Maze Fissure I": 2,
+    "Maze Fissure O": 1,
+    "Maze Fissure L": 2
+   },
+   "_tbc": "Required list says 11 Columns but 12 are readable from the diagram - verify which one is absent. Level 8+ uses the alternate Mnestis diagram (Rulebook p.72: 2x City, 11x Column, 2x Labyrinth I, 2x L, 1x O, 2x Z).",
+   "_source": "Storybook p.109 Level 4+ diagram (11 Column, 2 City, 2 Maze Fissure I, 1 O, 2 L) — read from scan."
+  },
+  "lv8+": {
+   "levels": [
+    8,
+    9
+   ],
+   "_source": "Core Rulebook p.73 'Hekaton level 8+' (Supersonic Punch alt diagram): 11 Column, 2 City, Labyrinth 2I/2L/1O/2Z. Read from a low-res diagram; only 10 Columns found.",
+   "primordial": {
+    "anchor": "G10"
+   },
+   "titanStarts": [
+    "J8",
+    "I7",
+    "F14",
+    "E13"
+   ],
+   "terrain": {
+    "column": [
+     "M12",
+     "L3",
+     "L17",
+     "J5",
+     "I15",
+     "H18",
+     "E15",
+     "C4",
+     "C17",
+     "B9"
+    ],
+    "city": [
+     {
+      "name": "City NW",
+      "cells": [
+       "K2",
+       "K3",
+       "K4",
+       "J2",
+       "J3",
+       "J4",
+       "I2",
+       "I3",
+       "I4"
+      ]
+     },
+     {
+      "name": "City SE",
+      "cells": [
+       "F16",
+       "F17",
+       "F18",
+       "E16",
+       "E17",
+       "E18",
+       "D16",
+       "D17",
+       "D18"
+      ]
+     }
+    ],
+    "labyrinth": [
+     {
+      "shape": "O",
+      "rot": 0,
+      "flip": false,
+      "topLeft": "M7"
+     },
+     {
+      "shape": "Z",
+      "rot": 0,
+      "flip": false,
+      "topLeft": "L13"
+     },
+     {
+      "shape": "L",
+      "rot": 1,
+      "flip": true,
+      "topLeft": "I9"
+     },
+     {
+      "shape": "I",
+      "rot": 1,
+      "flip": false,
+      "topLeft": "H2"
+     },
+     {
+      "shape": "I",
+      "rot": 0,
+      "flip": false,
+      "topLeft": "G15"
+     },
+     {
+      "shape": "Z",
+      "rot": 0,
+      "flip": false,
+      "topLeft": "D6"
+     },
+     {
+      "shape": "L",
+      "rot": 0,
+      "flip": false,
+      "topLeft": "C12"
+     }
+    ]
+   }
+  }
+ },
+ "terrainCards": {
+  "Column": "Obstacle. Obscuring. Destructible. Trap: If you push the Primordial onto this tile, remove the tile and roll a d10: 1-2 nothing; 3-8 place 1 negative Precision token in the Kratos Pool; 9-10 place 2.",
+  "City": "[TBC which card] Modelled on Ruined City (3x3): Inhabited. Destructible (when the Primordial moves onto it or a Titan is involuntarily moved onto it, the tile is destroyed). Cover (Titans on this tile have +1 Evasion). Not an Obstacle. Termophylaed City variant: Obscuring. Cover. Inhabited (not destructible).",
+  "Maze Fissure": "Chasm: Titans cannot voluntarily move through Chasm spaces. If a Titan ends their movement on a Chasm space, it dies. If it is Pushed Back or Pulled through a Chasm space, it dies. If a Chasm tile is placed under a Titan, it dies. Titans do not die from moving over a Chasm during Knockback unless they end on it."
+ }
+}

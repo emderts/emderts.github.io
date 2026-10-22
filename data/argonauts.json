@@ -1,0 +1,2543 @@
+{
+ "_notes": [
+  "Argonaut portraits AH0147-AH0155 + generic AH0623-AH0626 (chosen skill).",
+  "Mnestis setup (rulebook p.70): any portrait; assign 2 unlocked Mnemos — one at Level 2 (7 nodes: Lv1+Lv2 abilities) and one at Level 1 (3 nodes).",
+  "Skills: Courage, Wisdom, Will, Endurance, Cunning, Fury. Value = portrait skill + 1 per Mnemos listing that skill. Skill test: d10 + skill >= target (natural 10 success, natural 1 fail).",
+  "Mnemos icons: ⟳ = exhaust this Mnemos card, X = discard it, Ψ = gain +1 Fate, D3+ = Danger gate, [R] = reaction (◆!).",
+  "2026-10-20: Cycle IV Mnemos (DG2054-DG2061) and Fated Mnemos (DF2070-DF2078), Cycle V Mnemos (EG2640-EG2647) and Fated Mnemos (EF2648-EF2656) added. gateKind 'pain'/'despair' = gate counts Pain/Despair tokens instead of DANGER."
+ ],
+ "skills": [
+  "Courage",
+  "Wisdom",
+  "Will",
+  "Endurance",
+  "Cunning",
+  "Fury"
+ ],
+ "portraits": [
+  {
+   "code": "AH0147",
+   "name": "Odys Zero",
+   "skill": "Courage"
+  },
+  {
+   "code": "AH0148",
+   "name": "Circegard",
+   "skill": "Wisdom"
+  },
+  {
+   "code": "AH0149",
+   "name": "Phenelope",
+   "skill": "Will"
+  },
+  {
+   "code": "AH0150",
+   "name": "Telebacchus",
+   "skill": "Endurance"
+  },
+  {
+   "code": "AH0151",
+   "name": "Herakleides",
+   "skill": "Cunning"
+  },
+  {
+   "code": "AH0152",
+   "name": "Olympia",
+   "skill": "Fury"
+  },
+  {
+   "code": "AH0153",
+   "name": "Leocules",
+   "skill": "Will"
+  },
+  {
+   "code": "AH0154",
+   "name": "Raz",
+   "skill": "Courage"
+  },
+  {
+   "code": "AH0155",
+   "name": "Fisher",
+   "skill": "Cunning"
+  },
+  {
+   "code": "AH0623",
+   "name": "Argonaut A",
+   "skill": "chosen"
+  },
+  {
+   "code": "AH0624",
+   "name": "Argonaut B",
+   "skill": "chosen"
+  },
+  {
+   "code": "AH0625",
+   "name": "Argonaut C",
+   "skill": "chosen"
+  },
+  {
+   "code": "AH0626",
+   "name": "Argonaut D",
+   "skill": "chosen"
+  }
+ ],
+ "mnemos": [
+  {
+   "code": "AG0134",
+   "name": "Siren Survivor",
+   "cycle": 1,
+   "traits": [
+    "Voyage",
+    "Supernatural",
+    "Deed"
+   ],
+   "skills": [
+    "Courage",
+    "Will"
+   ],
+   "levels": {
+    "1": {
+     "text": "⟳ Discard a Condition token or X instead to discard a Condition card."
+    },
+    "2": {
+     "gate": 3,
+     "text": "⟳ Discard a Condition token from another Titan or X instead to discard a Condition card from another Titan."
+    },
+    "3": {
+     "gate": 4,
+     "text": "⟳ When you are about to gain a Condition card or token, roll a d10. On 6+, ignore this gain."
+    }
+   }
+  },
+  {
+   "code": "AG0135",
+   "name": "Someone Waiting",
+   "cycle": 1,
+   "traits": [
+    "Voyage",
+    "Family",
+    "Gods"
+   ],
+   "skills": [
+    "Cunning",
+    "Endurance"
+   ],
+   "levels": {
+    "1": {
+     "text": "⟳ Stand up. You can use this ability while knocked down."
+    },
+    "2": {
+     "gate": 3,
+     "text": "⟳ Another Titan may stand up."
+    },
+    "3": {
+     "gate": 4,
+     "text": "When you are about to suffer Knockdown, you may roll a d10. On 6+ ignore this Knockdown."
+    }
+   }
+  },
+  {
+   "code": "AG0136",
+   "name": "A Dream You Hold",
+   "cycle": 1,
+   "traits": [
+    "Dream",
+    "Voyage",
+    "Fate"
+   ],
+   "skills": [
+    "Wisdom",
+    "Will"
+   ],
+   "levels": {
+    "1": {
+     "text": "Titans adjacent to you have +1 Precision."
+    },
+    "2": {
+     "gate": 3,
+     "text": "⟳ Another Titan may move 1 space."
+    },
+    "3": {
+     "gate": 8,
+     "text": "Ψ⟳ When you attack, use another Titan's Kratos Table for this Attack."
+    }
+   }
+  },
+  {
+   "code": "AG0137",
+   "name": "Family Feud",
+   "cycle": 1,
+   "traits": [
+    "Family",
+    "Tragedy",
+    "Crime"
+   ],
+   "skills": [
+    "Courage",
+    "Cunning"
+   ],
+   "levels": {
+    "1": {
+     "text": "⟳ Place 1 Opening or Break token in the Kratos Pool."
+    },
+    "2": {
+     "gate": 4,
+     "text": "⟳ If the Kratos Pool is empty, place up to 2 Opening and/or Break tokens in the Kratos Pool."
+    },
+    "3": {
+     "gate": 6,
+     "text": "Ψ⟳ If the Kratos Pool is empty, place up to 3 Opening and/or Break tokens in the Kratos Pool."
+    }
+   }
+  },
+  {
+   "code": "AG0138",
+   "name": "Imprisonment",
+   "cycle": 1,
+   "traits": [
+    "Curse",
+    "Dream",
+    "Crime"
+   ],
+   "skills": [
+    "Endurance",
+    "Wisdom"
+   ],
+   "levels": {
+    "1": {
+     "text": "You may reduce suffered Knockbacks by up to 2."
+    },
+    "2": {
+     "text": "You may reduce suffered Pushbacks by 1."
+    },
+    "3": {
+     "text": "When you suffer Knockback, you may lose -1 Danger."
+    }
+   }
+  },
+  {
+   "code": "AG0139",
+   "name": "Haunted",
+   "cycle": 1,
+   "traits": [
+    "Fate",
+    "Supernatural",
+    "Curse"
+   ],
+   "skills": [
+    "Wisdom",
+    "Will"
+   ],
+   "levels": {
+    "1": {
+     "text": "Once per adventure, you may re-roll any d10 roll.",
+     "adventure": true
+    },
+    "2": {
+     "text": "Ψ When you are about to roll a d10 during an adventure, add +3 to this roll (once per adventure).",
+     "adventure": true
+    },
+    "3": {
+     "text": "ΨΨ When you are about to perform an Argonaut Test during an adventure, automatically pass this test (once per adventure).",
+     "adventure": true
+    }
+   }
+  },
+  {
+   "code": "AG0140",
+   "name": "A Broken Promise",
+   "cycle": 1,
+   "traits": [
+    "Deed",
+    "Tragedy",
+    "Family"
+   ],
+   "skills": [
+    "Cunning",
+    "Fury"
+   ],
+   "levels": {
+    "1": {
+     "text": "When you are on a Rear space, you gain +1 Precision."
+    },
+    "2": {
+     "gate": 4,
+     "text": "When you are on a Rear space, you gain Power Re-roll 1."
+    },
+    "3": {
+     "gate": 6,
+     "text": "When you are on a Rear space, you gain Auto-break 1."
+    }
+   }
+  },
+  {
+   "code": "AG0141",
+   "name": "A Night to Remember",
+   "cycle": 1,
+   "traits": [
+    "Deed",
+    "Heritage",
+    "Dream"
+   ],
+   "skills": [
+    "Courage",
+    "Fury"
+   ],
+   "levels": {
+    "1": {
+     "text": "⟳ Unexhaust a Gear card."
+    },
+    "2": {
+     "gate": 4,
+     "text": "⟳ Another Titan may unexhaust a Gear card."
+    },
+    "3": {
+     "text": "ΨΨ When you are about to exhaust a Gear card, ignore this exhaust."
+    }
+   }
+  },
+  {
+   "code": "AG0142",
+   "name": "Death Follows",
+   "cycle": 1,
+   "traits": [
+    "Gods",
+    "Heritage",
+    "Fate"
+   ],
+   "skills": [
+    "Endurance",
+    "Fury"
+   ],
+   "levels": {
+    "1": {
+     "text": "X When you are about to perform a Power Roll, add 1 red die to your Power Pool."
+    },
+    "2": {
+     "gate": 4,
+     "text": "X When you are about to perform a Power Roll, add 1 black die to your Power Pool."
+    },
+    "3": {
+     "gate": 8,
+     "text": "X When you are about to perform a Power Roll, gain +2 Power for this Roll."
+    }
+   }
+  },
+  {
+   "code": "AG0143",
+   "name": "Minoan Heritage",
+   "cycle": 1,
+   "traits": [
+    "Voyage",
+    "Heritage",
+    "Fate"
+   ],
+   "skills": [
+    "Wisdom",
+    "Courage"
+   ],
+   "levels": {
+    "1": {
+     "text": "⟳ During a movement action, gain +1 Speed for this movement."
+    },
+    "2": {
+     "gate": 3,
+     "text": "⟳ During a movement action, gain +2 Speed and Bypass for this movement."
+    },
+    "3": {
+     "gate": 4,
+     "text": "⟳ During a movement action, gain +3 Speed and Bypass for this movement and gain Vault until the end of your turn."
+    }
+   }
+  },
+  {
+   "code": "AG0144",
+   "name": "Blood on Your Hands",
+   "cycle": 1,
+   "traits": [
+    "Deed",
+    "Crime",
+    "Tragedy"
+   ],
+   "skills": [
+    "Fury",
+    "Cunning"
+   ],
+   "levels": {
+    "1": {
+     "text": "After you raise your Rage for any reason, if your Rage is equal to the current Priority Target's Rage, you may gain the Priority Target token."
+    },
+    "2": {
+     "gate": 4,
+     "text": "If you are the Priority Target, you gain +1 Precision."
+    },
+    "3": {
+     "gate": 7,
+     "text": "If you are the Priority Target, you gain Auto-break 1."
+    }
+   }
+  },
+  {
+   "code": "AG0145",
+   "name": "A Familiar Curse",
+   "cycle": 1,
+   "traits": [
+    "Fate",
+    "Gods",
+    "Curse"
+   ],
+   "skills": [
+    "Endurance",
+    "Wisdom"
+   ],
+   "levels": {
+    "1": {
+     "gate": 3,
+     "text": "Ψ⟳ Turn the Primordial in your direction."
+    },
+    "2": {
+     "gate": 4,
+     "text": "⟳ When another Titan is about to gain a Condition card or Condition token, gain it instead."
+    },
+    "3": {
+     "gate": 7,
+     "text": "ΨΛ⟳ While resolving an AI card, when the Primordial moves adjacent to you, become the Target of this AI card."
+    }
+   }
+  },
+  {
+   "code": "AG0146",
+   "name": "Curse of the Gods",
+   "cycle": 1,
+   "traits": [
+    "Heritage",
+    "Fate",
+    "Voyage"
+   ],
+   "skills": [
+    "Endurance",
+    "Will"
+   ],
+   "levels": {
+    "1": {
+     "text": "⟳ During an Attack Roll, re-roll all 1s on non-Crit dice."
+    },
+    "2": {
+     "gate": 6,
+     "text": "X Re-roll an Awakening roll."
+    },
+    "3": {
+     "text": "ΨX When another Titan is about to gain Danger, you gain it instead. If this Danger was dealt by an Attack, resolve a Trauma Draw."
+    }
+   }
+  },
+  {
+   "code": "BG0645",
+   "name": "Runt of the Litter",
+   "cycle": 2,
+   "traits": [
+    "Curse",
+    "Heritage",
+    "Fate"
+   ],
+   "skills": [
+    "Cunning",
+    "Wisdom"
+   ],
+   "levels": {
+    "1": {
+     "text": "⟳ Change 1 negative modifier token into a positive one."
+    },
+    "2": {
+     "gate": 4,
+     "text": "⟳ Gain 1 temporary positive Evasion token."
+    },
+    "3": {
+     "gate": 7,
+     "text": "X Gain or lose up to 2 Rage."
+    }
+   }
+  },
+  {
+   "code": "BG0646",
+   "name": "Mésalliance",
+   "cycle": 2,
+   "traits": [
+    "Deed",
+    "Family",
+    "Dream"
+   ],
+   "skills": [
+    "Will",
+    "Courage"
+   ],
+   "levels": {
+    "1": {
+     "text": "When you break a Combo, place 1 Opening or Break token in the Kratos Pool."
+    },
+    "2": {
+     "gate": 2,
+     "text": "When you break a Combo, you may lose -1 Fate."
+    },
+    "3": {
+     "gate": 6,
+     "text": "X When you break a Combo, perform a Bonus Attack!"
+    }
+   }
+  },
+  {
+   "code": "BG0647",
+   "name": "Left for Dead",
+   "cycle": 2,
+   "traits": [
+    "Deed",
+    "Tragedy",
+    "Crime"
+   ],
+   "skills": [
+    "Endurance",
+    "Fury"
+   ],
+   "levels": {
+    "1": {
+     "text": "X When you survive an Obol, lose up to -3 Danger and up to -2 Fate."
+    },
+    "2": {
+     "text": "X When you are about to die from an Instant Death effect, draw an Obol instead."
+    },
+    "3": {
+     "text": "If you are the last Titan alive, you cannot suffer Knockdown and your Titan's Power Die becomes black."
+    }
+   }
+  },
+  {
+   "code": "BG0648",
+   "name": "Spewed by the Abyss",
+   "cycle": 2,
+   "traits": [
+    "Fate",
+    "Supernatural",
+    "Gods"
+   ],
+   "skills": [
+    "Will",
+    "Fury"
+   ],
+   "levels": {
+    "1": {
+     "text": "When you are about to gain at least 1 Ambrosia token, test (8+) for each of these tokens. For each success, lower Ambrosia gain by 1."
+    },
+    "2": {
+     "text": "X Discard up to 2 Ambrosia tokens."
+    },
+    "3": {
+     "gate": 7,
+     "text": "X When you are about to draw a Trauma card, gain Ambrosia tokens instead: 1 for Minor, 2 for Major, 3 for Grave and 4 for an Obol."
+    }
+   }
+  },
+  {
+   "code": "BG0649",
+   "name": "Coward's Way",
+   "cycle": 2,
+   "traits": [
+    "Deed",
+    "Voyage",
+    "Crime"
+   ],
+   "skills": [
+    "Cunning",
+    "Wisdom"
+   ],
+   "levels": {
+    "1": {
+     "text": "⟳ Before performing a Power Roll, gain Fate equal to the BP level to immediately fail this Attack instead, ignoring the Fail Responses. If you do, do not place any tokens in the Kratos Pool."
+    },
+    "2": {
+     "gate": 3,
+     "text": "Ψ⟳ When you fail to Wound, place the BP card back on top of the BP deck instead of discarding it."
+    },
+    "3": {
+     "gate": 5,
+     "text": "X When you are about to become the Target of an Attack, swap places with an adjacent Titan. That Titan becomes the Target instead."
+    }
+   }
+  },
+  {
+   "code": "BG0650",
+   "name": "Castoff",
+   "cycle": 2,
+   "traits": [
+    "Family",
+    "Heritage",
+    "Gods"
+   ],
+   "skills": [
+    "Endurance",
+    "Wisdom"
+   ],
+   "levels": {
+    "1": {
+     "text": "⟳ When you are about to resolve a Trauma Draw, treat your Danger as 1 lower."
+    },
+    "2": {
+     "text": "When you are knocked down, unexhaust this card. When you stand up, gain +1 Speed, +1 Precision and Auto-break 1 until the end of your turn."
+    },
+    "3": {
+     "text": "When you are about to die from a Trauma Draw, Obol Draw or an Instant Death effect, you may perform a Bonus Attack! (You still die afterwards.)"
+    }
+   }
+  },
+  {
+   "code": "BG0651",
+   "name": "Death Precedes",
+   "cycle": 2,
+   "traits": [
+    "Tragedy",
+    "Supernatural",
+    "Curse"
+   ],
+   "skills": [
+    "Courage",
+    "Fury"
+   ],
+   "levels": {
+    "1": {
+     "text": "Start of Battle: You may move 1 space towards the Primordial."
+    },
+    "2": {
+     "text": "Start of Battle: You may gain +1 Rage."
+    },
+    "3": {
+     "text": "Start of Battle: Place 3 Opening tokens, 2 Break tokens or 1 Rouse token in the Kratos Pool."
+    }
+   }
+  },
+  {
+   "code": "BG0652",
+   "name": "Forbidden Love",
+   "cycle": 2,
+   "traits": [
+    "Deed",
+    "Dream",
+    "Curse"
+   ],
+   "skills": [
+    "Courage",
+    "Endurance"
+   ],
+   "levels": {
+    "1": {
+     "text": "⟳ Daze. (During the 1st or 2nd ability window, if adjacent, turn the Primordial so that you are in one of its Rear spaces.)"
+    },
+    "2": {
+     "gate": 4,
+     "text": "⟳ Inspire 1. (During the 1st ability window, choose up to 1 knocked down Titan. It may stand up.)"
+    },
+    "3": {
+     "gate": 3,
+     "text": "⟳ Rouse 1. (During the 2nd ability window, place 1 Rouse token in the Kratos Pool: the attacking Titan treats its Rage as 1 higher until the end of the Attack.)"
+    }
+   }
+  },
+  {
+   "code": "BG0653",
+   "name": "Scorned Champion",
+   "cycle": 2,
+   "traits": [
+    "Fate",
+    "Voyage",
+    "Gods"
+   ],
+   "skills": [
+    "Will",
+    "Fury"
+   ],
+   "levels": {
+    "1": {
+     "text": "⟳ Jump. (At the start of a movement, ignore a single space of a Terrain tile, incl. Obstacles, until the end of this movement. Not while knocked down.)"
+    },
+    "2": {
+     "gate": 3,
+     "text": "[R]Ψ⟳ Reflex (Move 1 space)."
+    },
+    "3": {
+     "gate": 5,
+     "text": "Move action: Run (Move up to 10 spaces)."
+    }
+   }
+  },
+  {
+   "code": "CG1270",
+   "name": "A Fall from Eden",
+   "cycle": 3,
+   "traits": [
+    "Dream",
+    "Voyage",
+    "Fate"
+   ],
+   "skills": [
+    "Cunning",
+    "Wisdom"
+   ],
+   "levels": {
+    "1": {
+     "text": "⟳ When you are about to suffer Knockdown, suffer Time-clocked instead."
+    },
+    "2": {
+     "gate": 7,
+     "text": "X Second Chance. (After you draw a Trauma or Obol card, ignore it and draw another from the same deck.)"
+    },
+    "3": {
+     "gate": 9,
+     "text": "X Clutch. (Power Roll: if you fail to meet the AT by exactly 1, gain +1 Power, then discard your active weapon after this Attack.)"
+    }
+   }
+  },
+  {
+   "code": "CG1275",
+   "name": "Disgraceful Parent",
+   "cycle": 3,
+   "traits": [
+    "Deed",
+    "Heritage",
+    "Supernatural"
+   ],
+   "skills": [
+    "Fury",
+    "Wisdom"
+   ],
+   "levels": {
+    "1": {
+     "text": "⟳ Place 1 Fire token in the Kratos Pool."
+    },
+    "2": {
+     "gate": 4,
+     "text": "⟳ If the Kratos Pool is empty, place 1 Fire token and 1 Black token in the Kratos Pool."
+    },
+    "3": {
+     "gate": 6,
+     "text": "Ψ⟳ If the Kratos Pool is empty, place 3 Hope tokens in the Kratos Pool."
+    }
+   }
+  },
+  {
+   "code": "CG1276",
+   "name": "Hero by Mistake",
+   "cycle": 3,
+   "traits": [
+    "Fate",
+    "Voyage",
+    "Gods"
+   ],
+   "skills": [
+    "Endurance",
+    "Courage"
+   ],
+   "levels": {
+    "1": {
+     "text": "Ψ⟳ Gain the Priority Target token."
+    },
+    "2": {
+     "gate": 4,
+     "text": "Ψ If you are the Priority Target, gain Rouse 1."
+    },
+    "3": {
+     "gate": 7,
+     "text": "If you are the Priority Target, you gain Hope 1."
+    }
+   }
+  },
+  {
+   "code": "CG1272",
+   "name": "Life of Regret",
+   "cycle": 3,
+   "traits": [
+    "Deed",
+    "Crime",
+    "Tragedy"
+   ],
+   "skills": [
+    "Courage",
+    "Endurance"
+   ],
+   "levels": {
+    "1": {
+     "text": "⟳ Discard 1 Bleeding token."
+    },
+    "2": {
+     "gate": 3,
+     "text": "⟳ When you are about to suffer Bleeding X or gain Bleeding tokens, ignore that effect."
+    },
+    "3": {
+     "gate": 5,
+     "text": "X When you are about to discard a positive Trauma card due to the Bleeding Condition card, return it to the top of the deck instead."
+    }
+   }
+  },
+  {
+   "code": "CG1277",
+   "name": "The Returned",
+   "cycle": 3,
+   "traits": [
+    "Curse",
+    "Heritage",
+    "Fate"
+   ],
+   "skills": [
+    "Fury",
+    "Cunning"
+   ],
+   "levels": {
+    "1": {
+     "text": "Start of your turn: Reestablish your Time Anchor (even if the Backwards Momentum Trait is not in play). If you are on a Time Anchor, you have +1 Precision."
+    },
+    "2": {
+     "text": "Ψ⟳ Rewind."
+    },
+    "3": {
+     "gate": 7,
+     "text": "X When you die, return from death to your Time Anchor."
+    }
+   }
+  },
+  {
+   "code": "CG1273",
+   "name": "Time-Crossed Lovers",
+   "cycle": 3,
+   "traits": [
+    "Voyage",
+    "Family",
+    "Gods"
+   ],
+   "skills": [
+    "Will",
+    "Fury"
+   ],
+   "levels": {
+    "1": {
+     "text": "⟳ Reestablish your Time Anchor. You may use this ability as a free action or at the end of your turn."
+    },
+    "2": {
+     "text": "If your Time Anchor is adjacent to that of another Titan's, you have +1 Precision."
+    },
+    "3": {
+     "gate": 5,
+     "text": "X When you are about to return to a Time Anchor, treat another Titan's Time Anchor as your own."
+    }
+   }
+  },
+  {
+   "code": "CG1274",
+   "name": "Timekeeper's Child",
+   "cycle": 3,
+   "traits": [
+    "Supernatural",
+    "Tragedy",
+    "Family"
+   ],
+   "skills": [
+    "Courage",
+    "Wisdom"
+   ],
+   "levels": {
+    "1": {
+     "text": "⟳ Arrive from Time-clocked."
+    },
+    "2": {
+     "gate": 3,
+     "text": "⟳ Another Titan may arrive from Time-clocked."
+    },
+    "3": {
+     "text": "When you arrive from Time-clocked, gain +1 Speed and Auto-black 1 until the end of your turn."
+    }
+   }
+  },
+  {
+   "code": "CG1271",
+   "name": "Unearned Life",
+   "cycle": 3,
+   "traits": [
+    "Family",
+    "Tragedy",
+    "Crime"
+   ],
+   "skills": [
+    "Cunning",
+    "Will"
+   ],
+   "levels": {
+    "1": {
+     "text": "Ψ⟳ Assist 1."
+    },
+    "2": {
+     "gate": 7,
+     "text": "ΨX Clutch."
+    },
+    "3": {
+     "text": "X Succor, then, immediately after current Attack ends, draw an Obol."
+    }
+   }
+  },
+  {
+   "code": "DG2058",
+   "name": "Peddler of Misery",
+   "cycle": 4,
+   "traits": [
+    "Fate",
+    "Voyage",
+    "Gods"
+   ],
+   "skills": [
+    "Wisdom",
+    "Will"
+   ],
+   "levels": {
+    "1": {
+     "text": "⟳ Startup 2.",
+     "gate": 2
+    },
+    "2": {
+     "text": "Ψ⟳ Discard 1 Midas token and place 1 Black token in the Kratos Pool.",
+     "gate": 2
+    },
+    "3": {
+     "text": "X Perform Unholy Alchemy. Place X Closing tokens in the Kratos Pool, where X is the number of tokens turned.",
+     "gate": 3
+    }
+   }
+  },
+  {
+   "code": "DG2054",
+   "name": "Seed of Paradise",
+   "cycle": 4,
+   "traits": [
+    "Voyage",
+    "Family",
+    "Gods"
+   ],
+   "skills": [
+    "Courage",
+    "Fury"
+   ],
+   "levels": {
+    "1": {
+     "text": "⟳ When you attack, treat the Kratos Pool as Sunstarved or Sunbask 2 for the purposes of triggering abilities.",
+     "gate": 2
+    },
+    "2": {
+     "text": "Ψ⟳ During the Clear the Kratos Pool step, leave half of the unused tokens there.",
+     "gate": 4
+    },
+    "3": {
+     "text": "Ψ⟳ When you attack, move half of the tokens from the Kratos Pool to this card. During the Second Ability Window, move them to the Kratos Pool.",
+     "gate": 3
+    }
+   }
+  },
+  {
+   "code": "DG2056",
+   "name": "The Beggar and the Prince",
+   "cycle": 4,
+   "traits": [
+    "Deed",
+    "Crime",
+    "Tragedy"
+   ],
+   "skills": [
+    "Wisdom",
+    "Will"
+   ],
+   "levels": {
+    "1": {
+     "text": "⟳ Discard 1 Midas token."
+    },
+    "2": {
+     "text": "Ψ⟳ When you are about to gain Midas tokens, ignore that gain.",
+     "gate": 3
+    },
+    "3": {
+     "text": "X When you attack, discard all Midas tokens and gain that many Precision for this Attack.",
+     "gate": 9
+    }
+   }
+  },
+  {
+   "code": "DG2061",
+   "name": "The Mule",
+   "cycle": 4,
+   "traits": [
+    "Deed",
+    "Heritage",
+    "Supernatural"
+   ],
+   "skills": [
+    "Endurance",
+    "Wisdom"
+   ],
+   "levels": {
+    "1": {
+     "text": "⟳ Move an Irem Tower Terrain tile one space."
+    },
+    "2": {
+     "text": "X Move an Irem Tower Terrain tile up to 3 spaces.",
+     "gate": 2
+    },
+    "3": {
+     "text": "X Place an Irem Tower Terrain tile anywhere on the Battle Board.",
+     "gate": 8
+    }
+   }
+  },
+  {
+   "code": "DG2055",
+   "name": "The Third Wish",
+   "cycle": 4,
+   "traits": [
+    "Family",
+    "Tragedy",
+    "Crime"
+   ],
+   "skills": [
+    "Cunning",
+    "Endurance"
+   ],
+   "levels": {
+    "1": {
+     "text": "ΨΨ⟳ Wish Armor.",
+     "gate": 1
+    },
+    "2": {
+     "text": "ΨΨ Wishrod.",
+     "gate": 4
+    },
+    "3": {
+     "text": "X Discard a Wishkeen or Wishagog Condition card and gain the Enriched or Lander Condition card.",
+     "gate": 6
+    }
+   }
+  },
+  {
+   "code": "DG2060",
+   "name": "The Thousandth Night",
+   "cycle": 4,
+   "traits": [
+    "Curse",
+    "Heritage",
+    "Fate"
+   ],
+   "skills": [
+    "Cunning",
+    "Fury"
+   ],
+   "levels": {
+    "1": {
+     "text": "⟳ Gain +XΨ to gain +1 Evasion, where X is the sum of Evasion bonuses you have (including this one).",
+     "gate": 2
+    },
+    "2": {
+     "text": "X Second Chance.",
+     "gate": 7
+    },
+    "3": {
+     "text": "X When you are about to die, postpone the death until the end of your next turn. You cannot prevent that death in any way. End of Battle: Gain a random Curse Affliction.",
+     "gate": 9
+    }
+   }
+  },
+  {
+   "code": "DG2059",
+   "name": "Too Big to Fail",
+   "cycle": 4,
+   "traits": [
+    "Dream",
+    "Voyage",
+    "Fate"
+   ],
+   "skills": [
+    "Courage",
+    "Will"
+   ],
+   "levels": {
+    "1": {
+     "text": "⟳ Deflate. You may use this ability while floating."
+    },
+    "2": {
+     "text": "X When you are about to suffer Airburst during a Primordial Attack, ignore it.",
+     "gate": 4
+    },
+    "3": {
+     "text": "X When a Curse Attack is about to affect you, ignore it (other Targets remain affected).",
+     "gate": 7
+    }
+   }
+  },
+  {
+   "code": "DG2057",
+   "name": "Updraft",
+   "cycle": 4,
+   "traits": [
+    "Supernatural",
+    "Tragedy",
+    "Family"
+   ],
+   "skills": [
+    "Courage",
+    "Cunning"
+   ],
+   "levels": {
+    "1": {
+     "text": "⟳ Hermes Move 1."
+    },
+    "2": {
+     "text": "[R]⟳ Hermes Reflex.",
+     "gate": 3
+    },
+    "3": {
+     "text": "X Hermes Move 3.",
+     "gate": 7
+    }
+   }
+  },
+  {
+   "code": "EG2643",
+   "name": "Dogma",
+   "cycle": 5,
+   "traits": [
+    "Fate",
+    "Supernatural",
+    "Gods"
+   ],
+   "skills": [
+    "Fury",
+    "Cunning"
+   ],
+   "levels": {
+    "1": {
+     "text": "Ψ⟳ When you are about to suffer Burn, ignore that Burn.",
+     "gate": 2
+    },
+    "2": {
+     "text": "ΨX Ignore the effects of Despair tokens until the end of your turn.",
+     "gate": 5
+    },
+    "3": {
+     "text": "ΨX Ignore Ambrosia tokens placed on your Gear with the Light X keyword until the end of this Round.",
+     "gate": 8
+    }
+   }
+  },
+  {
+   "code": "EG2647",
+   "name": "He Spoke Truth",
+   "cycle": 5,
+   "traits": [
+    "Deed",
+    "Curse",
+    "Voyage"
+   ],
+   "skills": [
+    "Courage",
+    "Wisdom"
+   ],
+   "levels": {
+    "1": {
+     "text": "ΨX Dare.",
+     "gate": 2,
+     "gateKind": "pain"
+    },
+    "2": {
+     "text": "⟳ Deny.",
+     "gate": 3,
+     "gateKind": "pain"
+    },
+    "3": {
+     "text": "ΨX Your Titan's Power die becomes a stronger die for the duration of this Battle.",
+     "gate": 4,
+     "gateKind": "pain"
+    }
+   }
+  },
+  {
+   "code": "EG2641",
+   "name": "In Your Image",
+   "cycle": 5,
+   "traits": [
+    "Deed",
+    "Family",
+    "Dream"
+   ],
+   "skills": [
+    "Cunning",
+    "Will"
+   ],
+   "levels": {
+    "1": {
+     "text": "When you are about to gain at least 1 Pain token, test (8+) for each of these tokens. For each success, lower Pain gain by 1."
+    },
+    "2": {
+     "text": "X Discard up to 2 Pain tokens."
+    },
+    "3": {
+     "text": "X When you are about to draw a Trauma card, gain 5 Pain tokens instead.",
+     "gate": 7
+    }
+   }
+  },
+  {
+   "code": "EG2644",
+   "name": "Last Crusader",
+   "cycle": 5,
+   "traits": [
+    "Deed",
+    "Voyage",
+    "Crime"
+   ],
+   "skills": [
+    "Endurance",
+    "Wisdom"
+   ],
+   "levels": {
+    "1": {
+     "text": "Ψ⟳ During a Light Check to gain Light 1."
+    },
+    "2": {
+     "text": "X When you attack, ignore all negative Precision modifiers.",
+     "gate": 5
+    },
+    "3": {
+     "text": "X Block 1 or Defy 1.",
+     "gate": 9
+    }
+   }
+  },
+  {
+   "code": "EG2642",
+   "name": "Shelter",
+   "cycle": 5,
+   "traits": [
+    "Deed",
+    "Tragedy",
+    "Crime"
+   ],
+   "skills": [
+    "Wisdom",
+    "Cunning"
+   ],
+   "levels": {
+    "1": {
+     "text": "Ψ⟳ When another Titan dies, immediately perform a Rally.",
+     "gate": 1,
+     "gateKind": "despair"
+    },
+    "2": {
+     "text": "If you are adjacent to another Titan, you both ignore Burn.",
+     "gate": 2,
+     "gateKind": "despair"
+    },
+    "3": {
+     "text": "If you are adjacent to another Titan, you both gain Tumble and automatically succeed at the Tumble test.",
+     "gate": 3,
+     "gateKind": "despair"
+    }
+   }
+  },
+  {
+   "code": "EG2646",
+   "name": "Twilight",
+   "cycle": 5,
+   "traits": [
+    "Supernatural",
+    "Tragedy",
+    "Curse"
+   ],
+   "skills": [
+    "Endurance",
+    "Fury"
+   ],
+   "levels": {
+    "1": {
+     "text": "Ψ⟳ Flip 1 Aether token.",
+     "gate": 3
+    },
+    "2": {
+     "text": "Ψ⟳ Ignore an Aether or Oxygen cost.",
+     "gate": 7
+    },
+    "3": {
+     "text": "ΨΨX When you are about to perform a Power Roll, add a Power die to your Power Pool.",
+     "gate": 9
+    }
+   }
+  },
+  {
+   "code": "EG2640",
+   "name": "Vanishing Point",
+   "cycle": 5,
+   "traits": [
+    "Curse",
+    "Heritage",
+    "Fate"
+   ],
+   "skills": [
+    "Courage",
+    "Will"
+   ],
+   "levels": {
+    "1": {
+     "text": "Ψ⟳ Pull 1.",
+     "gate": 2
+    },
+    "2": {
+     "text": "Ψ⟳ Pushback 2.",
+     "gate": 4
+    },
+    "3": {
+     "text": "X Pull 3. For the purposes of this Pull, ignore Lumbering.",
+     "gate": 6
+    }
+   }
+  },
+  {
+   "code": "EG2645",
+   "name": "Words and Deeds",
+   "cycle": 5,
+   "traits": [
+    "Family",
+    "Heritage",
+    "Gods"
+   ],
+   "skills": [
+    "Courage",
+    "Will"
+   ],
+   "levels": {
+    "1": {
+     "text": "Ψ⟳ Take a Fear or Dread Condition card of an adjacent Titan and gain +1 Rage.",
+     "gate": 2
+    },
+    "2": {
+     "text": "Ψ⟳ Take a Terror or Holy Terror Condition card of an adjacent Titan and gain 1 Aether token.",
+     "gate": 4
+    },
+    "3": {
+     "text": "X Discard all Condition cards.",
+     "gate": 9
+    }
+   }
+  }
+ ],
+ "argoAbilities": {
+  "_notes": [
+   "Excursion Propylon (Argo Support I) AA Limit 2; Excursion Propylon II AA Limit 3. Usable any time during the Titan Round (not mid-action), each once per Round; unexhaust at the end of every Round. [R] = usable in a Window of Opportunity.",
+   "Cycle II: Transport Trireme / Rendezvous Trireme need the Cycle II Trireme special rules — not included. War Propylon (Argo Support III) = AA limit 4.",
+   "Cycle III Technology: Transient Death is \"Mnestis prohibited\" — not included.",
+   "2026-10-20: Cycle IV Argo Abilities (technology cards) added. Argo Cloud Operations (Voyage) = Argo Support IV, AA Limit 5. Cycle II Trireme abilities are disabled in Cycle IV battles."
+  ],
+  "cards": [
+   {
+    "name": "Forced Kratos Reaction",
+    "charges": 2,
+    "text": "Choose a Titan. That Titan gains +1 Rage.",
+    "cycle": 1
+   },
+   {
+    "name": "Teleresuscitation",
+    "charges": 2,
+    "text": "Choose a knocked down Titan. That Titan stands up.",
+    "cycle": 1
+   },
+   {
+    "name": "Fate Sink",
+    "charges": 3,
+    "text": "Choose a Titan. That Titan loses -1 Fate.",
+    "cycle": 1
+   },
+   {
+    "name": "Arrow Barrage",
+    "charges": 3,
+    "text": "Place 1 Break token or 2 Opening tokens in the Kratos Pool.",
+    "cycle": 1
+   },
+   {
+    "name": "Crisis Protocol",
+    "charges": 2,
+    "text": "Choose a Titan. That Titan may gain or lose 2 Danger.",
+    "cycle": 1
+   },
+   {
+    "name": "Pursuer Protocol",
+    "charges": 2,
+    "reaction": true,
+    "text": "[R] Choose a Titan. That Titan may move 1 space.",
+    "cycle": 1
+   },
+   {
+    "name": "Ambrosia Containment",
+    "cycle": 2,
+    "charges": 2,
+    "hook": true,
+    "text": "Choose a Titan that is about to gain Ambrosia tokens, lower this gain to 1."
+   },
+   {
+    "name": "Reflex Priming",
+    "cycle": 2,
+    "charges": 2,
+    "text": "Unexhaust 2 Gear cards among up to 2 Titans."
+   },
+   {
+    "name": "Forced Kratos Cooldown",
+    "cycle": 2,
+    "charges": 2,
+    "text": "Choose a Titan that is about to gain involuntary Rage to ignore this gain. / Choose a Titan. That Titan loses -1 Rage."
+   },
+   {
+    "name": "Triskelion Power Boost",
+    "cycle": 2,
+    "charges": 2,
+    "hook": true,
+    "text": "Choose an attacking Titan. That Titan gains Pushback 2."
+   },
+   {
+    "name": "Trireme Ballista Fire",
+    "cycle": 2,
+    "charges": 3,
+    "hook": true,
+    "text": "Choose a Titan performing a Power Roll. That Titan gains Power Re-roll 1."
+   },
+   {
+    "name": "Hephaestean Oxybeles",
+    "cycle": 2,
+    "charges": 2,
+    "text": "Choose a Weapon from the Armory, then a Battle Board space to deploy it and roll a d10: 1-5 it lands 3 spaces away in a random direction; 6-10 on the chosen space. A Titan on or adjacent to it may discard the token to equip it. If it lands on the Primordial, it is stuck in its body: place 2 Break and 1 Opening tokens in the Kratos Pool; a Titan adjacent to the Primordial or on its VP may take it."
+   },
+   {
+    "name": "Hyperadrenaline Infusion",
+    "cycle": 2,
+    "charges": 1,
+    "hook": true,
+    "text": "Choose a Titan that is about to perform a voluntary movement. That Titan may move 4 more spaces during this movement."
+   },
+   {
+    "name": "Pursuer Order",
+    "cycle": 2,
+    "charges": 2,
+    "reaction": true,
+    "text": "[R] Choose a Titan. That Titan may move up to 2 spaces."
+   },
+   {
+    "name": "Chronosphere Warning System",
+    "cycle": 3,
+    "charges": 2,
+    "reaction": true,
+    "text": "[R] Choose a Titan. That Titan may move up to 3 spaces."
+   },
+   {
+    "name": "Fate Converter",
+    "cycle": 3,
+    "charges": 3,
+    "text": "Choose a Titan. That Titan loses -2 Fate and gains +1 Danger."
+   },
+   {
+    "name": "Opportunity Freeze",
+    "cycle": 3,
+    "charges": 2,
+    "hook": true,
+    "text": "When a Titan fully misses an Attack, do not clear the Kratos Pool."
+   },
+   {
+    "name": "Possibility Matrix",
+    "cycle": 3,
+    "charges": 2,
+    "reaction": true,
+    "text": "[R] Place the top card of any Trauma deck on the bottom of that deck. You may use this ability as a free action or as a reaction.",
+    "freeToo": true
+   },
+   {
+    "name": "Quantum Armory",
+    "cycle": 3,
+    "charges": 2,
+    "text": "Immediately equip 1 Weapon from the Argo Armory. You may swap it with one of your currently equipped Weapons (return it to the Argo Armory). You may use this ability as a free action or when you are about to perform a Bonus Attack."
+   },
+   {
+    "name": "Reverse Timeflow",
+    "cycle": 3,
+    "charges": 2,
+    "text": "Choose a Titan. That Titan arrives from Time-clocked."
+   },
+   {
+    "name": "Telehealing",
+    "cycle": 3,
+    "charges": 2,
+    "text": "Discard up to 2 Bleeding tokens from a chosen Titan."
+   },
+   {
+    "name": "Time Dilation",
+    "cycle": 3,
+    "charges": 1,
+    "text": "During a Titan turn, even after you used both of your actions, choose a Titan. That Titan may immediately perform an additional movement action."
+   },
+   {
+    "name": "Time Skip",
+    "cycle": 3,
+    "charges": 1,
+    "text": "During a Titan turn, even after you used both of your actions, choose a Titan. That Titan may immediately perform an additional combat action."
+   },
+   {
+    "name": "Archimedean Ballista",
+    "cycle": 4,
+    "charges": 2,
+    "text": "Place 3 Opening tokens or 2 Fire tokens in the Kratos Pool."
+   },
+   {
+    "name": "Ascension Protocols",
+    "cycle": 4,
+    "charges": 2,
+    "hook": true,
+    "text": "Choose a Titan performing an Ascent check. Add +3 to the result."
+   },
+   {
+    "name": "Cloud Scout Fleet",
+    "cycle": 4,
+    "charges": 2,
+    "hook": true,
+    "text": "Choose a Titan that is being Wished Away. Reduce the suffered Wish Away by up to -4. You may place that Titan on any Irem Tower within range (not necessarily in front of the Primordial)."
+   },
+   {
+    "name": "Cloud Support Fleet",
+    "cycle": 4,
+    "charges": 3,
+    "trireme": true,
+    "text": "Trireme (see Special Cycle IV Rules). Shifting. Elevated. Place the Cirrotrireme token or move the Cirrotrireme token to any space on the Battle Board (even if occupied). Rearm: A Titan on, adjacent to, or moving through a space with the Cirrotrireme token may flip the token to the spent side to equip any 1 Weapon card from the Armory. A spent Cirrotrireme can still be moved as normal but loses the Rearm ability."
+   },
+   {
+    "name": "Curse Resistor",
+    "cycle": 4,
+    "charges": 2,
+    "text": "Choose a Titan. Either: (1 charge) Flip one of that Titan's Condition cards. (2 charges) Discard one of that Titan's Condition cards."
+   },
+   {
+    "name": "Dahaka Phasing",
+    "cycle": 4,
+    "charges": 2,
+    "reaction": true,
+    "text": "[R] Choose a Titan. That Titan may perform Hermes Move 1."
+   },
+   {
+    "name": "Gold Transmogrifier",
+    "cycle": 4,
+    "charges": 2,
+    "text": "Choose a Titan and roll 2 black Power dice. Count the number of Power results. Turn as many of that Titan's Midas tokens into Ambrosia tokens."
+   },
+   {
+    "name": "Irem Protocols",
+    "cycle": 4,
+    "charges": 3,
+    "text": "Move an empty Irem Tower Terrain tile any number of spaces in a straight line. It cannot move through other Terrain tiles or the Primordial."
+   },
+   {
+    "name": "True Value of Life",
+    "cycle": 4,
+    "charges": 1,
+    "hook": true,
+    "text": "Cryptex Trauma Team: Gain +1 Argo Fate (campaign) when an Argonaut is about to die to ignore this death."
+   },
+   {
+    "name": "Wish Deflector",
+    "cycle": 4,
+    "charges": 2,
+    "hook": true,
+    "text": "When a Titan becomes the target of a Wish Attack, choose that Titan. That Titan gains Wish Armor."
+   },
+   {
+    "name": "Ropeseller Theorem",
+    "cycle": 4,
+    "charges": 1,
+    "hook": true,
+    "text": "When the Primordial reveals an AI card or triggers a Signature that targets a specific Titan, change the Targeting to Target: Most Midas tokens."
+   }
+  ]
+ },
+ "fatedMnemos": [
+  {
+   "code": "AF0125",
+   "name": "Memory of Death",
+   "cycle": 1,
+   "traits": [
+    "Heritage",
+    "Gods",
+    "Fate"
+   ],
+   "skill": [
+    "Will",
+    -1
+   ],
+   "text": "During the Trauma Draw, treat your Danger as 1 higher."
+  },
+  {
+   "code": "AF0126",
+   "name": "Betrayal",
+   "cycle": 1,
+   "traits": [
+    "Family",
+    "Tragedy",
+    "Crime"
+   ],
+   "skill": [
+    "Wisdom",
+    -1
+   ],
+   "text": "You cannot voluntarily end your movement on a space adjacent to another Titan."
+  },
+  {
+   "code": "AF0127",
+   "name": "Alone",
+   "cycle": 1,
+   "traits": [
+    "Curse",
+    "Dream",
+    "Crime"
+   ],
+   "skill": [
+    "Courage",
+    -1
+   ],
+   "text": "Start of your turn: If you're more than 5 spaces from all other Titans, gain +2 Fate."
+  },
+  {
+   "code": "AF0128",
+   "name": "Left Behind",
+   "cycle": 1,
+   "traits": [
+    "Fate",
+    "Supernatural",
+    "Curse"
+   ],
+   "skill": [
+    "Courage",
+    -1
+   ],
+   "text": "You cannot be the last one to take your turn during the Titan Round, unless there are no other living Titans."
+  },
+  {
+   "code": "AF0129",
+   "name": "Oblivious",
+   "cycle": 1,
+   "traits": [
+    "Deed",
+    "Tragedy",
+    "Family"
+   ],
+   "skill": [
+    "Cunning",
+    -1
+   ],
+   "text": "You don't benefit from Opening tokens."
+  },
+  {
+   "code": "AF0130",
+   "name": "Ikari",
+   "cycle": 1,
+   "traits": [
+    "Deed",
+    "Heritage",
+    "Dream"
+   ],
+   "skill": [
+    "Will",
+    -1
+   ],
+   "text": "You must be the last one to take your turn during the Titan Round."
+  },
+  {
+   "code": "AF0131",
+   "name": "Honorblind",
+   "cycle": 1,
+   "traits": [
+    "Voyage",
+    "Supernatural",
+    "Deed"
+   ],
+   "skill": [
+    "Wisdom",
+    -1
+   ],
+   "text": "You cannot end voluntary movement in a Rear space."
+  },
+  {
+   "code": "AF0132",
+   "name": "Egotist",
+   "cycle": 1,
+   "traits": [
+    "Voyage",
+    "Family",
+    "Gods"
+   ],
+   "skill": [
+    "Fury",
+    -1
+   ],
+   "text": "You must be the first one to take your turn during the Titan Round."
+  },
+  {
+   "code": "AF0133",
+   "name": "Selfishness",
+   "cycle": 1,
+   "traits": [
+    "Deed",
+    "Heritage",
+    "Curse"
+   ],
+   "skill": [
+    "Fury",
+    -1
+   ],
+   "text": "You cannot place tokens in the Kratos Pool."
+  },
+  {
+   "code": "BF0639",
+   "name": "Reluctant",
+   "traits": [
+    "Fate",
+    "Supernatural",
+    "Gods"
+   ],
+   "skill": [
+    "Wisdom",
+    -1
+   ],
+   "text": "You cannot use Gear cards with the following traits: Axe, Blade, Javelin, Khopesh, Knife, Lance, Spear, Sword.",
+   "cycle": 2
+  },
+  {
+   "code": "BF0640",
+   "name": "Scapegoat",
+   "traits": [
+    "Fate",
+    "Tragedy",
+    "Family"
+   ],
+   "skill": [
+    "Courage",
+    -1
+   ],
+   "text": "Start of Battle: Gain the Marked for Death Major Trauma card.",
+   "cycle": 2
+  },
+  {
+   "code": "BF0641",
+   "name": "Restless",
+   "traits": [
+    "Deed",
+    "Tragedy",
+    "Dream"
+   ],
+   "skill": [
+    "Cunning",
+    -1
+   ],
+   "text": "You must always use your Move action to move at least 1 space.",
+   "cycle": 2
+  },
+  {
+   "code": "BF0642",
+   "name": "Ambrosia Addiction",
+   "traits": [
+    "Voyage",
+    "Supernatural",
+    "Deed"
+   ],
+   "skill": [
+    "Will",
+    -1
+   ],
+   "text": "Ambrosia Limit -1.",
+   "cycle": 2
+  },
+  {
+   "code": "BF0643",
+   "name": "Bloodthirsty",
+   "traits": [
+    "Voyage",
+    "Family",
+    "Gods"
+   ],
+   "skill": [
+    "Wisdom",
+    -1
+   ],
+   "text": "You can use your Attack action only to perform attacks.",
+   "cycle": 2
+  },
+  {
+   "code": "BF0644",
+   "name": "Clumsy",
+   "traits": [
+    "Crime",
+    "Heritage",
+    "Curse"
+   ],
+   "skill": [
+    "Cunning",
+    -1
+   ],
+   "text": "You cannot unexhaust your Gear cards.",
+   "cycle": 2
+  },
+  {
+   "code": "BF0638",
+   "name": "Coward",
+   "traits": [
+    "Curse",
+    "Dream",
+    "Crime"
+   ],
+   "skill": [
+    "Fury",
+    -1
+   ],
+   "text": "If you are in front of the Primordial, you have -1 Precision.",
+   "cycle": 2
+  },
+  {
+   "code": "BF0637",
+   "name": "Weak",
+   "traits": [
+    "Voyage",
+    "Tragedy",
+    "Crime"
+   ],
+   "skill": [
+    "Endurance",
+    -1
+   ],
+   "text": "When you are about to draw an Obol, add an Obol card from the next threshold on the Massive Danger Chart to the Obol Deck (for this draw only).",
+   "cycle": 2
+  },
+  {
+   "code": "BF0636",
+   "name": "Hapless",
+   "traits": [
+    "Heritage",
+    "Gods",
+    "Fate"
+   ],
+   "skill": [
+    "Endurance",
+    -1
+   ],
+   "text": "Apply a -1 penalty to all tests you perform (note: rolls are not tests).",
+   "cycle": 2
+  },
+  {
+   "code": "CF1261",
+   "name": "Apathy",
+   "cycle": 3,
+   "traits": [
+    "Dream",
+    "Tragedy",
+    "Crime"
+   ],
+   "skill": [
+    "Will",
+    -1
+   ],
+   "text": "You cannot use Fate Re-rolls."
+  },
+  {
+   "code": "CF1268",
+   "name": "Denigrated",
+   "cycle": 3,
+   "traits": [
+    "Supernatural",
+    "Heritage",
+    "Curse"
+   ],
+   "skill": [
+    "Will",
+    -1
+   ],
+   "text": "After you place any tokens in the Kratos Pool, remove 1 token from the Kratos Pool."
+  },
+  {
+   "code": "CF1264",
+   "name": "Enervated",
+   "cycle": 3,
+   "traits": [
+    "Fate",
+    "Gods",
+    "Family"
+   ],
+   "skill": [
+    "Endurance",
+    -1
+   ],
+   "text": "Start of Battle: Gain 1 combat or movement Fatigue token."
+  },
+  {
+   "code": "CF1262",
+   "name": "Fate-Hexed",
+   "cycle": 3,
+   "traits": [
+    "Curse",
+    "Dream",
+    "Crime"
+   ],
+   "skill": [
+    "Cunning",
+    -1
+   ],
+   "text": "You cannot gain Crit Chances."
+  },
+  {
+   "code": "CF1267",
+   "name": "Late",
+   "cycle": 3,
+   "traits": [
+    "Voyage",
+    "Dream",
+    "Gods"
+   ],
+   "skill": [
+    "Wisdom",
+    -1
+   ],
+   "text": "During the Titan Round, you cannot voluntarily be the first or last to take your turn."
+  },
+  {
+   "code": "CF1260",
+   "name": "Psychosomatic Disorder",
+   "cycle": 3,
+   "traits": [
+    "Deed",
+    "Gods",
+    "Fate"
+   ],
+   "skill": [
+    "Endurance",
+    -1
+   ],
+   "text": "When you draw a positive Trauma card, ignore it and draw again (once per Trauma Draw)."
+  },
+  {
+   "code": "CF1266",
+   "name": "Queasy",
+   "cycle": 3,
+   "traits": [
+    "Voyage",
+    "Supernatural",
+    "Deed"
+   ],
+   "skill": [
+    "Courage",
+    -1
+   ],
+   "text": "When you gain at least 1 Bleeding token, gain +1 Bleeding token."
+  },
+  {
+   "code": "CF1265",
+   "name": "Superstitious",
+   "cycle": 3,
+   "traits": [
+    "Deed",
+    "Supernatural",
+    "Dream"
+   ],
+   "skill": [
+    "Fury",
+    -1
+   ],
+   "text": "You cannot ignore or re-draw Trauma cards and Obols."
+  },
+  {
+   "code": "CF1263",
+   "name": "Timid",
+   "cycle": 3,
+   "traits": [
+    "Fate",
+    "Supernatural",
+    "Gods"
+   ],
+   "skill": [
+    "Courage",
+    -1
+   ],
+   "text": "When you gain the Priority Target token, gain +1 Fate."
+  },
+  {
+   "code": "DF2070",
+   "name": "Cursed",
+   "cycle": 4,
+   "traits": [
+    "Family",
+    "Heritage",
+    "Curse"
+   ],
+   "skill": [
+    "Wisdom",
+    -1
+   ],
+   "text": "Gain the Goldthirst Curse Affliction. When you gain at least 1 Midas token, gain +1 Fate."
+  },
+  {
+   "code": "DF2075",
+   "name": "Deprived",
+   "cycle": 4,
+   "traits": [
+    "Deed",
+    "Supernatural",
+    "Voyage"
+   ],
+   "skill": [
+    "Wisdom",
+    -1
+   ],
+   "text": "You cannot Awaken. You cannot Summon during your turn."
+  },
+  {
+   "code": "DF2078",
+   "name": "Expendable",
+   "cycle": 4,
+   "traits": [
+    "Deed",
+    "Gods",
+    "Fate"
+   ],
+   "skill": [
+    "Fury",
+    -1
+   ],
+   "text": "You cannot re-draw Obol cards."
+  },
+  {
+   "code": "DF2073",
+   "name": "Fear of Heights",
+   "cycle": 4,
+   "traits": [
+    "Voyage",
+    "Dream",
+    "Gods"
+   ],
+   "skill": [
+    "Fury",
+    -1
+   ],
+   "text": "When on an Elevated space or a VP, you gain -1 Precision and Crit Fail: Knockdown (end your Attack)."
+  },
+  {
+   "code": "DF2076",
+   "name": "Hoarder",
+   "cycle": 4,
+   "traits": [
+    "Fate",
+    "Gods",
+    "Family"
+   ],
+   "skill": [
+    "Will",
+    -1
+   ],
+   "text": "You cannot voluntarily discard tokens and cards."
+  },
+  {
+   "code": "DF2077",
+   "name": "Indebted",
+   "cycle": 4,
+   "traits": [
+    "Dream",
+    "Tragedy",
+    "Crime"
+   ],
+   "skill": [
+    "Courage",
+    -1
+   ],
+   "text": "When you gain at least 1 Condition token or Ambrosia token, gain 1 more of that token."
+  },
+  {
+   "code": "DF2072",
+   "name": "Thrice-Cursed",
+   "cycle": 4,
+   "traits": [
+    "Curse",
+    "Dream",
+    "Crime"
+   ],
+   "skill": [
+    "Will",
+    -1
+   ],
+   "text": "At the end of your turn, if you didn't move your full Speed value or use all of your available Hermes Moves during that turn, gain +1 Fate."
+  },
+  {
+   "code": "DF2071",
+   "name": "Twice-Cursed",
+   "cycle": 4,
+   "traits": [
+    "Supernatural",
+    "Heritage",
+    "Curse"
+   ],
+   "skill": [
+    "Endurance",
+    -1
+   ],
+   "text": "Gain the Windblight Curse Affliction. When you suffer involuntary movement, Knockdown or Float, gain +1 Fate."
+  },
+  {
+   "code": "DF2074",
+   "name": "Wishful Thinker",
+   "cycle": 4,
+   "traits": [
+    "Deed",
+    "Supernatural",
+    "Dream"
+   ],
+   "skill": [
+    "Cunning",
+    -1
+   ],
+   "text": "When you Wound, after Escalation, if the AI card on the top of the AI deck isn't an AI III or IV, shuffle the AI deck (once per Wound)."
+  },
+  {
+   "code": "EF2649",
+   "name": "Delusional",
+   "cycle": 5,
+   "traits": [
+    "Supernatural",
+    "Tragedy",
+    "Crime"
+   ],
+   "skill": [
+    "Wisdom",
+    -1
+   ],
+   "text": "When your Attack hits, but before revealing the BP card, guess the AT. If you guess incorrectly, gain 1 Ambrosia token."
+  },
+  {
+   "code": "EF2652",
+   "name": "Depressed",
+   "cycle": 5,
+   "traits": [
+    "Deed",
+    "Curse",
+    "Dream"
+   ],
+   "skill": [
+    "Cunning",
+    -1
+   ],
+   "text": "Start of your turn: Gain 1 Despair token."
+  },
+  {
+   "code": "EF2650",
+   "name": "Dogmatic",
+   "cycle": 5,
+   "traits": [
+    "Curse",
+    "Dream",
+    "Crime"
+   ],
+   "skill": [
+    "Will",
+    -1
+   ],
+   "text": "You cannot use Aether tokens in any way."
+  },
+  {
+   "code": "EF2655",
+   "name": "Godfearing",
+   "cycle": 5,
+   "traits": [
+    "Family",
+    "Gods",
+    "Fate"
+   ],
+   "skill": [
+    "Courage",
+    -1
+   ],
+   "text": "When you gain a negative Mind Condition card, gain 1 negative Precision token."
+  },
+  {
+   "code": "EF2651",
+   "name": "Humiliated",
+   "cycle": 5,
+   "traits": [
+    "Voyage",
+    "Dream",
+    "Gods"
+   ],
+   "skill": [
+    "Fury",
+    -1
+   ],
+   "text": "You cannot voluntarily move away from the Primordial."
+  },
+  {
+   "code": "EF2653",
+   "name": "Memory of Drowning",
+   "cycle": 5,
+   "traits": [
+    "Voyage",
+    "Supernatural",
+    "Deed"
+   ],
+   "skill": [
+    "Endurance",
+    -1
+   ],
+   "text": "You cannot gain additional Oxygen tokens."
+  },
+  {
+   "code": "EF2656",
+   "name": "Messianic",
+   "cycle": 5,
+   "traits": [
+    "Supernatural",
+    "Heritage",
+    "Curse"
+   ],
+   "skill": [
+    "Fury",
+    -1
+   ],
+   "text": "When you are about to draw an Obol, add an additional You Died Obol to the Obol deck (for this draw only)."
+  },
+  {
+   "code": "EF2654",
+   "name": "Phantom Pain",
+   "cycle": 5,
+   "traits": [
+    "Deed",
+    "Heritage",
+    "Curse"
+   ],
+   "skill": [
+    "Will",
+    -1
+   ],
+   "text": "When you draw a Trauma card, gain 1 Pain token."
+  },
+  {
+   "code": "EF2648",
+   "name": "Sanctimonious",
+   "cycle": 5,
+   "traits": [
+    "Fate",
+    "Gods",
+    "Family"
+   ],
+   "skill": [
+    "Courage",
+    -1
+   ],
+   "text": "You cannot equip Support cards with the Light X keyword."
+  },
+  {
+   "code": "CF1269",
+   "name": "Sowed",
+   "cycle": 2,
+   "secret": "Fated Mnemos Secret card 82",
+   "traits": [
+    "Family",
+    "Heritage",
+    "Curse"
+   ],
+   "skill": [
+    "Will",
+    -1
+   ],
+   "skill2": [
+    "Wisdom",
+    -1
+   ],
+   "text": "Conqueror Nail and Repurposed Cryptex gain the Argonaut Possession keyword. During an Attack Roll, treat a '1' rolled on any of your dice as a Crit Miss (it may result in Crit Miss effects triggering multiple times). You cannot lose this Fated Mnemos, only resolve it."
+  }
+ ],
+ "grandCannon": {
+  "name": "13th Muse Grand Cannon",
+  "kind": "Argo Upgrade (Technology)",
+  "charges": 2,
+  "text": [
+   "Immediate: Inward Odyssey 18 — The Final Deterrent (캠페인 전용, 미구현).",
+   "Start of Titan Round: You may choose an effect from the Payload card and roll a d10. On a 6+, the Cannon is primed. It remains primed until you fire, decide to prime a different effect or the Battle ends. (Payload 카드는 1종만 장착)",
+   "Godkiller Shot: When the Cannon is primed, discard 1 charge and lose the indicated resource to fire.",
+   "Emergency Priming: As a ◆! or after drawing a BP card you may discard 1 charge to perform an emergency priming. Immediately choose an effect from the Payload card and roll for priming as normal."
+  ],
+  "payloads": [
+   {
+    "name": "Spartan Payload",
+    "effects": [
+     {
+      "name": "Armorpiercer",
+      "cost": [
+       {
+        "res": "*prim",
+        "n": 1
+       }
+      ],
+      "timing": "hardened",
+      "text": "1 Primordial resource: Fire when you reveal a Hardened BP card during an Attack to gain Armor-piercing.",
+      "prime": 6
+     },
+     {
+      "name": "Reliefshredder",
+      "cost": [
+       {
+        "res": "Chimeric Tar",
+        "n": 1
+       },
+       {
+        "res": "Supersolid Relief Mass",
+        "n": 1
+       }
+      ],
+      "timing": "round",
+      "text": "1 Chimeric Tar or Supersolid Relief Mass resource: Fire during the Titan Round to create a VP.",
+      "prime": 6
+     },
+     {
+      "name": "Siegebreaker",
+      "cost": [
+       {
+        "res": "Cyclopean Metal",
+        "n": 1
+       },
+       {
+        "res": "Black Chain",
+        "n": 1
+       }
+      ],
+      "timing": "combo",
+      "text": "1 Cyclopean Metal or Black Chain resource: ◆! Fire to break any Combo (except Unbreakable Combo).",
+      "prime": 6
+     }
+    ]
+   },
+   {
+    "name": "Argo Payload",
+    "code": "BY1048",
+    "secret": 43,
+    "effects": [
+     {
+      "name": "Trireme Spear",
+      "cost": [
+       {
+        "res": "Mortal",
+        "n": 3
+       }
+      ],
+      "timing": "round",
+      "text": "3 Mortal resources: Place 3 Opening tokens in the Kratos Pool. Note: Primes on a 5+.",
+      "prime": 5
+     },
+     {
+      "name": "Red Fireboat",
+      "cost": [
+       {
+        "res": "Ambrosia",
+        "n": 2
+       }
+      ],
+      "timing": "round",
+      "text": "2 Ambrosia resources: Place 2 Break tokens in the Kratos Pool. Note: Primes on a 5+.",
+      "prime": 5
+     }
+    ]
+   },
+   {
+    "name": "Labyrinth Payload",
+    "code": "BY1049",
+    "secret": 44,
+    "effects": [
+     {
+      "name": "Maze Fragmentator",
+      "cost": [
+       {
+        "res": "Infused Mechanism",
+        "n": 1
+       },
+       {
+        "res": "Fleshy Mantle",
+        "n": 1
+       }
+      ],
+      "timing": "round",
+      "text": "1 Infused Mechanism or Fleshy Mantle resource: Fire to give the Primordial 1 negative Precision token.",
+      "prime": 6
+     },
+     {
+      "name": "Pyramid Spear",
+      "cost": [
+       {
+        "res": "Fear Essence",
+        "n": 1
+       },
+       {
+        "res": "Maze Fragment",
+        "n": 1
+       }
+      ],
+      "timing": "round",
+      "text": "1 Fear Essence or Maze Fragment resource: Fire to give the Primordial 1 negative To Hit token.",
+      "prime": 6
+     },
+     {
+      "name": "Thunderram",
+      "cost": [
+       {
+        "res": "Muscle Cluster",
+        "n": 1
+       },
+       {
+        "res": "Calcified Knuckle Bone",
+        "n": 1
+       }
+      ],
+      "timing": "attack",
+      "text": "1 Muscle Cluster or Calcified Knuckle Bone resource: Fire when you attack to gain Pushback 4 and ignore the Lumbering Trait.",
+      "prime": 6
+     }
+    ]
+   },
+   {
+    "name": "Adversary Payload",
+    "code": "BY1050",
+    "secret": 45,
+    "effects": [
+     {
+      "name": "Shieldburster",
+      "cost": [
+       {
+        "res": "Retractable Mechanism",
+        "n": 1
+       },
+       {
+        "res": "Reliefshell Fragment",
+        "n": 1
+       }
+      ],
+      "timing": "round",
+      "text": "1 Retractable Mechanism or Reliefshell Fragment resource: Fire to give the Primordial 1 negative AT token until the end of the Round. Note: Primes on a 7+.",
+      "prime": 7
+     },
+     {
+      "name": "Hermesian Cutting Beam",
+      "cost": [
+       {
+        "res": "Grotesque Beak",
+        "n": 1
+       },
+       {
+        "res": "Powdered Matter",
+        "n": 1
+       }
+      ],
+      "timing": "round",
+      "text": "1 Grotesque Beak or Powdered Matter resource: Fire to give the Primordial 1 negative Precision token.",
+      "prime": 6
+     },
+     {
+      "name": "Black Fireboat",
+      "cost": [
+       {
+        "res": "Living Abyss",
+        "n": 1
+       },
+       {
+        "res": "Skin of Malice",
+        "n": 1
+       }
+      ],
+      "timing": "round",
+      "text": "1 Living Abyss or Skin of Malice resource: Fire to place 5 Fire tokens in the Kratos Pool.",
+      "prime": 6
+     }
+    ]
+   },
+   {
+    "name": "Chronoice Payload",
+    "code": "CY1635",
+    "secret": 83,
+    "effects": [
+     {
+      "name": "Stormbreaker",
+      "cost": [
+       {
+        "res": "Clothflesh",
+        "n": 1
+       },
+       {
+        "res": "Eyecluster",
+        "n": 1
+       }
+      ],
+      "timing": "timefront",
+      "text": "1 Clothflesh or Eyecluster resource: When the Timefront advances, lower the advance by 1 + a red Power die result.",
+      "prime": 6
+     },
+     {
+      "name": "Destroyer",
+      "cost": [
+       {
+        "res": "Razorclaw",
+        "n": 1
+       },
+       {
+        "res": "Icarian Feather",
+        "n": 1
+       }
+      ],
+      "timing": "round",
+      "text": "1 Razorclaw or Icarian Feather resource: Remove 1 Adaptation token from the Adaptation Board.",
+      "prime": 6
+     },
+     {
+      "name": "Incinerator",
+      "cost": [
+       {
+        "res": "Writhing Tentacle",
+        "n": 1
+       },
+       {
+        "res": "Sunburned Skull",
+        "n": 1
+       }
+      ],
+      "timing": "round",
+      "text": "1 Writhing Tentacle or Sunburned Skull resource: Place 1 negative AT token in the Kratos Pool.",
+      "prime": 6
+     }
+    ]
+   }
+  ],
+  "resources": [
+   "Chimeric Tar",
+   "Supersolid Relief Mass",
+   "Cyclopean Metal",
+   "Black Chain",
+   "Infused Mechanism",
+   "Fleshy Mantle",
+   "Fear Essence",
+   "Maze Fragment",
+   "Muscle Cluster",
+   "Calcified Knuckle Bone",
+   "Retractable Mechanism",
+   "Reliefshell Fragment",
+   "Grotesque Beak",
+   "Powdered Matter",
+   "Living Abyss",
+   "Skin of Malice",
+   "Clothflesh",
+   "Eyecluster",
+   "Razorclaw",
+   "Icarian Feather",
+   "Writhing Tentacle",
+   "Sunburned Skull",
+   "Primordial (기타)",
+   "Mortal",
+   "Ambrosia"
+  ]
+ }
+}

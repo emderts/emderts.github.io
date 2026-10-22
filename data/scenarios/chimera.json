@@ -1,0 +1,207 @@
+{
+ "id": "chimera",
+ "source": "ATO Cycle II Storybook — Chimera Metastasios Battle (p.128)",
+ "board": {
+  "cols": 20,
+  "rows": 14
+ },
+ "_notes": [
+  "Mnestis: normal victory on Wounds (Regular + Secondary Wound Stack). Level 3+: Spartan River Works lose Indestructible. The printed Ambrosia icons on the Cycle II mat are treated as decoration."
+ ],
+ "setup": [
+  "Standard Preparations.",
+  "Primordial Positioning: centre (F10-H12), determine facing.",
+  "Additional Setup: Absorbed Status card and Three-headed Monstrosity Special Attack card near the sheet; add 1 You died! Obol."
+ ],
+ "variants": {
+  "lv1-2": {
+   "levels": [
+    1,
+    2
+   ],
+   "primordial": {
+    "anchor": "F10"
+   },
+   "titanStarts": [
+    "K11",
+    "K12",
+    "D10",
+    "D11"
+   ],
+   "terrain": {
+    "column": [
+     "E9",
+     "L16",
+     "G17",
+     "B6"
+    ],
+    "fortifiedCity": [
+     {
+      "name": "Fortified City NE",
+      "cells": [
+       "G15",
+       "G16",
+       "G17",
+       "H15",
+       "H16",
+       "H17",
+       "I15",
+       "I16",
+       "I17"
+      ]
+     },
+     {
+      "name": "Fortified City SW",
+      "cells": [
+       "C4",
+       "C5",
+       "C6",
+       "D4",
+       "D5",
+       "D6",
+       "E4",
+       "E5",
+       "E6"
+      ]
+     }
+    ],
+    "ambrosia": [
+     [
+      "K2",
+      "K3",
+      "L2",
+      "L3"
+     ],
+     [
+      "B18",
+      "B19",
+      "C18",
+      "C19"
+     ]
+    ]
+   }
+  },
+  "lv3+": {
+   "levels": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "primordial": {
+    "anchor": "F10"
+   },
+   "titanStarts": [
+    "K11",
+    "K12",
+    "D10",
+    "D11"
+   ],
+   "riverDestructible": true,
+   "terrain": {
+    "column": [
+     "L4",
+     "L16",
+     "J18",
+     "H1",
+     "G17",
+     "E9",
+     "B6"
+    ],
+    "fortifiedCity": [
+     {
+      "name": "Fortified City NE",
+      "cells": [
+       "H15",
+       "H16",
+       "H17",
+       "I15",
+       "I16",
+       "I17",
+       "J15",
+       "J16",
+       "J17"
+      ]
+     },
+     {
+      "name": "Fortified City SW",
+      "cells": [
+       "C4",
+       "C5",
+       "C6",
+       "D4",
+       "D5",
+       "D6",
+       "E4",
+       "E5",
+       "E6"
+      ]
+     }
+    ],
+    "ambrosia": [
+     [
+      "K2",
+      "K3",
+      "L2",
+      "L3"
+     ],
+     [
+      "J8",
+      "J9",
+      "K8",
+      "K9"
+     ],
+     [
+      "G2",
+      "G3",
+      "H2",
+      "H3"
+     ],
+     [
+      "C13",
+      "C14",
+      "D13",
+      "D14"
+     ],
+     [
+      "B18",
+      "B19",
+      "C18",
+      "C19"
+     ]
+    ],
+    "river": [
+     [
+      "N5",
+      "M5",
+      "L5",
+      "K5",
+      "J5"
+     ],
+     [
+      "N15",
+      "M15",
+      "L15",
+      "K15"
+     ],
+     [
+      "E7",
+      "D7",
+      "C7",
+      "B7",
+      "A7"
+     ],
+     [
+      "D16",
+      "C16",
+      "B16",
+      "A16"
+     ]
+    ]
+   }
+  }
+ }
+}

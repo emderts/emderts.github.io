@@ -1,0 +1,2659 @@
+{
+ "id": "nietzschean",
+ "name": "The Nietzschean",
+ "cycle": 2,
+ "type": "adversary",
+ "sheetCode": "BU1051",
+ "_notes": [
+  "Combo: Fire (Blazing Muscles/Billowing Maw...), Sword, Ambrosia — classes mirror the BP icons: Fire = Fire/Flamethrower weapons, Sword = Sword/Slabsword, Ambrosia = Ambrosia/Primordial. Interpretation.",
+  "Burn: +1 Danger per Metal Gear equipped; discard Flammable Gear (interpretation: one Flammable card, chosen by the player) if caused by a Primordial Attack; Danger from Burn is dealt at the end of the Attack.",
+  "Sheet BU1051 transcribed (front Lv I / back Lv II-IX). 2x2 footprint, rear = Blindspots, Danger Zone = 4 side-adjacent spaces (D).",
+  "Nietzschean Beginning of the End: after End of Hope, draw another AI card then perform Combo (even if a Combo was already resolved).",
+  "God Among Men (Lv IX): the Nietzschean acts after 2 Titan turns — implemented as a mid-Titan-Round Primordial Round after the 2nd Titan turn.",
+  "Zone patterns and Weakspots read cell-by-cell from the AI cards ([depth, lateral]; depth 0 = front body column, -1 = back body column; lateral half-lanes, + = Nietzschean's right). Dust Zone = diamond |depth|+|lateral| <= N from the body centre; World of Black Blast Zone = distance >= 8."
+ ],
+ "footprint": {
+  "w": 2,
+  "h": 2,
+  "rear": "top-edge"
+ },
+ "ukb": 8,
+ "blindspots": "rear",
+ "combo": {
+  "track": [
+   "Sword",
+   "Fire",
+   "Ambrosia"
+  ],
+  "classes": {
+   "Sword": [
+    "Knife",
+    "Shield",
+    "Whip",
+    "Slabsword"
+   ],
+   "Fire": [
+    "Spear",
+    "Sword",
+    "Cestus"
+   ],
+   "Ambrosia": [
+    "Club",
+    "Axe",
+    "Bow"
+   ]
+  },
+  "alt": {
+   "track": [
+    "Sword",
+    "Fire",
+    "Ambrosia",
+    "Hatred"
+   ],
+   "classes": {
+    "Sword": [
+     "Knife",
+     "Shield"
+    ],
+    "Fire": [
+     "Spear",
+     "Sword",
+     "Cestus"
+    ],
+    "Ambrosia": [
+     "Club",
+     "Axe"
+    ],
+    "Hatred": [
+     "Whip",
+     "Bow",
+     "Slabsword"
+    ]
+   }
+  }
+ },
+ "levels": {
+  "1": {
+   "toHit": 9,
+   "speed": 8,
+   "wounds": 12,
+   "bonus": {},
+   "traits": [
+    "Stay Your Hand",
+    "Weapon Master",
+    "Danger Sense",
+    "End of Hope",
+    "The Strong Eat"
+   ]
+  },
+  "2": {
+   "toHit": 9,
+   "speed": 8,
+   "wounds": 12,
+   "bonus": {
+    "ESCALATION": 1,
+    "AT": 1
+   },
+   "traits": [
+    "Shadow and the Flame",
+    "All For One",
+    "Ticking Clock"
+   ]
+  },
+  "3": {
+   "toHit": 10,
+   "speed": 8,
+   "wounds": 12,
+   "bonus": {
+    "ESCALATION": 1,
+    "AT": 2,
+    "DANGER": 1
+   },
+   "traits": [
+    "Flawless"
+   ]
+  },
+  "4": {
+   "toHit": 10,
+   "speed": 9,
+   "wounds": 13,
+   "bonus": {
+    "ESCALATION": 2,
+    "AT": 3,
+    "DANGER": 1
+   },
+   "traits": [
+    "Dealbreaker Stance"
+   ]
+  },
+  "5": {
+   "mnestis": true,
+   "toHit": 11,
+   "speed": 9,
+   "wounds": 13,
+   "bonus": {
+    "ESCALATION": 2,
+    "AT": 4,
+    "DANGER": 1
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Fate of All Cowards",
+    "Beginning of the End"
+   ]
+  },
+  "6": {
+   "mnestis": true,
+   "toHit": 11,
+   "speed": 10,
+   "wounds": 14,
+   "bonus": {
+    "ESCALATION": 3,
+    "AT": 5,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "No Missed Chances"
+   ]
+  },
+  "7": {
+   "mnestis": true,
+   "toHit": 12,
+   "speed": 10,
+   "wounds": 14,
+   "bonus": {
+    "ESCALATION": 3,
+    "AT": 6,
+    "EVADE_DICE": 1,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "No Quarter"
+   ]
+  },
+  "8": {
+   "mnestis": true,
+   "toHit": 12,
+   "speed": 11,
+   "wounds": 15,
+   "bonus": {
+    "ESCALATION": 4,
+    "AT": 7,
+    "EVADE_DICE": 2,
+    "DANGER": 3
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Ruthless"
+   ]
+  },
+  "9": {
+   "mnestis": true,
+   "toHit": 13,
+   "speed": 11,
+   "wounds": 16,
+   "bonus": {
+    "ESCALATION": 5,
+    "AT": 9,
+    "EVADE_DICE": 3,
+    "DANGER": 4
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "God Among Men"
+   ]
+  }
+ },
+ "traits": {
+  "Stay Your Hand": "Each Nietzschean Attack deals 1 Danger less.",
+  "Danger Sense": "The D letters on the Primordial Diagram mark the Danger Zone spaces. If a Titan moves through the Danger Zone during the Titan Round, roll a d10. On 7+, they manage to get through. Otherwise, they immediately stop and the Nietzschean performs Signature against that Titan. Ignore this Trait during a Nietzschean Attack.",
+  "End of Hope": "End of Primordial Round: Perform Signature.",
+  "The Strong Eat": "Additional Setup: Add 1 You died! Obol to the Obol deck.",
+  "Weapon Master": "Additional Setup: Place a Combo token on the Sword space of the Combo track (Sword → Fire → Ambrosia). After resolving a Combo or Combo Break, move the token clockwise. After resolving the first AI card in a Round, perform ⚡ Combo: draw and resolve another AI card. Combo Break: a Titan who is not the Priority Target and has a Weapon of the class on the Combo track may exhaust it (within its effective range) to break the Combo; they gain the PT token. Inevitable: with 6+ Wounds Sword combos cannot be broken; with 10+ Wounds Fire combos cannot be broken. Rage gain does not trigger PT change.",
+  "Shadow and the Flame": "Attacks that don't normally deal Ambrosia deal 1 Ambrosia token.",
+  "All For One": "There is a flaw in the Nietzschean's technique! Ignore Danger Sense when moving into the Weakspot. The Weakspot is the space marked in a different colour on the top card of the AI discard pile. When on a Weakspot space, you may perform a normal Attack without drawing a BP card: Power Roll, halve Total Power (round up), +1 if Crit Chance, note it, clear the Kratos Pool and continue to the second ability window. The next Titan Attack adds the noted Power to its Total Power.",
+  "Ticking Clock": "Disable the Stay Your Hand Trait. End of Primordial Round: Titan with the lowest Danger gains X Danger, X = current position of the Time marker (Round number here).",
+  "Flawless": "Disable the All For One Trait.",
+  "Dealbreaker Stance": "Use the alternate Combo track instead of the regular one: Sword (Knife, Shield) → Fire (Spear, Sword, Cestus) → Ambrosia (Club, Axe) → Hatred (Whip, Bow, Slabsword).",
+  "Fate of All Cowards": "When a Titan voluntarily moves away from the Nietzschean, the Nietzschean immediately performs Signature against that Titan.",
+  "Beginning of the End": "End of Primordial Round: After End of Hope, draw another AI card. After resolving this card perform Combo, even if you already resolved a Combo this Round.",
+  "No Missed Chances": "When a Titan performs a Full Evade or reduces all Danger from an Attack to 0, perform Signature.",
+  "No Quarter": "If a Titan has to resolve an Obol Draw, they die instead.",
+  "Ruthless": "Remove all positive Trauma cards from the Trauma decks (except Obols).",
+  "God Among Men": "The Nietzschean performs his Round after 2 Titan turns. Then the other 2 Titans go, then the Nietzschean, then the players can re-arrange their playing order."
+ },
+ "weakspot": true,
+ "ai": [
+  {
+   "code": "BR1070",
+   "tier": 0,
+   "name": "Lot of the Weak",
+   "kind": "JUDGEMENT",
+   "target": [
+    "Random Titan"
+   ],
+   "steps": [
+    "JUDGE",
+    "Gain +1 RAGE. Escalate 1."
+   ],
+   "judge": [
+    "Courage"
+   ],
+   "noRoll": true,
+   "randomTarget": true,
+   "after": "End the Primordial Round and place this card at the bottom of the AI discard pile (never removed nor shuffled in).",
+   "lot": true,
+   "weakspot": [
+    -1,
+    -1.5
+   ]
+  },
+  {
+   "code": "BR1071",
+   "tier": 1,
+   "name": "Grasscutter",
+   "kind": "ZONE ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Closest Titan in front, in range",
+    "Closest Titan in sight, in range"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Gain 1 Ambrosia token.\n| FATE 3+: 2 Ambrosia tokens instead",
+    "Exhaust your Armor.",
+    "One hit deals 3 DANGER, two hits deal 5 DANGER, three hits deal 7 DANGER.",
+    "⚡ Knockback 9."
+   ],
+   "pattern": [
+    [
+     1,
+     -2.5
+    ],
+    [
+     1,
+     -1.5
+    ],
+    [
+     2,
+     -1.5
+    ],
+    [
+     1,
+     -0.5
+    ],
+    [
+     2,
+     -0.5
+    ],
+    [
+     3,
+     -0.5
+    ],
+    [
+     1,
+     0.5
+    ],
+    [
+     2,
+     0.5
+    ],
+    [
+     3,
+     0.5
+    ],
+    [
+     1,
+     1.5
+    ],
+    [
+     2,
+     1.5
+    ],
+    [
+     1,
+     2.5
+    ]
+   ],
+   "afterFinal": "The Nietzschean moves to the center of the Board, then turns to face the most Titans.",
+   "afterWindow": true,
+   "weakspot": [
+    0,
+    -1.5
+   ],
+   "stepJoin": [
+    2,
+    3
+   ]
+  },
+  {
+   "code": "BR1072",
+   "tier": 1,
+   "name": "Blot Out the Sun",
+   "kind": "ATTACK",
+   "dice": 2,
+   "toHit": 11,
+   "target": [
+    "Furthest Titan in sight"
+   ],
+   "steps": [
+    "LAND ON TOP & ATTACK",
+    "Gain 2 Ambrosia tokens and +1 RAGE.",
+    "Exhaust your Weapon.",
+    "If the Attack hits, it deals 5 DANGER."
+   ],
+   "landOnTop": true,
+   "after": "Knockdown.",
+   "afterWindow": false,
+   "stepJoin": [
+    2,
+    3
+   ]
+  },
+  {
+   "code": "BR1073",
+   "tier": 1,
+   "name": "The Fire Grows",
+   "kind": "ZONE ATTACK",
+   "dice": 4,
+   "toHit": 9,
+   "target": [
+    "Blast Zone"
+   ],
+   "steps": [
+    "⚡ TURN TO FACE THE MOST TITANS & ATTACK | FATE 4+: +1 EVADE_DICE",
+    "Each hit deals 2 DANGER.",
+    "Burn.",
+    "⚡ Knockdown. Knockback 7."
+   ],
+   "pattern": [
+    [
+     3,
+     -2.5
+    ],
+    [
+     2,
+     -1.5
+    ],
+    [
+     3,
+     -1.5
+    ],
+    [
+     1,
+     -0.5
+    ],
+    [
+     2,
+     -0.5
+    ],
+    [
+     3,
+     -0.5
+    ],
+    [
+     4,
+     -0.5
+    ],
+    [
+     1,
+     0.5
+    ],
+    [
+     2,
+     0.5
+    ],
+    [
+     3,
+     0.5
+    ],
+    [
+     2,
+     1.5
+    ],
+    [
+     3,
+     1.5
+    ],
+    [
+     3,
+     2.5
+    ]
+   ],
+   "faceMost": true,
+   "weakspot": [
+    0,
+    -1.5
+   ],
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR1074",
+   "tier": 1,
+   "name": "Abyssal Cleave",
+   "kind": "ZONE ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Furthest Titan in front, in range",
+    "Furthest Titan in sight, in range"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK",
+    "Gain 1 Ambrosia token.\n| FATE 3+: 2 Ambrosia tokens instead",
+    "Each hit deals 2 DANGER.",
+    "⚡ Knockback 9."
+   ],
+   "pattern": [
+    [
+     1,
+     -0.5
+    ],
+    [
+     2,
+     -0.5
+    ],
+    [
+     3,
+     -0.5
+    ],
+    [
+     4,
+     -0.5
+    ],
+    [
+     5,
+     -0.5
+    ],
+    [
+     6,
+     -0.5
+    ],
+    [
+     7,
+     -0.5
+    ],
+    [
+     8,
+     -0.5
+    ],
+    [
+     9,
+     -0.5
+    ],
+    [
+     10,
+     -0.5
+    ],
+    [
+     11,
+     -0.5
+    ],
+    [
+     12,
+     -0.5
+    ],
+    [
+     13,
+     -0.5
+    ],
+    [
+     14,
+     -0.5
+    ],
+    [
+     15,
+     -0.5
+    ],
+    [
+     16,
+     -0.5
+    ],
+    [
+     17,
+     -0.5
+    ],
+    [
+     18,
+     -0.5
+    ],
+    [
+     19,
+     -0.5
+    ],
+    [
+     20,
+     -0.5
+    ],
+    [
+     1,
+     0.5
+    ],
+    [
+     2,
+     0.5
+    ],
+    [
+     3,
+     0.5
+    ],
+    [
+     4,
+     0.5
+    ],
+    [
+     5,
+     0.5
+    ],
+    [
+     6,
+     0.5
+    ],
+    [
+     7,
+     0.5
+    ],
+    [
+     8,
+     0.5
+    ],
+    [
+     9,
+     0.5
+    ],
+    [
+     10,
+     0.5
+    ],
+    [
+     11,
+     0.5
+    ],
+    [
+     12,
+     0.5
+    ],
+    [
+     13,
+     0.5
+    ],
+    [
+     14,
+     0.5
+    ],
+    [
+     15,
+     0.5
+    ],
+    [
+     16,
+     0.5
+    ],
+    [
+     17,
+     0.5
+    ],
+    [
+     18,
+     0.5
+    ],
+    [
+     19,
+     0.5
+    ],
+    [
+     20,
+     0.5
+    ]
+   ],
+   "lateral": true,
+   "afterFinal": "The Nietzschean moves to the center of the Board, then turns to face the most Titans.",
+   "afterWindow": true,
+   "weakspot": [
+    -2,
+    -0.5
+   ],
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR1075",
+   "tier": 1,
+   "name": "Rend",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Titan in Blindspot",
+    "Last to Wound in sight, in range",
+    "Closest Titan in sight, in range"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 3+: +1 EVADE_DICE",
+    "Gain 2 Ambrosia tokens, +1 RAGE and the Hatred Condition card.",
+    "Exhaust your Armor.",
+    "Each hit deals 2 DANGER."
+   ],
+   "after": "Knockback 10. Knockdown.",
+   "afterWindow": true,
+   "stepJoin": [
+    2,
+    3
+   ]
+  },
+  {
+   "code": "BR1076",
+   "tier": 1,
+   "name": "World of Hurt",
+   "kind": "ZONE ATTACK",
+   "dice": 4,
+   "toHit": 9,
+   "target": [
+    "Blast Zone"
+   ],
+   "steps": [
+    "⚡ TURN TO FACE THE MOST TITANS & ATTACK",
+    "Each hit deals 2 DANGER.",
+    "Burn.",
+    "⚡ Knockdown. Knockback 7."
+   ],
+   "pattern": [
+    [
+     0,
+     -2.5
+    ],
+    [
+     0,
+     -1.5
+    ],
+    [
+     1,
+     -0.5
+    ],
+    [
+     2,
+     -0.5
+    ],
+    [
+     3,
+     -0.5
+    ],
+    [
+     4,
+     -0.5
+    ],
+    [
+     5,
+     -0.5
+    ],
+    [
+     6,
+     -0.5
+    ],
+    [
+     7,
+     -0.5
+    ],
+    [
+     8,
+     -0.5
+    ],
+    [
+     9,
+     -0.5
+    ],
+    [
+     10,
+     -0.5
+    ],
+    [
+     11,
+     -0.5
+    ],
+    [
+     12,
+     -0.5
+    ],
+    [
+     13,
+     -0.5
+    ],
+    [
+     14,
+     -0.5
+    ],
+    [
+     15,
+     -0.5
+    ],
+    [
+     16,
+     -0.5
+    ],
+    [
+     17,
+     -0.5
+    ],
+    [
+     18,
+     -0.5
+    ],
+    [
+     19,
+     -0.5
+    ],
+    [
+     20,
+     -0.5
+    ],
+    [
+     1,
+     0.5
+    ],
+    [
+     2,
+     0.5
+    ],
+    [
+     3,
+     0.5
+    ],
+    [
+     4,
+     0.5
+    ],
+    [
+     5,
+     0.5
+    ],
+    [
+     6,
+     0.5
+    ],
+    [
+     7,
+     0.5
+    ],
+    [
+     8,
+     0.5
+    ],
+    [
+     9,
+     0.5
+    ],
+    [
+     10,
+     0.5
+    ],
+    [
+     11,
+     0.5
+    ],
+    [
+     12,
+     0.5
+    ],
+    [
+     13,
+     0.5
+    ],
+    [
+     14,
+     0.5
+    ],
+    [
+     15,
+     0.5
+    ],
+    [
+     16,
+     0.5
+    ],
+    [
+     17,
+     0.5
+    ],
+    [
+     18,
+     0.5
+    ],
+    [
+     19,
+     0.5
+    ],
+    [
+     20,
+     0.5
+    ],
+    [
+     0,
+     1.5
+    ],
+    [
+     0,
+     2.5
+    ]
+   ],
+   "faceMost": true,
+   "after": "FATE 3+: Exhaust your Armor.",
+   "afterWindow": false,
+   "weakspot": [
+    -2,
+    0.5
+   ],
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR1077",
+   "tier": 2,
+   "name": "Domain",
+   "kind": "ZONE ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Titan in Blindspot",
+    "Closest Titan in sight, in range"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Gain 1 Ambrosia token.\n| FATE 5+: 2 Ambrosia tokens instead",
+    "One hit deals 3 DANGER, two hits deal 6 DANGER, three hits deal 8 DANGER.",
+    "⚡ Knockback 9."
+   ],
+   "afterFinal": "The Nietzschean moves to the center of the Board, then turns to face the most Titans.",
+   "afterWindow": true,
+   "pattern": [
+    [
+     -1,
+     -3.5
+    ],
+    [
+     0,
+     -3.5
+    ],
+    [
+     -2,
+     -2.5
+    ],
+    [
+     -1,
+     -2.5
+    ],
+    [
+     0,
+     -2.5
+    ],
+    [
+     1,
+     -2.5
+    ],
+    [
+     -3,
+     -1.5
+    ],
+    [
+     -2,
+     -1.5
+    ],
+    [
+     -1,
+     -1.5
+    ],
+    [
+     0,
+     -1.5
+    ],
+    [
+     1,
+     -1.5
+    ],
+    [
+     2,
+     -1.5
+    ],
+    [
+     -4,
+     -0.5
+    ],
+    [
+     -3,
+     -0.5
+    ],
+    [
+     -2,
+     -0.5
+    ],
+    [
+     1,
+     -0.5
+    ],
+    [
+     2,
+     -0.5
+    ],
+    [
+     3,
+     -0.5
+    ],
+    [
+     -4,
+     0.5
+    ],
+    [
+     -3,
+     0.5
+    ],
+    [
+     -2,
+     0.5
+    ],
+    [
+     1,
+     0.5
+    ],
+    [
+     2,
+     0.5
+    ],
+    [
+     3,
+     0.5
+    ],
+    [
+     -3,
+     1.5
+    ],
+    [
+     -2,
+     1.5
+    ],
+    [
+     -1,
+     1.5
+    ],
+    [
+     1,
+     1.5
+    ],
+    [
+     2,
+     1.5
+    ],
+    [
+     -2,
+     2.5
+    ],
+    [
+     -1,
+     2.5
+    ],
+    [
+     0,
+     2.5
+    ],
+    [
+     1,
+     2.5
+    ],
+    [
+     -1,
+     3.5
+    ],
+    [
+     0,
+     3.5
+    ]
+   ],
+   "weakspot": [
+    0,
+    1.5
+   ],
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR1078",
+   "tier": 2,
+   "name": "Pail of Ash",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Furthest Titan in sight"
+   ],
+   "steps": [
+    "APPEAR BEHIND & ATTACK",
+    "Gain 1 Ambrosia token and +1 RAGE per hit.",
+    "Deal as many DANGER as you have RAGE.",
+    "For each hit, gain 1 negative Precision token.",
+    "⚡ Knockdown."
+   ],
+   "appearBehind": true,
+   "stepJoin": [
+    2,
+    3
+   ],
+   "weakspot": [
+    [
+     -2,
+     -0.5
+    ],
+    [
+     -2,
+     0.5
+    ]
+   ]
+  },
+  {
+   "code": "BR1079",
+   "tier": 2,
+   "name": "Rendezvous with Death",
+   "kind": "ZONE ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Furthest Titan in front, in range",
+    "Furthest Titan in sight, in range"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK",
+    "Gain 1 Ambrosia token and +1 RAGE.\n| FATE 3+: 2 Ambrosia tokens and +2 RAGE instead",
+    "One hit deals 5 DANGER, two hits deal 8 DANGER, three hits you die.",
+    "⚡ Knockback 9."
+   ],
+   "pattern": [
+    [
+     1,
+     -0.5
+    ],
+    [
+     2,
+     -0.5
+    ],
+    [
+     3,
+     -0.5
+    ],
+    [
+     4,
+     -0.5
+    ],
+    [
+     5,
+     -0.5
+    ],
+    [
+     6,
+     -0.5
+    ],
+    [
+     7,
+     -0.5
+    ],
+    [
+     8,
+     -0.5
+    ],
+    [
+     9,
+     -0.5
+    ],
+    [
+     10,
+     -0.5
+    ],
+    [
+     11,
+     -0.5
+    ],
+    [
+     12,
+     -0.5
+    ],
+    [
+     13,
+     -0.5
+    ],
+    [
+     14,
+     -0.5
+    ],
+    [
+     15,
+     -0.5
+    ],
+    [
+     16,
+     -0.5
+    ],
+    [
+     17,
+     -0.5
+    ],
+    [
+     18,
+     -0.5
+    ],
+    [
+     19,
+     -0.5
+    ],
+    [
+     20,
+     -0.5
+    ],
+    [
+     1,
+     0.5
+    ],
+    [
+     2,
+     0.5
+    ],
+    [
+     3,
+     0.5
+    ],
+    [
+     4,
+     0.5
+    ],
+    [
+     5,
+     0.5
+    ],
+    [
+     6,
+     0.5
+    ],
+    [
+     7,
+     0.5
+    ],
+    [
+     8,
+     0.5
+    ],
+    [
+     9,
+     0.5
+    ],
+    [
+     10,
+     0.5
+    ],
+    [
+     11,
+     0.5
+    ],
+    [
+     12,
+     0.5
+    ],
+    [
+     13,
+     0.5
+    ],
+    [
+     14,
+     0.5
+    ],
+    [
+     15,
+     0.5
+    ],
+    [
+     16,
+     0.5
+    ],
+    [
+     17,
+     0.5
+    ],
+    [
+     18,
+     0.5
+    ],
+    [
+     19,
+     0.5
+    ],
+    [
+     20,
+     0.5
+    ],
+    [
+     1,
+     1.5
+    ],
+    [
+     2,
+     1.5
+    ],
+    [
+     3,
+     1.5
+    ],
+    [
+     4,
+     1.5
+    ],
+    [
+     5,
+     1.5
+    ],
+    [
+     6,
+     1.5
+    ],
+    [
+     7,
+     1.5
+    ],
+    [
+     8,
+     1.5
+    ],
+    [
+     9,
+     1.5
+    ],
+    [
+     10,
+     1.5
+    ],
+    [
+     11,
+     1.5
+    ],
+    [
+     12,
+     1.5
+    ],
+    [
+     13,
+     1.5
+    ],
+    [
+     14,
+     1.5
+    ],
+    [
+     15,
+     1.5
+    ],
+    [
+     16,
+     1.5
+    ],
+    [
+     17,
+     1.5
+    ],
+    [
+     18,
+     1.5
+    ],
+    [
+     19,
+     1.5
+    ],
+    [
+     20,
+     1.5
+    ]
+   ],
+   "lateral": true,
+   "afterFinal": "The Nietzschean moves to the center of the Board, then turns to face the most Titans.",
+   "afterWindow": true,
+   "weakspot": [
+    0,
+    -1.5
+   ],
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR1080",
+   "tier": 2,
+   "name": "Abyssgrasp",
+   "kind": "JUDGEMENT",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Titan in Blindspot",
+    "Last to Wound in sight, in range",
+    "Closest Titan in sight, in range"
+   ],
+   "steps": [
+    "⚡ MOVE & JUDGE | FATE 6+: +1 EVADE_DICE",
+    "One hit, gain the Hatred Condition card and +2 RAGE, two hits, gain the Frenzy Condition card and +3 RAGE, three or more hits, gain +4 RAGE and draw a Kratos card."
+   ],
+   "judge": [
+    "Courage",
+    "Will"
+   ],
+   "after": "Knockback 12. Knockdown.",
+   "afterWindow": false,
+   "weakspot": [
+    -1,
+    1.5
+   ]
+  },
+  {
+   "code": "BR1081",
+   "tier": 2,
+   "name": "Dawn of Dust",
+   "kind": "ZONE ATTACK",
+   "dice": 3,
+   "toHit": 8,
+   "target": [
+    "Dust Zone"
+   ],
+   "steps": [
+    "⚡ ATTACK",
+    "For each hit gain 1 negative Precision token and 1 Ambrosia token.",
+    "Gain +1 RAGE.",
+    "Each hit deals 3 DANGER.",
+    "Knockdown."
+   ],
+   "afterFinal": "If no Titan was hit, the Nietzschean moves to the center of the Board, then turns to face the most Titans.",
+   "afterWindow": true,
+   "diamond": 5,
+   "weakspot": [
+    1,
+    -0.5
+   ],
+   "stepJoin": [
+    2,
+    3
+   ]
+  },
+  {
+   "code": "BR1082",
+   "tier": 2,
+   "name": "World of Fire",
+   "kind": "ZONE ATTACK",
+   "dice": 4,
+   "toHit": 9,
+   "target": [
+    "Blast Zone"
+   ],
+   "steps": [
+    "⚡ TURN TO FACE THE MOST TITANS & ATTACK | FATE 5+: +1 EVADE_DICE",
+    "Each hit deals 2 DANGER.",
+    "Burn.",
+    "⚡ Knockdown. Knockback 7."
+   ],
+   "pattern": [
+    [
+     0,
+     -3.5
+    ],
+    [
+     1,
+     -3.5
+    ],
+    [
+     0,
+     -2.5
+    ],
+    [
+     1,
+     -2.5
+    ],
+    [
+     -2,
+     -1.5
+    ],
+    [
+     -1,
+     -1.5
+    ],
+    [
+     0,
+     -1.5
+    ],
+    [
+     1,
+     -1.5
+    ],
+    [
+     2,
+     -1.5
+    ],
+    [
+     3,
+     -1.5
+    ],
+    [
+     4,
+     -1.5
+    ],
+    [
+     5,
+     -1.5
+    ],
+    [
+     6,
+     -1.5
+    ],
+    [
+     7,
+     -1.5
+    ],
+    [
+     8,
+     -1.5
+    ],
+    [
+     9,
+     -1.5
+    ],
+    [
+     10,
+     -1.5
+    ],
+    [
+     11,
+     -1.5
+    ],
+    [
+     12,
+     -1.5
+    ],
+    [
+     13,
+     -1.5
+    ],
+    [
+     14,
+     -1.5
+    ],
+    [
+     15,
+     -1.5
+    ],
+    [
+     16,
+     -1.5
+    ],
+    [
+     17,
+     -1.5
+    ],
+    [
+     18,
+     -1.5
+    ],
+    [
+     19,
+     -1.5
+    ],
+    [
+     20,
+     -1.5
+    ],
+    [
+     1,
+     -0.5
+    ],
+    [
+     2,
+     -0.5
+    ],
+    [
+     3,
+     -0.5
+    ],
+    [
+     4,
+     -0.5
+    ],
+    [
+     5,
+     -0.5
+    ],
+    [
+     6,
+     -0.5
+    ],
+    [
+     7,
+     -0.5
+    ],
+    [
+     8,
+     -0.5
+    ],
+    [
+     9,
+     -0.5
+    ],
+    [
+     10,
+     -0.5
+    ],
+    [
+     11,
+     -0.5
+    ],
+    [
+     12,
+     -0.5
+    ],
+    [
+     13,
+     -0.5
+    ],
+    [
+     14,
+     -0.5
+    ],
+    [
+     15,
+     -0.5
+    ],
+    [
+     16,
+     -0.5
+    ],
+    [
+     17,
+     -0.5
+    ],
+    [
+     18,
+     -0.5
+    ],
+    [
+     19,
+     -0.5
+    ],
+    [
+     20,
+     -0.5
+    ],
+    [
+     1,
+     0.5
+    ],
+    [
+     2,
+     0.5
+    ],
+    [
+     3,
+     0.5
+    ],
+    [
+     4,
+     0.5
+    ],
+    [
+     5,
+     0.5
+    ],
+    [
+     6,
+     0.5
+    ],
+    [
+     7,
+     0.5
+    ],
+    [
+     8,
+     0.5
+    ],
+    [
+     9,
+     0.5
+    ],
+    [
+     10,
+     0.5
+    ],
+    [
+     11,
+     0.5
+    ],
+    [
+     12,
+     0.5
+    ],
+    [
+     13,
+     0.5
+    ],
+    [
+     14,
+     0.5
+    ],
+    [
+     15,
+     0.5
+    ],
+    [
+     16,
+     0.5
+    ],
+    [
+     17,
+     0.5
+    ],
+    [
+     18,
+     0.5
+    ],
+    [
+     19,
+     0.5
+    ],
+    [
+     20,
+     0.5
+    ],
+    [
+     -2,
+     1.5
+    ],
+    [
+     -1,
+     1.5
+    ],
+    [
+     0,
+     1.5
+    ],
+    [
+     1,
+     1.5
+    ],
+    [
+     2,
+     1.5
+    ],
+    [
+     3,
+     1.5
+    ],
+    [
+     4,
+     1.5
+    ],
+    [
+     5,
+     1.5
+    ],
+    [
+     6,
+     1.5
+    ],
+    [
+     7,
+     1.5
+    ],
+    [
+     8,
+     1.5
+    ],
+    [
+     9,
+     1.5
+    ],
+    [
+     10,
+     1.5
+    ],
+    [
+     11,
+     1.5
+    ],
+    [
+     12,
+     1.5
+    ],
+    [
+     13,
+     1.5
+    ],
+    [
+     14,
+     1.5
+    ],
+    [
+     15,
+     1.5
+    ],
+    [
+     16,
+     1.5
+    ],
+    [
+     17,
+     1.5
+    ],
+    [
+     18,
+     1.5
+    ],
+    [
+     19,
+     1.5
+    ],
+    [
+     20,
+     1.5
+    ],
+    [
+     0,
+     2.5
+    ],
+    [
+     1,
+     2.5
+    ],
+    [
+     0,
+     3.5
+    ],
+    [
+     1,
+     3.5
+    ]
+   ],
+   "faceMost": true,
+   "after": "FATE 6+: Exhaust all your Gear.",
+   "afterWindow": false,
+   "weakspot": [
+    -2,
+    0.5
+   ],
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR1083",
+   "tier": 3,
+   "name": "Visage of Death",
+   "kind": "JUDGEMENT",
+   "dice": 3,
+   "toHit": 11,
+   "target": [
+    "Last to Wound in sight",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "JUDGE | FATE 7+: +1 EVADE_DICE",
+    "One hit, gain the Frenzy Condition card and +3 RAGE, two or three hits, draw an Obol, four hits, you die."
+   ],
+   "judge": [
+    "Courage",
+    "Will"
+   ],
+   "after": "Knockback 10. Knockdown. Gain the Fused Souls Trauma card.",
+   "afterWindow": false,
+   "weakspot": [
+    [
+     -2,
+     -0.5
+    ],
+    [
+     -2,
+     0.5
+    ]
+   ]
+  },
+  {
+   "code": "BR1084",
+   "tier": 3,
+   "name": "Ashbite",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Titan in Blindspot",
+    "Last to Wound in sight, in range",
+    "Closest Titan in sight, in range"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 6+: If hit, you die",
+    "Gain 3 Ambrosia tokens.",
+    "Exhaust all your Gear.",
+    "One hit deals 6 DANGER, two hits deal 9 DANGER, 3 hits, you die."
+   ],
+   "after": "Knockdown. Knockback 12.",
+   "afterWindow": true,
+   "stepJoin": [
+    2,
+    3
+   ],
+   "weakspot": [
+    -1,
+    -1.5
+   ]
+  },
+  {
+   "code": "BR1085",
+   "tier": 3,
+   "name": "Dust of Dreams",
+   "kind": "ZONE ATTACK",
+   "dice": 4,
+   "toHit": 9,
+   "target": [
+    "Dust Zone"
+   ],
+   "steps": [
+    "⚡ ATTACK",
+    "For each hit gain 1 negative Precision token, 2 Ambrosia tokens and +1 RAGE.",
+    "Each hit deals 3 DANGER.",
+    "⚡ FATE 5+: Knockdown."
+   ],
+   "afterFinal": "If no Titan was hit, the Nietzschean moves to the center of the Board, then turns to face the most Titans.",
+   "afterWindow": true,
+   "diamond": 6,
+   "weakspot": [
+    1,
+    0.5
+   ],
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR1086",
+   "tier": 3,
+   "name": "Ender of Tales",
+   "kind": "ZONE JUDGEMENT",
+   "dice": 2,
+   "toHit": 11,
+   "target": [
+    "Closest Titan with a Unique Weapon card in sight",
+    "Last to Wound in sight",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "APPEAR IN FRONT & JUDGE | FATE 7+: +1 EVADE_DICE",
+    "Permanently lose the Unique Weapon card.",
+    "One hit, gain +2 RAGE, two hits, gain +3 RAGE, three hits, gain +4 RAGE. The Attack deals as many DANGER as you have RAGE."
+   ],
+   "judge": [
+    "Courage",
+    "Fury"
+   ],
+   "doomed": true,
+   "appearFront": true,
+   "pattern": [
+    [
+     1,
+     -1.5
+    ],
+    [
+     2,
+     -1.5
+    ],
+    [
+     3,
+     -1.5
+    ],
+    [
+     4,
+     -1.5
+    ],
+    [
+     5,
+     -1.5
+    ],
+    [
+     6,
+     -1.5
+    ],
+    [
+     7,
+     -1.5
+    ],
+    [
+     8,
+     -1.5
+    ],
+    [
+     9,
+     -1.5
+    ],
+    [
+     10,
+     -1.5
+    ],
+    [
+     11,
+     -1.5
+    ],
+    [
+     12,
+     -1.5
+    ],
+    [
+     13,
+     -1.5
+    ],
+    [
+     14,
+     -1.5
+    ],
+    [
+     15,
+     -1.5
+    ],
+    [
+     16,
+     -1.5
+    ],
+    [
+     17,
+     -1.5
+    ],
+    [
+     18,
+     -1.5
+    ],
+    [
+     19,
+     -1.5
+    ],
+    [
+     20,
+     -1.5
+    ],
+    [
+     1,
+     -0.5
+    ],
+    [
+     2,
+     -0.5
+    ],
+    [
+     3,
+     -0.5
+    ],
+    [
+     4,
+     -0.5
+    ],
+    [
+     5,
+     -0.5
+    ],
+    [
+     6,
+     -0.5
+    ],
+    [
+     7,
+     -0.5
+    ],
+    [
+     8,
+     -0.5
+    ],
+    [
+     9,
+     -0.5
+    ],
+    [
+     10,
+     -0.5
+    ],
+    [
+     11,
+     -0.5
+    ],
+    [
+     12,
+     -0.5
+    ],
+    [
+     13,
+     -0.5
+    ],
+    [
+     14,
+     -0.5
+    ],
+    [
+     15,
+     -0.5
+    ],
+    [
+     16,
+     -0.5
+    ],
+    [
+     17,
+     -0.5
+    ],
+    [
+     18,
+     -0.5
+    ],
+    [
+     19,
+     -0.5
+    ],
+    [
+     20,
+     -0.5
+    ],
+    [
+     1,
+     0.5
+    ],
+    [
+     2,
+     0.5
+    ],
+    [
+     3,
+     0.5
+    ],
+    [
+     4,
+     0.5
+    ],
+    [
+     5,
+     0.5
+    ],
+    [
+     6,
+     0.5
+    ],
+    [
+     7,
+     0.5
+    ],
+    [
+     8,
+     0.5
+    ],
+    [
+     9,
+     0.5
+    ],
+    [
+     10,
+     0.5
+    ],
+    [
+     11,
+     0.5
+    ],
+    [
+     12,
+     0.5
+    ],
+    [
+     13,
+     0.5
+    ],
+    [
+     14,
+     0.5
+    ],
+    [
+     15,
+     0.5
+    ],
+    [
+     16,
+     0.5
+    ],
+    [
+     17,
+     0.5
+    ],
+    [
+     18,
+     0.5
+    ],
+    [
+     19,
+     0.5
+    ],
+    [
+     20,
+     0.5
+    ],
+    [
+     1,
+     1.5
+    ],
+    [
+     2,
+     1.5
+    ],
+    [
+     3,
+     1.5
+    ],
+    [
+     4,
+     1.5
+    ],
+    [
+     5,
+     1.5
+    ],
+    [
+     6,
+     1.5
+    ],
+    [
+     7,
+     1.5
+    ],
+    [
+     8,
+     1.5
+    ],
+    [
+     9,
+     1.5
+    ],
+    [
+     10,
+     1.5
+    ],
+    [
+     11,
+     1.5
+    ],
+    [
+     12,
+     1.5
+    ],
+    [
+     13,
+     1.5
+    ],
+    [
+     14,
+     1.5
+    ],
+    [
+     15,
+     1.5
+    ],
+    [
+     16,
+     1.5
+    ],
+    [
+     17,
+     1.5
+    ],
+    [
+     18,
+     1.5
+    ],
+    [
+     19,
+     1.5
+    ],
+    [
+     20,
+     1.5
+    ]
+   ],
+   "afterFinal": "The Nietzschean moves to the center of the Board, then turns to face the most Titans.",
+   "afterWindow": true,
+   "weakspot": [
+    -1,
+    -1.5
+   ]
+  },
+  {
+   "code": "BR1087",
+   "tier": 3,
+   "name": "Skullpyre",
+   "kind": "JUDGEMENT",
+   "dice": 2,
+   "toHit": 10,
+   "target": [
+    "Titan in Blindspot",
+    "Last to Wound in sight, in range",
+    "Closest Titan in sight, in range"
+   ],
+   "steps": [
+    "⚡ MOVE & JUDGE | FATE 6+: +1 EVADE_DICE",
+    "If hit, you die."
+   ],
+   "judge": [
+    "Will",
+    "Endurance"
+   ],
+   "doomed": true,
+   "after": "Knockdown. Knockback 12.",
+   "afterWindow": true,
+   "weakspot": [
+    0,
+    1.5
+   ]
+  },
+  {
+   "code": "BR1088",
+   "tier": 3,
+   "name": "World of Black",
+   "kind": "ZONE ATTACK",
+   "dice": 6,
+   "toHit": 9,
+   "target": [
+    "Blast Zone and Dust Zone"
+   ],
+   "steps": [
+    "⚡ ATTACK",
+    "Each hit deals 2 DANGER and either:",
+    "Blast Zone: Gain +2 RAGE. Burn.\n⚡ Knockdown. Knockback 7.\nDust Zone: Gain +1 RAGE.\nGain 2 Ambrosia tokens.\n⚡ Knockdown. Pull 5."
+   ],
+   "worldBlack": true,
+   "afterFinal": "If no Titan was hit, Unbreakable Combo.",
+   "afterWindow": true,
+   "diamond": 7,
+   "weakspot": [
+    1,
+    0.5
+   ],
+   "dustMin": 9
+  },
+  {
+   "code": "BR1089",
+   "tier": "X",
+   "name": "Measure of Worth",
+   "kind": "SIGNATURE",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Closest Titan in front, in range",
+    "Closest Titan in sight, in range"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "One hit deals 3 DANGER, two hits deal 5 DANGER, three hits deal 7 DANGER.",
+    "Knockback 8."
+   ],
+   "pattern": [
+    [
+     1,
+     -1.5
+    ],
+    [
+     1,
+     -0.5
+    ],
+    [
+     2,
+     -0.5
+    ],
+    [
+     1,
+     0.5
+    ],
+    [
+     2,
+     0.5
+    ],
+    [
+     1,
+     1.5
+    ]
+   ],
+   "zoneSig": true,
+   "afterFinal": "RAGE 5+: Perform Combo.",
+   "afterWindow": true,
+   "weakspot": [
+    0,
+    -1.5
+   ],
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "BR1090",
+   "tier": "X",
+   "name": "Found Wanting",
+   "kind": "ROUTINE",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Last to Wound in sight",
+    "Closest Titan"
+   ],
+   "steps": [
+    "⚡ MOVE UNLIMITED & ATTACK",
+    "Each hit deals 3 DANGER.",
+    "Knockback 10."
+   ],
+   "pattern": [
+    [
+     1,
+     -2.5
+    ],
+    [
+     1,
+     -1.5
+    ],
+    [
+     2,
+     -1.5
+    ],
+    [
+     1,
+     -0.5
+    ],
+    [
+     2,
+     -0.5
+    ],
+    [
+     3,
+     -0.5
+    ],
+    [
+     1,
+     0.5
+    ],
+    [
+     2,
+     0.5
+    ],
+    [
+     3,
+     0.5
+    ],
+    [
+     1,
+     1.5
+    ],
+    [
+     2,
+     1.5
+    ],
+    [
+     1,
+     2.5
+    ]
+   ],
+   "routineAttack": true,
+   "unlimited": true,
+   "noTarget": "Random Titan dies",
+   "after": "Exhaust all your Gear.",
+   "afterWindow": false,
+   "weakspot": [
+    0,
+    -1.5
+   ],
+   "stepJoin": [
+    2
+   ]
+  }
+ ],
+ "bp": [
+  {
+   "code": "BS1092",
+   "tier": 1,
+   "name": "Spartan Gauntlet",
+   "at": 7,
+   "responses": {
+    "FAIL": "Gain +1 RAGE. Exhaust your active Weapon.",
+    "WOUND": "Lose -1 Humanity (campaign). Gain +1 RAGE."
+   },
+   "critical": "Gain +1 Humanity (campaign). You may perform a Bonus Attack!",
+   "prisoners": true,
+   "qeye": false
+  },
+  {
+   "code": "BS1093",
+   "tier": 1,
+   "name": "Right Leg",
+   "at": 3,
+   "responses": {
+    "FAIL": "Gain +1 RAGE. Escalate 1.",
+    "WOUND": "Gain +3 DANGER and during the second ability window place 2 additional Break tokens in the Kratos Pool."
+   },
+   "critical": "You may perform a Bonus Attack!",
+   "hardened": true,
+   "qeye": false
+  },
+  {
+   "code": "BS1094",
+   "tier": 1,
+   "name": "Black-Muscled Abdomen",
+   "at": 7,
+   "responses": {
+    "INSTINCT": "Exhaust your active Weapon."
+   },
+   "critical": "The Nietzschean gains 1 negative To Hit token.",
+   "qeye": true
+  },
+  {
+   "code": "BS1095",
+   "tier": 1,
+   "name": "Ambrosial Vesicle",
+   "at": 5,
+   "responses": {
+    "FAIL": "Perform Signature against the Attacker.",
+    "WOUND": "Gain 1 Ambrosia token."
+   },
+   "critical": "Unexhaust all of your Gear and perform a Bonus Attack!",
+   "qeye": true
+  },
+  {
+   "code": "BS1096",
+   "tier": 1,
+   "name": "Hardened Ambrosial Skin",
+   "at": 4,
+   "responses": {
+    "FAIL": "Gain 2 Ambrosia tokens."
+   },
+   "critical": "Gain the Umbral Virus Gear card (campaign).",
+   "hardened": true,
+   "qeye": false
+  },
+  {
+   "code": "BS1097",
+   "tier": 1,
+   "name": "Mask of Smoke",
+   "at": 6,
+   "responses": {
+    "FAIL": "Perform Signature against the Attacker.",
+    "WOUND": "The Nietzschean moves 4 spaces directly away from the Attacker (without turning)."
+   },
+   "critical": "Disable Hardened.",
+   "qeye": true
+  },
+  {
+   "code": "BS1098",
+   "tier": 2,
+   "name": "Faces of Defeat",
+   "at": 8,
+   "responses": {
+    "FAIL": "Gain +1 RAGE, 1 Ambrosia token and the Hatred Condition card.",
+    "WOUND": "Gain +2 DANGER. The Nietzschean moves 5 spaces directly away from the Attacker (without turning)."
+   },
+   "critical": "Permanently gain +1 Courage and +1 Precision (campaign).",
+   "qeye": true
+  },
+  {
+   "code": "BS1099",
+   "tier": 2,
+   "name": "Inscribed Ribcage",
+   "at": 8,
+   "responses": {
+    "FAIL": "⚡ Knockback 10. Knockdown. Gain +2 DANGER.",
+    "WOUND": "Gain +2 RAGE and +1 DANGER."
+   },
+   "critical": "Gain the Fumeblade Gear card (campaign).",
+   "qeye": true
+  },
+  {
+   "code": "BS1100",
+   "tier": 2,
+   "name": "Black Bones",
+   "at": 5,
+   "responses": {
+    "FAIL": "Gain +2 RAGE and +1 DANGER.",
+    "WOUND": "Lose -1 Humanity (campaign). Gain +2 RAGE."
+   },
+   "critical": "Gain +1 Humanity. Gain +1 RAGE, you may lose -2 FATE and -2 DANGER, then you may perform a Bonus Attack!",
+   "hardened": true,
+   "prisoners": true,
+   "qeye": false
+  },
+  {
+   "code": "BS1101",
+   "tier": 2,
+   "name": "Sword Graveyard",
+   "at": 9,
+   "responses": {
+    "FAIL": "Permanently lose your active Weapon if it has a Sword or Slabsword Trait. Exhaust any other active Weapon.",
+    "WOUND": "Unexhaust all your exhausted Gear."
+   },
+   "critical": "Gain the Necroxiphos Gear card (campaign).",
+   "qeye": false
+  },
+  {
+   "code": "BS1102",
+   "tier": 2,
+   "name": "Blazing Muscles",
+   "at": 5,
+   "responses": {
+    "FAIL": "Burn.",
+    "WOUND": "Gain +1 DANGER and during the second ability window place 2 additional Fire tokens in the Kratos Pool."
+   },
+   "critical": "Gain the Elephantine Armor Gear card (campaign).",
+   "hardened": true,
+   "qeye": false
+  },
+  {
+   "code": "BS1103",
+   "tier": 2,
+   "name": "Bloodied Wool Strand",
+   "at": 7,
+   "responses": {
+    "FAIL": "Gain 1 Despair token and +3 DANGER. Exhaust all your Gear.",
+    "WOUND": "Gain +2 RAGE, +2 DANGER and 1 Ambrosia token."
+   },
+   "critical": "Immediately resolve The Strand Special Event and permanently gain the following effects (once per Argonaut Lifetime) (campaign):\nStart of Battle: Gain 1 Ambrosia token.\nFor Awakening rolls, treat a '9' result as a '10'.",
+   "qeye": true
+  },
+  {
+   "code": "BS1104",
+   "tier": 3,
+   "name": "Skullhead",
+   "at": 17,
+   "responses": {
+    "FAIL": "Draw an Obol.",
+    "WOUND": "Exhaust your active Weapon. The Nietzschean moves 4 spaces directly away from the Attacker (without turning)."
+   },
+   "critical": "Your Obol threshold is permanently increased by 1 (campaign).",
+   "qeye": true
+  },
+  {
+   "code": "BS1105",
+   "tier": 3,
+   "name": "Pygmalion Stone",
+   "at": 17,
+   "responses": {
+    "FAIL": "Gain +5 DANGER.",
+    "WOUND": "Gain +3 RAGE and +2 DANGER."
+   },
+   "critical": "Gain 1 Pygmalion Stone (campaign).",
+   "qeye": false
+  },
+  {
+   "code": "BS1106",
+   "tier": 3,
+   "name": "Billowing Maw",
+   "at": 18,
+   "responses": {
+    "INSTINCT": "Burn."
+   },
+   "critical": "Treat Fire Combos as automatically broken. Gain the Cowl of Char Gear card (campaign).",
+   "qeye": true
+  },
+  {
+   "code": "BS1107",
+   "tier": 3,
+   "name": "The Heel",
+   "at": 16,
+   "responses": {
+    "FAIL": "Gain the Frenzy Condition card.",
+    "WOUND": "Gain +3 DANGER and during the second ability window place 3 additional Black tokens in the Kratos Pool."
+   },
+   "critical": "The Heel Special Event (campaign).",
+   "hardened": true,
+   "qeye": false
+  },
+  {
+   "code": "BS1108",
+   "tier": 3,
+   "name": "The Black Blade",
+   "at": 16,
+   "responses": {
+    "INSTINCT": "Exhaust all your Gear. Gain +3 RAGE."
+   },
+   "critical": "Treat Sword Combos as automatically broken. Permanently gain Ambrosia Limit 5 (campaign).",
+   "hardened": true,
+   "qeye": true
+  },
+  {
+   "code": "BS1109",
+   "tier": 3,
+   "name": "Ambrosial Infestation",
+   "at": 17,
+   "responses": {
+    "INSTINCT": "Gain 2 Ambrosia tokens, then gain twice as many DANGER as you have Ambrosia tokens."
+   },
+   "critical": "Treat Ambrosia Combos as automatically broken.",
+   "qeye": true
+  }
+ ],
+ "inevitable": true,
+ "boteAfterHope": true,
+ "dangerZone": [
+  [
+   -0.5,
+   -1.5
+  ],
+  [
+   0.5,
+   -1.5
+  ],
+  [
+   -0.5,
+   1.5
+  ],
+  [
+   0.5,
+   1.5
+  ]
+ ],
+ "setupFaceMost": true,
+ "basicTraits": [
+  "Lumbering"
+ ]
+}

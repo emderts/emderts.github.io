@@ -1,0 +1,103 @@
+{
+ "id": "nietzschean",
+ "source": "ATO Cycle II Storybook — The Cruel Lesson Battle (p.132)",
+ "board": {
+  "cols": 20,
+  "rows": 14
+ },
+ "_notes": [
+  "Mnestis: normal victory on Wounds; the Battle Track (Show Me Your Power) is ignored. Argo Hull tiles are treated as Indestructible obstacles; the Spartan River Works lose nothing. The What Are You? battle (p.134, Story card 4B) is not used.",
+  "Terrain read from the diagram: Spartan River Works along column 16 (N-B) and row A (6-15); Fortified Cities N17-L19 and D5-B7. Argo Hull tiles on the diagram sit on the river and are not modelled."
+ ],
+ "setup": [
+  "Standard Preparations.",
+  "Primordial Positioning: G14-H15 (skull on the diagram), facing the most Titans.",
+  "Additional Setup: Combo token on the Sword space; add 1 You died! Obol."
+ ],
+ "center": "G10",
+ "variants": {
+  "all": {
+   "levels": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "primordial": {
+    "anchor": "G14"
+   },
+   "titanStarts": [
+    "I10",
+    "H10",
+    "G10",
+    "F10"
+   ],
+   "terrain": {
+    "fortifiedCity": [
+     {
+      "name": "Fortified City NE",
+      "cells": [
+       "L17",
+       "L18",
+       "L19",
+       "M17",
+       "M18",
+       "M19",
+       "N17",
+       "N18",
+       "N19"
+      ]
+     },
+     {
+      "name": "Fortified City SW",
+      "cells": [
+       "B5",
+       "B6",
+       "B7",
+       "C5",
+       "C6",
+       "C7",
+       "D5",
+       "D6",
+       "D7"
+      ]
+     }
+    ],
+    "river": [
+     [
+      "B16",
+      "C16",
+      "D16",
+      "E16",
+      "F16",
+      "G16",
+      "H16",
+      "I16",
+      "J16",
+      "K16",
+      "L16",
+      "M16",
+      "N16"
+     ],
+     [
+      "A6",
+      "A7",
+      "A8",
+      "A9",
+      "A10",
+      "A11",
+      "A12",
+      "A13",
+      "A14",
+      "A15"
+     ]
+    ]
+   }
+  }
+ }
+}

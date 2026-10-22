@@ -1,0 +1,12 @@
+import { chromium } from 'playwright';
+const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' }); const p = await b.newPage({ viewport: { width: 1400, height: 1100 } });
+const errs = []; p.on('pageerror', e => errs.push(e.message));
+await p.goto('file://' + process.cwd() + '/dist/mnestis.html');
+const clsSel = (await p.$$('.titan-grid .tcard .row select'))[0];
+console.log('classes', await clsSel.$$eval('option', os => os.map(o => o.textContent)));
+await clsSel.selectOption('firestarter'); await p.waitForTimeout(100);
+await p.click('text=티탄 정보'); await p.waitForTimeout(100);
+console.log((await p.$eval('#lo-detail', e => e.innerText)).slice(0, 300).replace(/\n/g, ' | '));
+await p.click('text=전투 시작'); await p.waitForTimeout(600);
+console.log('battle started', !!(await p.evaluate(() => window.__game && window.__game.titans[0].cls)));
+console.log('errors:', errs); await b.close();

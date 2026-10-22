@@ -1,0 +1,801 @@
+{
+ "id": "burden",
+ "name": "The Burden",
+ "cycle": 2,
+ "type": "adversary",
+ "sheetCode": "BU1149",
+ "_notes": [
+  "Transcribed from sheet BU1149 (front Lv I / back Lv II-IX), AI BR1110-BR1130, BP BS1131-BS1148, Routine Impostor's Gaze BR1130, Signature Rolling Failure BR1129.",
+  "Mnestis simplification (user): victory only by killing the Burden (Wounds); the Peak / Battle Track is ignored. Forsaken Mountain: column 20 is the top, column 1 the bottom; Titans reaching column 20 are NOT removed.",
+  "Kickback = Knockback that bounces 90° off obstacles/Primordial (towards column 1 when possible), Crash once at the end. Rewind = move the Titan back to the space they started this Round (interpretation: last start-of-turn position).",
+  "Zone patterns: Tides of the Lethe / Umbral Dunk = Zone 2 / Zone 3 after a Jump onto the target. Sequential Attack = targets attacked one by one, highest column first.",
+  "Tethered implemented (path distance around Obstacles; \"above/below\" = strictly higher/lower column). Ties That Bind Us: a Titan outside the limit cannot move voluntarily (every space is a Chasm) and falls if it is involuntarily moved again; it is safe again once other Titans bring it back within the limit. Mnemos-node stealing is still campaign-only.",
+  "Theatre: Not Yet... is ignored (Rewind enabled) — user."
+ ],
+ "footprint": {
+  "w": 2,
+  "h": 2,
+  "rear": "top-edge"
+ },
+ "ukb": 7,
+ "blindspots": null,
+ "burden": true,
+ "levels": {
+  "1": {
+   "toHit": 8,
+   "speed": 9,
+   "wounds": 12,
+   "bonus": {},
+   "traits": [
+    "Tethered",
+    "Kickback X",
+    "Sisyphus's Spiral",
+    "End of Hope",
+    "Splash",
+    "Moirai Vault"
+   ]
+  },
+  "2": {
+   "toHit": 8,
+   "speed": 9,
+   "wounds": 12,
+   "bonus": {
+    "ESCALATION": 1,
+    "AT": 1
+   },
+   "traits": [
+    "Burden Hardest to Bear"
+   ]
+  },
+  "3": {
+   "toHit": 9,
+   "speed": 10,
+   "wounds": 13,
+   "bonus": {
+    "ESCALATION": 1,
+    "AT": 2,
+    "DANGER": 1
+   },
+   "traits": [
+    "Ties That Bind Us"
+   ]
+  },
+  "4": {
+   "toHit": 9,
+   "speed": 10,
+   "wounds": 14,
+   "bonus": {
+    "ESCALATION": 2,
+    "AT": 3,
+    "DANGER": 1
+   },
+   "traits": [
+    "Antisherpa"
+   ]
+  },
+  "5": {
+   "mnestis": true,
+   "toHit": 10,
+   "speed": 11,
+   "wounds": 15,
+   "bonus": {
+    "ESCALATION": 2,
+    "AT": 4,
+    "DANGER": 1
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Icecapade",
+    "Beginning of the End"
+   ]
+  },
+  "6": {
+   "mnestis": true,
+   "toHit": 10,
+   "speed": 11,
+   "wounds": 16,
+   "bonus": {
+    "ESCALATION": 3,
+    "AT": 5,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Slippery Slope"
+   ]
+  },
+  "7": {
+   "mnestis": true,
+   "toHit": 11,
+   "speed": 12,
+   "wounds": 17,
+   "bonus": {
+    "ESCALATION": 3,
+    "AT": 6,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Mountain of Madness"
+   ]
+  },
+  "8": {
+   "mnestis": true,
+   "toHit": 11,
+   "speed": 12,
+   "wounds": 18,
+   "bonus": {
+    "ESCALATION": 4,
+    "AT": 7,
+    "EVADE_DICE": 1,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Timefront Beckons"
+   ]
+  },
+  "9": {
+   "mnestis": true,
+   "toHit": 12,
+   "speed": 13,
+   "wounds": 18,
+   "bonus": {
+    "ESCALATION": 5,
+    "AT": 8,
+    "EVADE_DICE": 2,
+    "DANGER": 3
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Ruthless",
+    "The Game is Rigged"
+   ]
+  }
+ },
+ "traits": {
+  "Kickback X": "Resolve like Knockback X, with the following exceptions. If you move onto an obstacle Terrain tile or the Primordial, you bounce off of it! Change the move's direction by 90 degrees (so it's parallel to the feature) and continue to resolve the remaining Kickback (you may bounce several times). If possible, change direction so that you move towards the bottom of the Board (column 1). If you suffer Crash during Kickback, you suffer it once, at the end of Kickback.",
+  "Sisyphus's Spiral": "When the Burden moves adjacent to its Target, if it is not above the Target (i.e. isn't positioned in higher columns than the Target), it swivels clockwise around the Target, so that it ends up on the four spaces directly above the Target (in higher columns). If the movement is blocked by the Board Edge, the Burden moves onto the Target's space instead and the Target is Displaced onto a lower space adjacent to the Burden.",
+  "End of Hope": "End of Primordial Round: Perform Signature.",
+  "Splash": "When a Titan suffers Crash as a result of Primordial movement, they additionally gain 1 Ambrosia token.",
+  "Moirai Vault": "Place stolen Gear, Mnemos cards and tokens on this Trait; they cannot be used. If you Wound a Fateless Eye BP, instead of dealing a Wound, you may take 1 thing from the Moirai Vault. Then discard the BP card and gain +1 Fate.",
+  "Burden Hardest to Bear": "Remove the Sisyphean Task AI card from the Battle. Additional Setup: Each Titan gains a Sisyphean Condition card. When you deal a Wound, discard a Sisyphean Condition card from your Titan.",
+  "Ties That Bind Us": "Titans can be involuntarily moved outside the Tethered limit. If at any point a Titan is outside the Tethered limit, it treats all spaces as Chasms until it returns within the limit.",
+  "Antisherpa": "Titans in columns 1-7 are dealt +2 Danger per hit. Titans in columns 8-15 are dealt +1 Danger per hit.",
+  "Icecapade": "Disable abilities that allow to treat Slippery tiles as one tile. If you end the Primordial Round or your Titan turn on a Slippery space, move towards the lowest column until you are no longer on a Slippery space. Additional Setup: Alternate Battle Diagram (Rulebook Mnestis Battle Diagrams, Burden Lv 5+).",
+  "Beginning of the End": "End of Primordial Round: Before End of Hope, draw and perform another AI card.",
+  "Slippery Slope": "+3 to all Kickbacks performed by the Burden.",
+  "Mountain of Madness": "Treat the Cliffs marked as red on the diagram as Boundless Board Edges.",
+  "Timefront Beckons": "Start of Battle: Place the Timefront tiles on the bottom column (1). End of Titan Round: ⚡ Move the Timefront 3 spaces up (towards the highest column). If the Timefront moves onto a space occupied by a Titan, this Titan is erased from existence. If the Timefront moves onto a space with a Terrain tile, this tile is destroyed (unless Indestructible). When the Timefront is about to move onto a space occupied by the Primordial, move the Primordial directly away from the Timefront.",
+  "Ruthless": "Remove all positive Trauma cards from the Trauma decks (except Obols).",
+  "The Game is Rigged": "If a Titan ends their turn with the Sisyphean Condition, they die. End of Primordial Round: Burden performs Heal.",
+  "Tethered": "Titans are tethered with ropes. They cannot move in a way that would cause them to be more than 10 spaces (counting around Obstacles) away from the closest Titan above and below them (unless there is no other Titan above/below). If a Titan would be involuntarily moved more than 10 spaces away, this movement immediately stops. If Titans end up more than 10 spaces apart, they can only move towards one another until they adhere. At the end of the Titan Round, if any Titans are more than 10 spaces away from the Titans above or below them, kill Titans until all remaining Titans adhere."
+ },
+ "ai": [
+  {
+   "code": "BR1110",
+   "tier": 0,
+   "name": "Sisyphean Task",
+   "kind": "JUDGEMENT",
+   "target": [
+    "Titan with the most Speed"
+   ],
+   "steps": [
+    "JUDGE",
+    "Gain the Sisyphean Condition card."
+   ],
+   "noRoll": true,
+   "sisTask": true,
+   "after": "Do not trigger End of Hope. Finally, remove this card from the Battle."
+  },
+  {
+   "code": "BR1111",
+   "tier": 1,
+   "name": "Hurtle",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Furthest Titan in the highest column, in range",
+    "Furthest Titan in the highest column"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Each hit deals 2 DANGER. Gain +1 FATE.\n| SIS5: 3 DANGER instead"
+   ],
+   "after": "Kickback 8.\n⚡ Burden moves to the center of the Board.",
+   "afterWindow": false
+  },
+  {
+   "code": "BR1112",
+   "tier": 1,
+   "name": "Siphon Glimpses",
+   "kind": "ATTACK",
+   "dice": 2,
+   "toHit": 9,
+   "target": [
+    "Most Mnemos nodes in range",
+    "Furthest Titan in the highest column"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "If the Attack hits, it deals 5 DANGER.\nSteal 1 Mnemos node.\n| SIS: Steal 2 Mnemos nodes instead",
+    "FATE 5+: Gain 2 Ambrosia tokens."
+   ],
+   "after": "Kickback 6.",
+   "afterWindow": true
+  },
+  {
+   "code": "BR1113",
+   "tier": 1,
+   "name": "Aeacus Gaze",
+   "kind": "JUDGEMENT",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Highest FATE"
+   ],
+   "steps": [
+    "⚡ MOVE TO CENTER & JUDGE",
+    "One hit, deals 1 FATE and suffer Knockdown, two hits, deals 2 FATE and the Paralyzed Condition card, three hits, you die.\n| SIS: Gain 1 additional FATE for each hit"
+   ],
+   "judge": [
+    "Wisdom",
+    "Cunning"
+   ],
+   "moveCenter": true,
+   "after": "Rewind.",
+   "afterWindow": true
+  },
+  {
+   "code": "BR1114",
+   "tier": 1,
+   "name": "Moonfall Bounce",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 8,
+   "target": [
+    "Furthest Titan in the highest column, in range",
+    "Furthest Titan in the highest column"
+   ],
+   "steps": [
+    "JUMP & ATTACK | SIS5: +1 EVADE_DICE",
+    "Each hit deals 2 DANGER and 1 Ambrosia token."
+   ],
+   "jump": true,
+   "after": "Kickback 10.",
+   "afterWindow": true
+  },
+  {
+   "code": "BR1115",
+   "tier": 1,
+   "name": "Leg Pierce",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Priority Target in range",
+    "Furthest Titan in the highest column"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Each hit deals 2 DANGER. Gain +1 FATE.\n| SIS: Gain 1 additional FATE for each hit"
+   ],
+   "after": "Knockdown. Rewind. Gain 1 negative Speed token.",
+   "afterWindow": true
+  },
+  {
+   "code": "BR1116",
+   "tier": 1,
+   "name": "Sisyphean Tilt",
+   "kind": "RANGED SIMULTANEOUS ATTACK",
+   "dice": 3,
+   "toHit": 8,
+   "target": [
+    "2 Titans, starting from the highest column"
+   ],
+   "steps": [
+    "⚡ RANGE ATTACK UNLIMITED",
+    "Each hit deals 2 DANGER. Gain +1 FATE. Kickback 6.\n| SIS5: Kickback 10 instead"
+   ],
+   "topN": 2,
+   "afterFinal": "Burden moves to the center of the Board.",
+   "afterWindow": true
+  },
+  {
+   "code": "BR1117",
+   "tier": 2,
+   "name": "Grand Hurtle",
+   "kind": "ATTACK",
+   "dice": 5,
+   "toHit": 10,
+   "target": [
+    "Furthest Titan in the highest column, in range",
+    "Furthest Titan in the highest column"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Each hit deals 2 DANGER. Gain +2 FATE.\n| SIS5: 3 DANGER instead"
+   ],
+   "after": "Kickback 9.\n⚡ Burden moves to the center of the Board.",
+   "afterWindow": false
+  },
+  {
+   "code": "BR1118",
+   "tier": 2,
+   "name": "Memory Leak",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Most Mnemos nodes in range",
+    "Furthest Titan in the highest column"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK\n| FATE 6+: Gain 2 Ambrosia tokens",
+    "If the Attack hits, it deals 7 DANGER.\nSteal 1 Mnemos node per hit.\n| SIS: Steal a Mnemos card instead"
+   ],
+   "after": "Kickback 6.",
+   "afterWindow": true
+  },
+  {
+   "code": "BR1119",
+   "tier": 2,
+   "name": "Rhadamanthus Gaze",
+   "kind": "JUDGEMENT",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Highest FATE"
+   ],
+   "steps": [
+    "⚡ MOVE TO CENTER & JUDGE | FATE 6+: Gain 1 additional hit",
+    "One hit, deals 1 FATE and suffer Knockdown, two hits, deals 2 FATE and gain the Paralyzed Condition card, three hits, you die.\n| SIS: Gain 1 additional FATE for each hit"
+   ],
+   "judge": [
+    "Wisdom",
+    "Will"
+   ],
+   "moveCenter": true,
+   "after": "Rewind.",
+   "afterWindow": true
+  },
+  {
+   "code": "BR1120",
+   "tier": 2,
+   "name": "Tides of the Lethe",
+   "kind": "ZONE ATTACK",
+   "dice": 4,
+   "toHit": 8,
+   "target": [
+    "Furthest Titan in the highest column, in range",
+    "Furthest Titan in the highest column"
+   ],
+   "steps": [
+    "⚡ JUMP & ATTACK\n| SIS5: +1 EVADE_DICE",
+    "Each hit deals 3 DANGER and 1 Ambrosia token."
+   ],
+   "jump": true,
+   "zone": 2,
+   "after": "Kickback 10.",
+   "afterWindow": true
+  },
+  {
+   "code": "BR1121",
+   "tier": 2,
+   "name": "Mad Gyration",
+   "kind": "SEQUENTIAL ATTACK",
+   "dice": 2,
+   "toHit": 8,
+   "target": [
+    "3 Titans, starting from the highest column"
+   ],
+   "steps": [
+    "⚡ MOVE UNLIMITED & ATTACK",
+    "Each hit deals 3 DANGER and 1 FATE. Kickback 6.\n| SIS7: 4 DANGER instead"
+   ],
+   "topN": 3,
+   "unlimited": true,
+   "afterFinal": "Burden moves to the center of the Board.",
+   "afterWindow": true
+  },
+  {
+   "code": "BR1122",
+   "tier": 2,
+   "name": "The Spike",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Priority Target in range",
+    "Furthest Titan in the highest column"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 6+: +1 EVADE_DICE",
+    "Each hit deals 3 DANGER. Gain 2 Ambrosia tokens."
+   ],
+   "after": "Knockdown. Rewind. Gain 1 negative Speed token.",
+   "afterWindow": true
+  },
+  {
+   "code": "BR1123",
+   "tier": 3,
+   "name": "Soulsteal",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Most Mnemos nodes in range",
+    "Furthest Titan in the highest column"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK\n| FATE 6+: Gain the Fused Souls Trauma card",
+    "If the Attack hits, it deals 9 DANGER.\nSteal 1 Mnemos node per hit.\n| SIS: Steal a Mnemos card instead"
+   ],
+   "after": "Kickback 7.",
+   "afterWindow": true
+  },
+  {
+   "code": "BR1124",
+   "tier": 3,
+   "name": "Grasp from Beyond",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Priority Target in range",
+    "Furthest Titan in the highest column"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 8+: 4 DANGER instead",
+    "Each hit deals 3 DANGER and 1 Ambrosia token. Steal 1 Weapon Gear card.\n| SIS: Steal 3 Gear cards instead"
+   ],
+   "after": "Knockdown. Rewind. Gain 2 negative Speed tokens.",
+   "afterWindow": true
+  },
+  {
+   "code": "BR1125",
+   "tier": 3,
+   "name": "Clean the Table",
+   "kind": "SEQUENTIAL ATTACK",
+   "dice": 2,
+   "toHit": 9,
+   "target": [
+    "All Titans, starting from the highest column"
+   ],
+   "steps": [
+    "⚡ MOVE UNLIMITED & ATTACK",
+    "Each hit deals 3 DANGER and 1 FATE. Kickback 9.\n| SIS7: 4 DANGER instead"
+   ],
+   "topN": 9,
+   "unlimited": true,
+   "afterFinal": "Burden moves to the center of the Board.",
+   "afterWindow": true
+  },
+  {
+   "code": "BR1126",
+   "tier": 3,
+   "name": "Umbral Dunk",
+   "kind": "ZONE ATTACK",
+   "dice": 4,
+   "toHit": 8,
+   "target": [
+    "Furthest Titan in the highest column, in range",
+    "Furthest Titan in the highest column"
+   ],
+   "steps": [
+    "JUMP & ATTACK\n| SIS5: +1 EVADE_DICE",
+    "Each hit deals 3 DANGER and 1 Ambrosia token."
+   ],
+   "jump": true,
+   "zone": 3,
+   "after": "Knockdown. Kickback 10.",
+   "afterWindow": false
+  },
+  {
+   "code": "BR1127",
+   "tier": 3,
+   "name": "Five Faces of Darkness",
+   "kind": "JUDGEMENT",
+   "dice": 4,
+   "toHit": 10,
+   "target": [
+    "Highest FATE"
+   ],
+   "steps": [
+    "⚡ MOVE TO CENTER & JUDGE | SIS: Doomed | FATE 6+: Gain 1 additional hit",
+    "One hit, deals 1 DANGER and suffer Knockdown, two hits, deals 2 DANGER and gain the Paralyzed Condition card, three hits, you die.\n| SIS: Gain 1 additional FATE for each hit"
+   ],
+   "judge": [
+    "Will",
+    "Cunning"
+   ],
+   "moveCenter": true,
+   "after": "Rewind.",
+   "afterWindow": true
+  },
+  {
+   "code": "BR1128",
+   "tier": 3,
+   "name": "Sisyphus's Fate",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Furthest Titan in the highest column, in range",
+    "Furthest Titan in the highest column"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | SIS: Doomed",
+    "One hit deals 4 DANGER, two hits deal 9 DANGER, three hits deal 15 DANGER. Gain +2 FATE."
+   ],
+   "after": "Kickback 15. | SIS: Kickback 20 instead.\n⚡ Burden moves to the center of the Board.\n⚡ FATE 9+: Repeat Sisyphus's Fate (once).",
+   "afterWindow": false
+  },
+  {
+   "code": "BR1129",
+   "tier": "X",
+   "name": "Rolling Failure",
+   "kind": "SIGNATURE",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Furthest Titan in the highest column, in range",
+    "Furthest Titan in the highest column"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Each hit deals 2 DANGER. Gain +1 FATE. Gain the Sisyphean Condition card.\n| FATE 6+: 3 DANGER instead"
+   ],
+   "after": "Kickback 8.",
+   "afterWindow": false
+  },
+  {
+   "code": "BR1130",
+   "tier": "X",
+   "name": "Impostor's Gaze",
+   "kind": "ROUTINE",
+   "text": "Steal 1 Mnemos node from each Titan.\nLose -1 Story token from the current Story card. If there are no Story tokens on the current Story card, gain +2 Peak instead (campaign).\n⚡ Burden moves to the center of the Board."
+  }
+ ],
+ "bp": [
+  {
+   "code": "BS1131",
+   "tier": 1,
+   "name": "Charon's Frown",
+   "at": 5,
+   "responses": {
+    "FAIL": "Gain a Fated Mnemos card.",
+    "WOUND": "Gain as many RAGE as there are Kratos tokens in the Kratos Pool."
+   },
+   "critical": "Discard the Sisyphean Condition card. You cannot gain it during this Battle!",
+   "eye": true,
+   "qeye": true
+  },
+  {
+   "code": "BS1132",
+   "tier": 1,
+   "name": "Retractable Leg",
+   "at": 6,
+   "responses": {
+    "FAIL": "Gain +1 DANGER. Kickback 6.",
+    "WOUND": "Perform Signature against the Attacker."
+   },
+   "critical": "Gain the Leg Khopesh Gear card (campaign).",
+   "eye": false,
+   "qeye": false
+  },
+  {
+   "code": "BS1133",
+   "tier": 1,
+   "name": "Relief Shell",
+   "at": 5,
+   "responses": {
+    "INSTINCT": "Gain as many FATE as there are Kratos tokens in the Kratos Pool."
+   },
+   "critical": "Disable the Splash Trait!",
+   "hardened": true,
+   "eye": false,
+   "qeye": false
+  },
+  {
+   "code": "BS1134",
+   "tier": 1,
+   "name": "Hepheastum Mesh",
+   "at": 6,
+   "responses": {
+    "FAIL": "Until the end of Battle you gain -1 Power.",
+    "WOUND": "Gain +1 DANGER. Kickback 6."
+   },
+   "critical": "You may perform a Bonus Attack!",
+   "hardened": true,
+   "eye": false,
+   "qeye": false
+  },
+  {
+   "code": "BS1135",
+   "tier": 1,
+   "name": "Forgotten Names",
+   "at": 5,
+   "responses": {
+    "FAIL": "Burden steals 1 of your Mnemos nodes.",
+    "WOUND": "Gain 2 Ambrosia tokens."
+   },
+   "critical": "Gain +1 Mnemos node for a chosen Mnemos. Then, unexhaust its card or return it to play if it was discarded.",
+   "eye": true,
+   "qeye": true
+  },
+  {
+   "code": "BS1136",
+   "tier": 1,
+   "name": "Leg Stabilizer",
+   "at": 5,
+   "responses": {
+    "FAIL": "Gain +1 DANGER. Kickback 6.",
+    "WOUND": "Burden moves to the center of the Board."
+   },
+   "critical": "You may perform a Bonus Attack!",
+   "eye": false,
+   "qeye": false
+  },
+  {
+   "code": "BS1137",
+   "tier": 2,
+   "name": "Recount of Failure",
+   "at": 9,
+   "responses": {
+    "FAIL": "Gain a Fated Mnemos card.",
+    "WOUND": "Gain as many FATE as there are Kratos tokens in the Kratos Pool."
+   },
+   "critical": "You may immediately research 1 Battle or Structural Technology from the Projects deck (campaign).",
+   "eye": true,
+   "qeye": true
+  },
+  {
+   "code": "BS1138",
+   "tier": 2,
+   "name": "Axis Allegory",
+   "at": 8,
+   "responses": {
+    "FAIL": "⚡ Gain +2 DANGER. Knockdown. Kickback 10.",
+    "WOUND": "Gain +2 RAGE."
+   },
+   "critical": "Disable the Sisyphus's Spiral Trait!",
+   "eye": false,
+   "qeye": false
+  },
+  {
+   "code": "BS1139",
+   "tier": 2,
+   "name": "Inner Shell",
+   "at": 10,
+   "responses": {
+    "INSTINCT": "Perform Signature against the Attacker."
+   },
+   "critical": "Place an Ambrosia Pool Terrain tile under the Burden. Deal an additional Single Wound!",
+   "hardened": true,
+   "eye": false,
+   "qeye": false
+  },
+  {
+   "code": "BS1140",
+   "tier": 2,
+   "name": "Ambrosial Arm",
+   "at": 9,
+   "responses": {
+    "INSTINCT": "Gain 2 Ambrosia tokens. Kickback 6."
+   },
+   "critical": "Gain +1 Battle Track token (campaign).",
+   "eye": true,
+   "qeye": true
+  },
+  {
+   "code": "BS1141",
+   "tier": 2,
+   "name": "Aeacus's Grimace",
+   "at": 10,
+   "responses": {
+    "FAIL": "Gain DANGER equal to your FATE.",
+    "WOUND": "Gain +2 RAGE and +2 DANGER."
+   },
+   "critical": "Gain the Sisyphus Burden Gear card (campaign).",
+   "hardened": true,
+   "eye": true,
+   "qeye": true
+  },
+  {
+   "code": "BS1142",
+   "tier": 2,
+   "name": "Impostor's Sneer",
+   "at": 8,
+   "responses": {
+    "FAIL": "Draw a Moiros card.",
+    "WOUND": "Gain +2 DANGER and the Sisyphean Condition card."
+   },
+   "critical": "Reset FATE to 0.",
+   "eye": true,
+   "qeye": true
+  },
+  {
+   "code": "BS1143",
+   "tier": 3,
+   "name": "Rhadamanthus's Scowl",
+   "at": 13,
+   "responses": {
+    "FAIL": "Draw an Obol.",
+    "WOUND": "Gain +3 RAGE and +3 DANGER."
+   },
+   "critical": "Gain 1 unclaimed Mnemos card from the previous Cycle. If you already have 2 Mnemos cards, the card goes to the Mnemos Vault (campaign).",
+   "eye": true,
+   "qeye": true
+  },
+  {
+   "code": "BS1144",
+   "tier": 3,
+   "name": "Tripod Nexus",
+   "at": 15,
+   "responses": {
+    "FAIL": "Gain +3 DANGER. Kickback 10.",
+    "WOUND": "Burden moves to the center of the Board."
+   },
+   "critical": "Each Argonaut gains +1 Mnemos node for a chosen Mnemos!",
+   "eye": false,
+   "qeye": false
+  },
+  {
+   "code": "BS1145",
+   "tier": 3,
+   "name": "Lacrimal Remnant",
+   "at": 12,
+   "responses": {
+    "FAIL": "Burden steals your Mnemos card.",
+    "WOUND": "Gain as many DANGER as there are Kratos tokens in the Kratos Pool."
+   },
+   "critical": "Gain 1 Sisyphus Tear (campaign).",
+   "eye": false,
+   "qeye": false
+  },
+  {
+   "code": "BS1146",
+   "tier": 3,
+   "name": "Hoard of Recollections",
+   "at": 14,
+   "responses": {
+    "FAIL": "Burden steals 2 of your Mnemos nodes.",
+    "WOUND": "Gain +3 FATE and a Fated Mnemos card."
+   },
+   "critical": "The Moirai Vault is broken, you regain everything that was stolen! If the Vault is empty, gain +1 Argo Knowledge (campaign).",
+   "hardened": true,
+   "eye": true,
+   "qeye": true
+  },
+  {
+   "code": "BS1147",
+   "tier": 3,
+   "name": "The Hidden Grin",
+   "at": 12,
+   "responses": {
+    "FAIL": "You die.",
+    "WOUND": "Draw and perform an AI card."
+   },
+   "critical": "The Burden crumbles and dies!",
+   "hardened": true,
+   "eye": true,
+   "qeye": true
+  },
+  {
+   "code": "BS1148",
+   "tier": 3,
+   "name": "Depthless Pool",
+   "at": 12,
+   "responses": {
+    "FAIL": "Gain as many Ambrosia tokens as Power missing to successfully Wound after the Power Roll.",
+    "WOUND": "Gain 3 Ambrosia tokens."
+   },
+   "critical": "The Titan that died most recently (during any game phase) is returned to you and will be available after this Battle (campaign).",
+   "hardened": true,
+   "eye": true,
+   "qeye": true
+  }
+ ]
+}

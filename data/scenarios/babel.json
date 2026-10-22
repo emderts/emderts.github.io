@@ -1,0 +1,157 @@
+{
+ "id": "babel",
+ "source": "ATO Cycle IV Storybook — Pandora Horizon Battle (p.164) / The Crash Battle (p.166)",
+ "board": {
+  "cols": 20,
+  "rows": 14
+ },
+ "_notes": [
+  "Babelian Lunacy 2x2 at G10-H11 (never moves). Fire tokens = Titan start spaces, each on an Irem Tower (20 Irem Towers total)."
+ ],
+ "center": "G10",
+ "variants": {
+  "lv1": {
+   "levels": [
+    1
+   ],
+   "primordial": {
+    "anchor": "G10"
+   },
+   "titanStarts": [
+    "L10",
+    "G6",
+    "H15",
+    "C11"
+   ],
+   "startChoices": [
+    "L10",
+    "G6",
+    "H15",
+    "C11"
+   ],
+   "terrain": {
+    "iremTower": [
+     "A3",
+     "B2",
+     "C11",
+     "C20",
+     "E10",
+     "E2",
+     "E6",
+     "F9",
+     "G19",
+     "G6",
+     "H15",
+     "H3",
+     "I20",
+     "J6",
+     "K12",
+     "L10",
+     "L16",
+     "M15",
+     "M4",
+     "N11"
+    ],
+    "iremCity": [
+     [
+      "I3",
+      "I4",
+      "I5",
+      "J3",
+      "J4",
+      "J5",
+      "K3",
+      "K4",
+      "K5"
+     ],
+     [
+      "D15",
+      "D16",
+      "D17",
+      "E15",
+      "E16",
+      "E17",
+      "F15",
+      "F16",
+      "F17"
+     ]
+    ]
+   }
+  },
+  "lv2": {
+   "levels": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "primordial": {
+    "anchor": "G10"
+   },
+   "titanStarts": [
+    "L10",
+    "G6",
+    "H15",
+    "C11"
+   ],
+   "startChoices": [
+    "L10",
+    "G6",
+    "H15",
+    "C11"
+   ],
+   "terrain": {
+    "iremTower": [
+     "A3",
+     "B2",
+     "C11",
+     "C20",
+     "E10",
+     "E2",
+     "E6",
+     "F9",
+     "G19",
+     "G6",
+     "H15",
+     "H3",
+     "I20",
+     "J6",
+     "K12",
+     "L10",
+     "L16",
+     "M15",
+     "M4",
+     "N11"
+    ],
+    "iremCity": [
+     [
+      "I3",
+      "I4",
+      "I5",
+      "J3",
+      "J4",
+      "J5",
+      "K3",
+      "K4",
+      "K5"
+     ],
+     [
+      "D15",
+      "D16",
+      "D17",
+      "E15",
+      "E16",
+      "E17",
+      "F15",
+      "F16",
+      "F17"
+     ]
+    ]
+   }
+  }
+ }
+}

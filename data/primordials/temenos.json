@@ -1,0 +1,1070 @@
+{
+ "id": "temenos",
+ "name": "Alpha Temenos",
+ "cycle": 1,
+ "type": "regular",
+ "basicTraits": [
+  "Lumbering"
+ ],
+ "sheetCode": "AU0563",
+ "_notes": [
+  "Transcribed from sheet AU0563 (front Lv I / back Lv II-IX), AI AR0522-AR0541 + Mnestis Routine Contract Will, BP AS0543-AS0560, traits AX0517 Song of Hopelessness.",
+  "Zone patterns: 'pattern' = list of [depth, lateral] from the centre lane of the front edge (depth 1 = adjacent to front; lateral + = Temenos's right). 'zone': N = Zone N around the whole footprint.",
+  "White spaces (Worm of the Labyrinth): rear-row side on Temenos's right, front-row side on Temenos's left, adjacent space in front of the centre (sheet diagram, facing down).",
+  "AT icon (circle monster) tokens: positive AT tokens raise BP AT."
+ ],
+ "footprint": {
+  "w": 3,
+  "h": 3,
+  "rear": "top-edge"
+ },
+ "ukb": 6,
+ "labyrinthTrack": [
+  "O",
+  "L",
+  "Z",
+  "I"
+ ],
+ "whiteSpaces": [
+  {
+   "row": "rear",
+   "side": "right"
+  },
+  {
+   "row": "front",
+   "side": "left"
+  },
+  {
+   "depth": 1,
+   "lateral": 0
+  }
+ ],
+ "vp": {
+  "name": "Broken Pyramid",
+  "byLevel": {
+   "1": {
+    "climb": [
+     "Fury",
+     6
+    ],
+    "holdOn": [
+     "Endurance",
+     5
+    ],
+    "holdFail": "adjacent",
+    "power": 1,
+    "noDespair": true,
+    "responses": "ignore-all"
+   },
+   "2": {
+    "climb": [
+     "Fury",
+     8
+    ],
+    "holdOn": [
+     "Endurance",
+     7
+    ],
+    "holdFail": "rear",
+    "power": 1,
+    "noDespair": true,
+    "responses": "vp-mod"
+   }
+  },
+  "text": "Lv I: Climb Fury 6+. Hold On (End of Primordial Round) Endurance 5+, Fail: displace to an adjacent space, Knockdown. On VP: +1 Power, cannot gain Despair tokens, ignore Primordial Responses. Lv II+: Climb Fury 8+, Hold On Endurance 7+ (Fail: displace to a Rear space, Knockdown). On VP: +1 Power, cannot gain Despair; ignore normal Responses, instead WOUND: gain +2 Danger and immediately Hold On; FAIL: resolve the Hold On fail effect, then Signature against the Attacker."
+ },
+ "levels": {
+  "1": {
+   "toHit": 8,
+   "speed": 6,
+   "wounds": 10,
+   "ukb": 8,
+   "bonus": {},
+   "traits": [
+    "Labyrinth X",
+    "Mazesense",
+    "Maze Reconfiguration",
+    "Ariadne's Logic",
+    "End of Hope"
+   ]
+  },
+  "2": {
+   "toHit": 8,
+   "speed": 6,
+   "wounds": 10,
+   "bonus": {},
+   "traits": [
+    "Snail of Nothing"
+   ]
+  },
+  "3": {
+   "toHit": 8,
+   "speed": 6,
+   "wounds": 11,
+   "bonus": {
+    "ESCALATION": 1,
+    "AT": 1,
+    "DANGER": 1
+   },
+   "traits": [
+    "Worm of the Labyrinth"
+   ]
+  },
+  "4": {
+   "toHit": 9,
+   "speed": 7,
+   "wounds": 11,
+   "bonus": {
+    "ESCALATION": 1,
+    "AT": 2,
+    "DANGER": 1
+   },
+   "traits": [
+    "Win Together, Die Alone"
+   ]
+  },
+  "5": {
+   "mnestis": true,
+   "toHit": 9,
+   "speed": 7,
+   "wounds": 12,
+   "bonus": {
+    "ESCALATION": 2,
+    "AT": 3,
+    "DANGER": 1
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Beginning of the End"
+   ]
+  },
+  "6": {
+   "mnestis": true,
+   "toHit": 10,
+   "speed": 7,
+   "wounds": 12,
+   "bonus": {
+    "ESCALATION": 3,
+    "AT": 4,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Song of Hopelessness"
+   ]
+  },
+  "7": {
+   "mnestis": true,
+   "toHit": 10,
+   "speed": 8,
+   "wounds": 13,
+   "bonus": {
+    "ESCALATION": 3,
+    "AT": 5,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Song of Great Fear"
+   ]
+  },
+  "8": {
+   "mnestis": true,
+   "toHit": 11,
+   "speed": 8,
+   "wounds": 13,
+   "bonus": {
+    "ESCALATION": 4,
+    "AT": 6,
+    "EVADE_DICE": 1,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Doom of the Centimanes"
+   ]
+  },
+  "9": {
+   "mnestis": true,
+   "toHit": 11,
+   "speed": 8,
+   "wounds": 14,
+   "bonus": {
+    "ESCALATION": 5,
+    "AT": 7,
+    "EVADE_DICE": 2,
+    "DANGER": 3
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Symphony of Despair",
+    "Ruthless"
+   ]
+  }
+ },
+ "traits": {
+  "Labyrinth X": "Additional Setup: Place a Labyrinth token on the topmost space of the Labyrinth track. Labyrinth X: Place X Labyrinth Terrain tiles adjacent to and in front of the Primordial. Use the tile shape that corresponds to the token's location on the track (O → L → Z → I), then move the token clockwise to the next space.",
+  "Mazesense": "Labyrinth tiles do not block Temenos's Line of Sight. Argonauts with the Mazetouched Affliction must apply all ΨX+ effects, regardless of their actual Fate.",
+  "Maze Reconfiguration": "When Temenos is instructed to place a Labyrinth tile under a Titan that is already standing on a Labyrinth tile, that Titan draws an Obol instead.",
+  "Ariadne's Logic": "When attacked from a Labyrinth tile, Temenos has -1 AT.",
+  "End of Hope": "End of Primordial Round: Perform Signature.",
+  "Snail of Nothing": "Each time Temenos gains a Wound, it gains 1 positive AT token. Next time you resolve an AI card, discard all of the AT tokens and add that many Danger to the Danger dealt by that Attack.",
+  "Worm of the Labyrinth": "Temenos can only be attacked from the white spaces (marked on the Primordial diagram).",
+  "Win Together, Die Alone": "Start of Titan turn: If you're not adjacent to another Titan, gain +2 Danger and +2 Fate.",
+  "Beginning of the End": "End of Primordial Round: Before End of Hope, draw and perform another AI card.",
+  "Song of Hopelessness": "Despair tokens apply the following stacking penalties (on top of their regular effects): 1+ token: You cannot use Mnemos cards. 2+ tokens: You cannot use exhaustable Gear. 3+ tokens: You cannot perform Move.",
+  "Song of Great Fear": "Each time you gain a Despair token, you also gain the Fear Condition card.",
+  "Doom of the Centimanes": "If you're not adjacent to another Titan, you cannot use Fate to re-roll your Attack Rolls, Evasion Rolls and Judgement tests. If you're not adjacent to another Titan and you fully miss an Attack, you die.",
+  "Symphony of Despair": "Start of Titan turn: Gain 1 Despair token.",
+  "Ruthless": "Remove all positive Trauma cards from the Trauma decks (except Obols)."
+ },
+ "ai": [
+  {
+   "code": "AR0522",
+   "tier": 1,
+   "name": "Right Tentacle Swipe",
+   "kind": "ZONE ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Closest Titan in front, in range",
+    "Closest Titan in sight"
+   ],
+   "pre": [
+    "⚡ Gain 1 Despair token."
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 3+: +1 DESPAIR",
+    "Each hit deals 2 DANGER.",
+    "Knockdown."
+   ],
+   "afterFinal": "Knockback 8 to the left. Labyrinth 1.",
+   "afterWindow": true,
+   "pattern": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     -1
+    ],
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ]
+   ],
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "AR0523",
+   "tier": 1,
+   "name": "Left Tentacle Swipe",
+   "kind": "ZONE ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Closest Titan in front, in range",
+    "Closest Titan in sight"
+   ],
+   "pre": [
+    "⚡ Gain 1 Despair token."
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 3+: +1 DESPAIR",
+    "Each hit deals 2 DANGER.",
+    "Knockdown."
+   ],
+   "afterFinal": "Knockback 8 to the right. Labyrinth 1.",
+   "afterWindow": true,
+   "pattern": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     -1
+    ],
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ]
+   ],
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "AR0524",
+   "tier": 1,
+   "name": "Foretentacle Smash",
+   "kind": "ZONE ATTACK",
+   "dice": 2,
+   "toHit": 9,
+   "target": [
+    "Priority Target in range",
+    "Closest Titan in front, in range",
+    "Closest Titan in sight"
+   ],
+   "pre": [
+    "⚡ Gain 1 Despair token."
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 3+: +1 DESPAIR",
+    "Each hit deals 2 DANGER.",
+    "Knockdown."
+   ],
+   "afterFinal": "Labyrinth 1.",
+   "afterWindow": true,
+   "pattern": [
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ],
+    [
+     3,
+     0
+    ]
+   ],
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "AR0525",
+   "tier": 1,
+   "name": "Tentacle Lash",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Titan on Vantage Point",
+    "Closest Titan in front, in range",
+    "Closest Titan in sight"
+   ],
+   "pre": [
+    "⚡ Gain 1 Despair token."
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 3+: +1 DESPAIR",
+    "Each hit deals 2 DANGER."
+   ],
+   "after": "Knockback 8.",
+   "afterWindow": true
+  },
+  {
+   "code": "AR0526",
+   "tier": 1,
+   "name": "Small Pyramid",
+   "kind": "ZONE ATTACK",
+   "dice": 4,
+   "toHit": 8,
+   "target": [
+    "Closest Titan in front, in range",
+    "Closest Titan in sight"
+   ],
+   "pre": [
+    "⚡ Gain 1 Despair token."
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 3+: +1 EVADE_DICE",
+    "Each hit deals 1 DANGER."
+   ],
+   "afterFinal": "Labyrinth 1.",
+   "afterWindow": true,
+   "pattern": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     0
+    ]
+   ]
+  },
+  {
+   "code": "AR0527",
+   "tier": 1,
+   "name": "Maze Breath",
+   "kind": "ATTACK",
+   "dice": 2,
+   "toHit": 8,
+   "target": [
+    "Priority Target in range",
+    "Closest Titan in front, in range",
+    "Closest Titan in sight"
+   ],
+   "pre": [
+    "⚡ Gain 2 Despair tokens."
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 3+: +1 EVADE_DICE",
+    "Each hit deals 3 DANGER and 2 FATE.",
+    "⚡ Gain the Fear Condition card."
+   ],
+   "after": "Labyrinth 1.",
+   "afterWindow": true
+  },
+  {
+   "code": "AR0528",
+   "tier": 2,
+   "name": "Tentacle Toss",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Titan on Vantage Point",
+    "Priority Target in range",
+    "Closest Titan in front, in range",
+    "Closest Titan in sight"
+   ],
+   "pre": [
+    "⚡ Gain 1 Despair token."
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 5+: +1 DESPAIR",
+    "Each hit deals 2 DANGER. | FATE 4+: 3 DANGER instead"
+   ],
+   "after": "Knockback 10.",
+   "afterWindow": true
+  },
+  {
+   "code": "AR0529",
+   "tier": 2,
+   "name": "Tentacle Strangle",
+   "kind": "ATTACK",
+   "dice": 2,
+   "toHit": 8,
+   "target": [
+    "Titan on Vantage Point",
+    "Priority Target in range",
+    "Closest Titan in front, in range",
+    "Closest Titan in sight"
+   ],
+   "pre": [
+    "⚡ Gain 1 Despair token."
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 4+: +1 EVADE_DICE",
+    "Each hit deals 3 DANGER."
+   ],
+   "after": "Labyrinth 1.",
+   "afterWindow": true
+  },
+  {
+   "code": "AR0530",
+   "tier": 2,
+   "name": "Pyramid",
+   "kind": "ZONE ATTACK",
+   "dice": 4,
+   "toHit": 8,
+   "target": [
+    "Closest Titan in front, in range",
+    "Closest Titan in sight"
+   ],
+   "pre": [
+    "⚡ Gain 1 Despair token."
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 5+: +1 DESPAIR",
+    "Each hit deals 2 DANGER."
+   ],
+   "afterFinal": "Labyrinth 1.",
+   "afterWindow": true,
+   "pattern": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     -1
+    ],
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     3,
+     0
+    ],
+    [
+     4,
+     0
+    ]
+   ]
+  },
+  {
+   "code": "AR0531",
+   "tier": 2,
+   "name": "Foretentacle Quad",
+   "kind": "ZONE ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Closest Titan in front, in range",
+    "Closest Titan in sight"
+   ],
+   "pre": [
+    "⚡ Gain 2 Despair tokens."
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 3+: +1 EVADE_DICE",
+    "Each hit deals 2 DANGER."
+   ],
+   "afterFinal": "Labyrinth 1.",
+   "afterWindow": true,
+   "pattern": [
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ],
+    [
+     3,
+     0
+    ],
+    [
+     4,
+     0
+    ]
+   ]
+  },
+  {
+   "code": "AR0532",
+   "tier": 2,
+   "name": "Submerge",
+   "kind": "RANGED SIMULTANEOUS ATTACK",
+   "dice": 3,
+   "toHit": 8,
+   "target": [
+    "All Titans on Labyrinth tiles"
+   ],
+   "pre": [
+    "⚡ Gain 1 Despair token."
+   ],
+   "steps": [
+    "⚡ RANGE ATTACK UNLIMITED | FATE 5+: +1 DESPAIR",
+    "Each hit deals 2 DANGER. | FATE 5+: 3 DANGER instead",
+    "⚡ Knockdown."
+   ],
+   "afterFinal": "Remove Labyrinth tiles under Targets.\n⚡ Perform Routine.\n⚡ Move adjacent to the furthest Titan.",
+   "afterWindow": true,
+   "noTarget": "Perform Signature"
+  },
+  {
+   "code": "AR0533",
+   "tier": 2,
+   "name": "Maze Light",
+   "kind": "ATTACK",
+   "dice": 2,
+   "toHit": 6,
+   "target": [
+    "Priority Target in range",
+    "Closest Titan in front, in range"
+   ],
+   "pre": [
+    "⚡ Gain 1 Despair token."
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 5+: +1 EVADE_DICE",
+    "If hit, draw an Obol.",
+    "⚡ Gain the Fear Condition card."
+   ],
+   "after": "Knockback 10.",
+   "afterWindow": true
+  },
+  {
+   "code": "AR0534",
+   "tier": 3,
+   "name": "Starfish Headbutt",
+   "kind": "ZONE ATTACK",
+   "dice": 5,
+   "toHit": 7,
+   "target": [
+    "Closest Titan in front, in range",
+    "Closest Titan in sight"
+   ],
+   "pre": [
+    "⚡ Gain 1 Despair token."
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 7+: +1 DESPAIR",
+    "Each hit deals 2 DANGER and 1 FATE.",
+    "⚡ Knockdown."
+   ],
+   "afterFinal": "Labyrinth 1.",
+   "afterWindow": true,
+   "pattern": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     -1
+    ],
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     3,
+     -1
+    ],
+    [
+     3,
+     0
+    ],
+    [
+     3,
+     1
+    ]
+   ]
+  },
+  {
+   "code": "AR0535",
+   "tier": 3,
+   "name": "Mazerain",
+   "kind": "RANGED SIMULTANEOUS ATTACK",
+   "dice": 2,
+   "toHit": 10,
+   "target": [
+    "All Titans not on Labyrinth tiles"
+   ],
+   "pre": [
+    "⚡ Gain 1 Despair token."
+   ],
+   "steps": [
+    "⚡ RANGE ATTACK UNLIMITED | FATE 6+: +1 EVADE_DICE",
+    "Each hit deals 4 DANGER.",
+    "⚡ Place a Labyrinth tile under the Target."
+   ],
+   "afterFinal": "Perform Routine.",
+   "afterWindow": true,
+   "noTarget": "Perform Signature"
+  },
+  {
+   "code": "AR0536",
+   "tier": 3,
+   "name": "Giant Pyramid",
+   "kind": "ZONE ATTACK",
+   "dice": 4,
+   "toHit": 8,
+   "target": [
+    "Closest Titan in front, in range",
+    "Closest Titan in sight"
+   ],
+   "pre": [
+    "⚡ Gain 1 Despair token."
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 7+: +1 DESPAIR",
+    "Each hit deals 3 DANGER."
+   ],
+   "afterFinal": "Labyrinth 1.",
+   "afterWindow": true,
+   "zone": 3,
+   "noTarget": "Perform Signature"
+  },
+  {
+   "code": "AR0537",
+   "tier": 3,
+   "name": "Great Submerge",
+   "kind": "RANGED SIMULTANEOUS ATTACK",
+   "dice": 3,
+   "toHit": 8,
+   "target": [
+    "All Titans on Labyrinth tiles"
+   ],
+   "pre": [
+    "⚡ Gain 1 Despair token."
+   ],
+   "steps": [
+    "⚡ RANGE ATTACK UNLIMITED",
+    "If hit, draw an Obol.",
+    "⚡ Knockdown.",
+    "⚡ Gain +1 DANGER."
+   ],
+   "afterFinal": "Remove all Labyrinth tiles.",
+   "afterWindow": true,
+   "noTarget": "Perform Signature"
+  },
+  {
+   "code": "AR0538",
+   "tier": 3,
+   "name": "Emerge",
+   "kind": "ZONE ATTACK",
+   "dice": 3,
+   "toHit": 8,
+   "target": [
+    "Closest Titan in front, in range",
+    "Closest Titan in sight"
+   ],
+   "pre": [
+    "⚡ Gain 2 Despair tokens."
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Each hit deals 3 DANGER. | FATE 6+: 4 DANGER instead"
+   ],
+   "afterFinal": "Place a Labyrinth tile under each Titan in Zone 2.",
+   "afterWindow": true,
+   "zone": 2
+  },
+  {
+   "code": "AR0539",
+   "tier": 3,
+   "name": "Devour",
+   "kind": "ATTACK",
+   "dice": 2,
+   "toHit": 9,
+   "target": [
+    "Titan on Vantage Point",
+    "Priority Target in range",
+    "Closest Titan in front, in range",
+    "Closest Titan in sight"
+   ],
+   "pre": [
+    "⚡ Gain 2 Despair tokens."
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "If hit, raise DANGER to 9 and resolve a Trauma Draw. | FATE 8+: You die instead",
+    "⚡ Gain the Fear Condition card."
+   ],
+   "after": "Knockback 10.",
+   "afterWindow": true
+  },
+  {
+   "code": "AR0540",
+   "tier": "X",
+   "name": "Tentacle Strike",
+   "kind": "SIGNATURE",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Furthest Titan not in front, in range",
+    "Furthest Titan in range",
+    "Titan on Vantage Point",
+    "Closest Titan in sight"
+   ],
+   "pre": [
+    "⚡ Gain 1 Despair token."
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 4+: +1 EVADE_DICE",
+    "Each hit deals 2 DANGER."
+   ],
+   "after": "Labyrinth 1.",
+   "afterWindow": true
+  },
+  {
+   "code": "AR0541",
+   "tier": "X",
+   "name": "Contract",
+   "kind": "ROUTINE",
+   "text": "Temenos gains 1 positive AT token. Discard this token after the next Temenos Attack."
+  },
+  {
+   "code": "AR0541-M",
+   "tier": "X",
+   "name": "Contract Will",
+   "kind": "MNESTIS ROUTINE",
+   "text": "Each Titan gains 1 Despair token. Temenos gains 1 positive AT token. Discard this token after the next Temenos Attack."
+  }
+ ],
+ "bp": [
+  {
+   "code": "AS0543",
+   "tier": 1,
+   "name": "Fleshy Tentacle",
+   "at": 4,
+   "responses": {
+    "FAIL": "Gain the Fear Condition card.",
+    "WOUND": "Perform Signature against the Attacker."
+   },
+   "critical": "Gain the Priority Target token. You may perform a Bonus Attack!",
+   "qeye": false
+  },
+  {
+   "code": "AS0544",
+   "tier": 1,
+   "name": "Meaty Tentacle",
+   "at": 4,
+   "responses": {
+    "INSTINCT": "All Titans in Zone 1 gain +1 DANGER and suffer Knockdown."
+   },
+   "critical": "Deal an additional Single Wound!",
+   "qeye": false
+  },
+  {
+   "code": "AS0545",
+   "tier": 1,
+   "name": "Leg Trunk",
+   "at": 5,
+   "responses": {
+    "FAIL": "⚡ Knockdown.",
+    "WOUND": "Knockback 7. Gain +1 DANGER."
+   },
+   "critical": "During the second ability window, place 2 additional Opening or Break tokens in the Kratos Pool.",
+   "qeye": false
+  },
+  {
+   "code": "AS0546",
+   "tier": 1,
+   "name": "Sensory Pyramid",
+   "at": 5,
+   "responses": {
+    "FAIL": "Perform Signature against the Attacker.",
+    "WOUND": "Knockback 7. Gain +1 DANGER."
+   },
+   "critical": "Search the BP deck and choose 1 card to set aside. After Escalation, place the set aside card on top of the BP deck.",
+   "qeye": true
+  },
+  {
+   "code": "AS0547",
+   "tier": 1,
+   "name": "Maze Seed",
+   "at": 5,
+   "responses": {
+    "FAIL": "Gain the Mazetouched Affliction.\nPerform Routine.",
+    "WOUND": "Gain the Fear Condition card."
+   },
+   "critical": "Create a Vantage Point.",
+   "pre": [
+    "If your Weapon has the Spear Trait, immediately place 1 Break token in the Kratos Pool."
+   ],
+   "qeye": true
+  },
+  {
+   "code": "AS0548",
+   "tier": 1,
+   "name": "Joint Maze Carapace",
+   "at": 6,
+   "responses": {
+    "FAIL": "Knockback 7.",
+    "WOUND": "Perform Signature against the Attacker."
+   },
+   "critical": "During Escalation, choose which BP II card to add to the deck.",
+   "qeye": false
+  },
+  {
+   "code": "AS0549",
+   "tier": 2,
+   "name": "Maze Plate",
+   "at": 7,
+   "responses": {
+    "FAIL": "Knockdown. Perform Routine.",
+    "WOUND": "Knockback 7. Gain +2 DANGER."
+   },
+   "critical": "Gain the Temenos Scale Shield Cycle 2 Gear card (campaign).",
+   "qeye": false
+  },
+  {
+   "code": "AS0550",
+   "tier": 2,
+   "name": "Small Pyramid",
+   "at": 6,
+   "responses": {
+    "INSTINCT": "All Titans in Zone 1 gain +1 DANGER and suffer Knockdown."
+   },
+   "critical": "Create a Vantage Point.",
+   "pre": [
+    "If your Weapon has the Spear Trait, immediately place 1 Break token in the Kratos Pool."
+   ],
+   "qeye": true
+  },
+  {
+   "code": "AS0551",
+   "tier": 2,
+   "name": "Hardened Maze Carapace",
+   "at": 8,
+   "responses": {
+    "INSTINCT": "Perform Signature against the Attacker."
+   },
+   "critical": "Until the end of Battle, when you attack from the 3 front adjacent spaces, Temenos has -1 AT.",
+   "qeye": false
+  },
+  {
+   "code": "AS0552",
+   "tier": 2,
+   "name": "Hind Maze Carapace",
+   "at": 8,
+   "responses": {
+    "FAIL": "Knockback 7.",
+    "WOUND": "Perform Signature against the Attacker."
+   },
+   "critical": "Discard all Despair tokens from each Titan.",
+   "qeye": false
+  },
+  {
+   "code": "AS0553",
+   "tier": 2,
+   "name": "Large Pyramid",
+   "at": 7,
+   "responses": {
+    "FAIL": "All Titans in Zone 1 gain +1 DANGER and suffer Knockdown.",
+    "WOUND": "Perform Routine."
+   },
+   "critical": "Create a Vantage Point.",
+   "pre": [
+    "If your Weapon has the Spear Trait, immediately place 1 Break token in the Kratos Pool."
+   ],
+   "qeye": true
+  },
+  {
+   "code": "AS0554",
+   "tier": 2,
+   "name": "Leading Tentacle",
+   "at": 6,
+   "responses": {
+    "FAIL": "Gain the Dread Condition card.",
+    "WOUND": "All Titans on Labyrinth tiles gain +2 FATE."
+   },
+   "critical": "Remove 3 Labyrinth tiles from the Board.",
+   "qeye": true
+  },
+  {
+   "code": "AS0555",
+   "tier": 3,
+   "name": "Grand Commisure",
+   "at": 8,
+   "responses": {
+    "INSTINCT": "Perform Signature against the Attacker."
+   },
+   "critical": "Deal an additional Single Wound.",
+   "qeye": false
+  },
+  {
+   "code": "AS0556",
+   "tier": 3,
+   "name": "Maw of Madness",
+   "at": 10,
+   "responses": {
+    "FAIL": "Draw an Obol."
+   },
+   "critical": "Temenos dies!",
+   "pre": [
+    "If you have the Impossible Logic Boon, automatically gain a Crit Chance.",
+    "You may voluntarily end this Attack before performing a Power Roll. If you do, clear the Kratos Pool."
+   ],
+   "qeye": true
+  },
+  {
+   "code": "AS0557",
+   "tier": 3,
+   "name": "Fear Gland",
+   "at": 7,
+   "responses": {
+    "INSTINCT": "Gain the Fear Condition card."
+   },
+   "critical": "Each Titan discards all negative Condition cards and modifier tokens. Gain the Pyramidion Cycle 2 Gear card (campaign).",
+   "qeye": false
+  },
+  {
+   "code": "AS0558",
+   "tier": 3,
+   "name": "Contraction Center",
+   "at": 7,
+   "responses": {
+    "FAIL": "Perform Signature against the Attacker.",
+    "WOUND": "Create a Vantage Point."
+   },
+   "critical": "Temenos gains 1 negative AT token. Disable Routine.",
+   "qeye": false
+  },
+  {
+   "code": "AS0559",
+   "tier": 3,
+   "name": "Eimerian Tentacle Cluster",
+   "at": 8,
+   "responses": {
+    "INSTINCT": "All Titans in Zone 2 gain +1 DANGER and suffer Knockdown."
+   },
+   "critical": "Temenos gains 1 negative Precision token. Until the end of battle, all AI cards target the closest Titan.",
+   "qeye": true
+  },
+  {
+   "code": "AS0560",
+   "tier": 3,
+   "name": "Gate Brain",
+   "at": 9,
+   "responses": {
+    "FAIL": "Draw a Moiros card."
+   },
+   "critical": "Temenos cannot place Labyrinth tiles. At the end of Battle resolve The Gate Special Event (campaign).",
+   "pre": [
+    "You may voluntarily end this Attack before performing a Power Roll. If you do, clear the Kratos Pool."
+   ],
+   "qeye": true
+  }
+ ]
+}

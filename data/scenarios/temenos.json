@@ -1,0 +1,109 @@
+{
+ "id": "temenos",
+ "source": "ATO Cycle I Storybook — Temenos Battle (PDF p.57)",
+ "board": {
+  "cols": 20,
+  "rows": 14
+ },
+ "_notes": [
+  "Mnestis: Battle Track / Escape the Maze victory ignored; normal victory on Wounds.",
+  "Primordial Positioning: centre space; facing from the bottom Minor Trauma card arrow (spiral = random)."
+ ],
+ "setup": [
+  "Standard Preparations.",
+  "Primordial Positioning: centre (F10-H12), determine facing.",
+  "Additional Setup: Labyrinth token on the topmost track space (O)."
+ ],
+ "variants": {
+  "all": {
+   "levels": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "primordial": {
+    "anchor": "F10"
+   },
+   "titanStarts": [
+    "J8",
+    "J14",
+    "D8",
+    "D14"
+   ],
+   "terrain": {
+    "column": [
+     "K7",
+     "J5",
+     "K15",
+     "J17",
+     "D5",
+     "C7",
+     "C15",
+     "D17"
+    ],
+    "city": [
+     {
+      "name": "City NW",
+      "cells": [
+       "K4",
+       "K5",
+       "K6",
+       "L4",
+       "L5",
+       "L6",
+       "M4",
+       "M5",
+       "M6"
+      ]
+     },
+     {
+      "name": "City SE",
+      "cells": [
+       "A16",
+       "A17",
+       "A18",
+       "B16",
+       "B17",
+       "B18",
+       "C16",
+       "C17",
+       "C18"
+      ]
+     }
+    ],
+    "labyrinth": [
+     {
+      "shape": "O",
+      "rot": 0,
+      "flip": false,
+      "topLeft": "M12"
+     },
+     {
+      "shape": "I",
+      "rot": 0,
+      "flip": false,
+      "topLeft": "G6"
+     },
+     {
+      "shape": "L",
+      "rot": 0,
+      "flip": false,
+      "topLeft": "H13"
+     },
+     {
+      "shape": "Z",
+      "rot": 0,
+      "flip": true,
+      "topLeft": "C9"
+     }
+    ]
+   }
+  }
+ }
+}

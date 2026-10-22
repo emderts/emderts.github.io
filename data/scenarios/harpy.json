@@ -1,0 +1,153 @@
+{
+ "id": "harpy",
+ "source": "ATO Cycle III Storybook — Icarian Harpy Battle (p.130-131)",
+ "board": {
+  "cols": 20,
+  "rows": 14
+ },
+ "_notes": [
+  "Flame tokens = Titan start spaces (chosen freely). Coloured squares = Time Anchors (red, green, yellow, blue → Titan 1-4).",
+  "Black Lake 3x3 / Black Glacier 1x5 = Indestructible, Slippery. Harpy starts on the central Black Lake (G10-H11)."
+ ],
+ "setup": [
+  "Standard Preparations.",
+  "Primordial Positioning: indicated space in the centre; determine facing direction.",
+  "Additional Setup: Predation Trait Attack next to the sheet; Rapid Adaptation tokens."
+ ],
+ "center": "G10",
+ "variants": {
+  "all": {
+   "levels": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "primordial": {
+    "anchor": "G10"
+   },
+   "titanStarts": [
+    "K8",
+    "H7",
+    "G14",
+    "D13"
+   ],
+   "startChoices": [
+    "J8",
+    "I7",
+    "F14",
+    "E13"
+   ],
+   "terrain": {
+    "iceberg": [
+     "L4",
+     "J6",
+     "H3",
+     "F6",
+     "M12",
+     "I15",
+     "L17",
+     "C17",
+     "B9",
+     "B12"
+    ],
+    "giantIceberg": [
+     [
+      "H13",
+      "H14",
+      "I13",
+      "I14"
+     ],
+     [
+      "G18",
+      "G19",
+      "H18",
+      "H19"
+     ],
+     [
+      "D6",
+      "D7",
+      "E6",
+      "E7"
+     ]
+    ],
+    "blackGlacier": [
+     [
+      "G4",
+      "G5",
+      "G6",
+      "G7",
+      "G8"
+     ],
+     [
+      "H12",
+      "I12",
+      "J12",
+      "K12",
+      "L12"
+     ],
+     [
+      "E10",
+      "E11",
+      "E12",
+      "E13",
+      "E14"
+     ]
+    ],
+    "blackLake": [
+     [
+      "F9",
+      "F10",
+      "F11",
+      "G9",
+      "G10",
+      "G11",
+      "H9",
+      "H10",
+      "H11"
+     ],
+     [
+      "D15",
+      "D16",
+      "D17",
+      "E15",
+      "E16",
+      "E17",
+      "F15",
+      "F16",
+      "F17"
+     ]
+    ],
+    "frozenCity": [
+     [
+      "K5",
+      "K6",
+      "K7",
+      "L5",
+      "L6",
+      "L7",
+      "M5",
+      "M6",
+      "M7"
+     ],
+     [
+      "D3",
+      "D4",
+      "D5",
+      "E3",
+      "E4",
+      "E5",
+      "F3",
+      "F4",
+      "F5"
+     ]
+    ]
+   }
+  }
+ }
+}

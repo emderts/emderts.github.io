@@ -1,0 +1,223 @@
+{
+ "id": "cyclonus",
+ "source": "ATO Cycle II Storybook — Cyclonus Battle (p.126) / Rulebook Mnestis Battle Diagrams (Lv 8+)",
+ "board": {
+  "cols": 20,
+  "rows": 14
+ },
+ "_notes": [
+  "Mnestis: normal victory on Wounds. Lv 8+ uses the alternate diagram (Beginning of the End). Tile decomposition into 1x1/1x4/1x5 pieces is not tracked; all river cells are Spartan River Works."
+ ],
+ "setup": [
+  "Standard Preparations.",
+  "Primordial Positioning: centre (G10-H11), determine facing.",
+  "Additional Setup: Combo token on the Maul space; add 1 You died! Obol."
+ ],
+ "center": "G10",
+ "variants": {
+  "lv1-7": {
+   "levels": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+   ],
+   "primordial": {
+    "anchor": "G10"
+   },
+   "titanStarts": [
+    "K8",
+    "K13",
+    "D9",
+    "D12"
+   ],
+   "terrain": {
+    "fortifiedCity": [
+     {
+      "name": "Fortified City N",
+      "cells": [
+       "L13",
+       "L14",
+       "L15",
+       "M13",
+       "M14",
+       "M15",
+       "N13",
+       "N14",
+       "N15"
+      ]
+     },
+     {
+      "name": "Fortified City S",
+      "cells": [
+       "C6",
+       "C7",
+       "C8",
+       "D6",
+       "D7",
+       "D8",
+       "E6",
+       "E7",
+       "E8"
+      ]
+     }
+    ],
+    "river": [
+     [
+      "J10",
+      "K10",
+      "L10",
+      "M10",
+      "N10"
+     ],
+     [
+      "A10",
+      "B10",
+      "C10",
+      "D10",
+      "E10",
+      "F10"
+     ],
+     [
+      "K16",
+      "L16",
+      "M16",
+      "N16"
+     ],
+     [
+      "A16",
+      "B16",
+      "C16",
+      "D16",
+      "E16",
+      "F16",
+      "G16"
+     ],
+     [
+      "A5",
+      "B5",
+      "C5",
+      "D5",
+      "E5"
+     ],
+     [
+      "I1",
+      "I2",
+      "I3",
+      "I4",
+      "I5"
+     ],
+     [
+      "I20"
+     ]
+    ]
+   }
+  },
+  "lv8+": {
+   "levels": [
+    8,
+    9
+   ],
+   "primordial": {
+    "anchor": "G10"
+   },
+   "titanStarts": [
+    "K8",
+    "K13",
+    "D9",
+    "D12"
+   ],
+   "terrain": {
+    "fortifiedCity": [
+     {
+      "name": "Fortified City N",
+      "cells": [
+       "L13",
+       "L14",
+       "L15",
+       "M13",
+       "M14",
+       "M15",
+       "N13",
+       "N14",
+       "N15"
+      ]
+     },
+     {
+      "name": "Fortified City S",
+      "cells": [
+       "C6",
+       "C7",
+       "C8",
+       "D6",
+       "D7",
+       "D8",
+       "E6",
+       "E7",
+       "E8"
+      ]
+     }
+    ],
+    "river": [
+     [
+      "J10",
+      "K10",
+      "L10",
+      "M10",
+      "N10"
+     ],
+     [
+      "A10",
+      "B10",
+      "C10",
+      "D10",
+      "E10",
+      "F10"
+     ],
+     [
+      "K16",
+      "L16",
+      "M16",
+      "N16"
+     ],
+     [
+      "A16",
+      "B16",
+      "C16",
+      "D16",
+      "E16",
+      "F16",
+      "G16",
+      "H16"
+     ],
+     [
+      "I1",
+      "I2",
+      "I3",
+      "I4",
+      "I5"
+     ],
+     [
+      "C5",
+      "D5",
+      "E5",
+      "F5",
+      "G5",
+      "H5"
+     ],
+     [
+      "B5",
+      "B6",
+      "A6"
+     ],
+     [
+      "I20"
+     ]
+    ]
+   }
+  }
+ }
+}

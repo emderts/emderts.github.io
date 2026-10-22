@@ -1,0 +1,918 @@
+{
+ "id": "pursuer",
+ "name": "Hermesian Pursuer",
+ "cycle": 1,
+ "type": "regular",
+ "sheetCode": "AU0622",
+ "_notes": [
+  "Transcribed from sheet AU0622 (front Lv I / back Lv II-IX), AI AR0582-AR0605 (+Mnestis Routine Final Judgement), BP AS0564-AS0581.",
+  "2x2 footprint; the two rear spaces are Blindspots (R + crossed eye on the diagram). Speed shown with * = Winged Doom (unlimited).",
+  "Zone patterns for a 2x2 primordial: [depth, lateral] with lateral in half-lanes (-0.5/+0.5 = the two front lanes). Diagrams are drawn for a 1-space icon, so widths are an interpretation."
+ ],
+ "footprint": {
+  "w": 2,
+  "h": 2,
+  "rear": "top-edge"
+ },
+ "ukb": 5,
+ "blindspots": "rear",
+ "levels": {
+  "1": {
+   "toHit": 8,
+   "speed": 6,
+   "wounds": 10,
+   "bonus": {},
+   "traits": [
+    "Toying",
+    "Killjoy",
+    "Winged Doom",
+    "End of Hope",
+    "Flares"
+   ]
+  },
+  "2": {
+   "toHit": 8,
+   "speed": 6,
+   "wounds": 10,
+   "bonus": {
+    "ESCALATION": 1,
+    "AT": 1
+   },
+   "traits": [
+    "Mothwing Trance"
+   ],
+   "removeTraits": [
+    "Toying"
+   ]
+  },
+  "3": {
+   "toHit": 9,
+   "speed": 7,
+   "wounds": 11,
+   "bonus": {
+    "ESCALATION": 2,
+    "AT": 2,
+    "DANGER": 1
+   },
+   "traits": [
+    "Roost Battle"
+   ]
+  },
+  "4": {
+   "toHit": 9,
+   "speed": 7,
+   "wounds": 11,
+   "bonus": {
+    "ESCALATION": 2,
+    "AT": 3,
+    "DANGER": 1
+   },
+   "traits": [
+    "Darkness Comes With Me"
+   ]
+  },
+  "5": {
+   "mnestis": true,
+   "toHit": 10,
+   "speed": 8,
+   "wounds": 12,
+   "bonus": {
+    "ESCALATION": 3,
+    "AT": 4,
+    "DANGER": 1
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Beginning of the End"
+   ]
+  },
+  "6": {
+   "mnestis": true,
+   "toHit": 10,
+   "speed": 8,
+   "wounds": 12,
+   "bonus": {
+    "ESCALATION": 3,
+    "AT": 5,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Cackle"
+   ]
+  },
+  "7": {
+   "mnestis": true,
+   "toHit": 11,
+   "speed": 8,
+   "wounds": 13,
+   "bonus": {
+    "ESCALATION": 4,
+    "AT": 6,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Nemesis Vow"
+   ]
+  },
+  "8": {
+   "mnestis": true,
+   "toHit": 11,
+   "speed": 9,
+   "wounds": 13,
+   "bonus": {
+    "ESCALATION": 4,
+    "AT": 7,
+    "EVADE_DICE": 1,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Head to Head"
+   ]
+  },
+  "9": {
+   "mnestis": true,
+   "toHit": 12,
+   "speed": 9,
+   "wounds": 14,
+   "bonus": {
+    "ESCALATION": 5,
+    "AT": 8,
+    "EVADE_DICE": 2,
+    "DANGER": 3
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Ruthless",
+    "Headhunter"
+   ]
+  }
+ },
+ "traits": {
+  "Toying": "Apply the following modifiers to all Hermesian Pursuer Attacks: -1 Evasion die and -1 Danger per hit (minimum 1). As long as this Trait is active, the End of Hope Trait is disabled.",
+  "Winged Doom": "Hermesian Pursuer has unlimited Speed.",
+  "Killjoy": "Killjoy: Permanently lose 1 equipped Gear card. Triggers when prompted and each time a Titan performs a Full Evade or reduces all Danger from an Attack to 0.",
+  "End of Hope": "End of Primordial Round: Perform Signature.",
+  "Flares": "When instructed to draw and resolve a Flare card, draw the top card from the Flare deck, resolve it and discard it face up. If the Flare deck runs out, shuffle the discarded Flare cards to form a new Flare deck.",
+  "Mothwing Trance": "If you're in front of the Pursuer, you cannot re-roll your Attack Rolls, Evasion Rolls and Judgement tests.",
+  "Roost Battle": "Board Edges gain Boundless: They are now high cliffs. If a Titan is moved beyond the edge, they die.",
+  "Darkness Comes With Me": "After the Pursuer moves, but before it Attacks, every Titan in any of the 2 rows of spaces behind the Pursuer suffers unavoidable Knockback 7 (regardless of adjacency).",
+  "Beginning of the End": "End of Primordial Round: Before End of Hope, draw and perform another AI card.",
+  "Cackle": "When a Titan becomes adjacent to the Hermesian Pursuer, they gain the Fear Condition card.",
+  "Nemesis Vow": "When you are about to draw a Flare card, each Titan gains 1 Ambrosia token.",
+  "Head to Head": "You cannot attack the Hermesian Pursuer unless you're adjacent to it.",
+  "Ruthless": "Remove all positive Trauma cards from the Trauma decks (except Obols).",
+  "Headhunter": "If you have a Cryptex, resolve your Trauma Draw as if you crossed the next threshold on your Trauma Table (or Massive Danger chart). Each time a Titan dies, the Hermesian Pursuer performs Heal (if possible)."
+ },
+ "ai": [
+  {
+   "code": "AR0582",
+   "tier": 1,
+   "name": "Pincer Slash",
+   "kind": "ATTACK",
+   "dice": 5,
+   "toHit": 10,
+   "target": [
+    "Closest Titan in front, in range",
+    "Closest Titan in sight, in range"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Each hit deals 2 DANGER.",
+    "Gain 1 Ambrosia token.",
+    "⚡ FATE 3+: Knockdown.",
+    "FATE 3+: Knockback 7 to the right."
+   ],
+   "stepJoin": [
+    2,
+    4
+   ]
+  },
+  {
+   "code": "AR0583",
+   "tier": 1,
+   "name": "Pincer Pierce",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Furthest Titan in front, in range",
+    "Closest Titan in sight, in range"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Deal 4 DANGER.",
+    "Gain 1 Ambrosia token.",
+    "⚡ FATE 3+: Knockdown."
+   ],
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "AR0584",
+   "tier": 1,
+   "name": "Cross Slash",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Priority Target in sight, in range",
+    "Closest Titan in front, in range",
+    "Closest Titan in sight, in range"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "One hit deals 3 DANGER and 1 Ambrosia token, two or more hits deal 5 DANGER and 2 Ambrosia tokens.",
+    "⚡ FATE 4+: Knockdown.",
+    "FATE 4+: Knockback 7 to the right."
+   ],
+   "stepJoin": [
+    3
+   ]
+  },
+  {
+   "code": "AR0585",
+   "tier": 1,
+   "name": "Disdain",
+   "kind": "JUDGEMENT",
+   "dice": 3,
+   "toHit": 8,
+   "target": [
+    "Priority Target in sight",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "JUDGE Courage/Will | FATE 5+: Killjoy",
+    "One hit, gain the Fear Condition card, two hits, gain the Dread Condition card, three hits, you die."
+   ],
+   "after": "Pursuer moves to the center of the Board, then turns to face the most Titans.",
+   "afterWindow": true,
+   "judge": [
+    "Courage",
+    "Will"
+   ]
+  },
+  {
+   "code": "AR0586",
+   "tier": 1,
+   "name": "Ambrosia Touch",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 8,
+   "target": [
+    "Titan in Blindspot",
+    "Closest Titan in sight, in range"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 3+: +1 EVADE_DICE",
+    "Each hit deals 2 DANGER and 1 Ambrosia token."
+   ],
+   "after": "If DANGER was dealt, Pushback 4, Knockdown.",
+   "afterWindow": true
+  },
+  {
+   "code": "AR0587",
+   "tier": 1,
+   "name": "Relentless Push",
+   "kind": "ATTACK",
+   "dice": 4,
+   "toHit": 9,
+   "target": [
+    "Priority Target in sight, in range",
+    "Closest Titan in sight, in range"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Each hit deals 2 DANGER.",
+    "Gain 1 Ambrosia token.",
+    "⚡ Pushback 5. | FATE 3+: Pushback 8 instead"
+   ],
+   "after": "FATE 5+: Perform Signature.",
+   "afterWindow": true,
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "AR0588",
+   "tier": 2,
+   "name": "Sweep Attack",
+   "kind": "ZONE ATTACK",
+   "dice": 5,
+   "toHit": 10,
+   "target": [
+    "Priority Target in sight, in range",
+    "Closest Titan in sight, in range"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Each hit deals 3 DANGER.",
+    "Gain 1 Ambrosia token.",
+    "⚡ FATE 4+: Knockdown.",
+    "⚡ Knockback 5 to the right."
+   ],
+   "pattern": [
+    [
+     1,
+     -1.5
+    ],
+    [
+     1,
+     -0.5
+    ],
+    [
+     1,
+     0.5
+    ],
+    [
+     1,
+     1.5
+    ],
+    [
+     2,
+     -0.5
+    ],
+    [
+     2,
+     0.5
+    ]
+   ],
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "AR0589",
+   "tier": 2,
+   "name": "Ambrosia Spurt",
+   "kind": "ZONE ATTACK",
+   "dice": 4,
+   "toHit": 9,
+   "target": [
+    "Furthest Titan in front, in range",
+    "Furthest Titan in sight, in range"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 5+: Killjoy",
+    "Each hit deals 2 DANGER and 1 Ambrosia token.",
+    "Place an Ambrosia Pool tile in the Attack Zone."
+   ],
+   "afterFinal": "Pursuer moves to the center of the Board, then turns to face the most Titans.",
+   "afterWindow": true,
+   "pattern": [
+    [
+     1,
+     -0.5
+    ],
+    [
+     1,
+     0.5
+    ],
+    [
+     2,
+     -0.5
+    ],
+    [
+     2,
+     0.5
+    ]
+   ]
+  },
+  {
+   "code": "AR0590",
+   "tier": 2,
+   "name": "Flurry of Pincers",
+   "kind": "ZONE ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Zone 2"
+   ],
+   "steps": [
+    "⚡ ATTACK",
+    "Each hit deals 2 DANGER.",
+    "⚡ Knockback 7. | FATE 6+: Knockback 10 instead"
+   ],
+   "afterFinal": "Perform Signature.",
+   "afterWindow": true
+  },
+  {
+   "code": "AR0591",
+   "tier": 2,
+   "name": "Judgement",
+   "kind": "JUDGEMENT",
+   "dice": 4,
+   "toHit": 9,
+   "target": [
+    "Priority Target in sight",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "JUDGE Courage/Will | FATE 5+: Killjoy",
+    "One hit, gain the Fear Condition card, two hits, gain the Dread Condition card, three hits, you die."
+   ],
+   "after": "Pursuer moves to the center of the Board, then turns to face the most Titans.",
+   "afterWindow": true,
+   "judge": [
+    "Courage",
+    "Will"
+   ]
+  },
+  {
+   "code": "AR0592",
+   "tier": 2,
+   "name": "Burning Hug",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 8,
+   "target": [
+    "Titan in Blindspot",
+    "Closest Titan in front, in range",
+    "Closest Titan in sight, in range"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 5+: +2 EVADE_DICE",
+    "Each hit deals 3 DANGER.",
+    "Gain 2 Ambrosia tokens."
+   ],
+   "after": "If DANGER was dealt, Pushback 4, Knockdown.",
+   "afterWindow": true,
+   "stepJoin": [
+    2
+   ]
+  },
+  {
+   "code": "AR0593",
+   "tier": 2,
+   "name": "Drag and Drop",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Priority Target in range",
+    "Closest Titan in front, in range",
+    "Closest Titan in sight, in range"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 3+: +1 EVADE_DICE",
+    "Each hit deals 3 DANGER."
+   ],
+   "after": "If DANGER was dealt, Pushback 7, Knockdown.",
+   "afterWindow": true
+  },
+  {
+   "code": "AR0594",
+   "tier": 3,
+   "name": "Beak Suck",
+   "kind": "ATTACK",
+   "dice": 5,
+   "toHit": 9,
+   "target": [
+    "Priority Target in range",
+    "Closest Titan in front, in range",
+    "Closest Titan in sight, in range"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Each hit deals 2 DANGER. | FATE 6+: 3 DANGER instead",
+    "Lose -1 RAGE per hit."
+   ],
+   "after": "If DANGER was dealt, Pushback 10, Knockdown.",
+   "afterWindow": true
+  },
+  {
+   "code": "AR0595",
+   "tier": 3,
+   "name": "Ambrosia Stream",
+   "kind": "ZONE ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Priority Target in range",
+    "Closest Titan in front, in range",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 5+: Killjoy",
+    "Gain 3 Ambrosia tokens.",
+    "Each hit deals 3 DANGER.",
+    "Place an Ambrosia Pool tile in the Attack Zone."
+   ],
+   "afterFinal": "Pursuer moves to the center of the Board, then turns to face the most Titans.",
+   "afterWindow": true,
+   "pattern": [
+    [
+     1,
+     -0.5
+    ],
+    [
+     1,
+     0.5
+    ],
+    [
+     2,
+     -0.5
+    ],
+    [
+     2,
+     0.5
+    ]
+   ],
+   "stepJoin": [
+    2,
+    3
+   ]
+  },
+  {
+   "code": "AR0596",
+   "tier": 3,
+   "name": "Evisceration",
+   "kind": "ATTACK",
+   "dice": 4,
+   "toHit": 10,
+   "target": [
+    "Titan in Blindspot",
+    "Priority Target in sight, in range",
+    "Closest Titan in sight, in range"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Killjoy.",
+    "⚡ 1 hit, raise DANGER to 9 and resolve a Trauma Draw, 2 hits, raise DANGER to 9 and draw an Obol, 3 hits, you die."
+   ],
+   "after": "FATE 7+: Killjoy.",
+   "afterWindow": true
+  },
+  {
+   "code": "AR0597",
+   "tier": 3,
+   "name": "Skytear",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 11,
+   "target": [
+    "Titan in Blindspot",
+    "Closest Titan in sight, in range"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 7+: +1 EVADE_DICE",
+    "Each hit deals 3 DANGER.",
+    "Gain 1 negative Precision token for each hit.",
+    "⚡ Knockdown."
+   ],
+   "stepJoin": [
+    2,
+    3
+   ]
+  },
+  {
+   "code": "AR0598",
+   "tier": 3,
+   "name": "Grand Judgement",
+   "kind": "JUDGEMENT",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Priority Target in sight",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "JUDGE Courage/Will | FATE 6+: +1 EVADE_DICE",
+    "If hit, you die."
+   ],
+   "after": "Pursuer moves to the center of the Board, then turns to face the most Titans.",
+   "afterWindow": true,
+   "judge": [
+    "Courage",
+    "Will"
+   ],
+   "doomed": true
+  },
+  {
+   "code": "AR0599",
+   "tier": 3,
+   "name": "Wing Dance",
+   "kind": "ZONE ATTACK",
+   "dice": 4,
+   "toHit": 8,
+   "target": [
+    "Zone 2"
+   ],
+   "steps": [
+    "⚡ ATTACK",
+    "Gain 1 Ambrosia token.",
+    "Each hit deals 3 DANGER.",
+    "⚡ FATE 7+: Knockdown.",
+    "FATE 7+: Knockback 7 to the right."
+   ],
+   "afterFinal": "Perform Signature.",
+   "afterWindow": true,
+   "stepJoin": [
+    2,
+    3,
+    4
+   ]
+  },
+  {
+   "code": "AR0600",
+   "tier": "X",
+   "name": "Pincer Strike",
+   "kind": "SIGNATURE",
+   "dice": 4,
+   "toHit": 10,
+   "target": [
+    "Closest Titan in front, in range",
+    "Closest Titan in sight, in range"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Each hit deals 2 DANGER.",
+    "⚡ FATE 3+: Knockdown.",
+    "FATE 3+: Knockback 7 to the right."
+   ],
+   "stepJoin": [
+    3
+   ]
+  },
+  {
+   "code": "AR0601",
+   "tier": "X",
+   "name": "Eyes on the Prize",
+   "kind": "ROUTINE",
+   "text": "Pursuer moves to the center of the Board and turns to face the most Titans. Lose -1 Argo resources (campaign)."
+  },
+  {
+   "code": "AR0601-M",
+   "tier": "X",
+   "name": "Final Judgement",
+   "kind": "MNESTIS ROUTINE",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "All Titans"
+   ],
+   "steps": [
+    "JUDGE Courage/Will | FATE 6+: +1 EVADE_DICE",
+    "If hit, you die."
+   ],
+   "afterFinal": "Pursuer moves to the center of the Board, then turns to face the most Titans.",
+   "afterWindow": true,
+   "routineAttack": true,
+   "allTitans": true,
+   "judge": [
+    "Courage",
+    "Will"
+   ],
+   "doomed": true,
+   "noTarget": "Random Titan dies"
+  }
+ ],
+ "flares": [
+  {
+   "code": "AR0602",
+   "name": "Ambrosia: Harrow",
+   "kind": "FLARE",
+   "effect": "harrow",
+   "text": "Each Titan gains as many Fate as they have Ambrosia tokens. If this ability didn't trigger, the Pursuer moves to the center of the Board, turns to face the most Titans and performs Signature."
+  },
+  {
+   "code": "AR0603",
+   "name": "Ambrosia: Burnout",
+   "kind": "FLARE",
+   "effect": "burnout",
+   "text": "Each Titan gains as many Danger as they have Ambrosia tokens. If this ability didn't trigger, the Pursuer moves to the center of the Board, turns to face the most Titans and performs Signature."
+  },
+  {
+   "code": "AR0604",
+   "name": "Ambrosia: Stain",
+   "kind": "FLARE",
+   "effect": "stain",
+   "text": "Each Titan assigns all of their Ambrosia tokens to their Titan Sheet, Kratos Table or to any of their Gear or Mnemos cards (up to 1 token on each element). Treat these elements' ability text as blank. These Ambrosia tokens still count towards the Ambrosia Limit. If this ability didn't trigger, the Pursuer moves to the center of the Board, turns to face the most Titans and performs Signature."
+  },
+  {
+   "code": "AR0605",
+   "name": "Ambrosia: Drain",
+   "kind": "FLARE",
+   "effect": "drain",
+   "text": "If there are 3+ Ambrosia tokens in total on all Titans, the Pursuer performs Heal. If this ability didn't trigger, Pursuer moves to the center of the Board, turns to face the most Titans and performs Signature."
+  }
+ ],
+ "bp": [
+  {
+   "code": "AS0564",
+   "tier": 1,
+   "name": "Wiry Leg",
+   "at": 4,
+   "responses": {
+    "INSTINCT": "Knockdown. Knockback 7."
+   },
+   "critical": "Gain the Priority Target token. You may perform a Bonus Attack!",
+   "qeye": false
+  },
+  {
+   "code": "AS0565",
+   "tier": 1,
+   "name": "Hind Pincer",
+   "at": 5,
+   "responses": {
+    "FAIL": "Perform Signature against the Attacker.",
+    "WOUND": "Immediately draw and resolve a Flare card."
+   },
+   "critical": "During the second ability window, place 2 additional Opening or Break tokens in the Kratos Pool.",
+   "qeye": false
+  },
+  {
+   "code": "AS0566",
+   "tier": 1,
+   "name": "Abnormally Long Arm",
+   "at": 4,
+   "responses": {
+    "FAIL": "⚡ Knockdown.",
+    "WOUND": "Perform Signature against the Attacker."
+   },
+   "critical": "Gain +2 RAGE.",
+   "qeye": false
+  },
+  {
+   "code": "AS0567",
+   "tier": 1,
+   "name": "Arm Pincer",
+   "at": 5,
+   "responses": {
+    "FAIL": "Immediately draw and resolve a Flare card.",
+    "WOUND": "Perform Signature against the Attacker."
+   },
+   "critical": "Gain the Nail Spear Gear card (campaign).",
+   "qeye": false
+  },
+  {
+   "code": "AS0568",
+   "tier": 1,
+   "name": "Large Mothwing",
+   "at": 4,
+   "responses": {
+    "FAIL": "Knockdown. Knockback 10.",
+    "WOUND": "⚡ Knockdown. Knockback 7."
+   },
+   "critical": "Pursuer gains 1 negative To Hit token.",
+   "qeye": false
+  },
+  {
+   "code": "AS0569",
+   "tier": 1,
+   "name": "Small Moth Wing",
+   "at": 4,
+   "responses": {
+    "FAIL": "Immediately draw and resolve a Flare card.",
+    "WOUND": "Knockdown. Knockback 7."
+   },
+   "critical": "Gain +1 Mnemos node for a chosen Mnemos (campaign).",
+   "qeye": false
+  },
+  {
+   "code": "AS0570",
+   "tier": 2,
+   "name": "Abnormally Small Head",
+   "at": 7,
+   "responses": {
+    "FAIL": "Perform Signature against the Attacker.",
+    "WOUND": "Immediately draw and resolve a Flare card."
+   },
+   "critical": "Deal an additional Single Wound! Disable the Toying Trait.",
+   "qeye": true
+  },
+  {
+   "code": "AS0571",
+   "tier": 2,
+   "name": "Stone Beak",
+   "at": 6,
+   "responses": {
+    "FAIL": "Gain +3 DANGER. Resolve a Trauma Draw.",
+    "WOUND": "Immediately draw and resolve a Flare card."
+   },
+   "critical": "Gain the Vulture Mask Gear card (campaign).",
+   "qeye": false
+  },
+  {
+   "code": "AS0572",
+   "tier": 2,
+   "name": "Back Ridges",
+   "at": 8,
+   "responses": {
+    "FAIL": "Immediately draw and resolve a Flare card.",
+    "WOUND": "⚡ Knockdown."
+   },
+   "critical": "Until the end of Battle, Pursuer has -1 AT if Attacked from its Blindspot spaces.",
+   "qeye": true
+  },
+  {
+   "code": "AS0573",
+   "tier": 2,
+   "name": "Muscular Abdomen",
+   "at": 7,
+   "responses": {
+    "INSTINCT": "Gain 2 Ambrosia tokens."
+   },
+   "critical": "Discard all Ambrosia tokens from each Titan.",
+   "qeye": false
+  },
+  {
+   "code": "AS0574",
+   "tier": 2,
+   "name": "Abnormally Broad Shoulders",
+   "at": 8,
+   "responses": {
+    "FAIL": "Killjoy.",
+    "WOUND": "Pursuer moves to the center of the Board, turns to face the most Titans and performs Signature."
+   },
+   "critical": "Another Titan may perform a Bonus Attack!",
+   "qeye": false
+  },
+  {
+   "code": "AS0575",
+   "tier": 2,
+   "name": "Small Wing Fin",
+   "at": 6,
+   "responses": {
+    "FAIL": "Killjoy.",
+    "WOUND": "Gain the Priority Target token. Perform Signature against the Attacker."
+   },
+   "critical": "Pursuer gains 1 negative Precision token.",
+   "qeye": false
+  },
+  {
+   "code": "AS0576",
+   "tier": 3,
+   "name": "Crooked Head",
+   "at": 9,
+   "responses": {
+    "FAIL": "Immediately draw and resolve a Flare card.",
+    "WOUND": "Draw and resolve an AI card."
+   },
+   "critical": "Disable the Killjoy and Toying Traits.",
+   "qeye": true
+  },
+  {
+   "code": "AS0577",
+   "tier": 3,
+   "name": "Dangerless Eye",
+   "at": 11,
+   "responses": {
+    "FAIL": "Draw an Obol.",
+    "WOUND": "Draw and resolve an AI card."
+   },
+   "critical": "Gain the Wise Providence boon for your next Pursuer battle (campaign).",
+   "qeye": true
+  },
+  {
+   "code": "AS0578",
+   "tier": 3,
+   "name": "Ambrosia Font",
+   "at": 8,
+   "responses": {
+    "FAIL": "Gain 2 Ambrosia tokens.",
+    "WOUND": "Immediately draw and resolve a Flare card."
+   },
+   "critical": "Disable Flares.",
+   "qeye": true
+  },
+  {
+   "code": "AS0579",
+   "tier": 3,
+   "name": "Flight Nerve Center",
+   "at": 8,
+   "responses": {
+    "FAIL": "Killjoy.",
+    "WOUND": "Immediately draw and resolve a Flare card."
+   },
+   "critical": "Disable the Winged Doom Trait.",
+   "qeye": false
+  },
+  {
+   "code": "AS0580",
+   "tier": 3,
+   "name": "Hidden Wings",
+   "at": 8,
+   "responses": {
+    "FAIL": "Immediately draw and resolve a Flare card.",
+    "WOUND": "Killjoy."
+   },
+   "critical": "Deal an additional Single Wound!",
+   "qeye": false
+  },
+  {
+   "code": "AS0581",
+   "tier": 3,
+   "name": "Black-Blood Cryptex",
+   "at": 10,
+   "responses": {
+    "INSTINCT": "Disable the Toying Trait. Perform Signature against the Attacker."
+   },
+   "critical": "The Pursuer dies!",
+   "qeye": true
+  }
+ ]
+}

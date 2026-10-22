@@ -1,0 +1,54 @@
+import fs from 'fs';
+import { Game } from '../src/engine/game.js';
+const rd = p => JSON.parse(fs.readFileSync(new URL(p, import.meta.url)));
+const ids = ['hekaton', 'labyrinthauros', 'temenos', 'pursuer', 'cyclonus', 'chimera', 'nietzschean', 'burden', 'hypertime', 'harpy', 'sun', 'midascore', 'demidjinn', 'dahaka', 'babel'];
+const data = { primordials: {}, scenarios: {}, titans: rd('../data/titans.json'), gear: rd('../data/gear.json'), decks: rd('../data/decks.json'), argonauts: rd('../data/argonauts.json'), labyrinth: rd('../data/labyrinth.json') };
+for (const i of ids) { data.primordials[i] = rd(`../data/primordials/${i}.json`); data.scenarios[i] = rd(`../data/scenarios/${i}.json`); }
+const P = data.argonauts.portraits; let fails = 0; const ok = (c, m) => { if (!c) fails++; console.log((c ? 'PASS ' : 'FAIL ') + m); };
+const yes = async q => { if (q.type === 'multi') return []; if (q.type === 'move') return q.cells[0] || null; const o = q.options; return (o.find(x => x.value === true) || o.find(x => x.value) || o[0]).value; };
+const C4 = data.gear.cards.filter(c => c.cycle === 4);
+const mk = (gear = ['Sirenblade', 'Siren Shield'], lv = 1, prim = 'midascore', seed = 41) => { const g = new Game(data, { seed }); g.ask = yes; g.setup({ primordialId: prim, level: lv, argo: [], awakening: { enabled: true, spark: true }, titans: [0, 1, 2, 3].map(i => ({ name: 'T' + i, portrait: P[i].code, chosenSkill: 'Fury', mnemos: [], fated: [], cls: 'dreamwalker', gear: i === 0 ? gear : ['Sirenblade', 'Siren Shield'] })) }); g.log.length = 0; return g; };
+const has = (g, re) => g.log.some(l => re.test(l.msg));
+const catchD = async f => { try { await f(); } catch (e) { if (!e.titan && !e.chainBreak && !e.result) throw e; } };
+ok(C4.filter(c => !/Secret deck|^Guaranteed Loot/.test(c.tech)).length === 84, 'Cycle IV gear count 84 (' + C4.length + ')');
+ok(C4.every(c => c.tech && c.traits && c.slot && c.codes && (c.codes.length || c.name === 'Stock Cryptex')), 'all have tech/traits/slot/codes');
+ok(C4.filter(c => /^hand/.test(c.slot) && c.name !== 'Airsac Mine').every(c => c.atk != null && (c.power || c.powerByHits)), 'weapons have atk/power');
+{ const g = mk(['Burnout Whip', 'Siren Shield']); const [A] = g.titans; const w = A.gear[0]; ok(/Spotlight/.test(g.gearText(w, A)), 'sunstarved active (no fire)'); g.kratosPool.fire = 1; ok(!/Spotlight/.test(g.gearText(w, A)), 'sunstarved off with fire'); }
+{ const g = mk(['Scales Great Bow']); const [A] = g.titans; const w = A.gear[0]; ok(!/Opening/.test(g.gearText(w, A)), 'sunbask off'); g.kratosPool.fire = 1; ok(/Opening 2\./.test(g.gearText(w, A)), 'sunbask 1: Opening 2'); g.kratosPool.fire = 3; ok(/Opening 4\./.test(g.gearText(w, A)) && !/Opening 2\./.test(g.gearText(w, A)), 'sunbask 3: Opening 4 replaces'); }
+{ const g = mk(['Withered Javelin']); const [A] = g.titans; const w = A.gear[0]; g.kratosPool.fire = 2; const tx = g.gearText(w, A); ok(/Ranged 2-6\./.test(tx) && /Auto-break 2/.test(tx), 'javelin sunbask 2: Ranged 2-6 + Auto-break 2 ' + tx); }
+{ const g = mk(['Basilisk Belcher']); const [A] = g.titans; const w = A.gear[0]; ok(!/Crit Miss: Turn/.test(g.gearText(w, A)), 'midas gate off'); A.gear[0].midas = 1; ok(/Crit Miss: Turn/.test(g.gearText(w, A)), 'midas gate on'); }
+{ const g = mk(['Everchanging Whip']); const [A] = g.titans; const w = A.gear[0]; A.conditions.push('Wishkeen'); ok(/Spotlight/.test(g.gearText(w, A)), 'condition gate'); }
+{ const g = mk(['Strikeback Dagger']); const [A] = g.titans; ok(/3 Evasion re-rolls instead/.test((A.danger = 9, g.gearText(A.gear[0], A))), 'dagger danger 9: 3 evasion rerolls'); }
+{ const g = mk(['Silk Armor']); const [A] = g.titans; ok(g.evasionBonus(A) >= 1, 'silk armor evasion +1'); }
+{ const g = mk(['Curseblade']); const [A] = g.titans; A.pos = { c: 9, r: 6 }; await catchD(() => g.gainRage(A, 8, false)); ok(has(g, /즉시 Signature/), 'curseblade rage 8: signature once'); g.log.length = 0; await catchD(() => g.gainRage(A, 1, false)); ok(!has(g, /즉시 Signature/), 'only once'); }
+{ const g = mk(['Igniter Sling']); const [A] = g.titans; A.pos = { c: 7, r: 7 }; g._actor = A; g.kratosPool.fire = 2; g.rng.d10 = () => 9; await catchD(() => g.titanAttack(A, { forceWeapon: A.gear[0] })); ok(has(g, /Commit \(Fire\)/), 'commit (fire)'); }
+{ const g = mk(['Wingblade']); const [A] = g.titans; A.pos = { c: 9, r: 6 }; g._actor = A; g.rng.d10 = () => 9; await catchD(() => g.titanAttack(A, { forceWeapon: A.gear[0] })); ok(has(g, /빈 장비 슬롯 2 → \+2 Power/), 'wingblade empty gear slots'); }
+// Fists cycle IV
+{ const g = mk(['Siren Shield']); const f = g.titans[0].gear.find(x => x.card.name === 'Fists'); ok(!f || f.card.prec === 2, 'cycle IV fists +2 precision'); }
+// Midas gain modifiers
+{ const g = mk(['Greed Limiter', 'Sirenblade', 'Siren Panoply Armor']); const [A] = g.titans; await g.gainMidas(A, 3); ok(g.midas(A) === 2 && A.fate === 1, 'greed limiter: -1 midas (Ψ⟳)'); }
+// Hermes options
+{ const g = mk(['Hermes Grappling Hook', 'Sirenblade'], 2); const [A] = g.titans; const os = g.hermesOptions(A); ok(os.length === 2 && os.some(o => o.X === 1 && !o.cost) && os.some(o => o.X === 2 && o.cost === 'Ψ⟳'), 'grappling hook: Hermes Move 1 / Ψ⟳ 2'); }
+{ const g = mk(['Hermes Guard', 'Sirenblade'], 2); const [A, B] = g.titans; const rs = g.c4Reactions(A, B, { kind: 'ATTACK', name: 'x' }); ok(rs.some(r => /Hermes Reflex/.test(r.label)), 'hermes guard reaction'); }
+// Startup / Closing
+{ const g = mk(['Glassword', 'Siren Shield']); const [A] = g.titans; A.pos = { c: 9, r: 6 }; g._actor = A; g.rng.d10 = () => 10; await catchD(() => g.titanAttack(A, { forceWeapon: A.gear[0] })); ok(has(g, /Startup 2/), 'startup triggers on empty pool'); }
+{ const g = mk(['Debtguard', 'Sirenblade']); const [A] = g.titans; A.pos = { c: 9, r: 6 }; g._actor = A; g.rng.d10 = () => 10; await catchD(() => g.titanAttack(A, { forceWeapon: A.gear[0] })); ok(has(g, /Closing 2/), 'closing placed in 2nd window'); }
+// Commit (Midas)
+{ const g = mk(['Liability Flail', 'Siren Panoply Armor']); const [A] = g.titans; A.pos = { c: 9, r: 6 }; g._actor = A; g.rng.d10 = () => 9; await catchD(() => g.titanAttack(A, { forceWeapon: A.gear[0] })); ok(has(g, /Commit \(Midas\)/), 'commit (midas)'); }
+// Strikeback
+{ const g = mk(['Strikeback Dagger', 'Siren Shield']); const [A] = g.titans; A.pos = { c: 9, r: 6 }; g.currentAI = { card: { name: 'x', kind: 'ATTACK' } }; g.rng.d10 = () => 10; await catchD(() => g.c4Strikeback(A)); ok(has(g, /STRIKEBACK/) && A.fatigue === 'combat', 'strikeback attack + fatigue'); }
+{ const g = mk(['Phantom Spear']); const [A] = g.titans; A.pos = { c: 9, r: 6 }; g.currentAI = { card: { name: 'x', kind: 'ATTACK' } }; g.rng.d10 = () => 10; await catchD(() => g.c4Strikeback(A)); ok(has(g, /Phantom Spear \(Strikeback\)/) && A.gear[0].card.name === 'Phantom Spear', 'phantom spear uses strikeback side then restores'); }
+// airburst ignore
+{ const g = mk(['Statue Anchor', 'Sirenblade']); const [A] = g.titans; for (const x of g.titans) x.pos = { c: 1, r: x.id + 1 }; A.pos = { c: 13, r: 7 }; await catchD(() => g.airburst(2)); ok(!A.knockdown && has(g, /Airburst 무시/), 'statue anchor ignores airburst'); }
+// free actions
+{ const g = mk(['Auric Bank', 'Sirenblade']); const [A] = g.titans; A.gear[0].midas = 1; A.turn = { moved: false, attacked: false, usedAbilities: new Set() }; const fa = g.freeActions(A).find(o => /Midas 토큰 1개 버림/.test(o.label)); ok(!!fa, 'auric bank discard offered'); await fa.value(); ok(A.gear[0].midas === 0, 'discarded'); }
+// conditions / trauma
+{ const g = mk(); const [A] = g.titans; await g.addCondition(A, 'Terror'); ok(A.conditions.includes('Terror'), 'terror'); ok((await g.awaken(A)) === false, 'awakening lock'); await g.addCondition(A, 'Terror'); ok(A.conditions.includes('Holy Terror') && !A.conditions.includes('Terror'), 'terror x2 → holy terror'); g.c4OnWound(A); ok(A.conditions.includes('Bravery') && !A.conditions.includes('Holy Terror'), 'calm as the sea → bravery'); await g.addCondition(A, 'Terror'); ok(!A.conditions.includes('Terror') && !A.conditions.includes('Bravery'), 'bravery blocks terror and is discarded'); }
+{ const g = mk(); const [A] = g.titans; A.conditions.push('Terror'); const B = { hits: 2, crit: false }; g.c4TerrorRoll(A, B, [{ v: 9, crit: true }, { v: 1 }]); ok(B.hits === 0, 'terror: a 1 → full miss'); A.conditions = ['Holy Terror']; const H = { hits: 2 }; g.c4TerrorRoll(A, H, [{ v: 9, crit: true }, { v: 9 }]); ok(H.hits === 1, 'holy terror: no crit → -1 hit'); }
+{ const g = mk(['Siren Panoply Armor', 'Sirenblade']); const [A] = g.titans; const tr = c => data.decks.trauma.minor.concat(data.decks.trauma.major, data.decks.trauma.grave).find(x => x.code === c); await catchD(() => g.resolveTrauma(A, tr('DM2045'))); ok(g.midas(A) === 1, 'trauma Aurified: Midas 1'); await catchD(() => g.resolveTrauma(A, tr('DM2044'))); ok(A.conditions.includes('Covetous'), 'trauma Covetous'); await catchD(() => g.resolveTrauma(A, tr('DM2564'))); ok(g.curses(A).length === 1, 'cursed land: random curse'); }
+{ const g = mk(); ok(g.trauma.minor.cards.some(c => c.code === 'DM2045') && !g.trauma.minor.cards.some(c => c.cycle === 3), 'C4 trauma in deck, C3 removed'); const g2 = mk(['Sirenblade'], 1, 'harpy'); ok(!g2.trauma.minor.cards.some(c => c.cycle === 4), 'no C4 trauma in C3 battle'); }
+{ const g = mk(['Sirenblade', 'Siren Shield']); const [A] = g.titans; A.conditions.push('Wishkeen'); g._actor = A; A.turn = { moved: false, attacked: false, usedAbilities: new Set() }; const w = g.freeActions(A).find(o => /What You Wish For/.test(o.label)); ok(!!w, 'wishkeen action'); g.rng.d10 = () => 10; await catchD(() => w.value()); ok(!A.alive || (A.conditions.includes('Enriched') && !A.conditions.includes('Wishkeen')), 'survive → enriched'); }
+{ const g = mk(); const [A] = g.titans; await g.addCurse(A, 'Pursuer'); await catchD(() => g.c4TurnEnd(A)); ok(!A.alive, 'pursuer curse without midas → die'); }
+// all C4 gear in quick battles
+{ let bad = 0; const names = C4.map(c => c.name); for (let i = 0; i < names.length; i += 3) { const gear = names.slice(i, i + 3); const g = mk(gear, 1 + (i % 5), 'midascore', i + 1); g.ask = async q => { if (q.type === 'multi') return []; const o = (q.options || []).filter(x => !x.disabled); if (q.type === 'move') return (q.cells || [])[0] || null; const at = o.find(x => x.value === 'attack'); if (at) return 'attack'; const f = o.find(x => typeof x.value === 'function' && Math.random() < 0.3); if (f) return f.value; return (o.find(x => x.value === 'end') || o.find(x => x.value === true) || o[0] || {}).value; }; try { await g.run(); } catch (e) { bad++; console.log(gear, e.stack.split('\n').slice(0, 4).join(' | ')); } const u = g.log.filter(l => /미구현 효과/.test(l.msg)); if (u.length) { bad++; console.log(gear, [...new Set(u.map(l => l.msg))].slice(0, 3)); } } ok(!bad, 'battles with every C4 gear run'); }
+console.log(fails ? `${fails} FAIL` : 'ALL PASS');

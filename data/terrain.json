@@ -1,0 +1,184 @@
+{
+ "_notes": [
+  "Cycle IV terrain tile cards (scanned). Irem Tower/City are used by the Midascore battle; others are stored for future Primordials."
+ ],
+ "tiles": {
+  "Irem Tower": {
+   "code": "DI2028",
+   "size": "1x1",
+   "keywords": [
+    "Shifting",
+    "Obscuring",
+    "Obstacle",
+    "Elevated"
+   ],
+   "text": "To climb the Irem Tower (if you are not on an Elevated space), test Fury (4+)."
+  },
+  "Irem City": {
+   "code": "DI2027",
+   "size": "3x3",
+   "keywords": [
+    "Indestructible",
+    "Obscuring",
+    "Elevated",
+    "Cover"
+   ],
+   "text": "To climb the Irem City (if you are not on an Elevated space), test Fury (5+)."
+  },
+  "Staircase Entrance": {
+   "code": "DI2032",
+   "size": "1x1",
+   "keywords": [
+    "Obscuring",
+    "Obstacle",
+    "Elevated",
+    "Indestructible"
+   ],
+   "text": "To climb the Staircase Entrance (if you are not on an Elevated space), test Fury (4+)."
+  },
+  "Wishstorm": {
+   "code": "DI2030",
+   "size": "2x2",
+   "keywords": [
+    "Obscuring",
+    "Cloud",
+    "Trap",
+    "Treasure",
+    "Elevated"
+   ],
+   "text": "To climb the Wishstorm (if you are not on an Elevated space), test Fury (7+). Treasure: Once per Battle, when adjacent to or on this tile, search it. Roll a d10: 1: Wish Curse: The unpredictable forces of the storm rouse an ancient greed inside you. Gain the Wishagog Condition card. 2-5: Ill-considered Wish! Gain +1 FATE and Wish Away 12! 6-9: Thoughtful Wish: Gain 1 Echo of Recollection Divine resource or gain 1 Golden Bough Rare resource. 10: Wishbreaker Wish: Lose a Curse Affliction or gain 1 Sisyphus Tear, or gain +1 [?], or the Debtguard card! Trap: If a Titan ends their involuntary movement on this tile, they draw an Obol. If the Primordial ends their involuntary movement on this tile, place 1 negative [AT] token in the Kratos Pool."
+  },
+  "Argo Hull": {
+   "code": "AI3270",
+   "size": "1x4 / 1x5",
+   "keywords": [
+    "Obstacle",
+    "Indestructible"
+   ],
+   "text": "Hull Damage: If the Primordial moves onto this tile or a Titan would be involuntarily moved onto it, roll a d10. On a 6+, the plating holds. Otherwise, lose -1 [Hull] and disable the Argo Support effect (only once per Battle). Argo Support: Titans within 3 spaces of this tile gain +1 Precision, Power Re-roll 1, Auto-break 1."
+  },
+  "Ambrosia Cloud": {
+   "code": "DI2031",
+   "size": "3x3",
+   "keywords": [
+    "Ambrosia",
+    "Obscuring",
+    "Cloud"
+   ],
+   "text": "Cloud (This tile is unaffected by other Elevated tiles—it does not lose the Obscuring or Obstacle keywords)."
+  },
+  "Abandoned Temple": {
+   "code": "AI0369",
+   "size": "2x2",
+   "keywords": [
+    "Obstacle",
+    "Obscuring",
+    "Destructible"
+   ],
+   "text": "Treasure: Once per Battle, when adjacent, search the Abandoned Temple. Roll a d10: 1: Gain the Mazetouched Affliction. 2-5: The Primordial performs Signature against you. 6-9: Gain +1 Priest. 10: Gain 1 Sysiphus Tear (once per Cycle); if already gained from this tile, lose -2 Tides of Fate."
+  },
+  "Black Abyss": {
+   "code": "",
+   "size": "3x3",
+   "keywords": [
+    "Obscuring",
+    "Chasm",
+    "Abyss",
+    "Indestructible"
+   ],
+   "text": "Abyss: You cannot voluntarily move through or ignore this tile in any way; you cannot measure effective range of your weapons through empty spaces of this tile. If a Black Abyss tile moves onto you or you're moved involuntarily through or onto it, you are devoured (die)."
+  },
+  "Ruined Arcology": {
+   "code": "",
+   "size": "3x3",
+   "keywords": [
+    "Obscuring",
+    "Inhabited",
+    "Destructible",
+    "Cover"
+   ],
+   "text": "Allied: Titans on this tile have +1 Light-range. Light 1. Omnilight: This tile projects Light in all cardinal directions. Aligned With Nemesis: Treat this tile as an Obstacle."
+  },
+  "Lightwall": {
+   "code": "EI2608",
+   "size": "1x5 / 1x4 / 1x1",
+   "keywords": [
+    "Destructible",
+    "Obstacle"
+   ],
+   "text": "Light 1. Monument to Progress: For the purposes of Despair adjacency, treat this tile as a Titan. Omnilight: This tile projects Light in all cardinal directions."
+  },
+  "Trireme Graveyard": {
+   "code": "",
+   "size": "2x2",
+   "keywords": [
+    "Destructible",
+    "Obstacle",
+    "Elevated"
+   ],
+   "text": "Treasure: Once per Battle, when adjacent, search the Trireme Graveyard. Roll a d10 (you may voluntarily choose a lower result): 1: Gain 1 Despair token and 1 Ambrosia token. 2-4: Gain 5 Orichalcum Chunk resources. 5-7: Flip 1 Aether token. 8-9: Gain 1 Undead Silver Rare resource. 10: Gain the Hunter Killer card (Secret deck 18, card 296)."
+  },
+  "School of Creatures": {
+   "code": "",
+   "size": "2x2",
+   "keywords": [
+    "Obscuring",
+    "Destructible",
+    "Cover"
+   ],
+   "text": "Mobile: If you start your movement on this tile, or move through it during a movement, you may move this tile up 2 spaces in the direction of your movement. Camouflage: When you are on this tile, pass the Priority Target token to the next eligible holder. You cannot be a Target if there are other eligible Targets for the targeting line."
+  },
+  "Arcology": {
+   "code": "EI2604",
+   "size": "3x3",
+   "keywords": [
+    "Obscuring",
+    "Inhabited",
+    "Reinforced Destructible",
+    "Cover"
+   ],
+   "text": "Allied: Titans on this tile have +1 Light-range. Light 1. Omnilight: This tile projects Light in all cardinal directions. Aligned With Nemesis: Treat this tile as an Obstacle."
+  },
+  "Inkblot": {
+   "code": "EI2605",
+   "size": "2x2",
+   "keywords": [
+    "Ambrosia",
+    "Obscuring",
+    "Cloud"
+   ],
+   "text": "Cloud (this tile is unaffected by other Elevated tiles)."
+  },
+  "Petrified Vent": {
+   "code": "EI2606",
+   "size": "1x1",
+   "keywords": [
+    "Obstacle",
+    "Obscuring",
+    "Destructible"
+   ],
+   "text": "Black Smoke (if you suffer Crash on this tile, additionally gain 1 Ambrosia token)."
+  },
+  "Trench": {
+   "code": "EI2607",
+   "size": "1x5 / 1x4 / 1x1",
+   "keywords": [
+    "Indestructible",
+    "Chasm"
+   ],
+   "text": "Light Void (spaces of this tile are never considered to be in the range of light; if you occupy any space of such a tile, you cannot check your range of light)."
+  },
+  "Windblighted Fleet": {
+   "code": "DI2029",
+   "size": "2x2",
+   "keywords": [
+    "Shifting",
+    "Obscuring",
+    "Elevated",
+    "Inhabited",
+    "Cloud"
+   ],
+   "text": "Allied: Titans on this tile have +1 Light-range. Friendly: Titans on this tile have Auto-break 1. Denounced: When you move onto this tile, gain +1 DANGER and +1 FATE. At War: Treat this tile as an Obstacle."
+  }
+ }
+}

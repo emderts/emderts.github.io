@@ -1,0 +1,95 @@
+{
+ "id": "sun",
+ "source": "ATO Cycle III Storybook — Endure the Sun Battle (p.132-133)",
+ "board": {
+  "cols": 20,
+  "rows": 14
+ },
+ "_notes": [
+  "Flame tokens (H10, H11, G10, G11) = Titan start spaces; coloured squares = Time Anchors (red J6, green E8, yellow J13, blue E13).",
+  "Floating Rocks 2x2 (CI1315): Obstacle, Obscuring, Indestructible, Elevated, climb Fury 4+."
+ ],
+ "center": "G10",
+ "variants": {
+  "all": {
+   "levels": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "primordial": {
+    "anchor": "G1",
+    "facing": "E"
+   },
+   "titanStarts": [
+    "J6",
+    "E8",
+    "J13",
+    "E13"
+   ],
+   "startChoices": [
+    "H10",
+    "H11",
+    "G10",
+    "G11"
+   ],
+   "terrain": {
+    "iceberg": [
+     "K4",
+     "K6",
+     "K13",
+     "I9",
+     "I14",
+     "F6",
+     "F12",
+     "E15",
+     "D8",
+     "D13"
+    ],
+    "blackGlacier": [
+     [
+      "H4",
+      "H5",
+      "H6",
+      "H7",
+      "H8"
+     ],
+     [
+      "G12",
+      "G13",
+      "G14",
+      "G15",
+      "G16"
+     ],
+     [
+      "B7",
+      "C7",
+      "D7",
+      "E7",
+      "F7"
+     ]
+    ],
+    "floatingRocks": [
+     [
+      "L8",
+      "L9",
+      "M8",
+      "M9"
+     ],
+     [
+      "A12",
+      "A13",
+      "B12",
+      "B13"
+     ]
+    ]
+   }
+  }
+ }
+}

@@ -1,0 +1,13 @@
+import { chromium } from 'playwright';
+const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' }); const p = await b.newPage({ viewport: { width: 1400, height: 1000 } });
+const errs = []; p.on('pageerror', e => errs.push(e.message));
+await p.goto('file://' + process.cwd() + '/dist/mnestis.html');
+const sel = await p.$$('.loadout select'); await sel[0].selectOption('labyrinthauros'); await p.waitForTimeout(150);
+await p.click('text=전투 시작'); await p.waitForTimeout(600);
+const g = await p.evaluate(() => { const B = window.__game.board; const lab = [...B.lab.keys()][0]; const ter = [...B.terrain.values()][0]; return { lab, ter: ter.cell }; });
+const clickCell = async (c, r) => { await p.click(`rect.cell[x="${c * 34}"][y="${(14 - r) * 34}"]`, { force: true }); await p.waitForTimeout(150); };
+const [lc, lr] = g.lab.split(',').map(Number);
+await clickCell(lc, lr); console.log('LAB:', (await p.$eval('.modal', e => e.innerText)).replace(/\n+/g, ' | ').slice(0, 400)); await p.screenshot({ path: 'test/shot-cellinfo.png' }); await p.click('.modal .close');
+await clickCell(g.ter.c, g.ter.r); console.log('TER:', (await p.$eval('.modal', e => e.innerText)).replace(/\n+/g, ' | ').slice(0, 400)); await p.click('.modal .close');
+const a = await p.evaluate(() => window.__game.prim.anchor); await clickCell(a.c, a.r); console.log('PRIM:', (await p.$eval('.modal', e => e.innerText)).replace(/\n+/g, ' | ').slice(0, 300));
+console.log('errors:', errs); await b.close();

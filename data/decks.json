@@ -1,0 +1,1236 @@
+{
+ "_notes": [
+  "Transcribed from scans: Obol AM0353-0359, Moiros AO0378-0385, Kratos AN0372-0377, Trauma AM0307-0352 (+ Cycle II BM / Cycle III CM cards), Conditions AL0299-0306.",
+  "Trauma cards carry: polarity (+ positive / - negative; Hekaton IX 'Ruthless' removes positives), and on Minor cards an arrow (up/left/right/down/spiral) and on Major cards a number 1-8 - both are random-direction / random-number lookup aids (rulebook: random direction / random number draws), not effects.",
+  "Mnestis rule (p.70): you are in the Cycle of the Primordial you fight, so for Cycle I Primordials build decks with cycle = null or 1 only.",
+  "Codes AM0349 and AM0355 were not in the scans - deck may have one more Grave Trauma and one more Obol card (TBC).",
+  "Icons: RAGE=Ω, FATE=Ψ, DANGER=Λ, PT = Priority Target token. Unresolved icons marked [TBC:...].",
+  "AM0349 = Awakening (Trauma secret card 6), AM0355 = You Died/Awaken (Obol secret card 7): only added once Awakening is unlocked.",
+  "godforms: bottom-row stats read from scans; Godform Power die colour (black) and Demeter's '+1 die' (read as +1 black Armor die) are TBC.",
+  "2026-10-20: Cycle IV Godforms (Secret cards 246-248) Dionysus, Aphrodite, Helios Apollon Exalted added (only Helios is Exalted). The '▼' cost on these cards = Trespass token.",
+  "2026-10-20: Exalted Godforms (exalted:true) = Tier II Awakening. Gradual: Awaken while already awakened → choose an Exalted Godform, refresh Trespass. Grand Theft: choose an Exalted Godform during a normal Awakening → Fused Souls, death cannot be avoided, only 1 Trespass. All Exalted: Bonus Action + Cryptex Loathing."
+ ],
+ "obol": [
+  {
+   "code": "AM0353",
+   "name": "You Live!",
+   "flavor": "Against all odds, you survive.",
+   "text": "",
+   "result": "live"
+  },
+  {
+   "code": "AM0354",
+   "name": "You Died",
+   "flavor": "I have a rendezvous with Death.",
+   "text": "",
+   "result": "die"
+  },
+  {
+   "code": "AM0356",
+   "name": "You Live!",
+   "flavor": "By the power of the Dead Gods...",
+   "text": "You may lose -1 FATE.",
+   "result": "live",
+   "condition": "Only while Awakened: add this card to the deck before your Obol Draw (remove it afterwards)."
+  },
+  {
+   "code": "AM0357",
+   "name": "You Died Horribly",
+   "text": "Roll a d10. On a '10', you Awaken instead! If you die, End of Battle: Roll on the Fate Worse Than Death Special Event Table.",
+   "result": "die",
+   "addWhen": "Danger would be 14+"
+  },
+  {
+   "code": "AM0358",
+   "name": "Your Gruesome Death Becomes Legend",
+   "text": "Roll a d10. On a '9-10', you Awaken instead! If you die, End of Battle: Your Argonaut dies from Triskelion shock. Resolve the Rude Awakening Special Event.",
+   "result": "die",
+   "addWhen": "Danger would be 18+"
+  },
+  {
+   "code": "AM0359",
+   "name": "Your Death Transcends Reality",
+   "text": "See the Your Death Transcends Reality Special Event in the Cycle I Storybook.",
+   "result": "special",
+   "addWhen": "Danger would be 21+"
+  }
+ ],
+ "moiros": [
+  {
+   "code": "AO0378",
+   "name": "Fate Worse Than Death",
+   "type": "Condition Moiros (Fate)",
+   "text": "Gain this card and the PT token (even if someone has the Marked for Death Trauma card). While you have this card, you cannot lose this token. End of Battle: If your Titan is dead, resolve the Fate Worse Than Death Special Event."
+  },
+  {
+   "code": "AO0379",
+   "name": "Another's Thread",
+   "text": "Another random Titan gains +3 RAGE, +3 DANGER, +3 FATE and suffers Knockdown."
+  },
+  {
+   "code": "AO0380",
+   "name": "Argo Will Suffer",
+   "text": "Immediately gain +1 [TBC: shield-like Argo stat, likely Doom] and lose -1 [TBC: X-like Argo stat]."
+  },
+  {
+   "code": "AO0381",
+   "name": "Fated Memory",
+   "text": "Immediately gain a Fated Mnemos card. If you already have 2 Fated Mnemos cards, lose all nodes from a random Fated Mnemos instead."
+  },
+  {
+   "code": "AO0382",
+   "name": "Argo's Days Are Numbered",
+   "text": "Immediately lose -1 ARGO_LOSS [same icon as Hekaton's Idle Hands routine; TBC]."
+  },
+  {
+   "code": "AO0383",
+   "name": "Hadeosis",
+   "text": "Reduce your FATE to 0. After Battle, resolve the Fateful Visitant Special Event."
+  },
+  {
+   "code": "AO0384",
+   "name": "Fated to Die",
+   "text": "Spawn the Adversary. If it is already on the Voyage Map, instead resolve 2 [TBC: skull icon, likely Doom]."
+  },
+  {
+   "code": "AO0385",
+   "name": "Fatebringer",
+   "text": "Gain +1 [TBC: triangular icon]."
+  }
+ ],
+ "kratos": [
+  {
+   "code": "AN0372",
+   "name": "Egolock",
+   "type": "Condition Kratos (Mind)",
+   "text": "You are paralyzed. You cannot move voluntarily, attack or use actions or abilities, unless stated otherwise. When you are attacked, instead of performing the Evasion Roll, immediately die. Do not resolve any other hit effects and proceed to After Attack.",
+   "rally": "End of your turn: You may test Courage (FATE+). Success: Discard this card."
+  },
+  {
+   "code": "AN0373",
+   "name": "Reject Argonaut",
+   "text": "Perform a Kratos Roll. Fail: You die."
+  },
+  {
+   "code": "AN0374",
+   "name": "Berserk",
+   "type": "Condition Kratos (Mind)",
+   "text": "Gain +2 RAGE. Each Titan Round you must activate first. You cannot Block. Your Titan Power Die is one tier higher. On your turn, you must use your Move to move towards the closest Target (Titan or Primordial) along the shortest possible path, then use your Attack to attack it. You can perform free actions as normal. If you attack a Titan, do not resolve the Attack Sequence, instead that Titan gains +3 DANGER and suffers Knockdown. Start of your turn: Unexhaust 1 Weapon.",
+   "rally": "End of your turn: You may test Courage or Will (10+). Success: Discard this card. End of Battle: If you still have this card, you die."
+  },
+  {
+   "code": "AN0375",
+   "name": "Moirosis",
+   "text": "Gain FATE equal to your RAGE. Reduce your RAGE to 0."
+  },
+  {
+   "code": "AN0376",
+   "name": "Fate Paradox",
+   "text": "Gain DANGER equal to your FATE."
+  },
+  {
+   "code": "AN0377",
+   "name": "Abandon",
+   "type": "Condition Kratos (Mind)",
+   "text": "You are fleeing. On your turn, you must use your Move to move towards the closest Board Edge. You cannot attack or use other actions or abilities, unless stated otherwise. If you would cross the Board Edge, remove your Titan from the Board. It runs away (for all purposes treat it as dead).",
+   "rally": "End of your turn: You may test Courage (FATE+). Success: Discard this card."
+  }
+ ],
+ "trauma": {
+  "minor": [
+   {
+    "code": "AM0307",
+    "name": "Kratos Whisper",
+    "pol": "+",
+    "arrow": "up",
+    "text": "Gain +1 RAGE."
+   },
+   {
+    "code": "AM0308",
+    "name": "Insulted",
+    "pol": "+",
+    "arrow": "left",
+    "text": "You may immediately perform a Bonus Attack! If you have the Knockdown (falling down) Condition card, immediately stand up instead."
+   },
+   {
+    "code": "AM0309",
+    "name": "Gash",
+    "pol": "-",
+    "arrow": "right",
+    "text": "Gain +1 DANGER. Shuffle this card back into the Trauma deck, then resolve the Trauma Draw again."
+   },
+   {
+    "code": "AM0310",
+    "name": "Thrown Off-Balance",
+    "pol": "-",
+    "arrow": "down",
+    "text": "Exhaust all your exhaustable Gear. If no Gear was exhausted by this card, Knockdown."
+   },
+   {
+    "code": "AM0311",
+    "name": "Feign Death",
+    "pol": "+",
+    "arrow": "up",
+    "text": "Immediately Chain Break the Primordial Attack, gain the Knockdown (standing up) Condition card."
+   },
+   {
+    "code": "AM0312",
+    "name": "Feint",
+    "pol": "+",
+    "arrow": "left",
+    "text": "Place up to 2 Opening and/or Break tokens in the Kratos Pool."
+   },
+   {
+    "code": "AM0313",
+    "name": "Marked for Glory",
+    "pol": "+",
+    "arrow": "right",
+    "text": "You may gain the PT token. If you do, gain 1 positive Precision token. If you already have the PT token, gain 1 positive Precision token."
+   },
+   {
+    "code": "AM0314",
+    "name": "Battle Cry",
+    "pol": "+",
+    "arrow": "down",
+    "text": "Another Titan may move up to 2 spaces or stand up."
+   },
+   {
+    "code": "AM0315",
+    "name": "Unexpected Help",
+    "pol": "+",
+    "arrow": "up",
+    "text": "You may immediately place 1 charge on any Argo Ability (even above the starting number of charges)."
+   },
+   {
+    "code": "AM0316",
+    "name": "Glimpse Weak Spot",
+    "pol": "+",
+    "arrow": "left",
+    "text": "Look at the top card of the BP deck. You may put it back on top of the BP deck or onto the discard pile."
+   },
+   {
+    "code": "AM0317",
+    "name": "Fateful Wound",
+    "type": "Condition Trauma (Body)",
+    "pol": "-",
+    "arrow": "right",
+    "text": "All your Attacks gain: \"Crit Miss: Gain +1 DANGER and immediately fully miss the Attack.\""
+   },
+   {
+    "code": "AM0318",
+    "name": "Fear",
+    "cycle": 1,
+    "pol": "-",
+    "arrow": "down",
+    "text": "Gain the Fear Condition card."
+   },
+   {
+    "code": "AM0319",
+    "name": "Maze Emergence",
+    "cycle": 1,
+    "pol": "-",
+    "arrow": "spiral",
+    "text": "Place an L Labyrinth tile under your Titan."
+   },
+   {
+    "code": "AM0320",
+    "name": "Maze Emergence",
+    "cycle": 1,
+    "pol": "-",
+    "arrow": "spiral",
+    "text": "Place a Z Labyrinth tile under your Titan."
+   },
+   {
+    "code": "AM0321",
+    "name": "Seed of Despair",
+    "cycle": 1,
+    "pol": "-",
+    "arrow": "spiral",
+    "text": "Gain 1 Despair token."
+   },
+   {
+    "code": "BM0678",
+    "name": "Hatred",
+    "cycle": 2,
+    "pol": "-",
+    "arrow": "down",
+    "text": "Gain the Hatred Condition card."
+   },
+   {
+    "code": "BM0679",
+    "name": "Bloodlust",
+    "cycle": 2,
+    "pol": "-",
+    "arrow": "spiral",
+    "text": "Gain +1 RAGE and +1 FATE."
+   },
+   {
+    "code": "BM0680",
+    "name": "Bloodlust",
+    "cycle": 2,
+    "pol": "-",
+    "arrow": "spiral",
+    "text": "Gain +1 RAGE and +1 FATE."
+   },
+   {
+    "code": "BM0681",
+    "name": "Bloodlust",
+    "cycle": 2,
+    "pol": "-",
+    "arrow": "spiral",
+    "text": "Gain +1 RAGE and +1 FATE."
+   },
+   {
+    "code": "CM1299",
+    "name": "Muffled",
+    "cycle": 3,
+    "pol": "-",
+    "arrow": "down",
+    "text": "Gain the Muffled Condition card."
+   },
+   {
+    "code": "CM1300",
+    "name": "Time-Clocked",
+    "cycle": 3,
+    "pol": "-",
+    "arrow": "spiral",
+    "text": "Reestablish your Time Anchor. Then gain the Time-clocked Condition card."
+   },
+   {
+    "code": "CM1301",
+    "name": "Moirai Edict",
+    "cycle": 3,
+    "pol": "-",
+    "arrow": "spiral",
+    "text": "Gain +1 FATE."
+   },
+   {
+    "code": "CM1302",
+    "name": "Fateful Paradox",
+    "cycle": 3,
+    "pol": "-",
+    "arrow": "spiral",
+    "text": "Gain +1 Paradox."
+   },
+   {
+    "code": "DM2045",
+    "name": "Aurified",
+    "cycle": 4,
+    "pol": "-",
+    "arrow": "spiral",
+    "text": "Midas 1."
+   },
+   {
+    "code": "DM2044",
+    "name": "Covetous",
+    "cycle": 4,
+    "pol": "-",
+    "arrow": "down",
+    "text": "Gain the Covetous Condition card."
+   },
+   {
+    "code": "DM2047",
+    "name": "Sunward Gust",
+    "cycle": 4,
+    "pol": "-",
+    "arrow": "spiral",
+    "text": "Float."
+   },
+   {
+    "code": "DM2046",
+    "name": "Wishing for a Wish",
+    "cycle": 4,
+    "pol": "-",
+    "arrow": "spiral",
+    "text": "Gain the Wishkeen Condition card."
+   }
+  ],
+  "major": [
+   {
+    "code": "AM0322",
+    "name": "Kratos Glimpse",
+    "pol": "+",
+    "num": 1,
+    "text": "Gain +2 RAGE."
+   },
+   {
+    "code": "AM0323",
+    "name": "Marked for Death",
+    "type": "Condition Trauma (Fate)",
+    "pol": "-",
+    "num": 2,
+    "text": "Gain this card and the PT token. While you have this card, you cannot lose this token."
+   },
+   {
+    "code": "AM0324",
+    "name": "Call to Arms",
+    "pol": "+",
+    "num": 3,
+    "text": "Another Titan may move up to 3 spaces or stand up."
+   },
+   {
+    "code": "AM0325",
+    "name": "Giant Gash",
+    "pol": "-",
+    "num": 4,
+    "text": "Gain +1 DANGER. Shuffle this card back into the Trauma deck, then resolve the Trauma Draw again."
+   },
+   {
+    "code": "AM0326",
+    "name": "Inner Strength",
+    "pol": "+",
+    "num": 5,
+    "text": "Lose -1 DANGER and stand up. You may immediately perform a Bonus Attack!"
+   },
+   {
+    "code": "AM0327",
+    "name": "Show of Willpower",
+    "pol": "+",
+    "num": 6,
+    "text": "You may discard 2 Condition tokens, a tokenless Condition card or an Ambrosia token, or lose -2 FATE."
+   },
+   {
+    "code": "AM0328",
+    "name": "Counterattack",
+    "pol": "+",
+    "num": 7,
+    "text": "You may immediately move up to 3 spaces and perform a Bonus Attack! If you have the Knockdown (falling down) Condition card, immediately stand up instead."
+   },
+   {
+    "code": "AM0329",
+    "name": "Flood of Memories",
+    "pol": "+",
+    "num": 1,
+    "text": "Gain +1 Mnemos node for a chosen Mnemos. Then unexhaust that Mnemos."
+   },
+   {
+    "code": "AM0330",
+    "name": "Predict Moves",
+    "pol": "+",
+    "num": 2,
+    "text": "Look at the top card of the BP or AI deck. You may put it back on top of the corresponding deck or onto the corresponding discard pile."
+   },
+   {
+    "code": "AM0331",
+    "name": "Dolos Cunning",
+    "pol": "+",
+    "num": 3,
+    "text": "Place up to 3 Opening and/or Break tokens in the Kratos Pool."
+   },
+   {
+    "code": "AM0332",
+    "name": "Heroic Death",
+    "pol": "-",
+    "num": 4,
+    "text": "First Round Only: Ignore this card, find and resolve the Feign Death Minor Trauma card instead. Any Other Round: You die, but you won't sell your life cheap! Immediately stand up, move up to 3 spaces and perform a Bonus Attack! Then, shuffle this card back into the Trauma deck and die. If you have the Spark of the Dead Gods Technology card, roll a d10. On a '10' you Awaken."
+   },
+   {
+    "code": "AM0333",
+    "name": "Dread",
+    "cycle": 1,
+    "pol": "-",
+    "num": 8,
+    "text": "Gain the Dread Condition card."
+   },
+   {
+    "code": "AM0334",
+    "name": "Maze Eruption",
+    "cycle": 1,
+    "pol": "-",
+    "num": 5,
+    "text": "Place an O Labyrinth tile under your Titan and suffer Knockdown."
+   },
+   {
+    "code": "AM0335",
+    "name": "Maze Eruption",
+    "cycle": 1,
+    "pol": "-",
+    "num": 6,
+    "text": "Place a Z Labyrinth tile under your Titan and suffer Knockdown."
+   },
+   {
+    "code": "AM0336",
+    "name": "Pall of Despair",
+    "cycle": 1,
+    "pol": "-",
+    "num": 7,
+    "text": "Gain 2 Despair tokens."
+   },
+   {
+    "code": "BM0682",
+    "name": "Frenzy",
+    "cycle": 2,
+    "pol": "-",
+    "num": 5,
+    "text": "Gain the Frenzy Condition card."
+   },
+   {
+    "code": "BM0683",
+    "name": "Bloodrage",
+    "cycle": 2,
+    "pol": "-",
+    "num": 6,
+    "text": "Gain +2 RAGE and +1 FATE."
+   },
+   {
+    "code": "BM0684",
+    "name": "Bloodrage",
+    "cycle": 2,
+    "pol": "-",
+    "num": 7,
+    "text": "Gain +2 RAGE and +1 FATE."
+   },
+   {
+    "code": "BM0685",
+    "name": "Disarmed",
+    "cycle": 2,
+    "pol": "-",
+    "num": 8,
+    "text": "Discard 1 Weapon card."
+   },
+   {
+    "code": "CM1303",
+    "name": "Sealed",
+    "cycle": 3,
+    "pol": "-",
+    "num": 5,
+    "text": "Gain the Sealed Condition card."
+   },
+   {
+    "code": "CM1304",
+    "name": "Moirai Verdict",
+    "cycle": 3,
+    "pol": "-",
+    "num": 6,
+    "text": "Gain +2 FATE."
+   },
+   {
+    "code": "CM1305",
+    "name": "Moirai Verdict",
+    "cycle": 3,
+    "pol": "-",
+    "num": 7,
+    "text": "Gain +2 FATE."
+   },
+   {
+    "code": "CM1306",
+    "name": "Fateful Paradox",
+    "cycle": 3,
+    "pol": "-",
+    "num": 8,
+    "text": "Gain +1 Paradox."
+   },
+   {
+    "code": "DM2560",
+    "name": "Greed-crazed",
+    "cycle": 4,
+    "pol": "-",
+    "num": 5,
+    "text": "Gain the Greed-crazed Condition card."
+   },
+   {
+    "code": "DM2561",
+    "name": "Severely Aurified",
+    "cycle": 4,
+    "pol": "-",
+    "num": 6,
+    "text": "Midas 2."
+   },
+   {
+    "code": "DM2562",
+    "name": "Yearning for a Wish",
+    "cycle": 4,
+    "pol": "-",
+    "num": 7,
+    "text": "Gain the Wishagog Condition card."
+   },
+   {
+    "code": "DM2563",
+    "name": "Moonward Gust",
+    "cycle": 4,
+    "pol": "-",
+    "num": 8,
+    "text": "Zone 3 (originating from the Titan, including them): Float."
+   }
+  ],
+  "grave": [
+   {
+    "code": "AM0337",
+    "name": "Deluge of Memories",
+    "pol": "+",
+    "text": "Gain +1 Mnemos node for a chosen Mnemos. Then unexhaust that Mnemos or return it to play if it was discarded."
+   },
+   {
+    "code": "AM0338",
+    "name": "There Will Be a Reckoning",
+    "pol": "-",
+    "text": "Add the You died horribly Obol to the Obol deck."
+   },
+   {
+    "code": "AM0339",
+    "name": "Fused Souls",
+    "pol": "-",
+    "text": "If the Titan dies before the end of the Battle, so does the Argonaut. Resolve the Rude Awakening Special Event. If it lives, resolve the The Other Special Event instead."
+   },
+   {
+    "code": "AM0340",
+    "name": "Heroic Life",
+    "pol": "-",
+    "text": "Immediately stand up, move up to 3 spaces and perform a Bonus Attack! If you deal a Wound to the Primordial, you live! Lose -2 DANGER and -2 FATE. If you do not deal a Wound, you die. If you have the Spark of the Dead Gods Technology card, roll a d10. On a '10' you Awaken. Shuffle this card back into the Trauma deck."
+   },
+   {
+    "code": "AM0341",
+    "name": "Disemboweled",
+    "pol": "-",
+    "text": "You die. Shuffle this card back into the Trauma deck."
+   },
+   {
+    "code": "AM0342",
+    "name": "Disemboweled",
+    "pol": "-",
+    "text": "You die. Shuffle this card back into the Trauma deck."
+   },
+   {
+    "code": "AM0343",
+    "name": "Burning Heart",
+    "pol": "+",
+    "text": "Stand up. You may lose -2 DANGER and/or gain +1 RAGE. You may immediately perform a Bonus Attack!"
+   },
+   {
+    "code": "AM0344",
+    "name": "Godly Resolve",
+    "pol": "+",
+    "text": "You may discard all Condition cards, Condition tokens and Ambrosia tokens or lose -3 FATE."
+   },
+   {
+    "code": "AM0345",
+    "name": "Push the Limit!",
+    "pol": "+",
+    "text": "You may immediately move up to 4 spaces and perform a Bonus Attack with +1 Power! If you have the Knockdown (falling down) Condition card, immediately stand up and gain 1 positive Evasion token instead."
+   },
+   {
+    "code": "AM0346",
+    "name": "Fate Worse Than Death",
+    "type": "Condition Trauma (Fate)",
+    "pol": "-",
+    "text": "Gain this card and the PT token (even if someone has a Marked for Death Trauma card). While you have this card, you cannot lose the token. End of Battle: If your Titan is dead, resolve the Fate Worse Than Death Special Event."
+   },
+   {
+    "code": "AM0347",
+    "name": "See Pattern",
+    "pol": "+",
+    "text": "Look at the top cards of the BP and AI decks. You may put each card back on top of its respective deck or onto the respective discard pile. Gain +1 [TBC: icon]."
+   },
+   {
+    "code": "AM0348",
+    "name": "Disemboweled",
+    "pol": "-",
+    "text": "You die. Shuffle this card back into the Trauma deck."
+   },
+   {
+    "code": "AM0350",
+    "name": "Theseus Logic",
+    "type": "Condition Trauma (Mind)",
+    "cycle": 1,
+    "pol": "+",
+    "text": "Until the end of Battle, you may ignore Labyrinth tiles for the purposes of voluntary movement and Attacks."
+   },
+   {
+    "code": "AM0351",
+    "name": "Ariadne's Logic",
+    "type": "Condition Trauma (Fate)",
+    "cycle": 1,
+    "pol": "+",
+    "text": "Until the end of Battle, if you attack from a Labyrinth tile, the Primordial has -1 AT during that Attack."
+   },
+   {
+    "code": "AM0352",
+    "name": "Mazetouched",
+    "cycle": 1,
+    "pol": "-",
+    "text": "Gain the Mazetouched Affliction."
+   },
+   {
+    "code": "BM0686",
+    "name": "Bloodmadness",
+    "cycle": 2,
+    "pol": "-",
+    "text": "Gain +3 RAGE and +1 FATE."
+   },
+   {
+    "code": "BM0687",
+    "name": "Achilles's Counter",
+    "cycle": 2,
+    "pol": "+",
+    "text": "Choose a space adjacent to the Primordial on the Primordial diagram. It becomes a Weakspot. Until the end of Battle, the Primordial has -1 AT if Attacked from that Weakspot space."
+   },
+   {
+    "code": "BM0688",
+    "name": "The Touch",
+    "cycle": 2,
+    "pol": "+",
+    "text": "Stand up. You may gain +1 RAGE. You may immediately move up to your Speed and perform a Bonus Attack! If you're the last Titan on the Board, repeat once."
+   },
+   {
+    "code": "CM1307",
+    "name": "Moirai Law",
+    "cycle": 3,
+    "pol": "-",
+    "text": "Gain +3 FATE."
+   },
+   {
+    "code": "CM1308",
+    "name": "At Death's Door",
+    "cycle": 3,
+    "pol": "-",
+    "text": "Suffer Death 1."
+   },
+   {
+    "code": "CM1309",
+    "name": "Break the Wheel",
+    "cycle": 3,
+    "pol": "+",
+    "text": "Stand up. Roll a d10, adding +X, where X is your Paradox. On a '10', you Awaken."
+   },
+   {
+    "code": "DM2564",
+    "name": "Cursed Land",
+    "cycle": 4,
+    "pol": "-",
+    "text": "Gain a random Curse Affliction."
+   },
+   {
+    "code": "DM2566",
+    "name": "Earthward Gust",
+    "cycle": 4,
+    "pol": "+",
+    "text": "If you have a Curse Affliction, Awaken. If not, stand up. You may gain +1 RAGE, immediately perform a Hermes Move 3 and a Bonus Attack!"
+   },
+   {
+    "code": "DM2565",
+    "name": "Gravely Aurified",
+    "cycle": 4,
+    "pol": "-",
+    "text": "Midas 4."
+   }
+  ]
+ },
+ "conditions": {
+  "Fear": {
+   "codes": [
+    "AL0299",
+    "AL0300",
+    "AL0301",
+    "AL0302"
+   ],
+   "type": "Mind",
+   "text": "You have -2 Precision. If you gain this Condition card a second time or you gain the Dread Condition card, flip this card (to Dread).",
+   "faceYourFear": "When you deal a Wound, discard this Condition card and gain 1 positive Precision token.",
+   "endOfBattle": "If you still have this Condition card, draw a Fated Mnemos card."
+  },
+  "Dread": {
+   "codes": [
+    "AL0299",
+    "AL0300",
+    "AL0301",
+    "AL0302"
+   ],
+   "type": "Mind",
+   "backOf": "Fear",
+   "text": "You have -4 Precision. While on a Rear space, Weakspot or VP, you have -2 Precision instead. If you gain this Condition card a second time or you gain the Fear Condition card, you die.",
+   "faceYourFear": "When you deal a Wound, discard this Condition card and gain 2 positive Precision tokens.",
+   "endOfBattle": "If you still have this Condition card, draw a Fated Mnemos card."
+  },
+  "Knockdown (falling down)": {
+   "codes": [
+    "AL0303",
+    "AL0304",
+    "AL0305",
+    "AL0306"
+   ],
+   "type": "Body",
+   "text": "You are knocked down. You cannot move voluntarily, attack or use actions or abilities, unless stated otherwise. If this card is discarded by another effect, stand up. At the end of your next turn, flip this card (to standing up)."
+  },
+  "Knockdown (standing up)": {
+   "codes": [
+    "AL0303",
+    "AL0304",
+    "AL0305",
+    "AL0306"
+   ],
+   "type": "Body",
+   "backOf": "Knockdown (falling down)",
+   "text": "If you move voluntarily, attack or use an action or ability, stand up. At the start of your turn, stand up. If this card is discarded by another effect, stand up. Stand up: put your miniature in the normal position and discard this card."
+  },
+  "Bellerophonic": {
+   "codes": [
+    "BL0665"
+   ],
+   "type": "Mind",
+   "text": "Add +2 to Climb and Hold on tests. If you gain this card again, automatically move to the VP (even if not adjacent!) or, if you are already on the VP, you may gain +1 FATE to perform a Bonus Attack!"
+  },
+  "Bleeding": {
+   "codes": [
+    "CL1283"
+   ],
+   "type": "Body",
+   "text": "Start of your turn: Gain 1 Bleeding token, then draw as many cards from your Trauma level deck as you have Bleeding tokens. Remove all revealed positive cards from the battle and return all the negative ones to the top of the deck in the same order.",
+   "bleedingLimit": "Bleeding Limit 4: If there are 0 Bleeding tokens on this card, discard it. If Bleeding tokens on this card exceed your Bleeding Limit (default 4), you die.",
+   "stopBleeding": "Stop Bleeding: [Move action] or [Attack action] to discard up to 2 Bleeding tokens from yourself.",
+   "stopBleedingOther": "Stop Bleeding Other: As a free action, discard up to 2 Bleeding tokens from an adjacent Titan."
+  },
+  "Death": {
+   "codes": [
+    "CL1287"
+   ],
+   "type": "Fate",
+   "text": "Your death has been prophesized. Start of your turn: Discard 1 Death token from this card. If you can't discard a token, you die."
+  },
+  "Paralyzed": {
+   "codes": [
+    "BL0657"
+   ],
+   "type": "Body",
+   "text": "You are paralyzed. You cannot move voluntarily, attack or use actions or abilities, unless stated otherwise. When you are attacked, do not perform the Evasion Roll. Instead you are automatically hit and you do not perform the Armor Roll.",
+   "snapOut": "Start of your turn: You may test Endurance (DANGER+). Success: Discard this card."
+  },
+  "Roused": {
+   "codes": [
+    "BL0669"
+   ],
+   "type": "Mind",
+   "text": "For the purpose of Kratos Table abilities treat your RAGE as 1 higher."
+  },
+  "Sisyphean": {
+   "codes": [
+    "BL0673"
+   ],
+   "type": "Fate",
+   "level": 1,
+   "text": "Level 1. You have -1 Speed. Your cards cannot unexhaust. Ignore Tireless. When the Burden attacks a Titan with Sisyphean, apply the following additional effects: Attack gains +1 Attack Die, each hit deals +1 DANGER. When another Titan gains Sisyphean, and there are no more Sisyphean cards in the game, pass this Condition card to that Titan."
+  },
+  "Time-clocked": {
+   "codes": [
+    "CL1295"
+   ],
+   "type": "Atemporal",
+   "text": "DEPARTING: You have been punched into the future. Remove your miniature from the Board. You cannot move voluntarily, attack or use actions or abilities or suffer Rewind or be Targeted unless stated otherwise. If this card is discarded by another effect, arrive. At the end of your next turn, flip this card.",
+   "arriving": "ARRIVING: If you move voluntarily, attack or use an action or ability, arrive. At the start of your turn, arrive. If this card is discarded by another effect, arrive.",
+   "arrive": "Place your miniature on your Time Anchor and discard this card. If your Time Anchor is not on the Board at the moment of arrival, you are erased from existence instead."
+  },
+  "Muffled": {
+   "codes": [
+    "CL1291"
+   ],
+   "type": "Fate",
+   "text": "You cannot voluntarily gain FATE. If you gain this Condition a second time or you gain the Sealed Condition card, flip this card (to Sealed). Start of your turn: You may draw and resolve a Major Trauma. If you do, discard this Condition card and lose -1 FATE.",
+   "endOfBattle": "If you still have this Condition card, draw a Fated Mnemos card."
+  },
+  "Sealed": {
+   "codes": [
+    "CL1291"
+   ],
+   "type": "Fate",
+   "backOf": "Muffled",
+   "text": "You cannot voluntarily gain FATE. You cannot gain RAGE. If you gain this Condition card a second time or you gain the Muffled Condition card, you die. Start of your turn: You may draw and resolve a Grave Trauma. If you do, discard this Condition card and lose -2 FATE.",
+   "endOfBattle": "If you still have this Condition card, draw a Fated Mnemos card."
+  },
+  "Omega Terminus": {
+   "type": "Status",
+   "text": "While on this card, during your turn, you can only unexhaust and/or attack. If you deal a Wound, place your Titan on a space adjacent to the Timefront in a straight line from the Oracle. If you fail to Wound, ignore Responses. At the end of your turn, if you're still in the Omega Terminus, you are erased from existence. Zeus Godform gains +1 Power here."
+  },
+  "Hatred": {
+   "codes": [
+    "BL0663"
+   ],
+   "type": "Mind",
+   "text": "You cannot break Combos or use abilities that place tokens in the Kratos Pool. If you gain this Condition card a second time or you gain the Frenzy Condition card, flip this card (to Frenzy).",
+   "calmDown": "End of your turn: If you did not attack this turn, discard this card and gain 1 positive Precision token.",
+   "endOfBattle": "If you still have this Condition card, gain a Fated Mnemos card."
+  },
+  "Frenzy": {
+   "codes": [
+    "BL0663"
+   ],
+   "type": "Mind",
+   "backOf": "Hatred",
+   "text": "You cannot break Combos, use Kratos tokens from the Kratos Pool or use abilities that place tokens in the Kratos Pool. If you gain this Condition card a second time or you gain the Hatred Condition card, you die.",
+   "calmDown": "End of your turn: If you did not attack this turn, discard this card and gain 2 positive Precision tokens.",
+   "endOfBattle": "If you still have this Condition card, gain a Fated Mnemos card."
+  },
+  "Float": {
+   "codes": [
+    "DL2023"
+   ],
+   "type": "Curse",
+   "text": "FLOAT (UP): You are floating. Place your Titan on its side as a reminder. You cannot move voluntarily, attack or use actions or abilities, unless stated otherwise. If you gain this Condition card a second time, you die. If this card is discarded by another effect, deflate (see the other side of the card). At the end of your next turn, flip this card.",
+   "back": "FLOAT (DOWN): If you move voluntarily, attack or use an action or ability, deflate. At the start of your turn, deflate. If this card is discarded by another effect, deflate. DEFLATE: Put your miniature in the normal position and discard this card."
+  },
+  "Covetous": {
+   "codes": [
+    "DL2007"
+   ],
+   "type": "Mind",
+   "text": "When you place tokens in the Kratos Pool, you may only place half (rounding down). If you gain this Condition card a second time or you gain the Greed-crazed Condition card, flip this card.",
+   "Giveaway": "When you remove (discard, turn) 2+ Midas tokens as a result of any single effect, discard this Condition card and gain the Enriched Condition card and 1 positive Precision token.",
+   "End of Battle": "If you still have this Condition card, draw a Fated Mnemos card."
+  },
+  "Greed-crazed": {
+   "type": "Mind",
+   "backOf": "Covetous",
+   "text": "When you place tokens in the Kratos Pool, you may only place half (rounding down). You may only use half (rounding down) of the tokens in the Kratos Pool. If you gain this Condition card a second time or you gain the Covetous Condition card, you die.",
+   "Giveaway": "When you remove (discard, turn) 4+ Midas tokens as a result of any single effect, discard this Condition card and gain the Enlightened Condition card and 2 positive Precision tokens.",
+   "End of Battle": "If you still have this Condition card, draw a Fated Mnemos card."
+  },
+  "Enriched": {
+   "codes": [
+    "DL2015"
+   ],
+   "type": "Mind",
+   "text": "You cannot involuntarily gain tokens or Condition cards (excluding Ambrosia and Trespass). Discard this card at the end of the next Primordial Round."
+  },
+  "Enlightened": {
+   "type": "Mind",
+   "backOf": "Enriched",
+   "text": "You may discard any tokens and Condition cards (excluding Ambrosia). You cannot involuntarily gain tokens or Condition cards (excluding Ambrosia and Trespass). Discard this card at the end of the next Primordial Round."
+  },
+  "Wishkeen": {
+   "codes": [
+    "DL2014"
+   ],
+   "type": "Mind",
+   "text": "You ignore Wish Armor. +1 to all Wish Aways you suffer. If you gain this Condition card a second time or you gain the Wishagog Condition card, flip this card.",
+   "What You Wish For": "During your turn, you may choose for the Primordial to immediately perform a Signature against you. You cannot gain the Wishkeen Condition card from this Signature. If you survive the Attack, discard this Condition card and gain the Enriched Condition card and 1 positive Precision token.",
+   "End of Battle": "If you still have this Condition card, draw a Fated Mnemos card."
+  },
+  "Wishagog": {
+   "type": "Mind",
+   "backOf": "Wishkeen",
+   "text": "You ignore Wish Armor. +2 to all Wish Aways you suffer. If you gain this Condition card a second time or you gain the Wishkeen Condition card, you die.",
+   "What You Wish For": "During your turn, you may choose for the Primordial to immediately perform an AI card against you. You cannot gain Wishkeen or Wishagog Condition cards from this Attack. If you survive the Attack, discard this Condition card and gain the Enlightened Condition card and 3 positive Precision tokens.",
+   "End of Battle": "If you still have this Condition card, draw a Fated Mnemos card."
+  },
+  "Resolve": {
+   "type": "Mind",
+   "text": "You have +2 Precision and Auto-break 1. Discard this card if you fully miss an Attack or Fail to wound.",
+   "backOf": "Bravery"
+  },
+  "Bravery": {
+   "codes": [
+    "EL2600"
+   ],
+   "type": "Mind",
+   "text": "When you gain this card, discard any Fear, Dread, Terror, or Holy Terror Condition cards. If you would gain a Terror or Holy Terror Condition card, ignore that gain and discard this card instead."
+  },
+  "Lander": {
+   "codes": [
+    "DL2022"
+   ],
+   "type": "Will",
+   "text": "When on a VP, you cannot suffer a Falling Down effect, Knockdown, Knockback, Pushback, Kickback, Wish Away or Float. When on a VP, you cannot be moved to the Endless Staircase. Start of your turn: Discard this card."
+  },
+  "Goldthirst": {
+   "type": "Curse Affliction",
+   "text": "At the start of each of your turns, gain 1 Midas token."
+  },
+  "Windblight": {
+   "type": "Curse Affliction",
+   "text": "Gain +1 Movement and raise all Knockbacks, Pushbacks, Kickbacks and Airbursts you suffer by 2. When you are about to suffer Knockdown, suffer Float instead."
+  },
+  "Terror": {
+   "codes": [
+    "EL2599"
+   ],
+   "type": "Mind",
+   "text": "Awakening Lock. You don't benefit from Precision Bonuses (except for Kratos tokens). During an Attack Roll, if you roll at least one '1', your Attack immediately ends with a full miss. If you gain this Condition card a second time or gain the Holy Terror Condition card, flip this card.",
+   "Calm as the Sea": "When you deal a Wound, discard this Condition card and gain the Bravery Condition card.",
+   "End of Battle": "If you still have this Condition card, do not discard it during the Battle Aftermath."
+  },
+  "Holy Terror": {
+   "type": "Mind",
+   "backOf": "Terror",
+   "text": "Awakening Lock. You don't benefit from Precision Bonuses (except for Kratos tokens). During an Attack Roll, if you roll at least one '1', your Attack immediately ends with a full miss. After you perform the Attack Roll, if you didn't get a Crit Chance, discard 1 hit. If you gain this Condition card a second time or gain the Terror Condition card, you die.",
+   "Calm as the Sea": "When you deal a Wound, discard this Condition card and gain the Bravery Condition card.",
+   "End of Battle": "If you still have this Condition card, do not discard it during the Battle Aftermath."
+  },
+  "Abyss": {
+   "type": "Curse Affliction",
+   "text": "At the start of each of your turns, gain 1 Ambrosia token."
+  },
+  "Pursuer": {
+   "type": "Curse Affliction",
+   "text": "At the end of each of your turns, you must turn 1 Midas token into an Ambrosia token. If you cannot do this, you die."
+  }
+ },
+ "secret": {
+  "trauma_awakening": {
+   "code": "AM0349",
+   "name": "Awakening",
+   "pol": "+",
+   "text": "\"Light our darkest hour...\" You may gain +1 Doom to Awaken."
+  },
+  "obol_you_died_awaken": {
+   "code": "AM0355",
+   "name": "You Died",
+   "text": "\"Light our darkest hour...\" Roll a d10. On a '10', you Awaken instead!",
+   "result": "die"
+  },
+  "godforms": [
+   {
+    "code": "AQ0386",
+    "name": "Zeus",
+    "powerDie": "[TBC: icon]",
+    "text": "Instant Transmission: When you deal a Wound, if your Total Power surpassed AT by 3 or more, lose -1 Trespass token to ignore Responses, resolve the rest of the attack sequence, then Pushback 5, Vault and perform a Bonus Attack! God of Thunder: [Attack] Perform an Attack with your Lightning! ◆2 +0 r: Range 3-9, Pushback X, where X is your Total Power during this Attack.",
+    "bottom": "[Fists icon] (+2 Speed?) +2 Precision, 2 Trespass tokens"
+   },
+   {
+    "code": "AQ0387",
+    "name": "Poseidon",
+    "text": "Everocean: Discard all Ambrosia tokens from your Titan Sheet. You cannot gain Ambrosia tokens. Water Finds a Way: During movement, ignore Obstacle and Chasm Terrain tiles. You cannot end voluntary movement on an Obstacle or Chasm. If you end involuntary movement on an Obstacle or Chasm, place your Titan on the closest empty space instead.",
+    "bottom": "(+1 Speed?) +2 Evasion, 2 Trespass tokens"
+   },
+   {
+    "code": "AQ0388",
+    "name": "Demeter",
+    "text": "Roots of the Earth: You cannot be involuntarily moved or suffer Knockdown (you can still be Displaced). She of the Grain: Start of your turn: You may lose up to -2 Danger.",
+    "bottom": "(+0 Speed) +1 Danger?, 2 Trespass tokens"
+   }
+  ],
+  "nymphs": "Secret Deck 3 cards 27-31 transcribed but Summonings are banned in the Mnestis Theatre.",
+  "moiros_awaken": {
+   "code": "CO1318",
+   "name": "Preordained Awakening",
+   "type": "Moiros (Secret 143)",
+   "awakenCard": true,
+   "text": "You may gain +1 Doom to Awaken. If you do, [lion icon — read as Chain Break]."
+  },
+  "kratos_awaken": {
+   "code": "BN0701",
+   "name": "Violent Awakening",
+   "type": "Kratos (Secret 142)",
+   "awakenCard": true,
+   "text": "You may gain +1 Doom to Awaken. If you do, [lion icon — read as Chain Break]."
+  },
+  "obol_you_live_hope": {
+   "code": "BM0689",
+   "name": "You Live!",
+   "flavor": "Hope will get you through.",
+   "text": "You may gain +1 RAGE.",
+   "result": "live",
+   "type": "Obol (Secret 35)",
+   "replaces": "AM0353"
+  },
+  "obol_you_live_tenacity": {
+   "code": "BM0690",
+   "name": "You Live!",
+   "flavor": "By the power of Mortal Tenacity...",
+   "text": "You may gain +1 RAGE and/or lose -1 FATE.",
+   "result": "live",
+   "type": "Obol (Secret 36)",
+   "replaces": "AM0356",
+   "condition": "If you are Awakened, add this card to the deck before your Obol Draw (remove it afterwards)."
+  }
+ },
+ "godforms": [
+  {
+   "code": "AQ0386",
+   "name": "Zeus",
+   "powerDie": "b",
+   "speed": 2,
+   "precision": 2,
+   "trespass": 2,
+   "abilities": {
+    "Instant Transmission": "When you deal a Wound, if your Total Power surpassed AT by 3 or more, lose -1 Trespass token to ignore Responses, resolve the rest of the attack sequence, then Pushback 5, Vault and perform a Bonus Attack!",
+    "God of Thunder": "[Move + Combat action] Perform an Attack with your Lightning! ◆2 +0, Power: 2 red dice. Range 3-9, Pushback X, where X is your Total Power during this Attack."
+   },
+   "special": {
+    "name": "Lightning (Zeus)",
+    "slot": "godform",
+    "atk": 2,
+    "prec": 0,
+    "power": [
+     "r",
+     "r"
+    ],
+    "text": "Ranged 3-9. Pushback X, where X is your Total Power during this Attack.",
+    "traits": [
+     "Godform"
+    ],
+    "tech": "Zeus Godform",
+    "costMove": true
+   }
+  },
+  {
+   "code": "AQ0387",
+   "name": "Poseidon",
+   "powerDie": "b",
+   "speed": 1,
+   "evasion": 2,
+   "trespass": 2,
+   "abilities": {
+    "Everocean": "Discard all Ambrosia tokens from your Titan Sheet. You cannot gain Ambrosia tokens.",
+    "Water Finds a Way": "During movement, ignore Obstacle and Chasm Terrain tiles. You cannot end voluntary movement on an Obstacle or Chasm. If you end involuntary movement on an Obstacle or Chasm, place your Titan on the closest empty space instead."
+   }
+  },
+  {
+   "code": "AQ0388",
+   "name": "Demeter",
+   "powerDie": "b",
+   "speed": 0,
+   "armor": [
+    "b"
+   ],
+   "trespass": 2,
+   "abilities": {
+    "Roots of the Earth": "You cannot be involuntarily moved or suffer Knockdown (you can still be Displaced).",
+    "She of the Grain": "Start of your turn: You may lose up to -2 Danger."
+   }
+  },
+  {
+   "code": "BQ0702",
+   "name": "Hephaestus",
+   "powerDie": "b",
+   "speed": 0,
+   "trespass": 2,
+   "abilities": {
+    "Crippled Savior": "When your Attack hits, but before revealing the BP card, lose -1 Trespass to gain a Crit Chance.",
+    "Hephaestum Skin": "For the duration of this Godform, you cannot die from Obols."
+   }
+  },
+  {
+   "code": "BQ0703",
+   "name": "Hermes",
+   "powerDie": "b",
+   "speed": 0,
+   "speedDouble": true,
+   "evasion": 1,
+   "trespass": 2,
+   "abilities": {
+    "The Messenger": "*For the duration of this Godform, double your Titan's Speed value.",
+    "Rearm": "When you Awaken into this Godform, immediately unexhaust all your exhausted Gear. For the duration of this Godform your Gear cards cannot be exhausted."
+   }
+  },
+  {
+   "code": "BQ0704",
+   "name": "Ares",
+   "powerDie": "w",
+   "speed": 0,
+   "trespass": 2,
+   "abilities": {
+    "God of War": "You cannot die by raising your Rage over 9. When you are about to gain Rage above 9, ignore the gain.",
+    "Eschatonic Fuse": "When you are about to perform a Power Roll, lose -1 Trespass to gain +1 Power to this roll."
+   }
+  },
+  {
+   "code": "CQ1319",
+   "name": "Artemis",
+   "powerDie": "b",
+   "speed": 2,
+   "precision": 3,
+   "trespass": 2,
+   "abilities": {
+    "Hunter of Mortals": "When you are about to perform an Attack Roll, you may set aside one non-Crit die from your Attack Dice pool. Treat this die as an automatic hit.",
+    "Critical Shot": "[Move + Combat action] Lose -1 Trespass to perform an Attack with your Heavenly Bow! ◆3 +0, Power: 2 red dice. Range 3-9, Pushback X, where X is your Total Power during this Attack."
+   },
+   "special": {
+    "name": "Heavenly Bow (Artemis)",
+    "slot": "godform",
+    "atk": 3,
+    "prec": 0,
+    "power": [
+     "r",
+     "r"
+    ],
+    "text": "Ranged 3-9. Pushback X, where X is your Total Power during this Attack.",
+    "traits": [
+     "Godform"
+    ],
+    "tech": "Artemis Godform",
+    "trespassCost": 1,
+    "costMove": true
+   }
+  },
+  {
+   "code": "CQ1320",
+   "name": "Athena",
+   "powerDie": "b",
+   "speed": 1,
+   "trespass": 2,
+   "abilities": {
+    "Poisoned Wisdom": "When you Awaken into this Godform, immediately choose either the AI or the BP deck. For the duration of this Godform, keep the top card from the chosen deck revealed at all times.",
+    "Moirai Favor": "Start of your turn: You may lose up to -2 Fate."
+   }
+  },
+  {
+   "code": "Secret 246",
+   "name": "Dionysus",
+   "powerDie": "w",
+   "speed": -1,
+   "trespass": 2,
+   "cycle": 4,
+   "keywords": [
+    "Roll Out",
+    "Bypass",
+    "Auto-inspire",
+    "Lifeline",
+    "Voluntary Knockdown"
+   ],
+   "abilities": {
+    "Drunken Enlightenment": "When you Awaken into this Godform and at the start of each of your turns, roll a d10: 1-3: Your Power die becomes red, you gain +3 Evasion. 4-5: Power die becomes black, +2 Evasion. 6-7: Power dice become 2 red, +1 Evasion. 8-9: Power die becomes white. 10: Power dice become 2 white, -1 Evasion.",
+    "Godly Comforter": "When any Titan is about to die from crossing a Despair, Ambrosia, Bleeding, Midas or Pain Limit, lose 1 Trespass token to ignore that death and discard as many of the corresponding tokens to have exactly 1 less than the limit."
+   }
+  },
+  {
+   "code": "Secret 247",
+   "name": "Aphrodite",
+   "powerDie": "r",
+   "speed": 0,
+   "evasion": 2,
+   "trespass": 2,
+   "cycle": 4,
+   "keywords": [
+    "Ψ Vault"
+   ],
+   "abilities": {
+    "Unearthly Beauty": "Ψ If the Primordial Attack has a singular Target, lose 1 Trespass token to change that Target to you.",
+    "Irresistible Call": "[Move action] Lose 1 Trespass token to make the Primordial move to you via the shortest path. Use the Primordial's Speed."
+   },
+   "evasionReroll": 2
+  },
+  {
+   "code": "Secret 248",
+   "name": "Helios Apollon Exalted",
+   "powerDie": "w",
+   "speed": 0,
+   "precision": 3,
+   "trespass": 2,
+   "cycle": 4,
+   "keywords": [
+    "Bonus Action",
+    "Light 4",
+    "Cryptex Loathing"
+   ],
+   "abilities": {
+    "Fly": "Ψ⟳ Use during voluntary movement to ignore all Terrain tiles during this movement. You cannot end your movement on an Obstacle or Chasm. Ψ⟳ When you are about to perform a Climb test, automatically succeed at that test instead.",
+    "Pitiful as the Sun": "You cannot die from any Curse.",
+    "Trigger Finger": "[Combat action] Lose 1 Trespass token to perform an Attack with your Finger! ◆3 +0, Power: white die. Range 3-10, Fire X, where X is your Total Power during this Attack."
+   },
+   "special": {
+    "name": "Finger (Helios Apollon)",
+    "slot": "godform",
+    "atk": 3,
+    "prec": 0,
+    "power": [
+     "w"
+    ],
+    "text": "Ranged 3-10. Fire X, where X is your Total Power during this Attack.",
+    "traits": [
+     "Godform"
+    ],
+    "tech": "Helios Apollon Exalted Godform",
+    "trespassCost": 1
+   },
+   "exalted": true
+  }
+ ]
+}

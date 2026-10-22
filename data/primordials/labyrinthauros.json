@@ -1,0 +1,809 @@
+{
+  "id": "labyrinthauros",
+  "name": "Labyrinthauros",
+  "cycle": 1,
+  "type": "regular",
+  "sheetCode": "AU0448",
+  "_notes": [
+    "Transcribed from sheet AU0448 (front I-IV, back V-IX Mnestis), AI AR0464-AR0483 + Mnestis Routine, BP AS0485-AS0503.",
+    "Icon key as Hekaton: bonus ESCALATION (flower), AT (circle), EVADE_DICE (◆), DANGER (Λ). '⚡ ' prefix = Window of Opportunity before that line.",
+    "Diagram: 2x2, rear 2 spaces behind, Weakspots (W) = side spaces next to the rear row. Unavoidable Knockback 5. Has a Vantage Point (Bull's Back)."
+  ],
+  "footprint": {
+    "w": 2,
+    "h": 2,
+    "rear": "top-edge",
+    "weakspots": "rear-row-sides"
+  },
+  "ukb": 5,
+  "labyrinthTrack": [
+    "O",
+    "L",
+    "Z",
+    "I"
+  ],
+  "vp": {
+    "name": "Bull's Back",
+    "base": {
+      "climb": [
+        "Fury",
+        8
+      ],
+      "holdOn": [
+        "Endurance",
+        6
+      ],
+      "power": 1,
+      "responses": "ignore-except-critical"
+    },
+    "lv5": {
+      "climb": [
+        "Fury",
+        9
+      ],
+      "holdOn": [
+        "Endurance",
+        7
+      ],
+      "power": 1,
+      "responses": "vp-mod"
+    },
+    "text": "Climb: Test Fury (8+, Lv5+: 9+) as a free action while adjacent. Hold On: End of Primordial Round, if on the VP test Endurance (6+, Lv5+: 7+). Fail: Displace to a Rear space, Knockdown. VP Effects: +1 Power; ignore Responses other than Critical. Lv5+ (VP Modification): ignore normal Responses, instead WOUND: gain +2 Danger, immediately perform a Hold On test. FAIL: immediately resolve the failed effect of the Hold On test, then perform Signature against the Attacker."
+  },
+  "levels": {
+    "1": {
+      "toHit": 7,
+      "speed": 6,
+      "wounds": 10,
+      "bonus": {},
+      "traits": [
+        "Labyrinth X",
+        "Mazesense"
+      ]
+    },
+    "2": {
+      "toHit": 7,
+      "speed": 6,
+      "wounds": 10,
+      "bonus": {},
+      "traits": [
+        "Trample"
+      ]
+    },
+    "3": {
+      "toHit": 8,
+      "speed": 7,
+      "wounds": 10,
+      "bonus": {
+        "ESCALATION": 1,
+        "DANGER": 1
+      },
+      "traits": [
+        "Mazebuilder"
+      ]
+    },
+    "4": {
+      "toHit": 8,
+      "speed": 7,
+      "wounds": 10,
+      "bonus": {
+        "ESCALATION": 2,
+        "DANGER": 2,
+        "AT": 1
+      },
+      "traits": [
+        "Maze Reactive Armor"
+      ]
+    },
+    "5": {
+      "mnestis": true,
+      "toHit": 9,
+      "speed": 7,
+      "wounds": 10,
+      "bonus": {
+        "ESCALATION": 2,
+        "AT": 2,
+        "DANGER": 1
+      },
+      "bonusPerHit": true,
+      "traits": [
+        "End of Hope",
+        "Maze Hyperactive Armor",
+        "VP Modification"
+      ]
+    },
+    "6": {
+      "mnestis": true,
+      "toHit": 9,
+      "speed": 8,
+      "wounds": 11,
+      "bonus": {
+        "ESCALATION": 3,
+        "AT": 3,
+        "DANGER": 2
+      },
+      "bonusPerHit": true,
+      "traits": [
+        "Lightspeeder"
+      ]
+    },
+    "7": {
+      "mnestis": true,
+      "toHit": 10,
+      "speed": 8,
+      "wounds": 12,
+      "bonus": {
+        "ESCALATION": 4,
+        "AT": 4,
+        "DANGER": 2
+      },
+      "bonusPerHit": true,
+      "traits": [
+        "Extradimensional Trample"
+      ]
+    },
+    "8": {
+      "mnestis": true,
+      "toHit": 10,
+      "speed": 8,
+      "wounds": 13,
+      "bonus": {
+        "ESCALATION": 4,
+        "AT": 5,
+        "EVADE_DICE": 1,
+        "DANGER": 2
+      },
+      "bonusPerHit": true,
+      "traits": [
+        "Fissurebuilder"
+      ]
+    },
+    "9": {
+      "mnestis": true,
+      "toHit": 11,
+      "speed": 9,
+      "wounds": 14,
+      "bonus": {
+        "ESCALATION": 5,
+        "AT": 6,
+        "EVADE_DICE": 2,
+        "DANGER": 3
+      },
+      "bonusPerHit": true,
+      "traits": [
+        "Ruthless",
+        "Beginning of the End"
+      ]
+    }
+  },
+  "traits": {
+    "Labyrinth X": "Additional Setup: Place a Labyrinth token on the topmost space of the Labyrinth track. Labyrinth X: Place X Labyrinth Terrain tiles adjacent to and in front of the Primordial. Use the tile shape that corresponds to the token's location on the track (O → L → Z → I), then move the token clockwise to the next space.",
+    "Mazesense": "Labyrinth tiles do not block Labyrinthauros's Line of Sight. Argonauts with the Mazetouched Affliction must apply all ΨX+ effects, regardless of their actual Fate.",
+    "Trample": "Labyrinthauros moves forward in a straight line at full Speed, then turns to face the most Titans. If it moves through or ends its move on a knocked down Titan, that Titan draws an Obol (instead of suffering Crash). (Disabled at Level I.)",
+    "Mazebuilder": "After performing Trample from a Response, immediately perform Labyrinth 1.",
+    "Maze Reactive Armor": "All BP cards without a Fail Response gain: FAIL: Gain +1 Danger. Labyrinthauros turns towards the Attacker, Labyrinth 1.",
+    "Maze Hyperactive Armor": "All BP cards without a Wound Response gain: WOUND: ⚡ Trample.",
+    "End of Hope": "End of Primordial Round: Perform Signature.",
+    "VP Modification": "Bull's Back (Lvl 5+): Climb Fury 9+, Hold On Endurance 7+. VP Effects: +1 Power. Ignore normal Primordial Responses, resolve these instead: WOUND: Gain +2 Danger, immediately perform a Hold On test. FAIL: Immediately resolve the failed effect of the Hold On test, then perform Signature against the Attacker.",
+    "Lightspeeder": "Ignore ⚡ preceding MOVE & ATTACK instructions.",
+    "Extradimensional Trample": "Ignore ⚡ preceding Trample Responses. Treat all Labyrinthauros Movement (regular and Trample) as having the following ability: If the Labyrinthauros moves through a knocked down Titan, it dies.",
+    "Fissurebuilder": "Treat all Labyrinth tiles as Maze Fissure tiles.",
+    "Ruthless": "Remove all positive Trauma cards from the Trauma decks (except Obols).",
+    "Beginning of the End": "End of Primordial Round: Before End of Hope, draw and perform another AI card."
+  },
+  "ai": [
+    {
+      "code": "AR0464",
+      "tier": 1,
+      "name": "Ram",
+      "kind": "ATTACK",
+      "dice": 2,
+      "toHit": 10,
+      "target": [
+        "Furthest Titan in front, in range",
+        "Furthest Titan in sight, in range",
+        "Closest Titan in sight"
+      ],
+      "steps": [
+        "⚡ MOVE & ATTACK | FATE 3+: +1 EVADE_DICE",
+        "Each hit deals 1 DANGER."
+      ],
+      "after": "Trample. Labyrinth 1.",
+      "afterWindow": true
+    },
+    {
+      "code": "AR0465",
+      "tier": 1,
+      "name": "Ram & Drag",
+      "kind": "ATTACK",
+      "dice": 2,
+      "toHit": 9,
+      "target": [
+        "Furthest Titan in front, in range",
+        "Furthest Titan in sight, in range",
+        "Closest Titan in sight"
+      ],
+      "steps": [
+        "⚡ MOVE & ATTACK",
+        "Each hit deals 1 DANGER. | FATE 3+: 2 DANGER instead",
+        "⚡ Knockback 6."
+      ],
+      "after": "Trample.",
+      "afterWindow": true
+    },
+    {
+      "code": "AR0466",
+      "tier": 1,
+      "name": "Stomp",
+      "kind": "ATTACK",
+      "dice": 3,
+      "toHit": 8,
+      "target": [
+        "Closest knocked down Titan in range",
+        "Closest Titan in front, in range",
+        "Closest Titan in sight"
+      ],
+      "steps": [
+        "⚡ MOVE & ATTACK",
+        "Each hit deals 1 DANGER. | FATE 4+: 2 DANGER instead",
+        "⚡ Knockdown."
+      ]
+    },
+    {
+      "code": "AR0467",
+      "tier": 1,
+      "name": "Headbutt",
+      "kind": "ATTACK",
+      "dice": 2,
+      "toHit": 9,
+      "target": [
+        "Closest Titan in front, in range",
+        "Closest Titan in sight"
+      ],
+      "steps": [
+        "⚡ MOVE & ATTACK | FATE 4+: +1 EVADE_DICE",
+        "Each hit deals 2 DANGER."
+      ],
+      "after": "Labyrinth 1.",
+      "afterWindow": true
+    },
+    {
+      "code": "AR0468",
+      "tier": 1,
+      "name": "Tunnel Vision",
+      "kind": "ATTACK",
+      "dice": 3,
+      "toHit": 9,
+      "target": [
+        "Priority Target in range",
+        "Furthest Titan in sight, in range",
+        "Closest Titan in sight"
+      ],
+      "steps": [
+        "⚡ MOVE & ATTACK",
+        "Each hit deals 1 DANGER. | FATE 3+: 2 DANGER instead"
+      ],
+      "after": "Trample. Labyrinth 1.",
+      "afterWindow": true
+    },
+    {
+      "code": "AR0469",
+      "tier": 1,
+      "name": "Rampage",
+      "kind": "SEQUENTIAL ATTACK",
+      "path": true,
+      "dice": 2,
+      "toHit": 10,
+      "target": [
+        "Furthest Titan in front, in range",
+        "Furthest Titan in sight, in range",
+        "Closest Titan in sight"
+      ],
+      "steps": [
+        "⚡ MOVE & ATTACK ALL TITANS IN PATH | FATE 3+: +1 EVADE_DICE",
+        "Each hit deals 1 DANGER."
+      ],
+      "afterFinal": "Trample. Labyrinth 1.",
+      "afterWindow": true
+    },
+    {
+      "code": "AR0470",
+      "tier": 2,
+      "name": "Supercharger",
+      "kind": "SEQUENTIAL ATTACK",
+      "path": true,
+      "dice": 2,
+      "toHit": 9,
+      "target": [
+        "Furthest Titan in front, in range",
+        "Furthest Titan in sight, in range",
+        "Closest Titan in sight"
+      ],
+      "steps": [
+        "⚡ MOVE & ATTACK ALL TITANS IN PATH | FATE 5+: +1 EVADE_DICE",
+        "Each hit deals 2 DANGER. | LAB: 3 DANGER instead"
+      ],
+      "afterFinal": "Trample. Labyrinth 1.",
+      "afterWindow": true,
+      "_note": "LAB = if the Labyrinthauros moved through at least 1 Labyrinth tile."
+    },
+    {
+      "code": "AR0471",
+      "tier": 2,
+      "name": "Encasen",
+      "kind": "ATTACK",
+      "dice": 3,
+      "toHit": 8,
+      "target": [
+        "Priority Target in range, in sight",
+        "Closest Titan in range, in sight"
+      ],
+      "noTarget": "Perform Signature",
+      "steps": [
+        "⚡ MOVE & ATTACK",
+        "Each hit deals 1 DANGER. | FATE 5+: 2 DANGER instead",
+        "For each hit, Labyrinth 1 (if possible)."
+      ],
+      "after": "FATE 6+: Perform Signature.",
+      "afterWindow": true
+    },
+    {
+      "code": "AR0472",
+      "tier": 2,
+      "name": "Roundhouse Kick",
+      "kind": "SIMULTANEOUS ATTACK",
+      "dice": 2,
+      "toHit": 10,
+      "target": [
+        "All adjacent Titans"
+      ],
+      "noTarget": "Perform Signature",
+      "steps": [
+        "ATTACK",
+        "Each hit deals 2 DANGER.",
+        "⚡ FATE 5+: Knockdown"
+      ],
+      "afterFinal": "Trample. Labyrinth 1.",
+      "afterWindow": true
+    },
+    {
+      "code": "AR0473",
+      "tier": 2,
+      "name": "Gnaw",
+      "kind": "ATTACK",
+      "dice": 2,
+      "toHit": 9,
+      "target": [
+        "Priority Target in range",
+        "Closest knocked down Titan in front, in range",
+        "Closest Titan in sight"
+      ],
+      "steps": [
+        "⚡ MOVE & ATTACK",
+        "Each hit deals 3 DANGER.\n| FATE 6+: GRAVE"
+      ],
+      "after": "Labyrinth 1.",
+      "afterWindow": true,
+      "_note": "FATE 6+: Unless this Attack causes you to go over the Obol threshold, draw a Grave Trauma instead of a regular Trauma Draw."
+    },
+    {
+      "code": "AR0474",
+      "tier": 2,
+      "name": "Frequency Charge",
+      "kind": "SEQUENTIAL ATTACK",
+      "path": true,
+      "dice": 3,
+      "toHit": 8,
+      "target": [
+        "Furthest Titan in front, in range",
+        "Furthest Titan in sight, in range",
+        "Closest Titan in sight"
+      ],
+      "steps": [
+        "MOVE & ATTACK ALL TITANS IN PATH",
+        "Each hit deals 1 DANGER. | FATE 6+: 2 DANGER instead"
+      ],
+      "afterFinal": "Trample. Labyrinth 1. | FATE 5+: Labyrinth 2 instead",
+      "afterWindow": true
+    },
+    {
+      "code": "AR0475",
+      "tier": 2,
+      "name": "Otherworldly Ram",
+      "kind": "ATTACK",
+      "unlimited": true,
+      "dice": 2,
+      "toHit": 10,
+      "target": [
+        "Priority Target",
+        "Furthest Titan in sight"
+      ],
+      "steps": [
+        "⚡ MOVE UNLIMITED & ATTACK | FATE 6+: +1 EVADE_DICE",
+        "Each hit deals 2 DANGER."
+      ],
+      "after": "Trample. Labyrinth 1. | FATE 6+: Labyrinth 2 instead",
+      "afterWindow": true
+    },
+    {
+      "code": "AR0476",
+      "tier": 3,
+      "name": "Lightspeed Ram",
+      "kind": "SEQUENTIAL ATTACK",
+      "path": true,
+      "dice": 4,
+      "toHit": 9,
+      "target": [
+        "Furthest Titan in front, in range",
+        "Furthest Titan in sight, in range",
+        "Closest Titan in sight"
+      ],
+      "steps": [
+        "MOVE & ATTACK ALL TITANS IN PATH",
+        "Each hit deals 2 DANGER. | LAB: 3 DANGER instead"
+      ],
+      "afterFinal": "Trample. Labyrinth 1.",
+      "afterWindow": true
+    },
+    {
+      "code": "AR0477",
+      "tier": 3,
+      "name": "Minotaur Logic",
+      "kind": "ATTACK",
+      "dice": 2,
+      "toHit": 8,
+      "target": [
+        "Priority Target in range",
+        "Closest Titan in front, in range",
+        "Closest Titan in sight"
+      ],
+      "steps": [
+        "⚡ MOVE & ATTACK",
+        "FATE 7+: Gain a Fated Mnemos card.",
+        "Each hit deals 2 DANGER.",
+        "⚡ Gain the Fear Condition card."
+      ],
+      "after": "Trample. Labyrinth 1. | FATE 5+: Labyrinth 2 instead",
+      "afterWindow": true
+    },
+    {
+      "code": "AR0478",
+      "tier": 3,
+      "name": "Bow to the Labyrinth",
+      "kind": "JUDGEMENT",
+      "judge": [
+        "Courage",
+        "Will"
+      ],
+      "dice": 2,
+      "toHit": 9,
+      "target": [
+        "Closest Titan in front, in range",
+        "Closest Titan in sight"
+      ],
+      "steps": [
+        "JUDGE Courage/Will",
+        "Each hit deals 3 DANGER.",
+        "⚡ FATE 7+: Argo loses -1 Crew."
+      ],
+      "after": "Knockback 10.\nLabyrinth 1. | FATE 5+: Labyrinth 2 instead",
+      "afterWindow": true
+    },
+    {
+      "code": "AR0479",
+      "tier": 3,
+      "name": "Home Run",
+      "kind": "SEQUENTIAL ATTACK",
+      "unlimited": true,
+      "dice": 3,
+      "toHit": 9,
+      "target": [
+        "Closest Titan"
+      ],
+      "steps": [
+        "⚡ MOVE UNLIMITED & ATTACK",
+        "Each hit deals 2 DANGER. | FATE 7+: 3 DANGER instead"
+      ],
+      "after": "If DANGER was dealt, repeat Home Run against a Titan that has not been attacked this Round. Repeat until all Titans have been attacked or no DANGER was dealt.",
+      "afterWindow": true
+    },
+    {
+      "code": "AR0480",
+      "tier": 3,
+      "name": "Hone In",
+      "kind": "ATTACK",
+      "unlimited": true,
+      "dice": 2,
+      "toHit": 8,
+      "target": [
+        "Furthest Titan in front",
+        "Furthest Titan in sight",
+        "Closest Titan in sight"
+      ],
+      "steps": [
+        "⚡ MOVE UNLIMITED & ATTACK | FATE 7+: +1 EVADE_DICE",
+        "Each hit deals 3 DANGER."
+      ],
+      "after": "Trample. Labyrinth 1.",
+      "afterWindow": true
+    },
+    {
+      "code": "AR0481",
+      "tier": 3,
+      "name": "True Horn of the Other Side",
+      "kind": "ATTACK",
+      "dice": 2,
+      "toHit": 9,
+      "target": [
+        "Priority Target in range",
+        "Closest knocked down Titan in front, in range",
+        "Closest Titan in sight"
+      ],
+      "steps": [
+        "⚡ MOVE & ATTACK",
+        "Each hit deals 3 DANGER.\n| FATE 7+: OBOL"
+      ],
+      "after": "Labyrinth 1. ⚡ Trample. Labyrinth 1.",
+      "afterWindow": true,
+      "_note": "FATE 7+: Draw an Obol instead of a regular Trauma Draw."
+    },
+    {
+      "code": "AR0482",
+      "tier": "X",
+      "name": "Instinctive Ram",
+      "kind": "SIGNATURE",
+      "dice": 2,
+      "toHit": 10,
+      "target": [
+        "Furthest Titan in front, in range",
+        "Furthest Titan in sight, in range",
+        "Closest Titan in sight"
+      ],
+      "steps": [
+        "⚡ MOVE & ATTACK | FATE 3+: +1 EVADE_DICE",
+        "Each hit deals 1 DANGER."
+      ],
+      "after": "Trample. Labyrinth 1.",
+      "afterWindow": true
+    },
+    {
+      "code": "AR0483",
+      "tier": "X",
+      "name": "The Call",
+      "kind": "ROUTINE",
+      "text": "Argo loses -1 Crew."
+    },
+    {
+      "code": "AR0483-M",
+      "tier": "X",
+      "name": "Home Run",
+      "kind": "MNESTIS ROUTINE",
+      "routineAttack": true,
+      "unlimited": true,
+      "dice": 3,
+      "toHit": 9,
+      "target": [
+        "Closest Titan"
+      ],
+      "noTarget": "Random Titan dies",
+      "steps": [
+        "⚡ MOVE UNLIMITED & ATTACK",
+        "Each hit deals 2 DANGER. | FATE 7+: 3 DANGER instead"
+      ],
+      "after": "If DANGER was dealt, repeat Routine against a Titan that has not been attacked this Round. Repeat until all Titans have been attacked or no DANGER was dealt.",
+      "afterWindow": true
+    }
+  ],
+  "bp": [
+    {
+      "code": "AS0485",
+      "tier": 1,
+      "name": "Eroded Breastplate",
+      "at": 4,
+      "responses": {
+        "WOUND": "⚡ Trample."
+      },
+      "critical": "Deal an additional Single Wound! Add the Gaze of Temenos card to the BP deck.",
+      "qeye": false
+    },
+    {
+      "code": "AS0486",
+      "tier": 1,
+      "name": "Plated Beasthead",
+      "at": 2,
+      "responses": {
+        "FAIL": "⚡ Trample."
+      },
+      "critical": "Gain the Priority Target token. You may perform a Bonus Attack!",
+      "qeye": false
+    },
+    {
+      "code": "AS0487",
+      "tier": 1,
+      "name": "Hidemail",
+      "at": 4,
+      "responses": {
+        "WOUND": "⚡ Perform Signature against the Attacker."
+      },
+      "critical": "Create a Vantage Point. If the VP is already in play, in the second ability window place 1 negative AT token in the Kratos Pool.",
+      "qeye": false
+    },
+    {
+      "code": "AS0488",
+      "tier": 1,
+      "name": "Underbelly Seal",
+      "at": 2,
+      "responses": {
+        "FAIL": "Gain the Fear Condition card."
+      },
+      "critical": "One Argonaut may lose the Mazetouched Affliction.",
+      "qeye": true
+    },
+    {
+      "code": "AS0489",
+      "tier": 1,
+      "name": "Armored Hind Leg",
+      "at": 3,
+      "responses": {
+        "WOUND": "Knockdown. Knockback 5."
+      },
+      "critical": "Until the end of Battle, when attacked from any of the W spaces, the Labyrinthauros has -1 AT.",
+      "qeye": false
+    },
+    {
+      "code": "AS0490",
+      "tier": 1,
+      "name": "Armored Front Leg",
+      "at": 3,
+      "responses": {
+        "FAIL": "Knockdown. Knockback 5."
+      },
+      "critical": "Until the end of Battle, when attacked from any of the W spaces, the Labyrinthauros has -1 To Hit.",
+      "qeye": false
+    },
+    {
+      "code": "AS0491",
+      "tier": 2,
+      "name": "Reinforced Skull",
+      "at": 5,
+      "responses": {
+        "WOUND": "⚡ Trample."
+      },
+      "critical": "Create a Vantage Point. If the VP is already in play, in the second ability window place 1 negative AT token in the Kratos Pool.",
+      "qeye": false
+    },
+    {
+      "code": "AS0492",
+      "tier": 2,
+      "name": "Exposed Mechanism",
+      "at": 6,
+      "responses": {
+        "WOUND": "Labyrinthauros turns towards the Attacker. Labyrinth 1."
+      },
+      "critical": "Create a Vantage Point. If the VP is already in play, in the second ability window place 1 negative AT token in the Kratos Pool.",
+      "qeye": false
+    },
+    {
+      "code": "AS0493",
+      "tier": 2,
+      "name": "Servomotors",
+      "at": 5,
+      "responses": {
+        "FAIL": "Gain +1 DANGER.\n⚡ Knockback 10."
+      },
+      "critical": "Gain the Mazemace card (Secret Deck 2, card 12).",
+      "qeye": false
+    },
+    {
+      "code": "AS0494",
+      "tier": 2,
+      "name": "Hydraulic Pump",
+      "at": 4,
+      "responses": {
+        "FAIL": "⚡ Trample."
+      },
+      "critical": "Labyrinthauros gains 1 negative Speed token.",
+      "qeye": false
+    },
+    {
+      "code": "AS0495",
+      "tier": 2,
+      "name": "Maze Fragment",
+      "at": 5,
+      "responses": {
+        "WOUND": "One Argonaut may lose the Mazetouched Affliction."
+      },
+      "critical": "Gain 1 Maze Fragment resource. Each time Labyrinthauros moves 4 or more spaces, roll a d10. On 8+ it stops after 4 spaces.",
+      "qeye": true
+    },
+    {
+      "code": "AS0496",
+      "tier": 2,
+      "name": "Peculiar Growth",
+      "at": 4,
+      "responses": {
+        "FAIL": "⚡ Perform Signature against the Attacker."
+      },
+      "critical": "Gain the Glimmer Shroud card (Secret Deck 2, card 13).",
+      "qeye": true
+    },
+    {
+      "code": "AS0497",
+      "tier": 3,
+      "name": "Hammerhead Worm Head",
+      "at": 7,
+      "responses": {
+        "FAIL": "Perform Signature against the Attacker."
+      },
+      "critical": "Gain the Priority Target token. You may perform a Bonus Attack!",
+      "qeye": false
+    },
+    {
+      "code": "AS0498",
+      "tier": 3,
+      "name": "Will of Temenos",
+      "at": 8,
+      "responses": {
+        "WOUND": "One Argonaut may lose the Mazetouched Affliction. Draw and perform an AI card against the Attacker."
+      },
+      "critical": "Without it, the Primordial dies.",
+      "qeye": false
+    },
+    {
+      "code": "AS0499",
+      "tier": 3,
+      "name": "Shapeless Form",
+      "at": 6,
+      "responses": {
+        "FAIL": "Draw an Obol.",
+        "WOUND": "One Argonaut may lose the Mazetouched Affliction."
+      },
+      "critical": "Create a Vantage Point. If the VP is already in play, in the second ability window place 1 negative AT token in the Kratos Pool.",
+      "qeye": true
+    },
+    {
+      "code": "AS0500",
+      "tier": 3,
+      "name": "Restless Tentacles",
+      "at": 5,
+      "responses": {
+        "WOUND": "⚡ Perform Signature against the Attacker."
+      },
+      "critical": "Gain +1 Progress (campaign only).",
+      "qeye": false
+    },
+    {
+      "code": "AS0501",
+      "tier": 3,
+      "name": "Otherworldly Whiskers",
+      "at": 5,
+      "responses": {
+        "FAIL": "Trample."
+      },
+      "critical": "Until the end of Battle you may ignore all Primordial Responses.",
+      "qeye": false
+    },
+    {
+      "code": "AS0502",
+      "tier": 3,
+      "name": "Shard of the Labyrinth",
+      "at": 6,
+      "responses": {
+        "FAIL": "Labyrinthauros turns towards the Attacker. Labyrinth 1."
+      },
+      "critical": "Disable the Labyrinth X keyword.",
+      "qeye": true
+    },
+    {
+      "code": "AS0503",
+      "tier": "X",
+      "name": "Gaze of Temenos",
+      "trap": true,
+      "at": 0,
+      "responses": {},
+      "critical": "",
+      "text": "Test Endurance (8+). Fail: Gain +3 Danger, +3 Fate and the Dread Condition card. Then remove this card from the deck and draw another BP card.",
+      "qeye": false
+    }
+  ]
+}

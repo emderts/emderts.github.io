@@ -1,0 +1,14 @@
+{
+  "_notes": [
+    "Labyrinth tiles read from a top-down photo of the physical tiles (Cycle I).",
+    "Local grid: x to the right, y downward (as photographed, tile unrotated). Each cell lists the sides that carry a red line (wall): N/E/S/W.",
+    "Red lines = Obstacle + Obscuring for Titans (block movement, LoS, adjacency). Primordials ignore Labyrinth for movement/attack but red lines block their LoS for targeting.",
+    "Green dashes = connector sides (no wall). Tiles may be rotated in 90° steps."
+  ],
+  "tiles": {
+    "O": { "cells": [ { "x": 0, "y": 0, "walls": ["N", "W"] }, { "x": 1, "y": 0, "walls": ["N"] }, { "x": 0, "y": 1, "walls": ["W"] }, { "x": 1, "y": 1, "walls": ["N", "E", "S", "W"] } ] },
+    "Z": { "cells": [ { "x": 1, "y": 0, "walls": ["N", "W"] }, { "x": 2, "y": 0, "walls": ["N", "S"] }, { "x": 0, "y": 1, "walls": ["N", "S"] }, { "x": 1, "y": 1, "walls": ["S", "E"] } ] },
+    "L": { "cells": [ { "x": 2, "y": 0, "walls": ["W", "E"] }, { "x": 0, "y": 1, "walls": ["N", "S"] }, { "x": 1, "y": 1, "walls": ["N", "S"] }, { "x": 2, "y": 1, "walls": ["S", "E"] } ] },
+    "I": { "cells": [ { "x": 0, "y": 0, "walls": ["N", "S"] }, { "x": 1, "y": 0, "walls": ["N", "S"] }, { "x": 2, "y": 0, "walls": ["N", "S"] }, { "x": 3, "y": 0, "walls": ["N", "S"] } ] }
+  }
+}

@@ -1,0 +1,1554 @@
+{
+ "_notes": [
+  "Transcribed from Titan sheet scans AK0291-AK0297.",
+  "Triskelion stats (rulebook p.11): DANGER (A-in-hex icon), RAGE (Ω), FATE (Ψ). Trauma Table thresholds are indexed by current DANGER.",
+  "Trauma tiers: 1 arrow = Minor, 2 arrows = Major, 3 arrows = Grave, skull = Obol draw.",
+  "Kratos Table: row = Rage value reached; entries are the Kratos Table Abilities unlocked at that Rage (left/right = two separate options, '+' = both together on one entry).",
+  "Rush ability prefix '[DANGER 2+] Ψ' read as: requires Danger 2+, costs Fate (Ψ) - cost amount TBC against rulebook p.54 Free/Fate abilities; it consumes both the Move and Attack actions.",
+  "Cycle I Gamechanger (AK0298) and Cycle V Titans DK2001-DK2004 added (Kratos tables from the sheet backs). The person-with-up-arrow icon is Scale; the hand+sword icon is Clutch."
+ ],
+ "kratosAbilities": {
+  "Power Re-roll X": "During the Power Roll step of an Attack, you may re-roll up to X Power dice.",
+  "Break X": "During the second ability window, place X Break tokens in the Kratos Pool. During the Power Roll step, each Break token in the Kratos Pool allows the attacking Titan to turn 1 Potential symbol into 1 Power.",
+  "Opening X": "During the second ability window, place X Opening tokens in the Kratos Pool. During the Attack Roll step, each Opening token in the Kratos Pool adds +1 to the result of each attack die.",
+  "Pushback X": "Turn towards the Primordial. Then, move towards it, pushing it X spaces in a straight line. Usable in either the first or second ability window.",
+  "Additional Power Die": "When performing the Power Roll, add 1 Power die to your Power Pool.",
+  "Reposition X": "During the second ability window, move up to X spaces.",
+  "Vault": "If you're adjacent to the Primordial, place your miniature on an empty space in a straight line from you, on the opposite side of the Primordial, adjacent to it. Usable in either the first or second ability window.",
+  "Motivate X": "During the second ability window, choose another Titan. That Titan may move up to X spaces.",
+  "Provoke": "During the first ability window, gain the Priority Target token and turn the Primordial to face you.",
+  "Diversion": "During the second ability window, place a Diversion token in the Kratos Pool. An attacking Titan may use a Diversion token from the Kratos Pool to ignore Fail Responses until the end of their Attack.",
+  "Overbreak X": "During the second ability window, if your Total Power exceeds AT by 1 or more, place X Break tokens in the Kratos Pool.",
+  "Elation X": "During the second ability window, you may discard X Despair tokens or Ambrosia tokens to place X Opening tokens in the Kratos Pool.",
+  "Tireless": "When you are about to activate the Cumbersome keyword, you may ignore it.",
+  "Fire X": "During the second ability window, place X Fire tokens in the Kratos Pool. During the Power Roll step, each Fire token allows the attacking Titan to turn 1 Potential into 1 Power. You must use as many Fire tokens as possible, but you may first use Break tokens. Remove used Fire tokens afterwards. If, during the Clear the Kratos Pool step, there are unused Fire tokens, remove 1 of them and leave the rest.",
+  "Black X": "During the second ability window, place X Black tokens in the Kratos Pool. During the Power Roll step, each Black token allows the attacking Titan to re-roll 1 Power die. You may change 1 Potential into 1 Power on each Power die re-rolled this way (as if you used a Break token on it).",
+  "Hope X": "During the second ability window, place X Hope tokens in the Kratos Pool. During the Power Roll step, each Hope token allows the attacking Titan to turn 1 Potential or blank (●) symbol into 1 Power.",
+  "Heartseeker": "During the Draw BP card step of the Attack, you may look at the top 2 BP cards and choose which one to attack. Shuffle the other card back into the deck.",
+  "Additional Die Improvement": "Your Additional Power Die becomes a black die instead.",
+  "Rouse X": "During the second ability window, place X Rouse tokens in the Kratos Pool. Each Rouse token in the Kratos Pool allows the attacking Titan to treat their Rage as 1 higher until the end of the Attack. This effect cannot cause a Titan to die by increasing their Rage over 9.",
+  "Burden X": "Take X Condition, Despair or Ambrosia tokens from the nearest Titan.",
+  "Succor": "During another Titan's Power Roll, if, after applying all bonuses, they fail to meet the AT by exactly 1 Power and the Primordial is within your Weapon's effective range, you may gain +1 Rage, gain the Fatigue token and discard that Weapon, to add +1 Power to that Power Roll.",
+  "Pass X": "During the Clear the Kratos Pool step, choose up to X Kratos tokens to remain in the Kratos Pool. You can only choose Opening or Break tokens.",
+  "Greater Pass X": "During the Clear the Kratos Pool step, choose up to X Kratos tokens to remain in the Kratos Pool.",
+  "Inspire X": "During the first ability window, choose up to X knocked down Titans. They may immediately stand up.",
+  "BP Suppress": "When you deal a Wound, shuffle the BP discard pile into the BP deck.",
+  "Raw Power X": "When performing the Power Roll, gain +X Power.",
+  "Assist X (무기 키워드)": "During another Titan's Power Roll, if, after applying all bonuses, they fail to meet the AT, if the Primordial is within your weapon's effective range, you may gain +1 Rage and a Combat Fatigue token, to immediately add X Break tokens to the Kratos Pool. This ability can only be used if it will allow the Attacker to Wound.",
+  "Fatigue": "Combat Fatigue token: as long as you have it, you can use your combat action only to discard this token. You cannot gain a Fatigue token if you already have one.",
+  "Scale X": "When you attack, if you're adjacent to the Primordial, you may immediately Climb a VP, move to an adjacent VP X times or move X spaces up on the Endless Staircase.",
+  "Closing X": "During the second ability window, place X Closing tokens in the Kratos Pool. During the Attack Roll step, each Closing token in the Kratos Pool adds +1 to the result of each Attack die and allows the attacking Titan to re-roll 1 Attack die.",
+  "Pole Position": "If you're adjacent to the Primordial, place your miniature on an empty space adjacent to the Primordial. You may use this ability in either the first or second ability window.",
+  "Unburden X": "You may give up to X Condition or Despair or Ambrosia tokens to the closest Titan. You may use this ability in either the first or second ability window.",
+  "Clutch": "During the Power Roll step, if, after applying all bonuses, you fail to meet the AT by exactly 1 Power, you may gain +1 Power, then, when you finish resolving this Attack, immediately discard your active weapon.",
+  "Precise": "After drawing the BP card, you may target the top card of the BP discard pile instead (shuffle the drawn card back)."
+ },
+ "battleSequence": {
+  "round": [
+   "Primordial Round: Draw and resolve an AI card, resolve any additional effects found on the Primordial Sheet or Traits.",
+   "Titan Round: Each Titan takes their turn one at a time and performs a Move and an Attack in any order."
+  ],
+  "aiAttack": [
+   "Draw AI",
+   "Targeting",
+   "Movement",
+   "Attack: Evasion Roll -> Attack Consequences (effects + Trauma Draw)",
+   "After Attack"
+  ],
+  "titanAttack": [
+   "Declare Attack and Active Weapon",
+   "Raise Rage and check Priority Target",
+   "Attack Roll",
+   "First Ability Window",
+   "Draw BP card",
+   "Power Roll: Create Power Pool -> Roll -> Power Re-rolls -> Use Potentials -> Resolve",
+   "Primordial Responses",
+   "Wounds and Escalation",
+   "Clear the Kratos Pool",
+   "Second Ability Window"
+  ]
+ },
+ "classes": {
+  "dreamwalker": {
+   "name": "Dreamwalker",
+   "powerDice": 1,
+   "speed": 5,
+   "abilities": {
+    "Rush": "[DANGER 2+] Ψ (Move+Attack) Move with +1 Speed and perform a Melee/Reach Attack with Auto-break 1. You must move at least 3 spaces and reach your Target via the shortest possible path."
+   },
+   "trauma": [
+    {
+     "danger": "1-3",
+     "tier": "Minor"
+    },
+    {
+     "danger": "4-6",
+     "tier": "Major"
+    },
+    {
+     "danger": "7-9",
+     "tier": "Grave"
+    },
+    {
+     "danger": "10+",
+     "tier": "Obol"
+    }
+   ],
+   "kratos": {
+    "1": [
+     [
+      "Break 1"
+     ],
+     [
+      "Opening 1"
+     ]
+    ],
+    "2": [
+     [
+      "Power Re-roll 1"
+     ]
+    ],
+    "3": [
+     [
+      "Break 1"
+     ],
+     [
+      "Opening 1"
+     ]
+    ],
+    "4": [
+     [
+      "Pushback 1"
+     ],
+     [
+      "Power Re-roll 1"
+     ]
+    ],
+    "5": [
+     [
+      "Additional Power Die"
+     ]
+    ],
+    "6": [
+     [
+      "Break 1"
+     ],
+     [
+      "Opening 1"
+     ]
+    ]
+   },
+   "sheets": {
+    "AK0291": "Herodotus",
+    "AK0292": "Ulyssea",
+    "AK0293": "Philoctera",
+    "AK0294": "Solon"
+   }
+  },
+  "earthshaker": {
+   "name": "Earthshaker",
+   "code": "AK0295",
+   "powerDice": 1,
+   "speed": 5,
+   "abilities": {
+    "Six-Armed Centimanes": "You have 3 Weapon slots OR 3 Support slots.",
+    "Cold Open": "When you attack, if there are no Opening or Break tokens in the Kratos Pool, place 1 Opening and 1 Break token in the Kratos Pool."
+   },
+   "trauma": [
+    {
+     "danger": "1-3",
+     "tier": "Minor"
+    },
+    {
+     "danger": "4-6",
+     "tier": "Major"
+    },
+    {
+     "danger": "7-9",
+     "tier": "Grave"
+    },
+    {
+     "danger": "10+",
+     "tier": "Obol"
+    }
+   ],
+   "kratos": {
+    "1": [
+     [
+      "Power Re-roll 1"
+     ]
+    ],
+    "2": [
+     [
+      "Break 1",
+      "Opening 1"
+     ]
+    ],
+    "3": [
+     [
+      "Provoke"
+     ],
+     [
+      "Power Re-roll 1"
+     ]
+    ],
+    "4": [
+     [
+      "Break 1",
+      "Opening 1"
+     ]
+    ],
+    "5": [
+     [
+      "Additional Power Die"
+     ]
+    ],
+    "6": [
+     [
+      "Diversion"
+     ]
+    ],
+    "7": [
+     [
+      "Break 1",
+      "Power Re-roll 1"
+     ]
+    ]
+   }
+  },
+  "mazerunner": {
+   "name": "Mazerunner",
+   "code": "AK0296",
+   "powerDice": 1,
+   "speed": 6,
+   "abilities": {
+    "Maze Awareness": "After surviving a Major or Grave Trauma, or an Obol, gain 1 temporary positive Evasion token. If you are on a Terrain tile, you have +1 Evasion.",
+    "Improved Rush": "[DANGER 3+] Ψ (Move+Attack) Move with +2 Speed and perform a Melee/Reach Attack with Auto-break 1 and +1 Precision. You must move at least 3 spaces and reach your Target via the shortest possible path."
+   },
+   "trauma": [
+    {
+     "danger": "1-2",
+     "tier": "Minor"
+    },
+    {
+     "danger": "3-5",
+     "tier": "Major"
+    },
+    {
+     "danger": "6-8",
+     "tier": "Grave"
+    },
+    {
+     "danger": "9+",
+     "tier": "Obol"
+    }
+   ],
+   "kratos": {
+    "1": [
+     [
+      "Opening 1",
+      "Reposition 1"
+     ]
+    ],
+    "2": [
+     [
+      "Opening 1",
+      "Vault"
+     ]
+    ],
+    "3": [
+     [
+      "Power Re-roll 1",
+      "Motivate 1"
+     ]
+    ],
+    "4": [
+     [
+      "Opening 1",
+      "Reposition 1"
+     ]
+    ],
+    "5": [
+     [
+      "Opening 1",
+      "Motivate 1"
+     ],
+     [
+      "Power Re-roll 1"
+     ]
+    ],
+    "6": [
+     [
+      "Additional Power Die"
+     ]
+    ],
+    "7": [
+     [
+      "Break 1"
+     ],
+     [
+      "Opening 1"
+     ]
+    ]
+   }
+  },
+  "logicbreaker": {
+   "name": "Logicbreaker",
+   "code": "AK0297",
+   "powerDice": 1,
+   "inherentKeywords": [
+    "Auto-break 1"
+   ],
+   "speed": 5,
+   "abilities": {
+    "Theseus Logic": "Ψ During voluntary Movement, ignore an obstacle or chasm Terrain tile. You cannot end your move on an obstacle or chasm.",
+    "Logicbreak": "Ψ When you survive an Obol, perform an Attack (up to 3 times per Round)."
+   },
+   "trauma": [
+    {
+     "danger": "1",
+     "tier": "Obol"
+    },
+    {
+     "danger": "2-4",
+     "tier": "Minor"
+    },
+    {
+     "danger": "5-7",
+     "tier": "Major"
+    },
+    {
+     "danger": "8-9",
+     "tier": "Grave"
+    },
+    {
+     "danger": "10+",
+     "tier": "Obol"
+    }
+   ],
+   "kratos": {
+    "1": [
+     [
+      "Overbreak 1",
+      "Power Re-roll 1"
+     ]
+    ],
+    "2": [
+     [
+      "Opening 1"
+     ],
+     [
+      "Overbreak 1"
+     ]
+    ],
+    "3": [
+     [
+      "Overbreak 1",
+      "Power Re-roll 1"
+     ]
+    ],
+    "4": [
+     [
+      "Elation 1"
+     ],
+     [
+      "Tireless"
+     ]
+    ],
+    "5": [
+     [
+      "Additional Power Die"
+     ]
+    ],
+    "6": [
+     [
+      "Overbreak 1",
+      "Power Re-roll 1"
+     ]
+    ],
+    "7": [
+     [
+      "Elation 1"
+     ],
+     [
+      "Overbreak 1"
+     ]
+    ]
+   }
+  },
+  "firestarter": {
+   "name": "Firestarter",
+   "code": "BK0655",
+   "cycle": 2,
+   "powerDice": 1,
+   "speed": 4,
+   "inherentKeywords": [
+    "Power Re-roll 1"
+   ],
+   "slots": {
+    "hands": 2,
+    "armor": 1,
+    "support": 3
+   },
+   "abilities": {
+    "Stout Centimanes": "You have 3 Support slots. You cannot have more than +1 Evasion at any given time. Ignore up to -1 Speed penalty from any 1 Gear card.",
+    "Stubborn": "You may reduce suffered Pushbacks and Knockbacks by 1. Ignore Knockdown. After surviving a Major or Grave Trauma, or an Obol, subtract -1 Danger.",
+    "Spartan-Bred": "You ignore The Strong Eat Trait."
+   },
+   "trauma": [
+    {
+     "danger": "1-4",
+     "tier": "Minor"
+    },
+    {
+     "danger": "5-7",
+     "tier": "Major"
+    },
+    {
+     "danger": "8-9",
+     "tier": "Grave"
+    },
+    {
+     "danger": "10+",
+     "tier": "Obol"
+    }
+   ],
+   "kratos": {
+    "1": [
+     [
+      "Opening 1",
+      "Fire 1"
+     ]
+    ],
+    "2": [
+     [
+      "Fire 1"
+     ],
+     [
+      "Opening 1"
+     ]
+    ],
+    "3": [
+     [
+      "Opening 1"
+     ],
+     [
+      "Power Re-roll 1"
+     ]
+    ],
+    "4": [
+     [
+      "Fire 1"
+     ]
+    ],
+    "5": [
+     [
+      "Additional Power Die"
+     ]
+    ],
+    "6": [
+     [
+      "Opening 1"
+     ],
+     [
+      "Power Re-roll 1"
+     ]
+    ],
+    "7": [
+     [
+      "Fire 1"
+     ]
+    ]
+   }
+  },
+  "warkeeper": {
+   "name": "Warkeeper",
+   "code": "BK0654",
+   "cycle": 2,
+   "powerDice": 1,
+   "speed": 5,
+   "inherentKeywords": null,
+   "abilities": {
+    "Rage Summit": "After surviving a positive Major or Grave Trauma, you may gain +1 Rage. After surviving a negative Major or Grave Trauma, or an Obol, you must gain +1 Rage.",
+    "Cyclopean Might": "You can use Three-handed Weapons as if they were Two-handed.",
+    "Spartan-Bred": "You ignore The Strong Eat Trait."
+   },
+   "trauma": [
+    {
+     "danger": "1-3",
+     "tier": "Minor"
+    },
+    {
+     "danger": "4-6",
+     "tier": "Major"
+    },
+    {
+     "danger": "7-9",
+     "tier": "Grave"
+    },
+    {
+     "danger": "10+",
+     "tier": "Obol"
+    }
+   ],
+   "kratos": {
+    "1": [
+     [
+      "Break 2"
+     ],
+     [
+      "Pushback 1"
+     ]
+    ],
+    "2": [
+     [
+      "Opening 1"
+     ],
+     [
+      "Power Re-roll 1"
+     ]
+    ],
+    "3": [
+     [
+      "Power Re-roll 1"
+     ],
+     [
+      "Pushback 1"
+     ]
+    ],
+    "4": [
+     [
+      "Additional Power Die"
+     ]
+    ],
+    "5": [
+     [
+      "Pushback 1"
+     ],
+     [
+      "Opening 1"
+     ]
+    ],
+    "6": [
+     [
+      "Tireless"
+     ],
+     [
+      "Break 1"
+     ]
+    ],
+    "7": [
+     [
+      "Pushback 1"
+     ],
+     [
+      "Break 1"
+     ]
+    ],
+    "8": [
+     [
+      "Additional Die Improvement"
+     ]
+    ]
+   }
+  },
+  "abysswatcher": {
+   "name": "Abysswatcher",
+   "code": "BK0656",
+   "cycle": 2,
+   "powerDice": 1,
+   "speed": 5,
+   "inherentKeywords": [
+    "Auto-black 1"
+   ],
+   "ambrosiaLimit": -1,
+   "abilities": {
+    "One For All": "If your natural Rage goes over 9 during an Attack, perform a normal Attack, but do not draw a BP card. Instead, perform a Power Roll, divide your Total Power by 2 (rounding up) and add +1 Power if you had a Crit Chance. Note the resulting Power, then clear the Kratos Pool and continue to your second ability window (do not resolve any responses). Next time any Titan attacks, it adds the Power you noted to its Total Power.",
+    "Fearless": "Immune to Fear and Dread Conditions. You cannot gain Despair tokens.",
+    "Abyss-Tainted": "Start of your turn: Gain 1 Ambrosia token. After surviving any Trauma other than Obol, gain +1 Danger.",
+    "Dual-Wielding": "When attacking with a Weapon, you can add one stackable keyword of another equipped non-Perishable Weapon."
+   },
+   "trauma": [
+    {
+     "danger": "1-9",
+     "tier": "Minor"
+    },
+    {
+     "danger": "10+",
+     "tier": "Obol"
+    }
+   ],
+   "kratos": {
+    "1": [
+     [
+      "Fire 1",
+      "Power Re-roll 1"
+     ],
+     [
+      "Opening 1",
+      "Power Re-roll 1"
+     ]
+    ],
+    "2": [
+     [
+      "Black 1"
+     ]
+    ],
+    "3": [
+     [
+      "Fire 1"
+     ],
+     [
+      "Opening 1"
+     ]
+    ],
+    "4": [
+     [
+      "Black 1",
+      "Vault"
+     ],
+     [
+      "Power Re-roll 1",
+      "Vault"
+     ]
+    ],
+    "5": [
+     [
+      "Additional Power Die"
+     ]
+    ],
+    "6": [
+     [
+      "Fire 1",
+      "Power Re-roll 1"
+     ],
+     [
+      "Black 1",
+      "Power Re-roll 1"
+     ]
+    ],
+    "7": [
+     [
+      "Opening 1"
+     ]
+    ],
+    "8": [
+     [
+      "Heartseeker"
+     ]
+    ]
+   }
+  },
+  "skyseer": {
+   "name": "Skyseer",
+   "code": "CK1282",
+   "cycle": 3,
+   "powerDice": 1,
+   "speed": 7,
+   "inherentKeywords": [
+    "Auto-break 1"
+   ],
+   "abilities": {
+    "Scale": "Ψ⟳ When you are about to perform a Climb test, automatically succeed at that test instead.",
+    "Seer Sense": "After surviving a Major or Grave Wound, or an Obol, gain 1 temporary positive Evasion token.",
+    "Fall and Soar": "Ψ When you fail the Hold On test, immediately move 2 spaces instead of suffering the Falling Down effect.",
+    "Lifeline": "Ψ When you are about to die from falling into a chasm space, displace instead. Alternatively, when you are about to die from going over a boundless Board Edge, stop adjacent to it. This ability can be used even if knocked down or otherwise prohibited from using active abilities.",
+    "Kreios Strain": "While performing a Move, you can move diagonally.",
+    "Fly": "Ψ⟳ Use during voluntary movement to ignore all terrain Tiles during this movement. You cannot end your movement on an obstacle or chasm."
+   },
+   "trauma": [
+    {
+     "danger": "1-2",
+     "tier": "Minor"
+    },
+    {
+     "danger": "3-5",
+     "tier": "Major"
+    },
+    {
+     "danger": "6-8",
+     "tier": "Grave"
+    },
+    {
+     "danger": "9+",
+     "tier": "Obol"
+    }
+   ],
+   "kratos": {
+    "1": [
+     [
+      "Opening 1",
+      "Reposition 2"
+     ]
+    ],
+    "2": [
+     [
+      "Black 1",
+      "Vault"
+     ],
+     [
+      "Power Re-roll 1"
+     ]
+    ],
+    "3": [
+     [
+      "Opening 1",
+      "Motivate 1"
+     ]
+    ],
+    "4": [
+     [
+      "Black 1",
+      "Reposition 1"
+     ],
+     [
+      "Power Re-roll 1"
+     ]
+    ],
+    "5": [
+     [
+      "Opening 1",
+      "Motivate 1"
+     ]
+    ],
+    "6": [
+     [
+      "Additional Power Die",
+      "Power Re-roll 1"
+     ]
+    ],
+    "7": [
+     [
+      "Opening 1",
+      "Hope 1"
+     ]
+    ],
+    "8": [
+     [
+      "Opening 1",
+      "Hope 1"
+     ]
+    ]
+   }
+  },
+  "truthbearer": {
+   "name": "Truthbearer",
+   "code": "CK1281",
+   "cycle": 3,
+   "powerDice": 1,
+   "powerDie": "b",
+   "speed": 5,
+   "inherentKeywords": null,
+   "ambrosiaLimit": 1,
+   "despairLimit": 5,
+   "bleedingLimit": 5,
+   "abilities": {
+    "Last Titan Standing": "If you are the last Titan on the Battle Board, you cannot gain Ambrosia tokens, Despair tokens or suffer Knockdown.",
+    "The Truth": "If R7 is marked, you have Auto-hope 1. (하우스룰: 항상 Auto-hope 1)",
+    "Elder Might": "You can use [3-hand] Weapons as if they were [2-hand]. If you don't use a [3-hand] Weapon, you have Tireless.",
+    "Disturbance in Fate": "Each time you roll a Crit Miss, [campaign]. (캠페인 효과 — 무시)"
+   },
+   "trauma": [
+    {
+     "danger": "1-4",
+     "tier": "Minor"
+    },
+    {
+     "danger": "5-8",
+     "tier": "Major"
+    },
+    {
+     "danger": "9-11",
+     "tier": "Grave"
+    },
+    {
+     "danger": "12+",
+     "tier": "Obol"
+    }
+   ],
+   "kratos": {
+    "1": [
+     [
+      "Break 1",
+      "Opening 1"
+     ]
+    ],
+    "2": [
+     [
+      "Power Re-roll 1",
+      "Burden 1"
+     ]
+    ],
+    "3": [
+     [
+      "Break 1",
+      "Hope 1"
+     ],
+     [
+      "Break 1",
+      "Black 1"
+     ]
+    ],
+    "4": [
+     [
+      "Additional Power Die",
+      "Elation 1"
+     ]
+    ],
+    "5": [
+     [
+      "Opening 1",
+      "Hope 1"
+     ],
+     [
+      "Opening 1",
+      "Black 1"
+     ]
+    ],
+    "6": [
+     [
+      "Power Re-roll 1",
+      "Burden 1"
+     ]
+    ],
+    "7": [
+     [
+      "Hope 1",
+      "Power Re-roll 1"
+     ]
+    ],
+    "8": [
+     [
+      "Succor"
+     ]
+    ]
+   }
+  },
+  "ascender": {
+   "name": "Ascender",
+   "code": "CK1278",
+   "cycle": 3,
+   "powerDice": 1,
+   "speed": 5,
+   "inherentKeywords": [
+    "Auto-break 1"
+   ],
+   "abilities": {
+    "Survive!": "When you would die from an Instant Death effect, you may discard all generic tokens from your Titan sheet (at least 1) to perform an Obol Draw instead.",
+    "Ascend!": "Each time you survive a Trauma Draw, place 1 generic token on your Titan Sheet. Stacking benefits: 1+: +1 Precision. 2+: +1 Speed. 3+: Auto-break 1. 4+: Stalwart. 5+: Rocksteady. 6+: +1 Evasion. 7+: +1 Power. 8+: +2 to Awakening rolls. 9: Immediately Awaken.",
+    "Surpass!": "If you have 5+ Rage, if your Weapon doesn't already have the Assist X keyword, it gains Assist 1."
+   },
+   "trauma": [
+    {
+     "danger": "1-4",
+     "tier": "Minor"
+    },
+    {
+     "danger": "5-7",
+     "tier": "Major"
+    },
+    {
+     "danger": "8-10",
+     "tier": "Grave"
+    },
+    {
+     "danger": "11+",
+     "tier": "Obol"
+    }
+   ],
+   "kratos": {
+    "1": [
+     [
+      "Black 1",
+      "Elation 1"
+     ]
+    ],
+    "2": [
+     [
+      "Power Re-roll 2"
+     ]
+    ],
+    "3": [
+     [
+      "Break 1",
+      "Opening 1"
+     ]
+    ],
+    "4": [
+     [
+      "Additional Power Die"
+     ]
+    ],
+    "5": [
+     [
+      "Black 1",
+      "Elation 1"
+     ],
+     [
+      "Power Re-roll 1"
+     ]
+    ],
+    "6": [
+     [
+      "Tireless"
+     ]
+    ],
+    "7": [
+     [
+      "Rouse 1"
+     ]
+    ]
+   }
+  },
+  "returner": {
+   "name": "Returner",
+   "code": "CK1279",
+   "cycle": 3,
+   "powerDice": 1,
+   "speed": 6,
+   "inherentKeywords": null,
+   "abilities": {
+    "The Return": "Ψ If you don't have a Time Anchor on the Board, remove another Titan's Time Anchor and place your own in its space. You can use this ability while Time-clocked.",
+    "Kreios Strain": "While performing a Move, you can move diagonally.",
+    "Cheat Fate": "When you are about to draw an Obol, you may choose to draw a You Live! or You Died Obol instead (once per Battle). If you do, next time you draw an Obol, you must draw the other one.",
+    "Fickle Fate": "Start of Battle: If you have less than 2 Fate, raise Fate to 2. If at any time you have 0 Fate, you flash forward: remove the Titan from the Battle. Treat them as if they died. After surviving a Major or Grave Trauma or an Obol, lose -1 Fate."
+   },
+   "trauma": [
+    {
+     "danger": "1-3",
+     "tier": "Minor"
+    },
+    {
+     "danger": "4-6",
+     "tier": "Major"
+    },
+    {
+     "danger": "7-9",
+     "tier": "Grave"
+    },
+    {
+     "danger": "10+",
+     "tier": "Obol"
+    }
+   ],
+   "kratos": {
+    "1": [
+     [
+      "Pass 1"
+     ],
+     [
+      "Power Re-roll 1"
+     ]
+    ],
+    "2": [
+     [
+      "Motivate 1",
+      "Black 1"
+     ]
+    ],
+    "3": [
+     [
+      "Pass 1",
+      "Inspire 1"
+     ],
+     [
+      "Power Re-roll 1"
+     ]
+    ],
+    "4": [
+     [
+      "Motivate 2",
+      "Pass 1"
+     ],
+     [
+      "Pass 2"
+     ]
+    ],
+    "5": [
+     [
+      "Greater Pass 1",
+      "Power Re-roll 1"
+     ]
+    ],
+    "6": [
+     [
+      "Additional Power Die"
+     ]
+    ],
+    "7": [
+     [
+      "Motivate 1",
+      "Inspire 1"
+     ],
+     [
+      "Power Re-roll 1"
+     ]
+    ],
+    "8": [
+     [
+      "Greater Pass 1",
+      "Black 1"
+     ]
+    ]
+   }
+  },
+  "dawnburner": {
+   "name": "Dawnburner",
+   "code": "CK1280",
+   "cycle": 3,
+   "powerDice": 1,
+   "powerDie": "b",
+   "speed": 5,
+   "inherentKeywords": null,
+   "abilities": {
+    "Cyclopean Might": "You can use [3-hand] Weapons as if they were [2-hand].",
+    "In Light and Shade": "Each Laser Attack hit and Sun Attack hit deals 1 Danger less (to a minimum of 1). When you are about to die from incineration, draw an Obol instead.",
+    "Fall and Soar": "Ψ When you fail the Hold On test, immediately move 2 spaces instead of suffering the Falling Down effect.",
+    "Lifeline": "Ψ When you are about to die from falling into a chasm space, displace instead. Alternatively, when you are about to die from going over a boundless Board Edge, stop adjacent to it. This ability can be used even if knocked down or otherwise prohibited from using active abilities.",
+    "Advanced Jump": "Ψ⟳ Activate at the start of movement, voluntary or not, to ignore up to 2 adjacent spaces of a single Terrain tile during this movement.",
+    "Scale": "Ψ⟳ When you are about to perform a Climb test, automatically succeed at that test instead."
+   },
+   "trauma": [
+    {
+     "danger": "1-4",
+     "tier": "Minor"
+    },
+    {
+     "danger": "5-8",
+     "tier": "Major"
+    },
+    {
+     "danger": "9-11",
+     "tier": "Grave"
+    },
+    {
+     "danger": "12+",
+     "tier": "Obol"
+    }
+   ],
+   "kratos": {
+    "1": [
+     [
+      "Hope 1"
+     ],
+     [
+      "Opening 1"
+     ]
+    ],
+    "2": [
+     [
+      "Vault",
+      "Power Re-roll 1"
+     ],
+     [
+      "Fire 1"
+     ]
+    ],
+    "3": [
+     [
+      "Tireless",
+      "Reposition 2"
+     ]
+    ],
+    "4": [
+     [
+      "Fire 1",
+      "Opening 1"
+     ],
+     [
+      "Hope 1"
+     ]
+    ],
+    "5": [
+     [
+      "Additional Power Die"
+     ]
+    ],
+    "6": [
+     [
+      "BP Suppress"
+     ],
+     [
+      "Fire 1"
+     ]
+    ],
+    "7": [
+     [
+      "Hope 1",
+      "Opening 1"
+     ]
+    ],
+    "8": [
+     [
+      "Rouse 1"
+     ]
+    ],
+    "9": [
+     [
+      "Raw Power 1"
+     ]
+    ]
+   }
+  },
+  "gamechanger": {
+   "name": "Gamechanger",
+   "code": "AK0298",
+   "cycle": 1,
+   "powerDice": 1,
+   "powerDie": "b",
+   "speed": 5,
+   "inherentKeywords": null,
+   "abilities": {
+    "Advanced Reflex": "◆ Ψ⟳ Move up to 2 spaces.",
+    "Unknown Might": "You can use [3-hand] Weapons as if they were [2-hand]. If you do, you have -1 [Support] slot.",
+    "Disturbance in Fate": "Each time you roll a Crit Miss, [campaign]. (캠페인 효과 — 무시)",
+    "Ruse": "After surviving a Major or Grave Trauma, or an Obol, place 1 Opening token in the Kratos Pool."
+   },
+   "trauma": [
+    {
+     "danger": "1-4",
+     "tier": "Minor"
+    },
+    {
+     "danger": "5-8",
+     "tier": "Major"
+    },
+    {
+     "danger": "9",
+     "tier": "Grave"
+    },
+    {
+     "danger": "10+",
+     "tier": "Obol"
+    }
+   ],
+   "kratos": {
+    "1": [
+     [
+      "Break 1",
+      "Opening 1"
+     ],
+     [
+      "Power Re-roll 1"
+     ]
+    ],
+    "2": [
+     [
+      "Elation 1"
+     ]
+    ],
+    "3": [
+     [
+      "Break 1"
+     ],
+     [
+      "Opening 1",
+      "Power Re-roll 1"
+     ]
+    ],
+    "4": [
+     [
+      "Additional Power Die"
+     ]
+    ],
+    "5": [
+     [
+      "Break 1"
+     ],
+     [
+      "Power Re-roll 2"
+     ]
+    ],
+    "6": [
+     [
+      "Precise"
+     ]
+    ],
+    "7": [
+     [
+      "Break 1",
+      "Power Re-roll 1"
+     ]
+    ]
+   }
+  },
+  "lunarlander": {
+   "name": "Lunarlander",
+   "code": "DK2004",
+   "cycle": 5,
+   "powerDice": 1,
+   "speed": 5,
+   "inherentKeywords": [
+    "Auto-hope 1"
+   ],
+   "abilities": {
+    "Selenian Strain": "Start of Battle: Gain 1 Aether token (See Cycle V Storybook, p. 6). (Cycle V 메커니즘 — 미구현, 로그만)",
+    "One Small Step": "When on a VP or the Endless Staircase, gain Rocksteady.",
+    "Grey Alchemy": "Ψ Turn 1 Midas or Pain token into 1 Ambrosia token.",
+    "Forgotten Curse": "Once per Battle, you may gain 3 Despair tokens to skip an After Attack of a Primordial Attack. You may use this ability only during a ◆ of an After Attack."
+   },
+   "trauma": [
+    {
+     "danger": "1-3",
+     "tier": "Minor"
+    },
+    {
+     "danger": "4-6",
+     "tier": "Major"
+    },
+    {
+     "danger": "7-9",
+     "tier": "Grave"
+    },
+    {
+     "danger": "10+",
+     "tier": "Obol"
+    }
+   ],
+   "kratos": {
+    "1": [
+     [
+      "Break 1"
+     ],
+     [
+      "Opening 1",
+      "Scale 1"
+     ]
+    ],
+    "2": [
+     [
+      "Pass 1",
+      "Power Re-roll 1"
+     ]
+    ],
+    "3": [
+     [
+      "Unburden 1",
+      "Scale 1"
+     ],
+     [
+      "Elation 1"
+     ]
+    ],
+    "4": [
+     [
+      "Greater Pass 1"
+     ],
+     [
+      "Pass 2"
+     ]
+    ],
+    "5": [
+     [
+      "Additional Power Die",
+      "Scale 1"
+     ]
+    ],
+    "6": [
+     [
+      "Greater Pass 1"
+     ],
+     [
+      "Pass 1",
+      "Power Re-roll 1"
+     ]
+    ],
+    "7": [
+     [
+      "Unburden 1"
+     ],
+     [
+      "Elation 1"
+     ]
+    ],
+    "8": [
+     [
+      "Greater Pass 1",
+      "Power Re-roll 1"
+     ],
+     [
+      "Greater Pass 2"
+     ]
+    ],
+    "9": [
+     [
+      "Pass 1",
+      "Scale 1"
+     ]
+    ]
+   }
+  },
+  "wishender": {
+   "name": "Wishender",
+   "code": "DK2003",
+   "cycle": 5,
+   "powerDice": 1,
+   "powerDie": "b",
+   "speed": 4,
+   "inherentKeywords": null,
+   "slots": {
+    "hands": 4,
+    "armor": 1,
+    "support": 2
+   },
+   "abilities": {
+    "Djinnslayer": "When on the Endless Staircase or on any Status card, gain +1 Power.",
+    "Wish Engine": "Each time you survive a Wish Attack, place X Generic tokens on your Titan Sheet, where X is the level of the AI card. Each time you gain a Wishkeen or Wishagog Condition card, place respectively 1 or 2 Generic tokens on your Titan Sheet. You may discard an indicated number of those tokens to trigger one of the following effects (as a free action, unless stated otherwise): 1: When you attack, gain +1 Precision. 2: When you attack, gain Auto-break 1. 3: Block 1. 4: When performing a Power Roll, gain +1 Power. 5: Gain [Movement action]. 6: Gain [Combat action]. 7: Awaken.",
+    "Four-Armed Centimanes": "You have 4 Weapon slots. You cannot use [2-hand] and [3-hand] Weapons.",
+    "Wish Shield": "Each Wish Attack and Laser Attack hit deals 1 Danger less (to a minimum of 1) to you and adjacent Titans."
+   },
+   "trauma": [
+    {
+     "danger": "1-4",
+     "tier": "Minor"
+    },
+    {
+     "danger": "5-7",
+     "tier": "Major"
+    },
+    {
+     "danger": "8-10",
+     "tier": "Grave"
+    },
+    {
+     "danger": "11+",
+     "tier": "Obol"
+    }
+   ],
+   "kratos": {
+    "1": [
+     [
+      "Break 1",
+      "Power Re-roll 1"
+     ],
+     [
+      "Opening 2",
+      "Power Re-roll 1"
+     ]
+    ],
+    "2": [
+     [
+      "Black 1"
+     ],
+     [
+      "Break 2"
+     ]
+    ],
+    "3": [
+     [
+      "Power Re-roll 1",
+      "Motivate 1"
+     ]
+    ],
+    "4": [
+     [
+      "Closing 1"
+     ],
+     [
+      "Opening 2"
+     ]
+    ],
+    "5": [
+     [
+      "Additional Power Die",
+      "Power Re-roll 1"
+     ]
+    ],
+    "6": [
+     [
+      "Hope 1",
+      "Scale 1"
+     ],
+     [
+      "Black 2",
+      "Scale 1"
+     ]
+    ],
+    "7": [
+     [
+      "Clutch"
+     ]
+    ]
+   }
+  },
+  "shadowdancer": {
+   "name": "Shadowdancer",
+   "code": "DK2001",
+   "cycle": 5,
+   "powerDice": 1,
+   "powerDie": "b",
+   "speed": 5,
+   "inherentKeywords": null,
+   "slots": {
+    "hands": 3,
+    "armor": 1,
+    "support": 2
+   },
+   "abilities": {
+    "Nimble Feet": "You have 3 Weapon slots. You cannot use [3-hand] Weapons.",
+    "Shadowdance": "When you resolve a Primordial Attack against you, you may gain +XΨ to perform [Movement action] and an Attack (treat it as an Interrupt, if able). Gain a [Combat] Fatigue token. X is 3 minus the AI level.",
+    "Dance of Fate": "When you are about to draw an Obol, you may gain +2Ψ to add 1 You live! Obol card to the Obol deck (for this draw only)."
+   },
+   "trauma": [
+    {
+     "danger": "1-3",
+     "tier": "Minor"
+    },
+    {
+     "danger": "4-6",
+     "tier": "Major"
+    },
+    {
+     "danger": "7-9",
+     "tier": "Grave"
+    },
+    {
+     "danger": "10+",
+     "tier": "Obol"
+    }
+   ],
+   "kratos": {
+    "1": [
+     [
+      "Closing 1",
+      "Reposition 2"
+     ]
+    ],
+    "2": [
+     [
+      "Break 1",
+      "Power Re-roll 1"
+     ]
+    ],
+    "3": [
+     [
+      "Closing 1",
+      "Pole Position"
+     ]
+    ],
+    "4": [
+     [
+      "Break 1",
+      "Power Re-roll 1"
+     ],
+     [
+      "Scale 1"
+     ]
+    ],
+    "5": [
+     [
+      "Break 1",
+      "Power Re-roll 1",
+      "Scale 1"
+     ]
+    ],
+    "6": [
+     [
+      "Additional Power Die",
+      "Closing 1"
+     ]
+    ],
+    "7": [
+     [
+      "Diversion"
+     ]
+    ],
+    "8": [
+     [
+      "Heartseeker"
+     ]
+    ]
+   }
+  },
+  "cloudsoarer": {
+   "name": "Cloudsoarer",
+   "code": "DK2002",
+   "cycle": 5,
+   "powerDice": 1,
+   "speed": 6,
+   "inherentKeywords": [
+    "Raw Power 1"
+   ],
+   "abilities": {
+    "Fall and Soar": "Ψ When you fail the Hold On test, immediately move 2 spaces instead of suffering the Falling Down effect. Ψ and Knockdown to Lifeline.",
+    "Carry the Weight": "Each time you gain Midas tokens, place 1 Generic token on your Titan Sheet. You may discard an indicated number of those tokens to trigger one of the following effects (as a free action, unless stated otherwise): 1: When performing a Hermes Move treat it as 1 higher. 2: When you are about to suffer Float, ignore it. 3: Discard a Condition card. 4: When performing a Power Roll, gain +1 Power. 5: Gain [Movement action]. 6: Remove a Curse Affliction. 7: Awaken.",
+    "Lightweight Curse": "You can use [3-hand] Weapons as if they were [2-hand]. You cannot use [1-hand] Weapons.",
+    "Levitate": "Ψ During voluntary movement, ignore an Obstacle or Chasm Terrain tiles. You can end your move on a Chasm but not on an Obstacle. If you start your turn on a Chasm, you must immediately use this ability. If you cannot, you die."
+   },
+   "trauma": [
+    {
+     "danger": "1-3",
+     "tier": "Minor"
+    },
+    {
+     "danger": "4-6",
+     "tier": "Major"
+    },
+    {
+     "danger": "7-9",
+     "tier": "Grave"
+    },
+    {
+     "danger": "10+",
+     "tier": "Obol"
+    }
+   ],
+   "kratos": {
+    "1": [
+     [
+      "Opening 2"
+     ],
+     [
+      "Power Re-roll 1"
+     ]
+    ],
+    "2": [
+     [
+      "Break 1",
+      "Power Re-roll 1"
+     ],
+     [
+      "Scale 1"
+     ]
+    ],
+    "3": [
+     [
+      "Opening 1",
+      "Reposition 1"
+     ],
+     [
+      "Closing 1"
+     ]
+    ],
+    "4": [
+     [
+      "Break 1",
+      "Power Re-roll 1"
+     ],
+     [
+      "Scale 1"
+     ]
+    ],
+    "5": [
+     [
+      "Additional Power Die"
+     ]
+    ],
+    "6": [
+     [
+      "Closing 1",
+      "Pole Position"
+     ]
+    ],
+    "7": [
+     [
+      "Break 1"
+     ],
+     [
+      "Scale 1"
+     ]
+    ]
+   }
+  }
+ }
+}

@@ -1,0 +1,1452 @@
+{
+ "id": "sun",
+ "name": "Sun Descendant",
+ "cycle": 3,
+ "type": "primordial",
+ "sheetCode": "CU1792",
+ "sunD": true,
+ "_notes": [
+  "Transcribed from sheet CU1792 + VP card (Feathery Ascent), AI CR1734-CR1754, BP CS1755-CS1772.",
+  "Mnestis: win by killing (Wound Stack full); the Endure-the-Sun round track is ignored.",
+  "Positions (Storybook p.132): A = cols 1-3 rows G-I (faces E), B = cols 10-12 rows L-N (faces S), C = cols 18-20 rows F-H (faces W), D = cols 9-11 rows A-C (faces N).",
+  "VP effect icon read as Power. ▽5+ icon on Fated Flash / Supernova read as PARADOX 5+.",
+  "Floating Rocks (CI1315): Obstacle, Obscuring, Indestructible, Elevated; climb Fury 4+; from it, free move to VP I of an adjacent Primordial; +3 to Climb tests."
+ ],
+ "footprint": {
+  "w": 3,
+  "h": 3,
+  "rear": "top-edge"
+ },
+ "ukb": 5,
+ "blindspots": null,
+ "levels": {
+  "1": {
+   "toHit": 10,
+   "speed": 99,
+   "wounds": 12,
+   "bonus": {
+    "ESCALATION": 1
+   },
+   "traits": [
+    "Sun Move",
+    "Merciless Sun",
+    "Death by Fate",
+    "Extinguish Possibilities",
+    "End of Hope"
+   ]
+  },
+  "2": {
+   "toHit": 10,
+   "speed": 99,
+   "wounds": 12,
+   "bonus": {
+    "ESCALATION": 1,
+    "AT": 2
+   },
+   "traits": [
+    "God Given Law"
+   ]
+  },
+  "3": {
+   "toHit": 11,
+   "speed": 99,
+   "wounds": 12,
+   "bonus": {
+    "ESCALATION": 1,
+    "AT": 3,
+    "DANGER": 1
+   },
+   "traits": [
+    "Magnifying Glass"
+   ]
+  },
+  "4": {
+   "toHit": 11,
+   "speed": 99,
+   "wounds": 13,
+   "bonus": {
+    "ESCALATION": 2,
+    "AT": 4,
+    "DANGER": 1
+   },
+   "traits": [
+    "Overclocked"
+   ]
+  },
+  "5": {
+   "mnestis": true,
+   "toHit": 12,
+   "speed": 99,
+   "wounds": 13,
+   "bonus": {
+    "ESCALATION": 2,
+    "AT": 5,
+    "DANGER": 1
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Beginning of the End",
+    "Trigger Happy"
+   ]
+  },
+  "6": {
+   "mnestis": true,
+   "toHit": 12,
+   "speed": 99,
+   "wounds": 14,
+   "bonus": {
+    "ESCALATION": 3,
+    "AT": 6,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Ice Age"
+   ]
+  },
+  "7": {
+   "mnestis": true,
+   "toHit": 13,
+   "speed": 99,
+   "wounds": 14,
+   "bonus": {
+    "ESCALATION": 3,
+    "AT": 7,
+    "EVADE_DICE": 1,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Black Sun"
+   ]
+  },
+  "8": {
+   "mnestis": true,
+   "toHit": 13,
+   "speed": 99,
+   "wounds": 15,
+   "bonus": {
+    "ESCALATION": 4,
+    "AT": 8,
+    "EVADE_DICE": 2,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Bow or Die"
+   ]
+  },
+  "9": {
+   "mnestis": true,
+   "toHit": 14,
+   "speed": 99,
+   "wounds": 16,
+   "bonus": {
+    "ESCALATION": 5,
+    "AT": 9,
+    "EVADE_DICE": 3,
+    "DANGER": 3
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Ruthless",
+    "Total Eclipse"
+   ]
+  }
+ },
+ "traits": {
+  "Sun Move": "When the Sun Descendant performs a Sun Move, move it clockwise directly to the next position on the Battle Board (A, B, C or D), then turn to face the middle of the Board. This move does not trigger Crash.",
+  "Merciless Sun": "Start of Primordial Round: perform Merciless Sun. Unshaded Board: The Sun shines from the direction of the Board Edge directly behind the Sun Descendant after its Sun Move. Every space on the Board, excluding spaces adjacent to Obstacle and Obscuring Terrain on the side directly opposite that Board Edge, are considered Unshaded.",
+  "Death by Fate": "When a Primordial Attack deals FATE, it triggers a Trauma Draw (like DANGER). If an Attack deals both, resolve only one Trauma Draw. Being dealt FATE over 9 causes an Obol Draw instead of a Moiros Draw. Trauma severity uses the higher of DANGER or FATE.",
+  "Extinguish Possibilities": "Start of Primordial Round: Look at the top Trauma card from each deck. If it's positive, remove it from the Battle. If it's negative, leave it on top.",
+  "End of Hope": "End of Primordial Round: Perform Signature.",
+  "God Given Law": "Ignore ⚡ preceding Merciless Sun.",
+  "Magnifying Glass": "All VPs become unshaded. After a Titan fails a Hold on test, perform Signature against that Titan.",
+  "Overclocked": "Ignore ⚡ preceding Laser Attacks.",
+  "Beginning of the End": "End of Primordial Round: Before End of Hope, draw and perform another AI card.",
+  "Trigger Happy": "The Signature becomes Trigger Finger (Secret card 118): LASER JUDGEMENT 2/11+, Target: Closest Titan in sight. ⚡ MOVE LATERAL & JUDGE — Chosen Skill. If you are hit, you are incinerated. After Attack: Burn.",
+  "Ice Age": "Treat every Battle Board space as if it had the Slippery keyword.",
+  "Black Sun": "If you are hit by Merciless Sun, you are incinerated (you die).",
+  "Bow or Die": "If you don't start the Primordial Round knocked down, you are incinerated (you die).",
+  "Ruthless": "Remove all positive Trauma cards from the Trauma decks (except Obols).",
+  "Total Eclipse": "Treat every Battle Board space as if it had the Chasm keyword."
+ },
+ "ai": [
+  {
+   "code": "CR1734",
+   "tier": 1,
+   "name": "Sun's Decree",
+   "kind": "SUN JUDGEMENT",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Unshaded Board"
+   ],
+   "steps": [
+    "⚡ SUN MOVE & JUDGE (Will/Endurance)",
+    "Each hit deals 2 DANGER and 1 FATE.",
+    "Burn."
+   ],
+   "sun": {
+    "mode": "sun",
+    "judge": [
+     "Will",
+     "Endurance"
+    ],
+    "pre": [
+     {
+      "k": "rewindHigh"
+     }
+    ],
+    "after": [
+     {
+      "k": "glacAnchorLow",
+      "win": true
+     }
+    ]
+   },
+   "afterFinal": "⚡ Glaciate the Time Anchor of the Titan with the lowest FATE.",
+   "text_pre": "Rewind the Titan with the highest FATE."
+  },
+  {
+   "code": "CR1735",
+   "tier": 1,
+   "name": "Equine Chomp",
+   "kind": "ZONE ATTACK/ATTACK",
+   "dice": 4,
+   "toHit": 7,
+   "target": [
+    "Highest FATE in front",
+    "Highest FATE in sight",
+    "Titan on the lowest occupied VP"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | PARADOX 2+ or FATE 4+: +1 EVADE_DICE",
+    "Gain +1 FATE.",
+    "Each hit deals 2 DANGER.",
+    "Knockdown."
+   ],
+   "sun": {
+    "mode": "zone",
+    "move": "move",
+    "pattern": [
+     [
+      1,
+      -1
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      1,
+      1
+     ],
+     [
+      2,
+      -1
+     ],
+     [
+      2,
+      0
+     ],
+     [
+      2,
+      1
+     ],
+     [
+      3,
+      -1
+     ],
+     [
+      3,
+      0
+     ],
+     [
+      3,
+      1
+     ]
+    ],
+    "dieUp": {
+     "p": 2,
+     "f": 4,
+     "n": 1
+    },
+    "after": [
+     {
+      "k": "blackLake",
+      "win": true
+     }
+    ]
+   },
+   "afterFinal": "⚡ Place a Black Lake tile under the Zone."
+  },
+  {
+   "code": "CR1736",
+   "tier": 1,
+   "name": "Sunlight Laser",
+   "kind": "LASER ATTACK",
+   "dice": 3,
+   "toHit": 11,
+   "target": [
+    "Lowest DANGER in front",
+    "Lowest DANGER in sight",
+    "Titan on the highest occupied VP"
+   ],
+   "steps": [
+    "MOVE LATERAL & ATTACK | PARADOX 2+ or FATE 4+: Triple Laser Attack instead",
+    "Each hit deals 3 DANGER.",
+    "Burn."
+   ],
+   "sun": {
+    "mode": "laser",
+    "laser": "single",
+    "up": {
+     "p": 2,
+     "f": 4,
+     "to": "triple"
+    },
+    "nowin": true,
+    "pre": [
+     {
+      "k": "glac",
+      "cells": [
+       "D12",
+       "J14",
+       "H16"
+      ],
+      "no": null
+     }
+    ],
+    "after": [
+     {
+      "k": "rewind"
+     }
+    ]
+   },
+   "after": "Rewind.",
+   "text_pre": "Glaciate D12, J14 and H16."
+  },
+  {
+   "code": "CR1737",
+   "tier": 1,
+   "name": "Deny the Supplicant",
+   "kind": "JUDGEMENT/ZONE JUDGEMENT",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Titan on the highest occupied VP",
+    "Zone 1"
+   ],
+   "steps": [
+    "⚡ JUDGE (Courage/Will) | PARADOX 3+ or FATE 5+: Ignore the ⚡",
+    "Each hit deals 1 FATE and 2 DANGER.",
+    "Death 3.",
+    "Time-clocked."
+   ],
+   "sun": {
+    "mode": "vpOrZone",
+    "zone": 1,
+    "judge": [
+     "Courage",
+     "Will"
+    ],
+    "skipWin": {
+     "p": 3,
+     "f": 5
+    },
+    "after": [
+     {
+      "k": "anchorAdj",
+      "win": true
+     }
+    ]
+   },
+   "after": "⚡ Place your Time Anchor adjacent to the Sun Descendant."
+  },
+  {
+   "code": "CR1738",
+   "tier": 1,
+   "name": "Descent",
+   "kind": "ZONE ATTACK/ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Priority Target in front",
+    "Highest FATE in front",
+    "Highest FATE in sight",
+    "Titan on the highest occupied VP"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Gain +1 FATE.",
+    "Each hit deals 2 DANGER.",
+    "Knockdown.",
+    "Knockback 10."
+   ],
+   "sun": {
+    "mode": "zone",
+    "move": "move",
+    "pattern": [
+     [
+      1,
+      -1
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      1,
+      1
+     ]
+    ],
+    "after": [
+     {
+      "k": "giant",
+      "cells": [
+       "C17",
+       "C18",
+       "D17",
+       "D18"
+      ],
+      "no": {
+       "f": 5
+      },
+      "win": true
+     }
+    ]
+   },
+   "afterFinal": "⚡ Giant Glaciate C17-D18. | FATE 5+: Do not Glaciate"
+  },
+  {
+   "code": "CR1739",
+   "tier": 1,
+   "name": "Feathergust",
+   "kind": "TRIPLE LASER ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Highest FATE in front",
+    "Highest FATE in sight",
+    "Titan on the highest occupied VP"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK | PARADOX 3+ or FATE 5+: Ignore the ⚡",
+    "Gain +1 FATE.",
+    "Each hit deals 2 DANGER."
+   ],
+   "sun": {
+    "mode": "laser",
+    "laser": "triple",
+    "skipWin": {
+     "p": 3,
+     "f": 5
+    },
+    "pre": [
+     {
+      "k": "glac",
+      "cells": [
+       "C15",
+       "I12",
+       "J9"
+      ],
+      "no": {
+       "f": 7
+      }
+     }
+    ],
+    "after": [
+     {
+      "k": "kb",
+      "n": 8,
+      "win": true
+     }
+    ]
+   },
+   "after": "⚡ Knockback 8.",
+   "text_pre": "Glaciate C15, I12 and J9. | FATE 7+: Do not Glaciate"
+  },
+  {
+   "code": "CR1740",
+   "tier": 2,
+   "name": "Unholy Audience",
+   "kind": "ZONE ATTACK/ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Lowest FATE in front",
+    "Lowest FATE in sight",
+    "Titan on the highest occupied VP"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Gain +2 FATE.",
+    "Each hit deals 3 DANGER.",
+    "Knockdown.",
+    "Knockback 10."
+   ],
+   "sun": {
+    "mode": "zone",
+    "move": "move",
+    "pattern": [
+     [
+      1,
+      -1
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      1,
+      1
+     ],
+     [
+      2,
+      -1
+     ],
+     [
+      2,
+      0
+     ],
+     [
+      2,
+      1
+     ],
+     [
+      3,
+      -1
+     ],
+     [
+      3,
+      0
+     ],
+     [
+      3,
+      1
+     ]
+    ],
+    "after": [
+     {
+      "k": "blackLake",
+      "win": true
+     }
+    ]
+   },
+   "afterFinal": "⚡ Place a Black Lake tile under the Zone."
+  },
+  {
+   "code": "CR1741",
+   "tier": 2,
+   "name": "Exile to Shadow",
+   "kind": "SIMULTANEOUS/ZONE JUDGEMENT",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Titans on 2 highest occupied VPs",
+    "Zone 1"
+   ],
+   "steps": [
+    "⚡ JUDGE (Courage/Will) | PARADOX 5+ or FATE 9+: You are erased from existence",
+    "Each hit deals 2 FATE and 3 DANGER.",
+    "Death 2.",
+    "Time-clocked."
+   ],
+   "sun": {
+    "mode": "vpOrZone",
+    "vpN": 2,
+    "zone": 1,
+    "judge": [
+     "Courage",
+     "Will"
+    ],
+    "erase": {
+     "p": 5,
+     "f": 9
+    },
+    "after": [
+     {
+      "k": "anchorAdj",
+      "win": true
+     }
+    ]
+   },
+   "after": "⚡ Place your Time Anchor adjacent to the Sun Descendant."
+  },
+  {
+   "code": "CR1742",
+   "tier": 2,
+   "name": "Fated Flash",
+   "kind": "SUN ATTACK",
+   "dice": 4,
+   "toHit": 11,
+   "target": [
+    "Unshaded Board"
+   ],
+   "steps": [
+    "⚡ SUN MOVE & ATTACK | PARADOX 3+ or FATE 6+: Ignore the ⚡",
+    "Each hit deals 3 DANGER and 1 FATE.",
+    "Burn."
+   ],
+   "sun": {
+    "mode": "sun",
+    "skipWin": {
+     "p": 3,
+     "f": 6
+    },
+    "pre": [
+     {
+      "k": "glac",
+      "cells": [
+       "D9",
+       "F13",
+       "I7"
+      ],
+      "no": null
+     }
+    ],
+    "after": [
+     {
+      "k": "giant",
+      "cells": [
+       "K17",
+       "K18",
+       "L17",
+       "L18"
+      ],
+      "no": {
+       "p": 5
+      },
+      "win": true
+     }
+    ]
+   },
+   "afterFinal": "⚡ Giant Glaciate K17-L18. | ▽5+: Do not Glaciate",
+   "text_pre": "Glaciate D9, F13 and I7."
+  },
+  {
+   "code": "CR1743",
+   "tier": 2,
+   "name": "Sunshade Laser",
+   "kind": "TRIPLE LASER ATTACK",
+   "dice": 3,
+   "toHit": 11,
+   "target": [
+    "Lowest DANGER in front",
+    "Lowest DANGER in sight",
+    "Titan on the highest occupied VP"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK | PARADOX 3+ or FATE 6+: Omnilaser Attack instead",
+    "Each hit deals 4 DANGER.",
+    "Burn."
+   ],
+   "sun": {
+    "mode": "laser",
+    "laser": "triple",
+    "up": {
+     "p": 3,
+     "f": 6,
+     "to": "omni"
+    },
+    "pre": [
+     {
+      "k": "glac",
+      "cells": [
+       "D12",
+       "J14",
+       "H16"
+      ],
+      "no": null
+     }
+    ],
+    "after": [
+     {
+      "k": "rewind"
+     }
+    ]
+   },
+   "after": "Rewind.",
+   "text_pre": "Glaciate D12, J14 and H16."
+  },
+  {
+   "code": "CR1744",
+   "tier": 2,
+   "name": "Cast Down",
+   "kind": "SIMULTANEOUS/ZONE JUDGEMENT",
+   "dice": 5,
+   "toHit": 9,
+   "target": [
+    "Titans on 2 highest occupied VPs",
+    "Zone 1"
+   ],
+   "steps": [
+    "⚡ JUDGE (Will/Endurance) | PARADOX 3+ or FATE 6+: Ignore the ⚡",
+    "Each hit deals 2 DANGER.",
+    "Knockdown.",
+    "Knockback 12."
+   ],
+   "sun": {
+    "mode": "vpOrZone",
+    "vpN": 2,
+    "zone": 1,
+    "judge": [
+     "Will",
+     "Endurance"
+    ],
+    "skipWin": {
+     "p": 3,
+     "f": 6
+    },
+    "afterFinal": [
+     {
+      "k": "sunMove",
+      "win": true
+     }
+    ]
+   },
+   "afterFinal": "⚡ Sun Move."
+  },
+  {
+   "code": "CR1745",
+   "tier": 2,
+   "name": "Prism of Helios",
+   "kind": "TRIPLE LASER ATTACK",
+   "dice": 2,
+   "toHit": 11,
+   "target": [
+    "Priority Target in front",
+    "Lowest FATE in front",
+    "Lowest FATE in sight",
+    "Titan on the highest occupied VP"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK",
+    "Burn.",
+    "Each Titan hit raises DANGER to 9 and draws an Obol."
+   ],
+   "sun": {
+    "mode": "laser",
+    "laser": "triple",
+    "pre": [
+     {
+      "k": "glac",
+      "cells": [
+       "C5",
+       "F8",
+       "I12"
+      ],
+      "no": {
+       "f": 6
+      }
+     }
+    ],
+    "after": [
+     {
+      "k": "rewind",
+      "win": true
+     }
+    ]
+   },
+   "after": "⚡ Rewind.",
+   "text_pre": "Glaciate C5, F8 and I12. | FATE 6+: Do not Glaciate"
+  },
+  {
+   "code": "CR1746",
+   "tier": 3,
+   "name": "His Master's Touch",
+   "kind": "ZONE JUDGEMENT/JUDGEMENT",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Lowest FATE in front",
+    "Lowest FATE in sight",
+    "Titan on the highest occupied VP"
+   ],
+   "steps": [
+    "⚡ MOVE & JUDGE (Will/Endurance) | PARADOX 4+ or FATE 9+: You are erased from existence",
+    "One hit, draw an Obol, two hits die, three hits you are incinerated.",
+    "Burn."
+   ],
+   "sun": {
+    "mode": "zone",
+    "move": "move",
+    "pattern": [
+     [
+      1,
+      -1
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      1,
+      1
+     ],
+     [
+      2,
+      -1
+     ],
+     [
+      2,
+      0
+     ],
+     [
+      2,
+      1
+     ],
+     [
+      3,
+      -1
+     ],
+     [
+      3,
+      0
+     ],
+     [
+      3,
+      1
+     ]
+    ],
+    "judge": [
+     "Will",
+     "Endurance"
+    ],
+    "erase": {
+     "p": 4,
+     "f": 9
+    },
+    "after": [
+     {
+      "k": "blackLake",
+      "win": true
+     }
+    ]
+   },
+   "afterFinal": "⚡ Place a Black Lake tile under the Zone."
+  },
+  {
+   "code": "CR1747",
+   "tier": 3,
+   "name": "Invite the Eschaton",
+   "kind": "TRIPLE LASER ATTACK",
+   "dice": 0,
+   "toHit": 0,
+   "target": [
+    "Priority Target in front",
+    "Highest FATE in front",
+    "Highest FATE in sight",
+    "Titan on the highest occupied VP"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK | PARADOX 2+ or FATE 8+: Ignore the ⚡",
+    "This Attack cannot be evaded. Each Titan hit dies."
+   ],
+   "sun": {
+    "mode": "laser",
+    "laser": "triple",
+    "skipWin": {
+     "p": 2,
+     "f": 8
+    },
+    "auto": true,
+    "pre": [
+     {
+      "k": "glac",
+      "cells": [
+       "C16",
+       "F9",
+       "J5"
+      ],
+      "no": {
+       "f": 7
+      }
+     }
+    ]
+   },
+   "text_pre": "Glaciate C16, F9 and J5. | FATE 7+: Do not Glaciate"
+  },
+  {
+   "code": "CR1748",
+   "tier": 3,
+   "name": "Absolute Exclusion",
+   "kind": "SIMULTANEOUS/ZONE JUDGEMENT",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "All Titans on VPs",
+    "Zone 2"
+   ],
+   "steps": [
+    "⚡ JUDGE (Courage/Will) | PARADOX 4+ or FATE 9+: You are erased from existence",
+    "Each hit deals 3 FATE and 4 DANGER.",
+    "Death 1.",
+    "Time-clocked."
+   ],
+   "sun": {
+    "mode": "vpOrZone",
+    "vpN": 3,
+    "zone": 2,
+    "judge": [
+     "Courage",
+     "Will"
+    ],
+    "erase": {
+     "p": 4,
+     "f": 9
+    },
+    "after": [
+     {
+      "k": "anchorAdj",
+      "win": true
+     }
+    ]
+   },
+   "after": "⚡ Place your Time Anchor adjacent to the Sun Descendant."
+  },
+  {
+   "code": "CR1749",
+   "tier": 3,
+   "name": "Obliterating Beam",
+   "kind": "TRIPLE LASER ATTACK",
+   "dice": 3,
+   "toHit": 11,
+   "target": [
+    "Lowest DANGER in front",
+    "Lowest DANGER in sight",
+    "Titan on the highest occupied VP"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK",
+    "Each hit deals 5 DANGER. If all three hit, you are erased from existence instead.",
+    "Burn."
+   ],
+   "sun": {
+    "mode": "laser",
+    "laser": "triple",
+    "pre": [
+     {
+      "k": "glac",
+      "cells": [
+       "C5",
+       "F8",
+       "I12"
+      ],
+      "no": {
+       "f": 7
+      }
+     }
+    ],
+    "after": [
+     {
+      "k": "rewind"
+     },
+     {
+      "k": "giant",
+      "cells": [
+       "K3",
+       "K4",
+       "L3",
+       "L4"
+      ],
+      "no": {
+       "f": 5
+      }
+     }
+    ]
+   },
+   "after": "Rewind. Giant Glaciate K3-L4. | FATE 5+: Do not Glaciate",
+   "text_pre": "Glaciate C5, F8 and I12. | FATE 7+: Do not Glaciate"
+  },
+  {
+   "code": "CR1750",
+   "tier": 3,
+   "name": "Heavenly Lightshow",
+   "kind": "TRIPLE LASER ATTACK",
+   "dice": 4,
+   "toHit": 11,
+   "target": [
+    "Lowest FATE in front",
+    "Lowest FATE in sight",
+    "Titan on the highest occupied VP"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK",
+    "If the Laser Attack hits an Iceberg, it continues sideways. Each hit deals 3 DANGER.",
+    "⚡ Time-clocked."
+   ],
+   "sun": {
+    "mode": "laser",
+    "laser": "triple",
+    "sideways": true,
+    "afterFinal": [
+     {
+      "k": "glac",
+      "cells": [
+       "D12",
+       "J14",
+       "H16"
+      ],
+      "no": {
+       "f": 7
+      }
+     }
+    ]
+   },
+   "afterFinal": "Glaciate D12, J14 and H16. | FATE 7+: Do not Glaciate"
+  },
+  {
+   "code": "CR1751",
+   "tier": 3,
+   "name": "Supernova",
+   "kind": "ZONE ATTACK",
+   "dice": 0,
+   "toHit": 0,
+   "target": [
+    "Every non-elevated Board space"
+   ],
+   "steps": [
+    "⚡ SUN MOVE & ATTACK",
+    "All Titans on non-elevated spaces are incinerated."
+   ],
+   "sun": {
+    "mode": "supernova",
+    "afterFinal": [
+     {
+      "k": "giant",
+      "cells": [
+       "C3",
+       "C4",
+       "D3",
+       "D4"
+      ],
+      "no": {
+       "p": 5
+      }
+     }
+    ]
+   },
+   "afterFinal": "Giant Glaciate C3-D4. | ▽5+: Do not Glaciate"
+  },
+  {
+   "code": "CR1752",
+   "tier": "X",
+   "name": "Merciless Sun",
+   "kind": "TRAIT SUN ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Unshaded Board"
+   ],
+   "steps": [
+    "⚡ SUN MOVE & ATTACK",
+    "Each hit deals 3 DANGER and 1 FATE."
+   ],
+   "sun": {
+    "mode": "sun",
+    "merciless": true,
+    "after": [
+     {
+      "k": "glacAnchorLow",
+      "win": true
+     },
+     {
+      "k": "rewindHigh"
+     }
+    ]
+   },
+   "afterFinal": "⚡ Glaciate the Time Anchor of the Titan with the lowest FATE. Rewind the Titan with the highest FATE."
+  },
+  {
+   "code": "CR1753",
+   "tier": "X",
+   "name": "Sun's Will",
+   "kind": "SIGNATURE",
+   "dice": 3,
+   "toHit": 11,
+   "target": [
+    "Lowest DANGER in front",
+    "Lowest DANGER in sight",
+    "Titan on the highest occupied VP"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK | PARADOX 2+ or FATE 4+: Triple Laser Signature instead",
+    "Each hit deals 3 DANGER.",
+    "Burn."
+   ],
+   "sun": {
+    "mode": "laser",
+    "laser": "single",
+    "up": {
+     "p": 2,
+     "f": 4,
+     "to": "triple"
+    },
+    "after": [
+     {
+      "k": "rewind"
+     }
+    ]
+   },
+   "after": "Rewind."
+  },
+  {
+   "code": "CR1754",
+   "tier": "X",
+   "name": "Sun's Law",
+   "kind": "ROUTINE",
+   "displayKind": "ZONE JUDGEMENT ROUTINE",
+   "routineAttack": true,
+   "dice": 4,
+   "toHit": 10,
+   "target": [
+    "Unshaded Board and all VPs"
+   ],
+   "noTarget": "Random Titan dies",
+   "steps": [
+    "SUN MOVE & JUDGE (Will/Endurance)",
+    "Each hit deals 3 DANGER and 1 FATE."
+   ],
+   "text_pre": "Rewind the Titan with the highest FATE.",
+   "sun": {
+    "mode": "sun",
+    "allVP": true,
+    "judge": [
+     "Will",
+     "Endurance"
+    ],
+    "nowin": true,
+    "pre": [
+     {
+      "k": "rewindHigh"
+     }
+    ],
+    "noTargetDie": true
+   }
+  },
+  {
+   "code": "CV1800",
+   "tier": "X",
+   "name": "Trigger Finger",
+   "kind": "LASER JUDGEMENT",
+   "displayKind": "LASER JUDGEMENT (Secret card 118)",
+   "dice": 2,
+   "toHit": 11,
+   "target": [
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & JUDGE (Chosen Skill)",
+    "If you are hit, you are incinerated."
+   ],
+   "after": "Burn.",
+   "secret": true,
+   "sun": {
+    "mode": "laser",
+    "laser": "single",
+    "judge": [
+     "Courage",
+     "Wisdom",
+     "Will",
+     "Endurance",
+     "Cunning",
+     "Fury"
+    ],
+    "after": [
+     {
+      "k": "burn"
+     }
+    ]
+   }
+  }
+ ],
+ "bp": [
+  {
+   "code": "CS1755",
+   "tier": 1,
+   "name": "Horsehead",
+   "at": 6,
+   "responses": {
+    "FAIL": "Rewind.",
+    "WOUND": "Create a VP. Perform Signature against the Attacker."
+   },
+   "critical": "Create a VP. You may perform a Bonus Attack!"
+  },
+  {
+   "code": "CS1756",
+   "tier": 1,
+   "name": "Mouth Feeler",
+   "at": 6,
+   "responses": {
+    "FAIL": "Death 3.",
+    "WOUND": "Gain the Muffled Condition card."
+   },
+   "critical": "Gain the Enigma of Transformation card (campaign)."
+  },
+  {
+   "code": "CS1757",
+   "tier": 1,
+   "name": "Stump Tentacle",
+   "at": 7,
+   "responses": {
+    "INSTINCT": "All Titans in Zone 1: Gain +1 DANGER. ⚡ If adjacent, Time-clocked."
+   },
+   "critical": "Deal an additional Single Wound!"
+  },
+  {
+   "code": "CS1758",
+   "tier": 1,
+   "name": "Forewing",
+   "at": 8,
+   "responses": {
+    "FAIL": "Gain FATE equal to the Primordial LVL. Time-clocked.",
+    "WOUND": "Rewind."
+   },
+   "critical": "Search the BP deck and choose 1 card to set aside. After Escalation, place the set aside card on top of the BP deck."
+  },
+  {
+   "code": "CS1759",
+   "tier": 1,
+   "name": "Skulljaw",
+   "at": 8,
+   "responses": {
+    "FAIL": "Gain +1 FATE and the Muffled Condition card.",
+    "WOUND": "Create a VP."
+   },
+   "critical": "Create a VP. Until the end of Battle, when attacked from VP I, Sun Descendant has -1 AT."
+  },
+  {
+   "code": "CS1760",
+   "tier": 1,
+   "name": "Swordwing",
+   "at": 7,
+   "responses": {
+    "FAIL": "Perform Signature against the Attacker.",
+    "WOUND": "Create a VP."
+   },
+   "critical": "Create a VP. During Escalation, choose which BP II card to add to the deck (instead of drawing randomly)."
+  },
+  {
+   "code": "CS1761",
+   "tier": 2,
+   "name": "Aft Wing",
+   "at": 9,
+   "responses": {
+    "FAIL": "Gain +1 FATE. Rewind.",
+    "WOUND": "Knockback 7. Gain +2 DANGER."
+   },
+   "critical": "Gain the Icarus Lot card (campaign)."
+  },
+  {
+   "code": "CS1762",
+   "tier": 2,
+   "name": "Writhing Cephalomuscles",
+   "at": 9,
+   "responses": {
+    "FAIL": "All Titans in Zone 1: Gain +1 DANGER. ⚡ If adjacent, Time-clocked.",
+    "WOUND": "Create a VP."
+   },
+   "critical": "Create a VP. Until the end of Battle, when attacked from VP II or VP III, Sun Descendant has -1 AT.",
+   "spearBreak": 1,
+   "notes": [
+    "If your Weapon has the Spear Trait, immediately place 1 Break token in the Kratos Pool."
+   ]
+  },
+  {
+   "code": "CS1763",
+   "tier": 2,
+   "name": "Feathery Carapace",
+   "at": 10,
+   "responses": {
+    "INSTINCT": "Perform Signature against the Attacker."
+   },
+   "critical": "Disable the Quantum Eye Trait!",
+   "combined": [
+    2,
+    3
+   ],
+   "notes": [
+    "When you attack from VP II or VP III, you may initiate a Combined Attack instead."
+   ]
+  },
+  {
+   "code": "CS1764",
+   "tier": 2,
+   "name": "Lens-Eyes",
+   "at": 8,
+   "responses": {
+    "FAIL": "Knockback 7.",
+    "WOUND": "Perform Signature against the Attacker."
+   },
+   "critical": "Until the end of Battle, Laser Attacks deal -2 DANGER (to a minimum of 1). You may reset your FATE. You may perform a Bonus Attack!"
+  },
+  {
+   "code": "CS1765",
+   "tier": 2,
+   "name": "Axlebones",
+   "at": 10,
+   "responses": {
+    "INSTINCT": "All Titans in Zone 2: Gain +1 DANGER. ⚡ If adjacent, Time-clocked."
+   },
+   "critical": "Disable the Atemporal effect.",
+   "spearBreak": 2,
+   "combined": [
+    2,
+    3
+   ],
+   "notes": [
+    "If your Weapon has the Spear Trait, immediately place 2 Break tokens in the Kratos Pool.",
+    "When you attack from VP II or VP III, you may initiate a Combined Attack instead."
+   ]
+  },
+  {
+   "code": "CS1766",
+   "tier": 2,
+   "name": "Wrong-Angled Wing",
+   "at": 8,
+   "responses": {
+    "FAIL": "Gain +2 FATE. Gain the Sealed Condition card.",
+    "WOUND": "Create a VP. Rewind. Time-clocked."
+   },
+   "critical": "Create a VP. Disable the Time-clocked keyword."
+  },
+  {
+   "code": "CS1767",
+   "tier": 3,
+   "name": "Germinating Helionaut",
+   "at": 17,
+   "responses": {
+    "INSTINCT": "Create a VP. Perform Signature against the Attacker."
+   },
+   "critical": "The Sun Descendant dies!",
+   "atemporal": true
+  },
+  {
+   "code": "CS1768",
+   "tier": 3,
+   "name": "The Wheel",
+   "at": 18,
+   "responses": {
+    "FAIL": "Draw an Obol."
+   },
+   "critical": "Deal an additional Single Wound!",
+   "combined": [
+    3
+   ],
+   "pre": [
+    "You may voluntarily end this Attack before performing a Power Roll. If you do, clear the Kratos Pool."
+   ],
+   "notes": [
+    "When you attack from VP III, you may initiate a Combined Attack instead."
+   ]
+  },
+  {
+   "code": "CS1769",
+   "tier": 3,
+   "name": "Black Ice Shard",
+   "at": 17,
+   "responses": {
+    "FAIL": "Rewind all Titans.",
+    "WOUND": "Gain the Sealed Condition card. The Sun Descendant moves 6 spaces directly away from the Attacker (without turning)."
+   },
+   "critical": "Gain the Icarus's Fall card (campaign).",
+   "atemporal": true
+  },
+  {
+   "code": "CS1770",
+   "tier": 3,
+   "name": "Simulated Sun",
+   "at": 17,
+   "responses": {
+    "FAIL": "Gain +3 FATE. Draw a Moiros card.",
+    "WOUND": "Create a VP."
+   },
+   "critical": "Create a VP. Disable the Sun Descendant's Laser Attacks. After the Battle, resolve the Ton Asterion Special Event (campaign).",
+   "atemporal": true
+  },
+  {
+   "code": "CS1771",
+   "tier": 3,
+   "name": "Hidden Staircase",
+   "at": 18,
+   "responses": {
+    "INSTINCT": "All Titans in Zone 2: Gain +1 DANGER. ⚡ If adjacent, Time-clocked."
+   },
+   "critical": "You may perform a Bonus Attack!",
+   "combined": [
+    2,
+    3
+   ],
+   "notes": [
+    "When you attack from VP II or VP III, you may initiate a Combined Attack instead."
+   ]
+  },
+  {
+   "code": "CS1772",
+   "tier": 3,
+   "name": "Sanctified Effigy",
+   "at": 18,
+   "responses": {
+    "FAIL": "Perform Signature against the Attacker.",
+    "WOUND": "Time-clocked."
+   },
+   "critical": "Disable the Merciless Sun Trait.",
+   "combined": [
+    2,
+    3
+   ],
+   "notes": [
+    "When you attack from VP II or VP III, you may initiate a Combined Attack instead."
+   ]
+  }
+ ],
+ "vp": {
+  "name": "Feathery Ascent",
+  "slots": 3,
+  "start": 1,
+  "levels": true,
+  "text": "Starts with VP I unlocked. VP I and VP II are shaded, VP III is unshaded. All VPs are Elevated. You can move from one VP to another with a Move action. Climb (VP I): Fury 6+, (VP II): Fury 8+, (VP III): Fury 9+. Hold on — End of Primordial Round: If on a VP, test Endurance (7+). Fail: Knockdown, gain DANGER equal to VP level, Displace to any adjacent space. VP effects: VP I and II +1 Power, VP III +2 Power.",
+  "base": {
+   "climb": [
+    "Fury",
+    6
+   ],
+   "holdOn": [
+    "Endurance",
+    7
+   ],
+   "power": 1,
+   "holdFail": "adjacent"
+  },
+  "climbByLevel": {
+   "1": 6,
+   "2": 8,
+   "3": 9
+  },
+  "powerByLevel": {
+   "1": 1,
+   "2": 1,
+   "3": 2
+  }
+ },
+ "sunPos": {
+  "A": {
+   "anchor": "G1",
+   "facing": "E"
+  },
+  "B": {
+   "anchor": "L10",
+   "facing": "S"
+  },
+  "C": {
+   "anchor": "F18",
+   "facing": "W"
+  },
+  "D": {
+   "anchor": "A9",
+   "facing": "N"
+  }
+ }
+}

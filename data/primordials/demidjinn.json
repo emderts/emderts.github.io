@@ -1,0 +1,910 @@
+{
+ "id": "demidjinn",
+ "name": "Demidjinn",
+ "cycle": 4,
+ "type": "Mnestis",
+ "sheetCode": "DU2434",
+ "djinnD": true,
+ "_notes": [
+  "Transcribed from sheet DU2434 (Lv I-IX), trait card DX3223 (Wish for a Wish), AI DR2435-DR2456, BP DS2457-DS2474, Global Wish DZ2580-DZ2583.",
+  "Lv III/IV right box (+3 / +12) is a campaign value — ignored. BP 'atStair' = AT when attacking from inside the Endless Staircase."
+ ],
+ "footprint": {
+  "w": 2,
+  "h": 2,
+  "rear": "top-edge"
+ },
+ "ukb": 10,
+ "blindspots": "rear",
+ "levels": {
+  "1": {
+   "toHit": 9,
+   "speed": 99,
+   "wounds": 10,
+   "bonus": {},
+   "traits": [
+    "Global Wish",
+    "Living Tornado",
+    "Wish Away",
+    "Sandstorm Spiral",
+    "Endless Staircase",
+    "Wish for a Wish"
+   ]
+  },
+  "2": {
+   "toHit": 9,
+   "speed": 99,
+   "wounds": 10,
+   "bonus": {},
+   "traits": [
+    "Curse Carapace"
+   ]
+  },
+  "3": {
+   "toHit": 10,
+   "speed": 99,
+   "wounds": 10,
+   "bonus": {
+    "ESCALATION": 1,
+    "DANGER": 1
+   },
+   "traits": [
+    "Endless Wish",
+    "Feedback Loop"
+   ]
+  },
+  "4": {
+   "toHit": 10,
+   "speed": 99,
+   "wounds": 10,
+   "bonus": {
+    "ESCALATION": 2,
+    "AT": 1,
+    "DANGER": 1
+   },
+   "traits": [
+    "The Last"
+   ]
+  },
+  "5": {
+   "mnestis": true,
+   "toHit": 11,
+   "speed": 99,
+   "wounds": 11,
+   "bonus": {
+    "ESCALATION": 2,
+    "AT": 2,
+    "DANGER": 1
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "End of Hope",
+    "Djinnian Determination"
+   ]
+  },
+  "6": {
+   "mnestis": true,
+   "toHit": 11,
+   "speed": 99,
+   "wounds": 11,
+   "bonus": {
+    "ESCALATION": 3,
+    "AT": 3,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Endless Escalator",
+    "Imminent Destruction"
+   ]
+  },
+  "7": {
+   "mnestis": true,
+   "toHit": 12,
+   "speed": 99,
+   "wounds": 12,
+   "bonus": {
+    "ESCALATION": 4,
+    "AT": 4,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Wishtanglement"
+   ]
+  },
+  "8": {
+   "mnestis": true,
+   "toHit": 12,
+   "speed": 99,
+   "wounds": 13,
+   "bonus": {
+    "ESCALATION": 4,
+    "AT": 5,
+    "EVADE_DICE": 1,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Beginning of the End",
+    "Djinnian Precision"
+   ]
+  },
+  "9": {
+   "mnestis": true,
+   "toHit": 13,
+   "speed": 99,
+   "wounds": 14,
+   "bonus": {
+    "ESCALATION": 5,
+    "AT": 6,
+    "EVADE_DICE": 2,
+    "DANGER": 3
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Ruthless",
+    "Flickering Wishes"
+   ]
+  }
+ },
+ "traits": {
+  "Global Wish": "Additional Setup: Take all Global Wish cards with a level equal to or lower than the current Demidjinn level, shuffle them and place them face up on the Global Wish stack. Start of Primordial Round (ignore during the first round): Place the top card from the Global Wish stack in the Active Global Wish space, discarding any card that was already on it. Then, if there are no cards on the Global Wish stack, shuffle all discarded Global Wish cards and place them face up on the Global Wish stack. If a Global Wish card is on the Active Global Wish space, it takes effect during both the Primordial and Titan Rounds.",
+  "Living Tornado": "The Demidjinn has Unlimited Speed and ignores Line of Sight. It causes Crash as normal, but it does not destroy Terrain tiles, unless stated otherwise.",
+  "Wish Away": "When the Demidjinn performs Wish Away, it performs: Level 1: Wish Away 9. Level 2: Wish Away 10. Level 3: Wish Away 11. Level 4+: Wish Away 12.",
+  "Sandstorm Spiral": "If adjacent to a Target, the Demidjinn moves clockwise around the Target, so that it ends up on four spaces directly across the Target. If the movement is blocked by a Board Edge, the Demidjinn moves 6 spaces directly away from the Target without turning instead.",
+  "Endless Staircase": "You climb using the Endless Staircase Rules (see Cycle IV Storybook rules). Level 1: Staircase has 5 spaces (1 tier). Level 2: 9 spaces (2 tiers). Level 3: 13 spaces (3 tiers). Level 4+: 18 spaces (4 tiers).",
+  "Wish for a Wish": "Each time the Demidjinn gains a Wound (a Double Wound is treated as 2 Wounds) place a token on this card. After resolving the current action, if there are 3 or more tokens on this card, discard all tokens, then perform Signature.",
+  "Curse Carapace": "The Demidjinn gains +1 AT for every Wishkeen and Wishagog Condition card in play (but not on dead Titans).",
+  "Endless Wish": "Every Attack becomes a Wish Attack in addition to its other types.",
+  "Feedback Loop": "Each time you use Wish Armor against an AI Attack, place 1 token on the Wish for a Wish Trait.",
+  "The Last": "Battle Setup: Place the special AI 0 card at the bottom of the AI deck. It is never shuffled or discarded. After Escalation: If the top AI card is not an AI IV or AI 0 card, discard it (once per Escalation).",
+  "End of Hope": "End of Primordial Round: Perform Signature.",
+  "Djinnian Determination": "When the Demidjinn is about to perform Wish Away, turn it toward the closest Board Edge.",
+  "Endless Escalator": "When there is at least one Titan in the Endless Staircase, at the start of the Primordial Round, move the lowest segment of the Endless Staircase to the top. Titans on the lowest segment die.",
+  "Imminent Destruction": "End of Titan turn: If you didn't Attack this turn, resolve the top AI card.",
+  "Wishtanglement": "When you gain a Wishkeen or Wishagog Condition card, every other Titan gains the same Condition card.",
+  "Beginning of the End": "End of Primordial Round: Before End of Hope, draw and perform another AI card.",
+  "Djinnian Precision": "Each Wish Away must be performed to the Irem Tower that is exactly X spaces from the Demidjinn, where X is the Wish Away value.",
+  "Ruthless": "Remove all positive Trauma cards from the Trauma decks (except Obols).",
+  "Flickering Wishes": "Perform the \"Start of Primordial Round\" effect of the Global Wish Trait after every Attack (Demidjinn and Titan) instead."
+ },
+ "ai": [
+  {
+   "code": "DR2456",
+   "tier": 0,
+   "name": "The Last Wish",
+   "kind": "TRUE WISH",
+   "target": [],
+   "steps": [],
+   "text": "Start of Battle (Level 4+): Place this card at the bottom of the AI deck and never shuffle or discard it. All Titans die.",
+   "djinn": {
+    "trueWish": true
+   },
+   "setAside": true
+  },
+  {
+   "code": "DR2438",
+   "tier": 1,
+   "name": "Begone!",
+   "kind": "WISH ATTACK",
+   "dice": 2,
+   "toHit": 9,
+   "target": [
+    "Titan with the Wishkeen or Wishagog Condition card in sight",
+    "Closest Titan in front",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 4+: +1 EVADE_DICE",
+    "If the Attack hits, it deals 7 DANGER."
+   ],
+   "djinn": {
+    "wish": true
+   },
+   "unlimited": true,
+   "after": "Two or more hits, move Target to the Endless Staircase."
+  },
+  {
+   "code": "DR2439",
+   "tier": 1,
+   "name": "The First Wish",
+   "kind": "WISH ATTACK",
+   "dice": 2,
+   "toHit": 10,
+   "target": [
+    "Priority Target in sight",
+    "Titan with the Wishkeen or Wishagog Condition card in sight",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 4+: +1 EVADE_DICE",
+    "Each hit deals 4 DANGER. Two hits, gain the Wishkeen Condition card; three hits, gain the Wishagog Condition card."
+   ],
+   "djinn": {
+    "wish": true
+   },
+   "unlimited": true,
+   "after": "⚡ Wish Away."
+  },
+  {
+   "code": "DR2440",
+   "tier": 1,
+   "name": "Fistful of Wishes",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 7,
+   "target": [
+    "Closest Titan in front",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 4+: +1 EVADE_DICE",
+    "Each hit deals 3 DANGER.",
+    "⚡ Sandstorm Spiral."
+   ],
+   "djinn": {
+    "wish": false
+   },
+   "unlimited": true,
+   "after": "⚡ Wish Away."
+  },
+  {
+   "code": "DR2437",
+   "tier": 1,
+   "name": "Auric Slug",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 8,
+   "target": [
+    "Furthest Titan in front",
+    "Furthest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Midas 2 | FATE 3+: Midas 3 instead.",
+    "Each hit deals 3 DANGER.",
+    "⚡ Sandstorm Spiral."
+   ],
+   "djinn": {
+    "wish": false
+   },
+   "unlimited": true,
+   "after": "⚡ Wish Away."
+  },
+  {
+   "code": "DR2436",
+   "tier": 1,
+   "name": "Umbral Slug",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Furthest Titan in front",
+    "Furthest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Each hit deals 3 DANGER and 1 Ambrosia token. | FATE 3+: 4 DANGER instead",
+    "⚡ Sandstorm Spiral."
+   ],
+   "djinn": {
+    "wish": false
+   },
+   "unlimited": true,
+   "after": "⚡ Wish Away."
+  },
+  {
+   "code": "DR2435",
+   "tier": 1,
+   "name": "Shine!",
+   "kind": "WISH ATTACK",
+   "dice": 2,
+   "toHit": 10,
+   "target": [
+    "Closest Titan in front",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Midas 1. Each hit deals 4 DANGER."
+   ],
+   "djinn": {
+    "wish": true
+   },
+   "unlimited": true,
+   "after": "⚡ Sandstorm Spiral."
+  },
+  {
+   "code": "DR2446",
+   "tier": 2,
+   "name": "The Second Wish",
+   "kind": "WISH ATTACK",
+   "dice": 4,
+   "toHit": 8,
+   "target": [
+    "Titan with the Wishagog Condition card",
+    "Priority Target",
+    "Titan with the Wishkeen Condition card",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 5+: +1 EVADE_DICE",
+    "Midas 1. Each hit deals 3 DANGER. Two hits, gain the Wishkeen Condition card; three hits, gain the Wishagog Condition card; four or more hits, you die."
+   ],
+   "djinn": {
+    "wish": true
+   },
+   "unlimited": true,
+   "after": "⚡ Wish Away."
+  },
+  {
+   "code": "DR2442",
+   "tier": 2,
+   "name": "Whirlwind Fists",
+   "kind": "ATTACK",
+   "dice": 6,
+   "toHit": 6,
+   "target": [
+    "Furthest Titan in front",
+    "Furthest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 5+: Wish Attack instead",
+    "Each hit deals 3 DANGER.",
+    "⚡ Sandstorm Spiral."
+   ],
+   "djinn": {
+    "wish": false
+   },
+   "unlimited": true,
+   "after": "⚡ Wish Away."
+  },
+  {
+   "code": "DR2443",
+   "tier": 2,
+   "name": "Turn to Gold!",
+   "kind": "WISH ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Titan with the Wishagog Condition card in sight",
+    "Titan with the Wishkeen Condition card in sight",
+    "Closest Titan in front",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 5+: +1 EVADE_DICE",
+    "Each hit deals 3 DANGER and Midas 1.",
+    "⚡ Sandstorm Spiral."
+   ],
+   "djinn": {
+    "wish": true
+   },
+   "unlimited": true,
+   "after": "⚡ Wish Away."
+  },
+  {
+   "code": "DR2444",
+   "tier": 2,
+   "name": "Wishful Resonance",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Priority Target in sight",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 6+: Gain the Wishkeen Condition card",
+    "Each hit deals 4 DANGER.",
+    "⚡ Sandstorm Spiral."
+   ],
+   "djinn": {
+    "wish": false
+   },
+   "unlimited": true,
+   "after": "⚡ Move Target to the Endless Staircase."
+  },
+  {
+   "code": "DR2445",
+   "tier": 2,
+   "name": "Cracks of the Earth",
+   "kind": "WISH ATTACK",
+   "dice": 5,
+   "toHit": 7,
+   "target": [
+    "Titan with the Wishagog Condition card",
+    "Titan with the Wishkeen Condition card",
+    "Closest Titan in front",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 5+: Discard 1 random Gear card",
+    "Each hit deals 3 DANGER and 1 Ambrosia token.",
+    "Two or more hits, Airburst 1."
+   ],
+   "djinn": {
+    "wish": true
+   },
+   "unlimited": true,
+   "after": "⚡ Three or more hits, move Target to the Endless Staircase."
+  },
+  {
+   "code": "DR2441",
+   "tier": 2,
+   "name": "The Horn of the Unspent",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Closest Titan not in front",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 5+: +1 EVADE_DICE",
+    "Each hit deals 4 DANGER and 1 Ambrosia token."
+   ],
+   "djinn": {
+    "wish": false
+   },
+   "unlimited": true,
+   "after": "Move Target to the Endless Staircase."
+  },
+  {
+   "code": "DR2450",
+   "tier": 3,
+   "name": "Disappear!",
+   "kind": "WISH ATTACK",
+   "dice": 2,
+   "toHit": 9,
+   "target": [
+    "Priority Target in front",
+    "Closest Titan not in front",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | OTHER 6+: Gain the Wishagog Condition card",
+    "One hit deals 4 DANGER and moves you to the Endless Staircase; two hits deal 9 DANGER and make you disappear (you die)."
+   ],
+   "djinn": {
+    "wish": true
+   },
+   "unlimited": true,
+   "after": "If you survived, move Target to the Endless Staircase."
+  },
+  {
+   "code": "DR2451",
+   "tier": 3,
+   "name": "Die!",
+   "kind": "WISH ATTACK",
+   "dice": 4,
+   "toHit": 10,
+   "target": [
+    "Titan with the Wishagog Condition card",
+    "Priority Target",
+    "Titan with the Wishkeen Condition card",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | OTHER 6+: Gain the Wishkeen Condition card",
+    "One hit deals 5 DANGER; two hits deal 10 DANGER; three or more hits, you die."
+   ],
+   "djinn": {
+    "wish": true
+   },
+   "unlimited": true,
+   "after": "⚡ Draw another AI card."
+  },
+  {
+   "code": "DR2452",
+   "tier": 3,
+   "name": "Headsmile Chomp",
+   "kind": "ATTACK",
+   "dice": 2,
+   "toHit": 11,
+   "target": [
+    "Priority Target in front",
+    "Closest Titan not in front",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 7+: +1 EVADE_DICE",
+    "If the Attack hits, it deals 9 DANGER. If you survive, gain a random Curse Affliction.",
+    "⚡ Move Target to the Endless Staircase."
+   ],
+   "djinn": {
+    "wish": false
+   },
+   "unlimited": true
+  },
+  {
+   "code": "DR2449",
+   "tier": 3,
+   "name": "Four Corners of the World",
+   "kind": "ATTACK",
+   "dice": 4,
+   "toHit": 8,
+   "target": [
+    "Furthest Titan in front",
+    "Furthest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "One hit deals 5 DANGER; two hits deal 10 DANGER; three or more hits, you die."
+   ],
+   "djinn": {
+    "wish": false
+   },
+   "unlimited": true,
+   "after": "⚡ Wish Away."
+  },
+  {
+   "code": "DR2448",
+   "tier": 3,
+   "name": "Witness the Splendor",
+   "kind": "ATTACK",
+   "dice": 4,
+   "toHit": 9,
+   "target": [
+    "Priority Target in sight",
+    "Closest Titan in front",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Midas 2. Gain the Wishagog Condition card. Each hit deals 4 DANGER.",
+    "⚡ Sandstorm Spiral."
+   ],
+   "djinn": {
+    "wish": false
+   },
+   "unlimited": true,
+   "after": "⚡ Wish Away. Remove every Irem Tower Terrain tile from the two outermost rings of the Battle Board (even if occupied)."
+  },
+  {
+   "code": "DR2447",
+   "tier": 3,
+   "name": "Thirst the Riches",
+   "kind": "WISH ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Titan with the Wishagog Condition card in sight",
+    "Titan with the Wishkeen Condition card in sight",
+    "Priority Target in sight",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Each hit deals 3 DANGER and Midas 2.",
+    "⚡ Sandstorm Spiral.",
+    "⚡ FATE 7+: Reverse Unholy Alchemy."
+   ],
+   "djinn": {
+    "wish": true
+   },
+   "unlimited": true,
+   "after": "⚡ Move Target to the Endless Staircase."
+  },
+  {
+   "code": "DR2453",
+   "tier": 4,
+   "name": "The Last Wish",
+   "kind": "TRUE WISH",
+   "target": [],
+   "steps": [],
+   "text": "All Titans die.",
+   "djinn": {
+    "trueWish": true
+   },
+   "setAside": true
+  },
+  {
+   "code": "DR2455",
+   "tier": "X",
+   "name": "Wish Dissonance",
+   "kind": "ROUTINE",
+   "target": [],
+   "steps": [],
+   "text": "Lose -1 [campaign] and -1 [campaign]. Random Titan dies.",
+   "djinn": {
+    "routine": true
+   }
+  },
+  {
+   "code": "DR2454",
+   "tier": "X",
+   "name": "Unspent Slug",
+   "kind": "SIGNATURE",
+   "dice": 2,
+   "toHit": 10,
+   "target": [
+    "Closest Titan in front",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 3+: +1 EVADE_DICE",
+    "Each hit deals 3 DANGER.",
+    "⚡ Sandstorm Spiral."
+   ],
+   "djinn": {
+    "wish": false
+   },
+   "unlimited": true,
+   "after": "⚡ Wish Away."
+  }
+ ],
+ "bp": [
+  {
+   "code": "DS2458",
+   "tier": 1,
+   "name": "Auric Fist",
+   "at": 6,
+   "atStair": 7,
+   "responses": {
+    "FAIL": "Remove the closest Irem Tower Terrain tile from the Battle Board. ⚡ Wish Away.",
+    "WOUND": "Perform Signature against the Attacker."
+   },
+   "critical": "Gain the Priority Target token. You may perform a Bonus Attack!"
+  },
+  {
+   "code": "DS2459",
+   "tier": 1,
+   "name": "Inscribed Ornament",
+   "at": 6,
+   "atStair": 7,
+   "responses": {
+    "FAIL": "Gain X Ambrosia tokens where X is the Primordial level.",
+    "WOUND": "Midas X, where X is the Primordial level."
+   },
+   "critical": "Gain the Pocket Wishlamp card (Secret deck 11, card 194) (campaign)."
+  },
+  {
+   "code": "DS2460",
+   "tier": 1,
+   "name": "Unspent Fist",
+   "at": 5,
+   "atStair": 6,
+   "responses": {
+    "FAIL": "Remove the closest Irem Tower Terrain tile from the Battle Board. Gain the Wishkeen Condition card.",
+    "WOUND": "Discard a Condition card."
+   },
+   "critical": "You may get rid of a Curse Affliction! If you don't have any, you may perform a Bonus Attack!"
+  },
+  {
+   "code": "DS2461",
+   "tier": 1,
+   "name": "Golden Growths",
+   "at": 5,
+   "atStair": 6,
+   "responses": {
+    "FAIL": "Midas X, where X is the Primordial level.",
+    "WOUND": "Remove the closest Irem Tower Terrain tile from the Battle Board. ⚡ Wish Away."
+   },
+   "critical": "Disable the Wishkeen Condition! Discard all Wishkeen Condition cards from Titans."
+  },
+  {
+   "code": "DS2457",
+   "tier": 1,
+   "name": "Umbral Fist",
+   "at": 7,
+   "atStair": 8,
+   "responses": {
+    "FAIL": "Perform Signature against the Attacker.",
+    "WOUND": "⚡ Wish Away."
+   },
+   "critical": "Deal an additional Single Wound!"
+  },
+  {
+   "code": "DS2462",
+   "tier": 1,
+   "name": "Sandstorm",
+   "at": 7,
+   "atStair": 8,
+   "responses": {
+    "FAIL": "Gain +1 FATE. Move to the Endless Staircase.",
+    "WOUND": "Move the Demidjinn up to 2 spaces."
+   },
+   "critical": "Move the Demidjinn up to 3 spaces. You may perform a Bonus Attack!"
+  },
+  {
+   "code": "DS2465",
+   "tier": 2,
+   "name": "Imperial Collar",
+   "at": 9,
+   "atStair": 10,
+   "responses": {
+    "FAIL": "Midas X, where X is the Primordial level. Remove the closest Irem Tower Terrain tile from the Battle Board.",
+    "WOUND": "Gain the Wishkeen Condition card."
+   },
+   "critical": "Until the end of Battle, Wish Away distance is halved (rounded up)."
+  },
+  {
+   "code": "DS2464",
+   "tier": 2,
+   "name": "Blackstone Exoskull",
+   "at": 6,
+   "atStair": 7,
+   "responses": {
+    "FAIL": "Perform Signature against the Attacker.",
+    "WOUND": "Remove the closest Irem Tower Terrain tile from the Battle Board. ⚡ Wish Away."
+   },
+   "critical": "Until the end of Battle, the Demidjinn gains -1 AT during Attacks performed from the Blindspot or Endless Staircase!"
+  },
+  {
+   "code": "DS2466",
+   "tier": 2,
+   "name": "Golden Chest",
+   "at": 7,
+   "atStair": 8,
+   "responses": {
+    "FAIL": "Remove the closest Irem Tower Terrain tile from the Battle Board. ⚡ Wish Away.",
+    "WOUND": "Midas X, where X is the Primordial level."
+   },
+   "critical": "Disable the Global Wish Trait!"
+  },
+  {
+   "code": "DS2467",
+   "tier": 2,
+   "name": "Horn of the Unspent",
+   "at": 9,
+   "atStair": 10,
+   "responses": {
+    "FAIL": "Move to the Endless Staircase.",
+    "WOUND": "Gain the Wishagog Condition card."
+   },
+   "critical": "Disable the Wishagog Condition! Discard all Wishagog Condition cards from Titans."
+  },
+  {
+   "code": "DS2468",
+   "tier": 2,
+   "name": "Wishstorm",
+   "at": 7,
+   "atStair": 8,
+   "responses": {
+    "FAIL": "Gain +2 FATE. Move to the Endless Staircase.",
+    "WOUND": "The Demidjinn moves to the Attacker and performs Sandstorm Spiral against them. ⚡ The Demidjinn moves 4 spaces directly forward. Place a Wishstorm Terrain tile directly in front of the Demidjinn."
+   },
+   "critical": "Move the Demidjinn up to 4 spaces. You may perform a Bonus Attack!"
+  },
+  {
+   "code": "DS2463",
+   "tier": 2,
+   "name": "Transforming Muscles",
+   "at": 8,
+   "atStair": 9,
+   "responses": {
+    "FAIL": "⚡ Wish Away.",
+    "WOUND": "Perform Signature against the Attacker."
+   },
+   "critical": "Gain the Djinn Cloak card (Secret deck 11, card 193) (campaign)."
+  },
+  {
+   "code": "DS2472",
+   "tier": 3,
+   "name": "Hidden Eye",
+   "at": 11,
+   "atStair": 12,
+   "responses": {
+    "FAIL": "Discard the lowest level AI card, then shuffle the AI IV card into the AI deck. If it's already in the deck, do not discard the AI card, but move the AI IV card to the top.",
+    "WOUND": "Gain the Wishagog Condition card. ⚡ Wish Away."
+   },
+   "critical": "Gain the Priority Target token. You may perform a Bonus Attack!"
+  },
+  {
+   "code": "DS2471",
+   "tier": 3,
+   "name": "Hingeless Jaw",
+   "at": 9,
+   "atStair": 10,
+   "responses": {
+    "INSTINCT": "Gain the Wishagog Condition card. Move to the Endless Staircase."
+   },
+   "critical": "Wish Attacks become normal Attacks.",
+   "pre": [
+    "You may voluntarily end this Attack before performing a Power Roll. If you do, clear the Kratos Pool."
+   ]
+  },
+  {
+   "code": "DS2470",
+   "tier": 3,
+   "name": "Eye of the Storm",
+   "at": 8,
+   "atStair": 9,
+   "responses": {
+    "FAIL": "Gain +3 FATE. Move to the Endless Staircase.",
+    "WOUND": "Remove the closest Irem Tower Terrain tile from the Battle Board. Wish Away."
+   },
+   "critical": "Move the Demidjinn up to 5 spaces. Perform a Bonus Attack with +1 Power!"
+  },
+  {
+   "code": "DS2469",
+   "tier": 3,
+   "name": "Wish Resonator",
+   "at": 9,
+   "atStair": 10,
+   "responses": {
+    "FAIL": "Remove the closest Irem Tower Terrain tile from the Battle Board. Gain the Wishagog Condition card.",
+    "WOUND": "Move to the Endless Staircase."
+   },
+   "critical": "Gain the Wishblade card (Secret deck 11, card 192) (campaign)."
+  },
+  {
+   "code": "DS2473",
+   "tier": 3,
+   "name": "Wishbone of the Unspent",
+   "at": 8,
+   "atStair": 9,
+   "responses": {
+    "FAIL": "Remove the closest Irem Tower Terrain tile from the Battle Board. Move to the Endless Staircase.",
+    "WOUND": "Gain the Wishagog Condition card."
+   },
+   "critical": "The Demidjinn dies! After the Battle, resolve the Wish Granted Special Event."
+  },
+  {
+   "code": "DS2474",
+   "tier": 3,
+   "name": "The Lamp",
+   "at": 10,
+   "atStair": 11,
+   "responses": {
+    "FAIL": "Remove the closest Irem Tower Terrain tile from the Battle Board. Gain the Wishagog Condition card.",
+    "WOUND": "Gain the Wishkeen Condition card. ⚡ Wish Away."
+   },
+   "critical": "Disable the Wish Away keyword on the Demidjinn Attacks and BP cards."
+  }
+ ],
+ "globalWish": [
+  {
+   "code": "DZ2582",
+   "level": 1,
+   "name": "Sand to Silica",
+   "text": "When you attack, you gain -X Precision, where X is the number of Fire tokens in the Kratos Pool."
+  },
+  {
+   "code": "DZ2583",
+   "level": 1,
+   "name": "Pillars to Pyres",
+   "text": "When this card is placed on the Active Global Wish space all Irem Tower Terrain tiles become 'pyres'. ⚡ All Titans on pyres die. When you end your voluntary movement or end your turn on a pyre, you die. When you end your involuntary movement on a pyre, ⚡ you die."
+  },
+  {
+   "code": "DZ2580",
+   "level": 1,
+   "name": "Stones to Sticks",
+   "text": "Irem Tower Terrain tiles gain the Destructible keyword. If you move off an Irem Tower, it is destroyed. If you end your turn on an Irem Tower, it is destroyed, then you suffer Crash."
+  },
+  {
+   "code": "DZ2581",
+   "level": 2,
+   "name": "Sand to Sea",
+   "text": "Normal (not Terrain) Battle Board spaces are considered Terrain tiles with the Chasm keyword."
+  }
+ ],
+ "wishAway": {
+  "1": 9,
+  "2": 10,
+  "3": 11,
+  "4": 12
+ },
+ "stairs": {
+  "1": [
+   5
+  ],
+  "2": [
+   5,
+   4
+  ],
+  "3": [
+   5,
+   4,
+   4
+  ],
+  "4": [
+   5,
+   4,
+   4,
+   5
+  ]
+ }
+}

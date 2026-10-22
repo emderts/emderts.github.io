@@ -1,0 +1,273 @@
+{
+ "id": "burden",
+ "source": "ATO Cycle II Storybook — Burden Battle (p.130) / Rulebook Mnestis Battle Diagrams (Burden Lv 5+)",
+ "board": {
+  "cols": 20,
+  "rows": 14
+ },
+ "_notes": [
+  "Mnestis (user rule): win by killing the Burden; Peak / Battle Track ignored. Column 20 = top of the mountain, column 1 = bottom. Bottom edge (column 1) is Boundless. Cliffs = indestructible obstacles; red cliffs = Board Edge (Boundless at Lv7+ Mountain of Madness, otherwise impassable). Columns are Indestructible in this Battle.",
+  "Lv5+ Icecapade diagram: Black Glacier / Black Lake = Slippery tiles (walkable, not obstacles)."
+ ],
+ "setup": [
+  "Standard Preparations.",
+  "Primordial Positioning: centre (G10-H11), facing the most Titans.",
+  "Additional Setup: Sisyphean Task AI card (Lv I only). Lv II+: each Titan gains a Sisyphean Condition."
+ ],
+ "center": "G10",
+ "variants": {
+  "lv1-4": {
+   "levels": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "primordial": {
+    "anchor": "G10"
+   },
+   "titanStarts": [
+    "I3",
+    "H3",
+    "G3",
+    "F3"
+   ],
+   "terrain": {
+    "column": [
+     "N7",
+     "K8",
+     "K12",
+     "I1",
+     "F11",
+     "D10",
+     "E16",
+     "J15",
+     "A4"
+    ],
+    "cliff": [
+     [
+      "J3",
+      "K3",
+      "L3",
+      "J4"
+     ],
+     [
+      "D5",
+      "E5",
+      "F5",
+      "C6"
+     ],
+     [
+      "H9",
+      "I9"
+     ],
+     [
+      "G14",
+      "H14",
+      "G15"
+     ],
+     [
+      "G17",
+      "H17",
+      "G18"
+     ],
+     [
+      "D1",
+      "E1",
+      "C2"
+     ],
+     [
+      "A7",
+      "B7",
+      "C7",
+      "D7"
+     ],
+     [
+      "C18",
+      "D18"
+     ]
+    ],
+    "redCliff": [
+     [
+      "N8",
+      "N9",
+      "N10",
+      "M11",
+      "M12",
+      "L13",
+      "L14",
+      "L15",
+      "L16",
+      "L17",
+      "L18",
+      "L19",
+      "K19",
+      "K20"
+     ],
+     [
+      "C12",
+      "C13",
+      "C14",
+      "C15",
+      "C16",
+      "C17",
+      "C18",
+      "C19",
+      "B10",
+      "B11",
+      "B12",
+      "A9",
+      "A10",
+      "D19",
+      "D20"
+     ]
+    ]
+   }
+  },
+  "lv5+": {
+   "levels": [
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "primordial": {
+    "anchor": "G10"
+   },
+   "titanStarts": [
+    "I3",
+    "H3",
+    "G3",
+    "F3"
+   ],
+   "terrain": {
+    "column": [
+     "M7",
+     "K8",
+     "K15",
+     "I1",
+     "F11",
+     "D10",
+     "E16",
+     "J15",
+     "A4"
+    ],
+    "cliff": [
+     [
+      "J3",
+      "K3",
+      "J4"
+     ],
+     [
+      "E5",
+      "F5",
+      "G5",
+      "D6"
+     ],
+     [
+      "H9",
+      "I9"
+     ],
+     [
+      "G14",
+      "H14",
+      "G15"
+     ],
+     [
+      "G17",
+      "H17",
+      "G18"
+     ],
+     [
+      "D1",
+      "E1",
+      "C2"
+     ],
+     [
+      "A7",
+      "B7",
+      "C7",
+      "D7"
+     ],
+     [
+      "C18",
+      "D18"
+     ]
+    ],
+    "slippery": [
+     [
+      "E6",
+      "E7",
+      "E8",
+      "E9",
+      "E10"
+     ],
+     [
+      "D11",
+      "D12",
+      "D13",
+      "D14",
+      "D15"
+     ],
+     [
+      "J13",
+      "J14",
+      "J15",
+      "J16",
+      "J17"
+     ],
+     [
+      "I5",
+      "I6",
+      "I7",
+      "J5",
+      "J6",
+      "J7"
+     ],
+     [
+      "G3",
+      "G4",
+      "H3",
+      "H4"
+     ]
+    ],
+    "redCliff": [
+     [
+      "N8",
+      "N9",
+      "N10",
+      "M11",
+      "M12",
+      "L13",
+      "L14",
+      "L15",
+      "L16",
+      "L17",
+      "L18",
+      "L19",
+      "K19",
+      "K20"
+     ],
+     [
+      "C12",
+      "C13",
+      "C14",
+      "C15",
+      "C16",
+      "C17",
+      "C18",
+      "C19",
+      "B10",
+      "B11",
+      "B12",
+      "A9",
+      "A10",
+      "D19",
+      "D20"
+     ]
+    ]
+   }
+  }
+ }
+}

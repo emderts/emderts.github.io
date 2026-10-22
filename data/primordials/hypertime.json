@@ -1,0 +1,992 @@
+{
+ "id": "hypertime",
+ "name": "Hypertime Oracle",
+ "cycle": 3,
+ "type": "primordial",
+ "sheetCode": "CU1384",
+ "oracle": true,
+ "_notes": [
+  "Transcribed from sheet CU1384 + cards CR1343-CR1365, CS1366-CS1383 (Cycle III).",
+  "Bonus row: ✵ = ESCALATION, ◎ = AT, Λ/Ψ = Danger/Fate bonus (DF): adds to FATE dealt by an attack, or DANGER if the attack deals no FATE. Lv V+ per hit.",
+  "Lv III/IV right box (+3 / +12 jar icon) is a campaign reward value — ignored.",
+  "All BP cards carry the Quantum Eye symbol (qeye). Atemporal BP: Trauma Draw by max(DANGER, FATE) after the Attack unless Critical Wound."
+ ],
+ "footprint": {
+  "w": 2,
+  "h": 2,
+  "rear": "top-edge"
+ },
+ "ukb": 5,
+ "blindspots": null,
+ "levels": {
+  "1": {
+   "toHit": 8,
+   "speed": 99,
+   "wounds": 10,
+   "bonus": {},
+   "traits": [
+    "Timefront Beckons",
+    "Death by Fate",
+    "Extinguish Possibilities"
+   ]
+  },
+  "2": {
+   "toHit": 8,
+   "speed": 99,
+   "wounds": 10,
+   "bonus": {},
+   "traits": [
+    "Once Upon A Time",
+    "Voracious Parasite"
+   ]
+  },
+  "3": {
+   "toHit": 9,
+   "speed": 99,
+   "wounds": 10,
+   "bonus": {
+    "ESCALATION": 1,
+    "DF": 1
+   },
+   "traits": [
+    "Quantum Eye",
+    "Hypertimefront"
+   ]
+  },
+  "4": {
+   "toHit": 9,
+   "speed": 99,
+   "wounds": 10,
+   "bonus": {
+    "ESCALATION": 2,
+    "AT": 1,
+    "DF": 1
+   },
+   "traits": [
+    "Omega Terminus"
+   ]
+  },
+  "5": {
+   "mnestis": true,
+   "toHit": 10,
+   "speed": 99,
+   "wounds": 11,
+   "bonus": {
+    "ESCALATION": 2,
+    "AT": 2,
+    "DF": 1
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "End of Hope",
+    "Layover"
+   ]
+  },
+  "6": {
+   "mnestis": true,
+   "toHit": 10,
+   "speed": 99,
+   "wounds": 11,
+   "bonus": {
+    "ESCALATION": 3,
+    "AT": 3,
+    "DF": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Overclocked"
+   ]
+  },
+  "7": {
+   "mnestis": true,
+   "toHit": 11,
+   "speed": 99,
+   "wounds": 12,
+   "bonus": {
+    "ESCALATION": 3,
+    "AT": 4,
+    "DF": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Gaze of the Void"
+   ]
+  },
+  "8": {
+   "mnestis": true,
+   "toHit": 11,
+   "speed": 99,
+   "wounds": 14,
+   "bonus": {
+    "ESCALATION": 4,
+    "AT": 5,
+    "EVADE_DICE": 1,
+    "DF": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Quantumfront"
+   ]
+  },
+  "9": {
+   "mnestis": true,
+   "toHit": 12,
+   "speed": 99,
+   "wounds": 16,
+   "bonus": {
+    "ESCALATION": 5,
+    "AT": 6,
+    "EVADE_DICE": 2,
+    "DF": 3
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Temporal Ruthlessness",
+    "Beginning of the End"
+   ]
+  }
+ },
+ "traits": {
+  "Timefront Beckons": "End of Titan Round: ⚡ Move the Timefront 3 spaces forward (towards the right Board Edge). If the Timefront moves onto a space occupied by a Titan, this Titan is erased from existence. If the Timefront moves onto a space with a Terrain tile, this tile is destroyed (unless Indestructible). When the Timefront is about to move onto a space occupied by the Primordial, move the Primordial directly away from the Timefront to enable full Timefront movement if possible.",
+  "Death by Fate": "When a Primordial Attack deals FATE, it triggers a Trauma Draw (like DANGER). If an Attack deals both, resolve only one Trauma Draw. Being dealt FATE over 9 causes an Obol Draw instead of a Moiros Draw. Trauma severity uses the higher of DANGER or FATE.",
+  "Extinguish Possibilities": "Start of Primordial Round: Look at the top Trauma card from each deck. If it's positive, remove it from the Battle. If it's negative, leave it on top.",
+  "Voracious Parasite": "The Hypertime Oracle consumes all Time Anchors it moves through and all Time Anchors it is adjacent to at the end of the Primordial Round. Remove consumed Time Anchors from the Battle Board.",
+  "Once Upon A Time": "Each time the Oracle consumes a Time Anchor or gains a Wound (a Double Wound is treated as 2 Wounds), place a token on this Trait. After resolving the current action, when there are 4 or more tokens on this Trait, discard all tokens, then draw and resolve the top AI card.",
+  "Quantum Eye": "If you reveal a BP card with the open-eyed symbol as a result of a card or an ability effect (not during a normal BP Draw), gain FATE equal to the BP card's level.",
+  "Hypertimefront": "Level 3: When the Timefront moves, it moves 4 spaces forward instead. Level 4+: When the Timefront moves, it moves 5 spaces forward instead.",
+  "Omega Terminus": "Additional Setup: Place the Omega Terminus Status card near the Primordial Sheet. Instead of the normal effect, a Titan that suffers Crash is immediately moved onto that card. (Status card: While on this card, during your turn, you can only unexhaust and/or attack. If you deal a Wound, place your Titan on a space adjacent to the Timefront in a straight line from the Oracle. If you fail to Wound, ignore Responses. At the end of your turn, if you are still in the Omega Terminus, you are erased from existence. Zeus Godform gains +1 Power here.)",
+  "End of Hope": "End of Primordial Round: Perform Signature.",
+  "Layover": "Start of Titan Round: The Titan with the most FATE is moved to the Omega Terminus.",
+  "Overclocked": "Ignore ⚡ preceding Laser Attacks.",
+  "Gaze of the Void": "Start of Primordial Round (except 1st): All Titans in front of the Oracle die.",
+  "Quantumfront": "When the Timefront moves, it moves 6 spaces instead.",
+  "Temporal Ruthlessness": "If you draw a positive Trauma card or an Obol, ignore it and draw again (once per Draw).",
+  "Beginning of the End": "End of Primordial Round: Before End of Hope, draw and perform another AI card."
+ },
+ "ai": [
+  {
+   "code": "CR1343",
+   "tier": 0,
+   "name": "In Medias Res",
+   "kind": "JUDGEMENT",
+   "noRoll": true,
+   "target": [],
+   "steps": [],
+   "text": "Starting from the lowest FATE and continuing in ascending order, Titans must draw and resolve a Minor, Major and Grave Trauma (one card per Titan). Then remove this card from the Battle and draw another AI card. This card never escalates.",
+   "oracle": {
+    "special": "medias"
+   },
+   "dice": 0
+  },
+  {
+   "code": "CR1344",
+   "tier": 1,
+   "name": "Fate Chord",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Lowest FATE in front",
+    "Lowest FATE in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Each hit deals 2 FATE.",
+    "⚡ FATE 3+: Time-clocked."
+   ],
+   "after": "The Oracle moves 4 spaces directly away from the Target.",
+   "oracle": {
+    "move": "move",
+    "after": [
+     {
+      "k": "away",
+      "n": 4
+     }
+    ]
+   }
+  },
+  {
+   "code": "CR1345",
+   "tier": 1,
+   "name": "Fastforward",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Highest FATE in front",
+    "Highest FATE in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 4+: +1 EVADE_DICE",
+    "One hit, draw Major Trauma, two hits, draw Grave Trauma, three or more hits, draw an Obol.",
+    "⚡ Time-clocked."
+   ],
+   "after": "The Oracle moves 4 spaces directly away from the Target. Giant Glaciate the previous Primordial space.",
+   "oracle": {
+    "move": "move",
+    "after": [
+     {
+      "k": "away",
+      "n": 4,
+      "glac": "giant"
+     }
+    ]
+   }
+  },
+  {
+   "code": "CR1346",
+   "tier": 1,
+   "name": "Searing Laser",
+   "kind": "LASER ATTACK",
+   "dice": 3,
+   "toHit": 11,
+   "target": [
+    "Lowest DANGER in front",
+    "Lowest DANGER in sight"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK | PARADOX 3+ or FATE 6+: Double Laser instead",
+    "Each hit deals 3 DANGER."
+   ],
+   "after": "Rewind.",
+   "oracle": {
+    "move": "lateral",
+    "laser": "single",
+    "up": {
+     "p": 3,
+     "f": 6
+    },
+    "after": [
+     {
+      "k": "rewind"
+     }
+    ]
+   }
+  },
+  {
+   "code": "CR1347",
+   "tier": 1,
+   "name": "Ordain",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Lowest FATE in front",
+    "Lowest FATE in sight"
+   ],
+   "steps": [
+    "⚡ TELEPORT TITAN & ATTACK",
+    "Each hit deals 2 FATE and 2 DANGER."
+   ],
+   "after": "⚡ Time-clocked.",
+   "oracle": {
+    "move": "teleport",
+    "afterWin": true,
+    "after": [
+     {
+      "k": "clock"
+     }
+    ]
+   }
+  },
+  {
+   "code": "CR1348",
+   "tier": 1,
+   "name": "Paradoxical Strike",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Priority Target in front",
+    "Highest FATE in front",
+    "Priority Target in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Each hit deals 1 FATE and 2 DANGER. If 2+ FATE was dealt, discard 1 Gear card. | FATE 5+: Discard 1 Weapon card instead"
+   ],
+   "after": "⚡ Rewind.",
+   "oracle": {
+    "move": "move",
+    "afterWin": true,
+    "after": [
+     {
+      "k": "rewind"
+     }
+    ]
+   }
+  },
+  {
+   "code": "CR1349",
+   "tier": 1,
+   "name": "Vision of Death",
+   "kind": "JUDGEMENT",
+   "dice": 1,
+   "toHit": 11,
+   "target": [
+    "Highest FATE in front",
+    "Highest FATE in sight"
+   ],
+   "judge": [
+    "Wisdom",
+    "Fury"
+   ],
+   "steps": [
+    "JUDGE (Wisdom/Fury)",
+    "If the Attack hits, it deals 5 DANGER. Death 3. | FATE 5+: Death 2 instead"
+   ],
+   "after": "⚡ The Oracle moves 4 spaces towards the Timefront (stop if adjacent) and turns to face the most Titans. Giant Glaciate the previous Primordial space.",
+   "oracle": {
+    "move": "none",
+    "afterWin": true,
+    "after": [
+     {
+      "k": "tf",
+      "n": 4,
+      "face": true,
+      "glac": "giant"
+     }
+    ]
+   }
+  },
+  {
+   "code": "CR1350",
+   "tier": 2,
+   "name": "Ominous Portent",
+   "kind": "JUDGEMENT",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Lowest FATE in front",
+    "Lowest FATE in sight"
+   ],
+   "judge": [
+    "Wisdom",
+    "Will"
+   ],
+   "steps": [
+    "⚡ TELEPORT TITAN & JUDGE (Wisdom/Will) | ⚡ PARADOX 2+ or FATE 5+: Move the Timefront 1 space forward",
+    "Each hit deals 2 FATE and 3 DANGER."
+   ],
+   "after": "⚡ Time-clocked.",
+   "oracle": {
+    "move": "teleport",
+    "pre": [
+     {
+      "cond": {
+       "p": 2,
+       "f": 5
+      },
+      "k": "tf+",
+      "n": 1,
+      "win": true
+     }
+    ],
+    "afterWin": true,
+    "after": [
+     {
+      "k": "clock"
+     }
+    ]
+   }
+  },
+  {
+   "code": "CR1351",
+   "tier": 2,
+   "name": "Flashforward",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Highest FATE in front",
+    "Highest FATE in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 4+: +1 EVADE_DICE",
+    "One hit, draw Grave Trauma, two hits, draw an Obol, three hits, you die, four hits, you are erased from existence.",
+    "⚡ Time-clocked."
+   ],
+   "after": "⚡ The Oracle moves 5 spaces directly away from the Target. Giant Glaciate the previous Primordial space.",
+   "oracle": {
+    "move": "move",
+    "afterWin": true,
+    "after": [
+     {
+      "k": "away",
+      "n": 5,
+      "glac": "giant"
+     }
+    ]
+   }
+  },
+  {
+   "code": "CR1352",
+   "tier": 2,
+   "name": "Omen Beam",
+   "kind": "DOUBLE LASER ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Furthest Titan in front",
+    "Furthest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK",
+    "If you are hit, draw an Obol."
+   ],
+   "afterFinal": "⚡ Move the Timefront 1 space forward for each Titan killed by this Attack.",
+   "oracle": {
+    "move": "lateral",
+    "laser": "double",
+    "afterWin": true,
+    "after": [
+     {
+      "k": "tfKill"
+     }
+    ]
+   }
+  },
+  {
+   "code": "CR1353",
+   "tier": 2,
+   "name": "Hyperlaser",
+   "kind": "LASER ATTACK",
+   "dice": 3,
+   "toHit": 11,
+   "target": [
+    "Lowest DANGER in front",
+    "Lowest DANGER in sight"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK | PARADOX 3+ or FATE 8+: Double Laser instead",
+    "Each hit deals 4 DANGER."
+   ],
+   "after": "Rewind.",
+   "oracle": {
+    "move": "lateral",
+    "laser": "single",
+    "up": {
+     "p": 3,
+     "f": 8
+    },
+    "after": [
+     {
+      "k": "rewind"
+     }
+    ]
+   }
+  },
+  {
+   "code": "CR1354",
+   "tier": 2,
+   "name": "Paradoxical Stab",
+   "kind": "ATTACK",
+   "dice": 5,
+   "toHit": 9,
+   "target": [
+    "Priority Target in front",
+    "Highest FATE in front",
+    "Priority Target in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Each hit deals 1 FATE and 1 DANGER. If 2+ FATE was dealt, discard 1 Gear card, if 4+ FATE was dealt, discard 2 Gear cards instead.",
+    "⚡ Rewind."
+   ],
+   "after": "The Oracle moves 5 spaces towards the Timefront (stop if adjacent) and turns to face the most Titans. Giant Glaciate the previous Primordial space.",
+   "oracle": {
+    "move": "move",
+    "after": [
+     {
+      "k": "tf",
+      "n": 5,
+      "face": true,
+      "glac": "giant"
+     }
+    ]
+   }
+  },
+  {
+   "code": "CR1355",
+   "tier": 2,
+   "name": "Destined to Die",
+   "kind": "JUDGEMENT",
+   "dice": 1,
+   "toHit": 11,
+   "target": [
+    "Priority Target in front",
+    "Highest FATE in front",
+    "Priority Target in sight"
+   ],
+   "judge": [
+    "Wisdom",
+    "Fury"
+   ],
+   "steps": [
+    "JUDGE (Wisdom/Fury)",
+    "If the Attack hits, it deals 7 DANGER. Death 2. | FATE 5+: Death 1 instead"
+   ],
+   "after": "⚡ The Oracle moves 5 spaces towards the Timefront (stop if adjacent) and turns to face the most Titans. Giant Glaciate the previous Primordial space.",
+   "oracle": {
+    "move": "none",
+    "afterWin": true,
+    "after": [
+     {
+      "k": "tf",
+      "n": 5,
+      "face": true,
+      "glac": "giant"
+     }
+    ]
+   }
+  },
+  {
+   "code": "CR1356",
+   "tier": 3,
+   "name": "Lenslaser",
+   "kind": "OMNILASER ATTACK",
+   "dice": 3,
+   "toHit": 11,
+   "target": [
+    "Lowest FATE in front",
+    "Lowest FATE in sight"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK",
+    "If the Laser Attack hits an Iceberg, it continues sideways. Each hit deals 4 DANGER.",
+    "⚡ Time-clocked."
+   ],
+   "afterFinal": "The Oracle moves 6 spaces towards the Timefront (stop if adjacent) and turns to face the most Titans. Giant Glaciate the previous Primordial space.",
+   "oracle": {
+    "move": "lateral",
+    "laser": "omni",
+    "sideways": true,
+    "after": [
+     {
+      "k": "tf",
+      "n": 6,
+      "face": true,
+      "glac": "giant"
+     }
+    ]
+   }
+  },
+  {
+   "code": "CR1357",
+   "tier": 3,
+   "name": "Existence Erasure",
+   "kind": "DOUBLE LASER ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Priority Target in front",
+    "Highest FATE in front",
+    "Priority Target in sight"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK",
+    "If you are hit, you die."
+   ],
+   "afterFinal": "⚡ Move the Timefront 1 space forward for each Titan killed by this Attack.",
+   "oracle": {
+    "move": "lateral",
+    "laser": "double",
+    "afterWin": true,
+    "after": [
+     {
+      "k": "tfKill"
+     }
+    ]
+   }
+  },
+  {
+   "code": "CR1358",
+   "tier": 3,
+   "name": "Darkest Timeline",
+   "kind": "JUDGEMENT",
+   "noRoll": true,
+   "target": [],
+   "steps": [],
+   "text": "The Oracle moves 4 spaces towards the Timefront (stop if adjacent). Rewind all Titans. For the duration of this Battle the Hypertime Oracle becomes one level higher (it gains new Traits and stats). Then, remove this card from the Battle and shuffle the Aeons Tsunami AI card into the AI deck. Draw another AI card.",
+   "oracle": {
+    "special": "darkest"
+   },
+   "dice": 0
+  },
+  {
+   "code": "CR1359",
+   "tier": 3,
+   "name": "Overtime Laser",
+   "kind": "LASER SEQUENTIAL ATTACK",
+   "dice": 3,
+   "toHit": 12,
+   "target": [
+    "Furthest Titan"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK | PARADOX 3+ or FATE 8+: Double Laser instead",
+    "Each hit deals 4 DANGER.",
+    "Rewind."
+   ],
+   "after": "Repeat Overtime Laser against a Titan that has not been Attacked this round by Overtime Laser. Repeat until all Titans have been Attacked, then the Oracle moves 5 spaces towards the Timefront (stop if adjacent) and turns to face the most Titans.",
+   "oracle": {
+    "move": "lateral",
+    "laser": "single",
+    "up": {
+     "p": 3,
+     "f": 8
+    },
+    "sequential": true,
+    "after": [
+     {
+      "k": "tf",
+      "n": 5,
+      "face": true
+     }
+    ]
+   }
+  },
+  {
+   "code": "CR1360",
+   "tier": 3,
+   "name": "Sun's Harbinger",
+   "kind": "JUDGEMENT",
+   "dice": 1,
+   "toHit": 11,
+   "target": [
+    "Priority Target in front",
+    "Highest FATE in front",
+    "Priority Target in sight"
+   ],
+   "judge": [
+    "Wisdom",
+    "Fury"
+   ],
+   "steps": [
+    "JUDGE (Wisdom/Fury) | PARADOX 5+ or FATE 9+: You are erased from existence",
+    "If the Attack hits, it deals 9 DANGER. Death 1."
+   ],
+   "after": "⚡ The Oracle moves 5 spaces towards the Timefront (stop if adjacent) and turns to face the most Titans. Glaciate the previous Primordial space.",
+   "oracle": {
+    "move": "none",
+    "pre": [
+     {
+      "cond": {
+       "p": 5,
+       "f": 9
+      },
+      "k": "erase"
+     }
+    ],
+    "afterWin": true,
+    "after": [
+     {
+      "k": "tf",
+      "n": 5,
+      "face": true,
+      "glac": "normal"
+     }
+    ]
+   }
+  },
+  {
+   "code": "CR1361",
+   "tier": 3,
+   "name": "Tyranny of Stars",
+   "kind": "SIMULTANEOUS JUDGMENT",
+   "noRoll": true,
+   "target": [
+    "All Titans on the Battle Board"
+   ],
+   "noTarget": "Routine",
+   "steps": [
+    "⚡ TELEPORT ALL TITANS & JUDGE: Reestablish the Time Anchors of teleported Titans.",
+    "⚡ Perform Signature against each adjacent Titan, ignoring its After Attack effect."
+   ],
+   "afterFinal": "⚡ PARADOX 4+ or FATE 8+: Move the Timefront 1 space forward. The Oracle moves 5 spaces towards the Timefront (stop if adjacent) and turns to face the most Titans.",
+   "oracle": {
+    "special": "tyranny"
+   },
+   "dice": 0
+  },
+  {
+   "code": "CR1362",
+   "tier": "X",
+   "name": "Aeons Tsunami",
+   "kind": "LASER ATTACK",
+   "dice": 4,
+   "toHit": 9,
+   "target": [
+    "This Laser Attack is resolved from all Timefront spaces towards the right Board Edge."
+   ],
+   "steps": [
+    "TIMEFRONT ATTACK",
+    "Each hit deals 3 FATE. If hit, gain DANGER equal to your FATE.",
+    "⚡ Rewind."
+   ],
+   "afterFinal": "⚡ Move the Timefront 1 space forward for every Titan with FATE 6+.",
+   "setAside": true,
+   "oracle": {
+    "laser": "timefront",
+    "afterWin": true,
+    "after": [
+     {
+      "k": "tfFate6"
+     }
+    ]
+   }
+  },
+  {
+   "code": "CR1363",
+   "tier": "X",
+   "name": "Rewind Laser",
+   "kind": "SIGNATURE",
+   "displayKind": "LASER SIGNATURE",
+   "dice": 3,
+   "toHit": 11,
+   "target": [
+    "Lowest FATE in front",
+    "Lowest FATE in sight"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK",
+    "Each hit deals 2 DANGER and 2 FATE."
+   ],
+   "after": "⚡ Rewind.",
+   "oracle": {
+    "move": "lateral",
+    "laser": "single",
+    "afterWin": true,
+    "after": [
+     {
+      "k": "rewind"
+     }
+    ]
+   }
+  },
+  {
+   "code": "CR1364",
+   "tier": "X",
+   "name": "Skip Timeline",
+   "kind": "ROUTINE",
+   "text": "The Oracle moves 4 spaces towards the Timefront (stop if adjacent). Escalate 1. (Gain +1 campaign token — ignored in Mnestis.)",
+   "oracle": {
+    "special": "skip"
+   }
+  }
+ ],
+ "bp": [
+  {
+   "code": "CS1366",
+   "tier": 1,
+   "name": "Fleshy Robe",
+   "at": 6,
+   "responses": {
+    "FAIL": "Rewind. Glaciate the previous Attacker space.",
+    "WOUND": "Time-clocked."
+   },
+   "critical": "Disable the Atemporal effect.",
+   "qeye": true
+  },
+  {
+   "code": "CS1367",
+   "tier": 1,
+   "name": "Temporal Sash",
+   "at": 4,
+   "responses": {
+    "FAIL": "Gain FATE equal to the Primordial LVL. Time-clocked.",
+    "WOUND": "Rewind. Glaciate the previous Attacker space."
+   },
+   "critical": "You may perform a Bonus Attack!",
+   "qeye": true
+  },
+  {
+   "code": "CS1368",
+   "tier": 1,
+   "name": "Sun-Kissed Hood",
+   "at": 5,
+   "responses": {
+    "INSTINCT": "Perform Signature against the Attacker."
+   },
+   "critical": "You may perform a Bonus Attack!",
+   "qeye": true
+  },
+  {
+   "code": "CS1369",
+   "tier": 1,
+   "name": "Wing Eye Colony",
+   "at": 4,
+   "atemporal": true,
+   "responses": {
+    "FAIL": "Gain +1 FATE and the Muffled Condition card."
+   },
+   "critical": "Gain 2 Mnemos nodes, each for a different Mnemos (campaign).",
+   "qeye": true
+  },
+  {
+   "code": "CS1370",
+   "tier": 1,
+   "name": "Right-Angled Wing",
+   "at": 6,
+   "responses": {
+    "FAIL": "Rewind. Glaciate the previous Attacker space.",
+    "WOUND": "The Oracle moves 3 spaces directly away from the Attacker (without turning). Giant Glaciate the previous Primordial space."
+   },
+   "critical": "You may perform a Bonus Attack!",
+   "qeye": true
+  },
+  {
+   "code": "CS1371",
+   "tier": 1,
+   "name": "Wrong-Angled Wing",
+   "at": 5,
+   "responses": {
+    "FAIL": "Gain FATE equal to the Primordial LVL. ⚡ Move the Timefront 1 space forward.",
+    "WOUND": "The Oracle moves 3 spaces directly away from the Attacker (without turning). Giant Glaciate the previous Primordial space."
+   },
+   "critical": "Gain +1 Frozen Time (campaign).",
+   "qeye": true
+  },
+  {
+   "code": "CS1372",
+   "tier": 2,
+   "name": "Unholy Chasuble",
+   "at": 7,
+   "responses": {
+    "FAIL": "⚡ Move the Timefront 1 space forward.",
+    "WOUND": "Time-clocked."
+   },
+   "critical": "Disable 'The Oracle moves towards the Timefront' effects.",
+   "qeye": true
+  },
+  {
+   "code": "CS1373",
+   "tier": 2,
+   "name": "Many-Eyed Face",
+   "at": 7,
+   "responses": {
+    "FAIL": "The Oracle moves 6 spaces directly away from the Attacker (without turning). Giant Glaciate the previous Primordial space.",
+    "WOUND": "Gain +1 FATE. Rewind. Glaciate the previous Attacker space."
+   },
+   "critical": "Gain the Eye of the Watcher card (Secret deck 8, card 84) (campaign).",
+   "qeye": true
+  },
+  {
+   "code": "CS1374",
+   "tier": 2,
+   "name": "Temporal Icicle Gland",
+   "at": 5,
+   "atemporal": true,
+   "responses": {
+    "FAIL": "Gain +3 FATE. Time-clocked."
+   },
+   "critical": "You may reset FATE and perform a Bonus Attack!",
+   "qeye": true
+  },
+  {
+   "code": "CS1375",
+   "tier": 2,
+   "name": "Sun-Burned Flange",
+   "at": 6,
+   "responses": {
+    "INSTINCT": "Perform Signature against the Attacker."
+   },
+   "critical": "Move the Timefront 3 spaces backward.",
+   "qeye": true
+  },
+  {
+   "code": "CS1376",
+   "tier": 2,
+   "name": "Inner Eye Colony",
+   "at": 8,
+   "responses": {
+    "FAIL": "Time-clocked. Glaciate the previous Attacker space.",
+    "WOUND": "Move the Timefront 1 space backward."
+   },
+   "critical": "Disable the Quantum Eye Trait!",
+   "qeye": true
+  },
+  {
+   "code": "CS1377",
+   "tier": 2,
+   "name": "Living Lenses",
+   "at": 8,
+   "responses": {
+    "FAIL": "Gain +2 FATE. Gain the Sealed Condition card.",
+    "WOUND": "Move the Timefront 1 space backward. The Oracle moves 6 spaces directly away from the Attacker (without turning). Giant Glaciate the previous Primordial space."
+   },
+   "critical": "Disable Double Laser Attacks.",
+   "qeye": true
+  },
+  {
+   "code": "CS1378",
+   "tier": 3,
+   "name": "Ontological Antennae",
+   "at": 8,
+   "responses": {
+    "FAIL": "Rewind all Titans. Glaciate the previous Attacker space.",
+    "WOUND": "Gain the Sealed Condition card. The Oracle moves 6 spaces directly away from the Attacker (without turning). Giant Glaciate the previous Primordial space."
+   },
+   "critical": "Disable Hypertime Oracle's Rewinds.",
+   "qeye": true
+  },
+  {
+   "code": "CS1379",
+   "tier": 3,
+   "name": "Sun-Flayed Soul",
+   "at": 8,
+   "responses": {
+    "FAIL": "Perform Signature against the Attacker.",
+    "WOUND": "Gain FATE equal to the Primordial LVL. Perform Signature against the Attacker."
+   },
+   "critical": "The Oracle dies!",
+   "qeye": true
+  },
+  {
+   "code": "CS1380",
+   "tier": 3,
+   "name": "Voidheart",
+   "at": 9,
+   "atemporal": true,
+   "responses": {
+    "FAIL": "Draw a Moiros card. ⚡ Move the Timefront 1 space forward."
+   },
+   "critical": "Gain +1 campaign token. After the Battle, resolve the Helionauts Special Event (campaign).",
+   "qeye": true
+  },
+  {
+   "code": "CS1381",
+   "tier": 3,
+   "name": "Invisible Eyes Parasite",
+   "at": 7,
+   "responses": {
+    "INSTINCT": "Perform Signature against the Attacker."
+   },
+   "critical": "Gain the Paradox card (Secret deck 8, card 85) (campaign).",
+   "qeye": true
+  },
+  {
+   "code": "CS1382",
+   "tier": 3,
+   "name": "Ripen Realities",
+   "at": 7,
+   "atemporal": true,
+   "responses": {
+    "FAIL": "Gain FATE equal to the Primordial LVL. ⚡ Move the Timefront 2 spaces forward."
+   },
+   "critical": "You may perform a Bonus Attack!",
+   "qeye": true
+  },
+  {
+   "code": "CS1383",
+   "tier": 3,
+   "name": "Timeline Digestion System",
+   "at": 10,
+   "responses": {
+    "INSTINCT": "The Oracle moves 6 spaces directly away from the Attacker (without turning). Giant Glaciate the previous Primordial space. Time-clocked. ⚡ Move the Timefront 1 space forward."
+   },
+   "critical": "Remove the Timefront from the Board.",
+   "qeye": true
+  }
+ ]
+}

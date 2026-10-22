@@ -1,0 +1,881 @@
+{
+ "id": "harpy",
+ "name": "Icarian Harpy",
+ "cycle": 3,
+ "type": "primordial",
+ "sheetCode": "CU1678",
+ "harpy": true,
+ "_notes": [
+  "Transcribed from sheet CU1678 + trait card CX1679 (Rapid Adaptation), AI CR1695-CR1715, BP CS1716-CS1733.",
+  "Predator and Death by Fate are separate trait cards (not scanned). Death by Fate uses the Cycle III rulebook text; Predator is a placeholder.",
+  "Lv III/IV right box (+3 / +12 jar icon) is a campaign reward value — ignored. BP resource icons ignored.",
+  "Consumed (Cycle III rulebook p.4): the Titan dies (Instant Death)."
+ ],
+ "footprint": {
+  "w": 2,
+  "h": 2,
+  "rear": "top-edge"
+ },
+ "ukb": 5,
+ "blindspots": "rear",
+ "levels": {
+  "1": {
+   "toHit": 8,
+   "speed": 99,
+   "wounds": 10,
+   "bonus": {},
+   "traits": [
+    "Rapid Adaptation",
+    "Predator",
+    "Regurgitate",
+    "Death by Fate"
+   ]
+  },
+  "2": {
+   "toHit": 8,
+   "speed": 99,
+   "wounds": 10,
+   "bonus": {},
+   "traits": []
+  },
+  "3": {
+   "toHit": 9,
+   "speed": 99,
+   "wounds": 10,
+   "bonus": {
+    "ESCALATION": 1,
+    "DANGER": 1
+   },
+   "traits": [
+    "Deep Cut"
+   ]
+  },
+  "4": {
+   "toHit": 9,
+   "speed": 99,
+   "wounds": 10,
+   "bonus": {
+    "ESCALATION": 2,
+    "AT": 1,
+    "DANGER": 1
+   },
+   "traits": [
+    "Devour Whole"
+   ]
+  },
+  "5": {
+   "mnestis": true,
+   "toHit": 10,
+   "speed": 99,
+   "wounds": 11,
+   "bonus": {
+    "ESCALATION": 2,
+    "AT": 2,
+    "DANGER": 1
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "End of Hope",
+    "Tentacled Monstrosity"
+   ]
+  },
+  "6": {
+   "mnestis": true,
+   "toHit": 10,
+   "speed": 99,
+   "wounds": 11,
+   "bonus": {
+    "ESCALATION": 3,
+    "AT": 3,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Bloodlost"
+   ]
+  },
+  "7": {
+   "mnestis": true,
+   "toHit": 11,
+   "speed": 99,
+   "wounds": 12,
+   "bonus": {
+    "ESCALATION": 4,
+    "AT": 4,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": []
+  },
+  "8": {
+   "mnestis": true,
+   "toHit": 12,
+   "speed": 99,
+   "wounds": 13,
+   "bonus": {
+    "ESCALATION": 4,
+    "AT": 5,
+    "EVADE_DICE": 1,
+    "DANGER": 2
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Ruthless",
+    "Bleed Your Heart Out"
+   ]
+  },
+  "9": {
+   "mnestis": true,
+   "toHit": 13,
+   "speed": 99,
+   "wounds": 14,
+   "bonus": {
+    "ESCALATION": 5,
+    "AT": 6,
+    "EVADE_DICE": 2,
+    "DANGER": 3
+   },
+   "bonusPerHit": true,
+   "traits": [
+    "Beginning of the End",
+    "Rupture Veins",
+    "Perfection"
+   ]
+  }
+ },
+ "traits": {
+  "Rapid Adaptation": "The track on this sheet represents the Icarian Adaptation Board. If you Wound the Icarian Harpy, after resolving Responses, place an Adaptation token on the Icarian Adaptation Board, on a space corresponding to your Weapon class. If there are no more Adaptation tokens outside of the Adaptation Board, move one of the tokens from the Adaptation Board onto this space. Any attempt to Wound with a Weapon class listed on a space covered with an Adaptation token will automatically Fail. During attempts with a Weapon class listed on a space adjacent to an Adaptation token, the Icarian Harpy gains +1 AT. This bonus can stack if a space is adjacent to two Adaptation tokens. Additional Setup: Level 1: 1 token. Level 2: 2 tokens. Level 3-4: 3 tokens. Level 5-6: 4 tokens. Level 7+: 5 tokens. (Spaces, clockwise: Sword · Knife & Spear · Club & Slabsword · Cestus & Hammer & Discus · Shield · Whip & Axe & Other · Javelin & Bow & Blade)",
+  "Predator": "Start of Battle: Starting from the highest DANGER and continuing in descending order, Titans suffer: Level 1: Bleeding 2, Bleeding 1. Level 2: Bleeding 2, Bleeding 2. Level 3: Bleeding 2, Bleeding 2, Bleeding 1. Level 4+: Bleeding 3, Bleeding 2, Bleeding 2. ⚡ End of Primordial Round: Titan with the most Bleeding tokens in Sight that has not been Attacked this Round becomes the Target of Predation. If there is no eligible Target, Predation doesn't trigger.",
+  "Regurgitate": "Regurgitate: Place an Ambrosia Pool Terrain tile beneath the Primordial. Level 2+: Treat all Ambrosia Pools as Black Glaciers.",
+  "Death by Fate": "When a Primordial Attack deals FATE, it triggers a Trauma Draw (like DANGER). If an Attack deals both, resolve only one Trauma Draw. Being dealt FATE over 9 causes an Obol Draw instead of a Moiros Draw. Trauma severity uses the higher of DANGER or FATE.",
+  "Deep Cut": "End of Titan turn: Gain DANGER equal to the number of Bleeding tokens you have.",
+  "Devour Whole": "Start of Primordial Round: Consume all Titans adjacent to the Icarian Harpy.",
+  "End of Hope": "End of Primordial Round: Perform Signature.",
+  "Tentacled Monstrosity": "+3 to all Pulls performed by Harpy.",
+  "Bloodlost": "Start of Battle: Starting from the highest DANGER and continuing in descending order, Titans suffer: Bleeding 4, Bleeding 3, Bleeding 2 and Bleeding 2. This Trait overrides the Start of Battle effect of the Predator Trait.",
+  "Ruthless": "Remove all positive Trauma cards from the Trauma decks (except Obols).",
+  "Bleed Your Heart Out": "Each Bleeding token gives you a cumulative -1 Speed. Bleeding Limit -1.",
+  "Beginning of the End": "End of Primordial Round: Before End of Hope, draw and perform another AI card.",
+  "Rupture Veins": "Instead of the normal Bleeding Build-up, gain as many Bleeding tokens as there are Bleeding tokens on your Titan.",
+  "Perfection": "End of Titan Round: Place an additional generic token on top of any Rapid Adaptation Token on the Icarian Adaptation Board. This Adaptation token cannot be moved or removed until the end of Battle."
+ },
+ "ai": [
+  {
+   "code": "CR1695",
+   "tier": 1,
+   "name": "Talon Graze",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Non-bleeding Titan in sight",
+    "Priority Target in front",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & PUSHBACK 2 & ATTACK",
+    "Bleeding 1. If the Attack hits, raise your Trauma level by 1 and resolve a Trauma Draw. | FATE 4+: 2 Trauma levels instead"
+   ],
+   "harpy": {
+    "move": "move",
+    "pb": 2
+   }
+  },
+  {
+   "code": "CR1696",
+   "tier": 1,
+   "name": "Lacerating Swipe",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Non-bleeding Titan in sight",
+    "Priority Target in front",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & PUSHBACK 2 & ATTACK",
+    "Bleeding 1. If the Attack hits, it deals 4 DANGER and 1 FATE.",
+    "⚡ Knockdown."
+   ],
+   "harpy": {
+    "move": "move",
+    "pb": 2
+   }
+  },
+  {
+   "code": "CR1697",
+   "tier": 1,
+   "name": "Beak Peck",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Non-bleeding Titan in sight",
+    "Priority Target in front",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 7+: Discard a Gear card with the Shield or Helm Trait",
+    "Knockdown. Bleeding 1. If you have a Shield or Helm Gear card, each hit deals 2 DANGER. If not, each hit deals 3 DANGER."
+   ],
+   "harpy": {
+    "move": "move",
+    "regurg": true
+   },
+   "text_pre": "Regurgitate."
+  },
+  {
+   "code": "CR1698",
+   "tier": 1,
+   "name": "Frenzied Slash",
+   "kind": "ATTACK",
+   "dice": 4,
+   "toHit": 8,
+   "target": [
+    "Closest non-bleeding Titan in front",
+    "Closest non-bleeding Titan in sight",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & PUSHBACK 3 & ATTACK | FATE 5+: +1 EVADE_DICE",
+    "Bleeding 2. Each hit deals 2 DANGER and 1 FATE. Knockdown."
+   ],
+   "harpy": {
+    "move": "move",
+    "pb": 3
+   }
+  },
+  {
+   "code": "CR1700",
+   "tier": 1,
+   "name": "Tongue Yank",
+   "kind": "RANGE ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Furthest Titan in sight, in range",
+    "Priority Target in sight, in range",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ RANGE ATTACK 7 | FATE 5+: Double the Pull",
+    "Pull 1+2 per hit until adjacent. Then, if adjacent, each hit deals 3 DANGER, Knockdown. If not, each hit deals 2 DANGER."
+   ],
+   "harpy": {
+    "move": "range",
+    "regurg": true,
+    "dbl": 5
+   },
+   "range": 7,
+   "text_pre": "Regurgitate."
+  },
+  {
+   "code": "CR1699",
+   "tier": 1,
+   "name": "Tentacle Suffocate",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Non-bleeding Titan in sight",
+    "Priority Target in sight",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ APPEAR BEHIND & ATTACK",
+    "Bleeding 1. Each hit deals 2 DANGER.",
+    "⚡ PARADOX 2+ or FATE 4+: Gain the Muffled Condition card."
+   ],
+   "harpy": {
+    "move": "appear"
+   }
+  },
+  {
+   "code": "CR1701",
+   "tier": 2,
+   "name": "Talon Tear",
+   "kind": "ATTACK",
+   "dice": 4,
+   "toHit": 10,
+   "target": [
+    "Non-bleeding Titan in sight",
+    "Priority Target in front",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & PUSHBACK 2 & ATTACK",
+    "Bleeding 2. If the Attack hits, raise your Trauma level by 1 and resolve a Trauma Draw. | FATE 7+: 2 Trauma levels instead"
+   ],
+   "harpy": {
+    "move": "move",
+    "pb": 2
+   }
+  },
+  {
+   "code": "CR1702",
+   "tier": 2,
+   "name": "Serrated Swipe",
+   "kind": "ATTACK",
+   "dice": 4,
+   "toHit": 9,
+   "target": [
+    "Non-bleeding Titan in sight",
+    "Priority Target in front",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & PUSHBACK 2 & ATTACK",
+    "Bleeding 2. If the Attack hits, it deals DANGER equal to 2 + the number of your Bleeding tokens. Gain +2 FATE.",
+    "⚡ Knockdown."
+   ],
+   "harpy": {
+    "move": "move",
+    "pb": 2
+   }
+  },
+  {
+   "code": "CR1703",
+   "tier": 2,
+   "name": "Tentacle Peck",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Non-bleeding Titan in sight",
+    "Priority Target in front",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 7+: Discard a Gear card with the Shield or Helm Trait",
+    "Knockdown. Bleeding 2. If you have a Shield or Helm Gear card, each hit deals 3 DANGER. If not, raise DANGER to 9 and draw an Obol."
+   ],
+   "harpy": {
+    "move": "move",
+    "regurg": true
+   },
+   "text_pre": "Regurgitate."
+  },
+  {
+   "code": "CR1704",
+   "tier": 2,
+   "name": "Tentacle Rupture",
+   "kind": "ATTACK",
+   "dice": 4,
+   "toHit": 9,
+   "target": [
+    "Titan in Blindspot",
+    "Non-bleeding Titan in sight",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ APPEAR BEHIND & PUSHBACK 3 & ATTACK",
+    "Bleeding 2. Each hit deals 2 DANGER.",
+    "⚡ PARADOX 3+ or FATE 6+: Gain the Sealed Condition card."
+   ],
+   "harpy": {
+    "move": "appear",
+    "pb": 3
+   }
+  },
+  {
+   "code": "CR1705",
+   "tier": 2,
+   "name": "Manic Gutting",
+   "kind": "ATTACK",
+   "dice": 4,
+   "toHit": 8,
+   "target": [
+    "Titan in Blindspot",
+    "Closest non-bleeding Titan in front",
+    "Closest non-bleeding Titan in sight",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & PUSHBACK 2 & ATTACK | FATE 7+: +2 EVADE_DICE",
+    "Bleeding 2. Each hit deals 2 DANGER and 1 FATE. Knockdown."
+   ],
+   "harpy": {
+    "move": "move",
+    "pb": 2
+   }
+  },
+  {
+   "code": "CR1706",
+   "tier": 2,
+   "name": "Biforcated Wrench",
+   "kind": "RANGE ATTACK",
+   "dice": 4,
+   "toHit": 10,
+   "target": [
+    "Furthest Titan in sight, in range",
+    "Priority Target in sight, in range",
+    "Closest Titan in sight, in range"
+   ],
+   "steps": [
+    "⚡ RANGE ATTACK 9 | FATE 7+: Double the Pull",
+    "Bleeding 1. Pull 1+2 per hit until adjacent. Then, if adjacent, each hit deals 3 DANGER, Knockdown. If not, each hit deals 2 DANGER."
+   ],
+   "harpy": {
+    "move": "range",
+    "regurg": true,
+    "dbl": 7,
+    "after": [
+     {
+      "k": "consume1",
+      "win": true
+     }
+    ]
+   },
+   "after": "⚡ Consume 1 adjacent knocked down Titan.",
+   "range": 9,
+   "text_pre": "Regurgitate."
+  },
+  {
+   "code": "CR1707",
+   "tier": 3,
+   "name": "Fate Gorger",
+   "kind": "ATTACK",
+   "dice": 5,
+   "toHit": 9,
+   "target": [
+    "Titan in Blindspot",
+    "Highest FATE"
+   ],
+   "steps": [
+    "⚡ APPEAR BEHIND & PUSHBACK 2 & ATTACK",
+    "Bleeding 3. Each hit deals 1 FATE. If the Attack hits, gain DANGER equal to your FATE."
+   ],
+   "harpy": {
+    "move": "appear",
+    "pb": 2,
+    "regurg": true
+   },
+   "text_pre": "Regurgitate."
+  },
+  {
+   "code": "CR1708",
+   "tier": 3,
+   "name": "Vorpal Cut",
+   "kind": "ATTACK",
+   "dice": 1,
+   "toHit": 11,
+   "target": [
+    "Non-bleeding Titan in sight",
+    "Priority Target in sight",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "APPEAR BEHIND & PUSHBACK 3 & ATTACK | FATE 9+: +1 EVADE_DICE",
+    "If the Attack hits, you die. If it was blocked, raise DANGER to 9 and discard the Gear card you blocked with. Knockdown."
+   ],
+   "harpy": {
+    "move": "appear",
+    "pb": 3,
+    "nowin": true,
+    "vorpal": true,
+    "after": [
+     {
+      "k": "bleed",
+      "n": 2,
+      "win": true
+     }
+    ]
+   },
+   "after": "⚡ Bleeding 2."
+  },
+  {
+   "code": "CR1709",
+   "tier": 3,
+   "name": "Headcracking Peck",
+   "kind": "ATTACK",
+   "dice": 4,
+   "toHit": 10,
+   "target": [
+    "Titan in Blindspot",
+    "Non-bleeding Titan in sight",
+    "Priority Target in front",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 7+: Discard a Gear card with the Shield or Helm Trait",
+    "Knockdown. Bleeding 2. If you have a Shield or Helm Gear card, each hit deals 3 DANGER. If not, you die."
+   ],
+   "harpy": {
+    "move": "move",
+    "regurg": true,
+    "after": [
+     {
+      "k": "consumeAll",
+      "win": true
+     }
+    ]
+   },
+   "after": "⚡ Consume all adjacent knocked down Titans.",
+   "text_pre": "Regurgitate."
+  },
+  {
+   "code": "CR1710",
+   "tier": 3,
+   "name": "Tear to Pieces",
+   "kind": "ATTACK",
+   "dice": 2,
+   "toHit": 11,
+   "target": [
+    "Non-bleeding Titan in sight",
+    "Priority Target in front",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & PUSHBACK 3 & ATTACK | LEVEL 3+ or FATE 7+: +1 EVADE_DICE",
+    "If the Attack hits, draw an Obol. For each hit, add 1 You died card as if you crossed a Massive Danger threshold (for this draw only)."
+   ],
+   "harpy": {
+    "move": "move",
+    "pb": 3,
+    "dieGate": {
+     "lvl": 3,
+     "f": 7,
+     "n": 1
+    },
+    "after": [
+     {
+      "k": "bleed",
+      "n": 2,
+      "win": true
+     }
+    ]
+   },
+   "after": "⚡ Bleeding 2."
+  },
+  {
+   "code": "CR1711",
+   "tier": 3,
+   "name": "Unholy Sun",
+   "kind": "RANGE SIMULTANEOUS ATTACK",
+   "dice": 5,
+   "toHit": 10,
+   "target": [
+    "All Titans in sight"
+   ],
+   "steps": [
+    "⚡ RANGE ATTACK 10 | FATE 8+: Double the Pull",
+    "Bleeding 2. Pull 1+2 per hit until adjacent. Then, if adjacent, each hit deals 3 DANGER, Knockdown. If not, each hit deals 2 DANGER."
+   ],
+   "harpy": {
+    "move": "all",
+    "regurg": true,
+    "dbl": 8,
+    "after": [
+     {
+      "k": "consumeAll",
+      "win": true
+     }
+    ]
+   },
+   "afterFinal": "⚡ Consume all adjacent knocked down Titans.",
+   "range": 10,
+   "text_pre": "Regurgitate."
+  },
+  {
+   "code": "CR1712",
+   "tier": 3,
+   "name": "Apex Predator",
+   "kind": "ATTACK",
+   "dice": 4,
+   "toHit": 8,
+   "target": [
+    "Titan in Blindspot",
+    "Furthest Titan in sight"
+   ],
+   "steps": [
+    "LAND ON TOP & ATTACK | PARADOX 4+: Add +1 hit",
+    "One hit, raise DANGER to 9 and draw an Obol, two hits, die, three hits, die and the Argonaut gains a Fated Mnemos card, four hits, the Titan and Argonaut both die."
+   ],
+   "harpy": {
+    "move": "land",
+    "regurg": true,
+    "nowin": true,
+    "after": [
+     {
+      "k": "kd",
+      "win": true
+     },
+     {
+      "k": "consumeAll",
+      "win": true
+     }
+    ],
+    "plusHit": true
+   },
+   "after": "⚡ Knockdown. ⚡ Consume all adjacent knocked down Titans.",
+   "text_pre": "Regurgitate."
+  },
+  {
+   "code": "CR1713",
+   "tier": "X",
+   "name": "Talon Scratch",
+   "kind": "SIGNATURE",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Non-bleeding Titan in sight",
+    "Priority Target in front",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & PUSHBACK 2 & ATTACK",
+    "Bleeding 1. Each hit deals 2 DANGER."
+   ],
+   "harpy": {
+    "move": "move",
+    "pb": 2,
+    "regurg": true,
+    "after": [
+     {
+      "k": "text",
+      "t": "Knockback 3",
+      "win": true
+     }
+    ]
+   },
+   "after": "⚡ Knockback 3.",
+   "text_pre": "Regurgitate."
+  },
+  {
+   "code": "CR1714",
+   "tier": "X",
+   "name": "Icarian Shriek",
+   "kind": "ROUTINE",
+   "text": "Each Titan suffers Bleeding 3.",
+   "harpy": {
+    "special": "shriek"
+   }
+  },
+  {
+   "code": "CR1715",
+   "tier": "X",
+   "name": "Predation",
+   "kind": "TRAIT ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Predator Target"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Each hit deals DANGER equal to the number of your Bleeding tokens.",
+    "⚡ Bleeding 1."
+   ],
+   "harpy": {
+    "move": "move",
+    "predation": true
+   }
+  }
+ ],
+ "bp": [
+  {
+   "code": "CS1716",
+   "tier": 1,
+   "name": "Sharp Talonarm",
+   "at": 4,
+   "responses": {
+    "INSTINCT": "Pushback 3. Gain Bleeding up to 1."
+   },
+   "critical": "Gain the Right Talon of Doom card (campaign)."
+  },
+  {
+   "code": "CS1717",
+   "tier": 1,
+   "name": "Oddment Loincloth",
+   "at": 6,
+   "responses": {
+    "FAIL": "Time-clocked.",
+    "WOUND": "Gain the Muffled Condition card."
+   },
+   "critical": "Gain the Priority Target token. You may perform a Bonus Attack, ignoring the Rapid Adaptation Trait!"
+  },
+  {
+   "code": "CS1718",
+   "tier": 1,
+   "name": "Feathered Back",
+   "at": 5,
+   "responses": {
+    "FAIL": "Knockdown.",
+    "WOUND": "⚡ Gain Bleeding up to 1. The Harpy moves to the center of the Board and turns to face the most Titans."
+   },
+   "critical": "The Predator Trait treats 1 Bleeding token as not having the Bleeding Condition at all."
+  },
+  {
+   "code": "CS1719",
+   "tier": 1,
+   "name": "Humanoid Limb",
+   "at": 4,
+   "responses": {
+    "FAIL": "Knockdown.",
+    "WOUND": "Pushback 3."
+   },
+   "critical": "Gain the Priority Target token. You may perform a Bonus Attack, ignoring the Rapid Adaptation Trait!"
+  },
+  {
+   "code": "CS1720",
+   "tier": 1,
+   "name": "Exoribcage",
+   "at": 6,
+   "responses": {
+    "FAIL": "Regurgitate. Pushback 3.",
+    "WOUND": "Perform Signature against the Attacker."
+   },
+   "critical": "Discard 1 Rapid Adaptation token from the Battle. If there aren't any, another Titan may move up to 3 spaces and perform a Bonus Attack!"
+  },
+  {
+   "code": "CS1721",
+   "tier": 1,
+   "name": "Tentacle Appendage",
+   "at": 5,
+   "responses": {
+    "FAIL": "Pull 3.",
+    "WOUND": "Knockdown. Pushback 3."
+   },
+   "critical": "Disable the Pull X keyword on Harpy Attacks."
+  },
+  {
+   "code": "CS1722",
+   "tier": 2,
+   "name": "Vestigial Wing",
+   "at": 7,
+   "responses": {
+    "FAIL": "All adjacent Titans suffer Knockdown.",
+    "WOUND": "⚡ The Harpy moves to the center of the Board and turns to face the most Titans."
+   },
+   "critical": "Another Titan may move up to 3 spaces and perform a Bonus Attack!"
+  },
+  {
+   "code": "CS1723",
+   "tier": 2,
+   "name": "Tentacle Bristles",
+   "at": 5,
+   "responses": {
+    "FAIL": "Gain Bleeding up to 2.",
+    "WOUND": "Pull 3. Gain the Muffled Condition card."
+   },
+   "critical": "Disable Bleeding effects on Harpy Attacks."
+  },
+  {
+   "code": "CS1724",
+   "tier": 2,
+   "name": "Tentacle Muscles",
+   "at": 8,
+   "responses": {
+    "FAIL": "Knockdown. Pull 3.",
+    "WOUND": "Bleeding 1."
+   },
+   "critical": "Until the end of Battle, when attacked from a Blindspot space, the Harpy has -1 AT."
+  },
+  {
+   "code": "CS1725",
+   "tier": 2,
+   "name": "Snakespine",
+   "at": 7,
+   "responses": {
+    "INSTINCT": "Perform Signature against the Attacker."
+   },
+   "critical": "Discard 1 Rapid Adaptation token from the Board. If there aren't any, another Titan may move up to 4 spaces and perform a Bonus Attack!"
+  },
+  {
+   "code": "CS1726",
+   "tier": 2,
+   "name": "Wedgehead",
+   "at": 8,
+   "responses": {
+    "FAIL": "Pull 3. Gain the Muffled Condition card.",
+    "WOUND": "⚡ Gain Bleeding up to 2. The Harpy moves to the center of the Board and turns to face the most Titans."
+   },
+   "critical": "Deal an additional Single Wound!"
+  },
+  {
+   "code": "CS1727",
+   "tier": 2,
+   "name": "Hollow Eye",
+   "at": 6,
+   "responses": {
+    "FAIL": "Gain the Sealed Condition card.",
+    "WOUND": "Gain the Priority Target token. Perform Signature against the Attacker."
+   },
+   "critical": "Disable the Muffled and Sealed Conditions. Discard all Muffled and Sealed Condition cards from Titans."
+  },
+  {
+   "code": "CS1728",
+   "tier": 3,
+   "name": "Evolutionary Gland",
+   "at": 8,
+   "responses": {
+    "INSTINCT": "Gain Bleeding up to 3. Place an additional generic token as a Rapid Adaptation token on any space of the Icarian Adaptation Board."
+   },
+   "critical": "Discard 1 Rapid Adaptation token from the Board. If there aren't any, another Titan may move up to 5 spaces and perform a Bonus Attack!"
+  },
+  {
+   "code": "CS1729",
+   "tier": 3,
+   "name": "Searing Sphere",
+   "at": 10,
+   "responses": {
+    "FAIL": "Draw an Obol.",
+    "WOUND": "Pushback 3. Discard the Bleeding Condition card."
+   },
+   "critical": "Gain the Spherecast card (campaign)."
+  },
+  {
+   "code": "CS1730",
+   "tier": 3,
+   "name": "True Eyes",
+   "at": 8,
+   "responses": {
+    "FAIL": "Pull 3. Draw a Moiros card.",
+    "WOUND": "Perform Signature against the Attacker."
+   },
+   "critical": "The Harpy dies!"
+  },
+  {
+   "code": "CS1731",
+   "tier": 3,
+   "name": "Ontological Plumage",
+   "at": 7,
+   "responses": {
+    "INSTINCT": "Gain the Sealed Condition card."
+   },
+   "critical": "The Predator Trait treats 1 Bleeding token as not having the Bleeding Condition at all. Gain +1 Echo of Recollection (campaign)."
+  },
+  {
+   "code": "CS1732",
+   "tier": 3,
+   "name": "Pterohelix",
+   "at": 7,
+   "responses": {
+    "INSTINCT": "⚡ Gain Bleeding up to 3. The Harpy moves to the center of the Board and turns to face the most Titans."
+   },
+   "critical": "You may perform a Bonus Attack, ignoring the Rapid Adaptation Trait!"
+  },
+  {
+   "code": "CS1733",
+   "tier": 3,
+   "name": "The Egg",
+   "at": 9,
+   "responses": {
+    "INSTINCT": "Perform Signature against the Attacker."
+   },
+   "critical": "You may perform a Bonus Attack, ignoring the Rapid Adaptation Trait!"
+  }
+ ],
+ "raTokens": {
+  "1": 1,
+  "2": 2,
+  "3": 3,
+  "4": 3,
+  "5": 4,
+  "6": 4,
+  "7": 5,
+  "8": 5,
+  "9": 5
+ }
+}
