@@ -4,7 +4,7 @@ import { Board } from './core.js';
 export function installC5Titans(Game, { TitanDied, BattleOver }) {
   const P = Game.prototype; const wrap = (name, fn) => { const o = P[name]; P[name] = function (...a) { return fn.call(this, o, ...a); }; };
   const yn = (g, t, title) => g.ask({ type: 'yn', titan: t, title, options: [{ label: '사용', value: true }, { label: '패스', value: false }] });
-  const solo = async (g, fn) => { try { await fn(); } catch (e) { if (e instanceof BattleOver) throw e; if (e instanceof TitanDied || (e && e.chainBreak)) return; throw e; } };
+  const solo = async (g, fn) => { try { await fn(); } catch (e) { if (e instanceof BattleOver) throw e; if (e instanceof TitanDied) return; throw e; } };
   const aiLevel = card => (card && typeof card.aiTier === 'number') ? card.aiTier : (card && typeof card.tier === 'number') ? card.tier : null;
   const laserCard = card => !!(card && ((card.oracle && card.oracle.laser) || (card.midas && card.midas.laser) || card.eclipse || card.laser));
 

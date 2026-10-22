@@ -300,7 +300,7 @@ export function installOracle(Game, { TitanDied, BattleOver }) {
       if (!primary) { this.say('유효한 타겟 없음 → Routine', 'ai'); return this.resolveAI(this.routine); }
       if (O.sequential) return this.oracleSequential(card, primary);
       this._lastHits = [primary];
-      try { await this.oracleOne(card, primary); } catch (e) { if (e instanceof BattleOver) throw e; if (!(e instanceof TitanDied) && !e.chainBreak) throw e; }
+      try { await this.oracleOne(card, primary); } catch (e) { if (e instanceof BattleOver) throw e; if (!(e instanceof TitanDied)) throw e; }
       await this.oracleAfter(card, primary, this._lastHits || [primary]);
     },
     async oracleOne(card, primary) {
@@ -319,7 +319,7 @@ export function installOracle(Game, { TitanDied, BattleOver }) {
     },
     async oracleResolveHits(card, hits) {
       this._oracleKills = 0;
-      for (const t of hits) { if (!this.onBoard(t)) continue; try { await this.primAttackOn(t, card); } catch (e) { if (e instanceof BattleOver) throw e; if (e instanceof TitanDied || e.chainBreak) { this._oracleKills++; continue; } throw e; } if (!t.alive) this._oracleKills++; }
+      for (const t of hits) { if (!this.onBoard(t)) continue; try { await this.primAttackOn(t, card); } catch (e) { if (e instanceof BattleOver) throw e; if (e instanceof TitanDied) { this._oracleKills++; continue; } throw e; } if (!t.alive) this._oracleKills++; }
       if (this.pendingBonus) { const pb = this.pendingBonus; this.pendingBonus = null; await this.safe(() => this.bonusAttackFlow(pb.titan, pb)); }
     },
     async oracleAfter(card, primary, hits) {

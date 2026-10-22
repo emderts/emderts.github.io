@@ -156,7 +156,7 @@ export function installSun(Game, { TitanDied, BattleOver }) {
           if (S.judge) c2 = { ...c2, kind: 'JUDGEMENT', judge: S.judge };
           const h = await this.primAttackOn(t, c2); if (h) hitList.push(t);
           if (h && S.merciless && this.trait('Black Sun') && t.alive) { this.say(`${t.name}: Black Sun — Merciless Sun에 맞아 소각`, 'bad'); await this.kill(t, { instant: true, incinerate: true }); }
-        } catch (e) { if (e instanceof BattleOver) throw e; if (!(e instanceof TitanDied) && !e.chainBreak) throw e; }
+        } catch (e) { if (e instanceof BattleOver) throw e; if (!(e instanceof TitanDied) && !(e.chainBreak && this.isZoneCard(card))) throw e; }
       }
       if (this.pendingBonus) { const pb = this.pendingBonus; this.pendingBonus = null; await this.safe(() => this.bonusAttackFlow(pb.titan, pb)); }
       return hitList;

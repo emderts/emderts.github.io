@@ -235,7 +235,7 @@ export function installMidas(Game, { TitanDied, BattleOver }) {
         if (this.mGate(tgt, null, 6)) this.say(`${tgt.name}: Fate 6+ — ⚡ 무시`, 'bad'); else { await this.reactionWindow(tgt, card, 'MOVE LATERAL & ATTACK'); if (!tgt.alive) return; }
         if (!tgt.impaled && !tgt.onVP) await this.laserLateral(tgt);
         const hits = tgt.onVP || tgt.impaled ? [tgt] : this.laserTargets({ ...card, oracle: { laser: 'single' } }, tgt).hits;
-        for (const x of hits) { if (!x.alive) continue; try { await this.primAttackOn(x, card); } catch (e) { if (e instanceof BattleOver) throw e; if (!(e instanceof TitanDied) && !e.chainBreak) throw e; } }
+        for (const x of hits) { if (!x.alive) continue; try { await this.primAttackOn(x, card); } catch (e) { if (e instanceof BattleOver) throw e; if (!(e instanceof TitanDied)) throw e; } }
         return;
       }
     },

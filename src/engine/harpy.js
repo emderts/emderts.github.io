@@ -146,7 +146,7 @@ export function installHarpy(Game, { TitanDied, BattleOver }) {
         const tg = this.liveTitans().filter(x => !x.offBoard && this.primLos(x) && this.distTo(x) <= (card.range || 99));
         this.say(`대상: 시야 안 모든 타이탄 (${tg.map(x => x.name).join(', ') || '없음'})`);
         if (!tg.length) { this.say('타겟 없음 → Routine', 'ai'); return this.resolveAI(this.routine); }
-        await this.reactionWindow(tg[0], card, 'Range Attack'); for (const x of tg) { if (!x.alive) continue; try { await this.primAttackOn(x, card); } catch (e) { if (e instanceof BattleOver) throw e; if (!(e instanceof TitanDied) && !e.chainBreak) throw e; } }
+        await this.reactionWindow(tg[0], card, 'Range Attack'); for (const x of tg) { if (!x.alive) continue; try { await this.primAttackOn(x, card); } catch (e) { if (e instanceof BattleOver) throw e; if (!(e instanceof TitanDied)) throw e; } }
         return this.harpyAfter(card, tg[0]);
       }
       let tgt = forcedTarget && forcedTarget.alive && !forcedTarget.offBoard ? forcedTarget : null;
@@ -155,7 +155,7 @@ export function installHarpy(Game, { TitanDied, BattleOver }) {
       if (!tgt) { if (/Signature/.test(card.noTarget || '') && card !== this.sig) { this.say('유효한 타겟 없음 → Signature', 'ai'); return this.resolveAI(this.sig, { isSignature: true }); } if (this.routine && card !== this.routine && !this.prim.disabled.routine) { this.say('유효한 타겟 없음 → Routine', 'ai'); return this.resolveRoutine(this.routine); } return; }
       this.say(`타겟: ${tgt.name}`);
       if (H.regurg) await this.harpyRegurgitate();
-      try { await this.harpyOne(card, tgt); } catch (e) { if (e instanceof BattleOver) throw e; if (!(e instanceof TitanDied) && !e.chainBreak) throw e; }
+      try { await this.harpyOne(card, tgt); } catch (e) { if (e instanceof BattleOver) throw e; if (!(e instanceof TitanDied)) throw e; }
       await this.harpyAfter(card, tgt);
     },
     async harpyOne(card, t) {
