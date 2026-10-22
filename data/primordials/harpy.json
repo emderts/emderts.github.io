@@ -682,7 +682,8 @@
    "responses": {
     "INSTINCT": "Pushback 3. Gain Bleeding up to 1."
    },
-   "critical": "Gain the Right Talon of Doom card (campaign)."
+   "critical": "Gain the Right Talon of Doom card (campaign).",
+   "qeye": false
   },
   {
    "code": "CS1717",
@@ -693,7 +694,8 @@
     "FAIL": "Time-clocked.",
     "WOUND": "Gain the Muffled Condition card."
    },
-   "critical": "Gain the Priority Target token. You may perform a Bonus Attack, ignoring the Rapid Adaptation Trait!"
+   "critical": "Gain the Priority Target token. You may perform a Bonus Attack, ignoring the Rapid Adaptation Trait!",
+   "qeye": false
   },
   {
    "code": "CS1718",
@@ -704,7 +706,8 @@
     "FAIL": "Knockdown.",
     "WOUND": "⚡ Gain Bleeding up to 1. The Harpy moves to the center of the Board and turns to face the most Titans."
    },
-   "critical": "The Predator Trait treats 1 Bleeding token as not having the Bleeding Condition at all."
+   "critical": "The Predator Trait treats 1 Bleeding token as not having the Bleeding Condition at all.",
+   "qeye": false
   },
   {
    "code": "CS1719",
@@ -715,7 +718,8 @@
     "FAIL": "Knockdown.",
     "WOUND": "Pushback 3."
    },
-   "critical": "Gain the Priority Target token. You may perform a Bonus Attack, ignoring the Rapid Adaptation Trait!"
+   "critical": "Gain the Priority Target token. You may perform a Bonus Attack, ignoring the Rapid Adaptation Trait!",
+   "qeye": false
   },
   {
    "code": "CS1720",
@@ -726,7 +730,8 @@
     "FAIL": "Regurgitate. Pushback 3.",
     "WOUND": "Perform Signature against the Attacker."
    },
-   "critical": "Discard 1 Rapid Adaptation token from the Battle. If there aren't any, another Titan may move up to 3 spaces and perform a Bonus Attack!"
+   "critical": "Discard 1 Rapid Adaptation token from the Battle. If there aren't any, another Titan may move up to 3 spaces and perform a Bonus Attack!",
+   "qeye": false
   },
   {
    "code": "CS1721",
@@ -737,7 +742,8 @@
     "FAIL": "Pull 3.",
     "WOUND": "Knockdown. Pushback 3."
    },
-   "critical": "Disable the Pull X keyword on Harpy Attacks."
+   "critical": "Disable the Pull X keyword on Harpy Attacks.",
+   "qeye": false
   },
   {
    "code": "CS1722",
@@ -748,7 +754,8 @@
     "FAIL": "All adjacent Titans suffer Knockdown.",
     "WOUND": "⚡ The Harpy moves to the center of the Board and turns to face the most Titans."
    },
-   "critical": "Another Titan may move up to 3 spaces and perform a Bonus Attack!"
+   "critical": "Another Titan may move up to 3 spaces and perform a Bonus Attack!",
+   "qeye": false
   },
   {
    "code": "CS1723",
@@ -759,7 +766,8 @@
     "FAIL": "Gain Bleeding up to 2.",
     "WOUND": "Pull 3. Gain the Muffled Condition card."
    },
-   "critical": "Disable Bleeding effects on Harpy Attacks."
+   "critical": "Disable Bleeding effects on Harpy Attacks.",
+   "qeye": true
   },
   {
    "code": "CS1724",
@@ -770,7 +778,8 @@
     "FAIL": "Knockdown. Pull 3.",
     "WOUND": "Bleeding 1."
    },
-   "critical": "Until the end of Battle, when attacked from a Blindspot space, the Harpy has -1 AT."
+   "critical": "Until the end of Battle, when attacked from a Blindspot space, the Harpy has -1 AT.",
+   "qeye": false
   },
   {
    "code": "CS1725",
@@ -780,7 +789,8 @@
    "responses": {
     "INSTINCT": "Perform Signature against the Attacker."
    },
-   "critical": "Discard 1 Rapid Adaptation token from the Board. If there aren't any, another Titan may move up to 4 spaces and perform a Bonus Attack!"
+   "critical": "Discard 1 Rapid Adaptation token from the Board. If there aren't any, another Titan may move up to 4 spaces and perform a Bonus Attack!",
+   "qeye": false
   },
   {
    "code": "CS1726",
@@ -791,7 +801,8 @@
     "FAIL": "Pull 3. Gain the Muffled Condition card.",
     "WOUND": "⚡ Gain Bleeding up to 2. The Harpy moves to the center of the Board and turns to face the most Titans."
    },
-   "critical": "Deal an additional Single Wound!"
+   "critical": "Deal an additional Single Wound!",
+   "qeye": false
   },
   {
    "code": "CS1727",
@@ -802,7 +813,8 @@
     "FAIL": "Gain the Sealed Condition card.",
     "WOUND": "Gain the Priority Target token. Perform Signature against the Attacker."
    },
-   "critical": "Disable the Muffled and Sealed Conditions. Discard all Muffled and Sealed Condition cards from Titans."
+   "critical": "Disable the Muffled and Sealed Conditions. Discard all Muffled and Sealed Condition cards from Titans.",
+   "qeye": false
   },
   {
    "code": "CS1728",
@@ -812,7 +824,8 @@
    "responses": {
     "INSTINCT": "Gain Bleeding up to 3. Place an additional generic token as a Rapid Adaptation token on any space of the Icarian Adaptation Board."
    },
-   "critical": "Discard 1 Rapid Adaptation token from the Board. If there aren't any, another Titan may move up to 5 spaces and perform a Bonus Attack!"
+   "critical": "Discard 1 Rapid Adaptation token from the Board. If there aren't any, another Titan may move up to 5 spaces and perform a Bonus Attack!",
+   "qeye": false
   },
   {
    "code": "CS1729",
@@ -823,7 +836,8 @@
     "FAIL": "Draw an Obol.",
     "WOUND": "Pushback 3. Discard the Bleeding Condition card."
    },
-   "critical": "Gain the Spherecast card (campaign)."
+   "critical": "Gain the Spherecast card (campaign).",
+   "qeye": true
   },
   {
    "code": "CS1730",
@@ -834,7 +848,8 @@
     "FAIL": "Pull 3. Draw a Moiros card.",
     "WOUND": "Perform Signature against the Attacker."
    },
-   "critical": "The Harpy dies!"
+   "critical": "The Harpy dies!",
+   "qeye": true
   },
   {
    "code": "CS1731",
@@ -844,7 +859,8 @@
    "responses": {
     "INSTINCT": "Gain the Sealed Condition card."
    },
-   "critical": "The Predator Trait treats 1 Bleeding token as not having the Bleeding Condition at all. Gain +1 Echo of Recollection (campaign)."
+   "critical": "The Predator Trait treats 1 Bleeding token as not having the Bleeding Condition at all. Gain +1 Echo of Recollection (campaign).",
+   "qeye": false
   },
   {
    "code": "CS1732",
@@ -854,7 +870,8 @@
    "responses": {
     "INSTINCT": "⚡ Gain Bleeding up to 3. The Harpy moves to the center of the Board and turns to face the most Titans."
    },
-   "critical": "You may perform a Bonus Attack, ignoring the Rapid Adaptation Trait!"
+   "critical": "You may perform a Bonus Attack, ignoring the Rapid Adaptation Trait!",
+   "qeye": false
   },
   {
    "code": "CS1733",
@@ -864,7 +881,8 @@
    "responses": {
     "INSTINCT": "Perform Signature against the Attacker."
    },
-   "critical": "You may perform a Bonus Attack, ignoring the Rapid Adaptation Trait!"
+   "critical": "You may perform a Bonus Attack, ignoring the Rapid Adaptation Trait!",
+   "qeye": false
   }
  ],
  "raTokens": {

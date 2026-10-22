@@ -1,3 +1,4 @@
+const OPPD_M = { N: 'S', S: 'N', E: 'W', W: 'E' };
 // Cycle IV — Midascore (Imperial Impetus, Airburst, Midas X, Impaled, Incremental Painment, Curses)
 import { Board, key, cellLabel, DIRS, DIR_LIST, OPP } from './core.js';
 
@@ -13,7 +14,7 @@ export function installMidas(Game, { TitanDied, BattleOver }) {
     goldtaste(t) { return this.trait('Goldtaste') && this.goldthirst(t); },
     mGate(t, m, f) { if (!t) return false; if (this.goldtaste(t)) return true; return (m != null && this.midas(t) >= m) || (f != null && this.effFate(t) >= f); },
     async midasX(t, n, why = '') {
-      if (!t || !t.alive || n <= 0) return; if (this.prim.disabled.midasX && !why) { this.say('(Midas X 비활성)'); return; }
+      if (!t || !t.alive || n <= 0) return; if (this.prim.disabled.midasX && (!why || why === 'Impaled')) { this.say('(Midas X 비활성)'); return; }
       this.say(`${t.name}: Midas ${n}${why ? ` (${why})` : ''}`, 'bad'); await this.gainMidas(t, n);
     },
     iremTowers() { const seen = new Map(); for (const ter of this.board.terrain.values()) if (ter.irem === 'tower' && !seen.has(ter.id)) seen.set(ter.id, ter); return [...seen.values()]; },
@@ -115,7 +116,7 @@ export function installMidas(Game, { TitanDied, BattleOver }) {
       await this.midasX(t, 2, 'Impaled'); if (!t.alive) return; const x = this.midas(t); await this.gainDanger(t, x + 5, { source: 'Impaled', skipTrauma: true }); if (!t.alive) return; await this.traumaDraw(t);
     },
     // ---------- Incremental Painment ----------
-    painAdd(n, why) { if (!this.trait('Incremental Painment') || n <= 0) return; this.prim.painment = (this.prim.painment || 0) + n; this.say(`Incremental Painment +${n} (${why}) → ${this.prim.painment}/5`, 'ai'); if (this.prim.painment >= 5) { this.prim.painment -= 5; this.say('Incremental Painment 5 — 현재 액션 후 Signature!', 'bad'); this.pendingSignature = true; } },
+    painAdd(n, why) { if (!this.trait('Incremental Painment') || n <= 0) return; this.prim.painment = (this.prim.painment || 0) + n; this.say(`Incremental Painment +${n} (${why}) → ${this.prim.painment}/5`, 'ai'); while (this.prim.painment >= 5) { this.prim.painment -= 5; this.say('Incremental Painment 5 — 현재 액션 후 Signature!', 'bad'); this.pendingSigN = (this.pendingSigN || 0) + 1; this.pendingSignature = true; } },
     async midasOnDeath(t) {
       const n = this.midas(t); if (!n || !(this.trait('Weight of Greed') || this.trait('Debts of Succession'))) return;
       let rest = n; if (this.trait('Weight of Greed')) { const h = Math.ceil(n / 2); rest = n - h; this.painAdd(h, `Weight of Greed: ${t.name}`); }
@@ -139,10 +140,12 @@ export function installMidas(Game, { TitanDied, BattleOver }) {
       const deal = (d, h = hits) => this.dealFD(t, 0, d, card, h, null, { laser });
       for (let i = 0; i < parts.length; i++) {
         if (!t.alive || t.offBoard) return true; let p = parts[i]; const win = p.startsWith('⚡'); p = p.replace(/^⚡\s*/, '');
-        if (win) { if (/^Knockdown/.test(p) && t._noKDWin) {} else await this.reactionWindow(t, card, p); if (!t.alive) return true; }
+        if (win) { if ((/^Knockdown/.test(p) && t._noKDWin) || (/^If you're not Impaled/.test(p) && t.impaled)) {} else await this.reactionWindow(t, card, p); if (!t.alive) return true; }
+        if (/^Turn the Midascore to face directly away from the Target\.$/.test(p)) continue;
+        if (/^X is the number of Midas tokens you have/.test(p)) continue;
         if ((m = /^Midas (\d)\.$/.exec(p))) { await this.midasX(t, +m[1]); continue; }
         if ((m = /^Each hit deals (\d) DANGER and Midas (\d)\.$/.exec(p))) { await deal(+m[1] * hits); if (t.alive) await this.midasX(t, +m[2] * hits); continue; }
-        if ((m = /^If the Attack hits, it deals (\d) DANGER and Midas (\d)\.$/.exec(p))) { await deal(+m[1], 1); if (t.alive) await this.midasX(t, +m[2]); continue; }
+        if ((m = /^If the Attack hits, it deals (\d) DANGER and Midas (\d)\.$/.exec(p))) { await deal(+m[1]); if (t.alive) await this.midasX(t, +m[2]); continue; }
         if ((m = /^Each hit deals (\d) DANGER\.$/.exec(p))) { await deal(+m[1] * hits); continue; }
         if (/^Two or more hits, you are Impaled\.$/.test(p)) { if (hits >= 2) await this.impale(t); continue; }
         if (/^If you're not Impaled, Knockdown\.$/.test(p)) { if (!t.impaled) await this.knockdown(t); continue; }
@@ -200,7 +203,7 @@ export function installMidas(Game, { TitanDied, BattleOver }) {
     // ---------- custom AI (curses, routine, Auric Ray) ----------
     async midasAI(card, { isSignature = false, forcedTarget = null } = {}) {
       const M = card.midas || {};
-      if (M.routine) { this.say(`ROUTINE 「${card.name}」: ${card.text}`, 'ai'); for (const x of this.liveTitans()) await this.solo(async () => { await this.midasX(x, 2); if (x.alive) await this.gainAmbrosia(x, 2); }); return; }
+      if (M.routine) { this.say(`ROUTINE 「${card.name}」: ${card.text}`, 'ai'); for (const x of this.liveTitans()) await this.solo(async () => { await this.midasX(x, 2, 'tokens'); if (x.alive) await this.gainAmbrosia(x, 2); }); return; }
       if (M.curse) {
         const [head, ...rest] = card.text.split(' — ')[1].split(/:\s/); const body = rest.join(': ');
         const fm = /FATE (\d)\+/.exec(head); const need = fm ? +fm[1] : 6;
@@ -210,22 +213,24 @@ export function installMidas(Game, { TitanDied, BattleOver }) {
         // first sentences up to the first "board-wide" one apply to the cursed titan
         const boardIdx = sents.findIndex(x => /^(Airburst|Remove \d+ empty|Each Titan)/.test(x)); const own = boardIdx < 0 ? sents : sents.slice(0, boardIdx); const all = boardIdx < 0 ? [] : sents.slice(boardIdx);
         this.say(`CURSE 「${card.name}」 — ${tg ? `${tg.name} (Fate ${tg.fate}${this.goldtaste(tg) ? ', Goldtaste' : ''})` : `Fate ${need}+ 타이탄 없음`}`, 'ai');
-        if (tg) for (const s of own) await this.solo(() => this.doEffects(tg, s, { card }));
+        this._curseImm = new Set(); for (const x of this.liveTitans()) if (await this.curseIgnore(x, card)) this._curseImm.add(x);
+        if (tg && !this._curseImm.has(tg)) { await this.reactionWindow(tg, card, head.trim()); if (tg.alive) for (const s of own) await this.solo(() => this.doEffects(tg, s, { card })); }
         for (let i = 0; i < all.length; i++) {
           let s = all[i]; const win = s.startsWith('⚡'); s = s.replace(/^⚡\s*/, '');
           if (win) await this.reactionWindow(this.liveTitans()[0], card, s);
           let m;
-          if ((m = /^Airburst (\d+)\.$/.exec(s))) { const hit = await this.airburst(+m[1]); const nx = all[i + 1] || ''; let mm; if ((mm = /^Every affected Titan gains (\d) Midas tokens\.$/.exec(nx))) { i++; for (const x of hit) if (x.alive) await this.solo(() => this.midasX(x, +mm[1])); } continue; }
+          if ((m = /^Airburst (\d+)\.$/.exec(s))) { const hit = await this.airburst(+m[1]); const nx = all[i + 1] || ''; let mm; if ((mm = /^Every affected Titan gains (\d) Midas tokens\.$/.exec(nx))) { i++; for (const x of hit) if (x.alive && !this._curseImm.has(x)) await this.solo(() => this.midasX(x, +mm[1], 'tokens')); } continue; }
           if ((m = /^Remove (\d+) empty Terrain tiles from the Battle Board\.$/.exec(s))) { await this.removeEmptyTiles(+m[1]); continue; }
-          if ((m = /^Each Titan gains (\d) Midas tokens\.$/.exec(s))) { for (const x of this.liveTitans()) await this.solo(() => this.midasX(x, +m[1])); continue; }
-          if ((m = /^Each Titan without an Umbrella Gear card gains (\d) Midas tokens and (\d) Ambrosia tokens\.$/.exec(s))) { for (const x of this.liveTitans()) { if (x.gear.some(g => !g.discarded && (g.card.traits || []).includes('Umbrella'))) { this.say(`${x.name}: Umbrella — Auric Rain 무시`, 'good'); continue; } await this.solo(async () => { await this.midasX(x, +m[1]); if (x.alive) await this.gainAmbrosia(x, +m[2]); }); } continue; }
+          if ((m = /^Each Titan gains (\d) Midas tokens\.$/.exec(s))) { for (const x of this.liveTitans().filter(y => !this._curseImm.has(y))) await this.solo(() => this.midasX(x, +m[1], 'tokens')); continue; }
+          if ((m = /^Each Titan without an Umbrella Gear card gains (\d) Midas tokens and (\d) Ambrosia tokens\.$/.exec(s))) { for (const x of this.liveTitans().filter(y => !this._curseImm.has(y))) { if (x.gear.some(g => !g.discarded && (g.card.traits || []).includes('Umbrella'))) { this.say(`${x.name}: Umbrella — Auric Rain 무시`, 'good'); continue; } await this.solo(async () => { await this.midasX(x, +m[1], 'tokens'); if (x.alive) await this.gainAmbrosia(x, +m[2]); }); } continue; }
           await this.solo(() => this.doEffects(this.liveTitans()[0], s, { card }));
         }
+        this._curseImm = null;
         if (card.midas.after) await this.doEffects(this.liveTitans()[0], card.midas.after, { card });
         return;
       }
       if (M.laser) {
-        let tgt = forcedTarget || await this.unearthly(card, this.pickTarget(card.target, true)); if (!tgt) { this.say('유효한 타겟 없음 → Signature', 'ai'); return this.resolveAI(this.sig, { isSignature: true }); }
+        let tgt = forcedTarget || await this.unearthly(card, this.pickTarget(card.target, true)); if (!tgt) { this.say('유효한 타겟 없음 → Routine', 'ai'); return this.resolveRoutine(this.routine); }
         this.say(`타겟: ${tgt.name}`);
         if (this.mGate(tgt, null, 6)) this.say(`${tgt.name}: Fate 6+ — ⚡ 무시`, 'bad'); else { await this.reactionWindow(tgt, card, 'MOVE LATERAL & ATTACK'); if (!tgt.alive) return; }
         if (!tgt.impaled && !tgt.onVP) await this.laserLateral(tgt);
@@ -251,7 +256,7 @@ export function installMidas(Game, { TitanDied, BattleOver }) {
       if (/^Deal an additional Single Wound/.test(c)) { A.extraWound = 1; return true; }
       if (/^Each Titan may perform Unholy Alchemy/.test(c)) { for (const x of this.liveTitans().filter(y => this.midas(y) > 0)) { const ok = await this.ask({ type: 'yn', titan: x, title: `${x.name}: Unholy Alchemy? (Midas ${this.midas(x)} → Ambrosia)`, options: [{ label: '사용', value: true }, { label: '패스', value: false }] }); if (ok) await this.solo(() => this.unholyAlchemy(x)); } return true; }
       if (/^Create the Vantage Point\. If the VP is already in play, gain \+2 Precision/.test(c)) { if (this.prim.vp.created) { this.prim.longNeck = true; this.say('Long Neck: 전투 끝까지 VP 위 또는 Impaled 상태로 공격 시 +2 Precision', 'good'); } else this.createVP(null); return true; }
-      if (/^Create the Vantage Point\. If the VP is already in play, during the second ability window place 1 negative AT/.test(c)) { if (this.prim.vp.created) { A.negATWin2 = true; this.kratosPool.negAT = (this.kratosPool.negAT || 0) + 1; this.say('Muscle Floaters: VP 이미 있음 — Kratos Pool에 −AT 토큰 1개', 'good'); } else this.createVP(null); return true; }
+      if (/^Create the Vantage Point\. If the VP is already in play, during the second ability window place 1 negative AT/.test(c)) { if (this.prim.vp.created) { A.vpNegAT = true; (0) && 0; this.say('Muscle Floaters: VP 이미 있음 — Kratos Pool에 −AT 토큰 1개', 'good'); } else this.createVP(null); return true; }
       if (/^Create the Vantage Point and immediately climb it/.test(c)) { this.createVP(null); if (t.alive && !t.onVP && this.vpRoom()) { if (t.impaled) t.impaled = false; this.mountVP(t, 'Immovable Horn'); } this.say('(Bihorn Lance — 캠페인 보상)', 'sys'); return true; }
       if (/^Gain the Enriched Condition card/.test(c)) { await this.midasCondition(t, 'Enriched'); return true; }
       if (/^Until the end of Battle, Imperial Impetus distance is halved/.test(c)) { this.prim.halfImpetus = true; this.say(`Imperial Impetus 거리 절반 → ${this.impetusDist()}`, 'good'); return true; }

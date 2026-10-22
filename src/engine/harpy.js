@@ -152,7 +152,7 @@ export function installHarpy(Game, { TitanDied, BattleOver }) {
       let tgt = forcedTarget && forcedTarget.alive && !forcedTarget.offBoard ? forcedTarget : null;
       if (!tgt && H.predation) tgt = this.predatorTarget();
       if (!tgt) { this._rangeCard = card.range ? card : null; tgt = this.pickTarget(card.target, !card.range); this._rangeCard = null; tgt = await this.unearthly(card, tgt); }
-      if (!tgt) { this.say('유효한 타겟 없음 → Signature', 'ai'); if (card !== this.sig) return this.resolveAI(this.sig, { isSignature: true }); if (this.routine && !this.prim.disabled.routine) { this.say('Signature도 타겟 없음 → Routine', 'ai'); return this.resolveRoutine(this.routine); } return; }
+      if (!tgt) { if (/Signature/.test(card.noTarget || '') && card !== this.sig) { this.say('유효한 타겟 없음 → Signature', 'ai'); return this.resolveAI(this.sig, { isSignature: true }); } if (this.routine && card !== this.routine && !this.prim.disabled.routine) { this.say('유효한 타겟 없음 → Routine', 'ai'); return this.resolveRoutine(this.routine); } return; }
       this.say(`타겟: ${tgt.name}`);
       if (H.regurg) await this.harpyRegurgitate();
       try { await this.harpyOne(card, tgt); } catch (e) { if (e instanceof BattleOver) throw e; if (!(e instanceof TitanDied) && !e.chainBreak) throw e; }

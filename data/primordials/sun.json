@@ -17,7 +17,7 @@
   "h": 3,
   "rear": "top-edge"
  },
- "ukb": 5,
+ "ukb": 10,
  "blindspots": null,
  "levels": {
   "1": {
@@ -206,7 +206,10 @@
     ]
    },
    "afterFinal": "⚡ Glaciate the Time Anchor of the Titan with the lowest FATE.",
-   "text_pre": "Rewind the Titan with the highest FATE."
+   "text_pre": "Rewind the Titan with the highest FATE.",
+   "stepJoin": [
+    2
+   ]
   },
   {
    "code": "CR1735",
@@ -221,7 +224,7 @@
     "Titan on the lowest occupied VP"
    ],
    "steps": [
-    "⚡ MOVE & ATTACK | PARADOX 2+ or FATE 4+: +1 EVADE_DICE",
+    "⚡ MOVE & ATTACK\n| PARADOX 2+ or FATE 4+: +1 EVADE_DICE",
     "Gain +1 FATE.",
     "Each hit deals 2 DANGER.",
     "Knockdown."
@@ -279,7 +282,11 @@
      }
     ]
    },
-   "afterFinal": "⚡ Place a Black Lake tile under the Zone."
+   "afterFinal": "⚡ Place a Black Lake tile under the Zone.",
+   "stepJoin": [
+    2,
+    3
+   ]
   },
   {
    "code": "CR1736",
@@ -294,7 +301,7 @@
     "Titan on the highest occupied VP"
    ],
    "steps": [
-    "MOVE LATERAL & ATTACK | PARADOX 2+ or FATE 4+: Triple Laser Attack instead",
+    "MOVE LATERAL & ATTACK\n| PARADOX 2+ or FATE 4+: Triple Laser Attack instead",
     "Each hit deals 3 DANGER.",
     "Burn."
    ],
@@ -325,7 +332,10 @@
     ]
    },
    "after": "Rewind.",
-   "text_pre": "Glaciate D12, J14 and H16."
+   "text_pre": "Glaciate D12, J14 and H16.",
+   "stepJoin": [
+    2
+   ]
   },
   {
    "code": "CR1737",
@@ -339,7 +349,7 @@
     "Zone 1"
    ],
    "steps": [
-    "⚡ JUDGE (Courage/Will) | PARADOX 3+ or FATE 5+: Ignore the ⚡",
+    "⚡ JUDGE (Courage/Will)\n| PARADOX 3+ or FATE 5+: Ignore the ⚡",
     "Each hit deals 1 FATE and 2 DANGER.",
     "Death 3.",
     "Time-clocked."
@@ -362,7 +372,11 @@
      }
     ]
    },
-   "after": "⚡ Place your Time Anchor adjacent to the Sun Descendant."
+   "after": "⚡ Place your Time Anchor adjacent to the Sun Descendant.",
+   "stepJoin": [
+    2,
+    3
+   ]
   },
   {
    "code": "CR1738",
@@ -417,7 +431,12 @@
      }
     ]
    },
-   "afterFinal": "⚡ Giant Glaciate C17-D18. | FATE 5+: Do not Glaciate"
+   "afterFinal": "⚡ Giant Glaciate C17-D18. | FATE 5+: Do not Glaciate",
+   "stepJoin": [
+    2,
+    3,
+    4
+   ]
   },
   {
    "code": "CR1739",
@@ -432,7 +451,7 @@
     "Titan on the highest occupied VP"
    ],
    "steps": [
-    "⚡ MOVE LATERAL & ATTACK | PARADOX 3+ or FATE 5+: Ignore the ⚡",
+    "⚡ MOVE LATERAL & ATTACK\n| PARADOX 3+ or FATE 5+: Ignore the ⚡",
     "Gain +1 FATE.",
     "Each hit deals 2 DANGER."
    ],
@@ -465,7 +484,10 @@
     ]
    },
    "after": "⚡ Knockback 8.",
-   "text_pre": "Glaciate C15, I12 and J9. | FATE 7+: Do not Glaciate"
+   "text_pre": "Glaciate C15, I12 and J9. | FATE 7+: Do not Glaciate",
+   "stepJoin": [
+    2
+   ]
   },
   {
    "code": "CR1740",
@@ -534,7 +556,12 @@
      }
     ]
    },
-   "afterFinal": "⚡ Place a Black Lake tile under the Zone."
+   "afterFinal": "⚡ Place a Black Lake tile under the Zone.",
+   "stepJoin": [
+    2,
+    3,
+    4
+   ]
   },
   {
    "code": "CR1741",
@@ -548,7 +575,7 @@
     "Zone 1"
    ],
    "steps": [
-    "⚡ JUDGE (Courage/Will) | PARADOX 5+ or FATE 9+: You are erased from existence",
+    "⚡ JUDGE (Courage/Will)\n| PARADOX 5+ or FATE 9+: You are erased from existence",
     "Each hit deals 2 FATE and 3 DANGER.",
     "Death 2.",
     "Time-clocked."
@@ -572,7 +599,11 @@
      }
     ]
    },
-   "after": "⚡ Place your Time Anchor adjacent to the Sun Descendant."
+   "after": "⚡ Place your Time Anchor adjacent to the Sun Descendant.",
+   "stepJoin": [
+    2,
+    3
+   ]
   },
   {
    "code": "CR1742",
@@ -585,7 +616,7 @@
     "Unshaded Board"
    ],
    "steps": [
-    "⚡ SUN MOVE & ATTACK | PARADOX 3+ or FATE 6+: Ignore the ⚡",
+    "⚡ SUN MOVE & ATTACK\n| PARADOX 3+ or FATE 6+: Ignore the ⚡",
     "Each hit deals 3 DANGER and 1 FATE.",
     "Burn."
    ],
@@ -623,7 +654,10 @@
     ]
    },
    "afterFinal": "⚡ Giant Glaciate K17-L18. | ▽5+: Do not Glaciate",
-   "text_pre": "Glaciate D9, F13 and I7."
+   "text_pre": "Glaciate D9, F13 and I7.",
+   "stepJoin": [
+    2
+   ]
   },
   {
    "code": "CR1743",
@@ -638,7 +672,7 @@
     "Titan on the highest occupied VP"
    ],
    "steps": [
-    "⚡ MOVE LATERAL & ATTACK | PARADOX 3+ or FATE 6+: Omnilaser Attack instead",
+    "⚡ MOVE LATERAL & ATTACK\n| PARADOX 3+ or FATE 6+: Omnilaser Attack instead",
     "Each hit deals 4 DANGER.",
     "Burn."
    ],
@@ -668,7 +702,10 @@
     ]
    },
    "after": "Rewind.",
-   "text_pre": "Glaciate D12, J14 and H16."
+   "text_pre": "Glaciate D12, J14 and H16.",
+   "stepJoin": [
+    2
+   ]
   },
   {
    "code": "CR1744",
@@ -682,7 +719,7 @@
     "Zone 1"
    ],
    "steps": [
-    "⚡ JUDGE (Will/Endurance) | PARADOX 3+ or FATE 6+: Ignore the ⚡",
+    "⚡ JUDGE (Will/Endurance)\n| PARADOX 3+ or FATE 6+: Ignore the ⚡",
     "Each hit deals 2 DANGER.",
     "Knockdown.",
     "Knockback 12."
@@ -706,7 +743,11 @@
      }
     ]
    },
-   "afterFinal": "⚡ Sun Move."
+   "afterFinal": "⚡ Sun Move.",
+   "stepJoin": [
+    2,
+    3
+   ]
   },
   {
    "code": "CR1745",
@@ -750,7 +791,10 @@
     ]
    },
    "after": "⚡ Rewind.",
-   "text_pre": "Glaciate C5, F8 and I12. | FATE 6+: Do not Glaciate"
+   "text_pre": "Glaciate C5, F8 and I12. | FATE 6+: Do not Glaciate",
+   "stepJoin": [
+    2
+   ]
   },
   {
    "code": "CR1746",
@@ -765,7 +809,7 @@
     "Titan on the highest occupied VP"
    ],
    "steps": [
-    "⚡ MOVE & JUDGE (Will/Endurance) | PARADOX 4+ or FATE 9+: You are erased from existence",
+    "⚡ MOVE & JUDGE (Will/Endurance)\n| PARADOX 4+ or FATE 9+: You are erased from existence",
     "One hit, draw an Obol, two hits die, three hits you are incinerated.",
     "Burn."
    ],
@@ -825,7 +869,10 @@
      }
     ]
    },
-   "afterFinal": "⚡ Place a Black Lake tile under the Zone."
+   "afterFinal": "⚡ Place a Black Lake tile under the Zone.",
+   "stepJoin": [
+    2
+   ]
   },
   {
    "code": "CR1747",
@@ -841,7 +888,7 @@
     "Titan on the highest occupied VP"
    ],
    "steps": [
-    "⚡ MOVE LATERAL & ATTACK | PARADOX 2+ or FATE 8+: Ignore the ⚡",
+    "⚡ MOVE LATERAL & ATTACK\n| PARADOX 2+ or FATE 8+: Ignore the ⚡",
     "This Attack cannot be evaded. Each Titan hit dies."
    ],
    "sun": {
@@ -880,7 +927,7 @@
     "Zone 2"
    ],
    "steps": [
-    "⚡ JUDGE (Courage/Will) | PARADOX 4+ or FATE 9+: You are erased from existence",
+    "⚡ JUDGE (Courage/Will)\n| PARADOX 4+ or FATE 9+: You are erased from existence",
     "Each hit deals 3 FATE and 4 DANGER.",
     "Death 1.",
     "Time-clocked."
@@ -904,7 +951,11 @@
      }
     ]
    },
-   "after": "⚡ Place your Time Anchor adjacent to the Sun Descendant."
+   "after": "⚡ Place your Time Anchor adjacent to the Sun Descendant.",
+   "stepJoin": [
+    2,
+    3
+   ]
   },
   {
    "code": "CR1749",
@@ -958,7 +1009,10 @@
     ]
    },
    "after": "Rewind. Giant Glaciate K3-L4. | FATE 5+: Do not Glaciate",
-   "text_pre": "Glaciate C5, F8 and I12. | FATE 7+: Do not Glaciate"
+   "text_pre": "Glaciate C5, F8 and I12. | FATE 7+: Do not Glaciate",
+   "stepJoin": [
+    2
+   ]
   },
   {
    "code": "CR1750",
@@ -1072,7 +1126,7 @@
     "Titan on the highest occupied VP"
    ],
    "steps": [
-    "⚡ MOVE LATERAL & ATTACK | PARADOX 2+ or FATE 4+: Triple Laser Signature instead",
+    "⚡ MOVE LATERAL & ATTACK\n| PARADOX 2+ or FATE 4+: Triple Laser Signature instead",
     "Each hit deals 3 DANGER.",
     "Burn."
    ],
@@ -1090,7 +1144,10 @@
      }
     ]
    },
-   "after": "Rewind."
+   "after": "Rewind.",
+   "stepJoin": [
+    2
+   ]
   },
   {
    "code": "CR1754",
@@ -1172,7 +1229,8 @@
     "FAIL": "Rewind.",
     "WOUND": "Create a VP. Perform Signature against the Attacker."
    },
-   "critical": "Create a VP. You may perform a Bonus Attack!"
+   "critical": "Create a VP. You may perform a Bonus Attack!",
+   "qeye": true
   },
   {
    "code": "CS1756",
@@ -1183,7 +1241,8 @@
     "FAIL": "Death 3.",
     "WOUND": "Gain the Muffled Condition card."
    },
-   "critical": "Gain the Enigma of Transformation card (campaign)."
+   "critical": "Gain the Enigma of Transformation card (campaign).",
+   "qeye": true
   },
   {
    "code": "CS1757",
@@ -1191,9 +1250,10 @@
    "name": "Stump Tentacle",
    "at": 7,
    "responses": {
-    "INSTINCT": "All Titans in Zone 1: Gain +1 DANGER. ⚡ If adjacent, Time-clocked."
+    "INSTINCT": "All Titans in Zone 1: Gain +1 DANGER.\n⚡ If adjacent, Time-clocked."
    },
-   "critical": "Deal an additional Single Wound!"
+   "critical": "Deal an additional Single Wound!",
+   "qeye": false
   },
   {
    "code": "CS1758",
@@ -1204,7 +1264,8 @@
     "FAIL": "Gain FATE equal to the Primordial LVL. Time-clocked.",
     "WOUND": "Rewind."
    },
-   "critical": "Search the BP deck and choose 1 card to set aside. After Escalation, place the set aside card on top of the BP deck."
+   "critical": "Search the BP deck and choose 1 card to set aside. After Escalation, place the set aside card on top of the BP deck.",
+   "qeye": false
   },
   {
    "code": "CS1759",
@@ -1215,7 +1276,8 @@
     "FAIL": "Gain +1 FATE and the Muffled Condition card.",
     "WOUND": "Create a VP."
    },
-   "critical": "Create a VP. Until the end of Battle, when attacked from VP I, Sun Descendant has -1 AT."
+   "critical": "Create a VP. Until the end of Battle, when attacked from VP I, Sun Descendant has -1 AT.",
+   "qeye": false
   },
   {
    "code": "CS1760",
@@ -1226,7 +1288,8 @@
     "FAIL": "Perform Signature against the Attacker.",
     "WOUND": "Create a VP."
    },
-   "critical": "Create a VP. During Escalation, choose which BP II card to add to the deck (instead of drawing randomly)."
+   "critical": "Create a VP. During Escalation, choose which BP II card to add to the deck (instead of drawing randomly).",
+   "qeye": false
   },
   {
    "code": "CS1761",
@@ -1237,7 +1300,8 @@
     "FAIL": "Gain +1 FATE. Rewind.",
     "WOUND": "Knockback 7. Gain +2 DANGER."
    },
-   "critical": "Gain the Icarus Lot card (campaign)."
+   "critical": "Gain the Icarus Lot card (campaign).",
+   "qeye": false
   },
   {
    "code": "CS1762",
@@ -1245,14 +1309,15 @@
    "name": "Writhing Cephalomuscles",
    "at": 9,
    "responses": {
-    "FAIL": "All Titans in Zone 1: Gain +1 DANGER. ⚡ If adjacent, Time-clocked.",
+    "FAIL": "All Titans in Zone 1: Gain +1 DANGER.\n⚡ If adjacent, Time-clocked.",
     "WOUND": "Create a VP."
    },
    "critical": "Create a VP. Until the end of Battle, when attacked from VP II or VP III, Sun Descendant has -1 AT.",
    "spearBreak": 1,
    "notes": [
     "If your Weapon has the Spear Trait, immediately place 1 Break token in the Kratos Pool."
-   ]
+   ],
+   "qeye": false
   },
   {
    "code": "CS1763",
@@ -1269,7 +1334,8 @@
    ],
    "notes": [
     "When you attack from VP II or VP III, you may initiate a Combined Attack instead."
-   ]
+   ],
+   "qeye": false
   },
   {
    "code": "CS1764",
@@ -1280,7 +1346,8 @@
     "FAIL": "Knockback 7.",
     "WOUND": "Perform Signature against the Attacker."
    },
-   "critical": "Until the end of Battle, Laser Attacks deal -2 DANGER (to a minimum of 1). You may reset your FATE. You may perform a Bonus Attack!"
+   "critical": "Until the end of Battle, Laser Attacks deal -2 DANGER (to a minimum of 1). You may reset your FATE. You may perform a Bonus Attack!",
+   "qeye": true
   },
   {
    "code": "CS1765",
@@ -1288,7 +1355,7 @@
    "name": "Axlebones",
    "at": 10,
    "responses": {
-    "INSTINCT": "All Titans in Zone 2: Gain +1 DANGER. ⚡ If adjacent, Time-clocked."
+    "INSTINCT": "All Titans in Zone 2: Gain +1 DANGER.\n⚡ If adjacent, Time-clocked."
    },
    "critical": "Disable the Atemporal effect.",
    "spearBreak": 2,
@@ -1299,7 +1366,8 @@
    "notes": [
     "If your Weapon has the Spear Trait, immediately place 2 Break tokens in the Kratos Pool.",
     "When you attack from VP II or VP III, you may initiate a Combined Attack instead."
-   ]
+   ],
+   "qeye": false
   },
   {
    "code": "CS1766",
@@ -1310,7 +1378,8 @@
     "FAIL": "Gain +2 FATE. Gain the Sealed Condition card.",
     "WOUND": "Create a VP. Rewind. Time-clocked."
    },
-   "critical": "Create a VP. Disable the Time-clocked keyword."
+   "critical": "Create a VP. Disable the Time-clocked keyword.",
+   "qeye": true
   },
   {
    "code": "CS1767",
@@ -1321,7 +1390,8 @@
     "INSTINCT": "Create a VP. Perform Signature against the Attacker."
    },
    "critical": "The Sun Descendant dies!",
-   "atemporal": true
+   "atemporal": true,
+   "qeye": true
   },
   {
    "code": "CS1768",
@@ -1340,7 +1410,8 @@
    ],
    "notes": [
     "When you attack from VP III, you may initiate a Combined Attack instead."
-   ]
+   ],
+   "qeye": false
   },
   {
    "code": "CS1769",
@@ -1352,7 +1423,8 @@
     "WOUND": "Gain the Sealed Condition card. The Sun Descendant moves 6 spaces directly away from the Attacker (without turning)."
    },
    "critical": "Gain the Icarus's Fall card (campaign).",
-   "atemporal": true
+   "atemporal": true,
+   "qeye": false
   },
   {
    "code": "CS1770",
@@ -1363,8 +1435,9 @@
     "FAIL": "Gain +3 FATE. Draw a Moiros card.",
     "WOUND": "Create a VP."
    },
-   "critical": "Create a VP. Disable the Sun Descendant's Laser Attacks. After the Battle, resolve the Ton Asterion Special Event (campaign).",
-   "atemporal": true
+   "critical": "Create a VP. Disable the Sun Descendant's Laser Attacks. After the Battle, resolve the Ton Asterion Special Event.",
+   "atemporal": true,
+   "qeye": true
   },
   {
    "code": "CS1771",
@@ -1372,7 +1445,7 @@
    "name": "Hidden Staircase",
    "at": 18,
    "responses": {
-    "INSTINCT": "All Titans in Zone 2: Gain +1 DANGER. ⚡ If adjacent, Time-clocked."
+    "INSTINCT": "All Titans in Zone 2: Gain +1 DANGER. If adjacent, Time-clocked."
    },
    "critical": "You may perform a Bonus Attack!",
    "combined": [
@@ -1381,7 +1454,8 @@
    ],
    "notes": [
     "When you attack from VP II or VP III, you may initiate a Combined Attack instead."
-   ]
+   ],
+   "qeye": false
   },
   {
    "code": "CS1772",
@@ -1399,7 +1473,8 @@
    ],
    "notes": [
     "When you attack from VP II or VP III, you may initiate a Combined Attack instead."
-   ]
+   ],
+   "qeye": true
   }
  ],
  "vp": {
@@ -1448,5 +1523,8 @@
    "anchor": "A9",
    "facing": "N"
   }
- }
+ },
+ "basicTraits": [
+  "Lumbering"
+ ]
 }

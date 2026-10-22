@@ -64,7 +64,7 @@ export function installSun(Game, { TitanDied, BattleOver }) {
       if (this.anchors) this.voraciousStep && this.trait('Voracious Parasite') && this.voraciousStep();
       this.notify();
     },
-    shaded(p) { const f = this.prim.facing; const q = { c: p.c - DIRS[f][0], r: p.r - DIRS[f][1] }; if (!this.board.inBounds(q.c, q.r)) return false; const ter = this.board.terrainAt(q.c, q.r); return !!(ter && (ter.obstacle || ter.obscuring)); },
+    shaded(p) { const f = this.prim.facing; const q = { c: p.c - DIRS[f][0], r: p.r - DIRS[f][1] }; if (!this.board.inBounds(q.c, q.r)) return false; const ter = this.board.terrainAt(q.c, q.r); if (ter && (ter.obstacle || ter.obscuring)) return true; const o = this.titanAt && this.titanAt(q.c, q.r); return !!(o && o.alive && !o.onVP && !o.offBoard); },
     unshadedCells() { const out = []; for (let c = 1; c <= this.board.cols; c++) for (let r = 1; r <= this.board.rows; r++) { const p = { c, r }; if (!this.primContains(p) && !this.shaded(p)) out.push(p); } return out; },
     sunTargets(allVP) { return this.liveTitans().filter(t => !t.offBoard && (t.onVP ? (allVP || this.vpUnshaded(t)) : !this.tShaded(t))); },
     // ---------- targeting helpers ----------
@@ -89,11 +89,11 @@ export function installSun(Game, { TitanDied, BattleOver }) {
       if (o.k === 'glac' || o.k === 'giant') { if (o.no && this.cond(o.no, ref)) { this.say(`${o.no.p ? `Paradox ${o.no.p}+` : `Fate ${o.no.f}+`} — Glaciate 하지 않음`); return; } this.placeIce(o.cells.map(parseCell), o.k === 'giant'); return; }
       if (o.k === 'rewindHigh') { const l = this.liveTitans().filter(x => !x.offBoard); if (!l.length) return; const mx = Math.max(...l.map(x => x.fate)); const v = l.find(x => x.fate === mx && x.pt) || l.find(x => x.fate === mx); this.say(`Fate 최고 ${v.name} — Rewind`); await this.solo(() => this.oracleRewind(v)); return; }
       if (o.k === 'glacAnchorLow') { const l = this.liveTitans().filter(x => this.anchors && this.anchors[x.id]); if (!l.length) return; const mn = Math.min(...l.map(x => x.fate)); const v = l.find(x => x.fate === mn); const a = this.anchors[v.id]; this.say(`Fate 최저 ${v.name}의 Time Anchor ${cellLabel(a)}에 Glaciate`); this.placeIce([a], false); return; }
-      if (o.k === 'rewind') { for (const x of ctx.hit) if (x.alive) await this.solo(() => this.oracleRewind(x)); return; }
-      if (o.k === 'kb') { for (const x of ctx.hit) if (x.alive && !x.offBoard && !x.onVP) await this.solo(() => this.knockback(x, o.n)); return; }
-      if (o.k === 'burn') { for (const x of ctx.hit) if (x.alive) await this.solo(() => this.burn(x, true)); return; }
+      if (o.k === 'rewind') { for (const x of (ctx.att || ctx.hit)) if (x.alive) await this.solo(() => this.oracleRewind(x)); return; }
+      if (o.k === 'kb') { for (const x of (ctx.att || ctx.hit)) if (x.alive && !x.offBoard) await this.solo(() => this.knockback(x, o.n)); return; }
+      if (o.k === 'burn') { for (const x of (ctx.att || ctx.hit)) if (x.alive) await this.solo(() => this.burn(x, true)); return; }
       if (o.k === 'sunMove') { await this.sunMove(); return; }
-      if (o.k === 'anchorAdj') { for (const x of ctx.hit) { if (!x.alive || !this.anchors) continue; const cand = Board.adjacentCells(this.primCells()).filter(p => this.board.inBounds(p.c, p.r) && !this.board.isObstacle(p.c, p.r)); if (!cand.length) continue; const d = cand.length === 1 ? cand[0] : (await this.ask({ type: 'move', titan: x, title: `${x.name}: Time Anchor를 놓을 Sun Descendant 인접 칸`, cells: cand, options: cand.map(q => ({ label: cellLabel(q), value: q })) })) || cand[0]; this.anchors[x.id] = { ...d }; this.say(`${x.name}: Time Anchor → ${cellLabel(d)}`); } return; }
+      if (o.k === 'anchorAdj') { for (const x of (ctx.att || ctx.hit)) { if (!x.alive || !this.anchors) continue; const cand = Board.adjacentCells(this.primCells()).filter(p => this.board.inBounds(p.c, p.r) && !this.board.isObstacle(p.c, p.r)); if (!cand.length) continue; const d = cand.length === 1 ? cand[0] : (await this.ask({ type: 'move', titan: x, title: `${x.name}: Time Anchor를 놓을 Sun Descendant 인접 칸`, cells: cand, options: cand.map(q => ({ label: cellLabel(q), value: q })) })) || cand[0]; this.anchors[x.id] = { ...d }; this.say(`${x.name}: Time Anchor → ${cellLabel(d)}`); } return; }
       if (o.k === 'blackLake') { const cells = (ctx.zoneCells || []).filter(p => this.board.inBounds(p.c, p.r) && !this.primContains(p) && !this.board.terrainAt(p.c, p.r)); this._blN = (this._blN || 0) + 1; for (const p of cells) this.board.terrain.set(key(p.c, p.r), { id: 'sbl' + this._blN, type: 'Black Lake', obstacle: false, obscuring: false, destructible: false, indestructible: true, slippery: true, cell: p }); this.say(`Zone 아래 Black Lake (${cells.length}칸, Slippery)`, 'ai'); this.notify(); return; }
     },
     // ---------- AI resolution ----------
@@ -123,11 +123,12 @@ export function installSun(Game, { TitanDied, BattleOver }) {
         else ctx.hit = await this.sunAttackAll(card, tg);
       } else if (S.mode === 'laser') {
         if (win && primary) await this.reactionWindow(primary, card, winLbl);
-        if (!primary.alive || primary.offBoard) return;
+        if (!primary.alive || primary.offBoard) { ctx.hit = []; } else {
         let kind = S.laser; if (S.up && this.cond(S.up, primary)) { kind = S.up.to; this.say(`Paradox ${S.up.p}+ 또는 Fate ${S.up.f}+ — ${kind === 'omni' ? 'Omnilaser' : 'Triple Laser'}`); }
         if (kind === 'triple' && this.prim.disabled.doubleLaser) kind = 'single';
         if (primary.onVP) { ctx.hit = await this.sunAttackAll(card, [primary]); }
         else { await this.laserLateral(primary); const c2 = { ...card, oracle: { laser: kind === 'triple' ? 'double' : kind, sideways: !!S.sideways } }; const { hits } = this.laserTargets(c2, primary); ctx.hit = await this.sunAttackAll(card, hits); }
+        }
       } else if (S.mode === 'zone' || S.mode === 'vpOrZone') {
         const zoneMode = !pick.vp && (S.mode === 'zone' || pick.zone);
         if (win) await this.reactionWindow(primary || this.liveTitans()[0] || this.titans[0], card, winLbl);
@@ -142,10 +143,10 @@ export function installSun(Game, { TitanDied, BattleOver }) {
       }
       // --- after ---
       const tail = [...(S.after || []), ...(S.afterFinal || [])];
-      for (const o of tail) { if (o.win && !(S.merciless && this.trait('God Given Law'))) await this.reactionWindow(ctx.hit.find(x => x.alive) || this.liveTitans()[0] || this.titans[0], card, 'After Attack'); await this.sunOp(o, card, primary, ctx); }
+      ctx.att = (this._sunAtt || ctx.hit || []).filter(Boolean); for (const o of tail) { if (o.win) await this.reactionWindow(ctx.hit.find(x => x.alive) || this.liveTitans()[0] || this.titans[0], card, 'After Attack'); await this.sunOp(o, card, primary, ctx); }
     },
     async sunAttackAll(card, list) {
-      const S = card.sun; const hitList = [];
+      const S = card.sun; const hitList = []; this._sunAtt = list.slice();
       for (const t of list) {
         if (!t.alive || t.offBoard) continue;
         try {
@@ -188,8 +189,8 @@ export function installSun(Game, { TitanDied, BattleOver }) {
       const c = A.bp.critical || '';
       if (/^Create a VP\. You may perform a Bonus Attack/.test(c)) { this.createVP(null); this.pendingFollowUp = t; return true; }
       if (/^Search the BP deck and choose 1 card to set aside/.test(c)) { if (!this.bp.cards.length) return true; const x = await this.ask({ type: 'choice', titan: t, title: 'Forewing: BP 덱에서 따로 둘 카드 (Escalation 후 BP 덱 맨 위로)', options: this.bp.cards.map(b => ({ label: `${b.name} (BP ${b.tier}, AT ${b.at})`, value: b })) }); this.bp.cards = this.bp.cards.filter(b => b !== x); this.prim.forewing = x; this.say(`Forewing: 「${x.name}」 따로 둠`, 'good'); return true; }
-      if ((/^Create a VP\. Until the end of Battle, when attacked from VP (I|II or VP III), Sun Descendant has -1 AT/.exec(c))) { this.createVP(null); if (/from VP I,/.test(c)) this.prim.vpLvlAT[1]++; else { this.prim.vpLvlAT[2]++; this.prim.vpLvlAT[3]++; } this.say('VP 공격 AT −1 (해당 VP)', 'good'); return true; }
-      if (/^Create a VP\. During Escalation, choose which BP II card/.test(c)) { this.createVP(null); this.chooseBP2 = true; this.chooseBP2Perm = true; return true; }
+      if ((/^Create a VP\. Until the end of Battle, when attacked from VP (I|II or VP III), Sun Descendant has -1 AT/.exec(c))) { this.createVP(null); if (/from VP I,/.test(c)) this.prim.vpLvlAT[1]++; else { this.prim.vpLvlAT[2]++; this.prim.vpLvlAT[3]++; } this.prim.vpMalusBy = this.prim.vpMalusBy || {}; this.say('VP 공격 AT −1 (해당 VP)', 'good'); return true; }
+      if (/^Create a VP\. During Escalation, choose which BP II card/.test(c)) { this.createVP(null); this.chooseBP2 = true; this.chooseBP2Perm = false; return true; }
       if (/^Create a VP\. Disable the Time-clocked keyword/.test(c)) { this.createVP(null); this.prim.disabled.clock = true; this.say('Time-clocked 비활성화', 'good'); return true; }
       if (/^Until the end of Battle, Laser Attacks deal -2 DANGER/.test(c)) { this.prim.laserMalus = (this.prim.laserMalus || 0) + 2; this.say('Laser Attack Danger −2', 'good'); if (t.fate > 0) { const ok = await this.ask({ type: 'yn', titan: t, title: `Lens-Eyes: Fate ${t.fate} → 0?`, options: [{ label: '초기화', value: true }, { label: '유지', value: false }] }); if (ok) t.fate = 0; } this.pendingFollowUp = t; return true; }
       if (/^Create a VP\. Disable the Sun Descendant's Laser Attacks/.test(c)) { this.createVP(null); this.prim.disabled.laser = true; this.say("Sun Descendant의 Laser Attack 비활성화", 'good'); return true; }

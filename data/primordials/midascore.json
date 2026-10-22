@@ -179,7 +179,7 @@
     "Furthest Titan in sight"
    ],
    "steps": [
-    "⚡ MOVE & ATTACK ALL TITANS IN PATH | MIDAS 2+ or FATE 4+: Ignore ⚡ preceding Knockdown",
+    "⚡ MOVE & ATTACK ALL TITANS IN PATH\n| MIDAS 2+ or FATE 4+: Ignore ⚡ preceding Knockdown",
     "Midas 2. Gain the Covetous Condition card.",
     "Each hit deals 3 DANGER.",
     "⚡ Knockdown."
@@ -187,7 +187,10 @@
    "midas": {},
    "path": true,
    "unlimited": true,
-   "afterFinal": "⚡ Imperial Impetus."
+   "afterFinal": "⚡ Imperial Impetus.",
+   "stepJoin": [
+    2
+   ]
   },
   {
    "code": "DR2399",
@@ -201,7 +204,7 @@
     "Furthest Titan in sight"
    ],
    "steps": [
-    "⚡ MOVE & ATTACK | FATE 4+: +1 EVADE_DICE",
+    "⚡ MOVE & ATTACK\n| FATE 4+: +1 EVADE_DICE",
     "Midas 1.",
     "Each hit deals 4 DANGER.",
     "Two or more hits, you are Impaled.",
@@ -209,7 +212,11 @@
    ],
    "midas": {},
    "unlimited": true,
-   "after": "⚡ Imperial Impetus."
+   "after": "⚡ Imperial Impetus.",
+   "stepJoin": [
+    2,
+    3
+   ]
   },
   {
    "code": "DR2398",
@@ -223,15 +230,16 @@
     "Furthest Titan in sight"
    ],
    "steps": [
-    "⚡ MOVE & ATTACK | MIDAS 1+ or FATE 4+: +1 EVADE_DICE",
-    "If the Attack hits, it deals 7 DANGER and Midas 1.",
+    "⚡ MOVE & ATTACK\n| MIDAS 1+ or FATE 4+: +1 EVADE_DICE",
+    "Turn the Midascore to face directly away from the Target. If the Attack hits, it deals 7 DANGER and Midas 1.",
     "⚡ Knockback 8 to the left or right."
    ],
    "midas": {
     "turnAway": true
    },
    "unlimited": true,
-   "after": "Imperial Impetus. ⚡ Imperial Impetus."
+   "after": "Imperial Impetus.\n⚡ Imperial Impetus.",
+   "afterAsStep": false
   },
   {
    "code": "DR2395",
@@ -245,14 +253,17 @@
     "Furthest Titan in sight"
    ],
    "steps": [
-    "⚡ MOVE & ATTACK | MIDAS 1+ or FATE 3+: +1 EVADE_DICE",
+    "⚡ MOVE & ATTACK\n| MIDAS 1+ or FATE 3+: +1 EVADE_DICE",
     "Midas 1.",
     "Each hit deals 3 DANGER.",
     "⚡ Airburst 2."
    ],
    "midas": {},
    "unlimited": true,
-   "after": "⚡ Knockback 12."
+   "after": "⚡ Knockback 12.",
+   "stepJoin": [
+    2
+   ]
   },
   {
    "code": "DR2396",
@@ -266,14 +277,18 @@
     "Furthest Titan in sight"
    ],
    "steps": [
-    "⚡ MOVE & ATTACK | FATE 3+: Evasion Roll difficulty 10+ instead",
+    "⚡ MOVE & ATTACK\n| FATE 3+: Evasion Roll difficulty 10+ instead",
     "Midas 1.",
     "Each hit deals 3 DANGER.",
     "Gain the Covetous Condition card."
    ],
    "midas": {},
    "unlimited": true,
-   "after": "⚡ Imperial Impetus."
+   "after": "⚡ Imperial Impetus.",
+   "stepJoin": [
+    2,
+    3
+   ]
   },
   {
    "code": "DR2397",
@@ -287,14 +302,17 @@
     "Furthest Titan in sight"
    ],
    "steps": [
-    "⚡ MOVE & ATTACK | FATE 3+: Evasion Roll difficulty 10+ instead",
+    "⚡ MOVE & ATTACK\n| FATE 3+: Evasion Roll difficulty 10+ instead",
     "Midas 1.",
     "Each hit deals 3 DANGER.",
     "⚡ Knockdown."
    ],
    "midas": {},
    "unlimited": true,
-   "after": "⚡ Imperial Impetus."
+   "after": "⚡ Imperial Impetus.",
+   "stepJoin": [
+    2
+   ]
   },
   {
    "code": "DR2401",
@@ -308,13 +326,16 @@
     "Closest Titan in sight"
    ],
    "steps": [
-    "⚡ RANGE ATTACK UNLIMITED | FATE 5+: Evasion Roll difficulty 9+ instead",
+    "⚡ RANGE ATTACK UNLIMITED\n| FATE 5+: Evasion Roll difficulty 9+ instead",
     "Each hit deals 3 DANGER and Midas 1.",
     "Gain 1 Ambrosia token."
    ],
    "midas": {},
    "range": 99,
-   "after": "⚡ Airburst 2."
+   "after": "⚡ Airburst 2.",
+   "stepJoin": [
+    2
+   ]
   },
   {
    "code": "DR2402",
@@ -328,7 +349,7 @@
     "Furthest Titan in sight"
    ],
    "steps": [
-    "⚡ MOVE & ATTACK | MIDAS 2+ or FATE 4+: +1 EVADE_DICE",
+    "⚡ MOVE & ATTACK\n| MIDAS 2+ or FATE 4+: +1 EVADE_DICE",
     "Each hit deals 4 DANGER.",
     "⚡ Airburst 3."
    ],
@@ -347,14 +368,19 @@
     "Zone 4"
    ],
    "steps": [
-    "⚡ ATTACK | FATE 6+: Evasion Roll difficulty 8+ instead",
+    "⚡ ATTACK\n| FATE 6+: Evasion Roll difficulty 8+ instead",
     "Midas 1. Gain the Covetous Condition card.",
     "Each hit deals 3 DANGER."
    ],
    "midas": {
     "zone": 4,
     "noHitAI": true
-   }
+   },
+   "stepJoin": [
+    2
+   ],
+   "afterFinal": "If no Titan was hit, draw another AI card.",
+   "afterWindow": true
   },
   {
    "code": "DR2405",
@@ -368,7 +394,7 @@
     "Furthest Titan in sight"
    ],
    "steps": [
-    "⚡ JUMP & ATTACK | FATE 4+: +1 EVADE_DICE",
+    "⚡ JUMP & ATTACK\n| FATE 4+: +1 EVADE_DICE",
     "Midas 3.",
     "Each hit deals 4 DANGER.",
     "Two or more hits, you are Impaled.",
@@ -376,7 +402,11 @@
    ],
    "midas": {},
    "jump": true,
-   "after": "⚡ Airburst 3."
+   "after": "⚡ Airburst 3.",
+   "stepJoin": [
+    2,
+    3
+   ]
   },
   {
    "code": "DR2404",
@@ -389,7 +419,8 @@
     "curse": "Dance — Closest Titan in sight with FATE 6+: Gain the Covetous Condition card. Airburst 5. Every affected Titan gains 2 Midas tokens. ⚡ Turn the Midascore in a random direction.",
     "after": "⚡ Draw another AI card."
    },
-   "text": "Dance — Closest Titan in sight with FATE 6+: Gain the Covetous Condition card. Airburst 5. Every affected Titan gains 2 Midas tokens. ⚡ Turn the Midascore in a random direction."
+   "text": "Dance — Closest Titan in sight with FATE 6+: Gain the Covetous Condition card. Airburst 5. Every affected Titan gains 2 Midas tokens. ⚡ Turn the Midascore in a random direction.",
+   "afterDisplay": "After Curse: Draw another AI card."
   },
   {
    "code": "DR2403",
@@ -403,7 +434,7 @@
     "Furthest Titan in sight"
    ],
    "steps": [
-    "⚡ MOVE & ATTACK ALL TITANS IN PATH | MIDAS 3+ or FATE 4+: Ignore ⚡ preceding Knockdown",
+    "⚡ MOVE & ATTACK ALL TITANS IN PATH\n| MIDAS 3+ or FATE 4+: Ignore ⚡ preceding Knockdown",
     "Midas 3. Gain the Covetous Condition card.",
     "Each hit deals 4 DANGER.",
     "⚡ Knockdown."
@@ -411,7 +442,10 @@
    "midas": {},
    "path": true,
    "unlimited": true,
-   "afterFinal": "⚡ Imperial Impetus."
+   "afterFinal": "⚡ Imperial Impetus.",
+   "stepJoin": [
+    2
+   ]
   },
   {
    "code": "DR2408",
@@ -425,7 +459,7 @@
     "Furthest Titan in sight"
    ],
    "steps": [
-    "⚡ MOVE & ATTACK ALL TITANS IN PATH | MIDAS 3+ or FATE 4+: Ignore ⚡ preceding Knockdown",
+    "⚡ MOVE & ATTACK ALL TITANS IN PATH\n| MIDAS 3+ or FATE 4+: Ignore ⚡ preceding Knockdown",
     "Midas 3. Gain the Greed-crazed Condition card.",
     "Each hit deals 4 DANGER.",
     "⚡ Knockdown. Airburst 3."
@@ -433,7 +467,10 @@
    "midas": {},
    "path": true,
    "unlimited": true,
-   "afterFinal": "⚡ Imperial Impetus."
+   "afterFinal": "⚡ Imperial Impetus.",
+   "stepJoin": [
+    2
+   ]
   },
   {
    "code": "DR2407",
@@ -447,7 +484,7 @@
     "Furthest Titan in sight"
    ],
    "steps": [
-    "⚡ MOVE LATERAL & ATTACK | FATE 6+: Ignore ⚡",
+    "⚡ MOVE LATERAL & ATTACK\n| FATE 6+: Ignore ⚡",
     "Three hits or MIDAS 3+, you die. Otherwise, each hit deals 4 DANGER and Midas 2."
    ],
    "midas": {
@@ -468,7 +505,7 @@
    ],
    "steps": [
     "JUDGE (Courage/Will)",
-    "Each hit deals 4 DANGER and Midas 1."
+    "X is the number of Midas tokens you have (minimum 3). Each hit deals 4 DANGER and Midas 1."
    ],
    "midas": {
     "diceMidas": 3
@@ -490,7 +527,8 @@
     "curse": "Topple — Closest Titan in sight with FATE 6+: Midas 1. Gain the Greed-crazed Condition card. Remove 8 empty Terrain tiles from the Battle Board. Each Titan gains 2 Midas tokens.",
     "after": "⚡ Draw another AI card."
    },
-   "text": "Topple — Closest Titan in sight with FATE 6+: Midas 1. Gain the Greed-crazed Condition card. Remove 8 empty Terrain tiles from the Battle Board. Each Titan gains 2 Midas tokens."
+   "text": "Topple — Closest Titan in sight with FATE 6+: Midas 1. Gain the Greed-crazed Condition card. Remove 8 empty Terrain tiles from the Battle Board. Each Titan gains 2 Midas tokens.",
+   "afterDisplay": "After Curse: Draw another AI card."
   },
   {
    "code": "DR2412",
@@ -505,13 +543,16 @@
     "Closest Titan in sight"
    ],
    "steps": [
-    "⚡ MOVE & ATTACK | MIDAS 3+ or FATE 6+: +1 EVADE_DICE",
+    "⚡ MOVE & ATTACK\n| MIDAS 3+ or FATE 6+: +1 EVADE_DICE",
     "If the Attack hits, it deals 9 DANGER and Midas 5.",
     "If you survive, gain the Goldthirst Curse Affliction."
    ],
    "midas": {},
    "unlimited": true,
-   "after": "⚡ Imperial Impetus."
+   "after": "⚡ Imperial Impetus.",
+   "stepJoin": [
+    2
+   ]
   },
   {
    "code": "DR2411",
@@ -524,7 +565,8 @@
     "curse": "Rain — Closest Titan in sight with FATE 6+: Midas 1. Gain the Greed-crazed Condition card. Each Titan without an Umbrella Gear card gains 3 Midas tokens and 3 Ambrosia tokens.",
     "after": "⚡ Draw another AI card."
    },
-   "text": "Rain — Closest Titan in sight with FATE 6+: Midas 1. Gain the Greed-crazed Condition card. Each Titan without an Umbrella Gear card gains 3 Midas tokens and 3 Ambrosia tokens."
+   "text": "Rain — Closest Titan in sight with FATE 6+: Midas 1. Gain the Greed-crazed Condition card. Each Titan without an Umbrella Gear card gains 3 Midas tokens and 3 Ambrosia tokens.",
+   "afterDisplay": "After Curse: Draw another AI card."
   },
   {
    "code": "DR2414",
@@ -533,7 +575,7 @@
    "kind": "ROUTINE",
    "target": [],
    "steps": [],
-   "text": "Each Titan gains 2 Midas tokens and 2 Ambrosia tokens.",
+   "text": "Lose -1 (campaign token). Each Titan gains 2 Midas tokens and 2 Ambrosia tokens.",
    "midas": {
     "routine": true
    }
@@ -550,7 +592,7 @@
     "Furthest Titan in sight"
    ],
    "steps": [
-    "⚡ MOVE & ATTACK ALL TITANS IN PATH | FATE 7+: Ignore ⚡ preceding Knockdown",
+    "⚡ MOVE & ATTACK ALL TITANS IN PATH\n| FATE 7+: Ignore ⚡ preceding Knockdown",
     "Midas 1.",
     "Each hit deals 3 DANGER.",
     "⚡ Knockdown."
@@ -558,7 +600,10 @@
    "midas": {},
    "path": true,
    "unlimited": true,
-   "afterFinal": "⚡ Imperial Impetus."
+   "afterFinal": "⚡ Imperial Impetus.",
+   "stepJoin": [
+    2
+   ]
   }
  ],
  "bp": [

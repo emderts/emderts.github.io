@@ -543,7 +543,7 @@ export class Game {
     for (let i = 0; i + 1 < out.length; i++) if (isKB(out[i]) && isKD(out[i + 1])) { const w = out[i].startsWith('⚡'); const a = out[i].replace(/^⚡\s*/, ''), b = out[i + 1].replace(/^⚡\s*/, ''); out[i] = (w ? '⚡ ' : '') + b; out[i + 1] = a; i++; }
     return out;
   }
-  atkRange(card) { if (this.isJudge(card) || /RANGE/.test(card.kind || '')) return () => true; if (card.pattern || card.zone) { const set = new Set(this.patternCells(card).map(p => key(p.c, p.r))); return t => !t.onVP && !t.stair && set.has(key(t.pos.c, t.pos.r)); } if (card.kind === 'ZONE ATTACK') { const z = +((/Zone (\d+)/.exec((card.target || [])[0] || '') || [0, 1])[1]); return t => !t.onVP && !t.stair && this.zoneDist(t.pos) <= z; } return t => this.isAdj(t); }
+  atkRange(card) { if (this.isJudge(card) || /RANGE/.test(card.kind || '')) return () => true; if (card.pattern || card.zone || (card.sun && card.sun.pattern && this.zoneShow)) { if (!card.pattern && !card.zone) { const set0 = new Set(this.zoneShow.map(p => key(p.c, p.r))); return t => !t.onVP && set0.has(key(t.pos.c, t.pos.r)); } const set = new Set(this.patternCells(card).map(p => key(p.c, p.r))); return t => !t.onVP && !t.stair && set.has(key(t.pos.c, t.pos.r)); } if (card.kind === 'ZONE ATTACK') { const z = +((/Zone (\d+)/.exec((card.target || [])[0] || '') || [0, 1])[1]); return t => !t.onVP && !t.stair && this.zoneDist(t.pos) <= z; } return t => this.isAdj(t); }
   drawAI() { this.fixLot(); let c = this.ai.draw(); if (!c && this.prim.aiBottom) return this.djinnDrawFallback(); if (!c) { const lc = this.ai.discard.find(x => x.lot); this.ai.discard = this.ai.discard.filter(x => !x.lot); this.ai.shuffleDiscardIn(); if (lc) this.ai.discard.unshift(lc); c = this.ai.draw(); } let guard = 0; while (c && this.prim.disabledAI.includes(c.name) && guard++ < 40) { this.say(`AI 「${c.name}」 비활성화됨 — 버리고 다시 뽑음`); this.ai.discard.push(c); c = this.ai.draw(); if (!c) { this.ai.shuffleDiscardIn(); c = this.ai.draw(); } } return c; }
   freeCell(p) { return this.board.inBounds(p.c, p.r) && !this.board.isObstacle(p.c, p.r) && !this.board.isChasm(p.c, p.r) && !this.titanAt(p.c, p.r) && !this.primContains(p); }
   // Titans: red lines block adjacency/LoS unless an effect lets them ignore the Labyrinth for Attacks
@@ -1288,7 +1288,7 @@ export class Game {
       if (path.length) await this.darkness(); await this.cackle(); if (!t.alive) throw new TitanDied(t);
     }
     if (!this.isJudge(card) && card.kind !== 'SPECIAL ATTACK' && (rng ? this.distTo(t) > rng : !this.isAdj(t))) { this.say('타겟이 사거리 밖 — 공격 생략'); this._oorCount++; await this.criticalMassToken('OoR'); }
-    else { if (!t.onVP) this.facePrim(t.pos); const hh = await this.primAttackOn(t, card); this.currentAI.lastHits = hh || 0; }
+    else { if (!t.onVP) this.facePrim(t.pos); let hh = 0; try { hh = await this.primAttackOn(t, card); } catch (e) { if (!(e instanceof TitanDied) || (t && t.alive)) throw e; this.say('(Mercy Rule: 대상 사망 — 대상에 대한 남은 효과 취소, 다른 효과는 계속)'); } this.currentAI.lastHits = hh || 0; }
     await this.afterAttack(card, t);
     if (card.afterFinal) await this.afterAttack({ ...card, after: card.afterFinal }, t);
   }
@@ -1307,7 +1307,7 @@ export class Game {
       if (/on Vantage Point/.test(line)) cands = cands.filter(t => t.onVP && !t.absorbed);
       if (/not in front/.test(line)) cands = cands.filter(t => !t.onVP && !this.inFront(t.pos));
       if (/knocked down/.test(line)) cands = cands.filter(t => t.knockdown);
-      if (/(^|[^t] )in front/.test(line)) cands = cands.filter(t => !t.onVP && this.inFront(t.pos) && this.primLos(t));
+      if (/in front/.test(line) && !/not in front/.test(line)) cands = cands.filter(t => !t.onVP && this.inFront(t.pos) && this.primLos(t));
       if (/in sight/.test(line)) cands = cands.filter(t => this.primLos(t));
       if (/Last to Wound/.test(line)) cands = cands.filter(t => t === this.prim.lastToWound);
       if (/non-bleeding/i.test(line)) cands = cands.filter(t => !(t.conditions.includes('Bleeding') && (t.bleeding || 0) > 0));
@@ -1389,7 +1389,7 @@ export class Game {
     if (opts.length < 2) return false; const v = await this.ask({ type: 'choice', titan: t, title: `Curse Attack 「${card.name}」 — ${t.name}에게 오는 효과 무시?`, options: opts });
     if (v === 'g') this.discardGear(t, gh, true); else if (v === 'm') this.mnUse(t, m, 'X'); else return false;
     this.say(`${t.name}: Curse Attack 무시 (다른 대상은 그대로)`, 'good'); return true; }
-  async primAttackOn(t, card) { if (this._otHit && t) this._otHit.add(t.id); if (card && (card.curse || /CURSE/.test(card.kind || '')) && !(this._curseImm && this._curseImm.has(t))) { if (await this.curseIgnore(t, card)) return; } else if (this._curseImm && this._curseImm.has(t)) return; await this.weightyFx(t); let r; try { r = await this.primAttackOn0(t, card); } catch (e) { t._critMove = 0; throw e; } finally { if (this._wishNoArmor === t) this._wishNoArmor = null; t._wishDodge = 0; }
+  async primAttackOn(t, card) { if (card && card.midas && card.midas.turnAway && t && t.pos && !t.onVP) { this.facePrim(t.pos); this.prim.facing = ({ N: 'S', S: 'N', E: 'W', W: 'E' })[this.prim.facing]; this.say(`${this.prim.name}: 타겟 반대쪽(${this.prim.facing})으로 회전`); } if (this._otHit && t) this._otHit.add(t.id); if (card && (card.curse || /CURSE/.test(card.kind || '')) && !(this._curseImm && this._curseImm.has(t))) { if (await this.curseIgnore(t, card)) return; } else if (this._curseImm && this._curseImm.has(t)) return; await this.weightyFx(t); let r; try { r = await this.primAttackOn0(t, card); } catch (e) { t._critMove = 0; throw e; } finally { if (this._wishNoArmor === t) this._wishNoArmor = null; t._wishDodge = 0; }
     if (t.alive && !t.offBoard && !t.onVP && !t.knockdown) { const n = Math.max(t._critMove || 0, this.gearHas(t, /After an Attack against you is resolved, move up to 1 space/) && !this.isJudge(card) ? 1 : 0); if (n) await this.chooseMove(t, n, `Reflex 공격 후 이동 ${n}칸`); }
     t._critMove = 0; return r; }
   async primAttackOn0(t, card) {
@@ -1555,14 +1555,14 @@ export class Game {
     if (!text) return; let m;
     if ((m = /\s*\| FATE (\d)\+: Labyrinth (\d) instead\.?/.exec(text))) { const use = t && t.alive && this.effFate(t) >= +m[1]; text = text.replace(m[0], ''); if (use) { text = text.replace(/Labyrinth 1\./, `Labyrinth ${m[2]}.`); this.say(`Fate ${m[1]}+ — Labyrinth ${m[2]}`); } }
     const parts = this.kdFirst((text.match(/[^.]+\.?/g) || []).map(x => x.trim()).filter(Boolean).reduce((a, x) => { if (/^\|/.test(x) && a.length) a[a.length - 1] += ' ' + x; else a.push(x); return a; }, []));
-    for (let p of parts) {
+    for (let p of parts) { const p0 = p;
       if (/^Repeat until/.test(p) || /^\(/.test(p)) continue;
       let win = p.startsWith('⚡'); p = p.replace(/^⚡\s*/, ''); if (win && this.ramNoWin(p, t)) win = false;
       if (win && !t && ctx.card && this.liveTitans().length) { await this.reactionWindow(this.liveTitans()[0], ctx.card, p); }
       if (win && t && t.alive) { if (this.prim.traits['Extradimensional Trample'] && ctx.response && /^Trample/.test(p)) this.say('Extradimensional Trample: ⚡ 무시', 'sys'); else { await this.reactionWindow(t, ctx.card || { name: '' }, p); if (!t.alive) throw new TitanDied(t); } }
       if (ctx.targets && /^(Knockback|Knockdown|Pushback|Remove Labyrinth tiles under Targets)/.test(p.replace(/^FATE \d\+: /, ''))) { for (const x of ctx.targets) if (x.alive || (/^Remove Labyrinth/.test(p) && x.pos && !x.offBoard)) await this.solo(() => this.doSentence(x, p, ctx)); continue; }
       await this.doSentence(t, p, ctx);
-      if (t && !t.alive) throw new TitanDied(t);
+      if (t && !t.alive) { const rest = parts.slice(parts.indexOf(p0) + 1).map(x => x.replace(/^⚡\s*/, '')).filter(x => /^If adjacent, Time-clocked/.test(x)); for (const r of rest) await this.doSentence(null, r, ctx); throw new TitanDied(t); }
     }
   }
   async doSentence(t, p, ctx = {}) {
@@ -1640,6 +1640,7 @@ export class Game {
     if (/^Gain as many Ambrosia tokens as Power missing/.test(p)) { if (alive && ctx.missing > 0) await this.gainAmbrosia(t, ctx.missing); return; }
     if (/^Draw and perform an AI card(?! against the Attacker)/.test(p)) { const c = this.drawAI(); if (!c) return; if (ctx.queue) { ctx.queue.push({ card: c, discard: true }); return; } await this.resolveAI(c); this.ai.discard.push(c); return; }
     if (/^Place an Ambrosia Pool Terrain tile under the Burden/.test(p)) { const cs = this.primCells().filter(q => !this.board.terrainAt(q.c, q.r)); if (cs.length) { this.board.addTerrain(cs.map(cellLabel), { id: 'ambx' + (++this._ambN), type: 'Ambrosia Pool', obstacle: false, obscuring: false, destructible: false, ambrosia: true }); this.say('Burden 밑에 Ambrosia Pool 배치'); } return; }
+    if (/^If no Titan was hit, draw another AI card/.test(p)) return;
     if (/^If no Titan was hit, Unbreakable Combo/.test(p)) { if (!(this.currentAI && (this.currentAI.anyHit || this.currentAI.dangerDealt > 0))) { this.say('Unbreakable Combo!', 'ai'); this._unbreakable = true; await this.comboPhase(true); } return; }
     if (/^If no Titan was hit, the Nietzschean moves to the center/.test(p)) { if (!(this.currentAI && (this.currentAI.anyHit || this.currentAI.dangerDealt > 0))) await this.moveToCenter(true); return; }
     if (/^RAGE 5\+: Perform Combo/.test(p)) { if (t && t.rage >= 5) { this.say(`${t.name} Rage ${t.rage} — Combo!`, 'ai'); await this.comboPhase(); } return; }
@@ -1797,6 +1798,7 @@ export class Game {
     this.say(`${this.prim.name}: ${t.name}에게 Pull ${x}`, 'bad'); let moved = 0;
     for (let i = 0; i < x; i++) { if (this.isAdj(t)) break; const cs = this.primCells(); const opts = [[1, 0], [-1, 0], [0, 1], [0, -1]].map(([dx, dy]) => ({ c: t.pos.c + dx, r: t.pos.r + dy })).filter(q => this.board.inBounds(q.c, q.r) && Board.distToCells(q, cs) < Board.distToCells(t.pos, cs) && !this.board.hasWall(t.pos, q) && !this.primContains(q)); const q = opts.find(o => this.freeCell(o)) || opts.find(o => !this.board.isObstacle(o.c, o.r)); if (!q) { this.say(`${t.name}: Pull 경로 막힘 — 중단`); break; } { const ts = await this.tetherStep(t, q); if (ts === 'fell') return moved; if (ts === 'stop') break; } const o = this.titanAt(q.c, q.r); t.pos = q; moved++; if (this.board.isChasm(q.c, q.r)) { if (this.useLifeline(t) || await this.skyLifeline(t, 'Chasm으로 끌려감')) { t._lifeline = true; await this.displace(t); return moved; } this.say(`${t.name}: Chasm으로 끌려가 사망`, 'bad'); await this.kill(t); return moved; } if (o) await this.displace(o); }
     if (moved) { this.say(`${t.name}: ${cellLabel(t.pos)}로 끌려옴 (${moved}칸)`); await this.landOn(t); await this.cackle(); }
+    { const rem = x - moved; if (rem > 0 && t.alive && !t.offBoard && !t.onVP && this.isAdj(t) && this.oracleMoveAway) { this.say(`Pull: ${t.name}이(가) 인접 — 남은 ${rem}칸만큼 ${this.prim.name}이(가) 반대쪽으로 이동`, 'ai'); await this.oracleMoveAway(t.pos, rem); } }
     return x0 > 0 && x > 0 ? x : 0;
   }
   async primAway(t, n) {
@@ -1851,7 +1853,7 @@ export class Game {
   comboBreakers(cls) {
     const C = this.comboDef(); const traits = C.classes[cls] || []; const out = [];
     for (const t of this.liveTitans()) { if (t.pt || t.knockdown === 'falling' || t.onVP || t.offBoard || this.paralyzed(t) || t.conditions.includes('Hatred') || t.conditions.includes('Frenzy')) continue;
-      if (this.trait('Dreadnought') && !this.inBlindspot(t)) continue; if (this.trait('Unbeatable Guard') && this.inFront(t.pos)) continue;
+      const titanRd = !this._primRound && !(this._aiDepth > 0); if (titanRd && this.trait('Dreadnought') && !this.inBlindspot(t)) continue; if (titanRd && this.trait('Unbeatable Guard') && this.inFront(t.pos)) continue;
       for (const g of t.gear) { if (g.exhausted || g.discarded || this.gearBlocked(t, g)) continue; const tx = this.gearText(g, t); const gt = this.gTraits(t, g); const valid = (/^hand/.test(g.card.slot) && g.card.atk != null && (gt.some(x => traits.includes(x)) || /treat this card as having all Weapon class Traits/.test(tx))); const selfValid = valid || /treat this card as a Weapon with the valid Trait/.test(tx);
         const inRange = /^hand/.test(g.card.slot) && g.card.atk != null ? this.inWeaponRange(t, g) : this.isAdj(t); const hasClassWep = t.gear.some(x => !x.exhausted && !x.discarded && x !== g && /^hand/.test(x.card.slot) && x.card.atk != null && (this.gTraits(t, x).some(y => traits.includes(y)) || /all Weapon class Traits/.test(this.gearText(x, t))));
         for (const m of tx.matchAll(/(?:\[R\])?((?:Ψ|⟳|X|\[charge\])*) ?(Self )?Combo[- ][Bb]reaker: (\d) spaces/g)) { const f = (m[1].match(/Ψ/g) || []).length; if ((f) > this.fr(t)) continue; if (m[2] ? !selfValid : !(hasClassWep || valid)) continue; if (m[1].includes('[charge]') && !g.charges) continue; out.push({ t, g, move: +m[3], self: !!m[2], cost: m[1], label: `${t.name}: ${g.card.name} — ${m[2] || ''}Combo Breaker ${m[3]}칸 이동 후 ${m[2] ? '이 카드' : '유효 무기'} 소진 [${[f ? 'Fate+' + f : '', m[1].includes('⟳') ? '소진' : '', m[1].includes('X') ? '버림' : '', m[1].includes('[charge]') ? 'charge' : ''].filter(Boolean).join(', ')}]` }); }
@@ -1860,7 +1862,7 @@ export class Game {
       } }
     return out;
   }
-  comboWhy(cls) { const C = this.comboDef(); const traits = C.classes[cls] || []; const out = []; for (const t of this.liveTitans()) { const ws = t.gear.filter(g => !g.discarded && /^hand/.test(g.card.slot) && g.card.atk != null && (this.gTraits(t, g).some(x => traits.includes(x)) || /all Weapon class Traits/.test(this.gearText(g, t)))); if (!ws.length) continue; const why = t.pt ? 'PT' : t.onVP ? 'VP 위' : t.offBoard ? '보드 밖' : t.knockdown === 'falling' ? 'Knockdown' : (t.conditions.includes('Hatred') || t.conditions.includes('Frenzy')) ? 'Hatred/Frenzy' : null; for (const g of ws) out.push(`${t.name}「${g.card.name}」 ${why || (g.exhausted ? '소진됨' : this.gearBlocked(t, g) ? '사용 불가' : !this.inWeaponRange(t, g) ? '사거리 밖' : '?')}`); } return out.length ? out.join(', ') : `${traits.join('/')} 무기를 가진 타이탄 없음`; }
+  comboWhy(cls) { const C = this.comboDef(); const traits = C.classes[cls] || []; const out = []; for (const t of this.liveTitans()) { const ws = t.gear.filter(g => !g.discarded && /^hand/.test(g.card.slot) && g.card.atk != null && (this.gTraits(t, g).some(x => traits.includes(x)) || /all Weapon class Traits/.test(this.gearText(g, t)))); if (!ws.length) continue; const titanRd = !this._primRound && !(this._aiDepth > 0); const why = t.pt ? 'PT' : t.onVP ? 'VP 위' : t.offBoard ? '보드 밖' : t.knockdown === 'falling' ? 'Knockdown' : (t.conditions.includes('Hatred') || t.conditions.includes('Frenzy')) ? 'Hatred/Frenzy' : this.paralyzed(t) ? 'Paralyzed' : (titanRd && this.trait('Unbeatable Guard') && this.inFront(t.pos)) ? '정면(Unbeatable Guard)' : (titanRd && this.trait('Dreadnought') && !this.inBlindspot(t)) ? 'Blindspot 아님(Dreadnought)' : null; for (const g of ws) out.push(`${t.name}「${g.card.name}」 ${why || (g.exhausted ? '소진됨' : this.gearBlocked(t, g) ? '사용 불가' : !this.inWeaponRange(t, g) ? `사거리 밖(거리 ${this.distTo(t)})` : '?')}`); } return out.length ? out.join(', ') : `${traits.join('/')} 무기를 가진 타이탄 없음`; }
   async comboPhase(unbreakable = false) {
     const cls = this.comboClass(); const C = this.comboDef(); const traits = C.classes[cls] || [];
     if (this.prim.def.inevitable && !unbreakable) { const w = this.woundCount(); if ((cls === 'Sword' && w >= 6) || (cls === 'Fire' && w >= 10)) { this.say(`Inevitable: 상처 ${w} — ${cls} Combo 저지 불가`, 'ai'); unbreakable = true; } }
@@ -1932,7 +1934,7 @@ export class Game {
       const choosable = this.turnOrderChoices(avail, acted.size);
       const t = choosable.length === 1 ? choosable[0] : await this.ask({ type: 'choice', title: '행동할 타이탄 선택', options: choosable.map(x => ({ label: `${x.name} (D${x.danger} R${x.rage} F${x.fate})`, value: x })) });
       acted.add(t.id);
-      if (this.trait('God Among Men') && acted.size === 3 && this.liveTitans().length >= 3 && !this._gamDone) { this._gamDone = true; this.say('God Among Men: 타이탄 2명 행동 후 Nietzschean의 라운드', 'ai'); this._gamMid = true; await this.primordialRound(); if (this.pendingSignature) { this.pendingSignature = false; await this.safe(() => this.resolveAI(this.sig, { isSignature: true })); } if (!t.alive) continue; }
+      if (this.trait('God Among Men') && acted.size === 3 && this.liveTitans().length >= 3 && !this._gamDone) { this._gamDone = true; this.say('God Among Men: 타이탄 2명 행동 후 Nietzschean의 라운드', 'ai'); this._gamMid = true; await this.primordialRound(); if (this.pendingSignature) { const k = Math.max(1, this.pendingSigN || 0); this.pendingSignature = false; this.pendingSigN = 0; for (let q = 0; q < k; q++) await this.safe(() => this.resolveAI(this.sig, { isSignature: true })); } if (!t.alive) continue; }
       try { await this.titanTurn(t); } catch (e) { if (e instanceof BattleOver) throw e; if (e instanceof TitanDied) continue; if (e.chainBreak) { if (this.pendingBonus) { const pb = this.pendingBonus; this.pendingBonus = null; await this.safe(() => this.bonusAttackFlow(pb.titan, pb)); } continue; } throw e; }
       await this.fickleAll(); await this.timidFlush(); this.notify();
     }
@@ -2466,7 +2468,7 @@ export class Game {
     if (this.trait('Primordial Plasma')) { const last = this.woundStack[this.woundStack.length - 1]; if (!last || !last.card) { if (!wtr.some(x => /^(Primordial|Divine|Mythic|Eldertech)$/.test(x))) { atMod += 2; A.plasmous = true; this.say('Plasmous: AT +2, 공격 후 무기 소진', 'bad'); } } }
     if (A.bp.hardened && !this.prim.disabled.hardened && !A.crit && kw(txt, 'Armor-piercing') === null && /Ψ⟳ When performing a Power Roll, gain Armor-piercing/.test(txt) && this.costOK(t, 'Ψ⟳', g)) { const ok = await this.ask({ type: 'yn', titan: t, title: `${g.card.name}: Hardened — Armor-piercing 획득? (Fate+1, 소진)`, options: [{ label: '사용', value: true }, { label: '패스', value: false }] }); if (ok) { await this.payCost(t, 'Ψ⟳', g); txt += ' Armor-piercing.'; if (A.txt) A.txt += ' Armor-piercing.'; } }
     if (A.bp.hardened && !this.prim.disabled.hardened) { if (A.crit) this.say(`${(A.bp.bpName || A.bp.name)}: Hardened — Crit Chance로 무시`); else if (kw(txt, 'Armor-piercing') !== null) this.say(`${(A.bp.bpName || A.bp.name)}: Hardened — Armor-piercing으로 무시`); else { atMod += 2; this.say(`${(A.bp.bpName || A.bp.name)}: Hardened — AT +2`, 'bad'); } }
-    { const vm = t.onVP && !t.absorbed ? (this.prim.vpATMalus || 0) + ((this.prim.vpMalusBy || {})[t.vpSlot] || 0) : 0; if (vm) { atMod -= vm; this.say(`VP${t.vpSlot ? ' ' + t.vpSlot : ''}에서 공격 — AT −${vm}`); } } if (t.absorbed && this.prim.absorbedATMalus) { atMod -= this.prim.absorbedATMalus; this.say(`Absorbed 공격 — AT −${this.prim.absorbedATMalus}`); }
+    { const vm = t.onVP && !t.absorbed ? (this.prim.vpATMalus || 0) + ((this.prim.vpMalusBy || {})[t.vpSlot] || 0) + ((this.prim.vpLvlAT || {})[t.vpLevel] || 0) : 0; if (vm) { atMod -= vm; this.say(`VP${t.vpSlot ? ' ' + t.vpSlot : ''}에서 공격 — AT −${vm}`); } } if (t.absorbed && this.prim.absorbedATMalus) { atMod -= this.prim.absorbedATMalus; this.say(`Absorbed 공격 — AT −${this.prim.absorbedATMalus}`); }
     if (A.bp.prisoners && t.gear.some(x => !x.discarded && /\+1 Power against PRISONERS! BP cards/.test(this.gearText(x, t)))) { A.raw += 1; A.ignoreWoundResp = true; this.say('PRISONERS! 상대 +1 Power, Wound Response 무시 (Pauldron)'); }
     const inW = this.inW(t.pos) && !t.onVP;
     const at = A.bp.at + atMod + (t.stair && A.bp.atStair != null ? A.bp.atStair - A.bp.at : 0) + (this.prim.def.dahakaD ? this.dhAT(A) : 0) + (this.prim.def.babelD ? this.babelAT(t) : 0) + this.djinnAT(t) - (this.inWeakspot(t) ? (this.prim.weakspotATMalus || 0) : 0) - (this.inBlindspot(t) ? (this.prim.blindATMalus || 0) : 0) + this.prim.bonus.AT + (this.prim.tokens.at || 0) + (this.prim.atTemp || 0) + (this.prim.snail || 0) - (this.prim.traits["Ariadne's Logic"] && !t.onVP && this.board.labAt(t.pos.c, t.pos.r) ? 1 : 0) - (this.prim.frontATMalus && this.frontAdjCells().some(p => p.c === t.pos.c && p.r === t.pos.r) ? this.prim.frontATMalus : 0) - (inW ? (this.prim.wATMalus || 0) : 0) - (this.inRear(t.pos) ? (this.prim.rearATMalus || 0) : 0) + (t.conditions.includes("Ariadne's Logic") && this.board.labAt(t.pos.c, t.pos.r) ? -1 : 0) - (this.kratosPool.negAT || 0) - (this.prim.atRound || 0) - (t.onVP && this.prim.vpLvlAT ? (this.prim.vpLvlAT[t.vpLevel || 1] || 0) : 0) + (this.prim.ra ? this.raAT(t, g, A) : 0);
@@ -2609,7 +2611,7 @@ export class Game {
     if (A.wound && t.alive && t.offBoard === 'omega') await this.safe(() => this.omegaPlace(t));
     await this.endAttack(A);
     for (const q of queue) { this.say(`Attack Response: ${q.sig ? 'Signature' : 'AI 「' + q.card.name + '」'}${q.target ? ' → ' + q.target.name : ''}`); await this.safe(() => this.resolveAI(q.card, { isSignature: !!q.sig, forcedTarget: q.target && q.target.alive ? q.target : null })); if (q.discard) this.ai.discard.push(q.card); }
-    if (this.pendingSignature) { this.pendingSignature = false; await this.safe(() => this.resolveAI(this.sig, { isSignature: true })); }
+    if (this.pendingSignature) { const k = Math.max(1, this.pendingSigN || 0); this.pendingSignature = false; this.pendingSigN = 0; for (let q = 0; q < k; q++) await this.safe(() => this.resolveAI(this.sig, { isSignature: true })); }
     if (this.pendingFollowUp === t) { this.pendingFollowUp = null; this.say(`${t.name}: Follow-up 보너스 공격!`, 'good'); try { await this.bonusAttackFlow(t); } finally { t._ignoreRA = false; } }
     else if (this.pendingFollowUp && this.pendingFollowUp !== t && this.pendingFollowUp.alive) { const o = this.pendingFollowUp; this.pendingFollowUp = null; this.say(`${o.name}: 보너스 공격!`, 'good'); await this.chainSafe(() => this.bonusAttackFlow(o)); }
   }
@@ -3055,10 +3057,10 @@ export class Game {
       this.ai0ToTop();
       while (true) {
         await this.primordialRound();
-        if (this.pendingSignature) { this.pendingSignature = false; await this.safe(() => this.resolveAI(this.sig, { isSignature: true })); }
+        if (this.pendingSignature) { const k = Math.max(1, this.pendingSigN || 0); this.pendingSignature = false; this.pendingSigN = 0; for (let q = 0; q < k; q++) await this.safe(() => this.resolveAI(this.sig, { isSignature: true })); }
         await this.titanRound();
         if (this.pendingFollowUp) { const t = this.pendingFollowUp; this.pendingFollowUp = null; await this.safe(() => this.bonusAttackFlow(t)); }
-        if (this.pendingSignature) { this.pendingSignature = false; await this.safe(() => this.resolveAI(this.sig, { isSignature: true })); }
+        if (this.pendingSignature) { const k = Math.max(1, this.pendingSigN || 0); this.pendingSignature = false; this.pendingSigN = 0; for (let q = 0; q < k; q++) await this.safe(() => this.resolveAI(this.sig, { isSignature: true })); }
         if (this.round > 60) throw new BattleOver('timeout');
       }
     } catch (e) {

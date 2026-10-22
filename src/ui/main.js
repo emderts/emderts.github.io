@@ -186,6 +186,19 @@ function renderLoadout(root) {
     h('button', { class: 'x', onclick: () => showDetail(h('div', {}, h('div', { class: 'cv-title' }, PD.name + ' 트레이트'), ...Object.entries(PD.traits).map(([n, t]) => h('div', { class: 'cv-text' }, h('b', {}, n + ': '), t)), PD.vp ? h('div', { class: 'cv-text' }, h('b', {}, `VP ${PD.vp.name}: `), PD.vp.text) : null)) }, '트레이트 보기'));
   if ((PD.cycle || 0) >= 3) lv.append(h('label', { class: 'small', title: 'Argo 시트의 Paradox(▷) 수치. AI 카드의 "▷X+ 또는 ΨY+" 조건과 Break the Wheel에 쓰임' }, ' Paradox ▷ ', h('input', { type: 'number', min: 0, max: 20, value: loadout.paradox || 0, style: 'width:3.5em', onchange: e => { loadout.paradox = Math.max(0, +e.target.value || 0); saveLoadout(); } })));
   wrap.append(lv);
+  { // ---- Gear browser (search by text / trait / cycle / slot) ----
+    const GB = window.__gb || (window.__gb = { open: false, q: '', cyc: '', trait: '', slot: '' });
+    const box = h('div', { class: 'tcard argo' });
+    const allTraits = [...new Set(GEAR.flatMap(g => g.traits || []))].sort();
+    const SLOTS = [...new Set(GEAR.map(g => g.slot))];
+    const list = h('div', { class: 'gblist' });
+    const draw = () => { const q = GB.q.trim().toLowerCase(); const f = GEAR.filter(g => g.name !== 'Fists' && (!GB.cyc || String(g.cycle || 1) === GB.cyc) && (!GB.trait || (g.traits || []).includes(GB.trait)) && (!GB.slot || g.slot === GB.slot) && (!q || [g.name, g.text, (g.traits || []).join(' '), g.tech, Object.values(g.danger || {}).join(' '), g.transform ? g.transform.name + ' ' + (g.transform.text || '') : ''].join(' ').toLowerCase().includes(q))).sort((a, b) => (a.cycle || 1) - (b.cycle || 1) || a.name.localeCompare(b.name));
+      list.replaceChildren(h('div', { class: 'muted small' }, `${f.length}장`), ...f.slice(0, 150).map(g => h('div', { class: 'gearrow link', style: 'display:block', onclick: () => showDetail(gearCard(g)) }, h('span', {}, `${SLOT_ICON[g.slot] || ''} ${g.name}`), h('span', { class: 'muted small' }, ` C${g.cycle || 1} · ${(g.traits || []).join(', ')}${g.atk ? ` · ◆${g.atk} +${g.prec ?? 'X'} ${(g.power || []).join('')}` : ''}`), h('div', { class: 'small', style: 'opacity:.85' }, (g.text || '').slice(0, 160) + ((g.text || '').length > 160 ? '…' : '')))), ...(f.length > 150 ? [h('div', { class: 'muted small' }, '… 150장까지만 표시 — 조건을 좁혀 주세요')] : [])); };
+    const sel = (val, opts, key, label) => h('select', { onchange: e => { GB[key] = e.target.value; draw(); } }, h('option', { value: '' }, label), ...opts.map(o => h('option', { value: o, selected: GB[key] === o ? '' : null }, o)));
+    box.append(h('div', { class: 'row' }, h('b', { class: 'link', onclick: () => { GB.open = !GB.open; renderLoadout(root); } }, `${GB.open ? '▾' : '▸'} 장비 도감 (문구 검색 · 특성 / 사이클 / 슬롯 필터)`)));
+    if (GB.open) { box.append(h('div', { class: 'row' }, h('input', { placeholder: '🔎 이름·문구·특성 검색', value: GB.q, style: 'flex:1;min-width:180px', oninput: e => { GB.q = e.target.value; draw(); } }), sel(GB.cyc, ['1', '2', '3', '4', '5'].filter(c => GEAR.some(g => String(g.cycle || 1) === c)), 'cyc', '사이클 전체'), sel(GB.trait, allTraits, 'trait', '특성 전체'), sel(GB.slot, SLOTS, 'slot', '슬롯 전체')), list); draw(); }
+    wrap.append(box);
+  }
   if (TREE.nodes.length) {
     const open = !!tree.open; const doneN = TREE.nodes.filter(n => tree.done[n.id]).length;
     const box = h('div', { class: 'tcard argo' });
