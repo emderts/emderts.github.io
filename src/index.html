@@ -52,7 +52,7 @@ select, input { background:var(--panel2); color:var(--ink); border:1px solid var
 #prim { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:10px; }
 .phead { margin-bottom:4px; }
 .wounds .w { display:inline-block; width:12px; height:12px; border:1px solid var(--red); margin-right:2px; border-radius:2px; vertical-align:middle; } .wounds .w.on { background:var(--red); }
-#prompt { background:#2b2318; border:1px solid var(--bronze); border-radius:10px; padding:10px; min-height:60px; }
+#prompt { background:#2b2318; border:1px solid var(--bronze); border-radius:10px; padding:10px; min-height:60px; flex-shrink:0; max-height:55vh; overflow:auto; }
 .ptitle { font-weight:600; margin-bottom:8px; } .pbtns { display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
 button.tog { border-style:dashed; } button.tog.on { background:#5a4a1a; border-color:var(--bronze); border-style:solid; }
 .tag { display:inline-block; background:#3b3127; color:var(--bronze); border-radius:4px; padding:0 6px; font-size:11px; margin-left:6px; vertical-align:middle; } .tag.warn { color:var(--warn); } .tag.bad { color:var(--red); }

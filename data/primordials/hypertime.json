@@ -9,7 +9,7 @@
   "Transcribed from sheet CU1384 + cards CR1343-CR1365, CS1366-CS1383 (Cycle III).",
   "Bonus row: ✵ = ESCALATION, ◎ = AT, Λ/Ψ = Danger/Fate bonus (DF): adds to FATE dealt by an attack, or DANGER if the attack deals no FATE. Lv V+ per hit.",
   "Lv III/IV right box (+3 / +12 jar icon) is a campaign reward value — ignored.",
-  "All BP cards carry the Quantum Eye symbol (qeye). Atemporal BP: Trauma Draw by max(DANGER, FATE) after the Attack unless Critical Wound."
+  "Quantum Eye BPs (user): Inner Eye Colony, Invisible Eyes Parasite, Living Lenses, Many-Eyed Face, Ontological Antennae, Ripen Realities, Temporal Sash, Voidheart, Wing Eye Colony"
  ],
  "footprint": {
   "w": 2,
@@ -245,7 +245,7 @@
     "Lowest DANGER in sight"
    ],
    "steps": [
-    "⚡ MOVE LATERAL & ATTACK | PARADOX 3+ or FATE 6+: Double Laser instead",
+    "⚡ MOVE LATERAL & ATTACK\n| PARADOX 3+ or FATE 6+: Double Laser instead",
     "Each hit deals 3 DANGER."
    ],
    "after": "Rewind.",
@@ -303,7 +303,7 @@
    ],
    "steps": [
     "⚡ MOVE & ATTACK",
-    "Each hit deals 1 FATE and 2 DANGER. If 2+ FATE was dealt, discard 1 Gear card. | FATE 5+: Discard 1 Weapon card instead"
+    "Each hit deals 1 FATE and 2 DANGER. If 2+ FATE was dealt, discard 1 Gear card.\n| FATE 5+: Discard 1 Weapon card instead"
    ],
    "after": "⚡ Rewind.",
    "oracle": {
@@ -365,7 +365,7 @@
     "Will"
    ],
    "steps": [
-    "⚡ TELEPORT TITAN & JUDGE (Wisdom/Will) | ⚡ PARADOX 2+ or FATE 5+: Move the Timefront 1 space forward",
+    "⚡ TELEPORT TITAN & JUDGE (Wisdom/Will)\n| ⚡ PARADOX 2+ or FATE 5+: Move the Timefront 1 space forward",
     "Each hit deals 2 FATE and 3 DANGER."
    ],
    "after": "⚡ Time-clocked.",
@@ -458,7 +458,7 @@
     "Lowest DANGER in sight"
    ],
    "steps": [
-    "⚡ MOVE LATERAL & ATTACK | PARADOX 3+ or FATE 8+: Double Laser instead",
+    "⚡ MOVE LATERAL & ATTACK\n| PARADOX 3+ or FATE 8+: Double Laser instead",
     "Each hit deals 4 DANGER."
    ],
    "after": "Rewind.",
@@ -624,7 +624,7 @@
     "Furthest Titan"
    ],
    "steps": [
-    "⚡ MOVE LATERAL & ATTACK | PARADOX 3+ or FATE 8+: Double Laser instead",
+    "⚡ MOVE LATERAL & ATTACK\n| PARADOX 3+ or FATE 8+: Double Laser instead",
     "Each hit deals 4 DANGER.",
     "Rewind."
    ],
@@ -644,7 +644,10 @@
       "face": true
      }
     ]
-   }
+   },
+   "stepJoin": [
+    2
+   ]
   },
   {
    "code": "CR1360",
@@ -663,7 +666,7 @@
     "Fury"
    ],
    "steps": [
-    "JUDGE (Wisdom/Fury) | PARADOX 5+ or FATE 9+: You are erased from existence",
+    "JUDGE (Wisdom/Fury)\n| PARADOX 5+ or FATE 9+: You are erased from existence",
     "If the Attack hits, it deals 9 DANGER. Death 1."
    ],
    "after": "⚡ The Oracle moves 5 spaces towards the Timefront (stop if adjacent) and turns to face the most Titans. Glaciate the previous Primordial space.",
@@ -703,7 +706,7 @@
     "⚡ TELEPORT ALL TITANS & JUDGE: Reestablish the Time Anchors of teleported Titans.",
     "⚡ Perform Signature against each adjacent Titan, ignoring its After Attack effect."
    ],
-   "afterFinal": "⚡ PARADOX 4+ or FATE 8+: Move the Timefront 1 space forward. The Oracle moves 5 spaces towards the Timefront (stop if adjacent) and turns to face the most Titans.",
+   "afterFinal": "⚡ PARADOX 4+ or FATE 8+: Move the Timefront 1 space forward.\nThe Oracle moves 5 spaces towards the Timefront (stop if adjacent) and turns to face the most Titans.",
    "oracle": {
     "special": "tyranny"
    },
@@ -782,11 +785,11 @@
    "name": "Fleshy Robe",
    "at": 6,
    "responses": {
-    "FAIL": "Rewind. Glaciate the previous Attacker space.",
+    "FAIL": "Rewind.\nGlaciate the previous Attacker space.",
     "WOUND": "Time-clocked."
    },
    "critical": "Disable the Atemporal effect.",
-   "qeye": true
+   "qeye": false
   },
   {
    "code": "CS1367",
@@ -794,7 +797,7 @@
    "name": "Temporal Sash",
    "at": 4,
    "responses": {
-    "FAIL": "Gain FATE equal to the Primordial LVL. Time-clocked.",
+    "FAIL": "Gain FATE equal to the Primordial LVL.\nTime-clocked.",
     "WOUND": "Rewind. Glaciate the previous Attacker space."
    },
    "critical": "You may perform a Bonus Attack!",
@@ -809,7 +812,7 @@
     "INSTINCT": "Perform Signature against the Attacker."
    },
    "critical": "You may perform a Bonus Attack!",
-   "qeye": true
+   "qeye": false
   },
   {
    "code": "CS1369",
@@ -820,7 +823,7 @@
    "responses": {
     "FAIL": "Gain +1 FATE and the Muffled Condition card."
    },
-   "critical": "Gain 2 Mnemos nodes, each for a different Mnemos (campaign).",
+   "critical": "Gain 2 Mnemos nodes, each for a different Mnemos.",
    "qeye": true
   },
   {
@@ -833,7 +836,7 @@
     "WOUND": "The Oracle moves 3 spaces directly away from the Attacker (without turning). Giant Glaciate the previous Primordial space."
    },
    "critical": "You may perform a Bonus Attack!",
-   "qeye": true
+   "qeye": false
   },
   {
    "code": "CS1371",
@@ -841,11 +844,11 @@
    "name": "Wrong-Angled Wing",
    "at": 5,
    "responses": {
-    "FAIL": "Gain FATE equal to the Primordial LVL. ⚡ Move the Timefront 1 space forward.",
+    "FAIL": "Gain FATE equal to the Primordial LVL.\n⚡ Move the Timefront 1 space forward.",
     "WOUND": "The Oracle moves 3 spaces directly away from the Attacker (without turning). Giant Glaciate the previous Primordial space."
    },
    "critical": "Gain +1 Frozen Time (campaign).",
-   "qeye": true
+   "qeye": false
   },
   {
    "code": "CS1372",
@@ -857,7 +860,7 @@
     "WOUND": "Time-clocked."
    },
    "critical": "Disable 'The Oracle moves towards the Timefront' effects.",
-   "qeye": true
+   "qeye": false
   },
   {
    "code": "CS1373",
@@ -881,7 +884,7 @@
     "FAIL": "Gain +3 FATE. Time-clocked."
    },
    "critical": "You may reset FATE and perform a Bonus Attack!",
-   "qeye": true
+   "qeye": false
   },
   {
    "code": "CS1375",
@@ -892,7 +895,7 @@
     "INSTINCT": "Perform Signature against the Attacker."
    },
    "critical": "Move the Timefront 3 spaces backward.",
-   "qeye": true
+   "qeye": false
   },
   {
    "code": "CS1376",
@@ -940,7 +943,7 @@
     "WOUND": "Gain FATE equal to the Primordial LVL. Perform Signature against the Attacker."
    },
    "critical": "The Oracle dies!",
-   "qeye": true
+   "qeye": false
   },
   {
    "code": "CS1380",
@@ -949,7 +952,7 @@
    "at": 9,
    "atemporal": true,
    "responses": {
-    "FAIL": "Draw a Moiros card. ⚡ Move the Timefront 1 space forward."
+    "FAIL": "Draw a Moiros card.\n⚡ Move the Timefront 1 space forward."
    },
    "critical": "Gain +1 campaign token. After the Battle, resolve the Helionauts Special Event (campaign).",
    "qeye": true
@@ -972,7 +975,7 @@
    "at": 7,
    "atemporal": true,
    "responses": {
-    "FAIL": "Gain FATE equal to the Primordial LVL. ⚡ Move the Timefront 2 spaces forward."
+    "FAIL": "Gain FATE equal to the Primordial LVL.\n⚡ Move the Timefront 2 spaces forward."
    },
    "critical": "You may perform a Bonus Attack!",
    "qeye": true
@@ -983,10 +986,10 @@
    "name": "Timeline Digestion System",
    "at": 10,
    "responses": {
-    "INSTINCT": "The Oracle moves 6 spaces directly away from the Attacker (without turning). Giant Glaciate the previous Primordial space. Time-clocked. ⚡ Move the Timefront 1 space forward."
+    "INSTINCT": "The Oracle moves 6 spaces directly away from the Attacker (without turning). Giant Glaciate the previous Primordial space. Time-clocked.\n⚡ Move the Timefront 1 space forward."
    },
    "critical": "Remove the Timefront from the Board.",
-   "qeye": true
+   "qeye": false
   }
  ]
 }

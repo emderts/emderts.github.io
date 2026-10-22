@@ -184,7 +184,7 @@ function renderLoadout(root) {
   const lv = h('div', { class: 'row' }, h('label', {}, 'Primordial '), h('select', { onchange: e => { loadout.primordial = e.target.value; const l2 = levelsFor(loadout.primordial); if (!l2.includes(loadout.level)) loadout.level = l2[0]; saveLoadout(); renderLoadout(root); } }, ...Object.keys(DATA.scenarios).map(id => h('option', { value: id, selected: PID === id ? '' : null }, DATA.primordials[id].name))),
     h('label', {}, ' 레벨 '), h('select', { onchange: e => { loadout.level = +e.target.value; saveLoadout(); } }, ...lvs.map(l => { const L = PD.levels[l]; return h('option', { value: l, selected: loadout.level === l ? '' : null }, `Lv ${l} — To Hit ${L.toHit}+, Speed ${L.speed >= 99 ? '∞' : L.speed}, Wounds ${L.wounds}${(L.traits || []).length ? ' · ' + L.traits.join(', ') : ''}`); })),
     h('button', { class: 'x', onclick: () => showDetail(h('div', {}, h('div', { class: 'cv-title' }, PD.name + ' 트레이트'), ...Object.entries(PD.traits).map(([n, t]) => h('div', { class: 'cv-text' }, h('b', {}, n + ': '), t)), PD.vp ? h('div', { class: 'cv-text' }, h('b', {}, `VP ${PD.vp.name}: `), PD.vp.text) : null)) }, '트레이트 보기'));
-  if (PD.cycle === 3) lv.append(h('label', { class: 'small', title: 'Argo 시트의 Paradox(▷) 수치. AI 카드의 "▷X+ 또는 ΨY+" 조건과 Break the Wheel에 쓰임' }, ' Paradox ▷ ', h('input', { type: 'number', min: 0, max: 20, value: loadout.paradox || 0, style: 'width:3.5em', onchange: e => { loadout.paradox = Math.max(0, +e.target.value || 0); saveLoadout(); } })));
+  if ((PD.cycle || 0) >= 3) lv.append(h('label', { class: 'small', title: 'Argo 시트의 Paradox(▷) 수치. AI 카드의 "▷X+ 또는 ΨY+" 조건과 Break the Wheel에 쓰임' }, ' Paradox ▷ ', h('input', { type: 'number', min: 0, max: 20, value: loadout.paradox || 0, style: 'width:3.5em', onchange: e => { loadout.paradox = Math.max(0, +e.target.value || 0); saveLoadout(); } })));
   wrap.append(lv);
   if (TREE.nodes.length) {
     const open = !!tree.open; const doneN = TREE.nodes.filter(n => tree.done[n.id]).length;
@@ -248,10 +248,15 @@ function renderLoadout(root) {
     const avail = GEAR.filter(g => !t.gear.includes(g.name) && g.name !== 'Fists' && !gearLocked(g) && gearUsed(g.name) < gearCopies(g.name)).sort((a, b) => a.slot.localeCompare(b.slot) || a.name.localeCompare(b.name));
     const sel = h('select', {}, h('option', { value: '' }, '+ 장비 추가…'), h('optgroup', { label: 'Cycle I' }, ...avail.filter(g => !g.cycle || g.cycle === 1).map(gopt)), h('optgroup', { label: 'Cycle II' }, ...avail.filter(g => g.cycle === 2).map(gopt)), h('optgroup', { label: 'Cycle III' }, ...avail.filter(g => g.cycle === 3).map(gopt)), h('optgroup', { label: 'Cycle IV' }, ...avail.filter(g => g.cycle === 4).map(gopt)));
     sel.onchange = () => { if (sel.value) { showDetail(gearCard(GEAR.find(x => x.name === sel.value))); t.gear.push(sel.value); saveLoadout(); renderLoadout(root); } };
+    { const dlId = 'gdl-' + Math.random().toString(36).slice(2, 8); const dl = h('datalist', { id: dlId }, ...avail.map(g => h('option', { value: g.name }, `${SLOT_ICON[g.slot]} ${(g.traits || []).join(', ')}`)));
+      const si = h('input', { list: dlId, placeholder: '🔎 장비 이름 검색해서 추가', class: 'gsearch', style: 'width:100%;margin-top:4px' });
+      let added = false; const tryAdd = () => { if (added) return; const v = si.value.trim(); const g = avail.find(x => x.name.toLowerCase() === v.toLowerCase()); if (g) { added = true; showDetail(gearCard(g)); t.gear.push(g.name); saveLoadout(); renderLoadout(root); } };
+      si.addEventListener('change', tryAdd); si.addEventListener('keydown', e => { if (e.key === 'Enter') { const v = si.value.trim().toLowerCase(); const g = avail.find(x => x.name.toLowerCase() === v) || avail.find(x => x.name.toLowerCase().includes(v)); if (g) { si.value = g.name; tryAdd(); } } });
+      sel.after ? null : null; sel._search = [si, dl]; }
     const bl = GEAR.filter(g => g.name !== 'Fists').sort((a, b) => a.slot.localeCompare(b.slot) || a.name.localeCompare(b.name)); const bo = g => h('option', { value: g.name }, `${gearLocked(g) ? '🔒 ' : ''}${SLOT_ICON[g.slot]} ${g.name}${g.transform ? ' ⇄ ' + g.transform.name : ''}`); const browse = h('select', {}, h('option', { value: '' }, '🔍 장비 카드 보기…'), h('optgroup', { label: 'Cycle I' }, ...bl.filter(g => !g.cycle || g.cycle === 1).map(bo)), h('optgroup', { label: 'Cycle II' }, ...bl.filter(g => g.cycle === 2).map(bo)), h('optgroup', { label: 'Cycle III' }, ...bl.filter(g => g.cycle === 3).map(bo)));
     browse.onchange = () => { if (browse.value) showDetail(gearCard(GEAR.find(x => x.name === browse.value))); browse.value = ''; };
     card.append(browse);
-    card.append(list, sel);
+    card.append(list, sel, ...(sel._search || []));
     grid.append(card);
   });
   loadout.argo = loadout.argo || []; loadout.aaLimit = loadout.aaLimit || 2;

@@ -40,7 +40,7 @@ export function installOracle(Game, { TitanDied, BattleOver }) {
     async oracleRewind(t) {
       if (!t || !t.alive || t.offBoard === 'omega') return;
       if (!t._selfRewind) { const lg = this.gearHas(t, /Ψ⟳ (When you are about to suffer Rewind, ignore it|Sisyphean Rebound)/, true); if (lg && this.fr(t) > 0) { const ok = await this.ask({ type: 'yn', titan: t, title: `${lg.card.name}: Rewind 무시? (Fate+1, 소진)`, options: [{ label: '무시', value: true }, { label: '받는다', value: false }] }); if (ok) { lg.exhausted = true; await this.gainFate(t, 1); if (/then gain 1 positive Precision token/.test(lg.card.text || '')) t.tokens.precision++; this.say(`${t.name}: Rewind 무시`, 'good'); return; } } }
-      if (this.prim.disabled.rewind) { this.say(`${t.name}: Rewind 비활성 (Ontological Antennae)`); return; }
+      if (this.prim.disabled.rewind && !t._selfRewind) { this.say(`${t.name}: Rewind 비활성 (Ontological Antennae)`); return; }
       const a = await this.anchorChoice(t, this.anchorOf(t));
       if (!a) { this.say(`${t.name}: Rewind — Time Anchor가 없음 → 존재에서 지워짐`, 'bad'); return this.kill(t, { erased: true }); }
       if (t.onVP) await this.leaveVP(t);
@@ -159,6 +159,10 @@ export function installOracle(Game, { TitanDied, BattleOver }) {
         const cells = Board.adjacentCells(this.primCells()); origin = cells.reduce((a, b) => Board.dist(b, t.pos) < Board.dist(a, t.pos) ? b : a);
         const dx = Math.sign(origin.c - t.pos.c), dy = Math.sign(origin.r - t.pos.r); before = Math.abs(origin.c - t.pos.c) >= Math.abs(origin.r - t.pos.r) ? { c: t.pos.c + dx, r: t.pos.r } : { c: t.pos.c, r: t.pos.r + dy };
       }
+      if (origin && this.inFront(t.pos) && this.sideCells(f).some(p => p[axis] === t.pos[axis])) { // walk the whole beam from the Oracle to the target
+        let p = { ...origin }; for (let g = 0; g < 40 && !(p.c === t.pos.c && p.r === t.pos.r); g++) { const o = this.titanAt(p.c, p.r); const ter = this.board.terrainAt(p.c, p.r); if (o && o !== t && o.alive) { this.say(`Laser: 경로상 ${o.name}이(가) ${t.name} 앞에 있음 — 타겟 변경`, 'ai'); return { res: { kind: 'titan', t: o, cell: p, dir: f }, origin }; } if (ter && ter.obstacle) { this.say(`Laser: 경로상 ${ter.type}이(가) ${t.name} 앞에 있음 — 타겟 변경`, 'ai'); return { res: { kind: 'ter', ter, cell: p, dir: f }, origin }; } p = { c: p.c + DIRS[f][0], r: p.r + DIRS[f][1] }; }
+        return { res: { kind: 'titan', t, cell: t.pos, dir: f }, origin };
+      }
       if (before && !this.primContains(before) && !(before.c === t.pos.c && before.r === t.pos.r) && Board.dist(before, t.pos) === 1) {
         const o = this.titanAt(before.c, before.r); const ter = this.board.terrainAt(before.c, before.r);
         if (o && o !== t) { this.say(`Laser: 경로상 ${o.name}이(가) ${t.name} 앞에 있음 — 타겟 변경`, 'ai'); return { res: { kind: 'titan', t: o, cell: before, dir: f }, origin }; }
@@ -195,7 +199,7 @@ export function installOracle(Game, { TitanDied, BattleOver }) {
       const used = k => origin && k.c === origin.c && k.r === origin.r;
       if (kind === 'double') for (const s of this.sideCells(this.prim.facing)) if (!used(s)) this.laserHandle(this.beam(s, this.prim.facing), card, hits, ctx);
       if (kind === 'omni') for (const d of DIR_LIST) for (const s of this.sideCells(d)) if (!(d === this.prim.facing && used(s))) this.laserHandle(this.beam(s, d), card, hits, ctx);
-      for (const x of hits) { x._laserX = (card.tier || card.level || 1) + 1; x._laserR = this.round; }
+      for (const x of hits) { x._laserX = (typeof card.tier === 'number' ? card.tier : (card.level || (this.prim.level >= 7 ? 3 : this.prim.level >= 4 ? 2 : 1))) + 1; x._laserR = this.round; }
       this.say(`${kind === 'single' ? 'Laser' : kind === 'double' ? (this.prim.size === 3 ? 'Triple Laser' : 'Double Laser') : kind === 'omni' ? 'Omnilaser' : 'Laser'} 대상: ${hits.map(x => x.name).join(', ') || '(타이탄 없음)'}`, 'ai');
       return { hits, kind };
     },
@@ -323,7 +327,7 @@ export function installOracle(Game, { TitanDied, BattleOver }) {
       const tgts = [...new Set([...(primary ? [primary] : []), ...hits])];
       if (O.afterWin) await this.reactionWindow(tgts.find(x => x.alive) || this.liveTitans()[0] || this.titans[0], card, 'After Attack');
       for (const a of list) {
-        if (a.k === 'away') { const ref = primary ? (primary.alive && !primary.offBoard ? primary.pos : primary._prevPos) : null; const prev = await this.oracleMoveAway(ref, a.n); if (a.glac) this.placeIce(prev, a.glac === 'giant'); }
+        if (a.k === 'away') { if (!primary || !primary.alive) { this.say('(Mercy Rule: 대상이 죽음 — 대상 기준 After Attack 효과 생략)'); continue; } const ref = !primary.offBoard ? primary.pos : primary._prevPos; const prev = await this.oracleMoveAway(ref, a.n); if (a.glac && prev) this.placeIce(prev, a.glac === 'giant'); }
         else if (a.k === 'tf') { const prev = await this.oracleMoveTF(a.n, a.face); if (a.glac) this.placeIce(prev, a.glac === 'giant'); }
         else if (a.k === 'rewind') { for (const x of tgts) if (x.alive) await this.solo(() => this.oracleRewind(x)); }
         else if (a.k === 'clock') { for (const x of tgts) if (this.onBoard(x)) await this.solo(() => this.timeClock(x)); }
@@ -333,12 +337,12 @@ export function installOracle(Game, { TitanDied, BattleOver }) {
     },
     async oracleSequential(card, first) {
       const done = new Set(); let t = first; let g = 0;
-      while (t && g++ < 8) { done.add(t.id); await this.solo(async () => { await this.oracleOne(card, t); }); const rest = this.boardTitans().filter(x => !done.has(x.id)); if (!rest.length) break; const m = Math.max(...rest.map(x => this.distTo(x))); t = rest.find(x => this.distTo(x) === m); if (t) this.say(`${card.name} 반복 → ${t.name}`, 'ai'); }
+      while (t && g++ < 8) { done.add(t.id); this._otHit = done; try { await this.solo(async () => { await this.oracleOne(card, t); }); } finally { this._otHit = null; } const rest = this.boardTitans().filter(x => !done.has(x.id)); if (!rest.length) break; const m = Math.max(...rest.map(x => this.distTo(x))); t = rest.find(x => this.distTo(x) === m); if (t) this.say(`${card.name} 반복 → ${t.name}`, 'ai'); }
       await this.oracleAfter(card, null, []);
     },
     async oracleSpecial(card, opts) {
       const k = card.oracle.special;
-      if (k === 'skip') { this.say(`ROUTINE 「${card.name}」: ${card.text}`, 'ai'); await this.oracleMoveTF(4, false); await this.escalate(1); return; }
+      if (k === 'skip') { this.say(`ROUTINE 「${card.name}」: ${card.text}`, 'ai'); await this.oracleMoveTF(4, false); await this.escalateX(1); return; }
       if (k === 'medias') {
         const order = [...this.liveTitans()].sort((a, b) => a.fate - b.fate); const tiers = ['Minor', 'Major', 'Grave'];
         for (let i = 0; i < Math.min(3, order.length); i++) { const t = order[i]; this.say(`In Medias Res: ${t.name} (Fate ${t.fate}) — ${tiers[i]} Trauma`, 'ai'); await this.solo(() => this.traumaDraw(t, Math.max(t.danger, t.fate, 1), tiers[i])); }
@@ -347,7 +351,7 @@ export function installOracle(Game, { TitanDied, BattleOver }) {
       if (k === 'darkest') {
         await this.oracleMoveTF(4, false);
         for (const x of this.liveTitans()) if (x.offBoard !== 'omega') await this.solo(() => this.oracleRewind(x));
-        this.oracleLevelUp();
+        await this.oracleLevelUp();
         card._removed = true; if (this.setAsideAI) { this.ai.shuffleIn(this.setAsideAI); this.say(`「${this.setAsideAI.name}」을(를) AI 덱에 섞음`, 'ai'); this.setAsideAI = null; }
         const c = this.drawAI(); if (c) { await this.safe(() => this.resolveAI(c)); if (!c._removed) this.ai.discard.push(c); } return;
       }
@@ -365,11 +369,11 @@ export function installOracle(Game, { TitanDied, BattleOver }) {
         await this.oracleMoveTF(5, true); return;
       }
     },
-    oracleLevelUp() {
+    async oracleLevelUp() {
       const P = this.prim.def; const nl = Math.min(9, this.prim.level + 1); if (nl === this.prim.level) { this.say('(이미 최고 레벨)'); return; }
-      const L = P.levels[String(nl)]; this.prim.level = nl; this.prim.toHit = L.toHit; this.prim.wounds = L.wounds; this.prim.bonus = { AT: 0, PRECISION: 0, EVADE_DICE: 0, DANGER: 0, ESCALATION: 0, ...(L.bonus || {}) }; this.prim.bonusPerHit = !!L.bonusPerHit;
+      const L = P.levels[String(nl)]; const L0 = P.levels[String(this.prim.level)] || {}; const b0 = L0.bonus || {}, b1 = L.bonus || {}; this.prim.level = nl; this.prim.toHit = L.toHit; this.prim.wounds = L.wounds; const nb = { AT: 0, PRECISION: 0, EVADE_DICE: 0, DANGER: 0, ESCALATION: 0, ...this.prim.bonus }; for (const k of new Set([...Object.keys(b0), ...Object.keys(b1)])) nb[k] = (nb[k] || 0) + (b1[k] || 0) - (b0[k] || 0); this.prim.bonus = nb; const escD = (b1.ESCALATION || 0) - (b0.ESCALATION || 0); this.prim.bonusPerHit = !!L.bonusPerHit;
       for (const tr of L.traits || []) this.prim.traits[tr] = true;
-      this.say(`Darkest Timeline: ${this.prim.name} Lv.${nl}로 상승 — To Hit ${L.toHit}+, 상처 ${L.wounds}, 새 트레이트: ${(L.traits || []).join(', ') || '없음'}`, 'bad'); this.notify();
+      this.say(`Darkest Timeline: ${this.prim.name} Lv.${nl}로 상승 — To Hit ${L.toHit}+, 상처 ${L.wounds}, 새 트레이트: ${(L.traits || []).join(', ') || '없음'}`, 'bad'); this.notify(); if (escD > 0) { this.say(`Darkest Timeline: Escalation +${escD}`); await this.escalateX(escD); }
     },
 
     // ---------------- round hooks ----------------
