@@ -25,7 +25,7 @@ export class Game {
   notify() { if (this.onState) this.onState(this); }
 
   // ---------------- setup ----------------
-  setup({ primordialId = 'hekaton', level = 1, titans, argo = [], argoReserve = null, awakening = null, cannon = null, paradox = 0, deathBlowDouble = false, hrUpgrade = false }) {
+  setup({ primordialId = 'hekaton', level = 1, titans, argo = [], argoReserve = null, awakening = null, cannon = null, paradox = 0, deathBlowDouble = false, hrUpgrade = false, ptIndex = 0 }) {
     this.deathBlowDouble = !!deathBlowDouble; this.hrUpgrade = !!hrUpgrade;
     const P = this.data.primordials[primordialId]; const S = this.data.scenarios[primordialId]; this.isBurden = !!P.burden;
     const variant = Object.values(S.variants).find(v => (v.levels || []).includes(level)) || Object.values(S.variants)[0];
@@ -119,7 +119,7 @@ export class Game {
     if (P.djinnD) this.djinnSetup();
     if (P.dahakaD) this.dahakaSetup();
     if (P.babelD) this.babelSetup();
-    if (this.titans.length) this.titans[0].pt = true; // all Rage 0: players choose; default first
+    if (this.titans.length) (this.titans[Math.min(this.titans.length - 1, Math.max(0, ptIndex | 0))] || this.titans[0]).pt = true; // all Rage 0: players choose (loadout)
     this.say(`${P.name} Lv.${level} — Mnestis Battle 시작. Minor Trauma 바닥 카드 화살표(${this._arrow}) → ${this.prim.spot ? this.prim.spot + ' 위치, ' : ''}${this.prim.facing} 방향.`, 'sys');
     // start-of-battle gear effects
     for (const t of this.titans) for (const g of t.gear) {
@@ -225,7 +225,7 @@ export class Game {
   whiteCells() { const W = this.prim.def.whiteSpaces; if (!W) return []; const h = ((this.prim.size || 2) - 1) / 2; return W.map(w => w.depth != null ? this.relCell(h + w.depth, w.lateral || 0) : this.relCell(w.row === 'rear' ? -h : h, (w.side === 'right' ? 1 : -1) * (h + 1))); }
   inWhite(p) { return this.whiteCells().some(x => x.c === p.c && x.r === p.r); }
   frontAdjCells() { const h = ((this.prim.size || 2) - 1) / 2; const out = []; for (let l = -h; l <= h; l++) out.push(this.relCell(h + 1, l)); return out; }
-  ramNoWin(p, t = null) { { const fm = /^FATE (\d)\+:/.exec(String(p || '').replace(/^⚡\s*/, '')); if (fm && t && this.effFate(t) < +fm[1]) return true; } if (this.trait('Ram of Fists') && /^(FATE \d\+: )?Knockback/.test(String(p || '').replace(/^⚡\s*/, ''))) { this.say('Ram of Fists: Knockback 앞 ◆! 없음', 'sys'); return true; } return false; }
+  ramNoWin(p, t = null) { { const fm = /^FATE (\d)\+:/.exec(String(p || '').replace(/^⚡\s*/, '')); if (fm && t && this.effFate(t) < +fm[1]) return true; } { const pm = /^PARADOX (\d)\+ or FATE (\d)\+:/.exec(String(p || '').replace(/^⚡\s*/, '')); if (pm && t && !((this.parFor ? this.parFor(t) : (this.paradox || 0)) >= +pm[1] || this.effFate(t) >= +pm[2])) return true; } if (this.trait('Ram of Fists') && /^(FATE \d\+: )?Knockback/.test(String(p || '').replace(/^⚡\s*/, ''))) { this.say('Ram of Fists: Knockback 앞 ◆! 없음', 'sys'); return true; } return false; }
   trait(n) { return !!(this.prim.traits[n] && !this.prim.disabled[n]); }
   boundless() { return this.trait('Clever Boy') || this.trait('Roost Battle'); }
   burdenEdgeDeath(n) { if (!this.isBurden) return false; if (n.c < 1) return true; const ter = this.board.inBounds(n.c, n.r) ? this.board.terrainAt(n.c, n.r) : null; return !!(ter && ter.edge && this.trait('Mountain of Madness')); }
@@ -924,7 +924,7 @@ export class Game {
     if (t.onStone) { const c = t.onStone; this.dismountStone(t, null); await this.weightyFx(t, c); } else await this.weightyFx(t); if (!t.alive) return;
     if (!unavoidable && t.pos && this.gearHas(t, /When you are about to suffer Knockback and there is a Titan directly behind you, ignore this Knockback/)) { const b = { c: t.pos.c + DIRS[dir][0], r: t.pos.r + DIRS[dir][1] }; const o = this.titanAt(b.c, b.r); if (o && o !== t) { this.say(`${t.name}: 바로 뒤에 ${o.name} — Knockback 무시 (Gigantas)`, 'good'); return; } }
     this.say(`${t.name}: ${unavoidable ? 'Unavoidable ' : ''}Knockback ${x} (${dir})`, 'bad');
-    await this.forcedMove(t, dir, x); if (t._llAfter) await this.lifelineAfter(t); await this.landOn(t);
+    this._kbThrough = true; try { await this.forcedMove(t, dir, x); } finally { this._kbThrough = false; } if (t.alive && !t.offBoard && this.primContains(t.pos)) { this.say(`${t.name}: Knockback이 Primordial 위에서 끝남 — Displace`); await this.displace(t); } if (t._llAfter) await this.lifelineAfter(t); await this.landOn(t);
   }
   async forcedMove(t, dir, x) {
     if (this.gf(t, 'Poseidon')) return this.forcedMovePoseidon(t, dir, x);
@@ -939,7 +939,7 @@ export class Game {
         n = { c: t.pos.c + pick[0], r: t.pos.r + pick[1] }; if (!this.board.inBounds(n.c, n.r)) return; [dx, dy] = pick;
       }
       if (this.timefront != null && n.c <= this.timefront) { if (this.useLifeline(t) || await this.skyLifeline(t, 'Timefront로 밀림')) { this.say(`${t.name}: Lifeline — Timefront 앞에서 정지`); return; } this.say(`${t.name}: Timefront(Boundless Board Edge)로 밀려 존재에서 지워짐`, 'bad'); return this.kill(t, { erased: true }); }
-      if (this.primContains(n) && !this.primContains(t.pos)) { this.say(`${t.name}: Primordial에 막혀 정지`); return; }
+      if (this.primContains(n) && !this.primContains(t.pos) && !this._kbThrough) { this.say(`${t.name}: Primordial에 막혀 정지`); return; } if (this.primContains(n) && this._kbThrough) { t.pos = n; continue; }
       if (this.board.hasWall(t.pos, n)) { this.say(`${t.name}: Labyrinth 벽에 부딪힘`); await this.crash(t); return; }
       if (this.stonewallAt(n, t)) { this.say(`${t.name}: Stonewall — 파괴 불가 장애물에 부딪힘`); await this.crash(t); return; }
       const ter = this.board.terrainAt(n.c, n.r);
@@ -1400,7 +1400,7 @@ export class Game {
     if (card.dahaka || card.dhSig) { ({ dice, diff } = await this.dahakaHeader(t, card, dice, diff)); if (!t.alive) throw new TitanDied(t); }
     if (card.babel) { t._bD0 = this.currentAI.dangerDealt; ({ dice, diff } = await this.babelHeader(t, card, dice, diff)); if (!t.alive) throw new TitanDied(t); }
     const wishAtk = !!(((this.prim.def.djinnD && !this.isJudge(card) && this.isWishAttack(t, card)) || ((this.prim.def.dahakaD || this.prim.def.babelD) && card.wish && !this.prim.disabled.wishAtk)) && !(await this.wishArmor(t, card)));
-    const step0 = card.steps[0]; const fm = card.midas ? null : /FATE (\d)\+: \+(\d) EVADE_DICE/.exec(step0); if (fm && fate(+fm[1])) { dice += +fm[2]; this.say(`Fate ${fm[1]}+ : 회피 주사위 +${fm[2]}`); }
+    const step0 = card.steps[0]; const fm = card.midas ? null : /(?:^|\| )FATE (\d)\+: \+(\d) EVADE_DICE/.exec(step0); if (fm && fate(+fm[1])) { dice += +fm[2]; this.say(`Fate ${fm[1]}+ : 회피 주사위 +${fm[2]}`); }
     if (this.trait('Toying')) { dice = Math.max(1, dice - 1); this.say('Toying: 회피 주사위 −1'); }
     { const lm = /LEVEL (\d)\+: \+(\d) EVADE_DICE/.exec(step0); if (lm && this.prim.level >= +lm[1]) { dice += +lm[2]; this.say(`Level ${lm[1]}+ : 회피 주사위 +${lm[2]}`); } }
     for (const seg of step0.split(' | ').slice(1)) { const gm = /^FATE (\d)\+: (Exhaust [^.]*|Discard [^.]*|Gain \d Ambrosia tokens?|Gain the [\w ]+ Trauma card)$/.exec(seg); if (gm && fate(+gm[1])) { this.say(`Fate ${gm[1]}+ : ${gm[2]}`); await this.doSentence(t, gm[2], { card }); } }
@@ -2579,7 +2579,7 @@ export class Game {
     }
     else if (A.reclaim) { this.say('(Response 없음 — BP 버림)'); }
     else { const ign = (this.kratosPool.diversion > 0 || A.ignoreFailResp) && !A.wound && !!(resp && resp.FAIL); if (ign && A.ignoreFailResp) this.say('Fail Response 무시'); else if (ign) { this.kratosPool.diversion--; this.say('Diversion 토큰: Fail Response 무시'); } if (A.wound) { if (A.ignoreWoundResp) this.say('Wound Response 무시'); else await R(resp.WOUND); { const bs = /(?:^|[.;]\s+)(Ψ?) ?Wound: BP Suppress/.exec(txt); if (bs && (!bs[1] || this.fr(t) > 0)) { const ok = !bs[1] || await this.ask({ type: 'yn', titan: t, title: 'Wound: BP Suppress (Fate+1)?', options: [{ label: '사용', value: true }, { label: '패스', value: false }] }); if (ok) { if (bs[1]) await this.gainFate(t, 1); this.bp.shuffleDiscardIn(); this.say(`${g.card.name}: BP Suppress — BP 버림 더미를 덱에 섞음`); } } } } else if (!ign) await R(resp.FAIL); await R(resp.INSTINCT); }
-    if (A.wound && this.prim.ra && this.trait('Rapid Adaptation') && t.alive !== undefined) await this.raPlace(t, g);
+    if (A.wound && this.prim.ra && this.trait('Rapid Adaptation') && t.alive !== undefined && !A.ignoreRA) await this.raPlace(t, g);
     if (g.alt && !g.discarded && !g.godform && this.canTransform(t, g) && ((A.wound && kw(txt, 'Wound Trick') !== null) || (!A.wound && kw(txt, 'Fail Trick') !== null))) { const ok = await this.ask({ type: 'yn', titan: t, title: `${g.card.name}: ${A.wound ? 'Wound' : 'Fail'} Trick — 지금 ${g.alt.name}(으)로 뒤집기? (무료, 준비 상태로)`, options: [{ label: '뒤집기', value: true }, { label: '패스', value: false }] }); if (ok) { const wasGun = /When you Wound Trick, regain 1 charge/.test(g.card.text || ''); this.transformGear(t, g); g.exhausted = false; if (A.wound && wasGun) { g.charges = (g.charges || 0) + 1; this.say(`Wound Trick: charge +1 (${g.charges})`); } this.say(`${t.name}: ${A.wound ? 'Wound' : 'Fail'} Trick — ${g.card.name}`, 'good'); } }
     // 8. Wounds & escalation
     if (A.wound && /Regret: Each time you deal a Wound, place 1 Generic token on this card/.test(txt)) { g.regret = (g.regret || 0) + 1; this.say(`${g.card.name}: Regret 토큰 ${g.regret} (Power −${g.regret})`, 'bad'); }
@@ -2610,7 +2610,7 @@ export class Game {
     await this.endAttack(A);
     for (const q of queue) { this.say(`Attack Response: ${q.sig ? 'Signature' : 'AI 「' + q.card.name + '」'}${q.target ? ' → ' + q.target.name : ''}`); await this.safe(() => this.resolveAI(q.card, { isSignature: !!q.sig, forcedTarget: q.target && q.target.alive ? q.target : null })); if (q.discard) this.ai.discard.push(q.card); }
     if (this.pendingSignature) { this.pendingSignature = false; await this.safe(() => this.resolveAI(this.sig, { isSignature: true })); }
-    if (this.pendingFollowUp === t) { this.pendingFollowUp = null; this.say(`${t.name}: Follow-up 보너스 공격!`, 'good'); await this.bonusAttackFlow(t); }
+    if (this.pendingFollowUp === t) { this.pendingFollowUp = null; this.say(`${t.name}: Follow-up 보너스 공격!`, 'good'); try { await this.bonusAttackFlow(t); } finally { t._ignoreRA = false; } }
     else if (this.pendingFollowUp && this.pendingFollowUp !== t && this.pendingFollowUp.alive) { const o = this.pendingFollowUp; this.pendingFollowUp = null; this.say(`${o.name}: 보너스 공격!`, 'good'); await this.chainSafe(() => this.bonusAttackFlow(o)); }
   }
   ktStageOf(k) { if (/Pushback|Vault|Provoke|Tireless|Heartseeker|Inspire|Scale|Pole Position|Unburden|Precise/.test(k)) return 'first'; if (/Power Re-roll|Additional Power Die|Additional Die Improvement|Raw Power|Clutch/.test(k)) return 'power'; if (/Pass|BP Suppress/.test(k)) return 'clear'; return 'second'; }

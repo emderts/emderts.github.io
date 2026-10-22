@@ -174,7 +174,7 @@
    ],
    "steps": [
     "⚡ MOVE & PUSHBACK 2 & ATTACK",
-    "Bleeding 1. If the Attack hits, raise your Trauma level by 1 and resolve a Trauma Draw. | FATE 4+: 2 Trauma levels instead"
+    "Bleeding 1. If the Attack hits, raise your Trauma level by 1 and resolve a Trauma Draw.\n| FATE 4+: 2 Trauma levels instead"
    ],
    "harpy": {
     "move": "move",
@@ -195,7 +195,7 @@
    ],
    "steps": [
     "⚡ MOVE & PUSHBACK 2 & ATTACK",
-    "Bleeding 1. If the Attack hits, it deals 4 DANGER and 1 FATE.",
+    "Bleeding 1.\nIf the Attack hits, it deals 4 DANGER and 1 FATE.",
     "⚡ Knockdown."
    ],
    "harpy": {
@@ -216,7 +216,7 @@
     "Closest Titan in sight"
    ],
    "steps": [
-    "⚡ MOVE & ATTACK | FATE 7+: Discard a Gear card with the Shield or Helm Trait",
+    "⚡ MOVE & ATTACK\n| FATE 7+: Discard a Gear card with the Shield or Helm Trait",
     "Knockdown. Bleeding 1. If you have a Shield or Helm Gear card, each hit deals 2 DANGER. If not, each hit deals 3 DANGER."
    ],
    "harpy": {
@@ -238,7 +238,7 @@
     "Closest Titan in sight"
    ],
    "steps": [
-    "⚡ MOVE & PUSHBACK 3 & ATTACK | FATE 5+: +1 EVADE_DICE",
+    "⚡ MOVE & PUSHBACK 3 & ATTACK\n| FATE 5+: +1 EVADE_DICE",
     "Bleeding 2. Each hit deals 2 DANGER and 1 FATE. Knockdown."
    ],
    "harpy": {
@@ -305,7 +305,7 @@
    ],
    "steps": [
     "⚡ MOVE & PUSHBACK 2 & ATTACK",
-    "Bleeding 2. If the Attack hits, raise your Trauma level by 1 and resolve a Trauma Draw. | FATE 7+: 2 Trauma levels instead"
+    "Bleeding 2. If the Attack hits, raise your Trauma level by 1 and resolve a Trauma Draw.\n| FATE 7+: 2 Trauma levels instead"
    ],
    "harpy": {
     "move": "move",
@@ -347,7 +347,7 @@
     "Closest Titan in sight"
    ],
    "steps": [
-    "⚡ MOVE & ATTACK | FATE 7+: Discard a Gear card with the Shield or Helm Trait",
+    "⚡ MOVE & ATTACK\n| FATE 7+: Discard a Gear card with the Shield or Helm Trait",
     "Knockdown. Bleeding 2. If you have a Shield or Helm Gear card, each hit deals 3 DANGER. If not, raise DANGER to 9 and draw an Obol."
    ],
    "harpy": {
@@ -392,7 +392,7 @@
     "Closest Titan in sight"
    ],
    "steps": [
-    "⚡ MOVE & PUSHBACK 2 & ATTACK | FATE 7+: +2 EVADE_DICE",
+    "⚡ MOVE & PUSHBACK 2 & ATTACK\n| FATE 7+: +2 EVADE_DICE",
     "Bleeding 2. Each hit deals 2 DANGER and 1 FATE. Knockdown."
    ],
    "harpy": {
@@ -466,7 +466,7 @@
     "Closest Titan in sight"
    ],
    "steps": [
-    "APPEAR BEHIND & PUSHBACK 3 & ATTACK | FATE 9+: +1 EVADE_DICE",
+    "APPEAR BEHIND & PUSHBACK 3 & ATTACK\n| FATE 9+: +1 EVADE_DICE",
     "If the Attack hits, you die. If it was blocked, raise DANGER to 9 and discard the Gear card you blocked with. Knockdown."
    ],
    "harpy": {
@@ -498,7 +498,7 @@
     "Closest Titan in sight"
    ],
    "steps": [
-    "⚡ MOVE & ATTACK | FATE 7+: Discard a Gear card with the Shield or Helm Trait",
+    "⚡ MOVE & ATTACK\n| FATE 7+: Discard a Gear card with the Shield or Helm Trait",
     "Knockdown. Bleeding 2. If you have a Shield or Helm Gear card, each hit deals 3 DANGER. If not, you die."
    ],
    "harpy": {
@@ -527,7 +527,7 @@
     "Closest Titan in sight"
    ],
    "steps": [
-    "⚡ MOVE & PUSHBACK 3 & ATTACK | LEVEL 3+ or FATE 7+: +1 EVADE_DICE",
+    "⚡ MOVE & PUSHBACK 3 & ATTACK\n| LEVEL 3+ or FATE 7+: +1 EVADE_DICE",
     "If the Attack hits, draw an Obol. For each hit, add 1 You died card as if you crossed a Massive Danger threshold (for this draw only)."
    ],
    "harpy": {
@@ -589,7 +589,7 @@
     "Furthest Titan in sight"
    ],
    "steps": [
-    "LAND ON TOP & ATTACK | PARADOX 4+: Add +1 hit",
+    "LAND ON TOP & ATTACK\n| PARADOX 4+: Add +1 hit",
     "One hit, raise DANGER to 9 and draw an Obol, two hits, die, three hits, die and the Argonaut gains a Fated Mnemos card, four hits, the Titan and Argonaut both die."
    ],
    "harpy": {

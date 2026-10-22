@@ -70,8 +70,8 @@ export function installHarpy(Game, { TitanDied, BattleOver }) {
     async consume(t, why) { if (!t || !t.alive) return; this.say(`${t.name}: ${why} — Harpy에게 삼켜짐 (Consumed, 즉사)`, 'bad'); await this.solo(() => this.kill(t, { instant: true })); },
     adjKD() { return this.liveTitans().filter(x => !x.offBoard && !x.onVP && x.knockdown && this.isAdj(x)); },
     async raiseTraumaLevel(t, n, card) {
-      const rows = t.def.trauma; let cur = t.danger; let need = 0;
-      for (let k = 0; k < n; k++) { const lbs = rows.map(r => +r.danger.replace('+', '').split('-')[0]).sort((a, b) => a - b); const nx = lbs.find(lb => lb > cur) ?? (cur + 1); need += nx - cur; cur = nx; }
+      const rows = t.def.trauma; const base = this.trait('Death by Fate') ? Math.max(t.danger, t.fate) : t.danger; let cur = base; let need = 0;
+      for (let k = 0; k < n; k++) { const lbs = rows.map(r => +r.danger.replace('+', '').split('-')[0]).sort((a, b) => a - b); const nx = lbs.find(lb => lb > cur) ?? (cur + 1); need += nx - cur; cur = nx; } need = Math.max(need, cur - t.danger);
       this.say(`${t.name}: Trauma 레벨 ${n} 상승 — Danger ${need} 받음`, 'bad');
       await this.dealFD(t, 0, need, card, 1, null, { noBonus: true, noArmor: true });
     },
@@ -152,7 +152,7 @@ export function installHarpy(Game, { TitanDied, BattleOver }) {
       let tgt = forcedTarget && forcedTarget.alive && !forcedTarget.offBoard ? forcedTarget : null;
       if (!tgt && H.predation) tgt = this.predatorTarget();
       if (!tgt) { this._rangeCard = card.range ? card : null; tgt = this.pickTarget(card.target, !card.range); this._rangeCard = null; tgt = await this.unearthly(card, tgt); }
-      if (!tgt) { this.say('유효한 타겟 없음 → Signature', 'ai'); if (card !== this.sig) return this.resolveAI(this.sig, { isSignature: true }); return; }
+      if (!tgt) { this.say('유효한 타겟 없음 → Signature', 'ai'); if (card !== this.sig) return this.resolveAI(this.sig, { isSignature: true }); if (this.routine && !this.prim.disabled.routine) { this.say('Signature도 타겟 없음 → Routine', 'ai'); return this.resolveRoutine(this.routine); } return; }
       this.say(`타겟: ${tgt.name}`);
       if (H.regurg) await this.harpyRegurgitate();
       try { await this.harpyOne(card, tgt); } catch (e) { if (e instanceof BattleOver) throw e; if (!(e instanceof TitanDied) && !e.chainBreak) throw e; }
@@ -185,7 +185,7 @@ export function installHarpy(Game, { TitanDied, BattleOver }) {
         else if (a.k === 'text') { if (t && t.alive) await this.doEffects(t, a.t + '.', { card }); }
       }
     },
-    predatorTarget() { const b = this.liveTitans().filter(x => !x.offBoard && this.predBleeds(x) && this.los(x) && !this.attackedThisRound.has(x)); if (!b.length) return null; const mx = Math.max(...b.map(x => x.bleeding)); const c = b.filter(x => x.bleeding === mx); return c.find(x => x.pt) || c[0]; },
+    predatorTarget() { const b = this.liveTitans().filter(x => !x.offBoard && this.predBleeds(x) && this.primLos(x) && !this.attackedThisRound.has(x)); if (!b.length) return null; const mx = Math.max(...b.map(x => x.bleeding)); const c = b.filter(x => x.bleeding === mx); return c.find(x => x.pt) || c[0]; },
     // ---------- round / battle hooks ----------
     async harpyStartOfBattle() {
       const order = [...this.liveTitans()].sort((a, b) => b.danger - a.danger);
