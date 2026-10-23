@@ -2,7 +2,7 @@
 export class RNG {
   constructor(seed = Date.now() % 2147483647) { this.s = seed || 1; }
   next() { // Park-Miller
-    this.s = (this.s * 48271) % 2147483647; return this.s / 2147483647;
+    this.n = (this.n || 0) + 1; this.s = (this.s * 48271) % 2147483647; return this.s / 2147483647;
   }
   int(n) { return Math.floor(this.next() * n); }
   d10() { return this.int(10) + 1; }
@@ -28,7 +28,7 @@ export const TIER_UP = { m: 'r', r: 'b', b: 'w', w: 'w' };
 export class Deck {
   constructor(cards = [], rng) { this.cards = [...cards]; this.discard = []; this.rng = rng; }
   shuffle() { this.rng.shuffle(this.cards); return this; }
-  draw() { if (!this.cards.length) { if (!this.discard.length) return null; this.cards = this.discard; this.discard = []; this.shuffle(); } return this.cards.shift(); }
+  draw() { if (this.rng) this.rng.draws = (this.rng.draws || 0) + 1; if (!this.cards.length) { if (!this.discard.length) return null; this.cards = this.discard; this.discard = []; this.shuffle(); } return this.cards.shift(); }
   size() { return this.cards.length; }
   putBottom(c) { this.cards.push(c); }
   putTop(c) { this.cards.unshift(c); }

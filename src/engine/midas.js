@@ -120,7 +120,9 @@ export function installMidas(Game, { TitanDied, BattleOver }) {
     async midasOnDeath(t) {
       const n = this.midas(t); if (!n || !(this.trait('Weight of Greed') || this.trait('Debts of Succession'))) return;
       let rest = n; if (this.trait('Weight of Greed')) { const h = Math.ceil(n / 2); rest = n - h; this.painAdd(h, `Weight of Greed: ${t.name}`); }
-      if (this.trait('Debts of Succession') && rest > 0) { const o = this.liveTitans().filter(x => x !== t); if (!o.length) return; const each = Math.floor(rest / o.length); this.say(`Debts of Succession: 남은 Midas ${rest}개를 다른 타이탄에게 균등 분배 (${each}개씩${rest % o.length ? `, 나머지 ${rest % o.length}개 버림` : ''})`, 'bad'); if (each) for (const x of o) await this.solo(() => this.gainMidas(x, each, true)); }
+      if (this.trait('Debts of Succession') && rest > 0) { const o = this.liveTitans().filter(x => x !== t); if (!o.length) return; const each = Math.floor(rest / o.length); let r = rest % o.length; const give = new Map(o.map(x => [x, each]));
+        if (r) { const picks = await this.ask({ type: 'multi', titan: o[0], title: `Debts of Succession: Midas ${rest}개 분배 — ${each}개씩 받고 남은 ${r}개를 1개씩 더 받을 타이탄 ${r}명 선택`, max: r, okLabel: '확인', noLabel: '자동 선택', options: o.map((x, i) => ({ label: `${x.name} (Midas ${this.midas(x)})`, value: i })) }) || []; const chosen = [...new Set(picks)].slice(0, r).map(i => o[i]); for (const x of o) { if (chosen.length >= r) break; if (!chosen.includes(x)) chosen.push(x); } for (const x of chosen) give.set(x, give.get(x) + 1); }
+        this.say(`Debts of Succession: 남은 Midas ${rest}개 분배 — ${o.map(x => `${x.name} ${give.get(x)}`).join(', ')}`, 'bad'); for (const x of o) if (give.get(x)) await this.solo(() => this.gainMidas(x, give.get(x), true)); }
       for (const g of t.gear) g.midas = 0;
     },
     // ---------- attack header (MIDAS/FATE gates) ----------

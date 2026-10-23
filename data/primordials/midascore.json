@@ -1,846 +1,849 @@
 {
- "id": "midascore",
- "name": "Midascore",
- "cycle": 4,
- "type": "Mnestis",
- "sheetCode": "DU2394",
- "midasD": true,
- "_notes": [
-  "Transcribed from sheet DU2394 (Lv I-IX), trait card DX3222 (Incremental Painment), Amongst the Bleached Bones trait card, AI DR2395-DR2414, BP DS2416-DS2433, Impaled status DR2415.",
-  "Lv III/IV right box (+3 / +12 jar icon) is a campaign value — ignored. Hand icon on AI cards = number of Midas tokens.",
-  "Covetous / Greed-crazed / Enriched / Float condition cards and Irem Tower/City tile stats not scanned — placeholders."
- ],
- "footprint": {
-  "w": 3,
-  "h": 3,
-  "rear": "top-edge"
- },
- "ukb": 10,
- "blindspots": "rear",
- "levels": {
-  "1": {
-   "toHit": 9,
-   "speed": 99,
-   "wounds": 10,
-   "bonus": {},
-   "traits": [
-    "Goldtaste",
-    "Shadow in the Skies",
-    "Imperial Impetus",
-    "Incremental Painment"
-   ]
+  "id": "midascore",
+  "name": "Midascore",
+  "cycle": 4,
+  "type": "Mnestis",
+  "sheetCode": "DU2394",
+  "midasD": true,
+  "_notes": [
+    "Transcribed from sheet DU2394 (Lv I-IX), trait card DX3222 (Incremental Painment), Amongst the Bleached Bones trait card, AI DR2395-DR2414, BP DS2416-DS2433, Impaled status DR2415.",
+    "Lv III/IV right box (+3 / +12 jar icon) is a campaign value — ignored. Hand icon on AI cards = number of Midas tokens.",
+    "Covetous / Greed-crazed / Enriched / Float condition cards and Irem Tower/City tile stats not scanned — placeholders."
+  ],
+  "footprint": {
+    "w": 3,
+    "h": 3,
+    "rear": "top-edge"
   },
-  "2": {
-   "toHit": 9,
-   "speed": 99,
-   "wounds": 10,
-   "bonus": {},
-   "traits": [
-    "Amongst the Bleached Bones",
-    "Cities of Gold"
-   ]
+  "ukb": 10,
+  "blindspots": "rear",
+  "levels": {
+    "1": {
+      "toHit": 9,
+      "speed": 99,
+      "wounds": 10,
+      "bonus": {},
+      "traits": [
+        "Goldtaste",
+        "Shadow in the Skies",
+        "Imperial Impetus",
+        "Incremental Painment"
+      ]
+    },
+    "2": {
+      "toHit": 9,
+      "speed": 99,
+      "wounds": 10,
+      "bonus": {},
+      "traits": [
+        "Amongst the Bleached Bones",
+        "Cities of Gold"
+      ]
+    },
+    "3": {
+      "toHit": 10,
+      "speed": 99,
+      "wounds": 10,
+      "bonus": {
+        "ESCALATION": 1,
+        "DANGER": 1
+      },
+      "traits": [
+        "Sunken Costs"
+      ]
+    },
+    "4": {
+      "toHit": 10,
+      "speed": 99,
+      "wounds": 10,
+      "bonus": {
+        "ESCALATION": 2,
+        "AT": 1,
+        "DANGER": 1
+      },
+      "traits": [
+        "Unholy Inflation",
+        "Weight of Greed"
+      ]
+    },
+    "5": {
+      "mnestis": true,
+      "toHit": 11,
+      "speed": 99,
+      "wounds": 11,
+      "bonus": {
+        "ESCALATION": 2,
+        "AT": 2,
+        "DANGER": 1
+      },
+      "bonusPerHit": true,
+      "traits": [
+        "End of Hope",
+        "Aggressive Expansion"
+      ]
+    },
+    "6": {
+      "mnestis": true,
+      "toHit": 11,
+      "speed": 99,
+      "wounds": 11,
+      "bonus": {
+        "ESCALATION": 3,
+        "AT": 3,
+        "DANGER": 2
+      },
+      "bonusPerHit": true,
+      "traits": [
+        "Loss of Liquidity"
+      ]
+    },
+    "7": {
+      "mnestis": true,
+      "toHit": 12,
+      "speed": 99,
+      "wounds": 12,
+      "bonus": {
+        "ESCALATION": 4,
+        "AT": 4,
+        "DANGER": 2
+      },
+      "bonusPerHit": true,
+      "traits": [
+        "Soundspeed Impetus"
+      ]
+    },
+    "8": {
+      "mnestis": true,
+      "toHit": 12,
+      "speed": 99,
+      "wounds": 13,
+      "bonus": {
+        "ESCALATION": 4,
+        "AT": 5,
+        "EVADE_DICE": 1,
+        "DANGER": 2
+      },
+      "bonusPerHit": true,
+      "traits": [
+        "Beginning of the End",
+        "Debts of Succession"
+      ]
+    },
+    "9": {
+      "mnestis": true,
+      "toHit": 13,
+      "speed": 99,
+      "wounds": 14,
+      "bonus": {
+        "ESCALATION": 5,
+        "AT": 6,
+        "EVADE_DICE": 2,
+        "DANGER": 3
+      },
+      "bonusPerHit": true,
+      "traits": [
+        "Ruthless",
+        "Refuse Credit"
+      ]
+    }
   },
-  "3": {
-   "toHit": 10,
-   "speed": 99,
-   "wounds": 10,
-   "bonus": {
-    "ESCALATION": 1,
-    "DANGER": 1
-   },
-   "traits": [
-    "Sunken Costs"
-   ]
+  "traits": {
+    "Goldtaste": "Argonauts with the Goldthirst Curse Affliction must apply all FATE X+ or MIDAS X+ effects regardless of their actual FATE and Midas tokens.",
+    "Shadow in the Skies": "The Midascore ignores Line of Sight. During movement it does not destroy Terrain tiles, unless stated otherwise.",
+    "Imperial Impetus": "The Midascore moves 8 spaces forward in a straight line (Lv2: 9, Lv3: 10, Lv4+: 11). If it moves through or ends its move on a knocked down Titan, that Titan draws an Obol. When a Titan suffers Crash as a result of Imperial Impetus, they additionally gain 1 Midas token.",
+    "Incremental Painment": "Each time the Midascore gains a Wound (a Double Wound is 2 Wounds), place a Midas token on this card. Each time a Titan discards Midas tokens, place them here. After resolving the current action, if there are 5 or more Midas tokens on this card, discard 5 of them and perform Signature.",
+    "Amongst the Bleached Bones": "Normal (not Terrain) Battle Board spaces are considered Terrain tiles with the Chasm keyword.",
+    "Cities of Gold": "When a Terrain tile is displaced as a result of the Midascore's movement, place a generic token on that tile. If a Titan starts or ends their turn on a Terrain tile, they gain 1 Midas token for each generic token on that tile.",
+    "Sunken Costs": "End of Primordial Round: Gain DANGER equal to the number of Midas tokens you have.",
+    "Unholy Inflation": "When you are about to suffer Knockdown, if you have 3+ Midas tokens, suffer Float instead. When you are about to suffer Float, if you have the Windblight Curse Affliction, you die instead.",
+    "Weight of Greed": "When a Titan with Midas tokens dies, place half of their Midas tokens (rounding up) on the Incremental Painment Trait.",
+    "End of Hope": "End of Primordial Round: Perform Signature.",
+    "Aggressive Expansion": "At the start of the Primordial Round, perform ⚡ Airburst 3.",
+    "Loss of Liquidity": "Each Midas token on a non-Weapon Gear lowers your Speed and Hermes Move by 1. If you don't move during your Titan turn, you die.",
+    "Soundspeed Impetus": "If the Midascore moves through or ends its move on a knocked down or floating Titan, that Titan dies.",
+    "Beginning of the End": "End of Primordial Round: Before End of Hope, draw and perform another AI card.",
+    "Debts of Succession": "Double all Midas gain. When a Titan dies, after placing half of their Midas tokens on Incremental Painment, distribute the rest of the tokens evenly among all other Titans.",
+    "Ruthless": "Remove all positive Trauma cards from the Trauma decks (except Obols).",
+    "Refuse Credit": "Disable the Shifting keyword on Terrain tiles. The Midascore destroys Irem Towers during movement."
   },
-  "4": {
-   "toHit": 10,
-   "speed": 99,
-   "wounds": 10,
-   "bonus": {
-    "ESCALATION": 2,
-    "AT": 1,
-    "DANGER": 1
-   },
-   "traits": [
-    "Unholy Inflation",
-    "Weight of Greed"
-   ]
+  "ai": [
+    {
+      "code": "DR2400",
+      "tier": 1,
+      "name": "Auric Ram",
+      "kind": "SEQUENTIAL ATTACK",
+      "dice": 3,
+      "toHit": 9,
+      "target": [
+        "Furthest Titan in front",
+        "Furthest Titan in sight"
+      ],
+      "steps": [
+        "⚡ MOVE & ATTACK ALL TITANS IN PATH\n| MIDAS 2+ or FATE 4+: Ignore ⚡ preceding Knockdown",
+        "Midas 2. Gain the Covetous Condition card.",
+        "Each hit deals 3 DANGER.",
+        "⚡ Knockdown."
+      ],
+      "midas": {},
+      "path": true,
+      "unlimited": true,
+      "afterFinal": "⚡ Imperial Impetus.",
+      "stepJoin": [
+        2
+      ]
+    },
+    {
+      "code": "DR2399",
+      "tier": 1,
+      "name": "Horn Pierce",
+      "kind": "ATTACK",
+      "dice": 2,
+      "toHit": 11,
+      "target": [
+        "Priority Target",
+        "Furthest Titan in sight"
+      ],
+      "steps": [
+        "⚡ MOVE & ATTACK\n| FATE 4+: +1 EVADE_DICE",
+        "Midas 1.",
+        "Each hit deals 4 DANGER.",
+        "Two or more hits, you are Impaled.",
+        "⚡ If you're not Impaled, Knockdown."
+      ],
+      "midas": {},
+      "unlimited": true,
+      "after": "⚡ Imperial Impetus.",
+      "stepJoin": [
+        2,
+        3
+      ]
+    },
+    {
+      "code": "DR2398",
+      "tier": 1,
+      "name": "Tail Whip",
+      "kind": "ATTACK",
+      "dice": 2,
+      "toHit": 9,
+      "target": [
+        "Furthest Titan in front",
+        "Furthest Titan in sight"
+      ],
+      "steps": [
+        "⚡ MOVE & ATTACK\n| MIDAS 1+ or FATE 4+: +1 EVADE_DICE",
+        "Turn the Midascore to face directly away from the Target. If the Attack hits, it deals 7 DANGER and Midas 1.",
+        "⚡ Knockback 8 to the left or right."
+      ],
+      "midas": {
+        "turnAway": true
+      },
+      "unlimited": true,
+      "after": "Imperial Impetus.\n⚡ Imperial Impetus.",
+      "afterAsStep": false
+    },
+    {
+      "code": "DR2395",
+      "tier": 1,
+      "name": "Wing Flap",
+      "kind": "ATTACK",
+      "dice": 3,
+      "toHit": 9,
+      "target": [
+        "Furthest Titan in front",
+        "Furthest Titan in sight"
+      ],
+      "steps": [
+        "⚡ MOVE & ATTACK\n| MIDAS 1+ or FATE 3+: +1 EVADE_DICE",
+        "Midas 1.",
+        "Each hit deals 3 DANGER.",
+        "⚡ Airburst 2."
+      ],
+      "midas": {},
+      "unlimited": true,
+      "after": "⚡ Knockback 12.",
+      "stepJoin": [
+        2
+      ]
+    },
+    {
+      "code": "DR2396",
+      "tier": 1,
+      "name": "Right Claw Swipe",
+      "kind": "ATTACK",
+      "dice": 3,
+      "toHit": 8,
+      "target": [
+        "Furthest Titan in front",
+        "Furthest Titan in sight"
+      ],
+      "steps": [
+        "⚡ MOVE & ATTACK\n| FATE 3+: Evasion Roll difficulty 10+ instead",
+        "Midas 1.",
+        "Each hit deals 3 DANGER.",
+        "Gain the Covetous Condition card."
+      ],
+      "midas": {},
+      "unlimited": true,
+      "after": "⚡ Imperial Impetus.",
+      "stepJoin": [
+        2,
+        3
+      ]
+    },
+    {
+      "code": "DR2397",
+      "tier": 1,
+      "name": "Left Claw Swipe",
+      "kind": "ATTACK",
+      "dice": 3,
+      "toHit": 8,
+      "target": [
+        "Furthest Titan in front",
+        "Furthest Titan in sight"
+      ],
+      "steps": [
+        "⚡ MOVE & ATTACK\n| FATE 3+: Evasion Roll difficulty 10+ instead",
+        "Midas 1.",
+        "Each hit deals 3 DANGER.",
+        "⚡ Knockdown."
+      ],
+      "midas": {},
+      "unlimited": true,
+      "after": "⚡ Imperial Impetus.",
+      "stepJoin": [
+        2
+      ]
+    },
+    {
+      "code": "DR2401",
+      "tier": 2,
+      "name": "Golden Drool",
+      "kind": "RANGE ATTACK",
+      "dice": 4,
+      "toHit": 7,
+      "target": [
+        "Closest Titan in front",
+        "Closest Titan in sight"
+      ],
+      "steps": [
+        "⚡ RANGE ATTACK UNLIMITED\n| FATE 5+: Evasion Roll difficulty 9+ instead",
+        "Each hit deals 3 DANGER and Midas 1.",
+        "Gain 1 Ambrosia token."
+      ],
+      "midas": {},
+      "range": 99,
+      "after": "⚡ Airburst 2.",
+      "stepJoin": [
+        2
+      ]
+    },
+    {
+      "code": "DR2402",
+      "tier": 2,
+      "name": "Wingburst",
+      "kind": "ATTACK",
+      "dice": 3,
+      "toHit": 9,
+      "target": [
+        "Furthest Titan in front",
+        "Furthest Titan in sight"
+      ],
+      "steps": [
+        "⚡ MOVE & ATTACK\n| MIDAS 2+ or FATE 4+: +1 EVADE_DICE",
+        "Each hit deals 4 DANGER.",
+        "⚡ Airburst 3."
+      ],
+      "midas": {},
+      "unlimited": true,
+      "after": "⚡ Imperial Impetus."
+    },
+    {
+      "code": "DR2406",
+      "tier": 2,
+      "name": "Slamdown",
+      "kind": "ZONE ATTACK",
+      "dice": 6,
+      "toHit": 6,
+      "target": [
+        "Zone 4"
+      ],
+      "steps": [
+        "⚡ ATTACK\n| FATE 6+: Evasion Roll difficulty 8+ instead",
+        "Midas 1. Gain the Covetous Condition card.",
+        "Each hit deals 3 DANGER."
+      ],
+      "midas": {
+        "zone": 4,
+        "noHitAI": true
+      },
+      "stepJoin": [
+        2
+      ],
+      "afterFinal": "If no Titan was hit, draw another AI card.",
+      "afterWindow": true
+    },
+    {
+      "code": "DR2405",
+      "tier": 2,
+      "name": "Horndive",
+      "kind": "ATTACK",
+      "dice": 3,
+      "toHit": 11,
+      "target": [
+        "Priority Target",
+        "Furthest Titan in sight"
+      ],
+      "steps": [
+        "⚡ JUMP & ATTACK\n| FATE 4+: +1 EVADE_DICE",
+        "Midas 3.",
+        "Each hit deals 4 DANGER.",
+        "Two or more hits, you are Impaled.",
+        "⚡ If you're not Impaled, Knockdown."
+      ],
+      "midas": {},
+      "jump": true,
+      "after": "⚡ Airburst 3.",
+      "stepJoin": [
+        2,
+        3
+      ]
+    },
+    {
+      "code": "DR2404",
+      "tier": 2,
+      "name": "Imperial Dance",
+      "kind": "CURSE",
+      "target": [],
+      "steps": [],
+      "midas": {
+        "curse": "⚡ Dance — Closest Titan in sight with FATE 6+: Gain the Covetous Condition card. Airburst 5. Every affected Titan gains 2 Midas tokens. ⚡ Turn the Midascore in a random direction.",
+        "after": "⚡ Draw another AI card."
+      },
+      "text": "⚡ Dance — Closest Titan in sight with FATE 6+: Gain the Covetous Condition card. Airburst 5. Every affected Titan gains 2 Midas tokens. ⚡ Turn the Midascore in a random direction.",
+      "afterDisplay": "After Curse: Draw another AI card."
+    },
+    {
+      "code": "DR2403",
+      "tier": 2,
+      "name": "Topple the Kings",
+      "kind": "SEQUENTIAL ATTACK",
+      "dice": 3,
+      "toHit": 9,
+      "target": [
+        "Furthest Titan in front",
+        "Furthest Titan in sight"
+      ],
+      "steps": [
+        "⚡ MOVE & ATTACK ALL TITANS IN PATH\n| MIDAS 3+ or FATE 4+: Ignore ⚡ preceding Knockdown",
+        "Midas 3. Gain the Covetous Condition card.",
+        "Each hit deals 4 DANGER.",
+        "⚡ Knockdown."
+      ],
+      "midas": {},
+      "path": true,
+      "unlimited": true,
+      "afterFinal": "⚡ Imperial Impetus.",
+      "stepJoin": [
+        2
+      ]
+    },
+    {
+      "code": "DR2408",
+      "tier": 3,
+      "name": "Bring Down the Heavens",
+      "kind": "SEQUENTIAL ATTACK",
+      "dice": 4,
+      "toHit": 9,
+      "target": [
+        "Furthest Titan in front",
+        "Furthest Titan in sight"
+      ],
+      "steps": [
+        "⚡ MOVE & ATTACK ALL TITANS IN PATH\n| MIDAS 3+ or FATE 4+: Ignore ⚡ preceding Knockdown",
+        "Midas 3. Gain the Greed-crazed Condition card.",
+        "Each hit deals 4 DANGER.",
+        "⚡ Knockdown. Airburst 3."
+      ],
+      "midas": {},
+      "path": true,
+      "unlimited": true,
+      "afterFinal": "⚡ Imperial Impetus.",
+      "stepJoin": [
+        2
+      ]
+    },
+    {
+      "code": "DR2407",
+      "tier": 3,
+      "name": "Auric Ray",
+      "kind": "LASER ATTACK",
+      "dice": 3,
+      "toHit": 11,
+      "target": [
+        "Furthest Titan in front",
+        "Furthest Titan in sight"
+      ],
+      "steps": [
+        "⚡ MOVE LATERAL & ATTACK\n| FATE 6+: Ignore ⚡",
+        "Three hits or MIDAS 3+, you die. Otherwise, each hit deals 4 DANGER and Midas 2."
+      ],
+      "midas": {
+        "laser": true
+      },
+      "lateral": true
+    },
+    {
+      "code": "DR2409",
+      "tier": 3,
+      "name": "The Horn of Crooked Alchemy",
+      "kind": "JUDGEMENT",
+      "dice": 3,
+      "toHit": 10,
+      "target": [
+        "Closest Titan in front",
+        "Closest Titan in sight"
+      ],
+      "steps": [
+        "JUDGE (Courage/Will)",
+        "X is the number of Midas tokens you have (minimum 3). Each hit deals 4 DANGER and Midas 1."
+      ],
+      "midas": {
+        "diceMidas": 3
+      },
+      "judge": [
+        "Courage",
+        "Will"
+      ],
+      "after": "⚡ Airburst 4."
+    },
+    {
+      "code": "DR2410",
+      "tier": 3,
+      "name": "The Grand Crash",
+      "kind": "CURSE",
+      "target": [],
+      "steps": [],
+      "midas": {
+        "curse": "⚡ Topple — Closest Titan in sight with FATE 6+: Midas 1. Gain the Greed-crazed Condition card. Remove 8 empty Terrain tiles from the Battle Board. Each Titan gains 2 Midas tokens.",
+        "after": "⚡ Draw another AI card."
+      },
+      "text": "⚡ Topple — Closest Titan in sight with FATE 6+: Midas 1. Gain the Greed-crazed Condition card. Remove 8 empty Terrain tiles from the Battle Board. Each Titan gains 2 Midas tokens.",
+      "afterDisplay": "After Curse: Draw another AI card."
+    },
+    {
+      "code": "DR2412",
+      "tier": 3,
+      "name": "Golden Bite",
+      "kind": "ATTACK",
+      "dice": 2,
+      "toHit": 11,
+      "target": [
+        "Priority Target in front",
+        "Closest Titan in front",
+        "Closest Titan in sight"
+      ],
+      "steps": [
+        "⚡ MOVE & ATTACK\n| MIDAS 3+ or FATE 6+: +1 EVADE_DICE",
+        "If the Attack hits, it deals 9 DANGER and Midas 5.",
+        "If you survive, gain the Goldthirst Curse Affliction."
+      ],
+      "midas": {},
+      "unlimited": true,
+      "after": "⚡ Imperial Impetus.",
+      "stepJoin": [
+        2
+      ]
+    },
+    {
+      "code": "DR2411",
+      "tier": 3,
+      "name": "Auric Rain",
+      "kind": "CURSE",
+      "target": [],
+      "steps": [],
+      "midas": {
+        "curse": "⚡ Rain — Closest Titan in sight with FATE 6+: Midas 1. Gain the Greed-crazed Condition card. Each Titan without an Umbrella Gear card gains 3 Midas tokens and 3 Ambrosia tokens.",
+        "after": "⚡ Draw another AI card."
+      },
+      "text": "⚡ Rain — Closest Titan in sight with FATE 6+: Midas 1. Gain the Greed-crazed Condition card. Each Titan without an Umbrella Gear card gains 3 Midas tokens and 3 Ambrosia tokens.",
+      "afterDisplay": "After Curse: Draw another AI card."
+    },
+    {
+      "code": "DR2414",
+      "tier": "X",
+      "name": "Auric Storm",
+      "kind": "ROUTINE",
+      "target": [],
+      "steps": [],
+      "text": "Lose -1 (campaign token). Each Titan gains 2 Midas tokens and 2 Ambrosia tokens.",
+      "midas": {
+        "routine": true
+      }
+    },
+    {
+      "code": "DR2413",
+      "tier": "X",
+      "name": "Midasram",
+      "kind": "SIGNATURE",
+      "dice": 3,
+      "toHit": 8,
+      "target": [
+        "Furthest Titan in front",
+        "Furthest Titan in sight"
+      ],
+      "steps": [
+        "⚡ MOVE & ATTACK ALL TITANS IN PATH\n| FATE 7+: Ignore ⚡ preceding Knockdown",
+        "Midas 1.",
+        "Each hit deals 3 DANGER.",
+        "⚡ Knockdown."
+      ],
+      "midas": {},
+      "path": true,
+      "unlimited": true,
+      "afterFinal": "⚡ Imperial Impetus.",
+      "stepJoin": [
+        2
+      ]
+    }
+  ],
+  "bp": [
+    {
+      "code": "DS2417",
+      "tier": 1,
+      "name": "Muscular Tail",
+      "at": 7,
+      "responses": {
+        "FAIL": "⚡ Imperial Impetus.",
+        "WOUND": "Perform Signature against the Attacker."
+      },
+      "critical": "Gain the Priority Target token. You may perform a Bonus Attack!"
+    },
+    {
+      "code": "DS2416",
+      "tier": 1,
+      "name": "Mighty Claw",
+      "at": 5,
+      "responses": {
+        "FAIL": "Perform Signature against the Attacker.",
+        "WOUND": "⚡ Imperial Impetus."
+      },
+      "critical": "Deal an additional Single Wound!"
+    },
+    {
+      "code": "DS2418",
+      "tier": 1,
+      "name": "Auric Back",
+      "at": 6,
+      "responses": {
+        "FAIL": "Airburst 1.",
+        "WOUND": "Midas 1. Gain the Covetous Condition card."
+      },
+      "critical": "Gain the Auric Cloak card (Secret deck 11, card 189) (campaign)."
+    },
+    {
+      "code": "DS2419",
+      "tier": 1,
+      "name": "Hardened Underbelly",
+      "at": 7,
+      "responses": {
+        "FAIL": "Midas 1. Gain the Covetous Condition card.",
+        "WOUND": "Midas 2."
+      },
+      "critical": "Each Titan may perform Unholy Alchemy!"
+    },
+    {
+      "code": "DS2420",
+      "tier": 1,
+      "name": "Long Neck",
+      "at": 5,
+      "responses": {
+        "FAIL": "⚡ Knockdown.",
+        "WOUND": "⚡ Imperial Impetus."
+      },
+      "critical": "Create the Vantage Point. If the VP is already in play, gain +2 Precision when attacking from the VP or Impaled!"
+    },
+    {
+      "code": "DS2421",
+      "tier": 1,
+      "name": "Towering Wing",
+      "at": 6,
+      "responses": {
+        "FAIL": "Airburst 2.",
+        "WOUND": "⚡ Imperial Impetus."
+      },
+      "critical": "Gain the Enriched Condition card!"
+    },
+    {
+      "code": "DS2425",
+      "tier": 2,
+      "name": "Golden Vocal Chord",
+      "at": 8,
+      "responses": {
+        "FAIL": "Gain the Covetous Condition card. ⚡ Imperial Impetus.",
+        "WOUND": "Midas 3."
+      },
+      "critical": "Gain the Golden Harp card (Secret deck 11, card 190) (campaign)."
+    },
+    {
+      "code": "DS2424",
+      "tier": 2,
+      "name": "Navigation Center",
+      "at": 9,
+      "responses": {
+        "FAIL": "Midas 2.",
+        "WOUND": "Unholy Alchemy."
+      },
+      "critical": "Until the end of Battle, Imperial Impetus distance is halved (rounding up)."
+    },
+    {
+      "code": "DS2423",
+      "tier": 2,
+      "name": "Muscle Floaters",
+      "at": 6,
+      "responses": {
+        "FAIL": "Midas 2.",
+        "WOUND": "⚡ Imperial Impetus."
+      },
+      "critical": "Create the Vantage Point. If the VP is already in play, during the second ability window place 1 negative AT token in the Kratos Pool.",
+      "qeye": true
+    },
+    {
+      "code": "DS2422",
+      "tier": 2,
+      "name": "Gold-Carrying Vein",
+      "at": 8,
+      "responses": {
+        "FAIL": "Midas 1. Gain the Covetous Condition card. ⚡ Imperial Impetus.",
+        "WOUND": "Unholy Alchemy. Midas 2."
+      },
+      "critical": "Each Titan may discard up to 3 Midas tokens."
+    },
+    {
+      "code": "DS2426",
+      "tier": 2,
+      "name": "Wing Bubbles",
+      "at": 9,
+      "responses": {
+        "FAIL": "Midas 2.",
+        "WOUND": "⚡ Imperial Impetus."
+      },
+      "critical": "Disable the Airburst X keyword."
+    },
+    {
+      "code": "DS2427",
+      "tier": 2,
+      "name": "Hind Horns",
+      "at": 7,
+      "responses": {
+        "FAIL": "You are Impaled.",
+        "WOUND": "Perform Signature against the Attacker."
+      },
+      "critical": "Disable the Impaled Status card. Immediately Displace 1 all Impaled Titans."
+    },
+    {
+      "code": "DS2428",
+      "tier": 3,
+      "name": "Gold Circulation System",
+      "at": 9,
+      "responses": {
+        "FAIL": "Midas 2. Gain the Greed-crazed Condition card.",
+        "WOUND": "Unholy Alchemy. Midas 4."
+      },
+      "critical": "The Midascore dies!"
+    },
+    {
+      "code": "DS2429",
+      "tier": 3,
+      "name": "Golden Curse Tumor",
+      "at": 11,
+      "responses": {
+        "FAIL": "Midas 2. Gain the Greed-crazed Condition card.",
+        "WOUND": "Gain the Goldthirst Curse Affliction. ⚡ Imperial Impetus."
+      },
+      "critical": "Disable the Midas X keyword.",
+      "qeye": true
+    },
+    {
+      "code": "DS2433",
+      "tier": 3,
+      "name": "Wind Curse Tumor",
+      "at": 10,
+      "responses": {
+        "FAIL": "Midas 2. Gain the Greed-crazed Condition card.",
+        "WOUND": "Gain the Windblight Curse Affliction. ⚡ Imperial Impetus."
+      },
+      "critical": "Disable the Imperial Impetus Trait."
+    },
+    {
+      "code": "DS2432",
+      "tier": 3,
+      "name": "Immovable Horn",
+      "at": 8,
+      "responses": {
+        "FAIL": "Midas 1. Gain the Covetous Condition card. You are Impaled.",
+        "WOUND": "Any Impaled Titan becomes not Impaled. ⚡ Imperial Impetus."
+      },
+      "critical": "Create the Vantage Point and immediately climb it and gain the Bihorn Lance card (Secret deck 11, card 191)."
+    },
+    {
+      "code": "DS2431",
+      "tier": 3,
+      "name": "Imperial Grimace",
+      "at": 8,
+      "responses": {
+        "FAIL": "Draw an Obol.",
+        "WOUND": "Midas 2. Gain the Greed-crazed Condition card. ⚡ Imperial Impetus."
+      },
+      "critical": "Gain the Priority Target token. You may perform a Bonus Attack!"
+    },
+    {
+      "code": "DS2430",
+      "tier": 3,
+      "name": "King's Scroll",
+      "at": 9,
+      "responses": {
+        "INSTINCT": "Perform Signature against the Attacker."
+      },
+      "critical": "You may discard an Affliction or Condition card! If you don't have any, you may perform a Bonus Attack!",
+      "qeye": true
+    }
+  ],
+  "vp": {
+    "name": "Midascore's Back",
+    "slots": 1,
+    "byLevel": {
+      "1": {
+        "climb": [
+          "Fury",
+          9
+        ],
+        "holdOn": [
+          "Endurance",
+          9
+        ],
+        "holdFail": "irem",
+        "power": 2,
+        "responses": "custom",
+        "respWound": "Midas 1. ⚡ Imperial Impetus.",
+        "respFail": "Airburst 2. ⚡ Immediately perform the Hold On test."
+      },
+      "5": {
+        "climb": [
+          "Fury",
+          10
+        ],
+        "holdOn": [
+          "Endurance",
+          10
+        ],
+        "holdFail": "irem",
+        "power": 2,
+        "responses": "custom",
+        "respWound": "Midas 3. ⚡ Imperial Impetus.",
+        "respFail": "Airburst 4. ⚡ Immediately perform the Hold On test."
+      }
+    },
+    "text": "Climb: Fury 9+ (Lv5+: 10+). Hold On — End of Primordial Round: if on the VP, test Endurance (9+; Lv5+: 10+). Fail: Knockdown, displace onto the closest Irem Tower. VP effects: +2 Power. Ignore normal Primordial responses; instead WOUND: Midas 1 (Lv5+: 3), ⚡ Imperial Impetus. FAIL: Airburst 2 (Lv5+: 4), ⚡ immediately perform the Hold On test."
   },
-  "5": {
-   "mnestis": true,
-   "toHit": 11,
-   "speed": 99,
-   "wounds": 11,
-   "bonus": {
-    "ESCALATION": 2,
-    "AT": 2,
-    "DANGER": 1
-   },
-   "bonusPerHit": true,
-   "traits": [
-    "End of Hope",
-    "Aggressive Expansion"
-   ]
-  },
-  "6": {
-   "mnestis": true,
-   "toHit": 11,
-   "speed": 99,
-   "wounds": 11,
-   "bonus": {
-    "ESCALATION": 3,
-    "AT": 3,
-    "DANGER": 2
-   },
-   "bonusPerHit": true,
-   "traits": [
-    "Loss of Liquidity"
-   ]
-  },
-  "7": {
-   "mnestis": true,
-   "toHit": 12,
-   "speed": 99,
-   "wounds": 12,
-   "bonus": {
-    "ESCALATION": 4,
-    "AT": 4,
-    "DANGER": 2
-   },
-   "bonusPerHit": true,
-   "traits": [
-    "Soundspeed Impetus"
-   ]
-  },
-  "8": {
-   "mnestis": true,
-   "toHit": 12,
-   "speed": 99,
-   "wounds": 13,
-   "bonus": {
-    "ESCALATION": 4,
-    "AT": 5,
-    "EVADE_DICE": 1,
-    "DANGER": 2
-   },
-   "bonusPerHit": true,
-   "traits": [
-    "Beginning of the End",
-    "Debts of Succession"
-   ]
-  },
-  "9": {
-   "mnestis": true,
-   "toHit": 13,
-   "speed": 99,
-   "wounds": 14,
-   "bonus": {
-    "ESCALATION": 5,
-    "AT": 6,
-    "EVADE_DICE": 2,
-    "DANGER": 3
-   },
-   "bonusPerHit": true,
-   "traits": [
-    "Ruthless",
-    "Refuse Credit"
-   ]
-  }
- },
- "traits": {
-  "Goldtaste": "Argonauts with the Goldthirst Curse Affliction must apply all FATE X+ or MIDAS X+ effects regardless of their actual FATE and Midas tokens.",
-  "Shadow in the Skies": "The Midascore ignores Line of Sight. During movement it does not destroy Terrain tiles, unless stated otherwise.",
-  "Imperial Impetus": "The Midascore moves 8 spaces forward in a straight line (Lv2: 9, Lv3: 10, Lv4+: 11). If it moves through or ends its move on a knocked down Titan, that Titan draws an Obol. When a Titan suffers Crash as a result of Imperial Impetus, they additionally gain 1 Midas token.",
-  "Incremental Painment": "Each time the Midascore gains a Wound (a Double Wound is 2 Wounds), place a Midas token on this card. Each time a Titan discards Midas tokens, place them here. After resolving the current action, if there are 5 or more Midas tokens on this card, discard 5 of them and perform Signature.",
-  "Amongst the Bleached Bones": "Normal (not Terrain) Battle Board spaces are considered Terrain tiles with the Chasm keyword.",
-  "Cities of Gold": "When a Terrain tile is displaced as a result of the Midascore's movement, place a generic token on that tile. If a Titan starts or ends their turn on a Terrain tile, they gain 1 Midas token for each generic token on that tile.",
-  "Sunken Costs": "End of Primordial Round: Gain DANGER equal to the number of Midas tokens you have.",
-  "Unholy Inflation": "When you are about to suffer Knockdown, if you have 3+ Midas tokens, suffer Float instead. When you are about to suffer Float, if you have the Windblight Curse Affliction, you die instead.",
-  "Weight of Greed": "When a Titan with Midas tokens dies, place half of their Midas tokens (rounding up) on the Incremental Painment Trait.",
-  "End of Hope": "End of Primordial Round: Perform Signature.",
-  "Aggressive Expansion": "At the start of the Primordial Round, perform ⚡ Airburst 3.",
-  "Loss of Liquidity": "Each Midas token on a non-Weapon Gear lowers your Speed and Hermes Move by 1. If you don't move during your Titan turn, you die.",
-  "Soundspeed Impetus": "If the Midascore moves through or ends its move on a knocked down or floating Titan, that Titan dies.",
-  "Beginning of the End": "End of Primordial Round: Before End of Hope, draw and perform another AI card.",
-  "Debts of Succession": "Double all Midas gain. When a Titan dies, after placing half of their Midas tokens on Incremental Painment, distribute the rest of the tokens evenly among all other Titans.",
-  "Ruthless": "Remove all positive Trauma cards from the Trauma decks (except Obols).",
-  "Refuse Credit": "Disable the Shifting keyword on Terrain tiles. The Midascore destroys Irem Towers during movement."
- },
- "ai": [
-  {
-   "code": "DR2400",
-   "tier": 1,
-   "name": "Auric Ram",
-   "kind": "SEQUENTIAL ATTACK",
-   "dice": 3,
-   "toHit": 9,
-   "target": [
-    "Furthest Titan in front",
-    "Furthest Titan in sight"
-   ],
-   "steps": [
-    "⚡ MOVE & ATTACK ALL TITANS IN PATH\n| MIDAS 2+ or FATE 4+: Ignore ⚡ preceding Knockdown",
-    "Midas 2. Gain the Covetous Condition card.",
-    "Each hit deals 3 DANGER.",
-    "⚡ Knockdown."
-   ],
-   "midas": {},
-   "path": true,
-   "unlimited": true,
-   "afterFinal": "⚡ Imperial Impetus.",
-   "stepJoin": [
-    2
-   ]
-  },
-  {
-   "code": "DR2399",
-   "tier": 1,
-   "name": "Horn Pierce",
-   "kind": "ATTACK",
-   "dice": 2,
-   "toHit": 11,
-   "target": [
-    "Priority Target",
-    "Furthest Titan in sight"
-   ],
-   "steps": [
-    "⚡ MOVE & ATTACK\n| FATE 4+: +1 EVADE_DICE",
-    "Midas 1.",
-    "Each hit deals 4 DANGER.",
-    "Two or more hits, you are Impaled.",
-    "⚡ If you're not Impaled, Knockdown."
-   ],
-   "midas": {},
-   "unlimited": true,
-   "after": "⚡ Imperial Impetus.",
-   "stepJoin": [
-    2,
-    3
-   ]
-  },
-  {
-   "code": "DR2398",
-   "tier": 1,
-   "name": "Tail Whip",
-   "kind": "ATTACK",
-   "dice": 2,
-   "toHit": 9,
-   "target": [
-    "Furthest Titan in front",
-    "Furthest Titan in sight"
-   ],
-   "steps": [
-    "⚡ MOVE & ATTACK\n| MIDAS 1+ or FATE 4+: +1 EVADE_DICE",
-    "Turn the Midascore to face directly away from the Target. If the Attack hits, it deals 7 DANGER and Midas 1.",
-    "⚡ Knockback 8 to the left or right."
-   ],
-   "midas": {
-    "turnAway": true
-   },
-   "unlimited": true,
-   "after": "Imperial Impetus.\n⚡ Imperial Impetus.",
-   "afterAsStep": false
-  },
-  {
-   "code": "DR2395",
-   "tier": 1,
-   "name": "Wing Flap",
-   "kind": "ATTACK",
-   "dice": 3,
-   "toHit": 9,
-   "target": [
-    "Furthest Titan in front",
-    "Furthest Titan in sight"
-   ],
-   "steps": [
-    "⚡ MOVE & ATTACK\n| MIDAS 1+ or FATE 3+: +1 EVADE_DICE",
-    "Midas 1.",
-    "Each hit deals 3 DANGER.",
-    "⚡ Airburst 2."
-   ],
-   "midas": {},
-   "unlimited": true,
-   "after": "⚡ Knockback 12.",
-   "stepJoin": [
-    2
-   ]
-  },
-  {
-   "code": "DR2396",
-   "tier": 1,
-   "name": "Right Claw Swipe",
-   "kind": "ATTACK",
-   "dice": 3,
-   "toHit": 8,
-   "target": [
-    "Furthest Titan in front",
-    "Furthest Titan in sight"
-   ],
-   "steps": [
-    "⚡ MOVE & ATTACK\n| FATE 3+: Evasion Roll difficulty 10+ instead",
-    "Midas 1.",
-    "Each hit deals 3 DANGER.",
-    "Gain the Covetous Condition card."
-   ],
-   "midas": {},
-   "unlimited": true,
-   "after": "⚡ Imperial Impetus.",
-   "stepJoin": [
-    2,
-    3
-   ]
-  },
-  {
-   "code": "DR2397",
-   "tier": 1,
-   "name": "Left Claw Swipe",
-   "kind": "ATTACK",
-   "dice": 3,
-   "toHit": 8,
-   "target": [
-    "Furthest Titan in front",
-    "Furthest Titan in sight"
-   ],
-   "steps": [
-    "⚡ MOVE & ATTACK\n| FATE 3+: Evasion Roll difficulty 10+ instead",
-    "Midas 1.",
-    "Each hit deals 3 DANGER.",
-    "⚡ Knockdown."
-   ],
-   "midas": {},
-   "unlimited": true,
-   "after": "⚡ Imperial Impetus.",
-   "stepJoin": [
-    2
-   ]
-  },
-  {
-   "code": "DR2401",
-   "tier": 2,
-   "name": "Golden Drool",
-   "kind": "RANGE ATTACK",
-   "dice": 4,
-   "toHit": 7,
-   "target": [
-    "Closest Titan in front",
-    "Closest Titan in sight"
-   ],
-   "steps": [
-    "⚡ RANGE ATTACK UNLIMITED\n| FATE 5+: Evasion Roll difficulty 9+ instead",
-    "Each hit deals 3 DANGER and Midas 1.",
-    "Gain 1 Ambrosia token."
-   ],
-   "midas": {},
-   "range": 99,
-   "after": "⚡ Airburst 2.",
-   "stepJoin": [
-    2
-   ]
-  },
-  {
-   "code": "DR2402",
-   "tier": 2,
-   "name": "Wingburst",
-   "kind": "ATTACK",
-   "dice": 3,
-   "toHit": 9,
-   "target": [
-    "Furthest Titan in front",
-    "Furthest Titan in sight"
-   ],
-   "steps": [
-    "⚡ MOVE & ATTACK\n| MIDAS 2+ or FATE 4+: +1 EVADE_DICE",
-    "Each hit deals 4 DANGER.",
-    "⚡ Airburst 3."
-   ],
-   "midas": {},
-   "unlimited": true,
-   "after": "⚡ Imperial Impetus."
-  },
-  {
-   "code": "DR2406",
-   "tier": 2,
-   "name": "Slamdown",
-   "kind": "ZONE ATTACK",
-   "dice": 6,
-   "toHit": 6,
-   "target": [
-    "Zone 4"
-   ],
-   "steps": [
-    "⚡ ATTACK\n| FATE 6+: Evasion Roll difficulty 8+ instead",
-    "Midas 1. Gain the Covetous Condition card.",
-    "Each hit deals 3 DANGER."
-   ],
-   "midas": {
-    "zone": 4,
-    "noHitAI": true
-   },
-   "stepJoin": [
-    2
-   ],
-   "afterFinal": "If no Titan was hit, draw another AI card.",
-   "afterWindow": true
-  },
-  {
-   "code": "DR2405",
-   "tier": 2,
-   "name": "Horndive",
-   "kind": "ATTACK",
-   "dice": 3,
-   "toHit": 11,
-   "target": [
-    "Priority Target",
-    "Furthest Titan in sight"
-   ],
-   "steps": [
-    "⚡ JUMP & ATTACK\n| FATE 4+: +1 EVADE_DICE",
-    "Midas 3.",
-    "Each hit deals 4 DANGER.",
-    "Two or more hits, you are Impaled.",
-    "⚡ If you're not Impaled, Knockdown."
-   ],
-   "midas": {},
-   "jump": true,
-   "after": "⚡ Airburst 3.",
-   "stepJoin": [
-    2,
-    3
-   ]
-  },
-  {
-   "code": "DR2404",
-   "tier": 2,
-   "name": "Imperial Dance",
-   "kind": "CURSE",
-   "target": [],
-   "steps": [],
-   "midas": {
-    "curse": "Dance — Closest Titan in sight with FATE 6+: Gain the Covetous Condition card. Airburst 5. Every affected Titan gains 2 Midas tokens. ⚡ Turn the Midascore in a random direction.",
-    "after": "⚡ Draw another AI card."
-   },
-   "text": "Dance — Closest Titan in sight with FATE 6+: Gain the Covetous Condition card. Airburst 5. Every affected Titan gains 2 Midas tokens. ⚡ Turn the Midascore in a random direction.",
-   "afterDisplay": "After Curse: Draw another AI card."
-  },
-  {
-   "code": "DR2403",
-   "tier": 2,
-   "name": "Topple the Kings",
-   "kind": "SEQUENTIAL ATTACK",
-   "dice": 3,
-   "toHit": 9,
-   "target": [
-    "Furthest Titan in front",
-    "Furthest Titan in sight"
-   ],
-   "steps": [
-    "⚡ MOVE & ATTACK ALL TITANS IN PATH\n| MIDAS 3+ or FATE 4+: Ignore ⚡ preceding Knockdown",
-    "Midas 3. Gain the Covetous Condition card.",
-    "Each hit deals 4 DANGER.",
-    "⚡ Knockdown."
-   ],
-   "midas": {},
-   "path": true,
-   "unlimited": true,
-   "afterFinal": "⚡ Imperial Impetus.",
-   "stepJoin": [
-    2
-   ]
-  },
-  {
-   "code": "DR2408",
-   "tier": 3,
-   "name": "Bring Down the Heavens",
-   "kind": "SEQUENTIAL ATTACK",
-   "dice": 4,
-   "toHit": 9,
-   "target": [
-    "Furthest Titan in front",
-    "Furthest Titan in sight"
-   ],
-   "steps": [
-    "⚡ MOVE & ATTACK ALL TITANS IN PATH\n| MIDAS 3+ or FATE 4+: Ignore ⚡ preceding Knockdown",
-    "Midas 3. Gain the Greed-crazed Condition card.",
-    "Each hit deals 4 DANGER.",
-    "⚡ Knockdown. Airburst 3."
-   ],
-   "midas": {},
-   "path": true,
-   "unlimited": true,
-   "afterFinal": "⚡ Imperial Impetus.",
-   "stepJoin": [
-    2
-   ]
-  },
-  {
-   "code": "DR2407",
-   "tier": 3,
-   "name": "Auric Ray",
-   "kind": "LASER ATTACK",
-   "dice": 3,
-   "toHit": 11,
-   "target": [
-    "Furthest Titan in front",
-    "Furthest Titan in sight"
-   ],
-   "steps": [
-    "⚡ MOVE LATERAL & ATTACK\n| FATE 6+: Ignore ⚡",
-    "Three hits or MIDAS 3+, you die. Otherwise, each hit deals 4 DANGER and Midas 2."
-   ],
-   "midas": {
-    "laser": true
-   },
-   "lateral": true
-  },
-  {
-   "code": "DR2409",
-   "tier": 3,
-   "name": "The Horn of Crooked Alchemy",
-   "kind": "JUDGEMENT",
-   "dice": 3,
-   "toHit": 10,
-   "target": [
-    "Closest Titan in front",
-    "Closest Titan in sight"
-   ],
-   "steps": [
-    "JUDGE (Courage/Will)",
-    "X is the number of Midas tokens you have (minimum 3). Each hit deals 4 DANGER and Midas 1."
-   ],
-   "midas": {
-    "diceMidas": 3
-   },
-   "judge": [
-    "Courage",
-    "Will"
-   ],
-   "after": "⚡ Airburst 4."
-  },
-  {
-   "code": "DR2410",
-   "tier": 3,
-   "name": "The Grand Crash",
-   "kind": "CURSE",
-   "target": [],
-   "steps": [],
-   "midas": {
-    "curse": "Topple — Closest Titan in sight with FATE 6+: Midas 1. Gain the Greed-crazed Condition card. Remove 8 empty Terrain tiles from the Battle Board. Each Titan gains 2 Midas tokens.",
-    "after": "⚡ Draw another AI card."
-   },
-   "text": "Topple — Closest Titan in sight with FATE 6+: Midas 1. Gain the Greed-crazed Condition card. Remove 8 empty Terrain tiles from the Battle Board. Each Titan gains 2 Midas tokens.",
-   "afterDisplay": "After Curse: Draw another AI card."
-  },
-  {
-   "code": "DR2412",
-   "tier": 3,
-   "name": "Golden Bite",
-   "kind": "ATTACK",
-   "dice": 2,
-   "toHit": 11,
-   "target": [
-    "Priority Target in front",
-    "Closest Titan in front",
-    "Closest Titan in sight"
-   ],
-   "steps": [
-    "⚡ MOVE & ATTACK\n| MIDAS 3+ or FATE 6+: +1 EVADE_DICE",
-    "If the Attack hits, it deals 9 DANGER and Midas 5.",
-    "If you survive, gain the Goldthirst Curse Affliction."
-   ],
-   "midas": {},
-   "unlimited": true,
-   "after": "⚡ Imperial Impetus.",
-   "stepJoin": [
-    2
-   ]
-  },
-  {
-   "code": "DR2411",
-   "tier": 3,
-   "name": "Auric Rain",
-   "kind": "CURSE",
-   "target": [],
-   "steps": [],
-   "midas": {
-    "curse": "Rain — Closest Titan in sight with FATE 6+: Midas 1. Gain the Greed-crazed Condition card. Each Titan without an Umbrella Gear card gains 3 Midas tokens and 3 Ambrosia tokens.",
-    "after": "⚡ Draw another AI card."
-   },
-   "text": "Rain — Closest Titan in sight with FATE 6+: Midas 1. Gain the Greed-crazed Condition card. Each Titan without an Umbrella Gear card gains 3 Midas tokens and 3 Ambrosia tokens.",
-   "afterDisplay": "After Curse: Draw another AI card."
-  },
-  {
-   "code": "DR2414",
-   "tier": "X",
-   "name": "Auric Storm",
-   "kind": "ROUTINE",
-   "target": [],
-   "steps": [],
-   "text": "Lose -1 (campaign token). Each Titan gains 2 Midas tokens and 2 Ambrosia tokens.",
-   "midas": {
-    "routine": true
-   }
-  },
-  {
-   "code": "DR2413",
-   "tier": "X",
-   "name": "Midasram",
-   "kind": "SIGNATURE",
-   "dice": 3,
-   "toHit": 8,
-   "target": [
-    "Furthest Titan in front",
-    "Furthest Titan in sight"
-   ],
-   "steps": [
-    "⚡ MOVE & ATTACK ALL TITANS IN PATH\n| FATE 7+: Ignore ⚡ preceding Knockdown",
-    "Midas 1.",
-    "Each hit deals 3 DANGER.",
-    "⚡ Knockdown."
-   ],
-   "midas": {},
-   "path": true,
-   "unlimited": true,
-   "afterFinal": "⚡ Imperial Impetus.",
-   "stepJoin": [
-    2
-   ]
-  }
- ],
- "bp": [
-  {
-   "code": "DS2417",
-   "tier": 1,
-   "name": "Muscular Tail",
-   "at": 7,
-   "responses": {
-    "FAIL": "⚡ Imperial Impetus.",
-    "WOUND": "Perform Signature against the Attacker."
-   },
-   "critical": "Gain the Priority Target token. You may perform a Bonus Attack!"
-  },
-  {
-   "code": "DS2416",
-   "tier": 1,
-   "name": "Mighty Claw",
-   "at": 5,
-   "responses": {
-    "FAIL": "Perform Signature against the Attacker.",
-    "WOUND": "⚡ Imperial Impetus."
-   },
-   "critical": "Deal an additional Single Wound!"
-  },
-  {
-   "code": "DS2418",
-   "tier": 1,
-   "name": "Auric Back",
-   "at": 6,
-   "responses": {
-    "FAIL": "Airburst 1.",
-    "WOUND": "Midas 1. Gain the Covetous Condition card."
-   },
-   "critical": "Gain the Auric Cloak card (Secret deck 11, card 189) (campaign)."
-  },
-  {
-   "code": "DS2419",
-   "tier": 1,
-   "name": "Hardened Underbelly",
-   "at": 7,
-   "responses": {
-    "FAIL": "Midas 1. Gain the Covetous Condition card.",
-    "WOUND": "Midas 2."
-   },
-   "critical": "Each Titan may perform Unholy Alchemy!"
-  },
-  {
-   "code": "DS2420",
-   "tier": 1,
-   "name": "Long Neck",
-   "at": 5,
-   "responses": {
-    "FAIL": "⚡ Knockdown.",
-    "WOUND": "⚡ Imperial Impetus."
-   },
-   "critical": "Create the Vantage Point. If the VP is already in play, gain +2 Precision when attacking from the VP or Impaled!"
-  },
-  {
-   "code": "DS2421",
-   "tier": 1,
-   "name": "Towering Wing",
-   "at": 6,
-   "responses": {
-    "FAIL": "Airburst 2.",
-    "WOUND": "⚡ Imperial Impetus."
-   },
-   "critical": "Gain the Enriched Condition card!"
-  },
-  {
-   "code": "DS2425",
-   "tier": 2,
-   "name": "Golden Vocal Chord",
-   "at": 8,
-   "responses": {
-    "FAIL": "Gain the Covetous Condition card. ⚡ Imperial Impetus.",
-    "WOUND": "Midas 3."
-   },
-   "critical": "Gain the Golden Harp card (Secret deck 11, card 190) (campaign)."
-  },
-  {
-   "code": "DS2424",
-   "tier": 2,
-   "name": "Navigation Center",
-   "at": 9,
-   "responses": {
-    "FAIL": "Midas 2.",
-    "WOUND": "Unholy Alchemy."
-   },
-   "critical": "Until the end of Battle, Imperial Impetus distance is halved (rounding up)."
-  },
-  {
-   "code": "DS2423",
-   "tier": 2,
-   "name": "Muscle Floaters",
-   "at": 6,
-   "responses": {
-    "FAIL": "Midas 2.",
-    "WOUND": "⚡ Imperial Impetus."
-   },
-   "critical": "Create the Vantage Point. If the VP is already in play, during the second ability window place 1 negative AT token in the Kratos Pool."
-  },
-  {
-   "code": "DS2422",
-   "tier": 2,
-   "name": "Gold-Carrying Vein",
-   "at": 8,
-   "responses": {
-    "FAIL": "Midas 1. Gain the Covetous Condition card. ⚡ Imperial Impetus.",
-    "WOUND": "Unholy Alchemy. Midas 2."
-   },
-   "critical": "Each Titan may discard up to 3 Midas tokens."
-  },
-  {
-   "code": "DS2426",
-   "tier": 2,
-   "name": "Wing Bubbles",
-   "at": 9,
-   "responses": {
-    "FAIL": "Midas 2.",
-    "WOUND": "⚡ Imperial Impetus."
-   },
-   "critical": "Disable the Airburst X keyword."
-  },
-  {
-   "code": "DS2427",
-   "tier": 2,
-   "name": "Hind Horns",
-   "at": 7,
-   "responses": {
-    "FAIL": "You are Impaled.",
-    "WOUND": "Perform Signature against the Attacker."
-   },
-   "critical": "Disable the Impaled Status card. Immediately Displace 1 all Impaled Titans."
-  },
-  {
-   "code": "DS2428",
-   "tier": 3,
-   "name": "Gold Circulation System",
-   "at": 9,
-   "responses": {
-    "FAIL": "Midas 2. Gain the Greed-crazed Condition card.",
-    "WOUND": "Unholy Alchemy. Midas 4."
-   },
-   "critical": "The Midascore dies!"
-  },
-  {
-   "code": "DS2429",
-   "tier": 3,
-   "name": "Golden Curse Tumor",
-   "at": 11,
-   "responses": {
-    "FAIL": "Midas 2. Gain the Greed-crazed Condition card.",
-    "WOUND": "Gain the Goldthirst Curse Affliction. ⚡ Imperial Impetus."
-   },
-   "critical": "Disable the Midas X keyword."
-  },
-  {
-   "code": "DS2433",
-   "tier": 3,
-   "name": "Wind Curse Tumor",
-   "at": 10,
-   "responses": {
-    "FAIL": "Midas 2. Gain the Greed-crazed Condition card.",
-    "WOUND": "Gain the Windblight Curse Affliction. ⚡ Imperial Impetus."
-   },
-   "critical": "Disable the Imperial Impetus Trait."
-  },
-  {
-   "code": "DS2432",
-   "tier": 3,
-   "name": "Immovable Horn",
-   "at": 8,
-   "responses": {
-    "FAIL": "Midas 1. Gain the Covetous Condition card. You are Impaled.",
-    "WOUND": "Any Impaled Titan becomes not Impaled. ⚡ Imperial Impetus."
-   },
-   "critical": "Create the Vantage Point and immediately climb it and gain the Bihorn Lance card (Secret deck 11, card 191)."
-  },
-  {
-   "code": "DS2431",
-   "tier": 3,
-   "name": "Imperial Grimace",
-   "at": 8,
-   "responses": {
-    "FAIL": "Draw an Obol.",
-    "WOUND": "Midas 2. Gain the Greed-crazed Condition card. ⚡ Imperial Impetus."
-   },
-   "critical": "Gain the Priority Target token. You may perform a Bonus Attack!"
-  },
-  {
-   "code": "DS2430",
-   "tier": 3,
-   "name": "King's Scroll",
-   "at": 9,
-   "responses": {
-    "INSTINCT": "Perform Signature against the Attacker."
-   },
-   "critical": "You may discard an Affliction or Condition card! If you don't have any, you may perform a Bonus Attack!"
-  }
- ],
- "vp": {
-  "name": "Midascore's Back",
-  "slots": 1,
-  "byLevel": {
-   "1": {
-    "climb": [
-     "Fury",
-     9
-    ],
-    "holdOn": [
-     "Endurance",
-     9
-    ],
-    "holdFail": "irem",
-    "power": 2,
-    "responses": "custom",
-    "respWound": "Midas 1. ⚡ Imperial Impetus.",
-    "respFail": "Airburst 2. ⚡ Immediately perform the Hold On test."
-   },
-   "5": {
-    "climb": [
-     "Fury",
-     10
-    ],
-    "holdOn": [
-     "Endurance",
-     10
-    ],
-    "holdFail": "irem",
-    "power": 2,
-    "responses": "custom",
-    "respWound": "Midas 3. ⚡ Imperial Impetus.",
-    "respFail": "Airburst 4. ⚡ Immediately perform the Hold On test."
-   }
-  },
-  "text": "Climb: Fury 9+ (Lv5+: 10+). Hold On — End of Primordial Round: if on the VP, test Endurance (9+; Lv5+: 10+). Fail: Knockdown, displace onto the closest Irem Tower. VP effects: +2 Power. Ignore normal Primordial responses; instead WOUND: Midas 1 (Lv5+: 3), ⚡ Imperial Impetus. FAIL: Airburst 2 (Lv5+: 4), ⚡ immediately perform the Hold On test."
- },
- "impaled": "If you become Impaled, place your miniature on this card. During your turn you can either try to Get Free or attack. You can only use Melee Weapons. WOUND: If you deal a Wound, in addition to normal responses, create a VP (you stay Impaled!). Get Free!: (combat action) Test Endurance or Fury (9+). If you succeed, displace 1. End of your turn: If you started your turn Impaled, Midas 2, then gain X+5 DANGER, where X is the number of Midas tokens you have, then resolve a Trauma Draw."
+  "impaled": "If you become Impaled, place your miniature on this card. During your turn you can either try to Get Free or attack. You can only use Melee Weapons. WOUND: If you deal a Wound, in addition to normal responses, create a VP (you stay Impaled!). Get Free!: (combat action) Test Endurance or Fury (9+). If you succeed, displace 1. End of your turn: If you started your turn Impaled, Midas 2, then gain X+5 DANGER, where X is the number of Midas tokens you have, then resolve a Trauma Draw."
 }
