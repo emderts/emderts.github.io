@@ -1113,39 +1113,32 @@ export class Game {
   primAnchorOK(o) { return this.primCells(o).every(p => this.board.inBounds(p.c, p.r) && !this.board.terrainAt(p.c, p.r)?.blocksPrim); }
   primBfs(start, goal, max = 80) { const K = a => a.c + ',' + a.r; const prev = new Map([[K(start), null]]); let fr = [start]; for (let d = 0; d < max && fr.length; d++) { const nx = []; for (const a of fr) { if (goal(a)) { const path = []; let k = K(a), cur = a; while (prev.get(k)) { path.unshift(cur); cur = prev.get(k); k = K(cur); } return path; } for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) { const b = { c: a.c + dx, r: a.r + dy }; const kb = K(b); if (prev.has(kb) || !this.primAnchorOK(b)) continue; prev.set(kb, a); nx.push(b); } } fr = nx; } return null; }
   primReach(target) { return a => Board.isAdjacent(target, this.primCells(a)) || this.primCells(a).some(x => x.c === target.c && x.r === target.r); }
-  primPathToward(target, n) {
-    const path = []; let a = { ...this.prim.anchor };
+  // Rulebook: the Primordial moves one space at a time cardinally; if the Target is not in a straight line it "zigzags",
+  // switching axis after every space until a straight line is possible. Players pick the starting axis.
+  primZigzag(target, n, startAxis) {
+    const path = []; let a = { ...this.prim.anchor }; let lastAxis = null;
     for (let i = 0; i < n; i++) {
-      if (Board.isAdjacent(target, this.primCells(a)) || this.primCells(a).some(x => x.c === target.c && x.r === target.r)) break;
-      const cells = this.primCells(a); const near = cells.reduce((p, q) => Board.dist(target, q) < Board.dist(target, p) ? q : p);
+      const cells = this.primCells(a);
+      if (Board.isAdjacent(target, cells) || cells.some(x => x.c === target.c && x.r === target.r)) break;
+      const near = cells.reduce((p, q) => Board.dist(target, q) < Board.dist(target, p) ? q : p);
       const dx = Math.sign(target.c - near.c), dy = Math.sign(target.r - near.r);
-      const opts = []; if (dx) opts.push({ c: a.c + dx, r: a.r }); if (dy) opts.push({ c: a.c, r: a.r + dy });
-      const valid = opts.filter(o => this.primCells(o).every(p => this.board.inBounds(p.c, p.r) && !this.board.terrainAt(p.c, p.r)?.blocksPrim));
-      if (!valid.length) { const bp = this.primBfs(a, this.primReach(target)); if (bp) for (const q of bp.slice(0, n - i)) path.push(q); break; }
-      // alternate axis: prefer the axis not used last step; otherwise fewest titans crushed
-      const last = path.length ? path[path.length - 1] : null; let pick = valid[0];
-      if (valid.length === 2) { const lastAxis = last ? (last.c !== (path.length > 1 ? path[path.length - 2].c : this.prim.anchor.c) ? 'x' : 'y') : null; pick = lastAxis === 'x' ? valid[1] : valid[0]; const crush = o => this.primCells(o).filter(p => this.titanAt(p.c, p.r)).length; if (crush(valid[0]) !== crush(valid[1])) pick = crush(valid[0]) < crush(valid[1]) ? valid[0] : valid[1]; }
-      path.push(pick); a = pick;
+      const ox = dx ? { c: a.c + dx, r: a.r } : null, oy = dy ? { c: a.c, r: a.r + dy } : null;
+      const okx = ox && this.primAnchorOK(ox), oky = oy && this.primAnchorOK(oy);
+      let axis = null;
+      if (okx && oky) axis = lastAxis ? (lastAxis === 'x' ? 'y' : 'x') : startAxis;
+      else if (okx) axis = 'x'; else if (oky) axis = 'y';
+      if (!axis) { const bp = this.primBfs(a, this.primReach(target)); if (bp) for (const q of bp.slice(0, n - i)) path.push(q); break; }
+      const nx = axis === 'x' ? ox : oy; path.push(nx); a = nx; lastAxis = axis;
     }
     return path;
   }
-
-  // all greedy paths toward target (each step reduces distance on one axis), up to n steps
-  primPathsToward(target, n, cap = 400) {
-    const out = []; const start = { ...this.prim.anchor };
-    const rec = (a, path) => {
-      if (out.length >= cap) return;
-      const cells = this.primCells(a);
-      if (path.length >= n || Board.isAdjacent(target, cells) || cells.some(x => x.c === target.c && x.r === target.r)) { out.push(path); return; }
-      const near = cells.reduce((p, q) => Board.dist(target, q) < Board.dist(target, p) ? q : p);
-      const dx = Math.sign(target.c - near.c), dy = Math.sign(target.r - near.r);
-      const opts = []; if (dx) opts.push({ c: a.c + dx, r: a.r }); if (dy) opts.push({ c: a.c, r: a.r + dy });
-      const valid = opts.filter(o => this.primAnchorOK(o));
-      if (!valid.length) { const bp = this.primBfs(a, this.primReach(target)); out.push(bp ? [...path, ...bp.slice(0, n - path.length)] : path); return; }
-      for (const v of valid) rec(v, [...path, v]);
-    };
-    rec(start, []); return out;
+  primPathToward(target, n) {
+    const px = this.primZigzag(target, n, 'x'), py = this.primZigzag(target, n, 'y');
+    const crush = path => { const seen = new Set(); let k = 0; for (const st of path) for (const c of this.primCells(st)) { const o = this.titanAt(c.c, c.r); if (o && !seen.has(o)) { seen.add(o); k++; } } return k; };
+    return crush(py) < crush(px) ? py : px;
   }
+  // the zigzag candidates (start horizontal / start vertical)
+  primPathsToward(target, n) { const px = this.primZigzag(target, n, 'x'), py = this.primZigzag(target, n, 'y'); return JSON.stringify(px) === JSON.stringify(py) ? [px] : [px, py]; }
   // Let the player choose among paths with different outcomes (end space / titans crashed / Labyrinth crossed / titans in path)
   async choosePrimPath(target, n, ignore = [], card = null) {
     const def = this.primPathToward(target, n);
@@ -3018,14 +3011,14 @@ export class Game {
       case 'DM2563': { const zone = this.liveTitans().filter(x => !x.offBoard && !x.onVP && !x.impaled && Math.max(Math.abs(x.pos.c - t.pos.c), Math.abs(x.pos.r - t.pos.r)) <= 3); this.say(`Moonward Gust: ${t.name} 기준 Zone 3 — ${zone.map(x => x.name).join(', ')} Float`, 'bad'); for (const x of zone) await this.solo(() => this.float(x)); return false; }
       case 'DM2564': await this.randomCurse(t); return false;
       case 'DM2566': { if (this.curses(t).length && this.awk && !t.godform) { this.say(`${t.name}: Earthward Gust — Curse 보유, 각성!`, 'good'); if (await this.awaken(t)) return false; } else this.standUp(t); const ok = t.rage < 9 && await this.ask({ type: 'yn', titan: t, title: 'Earthward Gust: Rage +1로 즉시 Hermes Move 3 + 보너스 공격?', options: [{ label: '사용', value: true }, { label: '패스', value: false }] }); if (ok) { await this.gainRage(t, 1, false); this.standUp(t); await this.hermesMove(t, 3, 'Earthward Gust'); await bonus(); } return false; }
-      case 'AM0308': if (t.knockdown === 'falling') this.standUp(t); else await bonus(); return false;
+      case 'AM0308': if (t.knockdown === 'falling') this.standUp(t); else if (await this.ask({ type: 'yn', titan: t, title: 'Insulted: 즉시 보너스 공격?', options: [{ label: '보너스 공격', value: true }, { label: '패스', value: false }] })) await bonus(); return false;
       case 'AM0309': await this.gainDanger(t, 1, { source: 'Gash' }); if (t.alive) { await this.traumaDraw(t); } return true;
       case 'AM0310': { let n = 0; for (const g of t.gear) if (!g.exhausted && /⟳/.test(g.card.text)) { g.exhausted = true; n++; } if (!n) await this.knockdown(t); else this.say(`${n}개 Gear 소진`); return false; }
       case 'AM0311': t.knockdown = 'standing'; throw new ChainBreak('Feign Death');
       case 'AM0312': await this.poolFromText('Place 2 Opening or Break', t); return false;
       case 'AM0313': { if (t.pt) t.tokens.precision++; else if (!this.ptHolder()?.ptLocked) { const ok = await this.ask({ type: 'yn', titan: t, title: 'Marked for Glory: PT 토큰 획득 (+1 Precision 토큰)?', options: [{ label: '획득', value: true }, { label: '패스', value: false }] }); if (ok) { for (const x of this.titans) x.pt = false; t.pt = true; t.tokens.precision++; } } return false; }
       case 'AM0314': case 'AM0324': { const n = code === 'AM0314' ? 2 : 3; const o = this.liveTitans().filter(x => x !== t); if (o.length) { const pick = await this.ask({ type: 'choice', titan: t, title: `다른 타이탄 ${n}칸 이동 또는 기립`, options: [{ label: '안 함', value: null }, ...o.map(x => ({ label: x.name, value: x }))] }); if (pick) { if (pick.knockdown) this.standUp(pick); else await this.chooseMove(pick, n, 'Battle Cry'); } } return false; }
-      case 'AM0315': this.say('(Argo Ability 없음 — 효과 없음)'); return false;
+      case 'AM0315': await this.doSentence(t, card.text); return false;
       case 'AM0316': case 'AM0330': { const deckName = code === 'AM0330' ? await this.ask({ type: 'choice', titan: t, title: 'Predict Moves: 어느 덱?', options: [{ label: 'BP', value: 'bp' }, { label: 'AI', value: 'ai' }] }) : 'bp'; const deck = this[deckName]; const c = deck.peek(); if (!c) return false; if (deckName === 'bp' && this.quantumEye) await this.quantumEye(t, c); const keep = await this.ask({ type: 'yn', titan: t, title: `맨 위 ${deckName.toUpperCase()} 카드: 「${c.name}」${c.at ? ` AT${c.at}` : ''} — 그대로 둘까요?`, options: [{ label: '둔다', value: true }, { label: '버림더미로', value: false }] }); if (!keep) { deck.draw(); deck.discard.push(c); } return false; }
       case 'AM0317': await this.addCondition(t, 'Fateful Wound'); return false;
       case 'AM0318': await this.addCondition(t, 'Fear'); return false;
@@ -3038,7 +3031,7 @@ export class Game {
       case 'AM0326': t.danger = Math.max(0, t.danger - 1); this.standUp(t); await bonus(); return false;
       case 'AM0327': { const opts = []; if (t.conditions.length) opts.push({ label: `Condition 「${t.conditions[0]}」 제거`, value: 'cond' }); opts.push({ label: 'Fate −2', value: 'fate' }); const p = await this.ask({ type: 'choice', titan: t, title: 'Show of Willpower', options: opts }); if (p === 'cond') t.conditions.shift(); else await this.loseFate(t, 2); return false; }
       case 'AM0328': if (t.knockdown === 'falling') this.standUp(t); else { await this.chooseMove(t, 3, 'Counterattack'); await bonus(); } return false;
-      case 'AM0329': case 'AM0337': this.say('(Mnemos 없음 — 효과 없음)'); return false;
+      case 'AM0329': case 'AM0337': { const deluge = code === 'AM0337'; const list = (t.mnemos || []).filter(m => m.card && (deluge || !m.discarded)); if (!list.length) { this.say('(Mnemos 없음 — 효과 없음)'); return false; } const m = list.length === 1 ? list[0] : await this.ask({ type: 'choice', titan: t, title: `${card.name}: node +1 할 Mnemos`, options: list.map(x => ({ label: `${x.card.name} (L${x.level}, node ${this.mnNodes(x)})${x.discarded ? ' — 버려짐' : x.exhausted ? ' — 소진' : ''}`, value: x })) }) || list[0]; const L0 = m.level; this.mnSetNodes(m, this.mnNodes(m) + 1); m.exhausted = false; if (deluge && m.discarded) { m.discarded = false; this.say(`${t.name}: 「${m.card.name}」 다시 사용 가능`, 'good'); } this.say(`${t.name}: ${card.name} — 「${m.card.name}」 node +1 → ${m.nodes} (L${L0}${m.level !== L0 ? ' → L' + m.level : ''}), 준비`, 'good'); this.notify(); return false; }
       case 'AM0331': await this.poolFromText('Place 3 Opening or Break', t); return false;
       case 'AM0332': if (this.round <= 1) { const fd = this.trauma.minor.removeFirst(c => c.code === 'AM0311'); if (fd) { this.say('Heroic Death(1라운드) → Feign Death'); this.trauma.minor.putBottom(fd.card); return this.resolveTrauma(t, fd.card); } return false; } this.standUp(t); await this.chooseMove(t, 3, 'Heroic Death'); this.say(`${t.name}: Heroic Death — 보너스 공격 후 사망`, 'bad'); t.dieAfterBonus = true; await bonus(); return true;
       case 'AM0333': await this.addCondition(t, 'Dread'); return false;
@@ -3046,7 +3039,7 @@ export class Game {
       case 'AM0335': await this.placeLabyrinth(t, 'Z'); await this.knockdown(t); return false;
       case 'AM0336': await this.gainDespair(t, 2); return false;
       case 'AM0338': if (!this.obolExtra.includes('AM0357')) { this.obolExtra.push('AM0357'); this.say('Obol 덱에 「You Died Horribly」 추가', 'bad'); } return false;
-      case 'AM0339': return false;
+      case 'AM0339': this.say('(Fused Souls — 캠페인 효과: 타이탄이 죽으면 Argonaut도 사망 / Special Event)', 'sys'); return false;
       case 'AM0340': this.standUp(t); await this.chooseMove(t, 3, 'Heroic Life'); t.heroicLife = true; await bonus(); return true;
       case 'AM0341': case 'AM0342': case 'AM0348': if (t.fate >= 7 && t.gear.some(g => !g.discarded && /If you draw a Disemboweled Trauma card, draw an Obol instead/.test(this.gearText(g, t)))) { this.say(`${t.name}: Helm of Hermes — Disemboweled 대신 Obol`); await this.obolDraw(t, 10); return true; } this._instantDeath = true; try { await this.kill(t); } finally { this._instantDeath = false; } return true;
       case 'CM1308': await this.addCondition(t, 'Death', { tokens: 1 }); return false;
