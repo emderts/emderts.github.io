@@ -90,7 +90,7 @@ export function installMidas(Game, { TitanDied, BattleOver }) {
     },
     deflate(t, why) { if (!t.float) return; t.float = null; t.floatFresh = false; t.conditions = t.conditions.filter(c => c !== 'Float'); this.say(`${t.name}: Deflate (${why}) — 정상 자세로, Float 버림`); this.notify(); },
     async knockdownHook(t) { // returns true if handled instead of a normal Knockdown
-      if (!this.prim || !this.prim.def.midasD || !t.alive || t.knockdown || t.float === 'up') return false;
+      if (!this.prim || !((this.prim.def.cycle || 0) >= 4) || !t.alive || t.knockdown || t.float === 'up') return false;
       if (this.windblight(t)) { this.say(`${t.name}: Windblight — Knockdown 대신 Float`, 'bad'); await this.float(t); return true; }
       if (this.trait('Unholy Inflation') && this.midas(t) >= 3) { this.say(`${t.name}: Unholy Inflation (Midas ${this.midas(t)}) — Knockdown 대신 Float`, 'bad'); await this.float(t); return true; }
       return false;

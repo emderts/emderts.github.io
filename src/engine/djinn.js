@@ -57,7 +57,7 @@ export function installDjinn(Game, { TitanDied, BattleOver }) {
     // ---------- Wish Away ----------
     async wishAway(t, x = null, opts = {}) {
       if (!t || !t.alive || t.offBoard) return;
-      if (!opts.escape && this.prim.def.djinnD && this.prim.disabled.wishAway) { this.say('(Wish Away 비활성 — The Lamp)'); return; }
+      if (!opts.escape && !opts.terrain && this.prim.def.djinnD && this.prim.disabled.wishAway) { this.say('(Wish Away 비활성 — The Lamp)'); return; }
       if (x == null) x = this.wishAwayBase();
       if (this.prim.halfWish && !opts.escape) x = Math.ceil(x / 2);
       if (!opts.escape) { if (t.conditions.includes('Wishkeen')) x += 1; if (t.conditions.includes('Wishagog')) x += 2; x = await this.wishAwayReduce(t, x); }
@@ -67,11 +67,11 @@ export function installDjinn(Game, { TitanDied, BattleOver }) {
       const dist = p => Board.distToCells(p, this.primCells());
       let cand = opts.anyTower ? free : free.filter(p => this.inFront(p) && (this.trait('Djinnian Precision') ? dist(p) === x : dist(p) >= x));
       this.say(`${t.name}: WISH AWAY ${opts.anyTower ? '(아무 Irem Tower)' : `${x}`}`, 'bad');
-      if (!cand.length) { if (!this.board || !this.iremTowers().length) { this.say('(보드에 Irem Tower 없음 — Wish Away 무시)', 'sys'); return; } this.say(`${t.name}: 갈 수 있는 Irem Tower가 없음 — 사망`, 'bad'); return this.kill(t); }
+      if (!cand.length) { if (opts.escape && !this.iremTowers().length) { t.stair = this.stairLen(); this.say(`${t.name}: 보드에 Irem Tower가 없어 탈출 불가 — Staircase 맨 위(${t.stair})에 머묾`, 'sys'); this.notify(); return; } this.say(`${t.name}: 갈 수 있는 Irem Tower가 없음 — 사망`, 'bad'); return this.kill(t); }
       const p = cand.length === 1 ? cand[0] : (await this.ask({ type: 'move', titan: t, title: `Wish Away${opts.anyTower ? '' : ` ${x}`}: 놓일 Irem Tower`, cells: cand, options: cand.map(q => ({ label: `${cellLabel(q)} (거리 ${dist(q)})`, value: q })) })) || cand[0];
       if (t.onVP) { const V = this.prim.vp; t.onVP = false; t.vpLevel = 0; if (V) { V.occupants = (V.occupants || []).filter(x => x !== t); V.occupant = V.slots > 1 ? (V.occupants[0] || null) : null; } } if (t.impaled) t.impaled = false;
-      t.pos = { ...p }; t.stair = 0; this.notify(); this.say(`${t.name}: ${cellLabel(p)}의 Irem Tower로 Wish Away`);
-      await this.landOn(t);
+      const waFrom = t.pos && !t.stair ? { ...t.pos } : null; t.pos = { ...p }; t.stair = 0; this.notify(); this.say(`${t.name}: ${cellLabel(p)}의 Irem Tower로 Wish Away`); if (waFrom) await this.djinnAfterMove(t, waFrom);
+      await this.landOn(t, true);
     },
     async wishAwayReduce(t, x) {
       let red = 0; for (const g of t.gear) { if (g.discarded) continue; const tx = this.gearText(g, t); for (const m of tx.matchAll(/(?:^|\. )((?:[A-Z][a-z]+(?: [A-Z][a-z]+)?(?:, | and |, and ))*(?:[A-Z][a-z]+(?: [A-Z][a-z]+)?)) Reduction (\d)/g)) if (/Wish Away/.test(m[1])) red += +m[2]; }
@@ -85,15 +85,15 @@ export function installDjinn(Game, { TitanDied, BattleOver }) {
       const a = this.prim.anchor; const n = this.prim.size || 2; const T = t.pos;
       const na = { c: 2 * T.c - a.c - (n - 1), r: 2 * T.r - a.r - (n - 1) };
       const inb = an => this.primCells(an).every(p => this.board.inBounds(p.c, p.r));
-      if (!inb(na)) { const cells = this.primCells(); const near = cells.reduce((p, q) => Board.dist(T, q) < Board.dist(T, p) ? q : p); const dx = Math.sign(near.c - T.c), dy = Math.sign(near.r - T.r); const dir = Math.abs(near.c - T.c) >= Math.abs(near.r - T.r) ? (dx >= 0 ? 'E' : 'W') : (dy >= 0 ? 'N' : 'S'); this.say(`Sandstorm Spiral: 보드 가장자리에 막힘 — ${t.name}에게서 ${dir}로 6칸 직진 (회전 없음)`, 'ai'); for (let i = 0; i < 6; i++) { const cur = this.prim.anchor; const nx = { c: cur.c + DIRS[dir][0], r: cur.r + DIRS[dir][1] }; if (!inb(nx)) break; await this.primStep(nx, []); } await this.primEndMove([]); this.notify(); return; }
-      // clockwise walk around the target: orbit positions whose footprint touches the target orthogonally
       const ring = []; for (let dc = -n; dc <= 1; dc++) for (let dr = -n; dr <= 1; dr++) { const an = { c: T.c + dc, r: T.r + dr }; const cs = this.primCells(an); if (cs.some(p => p.c === T.c && p.r === T.r)) continue; if (Board.isAdjacent(T, cs)) ring.push(an); }
-      const ctr = an => ({ x: an.c + (n - 1) / 2 - T.c, y: an.r + (n - 1) / 2 - T.r }); const ang = an => { const { x, y } = ctr(an); return Math.atan2(-y, x); };
-      ring.sort((p, q) => ang(q) - ang(p)); // clockwise (decreasing angle)
+      // board rows grow northward (up), so the true clockwise order is decreasing atan2(dy, dx)
+      const ctr = an => ({ x: an.c + (n - 1) / 2 - T.c, y: an.r + (n - 1) / 2 - T.r }); const ang = an => { const { x, y } = ctr(an); return Math.atan2(y, x); };
+      ring.sort((p, q) => ang(q) - ang(p));
       let i = ring.findIndex(p => p.c === a.c && p.r === a.r); const j = ring.findIndex(p => p.c === na.c && p.r === na.r);
+      const path = []; if (i >= 0 && j >= 0) { let g = 0; while (i !== j && g++ < 20) { i = (i + 1) % ring.length; path.push(ring[i]); } } else path.push(na);
+      if (!inb(na) || path.some(q => !inb(q))) { const cells = this.primCells(); const near = cells.reduce((p, q) => Board.dist(T, q) < Board.dist(T, p) ? q : p); const dx = Math.sign(near.c - T.c), dy = Math.sign(near.r - T.r); const dir = Math.abs(near.c - T.c) >= Math.abs(near.r - T.r) ? (dx >= 0 ? 'E' : 'W') : (dy >= 0 ? 'N' : 'S'); this.say(`Sandstorm Spiral: 보드 가장자리에 막힘 — ${t.name}에게서 ${dir}로 6칸 직진 (회전 없음)`, 'ai'); for (let i = 0; i < 6; i++) { const cur = this.prim.anchor; const nx = { c: cur.c + DIRS[dir][0], r: cur.r + DIRS[dir][1] }; if (!inb(nx)) break; await this.primStep(nx, []); } await this.primEndMove([]); this.notify(); return; }
       this.say(`Sandstorm Spiral: ${t.name} 주위를 시계방향으로 돌아 반대편으로`, 'ai');
-      if (i < 0 || j < 0) { await this.primStep(na, [t]); }
-      else { let g = 0; while (i !== j && g++ < 20) { i = (i + 1) % ring.length; if (!inb(ring[i])) continue; await this.primStep(ring[i], [t]); } }
+      for (const q of path) await this.primStep(q, [t]);
       await this.primEndMove([t]); if (t.alive) this.facePrim(t.pos); this.notify();
     },
     async moveDemidjinn(n, title) {
@@ -110,8 +110,8 @@ export function installDjinn(Game, { TitanDied, BattleOver }) {
       this.say(`Wishstorm 타일 (${cells.map(cellLabel).join(', ')})`, 'ai'); this.notify();
     },
     async wishstormTreasure(t, ter) {
-      ter.searched = true; const r = this.rng.d10(); this.say(`${t.name}: Wishstorm Treasure d10=${r}`, r >= 6 ? 'good' : 'bad');
-      if (r === 1) await this.midasCondition(t, 'Wishagog'); else if (r <= 5) { await this.gainFate(t, 1, { nc: true }); await this.wishAway(t, 12); } else if (r <= 9) this.say('(Echo of Recollection / Golden Bough — 캠페인 자원)', 'sys'); else { const cs = this.curses(t); if (cs.length) { const c = cs.length === 1 ? cs[0] : await this.ask({ type: 'choice', titan: t, title: '잃을 Curse', options: cs.map(x => ({ label: x, value: x })) }); t.conditions = t.conditions.filter(x => x !== c); this.say(`${t.name}: ${c} Curse 잃음`, 'good'); } else this.say('(Sisyphus Tear / Titan / Debtguard — 캠페인 보상)', 'sys'); }
+      this.board.setTerrainProps(ter.id, { searched: true }); ter.searched = true; const r = this.rng.d10(); this.say(`${t.name}: Wishstorm Treasure d10=${r}`, r >= 6 ? 'good' : 'bad');
+      if (r === 1) await this.midasCondition(t, 'Wishagog'); else if (r <= 5) { await this.gainFate(t, 1, { nc: true }); await this.wishAway(t, 12, { terrain: true }); } else if (r <= 9) this.say('(Echo of Recollection / Golden Bough — 캠페인 자원)', 'sys'); else { const cs = this.curses(t); if (cs.length) { const c = cs.length === 1 ? cs[0] : await this.ask({ type: 'choice', titan: t, title: '잃을 Curse', options: cs.map(x => ({ label: x, value: x })) }); t.conditions = t.conditions.filter(x => x !== c); this.say(`${t.name}: ${c} Curse 잃음`, 'good'); } else this.say('(Sisyphus Tear / Titan / Debtguard — 캠페인 보상)', 'sys'); }
     },
     // ---------- Wish Attack ----------
     isWishAttack(t, card) {
@@ -149,7 +149,7 @@ export function installDjinn(Game, { TitanDied, BattleOver }) {
       const deal = (d, h = hits) => this.dealFD(t, 0, d, card, h);
       for (let i = 0; i < parts.length; i++) {
         if (!t.alive || t.offBoard) return true; const p = parts[i];
-        if ((m = /^If the Attack hits, it deals (\d+) DANGER\.$/.exec(p))) { await deal(+m[1], 1); continue; }
+        if ((m = /^If the Attack hits, it deals (\d+) DANGER\.$/.exec(p))) { await deal(+m[1], hits); continue; }
         if ((m = /^Each hit deals (\d) DANGER and Midas (\d)\.$/.exec(p))) { await deal(+m[1] * hits); if (t.alive) await this.midasX(t, +m[2] * hits); continue; }
         if ((m = /^Midas (\d)(?: \| FATE (\d)\+: Midas (\d) instead)?\.$/.exec(p))) { const n = m[2] && this.effFate(t) >= +m[2] ? +m[3] : +m[1]; await this.midasX(t, n); continue; }
         if ((m = /^Two hits, gain the Wishkeen Condition card; three hits, gain the Wishagog Condition card(; four or more hits, you die)?\.$/.exec(p))) { if (m[1] && hits >= 4) { this.say(`${t.name}: ${hits} hit — 사망`, 'bad'); await this.kill(t); return true; } if (hits >= 3) await this.midasCondition(t, 'Wishagog'); else if (hits === 2) await this.midasCondition(t, 'Wishkeen'); continue; }
@@ -164,6 +164,7 @@ export function installDjinn(Game, { TitanDied, BattleOver }) {
     async djinnSentence(t, p, ctx = {}) {
       const alive = !!(t && t.alive); let m; const lh = (this.currentAI && this.currentAI.lastHits) || 0;
       if (/^Wish Away$/.test(p)) { if (alive) await this.wishAway(t); return true; }
+      if (/^Reverse Unholy Alchemy$/.test(p)) { if (alive) { const n = t.ambrosia || 0; t.ambrosia = 0; this.say(`${t.name}: Reverse Unholy Alchemy — Ambrosia ${n} → Midas`, 'bad'); if (n) await this.gainMidas(t, n, true, true); } return true; }
       if (/^Sandstorm Spiral$/.test(p)) { if (alive) await this.sandstormSpiral(t); return true; }
       if (/^(Move Target|Move) to the Endless Staircase$/.test(p)) { if (alive) await this.moveToStair(t); return true; }
       if ((m = /^(Two|Three) or more hits, move Target to the Endless Staircase$/.exec(p))) { if (alive && lh >= (m[1] === 'Two' ? 2 : 3)) await this.moveToStair(t); return true; }
@@ -219,7 +220,7 @@ export function installDjinn(Game, { TitanDied, BattleOver }) {
       if (c.name === 'Pillars to Pyres') { const on = this.liveTitans().filter(x => !x.offBoard && !x.onVP && !x.stair && !x.impaled && this.board.terrainAt(x.pos.c, x.pos.r)?.irem === 'tower'); if (on.length) { await this.reactionWindow(on[0], { name: 'Pillars to Pyres' }, 'All Titans on pyres die'); for (const x of on.filter(y => y.alive && this.board.terrainAt(y.pos.c, y.pos.r)?.irem === 'tower')) { this.say(`${x.name}: Pyre 위 — 사망`, 'bad'); await this.solo(() => this.kill(x)); } } }
     },
     async gwLeave(c) { if (c.name === 'Sand to Sea') { this.board.allChasm = this._prevChasm || false; } },
-    async pyreCheck(t, why) { if (!this.gwActive('Pillars to Pyres') || !t || !t.alive || t.offBoard || t.onVP || t.stair || t.impaled) return; if (this.board.terrainAt(t.pos.c, t.pos.r)?.irem !== 'tower') return; this.say(`${t.name}: Pyre 위에서 ${why} — 사망 (Pillars to Pyres)`, 'bad'); await this.kill(t); },
+    async pyreCheck(t, why, win = false) { if (!this.gwActive('Pillars to Pyres') || !t || !t.alive || t.offBoard || t.onVP || t.stair || t.impaled) return; if (this.board.terrainAt(t.pos.c, t.pos.r)?.irem !== 'tower') return; if (win) { await this.reactionWindow(t, { name: 'Pillars to Pyres' }, 'you die'); if (!t.alive || t.offBoard || t.onVP || t.stair || this.board.terrainAt(t.pos.c, t.pos.r)?.irem !== 'tower') return; } this.say(`${t.name}: Pyre 위에서 ${why} — 사망 (Pillars to Pyres)`, 'bad'); await this.kill(t); },
     // ---------- round / turn hooks ----------
     async djinnPrimRoundStart() { await this.endlessEscalator(); if (this.round > 1 && !this.trait('Flickering Wishes')) await this.gwRotate(); },
     async djinnTurnStart(t) { t._turnTower = !t.offBoard && !t.stair && this.board.terrainAt(t.pos.c, t.pos.r)?.irem === 'tower' ? this.board.terrainAt(t.pos.c, t.pos.r) : null; if (t.stair) { this.say(`${t.name}: Endless Staircase에서 턴 시작 — Wishkeen`, 'bad'); await this.midasCondition(t, 'Wishkeen'); } },
