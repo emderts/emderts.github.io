@@ -1632,6 +1632,7 @@ export class Game {
     let m; p = p.replace(/\.$/, '').trim();
     if ((m = /^FATE (\d)\+: (.*)$/.exec(p))) { if (!t || this.effFate(t) < +m[1]) return; this.say(`(Fate ${m[1]}+ 적용)`); p = m[2].replace(/\.$/, ''); }
     const alive = !!(t && t.alive);
+    if (/^You may immediately place 1 charge on any Argo Ability/.test(p)) { const L = [...(this.argo || []), ...(this.argoReserve ? [this.argoReserve] : [])].filter(x => x && x.card); if (!L.length) { this.say('(Argo Ability 없음)'); return; } const v = await this.ask({ type: 'choice', titan: t, title: 'Unexpected Help: charge 1을 놓을 Argo Ability (시작 개수 초과 가능)', options: [{ label: '놓지 않음', value: null }, ...L.map(x => ({ label: `${x.card.name} (charge ${x.charges ?? 0})`, value: x }))] }); if (v) { v.charges = (v.charges || 0) + 1; this.say(`Unexpected Help: 「${v.card.name}」 charge +1 → ${v.charges}`, 'good'); this.notify(); } return; }
     if (this.prim && this.prim.def.harpy && await this.harpySentence(t, p, ctx)) return;
     if (this.prim && this.prim.def.midasD && await this.midasSentence(t, p, ctx)) return;
     if (this.prim && this.prim.def.djinnD && await this.djinnSentence(t, p, ctx)) return;
@@ -2642,6 +2643,7 @@ export class Game {
     if (!(A.wound && A.crit) && !A.instant && t.onVP && this.prim.vp) { A.vpResp = true; }
     if (t.offBoard === 'omega' && !A.wound && !A.instant) { A.instant = true; this.say('Omega Terminus: Wound 실패 — Response 무시'); }
     if (A.wound && !A.crit && A.bp.eye && this.moirai && this.moirai.length) { const ok = await this.ask({ type: 'yn', titan: t, title: `Fateless Eye 「${(A.bp.bpName || A.bp.name)}」: Wound 대신 Moirai Vault에서 1개 되찾기? (BP 버림, Fate+1)`, options: [{ label: '되찾기', value: true }, { label: 'Wound', value: false }] }); if (ok) { const it = await this.ask({ type: 'choice', titan: t, title: '되찾을 것', options: this.moirai.map((v, i) => ({ label: this.moiraiLabel(v), value: i })) }); const v = this.moirai.splice(it, 1)[0]; this.moiraiRestore(v); this.say(`${this.moiraiLabel(v)} 되찾음`, 'good'); await this.gainFate(t, 1); A.wound = false; A.reclaim = true; } }
+    try {
     if (A.wound && A.crit) { this.say(`★ CRITICAL WOUND! ${A.bp.critical}`, 'good'); await this.critical(t, A); }
     else if (A.instant) { this.say('(응답 무시)'); }
     else if (A.vpResp) {
@@ -2652,6 +2654,8 @@ export class Game {
     }
     else if (A.reclaim) { this.say('(Response 없음 — BP 버림)'); }
     else { const ign = (this.kratosPool.diversion > 0 || A.ignoreFailResp) && !A.wound && !!(resp && resp.FAIL); if (ign && A.ignoreFailResp) this.say('Fail Response 무시'); else if (ign) { this.kratosPool.diversion--; this.say('Diversion 토큰: Fail Response 무시'); } if (A.wound) { if (A.ignoreWoundResp) this.say('Wound Response 무시'); else await R(resp.WOUND); { const bs = /(?:^|[.;]\s+)(Ψ?) ?Wound: BP Suppress/.exec(txt); if (bs && (!bs[1] || this.fr(t) > 0)) { const ok = !bs[1] || await this.ask({ type: 'yn', titan: t, title: 'Wound: BP Suppress (Fate+1)?', options: [{ label: '사용', value: true }, { label: '패스', value: false }] }); if (ok) { if (bs[1]) await this.gainFate(t, 1); this.bp.shuffleDiscardIn(); this.say(`${g.card.name}: BP Suppress — BP 버림 더미를 덱에 섞음`); } } } } else if (!ign) await R(resp.FAIL); await R(resp.INSTINCT); }
+    } catch (e) { if (e instanceof TitanDied && e.titan === t) { A._respDied = e; this.say('(Response로 사망 — 이 공격은 끝까지 처리: Wound / BP 처리)'); } else throw e; }
+    if (!A._respDied) {
     if (A.wound && this.prim.ra && this.trait('Rapid Adaptation') && t.alive !== undefined && !A.ignoreRA) await this.raPlace(t, g);
     if (g.alt && !g.discarded && !g.godform && this.canTransform(t, g) && ((A.wound && kw(txt, 'Wound Trick') !== null) || (!A.wound && kw(txt, 'Fail Trick') !== null))) { const ok = await this.ask({ type: 'yn', titan: t, title: `${g.card.name}: ${A.wound ? 'Wound' : 'Fail'} Trick — 지금 ${g.alt.name}(으)로 뒤집기? (무료, 준비 상태로)`, options: [{ label: '뒤집기', value: true }, { label: '패스', value: false }] }); if (ok) { const wasGun = /When you Wound Trick, regain 1 charge/.test(g.card.text || ''); this.transformGear(t, g); g.exhausted = false; if (A.wound && wasGun) { g.charges = (g.charges || 0) + 1; this.say(`Wound Trick: charge +1 (${g.charges})`); } this.say(`${t.name}: ${A.wound ? 'Wound' : 'Fail'} Trick — ${g.card.name}`, 'good'); } }
     // 8. Wounds & escalation
@@ -2661,10 +2665,12 @@ export class Game {
     if (!A.wound && /Fail: Draw an Obol when you finish resolving this Attack/.test(txt)) A.endObol = true;
     if (A.wound && /Wound: You may turn 1 negative Precision or Evasion token/.test(txt)) { const opts = [{ label: '안 함', value: null }]; if (t.tokens.precision < 0) opts.push({ label: '−Precision 1개 → +Precision', value: 'p' }); if ((t.tokens.evasion || 0) < 0) opts.push({ label: '−Evasion 1개 → +Evasion', value: 'e' }); if (t.danger > 0) opts.push({ label: `Danger −${A.bp.tier}`, value: 'd' }); const v = await this.ask({ type: 'choice', titan: t, title: `${g.card.name}: Wound 효과`, options: opts }); if (v === 'p') t.tokens.precision += 2; else if (v === 'e') t.tokens.evasion += 2; else if (v === 'd') t.danger = Math.max(0, t.danger - A.bp.tier); }
     if (A.wound) { const cv = kw(txt, 'Carving'); if (typeof cv === 'number') { const okc = this.skillTest(t, 'Wisdom', 8); this.say(`Carving ${cv}: ${okc ? `성공 — 이 BP의 비-Core 자원 ${cv}개 추가 획득 (캠페인 기록용)` : '실패'}`, okc ? 'good' : ''); } }
+    }
     if (A.wound) { await this.applyWound(A); if (A.sensory && typeof A.sensory === 'object') { const c = A.sensory; this.bp.putTop(c); this.say(`BP 「${c.name}」을(를) 덱 맨 위로`); } if (t.conditions.includes('Fear') || t.conditions.includes('Dread')) { const d = t.conditions.includes('Dread'); t.conditions = t.conditions.filter(c => c !== 'Fear' && c !== 'Dread'); t.tokens.precision += (d ? 2 : 1) + (t.gear.some(x => !x.discarded && /Face Your Fear effect of the Fear or Dread Condition card, gain 1 additional positive Precision/.test(x.card.text || '')) ? 1 : 0); this.say(`${t.name}: Face Your Fear — 공포 극복`, 'good'); } }
-    else { const m = this.mn(t, "Coward's Way", 2, true); let top = false; if (m && this.fr(t) > 0) { top = await this.ask({ type: 'yn', titan: t, title: `Coward's Way: BP 「${(A.bp.bpName || A.bp.name)}」를 버리지 않고 덱 맨 위로? (Fate+1, 소진)`, options: [{ label: '사용', value: true }, { label: '패스', value: false }] }); if (top) { this.mnUse(t, m, '⟳'); await this.gainFate(t, 1); this.bp.putTop(A.bp); } } if (!top) { if (this._dhTopReq) { this._dhTopReq = false; this.bp.putTop(A.bp); this.say(`「${A.bp.bpName || (A.bp.bpName || A.bp.name)}」 카드를 AI 덱 맨 위로`); } else this.bp.discard.push(A.bp); } }
+    else { const m = t.alive && this.mn(t, "Coward's Way", 2, true); let top = false; if (m && this.fr(t) > 0) { top = await this.ask({ type: 'yn', titan: t, title: `Coward's Way: BP 「${(A.bp.bpName || A.bp.name)}」를 버리지 않고 덱 맨 위로? (Fate+1, 소진)`, options: [{ label: '사용', value: true }, { label: '패스', value: false }] }); if (top) { this.mnUse(t, m, '⟳'); await this.gainFate(t, 1); this.bp.putTop(A.bp); } } if (!top) { if (this._dhTopReq) { this._dhTopReq = false; this.bp.putTop(A.bp); this.say(`「${A.bp.bpName || (A.bp.bpName || A.bp.name)}」 카드를 AI 덱 맨 위로`); } else this.bp.discard.push(A.bp); } }
     if (A.dhCard) A.dhCard._dhAway = true;
     this.checkVictory();
+    if (A._respDied) { await this.kpClear(t, A); if (A.wound) { this.say(`${t.name}: 사망했지만 공격 성공 — 2nd 윈도우 Kratos 토큰은 배치`); try { const kt2 = await this.ktStage(t, A, 'second'); await this.secondWindow(t, A, kt2, fullHit); } catch (e) { if (e instanceof BattleOver) throw e; if (!(e instanceof TitanDied)) throw e; } } throw A._respDied; }
     // 9. clear pool, 10. second window
     await this.kpClear(t, A);
     kt = await this.ktStage(t, A, 'second');
