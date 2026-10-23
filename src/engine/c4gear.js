@@ -102,15 +102,19 @@ export function installC4(Game, { TitanDied, BattleOver }) {
       if (!t.alive || t.offBoard || t.fatigue || !this.currentAI || this.isJudge(this.currentAI.card)) return;
       let X = -1; for (const g of t.gear) { if (g.discarded) continue; const v = kw(this.gearText(g, t), 'Strikeback'); if (typeof v === 'number') X = Math.max(X, v); }
       if (X < 0) return;
-      const ok = await this.ask({ type: 'yn', titan: t, title: `Strikeback ${X}: Full Evade — 최대 ${X}칸 이동 후 공격? (Interrupt Attack, Combat Fatigue 토큰)`, options: [{ label: 'Strikeback!', value: true }, { label: '패스', value: false }] });
+      const ok = await this.ask({ type: 'yn', titan: t, title: `Strikeback ${X}: Full Evade — 최대 ${X}칸 이동 후 공격? (Interrupt Attack, Combat Fatigue 토큰${this._aiDepth > 0 ? ', 원래 공격은 Chain Break로 종료' : ''})`, options: [{ label: 'Strikeback!', value: true }, { label: '패스', value: false }] });
       if (!ok) return;
+      let bonusAfter = false; if ((this.pendingBonus && this.pendingBonus.titan === t && !this.pendingBonus.awaken) || this.pendingFollowUp === t) { if (this.pendingFollowUp === t) this.pendingFollowUp = null; else { if (this.pendingBonus.cb) this._cbNow = t; this.pendingBonus = null; } const ord = await this.ask({ type: 'choice', titan: t, title: `${t.name}: Strikeback과 보너스 공격(Crit Evade) 순서`, options: [{ label: 'Strikeback 먼저', value: 'sb' }, { label: '보너스 공격 먼저', value: 'bonus' }] }); if (ord === 'bonus') { this.say(`${t.name}: 보너스 공격 먼저`, 'good'); await this.chainSafe(() => this.bonusAttackFlow(t)); if (this._aiDepth > 0) this._cbNow = t; if (!t.alive) return; } else bonusAfter = true; }
+      try {
       if (X > 0 && !t.knockdown) await this.chooseMove(t, X, 'Reposition (Strikeback)');
       const weps = this.usableWeapons(t).filter(w => this.inWeaponRange(t, w)); if (!weps.length) { this.say(`${t.name}: Strikeback — 사거리 내 무기 없음`); t.fatigue = 'combat'; return; }
       this.say(`${t.name}: STRIKEBACK!`, 'good'); const swaps = [];
       for (const w of t.gear) if (w.card.strikebackSide && !w.discarded) { swaps.push([w, w.card]); w.card = { ...w.card, ...w.card.strikebackSide, codes: w.card.codes, tech: w.card.tech, cycle: w.card.cycle }; }
       const prevActor = this._actor;
       try { await this.chainSafe(() => this.titanAttack(t, { strikeback: true, interrupt: true })); } finally { for (const [w, c] of swaps) w.card = c; this._actor = prevActor; }
+      if (this._aiDepth > 0) this._cbNow = t;
       if (t.alive) { t.fatigue = 'combat'; this.say(`${t.name}: Combat Fatigue 토큰`); }
+      } finally { if (bonusAfter && t.alive) { this.say(`${t.name}: 이어서 보너스 공격`, 'good'); await this.chainSafe(() => this.bonusAttackFlow(t)); } }
     },
     // ---------- reactions ----------
     c4Reactions(x, t, card) {
