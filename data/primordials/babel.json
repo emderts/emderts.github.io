@@ -1,827 +1,846 @@
 {
- "id": "babel",
- "name": "Babelian Lunacy",
- "cycle": 4,
- "type": "Mnestis",
- "sheetCode": "DU2475",
- "babelD": true,
- "_notes": [
-  "Transcribed from sheet DU2475 (Lv I-IX), trait cards DX3224-DX3226, AI DR2476-DR2495, BP DS2496-DS2513.",
-  "The Babelian Lunacy never moves (Speed -); it only rotates. 'stair' = Staircase command (cell where the Staircase Entrance tile moves; 'stay' = doesn't move, 'gone' = disappears).",
-  "Level strip: lotus = ESCALATION, eye-shield = AT, diamond = EVADE_DICE, A = DANGER (per hit from Lv V).",
-  "BP 'atStair' = AT when attacking from inside the Endless Staircase."
- ],
- "footprint": {
-  "w": 2,
-  "h": 2,
-  "rear": "top-edge"
- },
- "ukb": 10,
- "blindspots": null,
- "levels": {
-  "1": {
-   "toHit": 10,
-   "speed": 0,
-   "wounds": 12,
-   "bonus": {
-    "ESCALATION": 1
-   },
-   "bonusPerHit": false,
-   "traits": [
-    "End of Hope",
-    "Tower of Madness",
-    "Wish Away",
-    "Heavenward"
-   ]
+  "id": "babel",
+  "name": "Babelian Lunacy",
+  "cycle": 4,
+  "type": "Mnestis",
+  "sheetCode": "DU2475",
+  "babelD": true,
+  "_notes": [
+    "Transcribed from sheet DU2475 (Lv I-IX), trait cards DX3224-DX3226, AI DR2476-DR2495, BP DS2496-DS2513.",
+    "The Babelian Lunacy never moves (Speed -); it only rotates. 'stair' = Staircase command (cell where the Staircase Entrance tile moves; 'stay' = doesn't move, 'gone' = disappears).",
+    "Level strip: lotus = ESCALATION, eye-shield = AT, diamond = EVADE_DICE, A = DANGER (per hit from Lv V).",
+    "BP 'atStair' = AT when attacking from inside the Endless Staircase."
+  ],
+  "footprint": {
+    "w": 2,
+    "h": 2,
+    "rear": "top-edge"
   },
-  "2": {
-   "toHit": 10,
-   "speed": 0,
-   "wounds": 12,
-   "bonus": {
-    "ESCALATION": 1,
-    "AT": 2
-   },
-   "bonusPerHit": false,
-   "traits": [
-    "Moon Call",
-    "Amongst the Bleached Bones",
-    "Built for Eternity",
-    "True Babylon"
-   ]
+  "ukb": 10,
+  "blindspots": null,
+  "levels": {
+    "1": {
+      "toHit": 10,
+      "speed": 0,
+      "wounds": 12,
+      "bonus": {
+        "ESCALATION": 1
+      },
+      "bonusPerHit": false,
+      "traits": [
+        "End of Hope",
+        "Tower of Madness",
+        "Wish Away",
+        "Heavenward"
+      ]
+    },
+    "2": {
+      "toHit": 10,
+      "speed": 0,
+      "wounds": 12,
+      "bonus": {
+        "ESCALATION": 1,
+        "AT": 2
+      },
+      "bonusPerHit": false,
+      "traits": [
+        "Moon Call",
+        "Amongst the Bleached Bones",
+        "Built for Eternity",
+        "True Babylon"
+      ]
+    },
+    "3": {
+      "toHit": 11,
+      "speed": 0,
+      "wounds": 13,
+      "bonus": {
+        "ESCALATION": 1,
+        "AT": 3,
+        "DANGER": 1
+      },
+      "bonusPerHit": false,
+      "traits": [
+        "One Fool at a Time"
+      ]
+    },
+    "4": {
+      "toHit": 11,
+      "speed": 0,
+      "wounds": 14,
+      "bonus": {
+        "ESCALATION": 2,
+        "AT": 4,
+        "DANGER": 1
+      },
+      "bonusPerHit": false,
+      "traits": [
+        "Thread Lightly"
+      ]
+    },
+    "5": {
+      "toHit": 12,
+      "speed": 0,
+      "wounds": 14,
+      "bonus": {
+        "ESCALATION": 2,
+        "AT": 5,
+        "DANGER": 1
+      },
+      "bonusPerHit": true,
+      "traits": [
+        "Beginning of the End"
+      ],
+      "mnestis": true
+    },
+    "6": {
+      "toHit": 12,
+      "speed": 0,
+      "wounds": 15,
+      "bonus": {
+        "ESCALATION": 3,
+        "AT": 6,
+        "DANGER": 2
+      },
+      "bonusPerHit": true,
+      "traits": [
+        "Endless Escalator"
+      ],
+      "mnestis": true
+    },
+    "7": {
+      "toHit": 13,
+      "speed": 0,
+      "wounds": 15,
+      "bonus": {
+        "ESCALATION": 3,
+        "AT": 7,
+        "EVADE_DICE": 1,
+        "DANGER": 2
+      },
+      "bonusPerHit": true,
+      "traits": [
+        "Fate of a Debtor"
+      ],
+      "mnestis": true
+    },
+    "8": {
+      "toHit": 13,
+      "speed": 0,
+      "wounds": 16,
+      "bonus": {
+        "ESCALATION": 4,
+        "AT": 8,
+        "EVADE_DICE": 2,
+        "DANGER": 2
+      },
+      "bonusPerHit": true,
+      "traits": [
+        "Built to Be Broken",
+        "Total Eclipse"
+      ],
+      "mnestis": true
+    },
+    "9": {
+      "toHit": 14,
+      "speed": 0,
+      "wounds": 17,
+      "bonus": {
+        "ESCALATION": 5,
+        "AT": 9,
+        "EVADE_DICE": 3,
+        "DANGER": 3
+      },
+      "bonusPerHit": true,
+      "traits": [
+        "God's Breath",
+        "Ruthless"
+      ],
+      "mnestis": true
+    }
   },
-  "3": {
-   "toHit": 11,
-   "speed": 0,
-   "wounds": 13,
-   "bonus": {
-    "ESCALATION": 1,
-    "AT": 3,
-    "DANGER": 1
-   },
-   "bonusPerHit": false,
-   "traits": [
-    "One Fool at a Time"
-   ]
+  "traits": {
+    "End of Hope": "End of Primordial Round: Perform Signature.",
+    "Tower of Madness": "At the start of the Battle the Endless Staircase and all VPs are locked, which means you cannot enter them in any way. Each Wound you deal from outside the Endless Staircase unlocks an Endless Staircase tier up to the current Battle's tier limit. When all tiers are unlocked, you start to unlock VPs. You can only wound a BP III card from a VP.",
+    "Wish Away": "When the Babelian Lunacy performs Wish Away, it performs: Level 1: Wish Away 9. Level 2: Wish Away 10. Level 3: Wish Away 11. Level 4+: Wish Away 12.",
+    "Heavenward": "When you are instructed to create an Irem Tower, place it on any empty Battle Board space not adjacent to any other Terrain tile. When you are instructed to remove an Irem Tower, remove an empty Irem Tower Terrain tile closest to the Babelian Lunacy.",
+    "Moon Call": "When instructed to remove an Irem Tower and there are no empty Irem Tower Terrain tiles, remove an Irem Tower with a Titan on it instead. Start of Primordial Round: If there are no Irem Tower Terrain tiles on the Battle Board, the Babelian Lunacy immediately wins the Battle. Otherwise remove 4 Irem Tower Terrain tiles.",
+    "Amongst the Bleached Bones": "Normal (not Terrain) Battle Board spaces are considered Terrain tiles with the Chasm keyword.",
+    "Built for Eternity": "The Endless Staircase has 18 spaces. You climb using the Endless Staircase and Babelian Staircase Rules (see Cycle IV Storybook rules).",
+    "True Babylon": "Start of Battle: Each player chooses a different language. For the duration of the Battle they can only speak in their chosen language. For each word spoken in a different language, they gain +1 FATE.",
+    "One Fool at a Time": "When a Titan enters the Endless Staircase, the Staircase Entrance disappears!",
+    "Thread Lightly": "If you fail an Ascent Check, draw an Obol.",
+    "Beginning of the End": "End of Primordial Round: Before End of Hope, draw and perform another AI card.",
+    "Endless Escalator": "When there is at least one Titan in the Endless Staircase, at the start of the Primordial Round, move the lowest segment of the Endless Staircase to the top. Titans on the lowest segment die.",
+    "Fate of a Debtor": "When a Titan gains Midas tokens, each other Titan gains the same amount of Midas tokens.",
+    "Built to Be Broken": "Each time you fail to wound, lock the highest unlocked Endless Staircase tier. All Titans on that Staircase tier die.",
+    "Total Eclipse": "Eclipse Attacks are additionally measured from an imaginary line drawn along the Rear spaces of the Babelian Lunacy.",
+    "God's Breath": "Start of Primordial Round: Pull 3 all Titans in Zone 6. The Babelian Lunacy does not move as a result of that Pull. End of Primordial Round: Knockback 6 all Titans in Zone 3 away from the Babelian Lunacy.",
+    "Ruthless": "Remove all positive Trauma cards from the Trauma decks (except Obols)."
   },
-  "4": {
-   "toHit": 11,
-   "speed": 0,
-   "wounds": 14,
-   "bonus": {
-    "ESCALATION": 2,
-    "AT": 4,
-    "DANGER": 1
-   },
-   "bonusPerHit": false,
-   "traits": [
-    "Thread Lightly"
-   ]
+  "ai": [
+    {
+      "code": "DR2481",
+      "tier": 1,
+      "name": "Remember Babel",
+      "kind": "WISH SEQUENTIAL RANGE ATTACK",
+      "stair": "F11",
+      "babel": true,
+      "dice": 3,
+      "toHit": 10,
+      "wish": true,
+      "target": [
+        "2 Titans, starting from the closest Titan"
+      ],
+      "hdr": "MIDAS 3+ or FATE 4+: +2 EVADE_DICE",
+      "steps": [
+        "⚡ RANGE ATTACK UNLIMITED",
+        "Each hit deals 3 DANGER.",
+        "⚡ Gain the Covetous Condition card."
+      ],
+      "after": "⚡ Remove X Irem Towers, where X is the number of hits."
+    },
+    {
+      "code": "DR2480",
+      "tier": 1,
+      "name": "Golden Trickle",
+      "kind": "WISH SIMULTANEOUS ATTACK",
+      "stair": "G12",
+      "babel": true,
+      "dice": 5,
+      "toHit": 8,
+      "wish": true,
+      "target": [
+        "All Titans on VPs",
+        "All Titans on the Endless Staircase"
+      ],
+      "noTarget": "Signature",
+      "hdr": "MIDAS 3+ or FATE 5+: Add +2 hits",
+      "steps": [
+        "⚡ ATTACK",
+        "Each hit deals 2 DANGER.",
+        "⚡ Wish Away X, where X is the DANGER dealt."
+      ],
+      "after": "⚡ Midas Y, where Y is the number of hits - 1."
+    },
+    {
+      "code": "DR2479",
+      "tier": 1,
+      "name": "Downward Trend",
+      "kind": "SIMULTANEOUS ATTACK",
+      "stair": "I11",
+      "babel": true,
+      "dice": 3,
+      "toHit": 9,
+      "target": [
+        "All Titans on VPs",
+        "All Titans on the Endless Staircase"
+      ],
+      "noTarget": "Signature",
+      "hdr": "FATE 4+: +1 EVADE_DICE",
+      "steps": [
+        "⚡ ATTACK",
+        "Each hit deals 3 DANGER."
+      ],
+      "after": "⚡ Wish Away X, where X is the DANGER dealt."
+    },
+    {
+      "code": "DR2478",
+      "tier": 1,
+      "name": "Death Clock",
+      "kind": "WISH JUDGEMENT",
+      "stair": "H9",
+      "babel": true,
+      "dice": 3,
+      "toHit": 9,
+      "wish": true,
+      "judge": [
+        "Courage",
+        "Wisdom"
+      ],
+      "target": [
+        "Titan on a VP",
+        "Titan on the highest Endless Staircase space",
+        "Furthest Titan in front",
+        "Furthest Titan in sight"
+      ],
+      "hdr": "MIDAS 1+ or FATE 4+: Add +1 hit",
+      "steps": [
+        "⚡ JUDGE",
+        "Courage/Wisdom. For each hit gain +3 DANGER and Midas 1. Gain Death 4 - X, where X is the number of hits."
+      ]
+    },
+    {
+      "code": "DR2477",
+      "tier": 1,
+      "name": "Shadow Economy",
+      "kind": "ECLIPSE ATTACK",
+      "stair": "I10",
+      "babel": true,
+      "dice": "X",
+      "toHit": 10,
+      "rotate": "Closest Titan",
+      "eclipse": true,
+      "target": [
+        "Eclipse Zone"
+      ],
+      "steps": [
+        "⚡ ATTACK",
+        "X is equal to 2 + the number of Midas tokens you have. | FATE 4+: Double the value of X",
+        "Each hit deals 2 DANGER.",
+        "⚡ Unholy Alchemy."
+      ],
+      "after": "⚡ AMBROSIA 1+: Gain the Covetous Condition card. AMBROSIA 3+: Gain the Greed-crazed Condition card. AMBROSIA 5+: Gain the Greed-crazed Condition card and the Goldthirst Curse Affliction."
+    },
+    {
+      "code": "DR2476",
+      "tier": 1,
+      "name": "Gaze of Greed",
+      "kind": "ECLIPSE ATTACK",
+      "stair": "F10",
+      "babel": true,
+      "dice": 3,
+      "toHit": 11,
+      "rotate": "Closest Titan",
+      "eclipse": true,
+      "target": [
+        "Eclipse Zone"
+      ],
+      "hdr": "MIDAS 2+ or FATE 4+: Ignore ⚡",
+      "steps": [
+        "⚡ ATTACK",
+        "Three hits or MIDAS 3+, you die. Otherwise, each hit deals 4 DANGER and Midas 1."
+      ]
+    },
+    {
+      "code": "DR2487",
+      "tier": 2,
+      "name": "Gaze of Opulence",
+      "kind": "ECLIPSE ATTACK",
+      "stair": "I2",
+      "babel": true,
+      "dice": 4,
+      "toHit": 11,
+      "rotate": "Closest Titan",
+      "eclipse": true,
+      "target": [
+        "Eclipse Zone"
+      ],
+      "hdr": "MIDAS 2+ or FATE 4+: Ignore ⚡",
+      "steps": [
+        "⚡ ATTACK",
+        "Three hits or MIDAS 3+, you die. Otherwise, each hit deals 3 DANGER and Midas 2."
+      ],
+      "after": "⚡ Wish Away X, where X is the DANGER dealt."
+    },
+    {
+      "code": "DR2482",
+      "tier": 2,
+      "name": "Forget Irem",
+      "kind": "WISH RANGE ATTACK",
+      "stair": "G15",
+      "babel": true,
+      "dice": 3,
+      "toHit": 10,
+      "wish": true,
+      "target": [
+        "Closest Titan in front",
+        "Closest Titan in sight"
+      ],
+      "hdr": "FATE 5+: Gain the Greed-crazed Condition card",
+      "steps": [
+        "⚡ RANGE ATTACK UNLIMITED",
+        "Each hit deals 4 DANGER and 1 Ambrosia token."
+      ],
+      "after": "⚡ Remove X Irem Towers, where X is the number of hits."
+    },
+    {
+      "code": "DR2486",
+      "tier": 2,
+      "name": "Wind of Prosperity",
+      "kind": "CURSE",
+      "stair": "C15",
+      "babel": true,
+      "target": [],
+      "steps": [],
+      "curse": "wind",
+      "text": "⚡ WIND | Closest Titan in sight with FATE 6+: Gain the Covetous Condition card. Airburst 5. Every affected Titan gains Midas X, where X is 6 - number of spaces from the Babelian Lunacy. ⚡ AFTER CURSE: Draw another AI card."
+    },
+    {
+      "code": "DR2485",
+      "tier": 2,
+      "name": "Death Clocktower",
+      "kind": "WISH SIMULTANEOUS JUDGEMENT",
+      "stair": "L15",
+      "babel": true,
+      "dice": 4,
+      "toHit": 9,
+      "wish": true,
+      "judge": [
+        "Courage",
+        "Wisdom"
+      ],
+      "target": [
+        "All Titans on VPs",
+        "All Titans on the Endless Staircase"
+      ],
+      "noTarget": "Signature",
+      "hdr": "MIDAS 1+ or FATE 4+: Midas 2",
+      "steps": [
+        "⚡ JUDGE",
+        "Courage/Wisdom. For each hit gain +3 DANGER and Midas 1. Gain Death 4 - X, where X is the number of hits."
+      ],
+      "after": "⚡ Wish Away Y, where Y is the DANGER gained."
+    },
+    {
+      "code": "DR2484",
+      "tier": 2,
+      "name": "Golden Flow",
+      "kind": "WISH SIMULTANEOUS ATTACK",
+      "stair": "L6",
+      "babel": true,
+      "dice": 6,
+      "toHit": 8,
+      "wish": true,
+      "target": [
+        "All Titans on VPs",
+        "All Titans on the Endless Staircase"
+      ],
+      "noTarget": "Signature",
+      "hdr": "MIDAS 3+ or FATE 5+: Add +2 hits",
+      "steps": [
+        "⚡ ATTACK",
+        "Each hit deals 2 DANGER.",
+        "⚡ Wish Away X, where X is the DANGER dealt."
+      ],
+      "after": "⚡ Midas Y, where Y is the number of hits."
+    },
+    {
+      "code": "DR2483",
+      "tier": 2,
+      "name": "Eyes of the Sun",
+      "kind": "ECLIPSE ATTACK",
+      "stair": "C6",
+      "babel": true,
+      "dice": 3,
+      "toHit": 9,
+      "rotate": "Closest Titan",
+      "eclipse": true,
+      "target": [
+        "Eclipse Zone"
+      ],
+      "hdr": "FATE 6+: Ignore ⚡",
+      "steps": [
+        "⚡ ATTACK",
+        "Each hit deals 3 DANGER and Midas 1."
+      ],
+      "repeat": "another",
+      "afterFinal": "⚡ Repeat this Attack, rotating toward another Target (once)."
+    },
+    {
+      "code": "DR2488",
+      "tier": 3,
+      "name": "Lunatic Sun",
+      "kind": "ECLIPSE ATTACK",
+      "stair": "A1",
+      "babel": true,
+      "dice": 3,
+      "toHit": 11,
+      "rotate": "Closest Titan",
+      "eclipse": true,
+      "target": [
+        "Eclipse Zone"
+      ],
+      "hdr": "MIDAS 2+ or FATE 4+: Ignore ⚡",
+      "steps": [
+        "⚡ ATTACK",
+        "Two hits or MIDAS 2+, you die. Otherwise, each hit deals 5 DANGER and Midas 1."
+      ],
+      "after": "⚡ Wish Away X, where X is the DANGER dealt."
+    },
+    {
+      "code": "DR2489",
+      "tier": 3,
+      "name": "Once Upon a Metropolis",
+      "kind": "WISH SIMULTANEOUS JUDGEMENT",
+      "stair": "N10",
+      "babel": true,
+      "dice": 4,
+      "toHit": 9,
+      "wish": true,
+      "judge": [
+        "Wisdom",
+        "Cunning"
+      ],
+      "target": [
+        "Each Titan on a VP and Terrain tile"
+      ],
+      "hdr": "MIDAS 3+ or FATE 4+: ⚡ Knockdown",
+      "steps": [
+        "⚡ JUDGE",
+        "Wisdom/Cunning. Each hit deals 5 DANGER and 1 Ambrosia token.",
+        "⚡ Gain the Greed-crazed Condition card."
+      ],
+      "afterFinal": "⚡ Remove X Irem Towers, where X is the highest DANGER dealt to a Titan in this Judgement."
+    },
+    {
+      "code": "DR2490",
+      "tier": 3,
+      "name": "Blessing of Infinite Growth",
+      "kind": "ECLIPSE ATTACK",
+      "stair": "F19",
+      "babel": true,
+      "rotate": "Furthest Titan",
+      "eclipse": true,
+      "target": [
+        "Eclipse Zone"
+      ],
+      "steps": [],
+      "allDie": true,
+      "repeat": "most",
+      "text": "⚡ ATTACK: All Titans in the Zone die. Random survivor gains a random Curse Affliction. ⚡ AFTER FINAL ATTACK: Repeat this Attack (once), rotating toward the most Titans."
+    },
+    {
+      "code": "DR2491",
+      "tier": 3,
+      "name": "Rivers of Black and Gold",
+      "kind": "WISH SIMULTANEOUS ATTACK",
+      "stair": "A20",
+      "babel": true,
+      "dice": 6,
+      "toHit": 9,
+      "wish": true,
+      "target": [
+        "All Titans on VPs",
+        "All Titans on the Endless Staircase"
+      ],
+      "noTarget": "Signature",
+      "hdr": "MIDAS 3+ or FATE 5+: Add +2 hits",
+      "steps": [
+        "⚡ ATTACK",
+        "Each hit deals 3 DANGER.",
+        "⚡ Wish Away X, where X is the DANGER dealt."
+      ],
+      "after": "⚡ Midas Y and gain Y Ambrosia tokens, where Y is the number of hits."
+    },
+    {
+      "code": "DR2493",
+      "tier": 3,
+      "name": "Golden Eclipse",
+      "kind": "CURSE",
+      "stair": "N10",
+      "babel": true,
+      "target": [],
+      "steps": [],
+      "curse": "eclipse",
+      "text": "⚡ ECLIPSE | Closest Titan in sight with RAGE 5+: Gain the Covetous Condition card. Each Titan Midas X, where X is your FATE +1. ⚡ AFTER CURSE: Draw another AI card."
+    },
+    {
+      "code": "DR2492",
+      "tier": 3,
+      "name": "Mooncrash",
+      "kind": "CURSE",
+      "stair": "N20",
+      "babel": true,
+      "target": [],
+      "steps": [],
+      "curse": "topple",
+      "text": "⚡ TOPPLE: Remove 10 empty Terrain tiles from the Battle Board. ⚡ AFTER CURSE: Draw another AI card."
+    },
+    {
+      "code": "DR2494",
+      "tier": "X",
+      "name": "Panoptic Order",
+      "kind": "SIGNATURE",
+      "stair": "stay",
+      "babel": true,
+      "dice": 3,
+      "toHit": 10,
+      "rotate": "Clockwise",
+      "eclipse": true,
+      "target": [
+        "Eclipse Zone"
+      ],
+      "hdr": "MIDAS 2+ or FATE 4+: Ignore ⚡",
+      "steps": [
+        "⚡ ATTACK",
+        "MIDAS 4+, you die. Otherwise, each hit deals 4 DANGER and Midas 1."
+      ],
+      "after": "⚡ Wish Away X, where X is the DANGER dealt.",
+      "displayKind": "ECLIPSE SIGNATURE"
+    },
+    {
+      "code": "DR2495",
+      "tier": "X",
+      "name": "Total Lunacy",
+      "kind": "ROUTINE",
+      "stair": "gone",
+      "babel": true,
+      "target": [],
+      "steps": [],
+      "text": "Staircase: Disappears! Random Titan dies."
+    }
+  ],
+  "bp": [
+    {
+      "code": "DS2497",
+      "tier": 1,
+      "name": "Diaphragm Wall",
+      "at": 8,
+      "responses": {
+        "FAIL": "Midas 2.",
+        "WOUND": "Create an Irem Tower. Gain 1 Ambrosia token."
+      },
+      "critical": "You may perform a Bonus Attack!",
+      "qeye": false
+    },
+    {
+      "code": "DS2496",
+      "tier": 1,
+      "name": "Radial Footing",
+      "at": 9,
+      "responses": {
+        "FAIL": "Gain 2 Ambrosia tokens.",
+        "WOUND": "Create an Irem Tower. Midas 1."
+      },
+      "critical": "Create all Vantage Points!",
+      "atStair": 8,
+      "qeye": false
+    },
+    {
+      "code": "DS2498",
+      "tier": 1,
+      "name": "Lower Bone Girder",
+      "at": 8,
+      "responses": {
+        "FAIL": "Midas 2.",
+        "WOUND": "Create an Irem Tower. Gain 1 Ambrosia token."
+      },
+      "critical": "Remove the highest Staircase tier (to a minimum of 1)!",
+      "qeye": false
+    },
+    {
+      "code": "DS2499",
+      "tier": 1,
+      "name": "Auric Duct",
+      "at": 7,
+      "responses": {
+        "FAIL": "Midas 3.",
+        "WOUND": "Midas 1."
+      },
+      "critical": "Gain the Molten Gold Kalasiris card (Secret deck 11, card 198) (campaign).",
+      "qeye": true
+    },
+    {
+      "code": "DS2500",
+      "tier": 1,
+      "name": "Substructural Stone Plating",
+      "at": 9,
+      "responses": {
+        "FAIL": "Midas 1. Gain 1 Ambrosia token. Wish Away.",
+        "WOUND": "Remove 2 Irem Towers."
+      },
+      "critical": "Until the end of Battle, all Titans gain a +1 bonus to Ascent Checks!",
+      "atStair": 8,
+      "qeye": false
+    },
+    {
+      "code": "DS2501",
+      "tier": 1,
+      "name": "Seismic Absorber Tissue",
+      "at": 7,
+      "responses": {
+        "FAIL": "Remove 2 Irem Towers. Wish Away. Knockdown.",
+        "WOUND": "⚡ Airburst 3. Remove an Irem Tower."
+      },
+      "critical": "Until the end of Battle, the Babelian Lunacy has -1 AT when attacked from the Endless Staircase or VPs.",
+      "qeye": true
+    },
+    {
+      "code": "DS2504",
+      "tier": 2,
+      "name": "Superstructural Stone Plating",
+      "at": 11,
+      "responses": {
+        "FAIL": "Midas 3. Remove an Irem Tower.",
+        "WOUND": "Create an Irem Tower. Midas 2. Gain the Covetous Condition card."
+      },
+      "critical": "Gain the Priority Target token. You may perform a Bonus Attack!",
+      "atStair": 10,
+      "qeye": false
+    },
+    {
+      "code": "DS2503",
+      "tier": 2,
+      "name": "Umbral Hand of the Market",
+      "at": 10,
+      "responses": {
+        "FAIL": "Remove 2 Irem Towers. Wish Away. Gain as many DANGER as you have Ambrosia tokens.",
+        "WOUND": "⚡ Airburst 4. Remove an Irem Tower."
+      },
+      "critical": "Create all Vantage Points or create 4 Irem Towers.",
+      "qeye": false
+    },
+    {
+      "code": "DS2502",
+      "tier": 2,
+      "name": "Higher Bone Girder",
+      "at": 11,
+      "responses": {
+        "FAIL": "Gain 2 Ambrosia tokens.",
+        "WOUND": "Create an Irem Tower. Midas 2."
+      },
+      "critical": "Remove the highest Staircase tier (to a minimum of 1)!",
+      "atStair": 10,
+      "qeye": false
+    },
+    {
+      "code": "DS2507",
+      "tier": 2,
+      "name": "Glass Ceiling of Babel",
+      "at": 9,
+      "responses": {
+        "FAIL": "Midas 2. Gain the Covetous Condition card. Knockdown.",
+        "WOUND": "⚡ Remove all Irem Towers from the two outermost rings of the Battle Board (even if occupied)."
+      },
+      "critical": "You may move to an empty VP and gain the Lander Condition card!",
+      "qeye": true
+    },
+    {
+      "code": "DS2505",
+      "tier": 2,
+      "name": "Outrigger Umbral Muscles",
+      "at": 9,
+      "responses": {
+        "FAIL": "Gain 3 Ambrosia tokens.",
+        "WOUND": "Midas 2. Then move every Irem Tower in Zone 5 around the Babelian Lunacy 2 spaces directly away from it."
+      },
+      "critical": "Gain the Outrigger Bodysuit card (Secret deck 11, card 199) (campaign).",
+      "qeye": true
+    },
+    {
+      "code": "DS2506",
+      "tier": 2,
+      "name": "Motion Damper Organ",
+      "at": 10,
+      "responses": {
+        "FAIL": "Remove 3 Irem Towers. Wish Away.",
+        "WOUND": "Gain +2 DANGER.\n⚡ Move every Irem Tower in Zone 5 around the Babelian Lunacy 2 spaces directly toward it. Remove any Irem Tower that cannot be moved 2 spaces (even if occupied)."
+      },
+      "critical": "Until the end of Battle, the Babelian Lunacy has -1 AT when attacked from the Endless Staircase or VPs.",
+      "qeye": false
+    },
+    {
+      "code": "DS2508",
+      "tier": 3,
+      "name": "Soul of Greed",
+      "at": 20,
+      "responses": {
+        "INSTINCT": "⚡ Airburst 4. Remove 3 Irem Towers. Midas 3."
+      },
+      "critical": "The Babelian Lunacy dies!",
+      "qeye": true
+    },
+    {
+      "code": "DS2509",
+      "tier": 3,
+      "name": "Aurified Sapling",
+      "at": 19,
+      "responses": {
+        "FAIL": "Midas 2. Gain the Greed-crazed Condition card.",
+        "WOUND": "Gain the Windblight Curse Affliction.\n⚡ Airburst 8. Remove an Irem Tower."
+      },
+      "critical": "Gain +1 (campaign). Immediately resolve the Gilded Forest Special Event (campaign).",
+      "qeye": false
+    },
+    {
+      "code": "DS2513",
+      "tier": 3,
+      "name": "Panopticon of Ebony Gold",
+      "at": 19,
+      "responses": {
+        "FAIL": "Reverse Unholy Alchemy.",
+        "WOUND": "Gain the Goldthirst Curse Affliction.\n⚡ Unholy Alchemy."
+      },
+      "critical": "Disable the Midas X keyword.",
+      "qeye": true
+    },
+    {
+      "code": "DS2512",
+      "tier": 3,
+      "name": "Core of Curses",
+      "at": 19,
+      "responses": {
+        "FAIL": "You die.",
+        "WOUND": "Gain a random Curse Affliction."
+      },
+      "critical": "Disable Curse AI cards. After the Battle, resolve the Heart of Gold Special Event (campaign).",
+      "qeye": false
+    },
+    {
+      "code": "DS2511",
+      "tier": 3,
+      "name": "Spine Supercolumn",
+      "at": 18,
+      "responses": {
+        "FAIL": "Perform an Obol Draw.",
+        "WOUND": "Midas 3. Gain the Greed-crazed Condition card.\n⚡ Wish Away each Titan."
+      },
+      "critical": "Gain the Bailout card (Secret deck 11, card 200) (campaign).",
+      "qeye": true
+    },
+    {
+      "code": "DS2510",
+      "tier": 3,
+      "name": "Web of Influence",
+      "at": 18,
+      "responses": {
+        "INSTINCT": "Perform Signature against the Attacker."
+      },
+      "critical": "Gain the Priority Target token. You may perform a Bonus Attack!",
+      "qeye": false
+    }
+  ],
+  "wishAway": {
+    "1": 9,
+    "2": 10,
+    "3": 11,
+    "4": 12
   },
-  "5": {
-   "toHit": 12,
-   "speed": 0,
-   "wounds": 14,
-   "bonus": {
-    "ESCALATION": 2,
-    "AT": 5,
-    "DANGER": 1
-   },
-   "bonusPerHit": true,
-   "traits": [
-    "Beginning of the End"
-   ],
-   "mnestis": true
+  "stairs": [
+    5,
+    4,
+    4,
+    5
+  ],
+  "vp": {
+    "name": "Dome of Folly",
+    "slots": 3,
+    "text": "Climb: Only reachable through Ascent. Hold On — End of Primordial Round: If on a VP, test Wisdom (Lv1: 10+, Lv2+: 13+). Fail: Knockdown, Wish Away X to the Endless Staircase, where X is half (Lv1, rounding up) / the number of the Endless Staircase steps. VP effects: You may perform a Combined Attack.",
+    "byLevel": {
+      "1": {
+        "climb": null,
+        "holdOn": [
+          "Wisdom",
+          10
+        ],
+        "holdFail": "stair",
+        "stairHalf": true,
+        "power": 0
+      },
+      "2": {
+        "climb": null,
+        "holdOn": [
+          "Wisdom",
+          13
+        ],
+        "holdFail": "stair",
+        "stairHalf": false,
+        "power": 0
+      }
+    }
   },
-  "6": {
-   "toHit": 12,
-   "speed": 0,
-   "wounds": 15,
-   "bonus": {
-    "ESCALATION": 3,
-    "AT": 6,
-    "DANGER": 2
-   },
-   "bonusPerHit": true,
-   "traits": [
-    "Endless Escalator"
-   ],
-   "mnestis": true
-  },
-  "7": {
-   "toHit": 13,
-   "speed": 0,
-   "wounds": 15,
-   "bonus": {
-    "ESCALATION": 3,
-    "AT": 7,
-    "EVADE_DICE": 1,
-    "DANGER": 2
-   },
-   "bonusPerHit": true,
-   "traits": [
-    "Fate of a Debtor"
-   ],
-   "mnestis": true
-  },
-  "8": {
-   "toHit": 13,
-   "speed": 0,
-   "wounds": 16,
-   "bonus": {
-    "ESCALATION": 4,
-    "AT": 8,
-    "EVADE_DICE": 2,
-    "DANGER": 2
-   },
-   "bonusPerHit": true,
-   "traits": [
-    "Built to Be Broken",
-    "Total Eclipse"
-   ],
-   "mnestis": true
-  },
-  "9": {
-   "toHit": 14,
-   "speed": 0,
-   "wounds": 17,
-   "bonus": {
-    "ESCALATION": 5,
-    "AT": 9,
-    "EVADE_DICE": 3,
-    "DANGER": 3
-   },
-   "bonusPerHit": true,
-   "traits": [
-    "God's Breath",
-    "Ruthless"
-   ],
-   "mnestis": true
-  }
- },
- "traits": {
-  "End of Hope": "End of Primordial Round: Perform Signature.",
-  "Tower of Madness": "At the start of the Battle the Endless Staircase and all VPs are locked, which means you cannot enter them in any way. Each Wound you deal from outside the Endless Staircase unlocks an Endless Staircase tier up to the current Battle's tier limit. When all tiers are unlocked, you start to unlock VPs. You can only wound a BP III card from a VP.",
-  "Wish Away": "When the Babelian Lunacy performs Wish Away, it performs: Level 1: Wish Away 9. Level 2: Wish Away 10. Level 3: Wish Away 11. Level 4+: Wish Away 12.",
-  "Heavenward": "When you are instructed to create an Irem Tower, place it on any empty Battle Board space not adjacent to any other Terrain tile. When you are instructed to remove an Irem Tower, remove an empty Irem Tower Terrain tile closest to the Babelian Lunacy.",
-  "Moon Call": "When instructed to remove an Irem Tower and there are no empty Irem Tower Terrain tiles, remove an Irem Tower with a Titan on it instead. Start of Primordial Round: If there are no Irem Tower Terrain tiles on the Battle Board, the Babelian Lunacy immediately wins the Battle. Otherwise remove 4 Irem Tower Terrain tiles.",
-  "Amongst the Bleached Bones": "Normal (not Terrain) Battle Board spaces are considered Terrain tiles with the Chasm keyword.",
-  "Built for Eternity": "The Endless Staircase has 18 spaces. You climb using the Endless Staircase and Babelian Staircase Rules (see Cycle IV Storybook rules).",
-  "True Babylon": "Start of Battle: Each player chooses a different language. For the duration of the Battle they can only speak in their chosen language. For each word spoken in a different language, they gain +1 FATE.",
-  "One Fool at a Time": "When a Titan enters the Endless Staircase, the Staircase Entrance disappears!",
-  "Thread Lightly": "If you fail an Ascent Check, draw an Obol.",
-  "Beginning of the End": "End of Primordial Round: Before End of Hope, draw and perform another AI card.",
-  "Endless Escalator": "When there is at least one Titan in the Endless Staircase, at the start of the Primordial Round, move the lowest segment of the Endless Staircase to the top. Titans on the lowest segment die.",
-  "Fate of a Debtor": "When a Titan gains Midas tokens, each other Titan gains the same amount of Midas tokens.",
-  "Built to Be Broken": "Each time you fail to wound, lock the highest unlocked Endless Staircase tier. All Titans on that Staircase tier die.",
-  "Total Eclipse": "Eclipse Attacks are additionally measured from an imaginary line drawn along the Rear spaces of the Babelian Lunacy.",
-  "God's Breath": "Start of Primordial Round: Pull 3 all Titans in Zone 6. The Babelian Lunacy does not move as a result of that Pull. End of Primordial Round: Knockback 6 all Titans in Zone 3 away from the Babelian Lunacy.",
-  "Ruthless": "Remove all positive Trauma cards from the Trauma decks (except Obols)."
- },
- "ai": [
-  {
-   "code": "DR2481",
-   "tier": 1,
-   "name": "Remember Babel",
-   "kind": "WISH SEQUENTIAL RANGE ATTACK",
-   "stair": "F11",
-   "babel": true,
-   "dice": 3,
-   "toHit": 10,
-   "wish": true,
-   "target": [
-    "2 Titans, starting from the closest Titan"
-   ],
-   "hdr": "MIDAS 3+ or FATE 4+: +2 EVADE_DICE",
-   "steps": [
-    "⚡ RANGE ATTACK UNLIMITED",
-    "Each hit deals 3 DANGER.",
-    "⚡ Gain the Covetous Condition card."
-   ],
-   "after": "Remove X Irem Towers, where X is the number of hits."
-  },
-  {
-   "code": "DR2480",
-   "tier": 1,
-   "name": "Golden Trickle",
-   "kind": "WISH SIMULTANEOUS ATTACK",
-   "stair": "G12",
-   "babel": true,
-   "dice": 5,
-   "toHit": 8,
-   "wish": true,
-   "target": [
-    "All Titans on VPs",
-    "All Titans on the Endless Staircase"
-   ],
-   "noTarget": "Signature",
-   "hdr": "MIDAS 3+ or FATE 5+: Add +2 hits",
-   "steps": [
-    "⚡ ATTACK",
-    "Each hit deals 2 DANGER.",
-    "⚡ Wish Away X, where X is the DANGER dealt."
-   ],
-   "after": "Midas Y, where Y is the number of hits - 1."
-  },
-  {
-   "code": "DR2479",
-   "tier": 1,
-   "name": "Downward Trend",
-   "kind": "SIMULTANEOUS ATTACK",
-   "stair": "I11",
-   "babel": true,
-   "dice": 3,
-   "toHit": 9,
-   "target": [
-    "All Titans on VPs",
-    "All Titans on the Endless Staircase"
-   ],
-   "noTarget": "Signature",
-   "hdr": "FATE 4+: +1 EVADE_DICE",
-   "steps": [
-    "⚡ ATTACK",
-    "Each hit deals 3 DANGER."
-   ],
-   "after": "⚡ Wish Away X, where X is the DANGER dealt."
-  },
-  {
-   "code": "DR2478",
-   "tier": 1,
-   "name": "Death Clock",
-   "kind": "WISH JUDGEMENT",
-   "stair": "H9",
-   "babel": true,
-   "dice": 3,
-   "toHit": 9,
-   "wish": true,
-   "judge": [
-    "Courage",
-    "Wisdom"
-   ],
-   "target": [
-    "Titan on a VP",
-    "Titan on the highest Endless Staircase space",
-    "Furthest Titan in front",
-    "Furthest Titan in sight"
-   ],
-   "hdr": "MIDAS 1+ or FATE 4+: Add +1 hit",
-   "steps": [
-    "⚡ JUDGE",
-    "Courage/Wisdom. For each hit gain +3 DANGER and Midas 1. Gain Death 4 - X, where X is the number of hits."
-   ]
-  },
-  {
-   "code": "DR2477",
-   "tier": 1,
-   "name": "Shadow Economy",
-   "kind": "ECLIPSE ATTACK",
-   "stair": "I10",
-   "babel": true,
-   "dice": "X",
-   "toHit": 10,
-   "rotate": "Closest Titan",
-   "eclipse": true,
-   "target": [
-    "Eclipse Zone"
-   ],
-   "steps": [
-    "⚡ ATTACK",
-    "X is equal to 2 + the number of Midas tokens you have. | FATE 4+: Double the value of X",
-    "Each hit deals 2 DANGER.",
-    "⚡ Unholy Alchemy."
-   ],
-   "after": "⚡ AMBROSIA 1+: Gain the Covetous Condition card. AMBROSIA 3+: Gain the Greed-crazed Condition card. AMBROSIA 5+: Gain the Greed-crazed Condition card and the Goldthirst Curse Affliction."
-  },
-  {
-   "code": "DR2476",
-   "tier": 1,
-   "name": "Gaze of Greed",
-   "kind": "ECLIPSE ATTACK",
-   "stair": "F10",
-   "babel": true,
-   "dice": 3,
-   "toHit": 11,
-   "rotate": "Closest Titan",
-   "eclipse": true,
-   "target": [
-    "Eclipse Zone"
-   ],
-   "hdr": "MIDAS 2+ or FATE 4+: Ignore ⚡",
-   "steps": [
-    "⚡ ATTACK",
-    "Three hits or MIDAS 3+, you die. Otherwise, each hit deals 4 DANGER and Midas 1."
-   ]
-  },
-  {
-   "code": "DR2487",
-   "tier": 2,
-   "name": "Gaze of Opulence",
-   "kind": "ECLIPSE ATTACK",
-   "stair": "I2",
-   "babel": true,
-   "dice": 4,
-   "toHit": 11,
-   "rotate": "Closest Titan",
-   "eclipse": true,
-   "target": [
-    "Eclipse Zone"
-   ],
-   "hdr": "MIDAS 2+ or FATE 4+: Ignore ⚡",
-   "steps": [
-    "⚡ ATTACK",
-    "Three hits or MIDAS 3+, you die. Otherwise, each hit deals 3 DANGER and Midas 2."
-   ],
-   "after": "⚡ Wish Away X, where X is the DANGER dealt."
-  },
-  {
-   "code": "DR2482",
-   "tier": 2,
-   "name": "Forget Irem",
-   "kind": "WISH RANGE ATTACK",
-   "stair": "G15",
-   "babel": true,
-   "dice": 3,
-   "toHit": 10,
-   "wish": true,
-   "target": [
-    "Closest Titan in front",
-    "Closest Titan in sight"
-   ],
-   "hdr": "FATE 5+: Gain the Greed-crazed Condition card",
-   "steps": [
-    "⚡ RANGE ATTACK UNLIMITED",
-    "Each hit deals 4 DANGER and 1 Ambrosia token."
-   ],
-   "after": "⚡ Remove X Irem Towers, where X is the number of hits."
-  },
-  {
-   "code": "DR2486",
-   "tier": 2,
-   "name": "Wind of Prosperity",
-   "kind": "CURSE",
-   "stair": "C15",
-   "babel": true,
-   "target": [],
-   "steps": [],
-   "curse": "wind",
-   "text": "⚡ WIND | Closest Titan in sight with FATE 6+: Gain the Covetous Condition card. Airburst 5. Every affected Titan gains Midas X, where X is 6 - number of spaces from the Babelian Lunacy. ⚡ AFTER CURSE: Draw another AI card."
-  },
-  {
-   "code": "DR2485",
-   "tier": 2,
-   "name": "Death Clocktower",
-   "kind": "WISH SIMULTANEOUS JUDGEMENT",
-   "stair": "L15",
-   "babel": true,
-   "dice": 4,
-   "toHit": 9,
-   "wish": true,
-   "judge": [
-    "Courage",
-    "Wisdom"
-   ],
-   "target": [
-    "All Titans on VPs",
-    "All Titans on the Endless Staircase"
-   ],
-   "noTarget": "Signature",
-   "hdr": "MIDAS 1+ or FATE 4+: Midas 2",
-   "steps": [
-    "⚡ JUDGE",
-    "Courage/Wisdom. For each hit gain +3 DANGER and Midas 1. Gain Death 4 - X, where X is the number of hits."
-   ],
-   "after": "⚡ Wish Away Y, where Y is the DANGER gained."
-  },
-  {
-   "code": "DR2484",
-   "tier": 2,
-   "name": "Golden Flow",
-   "kind": "WISH SIMULTANEOUS ATTACK",
-   "stair": "L6",
-   "babel": true,
-   "dice": 6,
-   "toHit": 8,
-   "wish": true,
-   "target": [
-    "All Titans on VPs",
-    "All Titans on the Endless Staircase"
-   ],
-   "noTarget": "Signature",
-   "hdr": "MIDAS 3+ or FATE 5+: Add +2 hits",
-   "steps": [
-    "⚡ ATTACK",
-    "Each hit deals 2 DANGER.",
-    "⚡ Wish Away X, where X is the DANGER dealt."
-   ],
-   "after": "⚡ Midas Y, where Y is the number of hits."
-  },
-  {
-   "code": "DR2483",
-   "tier": 2,
-   "name": "Eyes of the Sun",
-   "kind": "ECLIPSE ATTACK",
-   "stair": "C6",
-   "babel": true,
-   "dice": 3,
-   "toHit": 9,
-   "rotate": "Closest Titan",
-   "eclipse": true,
-   "target": [
-    "Eclipse Zone"
-   ],
-   "hdr": "FATE 6+: Ignore ⚡",
-   "steps": [
-    "⚡ ATTACK",
-    "Each hit deals 3 DANGER and Midas 1."
-   ],
-   "repeat": "another",
-   "afterFinal": "⚡ Repeat this Attack, rotating toward another Target (once)."
-  },
-  {
-   "code": "DR2488",
-   "tier": 3,
-   "name": "Lunatic Sun",
-   "kind": "ECLIPSE ATTACK",
-   "stair": "A1",
-   "babel": true,
-   "dice": 3,
-   "toHit": 11,
-   "rotate": "Closest Titan",
-   "eclipse": true,
-   "target": [
-    "Eclipse Zone"
-   ],
-   "hdr": "MIDAS 2+ or FATE 4+: Ignore ⚡",
-   "steps": [
-    "⚡ ATTACK",
-    "Two hits or MIDAS 2+, you die. Otherwise, each hit deals 5 DANGER and Midas 1."
-   ],
-   "after": "⚡ Wish Away X, where X is the DANGER dealt."
-  },
-  {
-   "code": "DR2489",
-   "tier": 3,
-   "name": "Once Upon a Metropolis",
-   "kind": "WISH SIMULTANEOUS JUDGEMENT",
-   "stair": "N10",
-   "babel": true,
-   "dice": 4,
-   "toHit": 9,
-   "wish": true,
-   "judge": [
-    "Wisdom",
-    "Cunning"
-   ],
-   "target": [
-    "Each Titan on a VP and Terrain tile"
-   ],
-   "hdr": "MIDAS 3+ or FATE 4+: ⚡ Knockdown",
-   "steps": [
-    "⚡ JUDGE",
-    "Wisdom/Cunning. Each hit deals 5 DANGER and 1 Ambrosia token.",
-    "⚡ Gain the Greed-crazed Condition card."
-   ],
-   "afterFinal": "⚡ Remove X Irem Towers, where X is the highest DANGER dealt to a Titan in this Judgement."
-  },
-  {
-   "code": "DR2490",
-   "tier": 3,
-   "name": "Blessing of Infinite Growth",
-   "kind": "ECLIPSE ATTACK",
-   "stair": "F19",
-   "babel": true,
-   "rotate": "Furthest Titan",
-   "eclipse": true,
-   "target": [
-    "Eclipse Zone"
-   ],
-   "steps": [
-    "⚡ ATTACK"
-   ],
-   "allDie": true,
-   "repeat": "most",
-   "text": "⚡ ATTACK: All Titans in the Zone die. Random survivor gains a random Curse Affliction. ⚡ AFTER FINAL ATTACK: Repeat this Attack (once), rotating toward the most Titans."
-  },
-  {
-   "code": "DR2491",
-   "tier": 3,
-   "name": "Rivers of Black and Gold",
-   "kind": "WISH SIMULTANEOUS ATTACK",
-   "stair": "A20",
-   "babel": true,
-   "dice": 6,
-   "toHit": 9,
-   "wish": true,
-   "target": [
-    "All Titans on VPs",
-    "All Titans on the Endless Staircase"
-   ],
-   "noTarget": "Signature",
-   "hdr": "MIDAS 3+ or FATE 5+: Add +2 hits",
-   "steps": [
-    "⚡ ATTACK",
-    "Each hit deals 3 DANGER.",
-    "⚡ Wish Away X, where X is the DANGER dealt."
-   ],
-   "after": "⚡ Midas Y and gain Y Ambrosia tokens, where Y is the number of hits."
-  },
-  {
-   "code": "DR2493",
-   "tier": 3,
-   "name": "Golden Eclipse",
-   "kind": "CURSE",
-   "stair": "N10",
-   "babel": true,
-   "target": [],
-   "steps": [],
-   "curse": "eclipse",
-   "text": "⚡ ECLIPSE | Closest Titan in sight with RAGE 5+: Gain the Covetous Condition card. Each Titan Midas X, where X is your FATE +1. ⚡ AFTER CURSE: Draw another AI card."
-  },
-  {
-   "code": "DR2492",
-   "tier": 3,
-   "name": "Mooncrash",
-   "kind": "CURSE",
-   "stair": "N20",
-   "babel": true,
-   "target": [],
-   "steps": [],
-   "curse": "topple",
-   "text": "⚡ TOPPLE: Remove 10 empty Terrain tiles from the Battle Board. ⚡ AFTER CURSE: Draw another AI card."
-  },
-  {
-   "code": "DR2494",
-   "tier": "X",
-   "name": "Panoptic Order",
-   "kind": "SIGNATURE",
-   "stair": "stay",
-   "babel": true,
-   "dice": 3,
-   "toHit": 10,
-   "rotate": "Clockwise",
-   "eclipse": true,
-   "target": [
-    "Eclipse Zone"
-   ],
-   "hdr": "MIDAS 2+ or FATE 4+: Ignore ⚡",
-   "steps": [
-    "⚡ ATTACK",
-    "MIDAS 4+, you die. Otherwise, each hit deals 4 DANGER and Midas 1."
-   ],
-   "after": "⚡ Wish Away X, where X is the DANGER dealt.",
-   "displayKind": "ECLIPSE SIGNATURE"
-  },
-  {
-   "code": "DR2495",
-   "tier": "X",
-   "name": "Total Lunacy",
-   "kind": "ROUTINE",
-   "stair": "gone",
-   "babel": true,
-   "target": [],
-   "steps": [],
-   "text": "Staircase: Disappears! Random Titan dies."
-  }
- ],
- "bp": [
-  {
-   "code": "DS2497",
-   "tier": 1,
-   "name": "Diaphragm Wall",
-   "at": 8,
-   "responses": {
-    "FAIL": "Midas 2.",
-    "WOUND": "Create an Irem Tower. Gain 1 Ambrosia token."
-   },
-   "critical": "You may perform a Bonus Attack!"
-  },
-  {
-   "code": "DS2496",
-   "tier": 1,
-   "name": "Radial Footing",
-   "at": 9,
-   "responses": {
-    "FAIL": "Gain 2 Ambrosia tokens.",
-    "WOUND": "Create an Irem Tower. Midas 1."
-   },
-   "critical": "Create all Vantage Points!",
-   "atStair": 8
-  },
-  {
-   "code": "DS2498",
-   "tier": 1,
-   "name": "Lower Bone Girder",
-   "at": 8,
-   "responses": {
-    "FAIL": "Midas 2.",
-    "WOUND": "Create an Irem Tower. Gain 1 Ambrosia token."
-   },
-   "critical": "Remove the highest Staircase tier (to a minimum of 1)!"
-  },
-  {
-   "code": "DS2499",
-   "tier": 1,
-   "name": "Auric Duct",
-   "at": 7,
-   "responses": {
-    "FAIL": "Midas 3.",
-    "WOUND": "Midas 1."
-   },
-   "critical": "Gain the Molten Gold Kalasiris card (Secret deck 11, card 198) (campaign)."
-  },
-  {
-   "code": "DS2500",
-   "tier": 1,
-   "name": "Substructural Stone Plating",
-   "at": 9,
-   "responses": {
-    "FAIL": "Midas 1. Gain 1 Ambrosia token. Wish Away.",
-    "WOUND": "Remove 2 Irem Towers."
-   },
-   "critical": "Until the end of Battle, all Titans gain a +1 bonus to Ascent Checks!",
-   "atStair": 8
-  },
-  {
-   "code": "DS2501",
-   "tier": 1,
-   "name": "Seismic Absorber Tissue",
-   "at": 7,
-   "responses": {
-    "FAIL": "Remove 2 Irem Towers. Wish Away. Knockdown.",
-    "WOUND": "⚡ Airburst 3. Remove an Irem Tower."
-   },
-   "critical": "Until the end of Battle, the Babelian Lunacy has -1 AT when attacked from the Endless Staircase or VPs."
-  },
-  {
-   "code": "DS2504",
-   "tier": 2,
-   "name": "Superstructural Stone Plating",
-   "at": 11,
-   "responses": {
-    "FAIL": "Midas 3. Remove an Irem Tower.",
-    "WOUND": "Create an Irem Tower. Midas 2. Gain the Covetous Condition card."
-   },
-   "critical": "Gain the Priority Target token. You may perform a Bonus Attack!",
-   "atStair": 10
-  },
-  {
-   "code": "DS2503",
-   "tier": 2,
-   "name": "Umbral Hand of the Market",
-   "at": 10,
-   "responses": {
-    "FAIL": "Remove 2 Irem Towers. Wish Away. Gain as many DANGER as you have Ambrosia tokens.",
-    "WOUND": "⚡ Airburst 4. Remove an Irem Tower."
-   },
-   "critical": "Create all Vantage Points or create 4 Irem Towers."
-  },
-  {
-   "code": "DS2502",
-   "tier": 2,
-   "name": "Higher Bone Girder",
-   "at": 11,
-   "responses": {
-    "FAIL": "Gain 2 Ambrosia tokens.",
-    "WOUND": "Create an Irem Tower. Midas 2."
-   },
-   "critical": "Remove the highest Staircase tier (to a minimum of 1)!",
-   "atStair": 10
-  },
-  {
-   "code": "DS2507",
-   "tier": 2,
-   "name": "Glass Ceiling of Babel",
-   "at": 9,
-   "responses": {
-    "FAIL": "Midas 2. Gain the Covetous Condition card. Knockdown.",
-    "WOUND": "⚡ Remove all Irem Towers from the two outermost rings of the Battle Board (even if occupied)."
-   },
-   "critical": "You may move to an empty VP and gain the Lander Condition card!"
-  },
-  {
-   "code": "DS2505",
-   "tier": 2,
-   "name": "Outrigger Umbral Muscles",
-   "at": 9,
-   "responses": {
-    "FAIL": "Gain 3 Ambrosia tokens.",
-    "WOUND": "Midas 2. Then move every Irem Tower in Zone 5 around the Babelian Lunacy 2 spaces directly away from it."
-   },
-   "critical": "Gain the Outrigger Bodysuit card (Secret deck 11, card 199) (campaign)."
-  },
-  {
-   "code": "DS2506",
-   "tier": 2,
-   "name": "Motion Damper Organ",
-   "at": 10,
-   "responses": {
-    "FAIL": "Remove 3 Irem Towers. Wish Away.",
-    "WOUND": "Gain +2 DANGER. ⚡ Move every Irem Tower in Zone 5 around the Babelian Lunacy 2 spaces directly toward it. Remove any Irem Tower that cannot be moved 2 spaces (even if occupied)."
-   },
-   "critical": "Until the end of Battle, the Babelian Lunacy has -1 AT when attacked from the Endless Staircase or VPs."
-  },
-  {
-   "code": "DS2508",
-   "tier": 3,
-   "name": "Soul of Greed",
-   "at": 20,
-   "responses": {
-    "INSTINCT": "⚡ Airburst 4. Remove 3 Irem Towers. Midas 3."
-   },
-   "critical": "The Babelian Lunacy dies!"
-  },
-  {
-   "code": "DS2509",
-   "tier": 3,
-   "name": "Aurified Sapling",
-   "at": 19,
-   "responses": {
-    "FAIL": "Midas 2. Gain the Greed-crazed Condition card.",
-    "WOUND": "Gain the Windblight Curse Affliction. ⚡ Airburst 8. Remove an Irem Tower."
-   },
-   "critical": "Gain +1 (campaign). Immediately resolve the Gilded Forest Special Event (campaign)."
-  },
-  {
-   "code": "DS2513",
-   "tier": 3,
-   "name": "Panopticon of Ebony Gold",
-   "at": 19,
-   "responses": {
-    "FAIL": "Reverse Unholy Alchemy.",
-    "WOUND": "Gain the Goldthirst Curse Affliction. ⚡ Unholy Alchemy."
-   },
-   "critical": "Disable the Midas X keyword."
-  },
-  {
-   "code": "DS2512",
-   "tier": 3,
-   "name": "Core of Curses",
-   "at": 19,
-   "responses": {
-    "FAIL": "You die.",
-    "WOUND": "Gain a random Curse Affliction."
-   },
-   "critical": "Disable Curse AI cards. After the Battle, resolve the Heart of Gold Special Event (campaign)."
-  },
-  {
-   "code": "DS2511",
-   "tier": 3,
-   "name": "Spine Supercolumn",
-   "at": 18,
-   "responses": {
-    "FAIL": "Perform an Obol Draw.",
-    "WOUND": "Midas 3. Gain the Greed-crazed Condition card. ⚡ Wish Away each Titan."
-   },
-   "critical": "Gain the Bailout card (Secret deck 11, card 200) (campaign)."
-  },
-  {
-   "code": "DS2510",
-   "tier": 3,
-   "name": "Web of Influence",
-   "at": 18,
-   "responses": {
-    "INSTINCT": "Perform Signature against the Attacker."
-   },
-   "critical": "Gain the Priority Target token. You may perform a Bonus Attack!"
-  }
- ],
- "wishAway": {
-  "1": 9,
-  "2": 10,
-  "3": 11,
-  "4": 12
- },
- "stairs": [
-  5,
-  4,
-  4,
-  5
- ],
- "vp": {
-  "name": "Dome of Folly",
-  "slots": 3,
-  "text": "Climb: Only reachable through Ascent. Hold On — End of Primordial Round: If on a VP, test Wisdom (Lv1: 10+, Lv2+: 13+). Fail: Knockdown, Wish Away X to the Endless Staircase, where X is half (Lv1, rounding up) / the number of the Endless Staircase steps. VP effects: You may perform a Combined Attack.",
-  "byLevel": {
-   "1": {
-    "climb": null,
-    "holdOn": [
-     "Wisdom",
-     10
-    ],
-    "holdFail": "stair",
-    "stairHalf": true,
-    "power": 0
-   },
-   "2": {
-    "climb": null,
-    "holdOn": [
-     "Wisdom",
-     13
-    ],
-    "holdFail": "stair",
-    "stairHalf": false,
-    "power": 0
-   }
-  }
- }
+  "basicTraits": [
+    "Lumbering"
+  ]
 }

@@ -208,6 +208,7 @@ export function installOracle(Game, { TitanDied, BattleOver }) {
     async dealFD(t, f, d, card, hits = 1, dFn = null, opts = {}) {
       if (!t || !t.alive) return;
       if (d > 0 && (opts.laser || opts.sunHit || (card && card.oracle && card.oracle.laser)) && this.ab(t, 'In Light and Shade')) { const nd = Math.max(hits, d - hits); if (nd < d) { this.say(`${t.name}: In Light and Shade — 명중당 Danger −1 (${d} → ${nd})`, 'good'); d = nd; } }
+      if (d > 0 && (opts.laser || opts.sunHit || (card && ((card.oracle && card.oracle.laser) || (card.midas && card.midas.laser) || card.sun))) && this.gearHas(t, /Each Laser Attack hit and Sun Attack hit deals 1 DANGER less to you/)) { const nd = Math.max(hits, d - hits); if (nd < d) { this.say(`${t.name}: Scorch Conditioning — hit당 Danger −1 (${d} → ${nd})`, 'good'); d = nd; } }
       const B = opts.noBonus ? 0 : (this.prim.bonus.DF || 0); const bonus = B ? (this.prim.bonusPerHit ? B * hits : B) : 0;
       if (bonus) { if (f > 0) f += bonus; else d += bonus; }
       { const DB = opts.noBonus ? 0 : (this.prim.bonus.DANGER || 0); if (DB && (d > 0 || f > 0)) { const add = this.prim.bonusPerHit ? DB * hits : DB; d += add; this.say(`Danger 보너스 +${add}`); } }
@@ -227,7 +228,7 @@ export function installOracle(Game, { TitanDied, BattleOver }) {
       return f;
     },
     async discardGearN(t, n, weaponOnly) {
-      for (let i = 0; i < n; i++) { const list = t.gear.filter(g => !g.discarded && g.card.name !== 'Fists' && (!weaponOnly || (/^hand/.test(g.card.slot) && g.card.atk != null))); if (!list.length) return; const g = list.length === 1 ? list[0] : await this.pickGear(t, list); if (g) this.discardGear(t, g); }
+      for (let i = 0; i < n; i++) { const list = t.gear.filter(g => !g.discarded && g.card.name !== 'Fists' && !g.card.isTech && (!weaponOnly || (/^hand/.test(g.card.slot) && g.card.atk != null))); if (!list.length) return; const g = list.length === 1 ? list[0] : await this.pickGear(t, list); if (g) this.discardGear(t, g); }
     },
 
     // ---------------- attack-effect sentences (inside primAttackOn) ----------------

@@ -41,7 +41,8 @@
   "Pole Position": "If you're adjacent to the Primordial, place your miniature on an empty space adjacent to the Primordial. You may use this ability in either the first or second ability window.",
   "Unburden X": "You may give up to X Condition or Despair or Ambrosia tokens to the closest Titan. You may use this ability in either the first or second ability window.",
   "Clutch": "During the Power Roll step, if, after applying all bonuses, you fail to meet the AT by exactly 1 Power, you may gain +1 Power, then, when you finish resolving this Attack, immediately discard your active weapon.",
-  "Precise": "After drawing the BP card, you may target the top card of the BP discard pile instead (shuffle the drawn card back)."
+  "Precise": "After drawing the BP card, you may target the top card of the BP discard pile instead (shuffle the drawn card back).",
+  "Taint X": "(Cycle V — 미구현)"
  },
  "battleSequence": {
   "round": [
@@ -1550,5 +1551,1561 @@
     ]
    }
   }
+ },
+ "inward": {
+  "_note": "Pattern cards (Inward Odyssey technology) (Kratos / Trauma). A Titan may use one of each; they replace the Titan sheet Kratos / Trauma table and add the card ability.",
+  "kratos": [
+   {
+    "name": "Mazewalker",
+    "code": "AW0286",
+    "cycle": 1,
+    "traits": [
+     "Conditioning",
+     "Kratos"
+    ],
+    "kratos": {
+     "1": [
+      [
+       "Break 1"
+      ],
+      [
+       "Opening 1"
+      ]
+     ],
+     "2": [
+      [
+       "Power Re-roll 1"
+      ],
+      [
+       "Reposition 1"
+      ]
+     ],
+     "3": [
+      [
+       "Break 1"
+      ],
+      [
+       "Opening 1"
+      ]
+     ],
+     "4": [
+      [
+       "Pushback 1"
+      ],
+      [
+       "Power Re-roll 1"
+      ]
+     ],
+     "5": [
+      [
+       "Additional Power Die"
+      ]
+     ],
+     "6": [
+      [
+       "Break 1"
+      ],
+      [
+       "Opening 1"
+      ]
+     ]
+    },
+    "text": "If moving through a Labyrinth tile, you gain 1 additional Speed for this movement.",
+    "copies": 1
+   },
+   {
+    "name": "Dreamwalker II",
+    "code": "AW0287",
+    "cycle": 1,
+    "traits": [
+     "Strain",
+     "Kratos"
+    ],
+    "kratos": {
+     "1": [
+      [
+       "Break 1"
+      ],
+      [
+       "Opening 1"
+      ]
+     ],
+     "2": [
+      [
+       "Power Re-roll 1"
+      ]
+     ],
+     "3": [
+      [
+       "Break 1"
+      ],
+      [
+       "Opening 1"
+      ]
+     ],
+     "4": [
+      [
+       "Pushback 1"
+      ],
+      [
+       "Power Re-roll 1"
+      ]
+     ],
+     "5": [
+      [
+       "Additional Power Die"
+      ]
+     ],
+     "6": [
+      [
+       "Break 1"
+      ],
+      [
+       "Opening 1"
+      ]
+     ],
+     "7": [
+      [
+       "Pushback 1"
+      ],
+      [
+       "Power Re-roll 1"
+      ]
+     ]
+    },
+    "text": "",
+    "copies": 1
+   },
+   {
+    "name": "Spartan Dreamwalker",
+    "code": "BW0974",
+    "cycle": 2,
+    "traits": [
+     "Dreamwalker",
+     "Kratos"
+    ],
+    "kratos": {
+     "1": [
+      [
+       "Break 1"
+      ],
+      [
+       "Opening 1"
+      ]
+     ],
+     "2": [
+      [
+       "Break 1"
+      ],
+      [
+       "Power Re-roll 1"
+      ]
+     ],
+     "3": [
+      [
+       "Break 1"
+      ],
+      [
+       "Opening 1"
+      ]
+     ],
+     "4": [
+      [
+       "Pushback 1"
+      ],
+      [
+       "Opening 1"
+      ],
+      [
+       "Power Re-roll 1"
+      ]
+     ],
+     "5": [
+      [
+       "Additional Power Die"
+      ]
+     ],
+     "6": [
+      [
+       "Break 1"
+      ],
+      [
+       "Opening 1"
+      ],
+      [
+       "Power Re-roll 1"
+      ]
+     ]
+    },
+    "text": "",
+    "copies": 1
+   },
+   {
+    "name": "Monsteneer",
+    "code": "BW0976",
+    "cycle": 2,
+    "traits": [
+     "Conditioning",
+     "Kratos"
+    ],
+    "kratos": {
+     "1": [
+      [
+       "Break 1"
+      ],
+      [
+       "Opening 1"
+      ]
+     ],
+     "2": [
+      [
+       "Break 1"
+      ],
+      [
+       "Power Re-roll 1"
+      ]
+     ],
+     "3": [
+      [
+       "Break 1"
+      ],
+      [
+       "Opening 1"
+      ]
+     ],
+     "4": [
+      [
+       "Pushback 1"
+      ],
+      [
+       "Opening 1"
+      ],
+      [
+       "Power Re-roll 1"
+      ]
+     ],
+     "5": [
+      [
+       "Additional Power Die"
+      ]
+     ],
+     "6": [
+      [
+       "Break 1"
+      ],
+      [
+       "Opening 1"
+      ],
+      [
+       "Power Re-roll 1"
+      ]
+     ]
+    },
+    "text": "Add +X to your Climb tests, where X is equal to half of your RAGE (rounding up).",
+    "copies": 1
+   },
+   {
+    "name": "Dreamwalker III",
+    "code": "BW0981",
+    "cycle": 2,
+    "traits": [
+     "Strain",
+     "Kratos"
+    ],
+    "kratos": {
+     "1": [
+      [
+       "Break 1"
+      ],
+      [
+       "Opening 1"
+      ]
+     ],
+     "2": [
+      [
+       "Break 1"
+      ],
+      [
+       "Power Re-roll 1"
+      ]
+     ],
+     "3": [
+      [
+       "Break 1"
+      ],
+      [
+       "Opening 1"
+      ]
+     ],
+     "4": [
+      [
+       "Pushback 1"
+      ],
+      [
+       "Opening 1"
+      ],
+      [
+       "Power Re-roll 1"
+      ]
+     ],
+     "5": [
+      [
+       "Additional Power Die"
+      ]
+     ],
+     "6": [
+      [
+       "Break 1"
+      ],
+      [
+       "Opening 1"
+      ],
+      [
+       "Power Re-roll 1"
+      ]
+     ],
+     "7": [
+      [
+       "Pushback 1"
+      ],
+      [
+       "Power Re-roll 1"
+      ]
+     ],
+     "8": [
+      [
+       "Break 1"
+      ],
+      [
+       "Opening 1"
+      ]
+     ]
+    },
+    "text": "",
+    "copies": 1
+   },
+   {
+    "name": "Delphian Dreamwalker",
+    "code": "CW1550",
+    "cycle": 3,
+    "traits": [
+     "Dreamwalker",
+     "Kratos"
+    ],
+    "kratos": {
+     "1": [
+      [
+       "Break 1"
+      ],
+      [
+       "Opening 1"
+      ]
+     ],
+     "2": [
+      [
+       "Break 1"
+      ],
+      [
+       "Power Re-roll 1"
+      ]
+     ],
+     "3": [
+      [
+       "Break 1"
+      ],
+      [
+       "Opening 1"
+      ]
+     ],
+     "4": [
+      [
+       "Pushback 1"
+      ],
+      [
+       "Opening 1"
+      ],
+      [
+       "Power Re-roll 1"
+      ]
+     ],
+     "5": [
+      [
+       "Additional Power Die"
+      ]
+     ],
+     "6": [
+      [
+       "Break 1"
+      ],
+      [
+       "Opening 1"
+      ],
+      [
+       "Power Re-roll 1"
+      ]
+     ]
+    },
+    "text": "[R]ΨΨ⟳ Reflex.",
+    "copies": 1
+   },
+   {
+    "name": "Chronian Strain",
+    "code": "CW1551",
+    "cycle": 3,
+    "traits": [
+     "Kratos",
+     "Strain",
+     "Paradox"
+    ],
+    "kratos": {
+     "1": [
+      [
+       "Pass 1"
+      ],
+      [
+       "Black 1"
+      ]
+     ],
+     "2": [
+      [
+       "Opening 1",
+       "Power Re-roll 1"
+      ]
+     ],
+     "3": [
+      [
+       "Pass 1",
+       "Power Re-roll 1"
+      ]
+     ],
+     "4": [
+      [
+       "Break 1",
+       "Pass 1"
+      ],
+      [
+       "Pass 2"
+      ]
+     ],
+     "5": [
+      [
+       "Additional Power Die"
+      ]
+     ],
+     "6": [
+      [
+       "Greater Pass 1",
+       "Power Re-roll 1"
+      ]
+     ],
+     "7": [
+      [
+       "Pass 1"
+      ]
+     ]
+    },
+    "text": "RAGE 7+: gain 1 Speed.",
+    "copies": 1
+   },
+   {
+    "name": "Sisyphean Strain",
+    "code": "CW1556",
+    "cycle": 3,
+    "traits": [
+     "Strain",
+     "Kratos"
+    ],
+    "kratos": {
+     "1": [
+      [
+       "Break 1",
+       "Opening 1"
+      ]
+     ],
+     "2": [
+      [
+       "Power Re-roll 1",
+       "Burden 1"
+      ]
+     ],
+     "3": [
+      [
+       "Break 1",
+       "Black 1"
+      ]
+     ],
+     "4": [
+      [
+       "Additional Power Die"
+      ]
+     ],
+     "5": [
+      [
+       "Black 1",
+       "Opening 1"
+      ]
+     ],
+     "6": [
+      [
+       "Power Re-roll 1",
+       "Burden 1"
+      ]
+     ],
+     "7": [
+      [
+       "Power Re-roll 1"
+      ]
+     ]
+    },
+    "text": "Crit Miss: Lose -1 RAGE.",
+    "copies": 1
+   },
+   {
+    "name": "Persian Dreamwalker",
+    "code": "DW2034",
+    "cycle": 4,
+    "traits": [
+     "Dreamwalker",
+     "Kratos"
+    ],
+    "kratos": {
+     "1": [
+      [
+       "Break 1"
+      ],
+      [
+       "Opening 1"
+      ]
+     ],
+     "2": [
+      [
+       "Break 1"
+      ],
+      [
+       "Power Re-roll 1"
+      ]
+     ],
+     "3": [
+      [
+       "Break 1"
+      ],
+      [
+       "Opening 1"
+      ]
+     ],
+     "4": [
+      [
+       "Pushback 1"
+      ],
+      [
+       "Opening 1"
+      ],
+      [
+       "Power Re-roll 1"
+      ]
+     ],
+     "5": [
+      [
+       "Additional Power Die"
+      ]
+     ],
+     "6": [
+      [
+       "Break 1"
+      ],
+      [
+       "Opening 1"
+      ],
+      [
+       "Power Re-roll 1"
+      ]
+     ],
+     "7": [
+      [
+       "Opening 1"
+      ]
+     ]
+    },
+    "text": "[R]Ψ⟳ Reflex.",
+    "copies": 4
+   },
+   {
+    "name": "Curser",
+    "code": "DW2041",
+    "cycle": 4,
+    "traits": [
+     "Kratos",
+     "Strain"
+    ],
+    "kratos": {
+     "1": [
+      [
+       "Closing 1",
+       "Reposition 2"
+      ]
+     ],
+     "2": [
+      [
+       "Break 1",
+       "Power Re-roll 1"
+      ]
+     ],
+     "3": [
+      [
+       "Closing 1",
+       "Pole Position"
+      ]
+     ],
+     "4": [
+      [
+       "Break 1",
+       "Power Re-roll 1"
+      ],
+      [
+       "Scale 1"
+      ]
+     ],
+     "5": [
+      [
+       "Closing 1",
+       "Additional Power Die"
+      ]
+     ],
+     "6": [
+      [
+       "Break 1",
+       "Power Re-roll 1"
+      ]
+     ]
+    },
+    "text": "",
+    "copies": 1
+   },
+   {
+    "name": "Pandoran Strain",
+    "code": "DW2043",
+    "cycle": 4,
+    "traits": [
+     "Kratos",
+     "Strain"
+    ],
+    "kratos": {
+     "1": [
+      [
+       "Opening 2"
+      ],
+      [
+       "Power Re-roll 1"
+      ]
+     ],
+     "2": [
+      [
+       "Break 1",
+       "Power Re-roll 1"
+      ],
+      [
+       "Scale 1"
+      ]
+     ],
+     "3": [
+      [
+       "Opening 1",
+       "Reposition 1"
+      ],
+      [
+       "Closing 1"
+      ]
+     ],
+     "4": [
+      [
+       "Break 1",
+       "Power Re-roll 1"
+      ],
+      [
+       "Scale 1"
+      ]
+     ],
+     "5": [
+      [
+       "Additional Power Die"
+      ]
+     ],
+     "6": [
+      [
+       "Closing 1"
+      ]
+     ]
+    },
+    "text": "[R]Ψ⟳ Hermes Reflex.",
+    "copies": 1
+   },
+   {
+    "name": "Cycladean Dreamwalker",
+    "code": "EW2610",
+    "cycle": 5,
+    "traits": [
+     "Dreamwalker",
+     "Kratos",
+     "Strain"
+    ],
+    "kratos": {
+     "1": [
+      [
+       "Break 1"
+      ],
+      [
+       "Opening 1"
+      ]
+     ],
+     "2": [
+      [
+       "Opening 1"
+      ],
+      [
+       "Power Re-roll 1"
+      ]
+     ],
+     "3": [
+      [
+       "Break 1"
+      ],
+      [
+       "Opening 1"
+      ]
+     ],
+     "4": [
+      [
+       "Pushback 1"
+      ],
+      [
+       "Break 1"
+      ],
+      [
+       "Power Re-roll 1"
+      ]
+     ],
+     "5": [
+      [
+       "Additional Power Die"
+      ]
+     ],
+     "6": [
+      [
+       "Break 1"
+      ],
+      [
+       "Opening 1"
+      ],
+      [
+       "Power Re-roll 1"
+      ]
+     ],
+     "7": [
+      [
+       "Opening 1"
+      ],
+      [
+       "Break 1"
+      ]
+     ]
+    },
+    "text": "[R]Ψ⟳ Reflex.",
+    "copies": 4
+   },
+   {
+    "name": "Tactical Training",
+    "code": "EW2617",
+    "cycle": 5,
+    "traits": [
+     "Kratos",
+     "Training"
+    ],
+    "kratos": {
+     "1": [
+      [
+       "Closing 1",
+       "Reposition 2"
+      ]
+     ],
+     "2": [
+      [
+       "Break 1",
+       "Power Re-roll 1"
+      ]
+     ],
+     "3": [
+      [
+       "Closing 1",
+       "Pole Position"
+      ]
+     ],
+     "4": [
+      [
+       "Break 1",
+       "Power Re-roll 1"
+      ]
+     ],
+     "5": [
+      [
+       "Break 1",
+       "Power Re-roll 1"
+      ]
+     ],
+     "6": [
+      [
+       "Additional Power Die",
+       "Closing 1"
+      ]
+     ],
+     "7": [
+      [
+       "Diversion"
+      ]
+     ]
+    },
+    "text": "Strikeback 1.",
+    "copies": 1
+   },
+   {
+    "name": "Zero Strain",
+    "code": "EW2619",
+    "cycle": 5,
+    "traits": [
+     "Kratos",
+     "Strain"
+    ],
+    "kratos": {
+     "1": [
+      [
+       "Opening 1"
+      ],
+      [
+       "Overbreak 1"
+      ]
+     ],
+     "2": [
+      [
+       "Overbreak 1",
+       "Taint 1"
+      ]
+     ],
+     "3": [
+      [
+       "Overbreak 1",
+       "Taint 1"
+      ],
+      [
+       "Diversion",
+       "Opening 1"
+      ]
+     ],
+     "4": [
+      [
+       "Additional Power Die",
+       "Taint 1"
+      ]
+     ],
+     "5": [
+      [
+       "Overbreak 1",
+       "Opening 1"
+      ]
+     ],
+     "6": [
+      [
+       "Taint 1",
+       "Overbreak 1"
+      ]
+     ]
+    },
+    "text": "",
+    "copies": 1
+   }
+  ],
+  "trauma": [
+   {
+    "name": "Iapetan Strain",
+    "code": "AW0284",
+    "cycle": 1,
+    "traits": [
+     "Trauma",
+     "Strain"
+    ],
+    "trauma": [
+     {
+      "danger": "1-3",
+      "tier": "Minor"
+     },
+     {
+      "danger": "4-6",
+      "tier": "Major"
+     },
+     {
+      "danger": "7-9",
+      "tier": "Grave"
+     },
+     {
+      "danger": "10+",
+      "tier": "Obol"
+     }
+    ],
+    "text": "[R]ΨΨ⟳ Reflex (Move 1 space).",
+    "copies": 1
+   },
+   {
+    "name": "Promethean Strain",
+    "code": "AW0285",
+    "cycle": 1,
+    "traits": [
+     "Trauma",
+     "Strain"
+    ],
+    "trauma": [
+     {
+      "danger": "2-3",
+      "tier": "Minor"
+     },
+     {
+      "danger": "4-6",
+      "tier": "Major"
+     },
+     {
+      "danger": "7-9",
+      "tier": "Grave"
+     },
+     {
+      "danger": "10+",
+      "tier": "Obol"
+     }
+    ],
+    "text": "⟳ Lose -1 DANGER.",
+    "copies": 1
+   },
+   {
+    "name": "Harsh Conditioning",
+    "code": "AW0288",
+    "cycle": 1,
+    "traits": [
+     "Trauma",
+     "Conditioning"
+    ],
+    "trauma": [
+     {
+      "danger": "1-3",
+      "tier": "Minor"
+     },
+     {
+      "danger": "4-6",
+      "tier": "Major"
+     },
+     {
+      "danger": "7-9",
+      "tier": "Grave"
+     },
+     {
+      "danger": "10+",
+      "tier": "Obol"
+     }
+    ],
+    "text": "After surviving a Major or Grave Trauma or an Obol, lose -1 Fate.",
+    "copies": 1
+   },
+   {
+    "name": "Heavy-Gear Training",
+    "code": "AW0289",
+    "cycle": 1,
+    "traits": [
+     "Trauma",
+     "Training"
+    ],
+    "trauma": [
+     {
+      "danger": "1-3",
+      "tier": "Minor"
+     },
+     {
+      "danger": "4-6",
+      "tier": "Major"
+     },
+     {
+      "danger": "7-9",
+      "tier": "Grave"
+     },
+     {
+      "danger": "10+",
+      "tier": "Obol"
+     }
+    ],
+    "text": "Ignore up to -1 Speed penalty from any 1 Gear.",
+    "copies": 1
+   },
+   {
+    "name": "Aegisbred",
+    "code": "AW0290",
+    "cycle": 1,
+    "traits": [
+     "Trauma",
+     "Training"
+    ],
+    "trauma": [
+     {
+      "danger": "1-3",
+      "tier": "Minor"
+     },
+     {
+      "danger": "4-6",
+      "tier": "Major"
+     },
+     {
+      "danger": "7-9",
+      "tier": "Grave"
+     },
+     {
+      "danger": "10+",
+      "tier": "Obol"
+     }
+    ],
+    "text": "Armor Re-roll 1.",
+    "copies": 1
+   },
+   {
+    "name": "Canalrunner",
+    "code": "BW0977",
+    "cycle": 2,
+    "traits": [
+     "Conditioning",
+     "Trauma"
+    ],
+    "trauma": [
+     {
+      "danger": "1-3",
+      "tier": "Minor"
+     },
+     {
+      "danger": "4-6",
+      "tier": "Major"
+     },
+     {
+      "danger": "7-9",
+      "tier": "Grave"
+     },
+     {
+      "danger": "10+",
+      "tier": "Obol"
+     }
+    ],
+    "text": "Ψ Jump.",
+    "copies": 1
+   },
+   {
+    "name": "Umbral Strain",
+    "code": "BW0978",
+    "cycle": 2,
+    "traits": [
+     "Trauma",
+     "Strain"
+    ],
+    "trauma": [
+     {
+      "danger": "1-3",
+      "tier": "Minor"
+     },
+     {
+      "danger": "4-6",
+      "tier": "Major"
+     },
+     {
+      "danger": "7-9",
+      "tier": "Grave"
+     },
+     {
+      "danger": "10+",
+      "tier": "Obol"
+     }
+    ],
+    "text": "Ambrosia Limit 5.",
+    "copies": 1
+   },
+   {
+    "name": "Zen Training",
+    "code": "BW0979",
+    "cycle": 2,
+    "traits": [
+     "Trauma",
+     "Training"
+    ],
+    "trauma": [
+     {
+      "danger": "1-3",
+      "tier": "Minor"
+     },
+     {
+      "danger": "4-6",
+      "tier": "Major"
+     },
+     {
+      "danger": "7-9",
+      "tier": "Grave"
+     },
+     {
+      "danger": "10+",
+      "tier": "Obol"
+     }
+    ],
+    "text": "⟳ When you are about to gain RAGE, lower this gain to 1.",
+    "copies": 1
+   },
+   {
+    "name": "Support Specialization",
+    "code": "BW0980",
+    "cycle": 2,
+    "traits": [
+     "Trauma",
+     "Training"
+    ],
+    "trauma": [
+     {
+      "danger": "1-3",
+      "tier": "Minor"
+     },
+     {
+      "danger": "4-6",
+      "tier": "Major"
+     },
+     {
+      "danger": "7-9",
+      "tier": "Grave"
+     },
+     {
+      "danger": "10+",
+      "tier": "Obol"
+     }
+    ],
+    "text": "You have 1 additional Support slot.",
+    "copies": 1
+   },
+   {
+    "name": "Scorch Conditioning",
+    "code": "CW1552",
+    "cycle": 3,
+    "traits": [
+     "Trauma",
+     "Conditioning"
+    ],
+    "trauma": [
+     {
+      "danger": "1-3",
+      "tier": "Minor"
+     },
+     {
+      "danger": "4-6",
+      "tier": "Major"
+     },
+     {
+      "danger": "7-9",
+      "tier": "Grave"
+     },
+     {
+      "danger": "10+",
+      "tier": "Obol"
+     }
+    ],
+    "text": "Each Laser Attack hit and Sun Attack hit deals 1 DANGER less to you (to a minimum of 1).",
+    "copies": 1
+   },
+   {
+    "name": "Hyperborean Strain",
+    "code": "CW1553",
+    "cycle": 3,
+    "traits": [
+     "Trauma",
+     "Strain"
+    ],
+    "trauma": [
+     {
+      "danger": "1-2",
+      "tier": "Minor"
+     },
+     {
+      "danger": "3-4",
+      "tier": "Major"
+     },
+     {
+      "danger": "5",
+      "tier": "Minor"
+     },
+     {
+      "danger": "6-7",
+      "tier": "Major"
+     },
+     {
+      "danger": "8-9",
+      "tier": "Grave"
+     },
+     {
+      "danger": "10+",
+      "tier": "Obol"
+     }
+    ],
+    "text": "If you have exactly 1 Bleeding token, ignore the Bleeding Condition.",
+    "copies": 1
+   },
+   {
+    "name": "Hypertime Conditioning",
+    "code": "CW1554",
+    "cycle": 3,
+    "traits": [
+     "Trauma",
+     "Conditioning"
+    ],
+    "trauma": [
+     {
+      "danger": "1-3",
+      "tier": "Minor"
+     },
+     {
+      "danger": "4-6",
+      "tier": "Major"
+     },
+     {
+      "danger": "7-9",
+      "tier": "Grave"
+     },
+     {
+      "danger": "10+",
+      "tier": "Obol"
+     }
+    ],
+    "text": "Ψ Reestablish your Time Anchor. You may use this ability as a free action or at the end of your turn.",
+    "copies": 1
+   },
+   {
+    "name": "Shade Training",
+    "code": "CW1555",
+    "cycle": 3,
+    "traits": [
+     "Trauma",
+     "Training"
+    ],
+    "trauma": [
+     {
+      "danger": "1-2",
+      "tier": "Minor"
+     },
+     {
+      "danger": "3-4",
+      "tier": "Major"
+     },
+     {
+      "danger": "5",
+      "tier": "Minor"
+     },
+     {
+      "danger": "6-7",
+      "tier": "Major"
+     },
+     {
+      "danger": "8-9",
+      "tier": "Grave"
+     },
+     {
+      "danger": "10+",
+      "tier": "Obol"
+     }
+    ],
+    "text": "ΛΛΛ Shaded.",
+    "copies": 1
+   },
+   {
+    "name": "Pioneer",
+    "code": "DW2042",
+    "cycle": 4,
+    "traits": [
+     "Trauma",
+     "Strain"
+    ],
+    "trauma": [
+     {
+      "danger": "1-3",
+      "tier": "Minor"
+     },
+     {
+      "danger": "4-7",
+      "tier": "Major"
+     },
+     {
+      "danger": "8-9",
+      "tier": "Grave"
+     },
+     {
+      "danger": "10+",
+      "tier": "Obol"
+     }
+    ],
+    "text": "Cryptex Loathing. Once per Battle, gain +1 RAGE to gain a combat action, then gain a combat Fatigue token.",
+    "copies": 1
+   },
+   {
+    "name": "Skyscraper",
+    "code": "DW2040",
+    "cycle": 4,
+    "traits": [
+     "Trauma",
+     "Training"
+    ],
+    "trauma": [
+     {
+      "danger": "1-4",
+      "tier": "Minor"
+     },
+     {
+      "danger": "5-7",
+      "tier": "Major"
+     },
+     {
+      "danger": "8-10",
+      "tier": "Grave"
+     },
+     {
+      "danger": "11+",
+      "tier": "Obol"
+     }
+    ],
+    "text": "You gain +2 bonus to the Ascent Check.",
+    "copies": 1
+   },
+   {
+    "name": "Midas Immunization",
+    "code": "DW2039",
+    "cycle": 4,
+    "traits": [
+     "Trauma",
+     "Conditioning"
+    ],
+    "trauma": [
+     {
+      "danger": "1-3",
+      "tier": "Minor"
+     },
+     {
+      "danger": "4-6",
+      "tier": "Major"
+     },
+     {
+      "danger": "7-9",
+      "tier": "Grave"
+     },
+     {
+      "danger": "10+",
+      "tier": "Obol"
+     }
+    ],
+    "text": "After surviving a Grave Trauma or an Obol, discard 1 Midas token.",
+    "copies": 1
+   },
+   {
+    "name": "Wish Immunization",
+    "code": "DW2038",
+    "cycle": 4,
+    "traits": [
+     "Trauma",
+     "Conditioning"
+    ],
+    "trauma": [
+     {
+      "danger": "1-4",
+      "tier": "Minor"
+     },
+     {
+      "danger": "5-7",
+      "tier": "Major"
+     },
+     {
+      "danger": "8-10",
+      "tier": "Grave"
+     },
+     {
+      "danger": "11+",
+      "tier": "Obol"
+     }
+    ],
+    "text": "Ψ⟳ Wish Armor.",
+    "copies": 1
+   },
+   {
+    "name": "Djinnian Strain",
+    "code": "DW2037",
+    "cycle": 4,
+    "traits": [
+     "Trauma",
+     "Strain"
+    ],
+    "trauma": [
+     {
+      "danger": "1-3",
+      "tier": "Minor"
+     },
+     {
+      "danger": "4-6",
+      "tier": "Major"
+     },
+     {
+      "danger": "7-9",
+      "tier": "Grave"
+     },
+     {
+      "danger": "10+",
+      "tier": "Obol"
+     }
+    ],
+    "text": "You have 1 additional Weapon slot (this slot does not allow you to use 3-handed Weapons).",
+    "copies": 1
+   },
+   {
+    "name": "Siren Strain",
+    "code": "EW2613",
+    "cycle": 5,
+    "traits": [
+     "Trauma",
+     "Strain"
+    ],
+    "trauma": [
+     {
+      "danger": "1-3",
+      "tier": "Minor"
+     },
+     {
+      "danger": "4-6",
+      "tier": "Major"
+     },
+     {
+      "danger": "7-9",
+      "tier": "Grave"
+     },
+     {
+      "danger": "10+",
+      "tier": "Obol"
+     }
+    ],
+    "text": "Spiral 1.",
+    "copies": 1
+   },
+   {
+    "name": "Silver Strain",
+    "code": "EW2618",
+    "cycle": 5,
+    "traits": [
+     "Trauma",
+     "Strain"
+    ],
+    "trauma": [
+     {
+      "danger": "1-3",
+      "tier": "Minor"
+     },
+     {
+      "danger": "4-6",
+      "tier": "Major"
+     },
+     {
+      "danger": "7-9",
+      "tier": "Grave"
+     },
+     {
+      "danger": "10+",
+      "tier": "Obol"
+     }
+    ],
+    "text": "Start of Battle: Gain 1 additional Oxygen token.",
+    "copies": 1
+   },
+   {
+    "name": "Fearless",
+    "code": "EW2616",
+    "cycle": 5,
+    "traits": [
+     "Trauma",
+     "Training"
+    ],
+    "trauma": [
+     {
+      "danger": "1-3",
+      "tier": "Minor"
+     },
+     {
+      "danger": "4-6",
+      "tier": "Major"
+     },
+     {
+      "danger": "7-9",
+      "tier": "Grave"
+     },
+     {
+      "danger": "10+",
+      "tier": "Obol"
+     }
+    ],
+    "text": "Fearless.",
+    "copies": 1
+   },
+   {
+    "name": "Heat Conditioning",
+    "code": "EW2615",
+    "cycle": 5,
+    "traits": [
+     "Trauma",
+     "Conditioning"
+    ],
+    "trauma": [
+     {
+      "danger": "1-3",
+      "tier": "Minor"
+     },
+     {
+      "danger": "4-6",
+      "tier": "Major"
+     },
+     {
+      "danger": "7-9",
+      "tier": "Grave"
+     },
+     {
+      "danger": "10+",
+      "tier": "Obol"
+     }
+    ],
+    "text": "Microwave Resistance 1.",
+    "copies": 1
+   },
+   {
+    "name": "Pain Conditioning",
+    "code": "EW2614",
+    "cycle": 5,
+    "traits": [
+     "Trauma",
+     "Conditioning"
+    ],
+    "trauma": [
+     {
+      "danger": "1-4",
+      "tier": "Minor"
+     },
+     {
+      "danger": "5-7",
+      "tier": "Major"
+     },
+     {
+      "danger": "8-10",
+      "tier": "Grave"
+     },
+     {
+      "danger": "11+",
+      "tier": "Obol"
+     }
+    ],
+    "text": "Pain Resilience 1.",
+    "copies": 1
+   }
+  ]
  }
 }

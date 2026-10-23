@@ -6,7 +6,7 @@ import { Board, Deck, key, cellLabel, DIRS, DIR_LIST } from './core.js';
 class DhDeck extends Deck {
   get discard() { return this._d; }
   set discard(a) { const arr = a; const push = Array.prototype.push; Object.defineProperty(arr, 'push', { value: (...xs) => push.apply(arr, xs.filter(c => !(c && c._dhAway))), configurable: true, writable: true }); this._d = arr; }
-  draw() { if (!this.cards.length) { if (!this._d.length) return null; this.cards = [...this._d]; this.discard = []; this.shuffle(); } const c = this.cards.shift(); if (c) { c._dhAway = false; c._dhUsed = false; } return c; }
+  draw() { if (!this.cards.length) { if (!this._d.length) return null; this.cards = [...this._d]; this.discard = []; this.shuffle(); } const c = this.cards.shift(); if (c) { c._dhAway = false; c._dhUsed = false; c._removed = false; } return c; }
   putBottom(c) { if (c) c._dhAway = false; this.cards.push(c); }
   putTop(c) { if (c) c._dhAway = false; this.cards.unshift(c); }
   shuffleIn(c) { if (c) c._dhAway = false; this.cards.push(c); this.shuffle(); }
@@ -56,7 +56,7 @@ export function installDahaka(Game, { TitanDied, BattleOver, ChainBreak }) {
       if (!this.trait('Semicorporeal Wraith')) return false;
       let card = null;
       if (mods.dhInterrupt && this._dhInt) card = this._dhInt;
-      else if (mods.interrupt && this.currentAI && this.currentAI.card && this.currentAI.card.dahaka && !this.currentAI.card._dhUsed && !this._dhInt) { card = this.currentAI.card; card._dhUsed = true; this.currentAI.dhChain = true; this.say('Strikeback = Interrupt Attack — 진행 중인 AI 카드의 BP 부분을 공격 (Chain Break)', 'good'); }
+      else if (mods.interrupt && this.currentAI && this.currentAI.card && this.currentAI.card.dahaka && !this.currentAI.card._dhUsed && !this._dhInt) { card = this.currentAI.card; card._dhUsed = true; this.currentAI.dhChain = t; this.say('Strikeback = Interrupt Attack — 진행 중인 AI 카드의 BP 부분을 공격 (Chain Break)', 'good'); }
       if (mods.bonus || card) A.dhInterrupt = true;
       if (A.dhInterrupt && !card) this.say('Bonus Attack = Interrupt Attack (Interrupt AT·응답 사용)');
       if (!card) return false;
@@ -83,7 +83,8 @@ export function installDahaka(Game, { TitanDied, BattleOver, ChainBreak }) {
       card._removed = true; this.ai.cards.push(card); card._dhAway = false; this.ai.shuffleDiscardIn();
       await this.dhNextAI();
     },
-    async dhNextAI() { const c = this.drawAI(); if (!c) return; await this.safe(() => this.resolveAI(c)); if (!c._removed) this.ai.discard.push(c); },
+    async dhNextAI() { const c = this.drawAI(); if (!c) return; const pi = this._dhInt; this._dhInt = null; try { await this.safe(() => this.resolveAI(c)); } finally { this._dhInt = pi; } if (!c._removed) this.ai.discard.push(c); },
+    dhHullDamage(why) { if (this.prim.hullRolled || this.prim.argoSupportOff) return; const r = this.rng.d10(); this.say(`Hull Damage (${why}): d10=${r}${r >= 6 ? ' — 장갑이 버팀' : ' — Hull −1 (캠페인), Argo Support 비활성 (전투당 1회)'}`, r >= 6 ? 'good' : 'bad'); if (r < 6) { this.prim.argoSupportOff = true; this.prim.hullRolled = true; } },
     async dahakaBody(card, { isSignature = false, forcedTarget = null } = {}) {
       const s0 = card.steps[0] || ''; const atk = { ...card, steps: [s0.replace(/^⚡\s*/, '').replace(/^DRIFT & ATTACK( ALL ADJACENT TITANS)?/, 'ATTACK'), ...card.steps.slice(1)] };
       const zone = /ZONE/.test(card.kind) && !card.pattern;
@@ -95,7 +96,7 @@ export function installDahaka(Game, { TitanDied, BattleOver, ChainBreak }) {
         return this.attackGroup(card, targets);
       }
       const primary = forcedTarget || await this.unearthly(card, this.pickTarget(card.target, true));
-      if (!primary) { this.say('유효한 타겟 없음 → Routine', 'ai'); return this.resolveRoutine(this.routine); }
+      if (!primary) { this.say('유효한 타겟 없음 → Routine', 'ai'); if (this.currentAI) this.currentAI.noAtk = true; return this.dahakaAI(this.routine); }
       this._dhTarget = primary; this._dhTargetPos = { ...primary.pos };
       if (this.isJudge(card)) return this.attackSingle(card, primary);
       this.say(`타겟: ${primary.name}`);
@@ -113,9 +114,9 @@ export function installDahaka(Game, { TitanDied, BattleOver, ChainBreak }) {
       try { await this.safe(() => this.reactionWindow(tt, card, 'Interrupt Window')); } catch (e) { if (e instanceof BattleOver) throw e; }
       if (card._dhUsed) return true;
       if (this.trait('The Dragon Does Not Sleep')) { const broken = await this.dhComboBreak(card); if (!broken) return false; }
-      const cands = this.liveTitans().filter(x => !x.onVP && !x.offBoard && !x.stair && !x.knockdown && !x.fatigue && this.isAdj(x) && this.usableWeapons(x).length);
+      const cands = this.liveTitans().filter(x => !x.onVP && !x.offBoard && !x.stair && !x.knockdown && x.fatigue !== 'combat' && this.isAdj(x) && this.usableWeapons(x).length);
       if (!cands.length) { this.say('(Interrupt Attack 가능한 인접 타이탄 없음)'); return false; }
-      const pick = await this.ask({ type: 'choice', title: `◆! Interrupt Window: Dahaka에 인접한 타이탄이 「${card.name}」에 Interrupt Attack? (BP 「${card.bpName}」 AT ${this.trait('Incorporeal Wraith') ? card.at : card.atLo}, Interrupt 응답 · 공격 후 Fatigue 토큰)`, options: [{ label: '안 함', value: null }, ...cands.map(x => ({ label: x.name, value: x }))] });
+      const pick = await this.ask({ type: 'choice', title: `◆! Interrupt Window: Dahaka에 인접한 타이탄이 「${card.name}」에 Interrupt Attack? (BP 「${card.bpName}」 AT ${(this.trait('Incorporeal Wraith') ? card.at : card.atLo) + (this.prim.bonus.AT || 0)}, Interrupt 응답 · 공격 후 Fatigue 토큰)`, options: [{ label: '안 함', value: null }, ...cands.map(x => ({ label: x.name, value: x }))] });
       if (!pick) return false;
       card._dhUsed = true; this._dhInt = card; this.say(`${pick.name}: Interrupt Attack!`, 'good');
       try { await this.chainSafe(() => this.titanAttack(pick, { interrupt: true, dhInterrupt: true })); }
@@ -167,7 +168,7 @@ export function installDahaka(Game, { TitanDied, BattleOver, ChainBreak }) {
       const [dx, dy] = DIRS[dir]; let wrapped = false; const cols = this.board.cols, rows = this.board.rows;
       const step = () => { const a = this.prim.anchor; let na = { c: a.c + dx, r: a.r + dy }; let w = false; if (na.c < 1) { na.c = cols - n + 1; w = true; } if (na.c + n - 1 > cols) { na.c = 1; w = true; } if (na.r < 1) { na.r = rows - n + 1; w = true; } if (na.r + n - 1 > rows) { na.r = 1; w = true; } return { na, w }; };
       for (let i = 0; i < X; i++) { const { na, w } = step(); if (w) wrapped = true; await this.dhTeleport(na); }
-      let guard = 0; while (!this.dhAnchorOK(this.prim.anchor) && guard++ < 25) { const { na, w } = step(); if (w) wrapped = true; await this.dhTeleport(na); }
+      let guard = 0; while (!this.dhAnchorOK(this.prim.anchor, this.liveTitans()) && guard++ < 25) { const { na, w } = step(); if (w) wrapped = true; await this.dhTeleport(na); }
       await this.primEndMove([]);
       this.say(`Shadowstep ${X}: ${this.prim.name} → ${cellLabel(this.prim.anchor)} 기준 (${dir} 방향으로, 회전 없음)${wrapped ? ' — 보드 가장자리를 넘어 반대편에서 나타남' : ''}`, 'ai'); this.notify();
       if (wrapped && this.trait('Shadow Backstep')) { this.say('Shadow Backstep: Heal 1', 'bad'); this.dhHeal(1); }
@@ -210,20 +211,20 @@ export function installDahaka(Game, { TitanDied, BattleOver, ChainBreak }) {
     },
     async dhDeal(t, card, base, hits, perHit, opts = {}) {
       let total = perHit ? base * hits : base; const b = this.prim.bonus.DANGER * (this.prim.bonusPerHit ? hits : 1); total += b + (this.prim.tokens.danger || 0);
-      if (this.dhShackles()) { total -= hits; total = Math.max(1, total); this.say(`Shackles of Regret: hit당 Danger −1 (${hits})`); }
       if (opts.add) total += opts.add;
+      if (this.dhShackles()) { total -= hits; total = Math.max(1, total); this.say(`Shackles of Regret: hit당 Danger −1 (${hits})`); }
       this.currentAI && (this.currentAI.dangerDealt += total);
-      if (opts.dieAt && total >= opts.dieAt) { this.say(`${t.name}: Danger +${total} (10 이상) — Trauma Draw 없이 사망`, 'bad'); return this.kill(t); }
+      if (opts.dieAt) { const r = await this.gainDanger(t, total, { fromAttack: true, source: card.name, noArmor: this.isJudge(card), dieAt: opts.dieAt }); return r; }
       await this.gainDanger(t, total, { fromAttack: true, source: card.name, noArmor: this.isJudge(card) });
     },
     async dahakaEffect(t, s, hits, card) {
       let m; const F = this.effFate(t);
-      if (this.currentAI && this.currentAI.dhChain) throw new ChainBreak('Interrupt Attack');
+      if (this.currentAI && this.currentAI.dhChain && (this.currentAI.dhChain === true || this.currentAI.dhChain === t)) throw new ChainBreak('Interrupt Attack');
       if ((m = /^If the Attack hits, it deals (\d+) DANGER, gain (\d) Ambrosia tokens, Pushback (\d)\.$/.exec(s))) { await this.dhDeal(t, card, +m[1], hits, false); if (!t.alive) return true; await this.gainAmbrosia(t, +m[2]); if (t.alive && !t.onVP) { this.say(`${t.name}: Pushback ${m[3]} (타겟이 밀려남)`); await this.knockback(t, +m[3]); } return true; }
       if ((m = /^Each hit deals (\d) DANGER\. Gain (\d) Ambrosia tokens?\.$/.exec(s))) { await this.dhDeal(t, card, +m[1], hits, true); if (t.alive) await this.gainAmbrosia(t, +m[2]); return true; }
       if ((m = /^Each hit deals (\d) DANGER and (\d) Ambrosia tokens?\.$/.exec(s))) { await this.gainAmbrosia(t, +m[2] * hits); if (t.alive) await this.dhDeal(t, card, +m[1], hits, true); return true; }
       if ((m = /^One hit deals (\d) DANGER and (\d) Ambrosia token; two or more hits deal (\d) DANGER and (\d) Ambrosia tokens\.$/.exec(s))) { const two = hits >= 2; await this.gainAmbrosia(t, two ? +m[4] : +m[2]); if (t.alive) await this.dhDeal(t, card, two ? +m[3] : +m[1], hits, false); return true; }
-      if ((m = /^For each hit discard 1 Gear card\. Each hit deals (\d) DANGER\.$/.exec(s))) { for (let i = 0; i < hits && t.alive; i++) { const list = t.gear.filter(g => !g.discarded && g.card.name !== 'Fists'); if (!list.length) break; const g = await this.pickGear(t, list); if (g) this.discardGear(t, g); } if (t.alive) await this.dhDeal(t, card, +m[1], hits, true); return true; }
+      if ((m = /^For each hit discard 1 Gear card\. Each hit deals (\d) DANGER\.$/.exec(s))) { for (let i = 0; i < hits && t.alive; i++) { const list = t.gear.filter(g => !g.discarded && g.card.name !== 'Fists' && !g.card.isTech); if (!list.length) break; const g = await this.pickGear(t, list); if (g) this.discardGear(t, g); } if (t.alive) await this.dhDeal(t, card, +m[1], hits, true); return true; }
       if (/^If the Attack hits, gain 3 Ambrosia tokens\. Then, gain \+3 DANGER for each Ambrosia token you have\.$/.test(s)) { await this.gainAmbrosia(t, 3); if (!t.alive) return true; const add = 3 * (t.ambrosia || 0); this.say(`${t.name}: Ambrosia ${t.ambrosia}개 × 3 = Danger +${add}`, 'bad'); await this.dhDeal(t, card, 0, hits, false, { add }); return true; }
       if ((m = /^Each hit deals (\d) DANGER\. If you gain 10\+ DANGER, you die without a Trauma Draw\.$/.exec(s))) { await this.dhDeal(t, card, +m[1], hits, true, { dieAt: 10 }); return true; }
       if ((m = /^Each hit deals (\d) DANGER\. \| FATE (\d)\+: (\d) DANGER instead$/.exec(s))) { const per = F >= +m[2] ? +m[3] : +m[1]; if (per !== +m[1]) this.say(`Fate ${m[2]}+ — hit당 ${per} Danger`); await this.dhDeal(t, card, per, hits, true); return true; }
@@ -245,7 +246,7 @@ export function installDahaka(Game, { TitanDied, BattleOver, ChainBreak }) {
       if (/^Perform next AI$/.test(p)) { this.say('Response: 다음 AI 카드 수행', 'ai'); await this.dhNextAI(); return true; }
       if ((m = /^Gain the (Covetous|Greed-crazed|Wishkeen|Wishagog) Condition card$/.exec(p))) { if (alive) await this.midasCondition(t, m[1]); return true; }
       if (/^Place this card on top of the AI deck$/.test(p)) { this._dhTopReq = true; return true; }
-      if (/^Reverse Unholy Alchemy$/.test(p)) { if (alive) { const n = t.ambrosia || 0; t.ambrosia = 0; this.say(`${t.name}: Reverse Unholy Alchemy — Ambrosia ${n} → Midas`, 'bad'); if (n) await this.gainMidas(t, n, true, true); } return true; }
+      if (/^Reverse Unholy Alchemy$/.test(p)) { if (alive) { const n = t.ambrosia || 0; t.ambrosia = 0; this.say(`${t.name}: Reverse Unholy Alchemy — Ambrosia ${n} → Midas`, 'bad'); if (n) await this.gainMidas(t, n, true, true, 'convert'); } return true; }
       if (/^Discard 1 Condition card$/.test(p)) { if (alive) { const cs = (t.conditions || []).filter(c => !this.curses || !this.curses(t).includes(c)); if (cs.length) { const c = cs.length === 1 ? cs[0] : await this.ask({ type: 'choice', titan: t, title: '버릴 Condition 카드', options: cs.map(x => ({ label: x, value: x })) }); t.conditions = t.conditions.filter(x => x !== (c || cs[0])); if (c === 'Death' || (!c && cs[0] === 'Death')) t.deathTokens = 0; this.say(`${t.name}: Condition 「${c || cs[0]}」 버림`, 'good'); } else this.say(`${t.name}: 버릴 Condition 카드 없음`); } return true; }
       if (/^Lose 1 Mnemos node$/.test(p)) { if (alive) await this.dhLoseNode(t, false); return true; }
       if (/^Raise DANGER to 9, draw an Obol$/.test(p)) { if (alive) { t.danger = 9; this.say(`${t.name}: Danger 9, Obol`, 'bad'); await this.obolDraw(t, 10); } return true; }
@@ -318,7 +319,7 @@ export function installDahaka(Game, { TitanDied, BattleOver, ChainBreak }) {
       const T = this.prim.trojan;
       if (T && T.holder === t) {
         if (!this.dhIreEligible(t).length) { this.say(`${T.side === 'TI' ? 'Trojan Ire' : 'Lotus Eaters Curse'}: 넘길 수 있는 타이탄이 없음 — 모든 타이탄 사망`, 'bad'); const cur = T.side !== 'TI'; this.prim.trojan = null; for (const x of this.liveTitans()) await this.solo(() => this.kill(x, { curse: cur })); return; }
-        if (T.side === 'TI' && this.trait('Bane of Odysseus')) { this.say(`Bane of Odysseus: ${t.name}이(가) Trojan Ire를 넘기지 않음 — 사망`, 'bad'); T.holder = null; await this.kill(t); const el = this.dhIreEligible(null); if (el.length) { const v = this.rng.pick(el); T.holder = v; T.side = 'TI'; this.say(`Bane of Odysseus: 무작위 타이탄 ${v.name}이(가) Trojan Ire를 받음`, 'bad'); } else this.prim.trojan = null; return; }
+        if (T.side === 'TI' && this.trait('Bane of Odysseus')) { this.say(`Bane of Odysseus: ${t.name}이(가) Trojan Ire를 넘기지 않음 — 사망`, 'bad'); T.holder = null; await this.solo(() => this.kill(t)); const el = this.dhIreEligible(null); if (el.length) { const v = this.rng.pick(el); T.holder = v; T.side = 'TI'; this.say(`Bane of Odysseus: 무작위 타이탄 ${v.name}이(가) Trojan Ire를 받음`, 'bad'); } else this.prim.trojan = null; return; }
         if (T.side === 'TI') { T.side = 'LE'; this.say(`${t.name}: 턴 종료 — Trojan Ire를 뒤집어 Lotus Eaters Curse (다음 턴 시작에 Mnemos 카드 1장 영구 상실)`, 'bad'); this.notify(); }
       }
     },

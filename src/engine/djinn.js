@@ -38,7 +38,7 @@ export function installDjinn(Game, { TitanDied, BattleOver }) {
       t._lastAtk = null;
       await this.chainSafe(() => this.titanAttack(t));
       const A = t._lastAtk; if (!t.alive) return;
-      let total = A ? A.total : 0; let bonus = this.prim.ascentBonus || 0; for (const g of t.gear) { if (g.discarded) continue; const tx = this.gearText(g, t); const m = /(?:^|\. )Ascent Check \+(\d)/.exec(tx); if (m) bonus += +m[1]; { const ax = /(?:^|\. )Ascent Check \+X, where X is the number of Hope tokens in the Kratos Pool when you attacked/.test(tx); if (ax && A && A.g === g) bonus += A.hopeAtStart || 0; } { const cm = /(?:^|\. )((?:Ψ|⟳)+) Ascent Check \+(\d)/.exec(tx); if (cm && this.costOK(t, cm[1], g)) { const ok = await this.ask({ type: 'yn', titan: t, title: `${g.card.name}: Ascent Check +${cm[2]}? [${this.costLbl(cm[1])}]`, options: [{ label: '사용', value: true }, { label: '패스', value: false }] }); if (ok) { await this.payCost(t, cm[1], g); bonus += +cm[2]; } } } if (A && A.g === g && /Each hit: Ascent Check \+1/.test(tx)) bonus += A.hits || 0; }
+      let total = A ? A.total : 0; let bonus = this.prim.ascentBonus || 0; for (const g of t.gear) { if (g.discarded) continue; const tx = this.gearText(g, t); const m = /(?:^|\. )Ascent Check \+(\d)/.exec(tx); if (m) bonus += +m[1]; { const sk = /You gain \+(\d) bonus to the Ascent Check/.exec(tx); if (sk) bonus += +sk[1]; } { const ax = /(?:^|\. )Ascent Check \+X, where X is the number of Hope tokens in the Kratos Pool when you attacked/.test(tx); if (ax && A && A.g === g) bonus += A.hopeAtStart || 0; } { const cm = /(?:^|\. )((?:Ψ|⟳)+) Ascent Check \+(\d)/.exec(tx); if (cm && this.costOK(t, cm[1], g)) { const ok = await this.ask({ type: 'yn', titan: t, title: `${g.card.name}: Ascent Check +${cm[2]}? [${this.costLbl(cm[1])}]`, options: [{ label: '사용', value: true }, { label: '패스', value: false }] }); if (ok) { await this.payCost(t, cm[1], g); bonus += +cm[2]; } } } if (A && A.g === g && /Each hit: Ascent Check \+1/.test(tx)) bonus += A.hits || 0; }
       this.say(`Ascent Check: Total Power ${total}${bonus ? ` + Ascent Check ${bonus}` : ''} vs ${sum}걸음`, total + bonus >= sum ? 'good' : 'bad');
       if (total + bonus >= sum && t.stair) {
         for (const c of drawn) this.trauma.major.putBottom(c);
@@ -164,7 +164,7 @@ export function installDjinn(Game, { TitanDied, BattleOver }) {
     async djinnSentence(t, p, ctx = {}) {
       const alive = !!(t && t.alive); let m; const lh = (this.currentAI && this.currentAI.lastHits) || 0;
       if (/^Wish Away$/.test(p)) { if (alive) await this.wishAway(t); return true; }
-      if (/^Reverse Unholy Alchemy$/.test(p)) { if (alive) { const n = t.ambrosia || 0; t.ambrosia = 0; this.say(`${t.name}: Reverse Unholy Alchemy — Ambrosia ${n} → Midas`, 'bad'); if (n) await this.gainMidas(t, n, true, true); } return true; }
+      if (/^Reverse Unholy Alchemy$/.test(p)) { if (alive) { const n = t.ambrosia || 0; t.ambrosia = 0; this.say(`${t.name}: Reverse Unholy Alchemy — Ambrosia ${n} → Midas`, 'bad'); if (n) await this.gainMidas(t, n, true, true, 'convert'); } return true; }
       if (/^Sandstorm Spiral$/.test(p)) { if (alive) await this.sandstormSpiral(t); return true; }
       if (/^(Move Target|Move) to the Endless Staircase$/.test(p)) { if (alive) await this.moveToStair(t); return true; }
       if ((m = /^(Two|Three) or more hits, move Target to the Endless Staircase$/.exec(p))) { if (alive && lh >= (m[1] === 'Two' ? 2 : 3)) await this.moveToStair(t); return true; }
@@ -182,7 +182,7 @@ export function installDjinn(Game, { TitanDied, BattleOver }) {
       if (/^If it's already in the deck, do not discard the AI card/.test(p)) return true;
       if (/^All Titans die$/.test(p)) { this.say('THE LAST WISH — 모든 타이탄 사망', 'bad'); for (const x of this.liveTitans()) { x.alive = false; } throw new BattleOver('defeat'); }
       if (/^Random Titan dies$/.test(p)) { const v = this.rng.pick(this.liveTitans()); if (v) { this.say(`무작위 타이탄 ${v.name} 사망`, 'bad'); await this.solo(() => this.kill(v)); } return true; }
-      if (/^Discard 1 random Gear card$/.test(p)) { if (alive) { const list = t.gear.filter(g => !g.discarded && g.card.name !== 'Fists'); if (list.length) { const g = this.rng.pick(list); this.say(`${t.name}: 무작위 장비 「${g.card.name}」 버림`, 'bad'); this.discardGear(t, g); } } return true; }
+      if (/^Discard 1 random Gear card$/.test(p)) { if (alive) { const list = t.gear.filter(g => !g.discarded && g.card.name !== 'Fists' && !g.card.isTech); if (list.length) { const g = this.rng.pick(list); this.say(`${t.name}: 무작위 장비 「${g.card.name}」 버림`, 'bad'); this.discardGear(t, g); } } return true; }
       return false;
     },
     async afterTileRemoved(c) { const o = this.titanAt(c.c, c.r); if (o && this.board.isChasm(c.c, c.r)) await this.solo(async () => { if (this.useLifeline(o) || await this.skyLifeline(o, 'Chasm에 떨어짐')) { o._lifeline = true; await this.displace(o); return; } this.say(`${o.name}: 발밑 타워가 사라져 Chasm으로 추락 — 사망`, 'bad'); await this.kill(o); }); },

@@ -13,7 +13,7 @@ export function installBabel(Game, { TitanDied, BattleOver }) {
   const origGainMidas = Game.prototype.gainMidas;
   Game.prototype.gainMidas = async function (t, n = 1, ...rest) {
     await origGainMidas.call(this, t, n, ...rest);
-    if (this.prim && this.prim.def.babelD && this.trait('Fate of a Debtor') && !this._fod && n > 0) { this._fod = true; try { this.say(`Fate of a Debtor: 다른 타이탄 모두 Midas ${n}`, 'bad'); for (const x of this.liveTitans().filter(y => y !== t)) await this.solo(() => origGainMidas.call(this, x, n, ...rest)); } finally { this._fod = false; } }
+    if (this.prim && this.prim.def.babelD && this.trait('Fate of a Debtor') && !this._fod && n > 0 && rest[2] !== 'convert') { this._fod = true; try { this.say(`Fate of a Debtor: 다른 타이탄 모두 Midas ${n}`, 'bad'); for (const x of this.liveTitans().filter(y => y !== t)) await this.solo(() => origGainMidas.call(this, x, n, ...rest)); } finally { this._fod = false; } }
   };
   const origMount = Game.prototype.mountVP;
   Game.prototype.mountVP = function (t, why) { origMount.call(this, t, why); if (this.prim.def.babelD) { this.prim.vpReached = this.prim.vpReached || new Set(); this.prim.vpReached.add(t.id); } };
@@ -90,7 +90,7 @@ export function installBabel(Game, { TitanDied, BattleOver }) {
         this.board.removeTerrainId(pick.id); this.say(`Irem Tower ${cellLabel(pick.cell)} 제거${why ? ` (${why})` : ''}`, 'ai'); this.notify(); await this.afterTileRemoved(pick.cell);
       }
     },
-    babelTowerSpots() { const out = []; for (let c = 1; c <= this.board.cols; c++) for (let r = 1; r <= this.board.rows; r++) { const p = { c, r }; if (this.board.terrainAt(c, r) || this.primContains(p) || this.titanAt(c, r)) continue; let adj = false; for (let dc = -1; dc <= 1 && !adj; dc++) for (let dr = -1; dr <= 1; dr++) { if (!dc && !dr) continue; if (this.board.inBounds(c + dc, r + dr) && this.board.terrainAt(c + dc, r + dr)) { adj = true; break; } } if (!adj) out.push(p); } return out; },
+    babelTowerSpots() { const out = []; for (let c = 1; c <= this.board.cols; c++) for (let r = 1; r <= this.board.rows; r++) { const p = { c, r }; if (this.board.terrainAt(c, r) || this.primContains(p) || this.titanAt(c, r)) continue; let adj = false; for (let dc = -1; dc <= 1 && !adj; dc++) for (let dr = -1; dr <= 1; dr++) { if ((!dc && !dr) || (dc && dr)) continue; if (this.board.inBounds(c + dc, r + dr) && this.board.terrainAt(c + dc, r + dr)) { adj = true; break; } } if (!adj) out.push(p); } return out; },
     async babelCreateTower(t = null) {
       const spots = this.babelTowerSpots(); if (!spots.length) { this.say('(Irem Tower를 놓을 곳 없음 — Heavenward)'); return; }
       const p = (await this.ask({ type: 'move', titan: t || this.liveTitans()[0], title: 'Heavenward: 새 Irem Tower를 놓을 칸 (다른 지형과 인접하지 않은 빈 칸)', cells: spots, options: spots.slice(0, 40).map(q => ({ label: cellLabel(q), value: q })) })) || spots[0];
@@ -200,21 +200,23 @@ export function installBabel(Game, { TitanDied, BattleOver }) {
       if (H && /^Midas 2$/.test(H.eff)) for (const t of targets) if (t.alive && this.babelCond(t, H.cond)) { this.say(`${H.cond}: ${t.name} Midas 2`); await this.solo(() => this.midasX(t, 2)); }
       if (H && /Knockdown/.test(H.eff)) for (const t of targets) if (t.alive && this.babelCond(t, H.cond) && !t.onVP && !t.stair) { await this.solo(async () => { await this.reactionWindow(t, card, 'Knockdown'); await this.knockdown(t); }); }
       const dealt = new Map();
-      const one = async t => { if (!t.alive) return; const d0 = this.currentAI.dangerDealt; try { const h = await this.primAttackOn(t, card); this.currentAI.lastHits = h || 0; dealt.set(t, { d: this.currentAI.dangerDealt - d0, h: h || 0 }); } catch (e) { dealt.set(t, { d: this.currentAI.dangerDealt - d0, h: this.currentAI.lastHits || 0 }); throw e; } };
+      const one = async t => { if (!t.alive) return; const d0 = this.currentAI.dangerDealt; this.currentAI.curHits = 0; try { const h = await this.primAttackOn(t, card); this.currentAI.lastHits = h || 0; dealt.set(t, { d: this.currentAI.dangerDealt - d0, h: h || 0 }); } catch (e) { dealt.set(t, { d: this.currentAI.dangerDealt - d0, h: this.currentAI.curHits || 0 }); throw e; } };
       if (mode === 'seq') {
-        for (const t of targets) { if (!t.alive) continue; await this.solo(async () => { await this.babelWindow([t], card, 'Attack'); await one(t); if (t.alive && card.after) await this.babelAfter(card, t, dealt.get(t)); }); }
+        for (const t of targets) { if (!t.alive) continue; await this.solo(async () => { await this.babelWindow([t], card, 'Attack'); try { await one(t); } catch (e) { if (!(e instanceof TitanDied) || !card.after) throw e; await this.babelAfter(card, t, dealt.get(t)); throw e; } if (card.after) await this.babelAfter(card, t, dealt.get(t)); }); }
       } else {
         if (!windowDone || card.eclipse) await this.babelWindow(targets, card, card.eclipse ? 'Eclipse' : 'Attack');
-        for (const t of targets) await this.solo(() => one(t));
-        if (card.after) for (const t of targets) if (t.alive) await this.solo(() => this.babelAfter(card, t, dealt.get(t) || { d: 0, h: 0 }));
+        const cbSet = new Set();
+        for (const t of targets) { try { await this.solo(() => one(t)); } catch (e) { if (!(e && e.chainBreak && this.isZoneCard(card))) throw e; cbSet.add(t); this.say(`Chain Break — ${t.name}에 대한 남은 효과·After Attack 무시`, 'sys'); if (this.pendingBonus) { const pb = this.pendingBonus; this.pendingBonus = null; await this.safe(() => this.bonusAttackFlow(pb.titan, pb)); } } }
+        if (card.after) for (const t of targets) if (!cbSet.has(t) && (t.alive || /^(⚡\s*)?Remove X Irem Towers/.test(card.after))) await this.solo(() => this.babelAfter(card, t, dealt.get(t) || { d: 0, h: 0 }));
       }
       if (card.afterFinal && !card.repeat) { const mx = Math.max(0, ...[...dealt.values()].map(v => v.d)); await this.solo(() => this.babelAfterFinal(card, mx)); }
     },
     async babelAfter(card, t, r) {
-      const a = card.after; const win = a.startsWith('⚡'); const s = a.replace(/^⚡\s*/, ''); this.say(`After Attack: ${s}`);
-      if (win && t.alive) await this.reactionWindow(t, card, 'After Attack'); if (!t.alive) return;
+      const a = card.after; const s = a.replace(/^⚡\s*/, ''); const win = a.startsWith('⚡'); this.say(`After Attack: ${s}`);
       const h = r ? r.h : 0, d = r ? r.d : 0;
-      if (/^Remove X Irem Towers, where X is the number of hits/.test(s)) return this.babelRemoveTowers(h, card.name);
+      const boardWide = /^Remove X Irem Towers, where X is the number of hits/.test(s);
+      if (win && t.alive) await this.reactionWindow(t, card, 'After Attack'); if (!t.alive && !boardWide) return;
+      if (boardWide) { if (!t.alive) this.say('(Mercy Rule: 대상 사망 — 타워 제거는 계속 해결)'); return this.babelRemoveTowers(h, card.name); }
       if (/^Wish Away [XY], where [XY] is the DANGER (dealt|gained)/.test(s)) { if (d > 0) return this.wishAway(t, d); this.say('(Danger 0 — Wish Away 없음)'); return; }
       if (/^Midas Y and gain Y Ambrosia tokens, where Y is the number of hits/.test(s)) { if (h) { await this.midasX(t, h); if (t.alive) await this.gainAmbrosia(t, h); } return; }
       if (/^Midas Y, where Y is the number of hits - 1/.test(s)) { if (h > 1) await this.midasX(t, h - 1); return; }
@@ -223,7 +225,7 @@ export function installBabel(Game, { TitanDied, BattleOver }) {
       await this.doEffects(t, a, { card });
     },
     async babelAfterFinal(card, mx) {
-      const s = card.afterFinal.replace(/^⚡\s*/, ''); this.say(`After Final Attack: ${s}`);
+      const s = card.afterFinal.replace(/^⚡\s*/, ''); this.say(`After Final Attack: ${s}`); if (card.afterFinal.startsWith('⚡') && this.liveTitans().length) await this.reactionWindow(this.liveTitans()[0], card, 'After Final Attack');
       if (/^Remove X Irem Towers, where X is the highest DANGER/.test(s)) return this.babelRemoveTowers(mx, card.name);
     },
     async babelCurse(card) {
@@ -233,13 +235,16 @@ export function installBabel(Game, { TitanDied, BattleOver }) {
     async babelCurse0(card) {
       const imm = t => !!(this._curseImm && this._curseImm.has(t));
       if (card.curse === 'wind') {
-        const c = this.liveTitans().filter(t => !imm(t) && this.primLos(t) && this.effFate(t) >= 6).sort((a, b) => this.distTo(a) - this.distTo(b))[0]; if (c) { this.say(`WIND: ${c.name} (Fate 6+) Covetous`); await this.solo(() => this.midasCondition(c, 'Covetous')); }
+        const c = this.liveTitans().filter(t => !imm(t) && this.primLos(t) && this.effFate(t) >= 6).sort((a, b) => this.distTo(a) - this.distTo(b))[0];
+        await this.reactionWindow(c || this.liveTitans()[0], card, 'WIND');
+        if (c && c.alive) { this.say(`WIND: ${c.name} (Fate 6+) Covetous`); await this.solo(() => this.midasCondition(c, 'Covetous')); }
         const before = new Map(this.liveTitans().map(t => [t, this.distTo(t)]));
-        await this.reactionWindow(this.liveTitans()[0], card, 'Airburst 5'); const hit = await this.airburst(5);
+        const hit = await this.airburst(5);
         for (const t of hit || []) if (t.alive && !imm(t)) { const x = 6 - (before.get(t) || 6); if (x > 0) await this.solo(() => this.midasX(t, x)); }
       } else if (card.curse === 'eclipse') {
-        const c = this.liveTitans().filter(t => !imm(t) && this.primLos(t) && t.rage >= 5).sort((a, b) => this.distTo(a) - this.distTo(b))[0]; if (c) { this.say(`ECLIPSE: ${c.name} (Rage 5+) Covetous`); await this.solo(() => this.midasCondition(c, 'Covetous')); }
-        await this.reactionWindow(this.liveTitans()[0], card, 'Midas');
+        const c = this.liveTitans().filter(t => !imm(t) && this.primLos(t) && t.rage >= 5).sort((a, b) => this.distTo(a) - this.distTo(b))[0];
+        await this.reactionWindow(c || this.liveTitans()[0], card, 'ECLIPSE');
+        if (c && c.alive) { this.say(`ECLIPSE: ${c.name} (Rage 5+) Covetous`); await this.solo(() => this.midasCondition(c, 'Covetous')); }
         for (const t of this.liveTitans()) if (!imm(t)) await this.solo(() => this.midasX(t, this.effFate(t) + 1));
       } else if (card.curse === 'topple') { await this.reactionWindow(this.liveTitans()[0], card, 'Topple'); await this.babelTopple(10); }
     },
@@ -281,7 +286,7 @@ export function installBabel(Game, { TitanDied, BattleOver }) {
       if (/^Then move every Irem Tower in Zone 5 around the Babelian Lunacy 2 spaces directly away from it$/.test(p)) { await this.babelShiftTowers(false); return true; }
       if (/^Move every Irem Tower in Zone 5 around the Babelian Lunacy 2 spaces directly toward it$/.test(p)) { await this.babelShiftTowers(true); return true; }
       if (/^Remove any Irem Tower that cannot be moved 2 spaces/.test(p)) return true;
-      if (/^Reverse Unholy Alchemy$/.test(p)) { if (alive) { const n = t.ambrosia || 0; t.ambrosia = 0; this.say(`${t.name}: Reverse Unholy Alchemy — Ambrosia ${n} → Midas`, 'bad'); if (n) await this.gainMidas(t, n, true, true); } return true; }
+      if (/^Reverse Unholy Alchemy$/.test(p)) { if (alive) { const n = t.ambrosia || 0; t.ambrosia = 0; this.say(`${t.name}: Reverse Unholy Alchemy — Ambrosia ${n} → Midas`, 'bad'); if (n) await this.gainMidas(t, n, true, true, 'convert'); } return true; }
       if (/^You die$/.test(p)) { if (alive) { this.say(`${t.name}: 사망`, 'bad'); await this.kill(t); } return true; }
       if (/^Gain a random Curse Affliction$/.test(p)) { if (alive) await this.randomCurse(t); return true; }
       if (/^Perform an Obol Draw$/.test(p)) { if (alive) await this.obolDraw(t, 10); return true; }
@@ -316,15 +321,15 @@ export function installBabel(Game, { TitanDied, BattleOver }) {
     async babelPrimRoundStart() {
       if (this.trait('Moon Call')) { if (!this.iremTowers().length) { this.say('Moon Call: Irem Tower가 하나도 없음 — Babelian Lunacy 승리', 'bad'); throw new BattleOver('defeat'); } this.say('Moon Call: Irem Tower 4개 제거', 'ai'); await this.babelRemoveTowers(4, 'Moon Call'); }
       await this.endlessEscalator();
-      if (this.trait("God's Breath")) { const list = this.liveTitans().filter(t => !t.onVP && !t.stair && !t.offBoard && this.zoneDist(t.pos) <= 6); this.say(`God's Breath: Zone 6의 타이탄 Pull 3 — ${list.map(t => t.name).join(', ') || '없음'}`, 'ai'); for (const t of list) await this.solo(() => this.pullTitan(t, 3)); }
+      if (this.trait("God's Breath")) { const list = this.liveTitans().filter(t => !t.onVP && !t.stair && !t.offBoard && this.zoneDist(t.pos) <= 6); this.say(`God's Breath: Zone 6의 타이탄 Pull 3 — ${list.map(t => t.name).join(', ') || '없음'}`, 'ai'); for (const t of list) await this.solo(() => this.pullTitan(t, 3, { noPrimMove: true })); }
     },
     async babelPrimRoundEnd() {
       if (this.trait("God's Breath")) { const list = this.liveTitans().filter(t => !t.onVP && !t.stair && !t.offBoard && this.zoneDist(t.pos) <= 3); this.say(`God's Breath: Zone 3의 타이탄 Knockback 6 — ${list.map(t => t.name).join(', ') || '없음'}`, 'ai'); for (const t of list) await this.solo(() => this.knockback(t, 6, this.awayDir(t.pos, this.primCells()))); }
     },
-    async babelTurnStart(t) { if (t.stair && !t.conditions.includes('Wishkeen') && !t.conditions.includes('Wishagog')) { this.say(`${t.name}: Endless Staircase에서 턴 시작 — Wishkeen`, 'bad'); await this.midasCondition(t, 'Wishkeen'); } },
+    async babelTurnStart(t) { if (t.stair) { this.say(`${t.name}: Endless Staircase에서 턴 시작 — Wishkeen`, 'bad'); await this.midasCondition(t, 'Wishkeen'); } },
     async babelHoldFail(t) {
       const cfg = this.vpCfg(); const len = this.stairLen(); const X = Math.max(1, cfg.stairHalf ? Math.ceil(len / 2) : len);
-      const V = this.prim.vp; V.occupants = (V.occupants || []).filter(x => x !== t); V.occupant = V.occupants[0] || null; t.onVP = false; await this.moveToStair(t, 'Hold On 실패'); if (!t.alive) return; t.stair = Math.min(len || 1, X); this.say(`${t.name}: Dome of Folly에서 떨어짐 — Endless Staircase ${t.stair}번 칸으로`, 'bad'); await this.knockdown(t); this.notify();
+      const V = this.prim.vp; V.occupants = (V.occupants || []).filter(x => x !== t); V.occupant = V.occupants[0] || null; t.onVP = false; await this.moveToStair(t, 'Hold On 실패'); if (!t.alive) return; t.stair = 1; this.say(`${t.name}: Dome of Folly에서 떨어짐 — Endless Staircase ${t.stair}번 칸으로`, 'bad'); await this.knockdown(t); this.notify();
     },
   });
 }

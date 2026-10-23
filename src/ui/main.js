@@ -8,6 +8,8 @@ const h = (tag, attrs = {}, ...kids) => { const e = document.createElement(tag);
 
 const CLASSES = Object.keys(DATA.titans.classes);
 const GEAR = DATA.gear.cards;
+const gCyc = g => /(^|\. )Mnestis\./.test(g.text || '') ? 'M' : String(g.cycle || 1); // Mnestis-keyword gear is its own group
+const gCycName = c => c === 'M' ? 'Mnestis' : 'Cycle ' + (['', 'I', 'II', 'III', 'IV', 'V'][+c] || c);
 const SLOT_ICON = { hand1: '✊', hand2: '✊✊', hand3: '✊✊✊', handAll: '✱✊', armor: '🛡', support: '🎒', attachment: '📎' };
 const DEFAULT_LOADOUT = {
   primordial: 'hekaton', level: 1,
@@ -84,7 +86,7 @@ function gearCard(g, t = null) {
     g.transformBackMissing ? h('div', { class: 'muted small' }, '⇄ Transform 반대면 카드 스캔 없음 (Transform 효과 없음)') : null,
     g.requires ? h('div', { class: 'muted small' }, `필요: ${g.requires}`) : null,
     g.transform ? h('div', { class: 'cv-back', style: 'border-top:1px dashed #888;margin-top:8px;padding-top:6px' }, h('div', { class: 'muted small' }, '⇄ Transform 반대면'), gearCard({ ...g.transform, tech: g.tech, cycle: g.cycle }, t)) : null,
-    h('div', { class: 'muted small' }, `${(g.traits || []).join(', ')} · ${g.tech}${g.codes ? ' · ' + g.codes[0] : ''} · ${g.loot ? 'Mnestis 전리품 · ' : ''}Cycle ${g.cycle === 4 ? 'IV' : g.cycle === 3 ? 'III' : g.cycle === 2 ? 'II' : 'I'}`),
+    h('div', { class: 'muted small' }, `${(g.traits || []).join(', ')} · ${g.tech}${g.codes ? ' · ' + g.codes[0] : ''} · ${g.loot ? 'Mnestis 전리품 · ' : ''}${gCycName(gCyc(g))}`),
     h('div', { class: 'muted small cv-legend' }, 'Ψ = Fate +1 · ⟳ = 카드 소진 · X = 카드 버림 · [R] = 리액션 · A/N+ = Danger N 이상 · Labyrinth Set = Labyrinth 특성 장비 수 · Ambrosia Set = Ambrosia 토큰 수'));
 }
 const AR = DATA.argonauts;
@@ -145,7 +147,7 @@ function zoneDiagram(card) {
 }
 function bpCardView(bp, prim) {
   if (!bp) return null;
-  return h('div', { class: 'cardview bp' }, h('div', { class: 'cv-title' }, bp.bpName || bp.name, h('span', { class: 'tag' }, bp.tier === 'X' ? 'BP ★' : `BP ${'I'.repeat(bp.tier)}`), bp.trap ? h('span', { class: 'tag bad' }, 'TRAP') : h('span', { class: 'tag' }, bp.atLo != null ? `AT ${bp.atLo + (prim ? prim.bonus.AT : 0)} (Interrupt) / ${bp.at + (prim ? prim.bonus.AT : 0)}` : `AT ${bp.at + (prim ? prim.bonus.AT : 0)}`)), bp.text ? h('div', { class: 'cv-text' }, pretty(bp.text)) : null,
+  return h('div', { class: 'cardview bp' }, h('div', { class: 'cv-title' }, bp.bpName || bp.name, h('span', { class: 'tag' }, bp.tier === 'X' ? 'BP ★' : `BP ${'I'.repeat(bp.tier)}`), bp.trap ? h('span', { class: 'tag bad' }, 'TRAP') : h('span', { class: 'tag' }, bp.atLo != null ? `AT ${bp.atLo + (prim ? prim.bonus.AT : 0)} (Interrupt) / ${bp.at + (prim ? prim.bonus.AT : 0)}` : bp.atStair != null ? `AT ${bp.at + (prim ? prim.bonus.AT : 0)} / Staircase ${bp.atStair + (prim ? prim.bonus.AT : 0)}` : `AT ${bp.at + (prim ? prim.bonus.AT : 0)}`)), bp.text ? h('div', { class: 'cv-text' }, pretty(bp.text)) : null,
     ...Object.entries(bp.responses).map(([k, v]) => h('div', { class: 'cv-text' }, h('b', {}, k + ': '), ...v.split('⚡ ').flatMap((seg, i) => i ? [h('span', { class: 'wtag', title: 'Window of Opportunity' }, '◆!'), ' ' + pretty(seg)] : [pretty(seg)]))), ...(bp.pre || []).map(x => h('div', { class: 'cv-text muted' }, pretty(x))), bp.critical ? h('div', { class: 'cv-after' }, h('b', {}, 'CRITICAL: '), pretty(bp.critical)) : null);
 }
 function openModal(content) {
@@ -157,11 +159,13 @@ function openModal(content) {
 function slotsOf(cls) { const c = DATA.titans.classes[cls]; if (c && c.slots) return { ...c.slots }; return cls === 'earthshaker' ? { hands: 3, armor: 1, support: 2 } : { hands: 2, armor: 1, support: 2 }; }
 function handCost(g, cls = null) { if (g.slot === 'handAll') return slotsOf(cls).hands; const c = g.slot === 'hand3' ? 3 : g.slot === 'hand2' ? 2 : g.slot === 'hand1' ? 1 : 0; const A = (cls && DATA.titans.classes[cls]?.abilities) || {}; return c === 3 && (A['Cyclopean Might'] || A['Elder Might'] || A['Unknown Might'] || A['Lightweight Curse']) ? 2 : c; }
 // Earthshaker (Six-Armed Centimanes): 3 Weapon slots OR 3 Support slots
-function slotsFor(t) { const s = { ...slotsOf(t.cls) }; if (t.cls === 'earthshaker') { const sup = t.gear.filter(n => GEAR.find(x => x.name === n)?.slot === 'support').length; if (sup >= 3) { s.hands = 2; s.support = 3; } } if (t.gear.some(n => /You have 1 additional Support slot/i.test(GEAR.find(x => x.name === n)?.text || ''))) s.support += 1; if (DATA.titans.classes[t.cls]?.abilities['Unknown Might'] && t.gear.some(n => GEAR.find(x => x.name === n)?.slot === 'hand3')) s.support -= 1; return s; }
+function slotsFor(t) { const s = { ...slotsOf(t.cls) }; if (t.traumaCard === 'Djinnian Strain') s.hands += 1; if (t.traumaCard === 'Support Specialization') s.support += 1; if (t.cls === 'earthshaker') { const sup = t.gear.filter(n => GEAR.find(x => x.name === n)?.slot === 'support').length; if (sup >= 3) { s.hands = 2; s.support = 3; } } if (t.gear.some(n => /You have 1 additional Support slot/i.test(GEAR.find(x => x.name === n)?.text || ''))) s.support += 1; if (DATA.titans.classes[t.cls]?.abilities['Unknown Might'] && t.gear.some(n => GEAR.find(x => x.name === n)?.slot === 'hand3')) s.support -= 1; return s; }
 function validateTitan(t) {
   const s = slotsFor(t); let hands = 0, armor = 0, support = 0; const errs = [];
   for (const n of t.gear) { const g = GEAR.find(x => x.name === n); if (!g) continue; hands += handCost(g, t.cls); if (g.slot === 'armor') armor++; if (g.slot === 'support') support++; }
   if (t.gear.includes('Gaiaegis') && t.gear.some(n => { const g = GEAR.find(x => x.name === n); return g && n !== 'Gaiaegis' && /^hand/.test(g.slot) && (g.traits || []).some(x => /^(Gold|Sun|Divine)$/.test(x)); })) errs.push('Gaiaegis: Gold/Sun/Divine 무기와 함께 장착 불가');
+  { const IO = DATA.titans.inward || { kratos: [], trauma: [] }; for (const [key, list] of [['kratosCard', IO.kratos], ['traumaCard', IO.trauma]]) { const c = t[key] && list.find(x => x.name === t[key]); if (c && loadout.titans.filter(o => o[key] === c.name).length > (c.copies || 1)) errs.push(`Pattern 「${c.name}」은(는) ${c.copies || 1}장뿐 — 다른 타이탄과 중복`); } }
+  if (t.traumaCard === 'Djinnian Strain') { const base = slotsOf(t.cls).hands; const big = t.gear.map(n => GEAR.find(x => x.name === n)).filter(g => g && (g.slot === 'hand3' || g.slot === 'handAll')); let h0 = 0; for (const n of t.gear) h0 += handCost(GEAR.find(x => x.name === n) || {}, t.cls); if (big.length && h0 > base) errs.push(`Djinnian Strain: 추가 무기 칸으로는 3손 무기(${big.map(g => g.name).join(', ')})를 쓸 수 없음`); }
   for (const n of t.gear) { const g = GEAR.find(x => x.name === n); if (gearLocked(g)) errs.push(`「${n}」은(는) 트리 보상 미해금 (${g.reward})`); }
   for (const n of t.gear) { const g = GEAR.find(x => x.name === n); if (g && g.requires && !t.gear.includes(g.requires)) errs.push(`「${n}」은(는) 「${g.requires}」 장착 필요`); }
   if (t.cls === 'earthshaker' && hands > 2 && support > 2) errs.push('Six-Armed Centimanes: 무기 3칸 또는 서포트 3칸 중 하나만');
@@ -192,11 +196,11 @@ function renderLoadout(root) {
     const allTraits = [...new Set(GEAR.flatMap(g => g.traits || []))].sort();
     const SLOTS = [...new Set(GEAR.map(g => g.slot))];
     const list = h('div', { class: 'gblist' });
-    const draw = () => { const q = GB.q.trim().toLowerCase(); const f = GEAR.filter(g => g.name !== 'Fists' && (!GB.cyc || String(g.cycle || 1) === GB.cyc) && (!GB.trait || (g.traits || []).includes(GB.trait)) && (!GB.slot || g.slot === GB.slot) && (!q || [g.name, g.text, (g.traits || []).join(' '), g.tech, Object.values(g.danger || {}).join(' '), g.transform ? g.transform.name + ' ' + (g.transform.text || '') : ''].join(' ').toLowerCase().includes(q))).sort((a, b) => (a.cycle || 1) - (b.cycle || 1) || a.name.localeCompare(b.name));
-      list.replaceChildren(h('div', { class: 'muted small' }, `${f.length}장`), ...f.slice(0, 150).map(g => h('div', { class: 'gearrow link', style: 'display:block', onclick: () => showDetail(gearCard(g)) }, h('span', {}, `${SLOT_ICON[g.slot] || ''} ${g.name}`), h('span', { class: 'muted small' }, ` C${g.cycle || 1} · ${(g.traits || []).join(', ')}${g.atk ? ` · ◆${g.atk} +${g.prec ?? 'X'} ${(g.power || []).join('')}` : ''}`), h('div', { class: 'small', style: 'opacity:.85' }, (g.text || '').slice(0, 160) + ((g.text || '').length > 160 ? '…' : '')))), ...(f.length > 150 ? [h('div', { class: 'muted small' }, '… 150장까지만 표시 — 조건을 좁혀 주세요')] : [])); };
-    const sel = (val, opts, key, label) => h('select', { onchange: e => { GB[key] = e.target.value; draw(); } }, h('option', { value: '' }, label), ...opts.map(o => h('option', { value: o, selected: GB[key] === o ? '' : null }, o)));
+    const draw = () => { const q = GB.q.trim().toLowerCase(); const f = GEAR.filter(g => g.name !== 'Fists' && (!GB.cyc || gCyc(g) === GB.cyc) && (!GB.trait || (g.traits || []).includes(GB.trait)) && (!GB.slot || g.slot === GB.slot) && (!q || [g.name, g.text, (g.traits || []).join(' '), g.tech, Object.values(g.danger || {}).join(' '), g.transform ? g.transform.name + ' ' + (g.transform.text || '') : ''].join(' ').toLowerCase().includes(q))).sort((a, b) => (a.cycle || 1) - (b.cycle || 1) || a.name.localeCompare(b.name));
+      list.replaceChildren(h('div', { class: 'muted small' }, `${f.length}장`), ...f.slice(0, 150).map(g => h('div', { class: 'gearrow link', style: 'display:block', onclick: () => showDetail(gearCard(g)) }, h('span', {}, `${SLOT_ICON[g.slot] || ''} ${g.name}`), h('span', { class: 'muted small' }, ` ${gCyc(g) === 'M' ? 'Mnestis' : 'C' + gCyc(g)} · ${(g.traits || []).join(', ')}${g.atk ? ` · ◆${g.atk} +${g.prec ?? 'X'} ${(g.power || []).join('')}` : ''}`), h('div', { class: 'small', style: 'opacity:.85' }, (g.text || '').slice(0, 160) + ((g.text || '').length > 160 ? '…' : '')))), ...(f.length > 150 ? [h('div', { class: 'muted small' }, '… 150장까지만 표시 — 조건을 좁혀 주세요')] : [])); };
+    const sel = (val, opts, key, label) => h('select', { onchange: e => { GB[key] = e.target.value; draw(); } }, h('option', { value: '' }, label), ...opts.map(o => h('option', { value: o, selected: GB[key] === o ? '' : null }, key === 'cyc' ? gCycName(o) : o)));
     box.append(h('div', { class: 'row' }, h('b', { class: 'link', onclick: () => { GB.open = !GB.open; renderLoadout(root); } }, `${GB.open ? '▾' : '▸'} 장비 도감 (문구 검색 · 특성 / 사이클 / 슬롯 필터)`)));
-    if (GB.open) { box.append(h('div', { class: 'row' }, h('input', { placeholder: '🔎 이름·문구·특성 검색', value: GB.q, style: 'flex:1;min-width:180px', oninput: e => { GB.q = e.target.value; draw(); } }), sel(GB.cyc, ['1', '2', '3', '4', '5'].filter(c => GEAR.some(g => String(g.cycle || 1) === c)), 'cyc', '사이클 전체'), sel(GB.trait, allTraits, 'trait', '특성 전체'), sel(GB.slot, SLOTS, 'slot', '슬롯 전체')), list); draw(); }
+    if (GB.open) { box.append(h('div', { class: 'row' }, h('input', { placeholder: '🔎 이름·문구·특성 검색', value: GB.q, style: 'flex:1;min-width:180px', oninput: e => { GB.q = e.target.value; draw(); } }), sel(GB.cyc, ['1', '2', '3', '4', '5', 'M'].filter(c => GEAR.some(g => gCyc(g) === c)), 'cyc', '사이클 전체'), sel(GB.trait, allTraits, 'trait', '특성 전체'), sel(GB.slot, SLOTS, 'slot', '슬롯 전체')), list); draw(); }
     wrap.append(box);
   }
   if (TREE.nodes.length) {
@@ -239,6 +243,11 @@ function renderLoadout(root) {
     const cls = DATA.titans.classes[t.cls];
     card.append(h('div', { class: 'row' }, h('input', { value: t.name, placeholder: '이름', oninput: e => { t.name = e.target.value; saveLoadout(); } }), h('select', { onchange: e => { t.cls = e.target.value; saveLoadout(); renderLoadout(root); } }, ...CLASSES.map(c => h('option', { value: c, selected: t.cls === c ? '' : null }, DATA.titans.classes[c].name)))));
     card.append(h('div', { class: 'muted small' }, `Speed ${cls.speed} · Power die ${cls.powerDice} · ` + Object.keys(cls.abilities).join(', '), ' ', h('button', { class: 'x', onclick: () => showDetail(titanCard(t.cls)) }, '티탄 정보')));
+    { const IO = DATA.titans.inward || { kratos: [], trauma: [] }; const R = ['', 'I', 'II', 'III', 'IV', 'V'];
+      const ioSel = (key, list, label) => h('select', { title: label, onchange: e => { t[key] = e.target.value || null; saveLoadout(); renderLoadout(root); } }, h('option', { value: '' }, `${label}: 시트 기본`), ...list.map(c => { const used = loadout.titans.filter(o => o !== t && o[key] === c.name).length; const lim = c.copies || 1; return h('option', { value: c.name, selected: t[key] === c.name ? '' : null, disabled: used >= lim && t[key] !== c.name ? '' : null }, `${c.name} (C${R[c.cycle]})${lim > 1 ? ` ${used + (t[key] === c.name ? 1 : 0)}/${lim}` : ''}${used >= lim && t[key] !== c.name ? ' — 사용 중' : ''}`); }));
+      const cur = [IO.kratos.find(c => c.name === t.kratosCard), IO.trauma.find(c => c.name === t.traumaCard)].filter(Boolean);
+      card.append(h('div', { class: 'row small' }, 'Pattern ', ioSel('kratosCard', IO.kratos, 'Kratos Pattern'), ioSel('traumaCard', IO.trauma, 'Trauma Pattern')));
+      for (const c of cur) card.append(h('div', { class: 'muted small' }, `${c.name}: ${c.kratos ? 'Kratos ' + Object.entries(c.kratos).map(([r, o]) => `${r}) ${o.map(x => x.join('+')).join(' / ')}`).join(' · ') : 'Trauma ' + c.trauma.map(x => `${x.danger} ${x.tier}`).join(' · ')}${c.text ? ' — ' + c.text : ''}`)); }
     t.mnemos = t.mnemos || [{}, {}]; while (t.mnemos.length < 2) t.mnemos.push({});
     const por = AR.portraits.find(p => p.code === t.portrait);
     const arg = h('div', { class: 'argrow' },
@@ -259,14 +268,14 @@ function renderLoadout(root) {
     const errs = validateTitan(t); for (const n of t.gear) if (n !== 'Fists' && gearUsed(n) > gearCopies(n)) errs.push(`「${n}」 보유 장수(${gearCopies(n)}) 초과`); for (const m of t.mnemos) if (m && m.name && mnemosUsedBy(m.name, t).length) errs.push(`Mnemos 「${m.name}」 중복`); if (errs.length) list.append(h('div', { class: 'err' }, [...new Set(errs)].join(' · ')));
     const gopt = g => h('option', { value: g.name }, `${SLOT_ICON[g.slot]} ${g.name}${g.transform ? ' ⇄ ' + g.transform.name : ''}${g.atk ? ` (◆${g.atk} +${g.prec ?? "X"} ${(g.power || []).join('')})` : ''} — ${g.tech}${gearCopies(g.name) > 1 ? ` [${gearCopies(g.name) - gearUsed(g.name)}/${gearCopies(g.name)}]` : ''}`);
     const avail = GEAR.filter(g => !t.gear.includes(g.name) && g.name !== 'Fists' && !gearLocked(g) && gearUsed(g.name) < gearCopies(g.name)).sort((a, b) => a.slot.localeCompare(b.slot) || a.name.localeCompare(b.name));
-    const sel = h('select', {}, h('option', { value: '' }, '+ 장비 추가…'), h('optgroup', { label: 'Cycle I' }, ...avail.filter(g => !g.cycle || g.cycle === 1).map(gopt)), h('optgroup', { label: 'Cycle II' }, ...avail.filter(g => g.cycle === 2).map(gopt)), h('optgroup', { label: 'Cycle III' }, ...avail.filter(g => g.cycle === 3).map(gopt)), h('optgroup', { label: 'Cycle IV' }, ...avail.filter(g => g.cycle === 4).map(gopt)));
+    const sel = h('select', {}, h('option', { value: '' }, '+ 장비 추가…'), ...['1', '2', '3', '4', '5', 'M'].map(c => avail.filter(g => gCyc(g) === c)).map((l, i) => l.length ? h('optgroup', { label: gCycName(['1', '2', '3', '4', '5', 'M'][i]) }, ...l.map(gopt)) : null).filter(Boolean));
     sel.onchange = () => { if (sel.value) { showDetail(gearCard(GEAR.find(x => x.name === sel.value))); t.gear.push(sel.value); saveLoadout(); renderLoadout(root); } };
     { const dlId = 'gdl-' + Math.random().toString(36).slice(2, 8); const dl = h('datalist', { id: dlId }, ...avail.map(g => h('option', { value: g.name }, `${SLOT_ICON[g.slot]} ${(g.traits || []).join(', ')}`)));
       const si = h('input', { list: dlId, placeholder: '🔎 장비 이름 검색해서 추가', class: 'gsearch', style: 'width:100%;margin-top:4px' });
       let added = false; const tryAdd = () => { if (added) return; const v = si.value.trim(); const g = avail.find(x => x.name.toLowerCase() === v.toLowerCase()); if (g) { added = true; showDetail(gearCard(g)); t.gear.push(g.name); saveLoadout(); renderLoadout(root); } };
       si.addEventListener('change', tryAdd); si.addEventListener('keydown', e => { if (e.key === 'Enter') { const v = si.value.trim().toLowerCase(); const g = avail.find(x => x.name.toLowerCase() === v) || avail.find(x => x.name.toLowerCase().includes(v)); if (g) { si.value = g.name; tryAdd(); } } });
       sel.after ? null : null; sel._search = [si, dl]; }
-    const bl = GEAR.filter(g => g.name !== 'Fists').sort((a, b) => a.slot.localeCompare(b.slot) || a.name.localeCompare(b.name)); const bo = g => h('option', { value: g.name }, `${gearLocked(g) ? '🔒 ' : ''}${SLOT_ICON[g.slot]} ${g.name}${g.transform ? ' ⇄ ' + g.transform.name : ''}`); const browse = h('select', {}, h('option', { value: '' }, '🔍 장비 카드 보기…'), h('optgroup', { label: 'Cycle I' }, ...bl.filter(g => !g.cycle || g.cycle === 1).map(bo)), h('optgroup', { label: 'Cycle II' }, ...bl.filter(g => g.cycle === 2).map(bo)), h('optgroup', { label: 'Cycle III' }, ...bl.filter(g => g.cycle === 3).map(bo)));
+    const bl = GEAR.filter(g => g.name !== 'Fists').sort((a, b) => a.slot.localeCompare(b.slot) || a.name.localeCompare(b.name)); const bo = g => h('option', { value: g.name }, `${gearLocked(g) ? '🔒 ' : ''}${SLOT_ICON[g.slot]} ${g.name}${g.transform ? ' ⇄ ' + g.transform.name : ''}`); const browse = h('select', {}, h('option', { value: '' }, '🔍 장비 카드 보기…'), ...['1', '2', '3', '4', '5', 'M'].map(c => bl.filter(g => gCyc(g) === c)).map((l, i) => l.length ? h('optgroup', { label: gCycName(['1', '2', '3', '4', '5', 'M'][i]) }, ...l.map(bo)) : null).filter(Boolean));
     browse.onchange = () => { if (browse.value) showDetail(gearCard(GEAR.find(x => x.name === browse.value))); browse.value = ''; };
     card.append(browse);
     card.append(list, sel, ...(sel._search || []));
@@ -509,3 +518,20 @@ renderLoadout($('#app'));
   const mount = () => { document.head.append(st); document.body.append(btn, box); };
   if (document.body) mount(); else document.addEventListener('DOMContentLoaded', mount);
 })();
+
+// ---------- Primordial info viewer (audit-page style, floating button) ----------
+(() => {
+  const curPrim = () => { try { if (typeof game !== 'undefined' && game && game.prim) return game.prim.def.id || Object.keys(DATA.primordials).find(k => DATA.primordials[k] === game.prim.def); } catch (e) {} try { if (typeof loadout !== 'undefined' && loadout) return loadout.primordial; } catch (e) {} return Object.keys(DATA.primordials)[0]; };
+  const page = id => __PRIMVIEW__.replace('__H__', () => JSON.stringify(DATA.primordials[id]).replace(/</g, '\\u003c'));
+  const btn = h('button', { class: 'pvbtn', title: '프라이모디얼 정보 (레벨 · 트레이트 · AI · BP)' }, '👁 프라이모디얼');
+  const sel = h('select', {}, ...Object.keys(DATA.primordials).map(k => h('option', { value: k }, DATA.primordials[k].name)));
+  const frame = h('iframe', { class: 'pvframe' });
+  const box = h('div', { class: 'pvbox', style: 'display:none' }, h('div', { class: 'row', style: 'gap:8px;align-items:center' }, h('b', {}, '프라이모디얼 정보'), sel, h('span', { style: 'flex:1' }), h('button', { onclick: () => { box.style.display = 'none'; } }, '닫기')), frame);
+  const show = id => { sel.value = id; frame.srcdoc = page(id); };
+  sel.addEventListener('change', () => show(sel.value));
+  btn.addEventListener('click', () => { const open = box.style.display === 'none'; box.style.display = open ? 'flex' : 'none'; if (open) show(curPrim() || sel.value); });
+  const st = h('style', {}, '.pvbtn{position:fixed;right:118px;bottom:14px;z-index:9998;padding:6px 10px;border-radius:8px;border:1px solid #888;background:#222;color:#eee;cursor:pointer}.pvbox{position:fixed;inset:24px;z-index:9999;flex-direction:column;gap:8px;padding:10px;background:#1b1b1b;color:#eee;border:1px solid #666;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,.5)}.pvframe{flex:1;width:100%;border:0;border-radius:6px;background:#fff}@media (max-width:600px){.pvbox{inset:6px}}');
+  const mount = () => { document.head.append(st); document.body.append(btn, box); };
+  if (document.body) mount(); else document.addEventListener('DOMContentLoaded', mount);
+})();
+

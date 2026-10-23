@@ -1,0 +1,162 @@
+<title>Hekaton Data Audit</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: sticky filter bar over a single column of gear "cards" set like an armory ledger; stats left, rules text right */
+:root {
+  --bg: #eef1f0; --surface: #ffffff; --fg: #1d2523; --muted: #5d6a66; --line: #d3dbd8;
+  --accent: #2f7d6d; --accent-soft: #dcefe9; --gate: #7a5a1e; --gate-soft: #f4ead3;
+  --die-r: #c0392b; --die-b: #1c1c1c; --die-w: #f7f7f2; --die-m: #9aa19e; --die-edge: #8a948f;
+  --f-display: "Marcellus", "Times New Roman", serif;
+  --f-body: "Noto Sans KR", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #141a19; --surface: #1c2422; --fg: #e3ebe8; --muted: #93a39e; --line: #2e3a37;
+  --accent: #5fc2ab; --accent-soft: #1f3a34; --gate: #e2bd6c; --gate-soft: #3a3020;
+  --die-r: #e05a4b; --die-b: #0a0a0a; --die-w: #f2f2ec; --die-m: #7d8582; --die-edge: #6b7874; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #141a19; --surface: #1c2422; --fg: #e3ebe8; --muted: #93a39e; --line: #2e3a37;
+  --accent: #5fc2ab; --accent-soft: #1f3a34; --gate: #e2bd6c; --gate-soft: #3a3020;
+  --die-r: #e05a4b; --die-b: #0a0a0a; --die-w: #f2f2ec; --die-m: #7d8582; --die-edge: #6b7874; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font-size: 14px; line-height: 1.55; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 20px 48px; }
+header h1 { font-family: var(--f-display); font-weight: 400; font-size: 30px; margin: 0; letter-spacing: .02em; text-wrap: balance; }
+header p { margin: 4px 0 0; color: var(--muted); }
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); padding-block: 12px; border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 14px; }
+.bar input[type=search] { flex: 1 1 220px; min-width: 0; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--fg); font: inherit; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { border: 1px solid var(--line); background: var(--surface); color: var(--fg); border-radius: 999px; padding: 4px 10px; font: 500 12px var(--f-body); cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+.chip:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.count { color: var(--muted); font: 12px var(--f-mono); margin-left: auto; font-variant-numeric: tabular-nums; }
+.list { display: grid; gap: 10px; margin-top: 14px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; display: grid; grid-template-columns: 230px minmax(0, 1fr); }
+.side { padding: 12px 14px; border-right: 1px solid var(--line); display: grid; gap: 6px; align-content: start; }
+.main { padding: 12px 16px; min-width: 0; display: grid; gap: 8px; align-content: start; }
+.name { font-family: var(--f-display); font-size: 18px; line-height: 1.25; }
+.slot { font: 600 11px var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+.stats { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; font: 12px var(--f-mono); font-variant-numeric: tabular-nums; }
+.stats dt { color: var(--muted); }
+.stats dd { margin: 0; display: flex; flex-wrap: wrap; gap: 3px; align-items: center; }
+.die { width: 14px; height: 14px; border-radius: 3px; border: 1px solid var(--die-edge); display: inline-block; }
+.die.r { background: var(--die-r); } .die.b { background: var(--die-b); } .die.w { background: var(--die-w); } .die.m { background: var(--die-m); }
+.traits { display: flex; flex-wrap: wrap; gap: 4px; }
+.trait { font-size: 11px; color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 0 5px; }
+.text { white-space: pre-wrap; overflow-wrap: anywhere; }
+.gates { display: grid; gap: 4px; }
+.gate { display: grid; grid-template-columns: minmax(64px, max-content) minmax(0, 1fr); gap: 8px; align-items: baseline; }
+.gk { font: 600 11px var(--f-mono); color: var(--gate); background: var(--gate-soft); border-radius: 4px; padding: 1px 6px; text-align: center; }
+.meta { font-size: 12px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.alt { border-top: 1px dashed var(--line); padding-top: 8px; display: grid; gap: 6px; }
+.alt-h { font: 600 11px var(--f-mono); letter-spacing: .06em; color: var(--accent); text-transform: uppercase; }
+.tag { font: 600 10px var(--f-mono); padding: 1px 6px; border-radius: 4px; background: var(--accent-soft); color: var(--accent); letter-spacing: .04em; }
+.empty { color: var(--muted); padding: 24px 0; text-align: center; }
+mark { background: var(--gate-soft); color: inherit; padding: 0 1px; border-radius: 2px; }
+@media (max-width: 640px) { .card { grid-template-columns: 1fr; } .side { border-right: 0; border-bottom: 1px solid var(--line); } .gate { grid-template-columns: 56px minmax(0, 1fr); } }
+
+.sec { margin-top: 26px; }
+.sec h2 { font-family: var(--f-display); font-weight: 400; font-size: 21px; margin: 0 0 8px; }
+.st { font: 600 10px var(--f-mono); padding: 1px 7px; border-radius: 4px; letter-spacing: .05em; white-space: nowrap; }
+.st.OK { background: var(--accent-soft); color: var(--accent); }
+.st.PARTIAL, .st.CHECK { background: var(--gate-soft); color: var(--gate); }
+.st.NONE, .st.BUG { background: #f6dcd8; color: #a3352a; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .st.NONE, :root:not([data-theme="light"]) .st.BUG { background: #43221e; color: #f08a7c; } }
+:root[data-theme="dark"] .st.NONE, :root[data-theme="dark"] .st.BUG { background: #43221e; color: #f08a7c; }
+.note { font-size: 12px; color: var(--muted); }
+.note.fix { color: var(--accent); }
+.tbl { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; font-size: 13px; }
+.tblw { overflow-x: auto; }
+.tbl th, .tbl td { padding: 6px 8px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.tbl th { font: 600 11px var(--f-mono); color: var(--muted); letter-spacing: .05em; text-transform: uppercase; }
+.tbl td.n { font: 12px var(--f-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.resp { display: grid; gap: 3px; }
+.rk { font: 600 10px var(--f-mono); padding: 0 5px; border-radius: 3px; margin-right: 6px; background: var(--gate-soft); color: var(--gate); }
+.rk.WOUND { background: #f6dcd8; color: #a3352a; } .rk.CRITICAL { background: var(--fg); color: var(--surface); } .rk.INSTINCT { background: #dbe5f6; color: #2b4f8f; }
+.eye { font: 600 11px var(--f-mono); color: var(--muted); }
+.side .st { justify-self: start; }
+.tbl td:first-child, .tbl th:first-child { position: sticky; left: 0; background: var(--surface); }
+.summary { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.pill { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px; font-size: 12px; }
+.pill b { font-family: var(--f-mono); }
+.rk.HARD { background: #e4e0d6; color: #4a4436; } .rk.PRIS { background: #3a2f5c; color: #fff; }
+.grid { display: inline-grid; gap: 1px; margin: 6px 0 2px; background: transparent; }
+.grid i { width: 7px; height: 7px; border: 1px solid var(--line, #ccc); box-sizing: border-box; display: block; }
+.grid i.p { background: var(--fg); border-color: var(--fg); } .grid i.b { background: #8b2a1f; border-color: #8b2a1f; } .grid i.w { background: #e07b1a; border-color: #e07b1a; } .grid i.bl { background: #c0392b; border-color: #c0392b; opacity: .75; }
+.gcap { font: 11px var(--f-mono); color: var(--muted); }
+.gwin { color:#b8860b; font-weight:700; text-shadow:0 0 1px #b8860b; }
+</style>
+<div class="wrap">
+<header><h1 id="ttl">Primordial</h1>
+<p class="note">레벨 · 트레이트 · AI · BP 카드 정보 (게임 데이터 기준).</p>
+<div class="summary" id="sum"></div></header>
+<section class="sec"><h2>레벨</h2><div class="tblw"><table class="tbl" id="lv"></table></div><div id="lvn" class="note" style="margin-top:6px"></div></section>
+<section class="sec" id="vpsec"><h2>VP · 기본 특성</h2><div class="list" id="vp"></div></section>
+<section class="sec"><h2>트레이트</h2><div class="list" id="tr"></div></section>
+<section class="sec"><h2>AI 카드</h2><div class="list" id="ai"></div></section>
+<section class="sec" id="flsec"><h2>Flare 카드</h2><div class="list" id="fl"></div></section>
+<section class="sec"><h2>BP 카드</h2><p class="note">Q.Eye: 뜬 눈 BP가 일반 BP 드로우가 아닌 카드·능력 효과로 공개되면 그 타이탄이 BP 레벨만큼 Fate를 얻음. 응답의 줄바꿈은 카드의 줄 구분 그대로.</p><div class="list" id="bp"></div></section>
+</div>
+<script>
+const H = __H__, A = { traits: {}, ai: {}, bp: {}, levels: {} }; document.getElementById('ttl').textContent = H.name; document.title = H.name;
+const esc = s => String(s == null ? '' : s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]);
+const fmt = s => esc(String(s == null ? '' : s).replace(/\bSIS(\d+): /g, 'FATE $1+ or Sisyphean: ').replace(/\bSIS: /g, 'Sisyphean: ').replace(/\bOTHER (\d)\+: /g, 'Furthest Titan in sight with FATE $1+: ')).replace(/⚡ ?/g, '<span title="Window of Opportunity">◆!</span> ').replace(/\n/g, '<br>');
+const st = a => '';
+const nt = a => false ? `<div class="note ${/^\[수정\]/.test(a.n) ? 'fix' : ''}">${esc(a.n)}</div>` : '';
+const cnt = { OK: 0, CHECK: 0, NONE: 0 }; const tally = a => { const s = a ? a.s : 'OK'; if (s === 'OK') cnt.OK++; else if (s === 'CHECK' || s === 'PARTIAL') cnt.CHECK++; else cnt.NONE++; };
+// levels
+{ const ks = Object.keys(H.levels).sort((a, b) => a - b); const row = (lab, f) => `<tr><th>${lab}</th>${ks.map(k => `<td class="n">${f(H.levels[k], k)}</td>`).join('')}</tr>`;
+  const b = (L, k) => (L.bonus && L.bonus[k] != null) ? (L.bonus[k] > 0 ? '+' : '') + L.bonus[k] : '–';
+  document.getElementById('lv').innerHTML = `<tr><th>Lv</th>${ks.map(k => `<th>${k}${H.levels[k].mnestis ? '·M' : ''}</th>`).join('')}</tr>` + row('To Hit', L => L.toHit + '+') + row('Speed', L => L.speed) + row('Wounds', L => L.wounds) + row('Escal.', L => b(L, 'ESCALATION')) + row('AT', L => b(L, 'AT')) + row(H.levels[Object.keys(H.levels).pop()].bonus.DF != null ? 'Danger/Fate' : 'Danger', L => (L.bonus && L.bonus.DF != null ? b(L, 'DF') : b(L, 'DANGER')) + (L.bonusPerHit && (L.bonus.DANGER || L.bonus.DF) ? '/hit' : '')) + row('Evade ◆', L => b(L, 'EVADE_DICE')) + row('Traits', L => (L.traits || []).map(esc).join('<br>') || '–');
+  const lvA = A.levels || {}; document.getElementById('lvn').innerHTML = Object.entries(lvA).filter(([, v]) => v.s !== 'OK' || /\[수정\]/.test(v.n || '')).map(([k, v]) => `${st(v)} <b>${esc(k)}</b> — ${esc(v.n)}`).join('<br>') + '<br>M = Mnestis 레벨';
+}
+// VP / basic traits
+{ const el = document.getElementById('vp'); const parts = []; if (H.basicTraits && H.basicTraits.length) parts.push(`<div class="card"><div class="side"><div class="name">기본 특성</div></div><div class="main"><div class="text">${H.basicTraits.map(esc).join(', ')}</div></div></div>`); parts.push(`<div class="card"><div class="side"><div class="name">Blindspot</div></div><div class="main"><div class="text">${H.blindspots ? (H.blindspots === 'rear' ? '있음 — Rear 칸이 Blindspot' : esc(H.blindspots)) : '없음'}</div></div></div>`); if (H.ukb != null) parts.push(`<div class="card"><div class="side"><div class="name">Unavoidable Knockback</div></div><div class="main"><div class="text">기본 ⇛${H.ukb}${Object.entries(H.levels).filter(([, L]) => L.ukb != null).map(([k, L]) => ` · Lv${k}: ⇛${L.ukb}`).join('')}</div></div></div>`);
+  const V = H.vp; if (V) { const rows = V.byLevel ? Object.entries(V.byLevel).map(([k, v]) => `<div><b>Lv ${k}+</b> — Climb ${v.climb ? v.climb.join(' ') + '+' : '–'} · Hold On ${v.holdOn ? v.holdOn.join(' ') + '+' : '–'}${v.holdFail ? ` (실패: ${esc(v.holdFail)})` : ''}${v.power ? ` · +${v.power} Power` : ''}${v.noDespair ? ' · Despair 획득 불가' : ''}${v.responses ? ` · 응답: ${esc(v.responses)}` : ''}</div>`).join('') : ''; parts.push(`<div class="card"><div class="side"><div class="name">${esc(V.name || 'Vantage Point')}</div><div class="slot">VP</div></div><div class="main">${V.text ? `<div class="text">${fmt(V.text)}</div>` : ''}<div class="resp note">${rows}${!V.byLevel ? `<div>${esc(JSON.stringify(Object.fromEntries(Object.entries(V).filter(([k]) => k !== 'name' && k !== 'text'))))}</div>` : ''}</div></div></div>`); }
+  if (parts.length) el.innerHTML = parts.join(''); else document.getElementById('vpsec').remove(); }
+// traits
+document.getElementById('tr').innerHTML = Object.entries(H.traits).map(([n, t]) => { const a = A.traits[n]; tally(a); const lv = Object.keys(H.levels).find(k => (H.levels[k].traits || []).includes(n)); return `<div class="card"><div class="side"><div class="name">${esc(n)}</div><div class="slot">Lv ${lv}</div>${st(a)}</div><div class="main"><div class="text">${fmt(t)}</div>${nt(a)}</div></div>`; }).join('');
+
+const gridOf = c0 => { const c = c0.sun ? { ...c0, pattern: c0.pattern || c0.sun.pattern, zone: c0.zone || (c0.sun.mode === 'vpOrZone' ? c0.sun.zone : undefined) } : c0;
+  const n = H.footprint ? (H.footprint.w || 2) : (H.size || 2); const h = (n - 1) / 2; const off = h % 1;
+  const body = []; for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) body.push([i - h, j - h]);
+  const isBody = (d, l) => body.some(([a, b]) => Math.abs(a - d) < 1e-6 && Math.abs(b - l) < 1e-6);
+  const cheb = (d, l) => Math.min(...body.map(([a, b]) => Math.max(Math.abs(a - d), Math.abs(b - l))));
+  const K = (d, l) => d.toFixed(1) + ',' + l.toFixed(1); const S = new Map();
+  if (c.pattern) for (const [d, l] of c.pattern) S.set(K(h + d, l), 'p');
+  const zoneN = c.zone || (/Zone (\d+)/.exec((c.target || [])[0] || '') || [])[1];
+  const W = c.weakspot ? (Array.isArray(c.weakspot[0]) ? c.weakspot : [c.weakspot]) : [];
+  if (!c.pattern && !c.diamond && !zoneN && !c.worldBlack && !W.length) return '';
+  const pts = [...body, ...(c.pattern || []).map(([d, l]) => [h + d, l]), ...W.map(([d, l]) => [h + d, l])];
+  let dMin = Math.min(...pts.map(x => x[0])) - 1, dMax = Math.max(...pts.map(x => x[0])) + 1, lM = Math.max(...pts.map(x => Math.abs(x[1]))) + 1;
+  const ext = c.worldBlack ? 10 : (c.diamond ? +c.diamond + 1 : (zoneN ? +zoneN + h + 1 : 0));
+  if (ext) { dMin = Math.min(dMin, -ext); dMax = Math.max(dMax, ext); lM = Math.max(lM, ext); }
+  const rng = (a, b) => { const o = []; for (let v = a; v <= b + 1e-6; v += 1) o.push(v); return o; };
+  const fix = v => Math.round(v - off) + off;
+  const dv = rng(fix(dMin), fix(dMax)), vals = rng(fix(-lM), fix(lM));
+  const cells = []; for (const d of [...dv].reverse()) for (const l of vals) {
+    let k = '';
+    if (isBody(d, l)) k = 'b';
+    else if (S.has(K(d, l))) k = 'p';
+    else if (c.worldBlack) { const rd = Math.abs(d) + Math.abs(l); if (rd <= (c.diamond || 7)) k = 'p'; else if (rd >= (c.dustMin || 9)) k = 'bl'; }
+    else if (c.diamond && Math.abs(d) + Math.abs(l) <= c.diamond) k = 'p';
+    else if (zoneN && cheb(d, l) <= +zoneN) k = 'p';
+    if (!isBody(d, l) && W.some(([wd, wl]) => Math.abs(h + wd - d) < 1e-6 && Math.abs(wl - l) < 1e-6)) k = 'w';
+    cells.push(`<i class="${k}"></i>`);
+  }
+  return `<div class="grid" style="grid-template-columns: repeat(${vals.length}, 7px)">${cells.join('')}</div><div class="gcap">위 = 정면 · ■ 범위 · <span style="color:#8b2a1f">■</span> 본체${W.length ? ' · <span style="color:#e07b1a">■</span> Weakspot' : ''}${c.worldBlack ? ' (■ = Blast Zone) · <span style="color:#c0392b">■</span> Dust Zone' : ''}</div>`;
+};
+// AI
+document.getElementById('ai').innerHTML = H.ai.map((c, i) => { const a = A.ai[c.name] || A.ai[i]; tally(a); const tgt = Array.isArray(c.target) ? c.target.join(' / ') : (c.target ? (H.targetPresets[c.target] || [c.target]).join(' → ') : ''); const lines = [...(c.text_pre ? [fmt(c.text_pre)] : []), ...(c.pre || []).map(fmt)]; const jd = c.judge && !c.noRoll ? `<b>${c.doomed ? 'Doomed. ' : ''}${c.judge.map(esc).join('/')}.</b>` : (c.doomed ? '<b>Doomed.</b>' : ''); (c.steps || []).forEach((x, si) => { if (si === 0 && c.hdr) x = x + ' | ' + c.hdr; let f = fmt(x); if (si === 1 && jd && !(c.judge && x.startsWith(c.judge.join('/')))) f = jd + ' ' + f; if ((c.stepJoin || []).includes(si) && lines.length) lines[lines.length - 1] += ' ' + f; else lines.push(f); }); if (jd && (c.steps || []).length < 2) lines.push(jd); if (c.text) lines.push(fmt(c.text)); const aw = c.afterWindow ? '<span title="Window of Opportunity">◆!</span> ' : ''; if (c.lastStepIsAfter && lines.length) { const ls = lines.pop().replace(/^<span title="Window of Opportunity">◆!<\/span> /, ''); lines.push(`<span title="Window of Opportunity">◆!</span> <b>After:</b> ${ls}`); } if (c.after) lines.push(c.afterAsStep ? fmt(c.after) : `${aw}<b>After:</b> ${fmt(c.after)}`); if (c.afterFinal) lines.push(`${aw}<b>After Final:</b> ${fmt(c.afterFinal)}`); if (c.afterDisplay) lines.push(`<span title="Window of Opportunity">◆!</span> <b>${esc(c.afterDisplay.split(':')[0])}:</b> ${fmt(c.afterDisplay.split(':').slice(1).join(':'))}`); if (c.noTarget) lines.push(`<span class="note"><b>대상 없음:</b> ${esc(c.noTarget)}</span>`); { const GW = '<span class="gwin" title="Semicorporeal Wraith 특수 ◆! (Interrupt Window)">◆!</span>'; if (c.noInterrupt === 'next') lines.push(`${GW} If no Interrupt Attack, perform next AI.`); else if (c.noInterrupt === 'dragon') lines.splice(Math.max(0, lines.length - 1), 0, `${GW} <span class="note">(Interrupt Window)</span>`); else if (c.dahaka) lines.push(`${GW} <span class="note">(Interrupt Window)</span>`); } const gr = gridOf(c); const rng = (c.range ? `<div class="gcap">사거리 ${c.range}</div>` : '') + (c.sun ? `<div class="gcap">${{ laser: `레이저: ${({ single: 'Single', triple: 'Triple', omni: 'Omni' })[c.sun.laser] || c.sun.laser}${c.sun.up ? ` (조건 충족 시 ${c.sun.up.to === 'omni' ? 'Omnilaser' : 'Triple Laser'})` : ''}`, sun: '범위: Unshaded Board (그림자 아닌 모든 칸)', supernova: '범위: Elevated가 아닌 모든 칸', vpOrZone: `범위: VP 위 대상 / 없으면 Zone ${c.sun.zone}`, zone: '' }[c.sun.mode] || ''}</div>` : '');
+  return `<div class="card"><div class="side"><div class="name">${esc(c.name)}</div><div class="slot">${esc(c.kind)} · ${(c.aiTier ?? c.tier) === 0 || (c.aiTier ?? c.tier) ? 'AI ' + (['0', 'I', 'II', 'III', 'IV'][c.aiTier ?? c.tier] || (c.aiTier ?? c.tier)) : ''}${c.bpName ? ` · BP ${esc(c.bpName)}` : ''}</div><dl class="stats">${c.dice ? `<dt>Evade</dt><dd>${c.dice}◆ ${c.toHit}+</dd>` : ''}<dt>Code</dt><dd>${esc(c.code || '')}</dd></dl>${st(a)}</div><div class="main">${c.stair ? `<div class="meta">Staircase: ${esc(c.stair === 'stay' ? "Doesn't move!" : c.stair === 'gone' ? 'Disappears!' : c.stair)}</div>` : ''}${c.rotate ? `<div class="meta">Rotate: ${esc(c.rotate)}</div>` : ''}${tgt ? `<div class="meta">대상: ${esc(tgt)}</div>` : ''}<div class="resp">${lines.map(l => `<div>${l}</div>`).join('')}</div>${rng}${gr}${nt(a)}</div></div>`; }).join('');
+// Flares
+if (H.flares && H.flares.length) document.getElementById('fl').innerHTML = H.flares.map(c => { const a = A.ai[c.name]; tally(a); return `<div class="card"><div class="side"><div class="name">${esc(c.name)}</div><div class="slot">FLARE</div>${st(a)}</div><div class="main"><div class="text">${fmt(c.text)}</div>${nt(a)}</div></div>`; }).join(''); else document.getElementById('flsec').remove();
+// BP
+const BPS = (H.bp && H.bp.length) ? H.bp : H.ai.filter(c => c.bpName).map(c => ({ name: c.bpName, tier: c.tier, at: c.at, atLo: c.atLo, responses: c.responses, critical: c.critical, code: c.code, qeye: c.qeye }));
+document.getElementById('bp').innerHTML = BPS.map((c, i) => { const a = A.bp[c.name] || A.bp[i]; tally(a); const rs = Object.entries(c.responses || {}).map(([k, v]) => `<div><span class="rk ${k}">${k}</span>${fmt(v)}</div>`); if (c.text) rs.push(`<div>${fmt(c.text)}</div>`); if (c.critical) rs.push(`<div><span class="rk CRITICAL">CRITICAL</span>${fmt(c.critical)}</div>`); [...(c.pre || [])].reverse().forEach(p => rs.unshift(`<div><span class="rk">PRE</span>${fmt(p)}</div>`)); if (c.absorbOffer) rs.unshift(`<div><span class="rk">PRE</span>If you're adjacent or on a VP, you may be immediately <i>Absorbed</i>.</div>`); if (c.state) rs.unshift(`<div><span class="rk">${esc(c.state.toUpperCase())}</span></div>`); if (c.notes) c.notes.slice().reverse().forEach(n => rs.unshift(`<div><span class="rk">PRE</span>${fmt(n)}</div>`)); if (c.spearBreak && !(c.notes || []).some(n => /Spear/.test(n))) rs.unshift(`<div><span class="rk">PRE</span>Spear 무기면 Break ${c.spearBreak}</div>`); if (c.combined && !(c.notes || []).some(n => /Combined/.test(n))) rs.unshift(`<div><span class="rk">PRE</span>VP ${c.combined.join('/')}에서 Combined Attack 가능</div>`); if (c.atemporal) rs.unshift(`<div><span class="rk HARD">ATEMPORAL</span>공격 후 Danger/Fate 중 높은 쪽으로 Trauma Draw (Critical Wound 제외)</div>`); if (c.prisoners) rs.unshift(`<div><span class="rk PRIS">PRISONERS!</span></div>`); if (c.hardened) rs.unshift(`<div><span class="rk HARD">HARDENED</span>This BP has +2 AT. Ignore this ability if you rolled a Crit Chance.</div>`);
+  return `<div class="card"><div class="side"><div class="name">${esc(c.name)}</div><div class="slot">BP ${typeof c.tier === 'number' ? 'I'.repeat(c.tier) : c.tier}${c.trap ? ' · TRAP' : ` · ${c.atLo != null ? `Interrupt AT ${c.atLo} · AT ${c.at}` : `AT ${c.at}`}${c.atStair != null ? ` · Staircase AT ${c.atStair}` : ``}`}</div><dl class="stats"><dt>Code</dt><dd>${esc(c.code || '')}</dd><dt>Q.Eye</dt><dd class="eye">${c.qeye === true ? '뜬 눈' : c.qeye === false ? '감은 눈' : '?'}</dd></dl>${st(a)}</div><div class="main"><div class="resp">${rs.join('')}</div>${nt(a)}</div></div>`; }).join('');
+document.getElementById('sum').innerHTML = `<div class="pill">AI <b>${H.ai.length}</b> · BP <b>${BPS.length}</b> · 트레이트 <b>${Object.keys(H.traits).length}</b></div>`;
+</script>
