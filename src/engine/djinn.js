@@ -191,7 +191,7 @@ export function installDjinn(Game, { TitanDied, BattleOver }) {
     async djinnEscalateAI(tier) {
       if (tier !== 3 || this.prim.ai4In || !this.prim.ai4) return false;
       const rem = this.ai.removeFirst(a => a.tier === 3) || (() => { const i = this.ai.discard.findIndex(a => a.tier === 3); return i >= 0 ? { card: this.ai.discard.splice(i, 1)[0], from: 'discard' } : null; })();
-      if (rem) this.say(`첫 BP III Wound: AI III 「${rem.card.name}」 제거`, 'ai');
+      if (rem) this.say(`첫 BP III Wound: AI ${this.remLbl(rem)} 제거`, 'ai');
       this.ai.shuffleIn(this.prim.ai4); this.prim.ai4In = true; this.say('AI IV 「The Last Wish」를 AI 덱에 섞음!', 'bad'); return true;
     },
     async djinnAfterEscalation() {

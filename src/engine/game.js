@@ -1381,6 +1381,18 @@ export class Game {
     }
     return null;
   }
+  // "Each ability can be used once per Round" (per source, even if unexhausted)
+  abKey(x, label) { if (!label) return null; let s = String(label); if (x && s.startsWith(x.name + ': ')) s = s.slice(x.name.length + 2); s = s.replace(/^\[R\]\s*/, ''); let m; if (/Transform →/.test(s)) return null;
+    if ((m = /^\[Argo\] (.+?) \(charge/.exec(s))) return 'argo|' + m[1];
+    if (x && (m = /^\[Mnemos\] (.+?)(?: L\d+)?(?::| —)/.exec(s))) return x.id + '|mn|' + m[1];
+    if (!x) return null; const n = [...x.gear.map(g => g.card && g.card.name), ...x.gear.map(g => g.alt && g.alt.name)].filter(Boolean).sort((a, b) => b.length - a.length).find(n => s.startsWith(n + ':') || s.startsWith(n + ' —'));
+    if (!n) return null; const g = x.gear.find(q => q.card && q.card.name === n || q.alt && q.alt.name === n); const txt = g ? (this.gearText(g, x) || g.card.text || '') : '';
+    const nAb = (txt.match(/(?:^|[.:]\s+|\n)(?:\[R\]|\[Amb\]|\[Death \d\+\])*(?:Ψ+|⟳|\[charge\]|Λ|\[Λ\])+X?:?\s/g) || []).length;
+    if (nAb <= 1) return x.id + '|g|' + n;
+    const rest = s.slice(n.length).replace(/^\s*(?::|—)\s*/, '').replace(/\s*\([^)]*\)/g, '').replace(/\s*\[[^\]]*\]/g, '').replace(/[+−-]?\d+/g, '#').replace(/\s+/g, ' ').trim();
+    return x.id + '|g|' + n + '|' + rest; }
+  abUsed(k) { return !!(k && this._abUsed && this._abUsed[k] === this.round); }
+  abMark(k) { if (!k) return; (this._abUsed = this._abUsed || {})[k] = this.round; }
   async reactionWindow(t, card, before = null) {
     const used = new Set(); let announced = false;
     while (true) {
@@ -1409,10 +1421,12 @@ export class Game {
       for (const x of this.liveTitans()) { if (this.paralyzed(x)) continue; for (const a of this.c4Reactions(x, t, card)) opts.push({ label: a.label, value: { argo: a } }); }
       for (const x of this.liveTitans()) { if (x.knockdown === 'falling' || this.paralyzed(x) || x.offBoard) continue; const rg = x.gear.filter(g => !g.discarded && !g.blank && /You may use this card's abilities as \[R\]/.test(this.gearText(g, x))); if (!rg.length) continue; let fa = []; try { fa = this.freeActions(x); } catch (e) { fa = []; } for (const a of fa) if (rg.some(g => a.label.startsWith(g.card.name + ':')) && !opts.some(o => o.label.endsWith(a.label))) opts.push({ label: `${x.name}: [R] ${a.label}`, value: { argo: a } }); }
       if (this.canCannonEmergency() && !used.has('cannonEm')) opts.push({ label: `[Grand Cannon] Emergency Priming (charge ${this.cannon.charges} → ${this.cannon.charges - 1}): 즉시 장전 굴림${this.cannon.primed ? ` (현재 ${this.cannon.primed.name})` : ''}`, value: { cannonEm: true } });
+      { const own = o => (o.value && o.value.x) || (o.value && o.value.sc) || this.liveTitans().find(y => o.label.startsWith(y.name + ': ')); for (let i = opts.length - 1; i >= 0; i--) { const k = this.abKey(own(opts[i]), opts[i].label); if (this.abUsed(k)) opts.splice(i, 1); else if (k) opts[i]._k = k; } }
       if (!opts.length) return;
       if (!announced) { this.say(`⚡ Window of Opportunity${before ? ` (다음: ${before})` : ''}`, 'sys'); announced = true; }
       const pick = await this.ask({ type: 'choice', title: `⚡ 리액션 — ${before ? '다음 지시: ' + before : card.name}` , options: [{ label: '패스 (계속 진행)', value: null }, ...opts] });
       if (!pick) return;
+      { const po = opts.find(o => o.value === pick); if (po && po._k) this.abMark(po._k); }
       if (pick.argo) { await pick.argo.value(); continue; }
       if (pick.cannonEm) { used.add('cannonEm'); await this.cannonEmergency(t); continue; }
       if (pick.sc) { used.add('sc' + pick.sc.id); this.mnUse(pick.sc, pick.m, '⟳'); await this.gainFate(pick.sc, 1); this.say(`${pick.sc.name}: Scorned Champion — Reflex`); await this.chooseMove(pick.sc, 1, 'Reflex'); continue; }
@@ -1904,7 +1918,7 @@ export class Game {
     if (this.trait('Three Point Six')) await this.gainAmbrosia(t, 1);
   }
   async regurgitate(t) { if (!t.absorbed) return; this.say(`${t.name}: Indigestion — 토해내짐!`, 'good'); await this.leaveVP(t); }
-  async escalateX(n) { for (let i = 0; i < n; i++) { const low = this.lowest(this.bp, 'tier'); if (!low) return; const tier = Math.min(3, low.card.tier + 1); const add = this.bpEsc[tier] && this.bpEsc[tier].pop(); this.say(`Escalate: BP 「${low.card.name}」 제거${add ? `, BP ${'I'.repeat(add.tier)} 「${add.name}」 추가` : ''}`, 'sys'); if (low.from === 'discard') this.bp.shuffleDiscardIn(); if (add) this.bp.shuffleIn(add); if (this.bp.size() === 0) this.bp.shuffleDiscardIn(); } }
+  async escalateX(n) { for (let i = 0; i < n; i++) { const low = this.lowest(this.bp, 'tier'); if (!low) return; const tier = Math.min(3, low.card.tier + 1); const add = this.bpEsc[tier] && this.bpEsc[tier].pop(); this.say(`Escalate: BP ${this.remLbl(low)} 제거${add ? `, BP ${'I'.repeat(add.tier)} 「${add.name}」 추가` : ''}`, 'sys'); if (low.from === 'discard') this.bp.shuffleDiscardIn(); if (add) this.bp.shuffleIn(add); if (this.bp.size() === 0) this.bp.shuffleDiscardIn(); } }
   async extraAICheck() {
     if (this.c3) await this.ouatCheck();
     if (this.trait('Eye for an Eye') && this.prim.eyeTokens >= this.prim.eyeNeed) { this.prim.eyeTokens = 0; this.say(`Eye for an Eye: 토큰 ${this.prim.eyeNeed}개 — AI 카드 추가!`, 'ai'); const c = this.drawAI(); if (c) { await this.safe(() => this.resolveAI(c)); this.ai.discard.push(c); } }
@@ -2187,7 +2201,7 @@ export class Game {
     const blockEx = this.hopeless(t) >= 2; const gearOut = blockEx ? out.filter(o => !/^\S.*\(.*소진/.test(o.label) || o.noFate) : out;
     gearOut.push(...this.mnemosActions(t), ...this.argoActions(t));
     { const e = this.cannonReady('round'); if (e) gearOut.push({ label: `[Grand Cannon] Godkiller Shot 「${e.name}」 (charge ${this.cannon.charges}, ${this.cannonCostLabel(e)}): ${e.text.replace(/^[^:]*: /, '')}`, noFate: true, value: async () => { const f = await this.cannonFire(t); if (f) await this.cannonRoundEffect(f); } }); }
-    return gearOut.filter(o => this.fr(t) > 0 || o.noFate);
+    return gearOut.filter(o => this.fr(t) > 0 || o.noFate).filter(o => { const k = this.abKey(t, o.label); if (!k) return true; if (this.abUsed(k)) return false; const v = o.value; if (typeof v === 'function') o.value = async (...a) => { this.abMark(k); return v(...a); }; return true; });
   }
   condTokKinds(o) { const k = []; if (o.despair > 0) k.push('despair'); if (o.bleeding > 0 && (o.conditions || []).includes('Bleeding')) k.push('bleeding'); return k; }
   async dropCondToken(t, o) { const ks = this.condTokKinds(o); if (!ks.length) return; const L = { despair: 'Despair', ambrosia: 'Ambrosia', bleeding: 'Bleeding' }; const k = ks.length === 1 ? ks[0] : await this.ask({ type: 'choice', titan: t, title: `${o.name}: 제거할 Condition 토큰`, options: ks.map(x => ({ label: L[x], value: x })) }); if (k === 'bleeding') return this.stopBleeding(o, 1); if (k) { o[k]--; this.say(`${o.name}: ${L[k]} 토큰 1개 제거`, 'good'); } }
@@ -2986,10 +3000,10 @@ export class Game {
     this.escalations++; this.say(`Escalation (BP ${'I'.repeat(tier)}${crit ? ' Crit' : ''})`, 'sys');
     // BP deck
     const bpIn = n => { for (let i = 0; i < n; i++) { const c = this.bpEsc[3].pop(); if (c) this.bp.shuffleIn(c); } };
-    if (noWound) { const low = this.lowest(this.bp, 'tier'); if (low) { this.say(`BP 「${low.card.name}」 제거`); if (low.from === 'discard') this.bp.shuffleDiscardIn(); } }
+    if (noWound) { const low = this.lowest(this.bp, 'tier'); if (low) { this.say(`BP ${this.remLbl(low)} 제거`); if (low.from === 'discard') this.bp.shuffleDiscardIn(); } }
     if (tier === 1) { let c; if (this.chooseBP2 && this.bpEsc[2].length > 1) { c = await this.ask({ type: 'choice', title: 'Joint Maze Carapace: 덱에 넣을 BP II 카드 선택', options: this.bpEsc[2].map(x => ({ label: `${x.name} (AT ${x.at})`, value: x })) }); this.bpEsc[2] = this.bpEsc[2].filter(x => x !== c); } else c = this.bpEsc[2].pop(); this.chooseBP2 = !!this.chooseBP2Perm; if (c) this.bp.shuffleIn(c); }
     else if (tier === 2) { const c = this.bpEsc[3].pop(); if (c) this.bp.shuffleIn(c); }
-    else { const low = this.lowest(this.bp, 'tier'); if (low) { this.say(`BP 「${low.card.name}」 제거`); if (low.from === 'discard') this.bp.shuffleDiscardIn(); } if (this.bpEsc[3].length) bpIn(crit ? 2 : 1); else this.bp.shuffleDiscardIn(); if (this.setAsideBP) { this.bp.putBottom(this.setAsideBP); this.setAsideBP = null; } }
+    else { const low = this.lowest(this.bp, 'tier'); if (low) { this.say(`BP ${this.remLbl(low)} 제거`); if (low.from === 'discard') this.bp.shuffleDiscardIn(); } if (this.bpEsc[3].length) bpIn(crit ? 2 : 1); else this.bp.shuffleDiscardIn(); if (this.setAsideBP) { this.bp.putBottom(this.setAsideBP); this.setAsideBP = null; } }
     if (this.bp.size() === 1) this.bp.shuffleDiscardIn();
     if (this.prim.forewing) { this.bp.putTop(this.prim.forewing); this.say(`Forewing: 「${this.prim.forewing.name}」 BP 덱 맨 위로`); this.prim.forewing = null; }
     // AI deck
@@ -2998,7 +3012,7 @@ export class Game {
     const want = tier === 3 ? null : tier; let rem = want ? this.ai.removeFirst(a => a.tier === want) : null;
     if (!rem && want) rem = this.ai.removeFirst(a => a.tier === want + 1);
     if (!rem) rem = this.lowest(this.ai, 'tier');
-    if (rem) { this.say(`AI 「${rem.card.name}」 제거`); if (rem.from === 'discard') { const lc = this.ai.discard.find(x => x.lot); this.ai.discard = this.ai.discard.filter(x => !x.lot); this.ai.shuffleDiscardIn(); if (lc) this.ai.discard.unshift(lc); } }
+    if (rem) { this.say(`AI ${this.remLbl(rem)} 제거`); if (rem.from === 'discard') { const lc = this.ai.discard.find(x => x.lot); this.ai.discard = this.ai.discard.filter(x => !x.lot); this.ai.shuffleDiscardIn(); if (lc) this.ai.discard.unshift(lc); } }
     const addTier = tier === 1 && rem && rem.card.tier === 1 ? 2 : 3;
     const add = this.aiEsc[addTier].pop() || this.aiEsc[3].pop();
     if (add) { this.ai.shuffleIn(add); this.say(`AI ${'I'.repeat(add.tier)} 카드 셔플 인`); }
@@ -3006,6 +3020,7 @@ export class Game {
     if (this.ai.size() === 1) { const lc = this.ai.discard.find(x => x.lot); this.ai.discard = this.ai.discard.filter(x => !x.lot); this.ai.shuffleDiscardIn(); if (lc) this.ai.discard.unshift(lc); }
     if (this.prim.def.djinnD) await this.djinnAfterEscalation();
   }
+  remLbl(r) { const c = r.card || {}; const lv = typeof c.tier === 'number' ? 'I'.repeat(c.tier) : (typeof c.aiTier === 'number' ? 'I'.repeat(c.aiTier) : '?'); return r.from === 'discard' ? `「${c.bpName || c.name}」 (버린 더미)` : `레벨 ${lv} 카드 1장 (덱에서, 비공개)`; }
   lowest(deck, f) { const all = [...deck.cards.map(c => ({ c, from: 'deck' })), ...deck.discard.map(c => ({ c, from: 'discard' }))].filter(x => typeof x.c[f] === 'number' && !x.c.lot && !x.c.sisTask); if (!all.length) return null; const min = Math.min(...all.map(x => x.c[f])); const pick = all.find(x => x.c[f] === min && x.from === 'deck') || all.find(x => x.c[f] === min); const r = deck.removeFirst(c => c === pick.c); return r; }
 
   // ---------------- Trauma card effects ----------------
