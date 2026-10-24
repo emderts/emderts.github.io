@@ -2081,12 +2081,14 @@ export class Game {
       if (a === 'vpMove') { t.turn.moved = true; await this.sunVPMove(t); this.notify(); continue; }
       if (a === 'bleedM' || a === 'bleedA') { if (a === 'bleedM') t.turn.moved = true; else t.turn.attacked = true; await this.stopBleeding(t); this.notify(); continue; }
       if (t.offBoard === 'omega' && (a === 'move' || a === 'run' || a === 'rush')) continue;
+      try {
       if (a === 'move') { t.turn.moved = true; await this.chooseMove(t, this.speedOf(t), '이동'); }
       else if (a === 'run') { t.turn.moved = true; await this.chooseMove(t, 10, 'Run'); }
       else if (a === 'unexM' || a === 'unexA') { if (a === 'unexM') t.turn.moved = true; else t.turn.attacked = true; let n = 0; if (this.canUnexhaust(t)) for (const g of t.gear) if (g.exhausted && !g.discarded) { g.exhausted = false; n++; } for (const m of t.mnemos) if (m.exhausted && !m.discarded) { m.exhausted = false; n++; } this.say(`${t.name}: 장비/Mnemos ${n}개 준비(unexhaust)`); }
       else if (a === 'attack') { t.turn.attacked = true; await this.chainSafe(() => this.titanAttack(t)); }
       else if (a === 'rush') { t.turn.moved = t.turn.attacked = true; await this.gainFate(t, 1); let imp = !!t.def.abilities['Improved Rush'] || !!this.gearHas(t, /(^|\. )Improved Rush\./); if (!imp) { const ir = this.gearHas(t, /Ψ⟳ Improved Rush/, true); if (ir) { ir.exhausted = true; imp = true; this.say(`${ir.card.name}: Improved Rush`); } } t._rushOK = false; await this.chooseMove(t, this.speedOf(t) + (imp ? 2 : 1), 'Rush', 3); if (!t._rushOK) this.say('Rush: 조건을 만족하는 이동 불가 — 공격 없음'); else if (this.usableWeapons(t, w => !w.card.text.includes('Ranged')).length) await this.titanAttack(t, { autoBreak: 1, precision: imp ? 1 : 0, meleeOnly: true }); else this.say('Rush 후 공격 가능한 근접 무기 없음'); }
       else if (typeof a === 'function') await this.chainSafe(a);
+      } catch (e) { if (e instanceof TitanDied && e.titan === t) { try { await this.extraAICheck(); } catch (e2) { if (e2 instanceof BattleOver) throw e2; } } throw e; }
       await this.checkDespairAll(); await this.nightOffer(); await this.timidFlush(); if (this.c3) await this.ouatCheck();
       if (undoSnap && t.alive && this.rng.n === undoSnap.n0 && (this.rng.draws || 0) === undoSnap.d0 && (this._aiSeq || 0) === undoSnap.ai0) this._moveUndo = { snap: undoSnap, t, from: undoSnap.from, n: this.rng.n, d: this.rng.draws || 0, ai: this._aiSeq || 0 };
       if (this.trait('Eye for an Eye') && this.prim.eyeTokens >= this.prim.eyeNeed) { this.prim.eyeTokens = 0; this.say(`Eye for an Eye: 토큰 ${this.prim.eyeNeed}개 — 행동 후 AI 카드 추가!`, 'ai'); const c = this.drawAI(); if (c) { await this.safe(() => this.resolveAI(c)); this.ai.discard.push(c); } }
@@ -2096,7 +2098,7 @@ export class Game {
       this.notify();
     }
     if (!t.alive) return;
-    { const ex = this.argoActions(t).filter(a => /\] Time (Dilation|Skip) /.test(a.label)); if (!ex.length || t.offBoard) break; const v = await this.ask({ type: 'choice', titan: t, title: `${t.name}: 턴 종료 전 — Argo로 추가 액션?`, options: [{ label: '턴 종료', value: null }, ...ex.map(a => ({ label: a.label, value: a.value }))] }); if (!v) break; await this.chainSafe(v); if (!t.alive) return; if (t.turn.moved && t.turn.attacked) break; } }
+    { const ex = this.argoActions(t).filter(a => /\] Time (Dilation|Skip) /.test(a.label)); if (!ex.length || t.offBoard) break; const v = await this.ask({ type: 'choice', titan: t, title: `${t.name}: 턴 종료 전 — Argo로 추가 액션?`, options: [{ label: '턴 종료', value: null }, ...ex.map(a => ({ label: a.label, value: a.value }))] }); if (!v) break; await this.chainSafe(v); await this.extraAICheck(); if (!t.alive) return; if (t.turn.moved && t.turn.attacked) break; } }
     if (t.offBoard === 'omega' && t.alive) { this.say(`${t.name}: 턴 끝까지 Omega Terminus에 남음 — 존재에서 지워짐`, 'bad'); await this.kill(t, { erased: true }); return; }
     if (t.knockdown === 'falling') t.knockdown = 'standing';
     t.castoffBuff = false; t.tkBuff = false;
