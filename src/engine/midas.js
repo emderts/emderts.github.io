@@ -147,7 +147,7 @@ export function installMidas(Game, { TitanDied, BattleOver }) {
         if (/^X is the number of Midas tokens you have/.test(p)) continue;
         if ((m = /^Midas (\d)\.$/.exec(p))) { await this.midasX(t, +m[1]); continue; }
         if ((m = /^Each hit deals (\d) DANGER and Midas (\d)\.$/.exec(p))) { await deal(+m[1] * hits); if (t.alive) await this.midasX(t, +m[2] * hits); continue; }
-        if ((m = /^If the Attack hits, it deals (\d) DANGER and Midas (\d)\.$/.exec(p))) { await deal(+m[1]); if (t.alive) await this.midasX(t, +m[2]); continue; }
+        if ((m = /^If the Attack hits, it deals (\d) DANGER and Midas (\d)\.$/.exec(p))) { await deal(+m[1], 1); if (t.alive) await this.midasX(t, +m[2]); continue; }
         if ((m = /^Each hit deals (\d) DANGER\.$/.exec(p))) { await deal(+m[1] * hits); continue; }
         if (/^Two or more hits, you are Impaled\.$/.test(p)) { if (hits >= 2) await this.impale(t); continue; }
         if (/^If you're not Impaled, Knockdown\.$/.test(p)) { if (!t.impaled) await this.knockdown(t); continue; }

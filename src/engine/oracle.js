@@ -245,7 +245,7 @@ export function installOracle(Game, { TitanDied, BattleOver }) {
         else if (/If 2\+ FATE was dealt, discard 1 Gear card\. \| FATE (\d)\+: Discard 1 Weapon card instead/.test(tail)) { const ff = +/FATE (\d)\+/.exec(tail)[1]; if (dealt >= 2) await this.discardGearN(t, 1, this.effFate(t) >= ff); }
         return true;
       }
-      if ((m = /^If the Attack hits, it deals (\d+) DANGER\. Death (\d)\.(?: \| FATE (\d)\+: Death (\d) instead)?$/.exec(s))) { const fateNow = this.effFate(t); await this.dealFD(t, 0, +m[1], card, hits); if (!t.alive) return true; const x = m[3] && fateNow >= +m[3] ? +m[4] : +m[2]; await this.addCondition(t, 'Death', { tokens: x }); return true; }
+      if ((m = /^If the Attack hits, it deals (\d+) DANGER\. Death (\d)\.(?: \| FATE (\d)\+: Death (\d) instead)?$/.exec(s))) { const fateNow = this.effFate(t); await this.dealFD(t, 0, +m[1], card, 1); if (!t.alive) return true; const x = m[3] && fateNow >= +m[3] ? +m[4] : +m[2]; await this.addCondition(t, 'Death', { tokens: x }); return true; }
       if (/^Time-clocked\.?$/.test(s)) { await this.timeClock(t); return true; }
       if (/^Rewind\.?$/.test(s)) { await this.oracleRewind(t); return true; }
       if (/^One hit, draw Major Trauma, two hits, draw Grave Trauma, three or more hits, draw an Obol/.test(s)) { if (hits >= 3) await this.obolDraw(t, 10); else await this.traumaDraw(t, Math.max(t.danger, t.fate, 1), hits >= 2 ? 'Grave' : 'Major'); return true; }

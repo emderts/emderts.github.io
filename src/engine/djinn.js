@@ -149,7 +149,7 @@ export function installDjinn(Game, { TitanDied, BattleOver }) {
       const deal = (d, h = hits) => this.dealFD(t, 0, d, card, h);
       for (let i = 0; i < parts.length; i++) {
         if (!t.alive || t.offBoard) return true; const p = parts[i];
-        if ((m = /^If the Attack hits, it deals (\d+) DANGER\.$/.exec(p))) { await deal(+m[1], hits); continue; }
+        if ((m = /^If the Attack hits, it deals (\d+) DANGER\.$/.exec(p))) { await deal(+m[1], 1); continue; }
         if ((m = /^Each hit deals (\d) DANGER and Midas (\d)\.$/.exec(p))) { await deal(+m[1] * hits); if (t.alive) await this.midasX(t, +m[2] * hits); continue; }
         if ((m = /^Midas (\d)(?: \| FATE (\d)\+: Midas (\d) instead)?\.$/.exec(p))) { const n = m[2] && this.effFate(t) >= +m[2] ? +m[3] : +m[1]; await this.midasX(t, n); continue; }
         if ((m = /^Two hits, gain the Wishkeen Condition card; three hits, gain the Wishagog Condition card(; four or more hits, you die)?\.$/.exec(p))) { if (m[1] && hits >= 4) { this.say(`${t.name}: ${hits} hit — 사망`, 'bad'); await this.kill(t); return true; } if (hits >= 3) await this.midasCondition(t, 'Wishagog'); else if (hits === 2) await this.midasCondition(t, 'Wishkeen'); continue; }
