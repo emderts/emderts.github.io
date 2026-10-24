@@ -353,6 +353,7 @@ function showPrompt(q) {
   return new Promise(resolve => {
     const p = $('#prompt'); p.innerHTML = '';
     p.append(h('div', { class: 'ptitle' }, q.titan ? h('span', { class: 'tag' }, q.titan.name) : null, q.title));
+    if (q.cardView && q.cardView.c) { try { p.append(h('div', { style: 'margin:6px 0;max-width:520px' }, q.cardView.kind === 'ai' ? aiCardView(q.cardView.c, game && game.prim) : bpCardView(q.cardView.c, game && game.prim))); } catch (e) {} }
     const opts = q.options || [];
     const btns = h('div', { class: 'pbtns' });
     const many = opts.length > 12;
