@@ -109,7 +109,7 @@ export function installMidas(Game, { TitanDied, BattleOver }) {
     },
     async getFree(t) {
       const sk = this.skill(t, 'Endurance') >= this.skill(t, 'Fury') ? 'Endurance' : 'Fury';
-      if (this.skillTest(t, sk, 9)) await this.unimpale(t, 'Get Free!'); else this.say(`${t.name}: Get Free! 실패`, 'bad');
+      if ((await this.skillTest(t, sk, 9))) await this.unimpale(t, 'Get Free!'); else this.say(`${t.name}: Get Free! 실패`, 'bad');
     },
     async impaledEndTurn(t) {
       if (!t.alive || !t._startImpaled) return; t._startImpaled = false; this.say(`${t.name}: 턴 시작부터 Impaled — Midas 2, Danger X+5, Trauma Draw`, 'bad');
