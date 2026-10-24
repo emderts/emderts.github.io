@@ -1026,9 +1026,9 @@ export class Game {
     if (this.prim.traits['Fleet of Hands']) { x += 1; this.say(`Fleet of Hands: Pushback +1`); } x = await this.reduceSuffered(t, 'Pushbacks', x); if (x <= 0) return;
     if (x > 0 && this.ab(t, 'Stubborn')) { const ok = await this.ask({ type: 'yn', titan: t, title: `Stubborn: Pushback ${x} → ${x - 1}?`, options: [{ label: '줄인다', value: true }, { label: '그대로', value: false }] }); if (ok) x--; if (x <= 0) return; }
     if (this.mn(t, 'Imprisonment', 2)) { const ok = await this.ask({ type: 'yn', titan: t, title: `Imprisonment: Pushback ${x} → ${x - 1}로 줄일까요?`, options: [{ label: '줄인다', value: true }, { label: '그대로', value: false }] }); if (ok) x--; if (x <= 0) return; }
-    this.say(`${this.prim.name}: ${t.name}에게 Pushback ${x}`, 'bad'); if (t.onStone) { const c = t.onStone; this.dismountStone(t, null); await this.weightyFx(t, c); } else await this.weightyFx(t); if (!t.alive) return; this.facePrim(t.pos);
+    this.say(`${this.prim.name}: ${t.name}에게 Pushback ${x}`, 'bad'); if (t.onStone) { const c = t.onStone; this.dismountStone(t, null); await this.weightyFx(t, c); } else await this.weightyFx(t); if (!t.alive) return; this.facePrim(t.pos); let apPath = null, apI = 0;
     for (let i = 0; i < x; i++) {
-      if (!this.isAdj(t)) { const path = this.primPathToward(t.pos, 1); if (!path.length) break; await this.primStep(path[0], [t]); continue; }
+      if (!this.isAdj(t)) { if (!apPath || apI >= apPath.length) { apPath = await this.choosePrimPath(t.pos, x - i, [t]); apI = 0; } const st = apPath[apI++]; if (!st) break; await this.primStep(st, [t]); continue; }
       const cells = this.primCells(); const near = cells.reduce((a, b) => Board.dist(t.pos, b) < Board.dist(t.pos, a) ? b : a);
       const dir = t.pos.c > near.c ? 'E' : t.pos.c < near.c ? 'W' : t.pos.r > near.r ? 'N' : 'S'; const [dx, dy] = DIRS[dir];
       const n = { c: t.pos.c + dx, r: t.pos.r + dy };
