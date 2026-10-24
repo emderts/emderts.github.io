@@ -418,7 +418,7 @@ function renderBoard() {
 const TERRAIN_KW = {
   Obstacle: '타이탄은 통과할 수 없음. Knockback/Pushback으로 부딪히면 Crash.',
   Obscuring: '시야(LoS)를 막음. 단, 이 타일 위에 서 있는 대상으로의 시야는 막지 않음.',
-  Destructible: 'Primordial이 올라서거나 타이탄이 강제로 밀려 들어가면 파괴됨. (Knockback으로 지나가기만 하면 무시)',
+  Destructible: 'Primordial이 올라서면 파괴됨. 타이탄이 Knockback 등으로 Obstacle인 Destructible 지형에 부딪히면(Crash) 파괴. Obstacle이 아닌 지형은 타이탄이 밀려 들어가도 그대로.',
   Indestructible: '어떤 방식으로도 파괴되지 않음. 그 위에 다른 지형을 놓을 수 없음.',
   Cover: '이 타일 위의 타이탄은 Evasion +1.',
   Chasm: '자발적으로 지나갈 수 없음. 이 칸에서 이동이 끝나거나, Pushback/Pull로 지나가거나, 밑에 놓이면 사망. (Knockback으로 지나가기만 하면 생존)',

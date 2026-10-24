@@ -186,7 +186,7 @@ export class Game {
     const all = this.godformChoices(); if (!t.alive) return false;
     let def, theft = false;
     if (t.godform) { // already awakened: Gradual Awakening (Exalted) or Go Beyond (already Exalted)
-      if (t.godform.def.exalted || !all.some(g => g.exalted)) { t.godform.beyond = true; t.godform.trespass = t.godform.def.trespass; this.say(`${t.name}: Go Beyond — Trespass 회복, Godform Power die 1단계 상승`, 'good'); this.notify(); if (inline) { await this.awakenBonus(t); return true; } this.pendingBonus = { titan: t, awaken: true }; throw new ChainBreak('Awakening'); }
+      if (t.godform.def.exalted || !all.some(g => g.exalted)) { if (t.alive && t.pos && !t.offBoard && !t.onVP && !t.stair && this.primContains(t.pos)) await this.displace(t); t.godform.beyond = true; t.godform.trespass = t.godform.def.trespass; this.say(`${t.name}: Go Beyond — Trespass 회복, Godform Power die 1단계 상승`, 'good'); this.notify(); if (inline) { await this.awakenBonus(t); return true; } this.pendingBonus = { titan: t, awaken: true }; throw new ChainBreak('Awakening'); }
       const ex = all.filter(g => g.exalted); def = ex.length === 1 ? ex[0] : await this.ask({ type: 'choice', titan: t, title: '⚡ Gradual Awakening — Exalted Godform 선택', options: ex.map(g => ({ label: `${g.name}: ${Object.keys(g.abilities).join(' / ')}`, value: g })) });
       this.say(`🌟 ${t.name}: Gradual Awakening — ${t.godform.def.name} → ${def.name} (Exalted)`, 'good');
     } else {
@@ -209,6 +209,7 @@ export class Game {
     if (def.name === 'Athena') { t.godform.reveal = await this.ask({ type: 'choice', titan: t, title: 'Poisoned Wisdom: 맨 위 카드를 항상 공개할 덱', options: [{ label: 'AI 덱', value: 'ai' }, { label: 'BP 덱', value: 'bp' }] }); const top = this[t.godform.reveal].peek(); this.say(`Poisoned Wisdom: ${t.godform.reveal.toUpperCase()} 덱 맨 위 공개 — ${top ? top.name : '(비어 있음)'}`); if (t.godform.reveal === 'bp' && top) await this.quantumEye(t, top); }
     if (def.name === 'Dionysus' && this.dionysusRoll) await this.dionysusRoll(t);
     if (t.knockdown) { const ok = await this.ask({ type: 'yn', titan: t, title: '각성: 일어설까요?', options: [{ label: '일어선다', value: true }, { label: '그대로', value: false }] }); if (ok) this.standUp(t); }
+    if (t.alive && t.pos && !t.offBoard && !t.onVP && !t.stair && this.primContains(t.pos)) { this.say(`${t.name}: Primordial 아래에서 각성 — Displace`); await this.displace(t); }
     this.notify();
     if (inline) { await this.awakenBonus(t); return true; }
     this.pendingBonus = { titan: t, awaken: true }; throw new ChainBreak('Awakening');
@@ -635,7 +636,7 @@ export class Game {
     const virtual = t.danger + n; t.danger = Math.min(9, virtual);
     for (const g of t.gear) { if (g.discarded || g._dMidas || !g.card.danger) continue; const k = Object.keys(g.card.danger).find(k => g.card.danger[k] === 'Gain 1 Midas token.'); if (k && t.danger >= parseInt(k)) { g._dMidas = true; this.say(`${g.card.name}: Danger ${k} — Midas +1`); await this.gainMidas(t, 1); } }
     for (const g of t.gear) { if (g.discarded || g._dCharge || !g.card.danger) continue; const k = Object.keys(g.card.danger).find(k => g.card.danger[k] === 'Gain 1 charge token.'); if (k && t.danger >= parseInt(k)) { g._dCharge = true; g.charges = (g.charges || 0) + 1; this.say(`${g.card.name}: Danger ${k} — charge +1 (${g.charges})`); } }
-    for (const g of t.gear) { if (g.discarded) continue; const tx = this.gearText(g, t); if (/When Danger is dealt to you, place 1 Opening or 1 Break token/.test(tx)) { const k = /Place 2 tokens instead/.test(tx) ? 2 : 1; const which = await this.ask({ type: 'choice', titan: t, title: `${g.card.name}: Kratos Pool에 토큰 ${k}개`, options: [{ label: `Opening ${k}`, value: 'opening' }, { label: `Break ${k}`, value: 'break' }] }); this.kratosPool[which] += k; this.say(`${g.card.name}: Kratos Pool ${which} +${k}`); } }
+    for (const g of t.gear) { if (g.discarded) continue; const tx = this.gearText(g, t); if (/When Danger is dealt to you, place 1 Opening or 1 Break token/.test(tx)) { if (!fromAttack) continue; if (t.conditions.includes('Hatred') || t.conditions.includes('Frenzy')) { this.say(`${t.name}: ${t.conditions.includes('Frenzy') ? 'Frenzy' : 'Hatred'} — ${g.card.name}로 Kratos Pool에 토큰을 놓을 수 없음`); continue; } const k = /Place 2 tokens instead/.test(tx) ? 2 : 1; const which = await this.ask({ type: 'choice', titan: t, title: `${g.card.name}: Kratos Pool에 토큰 ${k}개`, options: [{ label: `Opening ${k}`, value: 'opening' }, { label: `Break ${k}`, value: 'break' }] }); this.kratosPool[which] += k; this.say(`${g.card.name}: Kratos Pool ${which} +${k}`); } }
     this.say(`${t.name}: Danger +${n} → ${t.danger}${virtual > 9 ? ` (가상 ${virtual})` : ''}${source ? ' (' + source + ')' : ''}`, 'dmg');
     if (t._cataMove && t.alive) { const k = t._cataMove; t._cataMove = 0; await this.moveAnchor(t, k, 'Siren Cataphract'); }
     if (!skipTrauma && (fromAttack || virtual > 9)) {
@@ -996,7 +997,6 @@ export class Game {
       if (ter && ter.obstacle && !(elevKB && !ter.cloud)) { if (ter.type === 'Argo Hull' && this.dhHullDamage) this.dhHullDamage(`${t.name}이(가) 밀려 부딪힘`); if (ter.destructible) { this.board.removeTerrainId(ter.id); t.pos = n; this.say(`${ter.type} 파괴`); await this.crash(t); if (ter.iceberg && t.alive) { this.say(`${t.name}: Black Ice — Ambrosia +1`, 'bad'); await this.gainAmbrosia(t, 1); } return; } else { await this.crash(t); return; } }
       { const ts = await this.tetherStep(t, n); if (ts === 'fell') return; if (ts === 'stop') return; }
       const other = this.titanAt(n.c, n.r); t.pos = n;
-      if (ter && ter.destructible && !ter.obstacle) { this.board.removeTerrainId(ter.id); this.say(`${ter.type} 파괴 (타이탄이 밀려 들어감)`); }
       if (other && i === x - 1) await this.displace(other);
       if (i === x - 1 && this.board.isChasm(n.c, n.r)) { if (this.useLifeline(t) || await this.skyLifeline(t, 'Chasm에 떨어짐')) { t._lifeline = true; await this.displace(t); return; } this.say(`${t.name}: Chasm에 떨어져 사망`, 'bad'); return this.kill(t); }
     }

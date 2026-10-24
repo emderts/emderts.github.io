@@ -11,7 +11,7 @@ const mk = (pid, gears, lv = 3) => { const g = new Game(data, { seed: 4 }); g.as
   await g.startOfBattle(); ok(A.ambrosia === 1 && B.ambrosia === 1 && B.rage === 1 && D.ambrosia === 2, 'start of battle ambrosia/rage');
   ok(B.conditions.includes('Berserk') && C.conditions.includes('Hatred'), 'Berserk / Hatred at start');
   ok(g.precisionMods(D) >= 1, 'Necrotic +1 Precision');
-  A.danger = 5; A.fate = 0; g.ask = async q => q.options ? q.options[0].value : null; const k0 = g.kratosPool.opening; await g.gainDanger(A, 3, { source: 'test' }); ok(A.danger === 7 && g.kratosPool.opening === k0 + 2, `Soak (−1) + Jaws 2 tokens: D${A.danger} O${g.kratosPool.opening}`);
+  A.danger = 5; A.fate = 0; g.ask = async q => q.options ? q.options[0].value : null; const k0 = g.kratosPool.opening; await g.gainDanger(A, 3, { source: 'test', fromAttack: true, noArmor: true, skipTrauma: true }); ok(A.danger === 7 && g.kratosPool.opening === k0 + 2, `Soak (−1) + Jaws 2 tokens: D${A.danger} O${g.kratosPool.opening}`);
   D.ambrosia = 3; ok(/Transform/.test(g.gearText(D.gear[0], D)), 'Necrotic anyGate amb 3+ → Transform text');
   ok(g.nonWeaponKW(B, B.gear[1], 'Fire') === 1, 'Cowl Fire 1 counts');
 }
