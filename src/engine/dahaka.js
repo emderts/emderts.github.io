@@ -279,11 +279,11 @@ export function installDahaka(Game, { TitanDied, BattleOver, ChainBreak }) {
     dhWipePrecision(why) { for (const x of this.titans) if ((x.tokens.precision || 0) > 0) x.tokens.precision = 0; this.say(`${why}: 카드를 버리고 게임 안의 모든 +Precision 토큰 제거`, 'bad'); this.prim.status = null; this.notify(); },
     dhActions(t) {
       const out = []; if (t.offBoard) return out; const S = this.prim.status;
-      if (S && S.holder === t) for (const x of this.dhStatusEligible(t).filter(x => !x.onVP && !t.onVP && Board.dist(x.pos, t.pos) === 1)) {
+      if (S && S.holder === t) for (const x of this.dhStatusEligible(t).filter(x => this.tDist(t, x) === 1)) {
         if (S.side === 'FH') out.push({ label: `Fearful Hospitality를 ${x.name}에게 넘기기 (자유 행동, 나는 영구 +Precision 토큰)`, noFate: true, value: async () => { S.holder = x; t.tokens.precision += 1; this.say(`${t.name} → ${x.name}: Fearful Hospitality 전달 — ${t.name} +Precision 토큰`, 'good'); this.notify(); } });
         else out.push({ label: `Outstaying Your Welcome를 ${x.name}에게 넘기기 (자유 행동, 뒤집어 Fearful Hospitality로)`, noFate: true, value: async () => { S.holder = x; S.side = 'FH'; this.say(`${t.name} → ${x.name}: Outstaying Your Welcome 전달 — 뒤집어 Fearful Hospitality`, 'good'); this.notify(); } });
       }
-      const T = this.prim.trojan; if (T && T.holder === t) for (const x of this.dhIreEligible(t).filter(x => !x.onVP && !t.onVP && Board.dist(x.pos, t.pos) === 1)) {
+      const T = this.prim.trojan; if (T && T.holder === t) for (const x of this.dhIreEligible(t).filter(x => this.tDist(t, x) === 1)) {
         if (T.side === 'TI') out.push({ label: `Trojan Ire를 ${x.name}에게 넘기기 (자유 행동, 나는 The Oar 카드)`, noFate: true, value: async () => { T.holder = x; this.say(`${t.name} → ${x.name}: Trojan Ire 전달`, 'good'); await this.dhGainOar(t); this.notify(); } });
         else out.push({ label: `Lotus Eaters Curse를 ${x.name}에게 넘기기 (자유 행동, 뒤집어 Trojan Ire로 · 나는 Winnowed)`, noFate: true, value: async () => { T.holder = x; T.side = 'TI'; t.dhOar = 'winnowed'; this.say(`${t.name} → ${x.name}: Lotus Eaters Curse 전달 — 뒤집어 Trojan Ire, ${t.name}은(는) Winnowed (Mnemos 사용 불가)`, 'good'); this.notify(); } });
       }
@@ -325,9 +325,9 @@ export function installDahaka(Game, { TitanDied, BattleOver, ChainBreak }) {
     },
     async dhOnDeath(t) {
       const S = this.prim.status;
-      if (S && S.holder === t) { const live = this.liveTitans(); if (live.length) { const near = live.reduce((a, b) => Board.dist(b.pos, t.pos) < Board.dist(a.pos, t.pos) ? b : a); S.holder = near; this.say(`${S.side === 'FH' ? 'Fearful Hospitality' : 'Outstaying Your Welcome'}: ${t.name} 사망 — 가장 가까운 ${near.name}에게`, 'sys'); } else this.prim.status = null; }
+      if (S && S.holder === t) { const live = this.liveTitans(); if (live.length) { const near = live.reduce((a, b) => this.tDist(t, b) < this.tDist(t, a) ? b : a); S.holder = near; this.say(`${S.side === 'FH' ? 'Fearful Hospitality' : 'Outstaying Your Welcome'}: ${t.name} 사망 — 가장 가까운 ${near.name}에게`, 'sys'); } else this.prim.status = null; }
       const T = this.prim.trojan;
-      if (T && T.holder === t) { const live = this.liveTitans(); if (live.length) { const near = live.reduce((a, b) => Board.dist(b.pos, t.pos) < Board.dist(a.pos, t.pos) ? b : a); T.holder = near; this.say(`${T.side === 'TI' ? 'Trojan Ire' : 'Lotus Eaters Curse'}: ${t.name} 사망 — 가장 가까운 ${near.name}에게`, 'sys'); } else this.prim.trojan = null; }
+      if (T && T.holder === t) { const live = this.liveTitans(); if (live.length) { const near = live.reduce((a, b) => this.tDist(t, b) < this.tDist(t, a) ? b : a); T.holder = near; this.say(`${T.side === 'TI' ? 'Trojan Ire' : 'Lotus Eaters Curse'}: ${t.name} 사망 — 가장 가까운 ${near.name}에게`, 'sys'); } else this.prim.trojan = null; }
     },
   });
 }

@@ -14,3 +14,7 @@ const mk = (pid, gears, lv = 3) => { const g = new Game(data, { seed: 4 }); g.as
   g.round = 2; ok(!!find(), 'offered again next round');
 }
 { const g = mk('chimera', [['Analyticos Module'], ['Red Polis'], ['The End'], ['Umbral Virus']]); const [A] = g.titans; const G = A.gear.find(q => q.card.name === 'Analyticos Module'); const t0 = G.card.text; G.card.text = 'Ψ⟳ Gain +2 Speed for your next Move. Ψ⟳ Place 1 Break or 1 Opening in the Kratos Pool.'; const k1 = g.abKey(A, 'Analyticos Module: 다음 이동 Speed +2 (Fate+1, 소진)'), k2 = g.abKey(A, 'Analyticos Module: Kratos Pool에 Break 1 (Fate+1, 소진)'); ok(k1 && k2 && k1 !== k2, 'multi-ability card: separate keys'); G.card.text = t0; }
+{ const g = mk('chimera', [['Red Polis'], ['Red Polis'], ['The End'], ['Umbral Virus']]); const [A, B, C] = g.titans; const pc = g.primCells(); const p0 = pc[0];
+  const adjCell = [[1,0],[-1,0],[0,1],[0,-1]].map(([dx,dy]) => ({ c: p0.c + dx, r: p0.r + dy })).find(q => g.board.inBounds(q.c, q.r) && !pc.some(z => z.c === q.c && z.r === q.r));
+  A.onVP = true; B.pos = adjCell; C.pos = { c: adjCell.c + (adjCell.c - p0.c) * 3, r: adjCell.r + (adjCell.r - p0.r) * 3 };
+  ok(g.tDist(A, B) === 1, 'VP titan adjacent to titan adjacent to Primordial'); ok(g.tDist(B, A) > 1, 'ground titan NOT adjacent to VP titan'); ok(g.tDist(A, C) > 1, 'VP titan not adjacent to far titan'); }

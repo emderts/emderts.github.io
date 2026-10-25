@@ -14,7 +14,7 @@ export function installC5Titans(Game, { TitanDied, BattleOver }) {
     genGain(t, n, why) { const a = this.genAb(t); if (!a || !t.alive || n <= 0) return; t.genTok = (t.genTok || 0) + n; this.say(`${t.name}: ${a} — Generic 토큰 +${n} (${why}) → ${t.genTok}`, 'good'); this.notify(); },
     async genSpend(t, n, what) { const a = this.genAb(t); if (!a || !t.alive || (t.genTok || 0) < n) return false; if (!(await yn(this, t, `${a}: Generic 토큰 ${n}개 버리고 ${what}? (보유 ${t.genTok})`))) return false; t.genTok -= n; this.say(`${t.name}: ${a} — 토큰 ${n}개 버림 → ${what} (남은 ${t.genTok})`, 'good'); this.notify(); return true; },
     // ---------- Wish Shield ----------
-    wishShieldOn(t) { if (!t || !t.alive) return false; if (this.ab(t, 'Wish Shield')) return true; if (t.offBoard || t.onVP || t.stair || !t.pos) return false; return this.liveTitans().some(x => x !== t && this.ab(x, 'Wish Shield') && !x.offBoard && !x.onVP && !x.stair && x.pos && Board.dist(x.pos, t.pos) === 1); },
+    wishShieldOn(t) { if (!t || !t.alive) return false; if (this.ab(t, 'Wish Shield')) return true; if (t.offBoard || t.onVP || t.stair || !t.pos) return false; return this.liveTitans().some(x => x !== t && this.ab(x, 'Wish Shield') && !x.offBoard && !x.stair && this.tDist(x, t) === 1); },
     wishShieldKind(t, card, laser = false) { return (laser || laserCard(card)) ? 'Laser' : (this._wishNoArmor === t ? 'Wish' : null); },
     c5WishShieldPer(t, card, per) { const k = this.wishShieldKind(t, card); if (!k || per <= 1 || !this.wishShieldOn(t)) return per; this.say(`${t.name}: Wish Shield — ${k} Attack hit당 Danger −1 (${per} → ${per - 1})`, 'good'); return per - 1; },
     // ---------- One Small Step ----------
@@ -53,7 +53,7 @@ export function installC5Titans(Game, { TitanDied, BattleOver }) {
       const items = () => [...t.conditions.filter(c => !NOT.has(c)).map(c => ({ label: `Condition 「${c}」`, value: { k: 'cond', c } })), ...(t.despair ? [{ label: `Despair 1 (보유 ${t.despair})`, value: { k: 'despair' } }] : []), ...(t.ambrosia ? [{ label: `Ambrosia 1 (보유 ${t.ambrosia})`, value: { k: 'ambrosia' } }] : [])];
       if (!items().length) return false; let used = false;
       for (let i = 0; i < x && t.alive; i++) {
-        const opts = items(); if (!opts.length) break; const dmin = Math.min(...others.filter(o => o.alive).map(o => Board.dist(o.pos, t.pos))); const near = others.filter(o => o.alive && Board.dist(o.pos, t.pos) === dmin); if (!near.length) break;
+        const opts = items(); if (!opts.length) break; const dmin = Math.min(...others.filter(o => o.alive).map(o => this.tDist(t, o))); const near = others.filter(o => o.alive && this.tDist(t, o) === dmin); if (!near.length) break;
         const v = await this.ask({ type: 'choice', titan: t, title: `Kratos: Unburden ${x} (${win === 1 ? '1st' : '2nd'} 윈도우, ${i + 1}/${x}) — 가장 가까운 타이탄(${near.map(o => o.name).join(', ')})에게 줄 토큰`, options: [{ label: '안 함', value: null }, ...opts] }); if (!v) break;
         const o = near.length === 1 ? near[0] : await this.ask({ type: 'choice', titan: t, title: 'Unburden: 받을 타이탄', options: near.map(y => ({ label: y.name, value: y })) }); used = true;
         if (v.k === 'despair') { t.despair--; this.say(`Unburden: ${t.name}의 Despair 1개 → ${o.name}`); await solo(this, () => this.gainDespair(o, 1, true)); }
