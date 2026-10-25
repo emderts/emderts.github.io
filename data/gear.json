@@ -77,7 +77,7 @@
   "Commit (X)": "To attack with this weapon, pay the cost in parentheses (Midas: gain 1 Midas token; charge: spend 1 Charge; Fire: discard 1 Fire token from the Kratos Pool).",
   "Double Commit": "To attack with this weapon, gain +2 Fate.",
   "Cryptex Loathing": "Treat your Cryptex card as blank.",
-  "Cursed": "During your Attack, you cannot re-roll Power dice.",
+  "Cursed": "During your Attack, you cannot re-roll ◆ (Attack dice).",
   "Defy X": "While performing a Skill test caused by a Judgement, treat X successful hits as evaded.",
   "Float": "Gain the Float Condition card, Float (up) side up, and place your miniature on its side.",
   "Light X": "No effect in Cycle IV.",
