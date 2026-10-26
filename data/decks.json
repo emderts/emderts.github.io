@@ -48,11 +48,12 @@
    "addWhen": "Danger would be 18+"
   },
   {
-   "code": "AM0359",
+   "code": "AM0360",
    "name": "Your Death Transcends Reality",
-   "text": "See the Your Death Transcends Reality Special Event in the Cycle I Storybook.",
-   "result": "special",
-   "addWhen": "Danger would be 21+"
+   "text": "Awaken into the Hades Godform, if it is available (Obol awakening). Otherwise, you die.",
+   "result": "hades",
+   "addWhen": "Danger would be 21+",
+   "flavor": "And I to my pledged word am true. I shall not fail that rendezvous."
   }
  ],
  "moiros": [
@@ -1231,6 +1232,22 @@
     "trespassCost": 1
    },
    "exalted": true
+  },
+  {
+   "code": "AQ0627",
+   "name": "Hades",
+   "powerDie": "b",
+   "speed": 0,
+   "trespass": 2,
+   "cycle": 1,
+   "secretCard": "Godform Secret Card 32",
+   "abilities": {
+    "All Things End": "When you deal a Wound, you may lose -1 Trespass to place 1 negative AT token in the Kratos Pool.",
+    "Inverted Death": "When you would gain any Danger, you lose the same amount of Danger instead (if it was dealt, you still resolve a Trauma Draw). Once you reach 0 Danger, you begin to gain Danger as normal (including the remaining Danger from the effect that lowered your Danger value to 0). When it happens, place a generic token on this ability as a reminder."
+   },
+   "atkKW": {
+    "Break": 1
+   }
   }
  ]
 }

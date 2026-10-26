@@ -30,8 +30,8 @@ export function installC4Meta(Game, { TitanDied, BattleOver, ChainBreak }) {
     }
     if ((this.prim.def.cycle || 0) >= 4) {
       for (const a of this.argo || []) if (a.card.name === 'Trireme Ballista Fire') { a.charges = 0; this.say('Cycle IV: 이전 Cycle의 Trireme Argo Ability 「Trireme Ballista Fire」 비활성', 'sys'); }
-      if (this.argoCard('Cloud Support Fleet')) { this.trireme = { pos: null, spent: false, movedRound: -1 }; this.say('Cloud Support Fleet: Cirrotrireme 토큰 준비 (Argo Ability를 써서 보드에 배치)', 'sys'); }
     }
+    if (this.argoCard('Cloud Support Fleet') && !this.trireme) { this.trireme = { pos: null, spent: false, movedRound: -1 }; this.say('Cloud Support Fleet: Cirrotrireme 토큰 준비 (Argo Ability를 써서 보드에 배치)', 'sys'); }
     return o.call(this);
   });
   // ---------- Midas gain: Beggar L2 / Cursed ----------
@@ -189,7 +189,7 @@ export function installC4Meta(Game, { TitanDied, BattleOver, ChainBreak }) {
     return o.call(this, name, t);
   });
   wrap('argoActions', function (o, t, reactionOnly = false) {
-    const out = o.call(this, t, reactionOnly).filter(x => !/Cloud Support Fleet/.test(x.label) || (this.trireme && this.trireme.movedRound !== this.round));
+    const out = o.call(this, t, reactionOnly).filter(x => !/Cloud Support Fleet/.test(x.label) || !this.trireme || this.trireme.movedRound !== this.round);
     const T = this.trireme; if (!reactionOnly && T && T.pos && !T.spent && t && !t.offBoard && !t.onVP && !t.stair && Board.dist(t.pos, T.pos) <= 1) out.push({ label: `[Argo] Cirrotrireme Rearm: 토큰을 뒤집고 Armory 무기 1개 장착`, noFate: true, value: async () => { T.spent = true; this.say('Cirrotrireme: Rearm (토큰 소모)', 'sys'); await this.quantumArmory(t); } });
     return out;
   });

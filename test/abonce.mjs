@@ -18,3 +18,23 @@ const mk = (pid, gears, lv = 3) => { const g = new Game(data, { seed: 4 }); g.as
   const adjCell = [[1,0],[-1,0],[0,1],[0,-1]].map(([dx,dy]) => ({ c: p0.c + dx, r: p0.r + dy })).find(q => g.board.inBounds(q.c, q.r) && !pc.some(z => z.c === q.c && z.r === q.r));
   A.onVP = true; B.pos = adjCell; C.pos = { c: adjCell.c + (adjCell.c - p0.c) * 3, r: adjCell.r + (adjCell.r - p0.r) * 3 };
   ok(g.tDist(A, B) === 1, 'VP titan adjacent to titan adjacent to Primordial'); ok(g.tDist(B, A) > 1, 'ground titan NOT adjacent to VP titan'); ok(g.tDist(A, C) > 1, 'VP titan not adjacent to far titan'); }
+{ const g = mk('chimera', [['Red Polis'], ['Red Polis'], ['The End'], ['Umbral Virus']]); const [A] = g.titans; const GL = g.data.gear.cards;
+  const extra = GL.find(c => /^You have 1 additional Support slot\.?$/.test((c.text || '').trim()) || /You have 1 additional Support slot(?! for)/.test(c.text || '')); const sups = GL.filter(c => c.slot === 'support' && c !== extra && !/additional Support slot/.test(c.text || '')).slice(0, 3);
+  A.gear = A.gear.filter(x => x.card.slot !== 'support'); for (const c of [extra, ...sups]) A.gear.push({ card: c, alt: null, exhausted: false, charges: 0, attached: null });
+  const cnt = () => A.gear.filter(x => !x.discarded && x.card.slot === 'support').length; const c0 = cnt(); await g.slotOverflow(A); ok(cnt() === c0, `no overflow with extra slot (${extra && extra.name}, ${c0})`);
+  g.discardGear(A, A.gear.find(x => x.card === extra)); await g.slotOverflow(A); ok(cnt() === 2, 'overflow discarded after losing slot card (' + cnt() + ')'); }
+{ const g = new Game(data, { seed: 4 }); g.ask = async q => q.options ? q.options[0].value : null;
+  g.setup({ primordialId: 'chimera', level: 3, argo: ['Cloud Support Fleet'], titans: [0, 1, 2, 3].map(i => ({ name: 'T' + i, portrait: P[i].code, chosenSkill: 'Fury', mnemos: [], fated: [], cls: 'dreamwalker', gear: ['Red Polis'] })) });
+  await g.startOfBattle(); g.round = 1; const A = g.titans[0]; A.turn = { moved: false, attacked: false };
+  ok(g.argoActions(A).some(o => /Cloud Support Fleet/.test(o.label)), 'Cloud Support Fleet offered (non-cycle-4 primordial)'); }
+{ const g = new Game(data, { seed: 4 }); g.ask = async q => q.options ? q.options[0].value : null;
+  g.setup({ primordialId: 'chimera', level: 3, argo: [], awakening: { enabled: true, godforms: data.decks.godforms.map(x => x.name) }, titans: [0, 1, 2, 3].map(i => ({ name: 'T' + i, portrait: P[i].code, chosenSkill: 'Fury', mnemos: [], fated: [], cls: 'dreamwalker', gear: ['Red Polis'] })) });
+  await g.startOfBattle(); const A = g.titans[0];
+  ok(g.godformChoices().some(x => x.name === 'Hades'), 'Hades in normal awakening choices');
+  const card = data.decks.obol.find(o => o.code === 'AM0360'); try { await g.resolveDiedObol(A, card); } catch (e) { if (e.constructor.name !== 'ChainBreak') throw e; }
+  ok(A.alive && g.gf(A, 'Hades') && A.godform.fromObol, 'AM0360 → Hades (obol awakening)');
+  A.danger = 3; g.pendingBonus = null; await g.gainDanger(A, 2, { skipTrauma: true }); ok(A.danger === 1, 'Inverted Death: +2 → -2 (' + A.danger + ')');
+  await g.gainDanger(A, 3, { skipTrauma: true }); ok(A.danger === 2 && A.godform.hadesDone, 'reach 0 then gain remainder (' + A.danger + ')');
+  await g.gainDanger(A, 1, { skipTrauma: true }); ok(A.danger === 3, 'normal gain after token');
+  ok(g.nonWeaponKW(A, null, 'Break') >= 1, 'Hades Break 1 on attacks');
+  const B = g.titans[1]; await g.resolveDiedObol(B, card).catch(() => {}); ok(!B.alive, 'second AM0360 with Hades taken → die'); }
