@@ -27,7 +27,7 @@ const GSTAT = [
 const gStats = g => GSTAT.map(([, , f]) => f(g)).filter(Boolean);
 const gCyc = g => /(^|\. )Mnestis\./.test(g.text || '') ? 'M' : String(g.cycle || 1); // Mnestis-keyword gear is its own group
 const gCycName = c => c === 'M' ? 'Mnestis' : 'Cycle ' + (['', 'I', 'II', 'III', 'IV', 'V'][+c] || c);
-const SLOT_ICON = { hand1: '✊', hand2: '✊✊', hand3: '✊✊✊', handAll: '✱✊', armor: '🛡', support: '🎒', attachment: '📎' };
+const SLOT_ICON = { hand1: '✊', hand2: '✊✊', hand3: '✊✊✊', handAll: '✱✊', armor: '🛡', support: '🎒', attachment: '📎', tech: '🧩', godform: '🔱' };
 const DEFAULT_LOADOUT = {
   primordial: 'hekaton', level: 1,
   argo: ['Arrow Barrage', 'Pursuer Protocol'], aaLimit: 2, awakening: { enabled: true, spark: false, godforms: ['Zeus', 'Poseidon', 'Demeter', 'Hephaestus', 'Hermes', 'Ares', 'Athena', 'Artemis', 'Dionysus', 'Aphrodite', 'Helios Apollon Exalted', 'Hades'] }, cannon: { enabled: false, payload: 'Spartan Payload', unlimited: true, res: {} },
@@ -76,7 +76,7 @@ function dupErrors() {
 }
 
 // ---------------- Card detail views ----------------
-const SLOT_NAME = { hand1: '한손 무기', hand2: '양손 무기', hand3: '세손 무기', handAll: '무기 슬롯 전부', armor: '방어구', support: '서포트', attachment: '부착물' };
+const SLOT_NAME = { hand1: '한손 무기', hand2: '양손 무기', hand3: '세손 무기', handAll: '무기 슬롯 전부', armor: '방어구', support: '서포트', attachment: '부착물', tech: 'Pattern', godform: 'Godform' };
 const DIE = { r: '빨강', b: '검정', w: '흰색', m: '회색(Mortal)' };
 function gearCard(g, t = null) {
   const dangerNow = t ? t.danger : null;

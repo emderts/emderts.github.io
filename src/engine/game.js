@@ -2085,6 +2085,7 @@ export class Game {
     if (t.float === 'up') { this.say(`${t.name}: Float (UP) — 자발적 이동/공격/액션·능력 불가`, 'bad'); t.turn.moved = t.turn.attacked = true; }
     if (t.knockdown === 'falling') { this.say(`${t.name}: 넘어져 있음 — 행동 불가 (턴 끝에 standing up)`); await this.freeActionsKnockedDown(t); if (t.knockdown === 'falling') { t.knockdown = 'standing'; t.kdOwnTurn = false; return; } }
     for (;;) { while (!(t.turn.moved && t.turn.attacked)) {
+      if (t.offBoard === 'clock') { this.say(`${t.name}: Time-clocked — 보드 밖, 이번 턴 남은 행동 불가`, 'bad'); t.turn.moved = t.turn.attacked = true; break; }
       const opts = [];
       const noMove = this.hopeless(t) >= 3;
       if (t.absorbed && !t.turn.moved) { t.turn.moved = true; this.say(`${t.name}: Absorbed — 이동 불가`); }
