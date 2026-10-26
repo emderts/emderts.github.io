@@ -188,7 +188,8 @@ export function installHarpy(Game, { TitanDied, BattleOver }) {
     predatorTarget() { const b = this.liveTitans().filter(x => !x.offBoard && this.predBleeds(x) && this.primLos(x) && !this.attackedThisRound.has(x)); if (!b.length) return null; const mx = Math.max(...b.map(x => x.bleeding)); const c = b.filter(x => x.bleeding === mx); return c.find(x => x.pt) || c[0]; },
     // ---------- round / battle hooks ----------
     async harpyStartOfBattle() {
-      const order = [...this.liveTitans()].sort((a, b) => b.danger - a.danger);
+      if (!this.trait('Bloodlost') && !this.trait('Predator')) return;
+      const L0 = this.prim.level; const need = this.trait('Bloodlost') ? 4 : (L0 >= 3 ? 3 : 2); const order = []; const rest = [...this.liveTitans()]; while (rest.length && order.length < need) { const mx = Math.max(...rest.map(x => x.danger)); const tie = rest.filter(x => x.danger === mx); const pick = tie.length === 1 ? tie[0] : (await this.ask({ type: 'choice', title: `${this.trait('Bloodlost') ? 'Bloodlost' : 'Predator'} 시작 Bleeding: Danger ${mx}로 같은 타이탄이 여럿 — ${order.length + 1}번째로 받을 타이탄 선택`, options: tie.map(x => ({ label: `${x.name} (Danger ${x.danger})`, value: x })) }) || tie[0]); order.push(pick); rest.splice(rest.indexOf(pick), 1); }
       if (this.trait('Bloodlost')) { const ns = [4, 3, 2, 2]; this.say('Bloodlost: Danger 높은 순으로 Bleeding 4/3/2/2', 'ai'); for (let i = 0; i < order.length; i++) await this.solo(() => this.addCondition(order[i], 'Bleeding', { tokens: ns[i] || 2 })); }
       else if (this.trait('Predator') && order.length) { const L = this.prim.level; const ns = L >= 4 ? [3, 2, 2] : L === 3 ? [2, 2, 1] : L === 2 ? [2, 2] : [2, 1]; this.say(`Predator: Danger 높은 순으로 Bleeding ${ns.join('/')}`, 'ai'); for (let i = 0; i < Math.min(ns.length, order.length); i++) await this.solo(() => this.addCondition(order[i], 'Bleeding', { tokens: ns[i] })); }
     },
