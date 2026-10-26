@@ -59,6 +59,8 @@ const mk = (pid, gears, lv = 3) => { const g = new Game(data, { seed: 4 }); g.as
   for (const x of [C, D]) x.pos = { c: 1, r: 1 + x.id };
   A.pos = { c: maxC + 6, r: r0 }; B.pos = { c: maxC + 2, r: r0 }; const r1 = g.mainBeam(A).res; ok(r1.kind === 'titan' && r1.t === A, 'Laser: titan in path but not adjacent to target → no swap');
   B.pos = { c: maxC + 5, r: r0 }; const r2 = g.mainBeam(A).res; ok(r2.kind === 'titan' && r2.t === B, 'Laser: titan in path adjacent to target → swap'); }
-{ const g = mk('chimera', [['Red Polis'], ['Red Polis'], ['The End'], ['Umbral Virus']]); const [X, Y] = g.titans; g.board.terrain.clear(); X.pos = { c: 3, r: 3 }; Y.pos = { c: 4, r: 3 }; await g.addCondition(Y, 'Bleeding', { tokens: 2 }); g.round = 1;
-  let sawEnd = false; g.ask = async q => { if (/행동 선택/.test(q.title || '')) { X.turn.moved = X.turn.attacked = true; return 'end_x'; } if (/턴 종료 전 프리 액션/.test(q.title || '')) { sawEnd = true; const o = q.options.find(o => /Stop Bleeding Other/.test(o.label)); return o ? o.value : null; } return q.options ? q.options[0].value : null; };
-  try { await g.titanTurn(X); } catch (e) {} ok(sawEnd && !(Y.conditions.includes('Bleeding') && Y.bleeding > 0), 'Stop Bleeding Other usable after both actions'); }
+{ const g = mk('harpy', [['Red Polis'], ['Red Polis'], ['The End'], ['Umbral Virus']]); await g.startOfBattle(); const [X, Y] = g.titans; g.board.terrain.clear(); X.pos = { c: 3, r: 3 }; Y.pos = { c: 4, r: 3 }; await g.harpyBleed(Y, 2, null); X.turn = { moved: false, attacked: false, usedAbilities: new Set() }; g._actor = X; g.round = 1;
+  ok(g.freeActions(X).some(o => /Stop Bleeding Other/.test(o.label)), 'Stop Bleeding Other offered while actions remain (Harpy)'); }
+{ const g = mk('harpy', [['Red Polis'], ['Red Polis'], ['The End'], ['Umbral Virus']]); await g.startOfBattle(); const [X, Y] = g.titans; g.board.terrain.clear(); X.pos = { c: 3, r: 3 }; Y.pos = { c: 4, r: 3 }; await g.harpyBleed(Y, 2, null); g.round = 1; let labels = null;
+  g.ask = async q => { if (/행동 선택/.test(q.title || '') && !labels) { labels = q.options.map(o => o.label); return 'end'; } return q.options ? q.options[0].value : null; }; try { await g.titanTurn(X); } catch (e) {}
+  ok(labels && labels.some(l => /Stop Bleeding Other/.test(l)), 'Stop Bleeding Other in the action menu (' + (labels || []).length + ' options)'); }

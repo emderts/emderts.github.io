@@ -2138,7 +2138,7 @@ export class Game {
       this.notify();
     }
     if (!t.alive) return;
-    { if (endedTurn || t.offBoard || !t.alive) break; let fa = []; try { fa = this.freeActions(t); } catch (e) { fa = []; } if (!fa.length) break; const v = await this.ask({ type: 'choice', titan: t, title: `${t.name}: 행동을 모두 사용함 — 턴 종료 전 프리 액션`, options: [{ label: '턴 종료', value: null }, ...fa.map(x => ({ label: x.label, value: x.value }))] }); if (!v) break; await this.chainSafe(v); await this.slotOverflowAll(); await this.extraAICheck(); if (!t.alive) return; this.notify(); } }
+    { const ex = this.argoActions(t).filter(a => /\] Time (Dilation|Skip) /.test(a.label)); if (endedTurn || !ex.length || t.offBoard) break; const v = await this.ask({ type: 'choice', titan: t, title: `${t.name}: 턴 종료 전 — Argo로 추가 액션?`, options: [{ label: '턴 종료', value: null }, ...ex.map(a => ({ label: a.label, value: a.value }))] }); if (!v) break; await this.chainSafe(v); await this.extraAICheck(); if (!t.alive) return; if (t.turn.moved && t.turn.attacked) break; } }
     if (t.offBoard === 'omega' && t.alive) { this.say(`${t.name}: 턴 끝까지 Omega Terminus에 남음 — 존재에서 지워짐`, 'bad'); await this.kill(t, { erased: true }); return; }
     if (t.knockdown === 'falling') { if (t.kdOwnTurn) { t.kdOwnTurn = false; this.say(`${t.name}: 이번 턴에 넘어짐 — 다음 턴 끝에 뒤집음`); } else t.knockdown = 'standing'; }
     t.castoffBuff = false; t.tkBuff = false;
