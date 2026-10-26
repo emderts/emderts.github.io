@@ -356,7 +356,7 @@ function showPrompt(q) {
     if (q.cardView && q.cardView.c) { try { p.append(h('div', { style: 'margin:6px 0;max-width:520px' }, q.cardView.kind === 'ai' ? aiCardView(q.cardView.c, game && game.prim) : bpCardView(q.cardView.c, game && game.prim))); } catch (e) {} }
     const opts = q.options || [];
     const btns = h('div', { class: 'pbtns' });
-    const many = opts.length > 12;
+    const many = q.type === 'move' && opts.length > 12; // board-click prompts only; choice lists always show every option
     if (q.type === 'multi') {
       const sel = new Set(); const max = q.max ?? 99;
       const tb = opts.map(o => h('button', { class: 'tog', onclick: e => { if (sel.has(o.value)) sel.delete(o.value); else if (sel.size < max) sel.add(o.value); e.target.classList.toggle('on', sel.has(o.value)); cnt.textContent = `선택 ${sel.size}/${max}`; } }, o.label));
@@ -365,7 +365,7 @@ function showPrompt(q) {
       p.append(btns); return;
     }
     if (q.type === 'placement') { opts.forEach(o => { const b = h('button', { onclick: () => { ui.preview = null; resolve(o.value); } }, o.label); b.addEventListener('mouseenter', () => { ui.preview = o.preview; renderBoard(); }); b.addEventListener('mouseleave', () => { ui.preview = null; renderBoard(); }); btns.append(b); }); p.append(btns); ui.preview = opts[0]?.preview; renderBoard(); return; }
-    (many ? opts.slice(0, 1) : opts).forEach(o => btns.append(h('button', { onclick: () => resolve(o.value) }, o.label)));
+    (many ? opts.filter((o, i) => i === 0 || /⚔/.test(o.label || '')) : opts).forEach(o => btns.append(h('button', { onclick: () => resolve(o.value) }, o.label)));
     if (q.type === 'move') { btns.append(h('span', { class: 'muted small' }, ' 보드에서 하이라이트된 칸을 클릭하세요')); ui.onCell = c => resolve(c); } else ui.onCell = null;
     p.append(btns);
   });
