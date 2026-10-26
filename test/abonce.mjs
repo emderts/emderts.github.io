@@ -41,3 +41,10 @@ const mk = (pid, gears, lv = 3) => { const g = new Game(data, { seed: 4 }); g.as
 { const g = mk('chimera', [['Red Polis'], ['Red Polis'], ['The End'], ['Umbral Virus']], 7); const [A] = g.titans; const V = g.prim.vp;
   if (V && V.slots > 1) { V.created = true; V.count = 1; g.mountVP(A, 'test'); ok(V.occupants.includes(A), 'mounted multi-slot VP'); g.ask = async q => q.type === 'move' ? (q.cells.find(c => c) || null) : (q.options ? q.options[0].value : null); A.turn = { moved: false, attacked: false }; await g.chooseMove(A, 4, '이동');
     ok(!A.onVP && !V.occupants.includes(A), 'moving off multi-slot VP clears occupant'); } else ok(true, 'chimera VP single-slot (skip)'); }
+{ const g = mk('chimera', [['Red Polis', 'Pandoran Cryptex'], ['Red Polis'], ['The End'], ['Umbral Virus']]); const [A] = g.titans; await g.startOfBattle(); g.round = 1; A.fate = 0; A.turn = { moved: false, attacked: false, usedAbilities: new Set() }; g._actor = A;
+  const fs = () => g.freeActions(A).find(o => /Full Sync/.test(o.label)); ok(!!fs(), 'Pandoran Full Sync offered before attacking');
+  A.turn.attacked = true; ok(!!fs(), 'Full Sync offered after attacking'); const o = fs(); if (o) await o.value(); ok(!A.turn.attacked && A.fatigueAtEnd === 'combat', 'Full Sync resets combat action, fatigue at end'); }
+{ const g = mk('chimera', [['Red Polis'], ['Red Polis'], ['The End'], ['Umbral Virus']]); const [A, B] = g.titans; g._primRound = false; g._actor = A;
+  await g.knockdown(A, true); ok(A.knockdown === 'falling' && A.kdOwnTurn, 'knockdown in own turn flagged');
+  await g.knockdown(B, true); ok(B.knockdown === 'falling' && !B.kdOwnTurn, 'other titan knocked down during A turn not flagged'); }
+{ const g = mk('cyclonus', [['Red Polis'], ['Red Polis'], ['The End'], ['Umbral Virus']], 8); const riv = [...g.board.terrain.values()].filter(z => /River/i.test(z.type || '')).length; ok(riv >= 30, 'Cyclonus Lv8 rivers ' + riv); ok(g.titans.some(t => t.pos && t.pos.r === 6 && t.pos.c === 8), 'Cyclonus Lv8 start F8'); }
