@@ -1533,7 +1533,7 @@ export class Game {
     let rolls = Array.from({ length: dice }, (_, i) => ({ v: this.rng.d10(), crit: i === 0, rerolled: false }));
     const fmt = () => rolls.map(r => `${r.v}${r.crit ? '*' : ''}`).join(' ');
     this.say(`${t.name}: ${judge ? `JUDGEMENT (${jSkill})` : 'Evasion Roll'} ${dice}d10 (난이도 ${diff}+, 보너스 +${evBonus}) → [${fmt()}]`);
-    const urh = !judge && t.gear.some(g => !g.discarded && /The Crit Evasion die always evades/.test(this.gearText(g, t))); const isHit = r => r.v + evBonus < diff && !(r.crit && r.v === 10) && !(urh && r.crit);
+    const urh = !judge && t.gear.some(g => !g.discarded && /The Crit Evasion die always evades/.test(this.gearText(g, t))); const isHit = r => !(urh && r.crit) && r.v !== 10 && (r.v === 1 || r.v + evBonus < diff); // natural 10 always evades, natural 1 always fails
     // re-rolls: free evasion re-rolls from gear, then Fate
     let freeRR = (!judge && !this.noReroll(t) && t.godform && t.godform.def.evasionReroll) || 0; if (!judge && !this.noReroll(t)) for (const g of t.gear) if (!g.exhausted && g.card.evasionReroll) { freeRR = Math.max(freeRR, g.card.evasionReroll === 'X' ? (this.hasFated(t, 'Oblivious') ? 0 : (this.kratosPool.opening || 0)) : g.card.evasionReroll === 'XB' ? (this.kratosPool.break || 0) : (/(\d) Evasion re-rolls instead/.test(this.gearText(g, t)) ? +/(\d) Evasion re-rolls instead/.exec(this.gearText(g, t))[1] : g.card.evasionReroll)); }
     { const visor = !judge && t.gear.some(g => !g.discarded && /Treat all Primordial Attacks performed against you as Doomed/.test(g.card.text || '')); const maxFate = (this.doomLocked(t) || this.noReroll(t) || this._doomed || visor || this.hasFated(t, 'Apathy')) ? 0 : this.fr(t); const nHit = rolls.filter(isHit).length;
@@ -2480,7 +2480,7 @@ export class Game {
     if (hunter) this.say('Hunter of Mortals: 주사위 1개 자동 hit');
     if (/One Attack die \(non-Crit one\) always hits/.test(txt) && rolls.length > 1) { const i = rolls.findIndex(r => !r.crit && !r.auto); if (i >= 0) { rolls[i] = { ...rolls[i], auto: true }; this.say(`${g.card.name}: 비-Crit 주사위 1개 자동 hit`); } }
     if (this.terror(t)) { const p0 = (g.card.prec || 0) + (this.hasFated(t, 'Oblivious') ? 0 : this.kpUse(this.kratosPool.opening)) - this.kratosPool.negPrecision; if (p0 < prec) { this.say(`${t.name}: ${t.conditions.includes('Holy Terror') ? 'Holy Terror' : 'Terror'} — Precision 보너스 무시 (${prec} → ${p0})`, 'bad'); prec = p0; } }
-    const hit3 = g.card.precX === 'hit3'; const isHit = r => r.auto || (r.crit && r.v === 10) || (r.v !== 1 && (hit3 ? r.v >= 3 : r.v + prec >= toHit)) && !(r.crit && r.v === 1);
+    const hit3 = g.card.precX === 'hit3'; const isHit = r => r.auto || r.v === 10 || (r.v !== 1 && (hit3 ? r.v >= 3 : r.v + prec >= toHit)); // natural 10 always hits, natural 1 always misses
     const fmt = () => rolls.map(r => r.auto ? 'A' : `${r.v}${r.crit ? '*' : ''}`).join(' ');
     this.say(`Attack Roll ${rolls.length}d10 +${prec} vs ${toHit}+ → [${fmt()}]`);
     const cursedW = kw(txt, 'Cursed') !== null; if (cursedW) this.say(`${g.card.name}: Cursed — 공격 주사위(◆) 재굴림 불가`, 'bad');
