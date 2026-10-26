@@ -2085,6 +2085,7 @@ export class Game {
     if (this.paralyzed(t)) { this.say(`${t.name}: ${t.conditions.includes('Egolock') ? 'Egolock' : 'Paralyzed'} — 이동/공격/액션 불가`, 'bad'); t.turn.moved = t.turn.attacked = true; }
     if (t.float === 'up') { this.say(`${t.name}: Float (UP) — 자발적 이동/공격/액션·능력 불가`, 'bad'); t.turn.moved = t.turn.attacked = true; }
     if (t.knockdown === 'falling') { this.say(`${t.name}: 넘어져 있음 — 행동 불가 (턴 끝에 standing up)`); await this.freeActionsKnockedDown(t); if (t.knockdown === 'falling') { t.knockdown = 'standing'; t.kdOwnTurn = false; return; } }
+    let endedTurn = false;
     for (;;) { while (!(t.turn.moved && t.turn.attacked)) {
       if (t.offBoard === 'clock') { this.say(`${t.name}: Time-clocked — 보드 밖, 이번 턴 남은 행동 불가`, 'bad'); t.turn.moved = t.turn.attacked = true; break; }
       const opts = [];
@@ -2110,7 +2111,7 @@ export class Game {
       const whyNo = (!t.turn.attacked && opts.some(o => o.value === 'attack' && o.disabled)) ? this.weaponWhy(t) : ''; const a = await this.ask({ type: 'choice', titan: t, title: `${t.name}: 행동 선택${whyNo ? ` (공격 불가 — ${whyNo})` : ''}`, options: opts.filter(o => !o.disabled) });
       if (a === 'undoMove') { const sn = this._moveUndo.snap; this._moveUndo = null; this.restoreState(sn); t.turn.undid = true; this.say(`${t.name}: 이동 되돌림 → ${cellLabel(t.pos)}`, 'sys'); this.notify(); continue; }
       const undoSnap = (a === 'move' || a === 'run') && !t.turn.undid ? Object.assign(this.snapState(), { n0: this.rng.n, d0: this.rng.draws || 0, ai0: this._aiSeq || 0, from: { ...t.pos } }) : null; this._moveUndo = null;
-      if (a === 'end') break;
+      if (a === 'end') { endedTurn = true; break; }
       if (a === 'ascent') { await this.ascentAction(t); this.notify(); continue; }
       if (a === 'getFree') { t.turn.attacked = true; await this.getFree(t); if (!t.impaled) t._movedThisTurn = true; this.notify(); continue; }
       if (a === 'fatigueM') { t.turn.moved = true; t.fatigue = false; this.say(`${t.name}: 이동 액션으로 Movement Fatigue 토큰 제거`, 'good'); this.notify(); continue; }
@@ -2137,7 +2138,7 @@ export class Game {
       this.notify();
     }
     if (!t.alive) return;
-    { const ex = this.argoActions(t).filter(a => /\] Time (Dilation|Skip) /.test(a.label)); if (!ex.length || t.offBoard) break; const v = await this.ask({ type: 'choice', titan: t, title: `${t.name}: 턴 종료 전 — Argo로 추가 액션?`, options: [{ label: '턴 종료', value: null }, ...ex.map(a => ({ label: a.label, value: a.value }))] }); if (!v) break; await this.chainSafe(v); await this.extraAICheck(); if (!t.alive) return; if (t.turn.moved && t.turn.attacked) break; } }
+    { if (endedTurn || t.offBoard || !t.alive) break; let fa = []; try { fa = this.freeActions(t); } catch (e) { fa = []; } if (!fa.length) break; const v = await this.ask({ type: 'choice', titan: t, title: `${t.name}: 행동을 모두 사용함 — 턴 종료 전 프리 액션`, options: [{ label: '턴 종료', value: null }, ...fa.map(x => ({ label: x.label, value: x.value }))] }); if (!v) break; await this.chainSafe(v); await this.slotOverflowAll(); await this.extraAICheck(); if (!t.alive) return; this.notify(); } }
     if (t.offBoard === 'omega' && t.alive) { this.say(`${t.name}: 턴 끝까지 Omega Terminus에 남음 — 존재에서 지워짐`, 'bad'); await this.kill(t, { erased: true }); return; }
     if (t.knockdown === 'falling') { if (t.kdOwnTurn) { t.kdOwnTurn = false; this.say(`${t.name}: 이번 턴에 넘어짐 — 다음 턴 끝에 뒤집음`); } else t.knockdown = 'standing'; }
     t.castoffBuff = false; t.tkBuff = false;
