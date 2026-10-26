@@ -1443,8 +1443,9 @@ export class Game {
       if (this.canCannonEmergency() && !used.has('cannonEm')) opts.push({ label: `[Grand Cannon] Emergency Priming (charge ${this.cannon.charges} → ${this.cannon.charges - 1}): 즉시 장전 굴림${this.cannon.primed ? ` (현재 ${this.cannon.primed.name})` : ''}`, value: { cannonEm: true } });
       { const own = o => (o.value && o.value.x) || (o.value && o.value.sc) || this.liveTitans().find(y => o.label.startsWith(y.name + ': ')); for (let i = opts.length - 1; i >= 0; i--) { const k = this.abKey(own(opts[i]), opts[i].label); if (this.abUsed(k)) opts.splice(i, 1); else if (k) opts[i]._k = k; } }
       if (!opts.length) return;
-      if (!announced) { this.say(`⚡ Window of Opportunity${before ? ` (다음: ${before})` : ''}`, 'sys'); announced = true; }
-      const pick = await this.ask({ type: 'choice', title: `⚡ 리액션 — ${before ? '다음 지시: ' + before : card.name}` , options: [{ label: '패스 (계속 진행)', value: null }, ...opts] });
+      const tgtLbl = (() => { const cur = this.currentAI; const tg = (cur && cur.targets && cur.targets.length > 1) ? cur.targets.filter(x => x && x.alive).map(x => x.name).join(', ') : (t && t.alive && t.name); return card && card.kind && tg ? ` · 타겟: ${tg}` : ''; })();
+      if (!announced) { this.say(`⚡ Window of Opportunity${before ? ` (다음: ${before})` : ''}${tgtLbl}`, 'sys'); announced = true; }
+      const pick = await this.ask({ type: 'choice', title: `⚡ 리액션 — ${before ? '다음 지시: ' + before : card.name}${tgtLbl}` , options: [{ label: '패스 (계속 진행)', value: null }, ...opts] });
       if (!pick) return;
       { const po = opts.find(o => o.value === pick); if (po && po._k) this.abMark(po._k); }
       if (pick.argo) { await pick.argo.value(); continue; }
