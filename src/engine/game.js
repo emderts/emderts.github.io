@@ -1663,7 +1663,7 @@ export class Game {
     let m; p = p.replace(/\.$/, '').trim();
     if ((m = /^FATE (\d)\+: (.*)$/.exec(p))) { if (!t || this.effFate(t) < +m[1]) return; this.say(`(Fate ${m[1]}+ 적용)`); p = m[2].replace(/\.$/, ''); }
     const alive = !!(t && t.alive);
-    if (ctx.after && alive && ctx.inRange && /^(Knockback|Kickback|Pull|Knockdown)\b/.test(p) && !ctx.inRange(t)) { this.say(`${t.name}: 공격 범위 밖으로 벗어남 — After Attack「${p}」 무시`); return; }
+    if (ctx.after && alive && ctx.inRange && /^(Knockback|Kickback|Knockdown)\b/.test(p) && !ctx.inRange(t)) { this.say(`${t.name}: 공격 범위 밖으로 벗어남 — After Attack「${p}」 무시`); return; }
     if (/^You may immediately place 1 charge on any Argo Ability/.test(p)) { const L = [...(this.argo || []), ...(this.argoReserve ? [this.argoReserve] : [])].filter(x => x && x.card); if (!L.length) { this.say('(Argo Ability 없음)'); return; } const v = await this.ask({ type: 'choice', titan: t, title: 'Unexpected Help: charge 1을 놓을 Argo Ability (시작 개수 초과 가능)', options: [{ label: '놓지 않음', value: null }, ...L.map(x => ({ label: `${x.card.name} (charge ${x.charges ?? 0})`, value: x }))] }); if (v) { v.charges = (v.charges || 0) + 1; this.say(`Unexpected Help: 「${v.card.name}」 charge +1 → ${v.charges}`, 'good'); this.notify(); } return; }
     if (this.prim && this.prim.def.harpy && await this.harpySentence(t, p, ctx)) return;
     if (this.prim && this.prim.def.midasD && await this.midasSentence(t, p, ctx)) return;
