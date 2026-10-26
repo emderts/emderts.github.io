@@ -55,3 +55,7 @@ const mk = (pid, gears, lv = 3) => { const g = new Game(data, { seed: 4 }); g.as
   g.bonusAttackFlow = async () => {}; g.drawAI = () => null; await g.oracleSpecial({ ...card }, {}); ok(n === 3, 'In Medias Res continues after chain break (' + n + ' draws)'); }
 { const g = mk('hypertime', [['Red Polis'], ['Red Polis'], ['The End'], ['Umbral Virus']]); const [A] = g.titans; let asked = 0; g.ask = async q => { if (/행동 선택/.test(q.title || '')) { asked++; await g.timeClock(A); return q.options.find(o => o.value === 'move') ? 'move' : null; } if (q.type === 'move') return null; return q.options ? q.options[0].value : null; };
   try { await g.titanTurn(A); } catch (e) {} ok(asked === 1 && A.offBoard === 'clock', 'Time-clocked during own turn ends remaining actions (asked ' + asked + ')'); }
+{ const g = mk('hypertime', [['Red Polis'], ['Red Polis'], ['The End'], ['Umbral Virus']]); const [A, B, C, D] = g.titans; g.board.terrain.clear(); g.prim.facing = 'E'; const pc = g.primCells(); const maxC = Math.max(...pc.map(p => p.c)); const r0 = pc[0].r;
+  for (const x of [C, D]) x.pos = { c: 1, r: 1 + x.id };
+  A.pos = { c: maxC + 6, r: r0 }; B.pos = { c: maxC + 2, r: r0 }; const r1 = g.mainBeam(A).res; ok(r1.kind === 'titan' && r1.t === A, 'Laser: titan in path but not adjacent to target → no swap');
+  B.pos = { c: maxC + 5, r: r0 }; const r2 = g.mainBeam(A).res; ok(r2.kind === 'titan' && r2.t === B, 'Laser: titan in path adjacent to target → swap'); }

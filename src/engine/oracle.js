@@ -159,10 +159,7 @@ export function installOracle(Game, { TitanDied, BattleOver }) {
         const cells = Board.adjacentCells(this.primCells()); origin = cells.reduce((a, b) => Board.dist(b, t.pos) < Board.dist(a, t.pos) ? b : a);
         const dx = Math.sign(origin.c - t.pos.c), dy = Math.sign(origin.r - t.pos.r); before = Math.abs(origin.c - t.pos.c) >= Math.abs(origin.r - t.pos.r) ? { c: t.pos.c + dx, r: t.pos.r } : { c: t.pos.c, r: t.pos.r + dy };
       }
-      if (origin && this.inFront(t.pos) && this.sideCells(f).some(p => p[axis] === t.pos[axis])) { // walk the whole beam from the Oracle to the target
-        let p = { ...origin }; for (let g = 0; g < 40 && !(p.c === t.pos.c && p.r === t.pos.r); g++) { const o = this.titanAt(p.c, p.r); const ter = this.board.terrainAt(p.c, p.r); if (o && o !== t && o.alive) { this.say(`Laser: 경로상 ${o.name}이(가) ${t.name} 앞에 있음 — 타겟 변경`, 'ai'); return { res: { kind: 'titan', t: o, cell: p, dir: f }, origin }; } if (ter && ter.obstacle) { this.say(`Laser: 경로상 ${ter.type}이(가) ${t.name} 앞에 있음 — 타겟 변경`, 'ai'); return { res: { kind: 'ter', ter, cell: p, dir: f }, origin }; } p = { c: p.c + DIRS[f][0], r: p.r + DIRS[f][1] }; }
-        return { res: { kind: 'titan', t, cell: t.pos, dir: f }, origin };
-      }
+      // Rule: only a Titan / Obstacle in the laser's path AND adjacent to the original Target replaces it (once per Attack)
       if (before && !this.primContains(before) && !(before.c === t.pos.c && before.r === t.pos.r) && Board.dist(before, t.pos) === 1) {
         const o = this.titanAt(before.c, before.r); const ter = this.board.terrainAt(before.c, before.r);
         if (o && o !== t) { this.say(`Laser: 경로상 ${o.name}이(가) ${t.name} 앞에 있음 — 타겟 변경`, 'ai'); return { res: { kind: 'titan', t: o, cell: before, dir: f }, origin }; }
@@ -196,6 +193,7 @@ export function installOracle(Game, { TitanDied, BattleOver }) {
         return { hits, kind };
       }
       const { res, origin } = this.mainBeam(primary); this.laserHandle(res, card, hits, ctx);
+      this._laserSwap = (res && !(res.kind === 'titan' && res.t === primary)) ? { from: primary, to: res.kind === 'titan' ? res.t : null } : null;
       const used = k => origin && k.c === origin.c && k.r === origin.r;
       if (kind === 'double') for (const s of this.sideCells(this.prim.facing)) if (!used(s)) this.laserHandle(this.beam(s, this.prim.facing), card, hits, ctx);
       if (kind === 'omni') for (const d of DIR_LIST) for (const s of this.sideCells(d)) if (!(d === this.prim.facing && used(s))) this.laserHandle(this.beam(s, d), card, hits, ctx);
@@ -325,6 +323,8 @@ export function installOracle(Game, { TitanDied, BattleOver }) {
     },
     async oracleAfter(card, primary, hits) {
       const O = card.oracle; const list = O.after || []; if (!list.length) return;
+      if (O.laser && primary && this._laserSwap && this._laserSwap.from === primary) { const to = this._laserSwap.to; this.say(to ? `Laser: 타겟이 ${to.name}(으)로 바뀜 — After Attack 효과도 ${to.name}에게` : 'Laser: 장애물이 타겟이 됨 — 원래 타겟 기준 After Attack 효과 무시', 'ai'); primary = to; hits = hits.filter(x => x !== this._laserSwap.from); }
+      this._laserSwap = null;
       const tgts = [...new Set([...(primary ? [primary] : []), ...hits])];
       if (O.afterWin) await this.reactionWindow(tgts.find(x => x.alive) || this.liveTitans()[0] || this.titans[0], card, 'After Attack');
       for (const a of list) {
