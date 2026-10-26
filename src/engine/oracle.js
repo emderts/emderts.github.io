@@ -62,8 +62,8 @@ export function installOracle(Game, { TitanDied, BattleOver }) {
       this.notify();
     },
     async timeClock(t) {
-      if (!t || !t.alive || t.offBoard) return; if (this.prim.disabled.clock) { this.say('(Time-clocked 비활성)'); return; }
-      await this.takeOffBoard(t, 'clock'); t.clockSide = 'departing'; if (!t.conditions.includes('Time-clocked')) t.conditions.push('Time-clocked');
+      if (!t || !t.alive || (t.offBoard && t.offBoard !== 'omega')) return; if (this.prim.disabled.clock) { this.say('(Time-clocked 비활성)'); return; }
+      if (t.offBoard === 'omega') { t.offBoard = 'clock'; t.conditions = t.conditions.filter(c => c !== 'Omega Terminus'); this.say(`${t.name}: Omega Terminus에서 Time-clocked — Omega Terminus에서 나오는 것은 무시`, 'bad'); } else await this.takeOffBoard(t, 'clock'); t.clockSide = 'departing'; if (!t.conditions.includes('Time-clocked')) t.conditions.push('Time-clocked');
       this.say(`${t.name}: Time-clocked — Departing, 보드에서 빠짐 (다음 자기 턴 끝에 Arriving으로 뒤집고, 그 다음 턴 시작에 Time Anchor로 귀환)`, 'bad');
     },
     async timeArrive(t) {
