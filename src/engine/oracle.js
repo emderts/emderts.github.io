@@ -383,7 +383,7 @@ export function installOracle(Game, { TitanDied, BattleOver }) {
       if (this.trait('Extinguish Possibilities')) { for (const [n, d] of Object.entries(this.trauma)) { const c = d.peek(); if (!c) continue; if (c.pol === '+') { d.cards.shift(); this.say(`Extinguish Possibilities: ${n} Trauma 맨 위 「${c.name}」(긍정) 전투에서 제거`, 'ai'); } else this.say(`Extinguish Possibilities: ${n} Trauma 맨 위 「${c.name}」(부정) — 그대로`); } }
     },
     async oracleTitanRoundStart() {
-      if (this.trait('Layover')) { const b = this.boardTitans(); if (b.length) { const mx = Math.max(...b.map(t => t.fate)); const c = b.filter(t => t.fate === mx); const v = c.find(t => t.pt) || c[0]; await this.solo(() => this.toOmega(v, `Layover — Fate 최고 ${mx}`)); } }
+      if (this.trait('Layover')) { const b = this.boardTitans(); if (b.length) { const mx = Math.max(...b.map(t => t.fate)); const c = b.filter(t => t.fate === mx); const v = c.length === 1 ? c[0] : (await this.ask({ type: 'choice', title: `Layover: Fate 최고(${mx}) 타이탄이 여럿 — Omega Terminus로 보낼 타이탄 선택`, options: c.map(t => ({ label: `${t.name} (Fate ${t.fate})`, value: t })) }) || c[0]); await this.solo(() => this.toOmega(v, `Layover — Fate 최고 ${mx}`)); } }
     },
     async ouatCheck() { if (this.trait('Once Upon A Time') && this.prim.ouat >= 4) { this.prim.ouat = 0; this.say('Once Upon A Time: 토큰 4개 — AI 카드 추가!', 'ai'); const c = this.drawAI(); if (c) { await this.safe(() => this.resolveAI(c)); if (!c._removed) this.ai.discard.push(c); } } },
     async quantumEye(t, bp) { if (!bp || !bp.qeye || this.prim.disabled['Quantum Eye'] || !t || !t.alive) return; this.say(`Quantum Eye: BP 「${bp.name}」(BP ${bp.tier}) 공개 — ${t.name} Fate +${bp.tier}`, 'bad'); await this.gainFate(t, bp.tier, { nc: true }); },

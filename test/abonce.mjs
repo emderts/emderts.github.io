@@ -48,3 +48,5 @@ const mk = (pid, gears, lv = 3) => { const g = new Game(data, { seed: 4 }); g.as
   await g.knockdown(A, true); ok(A.knockdown === 'falling' && A.kdOwnTurn, 'knockdown in own turn flagged');
   await g.knockdown(B, true); ok(B.knockdown === 'falling' && !B.kdOwnTurn, 'other titan knocked down during A turn not flagged'); }
 { const g = mk('cyclonus', [['Red Polis'], ['Red Polis'], ['The End'], ['Umbral Virus']], 8); const riv = [...g.board.terrain.values()].filter(z => /River/i.test(z.type || '')).length; ok(riv >= 30, 'Cyclonus Lv8 rivers ' + riv); ok(g.titans.some(t => t.pos && t.pos.r === 6 && t.pos.c === 8), 'Cyclonus Lv8 start F8'); }
+{ const g = mk('chimera', [['Red Polis'], ['Red Polis'], ['The End'], ['Umbral Virus']]); const [A] = g.titans; let seen = null; g.ask = async q => { if (q.type === 'move') { seen = q.options; return null; } return q.options ? q.options[0].value : null; };
+  await g.chooseMove(A, 3, 'Heroic Death'); ok(seen && seen.some(o => /⚔/.test(o.label)), 'Heroic Death move marks attackable cells (' + (seen ? seen.filter(o => /⚔/.test(o.label)).length : 0) + ')'); }
