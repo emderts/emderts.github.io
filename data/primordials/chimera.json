@@ -34,8 +34,8 @@
      6
     ],
     "holdFail": "rear",
-    "power": 1,
-    "responses": "ignore-all"
+    "power": 0,
+    "responses": "normal"
    },
    "5": {
     "climb": [
@@ -47,8 +47,8 @@
      6
     ],
     "holdFail": "rear",
-    "power": 1,
-    "responses": "ignore-all"
+    "power": 0,
+    "responses": "normal"
    }
   },
   "text": "Climb: Test Fury (8+; Lv V+: 9+). If you are instructed to create a Vantage Point and both VPs are already created, place 1 generic token here instead. Each of these tokens lowers Climb and Hold On test difficulty by 1 (to a minimum of 1). VP Effects: When on a VP, each time you Wound, you deal an additional Single Wound that goes into the Secondary Wound Stack. Hold On: End of Primordial Round, if on VP, test Endurance (6+). Fail: Knockdown. Displace onto a Rear space."

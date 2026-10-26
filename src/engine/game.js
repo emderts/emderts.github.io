@@ -2622,7 +2622,7 @@ export class Game {
     if (this.asc(t) >= 7) { A.raw += 1; this.say('Ascend! 7+: +1 Power'); }
     if (this.c5Power) await this.c5Power(t, g, A);
     this.c4Power(t, g, A);
-    if (t.onVP) { const vpw = this.prim.def.sunD ? this.prim.def.vp.powerByLevel[t.vpLevel || 1] : (this.vpCfg().power ?? 1); A.raw += vpw; this.say(`VP: +${vpw} Power`); }
+    if (t.onVP) { const vpw = this.prim.def.sunD ? this.prim.def.vp.powerByLevel[t.vpLevel || 1] : (this.vpCfg().power ?? 1); if (vpw) { A.raw += vpw; this.say(`VP: +${vpw} Power`); } }
     if (t.offBoard === 'omega' && this.gf(t, 'Zeus')) { A.raw += 1; this.say('Omega Terminus: Zeus Godform +1 Power'); }
     if (t.godform) { const gd = t.godform.def.powerDieList || [t.godform.def.powerDie]; A.pool.push(...gd.map(d => t.godform.beyond ? (TIER_UP[d] || d) : d)); } else A.pool.push(...Array(t.def.powerDice).fill(t.conditions.includes('Berserk') || (this.mn(t, 'Left for Dead', 3) && this.liveTitans().length === 1) ? 'b' : (t.def.powerDie || 'r')));
     kt = await this.ktStage(t, A, 'prepower');
@@ -2682,7 +2682,7 @@ export class Game {
     const R = async text => { if (!text) return; this._kpExempt = true; try { await R0(text); } finally { this._kpExempt = false; } };
     const R0 = async text => { if (!text) return; this.say(`Response: ${text}`, 'bad'); await this.doEffects(t, text, { response: true, queue, card: { name: (A.bp.bpName || A.bp.name) }, source: 'Response', missing: Math.max(0, at - A.total) }); };
     if (!(A.wound && A.crit) && !A.instant && t.mayIgnoreResp && (A.wound ? resp.WOUND : resp.FAIL)) { const ok = await this.ask({ type: 'yn', titan: t, title: 'Otherworldly Whiskers: 이번 Response 무시?', options: [{ label: '무시', value: true }, { label: '적용', value: false }] }); if (ok) { A.instant = true; this.say('Response 무시 (Otherworldly Whiskers)'); } }
-    if (!(A.wound && A.crit) && !A.instant && t.onVP && this.prim.vp) { A.vpResp = true; }
+    if (!(A.wound && A.crit) && !A.instant && t.onVP && this.prim.vp && (this.prim.def.sunD || this.vpCfg().responses !== 'normal')) { A.vpResp = true; }
     if (t.offBoard === 'omega' && !A.wound && !A.instant) { A.instant = true; this.say('Omega Terminus: Wound 실패 — Response 무시'); }
     if (A.wound && !A.crit && A.bp.eye && this.moirai && this.moirai.length && this.fr(t) > 0) { const ok = await this.ask({ type: 'yn', titan: t, title: `Fateless Eye 「${(A.bp.bpName || A.bp.name)}」: Wound 대신 Moirai Vault에서 1개 되찾기? (BP 버림, Fate+1)`, options: [{ label: '되찾기', value: true }, { label: 'Wound', value: false }] }); if (ok) { const it = await this.ask({ type: 'choice', titan: t, title: '되찾을 것', options: this.moirai.map((v, i) => ({ label: this.moiraiLabel(v), value: i })) }); const v = this.moirai.splice(it, 1)[0]; this.moiraiRestore(v); this.say(`${this.moiraiLabel(v)} 되찾음`, 'good'); await this.gainFate(t, 1); A.wound = false; A.reclaim = true; } }
     try {
