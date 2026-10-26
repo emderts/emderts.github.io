@@ -38,3 +38,6 @@ const mk = (pid, gears, lv = 3) => { const g = new Game(data, { seed: 4 }); g.as
   await g.gainDanger(A, 1, { skipTrauma: true }); ok(A.danger === 3, 'normal gain after token');
   ok(g.nonWeaponKW(A, null, 'Break') >= 1, 'Hades Break 1 on attacks');
   const B = g.titans[1]; await g.resolveDiedObol(B, card).catch(() => {}); ok(!B.alive, 'second AM0360 with Hades taken → die'); }
+{ const g = mk('chimera', [['Red Polis'], ['Red Polis'], ['The End'], ['Umbral Virus']], 7); const [A] = g.titans; const V = g.prim.vp;
+  if (V && V.slots > 1) { V.created = true; V.count = 1; g.mountVP(A, 'test'); ok(V.occupants.includes(A), 'mounted multi-slot VP'); g.ask = async q => q.type === 'move' ? (q.cells.find(c => c) || null) : (q.options ? q.options[0].value : null); A.turn = { moved: false, attacked: false }; await g.chooseMove(A, 4, '이동');
+    ok(!A.onVP && !V.occupants.includes(A), 'moving off multi-slot VP clears occupant'); } else ok(true, 'chimera VP single-slot (skip)'); }
