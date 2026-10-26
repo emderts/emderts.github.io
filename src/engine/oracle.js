@@ -346,7 +346,7 @@ export function installOracle(Game, { TitanDied, BattleOver }) {
       if (k === 'skip') { this.say(`ROUTINE 「${card.name}」: ${card.text}`, 'ai'); await this.oracleMoveTF(4, false); await this.escalateX(1); return; }
       if (k === 'medias') {
         const order = [...this.liveTitans()].sort((a, b) => a.fate - b.fate); const tiers = ['Minor', 'Major', 'Grave'];
-        for (let i = 0; i < Math.min(3, order.length); i++) { const t = order[i]; this.say(`In Medias Res: ${t.name} (Fate ${t.fate}) — ${tiers[i]} Trauma`, 'ai'); await this.solo(() => this.traumaDraw(t, Math.max(t.danger, t.fate, 1), tiers[i])); }
+        for (let i = 0; i < Math.min(3, order.length); i++) { const t = order[i]; this.say(`In Medias Res: ${t.name} (Fate ${t.fate}) — ${tiers[i]} Trauma`, 'ai'); await this.solo(async () => { try { await this.traumaDraw(t, Math.max(t.danger, t.fate, 1), tiers[i]); } catch (e) { if (!e.chainBreak) throw e; this.say('In Medias Res: Chain Break 불가 — 보너스 공격 해결 후 계속', 'sys'); if (this.pendingBonus) { const pb = this.pendingBonus; this.pendingBonus = null; await this.safe(() => this.bonusAttackFlow(pb.titan, pb)); } } }); } // In Medias Res cannot be Chain Broken: bonus attacks resolve, then the card continues
         card._removed = true; this.say('In Medias Res: 전투에서 제거, AI 카드 한 장 더', 'ai'); const c = this.drawAI(); if (c) { await this.safe(() => this.resolveAI(c)); if (!c._removed) this.ai.discard.push(c); } return;
       }
       if (k === 'darkest') {
