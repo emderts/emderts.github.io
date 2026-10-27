@@ -76,3 +76,6 @@ const mk = (pid, gears, lv = 3) => { const g = new Game(data, { seed: 4 }); g.as
 { const g = mk('chimera', [['Red Polis'], ['Red Polis'], ['The End'], ['Umbral Virus']]); const [A, B] = g.titans; g.round = 1; if (!B.conditions.includes('Bleeding')) B.conditions.push('Bleeding'); B.bleeding = 3; B.gear[0].exhausted = true; let labels = null;
   g.ask = async q => { if (/Time Skip: .* 추가 전투 액션/.test(q.title || '')) { labels = q.options.map(o => o.label); return 'bleed'; } return q.options ? q.options[0].value : null; };
   await g.combatActionNow(B, 'Time Skip'); ok(labels && labels.some(l => /Stop Bleeding/.test(l)) && labels.some(l => /준비/.test(l)), 'Time Skip extra combat action offers Stop Bleeding / unexhaust'); ok(B.bleeding === 1, 'Stop Bleeding via Time Skip'); }
+{ const g = mk('chimera', [['Red Polis'], ['Red Polis'], ['The End'], ['Umbral Virus']]); const [A, B] = g.titans; g.round = 1; B.gear[0].exhausted = true; let labels = null;
+  g.ask = async q => { if (/Time Dilation: .* 추가 이동 액션/.test(q.title || '')) { labels = q.options.map(o => o.label); return 'unex'; } return q.options ? q.options[0].value : null; };
+  await g.moveActionNow(B, 'Time Dilation'); ok(labels && labels.some(l => /이동 \(Speed/.test(l)) && labels.some(l => /준비/.test(l)) && !B.gear[0].exhausted, 'Time Dilation extra movement action offers move / unexhaust'); }

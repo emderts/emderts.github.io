@@ -2322,8 +2322,27 @@ export class Game {
     else if (name === 'Telehealing') { const o = await this.pickTitan(t, live.filter(x => x.conditions.includes('Bleeding') && x.bleeding > 0)); if (o) await this.stopBleeding(o, 2); else this.say('(Bleeding 토큰이 있는 타이탄 없음)'); }
     else if (name === 'Time Dilation' || name === 'Time Skip') { const mv = name === 'Time Dilation'; const o = await this.pickTitan(t, live.filter(x => !x.offBoard || (!mv && x.offBoard === 'omega'))); if (!o) return;
       if (o === t && this._actor === t) { if (mv) t.turn.moved = false; else t.turn.attacked = false; this.say(`${name}: ${t.name} 추가 ${mv ? '이동' : '전투'} 액션`, 'good'); }
-      else if (mv) { this.say(`${name}: ${o.name} 추가 이동 액션`, 'good'); if (!o.knockdown) await this.chooseMove(o, this.speedOf(o), '이동'); }
+      else if (mv) await this.moveActionNow(o, 'Time Dilation');
       else await this.combatActionNow(o, 'Time Skip'); }
+  }
+  // an extra movement action granted outside the Titan's own action menu: any movement-action option
+  async moveActionNow(o, why) {
+    if (!o || !o.alive) return; const R = this.round; const opts = [];
+    if (o.fatigue === 'move') opts.push({ label: 'Movement Fatigue 토큰 제거 (토큰이 있는 동안 이동 액션은 이것만 가능)', value: 'fatigue' });
+    else {
+      if ((!o.knockdown || o.knockdown === 'standing') && !o.impaled && !o.absorbed && !o.stair && !(this.hopeless && this.hopeless(o) >= 3)) opts.push({ label: `이동 (Speed ${this.speedOf(o)})`, value: 'move' });
+      if (!o.knockdown && this.mn(o, 'Scorned Champion', 3)) opts.push({ label: 'Scorned Champion: Run (최대 10칸)', value: 'run' });
+      if (!this.hasFated(o, 'Restless') && (o.gear.some(g => g.exhausted && !g.discarded) || (o.mnemos || []).some(m => m.exhausted && !m.discarded))) opts.push({ label: '소진된 장비 전부 준비', value: 'unex' });
+      if (o.conditions.includes('Bleeding') && o.bleeding > 0 && o._sbSelf !== R) opts.push({ label: `Stop Bleeding: Bleeding 토큰 최대 2개 제거 (현재 ${o.bleeding})`, value: 'bleed' });
+    }
+    opts.push({ label: '안 함', value: null });
+    const v = await this.ask({ type: 'choice', titan: o, title: `${why}: ${o.name} 추가 이동 액션`, options: opts });
+    if (v === 'move') await this.chooseMove(o, this.speedOf(o), '이동');
+    else if (v === 'run') await this.chooseMove(o, 10, 'Run');
+    else if (v === 'unex') { let n = 0; if (this.canUnexhaust(o)) for (const g of o.gear) if (g.exhausted && !g.discarded) { g.exhausted = false; n++; } for (const m of o.mnemos || []) if (m.exhausted && !m.discarded) { m.exhausted = false; n++; } this.say(`${o.name}: 소진된 장비 ${n}개 준비`); }
+    else if (v === 'bleed') { o._sbSelf = R; await this.stopBleeding(o); }
+    else if (v === 'fatigue') { o.fatigue = false; this.say(`${o.name}: Movement Fatigue 토큰 제거`); }
+    this.notify();
   }
   async extraCombatNow(o, why) { return this.combatActionNow(o, why); }
   // an extra combat action granted outside the Titan's own action menu: any combat-action option, not only attacking
