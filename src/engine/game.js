@@ -2022,6 +2022,7 @@ export class Game {
   async titanRound() {
     for (const t of this.titans) t.shadedTok = false;
     this.say(`━━ Round ${this.round}: Titan Round ━━`, 'hdr');
+    if (this.round === 1 && !this._cp1 && this.onCheckpoint) { this._cp1 = true; try { this.onCheckpoint('r1'); } catch (e) {} }
     for (const a of this.argo || []) a.exhausted = false;
     if (this.argoReserve && (this.argo || []).length) { const R = this.argoReserve; const out = await this.ask({ type: 'choice', title: `Quantum Propylon (Temporal Argo Support): 예비 「${R.card.name}」(charge ${R.charges})와 바꿀 Argo Ability?`, options: [{ label: '바꾸지 않음', value: null }, ...this.argo.map(a => ({ label: `${a.card.name} (남은 charge ${a.charges}) 제거`, value: a }))] }); if (out) { this.argo = this.argo.filter(a => a !== out); this.argo.push(R); this.argoReserve = null; this.say(`Quantum Propylon: 「${out.card.name}」 제거, 예비 「${R.card.name}」 투입 (charge ${R.charges})`, 'sys'); } }
     if (this.cannon && this.cannon.charges > 0 && this.liveTitans().length) await this.safe(() => this.cannonPrime(this.liveTitans()[0]));
