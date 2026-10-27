@@ -2323,9 +2323,30 @@ export class Game {
     else if (name === 'Time Dilation' || name === 'Time Skip') { const mv = name === 'Time Dilation'; const o = await this.pickTitan(t, live.filter(x => !x.offBoard || (!mv && x.offBoard === 'omega'))); if (!o) return;
       if (o === t && this._actor === t) { if (mv) t.turn.moved = false; else t.turn.attacked = false; this.say(`${name}: ${t.name} 추가 ${mv ? '이동' : '전투'} 액션`, 'good'); }
       else if (mv) { this.say(`${name}: ${o.name} 추가 이동 액션`, 'good'); if (!o.knockdown) await this.chooseMove(o, this.speedOf(o), '이동'); }
-      else { const v = await this.ask({ type: 'choice', titan: o, title: `Time Skip: ${o.name} 추가 전투 액션`, options: [{ label: '공격', value: 'a', disabled: !this.usableWeapons(o).length || !!o.knockdown || (!!o.fatigue && o.fatigue !== 'move') }, { label: '소진된 장비 전부 준비', value: 'u' }, ...(o.fatigue && o.fatigue !== 'move' ? [{ label: 'Combat Fatigue 토큰 제거', value: 'f' }] : []), { label: '안 함', value: null }].filter(x => !x.disabled) }); if (v === 'a') await this.chainSafe(() => this.titanAttack(o)); else if (v === 'u') { if (this.canUnexhaust(o)) for (const g of o.gear) if (g.exhausted && !g.discarded) g.exhausted = false; for (const m of o.mnemos) if (m.exhausted && !m.discarded) m.exhausted = false; this.say(`${o.name}: 소진된 장비 준비`); } else if (v === 'f') { o.fatigue = false; this.say(`${o.name}: Combat Fatigue 토큰 제거`); } } }
+      else await this.combatActionNow(o, 'Time Skip'); }
   }
-  async extraCombatNow(o, why) { const v = await this.ask({ type: 'choice', titan: o, title: `${why}: ${o.name} 추가 전투 액션 (지금 사용)`, options: [{ label: '공격', value: 'a', disabled: !this.usableWeapons(o).length || !!o.knockdown || (!!o.fatigue && o.fatigue !== 'move') }, { label: '소진된 장비 전부 준비', value: 'u' }, { label: '안 함', value: null }].filter(x => !x.disabled) }); if (v === 'a') await this.chainSafe(() => this.titanAttack(o)); else if (v === 'u') { if (this.canUnexhaust(o)) for (const g of o.gear) if (g.exhausted && !g.discarded) g.exhausted = false; for (const m of o.mnemos) if (m.exhausted && !m.discarded) m.exhausted = false; this.say(`${o.name}: 소진된 장비 준비`); } }
+  async extraCombatNow(o, why) { return this.combatActionNow(o, why); }
+  // an extra combat action granted outside the Titan's own action menu: any combat-action option, not only attacking
+  async combatActionNow(o, why) {
+    if (!o || !o.alive) return; const R = this.round; const opts = [];
+    if (o.fatigue && o.fatigue !== 'move') opts.push({ label: 'Combat Fatigue 토큰 제거 (토큰이 있는 동안 전투 액션은 이것만 가능)', value: 'fatigue' });
+    else {
+      if (o.stair && this.ascentAction) opts.push({ label: `Ascent (Endless Staircase ${o.stair}/${this.stairLen ? this.stairLen() : '?'})`, value: 'ascent' });
+      else if (o.impaled && this.getFree) opts.push({ label: 'Get Free! (Endurance 또는 Fury 9+)', value: 'getFree' });
+      else if (!o.knockdown && this.usableWeapons(o).length) opts.push({ label: `공격 (${this.usableWeapons(o).map(w => w.card.name).join('/')})`, value: 'attack' });
+      if (o.gear.some(g => g.exhausted && !g.discarded) || (o.mnemos || []).some(m => m.exhausted && !m.discarded)) opts.push({ label: '소진된 장비 전부 준비', value: 'unex' });
+      if (o.conditions.includes('Bleeding') && o.bleeding > 0 && o._sbSelf !== R) opts.push({ label: `Stop Bleeding: Bleeding 토큰 최대 2개 제거 (현재 ${o.bleeding})`, value: 'bleed' });
+    }
+    opts.push({ label: '안 함', value: null });
+    const v = await this.ask({ type: 'choice', titan: o, title: `${why}: ${o.name} 추가 전투 액션`, options: opts });
+    if (v === 'attack') await this.chainSafe(() => this.titanAttack(o));
+    else if (v === 'ascent') await this.chainSafe(() => this.ascentAction(o));
+    else if (v === 'getFree') await this.getFree(o);
+    else if (v === 'unex') { let n = 0; if (this.canUnexhaust(o)) for (const g of o.gear) if (g.exhausted && !g.discarded) { g.exhausted = false; n++; } for (const m of o.mnemos || []) if (m.exhausted && !m.discarded) { m.exhausted = false; n++; } this.say(`${o.name}: 소진된 장비 ${n}개 준비`); }
+    else if (v === 'bleed') { o._sbSelf = R; await this.stopBleeding(o); }
+    else if (v === 'fatigue') { o.fatigue = false; this.say(`${o.name}: Combat Fatigue 토큰 제거`); }
+    this.notify();
+  }
   async quantumArmory(t) {
     const inUse = n => this.titans.reduce((a, x) => a + x.gear.filter(g => g.card.name === n && !g.discarded).length, 0);
     const pool = this.data.gear.cards.filter(c => /^hand/.test(c.slot) && c.name !== 'Fists' && c.atk != null && inUse(c.name) < Math.max(1, (c.codes || []).length));

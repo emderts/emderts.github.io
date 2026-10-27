@@ -73,3 +73,6 @@ const mk = (pid, gears, lv = 3) => { const g = new Game(data, { seed: 4 }); g.as
   g.ask = async q => { if (/전투 시작: 동시에 발동하는 효과/.test(q.title || '') && !seen) { seen = q.options.map(o => o.label); return q.options[q.options.length - 1].value; } return q.options ? q.options[0].value : null; };
   const os = g.say.bind(g); g.say = (m, c) => { if (/전투 시작 —|Berserk|Ambrosia/.test(m)) order.push(m); return os(m, c); };
   await g.startOfBattle(); ok(seen && seen.length >= 3, 'Start of Battle: order prompt lists simultaneous effects (' + (seen || []).length + ')'); }
+{ const g = mk('chimera', [['Red Polis'], ['Red Polis'], ['The End'], ['Umbral Virus']]); const [A, B] = g.titans; g.round = 1; if (!B.conditions.includes('Bleeding')) B.conditions.push('Bleeding'); B.bleeding = 3; B.gear[0].exhausted = true; let labels = null;
+  g.ask = async q => { if (/Time Skip: .* 추가 전투 액션/.test(q.title || '')) { labels = q.options.map(o => o.label); return 'bleed'; } return q.options ? q.options[0].value : null; };
+  await g.combatActionNow(B, 'Time Skip'); ok(labels && labels.some(l => /Stop Bleeding/.test(l)) && labels.some(l => /준비/.test(l)), 'Time Skip extra combat action offers Stop Bleeding / unexhaust'); ok(B.bleeding === 1, 'Stop Bleeding via Time Skip'); }
