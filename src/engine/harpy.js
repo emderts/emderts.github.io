@@ -32,7 +32,8 @@ export function installHarpy(Game, { TitanDied, BattleOver }) {
     raIgnored(t, g) { if (!g || !t) return false; const tx = this.gearText(g, t); return /Ignore the Rapid Adaptation Trait|Ignore the Metamorphosis, Rapid Adaptation/.test(tx); },
     raBlocks(t, g, A) { if (!this.prim.ra || !this.trait('Rapid Adaptation') || (A && A.ignoreRA) || this.raIgnored(t, g)) return false; if ((A && A.quantum) || (g && /this Weapon can have any Weapon Trait/.test(g.card.text || ''))) return RA_SPACES.every((s, i) => this.raCovered(i)); return this.raSpacesFor(g).some(i => this.raCovered(i)); },
     raAT(t, g, A) { if (!this.prim.ra || !this.trait('Rapid Adaptation') || (A && A.ignoreRA) || this.raIgnored(t, g)) return 0; return Math.max(0, ...this.raSpacesFor(g).map(i => this.raAdj(i))); },
-    raLabel() { const R = this.prim.ra; if (!R) return ''; return RA_SPACES.map((s, i) => `${s.name}${R.spaces[i].n ? (R.spaces[i].locked ? ' ●🔒' : ' ●') : ''}`).join(' · ') + ` (남은 토큰 ${R.supply})`; },
+    raName(i) { const L = RA_SPACES.length; const k = ((i % L) + L) % L; return `${k + 1}번 (${RA_SPACES[k].name})`; },
+    raLabel() { const R = this.prim.ra; if (!R) return ''; return RA_SPACES.map((s, i) => `${i + 1}.${s.name}${R.spaces[i].n ? (R.spaces[i].locked ? ' ●🔒' : ' ●') : ''}`).join(' · ') + ` (남은 토큰 ${R.supply})`; },
     async raPlace(t, g, opts = {}) {
       const R = this.prim.ra; if (!R) return;
       const cand = opts.space != null ? [opts.space] : this.raSpacesFor(g);
