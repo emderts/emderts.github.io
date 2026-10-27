@@ -194,8 +194,9 @@ export function installHarpy(Game, { TitanDied, BattleOver }) {
       if (this.trait('Bloodlost')) { const ns = [4, 3, 2, 2]; this.say('Bloodlost: Danger 높은 순으로 Bleeding 4/3/2/2', 'ai'); for (let i = 0; i < order.length; i++) await this.solo(() => this.addCondition(order[i], 'Bleeding', { tokens: ns[i] || 2 })); }
       else if (this.trait('Predator') && order.length) { const L = this.prim.level; const ns = L >= 4 ? [3, 2, 2] : L === 3 ? [2, 2, 1] : L === 2 ? [2, 2] : [2, 1]; this.say(`Predator: Danger 높은 순으로 Bleeding ${ns.join('/')}`, 'ai'); for (let i = 0; i < Math.min(ns.length, order.length); i++) await this.solo(() => this.addCondition(order[i], 'Bleeding', { tokens: ns[i] })); }
     },
-    async harpyPrimRoundStart() {
-      if (this.trait('Devour Whole')) { const adj = this.liveTitans().filter(x => !x.offBoard && this.isAdj(x)); for (const x of adj) await this.consume(x, 'Devour Whole (Primordial Round 시작에 인접)'); }
+    async harpyPrimRoundStart(add = null) { const direct = !add; const T = []; if (direct) add = (l, r) => T.push(r);
+      if (this.trait('Devour Whole')) add('Devour Whole (트레이트)', async () => { if (this.trait('Devour Whole')) { const adj = this.liveTitans().filter(x => !x.offBoard && this.isAdj(x)); for (const x of adj) await this.consume(x, 'Devour Whole (Primordial Round 시작에 인접)'); } });
+      if (direct) for (const r of T) await r();
     },
     async harpyPredation() {
       if (!this.trait('Predator')) return; const t = this.predatorTarget(); if (!t) { this.say('Predator: 시야 안에 이번 라운드 공격받지 않은 Bleeding 타이탄 없음 — Predation 없음'); return; }

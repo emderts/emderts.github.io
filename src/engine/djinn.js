@@ -222,7 +222,11 @@ export function installDjinn(Game, { TitanDied, BattleOver }) {
     async gwLeave(c) { if (c.name === 'Sand to Sea') { this.board.allChasm = this._prevChasm || false; } },
     async pyreCheck(t, why, win = false) { if (!this.gwActive('Pillars to Pyres') || !t || !t.alive || t.offBoard || t.onVP || t.stair || t.impaled) return; if (this.board.terrainAt(t.pos.c, t.pos.r)?.irem !== 'tower') return; if (win) { await this.reactionWindow(t, { name: 'Pillars to Pyres' }, 'you die'); if (!t.alive || t.offBoard || t.onVP || t.stair || this.board.terrainAt(t.pos.c, t.pos.r)?.irem !== 'tower') return; } this.say(`${t.name}: Pyre 위에서 ${why} — 사망 (Pillars to Pyres)`, 'bad'); await this.kill(t); },
     // ---------- round / turn hooks ----------
-    async djinnPrimRoundStart() { await this.endlessEscalator(); if (this.round > 1 && !this.trait('Flickering Wishes')) await this.gwRotate(); },
+    async djinnPrimRoundStart(add = null) { const direct = !add; const T = []; if (direct) add = (l, r) => T.push(r);
+      if (this.trait('Endless Escalator') && this.liveTitans().some(t => t.stair)) add('Endless Escalator (트레이트)', () => this.endlessEscalator());
+      if (this.round > 1 && !this.trait('Flickering Wishes')) add('Global Wish 회전', () => this.gwRotate());
+      if (direct) for (const r of T) await r();
+    },
     async djinnTurnStart(t) { t._turnTower = !t.offBoard && !t.stair && this.board.terrainAt(t.pos.c, t.pos.r)?.irem === 'tower' ? this.board.terrainAt(t.pos.c, t.pos.r) : null; if (t.stair) { this.say(`${t.name}: Endless Staircase에서 턴 시작 — Wishkeen`, 'bad'); await this.midasCondition(t, 'Wishkeen'); } },
     async djinnTurnEnd(t) {
       if (!t.alive) return;

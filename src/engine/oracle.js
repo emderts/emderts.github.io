@@ -378,9 +378,10 @@ export function installOracle(Game, { TitanDied, BattleOver }) {
     },
 
     // ---------------- round hooks ----------------
-    async oraclePrimRoundStart() {
-      if (this.trait('Gaze of the Void') && this.round > 1) { const v = this.boardTitans().filter(t => !t.onVP && this.inFront(t.pos)); if (v.length) { this.say(`Gaze of the Void: 정면의 타이탄 사망 — ${v.map(t => t.name).join(', ')}`, 'bad'); for (const t of v) await this.solo(() => this.kill(t)); } }
-      if (this.trait('Extinguish Possibilities')) { for (const [n, d] of Object.entries(this.trauma)) { const c = d.peek(); if (!c) continue; if (c.pol === '+') { d.cards.shift(); this.say(`Extinguish Possibilities: ${n} Trauma 맨 위 「${c.name}」(긍정) 전투에서 제거`, 'ai'); } else this.say(`Extinguish Possibilities: ${n} Trauma 맨 위 「${c.name}」(부정) — 그대로`); } }
+    async oraclePrimRoundStart(add = null) { const direct = !add; const T = []; if (direct) add = (l, r) => T.push(r);
+      if (this.trait('Gaze of the Void')) add('Gaze of the Void (트레이트)', async () => { if (this.trait('Gaze of the Void') && this.round > 1) { const v = this.boardTitans().filter(t => !t.onVP && this.inFront(t.pos)); if (v.length) { this.say(`Gaze of the Void: 정면의 타이탄 사망 — ${v.map(t => t.name).join(', ')}`, 'bad'); for (const t of v) await this.solo(() => this.kill(t)); } } });
+      if (this.trait('Extinguish Possibilities')) add('Extinguish Possibilities (트레이트)', async () => { if (this.trait('Extinguish Possibilities')) { for (const [n, d] of Object.entries(this.trauma)) { const c = d.peek(); if (!c) continue; if (c.pol === '+') { d.cards.shift(); this.say(`Extinguish Possibilities: ${n} Trauma 맨 위 「${c.name}」(긍정) 전투에서 제거`, 'ai'); } else this.say(`Extinguish Possibilities: ${n} Trauma 맨 위 「${c.name}」(부정) — 그대로`); } } });
+      if (direct) for (const r of T) await r();
     },
     async oracleTitanRoundStart() {
       if (this.trait('Layover')) { const b = this.boardTitans(); if (b.length) { const mx = Math.max(...b.map(t => t.fate)); const c = b.filter(t => t.fate === mx); const v = c.length === 1 ? c[0] : (await this.ask({ type: 'choice', title: `Layover: Fate 최고(${mx}) 타이탄이 여럿 — Omega Terminus로 보낼 타이탄 선택`, options: c.map(t => ({ label: `${t.name} (Fate ${t.fate})`, value: t })) }) || c[0]); await this.solo(() => this.toOmega(v, `Layover — Fate 최고 ${mx}`)); } }

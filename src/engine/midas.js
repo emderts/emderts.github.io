@@ -273,9 +273,15 @@ export function installMidas(Game, { TitanDied, BattleOver }) {
       return false;
     },
     // ---------- round / turn hooks ----------
-    async midasPrimRoundStart() { if (this.trait('Aggressive Expansion')) { this.say('Aggressive Expansion: ⚡ Airburst 3', 'ai'); const w = this.liveTitans()[0]; if (w) await this.reactionWindow(w, { name: 'Aggressive Expansion' }, 'Airburst 3'); await this.airburst(3); } },
-    async midasPrimRoundEnd() { for (const t of this.liveTitans()) for (const [nm, k] of [['Enriched', 'enrichedExp'], ['Enlightened', 'enlightenedExp']]) if (t.conditions.includes(nm) && (t[k] || 0) <= this.round) { t.conditions = t.conditions.filter(c => c !== nm); this.say(`${t.name}: ${nm} 버림 (Primordial Round 종료)`); }
-      if (this.trait('Sunken Costs')) for (const t of this.liveTitans()) { const n = this.midas(t); if (n) { this.say(`Sunken Costs: ${t.name} Midas ${n} → Danger +${n}`, 'bad'); await this.solo(() => this.gainDanger(t, n, { source: 'Sunken Costs' })); } } },
+    async midasPrimRoundStart(add = null) { const direct = !add; const T = []; if (direct) add = (l, r) => T.push(r);
+      if (this.trait('Aggressive Expansion')) add('Aggressive Expansion (트레이트): Airburst 3', async () => { this.say('Aggressive Expansion: ⚡ Airburst 3', 'ai'); const w = this.liveTitans()[0]; if (w) await this.reactionWindow(w, { name: 'Aggressive Expansion' }, 'Airburst 3'); await this.airburst(3); });
+      if (direct) for (const r of T) await r();
+    },
+    async midasPrimRoundEnd(add = null) { const direct = !add; const T = []; if (direct) add = (l, r) => T.push(r);
+      for (const t of this.liveTitans()) for (const [nm, k] of [['Enriched', 'enrichedExp'], ['Enlightened', 'enlightenedExp']]) if (t.conditions.includes(nm) && (t[k] || 0) <= this.round) { t.conditions = t.conditions.filter(c => c !== nm); this.say(`${t.name}: ${nm} 버림 (Primordial Round 종료)`); }
+      if (this.trait('Sunken Costs')) add('Sunken Costs (트레이트)', async () => { if (this.trait('Sunken Costs')) for (const t of this.liveTitans()) { const n = this.midas(t); if (n) { this.say(`Sunken Costs: ${t.name} Midas ${n} → Danger +${n}`, 'bad'); await this.solo(() => this.gainDanger(t, n, { source: 'Sunken Costs' })); } } });
+      if (direct) for (const r of T) await r();
+    },
     midasTurnTriggers(t, add) { if (this.goldthirst(t)) add(t, 'Goldthirst Curse: Midas 1', async () => { this.say(`${t.name}: Goldthirst Curse — Midas 1`, 'bad'); await this.midasX(t, 1, 'Goldthirst'); }); },
     async midasTurnStart(t) {
       t._startImpaled = !!t.impaled; if (t.float === 'down') this.deflate(t, '턴 시작');

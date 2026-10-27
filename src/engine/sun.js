@@ -199,9 +199,10 @@ export function installSun(Game, { TitanDied, BattleOver }) {
       if (/^You may perform a Bonus Attack/.test(c)) { this.pendingFollowUp = t; return true; }
       return false;
     },
-    async sunPrimRoundStart() {
-      if (this.trait('Bow or Die')) { const v = this.liveTitans().filter(t => !t.offBoard && !t.knockdown); for (const t of v) await this.solo(async () => { this.say(`${t.name}: Bow or Die — 넘어져 있지 않음, 소각`, 'bad'); await this.kill(t, { instant: true, incinerate: true }); }); }
-      if (this.trait('Merciless Sun') && !this.prim.disabled.merciless) { const c = this.prim.def.ai.find(a => a.sun && a.sun.merciless); this.say('Merciless Sun!', 'ai'); await this.safe(() => this.resolveAI(c)); }
+    async sunPrimRoundStart(add = null) { const direct = !add; const T = []; if (direct) add = (l, r) => T.push(r);
+      if (this.trait('Bow or Die')) add('Bow or Die (트레이트)', async () => { if (this.trait('Bow or Die')) { const v = this.liveTitans().filter(t => !t.offBoard && !t.knockdown); for (const t of v) await this.solo(async () => { this.say(`${t.name}: Bow or Die — 넘어져 있지 않음, 소각`, 'bad'); await this.kill(t, { instant: true, incinerate: true }); }); } });
+      if (this.trait('Merciless Sun')) add('Merciless Sun (트레이트)', async () => { if (this.trait('Merciless Sun') && !this.prim.disabled.merciless) { const c = this.prim.def.ai.find(a => a.sun && a.sun.merciless); this.say('Merciless Sun!', 'ai'); await this.safe(() => this.resolveAI(c)); } });
+      if (direct) for (const r of T) await r();
     },
   });
 }

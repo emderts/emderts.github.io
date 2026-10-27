@@ -318,13 +318,15 @@ export function installBabel(Game, { TitanDied, BattleOver }) {
       if (!t.stair) { if (!this.babelUnlockTier()) { const V = this.prim.vp; if (V.count < V.slots) this.createVP(null); } }
       if (t.onVP && this.prim.level === 1) { this.say(`${t.name}: VP에서 Wound — Pandora Horizon 승리 (Outran the Infinite)!`, 'good'); throw new BattleOver('victory'); }
     },
-    async babelPrimRoundStart() {
-      if (this.trait('Moon Call')) { if (!this.iremTowers().length) { this.say('Moon Call: Irem Tower가 하나도 없음 — Babelian Lunacy 승리', 'bad'); throw new BattleOver('defeat'); } this.say('Moon Call: Irem Tower 4개 제거', 'ai'); await this.babelRemoveTowers(4, 'Moon Call'); }
-      await this.endlessEscalator();
-      if (this.trait("God's Breath")) { const list = this.liveTitans().filter(t => !t.onVP && !t.stair && !t.offBoard && this.zoneDist(t.pos) <= 6); this.say(`God's Breath: Zone 6의 타이탄 Pull 3 — ${list.map(t => t.name).join(', ') || '없음'}`, 'ai'); for (const t of list) await this.solo(() => this.pullTitan(t, 3, { noPrimMove: true })); }
+    async babelPrimRoundStart(add = null) { const direct = !add; const T = []; if (direct) add = (l, r) => T.push(r);
+      if (this.trait('Moon Call')) add('Moon Call (트레이트)', async () => { if (this.trait('Moon Call')) { if (!this.iremTowers().length) { this.say('Moon Call: Irem Tower가 하나도 없음 — Babelian Lunacy 승리', 'bad'); throw new BattleOver('defeat'); } this.say('Moon Call: Irem Tower 4개 제거', 'ai'); await this.babelRemoveTowers(4, 'Moon Call'); } });
+      if (this.trait('Endless Escalator') && this.liveTitans().some(t => t.stair)) add('Endless Escalator (트레이트)', () => this.endlessEscalator());
+      if (this.trait("God's Breath")) add("God's Breath (트레이트)", async () => { if (this.trait("God's Breath")) { const list = this.liveTitans().filter(t => !t.onVP && !t.stair && !t.offBoard && this.zoneDist(t.pos) <= 6); this.say(`God's Breath: Zone 6의 타이탄 Pull 3 — ${list.map(t => t.name).join(', ') || '없음'}`, 'ai'); for (const t of list) await this.solo(() => this.pullTitan(t, 3, { noPrimMove: true })); } });
+      if (direct) for (const r of T) await r();
     },
-    async babelPrimRoundEnd() {
-      if (this.trait("God's Breath")) { const list = this.liveTitans().filter(t => !t.onVP && !t.stair && !t.offBoard && this.zoneDist(t.pos) <= 3); this.say(`God's Breath: Zone 3의 타이탄 Knockback 6 — ${list.map(t => t.name).join(', ') || '없음'}`, 'ai'); for (const t of list) await this.solo(() => this.knockback(t, 6, this.awayDir(t.pos, this.primCells()))); }
+    async babelPrimRoundEnd(add = null) { const direct = !add; const T = []; if (direct) add = (l, r) => T.push(r);
+      if (this.trait("God's Breath")) add("God's Breath (트레이트)", async () => { if (this.trait("God's Breath")) { const list = this.liveTitans().filter(t => !t.onVP && !t.stair && !t.offBoard && this.zoneDist(t.pos) <= 3); this.say(`God's Breath: Zone 3의 타이탄 Knockback 6 — ${list.map(t => t.name).join(', ') || '없음'}`, 'ai'); for (const t of list) await this.solo(() => this.knockback(t, 6, this.awayDir(t.pos, this.primCells()))); } });
+      if (direct) for (const r of T) await r();
     },
     async babelTurnStart(t) { },
     babelTurnTriggers(t, add) { if (t.stair) add(null, 'Endless Staircase: Wishkeen', async () => { if (!t.stair) return; this.say(`${t.name}: Endless Staircase에서 턴 시작 — Wishkeen`, 'bad'); await this.midasCondition(t, 'Wishkeen'); }); },
