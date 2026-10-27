@@ -1189,8 +1189,6 @@ export class Game {
     if (this._gamMid) { this._gamMid = false; this.say(`━━ Round ${this.round}: Primordial Round (God Among Men) ━━`, 'hdr'); } else { this.round++; this.c4RoundCleanup();  this.say(`━━ Round ${this.round}: Primordial Round ━━`, 'hdr'); }
     for (const t of this.titans) t.turn = { moved: false, attacked: false, usedAbilities: new Set() };
     for (const a of this.argo || []) a.exhausted = false;
-    if (this.prim.drumHeart) { const r = this.rng.d10(); this.say(`Drum-Heart: d10 → ${r}`, r >= 7 ? 'good' : 'ai'); if (r >= 7) { this.woundStack.push({ card: null, value: 1, name: 'Single Wound (Drum-Heart)' }); this.say(`${this.prim.name}: Drum-Heart — Single Wound, Escalate 1, Primordial Round 즉시 종료`, 'good'); this.checkVictory(); await this.safe(() => this.escalateX(1)); return; } }
-    if (this.prim.traits['Starfish']) { const adj = this.liveTitans().filter(t => this.isAdj(t)); if (adj.length >= 2) for (const t of adj) await this.safe(() => this.knockback(t, 5)); }
     if (this.prim.atRound) { this.prim.atRound = 0; this.say('Shieldburster −AT 토큰 제거 (라운드 종료)'); }
     this.attackedThisRound = new Set(); this._logicN = 0; this._oorCount = 0; for (const t of this.liveTitans()) t._roundStart = { ...t.pos };
     if (this.c3) await this.safe(() => this.oraclePrimRoundStart());
@@ -1199,9 +1197,13 @@ export class Game {
     if (((this.prim.def.cycle || 0) >= 4)) await this.safe(() => this.midasPrimRoundStart());
     if (this.prim.def.djinnD) await this.safe(() => this.djinnPrimRoundStart());
     if (this.prim.def.babelD) await this.safe(() => this.babelPrimRoundStart());
-    if (this.trait('Voracious Bog')) { this.board.ambChasm = true; this.say('Voracious Bog: Primordial Round 동안 Ambrosia 타일은 Chasm', 'ai'); }
-    if (this.trait('Leleges Spin')) { this.prim.leleges++; this.say(`Leleges Spin: 토큰 ${this.prim.leleges} — Signature는 Zone ${this.prim.leleges} 공격`, 'ai'); }
-    if (this.trait('Crimson Tide')) { this.say('Crimson Tide: Routine', 'ai'); await this.safe(() => this.resolveRoutine(this.routine)); }
+    { const trig = []; const add = (label, run) => trig.push({ t: null, label, run });
+      if (this.prim.drumHeart) add('Drum-Heart: d10 (7+면 Single Wound)', async () => { if (this.prim.drumHeart) { const r = this.rng.d10(); this.say(`Drum-Heart: d10 → ${r}`, r >= 7 ? 'good' : 'ai'); if (r >= 7) { this.woundStack.push({ card: null, value: 1, name: 'Single Wound (Drum-Heart)' }); this.say(`${this.prim.name}: Drum-Heart — Single Wound, Escalate 1, Primordial Round 즉시 종료`, 'good'); this.checkVictory(); await this.safe(() => this.escalateX(1)); return; } } });
+      if (this.prim.traits['Starfish']) add('Starfish (트레이트): 인접 2명 이상이면 Knockback 5', async () => { if (this.prim.traits['Starfish']) { const adj = this.liveTitans().filter(t => this.isAdj(t)); if (adj.length >= 2) for (const t of adj) await this.safe(() => this.knockback(t, 5)); } });
+      if (this.trait('Voracious Bog')) add('Voracious Bog (트레이트): Ambrosia 타일 = Chasm', async () => { if (this.trait('Voracious Bog')) { this.board.ambChasm = true; this.say('Voracious Bog: Primordial Round 동안 Ambrosia 타일은 Chasm', 'ai'); } });
+      if (this.trait('Leleges Spin')) add('Leleges Spin (트레이트): 토큰 +1', async () => { if (this.trait('Leleges Spin')) { this.prim.leleges++; this.say(`Leleges Spin: 토큰 ${this.prim.leleges} — Signature는 Zone ${this.prim.leleges} 공격`, 'ai'); } });
+      if (this.trait('Crimson Tide')) add('Crimson Tide (트레이트): Routine', async () => { if (this.trait('Crimson Tide')) { this.say('Crimson Tide: Routine', 'ai'); await this.safe(() => this.resolveRoutine(this.routine)); } });
+      await this.resolveTriggers(trig, 'Primordial Round 시작'); }
     if (this.nextAISig && this.sig) { this.nextAISig = false; this.say('Recycled Wishhoard: AI 대신 Signature', 'ai'); this._endRound = false; await this.safe(() => this.resolveAI(this.sig, { isSignature: true })); return; }
     this._endRound = false; const card = this.drawAI(); if (!card) { this.say('AI 덱 비어있음', 'sys'); return; }
     for (const x of this.liveTitans()) { if (x.offBoard || x.onVP || x.knockdown) continue; const ug = x.gear.find(g => !g.discarded && !g.exhausted && /Ψ⟳ After you draw an AI, but before you resolve it, move up to 4 spaces/.test(this.gearText(g, x))); if (!ug || !this.costOK(x, 'Ψ⟳', ug)) continue; const ok = await this.ask({ type: 'yn', titan: x, title: `${ug.card.name}: AI 「${card.name}」 해결 전 최대 4칸 이동? (Fate+1, 소진)`, options: [{ label: '이동', value: true }, { label: '패스', value: false }] }); if (ok) { await this.payCost(x, 'Ψ⟳', ug); await this.chooseMove(x, 4, 'Reposition (Shadowstep)'); } }
@@ -1214,10 +1216,12 @@ export class Game {
     if (this._skipHope) { this._skipHope = false; this.say('End of Hope 생략 (Sisyphean Task)'); }
     else if (this.prim.traits['Megaton'] || (this.prim.traits['End of Hope'] && !this.trait('Toying') && !(this.prim.def.dahakaD && this.dhShackles()))) { if (this.prim.traits['End of Hope']) this.say('End of Hope: Signature', 'ai'); await this.safe(() => this.resolveAI(this.sig, { isSignature: true })); await this.extraAICheck(); if (this.prim.traits['Megaton']) { const c2 = this.ai.draw(); if (c2) { await this.safe(() => this.resolveAI(c2)); this.ai.discard.push(c2); } } }
     if (this.prim.traits['Beginning of the End'] && boteAfter) { this.say('Beginning of the End: End of Hope 후 AI 카드 한 장 더, 그 다음 Combo', 'ai'); const c3 = this.drawAI(); if (c3) { await this.safe(() => this.resolveAI(c3)); this.ai.discard.push(c3); } if (this.prim.combo) await this.safe(() => this.comboPhase()); }
-    { const occs = this.prim.vp ? (this.prim.vp.slots > 1 ? [...this.prim.vp.occupants] : [this.prim.vp.occupant]) : []; for (const occ of occs) if (occ && occ.alive && occ.onVP) await this.safe(() => this.holdOn(occ)); }
     if (((this.prim.def.cycle || 0) >= 4)) await this.safe(() => this.midasPrimRoundEnd());
     if (this.prim.def.babelD) await this.safe(() => this.babelPrimRoundEnd());
-    await this.endOfPrimRoundC2();
+    { const trig = []; const add = (label, run, who = null) => trig.push({ t: who, label, run });
+      const occs = this.prim.vp ? (this.prim.vp.slots > 1 ? [...this.prim.vp.occupants] : [this.prim.vp.occupant]) : []; for (const occ of occs) if (occ && occ.alive && occ.onVP) add('Hold On 테스트', () => this.safe(() => { if (occ.onVP) return this.holdOn(occ); }), occ);
+      await this.endOfPrimRoundC2(add);
+      await this.resolveTriggers(trig, 'Primordial Round 종료'); if (this.board.ambChasm) this.board.ambChasm = false; }
     this.notify();
   }
   async safe(fn) { try { await fn(); } catch (e) { if (e instanceof BattleOver) throw e; if (e instanceof TitanDied) { this.say('(Mercy Rule: 남은 효과 취소)'); return; } if (e.chainBreak) { this.say(`Chain Break — 남은 효과 취소`, 'sys'); if (this.pendingBonus) { const pb = this.pendingBonus; this.pendingBonus = null; await this.safe(() => this.bonusAttackFlow(pb.titan, pb)); if (this._primRound && !(this._aiDepth > 0)) await this.extraAICheck(); } return; } throw e; } }
@@ -1993,19 +1997,22 @@ export class Game {
     if (this._mesBonus) { const mt = this._mesBonus; this._mesBonus = null; if (mt.alive) { this.say(`${mt.name}: Mésalliance — 보너스 공격!`, 'good'); await this.chainSafe(() => this.bonusAttackFlow(mt)); } }
     this.prim.combo.idx++; this.say(`Combo 트랙 → ${this.comboClass()}`); this.notify(); await this.extraAICheck();
   }
-  async endOfPrimRoundC2() {
-    if (this.c3) { this.voraciousEnd(); await this.ouatCheck(); }
-    if (this.trait('Icecapade')) for (const t of this.liveTitans()) await this.slipCheck(t);
-    if (this.trait('The Game is Rigged')) { this.say('The Game is Rigged: Burden Heal', 'ai'); this.heal(); }
-    if (this.trait('Ticking Clock')) { const live = this.liveTitans(); if (live.length) { const mn = Math.min(...live.map(t => t.danger)); const v = live.find(t => t.danger === mn); this.say(`Ticking Clock: Danger 최저 ${v.name} — Danger +${this.round} (Time marker = Round ${this.round})`, 'ai'); await this.safe(() => this.gainDanger(v, this.round, { source: 'Ticking Clock' })); } }
-    if (this.trait('Digestive Acids')) { this.say('Digestive Acids: 각 타이탄 Ambrosia 수만큼 Danger', 'ai'); for (const t of this.liveTitans()) if (t.ambrosia) await this.safe(() => this.gainDanger(t, t.ambrosia, { source: 'Digestive Acids', fromAttack: t.gear.some(g => !g.discarded && /Armor Rolls to lower Danger from the Digestive Acids/.test(g.card.text || '')) })); }
-    if (this.trait('Insatiable Pull')) { this.say('Insatiable Pull: 각 타이탄을 Ambrosia 수만큼 Pull', 'ai'); for (const t of this.liveTitans()) { if (!t.ambrosia || t.onVP) continue; await this.safe(async () => { const left = await this.pullTitan(t, t.ambrosia); if (t.alive && left > 0 && this.isAdj(t) && !t.onVP) await this.absorb(t); }); } }
-    if (this.board.ambChasm) this.board.ambChasm = false;
+  async endOfPrimRoundC2(add = null) {
+    const direct = !add; const T = []; if (direct) add = (label, run) => T.push(run);
+    if (this.c3) { this.voraciousEnd(); if (this.trait('Once Upon A Time') && this.prim.ouat >= 4) add('Once Upon A Time (트레이트): AI 카드 추가', () => this.ouatCheck()); }
+    if (this.trait('Icecapade')) add('Icecapade (트레이트)', async () => { for (const t of this.liveTitans()) await this.slipCheck(t); });
+    if (this.trait('The Game is Rigged')) add('The Game is Rigged (트레이트)', async () => { { this.say('The Game is Rigged: Burden Heal', 'ai'); this.heal(); } });
+    if (this.trait('Ticking Clock')) add('Ticking Clock (트레이트)', async () => { { const live = this.liveTitans(); if (live.length) { const mn = Math.min(...live.map(t => t.danger)); const v = live.find(t => t.danger === mn); this.say(`Ticking Clock: Danger 최저 ${v.name} — Danger +${this.round} (Time marker = Round ${this.round})`, 'ai'); await this.safe(() => this.gainDanger(v, this.round, { source: 'Ticking Clock' })); } } });
+    if (this.trait('Digestive Acids')) add('Digestive Acids (트레이트)', async () => { { this.say('Digestive Acids: 각 타이탄 Ambrosia 수만큼 Danger', 'ai'); for (const t of this.liveTitans()) if (t.ambrosia) await this.safe(() => this.gainDanger(t, t.ambrosia, { source: 'Digestive Acids', fromAttack: t.gear.some(g => !g.discarded && /Armor Rolls to lower Danger from the Digestive Acids/.test(g.card.text || '')) })); } });
+    if (this.trait('Insatiable Pull')) add('Insatiable Pull (트레이트)', async () => { { this.say('Insatiable Pull: 각 타이탄을 Ambrosia 수만큼 Pull', 'ai'); for (const t of this.liveTitans()) { if (!t.ambrosia || t.onVP) continue; await this.safe(async () => { const left = await this.pullTitan(t, t.ambrosia); if (t.alive && left > 0 && this.isAdj(t) && !t.onVP) await this.absorb(t); }); } } });
+    if (direct) { for (const r of T) await r(); if (this.board.ambChasm) this.board.ambChasm = false; }
   }
-  async endOfTitanRoundC2() {
-    await this.tetherEndOfRound();
-    if (this.trait('Timefront Beckons')) { await this.reactionWindow(this.liveTitans()[0] || this.titans[0], { name: 'Timefront' }, `Timefront ${this.tfStep ? this.tfStep() : 3}칸 전진`); await this.timefrontAdvance(this.tfStep ? this.tfStep() : 3, 'Timefront Beckons'); }
-    for (const t of this.liveTitans()) if (t.absorbed) { await this.safe(async () => { this.say(`${t.name}: Absorbed — Ambrosia +1, Obol 드로우`, 'bad'); await this.gainAmbrosia(t, 1); if (t.alive) await this.obolDraw(t, 10); t.absorbTokens = 0; }); }
+  async endOfTitanRoundC2(add = null) {
+    const direct = !add; const T = []; if (direct) add = (label, run, who = null) => T.push(run);
+    if (this.isBurden && this.tetherScore() > 0 && this.liveTitans().length > 1) add('Ties That Bind Us: 라운드 종료 밧줄 처리', () => this.tetherEndOfRound());
+    if (this.trait('Timefront Beckons')) add('Timefront Beckons (트레이트): Timefront 전진', async () => { await this.reactionWindow(this.liveTitans()[0] || this.titans[0], { name: 'Timefront' }, `Timefront ${this.tfStep ? this.tfStep() : 3}칸 전진`); await this.timefrontAdvance(this.tfStep ? this.tfStep() : 3, 'Timefront Beckons'); });
+    for (const t of this.liveTitans()) if (t.absorbed) add('Absorbed: Ambrosia +1, Obol', () => this.safe(async () => { if (!t.absorbed) return; this.say(`${t.name}: Absorbed — Ambrosia +1, Obol 드로우`, 'bad'); await this.gainAmbrosia(t, 1); if (t.alive) await this.obolDraw(t, 10); t.absorbTokens = 0; }), t);
+    if (direct) for (const r of T) await r();
   }
   async indigestion() { const abs = this.liveTitans().filter(t => t.absorbed); if (!abs.length) return; for (const t of abs) { t.absorbTokens = (t.absorbTokens || 0) + 1; this.say(`Indigestion: ${t.name} 토큰 ${t.absorbTokens}`); if (t.absorbTokens >= 2) await this.regurgitate(t); } }
 
@@ -2025,9 +2032,11 @@ export class Game {
     this.say(`━━ Round ${this.round}: Titan Round ━━`, 'hdr');
     if (this.round === 1 && !this._cp1 && this.onCheckpoint) { this._cp1 = true; try { this.onCheckpoint('r1'); } catch (e) {} }
     for (const a of this.argo || []) a.exhausted = false;
-    if (this.argoReserve && (this.argo || []).length) { const R = this.argoReserve; const out = await this.ask({ type: 'choice', title: `Quantum Propylon (Temporal Argo Support): 예비 「${R.card.name}」(charge ${R.charges})와 바꿀 Argo Ability?`, options: [{ label: '바꾸지 않음', value: null }, ...this.argo.map(a => ({ label: `${a.card.name} (남은 charge ${a.charges}) 제거`, value: a }))] }); if (out) { this.argo = this.argo.filter(a => a !== out); this.argo.push(R); this.argoReserve = null; this.say(`Quantum Propylon: 「${out.card.name}」 제거, 예비 「${R.card.name}」 투입 (charge ${R.charges})`, 'sys'); } }
-    if (this.cannon && this.cannon.charges > 0 && this.liveTitans().length) await this.safe(() => this.cannonPrime(this.liveTitans()[0]));
-    if (this.c3) await this.safe(() => this.oracleTitanRoundStart());
+    { const trig = []; const add = (label, run) => trig.push({ t: null, label, run });
+      if (this.argoReserve && (this.argo || []).length) add('Quantum Propylon: 예비 Argo Ability 교체', async () => { if (this.argoReserve && (this.argo || []).length) { const R = this.argoReserve; const out = await this.ask({ type: 'choice', title: `Quantum Propylon (Temporal Argo Support): 예비 「${R.card.name}」(charge ${R.charges})와 바꿀 Argo Ability?`, options: [{ label: '바꾸지 않음', value: null }, ...this.argo.map(a => ({ label: `${a.card.name} (남은 charge ${a.charges}) 제거`, value: a }))] }); if (out) { this.argo = this.argo.filter(a => a !== out); this.argo.push(R); this.argoReserve = null; this.say(`Quantum Propylon: 「${out.card.name}」 제거, 예비 「${R.card.name}」 투입 (charge ${R.charges})`, 'sys'); } } });
+      if (this.cannon && this.cannon.charges > 0 && this.liveTitans().length) add('Grand Cannon: 장전', async () => { if (this.cannon && this.cannon.charges > 0 && this.liveTitans().length) await this.safe(() => this.cannonPrime(this.liveTitans()[0])); });
+      if (this.c3 && this.trait('Layover')) add('Layover (트레이트): Fate 최고 타이탄 → Omega Terminus', async () => { if (this.c3) await this.safe(() => this.oracleTitanRoundStart()); });
+      await this.resolveTriggers(trig, 'Titan Round 시작'); }
     if (this.liveTitans().some(t => t.rageDoom)) {}
     const dead = this.titans.filter(t => !t.alive).length;
     if (dead >= 2) { const r = await this.ask({ type: 'yn', title: '타이탄 2명 이상 사망 — 후퇴하시겠습니까?', options: [{ label: '계속 싸운다', value: false }, { label: '후퇴', value: true }] }); if (r) throw new BattleOver('retreat'); }
@@ -2043,10 +2052,14 @@ export class Game {
       await this.fickleAll(); await this.timidFlush(); this.notify();
     }
     for (const t of this.liveTitans()) { t.tempStalwart = false; t.tempRocksteady = false; }
-    for (const t of this.liveTitans()) { const att = t._atkRound === this.round; if (!att && this.gearHas(t, /if you didn't attack this Round, gain \+2 Fate/)) { this.say(`${t.name}: Agathos Agitator — 이번 라운드 공격 안 함, Fate +2`); await this.safe(() => this.gainFate(t, 2, { nc: true })); if (this.pendingBonus) { const pb = this.pendingBonus; this.pendingBonus = null; await this.safe(() => this.bonusAttackFlow(pb.titan, pb)); } } if (!att && this.gearHas(t, /if you didn't attack this Round, lose -1 Fate/)) { this.say(`${t.name}: Kakos Implant — 이번 라운드 공격 안 함, Fate −1`); await this.safe(() => this.loseFate(t, 1)); } }
     for (const a of this.argo || []) a.exhausted = false;
-    if (this.trait('Perfection')) this.raPerfection();
-    await this.endOfTitanRoundC2();
+    { const trig = []; const add = (label, run, who = null) => trig.push({ t: who, label, run });
+      for (const t of this.liveTitans()) { const att = t._atkRound === this.round; const ag = !att && this.gearHas(t, /if you didn't attack this Round, gain \+2 Fate/); const kk = !att && this.gearHas(t, /if you didn't attack this Round, lose -1 Fate/);
+        if (ag) add(`${ag.card.name}: 공격 안 함 — Fate +2`, async () => { this.say(`${t.name}: Agathos Agitator — 이번 라운드 공격 안 함, Fate +2`); await this.safe(() => this.gainFate(t, 2, { nc: true })); if (this.pendingBonus) { const pb = this.pendingBonus; this.pendingBonus = null; await this.safe(() => this.bonusAttackFlow(pb.titan, pb)); } }, t);
+        if (kk) add(`${kk.card.name}: 공격 안 함 — Fate −1`, async () => { this.say(`${t.name}: Kakos Implant — 이번 라운드 공격 안 함, Fate −1`); await this.safe(() => this.loseFate(t, 1)); }, t); }
+      if (this.trait('Perfection')) add('Perfection (트레이트): Adaptation 토큰 고정', async () => this.raPerfection());
+      await this.endOfTitanRoundC2(add);
+      await this.resolveTriggers(trig, 'Titan Round 종료'); }
   }
   async titanTurn(t) { this._primRound = false;
     this.say(`── ${t.name}의 턴 (Danger ${t.danger} / Rage ${t.rage} / Fate ${t.fate})`, 'turn'); this._actor = t; t._atkTurn = false;
@@ -2877,16 +2890,18 @@ export class Game {
     if (/Cognitive Science: During the second ability window/.test(txt)) { const L = [['despair', 'Despair', () => t.despair], ['bleeding', 'Bleeding', () => t.conditions.includes('Bleeding') ? t.bleeding : 0], ['midas', 'Midas', () => this.midas(t)], ['ambrosia', 'Ambrosia', () => t.ambrosia], ['danger', 'Danger', () => t.danger], ['rage', 'Rage', () => t.rage], ['fate', 'Fate', () => t.fate]]; const from = await this.ask({ type: 'choice', titan: t, title: 'Cognitive Science: 잃을 토큰/수치 (1)', options: [{ label: '안 함', value: null }, ...L.filter(x => x[2]() > 0).map(x => ({ label: `${x[1]} −1 (현재 ${x[2]()})`, value: x[0] }))] }); if (from) { const to = await this.ask({ type: 'choice', titan: t, title: 'Cognitive Science: 대신 얻을 것 (1)', options: L.filter(x => x[0] !== from).map(x => ({ label: `${x[1]} +1`, value: x[0] })) }); const dec = { despair: () => t.despair--, bleeding: () => { t.bleeding--; }, midas: () => {}, ambrosia: () => t.ambrosia--, danger: () => { t.danger--; }, rage: () => t.rage--, fate: () => t.fate-- }; if (from === 'midas') await this.loseMidas(t, 1); else dec[from](); this.say(`Cognitive Science: ${from} −1 → ${to} +1`); if (from === 'bleeding') await this.bleedLimit(t); if (to === 'despair') await this.gainDespair(t, 1); else if (to === 'bleeding') await this.addCondition(t, 'Bleeding', { tokens: 1 }); else if (to === 'midas') await this.gainMidas(t, 1); else if (to === 'ambrosia') await this.gainAmbrosia(t, 1); else if (to === 'danger') await this.gainDanger(t, 1, { source: 'Cognitive Science' }); else if (to === 'rage') await this.gainRage(t, 1, false); else await this.gainFate(t, 1, { nc: true }); } }
     if (t.siege && t.alive) { const s = t.siege; t.siege = null; for (const [k, v] of Object.entries(s)) this.kratosPool[k] = (this.kratosPool[k] || 0) + v; this.say(`Siege Eternal: ${Object.keys(s).join(', ')} 토큰을 Kratos Pool로 되돌림`); }
     if (t.pt && t.alive) { const h3 = this.mn(t, 'Hero by Mistake', 3); if (h3) { this.kratosPool.hope++; this.say('Hero by Mistake L3: PT — Kratos Pool에 Hope 1'); } const h2 = this.mn(t, 'Hero by Mistake', 2); if (h2 && this.fr(t) > 0) { const ok = await this.ask({ type: 'yn', titan: t, title: 'Hero by Mistake L2: PT — Fate+1로 Rouse 1?', options: [{ label: '사용', value: true }, { label: '패스', value: false }] }); if (ok) { await this.gainFate(t, 1); this.kratosPool.rouse = (this.kratosPool.rouse || 0) + 1; this.say('Hero by Mistake: Kratos Pool에 Rouse 1'); } } }
-    await this.forbiddenLove(t, A, 2); await this.dazeOffer(t, A, 2); await this.polePosition(t, A); if (t.hidden) await this.loseHidden(t, '공격 2nd 윈도우 후');
-    { const pl = kw(txt, 'Pull') || 0; if (pl && t.alive && !t.onVP && !this.isAdj(t)) { const ok = await this.ask({ type: 'yn', titan: t, title: `Pull ${pl}: ${this.prim.name}을(를) 내 쪽으로 ${pl}칸 끌어오기?`, options: [{ label: '사용', value: true }, { label: '패스', value: false }] }); if (ok) await this.pullPrim(t, pl); } }
-    if (A.anchorBonus && this.isAdj(t) && !this.prim.disabled.pushback) { const ok = await this.ask({ type: 'yn', titan: t, title: `${A.g.card.name}: Pushback 1 (Time Anchor)?`, options: [{ label: '사용', value: true }, { label: '패스', value: false }] }); if (ok) await this.pushbackPrim(t, 1); }
-    const rep = (kw(txt, 'Reposition') || 0) + kt.reposition + this.nonWeaponKW(t, A.g, 'Reposition') + (A.echoRep || 0); if (rep && t.knockdown) this.say(`${t.name}: Knockdown 상태 — Reposition ${rep} 불가`); else if (rep) await this.chooseMove(t, rep, `Reposition ${rep}`);
-    { const list = []; for (const n of (kt.motivateList || [])) list.push(['Kratos Table', n]); for (const x of [A.g, ...t.gear.filter(y => y !== A.g)]) { if (!x || x.discarded || x.blank || (x !== A.g && /^hand/.test(x.card.slot))) continue; for (const m of (x === A.g ? txt : this.gearText(x, t)).matchAll(/(?:^|[^\w-])Motivate (\d+)(?=[.,;]|$)/g)) list.push([x.card.name, +m[1]]); }
-      if (list.length && t.knockdown) { this.say(`${t.name}: Knockdown 상태 — Motivate 불가`); list.length = 0; }
-      for (const [nm, n] of list) { const others = this.liveTitans().filter(x => x !== t && !x.offBoard); if (!others.length) break; const o = await this.ask({ type: 'choice', titan: t, title: `Motivate ${n} (${nm}): 이동시킬 타이탄`, options: [{ label: '안 함', value: null }, ...others.map(x => ({ label: x.name, value: x }))] }); if (o) await this.chooseMove(o, n, 'Motivate'); } }
+    await this.forbiddenLove(t, A, 2); await this.polePosition(t, A); if (t.hidden) await this.loseHidden(t, '공격 2nd 윈도우 후');
+    { const trig = []; const add = (label, run) => trig.push({ t, label, run });
+      if (kw(txt, 'Daze') !== null && !A.dazed) add(`Daze (${A.g.card.name}): Primordial 회전`, () => this.dazeOffer(t, A, 2));
+      { const pl = kw(txt, 'Pull') || 0; if (pl && !t.onVP) add(`Pull ${pl}: Primordial 끌어오기`, async () => { if (!t.alive || t.onVP || this.isAdj(t)) { this.say(`Pull ${pl}: 이미 인접 — 사용 불가`); return; } const ok = await this.ask({ type: 'yn', titan: t, title: `Pull ${pl}: ${this.prim.name}을(를) 내 쪽으로 ${pl}칸 끌어오기?`, options: [{ label: '사용', value: true }, { label: '패스', value: false }] }); if (ok) await this.pullPrim(t, pl); }); }
+      if (A.anchorBonus && !this.prim.disabled.pushback) add(`${A.g.card.name}: Pushback 1 (Time Anchor)`, async () => { if (!this.isAdj(t)) { this.say('Pushback 1 (Time Anchor): 인접하지 않음 — 사용 불가'); return; } const ok = await this.ask({ type: 'yn', titan: t, title: `${A.g.card.name}: Pushback 1 (Time Anchor)?`, options: [{ label: '사용', value: true }, { label: '패스', value: false }] }); if (ok) await this.pushbackPrim(t, 1); });
+      const rep = (kw(txt, 'Reposition') || 0) + kt.reposition + this.nonWeaponKW(t, A.g, 'Reposition') + (A.echoRep || 0); if (rep) add(`Reposition ${rep}`, async () => { if (t.knockdown) { this.say(`${t.name}: Knockdown 상태 — Reposition ${rep} 불가`); return; } await this.chooseMove(t, rep, `Reposition ${rep}`); });
+      { const list = []; for (const n of (kt.motivateList || [])) list.push(['Kratos Table', n]); for (const x of [A.g, ...t.gear.filter(y => y !== A.g)]) { if (!x || x.discarded || x.blank || (x !== A.g && /^hand/.test(x.card.slot))) continue; for (const m of (x === A.g ? txt : this.gearText(x, t)).matchAll(/(?:^|[^\w-])Motivate (\d+)(?=[.,;]|$)/g)) list.push([x.card.name, +m[1]]); }
+        for (const [nm, n] of list) add(`Motivate ${n} (${nm})`, async () => { if (t.knockdown) { this.say(`${t.name}: Knockdown 상태 — Motivate 불가`); return; } const others = this.liveTitans().filter(x => x !== t && !x.offBoard); if (!others.length) return; const o = await this.ask({ type: 'choice', titan: t, title: `Motivate ${n} (${nm}): 이동시킬 타이탄`, options: [{ label: '안 함', value: null }, ...others.map(x => ({ label: x.name, value: x }))] }); if (o) await this.chooseMove(o, n, 'Motivate'); }); }
+      if ((kt.vault || kw(txt, 'Vault') !== null || t._vaultTurn) && !A.vaultUsed) add('Vault: Primordial 반대편으로', async () => { if (A.vaultUsed || !t.alive || t.knockdown || !this.isAdj(t) || t.onVP || this.cannotJV(t)) { this.say('Vault: 지금은 사용 불가 (인접/넘어짐/VP)'); return; } if (await this.ask({ type: 'yn', titan: t, title: `2nd window: Vault — ${this.prim.name} 반대편으로 넘어가기?`, options: [{ label: '사용', value: true }, { label: '패스', value: false }] })) { await this.vault(t); A.vaultUsed = true; } });
+      const pb = (kw(txt, 'Pushback') || 0) + (kw(txt, 'Knockback') || 0) + (kt.pushback || 0) + (A.trisk || 0); if (pb && !A.pushUsed && !this.prim.disabled.pushback) add(`Pushback ${pb}`, async () => { if (t.knockdown) { this.say(`${t.name}: Knockdown 상태 — Pushback ${pb} 불가`); return; } if (!A.pushUsed) await this.pushbackPrim(t, pb, { title: '2nd window Pushback' }); });
+      await this.resolveTriggers(trig, '2nd 윈도우'); }
     await this.scaleWindow(t, A);
-    if ((kt.vault || kw(txt, 'Vault') !== null || t._vaultTurn) && !A.vaultUsed && t.alive && !t.knockdown && this.isAdj(t) && !t.onVP && !this.cannotJV(t) && await this.ask({ type: 'yn', titan: t, title: `2nd window: Vault — ${this.prim.name} 반대편으로 넘어가기?`, options: [{ label: '사용', value: true }, { label: '패스', value: false }] })) { await this.vault(t); A.vaultUsed = true; }
-    const pb = (kw(txt, 'Pushback') || 0) + (kw(txt, 'Knockback') || 0) + (kt.pushback || 0) + (A.trisk || 0); if (pb && t.knockdown && !A.pushUsed) this.say(`${t.name}: Knockdown 상태 — Pushback ${pb} 불가`); else if (pb && !A.pushUsed && !this.prim.disabled.pushback) await this.pushbackPrim(t, pb, { title: '2nd window Pushback' });
   }
   nonWeaponKW(t, g, name) { let n = (t.godform && t.godform.def.atkKW && t.godform.def.atkKW[name]) || 0; for (const x of t.gear) { if (x === g || x.discarded || x.blank || /^hand/.test(x.card.slot)) continue; const v = kw(this.gearText(x, t), name); if (typeof v === 'number') n += v; } return n; }
   async dazeOffer(t, A, win) {
