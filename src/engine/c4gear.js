@@ -229,9 +229,9 @@ export function installC4(Game, { TitanDied, BattleOver }) {
       return false;
     },
     lander(t) { return !!(t && t.onVP && t.conditions && t.conditions.includes('Lander')); },
+    c4TurnTriggers(t, add) { if (t.conditions.includes('Abyss')) add(t, 'Abyss Curse: Ambrosia +1', async () => { this.say(`${t.name}: Abyss Curse — Ambrosia +1`, 'bad'); await this.gainAmbrosia(t, 1); }); },
     async c4TurnStart(t) {
       if (t.conditions.includes('Lander')) { t.conditions = t.conditions.filter(c => c !== 'Lander'); this.say(`${t.name}: Lander 버림 (턴 시작)`); }
-      if (t.conditions.includes('Abyss')) { this.say(`${t.name}: Abyss Curse — Ambrosia +1`, 'bad'); await this.gainAmbrosia(t, 1); }
     },
     async c4TurnEnd(t) {
       if (t.conditions.includes('Pursuer') && t.alive) { if (this.midas(t) > 0) { const has = t.gear.filter(g => (g.midas || 0) > 0); const g = has.length === 1 ? has[0] : await this.ask({ type: 'choice', titan: t, title: 'Pursuer Curse: Ambrosia로 바꿀 Midas 토큰이 있는 카드', options: has.map(x => ({ label: `${x.card.name} (${x.midas})`, value: x })) }); g.midas--; this.midasRemoved(t, 1); await this.ambDirect(t, 1, 'Pursuer Curse (Midas 1 →)'); } else { this.say(`${t.name}: Pursuer Curse — 바꿀 Midas 토큰이 없어 사망`, 'bad'); await this.kill(t, { curse: true }); } }
@@ -246,11 +246,11 @@ export function installC4(Game, { TitanDied, BattleOver }) {
       if (!t || !t.alive || !this.sig) return;
       for (const g of t.gear) { if (g.discarded || g._sigOnce) continue; if (/The Primordial immediately performs Signature against you \(once\)/.test(this.gearText(g, t))) { g._sigOnce = true; this.say(`${g.card.name}: Rage ${t.rage} — ${this.prim.name}이(가) 즉시 Signature를 수행 (1회)`, 'bad'); await this.safe(() => this.resolveAI(this.sig, { isSignature: true, forcedTarget: t })); } }
     },
-    async c4StartOfBattle(t) {
+    c4SobTriggers(t, add) {
       for (const g of t.gear) { if (g.discarded) continue; const tx = this.gearText(g, t);
-        if (/Start of Battle: Gain 1 Midas token\./.test(tx)) { this.say(`${g.card.name}: 전투 시작 — Midas 1`); await this.safe(() => this.gainMidas(t, 1, true, true)); }
-        if (/Start of Battle: Gain the Wishkeen Condition card/.test(tx)) await this.safe(() => this.midasCondition(t, 'Wishkeen', true));
-        if (/Start of Battle: Gain 1 Ambrosia token or 1 Midas token/.test(tx)) { const v = await this.ask({ type: 'choice', titan: t, title: `${g.card.name}: 전투 시작 — 선택`, options: [{ label: 'Ambrosia 1', value: 'a' }, { label: 'Midas 1', value: 'm' }] }); if (v === 'm') await this.safe(() => this.gainMidas(t, 1, true, true)); else await this.safe(() => this.gainAmbrosia(t, 1)); }
+        if (/Start of Battle: Gain 1 Midas token\./.test(tx)) add(t, `${g.card.name}: Midas 1`, async () => { this.say(`${g.card.name}: 전투 시작 — Midas 1`); await this.safe(() => this.gainMidas(t, 1, true, true)); });
+        if (/Start of Battle: Gain the Wishkeen Condition card/.test(tx)) add(t, `${g.card.name}: Wishkeen Condition`, () => this.safe(() => this.midasCondition(t, 'Wishkeen', true)));
+        if (/Start of Battle: Gain 1 Ambrosia token or 1 Midas token/.test(tx)) add(t, `${g.card.name}: Ambrosia 1 또는 Midas 1`, async () => { const v = await this.ask({ type: 'choice', titan: t, title: `${g.card.name}: 전투 시작 — 선택`, options: [{ label: 'Ambrosia 1', value: 'a' }, { label: 'Midas 1', value: 'm' }] }); if (v === 'm') await this.safe(() => this.gainMidas(t, 1, true, true)); else await this.safe(() => this.gainAmbrosia(t, 1)); });
       }
     },
   });

@@ -326,7 +326,8 @@ export function installBabel(Game, { TitanDied, BattleOver }) {
     async babelPrimRoundEnd() {
       if (this.trait("God's Breath")) { const list = this.liveTitans().filter(t => !t.onVP && !t.stair && !t.offBoard && this.zoneDist(t.pos) <= 3); this.say(`God's Breath: Zone 3의 타이탄 Knockback 6 — ${list.map(t => t.name).join(', ') || '없음'}`, 'ai'); for (const t of list) await this.solo(() => this.knockback(t, 6, this.awayDir(t.pos, this.primCells()))); }
     },
-    async babelTurnStart(t) { if (t.stair) { this.say(`${t.name}: Endless Staircase에서 턴 시작 — Wishkeen`, 'bad'); await this.midasCondition(t, 'Wishkeen'); } },
+    async babelTurnStart(t) { },
+    babelTurnTriggers(t, add) { if (t.stair) add(null, 'Endless Staircase: Wishkeen', async () => { if (!t.stair) return; this.say(`${t.name}: Endless Staircase에서 턴 시작 — Wishkeen`, 'bad'); await this.midasCondition(t, 'Wishkeen'); }); },
     async babelHoldFail(t) {
       const cfg = this.vpCfg(); const len = this.stairLen(); const X = Math.max(1, cfg.stairHalf ? Math.ceil(len / 2) : len);
       const V = this.prim.vp; V.occupants = (V.occupants || []).filter(x => x !== t); V.occupant = V.occupants[0] || null; t.onVP = false; await this.moveToStair(t, 'Hold On 실패'); if (!t.alive) return; t.stair = 1; this.say(`${t.name}: Dome of Folly에서 떨어짐 — Endless Staircase ${t.stair}번 칸으로`, 'bad'); await this.knockdown(t); this.notify();

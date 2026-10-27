@@ -22,10 +22,9 @@ export function installC4Meta(Game, { TitanDied, BattleOver, ChainBreak }) {
     this.data.argonauts.fatedMnemos = all.filter(f => f.cycle == null || f.cycle <= cyc); try { return await o.call(this, t); } finally { this.data.argonauts.fatedMnemos = keep; }
   });
   // ---------- start of battle ----------
+  wrap('sobExtra', function (o, add) { o.call(this, add); for (const t of this.liveTitans()) { if (fated(this, t, 'Cursed') && !t.conditions.includes('Goldthirst')) add(t, 'Cursed (Fated): Goldthirst 저주', () => this.safe(() => this.addCurse(t, 'Goldthirst'))); if (fated(this, t, 'Twice-Cursed') && !t.conditions.includes('Windblight')) add(t, 'Twice-Cursed (Fated): Windblight 저주', () => this.safe(() => this.addCurse(t, 'Windblight'))); } });
   wrap('startOfBattle', async function (o) {
     for (const t of this.liveTitans()) {
-      if (fated(this, t, 'Cursed') && !t.conditions.includes('Goldthirst')) await this.safe(() => this.addCurse(t, 'Goldthirst'));
-      if (fated(this, t, 'Twice-Cursed') && !t.conditions.includes('Windblight')) await this.safe(() => this.addCurse(t, 'Windblight'));
       if (fated(this, t, 'Hoarder')) this.say(`${t.name}: Hoarder — 토큰·카드 자발적 버림 불가 (X 비용 능력, Discard 능력 사용 불가)`, 'sys');
     }
     if ((this.prim.def.cycle || 0) >= 4) {
