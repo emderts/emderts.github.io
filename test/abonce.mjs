@@ -69,3 +69,7 @@ const mk = (pid, gears, lv = 3) => { const g = new Game(data, { seed: 4 }); g.as
   g._actor = X; g.round = 2; ok(g.freeActions(X).some(o => /Stop Bleeding Other: T1/.test(o.label)), 'available again next round'); }
 { const g = mk('harpy', [['Red Polis'], ['Red Polis'], ['The End'], ['Umbral Virus']]); const [X] = g.titans; if (!X.conditions.includes('Bleeding')) X.conditions.push('Bleeding'); X.bleeding = 3; g.round = 1; let menus = 0, sb = 0;
   g.ask = async q => { if (/행동 선택/.test(q.title || '')) { menus++; const o = q.options.find(o => o.value === 'bleedM' || o.value === 'bleedA'); if (o && menus < 4) { sb++; return o.value; } return 'end'; } return q.options ? q.options[0].value : null; }; try { await g.titanTurn(X); } catch (e) {} ok(sb === 1, 'Stop Bleeding (self) only once per round (' + sb + ')'); }
+{ const g = mk('chimera', [['Red Polis', 'Muck Virus'], ['Red Polis'], ['The End'], ['Umbral Virus']]); let seen = null; const order = [];
+  g.ask = async q => { if (/전투 시작: 동시에 발동하는 효과/.test(q.title || '') && !seen) { seen = q.options.map(o => o.label); return q.options[q.options.length - 1].value; } return q.options ? q.options[0].value : null; };
+  const os = g.say.bind(g); g.say = (m, c) => { if (/전투 시작 —|Berserk|Ambrosia/.test(m)) order.push(m); return os(m, c); };
+  await g.startOfBattle(); ok(seen && seen.length >= 3, 'Start of Battle: order prompt lists simultaneous effects (' + (seen || []).length + ')'); }
