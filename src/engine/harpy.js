@@ -25,6 +25,7 @@ export function installHarpy(Game, { TitanDied, BattleOver }) {
       if (!g) return [5]; const own = this.titans.find(x => x.gear && x.gear.includes(g)); const tr = (own && this.gTraits) ? this.gTraits(own, g) : (g.card.traits || []); const out = [];
       RA_SPACES.forEach((s, i) => { if (s.classes.some(c => tr.includes(c))) out.push(i); });
       if (!out.length) out.push(5); // Other
+      const pk = g.raPick && g.raPick[g.card.name]; if (out.length > 1 && pk != null && out.includes(pk)) return [pk]; // class chosen at Start of Battle
       return out;
     },
     raCovered(i) { return this.prim.ra && this.prim.ra.spaces[i].n > 0; },

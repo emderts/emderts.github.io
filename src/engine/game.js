@@ -3222,7 +3222,10 @@ export class Game {
 
   // ---------------- main loop ----------------
   // several effects at the same timing: let the players pick the order (one at a time)
-  sobExtra(add) {}
+  sobExtra(add) {
+    if (this.prim && this.prim.ra && this.trait('Rapid Adaptation') && this.raSpacesFor) for (const t of this.liveTitans()) for (const g of t.gear) { if (g.discarded || g.card.isTech || !/^hand/.test(g.card.slot) || g.card.atk == null || /this Weapon can have any Weapon Trait/.test(g.card.text || '')) continue;
+      for (const side of [g.card, g.alt].filter(Boolean)) { const fake = { ...g, card: side, raPick: null }; const own = t.gear.includes(g); const sp = (() => { const idx = t.gear.indexOf(g); t.gear[idx] = fake; try { return this.raSpacesFor(fake); } finally { t.gear[idx] = g; } })(); if (sp.length > 1) add(t, `Rapid Adaptation: 「${side.name}」 무기 클래스 선택`, async () => { const RA = this.raName ? i => this.raName(i) : i => String(i + 1); const v = await this.ask({ type: 'choice', titan: t, title: `Rapid Adaptation: 「${side.name}」의 무기 클래스 — 이번 전투 동안 이 칸으로만 판정 (Wound 불가·토큰 배치)`, options: sp.map(i => ({ label: RA(i), value: i })) }); g.raPick = g.raPick || {}; g.raPick[side.name] = v == null ? sp[0] : v; this.say(`${t.name}: 「${side.name}」 Rapid Adaptation 클래스 → ${RA(g.raPick[side.name])}`); }); } }
+  }
   // Iceblock Armor / Hyperborean Strain: exactly 1 Bleeding token → the Bleeding Condition is ignored
   bleedIgnored(t) { return !!(t && t.bleeding === 1 && t.conditions.includes('Bleeding') && this.gearHas(t, /If you have exactly 1 Bleeding token, ignore the Bleeding Condition/)); }
   turnStartExtra(t, add) { if (this.c4TurnTriggers) this.c4TurnTriggers(t, add); if (this.prim.def.dahakaD && this.dhTurnTriggers) this.dhTurnTriggers(t, add); if (this.prim.def.babelD && this.babelTurnTriggers) this.babelTurnTriggers(t, add); if ((this.prim.def.cycle || 0) >= 4 && this.midasTurnTriggers) this.midasTurnTriggers(t, add); }
