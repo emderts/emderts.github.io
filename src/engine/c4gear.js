@@ -99,7 +99,7 @@ export function installC4(Game, { TitanDied, BattleOver }) {
     },
     // ---------- Strikeback ----------
     async c4Strikeback(t) {
-      if (!t.alive || t.offBoard || t.fatigue || !this.currentAI || this.isJudge(this.currentAI.card)) return;
+      if (!t.alive || t.offBoard || t.knockdown || t.fatigue || !this.currentAI || this.isJudge(this.currentAI.card)) return;
       let X = -1; for (const g of t.gear) { if (g.discarded) continue; const v = kw(this.gearText(g, t), 'Strikeback'); if (typeof v === 'number') X = Math.max(X, v); }
       if (X < 0) return;
       const ok = await this.ask({ type: 'yn', titan: t, title: `Strikeback ${X}: Full Evade — 최대 ${X}칸 이동 후 공격? (Interrupt Attack, Combat Fatigue 토큰${this._aiDepth > 0 ? ', 원래 공격은 Chain Break로 종료' : ''})`, options: [{ label: 'Strikeback!', value: true }, { label: '패스', value: false }] });

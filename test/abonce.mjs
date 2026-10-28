@@ -98,3 +98,9 @@ const mk = (pid, gears, lv = 3) => { const g = new Game(data, { seed: 4 }); g.as
   g.setup({ primordialId: 'chimera', level: 3, argo: [], titans: [0, 1, 2, 3].map(i => ({ name: 'T' + i, portrait: P[i].code, chosenSkill: 'Fury', mnemos: [], fated: [], cls: 'dreamwalker', gear: ['Red Polis'] })) });
   const r = g.powerDiceLimit(['r','r','r','r','r','r','r','b','b','b','b','w','w','w','m','m','m']).join('');
   ok(r === 'rrrrrbbbwwmm', 'Power Dice Limit: 2 over-limit → 1 tier up (r<b<w<mortal), excess mortal dropped (' + r + ')'); }
+{ const g = new Game(data, { seed: 4 }); g.ask = async q => q.options ? q.options[0].value : null;
+  g.setup({ primordialId: 'chimera', level: 3, argo: [], titans: [0, 1, 2, 3].map(i => ({ name: 'T' + i, portrait: P[i].code, chosenSkill: 'Fury', mnemos: [], fated: [], cls: 'dreamwalker', gear: ['Red Polis'] })) });
+  await g.startOfBattle(); const A = g.titans[0]; A.knockdown = 'kd'; let atk = 0; const orig = g.titanAttack.bind(g); g.usableWeapons = () => { atk++; return []; };
+  await g.bonusAttackFlow(A, {}); await g.titanAttack(A, { strikeback: true }); const kd = atk === 0 && g.log.some(l => /Knockdown 상태 — 보너스 공격 불가/.test(l.msg || l.text || l));
+  A.knockdown = null; A.offBoard = 'clock'; await g.titanAttack(A, { bonus: true });
+  ok(kd && atk === 0 && g.abilityLock(A) === 'Time-clocked', 'Knockdown / Time-clocked: bonus attack & strikeback blocked'); }

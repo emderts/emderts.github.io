@@ -187,6 +187,7 @@ export class Game {
     for (const d of ['r', 'b', 'w']) while (c[d] > LIM[d]) { c[d] -= 2; c[UP[d]]++; msg.push(`${NM[d]}×2→${NM[UP[d]]}`); }
     if (c.m > LIM.m) { msg.push(`모탈 ${c.m - LIM.m}개 초과 — 버림`); c.m = LIM.m; }
     if (msg.length) this.say(`Power Dice Limit (빨5·흑4·백3·모탈2): ${msg.join(', ')}`); return [...'rbwm'].flatMap(d => Array(c[d]).fill(d)); }
+  abilityLock(t) { return !t ? null : t.offBoard === 'clock' ? 'Time-clocked' : t.knockdown ? 'Knockdown' : null; }
   wentBeyond(t) { return !!(t && t.godform && t.godform.beyond); }
   async awaken(t, { fromObol = false, inline = false, force = null } = {}) {
     if (this.wentBeyond(t)) { this.say(`${t.name}: 이미 Go Beyond — 더 이상 각성할 수 없음`, 'bad'); return false; }
@@ -2509,6 +2510,7 @@ export class Game {
   async titanAttack(t, mods = {}) {
     if (this.c3 && t) t._prevPos = null; // 'previous Attacker space' only refers to a move during this Attack
     if (this.despairEff(t) >= 3) { this.say(`${t.name}: Despair ${t.despair} (홀로 있음) — 공격할 수 없음`, 'bad'); return; }
+    { const why = this.abilityLock(t); if (why) { this.say(`${t.name}: ${why} 상태 — 공격할 수 없음`, 'bad'); return; } }
     const weps = this.usableWeapons(t, mods.forceWeapon ? (w => w === mods.forceWeapon) : mods.meleeOnly ? (w => !/Ranged/.test(w.card.text)) : null, !!mods.bonus);
     for (const q of [...t.gear]) if (q._sheathTemp) t.gear.splice(t.gear.indexOf(q), 1);
     { const ts = t.gear.find(q => !q.discarded && !q.exhausted && /Declare this Gear as the Active Weapon during an Attack/.test(this.gearText(q, t))); if (ts && ts.sheathed && !mods.forceWeapon && (/Ignore this card ability's Ψ cost/.test(this.gearText(ts, t)) || this.fr(t) > 0)) { const sw = ts.sheathed; t.gear.push(sw); if (this.inWeaponRange(t, sw)) weps.push(sw); t.gear.pop(); } }
@@ -3222,6 +3224,7 @@ export class Game {
   async bonusAttackFlow(t, pb = {}) {
     if (pb.awaken) { pb.awaken = false; return this.awakenBonus(t); }
     if (!t.alive) return;
+    { const why = this.abilityLock(t); if (why) { this.say(`${t.name}: ${why} 상태 — 보너스 공격 불가`, 'bad'); return; } }
     { const qa = this.argoAvail('Quantum Armory'); if (qa) { const ok = await this.ask({ type: 'yn', titan: t, title: `[Argo] Quantum Armory (charge ${qa.charges}): 보너스 공격 전에 Argo Armory 무기 장착?`, options: [{ label: '사용', value: true }, { label: '패스', value: false }] }); if (ok) { qa.charges--; qa.exhausted = true; this.say('Argo Ability 「Quantum Armory」', 'sys'); await this.quantumArmory(t); } } }
     try { if (this.usableWeapons(t, null, true).length) await this.titanAttack(t, { bonus: true }); else this.say(`${t.name}: 보너스 공격 — 사거리 내 무기 없음`); } catch (e) { if (e instanceof BattleOver) throw e; if (e instanceof TitanDied) return; if (e.chainBreak) return; throw e; }
     t.bonusRaw = 0;
