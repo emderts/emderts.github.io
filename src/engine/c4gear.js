@@ -122,7 +122,7 @@ export function installC4(Game, { TitanDied, BattleOver }) {
       const out = []; if (x.offBoard || x.float === 'up' || x.knockdown === 'falling') return out;
       for (const g of x.gear) {
         if (g.discarded || g.blank) continue; const txt = this.gearText(g, x); let m;
-        const add = (cost, label, fn) => { if (!this.costOK(x, cost, g)) return; out.push({ label: `${x.name}: ${g.card.name} — ${label} [${this.costLbl(cost)}]`, noFate: !/Ψ/.test(cost), value: async () => { await this.payCost(x, cost, g); await fn(); } }); };
+        const add = (cost, label, fn) => { if (!this.costOK(x, cost, g, /일어서기/.test(label))) return; out.push({ label: `${x.name}: ${g.card.name} — ${label} [${this.costLbl(cost)}]`, noFate: !/Ψ/.test(cost), value: async () => { await this.payCost(x, cost, g); await fn(); } }); };
         if ((m = new RegExp(`\\[R\\]${COST} ?(Advanced Hermes Reflex|Hermes Reflex)(, then suffer Float)?\\.`).exec(txt)) && !x.onVP && !x.impaled && !x.knockdown) { const adv = /Advanced/.test(m[2]); const nm = m[2]; const fl = !!m[3]; add(m[1], `${nm} (Hermes Move ${adv ? '최대 2회' : '1회'})${fl ? ' 후 Float' : ''}`, async () => { await this.hermesMove(x, adv ? 2 : 1, nm); if (fl && x.alive && this.float) await this.float(x); }); }
         if ((m = new RegExp(`\\[R\\]${COST} ?Pursuit (\\d)\\.`).exec(txt)) && card && card.kind && x !== t && !x.onVP && !x.impaled && !x.knockdown) { const n = +m[2]; add(m[1], `Pursuit ${n} (Primordial 방향 ${this.prim.facing}로 직선 ${n}칸)`, () => this.pursuitMove(x, n)); }
         if ((m = new RegExp(`(?:^|\\. )Pursuit (\\d)\\.`).exec(txt)) && card && card.kind && x !== t && !x.onVP && !x.impaled && !x.knockdown && !/\[R\]/.test(txt.slice(Math.max(0, m.index - 6), m.index + 2))) { const n = +m[1]; add('', `Pursuit ${n}`, () => this.pursuitMove(x, n)); }
@@ -142,7 +142,7 @@ export function installC4(Game, { TitanDied, BattleOver }) {
       const out = []; if (t.offBoard) return out;
       for (const g of t.gear) {
         if (g.discarded || g.blank) continue; const txt = this.gearText(g, t); let m;
-        const add = (cost, label, fn, cond = true) => { if (!cond || !this.costOK(t, cost, g)) return; out.push({ label: `${g.card.name}: ${label} [${this.costLbl(cost)}]`, noFate: !/Ψ/.test(cost), value: async () => { await this.payCost(t, cost, g); await fn(); } }); };
+        const add = (cost, label, fn, cond = true) => { if (!cond || !this.costOK(t, cost, g, /일어서기/.test(label))) return; out.push({ label: `${g.card.name}: ${label} [${this.costLbl(cost)}]`, noFate: !/Ψ/.test(cost), value: async () => { await this.payCost(t, cost, g); await fn(); } }); };
         if ((m = new RegExp(`(?:^|\\. )${COST} ?Discard 1 Midas token from this card\\.`).exec(txt)) && m[1]) add(m[1], 'Midas 토큰 1개 버림 (이 카드)', () => this.loseMidasFrom(t, g, 1), (g.midas || 0) > 0);
         if ((m = new RegExp(`(?:^|\\. )${COST} ?Discard all Midas tokens from this card\\.`).exec(txt)) && m[1]) add(m[1], 'Midas 토큰 전부 버림 (이 카드)', () => this.loseMidasFrom(t, g, g.midas || 0), (g.midas || 0) > 0);
         if ((m = new RegExp(`(?:^|\\. )${COST} ?Discard up to 2 Midas tokens\\.`).exec(txt)) && m[1]) add(m[1], 'Midas 토큰 최대 2개 버림', async () => { const n = Math.min(2, this.midas(t)); const v = n <= 1 ? n : await this.ask({ type: 'choice', titan: t, title: '버릴 Midas 토큰 수', options: [1, 2].map(i => ({ label: `${i}개`, value: i })) }); await this.loseMidas(t, v || n); }, this.midas(t) > 0);

@@ -104,3 +104,10 @@ const mk = (pid, gears, lv = 3) => { const g = new Game(data, { seed: 4 }); g.as
   await g.bonusAttackFlow(A, {}); await g.titanAttack(A, { strikeback: true }); const kd = atk === 0 && g.log.some(l => /Knockdown 상태 — 보너스 공격 불가/.test(l.msg || l.text || l));
   A.knockdown = null; A.offBoard = 'clock'; await g.titanAttack(A, { bonus: true });
   ok(kd && atk === 0 && g.abilityLock(A) === 'Time-clocked', 'Knockdown / Time-clocked: bonus attack & strikeback blocked'); }
+{ const g = new Game(data, { seed: 4 }); g.ask = async q => q.options ? q.options[0].value : null;
+  g.setup({ primordialId: 'chimera', level: 3, argo: [], titans: [0, 1, 2, 3].map(i => ({ name: 'T' + i, portrait: P[i].code, chosenSkill: 'Fury', mnemos: [], fated: [], cls: 'dreamwalker', gear: ['Red Polis'] })) });
+  await g.startOfBattle(); g.round = 1; const A = g.titans[0]; A.turn = { moved: false, attacked: false, usedAbilities: new Set() }; A.fate = 0;
+  const gA = { card: { name: 'GX', slot: 'support', text: 'Ψ⟳ Gain +2 Speed for your next movement this turn.' } }, gS = { card: { name: 'GS', slot: 'support', text: 'Ψ⟳ Stand up. You can use this ability while knocked down.' } };
+  A.knockdown = 'kd'; const f0 = g.fr(A), r0 = g.frRaw(A); const c1 = g.costOK(A, 'Ψ⟳', gA), c2 = g.costOK(A, 'Ψ⟳', gS);
+  const fa = g.freeActions(A).map(o => o.label); A.knockdown = null; const c3 = g.costOK(A, 'Ψ⟳', gA);
+  ok(f0 === 0 && r0 === 9 && !c1 && c2 && c3 && !fa.some(l => /^\[Mnemos\]|Red Polis:/.test(l)), 'Knockdown: active abilities blocked (Ψ), "while knocked down" allowed, Fate rerolls still use raw'); }
