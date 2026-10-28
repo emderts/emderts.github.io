@@ -94,3 +94,7 @@ const mk = (pid, gears, lv = 3) => { const g = new Game(data, { seed: 4 }); g.as
   await g.startOfBattle(); const A = g.titans[0]; try { await g.awaken(A, { inline: true }); } catch (e) {} A.godform.beyond = true; const gf = A.godform.def.name;
   const r1 = await g.awaken(A, { inline: true }); const r2 = await g.awakenRoll(A, 1, 'test');
   ok(r1 === false && r2 === false && A.godform.def.name === gf, 'Went Beyond → cannot Awaken again (awaken & roll blocked)'); }
+{ const g = new Game(data, { seed: 4 }); g.ask = async q => q.options ? q.options[0].value : null;
+  g.setup({ primordialId: 'chimera', level: 3, argo: [], titans: [0, 1, 2, 3].map(i => ({ name: 'T' + i, portrait: P[i].code, chosenSkill: 'Fury', mnemos: [], fated: [], cls: 'dreamwalker', gear: ['Red Polis'] })) });
+  const r = g.powerDiceLimit(['r','r','r','r','r','r','r','b','b','b','b','w','w','w','m','m','m']).join('');
+  ok(r === 'mrrrrbbbbwww', 'Power Dice Limit: 2 over-limit → 1 tier up, excess white dropped (' + r + ')'); }
