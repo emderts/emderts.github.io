@@ -2133,7 +2133,7 @@ export class Game {
       if (!t.turn.moved && !noMove) opts.push({ label: `이동 (Speed ${this.speedOf(t)})`, value: 'move' }); else if (!t.turn.moved) opts.push({ label: '이동 불가 (Song of Hopelessness)', value: 'nomove', disabled: true });
       if (t.gear.some(g => g.exhausted && !g.discarded) || t.mnemos.some(m => m.exhausted && !m.discarded)) { if (!t.turn.moved && !this.hasFated(t, 'Restless')) opts.push({ label: '이동 액션 소모 → 소진된 장비 전부 준비' + (this.canUnexhaust(t) ? '' : ' (Clumsy: Mnemos만)'), value: 'unexM' }); if (!t.turn.attacked && !this.hasFated(t, 'Bloodthirsty')) opts.push({ label: '공격 액션 소모 → 소진된 장비 전부 준비' + (this.canUnexhaust(t) ? '' : ' (Clumsy: Mnemos만)'), value: 'unexA' }); }
       if (!t.turn.moved && !noMove && this.mn(t, 'Scorned Champion', 3)) opts.push({ label: 'Scorned Champion: Run (이동 액션으로 최대 10칸)', value: 'run' });
-      if (t.conditions.includes('Bleeding') && t.bleeding > 0 && t._sbSelf !== this.round) { if (!t.turn.moved) opts.push({ label: `Stop Bleeding: 이동 액션 소모 → Bleeding 토큰 최대 2개 제거 (현재 ${t.bleeding})`, value: 'bleedM' }); if (!t.turn.attacked) opts.push({ label: `Stop Bleeding: 공격 액션 소모 → Bleeding 토큰 최대 2개 제거 (현재 ${t.bleeding})`, value: 'bleedA' }); }
+      if (t.conditions.includes('Bleeding') && t.bleeding > 0 && t._sbSelf !== this.round && !this.abilityLock(t)) { if (!t.turn.moved) opts.push({ label: `Stop Bleeding: 이동 액션 소모 → Bleeding 토큰 최대 2개 제거 (현재 ${t.bleeding})`, value: 'bleedM' }); if (!t.turn.attacked) opts.push({ label: `Stop Bleeding: 공격 액션 소모 → Bleeding 토큰 최대 2개 제거 (현재 ${t.bleeding})`, value: 'bleedA' }); }
       { const hm = t.gear.filter(g => !g.discarded && !g.exhausted && typeof kw(this.gearText(g, t), 'Hermes Move') === 'number'); if (!t.turn.moved && !noMove && !t.knockdown && [...this.board.terrain.values()].some(x => x.elevated)) for (const ho of this.hermesOptions(t)) opts.push({ label: `이동 액션: ${ho.g.card.name} — Hermes Move ${ho.X}${ho.cost ? ` [${this.costLbl(ho.cost)}]` : ''} (직선 이동, Elevated 지형에 도착)`, value: async () => { t.turn.moved = true; if (ho.cost) await this.payCost(t, ho.cost, ho.g); await this.hermesMove(t, ho.X); } }); const X = 0; if (false) { opts.push({ label: `이동 액션: Hermes Move ${X} (직선 이동, Elevated 지형에 도착)`, value: 'hermes' }); } }
       if (!t.turn.moved && !noMove && this.anchorOf(t) && this.gearHas(t, /use your movement action to move your Time Anchor instead of your Titan/)) opts.push({ label: `이동 액션: Time Anchor 이동 (Speed ${this.speedOf(t)}, Time's Arrow)`, value: 'anchorMove' });
       if (this.prim.def.sunD && t.onVP && !t.turn.moved && this.vpFree().length) opts.push({ label: `이동 액션: 다른 VP로 옮기기 (현재 VP ${'I'.repeat(t.vpLevel || 1)})`, value: 'vpMove' });
@@ -2257,7 +2257,7 @@ export class Game {
       if (/ΨX Solace/.test(txt) && this.fr(t) > 0) { const tg = [t, ...this.liveTitans().filter(x => x !== t && this.tDist(t, x) === 1)].filter(x => x.despair || x.conditions.some(c => /Fear|Dread|Berserk|Egolock|Abandon/.test(c))); if (tg.length) out.push({ label: `${g.card.name}: Solace — Mind Condition/Despair 1개 제거 (Fate+1, 버림)`, value: async () => { const x = await this.pickTitan(t, tg); if (!x) return; await this.gainFate(t, 1); this.discardGear(t, g); const opts = [...x.conditions.filter(c => /Fear|Dread|Berserk|Egolock|Abandon/.test(c)).map(c => ({ label: c, value: c })), ...(x.despair ? [{ label: 'Despair 토큰 1개', value: '__d' }] : [])]; const v = opts.length === 1 ? opts[0].value : await this.ask({ type: 'choice', titan: t, title: 'Solace: 제거할 것', options: opts }); if (v === '__d') x.despair--; else x.conditions = x.conditions.filter(c => c !== v); this.say(`${x.name}: ${v === '__d' ? 'Despair 1개' : v} 제거`); } }); }
       if (/Ψ\[charge\] Place the top BP card at the bottom/.test(txt) && g.charges > 0) out.push({ label: `${g.card.name}: BP 덱 맨 위 카드를 바닥으로 (Fate+1, charge ${g.charges})`, value: async () => { g.charges--; await this.gainFate(t, 1); const c = this.bp.draw(); if (c) { this.bp.putBottom(c); this.say(`BP 「${c.name}」 바닥으로`); } } });
     }
-    for (const x of this.liveTitans()) if (x !== t && x.conditions.includes('Bleeding') && x.bleeding > 0 && t._sbOther !== this.round && this.tDist(t, x) === 1) out.push({ label: `Stop Bleeding Other: ${x.name}의 Bleeding 토큰 최대 2개 제거 (현재 ${x.bleeding})`, noFate: true, value: () => { t._sbOther = this.round; return this.stopBleeding(x); } });
+    for (const x of this.liveTitans()) if (x !== t && !this.abilityLock(t) && x.conditions.includes('Bleeding') && x.bleeding > 0 && t._sbOther !== this.round && this.tDist(t, x) === 1) out.push({ label: `Stop Bleeding Other: ${x.name}의 Bleeding 토큰 최대 2개 제거 (현재 ${x.bleeding})`, noFate: true, value: () => { t._sbOther = this.round; return this.stopBleeding(x); } });
     out.push(...this.c3GearActions(t));
     if (this.oxyReach(t) && !t.knockdown) out.push({ label: `Oxybeles 무기 「${this.oxy.card.name}」 집어서 장착 (토큰 버림)`, noFate: true, value: () => this.takeOxy(t) });
     if (!t.onVP && !t.offBoard && !t.knockdown) out.push(...this.rockActions(t));
@@ -2266,7 +2266,7 @@ export class Game {
     const blockEx = this.hopeless(t) >= 2; const gearOut = blockEx ? out.filter(o => !/^\S.*\(.*소진/.test(o.label) || o.noFate) : out;
     gearOut.push(...this.mnemosActions(t), ...this.argoActions(t));
     { const e = this.cannonReady('round'); if (e) gearOut.push({ label: `[Grand Cannon] Godkiller Shot 「${e.name}」 (charge ${this.cannon.charges}, ${this.cannonCostLabel(e)}): ${e.text.replace(/^[^:]*: /, '')}`, noFate: true, value: async () => { const f = await this.cannonFire(t); if (f) await this.cannonRoundEffect(f); } }); }
-    const LK = this.abilityLock(t); const lockKeep = o => { if (!LK) return true; if (/일어서기|Stand up|Auto-inspire|^\[Argo\]|^\[Grand Cannon\]|^Stop Bleeding/.test(o.label)) return true; const g = t.gear.find(q => !q.discarded && o.label.startsWith(q.card.name + ':')); return !!(g && this.lockOK(t, this.gearText(g, t))); };
+    const LK = this.abilityLock(t); const lockKeep = o => { if (!LK) return true; if (/일어서기|Stand up|Auto-inspire|^\[Argo\]|^\[Grand Cannon\]/.test(o.label)) return true; const g = t.gear.find(q => !q.discarded && o.label.startsWith(q.card.name + ':')); return !!(g && this.lockOK(t, this.gearText(g, t))); };
     return gearOut.filter(lockKeep).filter(o => (LK ? this.frRaw(t) : this.fr(t)) > 0 || o.noFate).filter(o => { const k = this.abKey(t, o.label); if (!k) return true; if (this.abUsed(k)) return false; const v = o.value; if (typeof v === 'function') o.value = async (...a) => { this.abMark(k); return v(...a); }; return true; });
   }
   condTokKinds(o) { const k = []; if (o.despair > 0) k.push('despair'); if (o.bleeding > 0 && (o.conditions || []).includes('Bleeding')) k.push('bleeding'); return k; }
@@ -2344,7 +2344,7 @@ export class Game {
       if ((!o.knockdown || o.knockdown === 'standing') && !o.impaled && !o.absorbed && !o.stair && !(this.hopeless && this.hopeless(o) >= 3)) opts.push({ label: `이동 (Speed ${this.speedOf(o)})`, value: 'move' });
       if (!o.knockdown && this.mn(o, 'Scorned Champion', 3)) opts.push({ label: 'Scorned Champion: Run (최대 10칸)', value: 'run' });
       if (!this.hasFated(o, 'Restless') && (o.gear.some(g => g.exhausted && !g.discarded) || (o.mnemos || []).some(m => m.exhausted && !m.discarded))) opts.push({ label: '소진된 장비 전부 준비', value: 'unex' });
-      if (o.conditions.includes('Bleeding') && o.bleeding > 0 && o._sbSelf !== R) opts.push({ label: `Stop Bleeding: Bleeding 토큰 최대 2개 제거 (현재 ${o.bleeding})`, value: 'bleed' });
+      if (o.conditions.includes('Bleeding') && o.bleeding > 0 && o._sbSelf !== R && !this.abilityLock(o)) opts.push({ label: `Stop Bleeding: Bleeding 토큰 최대 2개 제거 (현재 ${o.bleeding})`, value: 'bleed' });
     }
     opts.push({ label: '안 함', value: null });
     const v = await this.ask({ type: 'choice', titan: o, title: `${why}: ${o.name} 추가 이동 액션`, options: opts });
@@ -2365,7 +2365,7 @@ export class Game {
       else if (o.impaled && this.getFree) opts.push({ label: 'Get Free! (Endurance 또는 Fury 9+)', value: 'getFree' });
       else if (!o.knockdown && this.usableWeapons(o).length) opts.push({ label: `공격 (${this.usableWeapons(o).map(w => w.card.name).join('/')})`, value: 'attack' });
       if (o.gear.some(g => g.exhausted && !g.discarded) || (o.mnemos || []).some(m => m.exhausted && !m.discarded)) opts.push({ label: '소진된 장비 전부 준비', value: 'unex' });
-      if (o.conditions.includes('Bleeding') && o.bleeding > 0 && o._sbSelf !== R) opts.push({ label: `Stop Bleeding: Bleeding 토큰 최대 2개 제거 (현재 ${o.bleeding})`, value: 'bleed' });
+      if (o.conditions.includes('Bleeding') && o.bleeding > 0 && o._sbSelf !== R && !this.abilityLock(o)) opts.push({ label: `Stop Bleeding: Bleeding 토큰 최대 2개 제거 (현재 ${o.bleeding})`, value: 'bleed' });
     }
     opts.push({ label: '안 함', value: null });
     const v = await this.ask({ type: 'choice', titan: o, title: `${why}: ${o.name} 추가 전투 액션`, options: opts });
