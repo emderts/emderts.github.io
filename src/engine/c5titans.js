@@ -198,7 +198,7 @@ export function installC5Titans(Game, { TitanDied, BattleOver }) {
       add(5, '이동 액션 1회 추가', myTurn && t.turn.moved, async () => { t.turn.moved = false; });
       if (a === 'Wish Engine') add(6, '전투 액션 1회 추가', myTurn && t.turn.attacked, async () => { t.turn.attacked = false; });
       if (a === 'Carry the Weight') { const cu = this.curses(t); add(6, 'Curse Affliction 1개 제거', cu.length > 0, async () => { const c = cu.length === 1 ? cu[0] : await this.ask({ type: 'choice', titan: t, title: '제거할 Curse Affliction', options: cu.map(x => ({ label: x, value: x })) }); if (c) { t.conditions = t.conditions.filter(x => x !== c); this.say(`${t.name}: ${c} Curse 제거`, 'good'); } }); }
-      add(7, '각성 (Awaken)', !!this.awk && (!!t.godform || this.godformChoices().length > 0), async () => { const ok = await this.awaken(t); if (ok === false) { t.genTok += 7; this.say(`${t.name}: 각성할 수 없어 토큰 7개 반환`); } });
+      add(7, '각성 (Awaken)', !!this.awk && !this.wentBeyond(t) && (!!t.godform || this.godformChoices().length > 0), async () => { const ok = await this.awaken(t); if (ok === false) { t.genTok += 7; this.say(`${t.name}: 각성할 수 없어 토큰 7개 반환`); } });
     }
     return out;
   });

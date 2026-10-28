@@ -175,6 +175,7 @@ export class Game {
   mnUse(t, m, cost) { if (cost.includes('X')) { m.discarded = true; this.say(`${t.name}: Mnemos 「${m.card.name}」 버림`); } else if (cost.includes('⟳')) m.exhausted = true; }
   // ---------------- Awakening ----------------
   async awakenRoll(t, need, label) {
+    if (this.wentBeyond(t)) { this.say(`${t.name}: 이미 Go Beyond — 더 이상 각성할 수 없음 (${label || '각성 굴림'} 실패)`, 'bad'); return false; }
     let r = this.rng.d10(); if (r === 9 && t.awaken9) { r = 10; this.say('The Strand: 각성 굴림 9 → 10', 'good'); } if (this.asc(t) >= 8) { r += 2; this.say(`Ascend! 8+: 각성 굴림 +2`); } { const ar = t.gear.find(g => !g.discarded && g.tokens && /Next time you perform an Awakening roll, add \+X/.test(this.gearText(g, t))); if (ar) { r += ar.tokens; this.say(`${ar.card.name}: 각성 굴림 +${ar.tokens} (토큰 유지)`); } } this.say(`${t.name}: ${label} 각성 굴림 d10=${r} (${need}+ 필요)`, r >= need ? 'good' : 'bad');
     const m = this.mn(t, 'Curse of the Gods', 2);
     if (r < need && m) { const ok = await this.ask({ type: 'yn', titan: t, title: `Curse of the Gods: Mnemos 버리고 각성 굴림 재굴림? (현재 ${r})`, options: [{ label: '재굴림', value: true }, { label: '패스', value: false }] }); if (ok) { this.mnUse(t, m, 'X'); r = this.rng.d10(); if (r === 9 && t.awaken9) r = 10; this.say(`재굴림 → ${r}`, r >= need ? 'good' : 'bad'); } }
@@ -182,7 +183,9 @@ export class Game {
   }
   godformChoices() { if (!this.awk) return []; const worn = this.titans.filter(x => x.godform).map(x => x.godform.def.name); const cyc = (this.prim && this.prim.def.cycle) || 1; return this.data.decks.godforms.filter(g => (!g.cycle || g.cycle <= cyc) && !g.obolOnly && this.awk.avail.includes(g.name) && !this.awk.used.includes(g.name) && !worn.includes(g.name)); }
   // returns false if the Titan could not Awaken (no Godform available). Otherwise performs a Chain Break (or runs the bonus inline).
+  wentBeyond(t) { return !!(t && t.godform && t.godform.beyond); }
   async awaken(t, { fromObol = false, inline = false, force = null } = {}) {
+    if (this.wentBeyond(t)) { this.say(`${t.name}: 이미 Go Beyond — 더 이상 각성할 수 없음`, 'bad'); return false; }
     if (this.terror(t)) { this.say(`${t.name}: ${t.conditions.includes('Holy Terror') ? 'Holy Terror' : 'Terror'} — Awakening Lock (각성 불가)`, 'bad'); return false; }
     if (t.gear.some(g => !g.discarded && /Husk: You cannot Awaken/.test(this.gearText(g, t)))) { this.say(`${t.name}: Husk — 각성 불가`, 'bad'); return false; }
     const all = this.godformChoices(); if (!t.alive) return false;
@@ -756,7 +759,7 @@ export class Game {
     else if (c.code === 'AO0378') { for (const x of this.titans) x.pt = false; t.pt = true; t.ptLocked = true; }
     else if (c.awakenCard) { return this.cardAwaken(t, c); }
   }
-  async cardAwaken(t, c) { if (!this.awk || !t.alive) { this.say('(각성 불가 — 이미 각성 중이거나 사용 가능한 Godform 없음)'); return; } if (!t.godform && !this.godformChoices().length) { this.say('사용 가능한 Godform 없음'); return; } const ok = await this.ask({ type: 'yn', titan: t, title: `${c.name}: 각성할까요? (Doom +1 — Mnestis에서는 없음 · 각성 시 Chain Break)`, options: [{ label: '각성', value: true }, { label: '안 함', value: false }] }); if (ok) await this.awaken(t); }
+  async cardAwaken(t, c) { if (!this.awk || !t.alive) { this.say('(각성 불가 — 이미 각성 중이거나 사용 가능한 Godform 없음)'); return; } if (!t.godform && !this.godformChoices().length) { this.say('사용 가능한 Godform 없음'); return; } if (this.wentBeyond(t)) { this.say(`${t.name}: 이미 Go Beyond — 각성 불가`); return; } const ok = await this.ask({ type: 'yn', titan: t, title: `${c.name}: 각성할까요? (Doom +1 — Mnestis에서는 없음 · 각성 시 Chain Break)`, options: [{ label: '각성', value: true }, { label: '안 함', value: false }] }); if (ok) await this.awaken(t); }
   async kratosRoll(t) { const r = this.rng.d10(); const ok = r >= t.rage; this.say(`${t.name}: Kratos Roll d10=${r} vs Rage ${t.rage} → ${ok ? '성공' : '실패 — Kratos 카드 드로우'}`, ok ? 'good' : 'bad'); if (!ok) await this.drawKratosCard(t); return ok; }
   async drawKratosCard(t) { const c = this.kratosDeck.draw(); this.say(`${t.name}: KRATOS 카드 「${c.name}」 ${c.text}`, 'bad');
     { const held = this.kratosHeldList(t); if (held.length) { this.say(`${t.name}: 이미 Kratos 카드(「${held.join(', ')}」)를 들고 있는데 두 번째 Kratos — 사망`, 'bad'); this.kratosDeck.discard.push(c); return this.kill(t); } }

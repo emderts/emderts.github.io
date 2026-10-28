@@ -89,3 +89,8 @@ const mk = (pid, gears, lv = 3) => { const g = new Game(data, { seed: 4 }); g.as
   g.ask = async q => { if (/Rapid Adaptation: 「Shieldblade」 이번 공격/.test(q.title || '')) { asked = q.options.map(o => o.label); throw new Error('stop'); } return q.options ? q.options[0].value : null; };
   A.pos = (() => { const pc = g.primCells(); const p0 = pc[0]; return [[1,0],[-1,0],[0,1],[0,-1]].map(([dx,dy]) => ({ c: p0.c + dx, r: p0.r + dy })).find(q => g.board.inBounds(q.c, q.r) && !g.primContains(q) && !g.titanAt(q.c, q.r)); })(); g.board.terrain.clear();
   try { await g.titanAttack(A); } catch (e) {} ok(asked && asked.length === 2, 'Rapid Adaptation: 2-class weapon asks at the start of each attack (' + (asked || []).join(' / ') + ')'); }
+{ const g = new Game(data, { seed: 4 }); g.ask = async q => q.options ? q.options[0].value : null;
+  g.setup({ primordialId: 'chimera', level: 3, argo: [], awakening: { enabled: true, godforms: data.decks.godforms.map(x => x.name) }, titans: [0, 1, 2, 3].map(i => ({ name: 'T' + i, portrait: P[i].code, chosenSkill: 'Fury', mnemos: [], fated: [], cls: 'dreamwalker', gear: ['Red Polis'] })) });
+  await g.startOfBattle(); const A = g.titans[0]; try { await g.awaken(A, { inline: true }); } catch (e) {} A.godform.beyond = true; const gf = A.godform.def.name;
+  const r1 = await g.awaken(A, { inline: true }); const r2 = await g.awakenRoll(A, 1, 'test');
+  ok(r1 === false && r2 === false && A.godform.def.name === gf, 'Went Beyond → cannot Awaken again (awaken & roll blocked)'); }
