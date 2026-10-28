@@ -13,12 +13,12 @@ export class RNG {
 // Power die faces, read from a photo of the physical dice (P = Power, O = Potential, Q = ??? symbol).
 // red:   [Q] [O] [P] [PO] [PO] [QPP]
 // black: [QO] [PO] [PO] [QPP] [PPO] [QPPOO]
-// white: [QPO] [QPOO] [PPOO] [PPPOO] [QPPO] [QPPPOO]
+// white: [QPO] [QPOO] [POOO] [QPPO] [PPOOO] [QPPPOO]
 // mortal: [QPOO] [QPOOO] [QPPOOO] [PPOOOO] [PPPOO] [QPPPOOOO]
 export const POWER_DIE_FACES = {
   r: ['Q', 'O', 'P', 'PO', 'PO', 'QPP'],
   b: ['QO', 'PO', 'PO', 'QPP', 'PPO', 'QPPOO'],
-  w: ['QPO', 'QPOO', 'PPOO', 'PPPOO', 'QPPO', 'QPPPOO'],
+  w: ['QPO', 'QPOO', 'POOO', 'QPPO', 'PPOOO', 'QPPPOO'],
   // Mortal die — highest tier (above white).
   m: ['QPOO', 'QPOOO', 'QPPOOO', 'PPOOOO', 'PPPOO', 'QPPPOOOO'],
 };
