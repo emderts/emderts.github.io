@@ -175,7 +175,7 @@ export class Game {
   mnUse(t, m, cost) { if (cost.includes('X')) { m.discarded = true; this.say(`${t.name}: Mnemos 「${m.card.name}」 버림`); } else if (cost.includes('⟳')) m.exhausted = true; }
   // ---------------- Awakening ----------------
   async awakenRoll(t, need, label) {
-    let r = this.rng.d10(); if (r === 9 && t.awaken9) { r = 10; this.say('The Strand: 각성 굴림 9 → 10', 'good'); } if (this.asc(t) >= 8) { r += 2; this.say(`Ascend! 8+: 각성 굴림 +2`); } { const ar = t.gear.find(g => !g.discarded && g.tokens && /Next time you perform an Awakening roll, add \+X/.test(this.gearText(g, t))); if (ar) { r += ar.tokens; this.say(`${ar.card.name}: 각성 굴림 +${ar.tokens}`); ar.tokens = 0; } } this.say(`${t.name}: ${label} 각성 굴림 d10=${r} (${need}+ 필요)`, r >= need ? 'good' : 'bad');
+    let r = this.rng.d10(); if (r === 9 && t.awaken9) { r = 10; this.say('The Strand: 각성 굴림 9 → 10', 'good'); } if (this.asc(t) >= 8) { r += 2; this.say(`Ascend! 8+: 각성 굴림 +2`); } { const ar = t.gear.find(g => !g.discarded && g.tokens && /Next time you perform an Awakening roll, add \+X/.test(this.gearText(g, t))); if (ar) { r += ar.tokens; this.say(`${ar.card.name}: 각성 굴림 +${ar.tokens} (토큰 유지)`); } } this.say(`${t.name}: ${label} 각성 굴림 d10=${r} (${need}+ 필요)`, r >= need ? 'good' : 'bad');
     const m = this.mn(t, 'Curse of the Gods', 2);
     if (r < need && m) { const ok = await this.ask({ type: 'yn', titan: t, title: `Curse of the Gods: Mnemos 버리고 각성 굴림 재굴림? (현재 ${r})`, options: [{ label: '재굴림', value: true }, { label: '패스', value: false }] }); if (ok) { this.mnUse(t, m, 'X'); r = this.rng.d10(); if (r === 9 && t.awaken9) r = 10; this.say(`재굴림 → ${r}`, r >= need ? 'good' : 'bad'); } }
     return r >= need;
