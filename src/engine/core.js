@@ -18,12 +18,12 @@ export const POWER_DIE_FACES = {
   r: ['Q', 'O', 'P', 'PO', 'PO', 'QPP'],
   b: ['QO', 'PO', 'PO', 'QPP', 'PPO', 'QPPOO'],
   w: ['QPO', 'QPOO', 'PPOO', 'PPPOO', 'QPPO', 'QPPPOO'],
-  // Mortal (gray) die — Cycle V. Face layout not yet provided: placeholder uses the red die faces.
-  m: ['Q', 'O', 'P', 'PO', 'PO', 'QPP'],
+  // Mortal die — highest tier (above white). Face layout not yet provided: placeholder uses the white die faces.
+  m: ['QPO', 'QPOO', 'PPOO', 'PPPOO', 'QPPO', 'QPPPOO'],
 };
 export const facePower = f => (f.match(/P/g) || []).length;
 export const facePotential = f => (f.match(/O/g) || []).length;
-export const TIER_UP = { m: 'r', r: 'b', b: 'w', w: 'w' };
+export const TIER_UP = { r: 'b', b: 'w', w: 'm', m: 'm' }; // red < black < white < mortal
 
 export class Deck {
   constructor(cards = [], rng) { this.cards = [...cards]; this.discard = []; this.rng = rng; }

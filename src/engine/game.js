@@ -183,10 +183,10 @@ export class Game {
   }
   godformChoices() { if (!this.awk) return []; const worn = this.titans.filter(x => x.godform).map(x => x.godform.def.name); const cyc = (this.prim && this.prim.def.cycle) || 1; return this.data.decks.godforms.filter(g => (!g.cycle || g.cycle <= cyc) && !g.obolOnly && this.awk.avail.includes(g.name) && !this.awk.used.includes(g.name) && !worn.includes(g.name)); }
   // returns false if the Titan could not Awaken (no Godform available). Otherwise performs a Chain Break (or runs the bonus inline).
-  powerDiceLimit(pool) { const LIM = { m: 2, r: 5, b: 4, w: 3 }, UP = { m: 'r', r: 'b', b: 'w' }; const c = { m: 0, r: 0, b: 0, w: 0 }; for (const d of pool) c[d] = (c[d] || 0) + 1; const msg = [];
-    for (const d of ['m', 'r', 'b']) while (c[d] > LIM[d]) { c[d] -= 2; c[UP[d]]++; msg.push(`${({ m: '회', r: '빨', b: '흑' })[d]}×2→${({ r: '빨', b: '흑', w: '백' })[UP[d]]}`); }
-    if (c.w > LIM.w) { msg.push(`백 ${c.w - LIM.w}개 초과 — 버림`); c.w = LIM.w; }
-    if (msg.length) this.say(`Power Dice Limit (회2·빨5·흑4·백3): ${msg.join(', ')}`); return [...'mrbw'].flatMap(d => Array(c[d]).fill(d)); }
+  powerDiceLimit(pool) { const LIM = { r: 5, b: 4, w: 3, m: 2 }, UP = { r: 'b', b: 'w', w: 'm' }, NM = { r: '빨', b: '흑', w: '백', m: '모탈' }; const c = { r: 0, b: 0, w: 0, m: 0 }; for (const d of pool) c[d] = (c[d] || 0) + 1; const msg = [];
+    for (const d of ['r', 'b', 'w']) while (c[d] > LIM[d]) { c[d] -= 2; c[UP[d]]++; msg.push(`${NM[d]}×2→${NM[UP[d]]}`); }
+    if (c.m > LIM.m) { msg.push(`모탈 ${c.m - LIM.m}개 초과 — 버림`); c.m = LIM.m; }
+    if (msg.length) this.say(`Power Dice Limit (빨5·흑4·백3·모탈2): ${msg.join(', ')}`); return [...'rbwm'].flatMap(d => Array(c[d]).fill(d)); }
   wentBeyond(t) { return !!(t && t.godform && t.godform.beyond); }
   async awaken(t, { fromObol = false, inline = false, force = null } = {}) {
     if (this.wentBeyond(t)) { this.say(`${t.name}: 이미 Go Beyond — 더 이상 각성할 수 없음`, 'bad'); return false; }
@@ -2724,7 +2724,7 @@ export class Game {
     if (this.gf(t, 'Ares') && t.godform.trespass > 0) { const ok = await this.ask({ type: 'yn', titan: t, title: `Eschatonic Fuse: Trespass 1개 소모 (남은 ${t.godform.trespass}) — 이번 Power Roll +1 Power?`, options: [{ label: '사용', value: true }, { label: '패스', value: false }] }); if (ok) { t.godform.trespass--; A.raw += 1; this.say('Eschatonic Fuse: +1 Power', 'good'); } }
     if (!/Ignore Power Dice Limit/.test(txt)) A.pool = this.powerDiceLimit(A.pool);
     let results = this.rollPower(A.pool);
-    this.say(`Power Roll [${results.map(r => ({ r: '빨', b: '흑', w: '백', m: '회' })[r.die] + ':' + (r.face === '-' ? '빈' : r.face.replace(/P/g, '⟨').replace(/O/g, '▲').replace(/Q/g, '•'))).join(' ')}]${A.raw ? ' + raw ' + A.raw : ''}`);
+    this.say(`Power Roll [${results.map(r => ({ r: '빨', b: '흑', w: '백', m: '모' })[r.die] + ':' + (r.face === '-' ? '빈' : r.face.replace(/P/g, '⟨').replace(/O/g, '▲').replace(/Q/g, '•'))).join(' ')}]${A.raw ? ' + raw ' + A.raw : ''}`);
     kt = await this.ktStage(t, A, 'power');
     // 6.3 re-rolls
     if (await this.argoHook('Trireme Ballista Fire', `${t.name}: Power Re-roll 1 추가?`, t)) A.ballista = 1;
