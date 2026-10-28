@@ -79,3 +79,6 @@ const mk = (pid, gears, lv = 3) => { const g = new Game(data, { seed: 4 }); g.as
 { const g = mk('chimera', [['Red Polis'], ['Red Polis'], ['The End'], ['Umbral Virus']]); const [A, B] = g.titans; g.round = 1; B.gear[0].exhausted = true; let labels = null;
   g.ask = async q => { if (/Time Dilation: .* 추가 이동 액션/.test(q.title || '')) { labels = q.options.map(o => o.label); return 'unex'; } return q.options ? q.options[0].value : null; };
   await g.moveActionNow(B, 'Time Dilation'); ok(labels && labels.some(l => /이동 \(Speed/.test(l)) && labels.some(l => /준비/.test(l)) && !B.gear[0].exhausted, 'Time Dilation extra movement action offers move / unexhaust'); }
+{ const g = mk('harpy', [['Red Polis'], ['Red Polis'], ['The End'], ['Umbral Virus']]); const [A, B] = g.titans; A.gear.push({ card: { name: 'Hyperborean Strain', slot: 'tech', isTech: true, text: 'If you have exactly 1 Bleeding token, ignore the Bleeding Condition.' }, alt: null, exhausted: false, charges: 0 });
+  for (const x of g.titans) { x.conditions = x.conditions.filter(c => c !== 'Bleeding'); x.bleeding = 0; } A.conditions.push('Bleeding'); A.bleeding = 1; g.attackedThisRound = new Set();
+  ok(!g.bleeds(A) && g.predatorTarget() !== A, 'Hyperborean Strain: 1 Bleeding token ignored (not a Predation target)'); A.bleeding = 2; ok(g.bleeds(A), '2 tokens: Bleeding counts'); }

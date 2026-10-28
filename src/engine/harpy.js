@@ -58,7 +58,7 @@ export function installHarpy(Game, { TitanDied, BattleOver }) {
       if (!list.length) return; const j = this.rng.pick(list); R.spaces[j].locked = true; this.say(`Perfection: ${RA_SPACES[j].name} Adaptation 토큰 고정 (전투 끝까지 이동/제거 불가)`, 'ai'); this.notify();
     },
     // ---------- Bleeding helpers ----------
-    bleeds(t) { return !!(t && t.conditions.includes('Bleeding') && (t.bleeding || 0) > 0); },
+    bleeds(t) { return !!(t && t.conditions.includes('Bleeding') && (t.bleeding || 0) > 0 && !this.bleedIgnored(t)); },
     predBleeds(t) { return this.bleeds(t) && (t.bleeding || 0) > (this.prim.predGrace || 0); },
     async harpyBleed(t, n, card) { if (!t || !t.alive || n <= 0) return; if (card && this.prim.disabled.bleedAtk) { this.say('(Harpy 공격의 Bleeding 비활성)'); return; } await this.addCondition(t, 'Bleeding', { tokens: n }); },
     async harpyRegurgitate() {
