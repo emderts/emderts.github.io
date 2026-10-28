@@ -18,8 +18,8 @@ export const POWER_DIE_FACES = {
   r: ['Q', 'O', 'P', 'PO', 'PO', 'QPP'],
   b: ['QO', 'PO', 'PO', 'QPP', 'PPO', 'QPPOO'],
   w: ['QPO', 'QPOO', 'PPOO', 'PPPOO', 'QPPO', 'QPPPOO'],
-  // Mortal die — highest tier (above white). Face layout not yet provided: placeholder uses the white die faces.
-  m: ['QPO', 'QPOO', 'PPOO', 'PPPOO', 'QPPO', 'QPPPOO'],
+  // Mortal die — highest tier (above white). Read from photo: [QPOO] [QOOO] [PPPOOO] [PPPPOOO] [PPPPOO] [QPPPOO]
+  m: ['QPOO', 'QOOO', 'PPPOOO', 'PPPPOOO', 'PPPPOO', 'QPPPOO'],
 };
 export const facePower = f => (f.match(/P/g) || []).length;
 export const facePotential = f => (f.match(/O/g) || []).length;
