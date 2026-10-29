@@ -98,10 +98,30 @@ button.tog { border-style:dashed; } button.tog.on { background:#5a4a1a; border-c
 #prim { overflow:auto; flex:0 0 auto; height:36vh; }
 @media (max-width: 900px) { .lo-main { grid-template-columns:1fr; } .cards2 { grid-template-columns:1fr; } }
 @media (max-width: 900px) { .battle { grid-template-columns:1fr; height:auto; } #board { display:block; } .bsvg { height:auto; } #prim { height:auto; } #titans { grid-template-columns:1fr; } }
+
+/* ---- flash overlay (dice / trauma / obol) ---- */
+#flash { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; z-index:900; }
+#flash .fcard { pointer-events:auto; cursor:pointer; background:rgba(20,17,15,.94); border:2px solid var(--bronze); border-radius:14px; padding:14px 22px; min-width:260px; max-width:min(560px, 92vw); text-align:center; box-shadow:0 10px 40px rgba(0,0,0,.6); animation: fpop .18s ease-out, fout .35s ease-in forwards; animation-delay: 0s, var(--fdur, 1.5s); }
+#flash .fcard.bad { border-color:var(--red); } #flash .fcard.good { border-color:var(--good); } #flash .fcard.obol { border-color:#ff5c5c; box-shadow:0 0 40px rgba(255,60,60,.35); }
+#flash .ft { color:var(--bronze); font-weight:700; font-size:14px; margin-bottom:8px; } #flash .fcard.bad .ft { color:#e8745f; } #flash .fcard.good .ft { color:var(--good); } #flash .fcard.obol .ft { color:#ff5c5c; font-size:16px; }
+#flash .fs { color:var(--muted); font-size:12px; margin-top:8px; }
+#flash .fdice { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
+#flash .die { width:46px; height:46px; border-radius:9px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:22px; background:#efe6d2; color:#1b1611; border:2px solid #cbb; animation: droll .32s ease-out; position:relative; }
+#flash .die.hit { background:#ffd166; border-color:#f3b43a; } #flash .die.miss { background:#5a4f45; color:#cbb; border-color:#3a3027; }
+#flash .die.crit::after { content:'★'; position:absolute; top:-9px; right:-7px; font-size:12px; color:#ff9b86; }
+#flash .die.auto { font-size:14px; }
+#flash .pdie { width:50px; height:50px; border-radius:9px; display:flex; align-items:center; justify-content:center; font-size:14px; letter-spacing:1px; border:2px solid #000; animation: droll .32s ease-out; }
+#flash .pdie.r { background:#b8402f; color:#fff; } #flash .pdie.b { background:#111; color:#eee; border-color:#444; } #flash .pdie.w { background:#f2ead8; color:#1b1611; } #flash .pdie.m { background:#8a7f93; color:#fff; }
+#flash .fname { font-size:20px; font-weight:800; margin:4px 0 6px; } #flash .ftext { font-size:13px; line-height:1.4; max-height:9em; overflow:hidden; }
+#flash .fd10 { font-size:44px; font-weight:900; line-height:1; margin:4px 0; animation: droll .32s ease-out; } #flash .fcard.good .fd10 { color:var(--good); } #flash .fcard.bad .fd10 { color:#e8745f; }
+@keyframes fpop { from { transform:scale(.85); opacity:0; } to { transform:scale(1); opacity:1; } }
+@keyframes fout { to { transform:scale(1.03) translateY(-8px); opacity:0; } }
+@keyframes droll { 0% { transform:rotate(-25deg) scale(.6); opacity:0; } 60% { transform:rotate(8deg) scale(1.08); opacity:1; } 100% { transform:none; } }
 </style>
 </head>
 <body>
 <div id="app"></div>
+<div id="flash"></div>
 <script>window.ATO_DATA = __DATA__;</script>
 <script>__BUNDLE__</script>
 </body>
