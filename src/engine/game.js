@@ -191,10 +191,10 @@ export class Game {
   }
   godformChoices() { if (!this.awk) return []; const worn = this.titans.filter(x => x.godform).map(x => x.godform.def.name); const cyc = (this.prim && this.prim.def.cycle) || 1; return this.data.decks.godforms.filter(g => (!g.cycle || g.cycle <= cyc) && !g.obolOnly && this.awk.avail.includes(g.name) && !this.awk.used.includes(g.name) && !worn.includes(g.name)); }
   // returns false if the Titan could not Awaken (no Godform available). Otherwise performs a Chain Break (or runs the bonus inline).
-  powerDiceLimit(pool) { const LIM = { r: 5, b: 4, w: 3, m: 2 }, UP = { r: 'b', b: 'w', w: 'm' }, NM = { r: '빨', b: '흑', w: '백', m: '모탈' }; const c = { r: 0, b: 0, w: 0, m: 0 }; for (const d of pool) c[d] = (c[d] || 0) + 1; const msg = [];
+  powerDiceLimit(pool) { const LIM = { r: 6, b: 4, w: 3, m: 1 }, UP = { r: 'b', b: 'w', w: 'm' }, NM = { r: '빨', b: '흑', w: '백', m: '모탈' }; const c = { r: 0, b: 0, w: 0, m: 0 }; for (const d of pool) c[d] = (c[d] || 0) + 1; const msg = [];
     for (const d of ['r', 'b', 'w']) while (c[d] > LIM[d]) { c[d] -= 2; c[UP[d]]++; msg.push(`${NM[d]}×2→${NM[UP[d]]}`); }
     if (c.m > LIM.m) { msg.push(`모탈 ${c.m - LIM.m}개 초과 — 버림`); c.m = LIM.m; }
-    if (msg.length) this.say(`Power Dice Limit (빨5·흑4·백3·모탈2): ${msg.join(', ')}`); return [...'rbwm'].flatMap(d => Array(c[d]).fill(d)); }
+    if (msg.length) this.say(`Power Dice Limit (빨6·흑4·백3·모탈1): ${msg.join(', ')}`); return [...'rbwm'].flatMap(d => Array(c[d]).fill(d)); }
   abilityLock(t) { return !t ? null : t.offBoard === 'clock' ? 'Time-clocked' : t.knockdown ? 'Knockdown' : null; }
   wentBeyond(t) { return !!(t && t.godform && t.godform.beyond); }
   async awaken(t, { fromObol = false, inline = false, force = null } = {}) {
