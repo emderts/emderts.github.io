@@ -32,7 +32,12 @@ export function installOracle(Game, { TitanDied, BattleOver }) {
     },
 
     // ---------------- Time Anchors / Rewind ----------------
-    reestablishAnchor(t) { if (!this.onBoard(t) || t.onVP) return; if (this.anchors) this.anchors[t.id] = { ...t.pos }; else t.anchor = { ...t.pos }; },
+    async reestablishAnchor(t) { if (!this.onBoard(t)) return;
+      if (t.onVP) { // FAQ: VPs are not spaces — place the Time Anchor adjacent to the Primordial instead
+        const cells = Board.adjacentCells(this.primCells()).filter(p => this.board.inBounds(p.c, p.r) && !this.board.isObstacle(p.c, p.r) && !this.board.isChasm(p.c, p.r) && !this.primContains(p)); if (!cells.length) return;
+        const p = cells.length === 1 ? cells[0] : await this.ask({ type: 'move', titan: t, title: `${t.name}: VP 위 — Time Anchor를 Primordial 인접 칸에 놓기`, cells, options: cells.map(c => ({ label: cellLabel(c), value: c })) }); if (!p) return;
+        if (this.anchors) this.anchors[t.id] = { ...p }; else t.anchor = { ...p }; this.say(`${t.name}: VP 위 — Time Anchor ${cellLabel(p)} (Primordial 인접)`); return; }
+      if (this.anchors) this.anchors[t.id] = { ...t.pos }; else t.anchor = { ...t.pos }; },
     async anchorChoice(t, a) { const m = this.anchors && this.mn(t, 'Time-Crossed Lovers', 3); if (!m) return a; const others = this.titans.filter(o => o !== t && this.anchors[o.id]); if (!others.length) return a; const v = await this.ask({ type: 'choice', titan: t, title: 'Time-Crossed Lovers L3: 다른 타이탄의 Time Anchor를 내 것처럼 사용? (Mnemos 버림)', options: [{ label: a ? `내 Anchor (${cellLabel(a)})` : '내 Anchor (없음)', value: null }, ...others.map(o => ({ label: `${o.name}의 Anchor (${cellLabel(this.anchors[o.id])})`, value: o }))] }); if (!v) return a; this.mnUse(t, m, 'X'); this.say(`${t.name}: Time-Crossed Lovers — ${v.name}의 Time Anchor 사용`); return { ...this.anchors[v.id] }; },
     consumeAnchor(id, how) { if (!this.anchors || !this.anchors[id]) return; this.anchors[id] = null; const t = this.titans[id]; this.say(`Voracious Parasite: ${t.name}의 Time Anchor를 삼킴 (${how})`, 'bad'); if (this.trait('Once Upon A Time')) { this.prim.ouat++; this.say(`Once Upon A Time 토큰 +1 → ${this.prim.ouat}/4`); } },
     voraciousStep() { if (!this.anchors || !this.trait('Voracious Parasite')) return; const cells = this.primCells(); for (let i = 0; i < this.anchors.length; i++) { const a = this.anchors[i]; if (a && cells.some(p => p.c === a.c && p.r === a.r)) this.consumeAnchor(i, '이동 경로'); } },
@@ -359,7 +364,7 @@ export function installOracle(Game, { TitanDied, BattleOver }) {
       if (k === 'tyranny') {
         const all = this.boardTitans(); if (!all.length) { this.say('타겟 없음 → Routine', 'ai'); return this.resolveAI(this.routine); }
         await this.oracleWindow(all[0], { name: card.name }, 'Teleport All Titans');
-        for (const t of all) { if (!this.onBoard(t) || t.onVP) continue; await this.solo(async () => { await this.teleportTitan(t); this.reestablishAnchor(t); }); }
+        for (const t of all) { if (!this.onBoard(t) || t.onVP) continue; await this.solo(async () => { await this.teleportTitan(t); await this.reestablishAnchor(t); }); }
         this.say('Tyranny of Stars: 텔레포트된 타이탄의 Time Anchor 재설정', 'ai');
         await this.reactionWindow(this.boardTitans()[0] || this.titans[0], card, 'Signature vs 인접 타이탄');
         const sig = { ...this.sig, oracle: { ...this.sig.oracle, after: [] } };

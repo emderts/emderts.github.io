@@ -188,6 +188,7 @@ function validateTitan(t) {
   if (t.cls === 'earthshaker' && hands > 2 && support > 2) errs.push('Six-Armed Centimanes: 무기 3칸 또는 서포트 3칸 중 하나만');
   else { if (t.gear.includes('Horseskull Pauldron') && t.gear.some(n => { const g = GEAR.find(x => x.name === n); return g && g.slot === 'support' && (g.traits || []).includes('Paradox'); })) s.support++; if (hands > s.hands) errs.push(`손 슬롯 초과 (${hands}/${s.hands})`); if (support > s.support) errs.push(`서포트 ${support}/${s.support}`); }
   if (armor > s.armor) errs.push('방어구 1개만');
+  { const att = t.gear.filter(n => (GEAR.find(x => x.name === n) || {}).slot === 'attachment').length; if (att > 3) errs.push(`부착물(Attachment) 최대 3개 (${att})`); }
   { const A = DATA.titans.classes[t.cls]?.abilities || {}; const ws = t.gear.map(n => GEAR.find(x => x.name === n)).filter(g => g && /^hand/.test(g.slot) && g.name !== 'Fists');
     if (A['Four-Armed Centimanes']) for (const g of ws) if (g.slot === 'hand2' || g.slot === 'hand3') errs.push(`Four-Armed Centimanes: 양손/세손 무기 「${g.name}」 사용 불가`);
     if (A['Nimble Feet']) for (const g of ws) if (g.slot === 'hand3') errs.push(`Nimble Feet: 세손 무기 「${g.name}」 사용 불가`);

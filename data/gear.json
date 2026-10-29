@@ -2931,7 +2931,7 @@
    ],
    "name": "Repurposed Cryptex",
    "slot": "attachment",
-   "text": "Unique. Ascended. Attach to your Titan Sheet. +1 Precision. Frontlines (If your Titan is dead, at the end of Battle roll a d10. On a 1, your Argonaut dies as well.) Ψ Semi Sync: Gain a Move action. At the end of your turn, gain a Move Fatigue token.",
+   "text": "Unique. Ascended. Titan Attachment. Restricted (Cryptex). +1 Precision. Frontlines (If your Titan is dead, at the end of Battle roll a d10. On a 1, your Argonaut dies as well.) Ψ Semi Sync: Gain a Move action. At the end of your turn, gain a Move Fatigue token.",
    "traits": [
     "Argotech",
     "Primordial",
@@ -3866,7 +3866,7 @@
    "rage": {
     "8+": "Gain +2 Rage."
    },
-   "text": "Unique. Argonaut Possession. Deadly. Auto-break 2. *This Weapon occupies all Weapon slots. Start of Battle: Gain the Hatred Condition card. Wound: You may draw an Obol. If you survive, immediately perform a Bonus Attack! Fail: Draw an Obol when you finish resolving this Attack.",
+   "text": "Unique. Argonaut Possession. Deadly. Auto-break 2. *This Weapon occupies all Weapon slots. Start of Battle: Gain the Hatred Condition card. Wound: Once per turn you may draw an Obol. If you survive, immediately perform a Bonus Attack! Fail: Draw an Obol when you finish resolving this Attack.",
    "traits": [
     "Abyss",
     "Primordial",
@@ -4308,7 +4308,7 @@
    "danger": {
     "6+": "X When you are about to gain Ambrosia tokens, ignore this gain."
    },
-   "text": "Unique. Ascended. Attach to your Titan Sheet. Frontlines. +1 Precision. Ψ Semi Sync: Gain a movement action. At the end of your turn gain a movement Fatigue token. [R]Ψ⟳ Reflex.",
+   "text": "Unique. Ascended. Titan Attachment. Restricted (Cryptex). Frontlines. +1 Precision. Ψ Semi Sync: Gain a movement action. At the end of your turn gain a movement Fatigue token. [R]Ψ⟳ Reflex.",
    "traits": [
     "Argotech",
     "Augment",
@@ -4323,7 +4323,7 @@
    ],
    "name": "Argocryptex Beta",
    "slot": "attachment",
-   "text": "Unique. Ascended. Attach to your Titan Sheet. Frontlines. +1 Precision. ΨΨ Start of Battle: You may perform a bonus turn before the Primordial. At the end of this turn gain a combat Fatigue token. [R]Ψ⟳ Reflex.",
+   "text": "Unique. Ascended. Titan Attachment. Restricted (Cryptex). Frontlines. +1 Precision. ΨΨ Start of Battle: You may perform a bonus turn before the Primordial. At the end of this turn gain a combat Fatigue token. [R]Ψ⟳ Reflex.",
    "traits": [
     "Argotech",
     "Augment",
@@ -4341,7 +4341,7 @@
    "danger": {
     "6+": "+1 Bonus Power."
    },
-   "text": "Unique. Ascended. Attach to your Titan Sheet. Frontlines. Break 1. Ψ Priming: Unexhaust all cards. At the end of your turn gain a movement or combat Fatigue token. [R]Ψ⟳ Reflex.",
+   "text": "Unique. Ascended. Titan Attachment. Restricted (Cryptex). Frontlines. Break 1. Ψ Priming: Unexhaust all cards. At the end of your turn gain a movement or combat Fatigue token. [R]Ψ⟳ Reflex.",
    "traits": [
     "Argotech",
     "Augment",
@@ -4620,7 +4620,7 @@
    "danger": {
     "7+": "+1 Bonus Power."
    },
-   "text": "Ψ Transform. Ψ Quantum. Break 3. Ranged 1-3. Reposition 2. Assist 1. Wound Trick. Cumbersome. If you can't wield 3-handed Weapons, Commit.",
+   "text": "Ψ Transform. Break 3. Ranged 2-3. Reposition 2. Assist 1. Wound Trick. Cumbersome. If you can't wield 3-handed Weapons, Commit.",
    "traits": [
     "Bow",
     "Pistol",
@@ -6528,7 +6528,7 @@
    ],
    "name": "Future Cryptex",
    "slot": "attachment",
-   "text": "Unique. Attach to your Titan Sheet. Frontlines. +2 Precision. Ψ Full Sync: Gain a combat action. At the end of your turn gain a combat Fatigue token. Crit Miss: Time-clocked.",
+   "text": "Unique. Titan Attachment. Restricted (Cryptex). Frontlines. +2 Precision. Ψ Full Sync: Gain a combat action. At the end of your turn gain a combat Fatigue token. Crit Miss: Time-clocked.",
    "traits": [
     "Argotech",
     "Augment",
@@ -6814,7 +6814,7 @@
     "2+": "Armor-piercing. Reach 2.",
     "3+": "Another black Power die becomes white. Elation 1."
    },
-   "text": "Mnestis. Unique. Black 2. Burden. Elation 1. Succor. Unholy Alchemy. Ambrosia Limit 3. Ignore the Metamorphosis Trait. Ignore the Rapid Adaptation Trait.",
+   "text": "Mnestis. Unique. Black 2. Burden. Elation 1. Succor. You may perform Unholy Alchemy as a free action. Ambrosia Limit 3. Ignore the Metamorphosis Trait. Ignore the Rapid Adaptation Trait.",
    "traits": [
     "Club",
     "Sword",
@@ -10145,7 +10145,7 @@
    ],
    "name": "Slushbane (Wished)",
    "slot": "hand2",
-   "text": "Wished. Unique. Black 2. Burden 1. Elation 1. Succor. Unholy Alchemy. Ambrosia Limit 3. Ignore the Curse Carapace Trait.",
+   "text": "Wished. Unique. Black 2. Burden 1. Elation 1. Succor. You may perform Unholy Alchemy as a free action. Ambrosia Limit 3. Ignore the Curse Carapace Trait.",
    "traits": [
     "Club",
     "Sword",
