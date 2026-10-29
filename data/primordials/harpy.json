@@ -730,7 +730,7 @@
     "FAIL": "Regurgitate. Pushback 3.",
     "WOUND": "Perform Signature against the Attacker."
    },
-   "critical": "Discard 1 Rapid Adaptation token from the Battle. If there aren't any, another Titan may move up to 3 spaces and perform a Bonus Attack!",
+   "critical": "Discard 1 Rapid Adaptation token from the Board. If there aren't any, another Titan may move up to 3 spaces and perform a Bonus Attack!",
    "qeye": false
   },
   {

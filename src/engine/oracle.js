@@ -33,9 +33,9 @@ export function installOracle(Game, { TitanDied, BattleOver }) {
 
     // ---------------- Time Anchors / Rewind ----------------
     async reestablishAnchor(t) { if (!this.onBoard(t)) return;
-      if (t.onVP) { // FAQ: VPs are not spaces — place the Time Anchor adjacent to the Primordial instead
+      if (t.onVP || t.stair) { // FAQ: VPs (and the Endless Staircase) are not spaces — place the Time Anchor adjacent to the Primordial instead
         const cells = Board.adjacentCells(this.primCells()).filter(p => this.board.inBounds(p.c, p.r) && !this.board.isObstacle(p.c, p.r) && !this.board.isChasm(p.c, p.r) && !this.primContains(p)); if (!cells.length) return;
-        const p = cells.length === 1 ? cells[0] : await this.ask({ type: 'move', titan: t, title: `${t.name}: VP 위 — Time Anchor를 Primordial 인접 칸에 놓기`, cells, options: cells.map(c => ({ label: cellLabel(c), value: c })) }); if (!p) return;
+        const p = cells.length === 1 ? cells[0] : await this.ask({ type: 'move', titan: t, title: `${t.name}: ${t.stair ? 'Endless Staircase' : 'VP 위'} — Time Anchor를 Primordial 인접 칸에 놓기`, cells, options: cells.map(c => ({ label: cellLabel(c), value: c })) }); if (!p) return;
         if (this.anchors) this.anchors[t.id] = { ...p }; else t.anchor = { ...p }; this.say(`${t.name}: VP 위 — Time Anchor ${cellLabel(p)} (Primordial 인접)`); return; }
       if (this.anchors) this.anchors[t.id] = { ...t.pos }; else t.anchor = { ...t.pos }; },
     async anchorChoice(t, a) { const m = this.anchors && this.mn(t, 'Time-Crossed Lovers', 3); if (!m) return a; const others = this.titans.filter(o => o !== t && this.anchors[o.id]); if (!others.length) return a; const v = await this.ask({ type: 'choice', titan: t, title: 'Time-Crossed Lovers L3: 다른 타이탄의 Time Anchor를 내 것처럼 사용? (Mnemos 버림)', options: [{ label: a ? `내 Anchor (${cellLabel(a)})` : '내 Anchor (없음)', value: null }, ...others.map(o => ({ label: `${o.name}의 Anchor (${cellLabel(this.anchors[o.id])})`, value: o }))] }); if (!v) return a; this.mnUse(t, m, 'X'); this.say(`${t.name}: Time-Crossed Lovers — ${v.name}의 Time Anchor 사용`); return { ...this.anchors[v.id] }; },
@@ -170,6 +170,7 @@ export function installOracle(Game, { TitanDied, BattleOver }) {
         if (o && o !== t) { this.say(`Laser: 경로상 ${o.name}이(가) ${t.name} 앞에 있음 — 타겟 변경`, 'ai'); return { res: { kind: 'titan', t: o, cell: before, dir: f }, origin }; }
         if (ter && ter.obstacle) { this.say(`Laser: 경로상 ${ter.type}이(가) ${t.name} 앞에 있음 — 타겟 변경`, 'ai'); return { res: { kind: 'ter', ter, cell: before, dir: f }, origin }; }
       }
+      if (!t.onVP && this.board.labAt && this.board.labAt(t.pos.c, t.pos.r)) { this.say(`Laser: ${t.name}은(는) Labyrinth 타일 안 — 보호됨 (FAQ)`, 'good'); return { res: null, origin }; }
       return { res: { kind: 'titan', t, cell: t.pos, dir: f }, origin };
     },
     laserHandle(r, card, hits, ctx, depth = 0) {

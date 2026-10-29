@@ -180,8 +180,8 @@ export function installDjinn(Game, { TitanDied, BattleOver }) {
       if (/^Place a Wishstorm Terrain tile directly in front of the Demidjinn$/.test(p)) { await this.placeWishstorm(); return true; }
       if (/^Discard the lowest level AI card, then shuffle the AI IV card into the AI deck/.test(p)) { await this.hiddenEyeAI(); return true; }
       if (/^If it's already in the deck, do not discard the AI card/.test(p)) return true;
-      if (/^All Titans die$/.test(p)) { this.say('THE LAST WISH — 모든 타이탄 사망', 'bad'); for (const x of this.liveTitans()) { x.alive = false; } throw new BattleOver('defeat'); }
-      if (/^Random Titan dies$/.test(p)) { const v = this.rng.pick(this.liveTitans()); if (v) { this.say(`무작위 타이탄 ${v.name} 사망`, 'bad'); await this.solo(() => this.kill(v)); } return true; }
+      if (/^All Titans die$/.test(p)) { this.say('THE LAST WISH — 모든 타이탄 사망 (Instant Death)', 'bad'); for (const x of [...this.liveTitans()]) await this.solo(() => this.kill(x, { instant: true })); if (!this.liveTitans().length) throw new BattleOver('defeat'); return true; }
+      if (/^Random Titan dies$/.test(p)) { const v = this.rng.pick(this.liveTitans()); if (v) { this.say(`무작위 타이탄 ${v.name} 사망 (Instant Death)`, 'bad'); await this.solo(() => this.kill(v, { instant: true })); } return true; }
       if (/^Discard 1 random Gear card$/.test(p)) { if (alive) { const list = t.gear.filter(g => !g.discarded && g.card.name !== 'Fists' && !g.card.isTech); if (list.length) { const g = this.rng.pick(list); this.say(`${t.name}: 무작위 장비 「${g.card.name}」 버림`, 'bad'); this.discardGear(t, g); } } return true; }
       return false;
     },

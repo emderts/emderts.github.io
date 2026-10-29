@@ -8922,9 +8922,9 @@
    },
    "text": "Unique. Reach 2. Startup 2. Closing 1. Wishcursed. Each hit: Opening 2. Neverending: When you attack, gain +XΨ to gain +X to Reach. Crit Miss: Gain the Wishkeen Condition card.",
    "traits": [
-    "Cestus",
-    "Accursed",
     "Spear",
+    "Accursed",
+    "Wish",
     "Djinn"
    ],
    "tech": "Demidjinn Live Study",
