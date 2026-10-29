@@ -715,7 +715,7 @@
    "danger": {
     "9+": "Rocksteady."
    },
-   "text": "You may reduce suffered Knockbacks by up to 2. Ψ Reinforce 1. Crit Evade: Gain Rocksteady until you finish resolving this AI card.",
+   "text": "You may reduce suffered Knockbacks by up to 2. Ψ Reinforce 1. Crit Evade: Gain Rocksteady until you finish resolving this Attack.",
    "traits": [
     "Primordial",
     "Bronze",
@@ -741,7 +741,7 @@
    ],
    "danger": {
     "8+": "+1 Bonus Power.",
-    "6+": "Crit Evade: Gain Stalwart until the end of this AI card."
+    "6+": "Crit Evade: Gain Stalwart until the end of this Attack."
    },
    "text": "You may reduce suffered Knockbacks by 1. Ψ Wound: BP Suppress. ΨΨ⟳ Block 1.",
    "traits": [
