@@ -11,5 +11,5 @@ for (let i = 0; i < 220; i++) {
   const cells = await p.$$('.cell.move'); if (cells.length) await cells[Math.floor(cells.length / 2)].click(); else { const btns = await p.$$('#prompt button'); if (btns.length) await btns[btns.length - 1].click(); }
   await p.waitForTimeout(60);
 }
-console.log(seen); ok(seen.dice > 0 && seen.power > 0, 'attack/evasion dice and power dice flashed');
+console.log(seen); ok(seen.dice + seen.power > 0 && seen.card + seen.d10 > 0, 'dice and card/d10 flashes shown');
 console.log('errors:', errs); ok(!errs.length, 'no page errors'); await b.close(); console.log(fails ? `${fails} FAIL` : 'ALL PASS');

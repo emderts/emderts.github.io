@@ -357,11 +357,11 @@ function flashNode(kind, d) {
 function flashNext() {
   const el = $('#flash'); if (!el) return; if (!flashQ.length) { flashBusy = false; return; }
   flashBusy = true; const { kind, d } = flashQ.shift(); const node = flashNode(kind, d); if (!node) return flashNext();
-  const dur = kind === 'card' ? 2600 : kind === 'd10' ? 1300 : 1700; node.style.setProperty('--fdur', dur + 'ms');
+  let dur = kind === 'card' ? 2600 : kind === 'd10' ? 1300 : 1700; if (flashQ.length) dur = Math.max(700, Math.round(dur / (1 + flashQ.length * 0.6))); node.style.setProperty('--fdur', dur + 'ms');
   el.innerHTML = ''; el.append(node); let done = false; const fin = () => { if (done) return; done = true; if (node.parentNode) node.remove(); flashNext(); };
   node.onclick = fin; setTimeout(fin, dur + 380);
 }
-function onFlash(kind, d) { if (!flashOn || (bt && bt.replay)) return; if (flashQ.length >= 4) flashQ.shift(); flashQ.push({ kind, d }); if (!flashBusy) flashNext(); }
+function onFlash(kind, d) { if (!flashOn || (bt && bt.replay)) return; if (flashQ.length >= 6) flashQ.shift(); flashQ.push({ kind, d }); if (!flashBusy) flashNext(); }
 
 function btRewind() { if (!bt || bt.cp == null) return; const list = bt.answers.slice(0, bt.cp); const root = ui.root; startBattle(root, { lo: bt.lo, seed: bt.seed, replay: list, keepCp: true }); }
 function startBattle(root, bopts = {}) {
