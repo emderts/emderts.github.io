@@ -116,3 +116,18 @@ const mk = (pid, gears, lv = 3) => { const g = new Game(data, { seed: 4 }); g.as
   await g.startOfBattle(); g.round = 1; const [A, B] = g.titans; A.turn = { moved: false, attacked: false, usedAbilities: new Set() }; B.pos = { c: A.pos.c + 1, r: A.pos.r }; if (!g.board.inBounds(B.pos.c, B.pos.r) || g.tDist(A, B) !== 1) B.pos = { c: A.pos.c - 1, r: A.pos.r };
   B.conditions.push('Bleeding'); B.bleeding = 2; const before = g.freeActions(A).some(o => /Stop Bleeding Other/.test(o.label)); A.knockdown = 'kd'; const after = g.freeActions(A).some(o => /Stop Bleeding/.test(o.label));
   ok(before && !after, 'Knockdown: Stop Bleeding Other blocked'); }
+{ const g = mk('hekaton', [['Red Polis'], ['Red Polis'], ['The End'], ['Umbral Virus']]); const [A] = g.titans; const asked = [];
+  g.ask = async q => { asked.push(q.title || ''); if (/보너스 공격: (Wound|Fail) Response 무시/.test(q.title || '')) return true; return q.options ? q.options[0].value : null; };
+  A.pos = (() => { const pc = g.primCells(); const p0 = pc[0]; return [[1,0],[-1,0],[0,1],[0,-1]].map(([dx,dy]) => ({ c: p0.c + dx, r: p0.r + dy })).find(q => g.board.inBounds(q.c, q.r) && !g.primContains(q) && !g.titanAt(q.c, q.r)); })(); g.board.terrain.clear();
+  const w = A.gear.find(x => x.card.name === 'Red Polis'); w.exhausted = true; for (const c of g.bp.cards) { c.at = 99; c.responses = { ...c.responses, FAIL: c.responses.FAIL || 'Pushback 2.' }; }
+  try { await g.titanAttack(A, { bonus: true }); } catch (e) {}
+  ok(!w.exhausted || g.log.some(l => /보너스 공격 — 「Red Polis」 준비/.test(l.msg)), 'Bonus Attack: exhausted weapon may be declared (unexhausted)');
+  ok(asked.some(x => /보너스 공격: (Wound|Fail) Response 무시/.test(x)) && g.log.some(l => /보너스 공격 — Attack Response 무시/.test(l.msg)), 'Bonus Attack: may ignore Attack Responses'); }
+{ const g = mk('pursuer', [['Red Polis'], ['Red Polis'], ['The End'], ['Umbral Virus']], 3); g.prim.traits['Darkness Comes With Me'] = true; g.prim.facing = 'E';
+  const cells = g.primCells(); const minC = Math.min(...cells.map(x => x.c)); const rows = [...new Set(cells.map(x => x.r))]; const [A, B, C, D] = g.titans; g.board.terrain.clear();
+  for (const x of g.titans) x.pos = { c: 20, r: 14 - x.id };
+  A.pos = { c: Math.max(1, minC - 6), r: rows[0] }; B.pos = { c: minC - 1, r: Math.min(14, Math.max(...rows) + 1) }; C.pos = { c: minC - 1, r: rows[rows.length - 1] };
+  const kb = []; g.knockback = async (o) => { kb.push(o.name); }; await g.darkness();
+  ok(kb.includes(A.name) && kb.includes(C.name) && !kb.includes(B.name), 'Darkness Comes With Me: 2 lanes directly behind, to the board edge (' + kb.join(',') + ')'); }
+{ const g = mk('burden', [['Red Polis'], ['Red Polis'], ['The End'], ['Umbral Virus']]); const [A] = g.titans; A._roundStart = { c: 1, r: 1 }; const p0 = { ...A.pos }; await g.rewind(A);
+  ok(A.pos.c === p0.c && A.pos.r === p0.r && (g.prim.def.cycle === 2) && g.log.some(l => /Theatre에서는 하지 않음/.test(l.msg)), 'Burden (Theatre): Cycle II, Rewind not resolved'); }

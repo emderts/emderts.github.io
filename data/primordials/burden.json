@@ -2,6 +2,7 @@
  "id": "burden",
  "name": "The Burden",
  "cycle": 2,
+ "noRewind": true,
  "type": "adversary",
  "sheetCode": "BU1149",
  "_notes": [
@@ -10,7 +11,7 @@
   "Kickback = Knockback that bounces 90° off obstacles/Primordial (towards column 1 when possible), Crash once at the end. Rewind = move the Titan back to the space they started this Round (interpretation: last start-of-turn position).",
   "Zone patterns: Tides of the Lethe / Umbral Dunk = Zone 2 / Zone 3 after a Jump onto the target. Sequential Attack = targets attacked one by one, highest column first.",
   "Tethered implemented (path distance around Obstacles; \"above/below\" = strictly higher/lower column). Ties That Bind Us: a Titan outside the limit cannot move voluntarily (every space is a Chasm) and falls if it is involuntarily moved again; it is safe again once other Titans bring it back within the limit. Mnemos-node stealing is still campaign-only.",
-  "Theatre: Not Yet... is ignored (Rewind enabled) — user."
+  "Theatre: treated as Cycle II; Rewind is not resolved (Not Yet... applies) — user."
  ],
  "footprint": {
   "w": 2,
