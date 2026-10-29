@@ -21,8 +21,15 @@ export class Game {
     this.log = []; this.onLog = opts.onLog || null; this.onState = opts.onState || null; this.onFlash = opts.onFlash || null;
     this.round = 0; this.over = null; this.escalations = 0;
   }
-  say(msg, cls = '') { this.log.push({ msg, cls, round: this.round }); if (this.onLog) this.onLog(msg, cls); }
-  flash(kind, data) { if (this.onFlash) { try { this.onFlash(kind, data); } catch (e) {} } }
+  say(msg, cls = '') { this.log.push({ msg, cls, round: this.round }); if (this.onLog) this.onLog(msg, cls); this.autoFlash(msg, cls); }
+  flash(kind, data) { this._flashed = true; if (this.onFlash) { try { this.onFlash(kind, data); } catch (e) {} } }
+  // any d10 result mentioned in a log line that wasn't flashed explicitly → generic d10 flash
+  autoFlash(msg, cls) { if (this._flashed) { this._flashed = false; return; } if (!this.onFlash || typeof msg !== 'string' || !/d10/.test(msg)) return; try { this.autoFlash2(msg, cls); } finally { this._flashed = false; } }
+  autoFlash2(msg, cls) {
+    let m; const title = msg.replace(/\s*[—:-]?\s*d10.*$/, '').trim() || '굴림'; const ok = cls === 'good' ? true : cls === 'bad' ? false : null;
+    if ((m = /d10\s*=\s*(\d+)/.exec(msg))) { const tail = msg.slice(m.index + m[0].length).replace(/^[\s,]*/, '').replace(/[.。]$/, ''); this.flash('d10', { title, roll: +m[1], sub: tail, ok }); }
+    else if ((m = /d10\s*(?:→|->)\s*(\d+)/.exec(msg))) { this.flash('d10', { title, roll: +m[1], sub: msg.slice(m.index + m[0].length).trim(), ok }); }
+    else if ((m = /d10\s*\[([\d\s]+)\]/.exec(msg))) { this.flash('dice', { title, dice: m[1].trim().split(/\s+/).map(v => ({ v: +v, hit: null })), sub: msg.slice(m.index + m[0].length).replace(/^\s*→?\s*/, '') }); } }
   notify() { if (this.onState) this.onState(this); }
   // in-place state snapshot (identity-preserving) used for undoing a dice-free move action
   static SNAP_SKIP = new Set(['data', 'log', 'ask', 'onLog', 'onState', 'onFlash', '_moveUndo']);
