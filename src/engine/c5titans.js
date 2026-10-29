@@ -67,6 +67,7 @@ export function installC5Titans(Game, { TitanDied, BattleOver }) {
       for (const t of this.titans) {
         const card = t._sdCard; t._sdCard = null;
         if (!card || !t.alive || !this.ab(t, 'Shadowdance') || t.offBoard || t.knockdown || t.impaled || t.stair || t.float === 'up' || this.paralyzed(t) || t.fatigue) continue;
+        if (this.prim.def.dahakaD && card._dhUsed) { this.say(`${t.name}: Shadowdance — 이미 Interrupt Attack이 해결된 Dahaka 공격이라 사용 불가`); continue; }
         const lv = aiLevel(card); if (lv == null || card.kind === 'SIGNATURE' || card.kind === 'ROUTINE' || card.isSignature) continue; const X = Math.max(0, 3 - lv); if (X > this.fr(t)) continue;
         if (!(await yn(this, t, `Shadowdance: 「${card.name}」 해결 후 — Fate +${X}로 이동 액션 + 공격 (Interrupt 취급), Combat Fatigue 토큰`))) continue;
         if (X) await this.gainFate(t, X); this.say(`${t.name}: SHADOWDANCE!`, 'good');

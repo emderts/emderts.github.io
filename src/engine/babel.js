@@ -51,9 +51,10 @@ export function installBabel(Game, { TitanDied, BattleOver }) {
       this.board.terrain.set(key(p.c, p.r), { id: 'bentr', type: 'Staircase Entrance', obstacle: true, obscuring: true, elevated: true, indestructible: true, destructible: false, climb: 4, entrance: true, cell: p });
       this.prim.entr = { cell: p, under }; this.say(`Staircase Entrance → ${spec}`, 'ai'); this.notify();
     },
-    async babelAfterMove(t) {
+    async babelAfterMove(t, turnStart = false) {
       const E = this.prim.entr; if (!E || !t.alive || t.onVP || t.stair || t.offBoard) return;
       if (t.pos.c !== E.cell.c || t.pos.r !== E.cell.r) return;
+      if (!turnStart && (this._actor !== t || this._primRound)) { this.say(`${t.name}: 자기 턴이 아닐 때 Staircase Entrance에 도착 — 들어가지 않음 (턴 시작에 자동 입장)`); return; } // FAQ
       if (this.stairLen() <= 0) { this.say(`${t.name}: Staircase Entrance — Endless Staircase가 아직 잠김 (Tower of Madness)`); return; }
       await this.moveToStair(t, 'Staircase Entrance');
       if (this.trait('One Fool at a Time')) this.babelRemoveEntr('One Fool at a Time');
@@ -150,7 +151,7 @@ export function installBabel(Game, { TitanDied, BattleOver }) {
     babelHdr(card) { const h = card.hdr || ''; const i = h.indexOf(':'); return i < 0 ? null : { cond: h.slice(0, i), eff: h.slice(i + 1).trim() }; },
     async babelWindow(targets, card, label) {
       const H = this.babelHdr(card); const list = targets.filter(t => t.alive);
-      if (H && /^Ignore ⚡$/.test(H.eff)) { const open = list.filter(t => !this.babelCond(t, H.cond)); if (!open.length) { this.say(`(${H.cond}: ◆! 무시)`); return; } return this.reactionWindow(open[0], card, label); }
+      if (H && /^Ignore ⚡$/.test(H.eff)) { const open = list.filter(t => !this.babelCond(t, H.cond)); if (!open.length) { this.say(`(${H.cond}: ◆! 무시)`); return; } const ex = list.filter(t => this.babelCond(t, H.cond)); if (ex.length) this.say(`(${H.cond}: ${ex.map(t => t.name).join(', ')}은(는) ◆! 사용 불가)`); this._woExclude = new Set(ex); try { return await this.reactionWindow(open[0], card, label); } finally { this._woExclude = null; } }
       if (list.length) await this.reactionWindow(list[0], card, label);
     },
     async babelAI(card, { isSignature = false, forcedTarget = null } = {}) {
@@ -180,7 +181,8 @@ export function installBabel(Game, { TitanDied, BattleOver }) {
     async babelEclipse(card, forcedTarget, noTarget, done) {
       if (card.rotate) { const r = this.babelRotate(card.rotate); if (!r) return noTarget(); }
       const cells = this.babelEclipseCells(); this.zoneShow = cells; this.notify(); const set = new Set(cells.map(p => key(p.c, p.r)));
-      let targets = forcedTarget ? [forcedTarget] : this.liveTitans().filter(t => !t.offBoard && !t.onVP && !t.stair && set.has(key(t.pos.c, t.pos.r)));
+      let targets = forcedTarget ? [forcedTarget] : this.liveTitans().filter(t => !t.offBoard && !t.onVP && !t.stair && set.has(key(t.pos.c, t.pos.r)) && !t.shadedTok); // FAQ: VP / Staircase / not in front / shaded space / Shaded ability → safe
+      if (forcedTarget && forcedTarget.shadedTok) { this.say(`${forcedTarget.name}: Shaded 능력 사용 중 — 이 Eclipse 공격에서 자동 생존`, 'good'); targets = []; }
       this.say(`Eclipse Zone (${this.prim.facing}${this.trait('Total Eclipse') ? ' + Rear' : ''}): ${targets.map(t => t.name).join(', ') || '(대상 없음)'}`, 'ai');
       if (card.allDie) {
         await this.babelWindow(targets, card, 'Eclipse');
@@ -256,7 +258,7 @@ export function installBabel(Game, { TitanDied, BattleOver }) {
       return { dice, diff };
     },
     babelDeal(t, card, per, hits) {
-      let total = per * hits; if (card.eclipse && this.laserRes(t)) { const nd = Math.max(0, total - this.laserRes(t) * hits); this.say(`${t.name}: Laser Resistance — Danger ${total} → ${nd}`); total = nd; } if (card.eclipse && this.ab(t, 'In Light and Shade') && total > hits) { const nd = Math.max(hits, total - hits); this.say(`${t.name}: In Light and Shade — 명중당 Danger −1 (${total} → ${nd})`, 'good'); total = nd; }
+      let total = per * hits; if (card.eclipse && (this.laserRes(t) + this.sunRes(t))) { const rr = this.laserRes(t) + this.sunRes(t); const nd = Math.max(0, total - rr * hits); this.say(`${t.name}: Laser/Sun Resistance ${rr} — Danger ${total} → ${nd}`); total = nd; } if (card.eclipse && this.ab(t, 'In Light and Shade') && total > hits) { const nd = Math.max(hits, total - hits); this.say(`${t.name}: In Light and Shade — 명중당 Danger −1 (${total} → ${nd})`, 'good'); total = nd; }
       total += this.prim.bonus.DANGER * (this.prim.bonusPerHit ? hits : 1) + (this.prim.tokens.danger || 0); this.currentAI.dangerDealt += total;
       return this.gainDanger(t, total, { fromAttack: true, source: card.name, noArmor: this.isJudge(card) });
     },
@@ -329,7 +331,7 @@ export function installBabel(Game, { TitanDied, BattleOver }) {
       if (direct) for (const r of T) await r();
     },
     async babelTurnStart(t) { },
-    babelTurnTriggers(t, add) { if (t.stair) add(null, 'Endless Staircase: Wishkeen', async () => { if (!t.stair) return; this.say(`${t.name}: Endless Staircase에서 턴 시작 — Wishkeen`, 'bad'); await this.midasCondition(t, 'Wishkeen'); }); },
+    babelTurnTriggers(t, add) { { const E = this.prim.entr; if (E && !t.stair && !t.onVP && !t.offBoard && t.pos && t.pos.c === E.cell.c && t.pos.r === E.cell.r) add(null, 'Staircase Entrance: 턴 시작 — Endless Staircase 입장', () => this.babelAfterMove(t, true)); } if (t.stair) add(null, 'Endless Staircase: Wishkeen', async () => { if (!t.stair) return; this.say(`${t.name}: Endless Staircase에서 턴 시작 — Wishkeen`, 'bad'); await this.midasCondition(t, 'Wishkeen'); }); },
     async babelHoldFail(t) {
       const cfg = this.vpCfg(); const len = this.stairLen(); const X = Math.max(1, cfg.stairHalf ? Math.ceil(len / 2) : len);
       const V = this.prim.vp; V.occupants = (V.occupants || []).filter(x => x !== t); V.occupant = V.occupants[0] || null; t.onVP = false; await this.moveToStair(t, 'Hold On 실패'); if (!t.alive) return; t.stair = 1; this.say(`${t.name}: Dome of Folly에서 떨어짐 — Endless Staircase ${t.stair}번 칸으로`, 'bad'); await this.knockdown(t); this.notify();

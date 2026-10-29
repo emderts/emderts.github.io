@@ -216,7 +216,7 @@ export function installOracle(Game, { TitanDied, BattleOver }) {
       if (bonus) { if (f > 0) f += bonus; else d += bonus; }
       { const DB = opts.noBonus ? 0 : (this.prim.bonus.DANGER || 0); if (DB && (d > 0 || f > 0)) { const add = this.prim.bonusPerHit ? DB * hits : DB; d += add; this.say(`Danger 보너스 +${add}`); } }
       if (d > 0 && (opts.laser || (card && card.oracle && card.oracle.laser)) && this.laserRes(t)) { const nd = Math.max(0, d - this.laserRes(t) * hits); this.say(`${t.name}: Laser Resistance — Danger ${d} → ${nd}`, 'good'); d = nd; }
-      if (d > 0 && (opts.sunHit || (card && card.sun))) { let sr = 0; for (const g of t.gear) { if (g.discarded) continue; const m = /Sun Resistance (\d)/.exec(this.gearText(g, t)); if (m) sr += +m[1]; } if (sr) { const nd = Math.max(0, d - sr * hits); this.say(`${t.name}: Sun Resistance ${sr} — Danger ${d} → ${nd}`, 'good'); d = nd; } }
+      if (d > 0 && (opts.sunHit || (card && card.sun))) { let sr = 0; for (const g of t.gear) { if (g.discarded || g.exhausted) continue; const m = /Sun Resistance (\d)/.exec(this.gearText(g, t)); if (m) sr += +m[1]; } if (sr) { const nd = Math.max(0, d - sr * hits); this.say(`${t.name}: Sun Resistance ${sr} — Danger ${d} → ${nd}`, 'good'); d = nd; } }
       if (opts.laser && this.prim.laserMalus && d > 0) { const nd = Math.max(1, d - this.prim.laserMalus); this.say(`Lens-Eyes: Laser Danger ${d} → ${nd}`); d = nd; }
       const judge = this.isJudge(card);
       let fateArmored = false;

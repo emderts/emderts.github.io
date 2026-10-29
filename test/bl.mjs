@@ -16,7 +16,7 @@ ok(D.ai.length === 20 && D.bp.length === 18, '20 AI (incl sig/routine) / 18 BP')
 { const g = mk(2); ok(g.prim.tierLimit === 4 && g.board.allChasm === 'empty', 'lv2: 4 tiers, bleached bones'); }
 // entrance
 { const g = mk(1); g.babelMoveEntr('F11'); ok(g.board.terrainAt(11, 6)?.entrance, 'entrance placed F11'); g.babelMoveEntr('gone'); ok(!g.board.terrainAt(11, 6), 'entrance disappears'); g.babelMoveEntr('F9'); g.babelMoveEntr('G12'); ok(g.board.terrainAt(9, 6)?.irem === 'tower', 'tower restored after entrance leaves'); }
-{ const g = mk(3); const [A] = g.titans; g.babelUnlockTier(); g.babelMoveEntr('F11'); A.pos = { c: 11, r: 6 }; await g.babelAfterMove(A); ok(A.stair === 1 && !g.prim.entr, 'enter staircase via entrance; One Fool at a Time'); }
+{ const g = mk(3); const [A] = g.titans; g.babelUnlockTier(); g.babelMoveEntr('F11'); A.pos = { c: 11, r: 6 }; g._actor = null; await g.babelAfterMove(A); const out = !A.stair; g._actor = A; g._primRound = false; await g.babelAfterMove(A); ok(out && A.stair === 1 && !g.prim.entr, 'enter staircase via entrance (only on own turn — FAQ); One Fool at a Time'); }
 // tower of madness
 { const g = mk(1); const [A] = g.titans; A.pos = { c: 9, r: 7 }; await catchD(() => g.babelOnWound({ t: A })); ok(g.stairLen() === 5, 'wound unlocks tier'); await catchD(() => g.babelOnWound({ t: A })); ok(g.prim.vp.count === 1, 'then unlocks VP'); }
 { const g = mk(1); const [A] = g.titans; g.prim.stairSegs = [5]; g.createVP(null); A.stair = 5; await catchD(() => g.stairClimb(A, 2)); ok(A.onVP && A.conditions.includes('Lander'), 'beyond top → VP + Lander'); let r = null; try { await g.babelOnWound({ t: A }); } catch (e) { r = e.result; } ok(r === 'victory', 'lv1 wound from VP → victory'); }

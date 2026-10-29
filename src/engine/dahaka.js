@@ -181,7 +181,9 @@ export function installDahaka(Game, { TitanDied, BattleOver, ChainBreak }) {
       for (const z of this.dhClouds()) { if (here.has(z.id)) continue; const set = new Set(z.cells.map(p => key(p.c, p.r))); for (const p of z.cells) { const an = { c: p.c, r: p.r }; if (!this.primCells(an).every(q => set.has(key(q.c, q.r)))) continue; const c2 = this.primCenter(an); opts.push({ an, d: Math.max(Math.abs(c2.x - C.x), Math.abs(c2.y - C.y)) + Math.hypot(c2.x - C.x, c2.y - C.y) / 100 }); } }
       if (!opts.length) { this.say('Dissipate: 이동할 Ambrosia Cloud 없음'); return; }
       opts.sort((a, b) => a.d - b.d); const dest = opts[0].an;
-      await this.dhTeleport(dest); await this.primEndMove([]); this.faceMost();
+      // FAQ: Dahaka moves through the intervening spaces (may cause Crash) to the closest 4 spaces of the closest Ambrosia Cloud
+      { let cur = { ...this.prim.anchor }; let guard = 0; while ((cur.c !== dest.c || cur.r !== dest.r) && guard++ < 60) { const dc = dest.c - cur.c, dr = dest.r - cur.r; const nx = Math.abs(dc) >= Math.abs(dr) ? { c: cur.c + Math.sign(dc), r: cur.r } : { c: cur.c, r: cur.r + Math.sign(dr) }; await this.primStep(nx, []); if (this.prim.anchor.c === cur.c && this.prim.anchor.r === cur.r) { await this.dhTeleport(dest); break; } cur = { ...this.prim.anchor }; } }
+      await this.primEndMove([]); this.faceMost();
       this.say(`Dissipate: ${this.prim.name} → Ambrosia Cloud (${cellLabel(dest)} 기준), 가장 많은 타이탄 쪽(${this.prim.facing})으로 회전`, 'ai'); this.notify();
     },
     dhHeal(n) { for (let i = 0; i < n; i++) { const w = this.woundStack.filter(x => !x.secondary).pop(); if (!w) { this.say('(Heal: Wound 없음)'); return; } this.woundStack.splice(this.woundStack.lastIndexOf(w), 1); if (w.card) { w.card._dhAway = false; this.ai.shuffleIn(w.card); } this.say(`${this.prim.name}: Heal 1 — Wound Stack에서 ${w.card ? `「${w.card.bpName || w.card.name}」을(를) 덱에 섞음` : (w.name || 'Wound')} 제거 (${this.woundCount()}/${this.prim.wounds})`, 'bad'); } this.notify(); },
