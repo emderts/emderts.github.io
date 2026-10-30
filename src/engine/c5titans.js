@@ -6,7 +6,7 @@ export function installC5Titans(Game, { TitanDied, BattleOver }) {
   const yn = (g, t, title) => g.ask({ type: 'yn', titan: t, title, options: [{ label: '사용', value: true }, { label: '패스', value: false }] });
   const solo = async (g, fn) => { try { await fn(); } catch (e) { if (e instanceof BattleOver) throw e; if (e instanceof TitanDied) return; throw e; } };
   const aiLevel = card => (card && typeof card.aiTier === 'number') ? card.aiTier : (card && typeof card.tier === 'number') ? card.tier : null;
-  const laserCard = card => !!(card && ((card.oracle && card.oracle.laser) || (card.midas && card.midas.laser) || card.eclipse || card.laser));
+  const laserCard = card => !!(card && ((card.oracle && card.oracle.laser) || (card.midas && card.midas.laser) || (card.sun && card.sun.mode === 'laser') || (card.oh && card.oh.mode === 'laser') || card.eclipse || card.laser || /LASER|MICROWAVE/.test(card.kind || '')));
 
   Object.assign(P, {
     // ---------- generic token tracks (Wish Engine / Carry the Weight) ----------
@@ -14,9 +14,12 @@ export function installC5Titans(Game, { TitanDied, BattleOver }) {
     genGain(t, n, why) { const a = this.genAb(t); if (!a || !t.alive || n <= 0) return; t.genTok = (t.genTok || 0) + n; this.say(`${t.name}: ${a} — Generic 토큰 +${n} (${why}) → ${t.genTok}`, 'good'); this.notify(); },
     async genSpend(t, n, what) { const a = this.genAb(t); if (!a || !t.alive || (t.genTok || 0) < n) return false; if (!(await yn(this, t, `${a}: Generic 토큰 ${n}개 버리고 ${what}? (보유 ${t.genTok})`))) return false; t.genTok -= n; this.say(`${t.name}: ${a} — 토큰 ${n}개 버림 → ${what} (남은 ${t.genTok})`, 'good'); this.notify(); return true; },
     // ---------- Wish Shield ----------
-    wishShieldOn(t) { if (!t || !t.alive) return false; if (this.ab(t, 'Wish Shield')) return true; if (t.offBoard || t.onVP || t.stair || !t.pos) return false; return this.liveTitans().some(x => x !== t && this.ab(x, 'Wish Shield') && !x.offBoard && !x.stair && this.tDist(x, t) === 1); },
+    // Wish Shield (Wish + Laser) / Electromagnetic Shield (Laser + Microwave): self or an adjacent Titan with it
+    shieldsFor(k) { return k === 'Wish' ? ['Wish Shield'] : ['Wish Shield', 'Electromagnetic Shield']; },
+    wishShieldSrc(t, k = 'Laser') { if (!t || !t.alive) return null; const L = this.shieldsFor(k); const own = L.find(n => this.ab(t, n)); if (own) return own; if (t.offBoard || t.onVP || t.stair || !t.pos) return null; for (const x of this.liveTitans()) { if (x === t || x.offBoard || x.stair || this.tDist(x, t) !== 1) continue; const n = L.find(n => this.ab(x, n)); if (n) return n; } return null; },
+    wishShieldOn(t, k = 'Laser') { return !!this.wishShieldSrc(t, k); },
     wishShieldKind(t, card, laser = false) { return (laser || laserCard(card)) ? 'Laser' : (this._wishNoArmor === t ? 'Wish' : null); },
-    c5WishShieldPer(t, card, per) { const k = this.wishShieldKind(t, card); if (!k || per <= 1 || !this.wishShieldOn(t)) return per; this.say(`${t.name}: Wish Shield — ${k} Attack hit당 Danger −1 (${per} → ${per - 1})`, 'good'); return per - 1; },
+    c5WishShieldPer(t, card, per) { const k = this.wishShieldKind(t, card); if (!k || per <= 1 || !this.wishShieldOn(t, k)) return per; this.say(`${t.name}: ${this.wishShieldSrc(t, k)} — ${k} Attack hit당 Danger −1 (${per} → ${per - 1})`, 'good'); return per - 1; },
     // ---------- One Small Step ----------
     oneSmallStep(t) { return !!(t && this.ab(t, 'One Small Step') && (t.onVP || t.stair)); },
     // ---------- weapon restrictions ----------
@@ -135,12 +138,12 @@ export function installC5Titans(Game, { TitanDied, BattleOver }) {
     return hits;
   });
   wrap('dealFD', async function (o, t, f, d, card, hits = 1, dFn = null, opts = {}) {
-    if (t && d > 0 && hits > 0 && d > hits) { const k = this.wishShieldKind(t, card, !!opts.laser); if (k && this.wishShieldOn(t)) { const nd = Math.max(hits, d - hits); this.say(`${t.name}: Wish Shield — ${k} Attack hit당 Danger −1 (${d} → ${nd})`, 'good'); d = nd; } }
+    if (t && d > 0 && hits > 0 && d > hits) { const k = this.wishShieldKind(t, card, !!opts.laser); if (k && this.wishShieldOn(t, k)) { const nd = Math.max(hits, d - hits); this.say(`${t.name}: ${this.wishShieldSrc(t, k)} — ${k} Attack hit당 Danger −1 (${d} → ${nd})`, 'good'); d = nd; } }
     return o.call(this, t, f, d, card, hits, dFn, opts);
   });
   if (P.babelDeal) wrap('babelDeal', function (o, t, card, per, hits) { per = this.c5WishShieldPer(t, card, per); return o.call(this, t, card, per, hits); });
   if (P.dhDeal) wrap('dhDeal', async function (o, t, card, base, hits, perHit, opts = {}) {
-    if (this.wishShieldKind(t, card) && this.wishShieldOn(t)) { const nb = perHit ? Math.max(1, base - 1) : Math.max(hits, base - hits); if (nb < base) { this.say(`${t.name}: Wish Shield — hit당 Danger −1 (${perHit ? `hit당 ${base} → ${nb}` : `${base} → ${nb}`})`, 'good'); base = nb; } }
+    if (this.wishShieldKind(t, card) && this.wishShieldOn(t, this.wishShieldKind(t, card))) { const nb = perHit ? Math.max(1, base - 1) : Math.max(hits, base - hits); if (nb < base) { this.say(`${t.name}: Wish Shield — hit당 Danger −1 (${perHit ? `hit당 ${base} → ${nb}` : `${base} → ${nb}`})`, 'good'); base = nb; } }
     return o.call(this, t, card, base, hits, perHit, opts);
   });
   wrap('secondWindow', async function (o, t, A, kt, ...r) {

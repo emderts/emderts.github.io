@@ -5,7 +5,8 @@
   "Trauma tiers: 1 arrow = Minor, 2 arrows = Major, 3 arrows = Grave, skull = Obol draw.",
   "Kratos Table: row = Rage value reached; entries are the Kratos Table Abilities unlocked at that Rage (left/right = two separate options, '+' = both together on one entry).",
   "Rush ability prefix '[DANGER 2+] Ψ' read as: requires Danger 2+, costs Fate (Ψ) - cost amount TBC against rulebook p.54 Free/Fate abilities; it consumes both the Move and Attack actions.",
-  "Cycle I Gamechanger (AK0298) and Cycle V Titans DK2001-DK2004 added (Kratos tables from the sheet backs). The person-with-up-arrow icon is Scale; the hand+sword icon is Clutch."
+  "Cycle I Gamechanger (AK0298) and Cycle V Titans DK2001-DK2004 added (Kratos tables from the sheet backs). The person-with-up-arrow icon is Scale; the hand+sword icon is Clutch.",
+  "Cycle V (EK/DK20xx) Titans added 2026-10-30 from sheet photos: Immortal Truthbearer, Helldiver, Feareater, Executioner, Trespasser. Ambrosia Limit N → ambrosiaLimit = N-4 (modifier). Feareater \"+1 Power\" sheet icon → Raw Power 1. Oxygen/Aether/Light/Deny only matter in Cycle V Primordial battles."
  ],
  "kratosAbilities": {
   "Power Re-roll X": "During the Power Roll step of an Attack, you may re-roll up to X Power dice.",
@@ -42,7 +43,11 @@
   "Unburden X": "You may give up to X Condition or Despair or Ambrosia tokens to the closest Titan. You may use this ability in either the first or second ability window.",
   "Clutch": "During the Power Roll step, if, after applying all bonuses, you fail to meet the AT by exactly 1 Power, you may gain +1 Power, then, when you finish resolving this Attack, immediately discard your active weapon.",
   "Precise": "After drawing the BP card, you may target the top card of the BP discard pile instead (shuffle the drawn card back).",
-  "Taint X": "(Cycle V — 미구현)"
+  "Taint X": "(Cycle V — 미구현)",
+  "Truth X": "During the second ability window, place X tokens in the Kratos Pool. Each of those tokens may be a Break, Opening, Fire, Closing or Black token.",
+  "AI Suppress": "When you deal a Wound, shuffle the AI discard pile into the AI deck.",
+  "Pull X": "Move the Primordial X spaces toward you, along the shortest possible path. If the Primordial is or becomes adjacent to you, the Pull does not end. Instead, move directly away from the Primordial the remaining number of spaces, then finish the Pull. You may use this ability in either the first or second ability window.",
+  "Auto-rouse X": "During the first ability window, place X Rouse tokens in the Kratos Pool."
  },
  "battleSequence": {
   "round": [
@@ -1547,6 +1552,490 @@
      ],
      [
       "Scale 1"
+     ]
+    ]
+   }
+  },
+  "immortaltruthbearer": {
+   "name": "Immortal Truthbearer",
+   "code": "DK2005",
+   "cycle": 5,
+   "powerDice": 1,
+   "powerDie": "b",
+   "speed": 5,
+   "inherentKeywords": [
+    "Auto-black 1",
+    "Wish Dodge"
+   ],
+   "ambrosiaLimit": 2,
+   "despairLimit": 5,
+   "bleedingLimit": 6,
+   "abilities": {
+    "Fate Follows": "Each time you roll a Crit Miss, [campaign]. (캠페인 효과 — 무시)",
+    "Last Titan Standing": "If you are the last Titan on the Battle Board, you cannot gain Ambrosia tokens, Despair tokens or suffer Knockdown.",
+    "Elder Might": "You can use [3-hand] Weapons as if they were [2-hand]. If you don't use a [3-hand] Weapon, you have Tireless.",
+    "The Truth": "If R7 is marked, you have Auto-hope 1. (하우스룰: 항상 Auto-hope 1)"
+   },
+   "trauma": [
+    {
+     "danger": "1-4",
+     "tier": "Minor"
+    },
+    {
+     "danger": "5-8",
+     "tier": "Major"
+    },
+    {
+     "danger": "9-11",
+     "tier": "Grave"
+    },
+    {
+     "danger": "12+",
+     "tier": "Obol"
+    }
+   ],
+   "kratos": {
+    "1": [
+     [
+      "Break 1",
+      "Closing 1"
+     ]
+    ],
+    "2": [
+     [
+      "Power Re-roll 1",
+      "Burden 1"
+     ]
+    ],
+    "3": [
+     [
+      "Break 1",
+      "Hope 1"
+     ],
+     [
+      "Black 1"
+     ]
+    ],
+    "4": [
+     [
+      "Additional Power Die",
+      "Elation 1"
+     ]
+    ],
+    "5": [
+     [
+      "Closing 1",
+      "Hope 1"
+     ],
+     [
+      "Black 1"
+     ]
+    ],
+    "6": [
+     [
+      "Power Re-roll 1",
+      "Burden 1"
+     ]
+    ],
+    "7": [
+     [
+      "Hope 1",
+      "Power Re-roll 1"
+     ]
+    ],
+    "8": [
+     [
+      "Succor"
+     ]
+    ]
+   }
+  },
+  "helldiver": {
+   "name": "Helldiver",
+   "code": "EK2593",
+   "cycle": 5,
+   "powerDice": 1,
+   "powerDie": "b",
+   "speed": 4,
+   "inherentKeywords": [
+    "Auto-black 1"
+   ],
+   "ambrosiaLimit": 2,
+   "abilities": {
+    "Cyclopean Might": "You can use [3-hand] Weapons as if they were [2-hand].",
+    "Silver Strain": "Start of Battle: Gain 1 Oxygen token. (Oxygen 규칙은 Cycle V 전투에서만 — 토큰만 기록)",
+    "Aether Lamp": "You have Light X, where X is the number of Aether tokens you have. (Light는 Cycle V 전투에서만 의미)",
+    "Electromagnetic Shield": "Each Laser Attack and Microwave Attack hit deals 1 Danger less (to a minimum of 1) to you and adjacent Titans."
+   },
+   "trauma": [
+    {
+     "danger": "1-4",
+     "tier": "Minor"
+    },
+    {
+     "danger": "5-8",
+     "tier": "Major"
+    },
+    {
+     "danger": "9-11",
+     "tier": "Grave"
+    },
+    {
+     "danger": "12+",
+     "tier": "Obol"
+    }
+   ],
+   "kratos": {
+    "1": [
+     [
+      "Opening 1"
+     ],
+     [
+      "Overbreak 1"
+     ]
+    ],
+    "2": [
+     [
+      "Overbreak 1",
+      "Taint 1"
+     ]
+    ],
+    "3": [
+     [
+      "Overbreak 1",
+      "Taint 1"
+     ],
+     [
+      "Diversion",
+      "Opening 1"
+     ]
+    ],
+    "4": [
+     [
+      "Additional Power Die",
+      "Taint 1"
+     ]
+    ],
+    "5": [
+     [
+      "Overbreak 1",
+      "Opening 1"
+     ]
+    ],
+    "6": [
+     [
+      "Taint 1",
+      "Overbreak 1"
+     ],
+     [
+      "Rouse 1"
+     ]
+    ],
+    "7": [
+     [
+      "Elation 1"
+     ],
+     [
+      "AI Suppress"
+     ]
+    ],
+    "8": [
+     [
+      "Overbreak 1"
+     ]
+    ],
+    "9": [
+     [
+      "Elation 1"
+     ]
+    ]
+   }
+  },
+  "feareater": {
+   "name": "Feareater",
+   "code": "EK2592",
+   "cycle": 5,
+   "powerDice": 1,
+   "speed": 5,
+   "inherentKeywords": [
+    "Raw Power 1"
+   ],
+   "abilities": {
+    "Born in the Dark": "Immune to Fear and Dread Condition cards and Despair.",
+    "Ur-Tainted": "You do not provide any adjacency benefits to other Titans.",
+    "Fear is the Mind Killer": "Each time you gain a Fear Condition card, Dread Condition card, or a Despair token (each), place 1 Generic token on your Titan Sheet. You gain the following stacking benefits depending on the number of Generic tokens here: 1: +1 Precision. 2: +1 Speed. 3: Defy 1. 4: +1 Power. If you would ever have 5+ Generic tokens, you immediately die."
+   },
+   "trauma": [
+    {
+     "danger": "1-3",
+     "tier": "Minor"
+    },
+    {
+     "danger": "4-6",
+     "tier": "Major"
+    },
+    {
+     "danger": "7-9",
+     "tier": "Grave"
+    },
+    {
+     "danger": "10+",
+     "tier": "Obol"
+    }
+   ],
+   "kratos": {
+    "1": [
+     [
+      "Pull 1"
+     ],
+     [
+      "Opening 1",
+      "Motivate 1"
+     ]
+    ],
+    "2": [
+     [
+      "Closing 1"
+     ],
+     [
+      "Power Re-roll 1",
+      "Break 1"
+     ]
+    ],
+    "3": [
+     [
+      "Pull 1",
+      "Motivate 1"
+     ]
+    ],
+    "4": [
+     [
+      "Closing 1"
+     ],
+     [
+      "Pole Position",
+      "Break 1"
+     ]
+    ],
+    "5": [
+     [
+      "Black 1",
+      "Motivate 1"
+     ]
+    ],
+    "6": [
+     [
+      "Additional Power Die",
+      "Pull 1"
+     ]
+    ],
+    "7": [
+     [
+      "Power Re-roll 1",
+      "Black 1"
+     ]
+    ],
+    "8": [
+     [
+      "Closing 1",
+      "Opening 1"
+     ]
+    ]
+   }
+  },
+  "executioner": {
+   "name": "Executioner",
+   "code": "EK2595",
+   "cycle": 5,
+   "powerDice": 1,
+   "powerDie": "b",
+   "speed": 5,
+   "inherentKeywords": null,
+   "abilities": {
+    "Final Countdown": "Each time you roll a Crit Miss, [campaign]. (캠페인 효과 — 무시)",
+    "Internalize Pain": "Start of your turn: Gain 1 Pain token.",
+    "Finish Him": "[3-hand]Ψ When attacking a BP card with a Death Blow Crit effect, gain a Crit Chance.",
+    "Cyclopean Might": "You can use [3-hand] Weapons as if they were [2-hand].",
+    "Pain Engine": "Each time you gain a Pain token (each), place 1 Generic token on your Titan Sheet. You gain the following stacking benefits depending on the number of Generic tokens here: 1: +1 Speed. 2: While performing a Movement action, you can move diagonally. 3: Your Titan's Power die becomes a White die. 4: Auto-rouse 1. 5+: Deadly."
+   },
+   "trauma": [
+    {
+     "danger": "1-4",
+     "tier": "Minor"
+    },
+    {
+     "danger": "5-7",
+     "tier": "Major"
+    },
+    {
+     "danger": "8-10",
+     "tier": "Grave"
+    },
+    {
+     "danger": "11+",
+     "tier": "Obol"
+    }
+   ],
+   "kratos": {
+    "1": [
+     [
+      "Truth 2"
+     ],
+     [
+      "Hope 1",
+      "Pushback 1"
+     ]
+    ],
+    "2": [
+     [
+      "Truth 1",
+      "Power Re-roll 1"
+     ],
+     [
+      "Hope 1",
+      "Pushback 1"
+     ]
+    ],
+    "3": [
+     [
+      "Truth 2"
+     ]
+    ],
+    "4": [
+     [
+      "Additional Power Die"
+     ]
+    ],
+    "5": [
+     [
+      "Truth 1",
+      "Power Re-roll 1"
+     ],
+     [
+      "Hope 1",
+      "Pushback 1"
+     ]
+    ],
+    "6": [
+     [
+      "Truth 2"
+     ]
+    ],
+    "7": [
+     [
+      "Truth 1",
+      "Power Re-roll 1"
+     ],
+     [
+      "Hope 1",
+      "Pushback 1"
+     ]
+    ],
+    "8": [
+     [
+      "Precise"
+     ]
+    ]
+   }
+  },
+  "trespasser": {
+   "name": "Trespasser",
+   "code": "EK2594",
+   "cycle": 5,
+   "powerDice": 1,
+   "powerDie": "b",
+   "speed": 5,
+   "inherentKeywords": [
+    "Auto-hope 1",
+    "Despair Resilience 1"
+   ],
+   "ambrosiaLimit": 1,
+   "abilities": {
+    "Deny": "RAGE 8+: Deny. (Vanish/Lightbend/Flicker는 Cycle V 프라이모디얼 전용 — 효과 없음)",
+    "Nimble Hands": "You can use [2-hand] Weapons as if they were [1-hand].",
+    "Silver Strain": "Start of Battle: Gain 1 Oxygen token. (Oxygen 규칙은 Cycle V 전투에서만 — 토큰만 기록)",
+    "Abyss-Tainted": "Start of your turn: Gain 1 Ambrosia token.",
+    "To Dark We Will at Last Return": "Each time you gain an Ambrosia token (each), place 1 Generic token on your Titan Sheet. You gain the following stacking benefits depending on the number of Generic tokens here: 1: +1 Precision. 2: Stalwart. 3: Tireless. 4: Rocksteady."
+   },
+   "trauma": [
+    {
+     "danger": "1-5",
+     "tier": "Minor"
+    },
+    {
+     "danger": "6-9",
+     "tier": "Major"
+    },
+    {
+     "danger": "10-12",
+     "tier": "Grave"
+    },
+    {
+     "danger": "13+",
+     "tier": "Obol"
+    }
+   ],
+   "kratos": {
+    "1": [
+     [
+      "Reposition 1",
+      "Break 1"
+     ],
+     [
+      "Opening 1",
+      "Power Re-roll 1"
+     ]
+    ],
+    "2": [
+     [
+      "Reposition 1",
+      "Break 1"
+     ],
+     [
+      "Opening 1",
+      "Power Re-roll 1"
+     ]
+    ],
+    "3": [
+     [
+      "Reposition 1",
+      "Break 1"
+     ],
+     [
+      "Opening 1",
+      "Power Re-roll 1"
+     ]
+    ],
+    "4": [
+     [
+      "Pole Position",
+      "Break 1"
+     ],
+     [
+      "Opening 1",
+      "Power Re-roll 1"
+     ]
+    ],
+    "5": [
+     [
+      "Additional Power Die",
+      "Hope 1"
+     ]
+    ],
+    "6": [
+     [
+      "Reposition 1",
+      "Break 1"
+     ],
+     [
+      "Opening 1",
+      "Power Re-roll 1"
+     ]
+    ],
+    "7": [
+     [
+      "Heartseeker",
+      "Hope 1"
      ]
     ]
    }
