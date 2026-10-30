@@ -2762,6 +2762,7 @@ export class Game {
     if (g.regret && /You gain -1 Power per token on this card/.test(txt)) { A.raw -= g.regret; this.say(`${g.card.name}: Regret −${g.regret} Power`, 'bad'); }
     if (t.stoneNextPower) { A.raw += t.stoneNextPower; this.say(`Stepping Stone: +${t.stoneNextPower} Power`); t.stoneNextPower = 0; }
     if (A.bp && A.bp.tier === 3 && this.isDeathBlow(A.bp) && /When attacking a BP III card with a Death Blow Crit effect, gain \+1 Power/.test(txt)) { A.raw += 1; this.say(`${g.card.name}: Death Blow BP III — +1 Power`); }
+    { const lm = A.bp && A.bp.light && /Gain \+(\d) Power against the Primordial's Light-resistant parts/.exec(txt); if (lm) { A.raw += +lm[1]; this.say(`${g.card.name}: Light-resistant BP — +${lm[1]} Power`, 'good'); } }
     if (A.bp && (A.bp.poseidonIcon || A.bp.icon === 'poseidon') && /Gain \+1 Power against BP cards with the Poseidon icon/.test(txt)) { A.raw += 1; this.say(`${g.card.name}: Poseidon 아이콘 BP — +1 Power`); }
     if (/Gain \+1 Power for each adjacent Titan/.test(txt)) { const n = this.liveTitans().filter(x => x !== t && !x.offBoard && this.tDist(t, x) === 1).length; if (n) { A.raw += n; this.say(`${g.card.name}: 인접 타이탄 ${n} → +${n} Power`); } }
     if (/\+1 Power per hit/.test(txt) && A.hits) { A.raw += A.hits; this.say(`${g.card.name}: hit당 +1 → +${A.hits} Power`); }

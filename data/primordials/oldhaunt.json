@@ -9,7 +9,8 @@
  "_notes": [
   "Transcribed from sheet DU3248 (Lv I-IX), Setup cards (Secret 220-224), VP Eclipse Point DV2539, AI CV1793-CV1803 + DV2540-DV2549, Merciless Sun DV2569.",
   "BP: Pitiless CV1805-CV1812 + Old Haunt DV2550-DV2559. \"The Pitiless\" = the Old Haunt. AT icons (resource types) ignored. Godhand / Divine Lure / Luminous Beacon (Secret deck 11) are campaign rewards — no battle effect.",
-  "Do not escalate (BP II Pitiless): wounding it causes no Escalation; Storybook 0203 (wounded with an empty BP deck) is not available — the discard is reshuffled instead.",
+  "Old Wounds: ignore the \"Do not escalate\" text on Pitiless BP II cards (kept as card text only).",
+  "light = Light-resistant icon on the AT badge (Artificial Halo + BP III except Falsehood). qeye = Quantum Eye (Crescent Scar, Falsehood, Faith Devourer).",
   "Eclipse Point VP is NOT created at setup — BP cards create it.",
   "Old Wounds: AI I/II = Pitiless cards + new cards, AI III = new cards. \"Pitiless\" text applies to the Old Haunt. ",
   "Embrace Zone = Manhattan distance <= 3 from the statue, Denial Zone = <= 6 (read from the card diagrams).",
@@ -838,7 +839,8 @@
     "WOUND": "The Old Haunt moves 6 spaces directly away from the Attacker."
    },
    "critical": "Permanently gain +1 Courage and +1 Will. You may Motivate 3 each Titan, then Reposition 3.",
-   "displayKind": "BODY PART (Secret card 236)"
+   "displayKind": "BODY PART (Secret card 236)",
+   "qeye": false
   },
   {
    "code": "CV1805",
@@ -850,7 +852,8 @@
     "WOUND": "The Pitiless moves 6 spaces directly away from the Attacker."
    },
    "critical": "You may perform a Bonus Attack!",
-   "displayKind": "BODY PART (Secret card 123)"
+   "displayKind": "BODY PART (Secret card 123)",
+   "qeye": false
   },
   {
    "code": "CV1806",
@@ -862,7 +865,8 @@
     "WOUND": "The Pitiless moves 6 spaces directly away from the Attacker."
    },
    "critical": "You may perform a Bonus Attack!",
-   "displayKind": "BODY PART (Secret card 124)"
+   "displayKind": "BODY PART (Secret card 124)",
+   "qeye": false
   },
   {
    "code": "CV1807",
@@ -874,7 +878,8 @@
     "WOUND": "The Pitiless moves 6 spaces directly away from the Attacker."
    },
    "critical": "You may perform a Bonus Attack!",
-   "displayKind": "BODY PART (Secret card 125)"
+   "displayKind": "BODY PART (Secret card 125)",
+   "qeye": false
   },
   {
    "code": "CV1808",
@@ -886,7 +891,8 @@
     "WOUND": "The Pitiless moves 6 spaces directly away from the Attacker."
    },
    "critical": "You may perform a Bonus Attack!",
-   "displayKind": "BODY PART (Secret card 126)"
+   "displayKind": "BODY PART (Secret card 126)",
+   "qeye": false
   },
   {
    "code": "DV2551",
@@ -898,7 +904,8 @@
     "WOUND": "The Old Haunt moves 6 spaces directly away from the Attacker."
    },
    "critical": "Create the Vantage Point! If the VP is already created, the Old Haunt gains 1 negative AT token.",
-   "displayKind": "BODY PART (Secret card 237)"
+   "displayKind": "BODY PART (Secret card 237)",
+   "qeye": false
   },
   {
    "code": "DV2553",
@@ -910,7 +917,9 @@
     "WOUND": "Create the Vantage Point! If the VP is already created, the Old Haunt gains 1 negative AT token."
    },
    "critical": "Create the Vantage Point! If the VP is already created, the Old Haunt gains 1 negative AT token. You may perform a Bonus Attack!",
-   "displayKind": "BODY PART (Secret card 239)"
+   "displayKind": "BODY PART (Secret card 239)",
+   "light": true,
+   "qeye": false
   },
   {
    "code": "CV1811",
@@ -923,10 +932,10 @@
    },
    "critical": "Another Titan may immediately move up to their Speed and perform a Bonus Attack!",
    "displayKind": "BODY PART (Secret card 129)",
-   "noEsc": true,
-   "pre": [
-    "Do not escalate. If this BP has been Wounded and there are no cards in the deck, see 0203."
-   ]
+   "notes": [
+    "Do not escalate. If this BP has been Wounded and there are no cards in the deck, see 0203. (ignored — Old Wounds)"
+   ],
+   "qeye": false
   },
   {
    "code": "CV1810",
@@ -939,10 +948,10 @@
    },
    "critical": "Another Titan may immediately move up to their Speed and perform a Bonus Attack!",
    "displayKind": "BODY PART (Secret card 128)",
-   "noEsc": true,
-   "pre": [
-    "Do not escalate. If this BP has been Wounded and there are no cards in the deck, see 0203."
-   ]
+   "notes": [
+    "Do not escalate. If this BP has been Wounded and there are no cards in the deck, see 0203. (ignored — Old Wounds)"
+   ],
+   "qeye": false
   },
   {
    "code": "CV1809",
@@ -955,10 +964,10 @@
    },
    "critical": "Another Titan may immediately move up to their Speed and perform a Bonus Attack!",
    "displayKind": "BODY PART (Secret card 127)",
-   "noEsc": true,
-   "pre": [
-    "Do not escalate. If this BP has been Wounded and there are no cards in the deck, see 0203."
-   ]
+   "notes": [
+    "Do not escalate. If this BP has been Wounded and there are no cards in the deck, see 0203. (ignored — Old Wounds)"
+   ],
+   "qeye": false
   },
   {
    "code": "CV1812",
@@ -971,10 +980,10 @@
    },
    "critical": "Another Titan may immediately move up to their Speed and perform a Bonus Attack!",
    "displayKind": "BODY PART (Secret card 130)",
-   "noEsc": true,
-   "pre": [
-    "Do not escalate. If this BP has been Wounded and there are no cards in the deck, see 0203."
-   ]
+   "notes": [
+    "Do not escalate. If this BP has been Wounded and there are no cards in the deck, see 0203. (ignored — Old Wounds)"
+   ],
+   "qeye": false
   },
   {
    "code": "DV2552",
@@ -986,7 +995,8 @@
     "WOUND": "The Old Haunt appears at the center of the Board."
    },
    "critical": "Knockback 10. Gain the Godhand card (Secret deck 11, card 203).",
-   "displayKind": "BODY PART (Secret card 238)"
+   "displayKind": "BODY PART (Secret card 238)",
+   "qeye": false
   },
   {
    "code": "DV2558",
@@ -998,7 +1008,9 @@
     "WOUND": "Gain 3 Ambrosia tokens."
    },
    "critical": "Gain the Divine Lure card (Secret deck 11, card 205).",
-   "displayKind": "BODY PART (Secret card 244)"
+   "displayKind": "BODY PART (Secret card 244)",
+   "light": true,
+   "qeye": false
   },
   {
    "code": "DV2557",
@@ -1010,7 +1022,9 @@
     "WOUND": "The Old Haunt gains 1 negative AT token."
    },
    "critical": "The Old Haunt dies!",
-   "displayKind": "BODY PART (Secret card 243)"
+   "displayKind": "BODY PART (Secret card 243)",
+   "light": true,
+   "qeye": true
   },
   {
    "code": "DV2556",
@@ -1022,7 +1036,9 @@
     "WOUND": "The Old Haunt moves 6 spaces directly away from the Attacker."
    },
    "critical": "Gain the Luminous Beacon card (Secret deck 11, card 204).",
-   "displayKind": "BODY PART (Secret card 242)"
+   "displayKind": "BODY PART (Secret card 242)",
+   "light": true,
+   "qeye": false
   },
   {
    "code": "DV2555",
@@ -1034,7 +1050,9 @@
     "WOUND": "Create the Vantage Point! If the VP is already created, the Old Haunt gains 1 negative AT token."
    },
    "critical": "You may perform a Bonus Attack!",
-   "displayKind": "BODY PART (Secret card 241)"
+   "displayKind": "BODY PART (Secret card 241)",
+   "light": true,
+   "qeye": false
   },
   {
    "code": "DV2554",
@@ -1045,7 +1063,8 @@
     "INSTINCT": "Create the Vantage Point."
    },
    "critical": "The Old Haunt dies!",
-   "displayKind": "BODY PART (Secret card 240)"
+   "displayKind": "BODY PART (Secret card 240)",
+   "qeye": true
   },
   {
    "code": "DV2559",
@@ -1059,7 +1078,9 @@
    "displayKind": "BODY PART (Secret card 245)",
    "pre": [
     "You cannot use Hope tokens."
-   ]
+   ],
+   "light": true,
+   "qeye": true
   }
  ],
  "vp": {
