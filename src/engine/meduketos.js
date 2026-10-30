@@ -17,14 +17,14 @@ export function installMeduketos(Game, { TitanDied, BattleOver }) {
     async flipOxygen(t, n = 1, why = '') {
       for (let i = 0; i < n && t.alive; i++) {
         if ((t.oxygen || 0) > 0) { t.oxygen--; t.aether = (t.aether || 0) + 1; this.say(`${t.name}: Oxygen 1 → Aether${why ? ` (${why})` : ''} (O₂ ${t.oxygen}, Aether ${t.aether})`, 'bad'); }
-        else if (this.c5b()) { this.say(`${t.name}: 뒤집을 Oxygen 토큰이 없음 — 질식 사망`, 'bad'); await this.kill(t); return; }
+        else if (this.c5b() && !this.prim.def.txD) { this.say(`${t.name}: 뒤집을 Oxygen 토큰이 없음 — 질식 사망`, 'bad'); await this.kill(t); return; }
         else this.say(`${t.name}: Oxygen 없음 (Cycle V 전투가 아니라 사망하지 않음)`);
       }
     },
     async discardOxygen(t, n = 1, why = '') {
       for (let i = 0; i < n && t.alive; i++) {
         if ((t.oxygen || 0) > 0) { t.oxygen--; this.say(`${t.name}: Oxygen 1 버림${why ? ` (${why})` : ''} → ${t.oxygen}`, 'bad'); }
-        else if (this.c5b()) { this.say(`${t.name}: 버릴 Oxygen 토큰이 없음 — 사망`, 'bad'); await this.kill(t); return; }
+        else if (this.c5b() && !this.prim.def.txD) { this.say(`${t.name}: 버릴 Oxygen 토큰이 없음 — 사망`, 'bad'); await this.kill(t); return; }
       }
     },
     flipAether(t, n = 1) { const k = Math.min(n, t.aether || 0); if (!k) { this.say(`${t.name}: 뒤집을 Aether 없음`); return; } t.aether -= k; t.oxygen = (t.oxygen || 0) + k; this.say(`${t.name}: Aether ${k} → Oxygen (O₂ ${t.oxygen})`, 'good'); },

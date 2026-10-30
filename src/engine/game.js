@@ -9,6 +9,7 @@ import { installDahaka } from './dahaka.js';
 import { installBabel } from './babel.js';
 import { installOldHaunt } from './oldhaunt.js';
 import { installMeduketos } from './meduketos.js';
+import { installTitanX } from './titanx.js';
 import { installC4Meta } from './c4meta.js';
 import { installC5Titans } from './c5titans.js';
 import { installC5Titans2, installPainSentences } from './c5titans2.js';
@@ -48,7 +49,7 @@ export class Game {
     this.deathBlowDouble = !!deathBlowDouble; this.hrUpgrade = !!hrUpgrade;
     const P = this.data.primordials[primordialId]; const S = this.data.scenarios[primordialId]; this.isBurden = !!P.burden;
     const variant = Object.values(S.variants).find(v => (v.levels || []).includes(level)) || Object.values(S.variants)[0];
-    this.board = new Board(S.board.cols, S.board.rows);
+    this.board = new Board((variant.board || S.board).cols, (variant.board || S.board).rows);
     (variant.terrain.labyrinth || []).forEach((l, i) => this.board.placeLab('slab' + i, l.shape, Board.labGeometry(this.data.labyrinth.tiles[l.shape], l.rot, parseCell(l.topLeft), !!l.flip)));
     (variant.terrain.column || []).forEach((l, i) => this.board.addTerrain([l], { id: 'col' + i, type: 'Column', obstacle: true, obscuring: true, destructible: !P.burden, indestructible: !!P.burden, trap: !P.burden }));
     (variant.terrain.city || []).forEach((c, i) => this.board.addTerrain(c.cells, { id: 'city' + i, type: 'City', obstacle: false, obscuring: true, destructible: true, cover: true }));
@@ -96,7 +97,7 @@ export class Game {
     this.ai = new Deck(aiCards.filter(a => a.tier === 1 || a.tier === 0), this.rng).shuffle(); this.aiEsc = { 2: this.rng.shuffle(aiCards.filter(a => a.tier === 2)), 3: this.rng.shuffle(aiCards.filter(a => a.tier === 3)) };
     const BP = P.bp.map(b => ({ ...b, responses: { ...b.responses } }));
     for (const b of BP) { if (b.trap) continue; if (traits['Maze Reactive Armor'] && !b.responses.FAIL) b.responses.FAIL = `Gain +1 DANGER. ${P.name} turns towards the Attacker. Labyrinth 1.`; if (traits['Maze Hyperactive Armor'] && !b.responses.WOUND) b.responses.WOUND = '⚡ Trample.'; if (traits['Scourge of the Centimanes']) { if (!b.responses.WOUND) b.responses.WOUND = '⚡ Pushback 3.'; if (!b.responses.FAIL) b.responses.FAIL = 'Knockback 5.'; } }
-    this.bp = new Deck(BP.filter(b => b.tier === 1), this.rng).shuffle(); this.bpEsc = { 2: this.rng.shuffle(BP.filter(b => b.tier === 2)), 3: this.rng.shuffle(BP.filter(b => b.tier === 3)) };
+    this.bp = new Deck(BP.filter(b => b.tier === 1 && !b.setAside), this.rng).shuffle(); this.bpEsc = { 2: this.rng.shuffle(BP.filter(b => b.tier === 2 && !b.setAside)), 3: this.rng.shuffle(BP.filter(b => b.tier === 3 && !b.setAside)) }; this.bpAside = BP.filter(b => b.setAside);
     this.woundStack = []; this.setAsideBP = null;
     // decks
     const D = this.data.decks; const cyc = P.cycle;
@@ -146,6 +147,7 @@ export class Game {
     if (P.dahakaD) this.dahakaSetup();
     if (P.babelD) this.babelSetup();
     if (P.ohD) this.ohSetup();
+    if (P.txD) { this.prim.feints = { deck: this.rng.shuffle((P.feints || []).map(f => ({ ...f }))), discard: [], status: null }; this.prim.flashMinus = 0; }
     if (P.medD) { this.prim.offBoard = true; this.prim._last = { ...this.prim.anchor }; this.prim.anchor = { c: -40, r: -40 }; this.prim.scanMinus = 0; this.prim.scanPlus = 0; this.prim.boil = 0; if (this.prim.traits['Original Trench']) { this.board.allChasm = 'empty'; for (const z of this.board.terrain.values()) z.elevated = true; } }
     if (this.titans.length) (this.titans[Math.min(this.titans.length - 1, Math.max(0, ptIndex | 0))] || this.titans[0]).pt = true; // all Rage 0: players choose (loadout)
     this.say(`${P.name} Lv.${level} — Mnestis Battle 시작. Minor Trauma 바닥 카드 화살표(${this._arrow}) → ${this.prim.spot ? this.prim.spot + ' 위치, ' : ''}${this.prim.facing} 방향.`, 'sys');
@@ -1239,7 +1241,7 @@ export class Game {
   // ---------------- Primordial Round ----------------
   async primordialRound() {
     this.checkVictory(); this._actor = null; this._primRound = true;
-    if (this._gamMid) { this._gamMid = false; this.say(`━━ Round ${this.round}: Primordial Round (God Among Men) ━━`, 'hdr'); } else { this.round++; this.c4RoundCleanup();  this.say(`━━ Round ${this.round}: Primordial Round ━━`, 'hdr'); }
+    if (this._gamMid) { this._gamMid = false; this.say(`━━ Round ${this.round}: Primordial Round (God Among Men) ━━`, 'hdr'); } else { this.round++; this.c4RoundCleanup();  this.say(this.prim.def.txD ? `━━ Round ${this.round}: Titan Round — Titan X 먼저 AI (Man Among Sheep) ━━` : `━━ Round ${this.round}: Primordial Round ━━`, 'hdr'); }
     for (const t of this.titans) t.turn = { moved: false, attacked: false, usedAbilities: new Set() };
     for (const a of this.argo || []) a.exhausted = false;
     if (this.prim.atRound) { this.prim.atRound = 0; this.say('Shieldburster −AT 토큰 제거 (라운드 종료)'); }
@@ -1300,6 +1302,7 @@ export class Game {
     if (card.sun) return this.sunAI(card, { isSignature, forcedTarget });
     if (card.oh) return this.ohAI(card, { isSignature, forcedTarget });
     if (card.med) return this.medAI(card, { isSignature, forcedTarget });
+    if (card.tx) return this.txAI(card, { isSignature, forcedTarget });
     if (card.midas && (card.midas.curse || card.midas.routine || card.midas.laser)) return this.midasAI(card, { isSignature, forcedTarget });
     if (card.djinn && (card.djinn.trueWish || card.djinn.routine)) { this.say(`${card.kind} 「${card.name}」: ${card.text}`, 'ai'); return this.djinnSentence(this.liveTitans()[0], card.djinn.trueWish ? 'All Titans die' : 'Random Titan dies'); }
     if ((card.kind === 'ROUTINE' || card.kind === 'MNESTIS ROUTINE') && !card.routineAttack) return this.resolveRoutine(card);
@@ -1600,7 +1603,7 @@ export class Game {
     let rolls = Array.from({ length: dice }, (_, i) => ({ v: this.rng.d10(), crit: i === 0, rerolled: false }));
     const fmt = () => rolls.map(r => `${r.v}${r.crit ? '*' : ''}`).join(' ');
     this.say(`${t.name}: ${judge ? `JUDGEMENT (${jSkill})` : 'Evasion Roll'} ${dice}d10 (난이도 ${diff}+, 보너스 +${evBonus}) → [${fmt()}]`);
-    const urh = !judge && t.gear.some(g => !g.discarded && /The Crit Evasion die always evades/.test(this.gearText(g, t))); const isHit = r => !(urh && r.crit) && r.v !== 10 && (r.v === 1 || r.v + evBonus < diff); this.flash('dice', { title: `${t.name}: ${judge ? `JUDGEMENT (${jSkill})` : '회피 굴림'}`, dice: rolls.map(r => ({ v: r.v, crit: r.crit, hit: isHit(r), evade: true })), sub: `난이도 ${diff}+, +${evBonus}` }); // natural 10 always evades, natural 1 always fails
+    const urh = !judge && t.gear.some(g => !g.discarded && /The Crit Evasion die always evades/.test(this.gearText(g, t))); const flaw = this.prim.def.txD && this.trait('Flawless Form'); const isHit = r => !(urh && r.crit) && r.v !== 10 && (flaw || r.v === 1 || r.v + evBonus < diff); this.flash('dice', { title: `${t.name}: ${judge ? `JUDGEMENT (${jSkill})` : '회피 굴림'}`, dice: rolls.map(r => ({ v: r.v, crit: r.crit, hit: isHit(r), evade: true })), sub: `난이도 ${diff}+, +${evBonus}` }); // natural 10 always evades, natural 1 always fails
     // re-rolls: free evasion re-rolls from gear, then Fate
     let freeRR = (!judge && !this.noReroll(t) && t.godform && t.godform.def.evasionReroll) || 0; if (!judge && !this.noReroll(t)) for (const g of t.gear) if (!g.exhausted && g.card.evasionReroll) { freeRR = Math.max(freeRR, g.card.evasionReroll === 'X' ? (this.hasFated(t, 'Oblivious') ? 0 : (this.kratosPool.opening || 0)) : g.card.evasionReroll === 'XB' ? (this.kratosPool.break || 0) : (/(\d) Evasion re-rolls instead/.test(this.gearText(g, t)) ? +/(\d) Evasion re-rolls instead/.exec(this.gearText(g, t))[1] : g.card.evasionReroll)); }
     { const visor = !judge && t.gear.some(g => !g.discarded && /Treat all Primordial Attacks performed against you as Doomed/.test(g.card.text || '')); const maxFate = (this.doomLocked(t) || this.noReroll(t) || this._doomed || visor || this.hasFated(t, 'Apathy')) ? 0 : this.frRaw(t); const nHit = rolls.filter(isHit).length;
@@ -1608,7 +1611,7 @@ export class Game {
         const picks = await this.ask({ type: 'multi', titan: t, title: `회피 재굴림할 주사위 선택 (한 번에 결정; hit ${nHit}개, 무료 ${freeRR}개, 그 외 Fate +1/개, Fate ${t.fate})`, max: freeRR + maxFate, options: rolls.map((r, i) => ({ label: `${r.v}${r.crit ? '*' : ''} (${isHit(r) ? 'hit' : '회피'})`, value: i })) });
         if (picks && picks.length) { const paid = Math.max(0, picks.length - freeRR); if (paid) await this.gainFate(t, paid, { nc: true }); for (const i of picks) rolls[i] = { v: this.rng.d10(), crit: rolls[i].crit, rerolled: true }; this.flash('dice', { title: `${t.name}: 회피 재굴림 ${picks.length}개`, dice: rolls.map(r => ({ v: r.v, crit: r.crit, hit: isHit(r), evade: true })), sub: `난이도 ${diff}+, +${evBonus}` }); this.say(`재굴림 ${picks.length}개 → [${fmt()}]`); }
       } }
-    let hits = rolls.filter(isHit).length;
+    let hits = rolls.filter(isHit).length; this._critFailT = rolls[0] && rolls[0].v === 1 ? t : null;
     if (rolls[0].v === 10 && !judge) await this.critEvadeEffects(t);
     if (rolls[0].v === 1 && !judge) { const gx = t.gear.find(x => !x.discarded && /Crit Evade Fail: X this card/.test(this.gearText(x, t))); if (gx) { this.say(`${t.name}: Crit Evade Fail — 「${gx.card.name}」 버림`, 'bad'); this.discardGear(t, gx); } }
     if (rolls[0].v === 1 && !judge && this.gearHas(t, /Crit Evade Fail: Doomed/)) { this.say(`${t.name}: Crit Evade Fail — Doomed`, 'bad'); await this.addCondition(t, 'Doomed'); }
@@ -1635,6 +1638,7 @@ export class Game {
     if (card && card.sun && await this.sunEffect(t, s, hits, card)) return;
     if (card && card.oh && await this.ohEffect(t, s, hits, card)) return;
     if (card && card.med && await this.medEffect(t, s, hits, card)) return;
+    if (card && card.tx && await this.txEffect(t, s, hits, card)) return;
     if (card && card.midas && await this.midasEffect(t, s, hits, card)) return;
     if (card && card.djinn && await this.djinnEffect(t, s, hits, card)) return;
     if (card && (card.dahaka || card.dhSig) && await this.dahakaEffect(t, s, hits, card)) return;
@@ -1743,6 +1747,7 @@ export class Game {
     if (this.prim && this.prim.def.babelD && await this.babelSentence(t, p, ctx)) return;
     if (this.prim && this.prim.def.ohD && await this.ohSentence(t, p, ctx)) return;
     if (this.prim && this.prim.def.medD && await this.medSentence(t, p, ctx)) return;
+    if (this.prim && this.prim.def.txD && await this.txSentence(t, p, ctx)) return;
     if (this.prim && (this.prim.def.sunD || this.prim.def.ohD) && await this.sunSentence(t, p, ctx)) return;
     if (this.prim && this.c3 && await this.oracleSentence(t, p, ctx)) return;
     if (/^Discard this token/.test(p) || /^\(/.test(p)) return;
@@ -2677,7 +2682,7 @@ export class Game {
     // FAQ: an effect during the Attack that makes you unable to continue (Crit Miss: Knockdown / Time-clocked / discard weapon) cancels the rest of the Attack — the Kratos Pool is NOT cleared
     if (t.alive && (t.knockdown || t.offBoard === 'clock' || A.cryptexClock || (g.discarded && !g.godform))) { const why = A.cryptexClock || t.offBoard === 'clock' ? 'Time-clocked' : t.knockdown ? 'Knockdown' : '무기 버림'; this.say(`${t.name}: 공격 도중 ${why} — 남은 공격 취소 (Kratos Pool 유지)`, 'bad'); t.activeWeapon = null; await this.endAttack(A); return; }
     if (A.hits === 0 && this.doomLocked(t)) { this.clearPool(); this.say(`${t.name}: 홀로 공격을 완전히 빗나감 — Doom of the Centimanes, 사망`, 'bad'); await this.kill(t); }
-    if (A.hits === 0) { if (await this.argoHook('Opportunity Freeze', `${t.name}: 공격 완전 빗나감 — Kratos Pool을 비우지 않음?`, t)) this.say('Opportunity Freeze: Kratos Pool 유지', 'good'); else await this.kpClear(t, A); this.say('Full Miss'); const fm = /Full Miss: ([^.]+\.)/.exec(txt); if (fm && !/attack again/.test(fm[1]) && !(await this.c4FullMiss(t, fm[1]))) await this.poolFromText(fm[1], t); if (/Full Miss or Crit Miss: Gain the Wishkeen Condition card/.test(txt) && !t.conditions.includes('Wishkeen')) await this.addCondition(t, 'Wishkeen'); const again = /Full Miss: You may immediately attack again with this Weapon with an additional Attack die/.test(txt) && (mods.extraAtk || 0) < 3 && t.alive; const er = await this.endAttack(A); if (again && t.alive) { const ok = await this.ask({ type: 'yn', titan: t, title: `${g.card.name}: Full Miss — 공격 주사위 +1로 즉시 다시 공격?`, options: [{ label: '재공격', value: true }, { label: '패스', value: false }] }); if (ok) await this.titanAttack(t, { forceWeapon: g, bonus: true, extraAtk: (mods.extraAtk || 0) + 1 }); } return er; }
+    if (A.hits === 0) { if (await this.argoHook('Opportunity Freeze', `${t.name}: 공격 완전 빗나감 — Kratos Pool을 비우지 않음?`, t)) this.say('Opportunity Freeze: Kratos Pool 유지', 'good'); else await this.kpClear(t, A); this.say('Full Miss'); if (this.txFullMiss) await this.txFullMiss(t); const fm = /Full Miss: ([^.]+\.)/.exec(txt); if (fm && !/attack again/.test(fm[1]) && !(await this.c4FullMiss(t, fm[1]))) await this.poolFromText(fm[1], t); if (/Full Miss or Crit Miss: Gain the Wishkeen Condition card/.test(txt) && !t.conditions.includes('Wishkeen')) await this.addCondition(t, 'Wishkeen'); const again = /Full Miss: You may immediately attack again with this Weapon with an additional Attack die/.test(txt) && (mods.extraAtk || 0) < 3 && t.alive; const er = await this.endAttack(A); if (again && t.alive) { const ok = await this.ask({ type: 'yn', titan: t, title: `${g.card.name}: Full Miss — 공격 주사위 +1로 즉시 다시 공격?`, options: [{ label: '재공격', value: true }, { label: '패스', value: false }] }); if (ok) await this.titanAttack(t, { forceWeapon: g, bonus: true, extraAtk: (mods.extraAtk || 0) + 1 }); } return er; }
     const fullHit = A.hits === rolls.length; A.atkDice = rolls.length;
     if (!fullHit && /Ψ Hardening: Trigger the Full Hit ability/.test(txt) && this.fr(t) > 0 && A.hits > 0) { const ok = await this.ask({ type: 'yn', titan: t, title: `${g.card.name}: Hardening — Fate+1로 Full Hit 효과 발동?`, options: [{ label: '사용', value: true }, { label: '패스', value: false }] }); if (ok) { await this.gainFate(t, 1); A.hardening = true; } }
     // 4. First ability window
@@ -2725,6 +2730,7 @@ export class Game {
     else if ((kt.heartseeker || A.hs) && this.bp.size() >= 2) { const a = drawBP(), b = drawBP(); if (this.quantumEye) { await this.quantumEye(t, a); await this.quantumEye(t, b); } const pick = await this.ask({ type: 'choice', titan: t, title: 'Heartseeker: 공격할 BP 카드 선택 (다른 하나는 덱에 섞음)', options: [a, b].map(c => ({ label: c.trap ? `${c.name} (함정)` : `${c.name} (BP ${c.tier}, AT ${c.at}) — ${Object.entries(c.responses).map(([k, v]) => k + ': ' + v).join(' / ')}`, value: c })) }); this.bp.shuffleIn(pick === a ? b : a); A.bp = pick; this.say(`Heartseeker: 「${pick.name}」 선택`); }
     else A.bp = drawBP();
     if (this.prim.def.dahakaD && this.trait('Semicorporeal Wraith') && !A.dhInterrupt) { if (/Treat all Attacks with this Weapon as Bonus Attacks/.test(txt)) { A.dhInterrupt = true; this.say(`${g.card.name}: Bonus Attack 취급 — Interrupt AT·응답 사용`); } else { const sg = t.gear.find(x => !x.discarded && /ΨX When performing an Attack, treat your Attack as if it was an Interrupt/.test(this.gearText(x, t))); if (sg && this.fr(t) > 0) { const ok = await this.ask({ type: 'yn', titan: t, title: `${sg.card.name}: 이번 공격을 Interrupt로 취급 (Interrupt AT·응답)? (Fate+1, 카드 버림)`, options: [{ label: '사용', value: true }, { label: '패스', value: false }] }); if (ok) { await this.gainFate(t, 1); this.discardGear(t, sg, true); A.dhInterrupt = true; this.say(`${t.name}: Interrupt Attack 취급`, 'good'); } } } }
+    if (A.bp && A.bp.overstep && this.txOverstep) { await this.txOverstep(t, A); return; }
     while (A.bp && A.bp.trap) { this.lastBP = A.bp; this.notify(); this.say(`BP 「${(A.bp.bpName || A.bp.name)}」! ${A.bp.text}`, 'bp'); if (!(await this.skillTest(t, 'Endurance', 8))) { await this.gainDanger(t, 3, { source: (A.bp.bpName || A.bp.name) }); await this.gainFate(t, 3); await this.addCondition(t, 'Dread'); } this.say(`${(A.bp.bpName || A.bp.name)} 제거 — BP 다시 뽑기`); A.bp = drawBP(); }
     { let pm = /(?:^|[.;:]\s+)(?:\[Amb\])?((?:Ψ|⟳)*):? ?Precise(?: instead)?\./.exec(txt); if (!pm && (A.c4precise || (kt && kt.precise))) pm = [null, '']; if (pm && pm[1].includes('⟳') && (g.exhausted || this.hopeless(t) >= 2)) pm = null; if (pm) pm = [pm[0], pm[1].replace(/⟳/g, ''), pm[1].includes('⟳')]; const pAmb = /\[Amb\]Ψ Precise/.test(txt); const top = this.bp.discard.length ? this.bp.discard[this.bp.discard.length - 1] : null; if (pm && !A.dhCard && (!/Full Hit: Precise/.test(txt) || fullHit) && top && !top.trap && (pm[1].length) <= this.fr(t)) { const ok = await this.ask({ type: 'yn', titan: t, title: `Precise: 뽑은 「${(A.bp.bpName || A.bp.name)}」(AT ${A.bp.at}) 대신 버림 더미 맨 위 「${top.name}」(BP ${top.tier}, AT ${top.at})를 공격?${pm[1].length ? ` (Fate+${pm[1].length})` : ''}`, options: [{ label: '사용', value: true }, { label: '패스', value: false }] }); if (ok) { await this.gainFate(t, pm[1].length); if (pm[2]) g.exhausted = true; if (pAmb) await this.gainAmbrosia(t, 1); this.bp.shuffleIn(A.bp); A.bp = this.bp.discard.pop(); this.say(`Precise: 「${(A.bp.bpName || A.bp.name)}」 공격`); } } }
     this.lastBP = A.bp; this.notify();
@@ -3096,6 +3102,7 @@ export class Game {
     if (this.prim.def.sunD && await this.sunCritical(t, A)) return;
     if (this.prim.def.ohD && await this.ohCritical(t, A)) return;
     if (this.prim.def.medD && await this.medCritical(t, A)) return;
+    if (this.prim.def.txD && await this.txCritical(t, A)) return;
     if (this.prim.def.midasD && await this.midasCritical(t, A)) return;
     if (this.prim.def.djinnD && await this.djinnCritical(t, A)) return;
     if (this.prim.def.dahakaD && await this.dahakaCritical(t, A)) return;
@@ -3429,11 +3436,12 @@ Object.defineProperty(Game.prototype, 'pendingBonus', { configurable: true, get(
 installDahaka(Game, { TitanDied, BattleOver, ChainBreak });
 installBabel(Game, { TitanDied, BattleOver });
 installOldHaunt(Game, { TitanDied, BattleOver });
-installMeduketos(Game, { TitanDied, BattleOver });
 installC4Meta(Game, { TitanDied, BattleOver, ChainBreak });
 installC5Titans(Game, { TitanDied, BattleOver, ChainBreak });
 installC5Titans2(Game, { TitanDied, BattleOver, ChainBreak });
 installPainSentences(Game);
+installMeduketos(Game, { TitanDied, BattleOver });
+installTitanX(Game, { TitanDied, BattleOver, ChainBreak });
 // Inward Odyssey Trauma cards: "after surviving ..." hooks
 { const P = Game.prototype; const oT = P.traumaDraw, oO = P.obolDraw;
   const after = async (g, t, kind) => { if (!t || !t.alive) return;

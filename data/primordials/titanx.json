@@ -1,0 +1,1002 @@
+{
+ "id": "titanx",
+ "name": "Titan X",
+ "cycle": 5,
+ "type": "Mnestis",
+ "sheetCode": "EU3144",
+ "txD": true,
+ "_notes": [
+  "Transcribed from sheet EU3144 (Lv I-IX), Toying trait card EX3219, AI ER3145-ER3165, BP ES3176-ES3195, Feints ER3166-ER3175, Storybook p.178-179 setup.",
+  "Mnestis: win by filling the Wound Stack (sheet wounds 12-17); the Battle Track table is campaign-only.",
+  "Ω = RAGE, Ψ = FATE, the Pain-set icon gate = PAIN N+ (Pain tokens).",
+  "Man Among Sheep: the engine's \"Primordial Round\" is used as Titan X's AI at the start of the Titan Round (no Hold On / Primordial Round triggers). Death of Hope at the end of the Titan Round.",
+  "Knockback \"to the left\" = to the left of Titan X's facing."
+ ],
+ "footprint": {
+  "w": 1,
+  "h": 1,
+  "rear": "top-edge"
+ },
+ "ukb": 9,
+ "blindspots": "rear",
+ "levels": {
+  "1": {
+   "toHit": 11,
+   "speed": 99,
+   "wounds": 12,
+   "bonus": {
+    "ESCALATION": 1
+   },
+   "traits": [
+    "Toying",
+    "Killjoy",
+    "Death of Hope",
+    "Man Among Sheep",
+    "Unholy Halo",
+    "Faster Than Thought",
+    "Flash Step",
+    "Feints",
+    "Critical Strikes",
+    "No Obstacles"
+   ]
+  },
+  "2": {
+   "toHit": 11,
+   "speed": 99,
+   "wounds": 12,
+   "bonus": {
+    "ESCALATION": 2,
+    "AT": 1
+   },
+   "traits": [
+    "Dazzling Speed"
+   ],
+   "removeTraits": [
+    "Toying"
+   ]
+  },
+  "3": {
+   "toHit": 12,
+   "speed": 99,
+   "wounds": 13,
+   "bonus": {
+    "ESCALATION": 2,
+    "AT": 2,
+    "DANGER": 1
+   },
+   "traits": [
+    "Nemesis Vow"
+   ]
+  },
+  "4": {
+   "toHit": 12,
+   "speed": 99,
+   "wounds": 13,
+   "bonus": {
+    "ESCALATION": 3,
+    "AT": 3,
+    "DANGER": 1
+   },
+   "traits": [
+    "Truth of the Shoals"
+   ]
+  },
+  "5": {
+   "toHit": 13,
+   "speed": 99,
+   "wounds": 14,
+   "bonus": {
+    "ESCALATION": 3,
+    "AT": 4,
+    "DANGER": 1
+   },
+   "traits": [
+    "Beginning of the End",
+    "Play for Keeps"
+   ],
+   "bonusPerHit": true
+  },
+  "6": {
+   "toHit": 14,
+   "speed": 99,
+   "wounds": 15,
+   "bonus": {
+    "ESCALATION": 4,
+    "AT": 5,
+    "DANGER": 2
+   },
+   "traits": [
+    "You Cannot Advance"
+   ],
+   "bonusPerHit": true
+  },
+  "7": {
+   "toHit": 15,
+   "speed": 99,
+   "wounds": 15,
+   "bonus": {
+    "ESCALATION": 4,
+    "AT": 6,
+    "DANGER": 2
+   },
+   "traits": [
+    "Flawless Form"
+   ],
+   "bonusPerHit": true
+  },
+  "8": {
+   "toHit": 16,
+   "speed": 99,
+   "wounds": 16,
+   "bonus": {
+    "ESCALATION": 5,
+    "AT": 7,
+    "EVADE_DICE": 1,
+    "DANGER": 2
+   },
+   "traits": [
+    "Just Fold"
+   ],
+   "bonusPerHit": true
+  },
+  "9": {
+   "toHit": 17,
+   "speed": 99,
+   "wounds": 17,
+   "bonus": {
+    "ESCALATION": 6,
+    "AT": 8,
+    "EVADE_DICE": 2,
+    "DANGER": 3
+   },
+   "traits": [
+    "End of an Age",
+    "Ruthless"
+   ],
+   "bonusPerHit": true
+  }
+ },
+ "traits": {
+  "Toying": "Apply the following modifiers to all Titan X Attacks: -1 die and -1 DANGER per hit (minimum 1). As long as this Trait is active, the Death of Hope Trait is disabled.",
+  "Killjoy": "Killjoy: Permanently lose 1 equipped Gear card. Triggers when prompted and each time a Titan performs a Full Evade or reduces all DANGER from an Attack to 0.",
+  "Death of Hope": "End of Titan Round: Perform Signature.",
+  "Faster Than Thought": "If, during Targeting, there is a tie, the AI or Signature becomes Simultaneous and Targets all tied Titans, in random order.",
+  "Man Among Sheep": "This Battle does not have a Primordial Round. During the Titan Round, Titan X goes first by drawing and performing an AI card. If there are 5+ cards in the Wound Stack, Titan X draws and performs another AI card after the first 2 Titan turns. Important: For the purpose of this trait, treat dead Titans as empty turns. In other words, a dead Titan still counts as a Titan for the 2 Titan turns limit.",
+  "Unholy Halo": "The Battle takes place on a plate of Atlantean hardlight, with its center around Titan X. Consequently, Titan X does not 'recognize' Board Edges, for them, the Battle Board is infinite. For Argonaut Titans, the edges are Boundless. Whenever Titan X would move 'beyond' the Board Edge, stop them at the last space of the Battle Board and move all other Titans in the opposite direction the remaining number of spaces. If a Titan would end outside of the Battle Board in this way, they have fallen off the hardlight plate and drowned (died). Note: Demeter does not work here!",
+  "Flash Step": "Flash Step: Titan X moves to the Target or the Attacker, continues to move past them in a straight line for 8 spaces, then turns to face them. If Flash Step was performed as part of an Attack, proceed to the Evasion Roll only after you have finished the move. For the purposes of that Attack, Titan X is considered to be adjacent; you are not considered adjacent to Titan X. Flash Step does not cause crash against the Target, but causes crash against any other Titan. Flash Step triggers only when prompted.",
+  "Feints": "Titan X employs various traps, feints and ruses to destroy the Argonauts. Feint: Draw and resolve a Feint card. If it's an Effect, immediately resolve it, then discard it. If it's a Status, it remains in play until it is replaced by another Status, then it is discarded (there can be only one Status in play). All discarded Feint cards return to the Feint deck, which should then be shuffled.",
+  "Critical Strikes": "Each AI card has an additional effect. If a Titan rolls a Crit Evade Fail during their Evasion Roll or Judgement test, Titan X has landed a Critical on you. Apply the Critical effect immediately. Pacify: Permanently lose 1 equipped Weapon card. Deadly Wound: Gain 3 Pain tokens. Mortal Wound: Immediately draw an Obol. Go for the Cryptex: Disable your Cryptex.",
+  "No Obstacles": "Titan X ignores Line of Sight. When following the Unholy Halo rules, move Terrain tiles just as you would Titans. If any part of a Terrain tile would move beyond a Board Edge, remove that tile entirely, even if Indestructible.",
+  "Dazzling Speed": "If you're in front of Titan X, you cannot re-roll your Attack or Evasion Dice.",
+  "Nemesis Vow": "When you draw a Feint card, before it is revealed, each Titan gains 1 Ambrosia token.",
+  "Truth of the Shoals": "When you gain Pain tokens in any way, double the amount.",
+  "Beginning of the End": "End of Primordial Round: Before End of Hope, draw and perform another AI card.",
+  "Play for Keeps": "Play on a half of the Battle Board, i.e. 14x10 spaces (you may fold the Board to denote it).",
+  "You Cannot Advance": "If, during Targeting, there is no tie, the AI or Signature becomes Simultaneous and Targets all Titans, in random order.",
+  "Flawless Form": "You evade only on natural 10s.",
+  "Just Fold": "Play on a quarter of the Battle Board, i.e. 7x10 spaces (you may fold the Board to denote it).",
+  "End of an Age": "You cannot Awaken.",
+  "Ruthless": "Remove all positive Trauma cards from the Trauma decks (except Obols)."
+ },
+ "ai": [
+  {
+   "code": "ER3151",
+   "tier": 1,
+   "name": "Mind Duel",
+   "kind": "JUDGEMENT",
+   "dice": 5,
+   "toHit": 9,
+   "target": [
+    "Least Pain",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ JUDGE",
+    "Pain 1. Each hit deals 3 DANGER.",
+    "⚡ FATE 3+: Gain the Fear Condition card."
+   ],
+   "tx": {
+    "pre": [
+     "Death 3."
+    ],
+    "win": true,
+    "judge": [
+     "Endurance",
+     "Will"
+    ],
+    "cf": "cryptex",
+    "afterWin": true
+   },
+   "after": "PAIN 4+: Gain the Paralyzed Condition card."
+  },
+  {
+   "code": "ER3150",
+   "tier": 1,
+   "name": "Virtue Breach",
+   "kind": "ATTACK",
+   "dice": 4,
+   "toHit": 8,
+   "target": [
+    "Least Pain",
+    "Furthest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Each hit deals 3 DANGER and Pain 2."
+   ],
+   "tx": {
+    "pre": [
+     "PAIN 2+: Discard 1 Argo Ability."
+    ],
+    "win": true,
+    "move": "move",
+    "cf": "deadly",
+    "afterWin": true
+   },
+   "after": "PAIN 7+: You die."
+  },
+  {
+   "code": "ER3149",
+   "tier": 1,
+   "name": "Ominous Amusement",
+   "kind": "JUDGEMENT",
+   "dice": 4,
+   "toHit": 10,
+   "target": [
+    "Priority Target"
+   ],
+   "steps": [
+    "JUDGE | FATE 3+: Feint",
+    "One hit, gain the Terror Condition card; two hits, gain the Holy Terror Condition card; three or more hits, you die."
+   ],
+   "tx": {
+    "pre": [
+     "Lose -1 RAGE."
+    ],
+    "judge": [
+     "Wisdom",
+     "Cunning"
+    ],
+    "fm": [
+     3,
+     "feint"
+    ]
+   },
+   "after": "Test Wisdom/Will (9+). Fail: Gain the Frenzy Condition card."
+  },
+  {
+   "code": "ER3148",
+   "tier": 1,
+   "name": "Unending Torrent",
+   "kind": "ATTACK",
+   "dice": 4,
+   "toHit": 9,
+   "target": [
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "One hit deals 7 DANGER, Pain 2; two or more hits deal 12 DANGER, Pain 3."
+   ],
+   "tx": {
+    "win": true,
+    "move": "move",
+    "cf": "pacify",
+    "afterFinalWin": true
+   },
+   "afterFinal": "Pushback 9."
+  },
+  {
+   "code": "ER3147",
+   "tier": 1,
+   "name": "Never Saw Me",
+   "kind": "ATTACK",
+   "dice": 4,
+   "toHit": 9,
+   "target": [
+    "Furthest Titan in sight"
+   ],
+   "steps": [
+    "FLASH STEP & ATTACK",
+    "Pain 2. Each hit deals 3 DANGER.",
+    "FATE 3+: Knockdown."
+   ],
+   "tx": {
+    "move": "flash",
+    "cf": "deadly"
+   }
+  },
+  {
+   "code": "ER3146",
+   "tier": 1,
+   "name": "First Cut",
+   "kind": "ATTACK",
+   "dice": 6,
+   "toHit": 10,
+   "target": [
+    "Intermediary",
+    "Least Pain",
+    "Zero Pain",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ FLASH STEP & ATTACK",
+    "Pain 2. Each hit deals 3 DANGER.",
+    "FATE 3+: Knockdown."
+   ],
+   "tx": {
+    "win": true,
+    "move": "flash",
+    "cf": "pacify"
+   }
+  },
+  {
+   "code": "ER3157",
+   "tier": 2,
+   "name": "Already Dead",
+   "kind": "JUDGEMENT",
+   "dice": 4,
+   "toHit": 9,
+   "target": [
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ FLASH STEP & JUDGE | FATE 5+: +1 EVADE_DICE",
+    "One hit, gain the Fear Condition card; two hits, gain the Fear and Terror Condition cards; three hits, gain the Dread and Terror Condition cards; four or more hits, gain the Dread and Holy Terror Condition cards."
+   ],
+   "tx": {
+    "pre": [
+     "Death 2."
+    ],
+    "win": true,
+    "move": "flash",
+    "judge": [
+     "Endurance",
+     "Will"
+    ],
+    "fm": [
+     5,
+     "die"
+    ],
+    "cf": "mortal"
+   }
+  },
+  {
+   "code": "ER3156",
+   "tier": 2,
+   "name": "New World Baptism",
+   "kind": "ATTACK",
+   "dice": 5,
+   "toHit": 8,
+   "target": [
+    "Least Pain",
+    "Zero Pain",
+    "Furthest Titan in sight"
+   ],
+   "steps": [
+    "⚡ FLASH STEP & ATTACK",
+    "Each hit deals 3 DANGER and Pain 2."
+   ],
+   "tx": {
+    "pre": [
+     "PAIN 3+: Discard 1 Argo Ability."
+    ],
+    "win": true,
+    "move": "flash",
+    "cf": "deadly",
+    "afterWin": true
+   },
+   "after": "PAIN 6+: You die."
+  },
+  {
+   "code": "ER3155",
+   "tier": 2,
+   "name": "Sermon of Truth",
+   "kind": "JUDGEMENT",
+   "dice": 5,
+   "toHit": 9,
+   "target": [
+    "Priority Target"
+   ],
+   "steps": [
+    "JUDGE | FATE 5+: Feint",
+    "One hit, gain the Terror Condition card; two hits, gain the Holy Terror Condition card; three or more hits, you die."
+   ],
+   "tx": {
+    "pre": [
+     "Lose -1 RAGE."
+    ],
+    "judge": [
+     "Wisdom",
+     "Cunning"
+    ],
+    "fm": [
+     5,
+     "feint"
+    ]
+   },
+   "after": "Test Wisdom/Will (9+). Fail: Gain the Sealed Condition card."
+  },
+  {
+   "code": "ER3154",
+   "tier": 2,
+   "name": "One for All",
+   "kind": "ATTACK",
+   "dice": 4,
+   "toHit": 10,
+   "target": [
+    "Least Pain",
+    "Zero Pain",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "One hit deals 7 DANGER, Pain 2; two hits deal 12 DANGER, Pain 3; three or more hits deal 15 DANGER, Pain 4.",
+    "RAGE 5+: Pain 1."
+   ],
+   "tx": {
+    "win": true,
+    "move": "move",
+    "cf": "pacify",
+    "afterFinalWin": true
+   },
+   "afterFinal": "Pushback 9."
+  },
+  {
+   "code": "ER3153",
+   "tier": 2,
+   "name": "Never Had a Chance",
+   "kind": "ATTACK",
+   "dice": 5,
+   "toHit": 9,
+   "target": [
+    "Furthest Titan in sight"
+   ],
+   "steps": [
+    "⚡ FLASH STEP & ATTACK",
+    "Pain 3. Each hit deals 3 DANGER.",
+    "FATE 3+: Knockdown."
+   ],
+   "tx": {
+    "win": true,
+    "move": "flash",
+    "cf": "deadly"
+   }
+  },
+  {
+   "code": "ER3152",
+   "tier": 2,
+   "name": "Twin Cut",
+   "kind": "ATTACK",
+   "dice": 6,
+   "toHit": 11,
+   "target": [
+    "Intermediary",
+    "Least Pain",
+    "Zero Pain",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ FLASH STEP & ATTACK",
+    "Pain 3. Each hit deals 3 DANGER. Knockdown."
+   ],
+   "tx": {
+    "pre": [
+     "Lose -1 RAGE."
+    ],
+    "win": true,
+    "move": "flash",
+    "cf": "pacify"
+   }
+  },
+  {
+   "code": "ER3163",
+   "tier": 3,
+   "name": "Swift as Wind or Death",
+   "kind": "JUDGEMENT",
+   "dice": 5,
+   "toHit": 9,
+   "target": [
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "FLASH STEP & JUDGE",
+    "Pain 3. Each hit deals 4 DANGER.",
+    "For each two hits discard 1 Trespass or Aether token."
+   ],
+   "tx": {
+    "pre": [
+     "Death 1."
+    ],
+    "move": "flash",
+    "judge": [
+     "Fury"
+    ],
+    "cf": "deadly"
+   },
+   "after": "If the Target was Awakened and died, permanently lose that Awakening."
+  },
+  {
+   "code": "ER3162",
+   "tier": 3,
+   "name": "Deceitful Confession",
+   "kind": "JUDGEMENT",
+   "dice": 4,
+   "toHit": 10,
+   "target": [
+    "Intermediary",
+    "Least Pain",
+    "Zero Pain",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & JUDGE | FATE 5+: Test difficulty 11+ instead",
+    "If the Attack hits, you die. If you survive, gain a Fated Mnemos."
+   ],
+   "tx": {
+    "pre": [
+     "Lose -2 RAGE.",
+     "PAIN 4+: This Titan can never Awaken (note it)."
+    ],
+    "win": true,
+    "move": "move",
+    "judge": [
+     "Endurance",
+     "Wisdom"
+    ],
+    "fm": [
+     5,
+     "diff11"
+    ],
+    "cf": "cryptex",
+    "doomed": true
+   },
+   "after": "Titan X moves to the furthest Board Edge."
+  },
+  {
+   "code": "ER3161",
+   "tier": 3,
+   "name": "Vision of a Better World",
+   "kind": "JUDGEMENT",
+   "dice": 4,
+   "toHit": 9,
+   "target": [
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "JUDGE | FATE 5+: Test difficulty 11+ instead",
+    "Each hit deals 3 DANGER. Gain as many negative Precision tokens as there are hits."
+   ],
+   "tx": {
+    "pre": [
+     "Lose -2 RAGE."
+    ],
+    "judge": [
+     "Will",
+     "Cunning"
+    ],
+    "fm": [
+     5,
+     "diff11"
+    ]
+   }
+  },
+  {
+   "code": "ER3159",
+   "tier": 3,
+   "name": "Constellation of Pain",
+   "kind": "ATTACK",
+   "dice": 5,
+   "toHit": 10,
+   "target": [
+    "Least Pain",
+    "Zero Pain"
+   ],
+   "steps": [
+    "⚡ FLASH STEP & ATTACK",
+    "Each hit deals 3 DANGER and Pain 2."
+   ],
+   "tx": {
+    "pre": [
+     "PAIN 2+: Gain the Fear Condition card."
+    ],
+    "win": true,
+    "move": "flash",
+    "cf": "deadly",
+    "afterWin": true
+   },
+   "after": "PAIN 5+: You die."
+  },
+  {
+   "code": "ER3158",
+   "tier": 3,
+   "name": "Demoralizing Execution",
+   "kind": "ATTACK",
+   "dice": 6,
+   "toHit": 9,
+   "target": [
+    "Priority Target"
+   ],
+   "steps": [
+    "⚡ FLASH STEP & ATTACK | FATE 5+: +1 EVADE_DICE",
+    "Pain 3. Each hit deals 3 DANGER.",
+    "⚡ Lose -1 RAGE for each hit."
+   ],
+   "tx": {
+    "pre": [
+     "Lose -2 RAGE."
+    ],
+    "win": true,
+    "move": "flash",
+    "fm": [
+     5,
+     "die"
+    ],
+    "cf": "mortal"
+   },
+   "after": "If your RAGE is lowered to 0, you die."
+  },
+  {
+   "code": "ER3160",
+   "tier": 3,
+   "name": "The Message is Clear",
+   "kind": "ATTACK",
+   "dice": 5,
+   "toHit": 10,
+   "target": [
+    "Furthest Titan in sight"
+   ],
+   "steps": [
+    "⚡ FLASH STEP & ATTACK",
+    "One hit, raise DANGER to 9; two hits, raise DANGER to 9 and draw an Obol; three or more hits, you die."
+   ],
+   "tx": {
+    "pre": [
+     "Pain 3."
+    ],
+    "win": true,
+    "move": "flash",
+    "cf": "pacify2",
+    "afterFinalWin": true
+   },
+   "afterFinal": "If the Target is dead, repeat this AI. Otherwise, Pushback 9."
+  },
+  {
+   "code": "ER3145",
+   "tier": 0,
+   "name": "The Devil Himself",
+   "kind": "TAUNT",
+   "dice": 0,
+   "toHit": 0,
+   "target": [],
+   "steps": [
+    "Feint."
+   ],
+   "tx": {
+    "devil": true
+   },
+   "after": "Immediately draw and resolve another AI card, then remove this card from the deck."
+  },
+  {
+   "code": "ER3165",
+   "tier": "X",
+   "name": "Eyes on the Gleaming Prize",
+   "kind": "ROUTINE",
+   "dice": 0,
+   "toHit": 0,
+   "target": [],
+   "steps": [
+    "Titan X moves to the closest Board Edge; move all Titans 8 spaces in the opposite direction. Titan X turns to face the most Titans. (Lose -1 Argo resources — campaign)"
+   ],
+   "tx": {
+    "routine": true
+   }
+  },
+  {
+   "code": "ER3164",
+   "tier": "X",
+   "name": "Afterthought",
+   "kind": "SIGNATURE",
+   "dice": 5,
+   "toHit": 10,
+   "target": [
+    "Least Pain",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ FLASH STEP & ATTACK",
+    "Pain 1. Each hit deals 3 DANGER."
+   ],
+   "tx": {
+    "win": true,
+    "move": "flash"
+   }
+  }
+ ],
+ "bp": [
+  {
+   "code": "ES3194",
+   "tier": 1,
+   "name": "Overstep",
+   "at": 0,
+   "responses": {},
+   "critical": "",
+   "overstep": true,
+   "setAside": true,
+   "text": "If you rolled a Crit Chance, immediately end this Attack and discard this card. Otherwise Chain Break. Then, Titan X immediately performs AI against you. Then, remove this card from the deck."
+  },
+  {
+   "code": "ES3181",
+   "tier": 1,
+   "name": "Exohelm",
+   "at": 8,
+   "responses": {
+    "FAIL": "Feint.",
+    "WOUND": "Pain 1. Flash Step."
+   },
+   "critical": "Move Titan X 3 spaces directly backwards, then move 3 spaces forward to remain adjacent. Gain the Iapetus Helm card (Secret deck 18, card 290)!"
+  },
+  {
+   "code": "ES3179",
+   "tier": 1,
+   "name": "Hephaestean Breastplate",
+   "at": 9,
+   "responses": {
+    "FAIL": "Feint.",
+    "WOUND": "Perform Signature against the Attacker."
+   },
+   "critical": "Gain 1 Undead Silver Rare resource (campaign)."
+  },
+  {
+   "code": "ES3178",
+   "tier": 1,
+   "name": "Armored Shoulderpad",
+   "at": 8,
+   "responses": {
+    "FAIL": "Knockdown. Knockback 10 to the left.",
+    "WOUND": "Perform Signature against the Attacker."
+   },
+   "critical": "You may gain +2 RAGE."
+  },
+  {
+   "code": "ES3180",
+   "tier": 1,
+   "name": "Hephaestean Plated Back",
+   "at": 9,
+   "responses": {
+    "FAIL": "Knockdown. Knockback 10 to the left.",
+    "WOUND": "⚡ Knockback 7 to the left. Pain 1."
+   },
+   "critical": "Another Titan may perform a Bonus Attack!"
+  },
+  {
+   "code": "ES3176",
+   "tier": 1,
+   "name": "Hephaestean Bracer",
+   "at": 8,
+   "responses": {
+    "INSTINCT": "Knockback 7 to the left. Pain 1."
+   },
+   "critical": "You may perform a Bonus Attack!"
+  },
+  {
+   "code": "ES3177",
+   "tier": 1,
+   "name": "Hephaestean Shin Armor",
+   "at": 6,
+   "responses": {
+    "FAIL": "Perform Signature against the Attacker.",
+    "WOUND": "Feint."
+   },
+   "critical": "Reduce the amount of spaces Titan X moves past its Target during Flash Step by 2."
+  },
+  {
+   "code": "ES3195",
+   "tier": 2,
+   "name": "Overstep",
+   "at": 0,
+   "responses": {},
+   "critical": "",
+   "overstep": true,
+   "setAside": true,
+   "text": "If you rolled a Crit Chance, immediately end this Attack and discard this card. Otherwise Chain Break. Then, Titan X immediately performs AI against you. Then, remove this card from the deck."
+  },
+  {
+   "code": "ES3185",
+   "tier": 2,
+   "name": "Phosomagnetic Boots",
+   "at": 14,
+   "responses": {
+    "INSTINCT": "Feint."
+   },
+   "critical": "Reduce the amount of spaces Titan X moves past its Target during Flash Step by 2."
+  },
+  {
+   "code": "ES3184",
+   "tier": 2,
+   "name": "Triskelion Jammer",
+   "at": 13,
+   "responses": {
+    "FAIL": "Pain 1. Exhaust your Cryptex.",
+    "WOUND": "Perform Signature against the Attacker."
+   },
+   "critical": "Disable the Critical Strikes Trait. Disable the Toying Trait."
+  },
+  {
+   "code": "ES3183",
+   "tier": 2,
+   "name": "Skeletal Collar",
+   "at": 14,
+   "responses": {
+    "FAIL": "Feint.",
+    "WOUND": "Pain 2. Titan X moves 9 spaces directly away from the Attacker without turning."
+   },
+   "critical": "Gain the Synergic Armor card (Secret deck 18, card 289)."
+  },
+  {
+   "code": "ES3187",
+   "tier": 2,
+   "name": "Exposed Joint",
+   "at": 12,
+   "responses": {
+    "FAIL": "Killjoy.",
+    "WOUND": "Perform Signature against the Attacker."
+   },
+   "critical": "Move Titan X 3 spaces directly backwards, then move 3 spaces forward to remain adjacent. Another Titan may immediately perform a Bonus Attack!"
+  },
+  {
+   "code": "ES3186",
+   "tier": 2,
+   "name": "Spinal Wiring",
+   "at": 13,
+   "responses": {
+    "FAIL": "Killjoy.",
+    "WOUND": "Pain 3. Titan X moves 9 spaces directly away from the Attacker without turning."
+   },
+   "critical": "Discard all Pain tokens from each Titan!"
+  },
+  {
+   "code": "ES3182",
+   "tier": 2,
+   "name": "Crossvisor",
+   "at": 12,
+   "responses": {
+    "INSTINCT": "Flash Step."
+   },
+   "critical": "Until the end of Battle, when attacked from the Blindspot space, Titan X has -1 AT."
+  },
+  {
+   "code": "ES3190",
+   "tier": 3,
+   "name": "Integrated Nervous System",
+   "at": 16,
+   "responses": {
+    "FAIL": "Pain 4.",
+    "WOUND": "Feint."
+   },
+   "critical": "Reduce the amount of spaces Titan X moves past its Target during Flash Step to 0. Disable the Toying Trait."
+  },
+  {
+   "code": "ES3189",
+   "tier": 3,
+   "name": "Hardlight Generator",
+   "at": 16,
+   "responses": {
+    "FAIL": "Draw an Obol.",
+    "WOUND": "Draw and perform an AI card."
+   },
+   "critical": "Mark X1 (campaign). Titan X and all remaining Titans die!"
+  },
+  {
+   "code": "ES3188",
+   "tier": 3,
+   "name": "Liquid Blade Spinner",
+   "at": 17,
+   "responses": {
+    "FAIL": "Feint.",
+    "WOUND": "Draw and perform an AI card."
+   },
+   "critical": "Gain the Pilfered Blade card (Secret deck 18, card 288)! Disable the Killjoy Trait. Disable the Toying Trait."
+  },
+  {
+   "code": "ES3193",
+   "tier": 3,
+   "name": "Reinforced Cryptex",
+   "at": 16,
+   "responses": {
+    "INSTINCT": "Disable the Toying Trait. Perform Signature against the Attacker."
+   },
+   "critical": "Permanently gain +1 Fury (once per Argonaut Lifetime). After the Battle, resolve The Devil Special Event (campaign)."
+  },
+  {
+   "code": "ES3192",
+   "tier": 3,
+   "name": "Heart of the Titan",
+   "at": 18,
+   "responses": {
+    "FAIL": "Feint.",
+    "WOUND": "Flash Step."
+   },
+   "critical": "Disable the Pain X keyword. Disable the Toying Trait."
+  },
+  {
+   "code": "ES3191",
+   "tier": 3,
+   "name": "Antikratos Harness",
+   "at": 18,
+   "responses": {
+    "FAIL": "Killjoy.",
+    "WOUND": "Feint."
+   },
+   "critical": "Disable Feints. Disable the Toying Trait."
+  }
+ ],
+ "feints": [
+  {
+   "code": "ER3175",
+   "name": "Junction Seizure",
+   "kind": "effect",
+   "text": "When this Feint is drawn, if all Titans have 10+ Pain tokens combined, discard those tokens. Every Titan gains as much DANGER as they discarded Pain tokens. If the Titans don't have 10+ Pain tokens, every Titan gains 2 Pain tokens instead."
+  },
+  {
+   "code": "ER3171",
+   "name": "No Rules",
+   "kind": "effect",
+   "text": "When this Feint is drawn, Titan X goes for the Argo. Immediately discard 1 random Argo Ability from the Battle."
+  },
+  {
+   "code": "ER3170",
+   "name": "Met Your Match",
+   "kind": "status",
+   "text": "As long as this Feint is in play, all your Attacks gain: \"Full Miss: Pain X, where X is the top BP card's level.\""
+  },
+  {
+   "code": "ER3169",
+   "name": "Riposte",
+   "kind": "status",
+   "text": "As long as this Feint is in play, all your Attacks gain: \"Full Miss: Titan X performs Signature against the Attacker.\""
+  },
+  {
+   "code": "ER3174",
+   "name": "Feint Injury",
+   "kind": "effect",
+   "text": "When this Feint is drawn, Heal 1. Then remove this card from the Feint deck. If this card was drawn as an effect of the AI 0, discard it and draw again.",
+   "noAI0": true
+  },
+  {
+   "code": "ER3173",
+   "name": "Mind Games",
+   "kind": "effect",
+   "text": "When this Feint is drawn, clear the Kratos Pool and place this card in the Kratos Pool. Then, the next time you would place tokens in the Kratos Pool, don't, but discard this card instead. If this card was drawn as an effect of the AI 0, discard it and draw again.",
+   "noAI0": true
+  },
+  {
+   "code": "ER3172",
+   "name": "Blinding Lights",
+   "kind": "status",
+   "text": "As long as this Feint is in play, and you're in front of Titan X, ignore Opening and Closing tokens."
+  },
+  {
+   "code": "ER3167",
+   "name": "Overstep (I)",
+   "kind": "effect",
+   "text": "Shuffle the Overstep BP I card into the BP deck. Then, remove this card from the Feint deck."
+  },
+  {
+   "code": "ER3166",
+   "name": "Unreadable",
+   "kind": "status",
+   "text": "As long as this Feint is in play, draw AI and BP cards from the bottom of the appropriate deck (and not the top). When you wound a BP III, after performing Escalation, shuffle the BP deck."
+  },
+  {
+   "code": "ER3168",
+   "name": "Overstep (II)",
+   "kind": "effect",
+   "text": "Shuffle the Overstep BP II card into the BP deck. Then, remove this card from the Feint deck."
+  }
+ ],
+ "vp": null,
+ "basicTraits": [
+  "Oxygen and Aether"
+ ]
+}

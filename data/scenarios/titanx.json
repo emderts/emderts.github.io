@@ -1,0 +1,96 @@
+{
+ "id": "titanx",
+ "source": "The Devil Himself Battle — Cycle V Storybook p.178-179",
+ "board": {
+  "cols": 20,
+  "rows": 14
+ },
+ "_notes": [
+  "Map read from Storybook p.179: no Terrain. Lv1-4 full board (Titan X G10, starts I8 J13 E12 D7); Lv5-7 half board 10x14 = cols 1-10 (Titan X G10, starts I8 H9 F9 E8); Lv8+ quarter board 10x7 = cols 11-20 rows A-G, renumbered to cols 1-10 (Titan X D20 → D10, starts F18 E19 C19 B18 → F8 E9 C9 B8)."
+ ],
+ "setup": [
+  "Standard Preparations.",
+  "Primordial Positioning: Titan X at the indicated space.",
+  "Additional Setup: add the 3 Titan X Cycle V Trauma cards, set aside the Overstep BP I and BP II cards, shuffle the Feint deck."
+ ],
+ "center": "G10",
+ "variants": {
+  "full": {
+   "levels": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "primordial": {
+    "anchor": "G10"
+   },
+   "titanStarts": [
+    "I8",
+    "J13",
+    "E12",
+    "D7"
+   ],
+   "startChoices": [
+    "I8",
+    "J13",
+    "E12",
+    "D7"
+   ],
+   "terrain": {}
+  },
+  "half": {
+   "levels": [
+    5,
+    6,
+    7
+   ],
+   "board": {
+    "cols": 10,
+    "rows": 14
+   },
+   "primordial": {
+    "anchor": "G10"
+   },
+   "titanStarts": [
+    "I8",
+    "H9",
+    "F9",
+    "E8"
+   ],
+   "startChoices": [
+    "I8",
+    "H9",
+    "F9",
+    "E8"
+   ],
+   "terrain": {}
+  },
+  "quarter": {
+   "levels": [
+    8,
+    9
+   ],
+   "board": {
+    "cols": 10,
+    "rows": 7
+   },
+   "primordial": {
+    "anchor": "D10"
+   },
+   "titanStarts": [
+    "F8",
+    "E9",
+    "C9",
+    "B8"
+   ],
+   "startChoices": [
+    "F8",
+    "E9",
+    "C9",
+    "B8"
+   ],
+   "terrain": {}
+  }
+ }
+}
