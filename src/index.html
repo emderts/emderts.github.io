@@ -117,6 +117,9 @@ button.tog { border-style:dashed; } button.tog.on { background:#5a4a1a; border-c
 @keyframes fpop { from { transform:scale(.85); opacity:0; } to { transform:scale(1); opacity:1; } }
 @keyframes fout { to { transform:scale(1.03) translateY(-8px); opacity:0; } }
 @keyframes droll { 0% { transform:rotate(-25deg) scale(.6); opacity:0; } 60% { transform:rotate(8deg) scale(1.08); opacity:1; } 100% { transform:none; } }
+
+/* terrain / icons must not swallow board clicks (e.g. start spaces on Irem Tower peaks) */
+#board .ter, #board .ticon, svg .ter, svg .ticon { pointer-events: none; }
 </style>
 </head>
 <body>

@@ -6,7 +6,8 @@
   "rows": 14
  },
  "_notes": [
-  "Mnestis: normal victory on Wounds (Regular + Secondary Wound Stack). Level 3+: Spartan River Works lose Indestructible. The printed Ambrosia icons on the Cycle II mat are treated as decoration."
+  "Mnestis: normal victory on Wounds (Regular + Secondary Wound Stack). Level 3+: Spartan River Works lose Indestructible. The printed Ambrosia icons on the Cycle II mat are treated as decoration.",
+  "2026-10-30 (user): Ambrosia B18-C19 → B17-C18, Fortified City NE H15-J17 + Column G17 (Lv1-2), Titan starts D12 E13 I9 J10."
  ],
  "setup": [
   "Standard Preparations.",
@@ -23,10 +24,10 @@
     "anchor": "F10"
    },
    "titanStarts": [
-    "K11",
-    "K12",
-    "D10",
-    "D11"
+    "D12",
+    "E13",
+    "I9",
+    "J10"
    ],
    "terrain": {
     "column": [
@@ -39,15 +40,15 @@
      {
       "name": "Fortified City NE",
       "cells": [
-       "G15",
-       "G16",
-       "G17",
        "H15",
        "H16",
        "H17",
        "I15",
        "I16",
-       "I17"
+       "I17",
+       "J15",
+       "J16",
+       "J17"
       ]
      },
      {
@@ -73,10 +74,10 @@
       "L3"
      ],
      [
+      "B17",
       "B18",
-      "B19",
-      "C18",
-      "C19"
+      "C17",
+      "C18"
      ]
     ]
    }
@@ -95,10 +96,10 @@
     "anchor": "F10"
    },
    "titanStarts": [
-    "K11",
-    "K12",
-    "D10",
-    "D11"
+    "D12",
+    "E13",
+    "I9",
+    "J10"
    ],
    "riverDestructible": true,
    "terrain": {
@@ -167,10 +168,10 @@
       "D14"
      ],
      [
+      "B17",
       "B18",
-      "B19",
-      "C18",
-      "C19"
+      "C17",
+      "C18"
      ]
     ],
     "river": [

@@ -8,13 +8,22 @@
  "_notes": [
   "Fire tokens = Titan start spaces. Dahaka 2x2.",
   "Lv I: Reap the Whirlwind diagram (Argo Hull along column 1, 20 Irem Towers, 4 Ambrosia Clouds, Abandoned Temple).",
-  "Lv II+ (Winnowing trait): The Winnowing Battle diagram (20 Irem Towers, 2 Irem Cities, 4 Ambrosia Clouds, Abandoned Temple)."
+  "Lv II+ (Winnowing trait): The Winnowing Battle diagram (20 Irem Towers, 2 Irem Cities, 4 Ambrosia Clouds, Abandoned Temple).",
+  "2026-10-30 (user): every level uses the Lv I (Reap the Whirlwind) map."
  ],
  "center": "G10",
  "variants": {
   "reap": {
    "levels": [
-    1
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
    ],
    "primordial": {
     "anchor": "G10"
@@ -133,16 +142,7 @@
    }
   },
   "winnowing": {
-   "levels": [
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9
-   ],
+   "levels": [],
    "primordial": {
     "anchor": "G6"
    },

@@ -149,7 +149,7 @@ export class Game {
   }
 
   async chooseStarts() {
-    let free = this._startChoices.filter(p => !this.board.isObstacle(p.c, p.r)); this.say(`시작 위치 선택: ${free.map(cellLabel).join(', ')}`, 'sys');
+    let free = this._startChoices.filter(p => !this.board.isObstacle(p.c, p.r) || (this.board.terrainAt(p.c, p.r) || {}).elevated); // start spaces printed on elevated tiles (e.g. Irem Tower peaks) are allowed this.say(`시작 위치 선택: ${free.map(cellLabel).join(', ')}`, 'sys');
     let order = [...this.titans];
     for (let k = 0; k < order.length && free.length; k++) {
       const left = order.slice(k); const t = left.length === 1 ? left[0] : await this.ask({ type: 'choice', title: '시작 위치를 정할 타이탄 선택', options: left.map(x => ({ label: `${x.name} (${x.def.name})`, value: x })) });

@@ -7,7 +7,9 @@
  },
  "_notes": [
   "Mnestis (user rule): win by killing the Burden; Peak / Battle Track ignored. Column 20 = top of the mountain, column 1 = bottom. Bottom edge (column 1) is Boundless. Cliffs = indestructible obstacles; red cliffs = Board Edge (Boundless at Lv7+ Mountain of Madness, otherwise impassable). Columns are Indestructible in this Battle.",
-  "Lv5+ Icecapade diagram: Black Glacier / Black Lake = Slippery tiles (walkable, not obstacles)."
+  "Lv5+ Icecapade diagram: Black Glacier / Black Lake = Slippery tiles (walkable, not obstacles).",
+  "2026-10-30 (user): Lv1-4 cliffs re-read (C1C2D1E1 / L3K3K4J4 / E5-H5 / A7-D7 / H8H9I8I9 / H14H15I14I15 / G17G18H17H18), D18 not a cliff, A8 M10 L12 are Board Edge cliffs.",
+  "2026-10-30: Lv5+ diagram re-read from the Rulebook image — Black Glaciers K13-K17 / E6-E10 / D11-D15, Black Lakes I5-K7 and G2-I4 (3x3), Large Cliffs H8-I9 / H14-I15 / G17-H18, Small Cliffs L3K3K4J4 / E5-H5 / C1C2D1E1 / A7-D7, Columns N7 K8 J15 I1 F11 E16 D10 A4 (only 8 visible), Board Edge cliffs as Lv1-4."
  ],
  "setup": [
   "Standard Preparations.",
@@ -46,35 +48,22 @@
     ],
     "cliff": [
      [
-      "J3",
-      "K3",
+      "C1",
+      "C2",
+      "D1",
+      "E1"
+     ],
+     [
       "L3",
+      "K3",
+      "K4",
       "J4"
      ],
      [
-      "D5",
       "E5",
       "F5",
-      "C6"
-     ],
-     [
-      "H9",
-      "I9"
-     ],
-     [
-      "G14",
-      "H14",
-      "G15"
-     ],
-     [
-      "G17",
-      "H17",
-      "G18"
-     ],
-     [
-      "D1",
-      "E1",
-      "C2"
+      "G5",
+      "H5"
      ],
      [
       "A7",
@@ -83,8 +72,22 @@
       "D7"
      ],
      [
-      "C18",
-      "D18"
+      "H8",
+      "H9",
+      "I8",
+      "I9"
+     ],
+     [
+      "H14",
+      "H15",
+      "I14",
+      "I15"
+     ],
+     [
+      "G17",
+      "G18",
+      "H17",
+      "H18"
      ]
     ],
     "redCliff": [
@@ -120,6 +123,15 @@
       "A10",
       "D19",
       "D20"
+     ],
+     [
+      "A8"
+     ],
+     [
+      "M10"
+     ],
+     [
+      "L12"
      ]
     ]
    }
@@ -143,59 +155,67 @@
    ],
    "terrain": {
     "column": [
-     "M7",
+     "N7",
      "K8",
-     "K15",
+     "J15",
      "I1",
      "F11",
-     "D10",
      "E16",
-     "J15",
+     "D10",
      "A4"
     ],
     "cliff": [
      [
-      "J3",
+      "L3",
       "K3",
+      "K4",
       "J4"
      ],
      [
-      "E5",
-      "F5",
+      "H5",
       "G5",
-      "D6"
+      "F5",
+      "E5"
      ],
      [
+      "H8",
       "H9",
+      "I8",
       "I9"
      ],
      [
-      "G14",
       "H14",
-      "G15"
+      "H15",
+      "I14",
+      "I15"
      ],
      [
       "G17",
+      "G18",
       "H17",
-      "G18"
+      "H18"
      ],
      [
+      "C1",
+      "C2",
       "D1",
-      "E1",
-      "C2"
+      "E1"
      ],
      [
       "A7",
       "B7",
       "C7",
       "D7"
-     ],
-     [
-      "C18",
-      "D18"
      ]
     ],
     "slippery": [
+     [
+      "K13",
+      "K14",
+      "K15",
+      "K16",
+      "K17"
+     ],
      [
       "E6",
       "E7",
@@ -211,25 +231,26 @@
       "D15"
      ],
      [
-      "J13",
-      "J14",
-      "J15",
-      "J16",
-      "J17"
-     ],
-     [
-      "I5",
-      "I6",
-      "I7",
+      "K5",
+      "K6",
+      "K7",
       "J5",
       "J6",
-      "J7"
+      "J7",
+      "I5",
+      "I6",
+      "I7"
      ],
      [
-      "G3",
-      "G4",
+      "I2",
+      "I3",
+      "I4",
+      "H2",
       "H3",
-      "H4"
+      "H4",
+      "G2",
+      "G3",
+      "G4"
      ]
     ],
     "redCliff": [
@@ -237,8 +258,10 @@
       "N8",
       "N9",
       "N10",
+      "M10",
       "M11",
       "M12",
+      "L12",
       "L13",
       "L14",
       "L15",
@@ -250,6 +273,12 @@
       "K20"
      ],
      [
+      "A8",
+      "A9",
+      "A10",
+      "B10",
+      "B11",
+      "B12",
       "C12",
       "C13",
       "C14",
@@ -258,11 +287,6 @@
       "C17",
       "C18",
       "C19",
-      "B10",
-      "B11",
-      "B12",
-      "A9",
-      "A10",
       "D19",
       "D20"
      ]
