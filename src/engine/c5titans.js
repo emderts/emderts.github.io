@@ -23,7 +23,7 @@ export function installC5Titans(Game, { TitanDied, BattleOver }) {
     // ---------- One Small Step ----------
     oneSmallStep(t) { return !!(t && this.ab(t, 'One Small Step') && (t.onVP || t.stair)); },
     // ---------- weapon restrictions ----------
-    c5WeaponBanned(t, g) { if (!g || g.godform || g.card.name === 'Fists') return false; const s = g.card.slot; if (!/^hand/.test(s || '')) return false; if (this.ab(t, 'Four-Armed Centimanes') && (s === 'hand2' || s === 'hand3')) return true; if (this.ab(t, 'Nimble Feet') && s === 'hand3') return true; if (this.ab(t, 'Lightweight Curse') && s === 'hand1') return true; return false; },
+    c5WeaponBanned(t, g) { if (!g || g.godform || g.card.name === 'Fists') return false; const s = g.card.slot; if (!/^hand/.test(s || '')) return false; if (this.ab(t, 'Four-Armed Centimanes') && (s === 'hand2' || s === 'hand3')) return true; if (this.ab(t, 'Nimble Feet') && s === 'hand3') return true; if (this.ab(t, 'Lightweight Curse') && (s === 'hand1' || s === 'hand1x3')) return true; return false; },
     // ---------- Power roll (Djinnslayer, Raw Power inherent, token +1 Power) ----------
     async c5Power(t, g, A) {
       const rp = this.inh(t, 'Raw Power'); if (rp) { A.raw += rp; this.say(`${t.name}: +${rp} Power (Titan sheet)`); }

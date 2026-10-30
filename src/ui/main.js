@@ -27,7 +27,7 @@ const GSTAT = [
 const gStats = g => GSTAT.map(([, , f]) => f(g)).filter(Boolean);
 const gCyc = g => /(^|\. )Mnestis\./.test(g.text || '') ? 'M' : String(g.cycle || 1); // Mnestis-keyword gear is its own group
 const gCycName = c => c === 'M' ? 'Mnestis' : 'Cycle ' + (['', 'I', 'II', 'III', 'IV', 'V'][+c] || c);
-const SLOT_ICON = { hand1: '✊', hand2: '✊✊', hand3: '✊✊✊', handAll: '✱✊', armor: '🛡', support: '🎒', attachment: '📎', tech: '🧩', godform: '🔱' };
+const SLOT_ICON = { hand1: '✊', hand1x3: '✊×3', hand2: '✊✊', hand3: '✊✊✊', handAll: '✱✊', armor: '🛡', support: '🎒', attachment: '📎', tech: '🧩', godform: '🔱' };
 const DEFAULT_LOADOUT = {
   primordial: 'hekaton', level: 1,
   argo: ['Arrow Barrage', 'Pursuer Protocol'], aaLimit: 2, awakening: { enabled: true, spark: false, godforms: ['Zeus', 'Poseidon', 'Demeter', 'Hephaestus', 'Hermes', 'Ares', 'Athena', 'Artemis', 'Dionysus', 'Aphrodite', 'Helios Apollon Exalted', 'Hades'] }, cannon: { enabled: false, payload: 'Spartan Payload', unlimited: true, res: {} },
@@ -76,7 +76,7 @@ function dupErrors() {
 }
 
 // ---------------- Card detail views ----------------
-const SLOT_NAME = { hand1: '한손 무기', hand2: '양손 무기', hand3: '세손 무기', handAll: '무기 슬롯 전부', armor: '방어구', support: '서포트', attachment: '부착물', tech: 'Pattern', godform: 'Godform' };
+const SLOT_NAME = { hand1: '한손 무기', hand1x3: '한손 무기 (3칸 차지)', hand2: '양손 무기', hand3: '세손 무기', handAll: '무기 슬롯 전부', armor: '방어구', support: '서포트', attachment: '부착물', tech: 'Pattern', godform: 'Godform' };
 const DIE = { r: '빨강', b: '검정', w: '흰색', m: '회색(Mortal)' };
 function gearCard(g, t = null) {
   const dangerNow = t ? t.danger : null;
@@ -174,7 +174,7 @@ function openModal(content) {
 
 // ---------------- Loadout screen ----------------
 function slotsOf(cls) { const c = DATA.titans.classes[cls]; if (c && c.slots) return { ...c.slots }; return cls === 'earthshaker' ? { hands: 3, armor: 1, support: 2 } : { hands: 2, armor: 1, support: 2 }; }
-function handCost(g, cls = null) { if (g.slot === 'handAll') return slotsOf(cls).hands; const c = g.slot === 'hand3' ? 3 : g.slot === 'hand2' ? 2 : g.slot === 'hand1' ? 1 : 0; const A = (cls && DATA.titans.classes[cls]?.abilities) || {}; return c === 3 && (A['Cyclopean Might'] || A['Elder Might'] || A['Unknown Might'] || A['Lightweight Curse']) ? 2 : (c === 2 && A['Nimble Hands']) ? 1 : c; }
+function handCost(g, cls = null) { if (g.slot === 'handAll') return slotsOf(cls).hands; if (g.slot === 'hand1x3') return (cls && DATA.titans.classes[cls]?.abilities?.['Nimble Hands']) ? 2 : 3; const c = g.slot === 'hand3' ? 3 : g.slot === 'hand2' ? 2 : g.slot === 'hand1' ? 1 : 0; const A = (cls && DATA.titans.classes[cls]?.abilities) || {}; return c === 3 && (A['Cyclopean Might'] || A['Elder Might'] || A['Unknown Might'] || A['Lightweight Curse']) ? 2 : c; }
 // Earthshaker (Six-Armed Centimanes): 3 Weapon slots OR 3 Support slots
 function slotsFor(t) { const s = { ...slotsOf(t.cls) }; if (t.traumaCard === 'Djinnian Strain') s.hands += 1; if (t.traumaCard === 'Support Specialization') s.support += 1; if (t.cls === 'earthshaker') { const sup = t.gear.filter(n => GEAR.find(x => x.name === n)?.slot === 'support').length; if (sup >= 3) { s.hands = 2; s.support = 3; } } s.support += t.gear.filter(n => /You have 1 additional Support slot(?! for)/i.test(GEAR.find(x => x.name === n)?.text || '')).length; if (DATA.titans.classes[t.cls]?.abilities['Unknown Might'] && t.gear.some(n => GEAR.find(x => x.name === n)?.slot === 'hand3')) s.support -= 1; return s; }
 function validateTitan(t) {
@@ -192,7 +192,7 @@ function validateTitan(t) {
   { const A = DATA.titans.classes[t.cls]?.abilities || {}; const ws = t.gear.map(n => GEAR.find(x => x.name === n)).filter(g => g && /^hand/.test(g.slot) && g.name !== 'Fists');
     if (A['Four-Armed Centimanes']) for (const g of ws) if (g.slot === 'hand2' || g.slot === 'hand3') errs.push(`Four-Armed Centimanes: 양손/세손 무기 「${g.name}」 사용 불가`);
     if (A['Nimble Feet']) for (const g of ws) if (g.slot === 'hand3') errs.push(`Nimble Feet: 세손 무기 「${g.name}」 사용 불가`);
-    if (A['Lightweight Curse']) for (const g of ws) if (g.slot === 'hand1') errs.push(`Lightweight Curse: 한손 무기 「${g.name}」 사용 불가`); }
+    if (A['Lightweight Curse']) for (const g of ws) if (g.slot === 'hand1' || g.slot === 'hand1x3') errs.push(`Lightweight Curse: 한손 무기 「${g.name}」 사용 불가`); }
   { const rc = {}; for (const n of t.gear) { const g = GEAR.find(x => x.name === n); const m = g && /Restricted \(([^)]+)\)/.exec(g.text || ''); if (m) rc[m[1]] = (rc[m[1]] || 0) + 1; } for (const [k, v] of Object.entries(rc)) if (v > 1) errs.push(`Restricted (${k}): 1개만 장착 가능`); }
   return errs;
 }

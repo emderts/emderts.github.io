@@ -1854,7 +1854,7 @@
    "abilities": {
     "Final Countdown": "Each time you roll a Crit Miss, [campaign]. (캠페인 효과 — 무시)",
     "Internalize Pain": "Start of your turn: Gain 1 Pain token.",
-    "Finish Him": "[3-hand]Ψ When attacking a BP card with a Death Blow Crit effect, gain a Crit Chance.",
+    "Finish Him": "[Oxygen]Ψ When attacking a BP card with a Death Blow Crit effect, gain a Crit Chance. (비용: Oxygen 토큰 1개 버림 + Fate +1)",
     "Cyclopean Might": "You can use [3-hand] Weapons as if they were [2-hand].",
     "Pain Engine": "Each time you gain a Pain token (each), place 1 Generic token on your Titan Sheet. You gain the following stacking benefits depending on the number of Generic tokens here: 1: +1 Speed. 2: While performing a Movement action, you can move diagonally. 3: Your Titan's Power die becomes a White die. 4: Auto-rouse 1. 5+: Deadly."
    },
@@ -1952,7 +1952,7 @@
    "ambrosiaLimit": 1,
    "abilities": {
     "Deny": "RAGE 8+: Deny. (Vanish/Lightbend/Flicker는 Cycle V 프라이모디얼 전용 — 효과 없음)",
-    "Nimble Hands": "You can use [2-hand] Weapons as if they were [1-hand].",
+    "Nimble Hands": "You can use [1-hand x3] Weapons as if they were [2-hand].",
     "Silver Strain": "Start of Battle: Gain 1 Oxygen token. (Oxygen 규칙은 Cycle V 전투에서만 — 토큰만 기록)",
     "Abyss-Tainted": "Start of your turn: Gain 1 Ambrosia token.",
     "To Dark We Will at Last Return": "Each time you gain an Ambrosia token (each), place 1 Generic token on your Titan Sheet. You gain the following stacking benefits depending on the number of Generic tokens here: 1: +1 Precision. 2: Stalwart. 3: Tireless. 4: Rocksteady."

@@ -235,19 +235,22 @@ export function installC4Meta(Game, { TitanDied, BattleOver, ChainBreak }) {
       if (!cells.length) return; const dest = (await this.ask({ type: 'move', titan: t, title: 'The Mule L3: Irem Tower를 놓을 칸', cells, options: cells.slice(0, 40).map(q => ({ label: cellLabel(q), value: q })) })) || cells[0];
       this._muleN = (this._muleN || 0) + 1; this.board.addTerrain([cellLabel(dest)], { id: 'mule' + this._muleN, type: 'Irem Tower', irem: 'tower', obstacle: true, obscuring: true, destructible: false, elevated: true, shifting: true, climb: 4 }); this.say(`Irem Tower 배치 → ${cellLabel(dest)}`, 'good'); this.notify();
     },
-    async triremeMove(t) {
-      const T = this.trireme || (this.trireme = { pos: null, spent: false, movedRound: -1 }); T.movedRound = this.round;
-      const cells = []; for (let c = 1; c <= this.board.cols; c++) for (let r = 1; r <= this.board.rows; r++) { const q = { c, r }; if (this.primContains(q)) continue; const z = this.board.terrainAt(c, r); if (z && z.obstacle) continue; cells.push(q); }
+    async triremeMove(t, sub = false) {
+      const T = this.trireme || (this.trireme = { pos: null, spent: false, movedRound: -1, sub }); T.movedRound = this.round; const NM = T.sub ? 'Subreme' : 'Cirrotrireme';
+      const edgeAdj = q => q.c === 1 || q.r === 1 || q.c === this.board.cols || q.r === this.board.rows;
+      const cells = []; for (let c = 1; c <= this.board.cols; c++) for (let r = 1; r <= this.board.rows; r++) { const q = { c, r }; if (this.primContains(q)) continue; const z = this.board.terrainAt(c, r); if (z && z.obstacle) continue;
+        if (T.sub) { const near = T.pos ? Math.abs(T.pos.c - c) + Math.abs(T.pos.r - r) <= 5 : [...Array(this.board.cols)].some((_, i) => [...Array(this.board.rows)].some((__, j) => edgeAdj({ c: i + 1, r: j + 1 }) && Math.abs(i + 1 - c) + Math.abs(j + 1 - r) <= 5)); if (!near) continue; }
+        cells.push(q); }
       const opts = [...(T.pos && !this.titanAt(T.pos.c, T.pos.r) ? [{ label: 'Argo Ability 카드로 회수', value: 'home' }] : [])];
-      const dest = await this.ask({ type: 'move', titan: t, title: `Cirrotrireme${T.spent ? ' (소모됨)' : ''}: 옮길 칸 (타이탄이 있으면 함께 이동)`, cells, options: [...opts, ...cells.slice(0, 40).map(q => ({ label: cellLabel(q), value: q }))] });
-      const rider = T.pos ? this.titanAt(T.pos.c, T.pos.r) : null;
+      const dest = await this.ask({ type: 'move', titan: t, title: `${NM}${T.spent ? ' (소모됨)' : ''}: 옮길 칸${T.sub ? ' (보드 끝 옆 칸에 놓고 / 놓인 곳에서 최대 5칸)' : ' (타이탄이 있으면 함께 이동)'}`, cells, options: [...opts, ...cells.slice(0, 40).map(q => ({ label: cellLabel(q), value: q }))] });
+      const rider = T.pos && !T.sub ? this.titanAt(T.pos.c, T.pos.r) : null;
       if (T.pos) { this.board.terrain.delete(key(T.pos.c, T.pos.r)); if (T.under) this.board.terrain.set(key(T.pos.c, T.pos.r), T.under); }
-      if (dest === 'home' || !dest) { T.pos = null; T.under = null; this.say('Cirrotrireme: 카드로 회수'); this.notify(); return; }
+      if (dest === 'home' || !dest) { T.pos = null; T.under = null; this.say(`${NM}: 카드로 회수`); this.notify(); return; }
       T.under = this.board.terrainAt(dest.c, dest.r); T.pos = { ...dest };
-      this.board.terrain.set(key(dest.c, dest.r), { id: 'trireme', type: 'Cirrotrireme', obstacle: false, obscuring: false, elevated: true, shifting: true, destructible: false, indestructible: true, cell: dest });
+      this.board.terrain.set(key(dest.c, dest.r), T.sub ? { id: 'trireme', type: 'Subreme', obstacle: false, obscuring: false, destructible: false, indestructible: true, light: 2, cell: dest } : { id: 'trireme', type: 'Cirrotrireme', obstacle: false, obscuring: false, elevated: true, shifting: true, destructible: false, indestructible: true, cell: dest });
       const occ = this.titanAt(dest.c, dest.r);
       if (rider && rider.alive) { rider.pos = { ...dest }; this.say(`${rider.name}: Cirrotrireme와 함께 이동`); }
-      this.say(`Cirrotrireme → ${cellLabel(dest)}${occ && occ !== rider ? ` (${occ.name} 위)` : ''}`, 'sys'); this.notify();
+      this.say(`${NM} → ${cellLabel(dest)}${occ && occ !== rider ? ` (${occ.name} 위)` : ''}`, 'sys'); this.notify();
     },
     async c4mTurnStart(t) { for (const x of this.titans) for (const g of x.gear) this.hookExhaust(x, g); t._moveSteps = 0; t._hermesUsed = 0; t._hermesAvail = this.hermesX ? this.hermesX(t) > 0 : false; this.c4lTiers(t); this.c4lFlips(t); if (t.godform && t.godform.def.name === 'Dionysus') await this.dionysusRoll(t); if (t.gear.some(g => !g.discarded && g.card.name === 'Dahaka Mask')) { this.say(`${t.name}: Dahaka Mask — Ambrosia +1`); await this.gainAmbrosia(t, 1); if (!t.alive) return; } if (fated(this, t, 'Depressed')) { this.say(`${t.name}: Depressed — Despair +1`, 'bad'); await this.gainDespair(t, 1); } t._moveSteps = 0; t._hermesUsed = 0; },
     async c4mTurnEnd(t) {

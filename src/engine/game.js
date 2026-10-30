@@ -10,7 +10,7 @@ import { installBabel } from './babel.js';
 import { installOldHaunt } from './oldhaunt.js';
 import { installC4Meta } from './c4meta.js';
 import { installC5Titans } from './c5titans.js';
-import { installC5Titans2 } from './c5titans2.js';
+import { installC5Titans2, installPainSentences } from './c5titans2.js';
 import { RNG, Deck, Board, parseCell, cellLabel, key, DIRS, DIR_LIST, OPP, reachable, bfsPath, POWER_DIE_FACES, TIER_UP, facePower, facePotential, kw, kwCost } from './core.js';
 
 export class ChainBreak extends Error { constructor(msg) { super(msg || 'Chain Break'); this.chainBreak = true; } }
@@ -95,11 +95,11 @@ export class Game {
     this.woundStack = []; this.setAsideBP = null;
     // decks
     const D = this.data.decks; const cyc = P.cycle;
-    const mk = arr => new Deck(arr.filter(c => c.cycle == null || c.cycle === cyc), this.rng).shuffle();
+    const mk = arr => new Deck(arr.filter(c => (c.cycle == null || c.cycle === cyc) && (!c.primOnly || c.primOnly === P.id)), this.rng).shuffle();
     this.trauma = { minor: mk(D.trauma.minor), major: mk(D.trauma.major), grave: mk(D.trauma.grave) };
     this.obolBase = D.obol.filter(o => !o.addWhen && !o.condition).map(o => o.code === 'AM0353' && D.secret.obol_you_live_hope ? D.secret.obol_you_live_hope : o);
     this.awk = awakening && awakening.enabled ? { spark: !!awakening.spark, avail: (awakening.godforms || D.godforms.map(g => g.name)).slice(), used: [] } : null;
-    if (this.awk) { this.obolBase = this.obolBase.map(o => o.code === 'AM0354' ? D.secret.obol_you_died_awaken : o); this.trauma.grave.shuffleIn({ ...D.secret.trauma_awakening }); } this.obolExtra = []; this.moiros = mk(D.moiros); this.kratosDeck = mk(D.kratos); if (this.awk) { if (D.secret.moiros_awaken) this.moiros.shuffleIn({ ...D.secret.moiros_awaken }); if (D.secret.kratos_awaken) this.kratosDeck.shuffleIn({ ...D.secret.kratos_awaken }); }
+    if (this.awk) { this.obolBase = this.obolBase.map(o => o.code === 'AM0354' ? D.secret.obol_you_died_awaken : o); this.trauma.grave.shuffleIn({ ...D.secret.trauma_awakening }); } this.obolExtra = []; this.moiros = mk(D.moiros); this.kratosDeck = mk(D.kratos); if (this.awk) { if (D.secret.moiros_awaken) this.moiros.shuffleIn({ ...D.secret.moiros_awaken }); if (D.secret.kratos_awaken) this.kratosDeck.shuffleIn({ ...D.secret.kratos_awaken }); if (cyc === 5) { if (D.secret.kratos_awaken_c5) this.kratosDeck.shuffleIn({ ...D.secret.kratos_awaken_c5 }); if (D.secret.moiros_awaken_c5) this.moiros.shuffleIn({ ...D.secret.moiros_awaken_c5 }); } }
     this.kratosPool = { opening: 0, break: 0, diversion: 0, negPrecision: 0, rouse: 0, fire: 0, black: 0, hope: 0, negAT: 0 };
     if (traits['Ruthless']) for (const d of Object.values(this.trauma)) { d.cards = d.cards.filter(c => c.pol !== '+'); }
     if (traits['The Strong Eat']) { const yd = this.obolBase.find(o => /died/i.test(o.name)); if (yd) { this.obolBase.push(yd); this._strongEatYD = yd; this.say('The Strong Eat: Obol 덱에 「You died!」 1장 추가', 'sys'); } }
@@ -405,7 +405,7 @@ export class Game {
     while (dq.length) { const cur = dq.shift(); const d = dist.get(key(cur.c, cur.r)); for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) { const n = { c: cur.c + dx, r: cur.r + dy }; if (!ok(cur, n)) continue; const ta = tile(cur.c, cur.r), tb = tile(n.c, n.r); const nd = d + (ta && tb && ta === tb ? 0 : 1); if (nd > max) continue; const k = key(n.c, n.r); if (dist.has(k) && dist.get(k) <= nd) continue; dist.set(k, nd); if (nd === d) dq.unshift(n); else dq.push(n); } }
     dist.delete(key(t.pos.c, t.pos.r)); return dist; }
   flexMissing(t, g) { if (!g || !g.card.flexHands) return 0; const cap = this.handCap(t); const used = t.gear.filter(x => x !== g && !x.discarded && this.isWeaponGear(x)).reduce((a, x) => a + (x.card.slot === 'handAll' ? cap : this.handCost(t, x)), 0); const have = Math.max(1, Math.min(g.card.flexHands, cap - used)); return g.card.flexHands === 3 ? 3 - have : (g.card.flexHands - have); }
-  midasCap(t, g) { if (!g || g.discarded || g.card.isTech || g.card.slot === 'tech' || g.card.slot === 'attachment' || g.card.name === 'Fists' || g.godform) return 0; const cap = this.handCap(t); const s = g.card.slot; let n = s === 'hand2' || s === 'hand3' ? 2 : s === 'handAll' ? Math.max(2, Math.min(3, cap)) : 1; if (g.card.flexHands) n = Math.max(2, Math.min(3, g.card.flexHands - this.flexMissing(t, g))); const mr = !g.exhausted && /Midas Resistant (\d+)/.exec(g.card.text || ''); if (mr) n += +mr[1]; return n; } // FAQ: exhausted gear loses defensive stats incl. Midas Resistant
+  midasCap(t, g) { if (!g || g.discarded || g.card.isTech || g.card.slot === 'tech' || g.card.slot === 'attachment' || g.card.name === 'Fists' || g.godform) return 0; const cap = this.handCap(t); const s = g.card.slot; let n = s === 'hand1x3' ? 3 : s === 'hand2' || s === 'hand3' ? 2 : s === 'handAll' ? Math.max(2, Math.min(3, cap)) : 1; if (g.card.flexHands) n = Math.max(2, Math.min(3, g.card.flexHands - this.flexMissing(t, g))); const mr = !g.exhausted && /Midas Resistant (\d+)/.exec(g.card.text || ''); if (mr) n += +mr[1]; return n; } // FAQ: exhausted gear loses defensive stats incl. Midas Resistant
   aurified(t, g) { return !!(g && (g.midas || 0) > 0 && (g.midas || 0) >= this.midasCap(t, g) && !/Midas Immune/.test(g.card.text || '') && !Object.values(g.card.danger || {}).some(v => /Midas Immune/.test(v) && t.danger >= parseInt(Object.keys(g.card.danger).find(k => g.card.danger[k] === v))) ); }
   async gainMidas(t, n = 1, raw = false, vol = false) { if (!vol && this.noInvol(t, 'Midas 토큰')) return; if (n > 1 && !t.knockdown && t.gear.some(g => !g.discarded && /When you are about to gain Midas tokens, you may suffer Knockdown to lower this gain to 1/.test(this.gearText(g, t)))) { const ok = await this.ask({ type: 'yn', titan: t, title: `Midas Catcher: Midas +${n} 대신 Knockdown 받고 +1?`, options: [{ label: 'Knockdown, +1', value: true }, { label: `+${n}`, value: false }] }); if (ok) { await this.knockdown(t, true); n = 1; } } if (!raw && this.prim && this.prim.def.midasD && this.trait('Debts of Succession') && n > 0) { n *= 2; this.say(`Debts of Succession: Midas 획득 2배 → ${n}`); } if (!vol) n = await this.c4MidasGain(t, n); for (let i = 0; i < n && t.alive; i++) { const room = t.gear.filter(g => (g.midas || 0) < this.midasCap(t, g)); if (!room.length) { if (await this.godlyComfort(t, 'Midas')) { const q = t.gear.find(x => (x.midas || 0) > 0 && !x.discarded); if (q) { q.midas--; this.midasRemoved && this.midasRemoved(t, 1); } return; } this.say(`${t.name}: 모든 카드에 Midas 토큰이 가득 — 황금으로 변해 사망 (Aurified)`, 'bad'); await this.kill(t); return; } const g = room.length === 1 ? room[0] : await this.ask({ type: 'choice', titan: t, title: `Midas 토큰을 놓을 카드 (가득 차면 그 카드는 Aurified — 능력 없음)`, options: room.map(x => ({ label: `${x.card.name} (${x.midas || 0}/${this.midasCap(t, x)})${/Midas Immune/.test(x.card.text || '') ? ' [Midas Immune]' : ''}`, value: x })) }); g.midas = (g.midas || 0) + 1; this.say(`${t.name}: Midas 토큰 → ${g.card.name} (${g.midas}/${this.midasCap(t, g)})${this.aurified(t, g) ? ' — Aurified!' : ''}`, 'bad'); } }
   async loseMidas(t, n = 1) { if (!this._midasAtkPay && t.gear.some(g => !g.discarded && /You cannot lose Midas tokens in any other way than attacking/.test(this.gearText(g, t)))) { this.say(`${t.name}: Midashield — 공격 외에는 Midas 토큰을 잃을 수 없음`); return; } let rm = 0; try { for (let i = 0; i < n; i++) { const has = t.gear.filter(g => g.midas > 0); if (!has.length) return; rm++; const g = has.length === 1 ? has[0] : await this.ask({ type: 'choice', titan: t, title: '버릴 Midas 토큰이 있는 카드', options: has.map(x => ({ label: `${x.card.name} (${x.midas})`, value: x })) }); g.midas--; this.say(`${t.name}: ${g.card.name}의 Midas 토큰 −1`); if (this.prim && this.prim.def.midasD) this.painAdd(1, `${t.name}이(가) Midas 버림`); } } finally { this.midasRemoved(t, rm); } }
@@ -528,7 +528,7 @@ export class Game {
       else { const c = v.c; const tok = c === 'Bleeding' ? (o.bleeding || 1) : c === 'Death' ? (o.deathTokens || 1) : undefined; o.conditions = o.conditions.filter(z => z !== c); if (c === 'Bleeding') o.bleeding = 0; if (c === 'Death') o.deathTokens = 0; this.say(`Burden: ${o.name}의 Condition 「${c}」를 ${t.name}이(가) 가져감`); await this.solo(() => this.addCondition(t, c, tok !== undefined ? { tokens: tok } : {})); }
     }
   }
-  handCost(t, g) { const c = g.card.slot === 'hand3' ? 3 : g.card.slot === 'hand2' ? 2 : g.card.slot === 'hand1' ? 1 : 0; return c === 3 && (this.ab(t, 'Cyclopean Might') || this.ab(t, 'Elder Might') || this.ab(t, 'Unknown Might') || this.ab(t, 'Lightweight Curse')) ? 2 : (c === 2 && this.ab(t, 'Nimble Hands')) ? 1 : c; }
+  handCost(t, g) { if (g.card.slot === 'hand1x3') return this.ab(t, 'Nimble Hands') ? 2 : 3; const c = g.card.slot === 'hand3' ? 3 : g.card.slot === 'hand2' ? 2 : g.card.slot === 'hand1' ? 1 : 0; return c === 3 && (this.ab(t, 'Cyclopean Might') || this.ab(t, 'Elder Might') || this.ab(t, 'Unknown Might') || this.ab(t, 'Lightweight Curse')) ? 2 : c; }
   async afterSurvive(t, tier, card = null) {
     if (t._noSurviveFx) { this.say(`(Gash의 추가 Trauma Draw — 생존 효과 대상 아님)`, 'sys'); return; }
     if (!t || !t.alive) return;
@@ -2442,7 +2442,7 @@ export class Game {
     const inUse = n => this.titans.reduce((a, x) => a + x.gear.filter(g => g.card.name === n).length, 0); // FAQ: gear discarded in battle (e.g. as a cost) can't be fetched back
     const pool = this.data.gear.cards.filter(c => /^hand/.test(c.slot) && c.name !== 'Fists' && c.atk != null && inUse(c.name) < Math.max(1, (c.codes || []).length));
     if (!pool.length) { this.say('Argo Armory에 남은 무기 없음'); return; }
-    const card = await this.ask({ type: 'choice', titan: t, title: `Quantum Armory: ${t.name}이(가) 장착할 무기 (Argo Armory)`, options: pool.map(c => ({ label: `${c.name} (◆${c.atk} +${c.prec || 0} ${(c.power || []).join('')}${c.slot === 'hand1' ? ', 한손' : c.slot === 'hand3' ? ', 세손' : c.slot === 'handAll' ? ', 모든 손' : ''})`, value: c })) });
+    const card = await this.ask({ type: 'choice', titan: t, title: `Quantum Armory: ${t.name}이(가) 장착할 무기 (Argo Armory)`, options: pool.map(c => ({ label: `${c.name} (◆${c.atk} +${c.prec || 0} ${(c.power || []).join('')}${c.slot === 'hand1' ? ', 한손' : c.slot === 'hand1x3' ? ', 한손×3' : c.slot === 'hand3' ? ', 세손' : c.slot === 'handAll' ? ', 모든 손' : ''})`, value: c })) });
     if (!card) return;
     const cur = t.gear.filter(g => !g.discarded && this.isWeaponGear(g) && !g.godform);
     const cap = this.handCap(t); const used = cur.reduce((a, g) => a + (g.card.slot === 'handAll' ? cap : this.handCost(t, g)), 0); const need = card.slot === 'handAll' ? cap : this.handCost(t, { card });
@@ -2766,7 +2766,7 @@ export class Game {
     if (/Pneuma: Gain \+1 Power against the Babelian Lunacy/.test(txt) && this.prim.def.babelD) A.raw += 1;
     if (g.regret && /You gain -1 Power per token on this card/.test(txt)) { A.raw -= g.regret; this.say(`${g.card.name}: Regret −${g.regret} Power`, 'bad'); }
     if (t.stoneNextPower) { A.raw += t.stoneNextPower; this.say(`Stepping Stone: +${t.stoneNextPower} Power`); t.stoneNextPower = 0; }
-    if (A.bp && this.ab(t, 'Finish Him') && this.isDeathBlow(A.bp) && !A.crit && g.card.slot === 'hand3' && this.fr(t) > 0) { const ok = await this.ask({ type: 'yn', titan: t, title: `Finish Him: Death Blow BP 「${A.bp.name}」 — Fate+1로 Crit Chance?`, options: [{ label: '사용', value: true }, { label: '패스', value: false }] }); if (ok) { await this.gainFate(t, 1); A.crit = true; this.say(`${t.name}: Finish Him — Crit Chance`, 'good'); } }
+    if (A.bp && this.ab(t, 'Finish Him') && this.isDeathBlow(A.bp) && !A.crit && (t.oxygen || 0) > 0 && this.fr(t) > 0) { const ok = await this.ask({ type: 'yn', titan: t, title: `Finish Him: Death Blow BP 「${A.bp.name}」 — Oxygen 1개 버리고 Fate+1로 Crit Chance? (Oxygen ${t.oxygen})`, options: [{ label: '사용', value: true }, { label: '패스', value: false }] }); if (ok) { t.oxygen--; await this.gainFate(t, 1); A.crit = true; this.say(`${t.name}: Finish Him — Crit Chance`, 'good'); } }
     if (A.bp && A.bp.tier === 3 && this.isDeathBlow(A.bp) && /When attacking a BP III card with a Death Blow Crit effect, gain \+1 Power/.test(txt)) { A.raw += 1; this.say(`${g.card.name}: Death Blow BP III — +1 Power`); }
     { const lm = A.bp && A.bp.light && /Gain \+(\d) Power against the Primordial's Light-resistant parts/.exec(txt); if (lm) { A.raw += +lm[1]; this.say(`${g.card.name}: Light-resistant BP — +${lm[1]} Power`, 'good'); } }
     if (A.bp && (A.bp.poseidonIcon || A.bp.icon === 'poseidon') && /Gain \+1 Power against BP cards with the Poseidon icon/.test(txt)) { A.raw += 1; this.say(`${g.card.name}: Poseidon 아이콘 BP — +1 Power`); }
@@ -3271,7 +3271,7 @@ export class Game {
       case 'AM0338': if (!this.obolExtra.includes('AM0357')) { this.obolExtra.push('AM0357'); this.say('Obol 덱에 「You Died Horribly」 추가', 'bad'); } return false;
       case 'AM0339': this.say('(Fused Souls — 캠페인 효과: 타이탄이 죽으면 Argonaut도 사망 / Special Event)', 'sys'); return false;
       case 'AM0340': this.standUp(t); await this.chooseMove(t, 3, 'Heroic Life'); t.heroicLife = true; await bonus(); return true;
-      case 'AM0341': case 'AM0342': case 'AM0348': if (t.fate >= 7 && t.gear.some(g => !g.discarded && /If you draw a Disemboweled Trauma card, draw an Obol instead/.test(this.gearText(g, t)))) { this.say(`${t.name}: Helm of Hermes — Disemboweled 대신 Obol`); await this.obolDraw(t, 10); return true; } this._instantDeath = true; try { await this.kill(t); } finally { this._instantDeath = false; } return true;
+      case 'AM0341': case 'AM0342': case 'AM0348': if (t.fate >= 7 && t.gear.some(g => !g.discarded && /If you draw a Disemboweled Trauma card, draw an Obol instead/.test(this.gearText(g, t)))) { this.say(`${t.name}: Helm of Hermes — Disemboweled 대신 Obol`); await this.obolDraw(t, 10); return true; } if (this.innerLight && await this.innerLight(t, 'Disemboweled')) return true; this._instantDeath = true; try { await this.kill(t); } finally { this._instantDeath = false; } return true;
       case 'CM1308': await this.addCondition(t, 'Death', { tokens: 1 }); return false;
       case 'CM1299': await this.addCondition(t, 'Muffled'); return false;
       case 'CM1303': await this.addCondition(t, 'Sealed'); return false;
@@ -3411,6 +3411,7 @@ installOldHaunt(Game, { TitanDied, BattleOver });
 installC4Meta(Game, { TitanDied, BattleOver, ChainBreak });
 installC5Titans(Game, { TitanDied, BattleOver, ChainBreak });
 installC5Titans2(Game, { TitanDied, BattleOver, ChainBreak });
+installPainSentences(Game);
 // Inward Odyssey Trauma cards: "after surviving ..." hooks
 { const P = Game.prototype; const oT = P.traumaDraw, oO = P.obolDraw;
   const after = async (g, t, kind) => { if (!t || !t.alive) return;

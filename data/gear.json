@@ -12,7 +12,8 @@
   "2026-10-18: Mnestis loot / Secret-deck gear added (loot:true). New fields: rage / fate gates (keyed like danger), anyGate [{danger|fate|amb thresholds, text}], powerByHitsRaw, slot handAll (occupies all Weapon slots), transformBackMissing (back side not scanned).",
   "2026-10-19: Cycle III gear (CJ13xx-CJ15xx) added with cycle:3. New gates: bleed (Bleeding tokens), df (Danger + Fate total), anyGate.paradox. precX: fate6 | paradox. evasionReroll \"XB\" = number of Break tokens. \"[Λ]\" cost = gain +1 Danger. Prototype Trespass Device omitted (Mnestis Prohibited).",
   "2026-10-19: Secret deck 12 Mnestis loot added (reward field = Tree of Knowledge node reward; locked in the loadout until that node is done). flexHands: weapon can be wielded with 1..N hands. atkX/precX: danger | deadTitans | hit3.",
-  "2026-10-20: Cycle IV loot added — Secret deck 11 cards 186-212 (story/primordial/divine/evolution loot, Wished gear) and Secret deck 17 cards 260-277 (Mnestis loot). Wished gear are separate entries '(Wished)'. New fields: precX cond2|range|midasHalf|pain, hitsBonus (extra Bonus Power dice by number of hits), chargeTiers (stats by charge count), autoFlip (cloudBlind / notCloudBlind). Grey (Cycle V) Power/Armor dice are mapped to white. Cycle V resistance icons (barbed wire / mask) are kept as text only."
+  "2026-10-20: Cycle IV loot added — Secret deck 11 cards 186-212 (story/primordial/divine/evolution loot, Wished gear) and Secret deck 17 cards 260-277 (Mnestis loot). Wished gear are separate entries '(Wished)'. New fields: precX cond2|range|midasHalf|pain, hitsBonus (extra Bonus Power dice by number of hits), chargeTiers (stats by charge count), autoFlip (cloudBlind / notCloudBlind). Grey (Cycle V) Power/Armor dice are mapped to white. Cycle V resistance icons (barbed wire / mask) are kept as text only.",
+  "2026-10-30: [1-hand x3] icon = slot 'hand1x3' (one-hand Weapon that occupies 3 hand slots, Midas cap 3) — Walking Tools."
  ],
  "keywords": {
   "Ascended": "Ignores Power Level penalties (irrelevant in Cycle I).",
@@ -9356,7 +9357,7 @@
     "DJ2324"
    ],
    "name": "Walking Tools",
-   "slot": "hand3",
+   "slot": "hand1x3",
    "atk": 3,
    "prec": 0,
    "power": [

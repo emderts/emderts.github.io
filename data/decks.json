@@ -8,7 +8,8 @@
   "AM0349 = Awakening (Trauma secret card 6), AM0355 = You Died/Awaken (Obol secret card 7): only added once Awakening is unlocked.",
   "godforms: bottom-row stats read from scans; Godform Power die colour (black) and Demeter's '+1 die' (read as +1 black Armor die) are TBC.",
   "2026-10-20: Cycle IV Godforms (Secret cards 246-248) Dionysus, Aphrodite, Helios Apollon Exalted added (only Helios is Exalted). The '▼' cost on these cards = Trespass token.",
-  "2026-10-20: Exalted Godforms (exalted:true) = Tier II Awakening. Gradual: Awaken while already awakened → choose an Exalted Godform, refresh Trespass. Grand Theft: choose an Exalted Godform during a normal Awakening → Fused Souls, death cannot be avoided, only 1 Trespass. All Exalted: Bonus Action + Cryptex Loathing."
+  "2026-10-20: Exalted Godforms (exalted:true) = Tier II Awakening. Gradual: Awaken while already awakened → choose an Exalted Godform, refresh Trespass. Grand Theft: choose an Exalted Godform during a normal Awakening → Fused Souls, death cannot be avoided, only 1 Trespass. All Exalted: Bonus Action + Cryptex Loathing.",
+  "2026-10-30: Cycle V only Trauma EM2620-EM2632 (cycle 5) and Titan X Trauma EM2624/2629/2633 (primOnly titanx) added; Autodestructive / Defiant Awakening (Secret 252/253) added for Cycle V battles. Terror / Holy Terror / Bravery Condition cards not transcribed yet."
  ],
  "obol": [
   {
@@ -344,6 +345,47 @@
     "pol": "-",
     "arrow": "spiral",
     "text": "Gain the Wishkeen Condition card."
+   },
+   {
+    "code": "EM2620",
+    "name": "Primal Fear",
+    "cycle": 5,
+    "pol": "-",
+    "arrow": "down",
+    "text": "Gain the Fear Condition card."
+   },
+   {
+    "code": "EM2623",
+    "name": "Doubts",
+    "cycle": 5,
+    "pol": "-",
+    "arrow": "spiral",
+    "text": "Gain 1 Despair token."
+   },
+   {
+    "code": "EM2622",
+    "name": "A Slit of Mind",
+    "cycle": 5,
+    "pol": "-",
+    "arrow": "spiral",
+    "text": "Gain the Terror Condition card."
+   },
+   {
+    "code": "EM2621",
+    "name": "It Burns",
+    "cycle": 5,
+    "pol": "-",
+    "arrow": "spiral",
+    "text": "Burn. Gain 1 Ambrosia token."
+   },
+   {
+    "code": "EM2624",
+    "name": "Pain of Dying",
+    "cycle": 5,
+    "primOnly": "titanx",
+    "pol": "-",
+    "arrow": "spiral",
+    "text": "Gain 1 Pain token."
    }
   ],
   "major": [
@@ -552,6 +594,47 @@
     "pol": "-",
     "num": 8,
     "text": "Zone 3 (originating from the Titan, including them): Float."
+   },
+   {
+    "code": "EM2628",
+    "name": "Crisis of Hope",
+    "cycle": 5,
+    "pol": "-",
+    "num": 8,
+    "text": "Gain 2 Despair tokens."
+   },
+   {
+    "code": "EM2627",
+    "name": "A Gap of Heart",
+    "cycle": 5,
+    "pol": "-",
+    "num": 7,
+    "text": "Gain the Holy Terror Condition card."
+   },
+   {
+    "code": "EM2626",
+    "name": "It Sears",
+    "cycle": 5,
+    "pol": "-",
+    "num": 6,
+    "text": "Burn. Gain 2 Ambrosia tokens."
+   },
+   {
+    "code": "EM2625",
+    "name": "Primal Dread",
+    "cycle": 5,
+    "pol": "-",
+    "num": 5,
+    "text": "Gain the Dread Condition card."
+   },
+   {
+    "code": "EM2629",
+    "name": "Pain of Living",
+    "cycle": 5,
+    "primOnly": "titanx",
+    "pol": "-",
+    "num": 0,
+    "text": "Gain 2 Pain tokens."
    }
   ],
   "grave": [
@@ -713,6 +796,35 @@
     "cycle": 4,
     "pol": "-",
     "text": "Midas 4."
+   },
+   {
+    "code": "EM2632",
+    "name": "Light in the Black",
+    "cycle": 5,
+    "pol": "+",
+    "text": "Stand up and gain the Bravery Condition card. You may gain +1 RAGE. You may immediately move up to 5 spaces and perform a Bonus Attack!"
+   },
+   {
+    "code": "EM2631",
+    "name": "A Tear of Soul",
+    "cycle": 5,
+    "pol": "-",
+    "text": "Gain the Holy Terror Condition card and 3 Despair tokens."
+   },
+   {
+    "code": "EM2630",
+    "name": "Immolation",
+    "cycle": 5,
+    "pol": "-",
+    "text": "Burn. Gain 3 Ambrosia tokens."
+   },
+   {
+    "code": "EM2633",
+    "name": "Pain of Being",
+    "cycle": 5,
+    "primOnly": "titanx",
+    "pol": "-",
+    "text": "Gain 3 Pain tokens."
    }
   ]
  },
@@ -1030,6 +1142,22 @@
    "type": "Obol (Secret 36)",
    "replaces": "AM0356",
    "condition": "If you are Awakened, add this card to the deck before your Obol Draw (remove it afterwards)."
+  },
+  "kratos_awaken_c5": {
+   "code": "EN2590",
+   "name": "Autodestructive Awakening",
+   "type": "Kratos (Secret 252)",
+   "cycle": 5,
+   "awakenCard": true,
+   "text": "Awaken, then [lion icon — read as Chain Break]. Gain 3 Pain tokens. Regardless of anything, you will die after the Battle (campaign)."
+  },
+  "moiros_awaken_c5": {
+   "code": "EO2591",
+   "name": "Defiant Awakening",
+   "type": "Moiros (Secret 253)",
+   "cycle": 5,
+   "awakenCard": true,
+   "text": "You may gain +1 Doom to Awaken. If you do, [lion icon — read as Chain Break]. Reduce your FATE to 0."
   }
  },
  "godforms": [

@@ -1332,7 +1332,8 @@
    "Excursion Propylon (Argo Support I) AA Limit 2; Excursion Propylon II AA Limit 3. Usable any time during the Titan Round (not mid-action), each once per Round; unexhaust at the end of every Round. [R] = usable in a Window of Opportunity.",
    "Cycle II: Transport Trireme / Rendezvous Trireme need the Cycle II Trireme special rules — not included. War Propylon (Argo Support III) = AA limit 4.",
    "Cycle III Technology: Transient Death is \"Mnestis prohibited\" — not included.",
-   "2026-10-20: Cycle IV Argo Abilities (technology cards) added. Argo Cloud Operations (Voyage) = Argo Support IV, AA Limit 5. Cycle II Trireme abilities are disabled in Cycle IV battles."
+   "2026-10-20: Cycle IV Argo Abilities (technology cards) added. Argo Cloud Operations (Voyage) = Argo Support IV, AA Limit 5. Cycle II Trireme abilities are disabled in Cycle IV battles.",
+   "2026-10-30: Cycle V Argo Abilities (Technology) added. Flash Backstep / Oxygen Tubes / Kintsukuroi Pharos only work with Cycle V Primordials or missing payload cards."
   ],
   "cards": [
    {
@@ -1555,6 +1556,76 @@
     "charges": 1,
     "hook": true,
     "text": "When the Primordial reveals an AI card or triggers a Signature that targets a specific Titan, change the Targeting to Target: Most Midas tokens."
+   },
+   {
+    "cycle": 5,
+    "name": "Calculate Statistical Certainty",
+    "charges": 3,
+    "text": "Choose a Titan. That Titan uses the Truth Machine (its next Obol is revealed now and resolved at its next Obol draw)."
+   },
+   {
+    "cycle": 5,
+    "name": "Anchor Drop Pod",
+    "charges": 1,
+    "hook": true,
+    "text": "If, during the first Primordial or Titan Round, a Titan dies, replace them with a new Titan from the Stoa. Choose a Battle Board space you want to Deploy, roll a d10: 1-5 it lands 3 spaces away in a random direction; 6-10 it lands on the chosen space. If it lands on the Primordial, place 2 Closing and 1 Hope tokens in the Kratos Pool and Deploy the Titan on any adjacent space."
+   },
+   {
+    "cycle": 5,
+    "name": "Inner Light",
+    "charges": 2,
+    "hook": true,
+    "text": "Choose a Titan that is about to die from Disemboweled, Fear, Dread, Terror, or Holy Terror. That Titan draws a Grave Trauma instead."
+   },
+   {
+    "cycle": 5,
+    "name": "Triskelion Override",
+    "charges": 2,
+    "text": "Choose a Titan. Gain 3 Pain tokens to perform a [Movement] or [Combat] action, then gain a [Movement] or [Combat] Fatigue token."
+   },
+   {
+    "cycle": 5,
+    "name": "Painkiller Shot",
+    "charges": 2,
+    "text": "Choose a Titan. Either lower Pain and/or Bleed gain to 1 (asked when it happens), or ignore all Pain tokens this Round."
+   },
+   {
+    "cycle": 5,
+    "name": "Flash Backstep",
+    "charges": 2,
+    "hook": true,
+    "text": "Choose a Titan when an adjacent Primordial performs Flash Step, Vanish or Flicker. Gain 1 Pain token to immediately move up to 9 spaces to remain adjacent. (Cycle V Primordials only)"
+   },
+   {
+    "cycle": 5,
+    "name": "Underwater Support Fleet",
+    "charges": 4,
+    "trireme": true,
+    "text": "Trireme. Omnilight, Light 2. Place the Subreme token on any space adjacent to the Board Edge and move it up to 5 spaces or, if the Subreme is already on the Board, move it up to 5 spaces (even if occupied). Rearm: A Titan on, adjacent to, or moving through a space with the Subreme token may flip it to the spent side to equip any 1 Weapon card from the Armory. Detect: flip the Subreme token to perform a Scan (Cycle V only)."
+   },
+   {
+    "cycle": 5,
+    "name": "Drag It Back!",
+    "charges": 2,
+    "text": "The Titan closest to the Primordial immediately performs Pushback X or Pull X, where X is up to 3."
+   },
+   {
+    "cycle": 5,
+    "name": "Oxygen Tubes",
+    "charges": 2,
+    "text": "Choose a Titan. That Titan flips 1 Aether token. (Cycle V Primordials only)"
+   },
+   {
+    "cycle": 5,
+    "name": "Kintsukuroi Pharos",
+    "charges": 1,
+    "text": "Start of Battle: Choose one Kintsukuroi Pharos Payload and place it on this card. Until the end of Battle, the Payload becomes the effect of this Argo Ability. (Payload cards not transcribed)"
+   },
+   {
+    "cycle": 5,
+    "name": "Soulbalm",
+    "charges": 1,
+    "text": "Choose a Titan. That Titan discards all Despair tokens or a Fear or Terror Condition card."
    }
   ]
  },
