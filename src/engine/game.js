@@ -8,6 +8,7 @@ import { installDjinn } from './djinn.js';
 import { installDahaka } from './dahaka.js';
 import { installBabel } from './babel.js';
 import { installOldHaunt } from './oldhaunt.js';
+import { installMeduketos } from './meduketos.js';
 import { installC4Meta } from './c4meta.js';
 import { installC5Titans } from './c5titans.js';
 import { installC5Titans2, installPainSentences } from './c5titans2.js';
@@ -67,6 +68,10 @@ export class Game {
     (variant.terrain.iremCity || []).forEach((cells, i) => this.board.addTerrain(cells, { id: 'iremc' + i, type: 'Irem City', irem: 'city', obstacle: false, obscuring: true, destructible: false, indestructible: true, cover: true, elevated: true, climb: 5 }));
     (variant.terrain.argoHull || []).forEach((cells, i) => this.board.addTerrain(cells, { id: 'hull' + i, type: 'Argo Hull', obstacle: true, obscuring: false, destructible: false, indestructible: true, blocksPrim: true }));
     (variant.terrain.ambrosiaCloud || []).forEach((cells, i) => this.board.addTerrain(cells, { id: 'acloud' + i, type: 'Ambrosia Cloud', obstacle: false, obscuring: true, destructible: false, indestructible: true, cloud: true, ambrosia: true }));
+    (variant.terrain.petrifiedVent || []).forEach((l, i) => this.board.addTerrain([l], { id: 'pvent' + i, type: 'Petrified Vent', obstacle: true, obscuring: true, destructible: true, vent: true }));
+    (variant.terrain.arcology || []).forEach((cells, i) => this.board.addTerrain(cells, { id: 'arco' + i, type: 'Arcology', obstacle: false, obscuring: true, destructible: true, reinforced: true, cover: true, inhabited: true, allied: true, light: 1 }));
+    (variant.terrain.trench || []).forEach((cells, i) => this.board.addTerrain(cells, { id: 'trench' + i, type: 'Trench', obstacle: false, obscuring: false, destructible: false, indestructible: true, chasm: true, lightVoid: true }));
+    (variant.terrain.lightwall || []).forEach((cells, i) => this.board.addTerrain(cells, { id: 'lwall' + i, type: 'Lightwall', obstacle: true, obscuring: false, destructible: true, light: 1, monument: true }));
     (variant.terrain.abandonedTemple || []).forEach((cells, i) => this.board.addTerrain(cells, { id: 'atemple' + i, type: 'Abandoned Temple', obstacle: true, obscuring: true, destructible: true, treasure: true }));
     this._startChoices = (variant.startChoices || variant.titanStarts || []).slice(0, Math.max(titans.length, (variant.startChoices || []).length)).map(parseCell);
     this.center = S.center ? parseCell(S.center) : null;
@@ -141,6 +146,7 @@ export class Game {
     if (P.dahakaD) this.dahakaSetup();
     if (P.babelD) this.babelSetup();
     if (P.ohD) this.ohSetup();
+    if (P.medD) { this.prim.offBoard = true; this.prim._last = { ...this.prim.anchor }; this.prim.anchor = { c: -40, r: -40 }; this.prim.scanMinus = 0; this.prim.scanPlus = 0; this.prim.boil = 0; if (this.prim.traits['Original Trench']) { this.board.allChasm = 'empty'; for (const z of this.board.terrain.values()) z.elevated = true; } }
     if (this.titans.length) (this.titans[Math.min(this.titans.length - 1, Math.max(0, ptIndex | 0))] || this.titans[0]).pt = true; // all Rage 0: players choose (loadout)
     this.say(`${P.name} Lv.${level} — Mnestis Battle 시작. Minor Trauma 바닥 카드 화살표(${this._arrow}) → ${this.prim.spot ? this.prim.spot + ' 위치, ' : ''}${this.prim.facing} 방향.`, 'sys');
     // start-of-battle gear effects
@@ -187,7 +193,7 @@ export class Game {
   // ---------------- Awakening ----------------
   async awakenRoll(t, need, label) {
     if (this.wentBeyond(t)) { this.say(`${t.name}: 이미 Go Beyond — 더 이상 각성할 수 없음 (${label || '각성 굴림'} 실패)`, 'bad'); return false; }
-    let r = this.rng.d10(); if (r === 9 && t.awaken9) { r = 10; this.say('The Strand: 각성 굴림 9 → 10', 'good'); } if (this.asc(t) >= 8) { r += 2; this.say(`Ascend! 8+: 각성 굴림 +2`); } { const ar = t.gear.find(g => !g.discarded && g.tokens && /Next time you perform an Awakening roll, add \+X/.test(this.gearText(g, t))); if (ar) { r += ar.tokens; this.say(`${ar.card.name}: 각성 굴림 +${ar.tokens} (토큰 유지)`); } } this.flash('d10', { title: `${t.name}: ${label} 각성 굴림`, roll: r, sub: `${need}+ 필요`, ok: r >= need }); this.say(`${t.name}: ${label} 각성 굴림 d10=${r} (${need}+ 필요)`, r >= need ? 'good' : 'bad');
+    let r = this.rng.d10(); if (r === 9 && t.awaken9) { r = 10; this.say('The Strand: 각성 굴림 9 → 10', 'good'); } if (this.asc(t) >= 8) { r += 2; this.say(`Ascend! 8+: 각성 굴림 +2`); } if (this.c5b && this.c5b() && t.aether) { r += t.aether; this.say(`Aether ${t.aether}: 각성 굴림 +${t.aether}`, 'good'); } { const ar = t.gear.find(g => !g.discarded && g.tokens && /Next time you perform an Awakening roll, add \+X/.test(this.gearText(g, t))); if (ar) { r += ar.tokens; this.say(`${ar.card.name}: 각성 굴림 +${ar.tokens} (토큰 유지)`); } } this.flash('d10', { title: `${t.name}: ${label} 각성 굴림`, roll: r, sub: `${need}+ 필요`, ok: r >= need }); this.say(`${t.name}: ${label} 각성 굴림 d10=${r} (${need}+ 필요)`, r >= need ? 'good' : 'bad');
     const m = this.mn(t, 'Curse of the Gods', 2);
     if (r < need && m) { const ok = await this.ask({ type: 'yn', titan: t, title: `Curse of the Gods: Mnemos 버리고 각성 굴림 재굴림? (현재 ${r})`, options: [{ label: '재굴림', value: true }, { label: '패스', value: false }] }); if (ok) { this.mnUse(t, m, 'X'); r = this.rng.d10(); if (r === 9 && t.awaken9) r = 10; this.flash('d10', { title: `${t.name}: 각성 재굴림`, roll: r, sub: `${need}+ 필요`, ok: r >= need }); this.say(`재굴림 → ${r}`, r >= need ? 'good' : 'bad'); } }
     return r >= need;
@@ -594,7 +600,7 @@ export class Game {
     for (let i = 0; i + 1 < out.length; i++) if (isKB(out[i]) && isKD(out[i + 1])) { const w = out[i].startsWith('⚡'); const a = out[i].replace(/^⚡\s*/, ''), b = out[i + 1].replace(/^⚡\s*/, ''); out[i] = (w ? '⚡ ' : '') + b; out[i + 1] = a; i++; }
     return out;
   }
-  atkRange(card) { if (this.isJudge(card) || /RANGE/.test(card.kind || '')) return () => true; if (card.pattern || card.zone || card.diamond || card.dust || (card.sun && card.sun.pattern && this.zoneShow)) { if (card.sun && !card.pattern && !card.zone) { const set0 = new Set(this.zoneShow.map(p => key(p.c, p.r))); return t => !t.onVP && set0.has(key(t.pos.c, t.pos.r)); } const set = new Set(this.patternCells(card).map(p => key(p.c, p.r))); return t => !t.onVP && !t.stair && set.has(key(t.pos.c, t.pos.r)); } if (card.kind === 'ZONE ATTACK') { const z = +((/Zone (\d+)/.exec((card.target || [])[0] || '') || [0, 1])[1]); return t => !t.onVP && !t.stair && this.zoneDist(t.pos) <= z; } return t => this.isAdj(t); }
+  atkRange(card) { if (this.isJudge(card) || /RANGE|LASER|MICROWAVE/.test(card.kind || '') || card.laser) return () => true; if (card.pattern || card.zone || card.diamond || card.dust || (card.sun && card.sun.pattern && this.zoneShow)) { if (card.sun && !card.pattern && !card.zone) { const set0 = new Set(this.zoneShow.map(p => key(p.c, p.r))); return t => !t.onVP && set0.has(key(t.pos.c, t.pos.r)); } const set = new Set(this.patternCells(card).map(p => key(p.c, p.r))); return t => !t.onVP && !t.stair && set.has(key(t.pos.c, t.pos.r)); } if (card.kind === 'ZONE ATTACK') { const z = +((/Zone (\d+)/.exec((card.target || [])[0] || '') || [0, 1])[1]); return t => !t.onVP && !t.stair && this.zoneDist(t.pos) <= z; } return t => this.isAdj(t); }
   drawAI() { this.fixLot(); if (this.prim.aiBottom && !this.ai.cards.length) return this.djinnDrawFallback(); let c = this.ai.draw(); if (!c && this.prim.aiBottom) return this.djinnDrawFallback(); if (!c) { const lc = this.ai.discard.find(x => x.lot); this.ai.discard = this.ai.discard.filter(x => !x.lot); this.ai.shuffleDiscardIn(); if (lc) this.ai.discard.unshift(lc); c = this.ai.draw(); } let guard = 0; while (c && this.prim.disabledAI.includes(c.name) && guard++ < 40) { this.say(`AI 「${c.name}」 비활성화됨 — 버리고 다시 뽑음`); this.ai.discard.push(c); c = this.ai.draw(); if (!c) { this.ai.shuffleDiscardIn(); c = this.ai.draw(); } } return c; }
   freeCell(p) { return this.board.inBounds(p.c, p.r) && !this.board.isObstacle(p.c, p.r) && !this.board.isChasm(p.c, p.r) && !this.titanAt(p.c, p.r) && !this.primContains(p); }
   // Titans: red lines block adjacency/LoS unless an effect lets them ignore the Labyrinth for Attacks
@@ -1293,6 +1299,7 @@ export class Game {
     if (card.harpy) return this.harpyAI(card, { isSignature, forcedTarget });
     if (card.sun) return this.sunAI(card, { isSignature, forcedTarget });
     if (card.oh) return this.ohAI(card, { isSignature, forcedTarget });
+    if (card.med) return this.medAI(card, { isSignature, forcedTarget });
     if (card.midas && (card.midas.curse || card.midas.routine || card.midas.laser)) return this.midasAI(card, { isSignature, forcedTarget });
     if (card.djinn && (card.djinn.trueWish || card.djinn.routine)) { this.say(`${card.kind} 「${card.name}」: ${card.text}`, 'ai'); return this.djinnSentence(this.liveTitans()[0], card.djinn.trueWish ? 'All Titans die' : 'Random Titan dies'); }
     if ((card.kind === 'ROUTINE' || card.kind === 'MNESTIS ROUTINE') && !card.routineAttack) return this.resolveRoutine(card);
@@ -1627,6 +1634,7 @@ export class Game {
     if (card && card.harpy && await this.harpyEffect(t, s, hits, card)) return;
     if (card && card.sun && await this.sunEffect(t, s, hits, card)) return;
     if (card && card.oh && await this.ohEffect(t, s, hits, card)) return;
+    if (card && card.med && await this.medEffect(t, s, hits, card)) return;
     if (card && card.midas && await this.midasEffect(t, s, hits, card)) return;
     if (card && card.djinn && await this.djinnEffect(t, s, hits, card)) return;
     if (card && (card.dahaka || card.dhSig) && await this.dahakaEffect(t, s, hits, card)) return;
@@ -1734,6 +1742,7 @@ export class Game {
     if (this.prim && this.prim.def.dahakaD && await this.dahakaSentence(t, p, ctx)) return;
     if (this.prim && this.prim.def.babelD && await this.babelSentence(t, p, ctx)) return;
     if (this.prim && this.prim.def.ohD && await this.ohSentence(t, p, ctx)) return;
+    if (this.prim && this.prim.def.medD && await this.medSentence(t, p, ctx)) return;
     if (this.prim && (this.prim.def.sunD || this.prim.def.ohD) && await this.sunSentence(t, p, ctx)) return;
     if (this.prim && this.c3 && await this.oracleSentence(t, p, ctx)) return;
     if (/^Discard this token/.test(p) || /^\(/.test(p)) return;
@@ -2627,6 +2636,7 @@ export class Game {
     // 3. Attack roll
     const nDice = (g.card.atkX === 'danger' ? t.danger : g.card.atkX === 'deadTitans' ? 3 + this.titans.filter(x => !x.alive).length : g.card.atk) + (g.card.name === 'Fists' && g.twoHand ? -1 : 0) + (A.extraAtk || 0) + (/\+1 Attack die\./.test(txt) ? 1 : 0) + (this.oscOn(t, g) ? 1 : 0);
     const deadly = kw(txt, 'Deadly') !== null || !!A.c4deadly || !!this.inh(t, 'Deadly');
+    if (this.medShield) await this.medShield(t, A);
     let prec = (g.card.precX === 'fate6' ? Math.min(6, t.fate) : g.card.precX === 'paradox' ? (this.paradox || 0) : g.card.precX === 'danger' ? t.danger : g.card.precX === 'hit3' ? 0 : g.card.precX === 'cycle2' ? 2 * (this.prim.def.cycle || 1) : g.card.precX === 'nine' ? 9 : g.card.precX === 'midas' ? this.midas(t) : g.card.precX === 'cond2' ? 2 * (t.conditions || []).length : g.card.precX === 'range' ? this.distTo(t) : g.card.precX === 'midasHalf' ? Math.floor(this.midas(t) / 2) : g.card.precX === 'pain' ? (t.pain || 0) : g.card.prec) + (A.c4prec || 0) - 2 * this.flexMissing(t, g) + (t.godform && t.godform.beyond ? 1 : 0) + (/(^|\. )\+1 Precision\./.test(txt) ? 1 : 0) + (mods.precision || 0) + this.precisionMods(t) + (this.hasFated(t, 'Oblivious') ? 0 : this.kpUse(this.kratosPool.opening)) - this.kratosPool.negPrecision + (this.inRear(t.pos) ? 0 : 0) + (this.prim.longNeck && (t.onVP || t.impaled) ? 2 : 0);
     const toHit = this.prim.toHit + this.prim.tokens.toHit - (this.inW(t.pos) && !t.onVP ? (this.prim.wToHitMalus || 0) : 0);
     let hunter = false; if (this.gf(t, 'Artemis') && Math.max(1, nDice) > (deadly ? 2 : 1)) hunter = await this.ask({ type: 'yn', titan: t, title: 'Hunter of Mortals: 비-Crit 주사위 1개를 따로 빼서 자동 hit로?', options: [{ label: '사용', value: true }, { label: '패스', value: false }] });
@@ -2847,7 +2857,7 @@ export class Game {
       if (A.wound && typeof kw(txt, 'Carving') === 'number') add(`${g.card.name}: Carving`, async () => { if (A.wound) { const cv = kw(txt, 'Carving'); if (typeof cv === 'number') { const okc = (await this.skillTest(t, 'Wisdom', 8)); this.say(`Carving ${cv}: ${okc ? `성공 — 이 BP의 비-Core 자원 ${cv}개 추가 획득 (캠페인 기록용)` : '실패'}`, okc ? 'good' : ''); } } });
       await this.resolveTriggers(trig, `${t.name} Wound`); }
     // 7. Responses
-    let resp = this.prim.def.dahakaD ? this.dhResp(A) : A.bp.responses; const queue = [];
+    let resp = this.prim.def.dahakaD ? this.dhResp(A) : A.bp.responses; const queue = []; if (this.prim.def.medD && this.prim.disabled.ambResp && (A.bp.icons || []).includes('ambrosia')) { resp = {}; this.say(`${A.bp.name}: Ambrosia Response 비활성화 — Response 없음`); }
     if (this.gf(t, 'Hades') && A.wound && t.godform.trespass > 0 && await this.ask({ type: 'yn', titan: t, title: `All Things End (Hades): Trespass −1로 Kratos Pool에 −AT 토큰 1개? (남은 Trespass ${t.godform.trespass})`, options: [{ label: '사용', value: true }, { label: '패스', value: false }] })) { t.godform.trespass--; this.kratosPool.negAT = (this.kratosPool.negAT || 0) + 1; this.say(`${t.name}: All Things End — Kratos Pool −AT +1 (Trespass ${t.godform.trespass})`, 'good'); }
     if (this.gf(t, 'Zeus') && A.wound && A.total >= at + 3 && t.godform.trespass > 0) { const ok = await this.ask({ type: 'yn', titan: t, title: `Instant Transmission: Trespass 1개 소모 — 응답 무시, 공격 후 Pushback 5 + Vault + 보너스 공격?`, options: [{ label: '사용', value: true }, { label: '패스', value: false }] }); if (ok) { t.godform.trespass--; A.instant = true; A.zeusIT = true; this.say('⚡ Instant Transmission!', 'good'); } }
     const R = async text => { if (!text) return; this._kpExempt = true; const ex0 = new Set(t.gear.filter(q => q.exhausted)); try { await R0(text); } finally { this._kpExempt = false; for (const q of t.gear) if (q.exhausted && !ex0.has(q)) q._exResp = true; } }; // FAQ: gear exhausted by a Response leaves no tokens
@@ -3085,6 +3095,7 @@ export class Game {
     if (this.prim.def.harpy && await this.harpyCritical(t, A)) return;
     if (this.prim.def.sunD && await this.sunCritical(t, A)) return;
     if (this.prim.def.ohD && await this.ohCritical(t, A)) return;
+    if (this.prim.def.medD && await this.medCritical(t, A)) return;
     if (this.prim.def.midasD && await this.midasCritical(t, A)) return;
     if (this.prim.def.djinnD && await this.djinnCritical(t, A)) return;
     if (this.prim.def.dahakaD && await this.dahakaCritical(t, A)) return;
@@ -3240,6 +3251,16 @@ export class Game {
       case 'DM2047': await this.float(t); return false;
       case 'DM2563': { const zone = this.liveTitans().filter(x => !x.offBoard && !x.onVP && !x.impaled && Math.max(Math.abs(x.pos.c - t.pos.c), Math.abs(x.pos.r - t.pos.r)) <= 3); this.say(`Moonward Gust: ${t.name} 기준 Zone 3 — ${zone.map(x => x.name).join(', ')} Float`, 'bad'); for (const x of zone) await this.solo(() => this.float(x)); return false; }
       case 'DM2564': await this.randomCurse(t); return false;
+      case 'EM2620': await this.addCondition(t, 'Fear'); return false;
+      case 'EM2625': await this.addCondition(t, 'Dread'); return false;
+      case 'EM2622': await this.addCondition(t, 'Terror'); return false;
+      case 'EM2627': await this.addCondition(t, 'Holy Terror'); return false;
+      case 'EM2631': await this.addCondition(t, 'Holy Terror'); if (t.alive) await this.gainDespair(t, 3); return false;
+      case 'EM2623': await this.gainDespair(t, 1); return false;
+      case 'EM2628': await this.gainDespair(t, 2); return false;
+      case 'EM2621': case 'EM2626': case 'EM2630': { await this.burn(t, false); if (t.alive) await this.gainAmbrosia(t, { EM2621: 1, EM2626: 2, EM2630: 3 }[code]); return false; }
+      case 'EM2624': case 'EM2629': case 'EM2633': await this.gainPain(t, { EM2624: 1, EM2629: 2, EM2633: 3 }[code], card.name); return false;
+      case 'EM2632': { this.standUp(t); await this.addCondition(t, 'Bravery'); if (!t.alive) return false; if (t.rage < 9 && await this.ask({ type: 'yn', titan: t, title: 'Light in the Black: Rage +1?', options: [{ label: '예', value: true }, { label: '아니오', value: false }] })) await this.gainRage(t, 1, false); const ok = await this.ask({ type: 'yn', titan: t, title: 'Light in the Black: 최대 5칸 이동 후 보너스 공격?', options: [{ label: '사용', value: true }, { label: '패스', value: false }] }); if (ok) { if (!t.onVP) await this.chooseMove(t, 5, 'Light in the Black'); await bonus(); } return false; }
       case 'DM2566': { if (this.curses(t).length && this.awk && !t.godform) { this.say(`${t.name}: Earthward Gust — Curse 보유, 각성!`, 'good'); if (await this.awaken(t)) return false; } else this.standUp(t); const ok = t.rage < 9 && await this.ask({ type: 'yn', titan: t, title: 'Earthward Gust: Rage +1로 즉시 Hermes Move 3 + 보너스 공격?', options: [{ label: '사용', value: true }, { label: '패스', value: false }] }); if (ok) { await this.gainRage(t, 1, false); this.standUp(t); await this.hermesMove(t, 3, 'Earthward Gust'); await bonus(); } return false; }
       case 'AM0308': if (t.knockdown === 'falling') this.standUp(t); else if (await this.ask({ type: 'yn', titan: t, title: 'Insulted: 즉시 보너스 공격?', options: [{ label: '보너스 공격', value: true }, { label: '패스', value: false }] })) await bonus(); return false;
       case 'AM0309': await this.gainDanger(t, 1, { source: 'Gash' }); if (t.alive) { t._noSurviveFx = (t._noSurviveFx || 0) + 1; try { await this.traumaDraw(t); } finally { t._noSurviveFx--; } } return true;
@@ -3408,6 +3429,7 @@ Object.defineProperty(Game.prototype, 'pendingBonus', { configurable: true, get(
 installDahaka(Game, { TitanDied, BattleOver, ChainBreak });
 installBabel(Game, { TitanDied, BattleOver });
 installOldHaunt(Game, { TitanDied, BattleOver });
+installMeduketos(Game, { TitanDied, BattleOver });
 installC4Meta(Game, { TitanDied, BattleOver, ChainBreak });
 installC5Titans(Game, { TitanDied, BattleOver, ChainBreak });
 installC5Titans2(Game, { TitanDied, BattleOver, ChainBreak });

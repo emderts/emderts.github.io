@@ -1,0 +1,112 @@
+{
+ "id": "meduketos",
+ "source": "Meduketos Battle — Cycle V Storybook p.176-177",
+ "board": {
+  "cols": 20,
+  "rows": 14
+ },
+ "_notes": [
+  "Map read from Storybook p.177: 20 Petrified Vents, 2 Arcologies (3x3), Trench 1x4, Lightwall 1x5, Titan starts = fire tokens. The Meduketos starts outside of the Battle Board."
+ ],
+ "setup": [
+  "Standard Preparations.",
+  "Primordial Positioning: the Meduketos starts the Battle outside of the Battle Board.",
+  "Each Titan starts with 2 Oxygen tokens (Oxygen and Aether)."
+ ],
+ "center": "G10",
+ "variants": {
+  "all": {
+   "levels": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "primordial": {
+    "anchor": "G9"
+   },
+   "titanStarts": [
+    "K7",
+    "K18",
+    "E8",
+    "D15"
+   ],
+   "startChoices": [
+    "K7",
+    "K18",
+    "E8",
+    "D15"
+   ],
+   "terrain": {
+    "petrifiedVent": [
+     "M2",
+     "M5",
+     "M10",
+     "M17",
+     "L8",
+     "L19",
+     "K6",
+     "J3",
+     "J18",
+     "I5",
+     "G18",
+     "F2",
+     "F14",
+     "E9",
+     "E17",
+     "D12",
+     "C15",
+     "B3",
+     "B11",
+     "B19"
+    ],
+    "arcology": [
+     [
+      "I11",
+      "I12",
+      "I13",
+      "J11",
+      "J12",
+      "J13",
+      "K11",
+      "K12",
+      "K13"
+     ],
+     [
+      "E5",
+      "E6",
+      "E7",
+      "F5",
+      "F6",
+      "F7",
+      "G5",
+      "G6",
+      "G7"
+     ]
+    ],
+    "trench": [
+     [
+      "C4",
+      "C5",
+      "C6",
+      "C7"
+     ]
+    ],
+    "lightwall": [
+     [
+      "H15",
+      "I15",
+      "J15",
+      "K15",
+      "L15"
+     ]
+    ]
+   }
+  }
+ }
+}

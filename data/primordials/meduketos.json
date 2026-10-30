@@ -1,0 +1,892 @@
+{
+ "id": "meduketos",
+ "name": "Meduketos",
+ "cycle": 5,
+ "type": "Mnestis",
+ "sheetCode": "EU3061",
+ "medD": true,
+ "_notes": [
+  "Transcribed from sheet EU3061 (Lv I-IX), trait cards EX3215-EX3217 + Fat with Light + Oxygen and Aether (EX3020), AI ER3062-ER3081, BP ES3082-ES3099, Storybook p.176-177 setup.",
+  "Microwave Attacks behave like Laser Attacks (Cycle III rules); while the Meduketos is outside the Board they originate from the closest Board Edge to the Target.",
+  "BP icons: ambrosia (BP I), microwave (BP II), both (BP III). \"Disable Ambrosia Responses\" disables the Responses of BP cards with the ambrosia icon.",
+  "Titan facing (Cycle V) is not tracked; Light X is emitted all around for Scan/targeting purposes.",
+  "Intermediary: chosen at the start of a Cycle V battle (+1 RAGE)."
+ ],
+ "footprint": {
+  "w": 3,
+  "h": 3,
+  "rear": "top-edge"
+ },
+ "ukb": 12,
+ "blindspots": "rear",
+ "levels": {
+  "1": {
+   "toHit": 10,
+   "speed": 99,
+   "wounds": 10,
+   "bonus": {},
+   "traits": [
+    "Clicks & Pings",
+    "Hide & Heatseek",
+    "Heat Death",
+    "Microwave Shield",
+    "Slow Boiling",
+    "Fat with Light"
+   ]
+  },
+  "2": {
+   "toHit": 10,
+   "speed": 99,
+   "wounds": 10,
+   "bonus": {
+    "ESCALATION": 1
+   },
+   "traits": [
+    "Truth or Death"
+   ]
+  },
+  "3": {
+   "toHit": 11,
+   "speed": 99,
+   "wounds": 10,
+   "bonus": {
+    "ESCALATION": 1,
+    "DANGER": 1
+   },
+   "traits": [
+    "Invisible Flame"
+   ]
+  },
+  "4": {
+   "toHit": 11,
+   "speed": 99,
+   "wounds": 10,
+   "bonus": {
+    "ESCALATION": 2,
+    "AT": 1,
+    "DANGER": 1
+   },
+   "traits": [
+    "Nap of the Vent",
+    "Tigerback"
+   ]
+  },
+  "5": {
+   "toHit": 12,
+   "speed": 99,
+   "wounds": 11,
+   "bonus": {
+    "ESCALATION": 3,
+    "AT": 2,
+    "DANGER": 1
+   },
+   "traits": [
+    "Candle in the Dark",
+    "End of Hope"
+   ],
+   "bonusPerHit": true
+  },
+  "6": {
+   "toHit": 12,
+   "speed": 99,
+   "wounds": 11,
+   "bonus": {
+    "ESCALATION": 4,
+    "AT": 3,
+    "DANGER": 2
+   },
+   "traits": [
+    "Black Soup",
+    "Deeper Depths"
+   ],
+   "bonusPerHit": true
+  },
+  "7": {
+   "toHit": 13,
+   "speed": 99,
+   "wounds": 12,
+   "bonus": {
+    "ESCALATION": 4,
+    "AT": 4,
+    "DANGER": 2
+   },
+   "traits": [
+    "Original Trench"
+   ],
+   "bonusPerHit": true
+  },
+  "8": {
+   "toHit": 14,
+   "speed": 99,
+   "wounds": 13,
+   "bonus": {
+    "ESCALATION": 5,
+    "AT": 5,
+    "EVADE_DICE": 1,
+    "DANGER": 2
+   },
+   "traits": [
+    "Beginning of the End"
+   ],
+   "bonusPerHit": true
+  },
+  "9": {
+   "toHit": 15,
+   "speed": 99,
+   "wounds": 14,
+   "bonus": {
+    "ESCALATION": 6,
+    "AT": 6,
+    "EVADE_DICE": 2,
+    "DANGER": 3
+   },
+   "traits": [
+    "Three Seconds",
+    "Ruthless"
+   ],
+   "bonusPerHit": true
+  }
+ },
+ "traits": {
+  "Clicks & Pings": "Meduketos starts the Battle outside of the Battle Board. When the Meduketos is outside of the Battle Board, it cannot be Targeted, unless from a VP. When the Meduketos attacks while outside of the Battle Board, it does so from the closest Board Edge to the Target, ignoring the initial ⚡ and any Move commands (in other words, the Meduketos stays outside of the Battle Board). Lightbend: The Meduketos disappears (remove the Primordial from the Battle Board). If able, place a Petrified Vent Terrain tile on the center of its previous space. Triggers when prompted.",
+  "Hide & Heatseek": "Once per Titan Round, Titans may perform a Scan (see Cycle V Storybook, p. 7): Choose a Titan and an adjacent Petrified Vent Terrain tile, then reveal the top Major Trauma card. This is called scanning a card. Instead of resolving the card, check the number in the lower left corner. If the total of every scanned card and the Light X value of the currently scanning Titan is equal to or higher than the Scan Difficulty, you have found the Meduketos! Immediately replace that Vent with the Meduketos (in any way), then perform ⚡ Skitter. If the total is lower, leave the Trauma card revealed and proceed to the next scanning Titan. Each Titan and each Vent may be chosen for a Scan only once per Round. End of the Titan Round: Shuffle all Major Trauma cards back into the deck. Scan Difficulty: Lvl 1: 9, 2: 10, 3: 11, 4: 12, 5: 13, 6: 14, 7: 15, 8: 16, 9: 18.",
+  "Heat Death": "Meduketos doesn't destroy Petrified Vent Terrain tiles it moves through. Meduketos's Crash causes incineration (death).",
+  "Microwave Shield": "Before performing an Attack Roll, for each space between you and the Meduketos, discard 1 token from the Kratos Pool.",
+  "Slow Boiling": "Each time the Meduketos gains a Wound (a Double Wound is treated as 2 Wounds), unless it was dealt from a VP, place a token on this Trait. After resolving the current action, if there are 3 or more tokens on this Trait, discard all tokens, then Lightbend and create 1 Vantage Point, then draw and resolve the top AI card.",
+  "Fat with Light": "For each dead Titan lower Scan Difficulty by 1.",
+  "Truth or Death": "Before performing a Scan, declare if the Meduketos is there. If you are not correct, after resolving the Scan, draw an Obol.",
+  "Invisible Flame": "When you climb the VP, gain 1 Ambrosia token and 1 Pain token. If you start your turn on the VP, gain 1 Ambrosia token and 1 Pain token.",
+  "Nap of the Vent": "Meduketos destroys Petrified Vent Terrain tiles it moves through.",
+  "Tigerback": "To leave the VP voluntarily, you need to pass a Climb Down test (same difficulty as the Climb test).",
+  "Candle in the Dark": "If your Light X is lower than the Primordial level divided by 2 (rounding up), Skitter loses ⚡.",
+  "End of Hope": "End of Primordial Round: Perform Signature.",
+  "Black Soup": "If you fail to find the Meduketos during the Titan Round, every Titan dies.",
+  "Deeper Depths": "Each Titan starts the Battle with 1 Oxygen token less.",
+  "Original Trench": "Normal (not Terrain) Battle Board spaces are considered Terrain tiles with the Chasm keyword. All other Terrain is considered Elevated.",
+  "Beginning of the End": "End of Primordial Round: Before End of Hope, draw and perform another AI card.",
+  "Three Seconds": "Ignore ⚡ preceding Microwave Attacks.",
+  "Ruthless": "Remove all positive Trauma cards from the Trauma decks (except Obols).",
+  "Oxygen and Aether": "Each Titan starts the Battle with 2 Oxygen tokens. End of your turn: Flip 1 Oxygen token. If at any point you must flip or discard an Oxygen token and you don't have any, you die."
+ },
+ "ai": [
+  {
+   "code": "ER3067",
+   "tier": 1,
+   "name": "Firewatch Beam",
+   "kind": "MICROWAVE ATTACK",
+   "dice": 2,
+   "toHit": 11,
+   "target": [
+    "Titan on VP",
+    "Most Aether",
+    "Highest FATE"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK",
+    "FATE 4+: Gain 1 Ambrosia token.",
+    "Gain the Terror Condition card. Burn. Each hit deals 5 DANGER."
+   ],
+   "med": {
+    "mw": true
+   },
+   "laser": true
+  },
+  {
+   "code": "ER3066",
+   "tier": 1,
+   "name": "Searchlight",
+   "kind": "MICROWAVE ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Most Light",
+    "Intermediary",
+    "Priority Target"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK",
+    "FATE 3+: Flip 1 Oxygen token.",
+    "Knockdown. Each hit deals 2 DANGER."
+   ],
+   "med": {
+    "mw": true
+   },
+   "after": "Gain 1 Ambrosia token.",
+   "laser": true
+  },
+  {
+   "code": "ER3065",
+   "tier": 1,
+   "name": "Lightlure",
+   "kind": "MICROWAVE ATTACK",
+   "dice": 4,
+   "toHit": 9,
+   "target": [
+    "Most Light",
+    "Intermediary",
+    "Priority Target"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK",
+    "FATE 3+: Burn.",
+    "Gain the Fear Condition card. Each hit deals 2 DANGER."
+   ],
+   "med": {
+    "mw": true
+   },
+   "after": "Gain 1 Ambrosia token.",
+   "laser": true
+  },
+  {
+   "code": "ER3064",
+   "tier": 1,
+   "name": "Gray Laser",
+   "kind": "MICROWAVE ATTACK",
+   "dice": 3,
+   "toHit": 11,
+   "target": [
+    "Most Light",
+    "Least Ambrosia",
+    "Priority Target"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK | FATE 6+: +1 EVADE_DICE",
+    "Knockdown. Gain as many Ambrosia tokens as you have Aether tokens (minimum 1). Each hit deals 3 DANGER."
+   ],
+   "med": {
+    "mw": true
+   },
+   "after": "Three or more hits, gain the Paralyzed Condition card.",
+   "laser": true
+  },
+  {
+   "code": "ER3063",
+   "tier": 1,
+   "name": "Microwave Ray",
+   "kind": "MICROWAVE ATTACK",
+   "dice": 2,
+   "toHit": 9,
+   "target": [
+    "Most Oxygen",
+    "Priority Target"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK | FATE 4+: +1 EVADE_DICE",
+    "Burn. Each hit deals 3 DANGER and flips 1 Oxygen token."
+   ],
+   "med": {
+    "mw": true
+   },
+   "laser": true
+  },
+  {
+   "code": "ER3062",
+   "tier": 1,
+   "name": "Blackspark",
+   "kind": "MICROWAVE ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Least Light",
+    "Priority Target"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK",
+    "FATE 4+: Gain the Terror Condition card.",
+    "Burn. Each hit deals 3 DANGER and 1 Despair token."
+   ],
+   "med": {
+    "mw": true
+   },
+   "after": "Gain 1 Ambrosia token.",
+   "laser": true
+  },
+  {
+   "code": "ER3073",
+   "tier": 2,
+   "name": "Petrifying Wave",
+   "kind": "MICROWAVE ATTACK",
+   "dice": 3,
+   "toHit": 11,
+   "target": [
+    "Titan on VP",
+    "Most Aether",
+    "Highest FATE"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK",
+    "FATE 6+: Discard 1 Oxygen token.",
+    "Gain the Terror Condition card. Burn. Each hit deals 4 DANGER."
+   ],
+   "med": {
+    "mw": true
+   },
+   "after": "Three or more hits, gain the Paralyzed Condition card.",
+   "laser": true
+  },
+  {
+   "code": "ER3072",
+   "tier": 2,
+   "name": "Lights Out",
+   "kind": "MICROWAVE ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Most Light",
+    "Highest FATE"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK",
+    "FATE 6+: Flip 1 Oxygen token.",
+    "Burn. Knockdown. Each hit deals 2 DANGER +1 additional DANGER for each Gear card with the Light X keyword. Gain 2 Ambrosia tokens."
+   ],
+   "med": {
+    "repeat": 1,
+    "mw": true
+   },
+   "after": "⚡ If DANGER was dealt, repeat this Attack against another Target (once).",
+   "laser": true
+  },
+  {
+   "code": "ER3071",
+   "tier": 2,
+   "name": "Bahamut Laser",
+   "kind": "MICROWAVE ATTACK",
+   "dice": 3,
+   "toHit": 11,
+   "target": [
+    "Intermediary",
+    "Priority Target"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK",
+    "Gain the Fear Condition card. Each hit deals 4 DANGER and 1 Despair token."
+   ],
+   "med": {
+    "noBlock": true,
+    "trench": true,
+    "mw": true
+   },
+   "after": "⚡ Place a 1x5 Trench Terrain tile adjacent to the source of the Attack, in the path of the Attack.",
+   "laser": true
+  },
+  {
+   "code": "ER3070",
+   "tier": 2,
+   "name": "Trident Laser",
+   "kind": "MICROWAVE ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Least Light",
+    "Lowest FATE"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK | FATE 6+: +1 EVADE_DICE",
+    "Burn. Knockdown. Each hit deals 3 DANGER."
+   ],
+   "med": {
+    "repeat": 2,
+    "mw": true
+   },
+   "after": "⚡ If DANGER was dealt, repeat this Attack against another Target (up to 2 times).",
+   "laser": true
+  },
+  {
+   "code": "ER3069",
+   "tier": 2,
+   "name": "Microwave Singularity",
+   "kind": "MICROWAVE ATTACK",
+   "dice": 3,
+   "toHit": 8,
+   "target": [
+    "Most Oxygen",
+    "Priority Target"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK",
+    "Burn. Flip 2 Oxygen tokens. Each hit deals 4 DANGER.",
+    "FATE 4+: Gain as many Despair tokens as there are hits."
+   ],
+   "med": {
+    "mw": true
+   },
+   "after": "Gain 1 Ambrosia token.",
+   "laser": true
+  },
+  {
+   "code": "ER3068",
+   "tier": 2,
+   "name": "Flashfire",
+   "kind": "MICROWAVE ATTACK",
+   "dice": 2,
+   "toHit": 10,
+   "target": [
+    "Titan on VP",
+    "Most Light",
+    "Priority Target"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK",
+    "FATE 6+: Gain the Terror Condition card.",
+    "Gain 2 Ambrosia tokens. Burn. Each hit deals 4 DANGER and 1 Despair token."
+   ],
+   "med": {
+    "mw": true
+   },
+   "after": "Gain 1 Ambrosia token.",
+   "laser": true
+  },
+  {
+   "code": "ER3079",
+   "tier": 3,
+   "name": "Gidoran Lasers",
+   "kind": "MICROWAVE ATTACK",
+   "dice": 2,
+   "toHit": 10,
+   "target": [
+    "Most Light",
+    "Highest FATE"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK | FATE 6+: +1 EVADE_DICE",
+    "Knockdown. Gain the Holy Terror Condition card. Each hit deals 5 DANGER. Gain 1 Ambrosia token."
+   ],
+   "med": {
+    "repeat": 3,
+    "mw": true
+   },
+   "after": "⚡ If DANGER was dealt, repeat this Attack against another Target (up to 3 times).",
+   "laser": true
+  },
+  {
+   "code": "ER3078",
+   "tier": 3,
+   "name": "Pale Shadow",
+   "kind": "MICROWAVE ATTACK",
+   "dice": 6,
+   "toHit": 6,
+   "target": [
+    "Intermediary",
+    "Priority Target"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK",
+    "Gain the Terror Condition card. Burn. Each hit deals 4 DANGER and 1 Despair token."
+   ],
+   "med": {
+    "noBlock": true,
+    "trench": true,
+    "mw": true
+   },
+   "after": "⚡ Place a 1x5 Trench Terrain tile adjacent to the source of the Attack, in the path of the Attack.",
+   "laser": true
+  },
+  {
+   "code": "ER3077",
+   "tier": 3,
+   "name": "Exterminatos",
+   "kind": "MICROWAVE ATTACK",
+   "dice": 2,
+   "toHit": 12,
+   "target": [
+    "Titans on all VP",
+    "Most Oxygen",
+    "Intermediary",
+    "Priority Target"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK | FATE 6+: +1 EVADE_DICE",
+    "Burn. Knockdown. Each hit deals 5 DANGER."
+   ],
+   "med": {
+    "mw": true
+   },
+   "after": "Gain the Terror Condition card and as many Ambrosia tokens as there were hits.",
+   "laser": true
+  },
+  {
+   "code": "ER3076",
+   "tier": 3,
+   "name": "Boil the Seas",
+   "kind": "ZONE ATTACK",
+   "dice": 2,
+   "toHit": 10,
+   "target": [
+    "Titans on all VP",
+    "Battle Board"
+   ],
+   "steps": [
+    "⚡ ATTACK",
+    "FATE 6+: Discard 1 Oxygen token.",
+    "Gain the Terror Condition card. Burn. Each hit deals 4 DANGER."
+   ],
+   "med": {
+    "zone": true
+   }
+  },
+  {
+   "code": "ER3074",
+   "tier": 3,
+   "name": "Petrifying Laser",
+   "kind": "MICROWAVE ATTACK",
+   "dice": 7,
+   "toHit": 7,
+   "target": [
+    "Titan on VP",
+    "Least Light",
+    "Lowest FATE"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK",
+    "Gain 2 Ambrosia tokens. Each hit deals 2 DANGER. Gain the Paralyzed Condition card."
+   ],
+   "med": {
+    "repeat": 1,
+    "mw": true
+   },
+   "after": "⚡ If DANGER was dealt, repeat this Attack against another Target (once).",
+   "laser": true
+  },
+  {
+   "code": "ER3075",
+   "tier": 3,
+   "name": "Smokestack Future",
+   "kind": "ZONE ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Battle Board"
+   ],
+   "steps": [
+    "⚡ ATTACK",
+    "Burn. Each hit deals 3 DANGER. Then, if adjacent to a Petrified Vent Terrain tile, gain 5 Ambrosia tokens and remove that Vent.",
+    "FATE 4+: Gain as many Despair tokens as there are hits."
+   ],
+   "med": {
+    "zone": true,
+    "afterFinal": "Raise the difficulty of the next Scan by X, where X is the Primordial level."
+   }
+  },
+  {
+   "code": "ER3081",
+   "tier": "X",
+   "name": "Black Immolation",
+   "kind": "ROUTINE",
+   "dice": 0,
+   "toHit": 0,
+   "target": [],
+   "steps": [
+    "Each Titan discards 1 Oxygen token, suffers Burn, and gains 1 Ambrosia token."
+   ],
+   "med": {
+    "routine": true
+   }
+  },
+  {
+   "code": "ER3080",
+   "tier": "X",
+   "name": "Colorless Laser",
+   "kind": "SIGNATURE",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Random Titan"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & ATTACK | FATE 8+: +1 EVADE_DICE",
+    "Gain the Fear Condition card. Each hit deals 3 DANGER."
+   ],
+   "med": {
+    "mw": true
+   },
+   "after": "⚡ Three or more hits, Burn.",
+   "laser": true,
+   "displayKind": "MICROWAVE SIGNATURE"
+  }
+ ],
+ "bp": [
+  {
+   "code": "ES3084",
+   "tier": 1,
+   "name": "Serpentine Tail",
+   "at": 7,
+   "responses": {
+    "FAIL": "Knockdown. Knockback 10.",
+    "WOUND": "Create a VP. ⚡ Retreat 4."
+   },
+   "critical": "Create a VP. Perform a Bonus Attack!",
+   "icons": [
+    "ambrosia"
+   ]
+  },
+  {
+   "code": "ES3083",
+   "tier": 1,
+   "name": "Black Fin",
+   "at": 7,
+   "responses": {
+    "FAIL": "Burn. Gain 1 Despair token. ⚡ Retreat 4.",
+    "WOUND": "Gain 1 Ambrosia token."
+   },
+   "critical": "Perform a Bonus Attack!",
+   "icons": [
+    "ambrosia"
+   ]
+  },
+  {
+   "code": "ES3082",
+   "tier": 1,
+   "name": "Pincer Leg",
+   "at": 8,
+   "responses": {
+    "FAIL": "⚡ Retreat 4.",
+    "WOUND": "Gain 1 Ambrosia token."
+   },
+   "critical": "Permanently lower Scan Difficulty by 2.",
+   "icons": [
+    "ambrosia"
+   ]
+  },
+  {
+   "code": "ES3087",
+   "tier": 1,
+   "name": "Darkness Mantle",
+   "at": 8,
+   "responses": {
+    "FAIL": "Gain 1 Ambrosia token.",
+    "WOUND": "⚡ Retreat 4."
+   },
+   "critical": "Disable Ambrosia Responses.",
+   "icons": [
+    "ambrosia"
+   ]
+  },
+  {
+   "code": "ES3086",
+   "tier": 1,
+   "name": "Fulminating Veil",
+   "at": 6,
+   "responses": {
+    "FAIL": "Burn. Gain the Fear Condition card.",
+    "WOUND": "Burn. ⚡ Retreat 4."
+   },
+   "critical": "Gain the Veilwrappings card (Secret deck 18, card 286).",
+   "icons": [
+    "ambrosia"
+   ]
+  },
+  {
+   "code": "ES3085",
+   "tier": 1,
+   "name": "Tentacle Cluster",
+   "at": 6,
+   "responses": {
+    "FAIL": "⚡ Skitter 4.",
+    "WOUND": "Create a VP. Gain 1 Despair token."
+   },
+   "critical": "Create a VP. Gain the Bravery Condition card.",
+   "icons": [
+    "ambrosia"
+   ]
+  },
+  {
+   "code": "ES3090",
+   "tier": 2,
+   "name": "Microwave Lungs",
+   "at": 10,
+   "responses": {
+    "FAIL": "Burn. Gain 1 Ambrosia token. Knockdown.",
+    "WOUND": "⚡ Retreat 5."
+   },
+   "critical": "Disable the Microwave Shield Trait.",
+   "icons": [
+    "microwave"
+   ]
+  },
+  {
+   "code": "ES3089",
+   "tier": 2,
+   "name": "Fireglands",
+   "at": 7,
+   "responses": {
+    "FAIL": "Burn. Knockdown.",
+    "WOUND": "⚡ Retreat 5."
+   },
+   "critical": "Disable Incineration on Crash.",
+   "icons": [
+    "microwave"
+   ]
+  },
+  {
+   "code": "ES3088",
+   "tier": 2,
+   "name": "Organic Vents",
+   "at": 9,
+   "responses": {
+    "FAIL": "Flip 1 Oxygen token. Knockdown.",
+    "WOUND": "Discard 1 Aether token. Gain 2 Ambrosia tokens. ⚡ Retreat 5."
+   },
+   "critical": "Flip 1 Aether token. Gain the Microwave Shieldscale card (Secret deck 18, card 287).",
+   "icons": [
+    "microwave"
+   ]
+  },
+  {
+   "code": "ES3093",
+   "tier": 2,
+   "name": "Void Blowhole",
+   "at": 8,
+   "responses": {
+    "FAIL": "Burn. Gain 1 Ambrosia token and 1 Aether token. Knockdown.",
+    "WOUND": "Create a VP. ⚡ Retreat 5."
+   },
+   "critical": "Create a VP. Perform a Bonus Attack!",
+   "icons": [
+    "microwave"
+   ]
+  },
+  {
+   "code": "ES3092",
+   "tier": 2,
+   "name": "Voracious Head",
+   "at": 10,
+   "responses": {
+    "FAIL": "Gain X Despair tokens, where X is the Primordial level. Knockdown.",
+    "WOUND": "Gain 2 Ambrosia tokens. ⚡ Retreat 10."
+   },
+   "critical": "Disable the Burn keyword.",
+   "icons": [
+    "microwave"
+   ]
+  },
+  {
+   "code": "ES3091",
+   "tier": 2,
+   "name": "Pollywog Hatchery",
+   "at": 8,
+   "responses": {
+    "INSTINCT": "⚡ Skitter 4."
+   },
+   "critical": "Permanently lower Scan Difficulty by 2.",
+   "icons": [
+    "microwave"
+   ]
+  },
+  {
+   "code": "ES3096",
+   "tier": 3,
+   "name": "Tracker Eye",
+   "at": 10,
+   "responses": {
+    "FAIL": "Burn. Gain 2 Ambrosia tokens. ⚡ Skitter 5.",
+    "WOUND": "Draw and perform an AI card."
+   },
+   "critical": "Attacks from outside of the Battle Board don't lose ⚡.",
+   "icons": [
+    "ambrosia",
+    "microwave"
+   ]
+  },
+  {
+   "code": "ES3095",
+   "tier": 3,
+   "name": "Mother-Father Union",
+   "at": 11,
+   "responses": {
+    "INSTINCT": "Lightbend."
+   },
+   "critical": "Disable the Skitter keyword.",
+   "icons": [
+    "ambrosia",
+    "microwave"
+   ],
+   "pre": [
+    "You may voluntarily end this Attack before performing a Power Roll. If you do, clear the Kratos Pool."
+   ]
+  },
+  {
+   "code": "ES3094",
+   "tier": 3,
+   "name": "Organs of Amygdala",
+   "at": 10,
+   "responses": {
+    "FAIL": "Gain the Holy Terror Condition card and as many Despair tokens as you have Aether tokens. Knockdown.",
+    "WOUND": "Gain the Terror Condition card. Knockdown."
+   },
+   "critical": "Discard all Fear, Dread, Terror, and Holy Terror Condition cards. Disable gaining those Condition cards.",
+   "icons": [
+    "ambrosia",
+    "microwave"
+   ]
+  },
+  {
+   "code": "ES3099",
+   "tier": 3,
+   "name": "Blackflame Cauldron Belly",
+   "at": 10,
+   "responses": {
+    "FAIL": "Burn. Gain 3 Ambrosia tokens.",
+    "WOUND": "⚡ Retreat 6."
+   },
+   "critical": "Perform a Bonus Attack!",
+   "icons": [
+    "ambrosia",
+    "microwave"
+   ]
+  },
+  {
+   "code": "ES3098",
+   "tier": 3,
+   "name": "Medusal Crown",
+   "at": 12,
+   "responses": {
+    "FAIL": "You are petrified (die).",
+    "WOUND": "Gain 2 Ambrosia tokens. ⚡ Retreat 5."
+   },
+   "critical": "Gain the Oculus Headlamp card (Secret deck 18, card 285).",
+   "icons": [
+    "ambrosia",
+    "microwave"
+   ]
+  },
+  {
+   "code": "ES3097",
+   "tier": 3,
+   "name": "Fleece-like Hole",
+   "at": 11,
+   "responses": {
+    "INSTINCT": "Perform Signature against the Attacker."
+   },
+   "critical": "The Meduketos dies!",
+   "icons": [
+    "ambrosia",
+    "microwave"
+   ]
+  }
+ ],
+ "vp": {
+  "name": "Black Back",
+  "slots": 2,
+  "start": false,
+  "text": "Climb: Test Will (7+). Hold On — End of Primordial Round: If on a VP, test Endurance (9+). If Meduketos is outside the Board, test Courage (7+) instead. Fail: Discard 1 Oxygen token, Knockdown, displace to an adjacent space. If the Meduketos is outside the Battle Board, you die instead, and you cannot ignore or mitigate this Falling Down effect. VP effects: When on a VP, you gain +1 Power. End of your turn: Burn. You may take your turn even if the Primordial is outside of the Battle Board. Scan Test: For Scan Test purposes, you may choose any Petrified Vent Terrain tile on the Battle Board. Hard to See: If you are on a VP when the Primordial is outside of the Battle Board, you can be Targeted only if there are no other viable Targets.",
+  "byLevel": {
+   "1": {
+    "climb": [
+     "Will",
+     7
+    ],
+    "holdOn": [
+     "Endurance",
+     9
+    ],
+    "holdFail": "med",
+    "power": 1,
+    "responses": "normal"
+   }
+  }
+ },
+ "basicTraits": [
+  "Oxygen and Aether"
+ ]
+}
