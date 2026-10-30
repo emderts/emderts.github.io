@@ -1,0 +1,1124 @@
+{
+ "id": "oldhaunt",
+ "name": "Old Haunt",
+ "cycle": 4,
+ "type": "Mnestis",
+ "sheetCode": "DU3248",
+ "ohD": true,
+ "setupFaceMost": true,
+ "_notes": [
+  "Transcribed from sheet DU3248 (Lv I-IX), Setup cards (Secret 220-224), VP Eclipse Point DV2539, AI CV1793-CV1803 + DV2540-DV2549, Merciless Sun DV2569.",
+  "BP DECK IS A PLACEHOLDER (copied from Sun Descendant) — the Pitiless / Old Haunt BP cards were not provided.",
+  "Old Wounds: AI I/II = Pitiless cards + new cards, AI III = new cards. \"Pitiless\" text applies to the Old Haunt. BP \"do not escalate\" rules ignored.",
+  "Embrace Zone = Manhattan distance <= 3 from the statue, Denial Zone = <= 6 (read from the card diagrams).",
+  "Sun Attacks: shading as Sun Descendant (a tile/Titan on the light side of the space). VP (Eclipse Point) is always shaded unless Magnifying Glass.",
+  "Pitiless Sun: a Titan on the VP is not treated as adjacent (VP is not a space) — interpretation."
+ ],
+ "footprint": {
+  "w": 2,
+  "h": 2,
+  "rear": "top-edge"
+ },
+ "ukb": 10,
+ "blindspots": "rear",
+ "levels": {
+  "1": {
+   "toHit": 9,
+   "speed": 99,
+   "wounds": 12,
+   "bonus": {
+    "ESCALATION": 1
+   },
+   "traits": [
+    "Son of Dusk",
+    "Pitiless Sun",
+    "God Among Men",
+    "Glass it All",
+    "Gods Don't Look Back"
+   ]
+  },
+  "2": {
+   "toHit": 10,
+   "speed": 99,
+   "wounds": 12,
+   "bonus": {
+    "ESCALATION": 1,
+    "AT": 1
+   },
+   "traits": [
+    "End of Hope",
+    "Ruthless"
+   ]
+  },
+  "3": {
+   "toHit": 11,
+   "speed": 99,
+   "wounds": 13,
+   "bonus": {
+    "ESCALATION": 2,
+    "AT": 2,
+    "DANGER": 1
+   },
+   "traits": [
+    "God Given Law",
+    "Magnifying Glass"
+   ]
+  },
+  "4": {
+   "toHit": 11,
+   "speed": 99,
+   "wounds": 13,
+   "bonus": {
+    "ESCALATION": 2,
+    "AT": 3,
+    "DANGER": 1
+   },
+   "traits": [
+    "Blinding Shine"
+   ]
+  },
+  "5": {
+   "toHit": 12,
+   "speed": 99,
+   "wounds": 14,
+   "bonus": {
+    "ESCALATION": 3,
+    "AT": 4,
+    "DANGER": 1
+   },
+   "traits": [
+    "Beginning of the End"
+   ],
+   "bonusPerHit": true,
+   "mnestis": true
+  },
+  "6": {
+   "toHit": 12,
+   "speed": 99,
+   "wounds": 14,
+   "bonus": {
+    "ESCALATION": 3,
+    "AT": 5,
+    "DANGER": 2
+   },
+   "traits": [
+    "Unworthy Will Die"
+   ],
+   "bonusPerHit": true,
+   "mnestis": true
+  },
+  "7": {
+   "toHit": 13,
+   "speed": 99,
+   "wounds": 15,
+   "bonus": {
+    "ESCALATION": 4,
+    "AT": 6,
+    "DANGER": 2
+   },
+   "traits": [
+    "Cannot Hide From the Sun"
+   ],
+   "bonusPerHit": true,
+   "mnestis": true
+  },
+  "8": {
+   "toHit": 13,
+   "speed": 99,
+   "wounds": 15,
+   "bonus": {
+    "ESCALATION": 4,
+    "AT": 7,
+    "EVADE_DICE": 1,
+    "DANGER": 2
+   },
+   "traits": [
+    "God Taken Law",
+    "Make the Sun Move and the Earth Stand Still"
+   ],
+   "bonusPerHit": true,
+   "mnestis": true
+  },
+  "9": {
+   "toHit": 14,
+   "speed": 99,
+   "wounds": 17,
+   "bonus": {
+    "ESCALATION": 5,
+    "AT": 8,
+    "EVADE_DICE": 2,
+    "DANGER": 3
+   },
+   "traits": [
+    "Spontaneous Supernova"
+   ],
+   "bonusPerHit": true,
+   "mnestis": true
+  }
+ },
+ "traits": {
+  "Son of Dusk": "When you setup a battle with the Old Haunt in the Mnestis Theatre, use the Battle Setup cards you've found in the Envelope Y.",
+  "Pitiless Sun": "If you start the Primordial Round or your Titan turn adjacent to the Old Haunt, you are incinerated.",
+  "God Among Men": "The Old Haunt performs his Round after 2 Titan turns. Then the other 2 Titans go, then the Old Haunt, then the players can rearrange their playing order. At the start of each Old Haunt's Round, perform Merciless Sun.",
+  "Glass it All": "If you were on a Shaded space during any Sun Attack, destroy the Terrain tile that shaded that space, even if Indestructible.",
+  "Gods Don't Look Back": "Titans attacking from the Blindspot gain additional +1 Precision (on top of the regular bonus).",
+  "End of Hope": "End of Primordial Round: Perform Signature.",
+  "Ruthless": "Remove all positive Trauma cards from the Trauma decks (except Obols).",
+  "God Given Law": "Ignore ⚡ preceding Merciless Sun.",
+  "Magnifying Glass": "VP becomes unshaded. After a Titan fails a Climb test, perform Signature against that Titan.",
+  "Blinding Shine": "The Old Haunt cannot be Wounded from the front.",
+  "Beginning of the End": "End of Primordial Round: Before End of Hope, draw and perform another AI card.",
+  "Unworthy Will Die": "At the end of the Primordial Round, the Old Haunt destroys the closest Irem Tower.",
+  "Cannot Hide From the Sun": "Titan with the Priority Target token cannot be shaded in any way.",
+  "God Taken Law": "When an Irem Tower is destroyed, each Titan adjacent to it is dealt X DANGER, where X is the number of Towers already removed.",
+  "Make the Sun Move and the Earth Stand Still": "At the end of the Primordial Round, the Old Haunt appears at the closest Sun Circle.",
+  "Spontaneous Supernova": "When the Old Haunt appears at a Sun Circle, all unshaded Titans are incinerated and destroy any Terrain tile that shaded a Titan, even if indestructible."
+ },
+ "ai": [
+  {
+   "code": "CV1795",
+   "tier": 1,
+   "name": "Embrace the Light",
+   "kind": "ZONE JUDGEMENT",
+   "dice": 3,
+   "toHit": 11,
+   "target": [
+    "Embrace Zone"
+   ],
+   "steps": [
+    "⚡ JUDGE (Chosen Skill)",
+    "If you are hit, draw an Obol."
+   ],
+   "oh": {
+    "mode": "zone",
+    "zone": "embrace",
+    "judge": [
+     "Courage",
+     "Wisdom",
+     "Will",
+     "Endurance",
+     "Cunning",
+     "Fury"
+    ],
+    "win": true,
+    "after": [
+     "burn"
+    ]
+   },
+   "after": "Burn.",
+   "displayKind": "ZONE JUDGEMENT (Secret card 113)"
+  },
+  {
+   "code": "CV1794",
+   "tier": 1,
+   "name": "Wave Away",
+   "kind": "SUN JUDGEMENT",
+   "dice": 4,
+   "toHit": 10,
+   "target": [
+    "Unshaded Board"
+   ],
+   "steps": [
+    "⚡ JUDGE (Chosen Skill)",
+    "If you are hit, draw an Obol."
+   ],
+   "oh": {
+    "mode": "sun",
+    "judge": [
+     "Courage",
+     "Wisdom",
+     "Will",
+     "Endurance",
+     "Cunning",
+     "Fury"
+    ],
+    "win": true,
+    "after": [
+     "kd",
+     "kb10"
+    ],
+    "afterWin": true
+   },
+   "after": "⚡ Knockdown. Knockback 10.",
+   "displayKind": "SUN JUDGEMENT (Secret card 112)"
+  },
+  {
+   "code": "CV1796",
+   "tier": 1,
+   "name": "Trigger Finger",
+   "kind": "LASER JUDGEMENT",
+   "dice": 2,
+   "toHit": 11,
+   "target": [
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & JUDGE (Chosen Skill)",
+    "If you are hit, draw an Obol."
+   ],
+   "oh": {
+    "mode": "laser",
+    "laser": "single",
+    "lateral": true,
+    "judge": [
+     "Courage",
+     "Wisdom",
+     "Will",
+     "Endurance",
+     "Cunning",
+     "Fury"
+    ],
+    "win": true,
+    "after": [
+     "burn"
+    ]
+   },
+   "after": "Burn.",
+   "displayKind": "LASER JUDGEMENT (Secret card 114)"
+  },
+  {
+   "code": "CV1793",
+   "tier": 1,
+   "name": "Trigger Finger",
+   "kind": "LASER JUDGEMENT",
+   "dice": 2,
+   "toHit": 11,
+   "target": [
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & JUDGE (Chosen Skill)",
+    "If you are hit, draw an Obol."
+   ],
+   "oh": {
+    "mode": "laser",
+    "laser": "single",
+    "lateral": true,
+    "judge": [
+     "Courage",
+     "Wisdom",
+     "Will",
+     "Endurance",
+     "Cunning",
+     "Fury"
+    ],
+    "win": true,
+    "after": [
+     "burn"
+    ]
+   },
+   "after": "Burn.",
+   "displayKind": "LASER JUDGEMENT (Secret card 111)"
+  },
+  {
+   "code": "DV2540",
+   "tier": 1,
+   "name": "Finger Snap",
+   "kind": "RANGE ATTACK",
+   "dice": 2,
+   "toHit": 10,
+   "target": [
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ RANGE ATTACK UNLIMITED",
+    "If you are hit, draw an Obol."
+   ],
+   "oh": {
+    "mode": "range",
+    "win": true,
+    "after": [
+     "burn"
+    ]
+   },
+   "after": "Burn.",
+   "displayKind": "RANGE ATTACK (Secret card 225)"
+  },
+  {
+   "code": "DV2541",
+   "tier": 1,
+   "name": "Obedience Aura",
+   "kind": "ZONE JUDGEMENT",
+   "dice": 4,
+   "toHit": 10,
+   "target": [
+    "Embrace Zone"
+   ],
+   "steps": [
+    "JUDGE (Chosen Skill)",
+    "If you are hit, draw an Obol."
+   ],
+   "oh": {
+    "mode": "zone",
+    "zone": "embrace",
+    "judge": [
+     "Courage",
+     "Wisdom",
+     "Will",
+     "Endurance",
+     "Cunning",
+     "Fury"
+    ],
+    "win": false,
+    "afterFinal": [
+     "destroyZone"
+    ]
+   },
+   "afterFinal": "Destroy all Terrain tiles in the Zone.",
+   "displayKind": "ZONE JUDGEMENT (Secret card 226)"
+  },
+  {
+   "code": "DV2543",
+   "tier": 2,
+   "name": "Kneel, Heathens",
+   "kind": "ZONE JUDGEMENT",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Denial Zone"
+   ],
+   "steps": [
+    "⚡ JUDGE (Chosen Skill)",
+    "If you are hit, Knockdown, then draw an Obol."
+   ],
+   "oh": {
+    "mode": "zone",
+    "zone": "denial",
+    "judge": [
+     "Courage",
+     "Wisdom",
+     "Will",
+     "Endurance",
+     "Cunning",
+     "Fury"
+    ],
+    "win": true,
+    "after": [
+     "burn"
+    ]
+   },
+   "after": "Burn.",
+   "displayKind": "ZONE JUDGEMENT (Secret card 228)"
+  },
+  {
+   "code": "DV2542",
+   "tier": 2,
+   "name": "Blessing Hand",
+   "kind": "DOUBLE LASER JUDGEMENT",
+   "dice": 2,
+   "toHit": 11,
+   "target": [
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & JUDGE (Chosen Skill)",
+    "If you are hit, you are incinerated."
+   ],
+   "oh": {
+    "mode": "laser",
+    "laser": "double",
+    "lateral": true,
+    "judge": [
+     "Courage",
+     "Wisdom",
+     "Will",
+     "Endurance",
+     "Cunning",
+     "Fury"
+    ],
+    "win": true,
+    "after": [
+     "burn"
+    ]
+   },
+   "after": "Burn.",
+   "displayKind": "DOUBLE LASER JUDGEMENT (Secret card 227)"
+  },
+  {
+   "code": "CV1800",
+   "tier": 2,
+   "name": "Trigger Finger",
+   "kind": "LASER JUDGEMENT",
+   "dice": 2,
+   "toHit": 11,
+   "target": [
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & JUDGE (Chosen Skill)",
+    "If you are hit, you are incinerated."
+   ],
+   "oh": {
+    "mode": "laser",
+    "laser": "single",
+    "lateral": true,
+    "judge": [
+     "Courage",
+     "Wisdom",
+     "Will",
+     "Endurance",
+     "Cunning",
+     "Fury"
+    ],
+    "win": true,
+    "after": [
+     "burn"
+    ]
+   },
+   "after": "Burn.",
+   "displayKind": "LASER JUDGEMENT (Secret card 118)"
+  },
+  {
+   "code": "CV1798",
+   "tier": 2,
+   "name": "Deny Grace",
+   "kind": "ZONE JUDGEMENT",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Denial Zone"
+   ],
+   "steps": [
+    "⚡ JUDGE (Chosen Skill)",
+    "If you are hit, you are incinerated."
+   ],
+   "oh": {
+    "mode": "zone",
+    "zone": "denial",
+    "judge": [
+     "Courage",
+     "Wisdom",
+     "Will",
+     "Endurance",
+     "Cunning",
+     "Fury"
+    ],
+    "win": true,
+    "after": [
+     "burn"
+    ]
+   },
+   "after": "Burn.",
+   "displayKind": "ZONE JUDGEMENT (Secret card 116)"
+  },
+  {
+   "code": "CV1799",
+   "tier": 2,
+   "name": "Glorious Fire",
+   "kind": "SUN JUDGEMENT",
+   "dice": 2,
+   "toHit": 11,
+   "target": [
+    "Unshaded Board"
+   ],
+   "steps": [
+    "⚡ JUDGE (Chosen Skill)",
+    "If you are hit, you are incinerated."
+   ],
+   "oh": {
+    "mode": "sun",
+    "judge": [
+     "Courage",
+     "Wisdom",
+     "Will",
+     "Endurance",
+     "Cunning",
+     "Fury"
+    ],
+    "win": true,
+    "after": [
+     "burn"
+    ]
+   },
+   "after": "Burn.",
+   "displayKind": "SUN JUDGEMENT (Secret card 117)"
+  },
+  {
+   "code": "CV1797",
+   "tier": 2,
+   "name": "Fatherly Pat",
+   "kind": "ATTACK",
+   "dice": 4,
+   "toHit": 8,
+   "target": [
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Each hit deals 6 DANGER."
+   ],
+   "after": "⚡ Knockdown. Knockback 15.",
+   "displayKind": "ATTACK (Secret card 115)"
+  },
+  {
+   "code": "DV2544",
+   "tier": 3,
+   "name": "I Was the Sun",
+   "kind": "SIMULTANEOUS ATTACK",
+   "dice": 0,
+   "toHit": 0,
+   "target": [
+    "Each Titan"
+   ],
+   "steps": [
+    "When this AI card is revealed, leave it on top and end the Primordial Round. If it is already revealed at the start of the Primordial Round, perform it. Each Titan is incinerated."
+   ],
+   "oh": {
+    "mode": "iwasthesun"
+   },
+   "displayKind": "SIMULTANEOUS ATTACK (Secret card 229)"
+  },
+  {
+   "code": "DV2549",
+   "tier": 3,
+   "name": "Sunrise",
+   "kind": "LASER ATTACK",
+   "dice": 4,
+   "toHit": 9,
+   "target": [
+    "This Laser Attack is resolved in all Rows from the left and toward the right Board Edge."
+   ],
+   "steps": [
+    "⚡ ATTACK",
+    "If you are hit, you are incinerated."
+   ],
+   "oh": {
+    "mode": "sunrise",
+    "win": true,
+    "after": [
+     "burn"
+    ]
+   },
+   "after": "Burn.",
+   "displayKind": "LASER ATTACK (Secret card 234)"
+  },
+  {
+   "code": "DV2546",
+   "tier": 3,
+   "name": "Five Fingers of Doom",
+   "kind": "OMNILASER JUDGEMENT",
+   "dice": 3,
+   "toHit": 11,
+   "target": [
+    "Priority Target in sight"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & JUDGE (Chosen Skill)",
+    "If the Laser Attack hits a Terrain tile, it continues sideways.",
+    "If you are hit, you are incinerated."
+   ],
+   "oh": {
+    "mode": "laser",
+    "laser": "omni",
+    "lateral": true,
+    "judge": [
+     "Courage",
+     "Wisdom",
+     "Will",
+     "Endurance",
+     "Cunning",
+     "Fury"
+    ],
+    "win": true,
+    "after": [
+     "burn"
+    ],
+    "sidewaysAll": true
+   },
+   "after": "Burn.",
+   "displayKind": "OMNILASER JUDGEMENT (Secret card 231)"
+  },
+  {
+   "code": "DV2548",
+   "tier": 3,
+   "name": "Sundown",
+   "kind": "LASER ATTACK",
+   "dice": 4,
+   "toHit": 9,
+   "target": [
+    "This Laser Attack is resolved from each side of every Irem Tower Terrain tile in cardinal directions."
+   ],
+   "steps": [
+    "⚡ ATTACK",
+    "If you are hit, you are incinerated."
+   ],
+   "oh": {
+    "mode": "sundown",
+    "win": true,
+    "after": [
+     "burn"
+    ]
+   },
+   "after": "Burn.",
+   "displayKind": "LASER ATTACK (Secret card 233)"
+  },
+  {
+   "code": "DV2547",
+   "tier": 3,
+   "name": "Excommunicate",
+   "kind": "ZONE JUDGEMENT",
+   "dice": 2,
+   "toHit": 10,
+   "target": [
+    "Denial Zone"
+   ],
+   "steps": [
+    "⚡ JUDGE (Chosen Skill)",
+    "If you are hit, you are incinerated."
+   ],
+   "oh": {
+    "mode": "zone",
+    "zone": "denial",
+    "judge": [
+     "Courage",
+     "Wisdom",
+     "Will",
+     "Endurance",
+     "Cunning",
+     "Fury"
+    ],
+    "win": true,
+    "afterFinal": [
+     "destroyZone3"
+    ]
+   },
+   "afterFinal": "Destroy all Terrain tiles in Zone 3.",
+   "displayKind": "ZONE JUDGEMENT (Secret card 232)"
+  },
+  {
+   "code": "DV2545",
+   "tier": 3,
+   "name": "Witness Me",
+   "kind": "ZONE JUDGEMENT",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Denial Zone"
+   ],
+   "steps": [
+    "JUDGE (Chosen Skill)",
+    "If you are hit, Knockdown, then draw an Obol."
+   ],
+   "oh": {
+    "mode": "zone",
+    "zone": "denial",
+    "judge": [
+     "Courage",
+     "Wisdom",
+     "Will",
+     "Endurance",
+     "Cunning",
+     "Fury"
+    ],
+    "win": false,
+    "afterFinal": [
+     "destroyZone3"
+    ]
+   },
+   "afterFinal": "Destroy all Terrain tiles in Zone 3.",
+   "displayKind": "ZONE JUDGEMENT (Secret card 230)"
+  },
+  {
+   "code": "CV1803",
+   "tier": "X",
+   "name": "God's Justice",
+   "kind": "ROUTINE",
+   "dice": 2,
+   "toHit": 11,
+   "target": [
+    "Closest Titan"
+   ],
+   "steps": [
+    "⚡ ATTACK (Chosen Skill)",
+    "If you are hit, you are incinerated."
+   ],
+   "oh": {
+    "mode": "laser",
+    "laser": "single",
+    "lateral": false,
+    "judge": [
+     "Courage",
+     "Wisdom",
+     "Will",
+     "Endurance",
+     "Cunning",
+     "Fury"
+    ],
+    "win": true,
+    "after": [
+     "burn"
+    ],
+    "noTargetDie": true
+   },
+   "after": "Burn.",
+   "displayKind": "LASER JUDGEMENT ROUTINE (Secret card 121)",
+   "noTarget": "Random Titan dies",
+   "routineAttack": true
+  },
+  {
+   "code": "CV1802",
+   "tier": "X",
+   "name": "God's Love",
+   "kind": "SIGNATURE",
+   "dice": 2,
+   "toHit": 11,
+   "target": [
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE LATERAL & JUDGE (Chosen Skill)",
+    "If you are hit, you are incinerated."
+   ],
+   "oh": {
+    "mode": "laser",
+    "laser": "single",
+    "lateral": true,
+    "judge": [
+     "Courage",
+     "Wisdom",
+     "Will",
+     "Endurance",
+     "Cunning",
+     "Fury"
+    ],
+    "win": true,
+    "after": [
+     "burn"
+    ]
+   },
+   "after": "Burn.",
+   "displayKind": "LASER JUDGEMENT SIGNATURE (Secret card 120)"
+  },
+  {
+   "code": "DV2569",
+   "tier": "X",
+   "name": "Merciless Sun",
+   "kind": "TRAIT SUN ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Unshaded Board"
+   ],
+   "steps": [
+    "⚡ TURN TO FACE THE MOST TITANS & ATTACK",
+    "Each hit deals 3 DANGER and 1 FATE."
+   ],
+   "oh": {
+    "mode": "sun",
+    "merciless": true,
+    "faceMost": true,
+    "win": true,
+    "afterFinal": [
+     "mercilessAfter"
+    ],
+    "afterFinalWin": true
+   },
+   "afterFinal": "⚡ Wish Away 12 the Titan with the lowest FATE. Titan with the highest FATE suffers Midas 1.",
+   "displayKind": "TRAIT SUN ATTACK (Secret card 235)"
+  }
+ ],
+ "bp": [
+  {
+   "code": "CS1755",
+   "tier": 1,
+   "name": "Horsehead",
+   "at": 6,
+   "responses": {
+    "FAIL": "Rewind.",
+    "WOUND": "Create a VP. Perform Signature against the Attacker."
+   },
+   "critical": "Create a VP. You may perform a Bonus Attack!",
+   "qeye": true,
+   "placeholder": true
+  },
+  {
+   "code": "CS1756",
+   "tier": 1,
+   "name": "Mouth Feeler",
+   "at": 6,
+   "responses": {
+    "FAIL": "Death 3.",
+    "WOUND": "Gain the Muffled Condition card."
+   },
+   "critical": "Gain the Enigma of Transformation card (campaign).",
+   "qeye": true,
+   "placeholder": true
+  },
+  {
+   "code": "CS1757",
+   "tier": 1,
+   "name": "Stump Tentacle",
+   "at": 7,
+   "responses": {
+    "INSTINCT": "All Titans in Zone 1: Gain +1 DANGER.\n⚡ If adjacent, Time-clocked."
+   },
+   "critical": "Deal an additional Single Wound!",
+   "qeye": false,
+   "placeholder": true
+  },
+  {
+   "code": "CS1758",
+   "tier": 1,
+   "name": "Forewing",
+   "at": 8,
+   "responses": {
+    "FAIL": "Gain FATE equal to the Primordial LVL. Time-clocked.",
+    "WOUND": "Rewind."
+   },
+   "critical": "Search the BP deck and choose 1 card to set aside. After Escalation, place the set aside card on top of the BP deck.",
+   "qeye": false,
+   "placeholder": true
+  },
+  {
+   "code": "CS1759",
+   "tier": 1,
+   "name": "Skulljaw",
+   "at": 8,
+   "responses": {
+    "FAIL": "Gain +1 FATE and the Muffled Condition card.",
+    "WOUND": "Create a VP."
+   },
+   "critical": "Create a VP. Until the end of Battle, when attacked from VP I, Sun Descendant has -1 AT.",
+   "qeye": false,
+   "placeholder": true
+  },
+  {
+   "code": "CS1760",
+   "tier": 1,
+   "name": "Swordwing",
+   "at": 7,
+   "responses": {
+    "FAIL": "Perform Signature against the Attacker.",
+    "WOUND": "Create a VP."
+   },
+   "critical": "Create a VP. During Escalation, choose which BP II card to add to the deck (instead of drawing randomly).",
+   "qeye": false,
+   "placeholder": true
+  },
+  {
+   "code": "CS1761",
+   "tier": 2,
+   "name": "Aft Wing",
+   "at": 9,
+   "responses": {
+    "FAIL": "Gain +1 FATE. Rewind.",
+    "WOUND": "Knockback 7. Gain +2 DANGER."
+   },
+   "critical": "Gain the Icarus Lot card (campaign).",
+   "qeye": false,
+   "placeholder": true
+  },
+  {
+   "code": "CS1762",
+   "tier": 2,
+   "name": "Writhing Cephalomuscles",
+   "at": 9,
+   "responses": {
+    "FAIL": "All Titans in Zone 1: Gain +1 DANGER.\n⚡ If adjacent, Time-clocked.",
+    "WOUND": "Create a VP."
+   },
+   "critical": "Create a VP. Until the end of Battle, when attacked from VP II or VP III, Sun Descendant has -1 AT.",
+   "spearBreak": 1,
+   "notes": [
+    "If your Weapon has the Spear Trait, immediately place 1 Break token in the Kratos Pool."
+   ],
+   "qeye": false,
+   "placeholder": true
+  },
+  {
+   "code": "CS1763",
+   "tier": 2,
+   "name": "Feathery Carapace",
+   "at": 10,
+   "responses": {
+    "INSTINCT": "Perform Signature against the Attacker."
+   },
+   "critical": "Disable the Quantum Eye Trait!",
+   "combined": [
+    2,
+    3
+   ],
+   "notes": [
+    "When you attack from VP II or VP III, you may initiate a Combined Attack instead."
+   ],
+   "qeye": false,
+   "placeholder": true
+  },
+  {
+   "code": "CS1764",
+   "tier": 2,
+   "name": "Lens-Eyes",
+   "at": 8,
+   "responses": {
+    "FAIL": "Knockback 7.",
+    "WOUND": "Perform Signature against the Attacker."
+   },
+   "critical": "Until the end of Battle, Laser Attacks deal -2 DANGER (to a minimum of 1). You may reset your FATE. You may perform a Bonus Attack!",
+   "qeye": true,
+   "placeholder": true
+  },
+  {
+   "code": "CS1765",
+   "tier": 2,
+   "name": "Axlebones",
+   "at": 10,
+   "responses": {
+    "INSTINCT": "All Titans in Zone 2: Gain +1 DANGER.\n⚡ If adjacent, Time-clocked."
+   },
+   "critical": "Disable the Atemporal effect.",
+   "spearBreak": 2,
+   "combined": [
+    2,
+    3
+   ],
+   "notes": [
+    "If your Weapon has the Spear Trait, immediately place 2 Break tokens in the Kratos Pool.",
+    "When you attack from VP II or VP III, you may initiate a Combined Attack instead."
+   ],
+   "qeye": false,
+   "placeholder": true
+  },
+  {
+   "code": "CS1766",
+   "tier": 2,
+   "name": "Wrong-Angled Wing",
+   "at": 8,
+   "responses": {
+    "FAIL": "Gain +2 FATE. Gain the Sealed Condition card.",
+    "WOUND": "Create a VP. Rewind. Time-clocked."
+   },
+   "critical": "Create a VP. Disable the Time-clocked keyword.",
+   "qeye": true,
+   "placeholder": true
+  },
+  {
+   "code": "CS1767",
+   "tier": 3,
+   "name": "Germinating Helionaut",
+   "at": 17,
+   "responses": {
+    "INSTINCT": "Create a VP. Perform Signature against the Attacker."
+   },
+   "critical": "The Sun Descendant dies!",
+   "atemporal": true,
+   "qeye": true,
+   "placeholder": true
+  },
+  {
+   "code": "CS1768",
+   "tier": 3,
+   "name": "The Wheel",
+   "at": 18,
+   "responses": {
+    "FAIL": "Draw an Obol."
+   },
+   "critical": "Deal an additional Single Wound!",
+   "combined": [
+    3
+   ],
+   "pre": [
+    "You may voluntarily end this Attack before performing a Power Roll. If you do, clear the Kratos Pool."
+   ],
+   "notes": [
+    "When you attack from VP III, you may initiate a Combined Attack instead."
+   ],
+   "qeye": false,
+   "placeholder": true
+  },
+  {
+   "code": "CS1769",
+   "tier": 3,
+   "name": "Black Ice Shard",
+   "at": 17,
+   "responses": {
+    "FAIL": "Rewind all Titans.",
+    "WOUND": "Gain the Sealed Condition card. The Sun Descendant moves 6 spaces directly away from the Attacker (without turning)."
+   },
+   "critical": "Gain the Icarus's Fall card (campaign).",
+   "atemporal": true,
+   "qeye": false,
+   "placeholder": true
+  },
+  {
+   "code": "CS1770",
+   "tier": 3,
+   "name": "Simulated Sun",
+   "at": 17,
+   "responses": {
+    "FAIL": "Gain +3 FATE. Draw a Moiros card.",
+    "WOUND": "Create a VP."
+   },
+   "critical": "Create a VP. Disable the Sun Descendant's Laser Attacks. After the Battle, resolve the Ton Asterion Special Event.",
+   "atemporal": true,
+   "qeye": true,
+   "placeholder": true
+  },
+  {
+   "code": "CS1771",
+   "tier": 3,
+   "name": "Hidden Staircase",
+   "at": 18,
+   "responses": {
+    "INSTINCT": "All Titans in Zone 2: Gain +1 DANGER. If adjacent, Time-clocked."
+   },
+   "critical": "You may perform a Bonus Attack!",
+   "combined": [
+    2,
+    3
+   ],
+   "notes": [
+    "When you attack from VP II or VP III, you may initiate a Combined Attack instead."
+   ],
+   "qeye": false,
+   "placeholder": true
+  },
+  {
+   "code": "CS1772",
+   "tier": 3,
+   "name": "Sanctified Effigy",
+   "at": 18,
+   "responses": {
+    "FAIL": "Perform Signature against the Attacker.",
+    "WOUND": "Time-clocked."
+   },
+   "critical": "Disable the Merciless Sun Trait.",
+   "combined": [
+    2,
+    3
+   ],
+   "notes": [
+    "When you attack from VP II or VP III, you may initiate a Combined Attack instead."
+   ],
+   "qeye": true,
+   "placeholder": true
+  }
+ ],
+ "vp": {
+  "name": "Eclipse Point",
+  "slots": 1,
+  "start": true,
+  "text": "VP is always shaded. Climb: Fury (10+). Falling Down: After you perform an Attack, or at the end of the Primordial Round, place your Titan on any empty space on the Board. VP effects: When on the VP, you gain +1 Power. You may perform Combined Attacks.",
+  "byLevel": {
+   "1": {
+    "climb": [
+     "Fury",
+     10
+    ],
+    "holdOn": null,
+    "holdFail": "any",
+    "autoFall": true,
+    "fallAfterAttack": true,
+    "power": 1,
+    "combined": true,
+    "responses": "normal"
+   }
+  }
+ },
+ "sunCircles": [
+  "K3",
+  "K17",
+  "C17",
+  "C3"
+ ],
+ "basicTraits": []
+}

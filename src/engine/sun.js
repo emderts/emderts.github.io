@@ -179,7 +179,8 @@ export function installSun(Game, { TitanDied, BattleOver }) {
     },
     async sunSentence(t, p) {
       let m; const alive = !!(t && t.alive);
-      if ((m = /^All Titans in Zone (\d): Gain \+(\d) DANGER(?:, if adjacent, Time-clocked)?$/.exec(p))) { const z = +m[1]; const tg = this.liveTitans().filter(x => !x.offBoard && !x.onVP && this.zoneDist(x.pos) <= z); this.say(`Zone ${z} 타이탄: ${tg.map(x => x.name).join(', ') || '없음'} — Danger +${m[2]}`); for (const x of tg) await this.solo(() => this.gainDanger(x, +m[2], { source: 'Zone' })); this._zoneTg = tg; if (/if adjacent/.test(p)) for (const x of tg) if (x.alive && this.isAdj(x)) await this.solo(() => this.timeClock(x)); return true; }
+      if (/^(?:⚡ )?If adjacent, Time-clocked\.?$/.test(p) && this._zoneTg) { for (const x of this._zoneTg) if (x.alive && this.isAdj(x)) await this.solo(() => this.timeClock(x)); return true; }
+      if ((m = /^All Titans in Zone (\d): Gain \+(\d) DANGER(?:[.,] ?(?:⚡ )?[Ii]f adjacent, Time-clocked)?\.?$/.exec(p))) { const z = +m[1]; const tg = this.liveTitans().filter(x => !x.offBoard && !x.onVP && this.zoneDist(x.pos) <= z); this.say(`Zone ${z} 타이탄: ${tg.map(x => x.name).join(', ') || '없음'} — Danger +${m[2]}`); for (const x of tg) await this.solo(() => this.gainDanger(x, +m[2], { source: 'Zone' })); this._zoneTg = tg; if (/if adjacent/i.test(p)) for (const x of tg) if (x.alive && this.isAdj(x)) await this.solo(() => this.timeClock(x)); return true; }
       if (/^If adjacent, Time-clocked$/.test(p)) { for (const x of (this._zoneTg || [])) if (x.alive && !x.offBoard && this.isAdj(x)) await this.solo(() => this.timeClock(x)); this._zoneTg = null; return true; }
       if (/^Create a VP$/.test(p)) { this.createVP(null); return true; }
       if ((m = /^The Sun Descendant moves (\d) spaces directly away from the Attacker/.exec(p))) { await this.oracleMoveAway(t ? (t.onVP ? null : t.pos) : null, +m[1]); return true; }

@@ -1,0 +1,91 @@
+{
+ "id": "oldhaunt",
+ "source": "Old Haunt — Battle Setup cards (Secret 220-224, Envelope Y)",
+ "board": {
+  "cols": 20,
+  "rows": 14
+ },
+ "_notes": [
+  "Diagram read from Setup 2/3 (Secret 221-222): 16 Irem Towers visible (20 listed), 2 Irem Cities, 4 Sun Circles (2x2: K3, K17, C17, C3), Titan starts = fire tokens."
+ ],
+ "setup": [
+  "Standard Preparations (skip the Primordial step).",
+  "Primordial Positioning: Helios Statue marker = Old Haunt at G10-H11, determine facing.",
+  "Additional Setup: Old Wounds — AI/BP I and II = Pitiless + new cards, AI/BP III = new cards."
+ ],
+ "center": "G10",
+ "variants": {
+  "all": {
+   "levels": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "primordial": {
+    "anchor": "G10"
+   },
+   "titanStarts": [
+    "K9",
+    "K12",
+    "D9",
+    "D12"
+   ],
+   "startChoices": [
+    "K9",
+    "K12",
+    "D9",
+    "D12"
+   ],
+   "terrain": {
+    "iremTower": [
+     "M4",
+     "J6",
+     "H3",
+     "E2",
+     "E6",
+     "B2",
+     "A3",
+     "F9",
+     "M15",
+     "L16",
+     "I20",
+     "H15",
+     "G19",
+     "E11",
+     "B20",
+     "A14"
+    ],
+    "iremCity": [
+     [
+      "I3",
+      "I4",
+      "I5",
+      "J3",
+      "J4",
+      "J5",
+      "K3",
+      "K4",
+      "K5"
+     ],
+     [
+      "D15",
+      "D16",
+      "D17",
+      "E15",
+      "E16",
+      "E17",
+      "F15",
+      "F16",
+      "F17"
+     ]
+    ]
+   }
+  }
+ }
+}

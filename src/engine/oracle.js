@@ -177,7 +177,7 @@ export function installOracle(Game, { TitanDied, BattleOver }) {
       if (!r) return;
       if (r.kind === 'titan') { hits.push(r.t); return; }
       const ter = r.ter;
-      if (card.oracle && card.oracle.sideways && ter.iceberg && depth < 4) {
+      if (card.oracle && card.oracle.sideways && (ter.iceberg || card.oracle.sidewaysAll) && depth < 4) {
         this.say(`Laser: ${ter.type} ${cellLabel(r.cell)}에서 옆으로 반사`, 'ai');
         for (const p of PERP[r.dir]) { let s = { ...r.cell }; while (this.board.terrainAt(s.c, s.r)?.id === ter.id) s = add(s, p); const k = `${s.c},${s.r},${p}`; if (ctx.seen.has(k)) continue; ctx.seen.add(k); this.laserHandle(this.beam(s, p), card, hits, ctx, depth + 1); }
         return;
