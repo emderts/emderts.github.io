@@ -6,16 +6,16 @@ export function installOldHaunt(Game, { TitanDied, BattleOver }) {
   Object.assign(Game.prototype, {
     ohSetup() {
       const P = this.prim;
-      if (P.vp) { P.vp.created = true; P.vp.count = Math.max(1, P.vp.count || 0); }
+      P._ohCenter = { ...P.anchor };
       this._ohTowersRemoved = 0; this._ohTowerQ = [];
       // Irem Tower destruction hook (God Taken Law counts every removed Tower)
       const B = this.board; const game = this;
       if (!B._ohHooked) { const orig = B.removeTerrainId.bind(B); B.removeTerrainId = function (id) { const cells = [...this.terrain.values()].filter(z => z.id === id); const tower = cells.find(z => z.type === 'Irem Tower'); const r = orig(id); if (tower) { game._ohTowersRemoved = (game._ohTowersRemoved || 0) + 1; (game._ohTowerQ = game._ohTowerQ || []).push({ cells: cells.map(z => z.cell), n: game._ohTowersRemoved }); } return r; }; B._ohHooked = true; }
-      this.say(`Old Haunt: ${cellLabel(P.anchor)} 기준, ${P.facing} 방향. Eclipse Point VP 사용 가능.`, 'sys');
+      this.say(`Old Haunt: ${cellLabel(P.anchor)} 기준, ${P.facing} 방향. Eclipse Point VP는 BP로 생성.`, 'sys');
     },
-    // ---------- shading (the Old Haunt is the light source) ----------
-    ohLightStep(p) { const c = this.primCenter(); const dx = c.x - p.c, dy = c.y - p.r; if (Math.abs(dx) >= Math.abs(dy)) return { c: p.c + Math.sign(dx), r: p.r }; return { c: p.c, r: p.r + Math.sign(dy) }; },
-    ohShadeSource(p) { const q = this.ohLightStep(p); if (!this.board.inBounds(q.c, q.r) || this.primContains(q)) return null; const ter = this.board.terrainAt(q.c, q.r); if (ter && (ter.obstacle || ter.obscuring || ter.elevated)) return { ter, cell: q }; const o = this.titanAt(q.c, q.r); if (o && o.alive && !o.onVP && !o.offBoard) return { titan: o, cell: q }; return null; },
+    // ---------- shading (as Sun Descendant: light from the board edge behind the Old Haunt) ----------
+    ohLightStep(p) { const f = this.prim.facing; return { c: p.c - DIRS[f][0], r: p.r - DIRS[f][1] }; },
+    ohShadeSource(p) { const q = this.ohLightStep(p); if (!this.board.inBounds(q.c, q.r)) return null; const ter = this.board.terrainAt(q.c, q.r); if (ter && (ter.obstacle || ter.obscuring)) return { ter, cell: q }; const o = this.titanAt(q.c, q.r); if (o && o.alive && !o.onVP && !o.offBoard) return { titan: o, cell: q }; return null; },
     ohShaded(t) {
       if (!t || t.offBoard) return true;
       if (this.trait('Cannot Hide From the Sun') && t.pt) return false;
@@ -47,11 +47,14 @@ export function installOldHaunt(Game, { TitanDied, BattleOver }) {
       let dest;
       if (onIdx >= 0) dest = L[(onIdx + 1) % L.length];
       else { const c = this.primCenter(); const dist = a => { const cc = { x: a.c + 0.5, y: a.r + 0.5 }; return Math.abs(cc.x - c.x) + Math.abs(cc.y - c.y); }; const m = Math.min(...L.map(dist)); dest = L.find(a => dist(a) === m); }
+      await this.ohPlaceAt(dest, true);
+    },
+    async ohPlaceAt(dest, circle) {
       for (const p of this.primCells(dest)) { const ter = this.board.terrainAt(p.c, p.r); if (ter && !ter.indestructible) { this.board.removeTerrainId(ter.id); this.say(`${ter.type} 파괴 (Old Haunt 등장)`); } }
       this.prim.anchor = { ...dest }; for (const o of this.titans) if (o.alive && o.onVP) o.pos = { ...dest };
       for (const o of this.liveTitans()) if (!o.onVP && !o.offBoard && o.pos && this.primContains(o.pos)) { const d = this.nearestFree(o.pos, o); if (d) { o.pos = d; this.say(`${o.name}: Old Haunt 등장에 밀려 ${cellLabel(d)}로`); } }
-      this.faceMost(); this.say(`☀ Old Haunt가 Sun Circle ${cellLabel(dest)}에 나타남 (${this.prim.facing} 방향)`, 'ai'); this.notify();
-      if (this.trait('Spontaneous Supernova')) {
+      this.faceMost(); this.say(`☀ Old Haunt가 ${circle ? 'Sun Circle ' : '보드 중앙 '}${cellLabel(dest)}에 나타남 (${this.prim.facing} 방향)`, 'ai'); this.notify();
+      if (circle && this.trait('Spontaneous Supernova')) {
         const live = this.liveTitans().filter(t => !t.offBoard); const un = live.filter(t => !this.ohShaded(t)); const sh = live.filter(t => this.ohShaded(t));
         this.say(`Spontaneous Supernova: 그늘 밖 타이탄 ${un.map(t => t.name).join(', ') || '(없음)'} 소각`, 'bad');
         for (const t of un) await this.solo(() => this.kill(t, { instant: true, incinerate: true }));
@@ -152,6 +155,49 @@ export function installOldHaunt(Game, { TitanDied, BattleOver }) {
     async ohPrimRoundEnd(add) {
       if (this.trait('Unworthy Will Die')) add('Unworthy Will Die (트레이트): 가장 가까운 Irem Tower 파괴', async () => { const z = this.ohClosestTower(); if (!z) { this.say('Unworthy Will Die: 남은 Irem Tower 없음'); return; } this.board.removeTerrainId(z.id); this.say(`Unworthy Will Die: ${cellLabel(z.cell)}의 Irem Tower 파괴`, 'ai'); this.notify(); await this.ohFlushTowers(); });
       if (this.trait('Make the Sun Move and the Earth Stand Still')) add('Make the Sun Move… (트레이트): Sun Circle에 등장', () => this.ohAppearAtSunCircle());
+    },
+
+    // ---------- BP responses / criticals ----------
+    ohVPCreate() { const V = this.prim.vp; if (!V) return; if (V.created) { this.prim.tokens.at = (this.prim.tokens.at || 0) - 1; this.say(`VP가 이미 있음 — ${this.prim.name} −1 AT 토큰 (누적 ${this.prim.tokens.at})`, 'good'); } else { this.createVP(null); if (!V.created) { V.created = true; V.count = Math.max(1, V.count || 0); this.say(`Vantage Point 「${this.prim.def.vp.name}」 생성!`, 'good'); } } },
+    async ohAnotherBonus(t) {
+      const others = this.liveTitans().filter(x => x !== t && !x.offBoard); if (!others.length) { this.say('(다른 타이탄 없음)'); return; }
+      const o = await this.ask({ type: 'choice', titan: t, title: '다른 타이탄 1명: Speed만큼 이동 후 보너스 공격', options: [{ label: '안 함', value: null }, ...others.map(x => ({ label: `${x.name} (Speed ${this.speedOf(x)})`, value: x }))] });
+      if (!o) return; if (!o.onVP && !o.knockdown) await this.chooseMove(o, this.speedOf(o), '보너스 이동'); this.pendingFollowUp = o; this.say(`${o.name}: 보너스 공격 예약`, 'good');
+    },
+    async ohSentence(t, p, ctx = {}) {
+      const alive = !!(t && t.alive); let m;
+      p = p.replace(/^The Pitiless\b/, 'The Old Haunt');
+      if ((m = /^The Old Haunt moves (\d) spaces directly away from the Attacker/.exec(p))) { await this.oracleMoveAway(t && t.pos && !t.onVP ? t.pos : null, +m[1]); return true; }
+      if (/^The Old Haunt appears at the closest Sun Circle/.test(p)) { await this.ohAppearAtSunCircle(); return true; }
+      if (/^The Old Haunt appears at the center of the Board/.test(p)) { await this.ohPlaceAt(this.prim._ohCenter || this.prim.anchor, false); return true; }
+      if (/^Create the Vantage Point/.test(p)) { this.ohVPCreate(); return true; }
+      if ((m = /^The Old Haunt gains (\d) negative AT tokens?/.exec(p))) { this.prim.tokens.at = (this.prim.tokens.at || 0) - +m[1]; this.say(`${this.prim.name}: −${m[1]} AT 토큰 (누적 ${this.prim.tokens.at})`, 'good'); return true; }
+      if (/^Perform AI against the Attacker/.test(p)) { await this.doSentence(t, 'Draw and perform an AI card against the Attacker', ctx); return true; }
+      if ((m = /^Each Titan gains \+(\d) FATE\.?$/.exec(p))) { for (const x of this.liveTitans()) await this.solo(() => this.gainFate(x, +m[1], { nc: true })); this.say(`모든 타이탄 Fate +${m[1]}`, 'bad'); return true; }
+      if (/^You are incinerated\.?$/.test(p)) { if (alive) { this.say(`${t.name}: 소각`, 'bad'); await this.kill(t, { instant: true, incinerate: true }); } return true; }
+      if (/^Do not escalate/.test(p) || /^You cannot use Hope tokens/.test(p)) return true;
+      return false;
+    },
+    async ohCritical(t, A) {
+      const c = A.bp.critical || ''; let m;
+      const parts = (c.match(/[^.!]+[.!]?/g) || []).map(x => x.trim()).filter(Boolean);
+      // "Create the Vantage Point! If the VP is already created, ..." is one instruction
+      for (let i = 0; i < parts.length; i++) { const x = parts[i];
+        if (/^Create the Vantage Point/.test(x)) { this.ohVPCreate(); if (/^If the VP is already created/.test(parts[i + 1] || '')) i++; continue; }
+        if (/^Permanently gain \+1 Courage and \+1 Will/.test(x)) { const sk = t.argonaut && t.argonaut.skills; if (sk) { sk.Courage = (sk.Courage || 0) + 1; sk.Will = (sk.Will || 0) + 1; } this.say(`${t.name}: Courage +1, Will +1 (영구)`, 'good'); continue; }
+        if (/^You may Motivate (\d) each Titan, then Reposition (\d)/.test(x)) { m = /Motivate (\d) each Titan, then Reposition (\d)/.exec(x);
+          for (const o of this.liveTitans().filter(o => o !== t && !o.offBoard && !o.onVP && !o.knockdown)) await this.solo(() => this.chooseMove(o, +m[1], `Motivate ${m[1]}`));
+          if (t.alive && !t.onVP && !t.knockdown) await this.solo(() => this.chooseMove(t, +m[2], `Reposition ${m[2]}`)); continue; }
+        if (/^(?:You may )?perform a Bonus Attack/i.test(x)) { this.pendingFollowUp = t; continue; }
+        if (/^Another Titan may immediately move up to their Speed and perform a Bonus Attack/.test(x)) { await this.ohAnotherBonus(t); continue; }
+        if ((m = /^Knockback (\d+)/.exec(x))) { if (t.alive && this.isAdj(t)) await this.solo(() => this.knockback(t, +m[1])); continue; }
+        if (/^Gain the .+ card \(Secret deck/.test(x)) { this.say(`(${x} — 캠페인 보상, 전투 효과 없음)`, 'sys'); continue; }
+        if (/^\d+\), ?\.?$|^card \d+\)/.test(x)) continue;
+        if (/^The Old Haunt dies/.test(x)) { this.say(`${A.bp.name} — ${this.prim.name} 즉사!`, 'good'); A.slay = true; continue; }
+        if (await this.ohSentence(t, x, {})) continue;
+        this.say(`(Critical 효과 수동 적용 필요: ${x})`, 'sys');
+      }
+      return true;
     },
   });
 }

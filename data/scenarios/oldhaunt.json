@@ -6,7 +6,7 @@
   "rows": 14
  },
  "_notes": [
-  "Diagram read from Setup 2/3 (Secret 221-222): 16 Irem Towers visible (20 listed), 2 Irem Cities, 4 Sun Circles (2x2: K3, K17, C17, C3), Titan starts = fire tokens."
+  "Diagram read from Setup 2/3 (Secret 221-222): 20 Irem Towers (16 + one under each Titan start), 2 Irem Cities, 4 Sun Circles (2x2: K3, K17, C17, C3), Titan starts = fire tokens."
  ],
  "setup": [
   "Standard Preparations (skip the Primordial step).",
@@ -44,6 +44,10 @@
    ],
    "terrain": {
     "iremTower": [
+     "K9",
+     "K12",
+     "D9",
+     "D12",
      "M4",
      "J6",
      "H3",

@@ -117,12 +117,16 @@ const mk = (pid, gears, lv = 3) => { const g = new Game(data, { seed: 4 }); g.as
   B.conditions.push('Bleeding'); B.bleeding = 2; const before = g.freeActions(A).some(o => /Stop Bleeding Other/.test(o.label)); A.knockdown = 'kd'; const after = g.freeActions(A).some(o => /Stop Bleeding/.test(o.label));
   ok(before && !after, 'Knockdown: Stop Bleeding Other blocked'); }
 { const g = mk('hekaton', [['Red Polis'], ['Red Polis'], ['The End'], ['Umbral Virus']]); const [A] = g.titans; const asked = [];
-  g.ask = async q => { asked.push(q.title || ''); if (/보너스 공격: (Wound|Fail) Response 무시/.test(q.title || '')) return true; return q.options ? q.options[0].value : null; };
+  g.ask = async q => { asked.push(q.title || ''); if (/보너스 공격: 공격 Response/.test(q.title || '')) return true; return q.options ? q.options[0].value : null; };
   A.pos = (() => { const pc = g.primCells(); const p0 = pc[0]; return [[1,0],[-1,0],[0,1],[0,-1]].map(([dx,dy]) => ({ c: p0.c + dx, r: p0.r + dy })).find(q => g.board.inBounds(q.c, q.r) && !g.primContains(q) && !g.titanAt(q.c, q.r)); })(); g.board.terrain.clear();
-  const w = A.gear.find(x => x.card.name === 'Red Polis'); w.exhausted = true; for (const c of g.bp.cards) { c.at = 99; c.responses = { ...c.responses, FAIL: c.responses.FAIL || 'Pushback 2.' }; }
+  const w = A.gear.find(x => x.card.name === 'Red Polis'); w.exhausted = true; for (const c of g.bp.cards) { c.at = 99; c.responses = { ...c.responses, FAIL: 'Pushback 2. Perform Signature against the Attacker.' }; }
   try { await g.titanAttack(A, { bonus: true }); } catch (e) {}
   ok(!w.exhausted || g.log.some(l => /보너스 공격 — 「Red Polis」 준비/.test(l.msg)), 'Bonus Attack: exhausted weapon may be declared (unexhausted)');
-  ok(asked.some(x => /보너스 공격: (Wound|Fail) Response 무시/.test(x)) && g.log.some(l => /보너스 공격 — Attack Response 무시/.test(l.msg)), 'Bonus Attack: may ignore Attack Responses'); }
+  ok(asked.some(x => /보너스 공격: 공격 Response/.test(x)) && g.log.some(l => /보너스 공격 — 공격 Response 무시 \(나머지 「Pushback 2\.」는 적용\)/.test(l.msg)), 'Bonus Attack: ignores only the attack part (Signature) of the Response'); }
+{ const g = mk('hekaton', [['Red Polis'], ['Red Polis'], ['The End'], ['Umbral Virus']]); const [A] = g.titans; const asked = []; g.ask = async q => { asked.push(q.title || ''); return q.options ? q.options[0].value : null; };
+  A.pos = (() => { const pc = g.primCells(); const p0 = pc[0]; return [[1,0],[-1,0],[0,1],[0,-1]].map(([dx,dy]) => ({ c: p0.c + dx, r: p0.r + dy })).find(q => g.board.inBounds(q.c, q.r) && !g.primContains(q) && !g.titanAt(q.c, q.r)); })(); g.board.terrain.clear();
+  for (const c of g.bp.cards) { c.at = 99; c.responses = { FAIL: 'Pushback 2.' }; } try { await g.titanAttack(A, { bonus: true }); } catch (e) {}
+  ok(!asked.some(x => /보너스 공격: 공격 Response/.test(x)), 'Bonus Attack: non-attack Response cannot be ignored'); }
 { const g = mk('pursuer', [['Red Polis'], ['Red Polis'], ['The End'], ['Umbral Virus']], 3); g.prim.traits['Darkness Comes With Me'] = true; g.prim.facing = 'E';
   const cells = g.primCells(); const minC = Math.min(...cells.map(x => x.c)); const rows = [...new Set(cells.map(x => x.r))]; const [A, B, C, D] = g.titans; g.board.terrain.clear();
   for (const x of g.titans) x.pos = { c: 20, r: 14 - x.id };

@@ -8,8 +8,10 @@
  "setupFaceMost": true,
  "_notes": [
   "Transcribed from sheet DU3248 (Lv I-IX), Setup cards (Secret 220-224), VP Eclipse Point DV2539, AI CV1793-CV1803 + DV2540-DV2549, Merciless Sun DV2569.",
-  "BP DECK IS A PLACEHOLDER (copied from Sun Descendant) — the Pitiless / Old Haunt BP cards were not provided.",
-  "Old Wounds: AI I/II = Pitiless cards + new cards, AI III = new cards. \"Pitiless\" text applies to the Old Haunt. BP \"do not escalate\" rules ignored.",
+  "BP: Pitiless CV1805-CV1812 + Old Haunt DV2550-DV2559. \"The Pitiless\" = the Old Haunt. AT icons (resource types) ignored. Godhand / Divine Lure / Luminous Beacon (Secret deck 11) are campaign rewards — no battle effect.",
+  "Do not escalate (BP II Pitiless): wounding it causes no Escalation; Storybook 0203 (wounded with an empty BP deck) is not available — the discard is reshuffled instead.",
+  "Eclipse Point VP is NOT created at setup — BP cards create it.",
+  "Old Wounds: AI I/II = Pitiless cards + new cards, AI III = new cards. \"Pitiless\" text applies to the Old Haunt. ",
   "Embrace Zone = Manhattan distance <= 3 from the statue, Denial Zone = <= 6 (read from the card diagrams).",
   "Sun Attacks: shading as Sun Descendant (a tile/Titan on the light side of the space). VP (Eclipse Point) is always shaded unless Magnifying Glass.",
   "Pitiless Sun: a Titan on the VP is not treated as adjacent (VP is not a space) — interpretation."
@@ -547,6 +549,15 @@
     "⚡ MOVE & ATTACK",
     "Each hit deals 6 DANGER."
    ],
+   "oh": {
+    "mode": "move",
+    "win": true,
+    "after": [
+     "kd",
+     "kb15"
+    ],
+    "afterWin": true
+   },
    "after": "⚡ Knockdown. Knockback 15.",
    "displayKind": "ATTACK (Secret card 115)"
   },
@@ -752,8 +763,7 @@
    },
    "after": "Burn.",
    "displayKind": "LASER JUDGEMENT ROUTINE (Secret card 121)",
-   "noTarget": "Random Titan dies",
-   "routineAttack": true
+   "noTarget": "Random Titan dies"
   },
   {
    "code": "CV1802",
@@ -819,284 +829,243 @@
  ],
  "bp": [
   {
-   "code": "CS1755",
+   "code": "DV2550",
    "tier": 1,
-   "name": "Horsehead",
-   "at": 6,
-   "responses": {
-    "FAIL": "Rewind.",
-    "WOUND": "Create a VP. Perform Signature against the Attacker."
-   },
-   "critical": "Create a VP. You may perform a Bonus Attack!",
-   "qeye": true,
-   "placeholder": true
-  },
-  {
-   "code": "CS1756",
-   "tier": 1,
-   "name": "Mouth Feeler",
-   "at": 6,
-   "responses": {
-    "FAIL": "Death 3.",
-    "WOUND": "Gain the Muffled Condition card."
-   },
-   "critical": "Gain the Enigma of Transformation card (campaign).",
-   "qeye": true,
-   "placeholder": true
-  },
-  {
-   "code": "CS1757",
-   "tier": 1,
-   "name": "Stump Tentacle",
-   "at": 7,
-   "responses": {
-    "INSTINCT": "All Titans in Zone 1: Gain +1 DANGER.\n⚡ If adjacent, Time-clocked."
-   },
-   "critical": "Deal an additional Single Wound!",
-   "qeye": false,
-   "placeholder": true
-  },
-  {
-   "code": "CS1758",
-   "tier": 1,
-   "name": "Forewing",
+   "name": "Olympian Loincloth",
    "at": 8,
    "responses": {
-    "FAIL": "Gain FATE equal to the Primordial LVL. Time-clocked.",
-    "WOUND": "Rewind."
+    "FAIL": "Perform Signature against the Attacker.",
+    "WOUND": "The Old Haunt moves 6 spaces directly away from the Attacker."
    },
-   "critical": "Search the BP deck and choose 1 card to set aside. After Escalation, place the set aside card on top of the BP deck.",
-   "qeye": false,
-   "placeholder": true
+   "critical": "Permanently gain +1 Courage and +1 Will. You may Motivate 3 each Titan, then Reposition 3.",
+   "displayKind": "BODY PART (Secret card 236)"
   },
   {
-   "code": "CS1759",
+   "code": "CV1805",
    "tier": 1,
-   "name": "Skulljaw",
-   "at": 8,
-   "responses": {
-    "FAIL": "Gain +1 FATE and the Muffled Condition card.",
-    "WOUND": "Create a VP."
-   },
-   "critical": "Create a VP. Until the end of Battle, when attacked from VP I, Sun Descendant has -1 AT.",
-   "qeye": false,
-   "placeholder": true
-  },
-  {
-   "code": "CS1760",
-   "tier": 1,
-   "name": "Swordwing",
+   "name": "Graceful Hand",
    "at": 7,
    "responses": {
     "FAIL": "Perform Signature against the Attacker.",
-    "WOUND": "Create a VP."
-   },
-   "critical": "Create a VP. During Escalation, choose which BP II card to add to the deck (instead of drawing randomly).",
-   "qeye": false,
-   "placeholder": true
-  },
-  {
-   "code": "CS1761",
-   "tier": 2,
-   "name": "Aft Wing",
-   "at": 9,
-   "responses": {
-    "FAIL": "Gain +1 FATE. Rewind.",
-    "WOUND": "Knockback 7. Gain +2 DANGER."
-   },
-   "critical": "Gain the Icarus Lot card (campaign).",
-   "qeye": false,
-   "placeholder": true
-  },
-  {
-   "code": "CS1762",
-   "tier": 2,
-   "name": "Writhing Cephalomuscles",
-   "at": 9,
-   "responses": {
-    "FAIL": "All Titans in Zone 1: Gain +1 DANGER.\n⚡ If adjacent, Time-clocked.",
-    "WOUND": "Create a VP."
-   },
-   "critical": "Create a VP. Until the end of Battle, when attacked from VP II or VP III, Sun Descendant has -1 AT.",
-   "spearBreak": 1,
-   "notes": [
-    "If your Weapon has the Spear Trait, immediately place 1 Break token in the Kratos Pool."
-   ],
-   "qeye": false,
-   "placeholder": true
-  },
-  {
-   "code": "CS1763",
-   "tier": 2,
-   "name": "Feathery Carapace",
-   "at": 10,
-   "responses": {
-    "INSTINCT": "Perform Signature against the Attacker."
-   },
-   "critical": "Disable the Quantum Eye Trait!",
-   "combined": [
-    2,
-    3
-   ],
-   "notes": [
-    "When you attack from VP II or VP III, you may initiate a Combined Attack instead."
-   ],
-   "qeye": false,
-   "placeholder": true
-  },
-  {
-   "code": "CS1764",
-   "tier": 2,
-   "name": "Lens-Eyes",
-   "at": 8,
-   "responses": {
-    "FAIL": "Knockback 7.",
-    "WOUND": "Perform Signature against the Attacker."
-   },
-   "critical": "Until the end of Battle, Laser Attacks deal -2 DANGER (to a minimum of 1). You may reset your FATE. You may perform a Bonus Attack!",
-   "qeye": true,
-   "placeholder": true
-  },
-  {
-   "code": "CS1765",
-   "tier": 2,
-   "name": "Axlebones",
-   "at": 10,
-   "responses": {
-    "INSTINCT": "All Titans in Zone 2: Gain +1 DANGER.\n⚡ If adjacent, Time-clocked."
-   },
-   "critical": "Disable the Atemporal effect.",
-   "spearBreak": 2,
-   "combined": [
-    2,
-    3
-   ],
-   "notes": [
-    "If your Weapon has the Spear Trait, immediately place 2 Break tokens in the Kratos Pool.",
-    "When you attack from VP II or VP III, you may initiate a Combined Attack instead."
-   ],
-   "qeye": false,
-   "placeholder": true
-  },
-  {
-   "code": "CS1766",
-   "tier": 2,
-   "name": "Wrong-Angled Wing",
-   "at": 8,
-   "responses": {
-    "FAIL": "Gain +2 FATE. Gain the Sealed Condition card.",
-    "WOUND": "Create a VP. Rewind. Time-clocked."
-   },
-   "critical": "Create a VP. Disable the Time-clocked keyword.",
-   "qeye": true,
-   "placeholder": true
-  },
-  {
-   "code": "CS1767",
-   "tier": 3,
-   "name": "Germinating Helionaut",
-   "at": 17,
-   "responses": {
-    "INSTINCT": "Create a VP. Perform Signature against the Attacker."
-   },
-   "critical": "The Sun Descendant dies!",
-   "atemporal": true,
-   "qeye": true,
-   "placeholder": true
-  },
-  {
-   "code": "CS1768",
-   "tier": 3,
-   "name": "The Wheel",
-   "at": 18,
-   "responses": {
-    "FAIL": "Draw an Obol."
-   },
-   "critical": "Deal an additional Single Wound!",
-   "combined": [
-    3
-   ],
-   "pre": [
-    "You may voluntarily end this Attack before performing a Power Roll. If you do, clear the Kratos Pool."
-   ],
-   "notes": [
-    "When you attack from VP III, you may initiate a Combined Attack instead."
-   ],
-   "qeye": false,
-   "placeholder": true
-  },
-  {
-   "code": "CS1769",
-   "tier": 3,
-   "name": "Black Ice Shard",
-   "at": 17,
-   "responses": {
-    "FAIL": "Rewind all Titans.",
-    "WOUND": "Gain the Sealed Condition card. The Sun Descendant moves 6 spaces directly away from the Attacker (without turning)."
-   },
-   "critical": "Gain the Icarus's Fall card (campaign).",
-   "atemporal": true,
-   "qeye": false,
-   "placeholder": true
-  },
-  {
-   "code": "CS1770",
-   "tier": 3,
-   "name": "Simulated Sun",
-   "at": 17,
-   "responses": {
-    "FAIL": "Gain +3 FATE. Draw a Moiros card.",
-    "WOUND": "Create a VP."
-   },
-   "critical": "Create a VP. Disable the Sun Descendant's Laser Attacks. After the Battle, resolve the Ton Asterion Special Event.",
-   "atemporal": true,
-   "qeye": true,
-   "placeholder": true
-  },
-  {
-   "code": "CS1771",
-   "tier": 3,
-   "name": "Hidden Staircase",
-   "at": 18,
-   "responses": {
-    "INSTINCT": "All Titans in Zone 2: Gain +1 DANGER. If adjacent, Time-clocked."
+    "WOUND": "The Pitiless moves 6 spaces directly away from the Attacker."
    },
    "critical": "You may perform a Bonus Attack!",
-   "combined": [
-    2,
-    3
-   ],
-   "notes": [
-    "When you attack from VP II or VP III, you may initiate a Combined Attack instead."
-   ],
-   "qeye": false,
-   "placeholder": true
+   "displayKind": "BODY PART (Secret card 123)"
   },
   {
-   "code": "CS1772",
-   "tier": 3,
-   "name": "Sanctified Effigy",
-   "at": 18,
+   "code": "CV1806",
+   "tier": 1,
+   "name": "Balletic Leg",
+   "at": 7,
    "responses": {
     "FAIL": "Perform Signature against the Attacker.",
-    "WOUND": "Time-clocked."
+    "WOUND": "The Pitiless moves 6 spaces directly away from the Attacker."
    },
-   "critical": "Disable the Merciless Sun Trait.",
-   "combined": [
-    2,
-    3
-   ],
-   "notes": [
-    "When you attack from VP II or VP III, you may initiate a Combined Attack instead."
-   ],
-   "qeye": true,
-   "placeholder": true
+   "critical": "You may perform a Bonus Attack!",
+   "displayKind": "BODY PART (Secret card 124)"
+  },
+  {
+   "code": "CV1807",
+   "tier": 1,
+   "name": "Elegant Shoulder",
+   "at": 7,
+   "responses": {
+    "FAIL": "Perform Signature against the Attacker.",
+    "WOUND": "The Pitiless moves 6 spaces directly away from the Attacker."
+   },
+   "critical": "You may perform a Bonus Attack!",
+   "displayKind": "BODY PART (Secret card 125)"
+  },
+  {
+   "code": "CV1808",
+   "tier": 1,
+   "name": "Gorgeous Chest",
+   "at": 7,
+   "responses": {
+    "FAIL": "Perform Signature against the Attacker.",
+    "WOUND": "The Pitiless moves 6 spaces directly away from the Attacker."
+   },
+   "critical": "You may perform a Bonus Attack!",
+   "displayKind": "BODY PART (Secret card 126)"
+  },
+  {
+   "code": "DV2551",
+   "tier": 1,
+   "name": "Divine Presence",
+   "at": 8,
+   "responses": {
+    "FAIL": "Perform Signature against the Attacker.",
+    "WOUND": "The Old Haunt moves 6 spaces directly away from the Attacker."
+   },
+   "critical": "Create the Vantage Point! If the VP is already created, the Old Haunt gains 1 negative AT token.",
+   "displayKind": "BODY PART (Secret card 237)"
+  },
+  {
+   "code": "DV2553",
+   "tier": 2,
+   "name": "Artificial Halo",
+   "at": 11,
+   "responses": {
+    "FAIL": "Perform Signature against the Attacker.",
+    "WOUND": "Create the Vantage Point! If the VP is already created, the Old Haunt gains 1 negative AT token."
+   },
+   "critical": "Create the Vantage Point! If the VP is already created, the Old Haunt gains 1 negative AT token. You may perform a Bonus Attack!",
+   "displayKind": "BODY PART (Secret card 239)"
+  },
+  {
+   "code": "CV1811",
+   "tier": 2,
+   "name": "Magnificent Mane",
+   "at": 10,
+   "responses": {
+    "FAIL": "Perform Signature against the Attacker.",
+    "WOUND": "The Pitiless appears at the closest Sun Circle."
+   },
+   "critical": "Another Titan may immediately move up to their Speed and perform a Bonus Attack!",
+   "displayKind": "BODY PART (Secret card 129)",
+   "noEsc": true,
+   "pre": [
+    "Do not escalate. If this BP has been Wounded and there are no cards in the deck, see 0203."
+   ]
+  },
+  {
+   "code": "CV1810",
+   "tier": 2,
+   "name": "Handsome Face",
+   "at": 8,
+   "responses": {
+    "FAIL": "Perform Signature against the Attacker.",
+    "WOUND": "The Pitiless appears at the closest Sun Circle."
+   },
+   "critical": "Another Titan may immediately move up to their Speed and perform a Bonus Attack!",
+   "displayKind": "BODY PART (Secret card 128)",
+   "noEsc": true,
+   "pre": [
+    "Do not escalate. If this BP has been Wounded and there are no cards in the deck, see 0203."
+   ]
+  },
+  {
+   "code": "CV1809",
+   "tier": 2,
+   "name": "Delicate Stomach",
+   "at": 9,
+   "responses": {
+    "FAIL": "Perform Signature against the Attacker.",
+    "WOUND": "The Pitiless appears at the closest Sun Circle."
+   },
+   "critical": "Another Titan may immediately move up to their Speed and perform a Bonus Attack!",
+   "displayKind": "BODY PART (Secret card 127)",
+   "noEsc": true,
+   "pre": [
+    "Do not escalate. If this BP has been Wounded and there are no cards in the deck, see 0203."
+   ]
+  },
+  {
+   "code": "CV1812",
+   "tier": 2,
+   "name": "Heavenly Back",
+   "at": 11,
+   "responses": {
+    "FAIL": "Perform Signature against the Attacker.",
+    "WOUND": "The Pitiless appears at the closest Sun Circle."
+   },
+   "critical": "Another Titan may immediately move up to their Speed and perform a Bonus Attack!",
+   "displayKind": "BODY PART (Secret card 130)",
+   "noEsc": true,
+   "pre": [
+    "Do not escalate. If this BP has been Wounded and there are no cards in the deck, see 0203."
+   ]
+  },
+  {
+   "code": "DV2552",
+   "tier": 2,
+   "name": "Fragile Fingers",
+   "at": 10,
+   "responses": {
+    "FAIL": "Perform Signature against the Attacker.",
+    "WOUND": "The Old Haunt appears at the center of the Board."
+   },
+   "critical": "Knockback 10. Gain the Godhand card (Secret deck 11, card 203).",
+   "displayKind": "BODY PART (Secret card 238)"
+  },
+  {
+   "code": "DV2558",
+   "tier": 3,
+   "name": "Divine Taint",
+   "at": 20,
+   "responses": {
+    "FAIL": "Gain 5 Ambrosia tokens.",
+    "WOUND": "Gain 3 Ambrosia tokens."
+   },
+   "critical": "Gain the Divine Lure card (Secret deck 11, card 205).",
+   "displayKind": "BODY PART (Secret card 244)"
+  },
+  {
+   "code": "DV2557",
+   "tier": 3,
+   "name": "Crescent Scar",
+   "at": 19,
+   "responses": {
+    "FAIL": "Perform AI against the Attacker.",
+    "WOUND": "The Old Haunt gains 1 negative AT token."
+   },
+   "critical": "The Old Haunt dies!",
+   "displayKind": "BODY PART (Secret card 243)"
+  },
+  {
+   "code": "DV2556",
+   "tier": 3,
+   "name": "Luminous Heart",
+   "at": 19,
+   "responses": {
+    "FAIL": "Draw an Obol.",
+    "WOUND": "The Old Haunt moves 6 spaces directly away from the Attacker."
+   },
+   "critical": "Gain the Luminous Beacon card (Secret deck 11, card 204).",
+   "displayKind": "BODY PART (Secret card 242)"
+  },
+  {
+   "code": "DV2555",
+   "tier": 3,
+   "name": "Searing Radiance",
+   "at": 20,
+   "responses": {
+    "FAIL": "You are incinerated.",
+    "WOUND": "Create the Vantage Point! If the VP is already created, the Old Haunt gains 1 negative AT token."
+   },
+   "critical": "You may perform a Bonus Attack!",
+   "displayKind": "BODY PART (Secret card 241)"
+  },
+  {
+   "code": "DV2554",
+   "tier": 3,
+   "name": "Falsehood",
+   "at": 21,
+   "responses": {
+    "INSTINCT": "Create the Vantage Point."
+   },
+   "critical": "The Old Haunt dies!",
+   "displayKind": "BODY PART (Secret card 240)"
+  },
+  {
+   "code": "DV2559",
+   "tier": 3,
+   "name": "Faith Devourer",
+   "at": 20,
+   "responses": {
+    "INSTINCT": "Each Titan gains +3 FATE."
+   },
+   "critical": "You may perform a Bonus Attack!",
+   "displayKind": "BODY PART (Secret card 245)",
+   "pre": [
+    "You cannot use Hope tokens."
+   ]
   }
  ],
  "vp": {
   "name": "Eclipse Point",
   "slots": 1,
-  "start": true,
+  "start": false,
   "text": "VP is always shaded. Climb: Fury (10+). Falling Down: After you perform an Attack, or at the end of the Primordial Round, place your Titan on any empty space on the Board. VP effects: When on the VP, you gain +1 Power. You may perform Combined Attacks.",
   "byLevel": {
    "1": {
