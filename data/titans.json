@@ -1663,7 +1663,7 @@
    "ambrosiaLimit": 2,
    "abilities": {
     "Cyclopean Might": "You can use [3-hand] Weapons as if they were [2-hand].",
-    "Silver Strain": "Start of Battle: Gain 1 Oxygen token. (Oxygen 규칙은 Cycle V 전투에서만 — 토큰만 기록)",
+    "Silver Strain": "Start of Battle: Gain 1 Oxygen token. (모든 전투에서 Oxygen 1개로 시작 — Finish Him 등 비용으로 사용 가능. 턴마다 뒤집기·뒤집지 못해 사망은 Cycle V 프라이모디얼 전투에서만)",
     "Aether Lamp": "You have Light X, where X is the number of Aether tokens you have. (Light는 Cycle V 전투에서만 의미)",
     "Electromagnetic Shield": "Each Laser Attack and Microwave Attack hit deals 1 Danger less (to a minimum of 1) to you and adjacent Titans."
    },
@@ -1953,7 +1953,7 @@
    "abilities": {
     "Deny": "RAGE 8+: Deny. (Vanish/Lightbend/Flicker는 Cycle V 프라이모디얼 전용 — 효과 없음)",
     "Nimble Hands": "You can use [1-hand x3] Weapons as if they were [2-hand].",
-    "Silver Strain": "Start of Battle: Gain 1 Oxygen token. (Oxygen 규칙은 Cycle V 전투에서만 — 토큰만 기록)",
+    "Silver Strain": "Start of Battle: Gain 1 Oxygen token. (모든 전투에서 Oxygen 1개로 시작 — Finish Him 등 비용으로 사용 가능. 턴마다 뒤집기·뒤집지 못해 사망은 Cycle V 프라이모디얼 전투에서만)",
     "Abyss-Tainted": "Start of your turn: Gain 1 Ambrosia token.",
     "To Dark We Will at Last Return": "Each time you gain an Ambrosia token (each), place 1 Generic token on your Titan Sheet. You gain the following stacking benefits depending on the number of Generic tokens here: 1: +1 Precision. 2: Stalwart. 3: Tireless. 4: Rocksteady."
    },
