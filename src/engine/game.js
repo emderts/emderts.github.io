@@ -1433,7 +1433,7 @@ export class Game {
       if (this.isAdj(t)) await this.spiral(t); if (!t.alive) throw new TitanDied(t);
       if (path.length) await this.darkness(); await this.cackle(); if (!t.alive) throw new TitanDied(t);
     }
-    if (!this.isJudge(card) && card.kind !== 'SPECIAL ATTACK' && (rng ? this.distTo(t) > rng : !this.isAdj(t))) { this.say('타겟이 사거리 밖 — 공격 생략'); this._oorCount++; await this.criticalMassToken('OoR'); }
+    if (!this.isJudge(card) && card.kind !== 'SPECIAL ATTACK' && (rng ? this.distTo(t) > rng : !this.isAdj(t))) { this.say('타겟이 사거리 밖 — 공격 생략'); t._atkAdj0 = true; this._oorCount++; await this.criticalMassToken('OoR'); }
     else { if (!t.onVP && !t.stair) this.facePrim(t.pos); let hh = 0; try { hh = await this.primAttackOn(t, card); } catch (e) { if (!(e instanceof TitanDied) || (t && t.alive)) throw e; this.say('(Mercy Rule: 대상 사망 — 대상에 대한 남은 효과 취소, 다른 효과는 계속)'); } this.currentAI.lastHits = hh || 0; }
     await this.afterAttack(card, t);
     if (card.afterFinal) await this.afterAttack({ ...card, after: card.afterFinal }, t);

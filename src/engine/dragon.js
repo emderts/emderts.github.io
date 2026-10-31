@@ -41,7 +41,7 @@ export function installDragon(Game, { TitanDied, BattleOver }) {
       const d = { N: B.rows - (a.r + s - 1), S: a.r - 1, E: B.cols - (a.c + s - 1), W: a.c - 1 };
       let cand = [...DIR_LIST];
       if (who && who.alive && who.pos && !who.onVP && !this.dpTrait('Blacker Than The Night')) { const toward = dirTo({ c: a.c + (s - 1) / 2, r: a.r + (s - 1) / 2 }, who.pos); cand = cand.filter(x => x !== toward); }
-      const m = Math.min(...cand.map(x => d[x])); const ties = cand.filter(x => d[x] === m); const dir = ties.length === 1 ? ties[0] : this.rng.pick(ties);
+      const m = Math.min(...cand.map(x => d[x])); const ties = cand.filter(x => d[x] === m); const dir = ties.length === 1 ? ties[0] : (await this.ask({ type: 'choice', titan: who && who.alive ? who : this.liveTitans()[0], title: `Vanish ${n}: 가장 가까운 보드 끝이 동률 — 방향 선택`, options: ties.map(x => ({ label: `${x} (${d[x]}칸)`, value: x })) }) || ties[0]);
       const f0 = this.prim.facing; this.say(`Vanish ${n}: 가장 가까운 보드 끝(${dir}) 쪽으로${who ? ` (${who.name} 쪽 보드 끝 제외)` : ''}`, 'ai');
       let k = 0;
       for (let i = 0; i < n; i++) {
