@@ -25,4 +25,12 @@ const bot = async q => { if (q.type === 'multi') return []; const o = q.options 
 { const g = mkP('dragonofphobos', [['Pearlstalk Mace', 'Siren Shield'], [], [], []]); await g.startOfBattle(); const A = g.titans[0]; const w = A.gear.find(x => x.card.name === 'Pearlstalk Mace'); const a = g.prim.anchor; A.pos = { c: a.c - 1, r: a.r - 1 }; ok(g.inWeaponRange(A, w), 'Liquid Edge: diagonal adjacency in range'); }
 { const g = mkP('meduketos', [['Fire-Resistant Suit'], [], [], []]); await g.startOfBattle(); const A = g.titans[0]; ok(g.gearKWSum(A, 'Microwave Resistance') === 2, 'Microwave Resistance 2 from gear'); }
 { const g = mkP('urfleece', [['Chain Kusarigama', 'Bladedance Armor'], [], [], []]); await g.startOfBattle(); const A = g.titans[0]; ok(g.rageCap(A) === 9 && (A.pain = 2, g.rageCap(A) === 9), 'Pain Resilience from gear (' + g.rageCap(A) + ')'); }
+// starred weapon stats / gear fixes
+{ const g = mkP('urfleece', [['Eternal Vow'], ['Chain Kusarigama'], ['Deadalive Spear'], ['Veilwrappings']]); const [A, B, C, D] = g.titans; A.despair = 2; B.pain = 5;
+  ok(g.xCard(A, A.gear[0].card).power.length === 3, 'Eternal Vow: X = 1 + Despair red dice'); ok(JSON.stringify(g.xCard(B, B.gear[0].card).bonusPower) === '["r","r"]', 'Chain Kusarigama: +half Pain red dice');
+  ok(g.xCard(C, C.gear[0].card).bonusRaw === g.obolBase.length + g.obolExtra.length, 'Deadalive Spear: +X Power = Obol deck size');
+  const s0 = g.speedOf(D); D.hidden = true; ok(g.speedOf(D) === s0 + 2, 'Veilwrappings: +2 Speed when Hidden'); }
+{ const G = n => data.gear.cards.find(c => c.name === n && c.cycle === 5); ok(G('Abyss Wetsuit').evasion === 1 && !/Speed/.test(G('Abyss Wetsuit').text), 'Abyss Wetsuit: +1 Evasion'); ok(G('Coral Armor').evasionReroll === 2 && !G('Coral Armor').evasion, 'Coral Armor: Evasion Re-roll'); ok(G('Needleknives').pain && !G('Needleknives').amb, 'Needleknives: Pain set'); ok(G('Lunar Blade').prec === 2 && G('Penitent Whip').prec === 2, 'Lunar Blade / Penitent Whip +2'); }
+{ const g = mkP('urfleece', [['Will Anthropos'], ['Aether Extinguisher'], [], []]); await g.startOfBattle(); const [A, B, C] = g.titans; ok(A.conditions.includes('Bravery'), 'Will Anthropos: Bravery at start of Battle');
+  g.titans.forEach((t, i) => t.pos = { c: 2 + i * 4, r: 1 }); C.pos = { c: B.pos.c + 1, r: 1 }; const b0 = C.conditions.includes('Bravery'); await g.burn(C); ok(has(g, /Burn 무시/) && C.conditions.includes('Bravery') && !b0, 'Aether Extinguisher: adjacent Titan Burn ignored → Bravery'); }
 console.log(fails ? `${fails} FAIL` : 'ALL PASS');

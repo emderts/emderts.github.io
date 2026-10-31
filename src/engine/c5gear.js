@@ -114,4 +114,17 @@ export function installC5Gear(Game, { TitanDied, BattleOver }) {
     if (t && t.alive && t.pos && !t.onVP && !t.knockdown && !t.offBoard) for (const a of this.c5Abil(t, 'Terrain Vault\\.')) { if (!DIR_LIST.some(d => this.board.terrainAt(t.pos.c + DIRS[d][0], t.pos.r + DIRS[d][1]))) break; out.push({ label: `${a.g.card.name}: Terrain Vault${a.cost ? ` [${this.costLbl(a.cost)}]` : ''}`, noFate: true, value: () => this.c5TerrainVault(t, a) }); break; }
     return out;
   });
+  // ---------- Will Anthropos: Bravery at the start of the Battle and on each You Live! Obol ----------
+  const WA = /At the start of the Battle and each time you draw a You Live! Obol, gain the Bravery Condition card/;
+  wrap('startOfBattle', async function (o, ...a) { const r = await o.call(this, ...a); for (const t of this.liveTitans()) if (t.gear.some(g => !g.discarded && WA.test(this.gearText(g, t)))) { this.say(`${t.name}: Will Anthropos — 전투 시작, Bravery`, 'good'); await this.solo(() => this.addCondition(t, 'Bravery')); } return r; });
+  wrap('obolDraw', async function (o, t, ...r) { const res = await o.call(this, t, ...r); if (t && t.alive && t._obolSurvived && t.gear.some(g => !g.discarded && WA.test(this.gearText(g, t)))) { this.say(`${t.name}: Will Anthropos — You Live!, Bravery`, 'good'); await this.addCondition(t, 'Bravery'); } return res; });
+  // ---------- Aether Extinguisher: ignore Burn on you or an adjacent Titan ----------
+  wrap('burn', async function (o, t, ...r) {
+    if (t && t.alive && !this._extAsk) {
+      for (const h of this.liveTitans()) { if (h !== t && !(h.pos && t.pos && !h.onVP && !t.onVP && this.tDist(h, t) === 1)) continue; const g = h.gear.find(x => !x.discarded && !x.exhausted && /Ψ⟳ When you, or an adjacent Titan, are about to suffer Burn, ignore it/.test(this.gearText(x, h))); if (!g || this.fr(h) < 1) continue;
+        this._extAsk = true; let ok = false; try { ok = await yn(this, h, `${g.card.name}: ${t.name}의 Burn을 무시? (Fate+1, 소진${h !== t ? ` — ${t.name} Bravery 획득` : ''})`); } finally { this._extAsk = false; }
+        if (!ok) continue; await this.payCost(h, 'Ψ⟳', g); this.say(`${g.card.name}: ${t.name} Burn 무시`, 'good'); if (h !== t) await this.addCondition(t, 'Bravery'); return; }
+    }
+    return o.call(this, t, ...r);
+  });
 }

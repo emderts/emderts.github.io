@@ -1426,7 +1426,7 @@
    ],
    "abilities": {
     "Father of It All": "You cannot die from Fear, Dread, Terror, or Holy Terror Condition cards or Despair tokens.",
-    "Childeater": "When you deal a Wound, lose -1 Trespass and lose -1 [✕] to ignore Responses and perform a Bonus Attack. If you Fail to wound, you die."
+    "Childeater": "When you deal a Wound, lose -1 Trespass and lose -1 Crew (campaign) to ignore Responses and perform a Bonus Attack. If you Fail to wound, you die."
    },
    "exalted": true
   }

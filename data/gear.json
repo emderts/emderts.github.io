@@ -10892,7 +10892,7 @@
    ],
    "name": "Abyssaxe",
    "slot": "hand2",
-   "text": "Deadly. Black 2. Stuck. Commit ([Pain]).",
+   "text": "Deadly. Black 2. Stuck. Commit ([Amb]).",
    "traits": [
     "Ambrosia",
     "Liquid",
@@ -10963,7 +10963,7 @@
    ],
    "name": "Abyss Wetsuit",
    "slot": "armor",
-   "text": "+1 Speed. Tumble. [R]Ψ⟳ Reflex. Ψ⟳ Terrain Vault.",
+   "text": "Tumble. [R]Ψ⟳ Reflex. Ψ⟳ Terrain Vault.",
    "traits": [
     "Argotech",
     "Skin",
@@ -10973,7 +10973,8 @@
    "cycle": 5,
    "danger": {
     "6+": "[R]ΨX Superior Reflex."
-   }
+   },
+   "evasion": 1
   },
   {
    "codes": [
@@ -10992,7 +10993,7 @@
    "tech": "Babelian Support",
    "cycle": 5,
    "danger": {
-    "7+": "[Aether]X Second Chance."
+    "7+": "[Oxygen]X Second Chance."
    }
   },
   {
@@ -11111,7 +11112,7 @@
    ],
    "name": "Lunaticape",
    "slot": "armor",
-   "text": "+1 Speed. Tumble.",
+   "text": "Tumble.",
    "traits": [
     "Armor",
     "Ambrosia",
@@ -11133,7 +11134,8 @@
    },
    "danger": {
     "5+": "[R]Ψ⟳ Pursuit 3."
-   }
+   },
+   "evasion": 1
   },
   {
    "codes": [
@@ -11286,7 +11288,7 @@
    "tech": "Babelian Weapons",
    "cycle": 5,
    "atk": 3,
-   "prec": 0,
+   "prec": 2,
    "power": [
     "b"
    ],
@@ -11296,7 +11298,8 @@
    },
    "aether": {
     "2+": "Light 1."
-   }
+   },
+   "precX": "noLight4"
   },
   {
    "codes": [
@@ -11418,10 +11421,10 @@
    "bonusPower": [
     "w"
    ],
-   "bonusRaw": 1,
    "amb": {
     "2+": ""
-   }
+   },
+   "bonusRawX": "obol"
   },
   {
    "codes": [
@@ -11986,14 +11989,15 @@
    "bonusRaw": 1,
    "despair": {
     "3+": "One [white die] becomes [grey die]."
-   }
+   },
+   "precX": "despairAll"
   },
   {
    "codes": [
     "EJ2931"
    ],
    "name": "Squirming Knives",
-   "slot": "hand3",
+   "slot": "hand1",
    "text": "Spiral 6. Ψ Liquid Edge. Each hit: Opening 1 and Reposition 1. Crit Miss: Gain 1 Despair token.",
    "traits": [
     "Knife",
@@ -12013,7 +12017,7 @@
     "2+": "-1 Bonus Power."
    },
    "danger": {
-    "6+": "[Splatter] Heartseeker."
+    "6+": "[Oxygen] Heartseeker."
    }
   },
   {
@@ -12107,7 +12111,7 @@
    ],
    "name": "Veristus",
    "slot": "hand2",
-   "text": "Daze. Closing 2. Pushback 3. Commit. Each 2 Misses: Discard 1 Aether token. Each hit: Break 1. If you have at least 1 Aether token, gain +1 Power. *X is equal to [Aether token].",
+   "text": "Daze. Closing 2. Pushback 3. Commit. Each 2 Misses: Discard 1 Aether token. Each hit: Break 1. If you have at least 1 Aether token, gain +1 Power. *X is equal to [Paranoia] (campaign).",
    "traits": [
     "Cestus",
     "Metal",
@@ -12122,7 +12126,8 @@
    ],
    "aether": {
     "2+": "Ψ⟳ BP Suppress."
-   }
+   },
+   "precX": "campaign0"
   },
   {
    "codes": [
@@ -12218,7 +12223,8 @@
    ],
    "fate": {
     "5+": "Deny."
-   }
+   },
+   "precX": "fate"
   },
   {
    "codes": [
@@ -12236,14 +12242,15 @@
    "tech": "Followers of Areté Gear",
    "cycle": 5,
    "atk": 3,
-   "prec": 0,
+   "prec": 2,
    "power": [
     "b"
    ],
    "bonusRaw": 1,
    "pain": {
     "4+": "Spotlight."
-   }
+   },
+   "precX": "pain2"
   },
   {
    "codes": [
@@ -12481,7 +12488,7 @@
    ],
    "tech": "Dragon of Phobos Autopsy",
    "cycle": 5,
-   "evasion": 2
+   "evasionReroll": 2
   },
   {
    "codes": [
@@ -12489,7 +12496,7 @@
    ],
    "name": "Black Vent Camouflage",
    "slot": "support",
-   "text": "Start of Battle: Move up to 5 spaces and Hide. Ψ[Inkblot] Place an Inkblot Terrain tile on your space. Ψ⟳ Hide. *+1 Evasion on an Inkblot or Ambrosia Cloud Terrain tile.",
+   "text": "Start of Battle: Move up to 5 spaces and Hide. Ψ[Oxygen] Place an Inkblot Terrain tile on your space. Ψ⟳ Hide. *+1 Evasion on an Inkblot or Ambrosia Cloud Terrain tile.",
    "traits": [
     "Camo",
     "Stone",
@@ -12572,10 +12579,10 @@
     "r"
    ],
    "bonusRaw": 2,
-   "evasion": 2,
    "danger": {
     "7+": "Ψ[Aether]X Place a 1x1 Lightwall Terrain tile on an adjacent space."
-   }
+   },
+   "evasionReroll": 2
   },
   {
    "codes": [
@@ -12603,7 +12610,7 @@
     "b"
    ],
    "despair": {
-    "2+": "Ψ[Aether] Your Weapon gains +1 [attack diamond]. For the purpose of gathering your Power Pool, ignore any hits that exceed your Weapon's regular [attack diamond] value."
+    "2+": "Ψ[Aether] Your Weapon gains +1 Attack die. For the purpose of gathering your Power Pool, ignore any hits that exceed your Weapon's regular Attack dice value."
    }
   },
   {
@@ -12689,11 +12696,11 @@
     "r"
    ],
    "bonusRaw": 1,
-   "amb": {
-    "3+": "ΨΨ Tilt."
-   },
    "rage": {
     "5+": "[Pain][Pain] Assist 2."
+   },
+   "pain": {
+    "3+": "ΨΨ Tilt."
    }
   },
   {
@@ -12876,7 +12883,7 @@
    ],
    "name": "Refractor Shield",
    "slot": "hand1",
-   "text": "Microwave Resistance 1. Ψ⟳ Block 1. Gain Light X equal to half (rounding up) of Light X of an adjacent light source. [1 starburst resistance — 의미 확인 필요]",
+   "text": "Microwave Resistance 1. Laser Resistance 1. Ψ⟳ Block 1. Gain Light X equal to half (rounding up) of Light X of an adjacent light source.",
    "traits": [
     "Shield",
     "Glass",
@@ -12946,7 +12953,7 @@
     "m"
    ],
    "bonusRaw": 1,
-   "amb": {
+   "pain": {
     "4+": "[Oxygen] Roll for Awakening, adding +2 to the roll. If you don't Awaken, you die (once per Battle)."
    }
   },
@@ -13006,7 +13013,7 @@
    ],
    "bonusRaw": 2,
    "fate": {
-    "6+": "Gain +1ʎ against [snowflake/flower icon]. X to discard all Ambrosia tokens from any Titan."
+    "6+": "Gain +1 Power against the Primordial's Light-resistant parts. X to discard all Ambrosia tokens from any Titan."
    }
   },
   {
@@ -13161,7 +13168,7 @@
    ],
    "name": "Hunter Killer",
    "slot": "hand2",
-   "text": "Unique. +1 [Movement]. Ranged 3-6. Unwieldy. Cumbersome. Pull 3. Black 3.",
+   "text": "Unique. +1 Speed. Ranged 3-6. Unwieldy. Cumbersome. Pull 3. Black 3.",
    "traits": [
     "Harpoon",
     "Orichalcum",
@@ -13226,7 +13233,7 @@
    ],
    "name": "Headdress of the Deep",
    "slot": "support",
-   "text": "Unique. Husk: You cannot Awaken. You cannot die from Despair. [Amb][Amb] Abysswalk. Crit Miss: AT.",
+   "text": "Unique. Husk: You cannot Awaken. You cannot die from Despair. [Amb][Amb] Abysswalk. Crit Miss: [campaign effect].",
    "traits": [
     "Primordial",
     "Ambrosia",
@@ -13259,6 +13266,7 @@
    "atk": 1,
    "prec": 6,
    "power": [
+    "b",
     "b",
     "b",
     "b"
@@ -13316,7 +13324,7 @@
    ],
    "name": "Synergic Armor",
    "slot": "armor",
-   "text": "+1 Speed. Pain Resilience 1. Unique. Light 1. Ψ[Pain] Dodge. Crit Evade Fail: Gain 1 Pain token. Disable the Toying Trait.",
+   "text": "Pain Resilience 1. Unique. Light 1. Ψ[Pain] Dodge. Crit Evade Fail: Gain 1 Pain token. Disable the Toying Trait.",
    "traits": [
     "Argotech",
     "Atlantean",
@@ -13329,7 +13337,8 @@
    "loot": true,
    "rage": {
     "5-": "ΨX Superior Chance."
-   }
+   },
+   "evasion": 1
   },
   {
    "codes": [
@@ -13356,7 +13365,7 @@
     "r",
     "m"
    ],
-   "amb": {
+   "pain": {
     "3+": "[Oxygen] Roll for Awakening, adding +2 to the roll. If you don't Awaken, you die (once per Battle)."
    }
   },
@@ -13394,7 +13403,7 @@
    ],
    "name": "Veilwrappings",
    "slot": "armor",
-   "text": "Unique. Bypass. Ignore Skitter. Ψ⟳ Hide. When Hidden, gain +2 [Movement].",
+   "text": "Unique. Bypass. Ignore Skitter. Ψ⟳ Hide. When Hidden, gain +2 Speed.",
    "traits": [
     "Primordial",
     "Flesh",
@@ -13502,7 +13511,8 @@
    "bonusRaw": 1,
    "danger": {
     "6+": "[R]Ψ⟳ Vault."
-   }
+   },
+   "precX": "despair2"
   },
   {
    "codes": [
@@ -13562,7 +13572,8 @@
    "despair": {
     "3+": "Ψ[Aether] BP Suppress."
    },
-   "atkNote": "X*"
+   "atkNote": "X*",
+   "powerX": "despair1"
   },
   {
    "codes": [
