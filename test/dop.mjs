@@ -28,6 +28,9 @@ const O = data.primordials.dragonofphobos;
 { const g = mk(1); await g.startOfBattle(); await g.dpInkblot(); ok([...g.board.terrain.values()].some(z => z.type === 'Inkblot'), 'Inkblot places cloud'); }
 { const g = mk(2); await g.startOfBattle(); const c = g.titans.map(t => t.conditions.join()); ok(c.filter(x => /Fear/.test(x)).length >= 1 && c.filter(x => /Terror/.test(x)).length >= 1, 'Fear is Constant'); }
 { const g = mk(1); await g.startOfBattle(); const A = g.titans[0]; ok(O.bp.every(b => b.fullMiss && /^ES30[4-6]\d$/.test(b.code)), 'BP codes + Full Miss backs'); const top = g.bp.peek(); const d0 = A.despair, c0 = A.conditions.length; await catchD(() => g.dpFullMiss(A)); ok(g.log.some(l => /FULL MISS — BP 덱 맨 위 카드 뒷면/.test(l.msg)) && (A.despair > d0 || A.conditions.length > c0 || g.log.some(l => /Signature|AI/.test(l.msg))), 'Full Miss: top BP back resolved (' + top.fullMiss + ')'); }
+// relentless anxiety: only on Vanish disappearance
+{ const g = mk(5); await g.startOfBattle(); const orig = g.trait.bind(g); g.trait = n => n === 'Relentless Anxiety' || orig(n); let drawn = 0; const od = g.drawAI.bind(g); g.drawAI = () => { drawn++; return null; };
+  await g.dpGoOff('test'); ok(drawn === 0, 'Relentless Anxiety: non-Vanish disappearance draws no AI'); g.prim.offBoard = false; g.prim.anchor = { c: 10, r: 7 }; await g.dpGoOff('test', true); ok(drawn === 1, 'Relentless Anxiety: Vanish disappearance draws AI'); g.drawAI = od; }
 // all AI cards resolve
 { let bad = 0; for (const c of O.ai) for (const lv of [1, 4, 7]) { const g = mk(lv, 9); await g.startOfBattle(); try { await g.safe(() => g.resolveAI(c)); } catch (e) { if (!e.result) { bad++; console.log(c.name, lv, e.stack.split('\n').slice(0, 4).join(' | ')); } } const u = g.log.filter(l => /미구현|수동 적용/.test(l.msg)); if (u.length) { bad++; console.log(c.name, [...new Set(u.map(l => l.msg))]); } } ok(!bad, 'all AI cards resolve'); }
 // BP

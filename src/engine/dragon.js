@@ -46,19 +46,19 @@ export function installDragon(Game, { TitanDied, BattleOver }) {
       let k = 0;
       for (let i = 0; i < n; i++) {
         const na = { c: this.prim.anchor.c + DIRS[dir][0], r: this.prim.anchor.r + DIRS[dir][1] }; const cs = this.primCells(na);
-        if (cs.some(p => !B.inBounds(p.c, p.r))) { if (k) await this.primEndMove([]); this.prim.facing = f0; return this.dpGoOff('보드 끝 너머로 사라짐'); }
-        if (!cs.some(p => this.dpLit(p))) { if (k) await this.primEndMove([]); this.prim.facing = f0; return this.dpGoOff('빛의 범위 밖으로 사라짐'); }
+        if (cs.some(p => !B.inBounds(p.c, p.r))) { if (k) await this.primEndMove([]); this.prim.facing = f0; return this.dpGoOff('보드 끝 너머로 사라짐', true); }
+        if (!cs.some(p => this.dpLit(p))) { if (k) await this.primEndMove([]); this.prim.facing = f0; return this.dpGoOff('빛의 범위 밖으로 사라짐', true); }
         await this.primStep(na, []); k++;
       }
       if (k) await this.primEndMove([]); this.prim.facing = f0; this.say(`Vanish: ${k}칸 → ${cellLabel(this.prim.anchor)} 기준 (회전 없음)`, 'ai'); this.notify();
     },
-    async dpGoOff(why) {
+    async dpGoOff(why, viaVanish = false) {
       if (this.prim.offBoard) return; this.prim.offBoard = true; this.prim._last = { ...this.prim.anchor }; this.prim.anchor = { ...OFF };
       this.say(`${this.prim.name}: ${why} — 보드 밖 (공격·대상 불가)`, 'ai'); this.notify();
       if (this.dpTrait('A Truth for a Truth')) this.dpTruth(1, '사라짐');
-      if (this.dpTrait('Relentless Anxiety')) {
-        if ((this._dpChain || 0) >= 4) { this.say('(Relentless Anxiety: 연쇄 한도 4 — 더 이상 AI를 뽑지 않음)', 'sys'); return; }
-        this.say('Relentless Anxiety: 사라짐 — 즉시 AI 카드', 'ai'); this._dpChain = (this._dpChain || 0) + 1;
+      if (viaVanish && this.dpTrait('Relentless Anxiety') && this.liveTitans().length) {
+        if ((this._dpChain || 0) >= 60) { this.say('(안전장치: Relentless Anxiety 연쇄 60회 — 중단)', 'sys'); return; }
+        this.say('Relentless Anxiety: Vanish로 사라짐 — 즉시 AI 카드', 'ai'); this._dpChain = (this._dpChain || 0) + 1;
         try { const c = this.drawAI(); if (c) { await this.safe(() => this.resolveAI(c)); if (!c._removed) this.ai.discard.push(c); } } finally { this._dpChain--; }
       }
     },
