@@ -11997,7 +11997,7 @@
     "EJ2931"
    ],
    "name": "Squirming Knives",
-   "slot": "hand1",
+   "slot": "hand1x3",
    "text": "Spiral 6. Ψ Liquid Edge. Each hit: Opening 1 and Reposition 1. Crit Miss: Gain 1 Despair token.",
    "traits": [
     "Knife",
