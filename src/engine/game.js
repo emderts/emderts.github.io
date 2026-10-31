@@ -1921,7 +1921,7 @@ export class Game {
   tposOf(t, ov) { return ov && ov.has(t) ? ov.get(t) : (t.onVP ? this.prim.anchor : t.pos); }
   tetherExcess(t, ov = null) { if (!this.isBurden || !t.alive) return 0; const p = this.tposOf(t, ov); const others = this.liveTitans().filter(o => o !== t); let ex = 0; const up = others.filter(o => this.tposOf(o, ov).c > p.c), dn = others.filter(o => this.tposOf(o, ov).c < p.c); if (up.length) ex += Math.max(0, Math.min(...up.map(o => this.tetherDist(p, this.tposOf(o, ov)))) - 10); if (dn.length) ex += Math.max(0, Math.min(...dn.map(o => this.tetherDist(p, this.tposOf(o, ov)))) - 10); return ex; }
   tetherScore(ov = null) { return this.liveTitans().reduce((a, t) => a + this.tetherExcess(t, ov), 0); }
-  tetherAllows(t, dest) { if (!this.isBurden) return true; const before = this.tetherScore(); const after = this.tetherScore(new Map([[t, dest]])); return after === 0 || after < before; }
+  tetherAllows(t, dest) { if (!this.isBurden) return true; const before = this.tetherExcess(t); const after = this.tetherExcess(t, new Map([[t, dest]])); return after === 0 || after < before; } // only the moving Titan's own ropes (closest Titan above / below IT) restrict its movement; others left over 10 apart are checked at the end of the Titan Round
   untethered(t) { return this.isBurden && this.trait('Ties That Bind Us') && this.tetherExcess(t) > 0; }
   // involuntary step check: 'ok' | 'stop' (movement stops before the step) | 'fell'
   async tetherStep(t, n) {

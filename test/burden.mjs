@@ -35,6 +35,8 @@ const AI = n => data.primordials.burden.ai.find(a => a.name === n);
   B.pos = { c: 14, r: 5 }; C.pos = { c: 14, r: 6 }; D.pos = { c: 14, r: 7 }; ok(g.tetherExcess(A) > 0, 'A now >10 from closest above');
   ok(!g.tetherAllows(A, { c: 2, r: 5 }) && g.tetherAllows(A, { c: 5, r: 5 }), 'violating titan may only move closer');
   A.pos = { c: 5, r: 5 }; const r = await g.tetherStep(A, { c: 3, r: 5 }); ok(r === 'stop', 'involuntary move beyond limit stops');
+  { const g2 = mk(4); const [P, Q, R, S2] = g2.titans; g2.prim.anchor = { c: 18, r: 2 }; P.pos = { c: 4, r: 4 }; Q.pos = { c: 5, r: 9 }; R.pos = { c: 6, r: 14 }; S2.pos = { c: 7, r: 6 }; const dest = { c: 7, r: 10 };
+    ok(g2.tetherScore() === 0 && g2.tetherAllows(Q, dest) && g2.tetherExcess(R, new Map([[Q, dest]])) > 0, 'only the moving Titan\'s own ropes restrict it (another Titan left over 10 is checked at the end of the round)'); }
   A.pos = { c: 2, r: 5 }; try { await g.tetherEndOfRound(); } catch (e) { if (!e.titan) throw e; } ok(!A.alive, 'end of titan round: violating titan dies'); }
 { const g = mk(3); const [A, B, C, D] = g.titans; g.board.terrain.clear(); g.prim.anchor = { c: 18, r: 12 }; let row = 1; for (let r = 1; r <= 14; r++) { if (g.tetherDist({ c: 3, r }, { c: 13, r }) === 10 && g.tetherDist({ c: 2, r }, { c: 13, r }) === 11 && !g.board.isObstacle(2, r) && !g.board.isObstacle(3, r)) { row = r; break; } } A.pos = { c: 3, r: row }; B.pos = { c: 13, r: row }; C.pos = { c: 14, r: row }; D.pos = { c: 15, r: row }; ok(g.tetherExcess(A) === 0, 'row ' + row + ' A within limit');
   const r = await g.tetherStep(A, { c: 2, r: row }); ok(r === 'ok', 'Lv3 Ties: involuntary move continues past limit'); A.pos = { c: 2, r: row }; ok(g.untethered(A), 'A untethered');
