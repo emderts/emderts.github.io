@@ -157,7 +157,7 @@
   }
  },
  "traits": {
-  "Toying": "Apply the following modifiers to all Titan X Attacks: -1 die and -1 DANGER per hit (minimum 1). As long as this Trait is active, the Death of Hope Trait is disabled.",
+  "Toying": "Apply the following modifiers to all Titan X Attacks: -1 EVADE_DICE and -1 DANGER per hit (minimum 1). As long as this Trait is active, the Death of Hope Trait is disabled.",
   "Killjoy": "Killjoy: Permanently lose 1 equipped Gear card. Triggers when prompted and each time a Titan performs a Full Evade or reduces all DANGER from an Attack to 0.",
   "Death of Hope": "End of Titan Round: Perform Signature.",
   "Faster Than Thought": "If, during Targeting, there is a tie, the AI or Signature becomes Simultaneous and Targets all tied Titans, in random order.",

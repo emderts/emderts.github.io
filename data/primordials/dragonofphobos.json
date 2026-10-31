@@ -7,9 +7,9 @@
  "dpD": true,
  "_notes": [
   "Transcribed from sheet EU3022 (Lv I-IX), trait cards (Phobian Hierarchy, Fat with Fear, A Truth for a Truth, A Lie for a Truth), AI ER3023-ER3042, 18 BP cards, Storybook p.174-175 setup.",
-  "BP card codes were not legible: DOP-B1..18 are placeholders.",
   "Titan facing is not tracked: a Titan is treated as facing the board centre, so \"behind\" = the side away from the centre.",
-  "Ranges of light: a space is lit if within X spaces of a Titan with Light X, or within the Light value of a Lightwall / Arcology tile (all directions)."
+  "Ranges of light: a space is lit if within X spaces of a Titan with Light X, or within the Light value of a Lightwall / Arcology tile (all directions).",
+  "BP codes ES3043-ES3060; Full Miss effects (card backs) matched to the fronts by sheet position."
  ],
  "footprint": {
   "w": 2,
@@ -719,7 +719,7 @@
  ],
  "bp": [
   {
-   "code": "DOP-B1",
+   "code": "ES3048",
    "tier": 1,
    "name": "Mortal-like Torso",
    "at": 8,
@@ -727,10 +727,11 @@
     "FAIL": "Gain 1 Despair token.",
     "WOUND": "Gain 1 Ambrosia token."
    },
-   "critical": "Gain 1 Sisyphus Tear, Echo of Recollection, or Pygmalion Stone Divine resource (campaign)."
+   "critical": "Gain 1 Sisyphus Tear, Echo of Recollection, or Pygmalion Stone Divine resource (campaign).",
+   "fullMiss": "Gain 1 Despair token and +3 DANGER."
   },
   {
-   "code": "DOP-B2",
+   "code": "ES3047",
    "tier": 1,
    "name": "Hairy Neck",
    "at": 6,
@@ -738,30 +739,33 @@
     "FAIL": "Gain 2 Ambrosia tokens.",
     "WOUND": "Inkblot. ⚡ Vanish 2."
    },
-   "critical": "Reduce Vanish by 1."
+   "critical": "Reduce Vanish by 1.",
+   "fullMiss": "Perform Signature against the Attacker."
   },
   {
-   "code": "DOP-B3",
+   "code": "ES3046",
    "tier": 1,
    "name": "Clawhorn",
    "at": 6,
    "responses": {
     "FAIL": "Gain the Fear Condition card and +1 DANGER."
    },
-   "critical": "You may discard 1 Despair token and perform a Bonus Attack!"
+   "critical": "You may discard 1 Despair token and perform a Bonus Attack!",
+   "fullMiss": "Gain the Terror Condition card and +2 DANGER."
   },
   {
-   "code": "DOP-B4",
+   "code": "ES3045",
    "tier": 1,
    "name": "Cnidarian Tail",
    "at": 7,
    "responses": {
     "INSTINCT": "⚡ Vanish 4."
    },
-   "critical": "Gain the Phobos Whip card (Secret deck 18, card 283)."
+   "critical": "Gain the Phobos Whip card (Secret deck 18, card 283).",
+   "fullMiss": "Gain 1 Despair token and +3 DANGER."
   },
   {
-   "code": "DOP-B5",
+   "code": "ES3044",
    "tier": 1,
    "name": "Incision Tusk",
    "at": 7,
@@ -769,10 +773,11 @@
     "FAIL": "Perform Signature.",
     "WOUND": "⚡ Vanish 3."
    },
-   "critical": "Reduce Vanish by 1 and perform a Bonus Attack!"
+   "critical": "Reduce Vanish by 1 and perform a Bonus Attack!",
+   "fullMiss": "Perform Signature against the Attacker."
   },
   {
-   "code": "DOP-B6",
+   "code": "ES3043",
    "tier": 1,
    "name": "Pale Claw",
    "at": 8,
@@ -780,10 +785,11 @@
     "FAIL": "Gain the Fear Condition card and +1 DANGER.",
     "WOUND": "⚡ Vanish 3."
    },
-   "critical": "Reduce Vanish by 1."
+   "critical": "Reduce Vanish by 1.",
+   "fullMiss": "Gain the Terror Condition card and +2 DANGER."
   },
   {
-   "code": "DOP-B7",
+   "code": "ES3054",
    "tier": 2,
    "name": "Unseen Antennae",
    "at": 8,
@@ -791,10 +797,11 @@
     "FAIL": "Gain the Terror Condition card.",
     "WOUND": "Inkblot. Vanish 5."
    },
-   "critical": "Reduce Vanish by 2."
+   "critical": "Reduce Vanish by 2.",
+   "fullMiss": "Perform Signature against the Attacker."
   },
   {
-   "code": "DOP-B8",
+   "code": "ES3053",
    "tier": 2,
    "name": "Wide Grin",
    "at": 10,
@@ -802,30 +809,33 @@
     "FAIL": "Perform Signature.",
     "WOUND": "Vanish 4."
    },
-   "critical": "Disable the Pale Grin of Doom Trait. Gain the Grinmask card (Secret deck 18, card 284)."
+   "critical": "Disable the Pale Grin of Doom Trait. Gain the Grinmask card (Secret deck 18, card 284).",
+   "fullMiss": "Perform Signature against the Attacker."
   },
   {
-   "code": "DOP-B9",
+   "code": "ES3052",
    "tier": 2,
    "name": "Onyx Smokers",
    "at": 8,
    "responses": {
     "INSTINCT": "Gain 2 Ambrosia tokens."
    },
-   "critical": "Disable the Inkblot keyword."
+   "critical": "Disable the Inkblot keyword.",
+   "fullMiss": "Gain the Terror Condition card and +3 DANGER."
   },
   {
-   "code": "DOP-B10",
+   "code": "ES3051",
    "tier": 2,
    "name": "Feeler Dress",
    "at": 10,
    "responses": {
     "FAIL": "Gain DANGER equal to the Primordial level and the Dread Condition card."
    },
-   "critical": "You may discard all Despair tokens and perform a Bonus Attack!"
+   "critical": "You may discard all Despair tokens and perform a Bonus Attack!",
+   "fullMiss": "Gain 2 Despair tokens."
   },
   {
-   "code": "DOP-B11",
+   "code": "ES3050",
    "tier": 2,
    "name": "Deltoid Head",
    "at": 7,
@@ -833,10 +843,11 @@
     "FAIL": "Vanish 5.",
     "WOUND": "Pushback 3, perform Signature against the Attacker."
    },
-   "critical": "Disable the Blacker Than the Night Trait. If it's not in play, perform a Bonus Attack instead!"
+   "critical": "Disable the Blacker Than the Night Trait. If it's not in play, perform a Bonus Attack instead!",
+   "fullMiss": "Gain the Terror Condition card and +3 DANGER."
   },
   {
-   "code": "DOP-B12",
+   "code": "ES3049",
    "tier": 2,
    "name": "Hellhorns",
    "at": 9,
@@ -844,20 +855,22 @@
     "FAIL": "Gain DANGER equal to the Primordial level.",
     "WOUND": "Vanish 4."
    },
-   "critical": "Disable Fear and Dread Condition card effects. Discard all Fear and Dread Condition cards from all Titans."
+   "critical": "Disable Fear and Dread Condition card effects. Discard all Fear and Dread Condition cards from all Titans.",
+   "fullMiss": "Gain 2 Despair tokens."
   },
   {
-   "code": "DOP-B13",
+   "code": "ES3060",
    "tier": 3,
    "name": "Ambrosia Ink Sac",
    "at": 10,
    "responses": {
     "WOUND": "Inkblot. Vanish 7."
    },
-   "critical": "Disable gaining Ambrosia tokens."
+   "critical": "Disable gaining Ambrosia tokens.",
+   "fullMiss": "Perform AI against the Attacker."
   },
   {
-   "code": "DOP-B14",
+   "code": "ES3059",
    "tier": 3,
    "name": "Doom-Shaped Heart",
    "at": 12,
@@ -865,30 +878,33 @@
     "FAIL": "Die.",
     "WOUND": "During the second ability window, turn all your Despair tokens into Hope tokens or place 2 Hope tokens in the Kratos Pool."
    },
-   "critical": "The Dragon of Phobos dies! Gain +1 permanent Courage (once per Argonaut Lifetime)."
+   "critical": "The Dragon of Phobos dies! Gain +1 permanent Courage (once per Argonaut Lifetime).",
+   "fullMiss": "Gain a random Phobia Affliction and die."
   },
   {
-   "code": "DOP-B15",
+   "code": "ES3058",
    "tier": 3,
    "name": "Glimpse of Truth",
    "at": 11,
    "responses": {
     "INSTINCT": "Vanish 5. Gain the Terror Condition card and DANGER equal to the Primordial level."
    },
-   "critical": "Gain +1 Hope resource (campaign). After the Battle, resolve the Just a Peek Special Event."
+   "critical": "Gain +1 Hope resource (campaign). After the Battle, resolve the Just a Peek Special Event.",
+   "fullMiss": "Gain the Holy Terror Condition card."
   },
   {
-   "code": "DOP-B16",
+   "code": "ES3057",
    "tier": 3,
    "name": "Amygdalan Ganglia",
    "at": 10,
    "responses": {
     "FAIL": "Gain a random Phobia Affliction. Vanish 7."
    },
-   "critical": "Disable Terror and Holy Terror Condition card effects. Discard all Terror and Holy Terror Condition cards from all Titans. You may discard all Despair tokens and perform a Bonus Attack!"
+   "critical": "Disable Terror and Holy Terror Condition card effects. Discard all Terror and Holy Terror Condition cards from all Titans. You may discard all Despair tokens and perform a Bonus Attack!",
+   "fullMiss": "Gain a random Phobia Affliction and die."
   },
   {
-   "code": "DOP-B17",
+   "code": "ES3056",
    "tier": 3,
    "name": "Antediluvian Tooth",
    "at": 11,
@@ -896,10 +912,11 @@
     "FAIL": "Perform Signature.",
     "WOUND": "Discard up to 3 Ambrosia and/or Despair tokens."
    },
-   "critical": "Gain the Claw Cracker card (Secret deck 18, card 282). After the Battle, resolve The Great Flood Special Event."
+   "critical": "Gain the Claw Cracker card (Secret deck 18, card 282). After the Battle, resolve The Great Flood Special Event.",
+   "fullMiss": "Perform AI against the Attacker."
   },
   {
-   "code": "DOP-B18",
+   "code": "ES3055",
    "tier": 3,
    "name": "Soulless Eyes",
    "at": 10,
@@ -907,7 +924,8 @@
     "FAIL": "Gain DANGER equal to the Primordial level.",
     "WOUND": "Vanish 7."
    },
-   "critical": "Disable the effects of Despair tokens."
+   "critical": "Disable the effects of Despair tokens.",
+   "fullMiss": "Gain the Holy Terror Condition card."
   }
  ],
  "vp": null,

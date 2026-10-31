@@ -29,6 +29,10 @@ const tiles = g => g.prim.tiles.map(T => T.lane + ':' + T.c).sort().join(' ');
 { const g = mk(1); await g.startOfBattle(); const A = g.titans[0]; A.pos = { c: 18, r: 6 }; g.prim.anchor = { c: 14, r: 6 }; await catchD(() => g.ufPull(A, 3)); ok(!A.alive, 'Ur-Pull through Black Abyss → devoured'); }
 // smother
 { const g = mk(1); await g.startOfBattle(); const A = g.titans[0]; const L0 = g.lightOf(A); A.gear.push({ card: { name: 'Lamp', text: 'Light 2.', slot: 'misc' }, discarded: false, exhausted: false }); const L1 = g.lightOf(A); await g.gainAmbrosia(A, 1); const L2 = g.lightOf(A); ok(L1 === L0 + 2 && L2 === L0, 'Smother: Ambrosia on Light X gear disables its Light (' + [L0, L1, L2] + ')'); }
+{ const g = mk(3); await g.startOfBattle(); ok(g.woundCount() === 86, "Argo's Parting Gift: Lv3 = 86 Wounds"); }
+{ const g = mk(2); await g.startOfBattle(); const t = g.titans[0]; const bp = O.bp.find(b => b.name === 'The Black Truth'); g.titans.forEach((x, i) => x.pos = { c: 19, r: 2 + i * 3 }); let r = [];
+  g.ufFlicker = async () => {}; for (const P of [30, 30, 30]) { const A = { t, bp, total: P, crit: false }; r.push(await g.ufAFA(t, A, 38)); } ok(r.join() === 'store,store,wound', 'All for All: 15+15+15 ≥ 38 → Wound on 3rd attack (' + r + ')');
+  const A2 = { t, bp, total: 4, crit: false }; await g.ufAFA(t, { t, bp, total: 2, crit: false }, 38); await g.ufAFA(t, { t, bp, total: 2, crit: false }, 38); await g.ufAFA(t, { t, bp, total: 2, crit: false }, 38); ok((await g.ufAFA(t, A2, 38)) === null && !g.prim.afa, 'All for All: 4th attack fails → erase, normal fail'); }
 // all AI cards resolve
 { let bad = 0; for (const c of O.ai) for (const lv of [1, 4, 7]) { const g = mk(lv, 9); await g.startOfBattle(); try { await g.safe(() => g.resolveAI(c)); } catch (e) { if (!e.result) { bad++; console.log(c.name, lv, e.stack.split('\n').slice(0, 4).join(' | ')); } } const u = g.log.filter(l => /미구현|수동 적용/.test(l.msg)); if (u.length) { bad++; console.log(c.name, [...new Set(u.map(l => l.msg))]); } } ok(!bad, 'all AI cards resolve'); }
 // BP

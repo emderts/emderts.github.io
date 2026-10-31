@@ -145,6 +145,17 @@ export function installUrFleece(Game, { TitanDied, BattleOver }) {
       if (!this.ufT('Mortal Kindling') || this.trait('Mortal Embers')) return;
       for (const t of this.liveTitans()) { if (t.onVP || !t.pos) continue; const z = this.board.terrainAt(t.pos.c, t.pos.r); if (z && z.abyss && !this.ufHasLightKW(t)) { this.say(`Mortal Kindling: ${t.name} Black Abyss 위에서 Light X 키워드 없음 — 사망`, 'bad'); await this.solo(() => this.kill(t)); } }
     },
+    // All for All (Secret 322): BP III Ultimate Power over up to four consecutive Attacks
+    async ufAFA(t, A, at) {
+      if (!this.trait('All for All')) return null; let F = this.prim.afa;
+      if (A.bp.tier !== 3) { if (F) { this.say(`All for All: 다른 BP 공격 — 누적 Power ${F.power} 지움`, 'bad'); this.prim.afa = null; } return null; }
+      if (F && F.name !== A.bp.name) { this.say(`All for All: 다른 BP III — 누적 Power ${F.power} 지움`, 'bad'); F = null; }
+      const k = (F ? F.n : 0) + 1; const add = k < 4 ? Math.ceil(A.total / 2) + (A.crit ? 1 : 0) : A.total; const U = (F ? F.power : 0) + add;
+      this.say(`All for All (${k}/4번째 공격): ${k < 4 ? `Power ${A.total} → ${add}${A.crit ? ' (Crit +1)' : ''}` : `Power ${A.total} 전부`} → Ultimate Power ${U} vs AT ${at}`, U >= at ? 'good' : 'ai');
+      if (U >= at) { this.prim.afa = null; A.total = Math.max(A.total, at); this.say('All for All: Ultimate Power가 AT 이상 — Wound!', 'good'); return 'wound'; }
+      if (k < 4) { this.prim.afa = { name: A.bp.name, n: k, power: U }; this.say('All for All: Escalation·Response 없음 → Ur-Fleece Flicker, Kratos Pool 비움, BP는 덱 맨 위로', 'ai'); await this.ufFlicker(); return 'store'; }
+      this.prim.afa = null; this.say('All for All: 네 번째 공격에도 Wound 실패 — 누적 Power 지우고 Fail/Instinct 응답', 'bad'); return null;
+    },
     // ---------- AI ----------
     async ufPre(t, s, card) {
       let m;
@@ -274,6 +285,7 @@ export function installUrFleece(Game, { TitanDied, BattleOver }) {
     const r = await o.call(this, ...a);
     if (this.ufD()) {
       if (this.trait('Unfathomable Depths')) { for (const t of this.liveTitans()) t.oxygen = Math.max(0, (t.oxygen || 0) - 2); this.say('Unfathomable Depths: Oxygen 2개 적게 시작', 'sys'); }
+      if (this.trait("Argo's Parting Gift")) { const n = 89 - this.prim.level; this.woundStack.unshift({ card: null, value: n, name: "Argo's Parting Gift" }); this.say(`Argo's Parting Gift: Wound Stack에 ${n} Wounds (누적 ${this.woundCount()}/${this.prim.wounds})`, 'sys'); }
       this.faceMost(); this.say(`Abyss Track: Argo ${this.prim.argo} · Ur-Fleece ${this.prim.track} (Lv ${this.prim.level})`, 'sys');
     }
     return r;

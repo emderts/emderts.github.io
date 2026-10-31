@@ -219,6 +219,10 @@ export function installDragon(Game, { TitanDied, BattleOver }) {
       if ((m = /^(?:⚡ )?Vanish (\d+)\.?$/.exec(p))) { await this.dpVanish(+m[1], alive ? t : null); return true; }
       if (/^Inkblot\. (?:⚡ )?Vanish (\d+)\.?$/.test(p)) { const n = +/Vanish (\d+)/.exec(p)[1]; await this.dpInkblot(); await this.dpVanish(n, alive ? t : null); return true; }
       if (/^Gain DANGER equal to the Primordial level\.?$/.test(p)) { if (alive) await this.gainDanger(t, this.prim.level, { source: 'BP' }); return true; }
+      if ((m = /^Gain (1) Despair token and \+(\d) DANGER\.?$/.exec(p))) { if (alive) { await this.gainDespair(t, +m[1]); if (t.alive) await this.gainDanger(t, +m[2], { source: 'Full Miss' }); } return true; }
+      if ((m = /^Gain the (Terror|Holy Terror) Condition card and \+(\d) DANGER\.?$/.exec(p))) { if (alive) { await this.addCondition(t, m[1]); if (t.alive) await this.gainDanger(t, +m[2], { source: 'Full Miss' }); } return true; }
+      if ((m = /^Gain the (Holy Terror|Terror|Fear|Dread) Condition card\.?$/.exec(p))) { if (alive) await this.addCondition(t, m[1]); return true; }
+      if (/^Gain a random Phobia Affliction and die\.?$/.test(p)) { if (alive) { this.dpPhobia(t); this.say(`${t.name}: 사망`, 'bad'); await this.kill(t); } return true; }
       if (/^Die\.?$/.test(p)) { if (alive) { this.say(`${t.name}: 사망`, 'bad'); await this.kill(t); } return true; }
       if ((m = /^Gain the (Fear|Terror) Condition card and \+1 DANGER\.?$/.exec(p))) { if (alive) { await this.addCondition(t, m[1]); if (t.alive) await this.gainDanger(t, 1, { source: 'BP' }); } return true; }
       if (/^Gain DANGER equal to the Primordial level and the Dread Condition card\.?$/.test(p)) { if (alive) { await this.gainDanger(t, this.prim.level, { source: 'BP' }); if (t.alive) await this.addCondition(t, 'Dread'); } return true; }
@@ -248,6 +252,12 @@ export function installDragon(Game, { TitanDied, BattleOver }) {
         this.say(`(Critical 효과 수동 적용 필요: ${x})`, 'sys');
       }
       return true;
+    },
+    async dpFullMiss(t) {
+      if (!this.dpD() || !t || !t.alive) return; let top = this.bp.peek(); if (!top && this.bp.discard.length) { this.bp.shuffleDiscardIn(); top = this.bp.peek(); } if (!top || !top.fullMiss) return;
+      this.say(`FULL MISS — BP 덱 맨 위 카드 뒷면 (BP ${'I'.repeat(top.tier)}): ${top.fullMiss}`, 'bad');
+      if (/^Perform AI against the Attacker/.test(top.fullMiss)) { const c = this.drawAI(); if (c) { await this.safe(() => this.resolveAI(c, { forcedTarget: t })); if (!c._removed) this.ai.discard.push(c); } return; }
+      await this.doEffects(t, top.fullMiss, { response: true });
     },
     // Dragon of the Lightless Void: Kratos Pool use capped by Light X
     dpVoidCap(t) {
