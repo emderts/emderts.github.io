@@ -158,7 +158,7 @@ export function installMeduketos(Game, { TitanDied, BattleOver }) {
         if (!this.trait('Three Seconds')) await this.reactionWindow(att[0], card, 'ATTACK');
         const res = await this.medAttackList(card, att);
         for (const [t, r] of res) if (t.alive && card.after) await this.solo(() => this.doEffects(t, card.after, { card, after: true, hits: r.hits }));
-        if (M.afterFinal) { this.say(`After Final Attack: ${M.afterFinal}`); await this.doSentence(null, M.afterFinal, { card }); }
+        { const AF = M.afterFinal || card.afterFinal; if (AF) { this.say(`After Final Attack: ${AF}`); await this.doSentence(null, AF, { card }); } }
         return;
       }
       const sel = forcedTarget && forcedTarget.alive ? { list: [forcedTarget] } : this.medPick(card.target);

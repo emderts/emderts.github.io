@@ -566,7 +566,7 @@
    "med": {
     "zone": true
    },
-   "after": "Raise the difficulty of the next Scan by X, where X is the Primordial level."
+   "afterFinal": "Raise the difficulty of the next Scan by X, where X is the Primordial level."
   },
   {
    "code": "ER3081",
