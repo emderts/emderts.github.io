@@ -1,0 +1,212 @@
+{
+ "id": "dragonofphobos",
+ "source": "Dragon of Phobos Battle — Cycle V Storybook p.174",
+ "board": {
+  "cols": 20,
+  "rows": 14
+ },
+ "_notes": [
+  "Maps read from Storybook p.174: Lv1-2 (19 Vents, Trench 1x4 + 1x5, Lightwall 1x4 + 1x5, 2 Arcology, Black Abyss 3x3), Lv3+ (14 Vents, Trench 1x4 + 1x5, 2 Arcology). Dragon of Phobos at the centre skull (G10-H11)."
+ ],
+ "setup": [
+  "Standard Preparations.",
+  "Primordial Positioning: Dragon of Phobos on the indicated space in the centre, determine facing."
+ ],
+ "center": "G10",
+ "variants": {
+  "lv12": {
+   "levels": [
+    1,
+    2
+   ],
+   "primordial": {
+    "anchor": "G10"
+   },
+   "titanStarts": [
+    "J8",
+    "K12",
+    "F14",
+    "D9"
+   ],
+   "startChoices": [
+    "J8",
+    "K12",
+    "F14",
+    "D9"
+   ],
+   "terrain": {
+    "petrifiedVent": [
+     "M19",
+     "L16",
+     "L18",
+     "K11",
+     "J7",
+     "J13",
+     "J17",
+     "I15",
+     "I20",
+     "H17",
+     "G19",
+     "E6",
+     "E8",
+     "C8",
+     "C11",
+     "C14",
+     "B9",
+     "B16",
+     "A14"
+    ],
+    "trench": [
+     [
+      "N3",
+      "N4",
+      "N5",
+      "N6"
+     ],
+     [
+      "H1",
+      "I1",
+      "J1",
+      "K1",
+      "L1"
+     ]
+    ],
+    "lightwall": [
+     [
+      "E1",
+      "E2",
+      "E3",
+      "E4"
+     ],
+     [
+      "A9",
+      "A10",
+      "A11",
+      "A12",
+      "A13"
+     ]
+    ],
+    "arcology": [
+     [
+      "L13",
+      "L14",
+      "L15",
+      "M13",
+      "M14",
+      "M15",
+      "N13",
+      "N14",
+      "N15"
+     ],
+     [
+      "B2",
+      "B3",
+      "B4",
+      "C2",
+      "C3",
+      "C4",
+      "D2",
+      "D3",
+      "D4"
+     ]
+    ],
+    "blackAbyss": [
+     [
+      "C18",
+      "C19",
+      "C20",
+      "D18",
+      "D19",
+      "D20",
+      "E18",
+      "E19",
+      "E20"
+     ]
+    ]
+   }
+  },
+  "lv3": {
+   "levels": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "primordial": {
+    "anchor": "G10"
+   },
+   "titanStarts": [
+    "J8",
+    "K12",
+    "F14",
+    "D9"
+   ],
+   "startChoices": [
+    "J8",
+    "K12",
+    "F14",
+    "D9"
+   ],
+   "terrain": {
+    "petrifiedVent": [
+     "M19",
+     "L10",
+     "K5",
+     "J13",
+     "J17",
+     "I20",
+     "G5",
+     "G16",
+     "E19",
+     "E8",
+     "D12",
+     "C16",
+     "B9",
+     "A14"
+    ],
+    "trench": [
+     [
+      "N3",
+      "N4",
+      "N5",
+      "N6"
+     ],
+     [
+      "H1",
+      "I1",
+      "J1",
+      "K1",
+      "L1"
+     ]
+    ],
+    "arcology": [
+     [
+      "L14",
+      "L15",
+      "L16",
+      "M14",
+      "M15",
+      "M16",
+      "N14",
+      "N15",
+      "N16"
+     ],
+     [
+      "B2",
+      "B3",
+      "B4",
+      "C2",
+      "C3",
+      "C4",
+      "D2",
+      "D3",
+      "D4"
+     ]
+    ]
+   }
+  }
+ }
+}

@@ -1,0 +1,917 @@
+{
+ "id": "dragonofphobos",
+ "name": "Dragon of Phobos",
+ "cycle": 5,
+ "type": "Mnestis",
+ "sheetCode": "EU3022",
+ "dpD": true,
+ "_notes": [
+  "Transcribed from sheet EU3022 (Lv I-IX), trait cards (Phobian Hierarchy, Fat with Fear, A Truth for a Truth, A Lie for a Truth), AI ER3023-ER3042, 18 BP cards, Storybook p.174-175 setup.",
+  "BP card codes were not legible: DOP-B1..18 are placeholders.",
+  "Titan facing is not tracked: a Titan is treated as facing the board centre, so \"behind\" = the side away from the centre.",
+  "Ranges of light: a space is lit if within X spaces of a Titan with Light X, or within the Light value of a Lightwall / Arcology tile (all directions)."
+ ],
+ "footprint": {
+  "w": 2,
+  "h": 2,
+  "rear": "top-edge"
+ },
+ "ukb": 12,
+ "blindspots": "rear",
+ "levels": {
+  "1": {
+   "toHit": 10,
+   "speed": 99,
+   "wounds": 10,
+   "bonus": {},
+   "traits": [
+    "Vanish X",
+    "Phobian Hierarchy",
+    "Pale Grin of Doom",
+    "A Truth for a Truth",
+    "Fat with Fear"
+   ]
+  },
+  "2": {
+   "toHit": 10,
+   "speed": 99,
+   "wounds": 10,
+   "bonus": {
+    "ESCALATION": 1
+   },
+   "traits": [
+    "Fear is Constant"
+   ]
+  },
+  "3": {
+   "toHit": 11,
+   "speed": 99,
+   "wounds": 10,
+   "bonus": {
+    "ESCALATION": 1,
+    "DANGER": 1
+   },
+   "traits": [
+    "Blacker Than The Night",
+    "Pale Grin of Death"
+   ]
+  },
+  "4": {
+   "toHit": 11,
+   "speed": 99,
+   "wounds": 10,
+   "bonus": {
+    "ESCALATION": 2,
+    "AT": 1,
+    "DANGER": 1
+   },
+   "traits": [
+    "A Lie for a Truth",
+    "Light Is Dimming"
+   ],
+   "removeTraits": [
+    "A Truth for a Truth"
+   ]
+  },
+  "5": {
+   "toHit": 12,
+   "speed": 99,
+   "wounds": 11,
+   "bonus": {
+    "ESCALATION": 3,
+    "AT": 2,
+    "DANGER": 1
+   },
+   "traits": [
+    "Psychosomatic Poisoning",
+    "End of Hope"
+   ],
+   "bonusPerHit": true
+  },
+  "6": {
+   "toHit": 12,
+   "speed": 99,
+   "wounds": 11,
+   "bonus": {
+    "ESCALATION": 4,
+    "AT": 3,
+    "DANGER": 2
+   },
+   "traits": [
+    "Relentless Anxiety",
+    "Deeper Depths"
+   ],
+   "bonusPerHit": true
+  },
+  "7": {
+   "toHit": 13,
+   "speed": 99,
+   "wounds": 12,
+   "bonus": {
+    "ESCALATION": 4,
+    "AT": 4,
+    "DANGER": 2
+   },
+   "traits": [
+    "Original Trench"
+   ],
+   "bonusPerHit": true
+  },
+  "8": {
+   "toHit": 13,
+   "speed": 99,
+   "wounds": 13,
+   "bonus": {
+    "ESCALATION": 5,
+    "AT": 5,
+    "EVADE_DICE": 1,
+    "DANGER": 2
+   },
+   "traits": [
+    "Beginning of the End"
+   ],
+   "bonusPerHit": true
+  },
+  "9": {
+   "toHit": 14,
+   "speed": 99,
+   "wounds": 14,
+   "bonus": {
+    "ESCALATION": 6,
+    "AT": 6,
+    "EVADE_DICE": 2,
+    "DANGER": 3
+   },
+   "traits": [
+    "Dragon of the Lightless Void",
+    "Ruthless"
+   ],
+   "bonusPerHit": true
+  }
+ },
+ "traits": {
+  "Vanish X": "Move the Dragon of Phobos X spaces towards the closest Board Edge, without turning, ignoring the Board Edges directly across from the Target or attacking Titan. If this would move the Dragon of Phobos beyond a Board Edge or outside of all ranges of light, it disappears (remove the Dragon of Phobos from the Battle Board). When the Dragon of Phobos is outside the Battle Board, it cannot be affected in any way.",
+  "Phobian Hierarchy": "If the Dragon of Phobos is outside of the Battle Board when drawing AI or performing a Signature, instead of normal Targeting, use Target: Hierarchy. Instead of performing any movement instructions (like ⚡ Move & Attack): if the space directly behind the Target is empty, appear behind the Target, if able; if that space is occupied, appear to the side, then front (even if occupied, standard Crash rules apply). Finally, without moving, continue resolving the AI or Signature.",
+  "Pale Grin of Doom": "When you are attacked from behind, ignore the Evasion Roll; the Attack automatically hits with all the dice.",
+  "A Truth for a Truth": "Each time the Dragon of Phobos disappears or gains a Wound (a Double Wound is treated as 2 Wounds), place a token on this Trait. After resolving the current action, if there are 4 or more tokens on this Trait, discard all tokens, then draw and resolve the top AI card.",
+  "Fat with Fear": "For each dead Titan, reduce Vanish by 1.",
+  "Fear is Constant": "Start of Battle: Chosen Titan gains the Fear Condition card, another Titan gains the Terror Condition card, a third one flips 1 Oxygen token.",
+  "Blacker Than The Night": "When the Dragon of Phobos performs Vanish X, it doesn't ignore the Board Edges directly across from the Target or attacking Titan.",
+  "Pale Grin of Death": "When you are attacked from behind, ignore the Evasion Roll. You are immediately devoured (dead).",
+  "A Lie for a Truth": "This replaces the A Truth for a Truth Trait. Each time the Dragon of Phobos gains a Wound (a Double Wound is treated as 2 Wounds), place a token on this Trait. After resolving the current action, if there are 3 or more tokens on this Trait, discard all tokens. The Dragon of Phobos disappears. Then, draw and resolve the top AI card.",
+  "Light Is Dimming": "If you don't have any Light X keyword, you are always considered to be attacked from behind.",
+  "Psychosomatic Poisoning": "Start of Battle: Place an Ambrosia token on the Condition deck. When you gain a Condition card, and each time you start your turn with a Condition card, gain 1 Ambrosia token.",
+  "End of Hope": "End of Primordial Round: Perform Signature.",
+  "Relentless Anxiety": "When the Dragon of Phobos vanishes, immediately draw an AI card.",
+  "Deeper Depths": "Each Titan starts the Battle with 1 Oxygen token less.",
+  "Original Trench": "Normal (not Terrain) Battle Board spaces are considered Terrain tiles with the Chasm keyword. All other Terrain is considered Elevated.",
+  "Beginning of the End": "End of Primordial Round: Before End of Hope, draw and perform another AI card.",
+  "Dragon of the Lightless Void": "You can only use X amount of Opening or Closing tokens from the Kratos Pool. You can only use X amount of Break, Fire, Black, and Hope tokens from the Kratos Pool combined. X is equal to your Light X keyword.",
+  "Ruthless": "Remove all positive Trauma cards from the Trauma decks (except Obols)."
+ },
+ "ai": [
+  {
+   "code": "ER3028",
+   "tier": 1,
+   "name": "Tail Lash",
+   "kind": "ATTACK",
+   "dice": 4,
+   "toHit": 9,
+   "target": [
+    "Furthest Titan in front",
+    "Furthest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 3+: +1 EVADE_DICE",
+    "Each hit deals 1 DANGER and 1 Ambrosia token.",
+    "FATE 3+: Four or more hits, additionally flip 1 Oxygen token."
+   ],
+   "dp": {
+    "win": true,
+    "move": true,
+    "fm": [
+     3,
+     "die"
+    ],
+    "afterWin": true
+   },
+   "after": "Inkblot. Vanish 3."
+  },
+  {
+   "code": "ER3027",
+   "tier": 1,
+   "name": "Razorkiss",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 8,
+   "target": [
+    "Hierarchy",
+    "Closest Titan not in front, in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Gain the Terror Condition card.",
+    "Each hit deals 1 DANGER and 1 Despair token. | FATE 5+: 2 DANGER instead"
+   ],
+   "dp": {
+    "pre": [
+     "Inkblot."
+    ],
+    "win": true,
+    "move": true,
+    "afterWin": true
+   },
+   "after": "Inkblot. Vanish 3."
+  },
+  {
+   "code": "ER3026",
+   "tier": 1,
+   "name": "Piercing Gaze",
+   "kind": "JUDGEMENT",
+   "dice": 3,
+   "toHit": 8,
+   "target": [
+    "Hierarchy",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "JUDGE | FATE 5+: +1 EVADE_DICE",
+    "One hit, gain the Terror Condition card; two hits, gain the Holy Terror Condition card; three or more hits, gain a random Phobia Affliction and die."
+   ],
+   "dp": {
+    "pre": [
+     "Gain 1 Despair token."
+    ],
+    "judge": [
+     "Courage",
+     "Will"
+    ],
+    "fm": [
+     5,
+     "die"
+    ],
+    "afterWin": true
+   },
+   "after": "Inkblot. Vanish 3."
+  },
+  {
+   "code": "ER3025",
+   "tier": 1,
+   "name": "Claw Thrust",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Furthest Titan in front",
+    "Furthest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 3+: +1 EVADE_DICE",
+    "One hit deals 3 DANGER and 1 Ambrosia token, two or more hits deal 5 DANGER and 2 Ambrosia tokens."
+   ],
+   "dp": {
+    "pre": [
+     "Gain the Terror Condition card."
+    ],
+    "win": true,
+    "move": true,
+    "fm": [
+     3,
+     "die"
+    ],
+    "afterWin": true
+   },
+   "after": "Vanish 4."
+  },
+  {
+   "code": "ER3024",
+   "tier": 1,
+   "name": "Claw Grab",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Closest Titan in front",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "FATE 4+: Gain 1 Despair token.",
+    "If the Attack hits, it deals 4 DANGER and gain 1 Ambrosia token. Two or more hits, additionally gain the Fear Condition card."
+   ],
+   "dp": {
+    "win": true,
+    "move": true,
+    "afterWin": true
+   },
+   "after": "Vanish 4."
+  },
+  {
+   "code": "ER3023",
+   "tier": 1,
+   "name": "Claw Jab",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Closest Titan in front",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 4+: +1 EVADE_DICE",
+    "Each hit deals 2 DANGER and 1 Ambrosia token."
+   ],
+   "dp": {
+    "pre": [
+     "Gain 1 Despair token."
+    ],
+    "win": true,
+    "move": true,
+    "fm": [
+     4,
+     "die"
+    ],
+    "afterWin": true
+   },
+   "after": "Vanish 4."
+  },
+  {
+   "code": "ER3034",
+   "tier": 2,
+   "name": "Drive into the Ground",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Priority Target",
+    "Hierarchy"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 4+: +1 EVADE_DICE",
+    "Knockdown. Each hit deals 2 DANGER and 1 Despair token. Three or more hits, additionally flip 1 Oxygen token."
+   ],
+   "dp": {
+    "pre": [
+     "Gain the Terror Condition card."
+    ],
+    "win": true,
+    "move": true,
+    "fm": [
+     4,
+     "die"
+    ],
+    "afterWin": true
+   },
+   "after": "Vanish 4."
+  },
+  {
+   "code": "ER3033",
+   "tier": 2,
+   "name": "Phantom Bite",
+   "kind": "JUDGEMENT",
+   "dice": 3,
+   "toHit": 8,
+   "target": [
+    "Hierarchy",
+    "Closest Titan not in front, in sight"
+   ],
+   "steps": [
+    "JUDGE",
+    "Gain 2 Ambrosia tokens and the Terror Condition card. | FATE 6+: Gain the Holy Terror Condition card instead",
+    "Each hit deals 3 DANGER."
+   ],
+   "dp": {
+    "judge": [
+     "Fury",
+     "Endurance"
+    ],
+    "afterWin": true
+   },
+   "after": "Vanish 5."
+  },
+  {
+   "code": "ER3032",
+   "tier": 2,
+   "name": "Sifting of Fears",
+   "kind": "JUDGEMENT",
+   "dice": 4,
+   "toHit": 9,
+   "target": [
+    "Priority Target",
+    "Closest Titan not in front, in sight"
+   ],
+   "steps": [
+    "JUDGE | FATE 5+: Gain a random Phobia Affliction",
+    "One hit, gain the Terror Condition card; two hits, gain the Holy Terror Condition card; three hits, you die; four or more hits, the Titan and the Argonaut die."
+   ],
+   "dp": {
+    "pre": [
+     "Gain 1 Despair token."
+    ],
+    "judge": [
+     "Courage",
+     "Will"
+    ],
+    "fm": [
+     5,
+     "phobia"
+    ],
+    "afterWin": true
+   },
+   "after": "Vanish 4."
+  },
+  {
+   "code": "ER3031",
+   "tier": 2,
+   "name": "Blinding Strangle",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Hierarchy",
+    "Closest Titan not in front, in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 5+: +1 EVADE_DICE",
+    "If the Attack hits, it deals 7 DANGER and gain 2 Ambrosia tokens. Two or more hits, additionally gain the Dread Condition card."
+   ],
+   "dp": {
+    "win": true,
+    "move": true,
+    "fm": [
+     5,
+     "die"
+    ],
+    "afterWin": true
+   },
+   "after": "Inkblot. Vanish 3."
+  },
+  {
+   "code": "ER3030",
+   "tier": 2,
+   "name": "Tusk Pierce",
+   "kind": "ATTACK",
+   "dice": 4,
+   "toHit": 9,
+   "target": [
+    "Furthest Titan in front",
+    "Furthest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "FATE 5+: Gain 2 Despair tokens.",
+    "Pushback 5.",
+    "One hit deals 3 DANGER and 1 Ambrosia token; two hits deal 5 DANGER, 2 Ambrosia tokens and 1 Despair token; three or more hits deal 5 DANGER, 3 Ambrosia tokens and 2 Despair tokens."
+   ],
+   "dp": {
+    "pre": [
+     "Inkblot."
+    ],
+    "win": true,
+    "move": true
+   },
+   "after": "Vanish 4."
+  },
+  {
+   "code": "ER3029",
+   "tier": 2,
+   "name": "Shredding",
+   "kind": "ATTACK",
+   "dice": 4,
+   "toHit": 10,
+   "target": [
+    "Priority Target in sight",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 6+: +2 EVADE_DICE",
+    "Each hit deals 2 DANGER and 1 Ambrosia token.",
+    "Four or more hits, additionally gain the Holy Terror Condition card."
+   ],
+   "dp": {
+    "pre": [
+     "Gain 2 Despair tokens."
+    ],
+    "win": true,
+    "move": true,
+    "fm": [
+     6,
+     "die2"
+    ]
+   },
+   "after": "Vanish 4."
+  },
+  {
+   "code": "ER3040",
+   "tier": 3,
+   "name": "Inkblot of Phobos",
+   "kind": "ATTACK",
+   "dice": 4,
+   "toHit": 8,
+   "target": [
+    "Priority Target",
+    "Hierarchy"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 7+: +1 EVADE_DICE",
+    "Each hit deals 3 DANGER and 1 Ambrosia token."
+   ],
+   "dp": {
+    "pre": [
+     "Gain the Terror Condition card."
+    ],
+    "win": true,
+    "move": true,
+    "fm": [
+     7,
+     "die"
+    ]
+   },
+   "after": "Inkblot. Vanish 7."
+  },
+  {
+   "code": "ER3039",
+   "tier": 3,
+   "name": "The Paling",
+   "kind": "JUDGEMENT",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Hierarchy",
+    "Closest Titan not in front, in sight"
+   ],
+   "steps": [
+    "MOVE & JUDGE | FATE 8+: Every other Titan gains the Holy Terror Condition card",
+    "One hit, gain the Holy Terror Condition card; two hits, you die; three or more hits, the Titan and the Argonaut die."
+   ],
+   "dp": {
+    "pre": [
+     "Inkblot."
+    ],
+    "move": true,
+    "judge": [
+     "Courage",
+     "Will"
+    ],
+    "fm": [
+     8,
+     "paling"
+    ],
+    "afterWin": true
+   },
+   "after": "Knockdown. Vanish 5."
+  },
+  {
+   "code": "ER3037",
+   "tier": 3,
+   "name": "Trench Swallow",
+   "kind": "ATTACK",
+   "dice": 4,
+   "toHit": 10,
+   "target": [
+    "Hierarchy",
+    "Closest Titan not in front, in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "Gain as many Despair tokens as there are hits.",
+    "If the Attack hits, raise DANGER to 9 and draw an Obol. | FATE 6+: If you draw a You Live! Obol, ignore the result and redraw"
+   ],
+   "dp": {
+    "pre": [
+     "Gain the Terror Condition card."
+    ],
+    "win": true,
+    "move": true,
+    "afterWin": true
+   },
+   "after": "Knockdown. Inkblot. Vanish 5."
+  },
+  {
+   "code": "ER3036",
+   "tier": 3,
+   "name": "Vast of Dark",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Hierarchy",
+    "Closest Titan not in front, in sight"
+   ],
+   "steps": [
+    "MOVE & ATTACK",
+    "FATE 6+: Gain 3 Despair tokens.",
+    "Gain 3 Ambrosia tokens. Each hit deals 3 DANGER.",
+    "⚡ Each Titan discards a Gear card with the highest Light X keyword."
+   ],
+   "dp": {
+    "pre": [
+     "Inkblot.",
+     "Gain the Holy Terror Condition card."
+    ],
+    "move": true
+   },
+   "after": "Vanish 5."
+  },
+  {
+   "code": "ER3035",
+   "tier": 3,
+   "name": "Drainage of Hope",
+   "kind": "ATTACK",
+   "dice": 5,
+   "toHit": 9,
+   "target": [
+    "Priority Target in sight",
+    "Closest Titan not in front, in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK | FATE 5+: +1 EVADE_DICE",
+    "Each hit deals 2 DANGER and 1 Despair token. | FATE 6+: 3 DANGER instead",
+    "Discard 1 Oxygen or Aether token per 2 hits."
+   ],
+   "dp": {
+    "pre": [
+     "Inkblot.",
+     "Gain the Holy Terror Condition card."
+    ],
+    "win": true,
+    "move": true,
+    "fm": [
+     5,
+     "die"
+    ]
+   },
+   "after": "Vanish 5."
+  },
+  {
+   "code": "ER3038",
+   "tier": 3,
+   "name": "The Ur-Call",
+   "kind": "JUDGEMENT",
+   "dice": 2,
+   "toHit": 11,
+   "target": [
+    "Priority Target",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "JUDGE",
+    "If the Attack hits, you die.",
+    "⚡ Flip 1 Oxygen token.",
+    "Gain the Holy Terror Condition card."
+   ],
+   "dp": {
+    "pre": [
+     "Gain 2 Despair tokens.",
+     "FATE 7+: You die instead."
+    ],
+    "judge": [
+     "Courage",
+     "Wisdom",
+     "Will",
+     "Endurance",
+     "Cunning",
+     "Fury"
+    ],
+    "doomed": true,
+    "afterWin": true
+   },
+   "after": "Inkblot. Vanish 5."
+  },
+  {
+   "code": "ER3042",
+   "tier": "X",
+   "name": "Churning Black",
+   "kind": "ROUTINE",
+   "dice": 0,
+   "toHit": 0,
+   "target": [],
+   "steps": [
+    "Each Titan discards 1 Oxygen token and a Gear card with the highest Light X keyword. Then the Dragon of Phobos disappears (remove it from the Battle Board)."
+   ],
+   "dp": {
+    "routine": true
+   }
+  },
+  {
+   "code": "ER3041",
+   "tier": "X",
+   "name": "Claw Sift",
+   "kind": "SIGNATURE",
+   "dice": 2,
+   "toHit": 10,
+   "target": [
+    "Closest Titan in front",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "⚡ MOVE & ATTACK",
+    "FATE 6+: Gain the Holy Terror Condition card.",
+    "Each hit deals 1 DANGER and 1 Despair token. Two or more hits, additionally gain the Fear Condition card."
+   ],
+   "dp": {
+    "win": true,
+    "move": true,
+    "afterWin": true
+   },
+   "after": "Vanish 3."
+  }
+ ],
+ "bp": [
+  {
+   "code": "DOP-B1",
+   "tier": 1,
+   "name": "Mortal-like Torso",
+   "at": 8,
+   "responses": {
+    "FAIL": "Gain 1 Despair token.",
+    "WOUND": "Gain 1 Ambrosia token."
+   },
+   "critical": "Gain 1 Sisyphus Tear, Echo of Recollection, or Pygmalion Stone Divine resource (campaign)."
+  },
+  {
+   "code": "DOP-B2",
+   "tier": 1,
+   "name": "Hairy Neck",
+   "at": 6,
+   "responses": {
+    "FAIL": "Gain 2 Ambrosia tokens.",
+    "WOUND": "Inkblot. ⚡ Vanish 2."
+   },
+   "critical": "Reduce Vanish by 1."
+  },
+  {
+   "code": "DOP-B3",
+   "tier": 1,
+   "name": "Clawhorn",
+   "at": 6,
+   "responses": {
+    "FAIL": "Gain the Fear Condition card and +1 DANGER."
+   },
+   "critical": "You may discard 1 Despair token and perform a Bonus Attack!"
+  },
+  {
+   "code": "DOP-B4",
+   "tier": 1,
+   "name": "Cnidarian Tail",
+   "at": 7,
+   "responses": {
+    "INSTINCT": "⚡ Vanish 4."
+   },
+   "critical": "Gain the Phobos Whip card (Secret deck 18, card 283)."
+  },
+  {
+   "code": "DOP-B5",
+   "tier": 1,
+   "name": "Incision Tusk",
+   "at": 7,
+   "responses": {
+    "FAIL": "Perform Signature.",
+    "WOUND": "⚡ Vanish 3."
+   },
+   "critical": "Reduce Vanish by 1 and perform a Bonus Attack!"
+  },
+  {
+   "code": "DOP-B6",
+   "tier": 1,
+   "name": "Pale Claw",
+   "at": 8,
+   "responses": {
+    "FAIL": "Gain the Fear Condition card and +1 DANGER.",
+    "WOUND": "⚡ Vanish 3."
+   },
+   "critical": "Reduce Vanish by 1."
+  },
+  {
+   "code": "DOP-B7",
+   "tier": 2,
+   "name": "Unseen Antennae",
+   "at": 8,
+   "responses": {
+    "FAIL": "Gain the Terror Condition card.",
+    "WOUND": "Inkblot. Vanish 5."
+   },
+   "critical": "Reduce Vanish by 2."
+  },
+  {
+   "code": "DOP-B8",
+   "tier": 2,
+   "name": "Wide Grin",
+   "at": 10,
+   "responses": {
+    "FAIL": "Perform Signature.",
+    "WOUND": "Vanish 4."
+   },
+   "critical": "Disable the Pale Grin of Doom Trait. Gain the Grinmask card (Secret deck 18, card 284)."
+  },
+  {
+   "code": "DOP-B9",
+   "tier": 2,
+   "name": "Onyx Smokers",
+   "at": 8,
+   "responses": {
+    "INSTINCT": "Gain 2 Ambrosia tokens."
+   },
+   "critical": "Disable the Inkblot keyword."
+  },
+  {
+   "code": "DOP-B10",
+   "tier": 2,
+   "name": "Feeler Dress",
+   "at": 10,
+   "responses": {
+    "FAIL": "Gain DANGER equal to the Primordial level and the Dread Condition card."
+   },
+   "critical": "You may discard all Despair tokens and perform a Bonus Attack!"
+  },
+  {
+   "code": "DOP-B11",
+   "tier": 2,
+   "name": "Deltoid Head",
+   "at": 7,
+   "responses": {
+    "FAIL": "Vanish 5.",
+    "WOUND": "Pushback 3, perform Signature against the Attacker."
+   },
+   "critical": "Disable the Blacker Than the Night Trait. If it's not in play, perform a Bonus Attack instead!"
+  },
+  {
+   "code": "DOP-B12",
+   "tier": 2,
+   "name": "Hellhorns",
+   "at": 9,
+   "responses": {
+    "FAIL": "Gain DANGER equal to the Primordial level.",
+    "WOUND": "Vanish 4."
+   },
+   "critical": "Disable Fear and Dread Condition card effects. Discard all Fear and Dread Condition cards from all Titans."
+  },
+  {
+   "code": "DOP-B13",
+   "tier": 3,
+   "name": "Ambrosia Ink Sac",
+   "at": 10,
+   "responses": {
+    "WOUND": "Inkblot. Vanish 7."
+   },
+   "critical": "Disable gaining Ambrosia tokens."
+  },
+  {
+   "code": "DOP-B14",
+   "tier": 3,
+   "name": "Doom-Shaped Heart",
+   "at": 12,
+   "responses": {
+    "FAIL": "Die.",
+    "WOUND": "During the second ability window, turn all your Despair tokens into Hope tokens or place 2 Hope tokens in the Kratos Pool."
+   },
+   "critical": "The Dragon of Phobos dies! Gain +1 permanent Courage (once per Argonaut Lifetime)."
+  },
+  {
+   "code": "DOP-B15",
+   "tier": 3,
+   "name": "Glimpse of Truth",
+   "at": 11,
+   "responses": {
+    "INSTINCT": "Vanish 5. Gain the Terror Condition card and DANGER equal to the Primordial level."
+   },
+   "critical": "Gain +1 Hope resource (campaign). After the Battle, resolve the Just a Peek Special Event."
+  },
+  {
+   "code": "DOP-B16",
+   "tier": 3,
+   "name": "Amygdalan Ganglia",
+   "at": 10,
+   "responses": {
+    "FAIL": "Gain a random Phobia Affliction. Vanish 7."
+   },
+   "critical": "Disable Terror and Holy Terror Condition card effects. Discard all Terror and Holy Terror Condition cards from all Titans. You may discard all Despair tokens and perform a Bonus Attack!"
+  },
+  {
+   "code": "DOP-B17",
+   "tier": 3,
+   "name": "Antediluvian Tooth",
+   "at": 11,
+   "responses": {
+    "FAIL": "Perform Signature.",
+    "WOUND": "Discard up to 3 Ambrosia and/or Despair tokens."
+   },
+   "critical": "Gain the Claw Cracker card (Secret deck 18, card 282). After the Battle, resolve The Great Flood Special Event."
+  },
+  {
+   "code": "DOP-B18",
+   "tier": 3,
+   "name": "Soulless Eyes",
+   "at": 10,
+   "responses": {
+    "FAIL": "Gain DANGER equal to the Primordial level.",
+    "WOUND": "Vanish 7."
+   },
+   "critical": "Disable the effects of Despair tokens."
+  }
+ ],
+ "vp": null,
+ "basicTraits": [
+  "Oxygen and Aether"
+ ]
+}
