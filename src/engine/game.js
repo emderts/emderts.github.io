@@ -2478,7 +2478,7 @@ export class Game {
   }
   async quantumArmory(t) {
     const inUse = n => this.titans.reduce((a, x) => a + x.gear.filter(g => g.card.name === n).length, 0); // FAQ: gear discarded in battle (e.g. as a cost) can't be fetched back
-    const pool = this.data.gear.cards.filter(c => /^hand/.test(c.slot) && c.name !== 'Fists' && c.atk != null && inUse(c.name) < Math.max(1, (c.codes || []).length));
+    const pool = this.data.gear.cards.filter(c => /^hand/.test(c.slot) && c.name !== 'Fists' && c.atk != null && inUse(c.name) < (c.copies || Math.max(1, (c.codes || []).length)));
     if (!pool.length) { this.say('Argo Armory에 남은 무기 없음'); return; }
     const card = await this.ask({ type: 'choice', titan: t, title: `Quantum Armory: ${t.name}이(가) 장착할 무기 (Argo Armory)`, options: pool.map(c => ({ label: `${c.name} (◆${c.atk} +${c.prec || 0} ${(c.power || []).join('')}${c.slot === 'hand1' ? ', 한손' : c.slot === 'hand1x3' ? ', 한손×3' : c.slot === 'hand3' ? ', 세손' : c.slot === 'handAll' ? ', 모든 손' : ''})`, value: c })) });
     if (!card) return;
@@ -2490,7 +2490,7 @@ export class Game {
   }
   async oxybeles(t) {
     const inUse = n => this.titans.reduce((a, x) => a + x.gear.filter(g => g.card.name === n).length, 0);
-    const pool = this.data.gear.cards.filter(c => /^hand/.test(c.slot) && c.atk != null && c.power && c.name !== 'Fists' && inUse(c.name) < Math.max(1, (c.codes || []).length));
+    const pool = this.data.gear.cards.filter(c => /^hand/.test(c.slot) && c.atk != null && c.power && c.name !== 'Fists' && inUse(c.name) < (c.copies || Math.max(1, (c.codes || []).length)));
     if (!pool.length) { this.say('Armory에 남은 무기 없음'); return; }
     const card = await this.ask({ type: 'choice', titan: t, title: 'Hephaestean Oxybeles: 발사할 무기 선택 (Armory)', options: pool.map(c => ({ label: `${c.name} (◆${c.atk} +${c.prec} ${c.power.join('')})`, value: c })) });
     const cells = []; for (let c = 1; c <= this.board.cols; c++) for (let r = 1; r <= this.board.rows; r++) cells.push({ c, r });

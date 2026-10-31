@@ -64,7 +64,7 @@ function completeNode(id) {
 let presets = []; try { presets = JSON.parse(localStorage.getItem('ato.presets') || '[]'); if (!Array.isArray(presets)) presets = []; } catch (e) { presets = []; }
 const savePresets = () => { try { localStorage.setItem('ato.presets', JSON.stringify(presets)); } catch (e) { } };
 // card copy limits: gear copies = number of printed codes; each Mnemos card exists once
-const gearCopies = name => { const g = GEAR.find(x => x.name === name); return g ? Math.max(1, (g.codes || []).length) : 1; };
+const gearCopies = name => { const g = GEAR.find(x => x.name === name); return g ? (g.copies || Math.max(1, (g.codes || []).length)) : 1; }; // Cycle V gear: explicit copies (Unique 1, others 2)
 const gearUsed = (name, except = null) => loadout.titans.reduce((a, t) => a + (t === except ? 0 : t.gear.filter(n => n === name).length), 0);
 const mnemosUsedBy = (name, except = null) => loadout.titans.filter(t => t !== except && (t.mnemos || []).some(m => m && m.name === name));
 function dupErrors() {
