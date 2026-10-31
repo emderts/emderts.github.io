@@ -23,6 +23,8 @@ jobs:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
       - run: node build.mjs
       - run: mkdir -p site && cp dist/mnestis.html site/index.html
+      # Kingdom Forlorn — Rogue's Path (sub-path /rogues/). Until its own build exists, publish rogues/index.html as-is.
+      - run: mkdir -p site/rogues && if [ -f rogues/build.mjs ]; then (cd rogues && npm install --no-save esbuild && node build.mjs && cp dist/rogues.html ../site/rogues/index.html); else cp rogues/index.html site/rogues/index.html; fi
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
