@@ -38,12 +38,13 @@ export function installUrFleece(Game, { TitanDied, BattleOver }) {
     async ufTileMove(T, n, why = 'Black Abyss 이동', defer = null) {
       const R = this.prim; const ufOn = this.ufTile() === T; const old = T.c; const nc = T.c + n; const rows = LANE[T.lane];
       if (n > 0 && nc + 2 > this.board.cols) {
+        if (ufOn) { const sw = []; for (const r of rows) for (let c = old + 1; c <= this.board.cols; c++) sw.push({ c, r }); await this.ufDevour(sw, why); return this.ufDefeat(`${why}: Ur-Fleece가 서 있는 Black Abyss 타일이 보드 끝을 넘어감 (FAQ: 전투 패배)`); }
         const off = ufOn ? this.prim.anchor.c - T.c : null; R.tiles = R.tiles.filter(x => x !== T); this.ufRebuild(); this.say(`Black Abyss (레인 ${T.lane}): 보드 끝을 넘어 제거 → 같은 레인 왼쪽 끝에 다시 배치${ufOn ? ' (Ur-Fleece 함께)' : ''}`, 'ai');
-        const swept = []; for (const r of rows) for (let c = old + 3; c <= this.board.cols; c++) swept.push({ c, r }); await this.ufDevour(swept, why);
+        const swept = []; for (const r of rows) for (let c = old + 1; c <= this.board.cols; c++) swept.push({ c, r }); await this.ufDevour(swept, why); // FAQ: the tile moves one space at a time — Titans on its middle/right spaces are devoured, left spaces survive
         if (defer) { defer.push({ T, off }); return false; }
         await this.ufRespawn(T, off, why); return false;
       }
-      const lo = Math.min(old, nc), hi = Math.max(old, nc) + 2; const swept = []; for (const r of rows) for (let c = lo; c <= hi; c++) if (c < old || c > old + 2) swept.push({ c, r });
+      const swept = []; if (n > 0) { for (const r of rows) for (let c = old + 1; c <= nc + 2; c++) swept.push({ c, r }); } else if (n < 0) { for (const r of rows) for (let c = nc; c <= old + 1; c++) swept.push({ c, r }); } // FAQ: one space at a time — the trailing column's Titans survive
       T.c = nc; if (ufOn) this.prim.anchor = { ...this.prim.anchor, c: this.prim.anchor.c + n };
       for (const o of [...R.tiles]) if (o !== T && o.lane === T.lane && R.tiles.includes(o) && o.c <= nc + 2 && o.c + 2 >= nc) { this.say(`Black Abyss 겹침 — 레인 ${o.lane}의 다른 타일도 5칸 오른쪽으로`, 'ai'); await this.ufTileMove(o, 5, why); }
       this.ufRebuild(); await this.ufDevour(swept, why); return true;
@@ -144,7 +145,7 @@ export function installUrFleece(Game, { TitanDied, BattleOver }) {
       this.notify();
     },
     // ---------- Smother ----------
-    ufSmoFix(t) { const L = t.gear.filter(g => (g.smo || 0) > 0); let s = L.reduce((a, g) => a + g.smo, 0); for (const g of L) { if (s <= (t.ambrosia || 0)) break; if (g.discarded) { s -= g.smo; g.smo = 0; continue; } const k = Math.min(g.smo, s - (t.ambrosia || 0)); g.smo -= k; s -= k; } for (const g of L) if (g.discarded) g.smo = 0; },
+    ufSmoFix(t) { const L = t.gear.filter(g => (g.smo || 0) > 0); let s = L.reduce((a, g) => a + g.smo, 0) + (t._lampSmo || 0); if (t._lampSmo > 0 && s > (t.ambrosia || 0)) { const k = Math.min(t._lampSmo, s - (t.ambrosia || 0)); t._lampSmo -= k; s -= k; } for (const g of L) { if (s <= (t.ambrosia || 0)) break; if (g.discarded) { s -= g.smo; g.smo = 0; continue; } const k = Math.min(g.smo, s - (t.ambrosia || 0)); g.smo -= k; s -= k; } for (const g of L) if (g.discarded) g.smo = 0; },
     ufSmothered(t) { this.ufSmoFix(t); return t.gear.filter(g => !g.discarded && (g.smo || 0) > 0); },
     ufHasLightKW(t) { return t.gear.some(g => !g.discarded && !(g.smo > 0) && this.kwLight(g, t) != null); },
     async ufDiscardSmothered(t, n, perm = false) {
@@ -334,10 +335,10 @@ export function installUrFleece(Game, { TitanDied, BattleOver }) {
   // Smother: Ambrosia goes onto Light X game elements first
   wrap('gainAmbrosia', async function (o, t, n, ...r) {
     const a0 = t ? t.ambrosia || 0 : 0; const res = await o.call(this, t, n, ...r);
-    if (this.ufD() && this.trait('Smother') && t && t.alive) { let k = (t.ambrosia || 0) - a0; if (k > 0) { const L = t.gear.filter(g => !g.discarded && !(g.smo > 0) && this.kwLight(g, t) != null); if (L.length) { const g = L.length === 1 ? L[0] : await this.pickGear(t, L) || L[0]; g.smo = k; this.say(`Smother: ${t.name} — Ambrosia ${k}개를 「${g.card.name}」에 — Light X 비활성화`, 'bad'); } } }
+    if (this.ufD() && this.trait('Smother') && t && t.alive) { let k = (t.ambrosia || 0) - a0; if (k > 0) { const L = t.gear.filter(g => !g.discarded && !(g.smo > 0) && this.kwLight(g, t) != null); const lamp = this.ab(t, 'Aether Lamp') && !(t._lampSmo > 0); if (L.length || lamp) { const pick = (L.length + (lamp ? 1 : 0)) === 1 ? (L[0] || 'lamp') : await this.ask({ type: 'choice', titan: t, title: `Smother: Ambrosia ${k}개를 올릴 Light X 요소`, options: [...L.map(g => ({ label: g.card.name, value: g })), ...(lamp ? [{ label: 'Aether Lamp (타이탄 능력 — 시트와 별개, FAQ)', value: 'lamp' }] : [])] }) || (L[0] || 'lamp'); if (pick === 'lamp') { t._lampSmo = k; this.say(`Smother: ${t.name} — Ambrosia ${k}개를 Aether Lamp에 — Light X 비활성화`, 'bad'); } else { pick.smo = k; this.say(`Smother: ${t.name} — Ambrosia ${k}개를 「${pick.card.name}」에 — Light X 비활성화`, 'bad'); } } } }
     return res;
   });
-  wrap('lightOf', function (o, t) { if (!this.ufD() || !t || !t.gear) return o.call(this, t); this.ufSmoFix(t); const hide = t.gear.filter(g => g.smo > 0 && !g.exhausted); for (const g of hide) g.exhausted = true; try { return o.call(this, t); } finally { for (const g of hide) g.exhausted = false; } });
+  wrap('lightOf', function (o, t) { if (!this.ufD() || !t || !t.gear) return o.call(this, t); this.ufSmoFix(t); const hide = t.gear.filter(g => g.smo > 0 && !g.exhausted); for (const g of hide) g.exhausted = true; try { const L = o.call(this, t); return t._lampSmo > 0 && this.ab(t, 'Aether Lamp') ? Math.max(0, L - (t.aether || 0)) : L; } finally { for (const g of hide) g.exhausted = false; } });
   // Mortal Kindling: Titans with Light X may move through / onto Black Abyss spaces
   wrap('chooseMove', async function (o, t, max, label = '이동', ...r) {
     if (!this.ufD() || !t || !t.alive) return o.call(this, t, max, label, ...r);

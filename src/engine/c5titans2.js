@@ -40,9 +40,9 @@ export function installC5Titans2(Game, { TitanDied, BattleOver }) {
       if (t.alive && t.rage > this.rageCap(t) && !t.rageDoom) { t.rageDoom = true; this.say(`${t.name}: Rage ${t.rage}가 Pain 한계 ${this.rageCap(t)}를 넘음 — 현재 액션 후 분노에 삼켜져 사망합니다!`, 'bad'); }
     },
     // Kratos: Truth X — X tokens, each Break / Opening / Fire / Closing / Black
-    async c5Truth(t, n) {
+    async c5Truth(t, n, mult = 1) {
       const K = ['break', 'opening', 'fire', 'closing', 'black']; const L = { break: 'Break', opening: 'Opening', fire: 'Fire', closing: 'Closing', black: 'Black' };
-      for (let i = 0; i < n; i++) { const k = await this.ask({ type: 'choice', titan: t, title: `Truth ${n}: Kratos Pool에 놓을 토큰 ${i + 1}/${n}`, options: K.map(x => ({ label: L[x], value: x })) }) || 'break'; this.kratosPool[k] = (this.kratosPool[k] || 0) + 1; this.say(`Truth: Kratos Pool ← ${L[k]} 1`); }
+      for (let i = 0; i < n; i++) { const k = await this.ask({ type: 'choice', titan: t, title: `Truth ${n}: Kratos Pool에 놓을 토큰 ${i + 1}/${n}`, options: K.map(x => ({ label: L[x], value: x })) }) || 'break'; this.kratosPool[k] = (this.kratosPool[k] || 0) + mult; this.say(`Truth: Kratos Pool ← ${L[k]} ${mult}`); }
     },
   });
 
@@ -82,7 +82,7 @@ export function installC5Titans2(Game, { TitanDied, BattleOver }) {
   });
   wrap('secondWindow', async function (o, t, A, kt, ...r) {
     const res = await o.call(this, t, A, kt, ...r);
-    if (t && t.alive && kt && kt.truth) await this.c5Truth(t, kt.truth);
+    if (t && t.alive && kt && kt.truth) await this.c5Truth(t, kt.truth, kt.truthX2 ? 2 : 1);
     if (t && t.alive && kt && kt.aiSuppress && A && A.wound) { if (this.ai.discard.length) { this.ai.shuffleDiscardIn(); this.say('Kratos: AI Suppress — AI 버림 더미를 AI 덱에 섞음', 'good'); } else this.say('Kratos: AI Suppress — AI 버림 더미가 비어 있음'); }
     return res;
   });
@@ -139,13 +139,14 @@ export function installC5Titans2(Game, { TitanDied, BattleOver }) {
   wrap('bleedGain', async function (o, t, n) { const r = await o.call(this, t, n); if (t && t.alive && r > 1 && await this.argoHook('Painkiller Shot', `${t.name}: Bleeding +${r} → 1로 낮추기?`, t)) { return 1; } return r; });
   wrap('resolveArgo0', async function (o, name, t) {
     const live = this.liveTitans();
-    if (name === 'Calculate Statistical Certainty') { const x = await this.pickTitan(t, live.filter(y => !y.truthObol)); if (!x) return; const c = this.truthMachineCard(x); x.truthObol = c; this.say(`[Argo] Truth Machine: ${x.name}의 다음 Obol은 「${c.name}」`, c.result === 'live' ? 'good' : 'bad'); this.flash && this.flash('card', { kind: 'OBOL (Truth Machine)', titan: x.name, name: c.name, text: c.text || '', cls: c.result === 'live' ? 'good' : 'obol' }); return; }
+    if (name === 'Calculate Statistical Certainty') { const x = await this.pickTitan(t, live); if (!x) return; if (x.truthObol) this.say(`Truth Machine: ${x.name}의 이전 결과 「${x.truthObol.name}」을(를) 덮어씀 (FAQ)`); const c = this.truthMachineCard(x); x.truthObol = c; this.say(`[Argo] Truth Machine: ${x.name}의 다음 Obol은 「${c.name}」`, c.result === 'live' ? 'good' : 'bad'); this.flash && this.flash('card', { kind: 'OBOL (Truth Machine)', titan: x.name, name: c.name, text: c.text || '', cls: c.result === 'live' ? 'good' : 'obol' }); return; }
     if (name === 'Triskelion Override') { const x = await this.pickTitan(t, live.filter(y => !y.offBoard)); if (!x) return; const v = await this.ask({ type: 'choice', titan: x, title: `Triskelion Override: ${x.name} — Pain 3을 얻고 어떤 액션?`, options: [{ label: 'Movement 액션', value: 'move' }, { label: 'Combat 액션', value: 'combat' }] }); if (!v) return; await this.gainPain(x, 3, 'Triskelion Override'); if (!x.alive) return; if (v === 'move') await this.moveActionNow(x, 'Triskelion Override'); else await this.combatActionNow(x, 'Triskelion Override'); if (x.alive) { const fv = await this.ask({ type: 'choice', titan: x, title: `Triskelion Override: ${x.name} — 받을 Fatigue 토큰 (방금 한 액션과 무관하게 선택)`, options: [{ label: 'Movement Fatigue', value: 'move' }, { label: 'Combat Fatigue', value: 'combat' }] }) || v; x.fatigue = fv; this.say(`${x.name}: ${fv === 'move' ? 'Movement' : 'Combat'} Fatigue 토큰`, 'bad'); } return; }
     if (name === 'Painkiller Shot') { const x = await this.pickTitan(t, live.filter(y => y.pain > 0)); if (!x) { this.say('(Pain 토큰이 있는 타이탄 없음)'); return; } x.painIgnore = this.round; this.say(`[Argo] Painkiller Shot: ${x.name} — 이번 라운드 Pain 토큰 무시 (Rage 한계 9)`, 'good'); return; }
     if (name === 'Drag It Back!') { if (!live.length) return; const d = Math.min(...live.filter(x => !x.offBoard && !x.onVP).map(x => this.distTo(x))); const c = live.filter(x => !x.offBoard && !x.onVP && this.distTo(x) === d); const x = c.length === 1 ? c[0] : await this.pickTitan(t, c); if (!x) return; const v = await this.ask({ type: 'choice', titan: x, title: `Drag It Back!: ${x.name} — Pushback 또는 Pull (최대 3)`, options: [1, 2, 3].flatMap(n => [{ label: `Pushback ${n}`, value: 'b' + n }, { label: `Pull ${n}`, value: 'l' + n }]) }); if (!v) return; const n = +v.slice(1); if (v[0] === 'l') await this.pullPrim(x, n); else if (this.isAdj(x)) await this.pushbackPrim(x, n); else this.say(`${x.name}: 인접하지 않아 Pushback 불가`); return; }
     if (name === 'Soulbalm') { const x = await this.pickTitan(t, live.filter(y => y.despair > 0 || y.conditions.some(c => c === 'Fear' || c === 'Terror'))); if (!x) { this.say('(대상 없음)'); return; } const opts = [...(x.despair ? [{ label: `Despair 토큰 ${x.despair}개 모두 버림`, value: 'd' }] : []), ...x.conditions.filter(c => c === 'Fear' || c === 'Terror').map(c => ({ label: `${c} Condition 버림`, value: c }))]; const v = opts.length === 1 ? opts[0].value : await this.ask({ type: 'choice', titan: x, title: 'Soulbalm', options: opts }); if (v === 'd') { x.despair = 0; this.say(`${x.name}: Despair 모두 버림`, 'good'); } else if (v) { x.conditions = x.conditions.filter(c => c !== v); this.say(`${x.name}: ${v} 버림`, 'good'); } return; }
     if (name === 'Underwater Support Fleet') { if (this.trireme && !this.trireme.sub) { this.say('(Cirrotrireme가 이미 있음 — Subreme 사용 불가)'); return; } await this.triremeMove(t, true); return; }
-    if (name === 'Oxygen Tubes' || name === 'Flash Backstep' || name === 'Kintsukuroi Pharos') { this.say(`[Argo] ${name}: Cycle V 프라이모디얼 전투 전용 — 이 전투에서는 효과 없음`, 'sys'); return; }
+    if (name === 'Flash Backstep') { this.say('[Argo] Flash Backstep: 인접한 Cycle V 프라이모디얼이 Flash Step / Vanish / Flicker를 할 때 자동으로 제안됨', 'sys'); return; }
+    if (name === 'Oxygen Tubes' || name === 'Kintsukuroi Pharos') { this.say(`[Argo] ${name}: Cycle V 프라이모디얼 전투 전용 — 이 전투에서는 효과 없음`, 'sys'); return; }
     return o.call(this, name, t);
   });
 }

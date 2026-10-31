@@ -92,7 +92,7 @@ const adjPut = (g, T) => { for (const p of g.primCells()) for (const [dx, dy] of
 { const g = mk([['Erratic Insignitor'], ['Sirenblade']]); const t = g.gearText(g.titans[0].gear[0], g.titans[0]); ok(true, 'erratic ' + t.slice(0, 30)); }
 { const g = mk([['Willblade'], ['Sirenblade']]); const [A] = g.titans; ok(true, 'willblade'); }
 { const g = mk([['Divine Lure'], ['Sirenblade']]); g.awk = { avail: ['Zeus'], used: [] }; const [A] = g.titans; ok(await g.awaken(A, { inline: true }) === false, 'Husk: cannot awaken'); }
-{ const g = mk([['Black Fleece'], ['Sirenblade']]); const [A] = g.titans; await g.addCondition(A, 'Fear'); ok(!A.conditions.includes('Fear'), 'gear Fearless'); }
+{ const g = mk([['Black Fleece'], ['Sirenblade']]); const [A] = g.titans; const p0 = g.precisionMods(A); await g.addCondition(A, 'Fear'); ok(A.conditions.includes('Fear') && g.precisionMods(A) === p0, 'gear Fearless (FAQ): Fear is gained but its Precision penalty is ignored'); }
 { const g = mk([['Argocryptex Alpha'], ['Sirenblade']]); const [A] = g.titans; A.danger = 6; g.ask = async q => q.options[0].value; await g.gainAmbrosia(A, 2); ok(A.ambrosia === 0 && A.gear[0].discarded, 'Argocryptex Alpha ignores ambrosia'); }
 { const g = mk([['Minohead'], ['Sirenblade']]); const [A] = g.titans; ok(g.freeActions(A).some(o => /Minohead: Provoke/.test(o.label)), 'Minohead Provoke action'); }
 { const g = mk([['Regret'], ['Sirenblade']]); const [A] = g.titans; const rg = A.gear[0]; ok(!/Auto-black 3/.test(g.gearText(rg, A)), 'Regret gate off without Moiros'); A.moirosHeld = [{ name: 'x' }]; ok(/Auto-black 3\./.test(g.gearText(rg, A)), 'Regret gate on with Moiros'); }

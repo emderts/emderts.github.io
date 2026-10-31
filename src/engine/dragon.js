@@ -60,6 +60,7 @@ export function installDragon(Game, { TitanDied, BattleOver }) {
         await this.primStep(na, []); k++;
       }
       if (k) await this.primEndMove([]); this.prim.facing = f0; this.say(`Vanish: ${k}칸 → ${cellLabel(this.prim.anchor)} 기준 (회전 없음)`, 'ai'); this.notify();
+      if (k && !this.prim.offBoard && !this.primCells().some(p => this.dpLit(p))) return this.dpGoOff('착지로 밀려난 타이탄의 빛 범위를 벗어나 사라짐 (FAQ)', true);
     },
     async dpGoOff(why, viaVanish = false) {
       if (this.prim.offBoard) return; this.prim.offBoard = true; this.prim._last = { ...this.prim.anchor }; this.prim.anchor = { ...OFF };

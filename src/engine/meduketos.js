@@ -56,7 +56,7 @@ export function installMeduketos(Game, { TitanDied, BattleOver }) {
           else if (/Intermediary/.test(line)) c = c.filter(t => t.intermediary);
           else if (/Priority Target/.test(line)) c = c.filter(t => t.pt);
           else if (/Random Titan/.test(line)) { if (c.length) return { list: [this.rng.pick(c)] }; continue; }
-          else if (/Battle Board/.test(line)) { if (c.length) return { list: c }; continue; }
+          else if (/Battle Board/.test(line)) { c = c.filter(t => !t.onVP); /* FAQ: Titans on VP spaces are safe; Terrain spaces count */ if (c.length) return { list: c }; continue; }
           if (!c.length) continue;
           return { list: [c.find(t => t.pt) || c[0]] };
         }
@@ -278,7 +278,9 @@ export function installMeduketos(Game, { TitanDied, BattleOver }) {
   wrap('awaken', async function (o, t, ...r) { const res = await o.call(this, t, ...r); if (this.c5b() && t && t.aether && t.godform) { this.say(`${t.name}: 각성 — Aether ${t.aether}개 모두 버림`); t.aether = 0; } return res; });
   wrap('addCondition', async function (o, t, name, ...r) { if (this.medD() && this.prim.disabled.fearConds && ['Fear', 'Dread', 'Terror', 'Holy Terror'].includes(name)) { this.say(`${t.name}: ${name} 획득 비활성화됨`, 'good'); return; } return o.call(this, t, name, ...r); });
   wrap('crashPrim', async function (o, t, ...r) { if (this.medD() && this.trait('Heat Death') && !this.prim.disabled.incinerate && t && t.alive) { this.say(`Heat Death: ${t.name} Crash — 소각`, 'bad'); return this.kill(t, { instant: true, incinerate: true }); } return o.call(this, t, ...r); });
-  wrap('primStep', async function (o, na, ...r) { if (!this.medD() || this.trait('Nap of the Vent')) return o.call(this, na, ...r); const V = [...this.board.terrain.values()].filter(z => z.vent && z.destructible); for (const z of V) z.destructible = false; try { return await o.call(this, na, ...r); } finally { for (const z of V) z.destructible = true; } });
+  wrap('primStep', async function (o, na, ...r) { if (!this.medD()) return o.call(this, na, ...r); const nap = this.trait('Nap of the Vent'); const old = this.primCells(); const V = [...this.board.terrain.values()].filter(z => z.vent && z.destructible); for (const z of V) z.destructible = false; let res; try { res = await o.call(this, na, ...r); } finally { for (const z of V) z.destructible = true; }
+    if (nap && !this.prim.offBoard) { const now = this.primCells(); const left = old.filter(p => !now.some(q => q.c === p.c && q.r === p.r)); const ids = new Set(); for (const p of left) { const z = this.board.terrainAt(p.c, p.r); if (z && z.vent && z.destructible && !now.some(q => { const y = this.board.terrainAt(q.c, q.r); return y && y.id === z.id; })) ids.add(z.id); } for (const id of ids) { this.board.removeTerrainId(id); this.say(`Nap of the Vent: ${this.prim.name}이(가) 지나간 Petrified Vent 파괴 (멈춘 칸의 Vent는 유지 — FAQ)`); } }
+    return res; });
   wrap('holdOn', async function (o, t) { if (this.medD() && t && t.alive && t.onVP) return this.medHoldOn(t); return o.call(this, t); });
   wrap('climbVP', async function (o, t, ...r) { const res = await o.call(this, t, ...r); if (this.medD() && t.alive && t.onVP && this.trait('Invisible Flame')) { this.say(`Invisible Flame: ${t.name} VP 등반 — Ambrosia +1, Pain +1`, 'bad'); await this.gainAmbrosia(t, 1); if (t.alive) await this.gainPain(t, 1, 'Invisible Flame'); } return res; });
   wrap('chooseMove', async function (o, t, max, label = '이동', ...r) {

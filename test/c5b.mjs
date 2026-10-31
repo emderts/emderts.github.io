@@ -27,8 +27,8 @@ ok(['immortaltruthbearer', 'helldiver', 'feareater', 'executioner', 'trespasser'
 { const g = mk(); const E = g.titans[3]; const s0 = g.speedOf(E); E.rage = 6;
   await g.gainPain(E, 1, 't'); ok(E.pain === 1 && E.stackTok === 1 && g.speedOf(E) === s0 + 1 && g.rageCap(E) === 8, 'Pain Engine 1: +1 Speed; Pain lowers Rage threshold');
   await g.gainPain(E, 2, 't'); ok(g.titanDie(E) === 'w' && g.rageCap(E) === 6 && !E.rageDoom, 'Pain Engine 3: Power die White; Rage cap 6');
-  await g.gainPain(E, 1, 't'); ok(E.rageDoom && g.inh(E, 'Auto-rouse') === 1, 'Pain 4: Rage 6 > cap 5 → rage doom; Auto-rouse 1');
-  await g.gainPain(E, 1, 't'); ok(g.inh(E, 'Deadly') === true, 'Pain Engine 5: Deadly'); }
+  g._atkN = 1; await g.gainPain(E, 1, 't'); ok(E.rageDoom && g.inh(E, 'Auto-rouse') === 1, 'Pain 4 (during an attack): Rage 6 > cap 5 → rage doom deferred; Auto-rouse 1');
+  await g.gainPain(E, 1, 't'); ok(g.inh(E, 'Deadly') === true, 'Pain Engine 5: Deadly'); g._atkN = 0; await g.gainPain(E, 1, 't').catch(e => { if (!e.titan) throw e; }); ok(!E.alive, 'outside an attack: consumed by rage immediately (FAQ)'); }
 { const g = mk(); const E = g.titans[3]; E.pain = 1; E.stackTok = 1; const trig = []; g.ask = async q => /Pain 1 버리기|Despair 토큰 1개를 얻고/.test(q.title || '') ? true : yes(q); await safe(g, () => g.titanTurnStartTriggers ? g.titanTurnStartTriggers(E) : null); ok(true, 'turn start smoke'); }
 // Trespasser
 { const g = mk(SET2); const T = g.titans[0]; const p0 = g.precisionMods(T); await g.gainAmbrosia(T, 2); ok(T.stackTok === 2 && g.precisionMods(T) === p0 + 1 && g.inh(T, 'Stalwart') === true, 'Trespasser: Ambrosia → tokens (Precision, Stalwart)');
