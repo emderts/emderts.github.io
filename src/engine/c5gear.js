@@ -215,4 +215,8 @@ export function installC5Gear(Game, { TitanDied, BattleOver }) {
       for (const x of this.liveTitans()) { if (x === h || !x.fatigue) continue; out.push({ label: `${h.name}: ${g.card.name} Herd Sync — ${x.name}의 ${x.fatigue === 'combat' ? 'Combat' : 'Movement'} Fatigue를 가져옴 (Fate+1)`, value: async () => { if (h.fatigue) { this.say(`${h.name}: 이미 Fatigue 토큰이 있음 (FAQ: 2개 불가)`); return; } await this.gainFate(h, 1); h.fatigue = x.fatigue; x.fatigue = false; this.say(`${h.name}: Herd Sync — ${x.name}의 Fatigue 토큰을 가져옴`, 'good'); this.notify(); } }); } }
     return out;
   });
+  // ---------- Kintsukuroi Pharos — Flareshot: ignore Vanish / Fade In / Black March ----------
+  for (const [nm, lbl] of [['dpVanish', 'Vanish'], ['ufFadeIn', 'Fade In'], ['ufMarch', 'Black March']]) if (P[nm]) wrap(nm, async function (o, ...a) { if (this.kintPay && this.kintPay('Flareshot') && await this.kintUse('Flareshot', `${this.prim.name}의 ${lbl}을(를) 무시?`, this.liveTitans()[0])) { this.say(`Flareshot: ${lbl} 무시`, 'good'); return; } return o.call(this, ...a); });
+  if (P.ventsAdj) wrap('ventsAdj', function (o, t, used) { const base = o.call(this, t, used); if (!t || !t._flareScan) return base; const seen = new Set(base.map(z => z.id)); for (const z of this.board.terrain.values()) if (z.vent && !used.has(z.id) && !seen.has(z.id)) { seen.add(z.id); base.push(z); } return base; });
+  if (P.medScan) wrap('medScan', async function (o, ...a) { try { return await o.call(this, ...a); } finally { for (const t of this.titans) t._flareScan = false; } });
 }

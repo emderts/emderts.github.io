@@ -146,8 +146,31 @@ export function installC5Titans2(Game, { TitanDied, BattleOver }) {
     if (name === 'Soulbalm') { const x = await this.pickTitan(t, live.filter(y => y.despair > 0 || y.conditions.some(c => c === 'Fear' || c === 'Terror'))); if (!x) { this.say('(대상 없음)'); return; } const opts = [...(x.despair ? [{ label: `Despair 토큰 ${x.despair}개 모두 버림`, value: 'd' }] : []), ...x.conditions.filter(c => c === 'Fear' || c === 'Terror').map(c => ({ label: `${c} Condition 버림`, value: c }))]; const v = opts.length === 1 ? opts[0].value : await this.ask({ type: 'choice', titan: x, title: 'Soulbalm', options: opts }); if (v === 'd') { x.despair = 0; this.say(`${x.name}: Despair 모두 버림`, 'good'); } else if (v) { x.conditions = x.conditions.filter(c => c !== v); this.say(`${x.name}: ${v} 버림`, 'good'); } return; }
     if (name === 'Underwater Support Fleet') { if (this.trireme && !this.trireme.sub) { this.say('(Cirrotrireme가 이미 있음 — Subreme 사용 불가)'); return; } await this.triremeMove(t, true); return; }
     if (name === 'Flash Backstep') { this.say('[Argo] Flash Backstep: 인접한 Cycle V 프라이모디얼이 Flash Step / Vanish / Flicker를 할 때 자동으로 제안됨', 'sys'); return; }
-    if (name === 'Oxygen Tubes' || name === 'Kintsukuroi Pharos') { this.say(`[Argo] ${name}: Cycle V 프라이모디얼 전투 전용 — 이 전투에서는 효과 없음`, 'sys'); return; }
+    if (name === 'Kintsukuroi Pharos') { const a = (this.argo || []).find(x => x.card.name === name); const pl = a && a.payload; if (pl === 'Flareshot' && this.medD && this.medD() && this.prim.offBoard && t) { t._flareScan = true; this.say(`[Argo] Kintsukuroi Pharos — Flareshot: ${t.name}이(가) 이번 Seabed Scan에서 아무 Petrified Vent나 Scan 가능`, 'good'); return; } this.say(`[Argo] Kintsukuroi Pharos (${pl || 'Payload 없음'}): 해당 상황에서 자동으로 제안됨`, 'sys'); if (a) { a.charges++; a.exhausted = false; } return; }
+    if (name === 'Oxygen Tubes') { this.say(`[Argo] ${name}: Cycle V 프라이모디얼 전투 전용 — 이 전투에서는 효과 없음`, 'sys'); return; }
     return o.call(this, name, t);
+  });
+  // ---------- [Argo] Kintsukuroi Pharos + Payloads (EA2791-EA2794) ----------
+  Object.assign(P, {
+    kintPay(name) { const a = (this.argo || []).find(x => x.card.name === 'Kintsukuroi Pharos'); return a && a.payload === name && a.charges > 0 && !a.exhausted ? a : null; },
+    async kintUse(name, title, titan = null) { const a = this.kintPay(name); if (!a) return false; const ok = await this.ask({ type: 'yn', titan, title: `[Argo] Kintsukuroi Pharos — ${name} (charge ${a.charges}): ${title}`, options: [{ label: '사용', value: true }, { label: '패스', value: false }] }); if (!ok) return false; a.charges--; a.exhausted = true; this.say(`Argo Ability 「Kintsukuroi Pharos — ${name}」`, 'sys'); return true; },
+  });
+  wrap('startOfBattle', async function (o, ...a) {
+    const K = (this.argo || []).find(x => x.card.name === 'Kintsukuroi Pharos');
+    if (K && !K.payload) { const L = K.card.payloads || []; const v = L.length ? (await this.ask({ type: 'choice', title: 'Kintsukuroi Pharos: 이번 전투의 Payload 선택', options: L.map(p => ({ label: `${p.name}: ${p.ability}`, value: p.name })) }) || L[0].name) : null; if (v) { K.payload = v; this.say(`Kintsukuroi Pharos: Payload 「${v}」`, 'sys'); } }
+    return o.call(this, ...a);
+  });
+  // We Bring Our Own Light: a Titan dies → regain 1 charge (capped at 1, FAQ)
+  wrap('kill', async function (o, t, ...r) { try { return await o.call(this, t, ...r); } catch (e) { if (e instanceof TitanDied && e.titan === t) { const K = (this.argo || []).find(x => x.card.name === 'Kintsukuroi Pharos'); if (K && K.payload && K.charges < 1) { K.charges = 1; this.say('Kintsukuroi Pharos — We Bring Our Own Light: 타이탄 사망, charge 1 회복', 'sys'); } } throw e; } });
+  // Beacon of Light: Second Chance for that Trauma Draw
+  wrap('traumaDraw', async function (o, t, ...r) {
+    if (t && t.alive && !t._beacon && !t._beaconAsked && this.kintPay('Beacon of Light')) { t._beaconAsked = true; try { if (await this.kintUse('Beacon of Light', `${t.name}의 이번 Trauma Draw에 Second Chance?`, t)) t._beacon = true; } finally { t._beaconAsked = false; } }
+    const outer = !!t && t._beacon && !t._beaconIn; if (outer) t._beaconIn = true;
+    try { return await o.call(this, t, ...r); } finally { if (outer) { t._beacon = false; t._beaconIn = false; } }
+  });
+  wrap('maybeSecondChance', async function (o, t, card, ...r) {
+    if (t && t._beacon && card && card.pol !== '+' && card.result !== 'live' && !t._noChance && !this.hasFated(t, 'Superstitious')) { t._beacon = false; this.say(`${t.name}: Beacon of Light — Second Chance, 「${card.name}」 무시하고 다시 뽑음`, 'good'); return true; }
+    return o.call(this, t, card, ...r);
   });
 }
 
@@ -155,4 +178,5 @@ export function installC5Titans2(Game, { TitanDied, BattleOver }) {
 export function installPainSentences(Game) {
   const P = Game.prototype; const o = P.doSentence;
   P.doSentence = async function (t, p, ctx = {}) { let m; const q = (p || '').replace(/^⚡\s*/, ''); if ((m = /^(?:Gain (\d+) Pain tokens?|Pain (\d+))\.?$/.exec(q))) { if (t && t.alive) await this.gainPain(t, +(m[1] || m[2]), 'Pain'); return; } return o.call(this, t, p, ctx); };
+
 }

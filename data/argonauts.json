@@ -1333,7 +1333,7 @@
    "Cycle II: Transport Trireme / Rendezvous Trireme need the Cycle II Trireme special rules — not included. War Propylon (Argo Support III) = AA limit 4.",
    "Cycle III Technology: Transient Death is \"Mnestis prohibited\" — not included.",
    "2026-10-20: Cycle IV Argo Abilities (technology cards) added. Argo Cloud Operations (Voyage) = Argo Support IV, AA Limit 5. Cycle II Trireme abilities are disabled in Cycle IV battles.",
-   "2026-10-30: Cycle V Argo Abilities (Technology) added. Flash Backstep / Oxygen Tubes / Kintsukuroi Pharos only work with Cycle V Primordials or missing payload cards."
+   "2026-10-30: Cycle V Argo Abilities (Technology) added. Flash Backstep / Oxygen Tubes only work with Cycle V Primordials. Kintsukuroi Pharos payloads EA2791-EA2794 added 2026-10-31."
   ],
   "cards": [
    {
@@ -1619,7 +1619,30 @@
     "cycle": 5,
     "name": "Kintsukuroi Pharos",
     "charges": 1,
-    "text": "Start of Battle: Choose one Kintsukuroi Pharos Payload and place it on this card. Until the end of Battle, the Payload becomes the effect of this Argo Ability. (Payload cards not transcribed)"
+    "text": "Start of Battle: Choose one Kintsukuroi Pharos Payload and place it on this card. Until the end of Battle, the Payload becomes the effect of this Argo Ability.",
+    "payloads": [
+     {
+      "code": "EA2791",
+      "name": "Beacon of Light",
+      "ability": "Choose a Titan that is about to perform a Trauma Draw. That Titan gains Second Chance for that Draw."
+     },
+     {
+      "code": "EA2792",
+      "name": "Markerlight",
+      "ability": "Choose a Titan performing an Attack. That Titan gains Heartseeker for this Attack."
+     },
+     {
+      "code": "EA2793",
+      "name": "Flash Aegis",
+      "ability": "Choose a Titan attacked by a Primordial. That Titan gains Block 1 or Defy 1 for this Attack."
+     },
+     {
+      "code": "EA2794",
+      "name": "Flareshot",
+      "ability": "Ignore Vanish, Fade In, or Black March, or perform a Scan on any Petrified Vent."
+     }
+    ],
+    "payloadRule": "We Bring Our Own Light: When a Titan dies, regain 1 charge for this Argo Ability (FAQ: capped at 1)."
    },
    {
     "cycle": 5,
