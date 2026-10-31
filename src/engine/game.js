@@ -2600,7 +2600,7 @@ export class Game {
     for (const pk of path) { const [c, r] = pk.split(',').map(Number); const ter = this.board.terrainAt(c, r); if (!ter || !ter.ambrosia || seenPools.has(ter.id)) continue; seenPools.add(ter.id);
       const roll = this.rng.d10(); const ok = roll >= 6; this.say(`${t.name}: Ambrosia Pool(${cellLabel({ c, r })}) 통과 — 테스트 d10=${roll} (6+) → ${ok ? '통과' : '실패'}`, ok ? 'good' : 'bad'); if (!ok) { await this.gainAmbrosia(t, 1, true); if (!t.alive) return; } }
   }
-  usableWeapons(t, filter = null, allowEx = false) { const L = this.usableWeapons0(t, filter, allowEx); return this.gf(t, 'Poseidon') ? L.filter(g => !/Commit \(\[Amb\]\)/.test(this.gearText(g, t) || '')) : L; } // FAQ: Poseidon can't pay Ambrosia costs
+  usableWeapons(t, filter = null, allowEx = false) { let L = this.usableWeapons0(t, filter, allowEx); L = L.filter(g => g.godform || !/Commit \(\[charge\]\)/.test(this.gearText(g, t) || '') || (g.charges || 0) > 0); /* Commit ([charge]) needs a charge to attack */ return this.gf(t, 'Poseidon') ? L.filter(g => !/Commit \(\[Amb\]\)/.test(this.gearText(g, t) || '')) : L; } // FAQ: Poseidon can't pay Ambrosia costs
   usableWeapons0(t, filter = null, allowEx = false) { const mods_noMove = x => !(x.turn && x.turn.moved);
     if (this.trait('Head to Head') && !this.isAdj(t)) return [];
     if (this.prim.traits['Worm of the Labyrinth'] && !t.onVP && !this.inWhite(t.pos)) return [];
@@ -3371,7 +3371,7 @@ export class Game {
     if (!t.alive) return;
     { const why = this.abilityLock(t); if (why) { this.say(`${t.name}: ${why} 상태 — 보너스 공격 불가`, 'bad'); return; } }
     { const qa = this.argoAvail('Quantum Armory'); if (qa) { const ok = await this.ask({ type: 'yn', titan: t, title: `[Argo] Quantum Armory (charge ${qa.charges}): 보너스 공격 전에 Argo Armory 무기 장착?`, options: [{ label: '사용', value: true }, { label: '패스', value: false }] }); if (ok) { qa.charges--; qa.exhausted = true; this.say('Argo Ability 「Quantum Armory」', 'sys'); await this.quantumArmory(t); } } }
-    try { if (pb.normal) { if (this.usableWeapons(t).length) await this.titanAttack(t, {}); else this.say(`${t.name}: 공격 — 사거리 내 무기 없음`); } else if (this.usableWeapons(t, null, true).length) await this.titanAttack(t, { bonus: true, duringPrimAtk: !!pb.duringAI }); else this.say(`${t.name}: 보너스 공격 — 사거리 내 무기 없음`); } catch (e) { if (e instanceof BattleOver) throw e; if (e instanceof TitanDied) return; if (e.chainBreak) return; throw e; }
+    try { if (pb.normal) { if (this.usableWeapons(t).length) await this.titanAttack(t, {}); else this.say(`${t.name}: 공격 — 사거리 내 무기 없음`); } else if (this.usableWeapons(t, null, true).length) await this.titanAttack(t, { bonus: true, duringPrimAtk: !!pb.duringAI }); else this.say(`${t.name}: 보너스 공격 — 사거리 내 무기 없음`); } catch (e) { if (e instanceof BattleOver) throw e; if (e instanceof TitanDied) return; if (e.chainBreak) { this.say('Chain Break', 'sys'); const pb2 = this.pendingBonus; if (pb2 && pb2 !== pb) { this.pendingBonus = null; await this.safe(() => this.bonusAttackFlow(pb2.titan, pb2)); } return; } throw e; }
     t.bonusRaw = 0;
     if (t.heroicLife) { t.heroicLife = false; if (this.prim.lastToWound === t && t.alive) { this.say(`${t.name}: Heroic Life — 생존! Danger −2, Fate −2`, 'good'); t.danger = Math.max(0, t.danger - 2); await this.loseFate(t, 2); } else { this.say(`${t.name}: Heroic Life — 상처를 못 입혀 사망`, 'bad'); if (!(await this.sparkSave(t))) await this.kill(t); } }
     if (t.dieAfterBonus) { t.dieAfterBonus = false; if (!(await this.sparkSave(t))) await this.kill(t); }
