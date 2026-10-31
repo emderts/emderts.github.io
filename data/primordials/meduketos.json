@@ -18,7 +18,7 @@
   "rear": "top-edge"
  },
  "ukb": 12,
- "blindspots": "rear",
+ "blindspots": null,
  "levels": {
   "1": {
    "toHit": 10,
@@ -564,9 +564,9 @@
     "FATE 4+: Gain as many Despair tokens as there are hits."
    ],
    "med": {
-    "zone": true,
-    "afterFinal": "Raise the difficulty of the next Scan by X, where X is the Primordial level."
-   }
+    "zone": true
+   },
+   "after": "Raise the difficulty of the next Scan by X, where X is the Primordial level."
   },
   {
    "code": "ER3081",
@@ -613,12 +613,13 @@
    "at": 7,
    "responses": {
     "FAIL": "Knockdown. Knockback 10.",
-    "WOUND": "Create a VP. ⚡ Retreat 4."
+    "WOUND": "Create a VP.\n⚡ Retreat 4."
    },
    "critical": "Create a VP. Perform a Bonus Attack!",
    "icons": [
     "ambrosia"
-   ]
+   ],
+   "qeye": false
   },
   {
    "code": "ES3083",
@@ -626,13 +627,14 @@
    "name": "Black Fin",
    "at": 7,
    "responses": {
-    "FAIL": "Burn. Gain 1 Despair token. ⚡ Retreat 4.",
+    "FAIL": "Burn. Gain 1 Despair token.\n⚡ Retreat 4.",
     "WOUND": "Gain 1 Ambrosia token."
    },
    "critical": "Perform a Bonus Attack!",
    "icons": [
     "ambrosia"
-   ]
+   ],
+   "qeye": false
   },
   {
    "code": "ES3082",
@@ -646,7 +648,8 @@
    "critical": "Permanently lower Scan Difficulty by 2.",
    "icons": [
     "ambrosia"
-   ]
+   ],
+   "qeye": false
   },
   {
    "code": "ES3087",
@@ -660,7 +663,8 @@
    "critical": "Disable Ambrosia Responses.",
    "icons": [
     "ambrosia"
-   ]
+   ],
+   "qeye": false
   },
   {
    "code": "ES3086",
@@ -669,12 +673,13 @@
    "at": 6,
    "responses": {
     "FAIL": "Burn. Gain the Fear Condition card.",
-    "WOUND": "Burn. ⚡ Retreat 4."
+    "WOUND": "Burn.\n⚡ Retreat 4."
    },
    "critical": "Gain the Veilwrappings card (Secret deck 18, card 286).",
    "icons": [
     "ambrosia"
-   ]
+   ],
+   "qeye": false
   },
   {
    "code": "ES3085",
@@ -688,7 +693,8 @@
    "critical": "Create a VP. Gain the Bravery Condition card.",
    "icons": [
     "ambrosia"
-   ]
+   ],
+   "qeye": false
   },
   {
    "code": "ES3090",
@@ -702,7 +708,8 @@
    "critical": "Disable the Microwave Shield Trait.",
    "icons": [
     "microwave"
-   ]
+   ],
+   "qeye": false
   },
   {
    "code": "ES3089",
@@ -716,7 +723,8 @@
    "critical": "Disable Incineration on Crash.",
    "icons": [
     "microwave"
-   ]
+   ],
+   "qeye": true
   },
   {
    "code": "ES3088",
@@ -725,12 +733,13 @@
    "at": 9,
    "responses": {
     "FAIL": "Flip 1 Oxygen token. Knockdown.",
-    "WOUND": "Discard 1 Aether token. Gain 2 Ambrosia tokens. ⚡ Retreat 5."
+    "WOUND": "Discard 1 Aether token.\nGain 2 Ambrosia tokens.\n⚡ Retreat 5."
    },
    "critical": "Flip 1 Aether token. Gain the Microwave Shieldscale card (Secret deck 18, card 287).",
    "icons": [
     "microwave"
-   ]
+   ],
+   "qeye": false
   },
   {
    "code": "ES3093",
@@ -739,12 +748,13 @@
    "at": 8,
    "responses": {
     "FAIL": "Burn. Gain 1 Ambrosia token and 1 Aether token. Knockdown.",
-    "WOUND": "Create a VP. ⚡ Retreat 5."
+    "WOUND": "Create a VP.\n⚡ Retreat 5."
    },
    "critical": "Create a VP. Perform a Bonus Attack!",
    "icons": [
     "microwave"
-   ]
+   ],
+   "qeye": false
   },
   {
    "code": "ES3092",
@@ -753,12 +763,13 @@
    "at": 10,
    "responses": {
     "FAIL": "Gain X Despair tokens, where X is the Primordial level. Knockdown.",
-    "WOUND": "Gain 2 Ambrosia tokens. ⚡ Retreat 10."
+    "WOUND": "Gain 2 Ambrosia tokens.\n⚡ Retreat 10."
    },
    "critical": "Disable the Burn keyword.",
    "icons": [
     "microwave"
-   ]
+   ],
+   "qeye": true
   },
   {
    "code": "ES3091",
@@ -771,7 +782,8 @@
    "critical": "Permanently lower Scan Difficulty by 2.",
    "icons": [
     "microwave"
-   ]
+   ],
+   "qeye": false
   },
   {
    "code": "ES3096",
@@ -779,14 +791,15 @@
    "name": "Tracker Eye",
    "at": 10,
    "responses": {
-    "FAIL": "Burn. Gain 2 Ambrosia tokens. ⚡ Skitter 5.",
+    "FAIL": "Burn. Gain 2 Ambrosia tokens.\n⚡ Skitter 5.",
     "WOUND": "Draw and perform an AI card."
    },
    "critical": "Attacks from outside of the Battle Board don't lose ⚡.",
    "icons": [
     "ambrosia",
     "microwave"
-   ]
+   ],
+   "qeye": true
   },
   {
    "code": "ES3095",
@@ -803,7 +816,8 @@
    ],
    "pre": [
     "You may voluntarily end this Attack before performing a Power Roll. If you do, clear the Kratos Pool."
-   ]
+   ],
+   "qeye": false
   },
   {
    "code": "ES3094",
@@ -818,7 +832,8 @@
    "icons": [
     "ambrosia",
     "microwave"
-   ]
+   ],
+   "qeye": false
   },
   {
    "code": "ES3099",
@@ -833,7 +848,8 @@
    "icons": [
     "ambrosia",
     "microwave"
-   ]
+   ],
+   "qeye": false
   },
   {
    "code": "ES3098",
@@ -842,13 +858,14 @@
    "at": 12,
    "responses": {
     "FAIL": "You are petrified (die).",
-    "WOUND": "Gain 2 Ambrosia tokens. ⚡ Retreat 5."
+    "WOUND": "Gain 2 Ambrosia tokens.\n⚡ Retreat 5."
    },
    "critical": "Gain the Oculus Headlamp card (Secret deck 18, card 285).",
    "icons": [
     "ambrosia",
     "microwave"
-   ]
+   ],
+   "qeye": true
   },
   {
    "code": "ES3097",
@@ -862,7 +879,8 @@
    "icons": [
     "ambrosia",
     "microwave"
-   ]
+   ],
+   "qeye": true
   }
  ],
  "vp": {
