@@ -32,7 +32,7 @@ export function installC5Titans2(Game, { TitanDied, BattleOver }) {
     },
     titanDie(t) { if (this.ab(t, 'Pain Engine') && (t.stackTok || 0) >= 3) return 'w'; return t.def.powerDie || 'r'; },
     // Pain tokens: each lowers the Rage death threshold by 1 (Pain Resilience X ignores X)
-    rageCap(t) { const res = +this.inh(t, 'Pain Resilience') || 0; return 9 - Math.max(0, (t.pain || 0) - res); },
+    rageCap(t) { const res = (+this.inh(t, 'Pain Resilience') || 0) + (this.gearKWSum ? this.gearKWSum(t, 'Pain Resilience') : 0); return 9 - Math.max(0, (t.pain || 0) - res); },
     async gainPain(t, n, why = '') {
       if (!t || !t.alive || n <= 0) return;
       t.pain = (t.pain || 0) + n; this.say(`${t.name}: Pain +${n}${why ? ` (${why})` : ''} → ${t.pain} (Rage 한계 ${this.rageCap(t)})`, 'bad');

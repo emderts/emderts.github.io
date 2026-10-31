@@ -1376,6 +1376,59 @@
    "atkKW": {
     "Break": 1
    }
+  },
+  {
+   "code": "Secret 255",
+   "name": "Hera",
+   "powerDie": "w",
+   "speed": 0,
+   "trespass": 2,
+   "cycle": 5,
+   "keywords": [
+    "Light 1"
+   ],
+   "abilities": {
+    "Till Death Do Us": "Choose another Titan. That Titan gains the Priority Target token (you cannot gain the Priority Target token). As long as you are alive, that Titan cannot die from an Obol Draw. Each time that Titan is forced to draw an Obol, lose -1 Trespass.",
+    "Scorned Mother": "When fighting against The Nietzschean, the Pitiless, Ur-Fleece, Ur-Father, the Nekron, Zalmoksis, Ur-To-Ev, the Veiled Being, or The Watchress, gain +2 Power."
+   }
+  },
+  {
+   "code": "Secret 256",
+   "name": "Poseidon Exalted",
+   "powerDie": "b",
+   "speed": 3,
+   "precision": 2,
+   "evasion": 3,
+   "trespass": 2,
+   "cycle": 5,
+   "keywords": [
+    "Bonus Action",
+    "Cryptex Loathing"
+   ],
+   "abilities": {
+    "Trench of the Soul": "You cannot die from Ambrosia tokens or losing (discarding or flipping) Oxygen tokens.",
+    "Source and Sacrifice": "Lose -1 Trespass to perform a Bonus Attack (once per Battle). After that, a random Titan on the Argo dies."
+   },
+   "exalted": true
+  },
+  {
+   "code": "Secret 257",
+   "name": "Zeus Exalted",
+   "powerDie": "b",
+   "speed": 3,
+   "precision": 4,
+   "trespass": 2,
+   "cycle": 5,
+   "keywords": [
+    "Bonus Action",
+    "Light 2",
+    "Cryptex Loathing"
+   ],
+   "abilities": {
+    "Father of It All": "You cannot die from Fear, Dread, Terror, or Holy Terror Condition cards or Despair tokens.",
+    "Childeater": "When you deal a Wound, lose -1 Trespass and lose -1 [✕] to ignore Responses and perform a Bonus Attack. If you Fail to wound, you die."
+   },
+   "exalted": true
   }
  ]
 }

@@ -2,7 +2,7 @@
 import { Board, key, cellLabel, DIRS, DIR_LIST, kw } from './core.js';
 
 
-const COST = '((?:Ψ|⟳|X|\\[Movement\\]|\\[Amb\\]|\\[Midas\\]|\\[Fire\\]|\\[charge\\])*)';
+const COST = '((?:Ψ|⟳|ⓐ|ⓟ|ⓓ|ⓞ|X|\\[Movement\\]|\\[Amb\\]|\\[Midas\\]|\\[Fire\\]|\\[charge\\])*)';
 const KP_KEYS = ['opening', 'break', 'diversion', 'fire', 'black', 'hope', 'closing', 'rouse'];
 
 export function installC4(Game, { TitanDied, BattleOver }) {
@@ -10,7 +10,7 @@ export function installC4(Game, { TitanDied, BattleOver }) {
     // ---------- text: gates, Sunbask / Sunstarved ----------
     c4Gates(c, t, text) {
       for (const [k, v] of Object.entries(c.midasGate || {})) if (this.midas(t) >= parseInt(k)) text += ' ' + v;
-      for (const [k, v] of Object.entries(c.condGate || {})) if (k === 'Any Condition' ? (t.conditions || []).length > 0 : (t.conditions || []).includes(k)) text += ' ' + v;
+      for (const [k, v] of Object.entries(c.condGate || {})) if (k === 'Any Condition' ? (t.conditions || []).length > 0 : k === 'Negative Condition' ? (t.conditions || []).some(x => !['Bellerophonic', 'Roused', 'Enriched', 'Enlightened', 'Lander', 'Bravery', 'Resolve'].includes(x)) : (t.conditions || []).includes(k)) text += ' ' + v;
       if (/Sunstarved:|Sunbask \d:/.test(text)) {
         const fire = (this.kratosPool && this.kratosPool.fire) || 0;
         text = text.replace(/Sunstarved: ([^.]*\.)/g, (m0, eff) => fire === 0 ? eff : '');
@@ -34,6 +34,7 @@ export function installC4(Game, { TitanDied, BattleOver }) {
       if (this.gwActive && this.gwActive('Sand to Silica') && this.kratosPool.fire) { A.c4prec -= this.kratosPool.fire; this.say(`Sand to Silica: Fire 토큰 ${this.kratosPool.fire} → Precision −${this.kratosPool.fire}`, 'bad'); }
       if (t.conditions.includes('Resolve')) { A.c4prec += 2; this._kpRaw.break = (this._kpRaw.break || 0) + 1; this.say(`${t.name}: Resolve — Precision +2, Auto-break 1`, 'good'); }
       // Commit (X)
+      for (const cm of txt.matchAll(/Commit \((ⓟ|ⓓ|ⓐ|ⓞ)\)/g)) { if (cm[1] === 'ⓟ' && this.gainPain) await this.gainPain(t, 1, `${g.card.name}: Commit (Pain)`); else if (cm[1] === 'ⓓ') await this.gainDespair(t, 1); else if (cm[1] === 'ⓐ') { if (t.aether) t.aether--; } else if (cm[1] === 'ⓞ') { if (t.oxygen) t.oxygen--; } this.say(`${g.card.name}: Commit (${({ 'ⓟ': 'Pain +1', 'ⓓ': 'Despair +1', 'ⓐ': 'Aether −1', 'ⓞ': 'Oxygen −1' })[cm[1]]})`); }
       for (const cm of txt.matchAll(/Commit \((\[Midas\]|\[charge\]|\[Amb\]|\[Fire\])\)/g)) { if (cm[1] === '[Fire]') { if ((this._kpRaw.fire || 0) > 0) { this._kpRaw.fire--; this.say(`${g.card.name}: Commit (Fire) — Kratos Pool Fire 토큰 1개 버림`); } else this.say(`${g.card.name}: Commit (Fire) — Fire 토큰 없음`, 'sys'); continue; } if (cm[1] === '[Midas]') { this.say(`${g.card.name}: Commit (Midas) — Midas 1`); await this.gainMidas(t, 1, true, true); } else if (cm[1] === '[charge]') { g.charges = Math.max(0, (g.charges || 0) - 1); this.say(`${g.card.name}: Commit (charge) — 남은 ${g.charges}`); } else { this.say(`${g.card.name}: Commit (Ambrosia) — Ambrosia 1`); await this.gainAmbrosia(t, 1); } if (!t.alive) throw new TitanDied(t); }
       // Startup X
       { const su = (kw(txt, 'Startup') || 0) + this.nonWeaponKW(t, g, 'Startup'); if (su && this.kpTokens() === 0) { const k = await this.ask({ type: 'choice', titan: t, title: `Startup ${su}: Kratos Pool이 비어 있음 — Opening/Break 배분`, options: Array.from({ length: su + 1 }, (_, i) => ({ label: `Opening ${su - i} / Break ${i}`, value: su - i })) }); const o = k == null ? su : k; this._kpRaw.opening = (this._kpRaw.opening || 0) + o; this._kpRaw.break = (this._kpRaw.break || 0) + (su - o); this.say(`Startup ${su}: Opening ${o}, Break ${su - o}`); } }
@@ -82,7 +83,7 @@ export function installC4(Game, { TitanDied, BattleOver }) {
       if (fullHit && /Full Hit: During the second ability window, place 1 negative AT token in the Kratos Pool/.test(txt)) A.c4negAT = 1;
       // Each hit / Each miss
       const misses = rolls.length - A.hits;
-      for (const em of txt.matchAll(/Each (hit|miss): (Fire|Opening|Break|Black|Hope) (\d)\./g)) { const n = (em[1] === 'hit' ? A.hits : misses) * +em[3]; if (n) { const k = em[2].toLowerCase(); A.late = A.late || {}; A.late[k] = (A.late[k] || 0) + n; this.say(`${g.card.name}: ${em[1] === 'hit' ? 'hit' : 'miss'} ${n / +em[3]} → ${em[2]} ${n} (2nd window)`); } }
+      for (const em of txt.matchAll(/Each (hit|miss|\d hits|\d misses): (Fire|Opening|Break|Black|Hope|Closing|Diversion) (\d)(?:\.| and)/g)) { const per = /^\d/.test(em[1]) ? +em[1][0] : 1; const n = Math.floor((/hit/.test(em[1]) ? A.hits : misses) / per) * +em[3]; if (n) { const k = em[2].toLowerCase(); A.late = A.late || {}; A.late[k] = (A.late[k] || 0) + n; this.say(`${g.card.name}: ${em[1] === 'hit' ? 'hit' : 'miss'} ${n / +em[3]} → ${em[2]} ${n} (2nd window)`); } }
       if (/For each hit, choose one \(you may choose each effect more than once\)/.test(txt)) for (let h = 0; h < A.hits; h++) { const opts = [{ label: 'Scorpion: 다음 Primordial Response/After Attack 이동 −1', value: 's' }, { label: 'Lion: Midas +1 → Auto-break 1', value: 'l' }]; if (this.midas(t) > 0) opts.unshift({ label: 'Mortal: Midas −1 → Hope 1', value: 'm' }); const v = await this.ask({ type: 'choice', titan: t, title: `${g.card.name}: hit ${h + 1}/${A.hits} 효과 선택`, options: opts }); if (v === 'm') { await this.loseMidas(t, 1); A.late = A.late || {}; A.late.hope = (A.late.hope || 0) + 1; } else if (v === 'l') { await this.gainMidas(t, 1); this.kratosPool.break = (this.kratosPool.break || 0) + 1; } else { this.prim.scorpion = (this.prim.scorpion || 0) + 1; } this.say(`${g.card.name}: ${v === 'm' ? 'Mortal' : v === 'l' ? 'Lion' : 'Scorpion'}`); }
       if (/Each hit: Turn 1 Midas token into Break 1/.test(txt)) { let n = 0; for (let h = 0; h < A.hits && this.midas(t) > 0; h++) { await this.loseMidas(t, 1); n++; } if (n) { A.late = A.late || {}; A.late.break = (A.late.break || 0) + n; this.say(`${g.card.name}: Midas ${n} → Break ${n} (2nd window)`); } }
     },

@@ -315,7 +315,7 @@ export function installUrFleece(Game, { TitanDied, BattleOver }) {
   });
   wrap('addCondition', async function (o, t, name, ...r) {
     const had = t && (t.conditions || []).includes(name); const res = await o.call(this, t, name, ...r);
-    if (this.ufD() && this.trait('Contagious Fear') && !this._ufContag && t && t.alive && !had && (t.conditions || []).includes(name) && NEG.includes(name)) { this._ufContag = true; try { this.say(`Contagious Fear: 다른 타이탄 모두 ${name}`, 'bad'); for (const x of this.liveTitans()) if (x !== t) await this.solo(() => this.addCondition(x, name)); } finally { this._ufContag = false; } }
+    if (this.ufD() && this.trait('Contagious Fear') && !this._ufContag && t && t.alive && !had && (t.conditions || []).includes(name) && !['Bellerophonic', 'Roused', 'Enriched', 'Enlightened', 'Lander', 'Bravery', 'Resolve'].includes(name)) { this._ufContag = true; try { this.say(`Contagious Fear: 다른 타이탄 모두 ${name}`, 'bad'); for (const x of this.liveTitans()) if (x !== t) await this.solo(() => this.addCondition(x, name)); } finally { this._ufContag = false; } }
     return res;
   });
   wrap('awaken', async function (o, t, ...r) { if (this.ufD() && this.trait('End of an Age')) { this.say(`${t.name}: End of an Age — 각성 불가`, 'bad'); return false; } return o.call(this, t, ...r); });
@@ -323,7 +323,7 @@ export function installUrFleece(Game, { TitanDied, BattleOver }) {
   // Smother: Ambrosia goes onto Light X game elements first
   wrap('gainAmbrosia', async function (o, t, n, ...r) {
     const a0 = t ? t.ambrosia || 0 : 0; const res = await o.call(this, t, n, ...r);
-    if (this.ufD() && this.trait('Smother') && t && t.alive) { let k = (t.ambrosia || 0) - a0; if (k > 0) { const L = t.gear.filter(g => !g.discarded && !(g.smo > 0) && this.kwLight(g, t) != null); const used = []; for (const g of L) { if (k <= 0) break; g.smo = 1; k--; used.push(g.card.name); } if (used.length) this.say(`Smother: ${t.name} — Ambrosia를 Light X 장비에 (${used.join(', ')}) — Light X 비활성화`, 'bad'); } }
+    if (this.ufD() && this.trait('Smother') && t && t.alive) { let k = (t.ambrosia || 0) - a0; if (k > 0) { const L = t.gear.filter(g => !g.discarded && !(g.smo > 0) && this.kwLight(g, t) != null); if (L.length) { const g = L.length === 1 ? L[0] : await this.pickGear(t, L) || L[0]; g.smo = k; this.say(`Smother: ${t.name} — Ambrosia ${k}개를 「${g.card.name}」에 — Light X 비활성화`, 'bad'); } } }
     return res;
   });
   wrap('lightOf', function (o, t) { if (!this.ufD() || !t || !t.gear) return o.call(this, t); this.ufSmoFix(t); const hide = t.gear.filter(g => g.smo > 0 && !g.exhausted); for (const g of hide) g.exhausted = true; try { return o.call(this, t); } finally { for (const g of hide) g.exhausted = false; } });

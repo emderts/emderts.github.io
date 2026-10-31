@@ -113,8 +113,9 @@ export function installMeduketos(Game, { TitanDied, BattleOver }) {
         const vs = this.ventsAdj(t, usedV); const v = vs.length === 1 ? vs[0] : await this.ask({ type: 'choice', titan: t, title: `${t.name}: Scan할 Petrified Vent`, options: vs.map(z => ({ label: cellLabel(z.cell), value: z })) }) || vs[0];
         usedT.add(t.id); usedV.add(v.id);
         let decl = null; if (this.trait('Truth or Death')) decl = await yn(this, t, `Truth or Death: ${cellLabel(v.cell)}에 Meduketos가 있다고 선언?`, '있다', '없다');
-        const card = this.trauma.major.draw(); if (!card) { this.say('(Major Trauma 덱이 비었음)'); break; } R.scanCards.push(card);
-        const tot = R.scanCards.reduce((a, c) => a + (c.num || 0), 0); const L = this.lightOf(t); const found = tot + L >= diff;
+        let card = this.trauma.major.draw(); if (!card) { this.say('(Major Trauma 덱이 비었음)'); break; } R.scanCards.push(card);
+        let tot = R.scanCards.reduce((a, c) => a + (c.num || 0), 0); const L = this.lightOf(t); let found = tot + L >= diff;
+        if (!found && this.c5Abil) for (const a of this.c5Abil(t, 'Rescan\\.')) { if (!(await this.c5Use(t, a, `Rescan — 「${card.name}」(${card.num || 0}) 대신 Major Trauma 다시 뽑기 (현재 ${tot + L}/${diff})`))) continue; R.scanCards.pop(); this.trauma.major.shuffleIn(card); const c2 = this.trauma.major.draw(); if (!c2) break; R.scanCards.push(c2); this.say(`${t.name}: Rescan — 「${card.name}」 → 「${c2.name}」 (${c2.num || 0})`, 'good'); card = c2; tot = R.scanCards.reduce((a2, c) => a2 + (c.num || 0), 0); found = tot + L >= diff; break; }
         this.flash && this.flash('card', { kind: 'SCAN', titan: t.name, name: `${card.name} (${card.num || 0})`, text: `누적 ${tot} + Light ${L} = ${tot + L} / ${diff}`, cls: found ? 'good' : 'obol' });
         this.say(`${t.name}: Scan ${cellLabel(v.cell)} — 「${card.name}」 ${card.num || 0} · 누적 ${tot} + Light ${L} = ${tot + L} vs ${diff} → ${found ? '발견!' : '실패'}`, found ? 'good' : '');
         if (found) { R.scanPlus = 0; await this.medAppear(v, t); }

@@ -158,9 +158,9 @@ export function installC4Meta(Game, { TitanDied, BattleOver, ChainBreak }) {
   wrap('primAttackOn', async function (o, t, card) {
     const wish = card && !this._wishrod && ((card.wish && (this.prim.def.dahakaD || this.prim.def.babelD)) || (card.djinn && card.djinn.wish));
     if (wish && t && t.alive) {
-      const cands = this.liveTitans().filter(x => x !== t && !x.offBoard && ((this.mn(x, 'The Third Wish', 2) && this.fr(x) >= 2) || x.gear.some(g => { if (g.discarded) return false; const wm = /(?:^|\. )((?:Ψ|⟳|X|\[charge\])*) ?Wishrod[.,]/.exec(this.gearText(g, x)); return !!wm && this.costOK(x, wm[1], g); })));
+      const cands = this.liveTitans().filter(x => x !== t && !x.offBoard && ((this.mn(x, 'The Third Wish', 2) && this.fr(x) >= 2) || x.gear.some(g => { if (g.discarded) return false; const wm = /(?:^|\. )((?:Ψ|⟳|ⓐ|ⓟ|ⓓ|ⓞ|X|\[charge\])*) ?Wishrod[.,]/.exec(this.gearText(g, x)); return !!wm && this.costOK(x, wm[1], g); })));
       if (cands.length) { const v = await this.ask({ type: 'choice', title: `Wishrod: WISH ATTACK 「${card.name}」의 타겟(${t.name})을 대신 맡을 타이탄? (공격이 Doomed)`, options: [{ label: '안 함', value: null }, ...cands.map(x => ({ label: x.name, value: x }))] });
-        if (v) { const m = this.mn(v, 'The Third Wish', 2); if (m && this.fr(v) >= 2) await this.gainFate(v, 2); else { const g = v.gear.find(q => { if (q.discarded) return false; const wm = /(?:^|\. )((?:Ψ|⟳|X|\[charge\])*) ?Wishrod[.,]/.exec(this.gearText(q, v)); return !!wm && this.costOK(v, wm[1], q); }); const mm = /(?:^|\. )((?:Ψ|⟳|X|\[charge\])*) ?Wishrod[.,]/.exec(this.gearText(g, v)); await this.payCost(v, mm[1] || '', g); }
+        if (v) { const m = this.mn(v, 'The Third Wish', 2); if (m && this.fr(v) >= 2) await this.gainFate(v, 2); else { const g = v.gear.find(q => { if (q.discarded) return false; const wm = /(?:^|\. )((?:Ψ|⟳|ⓐ|ⓟ|ⓓ|ⓞ|X|\[charge\])*) ?Wishrod[.,]/.exec(this.gearText(q, v)); return !!wm && this.costOK(v, wm[1], q); }); const mm = /(?:^|\. )((?:Ψ|⟳|ⓐ|ⓟ|ⓓ|ⓞ|X|\[charge\])*) ?Wishrod[.,]/.exec(this.gearText(g, v)); await this.payCost(v, mm[1] || '', g); }
           this.say(`Wishrod: ${v.name}이(가) 대신 타겟이 됨 — Doomed`, 'bad'); this._wishrod = true; try { return await o.call(this, v, { ...card, doomed: true }); } finally { this._wishrod = false; } } }
     }
     return o.call(this, t, card);

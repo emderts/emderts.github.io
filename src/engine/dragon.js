@@ -40,9 +40,9 @@ export function installDragon(Game, { TitanDied, BattleOver }) {
       const a = this.prim.anchor, B = this.board; const s = this.prim.size || 2;
       const d = { N: B.rows - (a.r + s - 1), S: a.r - 1, E: B.cols - (a.c + s - 1), W: a.c - 1 };
       let cand = [...DIR_LIST];
-      if (who && who.alive && who.pos && !who.onVP && !this.dpTrait('Blacker Than The Night')) { const away = dirTo(who.pos, { c: a.c + (s - 1) / 2, r: a.r + (s - 1) / 2 }); cand = cand.filter(x => x !== away); }
+      if (who && who.alive && who.pos && !who.onVP && !this.dpTrait('Blacker Than The Night')) { const toward = dirTo({ c: a.c + (s - 1) / 2, r: a.r + (s - 1) / 2 }, who.pos); cand = cand.filter(x => x !== toward); }
       const m = Math.min(...cand.map(x => d[x])); const ties = cand.filter(x => d[x] === m); const dir = ties.length === 1 ? ties[0] : this.rng.pick(ties);
-      const f0 = this.prim.facing; this.say(`Vanish ${n}: 가장 가까운 보드 끝(${dir}) 쪽으로${who ? ` (${who.name} 반대편 끝 제외)` : ''}`, 'ai');
+      const f0 = this.prim.facing; this.say(`Vanish ${n}: 가장 가까운 보드 끝(${dir}) 쪽으로${who ? ` (${who.name} 쪽 보드 끝 제외)` : ''}`, 'ai');
       let k = 0;
       for (let i = 0; i < n; i++) {
         const na = { c: this.prim.anchor.c + DIRS[dir][0], r: this.prim.anchor.r + DIRS[dir][1] }; const cs = this.primCells(na);

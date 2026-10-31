@@ -13,7 +13,8 @@
   "2026-10-19: Cycle III gear (CJ13xx-CJ15xx) added with cycle:3. New gates: bleed (Bleeding tokens), df (Danger + Fate total), anyGate.paradox. precX: fate6 | paradox. evasionReroll \"XB\" = number of Break tokens. \"[Λ]\" cost = gain +1 Danger. Prototype Trespass Device omitted (Mnestis Prohibited).",
   "2026-10-19: Secret deck 12 Mnestis loot added (reward field = Tree of Knowledge node reward; locked in the loadout until that node is done). flexHands: weapon can be wielded with 1..N hands. atkX/precX: danger | deadTitans | hit3.",
   "2026-10-20: Cycle IV loot added — Secret deck 11 cards 186-212 (story/primordial/divine/evolution loot, Wished gear) and Secret deck 17 cards 260-277 (Mnestis loot). Wished gear are separate entries '(Wished)'. New fields: precX cond2|range|midasHalf|pain, hitsBonus (extra Bonus Power dice by number of hits), chargeTiers (stats by charge count), autoFlip (cloudBlind / notCloudBlind). Grey (Cycle V) Power/Armor dice are mapped to white. Cycle V resistance icons (barbed wire / mask) are kept as text only.",
-  "2026-10-30: [1-hand x3] icon = slot 'hand1x3' (one-hand Weapon that occupies 3 hand slots, Midas cap 3) — Walking Tools."
+  "2026-10-30: [1-hand x3] icon = slot 'hand1x3' (one-hand Weapon that occupies 3 hand slots, Midas cap 3) — Walking Tools.",
+  "2026-10-31: Cycle V gear (EJ28xx-EJ29xx, Secret deck 18 loot 278-303) added with cycle:5. New gates pain / aether / despair (Pain Set, Aether Set, Despair Set) and condGate \"Negative Condition\"/\"Bravery\". New ability costs [Oxygen] (discard 1 Oxygen), [Aether] (discard 1 Aether), [Pain] (gain 1 Pain), [Despair] (gain 1 Despair) — converted to ⓞ ⓐ ⓟ ⓓ in gearText. Side stats: evasion re-roll die → evasionReroll; barbed wire → Pain Resilience X; skull-face → Despair Resilience X; wifi → Microwave Resistance X. Cycle V reprints of Mnestis loot (Pantheon, Poseidonis, Atlantean Gun, Damocles Crown, Bow of Artemis) are named \"(Mnestis-generated)\"."
  ],
  "keywords": {
   "Ascended": "Ignores Power Level penalties (irrelevant in Cycle I).",
@@ -10757,6 +10758,2835 @@
    "cycle": 4,
    "loot": true,
    "reward": "Secret deck 17, card 277"
+  },
+  {
+   "codes": [
+    "EJ2847"
+   ],
+   "name": "Phos-Conductive Depthsuit",
+   "slot": "armor",
+   "text": "Light 1. Despair Limit +1.",
+   "traits": [
+    "Metal",
+    "Phos",
+    "Reclaimed",
+    "Suit",
+    "Atlantean"
+   ],
+   "tech": "Atlantean Armor",
+   "cycle": 5,
+   "evasionReroll": 4,
+   "danger": {
+    "9+": "X Superior Chance."
+   }
+  },
+  {
+   "codes": [
+    "EJ2845"
+   ],
+   "name": "Argotorch",
+   "slot": "support",
+   "text": "Fire 2. Light 1. Ψ[charge] During a Light Check, Light 2 instead.",
+   "traits": [
+    "Argotech",
+    "Torch",
+    "Metal",
+    "Fire",
+    "Flammable"
+   ],
+   "tech": "Abyss Support",
+   "cycle": 5,
+   "charges": 2
+  },
+  {
+   "codes": [
+    "EJ2843"
+   ],
+   "name": "Water-Resistant Beacon",
+   "slot": "support",
+   "text": "Ψ Motivate 1. Ψ⟳ Inspire 1. ΨΨ⟳ Motivate 1. Motivate 1.",
+   "traits": [
+    "Fire",
+    "Beacon",
+    "Argotech",
+    "Skin"
+   ],
+   "tech": "Abyss Support",
+   "cycle": 5,
+   "danger": {
+    "5+": "ΨX Immediately place 2 Hope tokens in the Kratos Pool."
+   }
+  },
+  {
+   "codes": [
+    "EJ2841"
+   ],
+   "name": "Iapetus Warning System",
+   "slot": "support",
+   "text": "Light 1. [R]Ψ⟳ Grant Advanced Reflex to another Titan.",
+   "traits": [
+    "Augment",
+    "Metal",
+    "Argotech"
+   ],
+   "tech": "Abyss Support",
+   "cycle": 5
+  },
+  {
+   "codes": [
+    "EJ2839"
+   ],
+   "name": "Shard Harpoon",
+   "slot": "hand2",
+   "text": "Ranged 3-8. Pull 3. Closing 3. Carving 1. Unwieldy. Commit. Cumbersome.",
+   "traits": [
+    "Argotech",
+    "Metal",
+    "Harpoon",
+    "Stone"
+   ],
+   "tech": "Abyss Weapons",
+   "cycle": 5,
+   "atk": 2,
+   "prec": 5,
+   "power": [
+    "r",
+    "r"
+   ],
+   "bonusRaw": 1,
+   "danger": {
+    "4+": "Harpooned."
+   }
+  },
+  {
+   "codes": [
+    "EJ2837"
+   ],
+   "name": "Gutting Skewer",
+   "slot": "hand1",
+   "text": "Unique. Carving 1. Closing 3. Spiral 1. Cumbersome. Stuck. Crit Miss: Gain 1 Pain token.",
+   "traits": [
+    "Knife",
+    "Reclaimed",
+    "Atlantean",
+    "Telchines"
+   ],
+   "tech": "Abyss Weapons",
+   "cycle": 5,
+   "atk": 1,
+   "prec": 3,
+   "power": [
+    "w"
+   ],
+   "bonusRaw": 3,
+   "amb": {
+    "3+": "ΨΨ Tilt."
+   },
+   "danger": {
+    "4+": "Immediately gain 2 Pain tokens."
+   }
+  },
+  {
+   "codes": [
+    "EJ2836"
+   ],
+   "name": "Abyssaxe",
+   "slot": "hand2",
+   "text": "Deadly. Black 2. Stuck. Commit ([Pain]).",
+   "traits": [
+    "Ambrosia",
+    "Liquid",
+    "Babelian",
+    "Axe"
+   ],
+   "tech": "Abyss Weapons",
+   "cycle": 5,
+   "atk": 2,
+   "prec": 1,
+   "power": [
+    "w"
+   ],
+   "amb": {
+    "2+": "Loses Stuck."
+   }
+  },
+  {
+   "codes": [
+    "EJ2834"
+   ],
+   "name": "Turtle Pavise",
+   "slot": "hand1",
+   "text": "-1 [Speed]. Pushback X. Opening X. X is the number of Attack die you hit with.",
+   "traits": [
+    "Bone",
+    "Carapace",
+    "Shield"
+   ],
+   "tech": "Abyss Armor",
+   "cycle": 5,
+   "atk": 3,
+   "prec": 4,
+   "power": [
+    "b"
+   ],
+   "bonusRaw": 1,
+   "armor": [
+    "r"
+   ],
+   "danger": {
+    "3+": "ΨX When you are the Target of a Dragon of Phobos Attack, ignore the Pale Grin of Doom Trait."
+   }
+  },
+  {
+   "codes": [
+    "EJ2832"
+   ],
+   "name": "Babel Hardsuit",
+   "slot": "armor",
+   "text": "Ψ Reinforce X, where X is the number of Aether tokens you have. Ψ[Aether] Rocksteady.",
+   "traits": [
+    "Argotech",
+    "Stone",
+    "Babelian",
+    "Alive"
+   ],
+   "tech": "Abyss Armor",
+   "cycle": 5,
+   "armor": [
+    "r",
+    "r"
+   ]
+  },
+  {
+   "codes": [
+    "EJ2830"
+   ],
+   "name": "Abyss Wetsuit",
+   "slot": "armor",
+   "text": "+1 Speed. Tumble. [R]Ψ⟳ Reflex. Ψ⟳ Terrain Vault.",
+   "traits": [
+    "Argotech",
+    "Skin",
+    "Ambrosia"
+   ],
+   "tech": "Abyss Armor",
+   "cycle": 5,
+   "danger": {
+    "6+": "[R]ΨX Superior Reflex."
+   }
+  },
+  {
+   "codes": [
+    "EJ2828"
+   ],
+   "name": "Bloatank",
+   "slot": "support",
+   "text": "Start of Battle: Gain 1 Oxygen token.",
+   "traits": [
+    "Air",
+    "Argotech",
+    "Skin",
+    "Primordial",
+    "Flammable"
+   ],
+   "tech": "Babelian Support",
+   "cycle": 5,
+   "danger": {
+    "7+": "[Aether]X Second Chance."
+   }
+  },
+  {
+   "codes": [
+    "EJ2826"
+   ],
+   "name": "Restart Module",
+   "slot": "support",
+   "text": "Ψ⟳ If the Kratos Pool is empty, immediately place 4 Opening tokens there. Ψ⟳ Immediately place 2 Opening or 2 Break tokens in the Kratos Pool.",
+   "traits": [
+    "Augment",
+    "Metal",
+    "Argotech"
+   ],
+   "tech": "Babelian Support",
+   "cycle": 5,
+   "danger": {
+    "5+": "Ψ⟳ Stand up. You may use this ability while knocked down."
+   }
+  },
+  {
+   "codes": [
+    "EJ2824"
+   ],
+   "name": "Moonflame",
+   "slot": "support",
+   "text": "ΨX Rescan. Ψ⟳ When another Titan deals a Wound, Advanced Reflex.",
+   "traits": [
+    "Primordial",
+    "Astral",
+    "Babelian",
+    "Stone"
+   ],
+   "tech": "Babelian Support",
+   "cycle": 5,
+   "danger": {
+    "9+": "X Grant Second Chance to another Titan."
+   }
+  },
+  {
+   "codes": [
+    "EJ2822"
+   ],
+   "name": "Trapped Moonlight",
+   "slot": "support",
+   "text": "Closing 2. Light 1. Ψ⟳ Rescan.",
+   "traits": [
+    "Primordial",
+    "Selenian",
+    "Babelian",
+    "Stone"
+   ],
+   "tech": "Babelian Support",
+   "cycle": 5,
+   "danger": {
+    "5+": "Light 2 instead."
+   }
+  },
+  {
+   "codes": [
+    "EJ2820"
+   ],
+   "name": "Panoptic Buckler",
+   "slot": "hand1",
+   "text": "Opening 2. Ψ⟳ Block 1. Ψ⟳ Rescan.",
+   "traits": [
+    "Shield",
+    "Stone",
+    "Primordial",
+    "Babelian"
+   ],
+   "tech": "Babelian Armor",
+   "cycle": 5,
+   "atk": 2,
+   "prec": 4,
+   "power": [
+    "r"
+   ],
+   "bonusPower": [
+    "b"
+   ],
+   "bonusRaw": 1,
+   "despair": {
+    "1+": "Daze. Reposition 2."
+   },
+   "danger": {
+    "7+": "X When the Primordial becomes adjacent to you, immediately face it."
+   }
+  },
+  {
+   "codes": [
+    "EJ2818"
+   ],
+   "name": "Spire Panoply",
+   "slot": "armor",
+   "text": "Inspire 1. Ψ⟳ Roll Out. Ψ⟳ Motivate 1.",
+   "traits": [
+    "Armor",
+    "Stone",
+    "Primordial",
+    "Babelian"
+   ],
+   "tech": "Babelian Armor",
+   "cycle": 5,
+   "armor": [
+    "b"
+   ],
+   "evasionReroll": 2,
+   "danger": {
+    "7+": "X Second Chance."
+   }
+  },
+  {
+   "codes": [
+    "EJ2816"
+   ],
+   "name": "Lunaticape",
+   "slot": "armor",
+   "text": "+1 Speed. Tumble.",
+   "traits": [
+    "Armor",
+    "Ambrosia",
+    "Selenian",
+    "Liquid",
+    "Alive",
+    "Flammable"
+   ],
+   "tech": "Babelian Armor",
+   "cycle": 5,
+   "despair": {
+    "2+": "Bypass."
+   },
+   "aether": {
+    "1+": "Light 1."
+   },
+   "condGate": {
+    "Any Condition": "Vault."
+   },
+   "danger": {
+    "5+": "[R]Ψ⟳ Pursuit 3."
+   }
+  },
+  {
+   "codes": [
+    "EJ2814"
+   ],
+   "name": "Blackburned",
+   "slot": "attachment",
+   "text": "Attach to a Weapon or [Armor] with the Sun Trait. That [Gear] becomes Blackburned (becomes Power Level V). It loses the Sun Trait and gains this Attachment's Traits. Weapon [Gear] gains Black 1. [Armor] gains Light 1. End of Battle: Permanently lose this card and the [Gear] card it is attached to.",
+   "traits": [
+    "Blackburned",
+    "Ambrosia"
+   ],
+   "tech": "Babelian Armor",
+   "cycle": 5,
+   "danger": {
+    "6+": "Weapon [Gear] gains Assist 3. [Armor] gains Despair Resilience 1."
+   }
+  },
+  {
+   "codes": [
+    "EJ2810"
+   ],
+   "name": "Splinterdarts",
+   "slot": "hand2",
+   "text": "Ranged 3. Reposition 3. Commit. Each 2 misses: Opening 1. Each 2 hits: Break 1. Full Hit: Gain +1 Power.",
+   "traits": [
+    "Throwing Knife",
+    "Stone",
+    "Primordial",
+    "Babelian",
+    "Selenian"
+   ],
+   "tech": "Babelian Ranged Weapons",
+   "cycle": 5,
+   "atk": 5,
+   "prec": 3,
+   "power": [
+    "r"
+   ],
+   "danger": {
+    "8+": "Deadly."
+   }
+  },
+  {
+   "codes": [
+    "EJ2808"
+   ],
+   "name": "Congealed Harpoon",
+   "slot": "hand1",
+   "text": "Ranged 2-5. Pull 2. Black 1. Opening 2. Cumbersome. When you attack with this weapon at its maximum effective range, gain +1 Power.",
+   "traits": [
+    "Harpoon",
+    "Bone",
+    "Primordial",
+    "Babelian"
+   ],
+   "tech": "Babelian Ranged Weapons",
+   "cycle": 5,
+   "atk": 1,
+   "prec": 5,
+   "power": [
+    "r",
+    "r",
+    "b"
+   ],
+   "despair": {
+    "2+": "Loses Cumbersome."
+   },
+   "amb": {
+    "4+": "Can be treated as a Melee Weapon."
+   }
+  },
+  {
+   "codes": [
+    "EJ2806"
+   ],
+   "name": "Liquid Bow",
+   "slot": "hand2",
+   "text": "Ranged 3-4. Reposition 1. Black 2. Opening 1. Commit. Cumbersome.",
+   "traits": [
+    "Bow",
+    "Liquid",
+    "Ambrosia",
+    "Babelian"
+   ],
+   "tech": "Babelian Ranged Weapons",
+   "cycle": 5,
+   "atk": 2,
+   "prec": 3,
+   "power": [
+    "r",
+    "r"
+   ],
+   "danger": {
+    "5+": "+1 Bonus Power."
+   },
+   "despair": {
+    "2+": "Attack Re-roll 1."
+   },
+   "rage": {
+    "5+": "Liquid Edge."
+   }
+  },
+  {
+   "codes": [
+    "EJ2804"
+   ],
+   "name": "Slabspear",
+   "slot": "hand2",
+   "text": "Reposition 2. Hope 1. Each miss: Closing 1.",
+   "traits": [
+    "Spear",
+    "Hammer",
+    "Stone",
+    "Babelian"
+   ],
+   "tech": "Babelian Weapons",
+   "cycle": 5,
+   "atk": 3,
+   "prec": 2,
+   "power": [
+    "r"
+   ],
+   "bonusPower": [
+    "r",
+    "r"
+   ],
+   "evasionReroll": 1,
+   "despair": {
+    "2+": "Bypass."
+   },
+   "danger": {
+    "6+": "[R]Ψ⟳ Terrain Vault."
+   }
+  },
+  {
+   "codes": [
+    "EJ2802"
+   ],
+   "name": "Lunar Blade",
+   "slot": "hand1",
+   "text": "Break 1. Closing 2. Cumbersome. Stuck. Crit Miss: Gain 1 Ambrosia token. *+4 instead, if you have no Light X keyword.",
+   "traits": [
+    "Blade",
+    "Metal",
+    "Stone",
+    "Selenian",
+    "Ambrosia"
+   ],
+   "tech": "Babelian Weapons",
+   "cycle": 5,
+   "atk": 3,
+   "prec": 0,
+   "power": [
+    "b"
+   ],
+   "bonusRaw": 1,
+   "despair": {
+    "2+": "Deadly."
+   },
+   "aether": {
+    "2+": "Light 1."
+   }
+  },
+  {
+   "codes": [
+    "EJ2800"
+   ],
+   "name": "Ambrosia Whip",
+   "slot": "hand1",
+   "text": "Auto-black 1. Pull 2. Provoke. Each hit: Black 1.",
+   "traits": [
+    "Whip",
+    "Liquid",
+    "Ambrosia",
+    "Primordial",
+    "Babelian"
+   ],
+   "tech": "Babelian Weapons",
+   "cycle": 5,
+   "atk": 3,
+   "prec": 4,
+   "power": [
+    "r"
+   ],
+   "bonusRaw": 1,
+   "amb": {
+    "1+": "Reach 2.",
+    "2+": "Diversion.",
+    "3+": "Reach 3 instead."
+   },
+   "condGate": {
+    "Negative Condition": "Spotlight."
+   }
+  },
+  {
+   "codes": [
+    "EJ2798"
+   ],
+   "name": "Towerclub",
+   "slot": "hand1",
+   "text": "Reach 2. Break 3. Pushback 1. Cumbersome. Finite Growth: [Aether]X Place an Irem Pillar Terrain tile on an adjacent space.",
+   "traits": [
+    "Club",
+    "Stone",
+    "Bone",
+    "Primordial",
+    "Babelian"
+   ],
+   "tech": "Babelian Weapons",
+   "cycle": 5,
+   "atk": 1,
+   "prec": 3,
+   "power": [
+    "r",
+    "r",
+    "r"
+   ],
+   "bonusPower": [
+    "r"
+   ],
+   "bonusRaw": 1,
+   "danger": {
+    "8+": "+1 Bonus Power."
+   }
+  },
+  {
+   "codes": [
+    "EJ2796"
+   ],
+   "name": "Ambrosia Sword",
+   "slot": "hand1",
+   "text": "Black 2.",
+   "traits": [
+    "Sword",
+    "Ambrosia",
+    "Liquid",
+    "Babelian"
+   ],
+   "tech": "Babelian Weapons",
+   "cycle": 5,
+   "atk": 1,
+   "prec": 5,
+   "power": [
+    "r",
+    "r",
+    "r",
+    "r"
+   ],
+   "bonusRaw": 1,
+   "despair": {
+    "2+": "Power Re-roll 1."
+   },
+   "amb": {
+    "3+": "Pole Position."
+   },
+   "danger": {
+    "4+": "Liquid Edge (You may attack diagonally)."
+   }
+  },
+  {
+   "codes": [
+    "EJ2991"
+   ],
+   "name": "Deadalive Spear",
+   "slot": "hand2",
+   "text": "Unique. Reach 2. Vault. Opening X. [Amb] Abysswalk. Crit Miss: Your highest tier Power Die becomes [grey die]. *X is equal to the amount of Obol cards in the Obol deck.",
+   "traits": [
+    "Spear",
+    "Primordial",
+    "Olympian",
+    "Flesh",
+    "Alive"
+   ],
+   "tech": "Ur-Fleece Sighting (Reforged Loot)",
+   "cycle": 5,
+   "atk": 3,
+   "prec": 3,
+   "power": [
+    "r"
+   ],
+   "bonusPower": [
+    "w"
+   ],
+   "bonusRaw": 1,
+   "amb": {
+    "2+": ""
+   }
+  },
+  {
+   "codes": [
+    "EJ2990"
+   ],
+   "name": "Oculus Lighthouse",
+   "slot": "support",
+   "text": "Unique. Light X. Inspire X. Motivate X. Ψ⟳ Provoke. When you Provoke or Crit Chance, gain 1 Aether token. X is equal to the number of Aether tokens you have.",
+   "traits": [
+    "Primordial",
+    "Flesh",
+    "Selenian",
+    "Argotech",
+    "Void"
+   ],
+   "tech": "Ur-Fleece Sighting (Reforged Loot)",
+   "cycle": 5,
+   "rage": {
+    "5+": "X Ignore Vanish, Fade In, or Black March, or perform a Scan on any Petrified Vent."
+   }
+  },
+  {
+   "codes": [
+    "EJ2989"
+   ],
+   "name": "Executioner Helm",
+   "slot": "support",
+   "text": "Rocksteady. Fearless. Ψ⟳ Heartseeker.",
+   "traits": [
+    "Atlantean",
+    "Nemesistech",
+    "Hephaestum",
+    "Helm",
+    "Augment"
+   ],
+   "tech": "Titan X Investigation",
+   "cycle": 5,
+   "danger": {
+    "6+": "[R]Ψ⟳ Grant Superior Reflex to another Titan."
+   }
+  },
+  {
+   "codes": [
+    "EJ2987"
+   ],
+   "name": "Executioner Shortswords",
+   "slot": "hand2",
+   "text": "Pole Position. Each hit: Closing 1. Each 2 hits: Hope 1. Full Hit: Crit Chance. Crit Chance: Precise.",
+   "traits": [
+    "Atlantean",
+    "Nemesistech",
+    "Aether",
+    "Hephaestum",
+    "Knife"
+   ],
+   "tech": "Titan X Investigation",
+   "cycle": 5,
+   "atk": 6,
+   "prec": 3,
+   "power": [
+    "r"
+   ],
+   "bonusRaw": 2,
+   "danger": {
+    "6+": "Ψ[Aether] Clutch."
+   }
+  },
+  {
+   "codes": [
+    "EJ2985"
+   ],
+   "name": "Executioner Armor",
+   "slot": "armor",
+   "text": "Pain Resilience 2. Despair Resilience 2. Bypass. +1 Speed. Ψ⟳ Acrobatics. [R]Ψ⟳ Advanced Reflex.",
+   "traits": [
+    "Atlantean",
+    "Nemesistech",
+    "Aether",
+    "Hephaestum"
+   ],
+   "tech": "Titan X Investigation",
+   "cycle": 5,
+   "evasion": 2,
+   "danger": {
+    "9+": "[Aether]⟳ Superior Chance."
+   }
+  },
+  {
+   "codes": [
+    "EJ2983"
+   ],
+   "name": "Hermes Highway",
+   "slot": "attachment",
+   "text": "Titan Attachment. Restricted (Hermes Gear). Other Titans may treat you like an Elevated Terrain tile for purposes of Hermes Movement. They may end such movement on a space adjacent to you (but they cannot end it on your space).",
+   "traits": [
+    "Hermes",
+    "Argotech",
+    "Metal"
+   ],
+   "tech": "Titan X Investigation",
+   "cycle": 5
+  },
+  {
+   "codes": [
+    "EJ2979"
+   ],
+   "name": "Phobos Urumi",
+   "slot": "hand1",
+   "text": "Unique. Reach 2. Deadly. Gain +1 to your Crit Chance range for each Generic token on this card. Wound: Place a Generic token on this card. Crit Chance: Discard all Generic tokens from this card and gain 1 Pain token.",
+   "traits": [
+    "Primordial",
+    "Flesh",
+    "Whip",
+    "Sword",
+    "Selenian"
+   ],
+   "tech": "Dragon of Phobos Live Study (Reforged Loot)",
+   "cycle": 5,
+   "atk": 3,
+   "prec": 9,
+   "power": [
+    "r"
+   ],
+   "bonusPower": [
+    "w"
+   ],
+   "rage": {
+    "1+": "Double the number of Kratos tokens you place from your Kratos Table abilities."
+   }
+  },
+  {
+   "codes": [
+    "EJ2980"
+   ],
+   "name": "Oculus Lance",
+   "slot": "hand2",
+   "text": "Unique. Reach 3. Light 3. Opening 5.",
+   "traits": [
+    "Primordial",
+    "Flesh",
+    "Selenian",
+    "Argotech",
+    "Lance"
+   ],
+   "tech": "Meduketos Live Study (Reforged Loot)",
+   "cycle": 5,
+   "atk": 2,
+   "prec": 6,
+   "power": [
+    "r"
+   ],
+   "bonusPower": [
+    "w"
+   ],
+   "bonusRaw": 1,
+   "aether": {
+    "1+": "Tilt.",
+    "2+": "+1ʎ",
+    "3+": "Precise.",
+    "4+": "+1ʎ"
+   },
+   "rage": {
+    "3+": "Ψ Deny."
+   }
+  },
+  {
+   "codes": [
+    "EJ2981"
+   ],
+   "name": "Crown of the Trench",
+   "slot": "support",
+   "text": "Unique. Stalwart. Husk: You cannot Awaken. You cannot die from Despair. [Amb][Amb] Abysswalk. Crit Miss: Your highest tier Power Die becomes [grey die].",
+   "traits": [
+    "Primordial",
+    "Ambrosia",
+    "Olympian",
+    "Mortal"
+   ],
+   "tech": "Ur-Fleece Sighting (Reforged Loot)",
+   "cycle": 5,
+   "rage": {
+    "5+": "[Oxygen]X Dare."
+   }
+  },
+  {
+   "codes": [
+    "EJ2961"
+   ],
+   "name": "Argocryptex Delta",
+   "slot": "attachment",
+   "text": "Unique. Titan Attachment. Restricted (Cryptex). Light 1. Frontlines. Future Semi Sync: Ψ[Movement Action token] Gain a Movement Action ([Movement Action token]) token.",
+   "traits": [
+    "Argotech",
+    "Augment",
+    "Cryptex",
+    "Pandoran"
+   ],
+   "tech": "Ur-Fleece Sighting",
+   "cycle": 5,
+   "danger": {
+    "8+": "[R][Oxygen]⟳ Advanced Reflex."
+   }
+  },
+  {
+   "codes": [
+    "EJ2978"
+   ],
+   "name": "Dark Exemplar",
+   "slot": "support",
+   "text": "Despair Resilience 3. Unique. Immune to Fear and Dread Condition cards. Crit Chance: Gain 1 Aether token.",
+   "traits": [
+    "Primordial",
+    "Flesh",
+    "Mask",
+    "Selenian"
+   ],
+   "tech": "Silvered Armor (Reforged Loot)",
+   "cycle": 5,
+   "despair": {
+    "1+": "Ignore the Pale Grin of Death and Pale Grin of Doom Traits."
+   }
+  },
+  {
+   "codes": [
+    "EJ2960"
+   ],
+   "name": "Moonlung",
+   "slot": "attachment",
+   "text": "Titan Attachment. You start the Battle with 1 Oxygen token and you cannot gain Oxygen. Start of your turn: Gain 1 Pain token and flip 1 Aether token.",
+   "traits": [
+    "Primordial",
+    "Astral",
+    "Alive",
+    "Virus"
+   ],
+   "tech": "Silvered Armor",
+   "cycle": 5,
+   "rage": {
+    "5+": "X Draw an Obol to ignore Vanish, Fade In or Black March, or perform a Scan on any Petrified Vent."
+   }
+  },
+  {
+   "codes": [
+    "EJ2958"
+   ],
+   "name": "Mercurial Cryptex",
+   "slot": "attachment",
+   "text": "Unique. Titan Attachment. Restricted (Cryptex). +2 Precision. Frontlines. Future Sync: Ψ[Combat Action token] Gain a Combat Action ([Combat Action token]) token.",
+   "traits": [
+    "Argotech",
+    "Augment",
+    "Cryptex",
+    "Siren"
+   ],
+   "tech": "Silvered Armor",
+   "cycle": 5,
+   "danger": {
+    "7+": "[R][Aether]⟳ Advanced Reflex."
+   }
+  },
+  {
+   "codes": [
+    "EJ2957"
+   ],
+   "name": "Silverskin",
+   "slot": "armor",
+   "text": "Despair Resilience 2. +1 Speed. Light 2. Bypass. Vault. Tumble. Ambrosia Limit +1.",
+   "traits": [
+    "Siren",
+    "Primordial",
+    "Flesh",
+    "Robes"
+   ],
+   "tech": "Silvered Armor",
+   "cycle": 5,
+   "evasionReroll": 4,
+   "despair": {
+    "3+": "X Superior Chance."
+   }
+  },
+  {
+   "codes": [
+    "EJ2955"
+   ],
+   "name": "Future Spirathorax",
+   "slot": "armor",
+   "text": "Evasion Spiral 3. Armor Re-roll 2. Start of Battle: Gain 1 Oxygen token. ΨΨ Mortal Reinforce 1. Ψ⟳ Stand up. You may use this ability while knocked down.",
+   "traits": [
+    "Siren",
+    "Primordial",
+    "Shell"
+   ],
+   "tech": "Silvered Armor",
+   "cycle": 5,
+   "armor": [
+    "r"
+   ],
+   "despair": {
+    "3+": "X Discard all Ambrosia tokens."
+   }
+  },
+  {
+   "codes": [
+    "EJ2953"
+   ],
+   "name": "Infrared Signaler",
+   "slot": "hand1",
+   "text": "Ranged 1-6. Fire 3. Ψ⟳ Defy 1.",
+   "traits": [
+    "Pistol",
+    "Fire",
+    "Primordial",
+    "Argotech",
+    "Apparatus"
+   ],
+   "tech": "Meduketos Live Study",
+   "cycle": 5,
+   "rage": {
+    "3+": "ΨX If in Range, ignore Vanish, Fade In or Black March, or perform a Scan on any Petrified Vent in Range."
+   }
+  },
+  {
+   "codes": [
+    "EJ2951"
+   ],
+   "name": "Fireraiser Shield",
+   "slot": "hand1",
+   "text": "Fire 3. Pushback 2. Ψ⟳ Defy 1 or Block 1. Ψ Tilt. Crit Evade: Discard 1 Ambrosia token.",
+   "traits": [
+    "Shield",
+    "Fire",
+    "Primordial",
+    "Flesh",
+    "Stone"
+   ],
+   "tech": "Meduketos Live Study",
+   "cycle": 5,
+   "atk": 2,
+   "prec": 4,
+   "power": [
+    "b"
+   ],
+   "bonusPower": [
+    "b"
+   ],
+   "bonusRaw": 2,
+   "rage": {
+    "5+": "[Aether]X Dare."
+   }
+  },
+  {
+   "codes": [
+    "EJ2949"
+   ],
+   "name": "Heatsword",
+   "slot": "hand1",
+   "text": "Light 1. Fire 3. Closing 2. Power Re-roll 2. Ψ[Oxygen] Heartseeker. Ψ⟳ Discard 2 Bleeding tokens. Crit Miss: Suffer Burn.",
+   "traits": [
+    "Slabsword",
+    "Fire",
+    "Primordial",
+    "Flesh"
+   ],
+   "tech": "Meduketos Live Study",
+   "cycle": 5,
+   "atk": 2,
+   "prec": 6,
+   "power": [
+    "b"
+   ],
+   "bonusPower": [
+    "w"
+   ],
+   "danger": {
+    "7+": "Liquid Edge."
+   }
+  },
+  {
+   "codes": [
+    "EJ2947"
+   ],
+   "name": "Medusian Wavegun",
+   "slot": "hand2",
+   "text": "Fire 4. Ranged 2-3. Commit. Reposition 2. Cumbersome.",
+   "traits": [
+    "Bow",
+    "Pistol",
+    "Argotech",
+    "Fire",
+    "Primordial",
+    "Flesh"
+   ],
+   "tech": "Meduketos Live Study",
+   "cycle": 5,
+   "atk": 1,
+   "prec": 4,
+   "power": [
+    "b",
+    "b",
+    "r",
+    "r"
+   ],
+   "bonusPower": [
+    "w"
+   ],
+   "rage": {
+    "4+": "Deny. After you resolve the Deny Attack, discard this card."
+   }
+  },
+  {
+   "codes": [
+    "EJ2945"
+   ],
+   "name": "Silverlight Amulet",
+   "slot": "support",
+   "text": "Light 3. Start of Battle: Gain 1 Aether token.",
+   "traits": [
+    "Eldertech",
+    "Gaia",
+    "Augment"
+   ],
+   "tech": "Silvered Support",
+   "cycle": 5,
+   "despair": {
+    "2+": "Ψ[Amb] Gain the Fear Condition card to BP Suppress."
+   }
+  },
+  {
+   "codes": [
+    "EJ2943"
+   ],
+   "name": "Ephemeral Pearl",
+   "slot": "support",
+   "text": "Despair Resilience 1. Ψ⟳ Turn 1 Ambrosia or Pain token into 1 Despair token.",
+   "traits": [
+    "Siren",
+    "Quicksilver",
+    "Primordial",
+    "Shell"
+   ],
+   "tech": "Silvered Support",
+   "cycle": 5,
+   "despair": {
+    "2+": "Gain the Dread Condition card to Dare."
+   }
+  },
+  {
+   "codes": [
+    "EJ2941"
+   ],
+   "name": "Silver Rebreather",
+   "slot": "support",
+   "text": "[Pain]Ψ⟳ Flip an Aether token. Crit Evade Fail: Gain 1 Pain token.",
+   "traits": [
+    "Siren",
+    "Quicksilver",
+    "Primordial"
+   ],
+   "tech": "Silvered Support",
+   "cycle": 5,
+   "pain": {
+    "2+": "X Superior Chance."
+   }
+  },
+  {
+   "codes": [
+    "EJ2939"
+   ],
+   "name": "Spiral Visor",
+   "slot": "support",
+   "text": "Spiral 1. Ψ Rescan. [R][Aether]⟳ Superior Reflex.",
+   "traits": [
+    "Siren",
+    "Quicksilver",
+    "Primordial"
+   ],
+   "tech": "Silvered Support",
+   "cycle": 5,
+   "rage": {
+    "5+": "X Gain the Dread Condition card to reveal the top BP card."
+   }
+  },
+  {
+   "codes": [
+    "EJ2937"
+   ],
+   "name": "Clawhorn Harpoon",
+   "slot": "hand2",
+   "text": "Ranged 4-6. Overbreak 2. Closing 3. Cumbersome. Pull 4. Light 1. Full Hit: Your highest tier Power Die becomes one tier higher for this Attack.",
+   "traits": [
+    "Harpoon",
+    "Primordial",
+    "Atlantean",
+    "Argotech",
+    "Metal"
+   ],
+   "tech": "Dragon of Phobos Live Study",
+   "cycle": 5,
+   "atk": 2,
+   "prec": 1,
+   "power": [
+    "b"
+   ],
+   "bonusPower": [
+    "w"
+   ],
+   "danger": {
+    "4+": "Harpooned."
+   }
+  },
+  {
+   "codes": [
+    "EJ2935"
+   ],
+   "name": "Trench Kusarigama",
+   "slot": "hand2",
+   "text": "Reach 3. Opening 2. Pull 2. Ψ Tilt. Each hit: Hope 1. Full Hit: Immediately place a Diversion token in the Kratos Pool.",
+   "traits": [
+    "Kusarigama",
+    "Rope",
+    "Primordial",
+    "Atlantean",
+    "Argotech",
+    "Metal"
+   ],
+   "tech": "Dragon of Phobos Live Study",
+   "cycle": 5,
+   "atk": 3,
+   "prec": 4,
+   "power": [
+    "r"
+   ],
+   "bonusPower": [
+    "w"
+   ],
+   "bonusRaw": 1,
+   "danger": {
+    "6+": "Deny. After you resolve the Deny Attack, discard this card."
+   }
+  },
+  {
+   "codes": [
+    "EJ2933"
+   ],
+   "name": "Trench Khopesh",
+   "slot": "hand1",
+   "text": "Spiral 2. *X is equal to the number of Despair tokens on all Titans.",
+   "traits": [
+    "Siren",
+    "Primordial",
+    "Khopesh",
+    "Atlantean",
+    "Bone"
+   ],
+   "tech": "Dragon of Phobos Live Study",
+   "cycle": 5,
+   "atk": 2,
+   "prec": 0,
+   "power": [
+    "w"
+   ],
+   "bonusRaw": 1,
+   "despair": {
+    "3+": "One [white die] becomes [grey die]."
+   }
+  },
+  {
+   "codes": [
+    "EJ2931"
+   ],
+   "name": "Squirming Knives",
+   "slot": "hand3",
+   "text": "Spiral 6. Ψ Liquid Edge. Each hit: Opening 1 and Reposition 1. Crit Miss: Gain 1 Despair token.",
+   "traits": [
+    "Knife",
+    "Liquid",
+    "Siren",
+    "Quicksilver"
+   ],
+   "tech": "Silvered Weapons",
+   "cycle": 5,
+   "atk": 6,
+   "prec": 3,
+   "power": [
+    "r"
+   ],
+   "bonusRaw": 2,
+   "despair": {
+    "2+": "-1 Bonus Power."
+   },
+   "danger": {
+    "6+": "[Splatter] Heartseeker."
+   }
+  },
+  {
+   "codes": [
+    "EJ2929"
+   ],
+   "name": "Quicksilver Bow",
+   "slot": "hand2",
+   "text": "Ranged 3-4. Spiral 3. Opening 2. Hope 2. Cumbersome. Ψ Liquid Edge. Ψ Tilt. Crit Miss: Gain the Fear Condition card.",
+   "traits": [
+    "Bow",
+    "Liquid",
+    "Siren",
+    "Quicksilver"
+   ],
+   "tech": "Silvered Weapons",
+   "cycle": 5,
+   "atk": 3,
+   "prec": 4,
+   "power": [
+    "r",
+    "r"
+   ],
+   "bonusRaw": 2,
+   "danger": {
+    "5+": "+1 Bonus Power."
+   },
+   "despair": {
+    "2+": "Succor."
+   }
+  },
+  {
+   "codes": [
+    "EJ2927"
+   ],
+   "name": "Pearlstalk Mace",
+   "slot": "hand2",
+   "text": "Spiral 1. Overbreak 3. Daze. Cumbersome. Stuck. Ψ Liquid Edge. Full Miss: Break 3. Crit Miss: Gain 1 Despair token.",
+   "traits": [
+    "Siren",
+    "Orichalcum",
+    "Quicksilver",
+    "Club"
+   ],
+   "tech": "Silvered Weapons",
+   "cycle": 5,
+   "atk": 1,
+   "prec": 3,
+   "power": [
+    "b",
+    "w",
+    "w"
+   ],
+   "bonusRaw": 2,
+   "despair": {
+    "2+": "Deny."
+   }
+  },
+  {
+   "codes": [
+    "EJ2925"
+   ],
+   "name": "Olympian Harpoon",
+   "slot": "hand2",
+   "text": "Ranged 4-6. Pull 4. Light 1. Unwieldy. Cumbersome. Harpooned. Ψ Tilt. Start of Battle: Gain the Terror Condition card. Each hit: Hope 1. Opening 1.",
+   "traits": [
+    "Primordial",
+    "Mythic",
+    "Divine",
+    "Elder",
+    "Glass",
+    "Harpoon"
+   ],
+   "tech": "Cycladean Protectorate",
+   "cycle": 5,
+   "atk": 2,
+   "prec": 1,
+   "power": [
+    "b"
+   ],
+   "bonusPower": [
+    "m"
+   ],
+   "rage": {
+    "3+": "Immediately gain 1 Aether token (once per Battle)."
+   }
+  },
+  {
+   "codes": [
+    "EJ2923"
+   ],
+   "name": "Veristus",
+   "slot": "hand2",
+   "text": "Daze. Closing 2. Pushback 3. Commit. Each 2 Misses: Discard 1 Aether token. Each hit: Break 1. If you have at least 1 Aether token, gain +1 Power. *X is equal to [Aether token].",
+   "traits": [
+    "Cestus",
+    "Metal",
+    "Elder"
+   ],
+   "tech": "Cycladean Protectorate",
+   "cycle": 5,
+   "atk": 5,
+   "prec": 0,
+   "power": [
+    "r"
+   ],
+   "aether": {
+    "2+": "Ψ⟳ BP Suppress."
+   }
+  },
+  {
+   "codes": [
+    "EJ2921"
+   ],
+   "name": "Illuminating Blinder",
+   "slot": "support",
+   "text": "Pain Resilience 1. Despair Resilience 2. Ambrosia Limit +1. Your active Weapon gains Stuck. When you are about to die from gaining a Condition card, discard that card without effect instead.",
+   "traits": [
+    "Mythic",
+    "Divine",
+    "Elder",
+    "Glass"
+   ],
+   "tech": "Cycladean Protectorate",
+   "cycle": 5,
+   "amb": {
+    "2+": "ΨX When you are about to die from an Instant Death effect, draw an Obol instead."
+   }
+  },
+  {
+   "codes": [
+    "EJ2919"
+   ],
+   "name": "Consecrated Lance",
+   "slot": "hand3",
+   "text": "Reach 3. Black 2. Closing 2. Unwieldy. Commit. Cumbersome. [Token][Token] Improved Rush. When you attack from a VP, gain +1 Power.",
+   "traits": [
+    "Primordial",
+    "Bone",
+    "Flesh",
+    "Divine",
+    "Lance"
+   ],
+   "tech": "Vanguard Gear",
+   "cycle": 5,
+   "atk": 2,
+   "prec": 1,
+   "power": [
+    "r"
+   ],
+   "bonusPower": [
+    "m"
+   ],
+   "rage": {
+    "4+": "Immediately gain 1 Oxygen token (once per Battle)."
+   }
+  },
+  {
+   "codes": [
+    "EJ2917"
+   ],
+   "name": "Cowl of Shame",
+   "slot": "armor",
+   "text": "Fate Armor. Inspire 1. You have 1 additional [Support] slot. Kneel: During your turn, as a free action, you may voluntarily suffer Knockdown.",
+   "traits": [
+    "Cloth",
+    "Atlantean",
+    "Divine",
+    "Metal"
+   ],
+   "tech": "Vanguard Gear",
+   "cycle": 5,
+   "armor": [
+    "m"
+   ],
+   "fate": {
+    "5+": "When you are about to draw a Moiros card, you are drowned instead (die)."
+   }
+  },
+  {
+   "codes": [
+    "EJ2915"
+   ],
+   "name": "Faith Kopis",
+   "slot": "hand1",
+   "text": "Auto-black 2. Burden 1. Sacrifice. Start of Battle: Gain the Fear Condition card. Ψ Tilt. *X is your current Ψ.",
+   "traits": [
+    "Knife",
+    "Iron",
+    "Metal",
+    "Divine"
+   ],
+   "tech": "Vanguard Gear",
+   "cycle": 5,
+   "atk": 4,
+   "prec": 0,
+   "power": [
+    "r"
+   ],
+   "bonusPower": [
+    "b"
+   ],
+   "fate": {
+    "5+": "Deny."
+   }
+  },
+  {
+   "codes": [
+    "EJ2913"
+   ],
+   "name": "Penitent Whip",
+   "slot": "hand1",
+   "text": "Pain Resilience 2. Reach 2. Auto-black 2. Pushback 2. Provoke. Each miss: Gain 1 Pain token. *Additional +1 for each Pain token you have.",
+   "traits": [
+    "Whip",
+    "Areté",
+    "Moirai",
+    "Metal"
+   ],
+   "tech": "Followers of Areté Gear",
+   "cycle": 5,
+   "atk": 3,
+   "prec": 0,
+   "power": [
+    "b"
+   ],
+   "bonusRaw": 1,
+   "pain": {
+    "4+": "Spotlight."
+   }
+  },
+  {
+   "codes": [
+    "EJ2911"
+   ],
+   "name": "Transcendance Wreath",
+   "slot": "support",
+   "text": "Burden 1. [Pain]⟳ Place the top BP card at the bottom of the deck.",
+   "traits": [
+    "Wreath",
+    "Areté",
+    "Moirai",
+    "Bone"
+   ],
+   "tech": "Followers of Areté Gear",
+   "cycle": 5,
+   "pain": {
+    "3+": "X Dare."
+   }
+  },
+  {
+   "codes": [
+    "EJ2909"
+   ],
+   "name": "Chain Kusarigama",
+   "slot": "hand2",
+   "text": "Pain Resilience 1. Reach 3. Black 3. Pull 3. Ψ Tilt. Each hit: Closing 1. You may gain 1 Pain token. *As many [red die] as half the number of Pain tokens you have (rounding down) instead.",
+   "traits": [
+    "Kusarigama",
+    "Rope",
+    "Areté",
+    "Moirai",
+    "Metal"
+   ],
+   "tech": "Followers of Areté Gear",
+   "cycle": 5,
+   "atk": 3,
+   "prec": 3,
+   "power": [
+    "r"
+   ],
+   "bonusPower": [
+    "0*r"
+   ],
+   "pain": {
+    "4+": "Deny."
+   }
+  },
+  {
+   "codes": [
+    "EJ2907"
+   ],
+   "name": "Eys-Onmes",
+   "slot": "armor",
+   "text": "Light X. X is the current Primordial Round number.",
+   "traits": [
+    "Light",
+    "Argotech",
+    "Orichalcum",
+    "Primordial"
+   ],
+   "tech": "Meduketos Autopsy",
+   "cycle": 5,
+   "rage": {
+    "2+": "[Aether]X Gain the [Priority Target] Priority Target token and ignore Vanish, Fade In, or Black March, or perform a Scan on any Petrified Vent."
+   }
+  },
+  {
+   "codes": [
+    "EJ2905"
+   ],
+   "name": "Infrared Module",
+   "slot": "support",
+   "text": "Light 1. Remote Scan. Ψ Rescan. [R]Ψ⟳ Advanced Reflex.",
+   "traits": [
+    "Argotech",
+    "Augment"
+   ],
+   "tech": "Meduketos Autopsy",
+   "cycle": 5,
+   "danger": {
+    "7+": "X Superior Chance."
+   }
+  },
+  {
+   "codes": [
+    "EJ2903"
+   ],
+   "name": "Protomachus Diving Amphora",
+   "slot": "armor",
+   "text": "-2 Speed. You have 1 additional [Support] slot. Knockback, Pushback, Kickback, Pull Reduction 2.",
+   "traits": [
+    "Flesh",
+    "Primordial",
+    "Orichalcum",
+    "Argotech",
+    "Suit"
+   ],
+   "tech": "Meduketos Autopsy",
+   "cycle": 5,
+   "armor": [
+    "r",
+    "r",
+    "r",
+    "r"
+   ],
+   "danger": {
+    "7+": "X Superior Chance."
+   }
+  },
+  {
+   "codes": [
+    "EJ2901"
+   ],
+   "name": "Fire-Resistant Suit",
+   "slot": "armor",
+   "text": "Microwave Resistance 2. Ψ⟳ When you are about to suffer Burn, ignore that effect.",
+   "traits": [
+    "Flesh",
+    "Primordial",
+    "Orichalcum",
+    "Suit"
+   ],
+   "tech": "Meduketos Autopsy",
+   "cycle": 5,
+   "armor": [
+    "b"
+   ]
+  },
+  {
+   "codes": [
+    "EJ2899"
+   ],
+   "name": "Darklight Wiring",
+   "slot": "support",
+   "text": "Despair Resilience 1. Ψ⟳ Move all Ambrosia tokens from all of your [Gear] cards to your Titan Sheet.",
+   "traits": [
+    "Tekne",
+    "Augment",
+    "Orichalcum",
+    "Atlantean",
+    "Paracausal"
+   ],
+   "tech": "Atlantean Support",
+   "cycle": 5,
+   "despair": {
+    "3+": "[Aether] Gain Light X until the end of your turn, where X is the number of Ambrosia tokens you have."
+   }
+  },
+  {
+   "codes": [
+    "EJ2897"
+   ],
+   "name": "Phos Helm",
+   "slot": "support",
+   "text": "Despair Resilience 1. Light 1. Inspire 1.",
+   "traits": [
+    "Tekne",
+    "Argotech",
+    "Orichalcum",
+    "Atlantean",
+    "Helmet"
+   ],
+   "tech": "Atlantean Support",
+   "cycle": 5,
+   "despair": {
+    "2+": "[Aether]X Grant Second Chance to an adjacent Titan."
+   }
+  },
+  {
+   "codes": [
+    "EJ2895"
+   ],
+   "name": "Portable Hardlight Generator",
+   "slot": "support",
+   "text": "Light 2. Ψ⟳ Discard 1 Despair token from yourself or an adjacent Titan.",
+   "traits": [
+    "Tekne",
+    "Argotech",
+    "Orichalcum",
+    "Atlantean"
+   ],
+   "tech": "Atlantean Support",
+   "cycle": 5,
+   "danger": {
+    "7+": "ΨX Place a 1x1 Lightwall Terrain tile on an adjacent space."
+   }
+  },
+  {
+   "codes": [
+    "EJ2893"
+   ],
+   "name": "Atlantean Rebreather",
+   "slot": "support",
+   "text": "[Despair]Ψ⟳ Flip an Aether token.",
+   "traits": [
+    "Tekne",
+    "Augment",
+    "Orichalcum",
+    "Atlantean"
+   ],
+   "tech": "Atlantean Support",
+   "cycle": 5,
+   "despair": {
+    "2+": "X Second Chance."
+   }
+  },
+  {
+   "codes": [
+    "EJ2891"
+   ],
+   "name": "Anxiety Ventilator",
+   "slot": "hand1",
+   "text": "⟳ When you gain a Condition card, flip an Aether token.",
+   "traits": [
+    "Flesh",
+    "Primordial",
+    "Argotech",
+    "Apparatus"
+   ],
+   "tech": "Dragon of Phobos Autopsy",
+   "cycle": 5
+  },
+  {
+   "codes": [
+    "EJ2889"
+   ],
+   "name": "Coral Armor",
+   "slot": "armor",
+   "text": "Fearless. Ψ⟳ Defy 1. [R]Ψ⟳ Reflex. X Discard a Fear or Dread Condition card to Dare.",
+   "traits": [
+    "Flesh",
+    "Primordial",
+    "Stone"
+   ],
+   "tech": "Dragon of Phobos Autopsy",
+   "cycle": 5,
+   "evasion": 2
+  },
+  {
+   "codes": [
+    "EJ2887"
+   ],
+   "name": "Black Vent Camouflage",
+   "slot": "support",
+   "text": "Start of Battle: Move up to 5 spaces and Hide. Ψ[Inkblot] Place an Inkblot Terrain tile on your space. Ψ⟳ Hide. *+1 Evasion on an Inkblot or Ambrosia Cloud Terrain tile.",
+   "traits": [
+    "Camo",
+    "Stone",
+    "Ambrosia",
+    "Smoke"
+   ],
+   "tech": "Dragon of Phobos Autopsy",
+   "cycle": 5,
+   "danger": {
+    "6+": "ΨX Perform a Scan on an adjacent space, adding +2 to the result."
+   }
+  },
+  {
+   "codes": [
+    "EJ2885"
+   ],
+   "name": "Skylight Breastplate",
+   "slot": "armor",
+   "text": "Despair Resilience 1. Light 2. When you gain Ambrosia tokens, additionally gain 1 Despair token.",
+   "traits": [
+    "Light",
+    "Primordial",
+    "Orichalcum",
+    "Stone",
+    "Telchines"
+   ],
+   "tech": "Dragon of Phobos Autopsy",
+   "cycle": 5,
+   "armor": [
+    "w"
+   ],
+   "danger": {
+    "9+": "ΨX Armor Re-roll 1."
+   }
+  },
+  {
+   "codes": [
+    "EJ2883"
+   ],
+   "name": "Subreme Harpoon",
+   "slot": "hand2",
+   "text": "+1 Speed. Ranged 2-5. Unwieldy. Cumbersome. Pull 3. Black 3. Opening 2.",
+   "traits": [
+    "Harpoon",
+    "Orichalcum",
+    "Atlantean"
+   ],
+   "tech": "Atlantean Weapons",
+   "cycle": 5,
+   "atk": 2,
+   "prec": 5,
+   "power": [
+    "b"
+   ],
+   "bonusPower": [
+    "b"
+   ],
+   "despair": {
+    "3+": "Ψ[Aether] Succor."
+   }
+  },
+  {
+   "codes": [
+    "EJ2881"
+   ],
+   "name": "Lightwall Shield",
+   "slot": "hand1",
+   "text": "Closing 2. Break 1. Light 2. Full Miss: Diversion. Crit Miss: Gain 1 Ambrosia token.",
+   "traits": [
+    "Shield",
+    "Phos",
+    "Orichalcum",
+    "Atlantean"
+   ],
+   "tech": "Atlantean Weapons",
+   "cycle": 5,
+   "atk": 3,
+   "prec": 5,
+   "power": [
+    "r"
+   ],
+   "bonusRaw": 2,
+   "evasion": 2,
+   "danger": {
+    "7+": "Ψ[Aether]X Place a 1x1 Lightwall Terrain tile on an adjacent space."
+   }
+  },
+  {
+   "codes": [
+    "EJ2879"
+   ],
+   "name": "Oscillating Spear",
+   "slot": "hand2",
+   "text": "Black 1. Power Re-roll 1. Each hit: Opening 1. Crit Miss: Gain 1 Despair token.",
+   "traits": [
+    "Spear",
+    "Orichalcum",
+    "Atlantean"
+   ],
+   "tech": "Atlantean Weapons",
+   "cycle": 5,
+   "atk": 1,
+   "prec": 4,
+   "power": [
+    "r",
+    "r",
+    "r",
+    "r"
+   ],
+   "bonusPower": [
+    "b"
+   ],
+   "despair": {
+    "2+": "Ψ[Aether] Your Weapon gains +1 [attack diamond]. For the purpose of gathering your Power Pool, ignore any hits that exceed your Weapon's regular [attack diamond] value."
+   }
+  },
+  {
+   "codes": [
+    "EJ2877"
+   ],
+   "name": "Atlantean Spada",
+   "slot": "hand1",
+   "text": "Strikeback 1. Opening 2. Break 2. ΨΨ Tilt. Crit Miss: Gain 1 Despair token.",
+   "traits": [
+    "Sword",
+    "Orichalcum",
+    "Atlantean"
+   ],
+   "tech": "Atlantean Weapons",
+   "cycle": 5,
+   "atk": 1,
+   "prec": 3,
+   "power": [
+    "b",
+    "w"
+   ],
+   "bonusRaw": 1,
+   "danger": {
+    "3+": "+1 Bonus Power."
+   },
+   "despair": {
+    "2+": "Ψ Heartseeker."
+   }
+  },
+  {
+   "codes": [
+    "EJ2875"
+   ],
+   "name": "Pain Fuse",
+   "slot": "support",
+   "text": "ΨΨ⟳ When you are about to gain more than 1 Pain token, lower this gain to 1.",
+   "traits": [
+    "Argotech",
+    "Reverse-engineered",
+    "Augment"
+   ],
+   "tech": "Titan X Sighting",
+   "cycle": 5
+  },
+  {
+   "codes": [
+    "EJ2873"
+   ],
+   "name": "Bladedance Armor",
+   "slot": "armor",
+   "text": "Pain Resilience 1. Bypass. Vault. +1 Speed. [R]Ψ⟳ Advanced Reflex.",
+   "traits": [
+    "Argotech",
+    "Reverse-engineered",
+    "Cloth"
+   ],
+   "tech": "Titan X Sighting",
+   "cycle": 5,
+   "danger": {
+    "5+": "Ψ⟳ Acrobatics."
+   },
+   "evasion": 1
+  },
+  {
+   "codes": [
+    "EJ2871"
+   ],
+   "name": "Needleknives",
+   "slot": "hand2",
+   "text": "Reposition 2. Commit ([Pain]). Each hit: Closing 1.",
+   "traits": [
+    "Argotech",
+    "Reverse-engineered",
+    "Knife",
+    "Pain"
+   ],
+   "tech": "Titan X Sighting",
+   "cycle": 5,
+   "atk": 5,
+   "prec": 3,
+   "power": [
+    "r"
+   ],
+   "bonusRaw": 1,
+   "amb": {
+    "3+": "ΨΨ Tilt."
+   },
+   "rage": {
+    "5+": "[Pain][Pain] Assist 2."
+   }
+  },
+  {
+   "codes": [
+    "EJ2869"
+   ],
+   "name": "X-Iphos",
+   "slot": "hand1",
+   "text": "Strikeback 1. Hope 1. Closing 3. ΨΨ Precise. Crit Miss: Gain 1 Pain token.",
+   "traits": [
+    "Argotech",
+    "Reverse-engineered",
+    "Sword"
+   ],
+   "tech": "Titan X Sighting",
+   "cycle": 5,
+   "atk": 1,
+   "prec": 4,
+   "power": [
+    "r",
+    "r",
+    "m"
+   ],
+   "danger": {
+    "9+": "Clutch."
+   }
+  },
+  {
+   "codes": [
+    "EJ2867"
+   ],
+   "name": "Eggtank",
+   "slot": "support",
+   "text": "Ψ⟳ Stand up. You may use this ability while knocked down. Start of Battle: Gain 1 Oxygen token.",
+   "traits": [
+    "Air",
+    "Skin",
+    "Egg",
+    "Primordial"
+   ],
+   "tech": "Meduketos Sighting",
+   "cycle": 5,
+   "danger": {
+    "7+": "[Aether]X Second Chance."
+   }
+  },
+  {
+   "codes": [
+    "EJ2865"
+   ],
+   "name": "Ambrosia Filter",
+   "slot": "support",
+   "text": "Ψ⟳ Discard 1 Ambrosia token.",
+   "traits": [
+    "Argotech",
+    "Aether",
+    "Primordial",
+    "Ambrosia"
+   ],
+   "tech": "Meduketos Sighting",
+   "cycle": 5,
+   "danger": {
+    "8+": "[Aether]X When you are about to gain Ambrosia tokens, ignore this gain."
+   }
+  },
+  {
+   "codes": [
+    "EJ2863"
+   ],
+   "name": "Aether Extinguisher",
+   "slot": "support",
+   "text": "Ψ⟳ When you, or an adjacent Titan, are about to suffer Burn, ignore it. If it was another Titan, gain the Bravery Condition card.",
+   "traits": [
+    "Argotech",
+    "Aether",
+    "Primordial"
+   ],
+   "tech": "Meduketos Sighting",
+   "cycle": 5,
+   "danger": {
+    "8+": "[Aether]X Second Chance."
+   }
+  },
+  {
+   "codes": [
+    "EJ2861"
+   ],
+   "name": "Nereidan Sonar",
+   "slot": "support",
+   "text": "Remote Scan. Ψ Rescan. [R]Ψ⟳ Advanced Reflex.",
+   "traits": [
+    "Argotech",
+    "Augment",
+    "Lamp"
+   ],
+   "tech": "Meduketos Sighting",
+   "cycle": 5,
+   "danger": {
+    "7+": "Ψ⟳ Ignore Skitter you have just triggered."
+   }
+  },
+  {
+   "codes": [
+    "EJ2859"
+   ],
+   "name": "Magnesium Flashbang",
+   "slot": "hand1",
+   "text": "Light 1. Ranged 1-4.",
+   "traits": [
+    "Flammable",
+    "Argotech",
+    "Augment",
+    "Apparatus"
+   ],
+   "tech": "Dragon of Phobos Sighting",
+   "cycle": 5,
+   "rage": {
+    "3+": "ΨX If in Range, ignore Vanish, Fade In or Black March, or perform a Scan on any Petrified Vent in Range. Then place 3 Fire tokens in the Kratos Pool."
+   }
+  },
+  {
+   "codes": [
+    "EJ2857"
+   ],
+   "name": "Anxiety Regulator",
+   "slot": "support",
+   "text": "+1 Will. Ψ⟳ You may ignore the effects of a Fear, Dread, Terror or Holy Terror Condition card until the end of this Round. Ψ⟳ Flip a Mind Condition card. ΨX Solace.",
+   "traits": [
+    "Helm",
+    "Argotech",
+    "Augment"
+   ],
+   "tech": "Dragon of Phobos Sighting",
+   "cycle": 5,
+   "danger": {
+    "5+": "Solace gains [R]."
+   }
+  },
+  {
+   "codes": [
+    "EJ2855"
+   ],
+   "name": "Eyes of the Argo",
+   "slot": "support",
+   "text": "Despair Resilience 1. Provoke. +1 Courage. Ignore the Pale Grin of Doom Trait.",
+   "traits": [
+    "Metal",
+    "Helm",
+    "Argotech",
+    "Primordial"
+   ],
+   "tech": "Dragon of Phobos Sighting",
+   "cycle": 5,
+   "danger": {
+    "6+": "ΨX When you are the Target of a Dragon of Phobos Attack, ignore the Pale Grin of Death Trait."
+   }
+  },
+  {
+   "codes": [
+    "EJ2853"
+   ],
+   "name": "Wrist Harpoon Chaser",
+   "slot": "support",
+   "text": "Pull 1. Ψ⟳ When the Primordial is about to Vanish, reduce that Vanish by 1.",
+   "traits": [
+    "Metal",
+    "Rope",
+    "Chain",
+    "Argotech"
+   ],
+   "tech": "Dragon of Phobos Sighting",
+   "cycle": 5,
+   "danger": {
+    "7+": "Ψ⟳ When the Primordial is about to Vanish, reduce that Vanish by up to 2."
+   }
+  },
+  {
+   "codes": [
+    "EJ2850"
+   ],
+   "name": "Refractor Shield",
+   "slot": "hand1",
+   "text": "Microwave Resistance 1. Ψ⟳ Block 1. Gain Light X equal to half (rounding up) of Light X of an adjacent light source. [1 starburst resistance — 의미 확인 필요]",
+   "traits": [
+    "Shield",
+    "Glass",
+    "Reclaimed",
+    "Atlantean"
+   ],
+   "tech": "Atlantean Armor",
+   "cycle": 5,
+   "atk": 4,
+   "prec": 1,
+   "power": [
+    "r"
+   ],
+   "bonusPower": [
+    "r"
+   ],
+   "danger": {
+    "6+": "+1 Bonus Power."
+   }
+  },
+  {
+   "codes": [
+    "EJ2848"
+   ],
+   "name": "Heavy Reclaimed Depthsuit",
+   "slot": "armor",
+   "text": "Stalwart. Ambrosia Limit +1.",
+   "traits": [
+    "Metal",
+    "Orichalcum",
+    "Reclaimed",
+    "Suit",
+    "Atlantean"
+   ],
+   "tech": "Atlantean Armor",
+   "cycle": 5,
+   "armor": [
+    "b",
+    "b"
+   ],
+   "danger": {
+    "5+": "X Block 1."
+   }
+  },
+  {
+   "codes": [
+    "EJ2962"
+   ],
+   "name": "Self-Inflicted",
+   "slot": "hand1",
+   "text": "Unique. Startup X. Auto-break X. Strikeback 2. Break 2. Closing 1. Commit ([Pain]). X is equal to the number of Pain tokens you have.",
+   "traits": [
+    "Sword",
+    "Atlantean",
+    "Areté",
+    "Pain",
+    "Elder"
+   ],
+   "tech": "Story Loot",
+   "cycle": 5,
+   "reward": "Secret card 278",
+   "loot": true,
+   "atk": 1,
+   "prec": 3,
+   "power": [
+    "r",
+    "m"
+   ],
+   "bonusRaw": 1,
+   "amb": {
+    "4+": "[Oxygen] Roll for Awakening, adding +2 to the roll. If you don't Awaken, you die (once per Battle)."
+   }
+  },
+  {
+   "codes": [
+    "ZJ3000"
+   ],
+   "name": "Pantheon (Mnestis-generated)",
+   "slot": "hand1",
+   "text": "-2 Speed. Mnestis-generated. Unique. Hope 3. Opening 3. Pushback 2. Cumbersome. Commit. Ignore the Lumbering Trait. If used with less hands than 3, lose -2 Precision and -1 Power per missing hand.",
+   "traits": [
+    "Slabsword",
+    "Club",
+    "Relief",
+    "Divine"
+   ],
+   "tech": "Portable Mnestis Gear",
+   "cycle": 5,
+   "reward": "Secret Card 303 1/2",
+   "loot": true,
+   "atk": 1,
+   "prec": 0,
+   "power": [
+    "w",
+    "w"
+   ],
+   "bonusRaw": 2,
+   "flexHands": 3,
+   "rage": {
+    "2+": "Aeon Transgress: At the start of your turn, make an Awakening Roll, adding Rage to your roll. If you Awaken, treat it as if had Awakened from an Obol (you die at the end)."
+   },
+   "codes2": [
+    "ZJ3122"
+   ]
+  },
+  {
+   "codes": [
+    "ZJ2999"
+   ],
+   "name": "Poseidonis (Mnestis-generated)",
+   "slot": "hand2",
+   "text": "Mnestis-generated. Unique. Ranged 1-4. Auto-hope 1. Auto-black 1. Elation 2. Vault. Pull 1. Start of your turn: Gain 1 Ambrosia token. Wound: You may discard 1 Condition token.",
+   "traits": [
+    "Trident",
+    "Spear",
+    "Divine",
+    "Hephaestum"
+   ],
+   "tech": "Portable Mnestis Gear",
+   "cycle": 5,
+   "reward": "Secret Card 302",
+   "loot": true,
+   "atk": 3,
+   "prec": 3,
+   "power": [
+    "r"
+   ],
+   "bonusRaw": 2,
+   "fate": {
+    "6+": "Gain +1ʎ against [snowflake/flower icon]. X to discard all Ambrosia tokens from any Titan."
+   }
+  },
+  {
+   "codes": [
+    "ZJ2998"
+   ],
+   "name": "Atlantean Gun (Mnestis-generated)",
+   "slot": "hand2",
+   "text": "Mnestis-generated. Unique. Ranged 4-6. Auto-break 1. Fire 4. Wound Trick. Commit. Commit ([charge]). [charge] Wound: Unlock a Primordial VP. When you Wound Trick, regain 1[charge].",
+   "traits": [
+    "Gun",
+    "Atlantean",
+    "Iron",
+    "Metal"
+   ],
+   "tech": "Portable Mnestis Gear",
+   "cycle": 5,
+   "reward": "Secret Card 301",
+   "loot": true,
+   "atk": 1,
+   "prec": 1,
+   "power": [
+    "r",
+    "b",
+    "w"
+   ],
+   "charges": 2
+  },
+  {
+   "codes": [
+    "ZJ2997"
+   ],
+   "name": "Damocles Crown (Mnestis-generated)",
+   "slot": "support",
+   "text": "Despair Resilience 2. Mnestis-generated. Unique. Motivate 1. Motivate 1. Motivate 1. Inspire 1. Rouse 1. Heavy is the Head: Ignore Instant Death effects. Always perform an Obol Draw from two Obols. Always perform an Obol Draw instead of a Trauma Draw. And the Sword is Sharp: When you are hit by a Primordial's AI, place 1 temporary negative AT token in the Kratos Pool.",
+   "traits": [
+    "Helm",
+    "Iron",
+    "Hephaestum",
+    "Mythical"
+   ],
+   "tech": "Portable Mnestis Gear",
+   "cycle": 5,
+   "reward": "Secret Card 300",
+   "loot": true,
+   "danger": {
+    "7+": "Gain the Marked for Death Major Trauma card. Ignore the death effect of the Fear and Dread Condition cards."
+   }
+  },
+  {
+   "codes": [
+    "ZJ2996"
+   ],
+   "name": "Bow of Artemis (Mnestis-generated)",
+   "slot": "hand2",
+   "text": "Mnestis-generated. Unique. Cumbersome. Range 3-7. Reposition 2. Opening 2. Fire 2. Assist 2. One Attack die (non-Crit one) always hits. Olympian Prey: If you don't attack with this Weapon during your turn, draw an Obol.",
+   "traits": [
+    "Bow",
+    "Divine",
+    "Wood"
+   ],
+   "tech": "Portable Mnestis Gear",
+   "cycle": 5,
+   "reward": "Secret Card 299",
+   "loot": true,
+   "atk": 4,
+   "prec": 3,
+   "power": [
+    "r"
+   ],
+   "bonusPower": [
+    "r"
+   ],
+   "rage": {
+    "4+": "Ψ Precise."
+   }
+  },
+  {
+   "codes": [
+    "EJ2391"
+   ],
+   "name": "Oxygen Destroyer",
+   "slot": "hand1",
+   "text": "Fire 2. Hope 2. Closing 2. Power Re-roll 2. Ψ[Oxygen] Heartseeker.",
+   "traits": [
+    "Sword",
+    "Fire",
+    "Argotech",
+    "Metal",
+    "Symmachy",
+    "Rhodian"
+   ],
+   "tech": "Story Loot",
+   "cycle": 5,
+   "reward": "Secret card 321",
+   "loot": true,
+   "atk": 2,
+   "prec": 7,
+   "power": [
+    "b"
+   ],
+   "bonusPower": [
+    "m"
+   ],
+   "rage": {
+    "3+": "[Oxygen] Gain +1ʎ."
+   }
+  },
+  {
+   "codes": [
+    "EJ2995"
+   ],
+   "name": "Big Boy Mazey",
+   "slot": "attachment",
+   "text": "Ascended. Unique. Titan Attachment. +1 to Judgement Tests. X When you are about to die from the Fear or Dread Condition cards, ignore this death. X During an Awakening Roll add +1 to the result.",
+   "traits": [
+    "Dog",
+    "Labyrinth",
+    "Pug",
+    "Cherished Companion"
+   ],
+   "tech": "Story Loot",
+   "cycle": 5,
+   "reward": "Secret card 298",
+   "loot": true
+  },
+  {
+   "codes": [
+    "EJ2534"
+   ],
+   "name": "Heir Apparent",
+   "slot": "support",
+   "text": "Unique. [Pain][Despair] Once per turn, you may turn your [Movement] into a [Combat] or vice versa.",
+   "traits": [
+    "Divine",
+    "Nemesistech",
+    "Argotech",
+    "Hephaestum",
+    "Helmet"
+   ],
+   "tech": "Story Loot",
+   "cycle": 5,
+   "reward": "Secret card 297",
+   "loot": true,
+   "rage": {
+    "6+": "Gain the Hatred and Fear Condition cards."
+   }
+  },
+  {
+   "codes": [
+    "EJ2994"
+   ],
+   "name": "Hunter Killer",
+   "slot": "hand2",
+   "text": "Unique. +1 [Movement]. Ranged 3-6. Unwieldy. Cumbersome. Pull 3. Black 3.",
+   "traits": [
+    "Harpoon",
+    "Orichalcum",
+    "Atlantean"
+   ],
+   "tech": "Story Loot",
+   "cycle": 5,
+   "reward": "Secret card 296",
+   "loot": true,
+   "atk": 2,
+   "prec": 6,
+   "power": [
+    "b"
+   ],
+   "bonusPower": [
+    "b"
+   ],
+   "danger": {
+    "5+": "Harpooned."
+   }
+  },
+  {
+   "codes": [
+    "EJ2993"
+   ],
+   "name": "Dodona Cryptex",
+   "slot": "attachment",
+   "text": "Unique. Titan Attachment. Restricted (Cryptex). Light 1. Frontlines. Herd Sync: Ψ Move [Combat] or [Movement] Fatigue token from another Titan's sheet to your sheet. You may use this ability during another Titan's turn. [R][Aether]⟳ Advanced Reflex.",
+   "traits": [
+    "Argotech",
+    "Augment",
+    "Cryptex",
+    "Typhonic"
+   ],
+   "tech": "Story Loot",
+   "cycle": 5,
+   "reward": "Secret card 295",
+   "loot": true
+  },
+  {
+   "codes": [
+    "EJ2992"
+   ],
+   "name": "Typhonic Cryptex",
+   "slot": "attachment",
+   "text": "Unique. Titan Attachment. Restricted (Cryptex). Precision +2. Frontlines. Enslave: Ψ⟳ Each other Titan gains 1 Pain token and moves up to 3 spaces. This is considered involuntary movement. [R][Aether]⟳ Grant Superior Reflex to another Titan. That Titan gains 1 Pain token.",
+   "traits": [
+    "Augment",
+    "Cryptex",
+    "Typhonic",
+    "Divine",
+    "Eldertech"
+   ],
+   "tech": "Story Loot",
+   "cycle": 5,
+   "reward": "Secret card 294",
+   "loot": true
+  },
+  {
+   "codes": [
+    "EJ2977"
+   ],
+   "name": "Headdress of the Deep",
+   "slot": "support",
+   "text": "Unique. Husk: You cannot Awaken. You cannot die from Despair. [Amb][Amb] Abysswalk. Crit Miss: AT.",
+   "traits": [
+    "Primordial",
+    "Ambrosia",
+    "Olympian"
+   ],
+   "tech": "Primordial Loot",
+   "cycle": 5,
+   "reward": "Secret card 293",
+   "loot": true
+  },
+  {
+   "codes": [
+    "EJ2976"
+   ],
+   "name": "Strungstring",
+   "slot": "hand1",
+   "text": "Unique. Stuck. Liquid Edge. Non-euclidean: You can only attack diagonally. Crit Chance: Your highest tier Power Die becomes one tier higher for this Attack.",
+   "traits": [
+    "Mnestis",
+    "Aether",
+    "Alloy",
+    "Imaginary",
+    "Sword",
+    "Vorpal"
+   ],
+   "tech": "Primordial Loot",
+   "cycle": 5,
+   "reward": "Secret card 292",
+   "loot": true,
+   "atk": 1,
+   "prec": 6,
+   "power": [
+    "b",
+    "b",
+    "b"
+   ],
+   "fate": {
+    "6+": "Immediately discard this card."
+   }
+  },
+  {
+   "codes": [
+    "EJ2975"
+   ],
+   "name": "Flame-Hardened Plate",
+   "slot": "armor",
+   "text": "Unique. Ignore Burn. Start of Battle: Gain 1 Aether token.",
+   "traits": [
+    "Mnestis",
+    "Aether",
+    "Ceramic",
+    "Imaginary"
+   ],
+   "tech": "Primordial Loot",
+   "cycle": 5,
+   "reward": "Secret card 291",
+   "loot": true,
+   "armor": [
+    "m"
+   ],
+   "fate": {
+    "6+": "Immediately discard this card."
+   }
+  },
+  {
+   "codes": [
+    "EJ2974"
+   ],
+   "name": "Iapetus Helm",
+   "slot": "support",
+   "text": "Unique. Ignore Status Feints. Ψ Rescan. [R]Ψ⟳ Superior Reflex. Disable the Toying Trait.",
+   "traits": [
+    "Argotech",
+    "Atlantean",
+    "Aether",
+    "Augment",
+    "Helm"
+   ],
+   "tech": "Primordial Loot",
+   "cycle": 5,
+   "reward": "Secret card 290",
+   "loot": true
+  },
+  {
+   "codes": [
+    "EJ2973"
+   ],
+   "name": "Synergic Armor",
+   "slot": "armor",
+   "text": "+1 Speed. Pain Resilience 1. Unique. Light 1. Ψ[Pain] Dodge. Crit Evade Fail: Gain 1 Pain token. Disable the Toying Trait.",
+   "traits": [
+    "Argotech",
+    "Atlantean",
+    "Aether",
+    "Hephaestum"
+   ],
+   "tech": "Primordial Loot",
+   "cycle": 5,
+   "reward": "Secret card 289",
+   "loot": true,
+   "rage": {
+    "5-": "ΨX Superior Chance."
+   }
+  },
+  {
+   "codes": [
+    "EJ2972"
+   ],
+   "name": "Pilfered Blade",
+   "slot": "hand1",
+   "text": "Unique. Strikeback 1. Deadly. Disable the Toying Trait. [Pain] Heartseeker. [Pain] Liquid Edge.",
+   "traits": [
+    "Argotech",
+    "Atlantean",
+    "Aether",
+    "Blade",
+    "Hephaestum"
+   ],
+   "tech": "Primordial Loot",
+   "cycle": 5,
+   "reward": "Secret card 288",
+   "loot": true,
+   "atk": 1,
+   "prec": 6,
+   "power": [
+    "r",
+    "r",
+    "m"
+   ],
+   "amb": {
+    "3+": "[Oxygen] Roll for Awakening, adding +2 to the roll. If you don't Awaken, you die (once per Battle)."
+   }
+  },
+  {
+   "codes": [
+    "EJ2971"
+   ],
+   "name": "Microwave Shieldscale",
+   "slot": "hand1",
+   "text": "Microwave Resistance 1. Unique. Overbreak 2. Ignore Burn. Ψ⟳ Block 1.",
+   "traits": [
+    "Primordial",
+    "Flesh",
+    "Fire",
+    "Stone",
+    "Shield"
+   ],
+   "tech": "Primordial Loot",
+   "cycle": 5,
+   "reward": "Secret card 287",
+   "loot": true,
+   "atk": 4,
+   "prec": 4,
+   "power": [
+    "r"
+   ],
+   "bonusRaw": 1,
+   "danger": {
+    "6+": "+1 Bonus Power."
+   }
+  },
+  {
+   "codes": [
+    "EJ2970"
+   ],
+   "name": "Veilwrappings",
+   "slot": "armor",
+   "text": "Unique. Bypass. Ignore Skitter. Ψ⟳ Hide. When Hidden, gain +2 [Movement].",
+   "traits": [
+    "Primordial",
+    "Flesh",
+    "Cloth",
+    "Cloak",
+    "Void"
+   ],
+   "tech": "Primordial Loot",
+   "cycle": 5,
+   "reward": "Secret card 286",
+   "loot": true,
+   "evasionReroll": 4,
+   "aether": {
+    "2+": "Primordial Bypass."
+   }
+  },
+  {
+   "codes": [
+    "EJ2969"
+   ],
+   "name": "Oculus Headlamp",
+   "slot": "support",
+   "text": "Unique. Light 3. During a Scan you may redraw the Major Trauma cards X times, where X is the number of Aether tokens you have.",
+   "traits": [
+    "Primordial",
+    "Flesh",
+    "Selenian",
+    "Argotech"
+   ],
+   "tech": "Primordial Loot",
+   "cycle": 5,
+   "reward": "Secret card 285",
+   "loot": true
+  },
+  {
+   "codes": [
+    "EJ2968"
+   ],
+   "name": "Grinmask",
+   "slot": "support",
+   "text": "Despair Resilience 1. Unique. Fearless. Crit Chance: Gain 1 Aether token.",
+   "traits": [
+    "Primordial",
+    "Flesh",
+    "Mask"
+   ],
+   "tech": "Primordial Loot",
+   "cycle": 5,
+   "reward": "Secret card 284",
+   "loot": true,
+   "despair": {
+    "1+": "Ignore the Pale Grin of Death and Pale Grin of Doom Traits."
+   }
+  },
+  {
+   "codes": [
+    "EJ2967"
+   ],
+   "name": "Phobos Whip",
+   "slot": "hand1",
+   "text": "Unique. Reach 2. Light 1. Provoke. Gain +1 to your Crit Chance range for each Generic token on this card. Wound: Place a Generic token on this card. Crit Chance: Discard all Generic tokens from this card.",
+   "traits": [
+    "Primordial",
+    "Flesh",
+    "Whip",
+    "Selenian"
+   ],
+   "tech": "Primordial Loot",
+   "cycle": 5,
+   "reward": "Secret card 283",
+   "loot": true,
+   "atk": 1,
+   "prec": 9,
+   "power": [
+    "r",
+    "w"
+   ],
+   "rage": {
+    "1+": "Double the number of Kratos tokens you place from your Kratos Table abilities."
+   }
+  },
+  {
+   "codes": [
+    "EJ2966"
+   ],
+   "name": "Claw Cracker",
+   "slot": "hand1",
+   "text": "Unique. Overbreak 3. Elation 1. Armor-piercing. Ψ⟳ Stand up. You may use this ability while knocked down. *X is equal to twice the number of Despair tokens you have.",
+   "traits": [
+    "Primordial",
+    "Chitin",
+    "Flesh",
+    "Claw",
+    "Cestus"
+   ],
+   "tech": "Primordial Loot",
+   "cycle": 5,
+   "reward": "Secret card 282",
+   "loot": true,
+   "atk": 3,
+   "prec": 0,
+   "power": [
+    "b"
+   ],
+   "bonusRaw": 1,
+   "danger": {
+    "6+": "[R]Ψ⟳ Vault."
+   }
+  },
+  {
+   "codes": [
+    "EJ2965"
+   ],
+   "name": "Will Anthropos",
+   "slot": "hand1",
+   "text": "Unique. Startup 4. Strikeback 0. Deadly. Elation 1. Ψ Tilt. At the start of the Battle and each time you draw a You Live! Obol, gain the Bravery Condition card.",
+   "traits": [
+    "Mortal",
+    "Mythical",
+    "Hephaestum",
+    "Orichalcum",
+    "Alloy"
+   ],
+   "tech": "Story Loot",
+   "cycle": 5,
+   "reward": "Secret card 281",
+   "loot": true,
+   "atk": 2,
+   "prec": 6,
+   "power": [
+    "r"
+   ],
+   "bonusPower": [
+    "m"
+   ],
+   "condGate": {
+    "Bravery": "[Oxygen] Deny."
+   }
+  },
+  {
+   "codes": [
+    "EJ2964"
+   ],
+   "name": "Eternal Vow",
+   "slot": "hand3",
+   "text": "Unique. Spiral 1. Truth X. Daze. Commit. Stuck. Start of Battle: You may gain 1 Despair token. *X is equal to 1 plus the number of Despair tokens you have.",
+   "traits": [
+    "Atlantean",
+    "Orichalcum",
+    "Relief",
+    "Hammer"
+   ],
+   "tech": "Story Loot",
+   "cycle": 5,
+   "reward": "Secret card 280",
+   "loot": true,
+   "atk": 1,
+   "prec": 4,
+   "power": [
+    "r"
+   ],
+   "bonusPower": [
+    "m"
+   ],
+   "despair": {
+    "3+": "Ψ[Aether] BP Suppress."
+   },
+   "atkNote": "X*"
+  },
+  {
+   "codes": [
+    "EJ2963"
+   ],
+   "name": "Light of Eos",
+   "slot": "hand2",
+   "text": "Unique. Reach 2. Overbreak X. Commit. You have Light Y, where Y is the number of Despair tokens you have. [Combat][Movement] Piercing Rush: Perform Rush, X is the amount of spaces you move. Crit Chance: Tilt.",
+   "traits": [
+    "Spear",
+    "Ship",
+    "Metal",
+    "Hephaestum"
+   ],
+   "tech": "Story Loot",
+   "cycle": 5,
+   "reward": "Secret card 279",
+   "loot": true,
+   "atk": 2,
+   "prec": 3,
+   "power": [
+    "b",
+    "b"
+   ]
   }
  ],
  "suntannedFists": {
