@@ -106,6 +106,7 @@ export function installTitanX(Game, { TitanDied, BattleOver, ChainBreak }) {
       if ((m = /^Lose -(\d) RAGE\.?$/.exec(s))) { const n = Math.min(+m[1], t.rage || 0); t.rage = (t.rage || 0) - n; this.say(`${t.name}: Rage −${n} → ${t.rage}`, 'bad'); return; }
       if ((m = /^Death (\d)\.?$/.exec(s))) { await this.addCondition(t, 'Death', { tokens: +m[1] }); return; }
       if ((m = /^Pain (\d)\.?$/.exec(s))) { await this.txPain(t, +m[1], card.name); return; }
+      if (/^Discard 1 Argo Ability charge\.?$/.test(s)) { const L = (this.argo || []).filter(x => (x.charges || 0) > 0); if (!L.length) { this.say('(charge가 남은 Argo Ability 없음)'); return; } const a = L.length === 1 ? L[0] : await this.ask({ type: 'choice', titan: t, title: 'charge를 버릴 Argo Ability', options: L.map(x => ({ label: `${x.card.name} (charge ${x.charges})`, value: x })) }) || L[0]; a.charges--; this.say(`Argo Ability 「${a.card.name}」 charge −1 → ${a.charges}`, 'bad'); return; }
       if (/^Discard 1 Argo Ability\.?$/.test(s)) { const L = this.argo || []; if (!L.length) { this.say('(Argo Ability 없음)'); return; } const a = L.length === 1 ? L[0] : await this.ask({ type: 'choice', titan: t, title: '버릴 Argo Ability', options: L.map(x => ({ label: `${x.card.name} (charge ${x.charges})`, value: x })) }) || L[0]; this.argo = L.filter(x => x !== a); this.say(`Argo Ability 「${a.card.name}」 버림`, 'bad'); return; }
       if (/^This Titan can never Awaken/.test(s)) { t.noAwaken = true; this.say(`${t.name}: 이번 전투에서 각성 불가`, 'bad'); return; }
       if (/^Gain the Fear Condition card\.?$/.test(s)) { await this.addCondition(t, 'Fear'); return; }
@@ -118,7 +119,7 @@ export function installTitanX(Game, { TitanDied, BattleOver, ChainBreak }) {
         this.say(`Eyes on the Gleaming Prize: ${this.prim.name}이(가) 가장 가까운 보드 끝(${dir})으로, 모든 타이탄은 반대쪽으로 8칸`, 'ai');
         await this.txMove(dir, m, { noCrash: true }); const od = OPP[dir];
         for (const t of this.liveTitans().filter(t => !t.offBoard && !t.onVP)) await this.solo(() => this.knockback(t, 8, od, true));
-        this.faceMost(); this.say('(Argo 자원 손실 — 캠페인)'); return;
+        this.faceMost(); this.say('(Crew −1, Hull −1 — 캠페인)'); return;
       }
       if (X.devil) { this.say('THE DEVIL HIMSELF — Feint', 'ai'); await this.txFeint(true); card._removed = true; this.say('The Devil Himself: AI 카드 한 장 더, 이 카드는 덱에서 제거', 'ai'); const c = this.drawAI(); if (c) { await this.safe(() => this.resolveAI(c)); if (!c._removed) this.ai.discard.push(c); } return; }
       const targets = this.txTargets(card, forcedTarget);
@@ -217,6 +218,7 @@ export function installTitanX(Game, { TitanDied, BattleOver, ChainBreak }) {
         if (/^You may gain \+2 RAGE/.test(x)) { if (t.rage <= 7 && await this.ask({ type: 'yn', titan: t, title: 'Rage +2?', options: [{ label: '예', value: true }, { label: '아니오', value: false }] })) await this.gainRage(t, 2, false); continue; }
         if (/^(?:You may )?perform a Bonus Attack/i.test(x)) { this.pendingFollowUp = t; continue; }
         if (/^Another Titan may (?:immediately )?perform a Bonus Attack/.test(x)) { await this.txAnother(t); continue; }
+        if (/^Another Titan may (?:immediately )?perform a Move action/.test(x)) { const others = this.liveTitans().filter(o => o !== t && !o.offBoard && !o.onVP && !o.knockdown); const o = others.length ? await this.ask({ type: 'choice', titan: t, title: '이동 행동을 할 다른 타이탄', options: [{ label: '안 함', value: null }, ...others.map(o2 => ({ label: o2.name, value: o2 }))] }) : null; if (o) { this.say(`${o.name}: 이동 행동`, 'good'); await this.chooseMove(o, this.speedOf(o), '이동'); } continue; }
         if (/^Titan X and all remaining Titans die/.test(x)) { this.say(`${A.bp.name} — Titan X 사망! (남은 타이탄도 사망 — 캠페인)`, 'good'); A.slay = true; continue; }
         if (/^Permanently gain \+1 Fury/.test(x)) { const sk = t.argonaut && t.argonaut.skills; if (sk) sk.Fury = (sk.Fury || 0) + 1; this.say(`${t.name}: Fury +1 (영구)`, 'good'); continue; }
         if (/Secret deck|campaign|Rare resource|Special Event|Mark X1|If you already have it|Lifetime/.test(x)) { this.say(`(${x} — 캠페인 보상)`, 'sys'); continue; }

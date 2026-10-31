@@ -226,7 +226,7 @@
    ],
    "tx": {
     "pre": [
-     "PAIN 2+: Discard 1 Argo Ability."
+     "PAIN 2+: Discard 1 Argo Ability charge."
     ],
     "win": true,
     "move": "move",
@@ -379,7 +379,7 @@
    ],
    "tx": {
     "pre": [
-     "PAIN 3+: Discard 1 Argo Ability."
+     "PAIN 3+: Discard 1 Argo Ability charge."
     ],
     "win": true,
     "move": "flash",
@@ -686,7 +686,7 @@
    "toHit": 0,
    "target": [],
    "steps": [
-    "Titan X moves to the closest Board Edge; move all Titans 8 spaces in the opposite direction. Titan X turns to face the most Titans. (Lose -1 Argo resources — campaign)"
+    "Titan X moves to the closest Board Edge; move all Titans 8 spaces in the opposite direction. Titan X turns to face the most Titans. Lose -1 Crew and -1 Hull (campaign)."
    ],
    "tx": {
     "routine": true
@@ -734,7 +734,8 @@
     "FAIL": "Feint.",
     "WOUND": "Pain 1. Flash Step."
    },
-   "critical": "Move Titan X 3 spaces directly backwards, then move 3 spaces forward to remain adjacent. Gain the Iapetus Helm card (Secret deck 18, card 290)!"
+   "critical": "Move Titan X 3 spaces directly backwards, then move 3 spaces forward to remain adjacent. Gain the Iapetus Helm card (Secret deck 18, card 290)!",
+   "qeye": true
   },
   {
    "code": "ES3179",
@@ -745,7 +746,8 @@
     "FAIL": "Feint.",
     "WOUND": "Perform Signature against the Attacker."
    },
-   "critical": "Gain 1 Undead Silver Rare resource (campaign)."
+   "critical": "Gain 1 Undead Silver Rare resource (campaign).",
+   "qeye": false
   },
   {
    "code": "ES3178",
@@ -756,7 +758,8 @@
     "FAIL": "Knockdown. Knockback 10 to the left.",
     "WOUND": "Perform Signature against the Attacker."
    },
-   "critical": "You may gain +2 RAGE."
+   "critical": "You may gain +2 RAGE.",
+   "qeye": false
   },
   {
    "code": "ES3180",
@@ -767,7 +770,8 @@
     "FAIL": "Knockdown. Knockback 10 to the left.",
     "WOUND": "⚡ Knockback 7 to the left. Pain 1."
    },
-   "critical": "Another Titan may perform a Bonus Attack!"
+   "critical": "Another Titan may perform a Move action.",
+   "qeye": false
   },
   {
    "code": "ES3176",
@@ -777,7 +781,8 @@
    "responses": {
     "INSTINCT": "Knockback 7 to the left. Pain 1."
    },
-   "critical": "You may perform a Bonus Attack!"
+   "critical": "You may perform a Bonus Attack!",
+   "qeye": false
   },
   {
    "code": "ES3177",
@@ -788,7 +793,8 @@
     "FAIL": "Perform Signature against the Attacker.",
     "WOUND": "Feint."
    },
-   "critical": "Reduce the amount of spaces Titan X moves past its Target during Flash Step by 2."
+   "critical": "Reduce the amount of spaces Titan X moves past its Target during Flash Step by 2.",
+   "qeye": false
   },
   {
    "code": "ES3195",
@@ -809,7 +815,8 @@
    "responses": {
     "INSTINCT": "Feint."
    },
-   "critical": "Reduce the amount of spaces Titan X moves past its Target during Flash Step by 2."
+   "critical": "Reduce the amount of spaces Titan X moves past its Target during Flash Step by 2.",
+   "qeye": false
   },
   {
    "code": "ES3184",
@@ -820,7 +827,8 @@
     "FAIL": "Pain 1. Exhaust your Cryptex.",
     "WOUND": "Perform Signature against the Attacker."
    },
-   "critical": "Disable the Critical Strikes Trait. Disable the Toying Trait."
+   "critical": "Disable the Critical Strikes Trait. Disable the Toying Trait.",
+   "qeye": true
   },
   {
    "code": "ES3183",
@@ -831,7 +839,8 @@
     "FAIL": "Feint.",
     "WOUND": "Pain 2. Titan X moves 9 spaces directly away from the Attacker without turning."
    },
-   "critical": "Gain the Synergic Armor card (Secret deck 18, card 289)."
+   "critical": "Gain the Synergic Armor card (Secret deck 18, card 289).",
+   "qeye": false
   },
   {
    "code": "ES3187",
@@ -842,7 +851,8 @@
     "FAIL": "Killjoy.",
     "WOUND": "Perform Signature against the Attacker."
    },
-   "critical": "Move Titan X 3 spaces directly backwards, then move 3 spaces forward to remain adjacent. Another Titan may immediately perform a Bonus Attack!"
+   "critical": "Move Titan X 3 spaces directly backwards, then move 3 spaces forward to remain adjacent. Another Titan may immediately perform a Move action.",
+   "qeye": true
   },
   {
    "code": "ES3186",
@@ -853,7 +863,8 @@
     "FAIL": "Killjoy.",
     "WOUND": "Pain 3. Titan X moves 9 spaces directly away from the Attacker without turning."
    },
-   "critical": "Discard all Pain tokens from each Titan!"
+   "critical": "Discard all Pain tokens from each Titan!",
+   "qeye": false
   },
   {
    "code": "ES3182",
@@ -863,7 +874,8 @@
    "responses": {
     "INSTINCT": "Flash Step."
    },
-   "critical": "Until the end of Battle, when attacked from the Blindspot space, Titan X has -1 AT."
+   "critical": "Until the end of Battle, when attacked from the Blindspot space, Titan X has -1 AT.",
+   "qeye": true
   },
   {
    "code": "ES3190",
@@ -874,7 +886,8 @@
     "FAIL": "Pain 4.",
     "WOUND": "Feint."
    },
-   "critical": "Reduce the amount of spaces Titan X moves past its Target during Flash Step to 0. Disable the Toying Trait."
+   "critical": "Reduce the amount of spaces Titan X moves past its Target during Flash Step to 0. Disable the Toying Trait.",
+   "qeye": true
   },
   {
    "code": "ES3189",
@@ -885,7 +898,8 @@
     "FAIL": "Draw an Obol.",
     "WOUND": "Draw and perform an AI card."
    },
-   "critical": "Mark X1 (campaign). Titan X and all remaining Titans die!"
+   "critical": "Mark X1 (campaign). Titan X and all remaining Titans die!",
+   "qeye": false
   },
   {
    "code": "ES3188",
@@ -896,7 +910,8 @@
     "FAIL": "Feint.",
     "WOUND": "Draw and perform an AI card."
    },
-   "critical": "Gain the Pilfered Blade card (Secret deck 18, card 288)! Disable the Killjoy Trait. Disable the Toying Trait."
+   "critical": "Gain the Pilfered Blade card (Secret deck 18, card 288)! Disable the Killjoy Trait. Disable the Toying Trait.",
+   "qeye": false
   },
   {
    "code": "ES3193",
@@ -906,7 +921,8 @@
    "responses": {
     "INSTINCT": "Disable the Toying Trait. Perform Signature against the Attacker."
    },
-   "critical": "Permanently gain +1 Fury (once per Argonaut Lifetime). After the Battle, resolve The Devil Special Event (campaign)."
+   "critical": "Permanently gain +1 Fury (once per Argonaut Lifetime). After the Battle, resolve The Devil Special Event (campaign).",
+   "qeye": true
   },
   {
    "code": "ES3192",
@@ -917,7 +933,8 @@
     "FAIL": "Feint.",
     "WOUND": "Flash Step."
    },
-   "critical": "Disable the Pain X keyword. Disable the Toying Trait."
+   "critical": "Disable the Pain X keyword. Disable the Toying Trait.",
+   "qeye": true
   },
   {
    "code": "ES3191",
@@ -928,7 +945,8 @@
     "FAIL": "Killjoy.",
     "WOUND": "Feint."
    },
-   "critical": "Disable Feints. Disable the Toying Trait."
+   "critical": "Disable Feints. Disable the Toying Trait.",
+   "qeye": true
   }
  ],
  "feints": [
