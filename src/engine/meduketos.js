@@ -35,7 +35,7 @@ export function installMeduketos(Game, { TitanDied, BattleOver }) {
       let L = 0; for (const g of t.gear) { if (g.discarded || g.exhausted || g.blank) continue; const v = kw(this.gearText(g, t), 'Light'); if (typeof v === 'number') L += v; }
       const ih = this.inh(t, 'Light'); if (typeof ih === 'number') L += ih;
       if (this.ab(t, 'Aether Lamp')) L += t.aether || 0;
-      if (!t.onVP && t.pos) { const ter = this.board.terrainAt(t.pos.c, t.pos.r); if (ter && ter.allied) L += 1; if (ter && ter.lightVoid) return 0; }
+      if (!t.onVP && t.pos) { const ter = this.board.terrainAt(t.pos.c, t.pos.r); if (ter && ter.lightVoid) return 0; }
       return L;
     },
     gearLightCount(t) { return t.gear.filter(g => !g.discarded && kw(this.gearText(g, t), 'Light') !== null).length; },

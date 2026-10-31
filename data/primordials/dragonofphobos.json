@@ -7,7 +7,7 @@
  "dpD": true,
  "_notes": [
   "Transcribed from sheet EU3022 (Lv I-IX), trait cards (Phobian Hierarchy, Fat with Fear, A Truth for a Truth, A Lie for a Truth), AI ER3023-ER3042, 18 BP cards, Storybook p.174-175 setup.",
-  "Titan facing is not tracked: a Titan is treated as facing the board centre, so \"behind\" = the side away from the centre.",
+  "Titan Facing (Cycle V): each Titan chooses a facing at the start of Battle and may change it after any movement or move-like ability, when performing a Bonus Attack, or as a free action. To attack you must face the Primordial. \"Behind\" = the opposite of the facing direction.",
   "Ranges of light: a space is lit if within X spaces of a Titan with Light X, or within the Light value of a Lightwall / Arcology tile (all directions).",
   "BP codes ES3043-ES3060; Full Miss effects (card backs) matched to the fronts by sheet position."
  ],
@@ -470,7 +470,10 @@
     "win": true,
     "move": true
    },
-   "after": "Vanish 4."
+   "after": "Vanish 4.",
+   "stepJoin": [
+    3
+   ]
   },
   {
    "code": "ER3029",
@@ -609,7 +612,8 @@
      "Inkblot.",
      "Gain the Holy Terror Condition card."
     ],
-    "move": true
+    "move": true,
+    "preJoin": true
    },
    "after": "Vanish 5."
   },
@@ -639,7 +643,8 @@
     "fm": [
      5,
      "die"
-    ]
+    ],
+    "preJoin": true
    },
    "after": "Vanish 5."
   },
@@ -728,7 +733,8 @@
     "WOUND": "Gain 1 Ambrosia token."
    },
    "critical": "Gain 1 Sisyphus Tear, Echo of Recollection, or Pygmalion Stone Divine resource (campaign).",
-   "fullMiss": "Gain 1 Despair token and +3 DANGER."
+   "fullMiss": "Gain 1 Despair token and +3 DANGER.",
+   "qeye": false
   },
   {
    "code": "ES3047",
@@ -737,10 +743,11 @@
    "at": 6,
    "responses": {
     "FAIL": "Gain 2 Ambrosia tokens.",
-    "WOUND": "Inkblot. ⚡ Vanish 2."
+    "WOUND": "Inkblot.\n⚡ Vanish 2."
    },
    "critical": "Reduce Vanish by 1.",
-   "fullMiss": "Perform Signature against the Attacker."
+   "fullMiss": "Perform Signature against the Attacker.",
+   "qeye": false
   },
   {
    "code": "ES3046",
@@ -751,7 +758,8 @@
     "FAIL": "Gain the Fear Condition card and +1 DANGER."
    },
    "critical": "You may discard 1 Despair token and perform a Bonus Attack!",
-   "fullMiss": "Gain the Terror Condition card and +2 DANGER."
+   "fullMiss": "Gain the Terror Condition card and +2 DANGER.",
+   "qeye": false
   },
   {
    "code": "ES3045",
@@ -762,7 +770,8 @@
     "INSTINCT": "⚡ Vanish 4."
    },
    "critical": "Gain the Phobos Whip card (Secret deck 18, card 283).",
-   "fullMiss": "Gain 1 Despair token and +3 DANGER."
+   "fullMiss": "Gain 1 Despair token and +3 DANGER.",
+   "qeye": false
   },
   {
    "code": "ES3044",
@@ -774,7 +783,8 @@
     "WOUND": "⚡ Vanish 3."
    },
    "critical": "Reduce Vanish by 1 and perform a Bonus Attack!",
-   "fullMiss": "Perform Signature against the Attacker."
+   "fullMiss": "Perform Signature against the Attacker.",
+   "qeye": false
   },
   {
    "code": "ES3043",
@@ -786,7 +796,8 @@
     "WOUND": "⚡ Vanish 3."
    },
    "critical": "Reduce Vanish by 1.",
-   "fullMiss": "Gain the Terror Condition card and +2 DANGER."
+   "fullMiss": "Gain the Terror Condition card and +2 DANGER.",
+   "qeye": false
   },
   {
    "code": "ES3054",
@@ -798,7 +809,8 @@
     "WOUND": "Inkblot. Vanish 5."
    },
    "critical": "Reduce Vanish by 2.",
-   "fullMiss": "Perform Signature against the Attacker."
+   "fullMiss": "Perform Signature against the Attacker.",
+   "qeye": false
   },
   {
    "code": "ES3053",
@@ -810,7 +822,8 @@
     "WOUND": "Vanish 4."
    },
    "critical": "Disable the Pale Grin of Doom Trait. Gain the Grinmask card (Secret deck 18, card 284).",
-   "fullMiss": "Perform Signature against the Attacker."
+   "fullMiss": "Perform Signature against the Attacker.",
+   "qeye": true
   },
   {
    "code": "ES3052",
@@ -821,7 +834,8 @@
     "INSTINCT": "Gain 2 Ambrosia tokens."
    },
    "critical": "Disable the Inkblot keyword.",
-   "fullMiss": "Gain the Terror Condition card and +3 DANGER."
+   "fullMiss": "Gain the Terror Condition card and +3 DANGER.",
+   "qeye": false
   },
   {
    "code": "ES3051",
@@ -832,7 +846,8 @@
     "FAIL": "Gain DANGER equal to the Primordial level and the Dread Condition card."
    },
    "critical": "You may discard all Despair tokens and perform a Bonus Attack!",
-   "fullMiss": "Gain 2 Despair tokens."
+   "fullMiss": "Gain 2 Despair tokens.",
+   "qeye": false
   },
   {
    "code": "ES3050",
@@ -844,7 +859,8 @@
     "WOUND": "Pushback 3, perform Signature against the Attacker."
    },
    "critical": "Disable the Blacker Than the Night Trait. If it's not in play, perform a Bonus Attack instead!",
-   "fullMiss": "Gain the Terror Condition card and +3 DANGER."
+   "fullMiss": "Gain the Terror Condition card and +3 DANGER.",
+   "qeye": true
   },
   {
    "code": "ES3049",
@@ -856,7 +872,8 @@
     "WOUND": "Vanish 4."
    },
    "critical": "Disable Fear and Dread Condition card effects. Discard all Fear and Dread Condition cards from all Titans.",
-   "fullMiss": "Gain 2 Despair tokens."
+   "fullMiss": "Gain 2 Despair tokens.",
+   "qeye": false
   },
   {
    "code": "ES3060",
@@ -867,7 +884,8 @@
     "WOUND": "Inkblot. Vanish 7."
    },
    "critical": "Disable gaining Ambrosia tokens.",
-   "fullMiss": "Perform AI against the Attacker."
+   "fullMiss": "Perform AI against the Attacker.",
+   "qeye": false
   },
   {
    "code": "ES3059",
@@ -879,7 +897,8 @@
     "WOUND": "During the second ability window, turn all your Despair tokens into Hope tokens or place 2 Hope tokens in the Kratos Pool."
    },
    "critical": "The Dragon of Phobos dies! Gain +1 permanent Courage (once per Argonaut Lifetime).",
-   "fullMiss": "Gain a random Phobia Affliction and die."
+   "fullMiss": "Gain a random Phobia Affliction and die.",
+   "qeye": true
   },
   {
    "code": "ES3058",
@@ -889,8 +908,9 @@
    "responses": {
     "INSTINCT": "Vanish 5. Gain the Terror Condition card and DANGER equal to the Primordial level."
    },
-   "critical": "Gain +1 Hope resource (campaign). After the Battle, resolve the Just a Peek Special Event.",
-   "fullMiss": "Gain the Holy Terror Condition card."
+   "critical": "Gain +1 Progress (campaign). After the Battle, resolve the Just a Peek Special Event.",
+   "fullMiss": "Gain the Holy Terror Condition card.",
+   "qeye": true
   },
   {
    "code": "ES3057",
@@ -901,7 +921,8 @@
     "FAIL": "Gain a random Phobia Affliction. Vanish 7."
    },
    "critical": "Disable Terror and Holy Terror Condition card effects. Discard all Terror and Holy Terror Condition cards from all Titans. You may discard all Despair tokens and perform a Bonus Attack!",
-   "fullMiss": "Gain a random Phobia Affliction and die."
+   "fullMiss": "Gain a random Phobia Affliction and die.",
+   "qeye": true
   },
   {
    "code": "ES3056",
@@ -913,7 +934,8 @@
     "WOUND": "Discard up to 3 Ambrosia and/or Despair tokens."
    },
    "critical": "Gain the Claw Cracker card (Secret deck 18, card 282). After the Battle, resolve The Great Flood Special Event.",
-   "fullMiss": "Perform AI against the Attacker."
+   "fullMiss": "Perform AI against the Attacker.",
+   "qeye": false
   },
   {
    "code": "ES3055",
@@ -925,7 +947,8 @@
     "WOUND": "Vanish 7."
    },
    "critical": "Disable the effects of Despair tokens.",
-   "fullMiss": "Gain the Holy Terror Condition card."
+   "fullMiss": "Gain the Holy Terror Condition card.",
+   "qeye": false
   }
  ],
  "vp": null,

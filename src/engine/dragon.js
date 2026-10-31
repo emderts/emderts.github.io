@@ -8,6 +8,7 @@ export function installDragon(Game, { TitanDied, BattleOver }) {
   const PERP = { N: ['E', 'W'], S: ['W', 'E'], E: ['S', 'N'], W: ['N', 'S'] };
   const HIER = ['Holy Terror', 'Terror', 'Dread', 'Fear'];
   const dirTo = (from, to) => { const dx = to.c - from.c, dy = to.r - from.r; return Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'E' : 'W') : (dy > 0 ? 'N' : dy < 0 ? 'S' : (dx >= 0 ? 'E' : 'W')); };
+  const ARW = { N: '↑', S: '↓', E: '→', W: '←' };
   const man = (a, b) => Math.abs(a.c - b.c) + Math.abs(a.r - b.r);
 
   Object.assign(P, {
@@ -15,9 +16,17 @@ export function installDragon(Game, { TitanDied, BattleOver }) {
     c5x() { return !!(this.prim && (this.prim.def.dpD || this.prim.def.ufD)); },
     dpTrait(n) { return this.dpD() && this.trait(n) && !this.prim.disabled[n]; },
     // ---------- Titan facing (Cycle V) ----------
-    dpCenterCell() { const a = this.prim.offBoard ? this.prim._last : this.prim.anchor; if (!a || a.c < 0) return null; return { c: a.c + 0.5, r: a.r + 0.5 }; },
+    dpCenterCell() { const a = this.prim.offBoard ? this.prim._last : this.prim.anchor; if (!a || a.c < 0) return null; const h = ((this.prim.size || 2) - 1) / 2; return { c: a.c + h, r: a.r + h }; },
     dpFace(t) { if (t._face) return t._face; const c = this.dpCenterCell(); return c && t.pos ? dirTo(t.pos, c) : 'N'; },
     dpFaceToward(t) { if (!t || !t.alive || !t.pos || t.onVP || t.offBoard || this.prim.offBoard) return; const c = this.dpCenterCell(); if (c) t._face = dirTo(t.pos, c); },
+    facingOn() { return !!(this.prim && (this.prim.def.cycle || 0) >= 5); },
+    facingPrim(t) { if (!t || !t.pos || t.onVP || t.offBoard || this.prim.offBoard) return false; const d = DIRS[this.dpFace(t)]; return this.primCells().some(p => (p.c - t.pos.c) * d[0] + (p.r - t.pos.r) * d[1] > 0); },
+    async askFacing(t, why, keep = true) {
+      if (!t || !t.alive || !t.pos || t.onVP || t.offBoard) return; const cur = this.dpFace(t); const c = this.dpCenterCell(); const tow = c ? dirTo(t.pos, c) : null;
+      const opts = []; if (tow && !this.prim.offBoard) opts.push({ label: `프라이모디얼 쪽 ${ARW[tow]} (${tow})`, value: tow }); if (keep) opts.push({ label: `유지 ${ARW[cur]} (${cur})`, value: cur });
+      for (const d of DIR_LIST) if (!opts.some(o => o.value === d)) opts.push({ label: `${ARW[d]} ${d}`, value: d });
+      const v = await this.ask({ type: 'choice', titan: t, title: `${t.name} — Titan Facing: ${why}`, options: opts }) || opts[0].value; t._face = v; if (v !== cur || !keep) this.say(`${t.name}: ${ARW[v]} 방향을 향함 (${why})`); this.notify();
+    },
     dpBehindCell(t, f = this.dpFace(t)) { const d = DIRS[OPP[f]]; return { c: t.pos.c + d[0], r: t.pos.r + d[1] }; },
     dpFromBehind(t) {
       if (!t || !t.pos || t.onVP || this.prim.offBoard) return false;
@@ -271,8 +280,12 @@ export function installDragon(Game, { TitanDied, BattleOver }) {
 
   // ---------- wiring ----------
   wrap('startOfBattle', async function (o, ...a) {
+    if (this.facingOn()) {
+      const live = this.titans.filter(t => t.alive && t.pos && !t.onVP && !t.offBoard);
+      if (live.length) { const all = await this.ask({ type: 'choice', title: 'Titan Facing (Cycle V): 전투 시작 — 각 타이탄이 향할 방향', options: [{ label: '모두 프라이모디얼 쪽 (권장)', value: true }, { label: '타이탄별로 선택', value: false }] });
+        if (all !== false) { for (const t of live) { t._face = null; this.dpFaceToward(t); if (!t._face) t._face = 'N'; } } else for (const t of live) await this.askFacing(t, '전투 시작', false); }
+    }
     if (this.dpD()) {
-      for (const t of this.titans) if (t.alive && t.pos) this.dpFaceToward(t);
       if (this.trait('Original Trench')) { this.board.allChasm = 'empty'; for (const z of this.board.terrain.values()) z.elevated = true; }
     }
     const r = await o.call(this, ...a);
@@ -293,16 +306,37 @@ export function installDragon(Game, { TitanDied, BattleOver }) {
   });
   wrap('titanAttack', async function (o, t, ...r) {
     if (!this.dpD()) return o.call(this, t, ...r);
-    this.dpFaceToward(t); const save = this.dpVoidCap(t);
+    const save = this.dpVoidCap(t);
     try { return await o.call(this, t, ...r); } finally {
       if (save) { const K = this.kratosPool; const any = Object.keys(K).some(k => typeof K[k] === 'number' && K[k] > 0); if (any) for (const k of ['opening', 'closing', 'break', 'fire', 'black', 'hope']) K[k] = (K[k] || 0) + (save.cut[k] || 0); }
       await this.dpTruthCheck();
     }
   });
-  wrap('chooseMove', async function (o, t, ...r) { const res = await o.call(this, t, ...r); if (this.dpD() && t && t.alive) this.dpFaceToward(t); return res; });
+  // Titan Facing (Cycle V, Storybook): change facing after any movement / move-like ability, on a Bonus Attack, or as a free action; to attack you must face the Primordial.
+  wrap('titanAttack', async function (o, t, mods = {}, ...r) {
+    if (this.facingOn() && t && t.alive && t.pos && !t.onVP && !t.offBoard && !this.prim.offBoard && !this.facingPrim(t)) {
+      if (this._c5Turn === t || (mods && mods.bonus)) { this.dpFaceToward(t); this.say(`${t.name}: 공격하려면 프라이모디얼을 향해야 함 — ${ARW[t._face]} 방향으로 전환 (${mods && mods.bonus ? '보너스 공격' : '자유 행동'})`); this.notify(); }
+      else { this.say(`${t.name}: 프라이모디얼을 향하고 있지 않아 공격할 수 없음 (Titan Facing)`, 'bad'); return; }
+    }
+    return o.call(this, t, mods, ...r);
+  });
+  for (const n of ['chooseMove', 'straightMove']) wrap(n, async function (o, t, ...r) {
+    const p0 = t && t.pos ? { ...t.pos } : null; const res = await o.call(this, t, ...r);
+    if (this.facingOn() && t && t.alive && t.pos && p0 && !t.onVP && !t.offBoard && (t.pos.c !== p0.c || t.pos.r !== p0.r) && this._c5Turn !== t && !this._facingQuiet) await this.askFacing(t, '이동 후');
+    return res;
+  });
+  wrap('freeActions', function (o, t) {
+    const out = o.call(this, t);
+    if (this.facingOn() && t && t.alive && t.pos && !t.onVP && !t.offBoard) out.push({ label: `Titan Facing: 방향 전환 (현재 ${ARW[this.dpFace(t)]}${this.facingPrim(t) ? '' : ' — 프라이모디얼을 향하지 않음'})`, noFate: true, value: async () => { await this.askFacing(t, '자유 행동'); } });
+    return out;
+  });
   wrap('titanTurn', async function (o, t, ...r) {
     if (this.c5x() && t && t.alive && this.trait('Psychosomatic Poisoning') && (t.conditions || []).length) { this.say(`Psychosomatic Poisoning: ${t.name} Condition 카드를 가진 채 턴 시작 — Ambrosia +1`, 'bad'); await this.solo(() => this.gainAmbrosia(t, 1)); if (!t.alive) return; }
-    try { return await o.call(this, t, ...r); } finally { if (this.dpD() && t && t.alive) this.dpFaceToward(t); }
+    const prev = this._c5Turn; this._c5Turn = t; let ok = false;
+    try { const res = await o.call(this, t, ...r); ok = true; return res; } finally {
+      this._c5Turn = prev;
+      if (ok && this.facingOn() && t && t.alive && t.pos && !t.onVP && !t.offBoard && !this.prim.offBoard && !this.facingPrim(t)) await this.askFacing(t, '턴 종료 — 프라이모디얼을 향하지 않음');
+    }
   });
   wrap('addCondition', async function (o, t, name, ...r) {
     if (this.c5x() && (this.prim.dpNoCond || []).includes(name)) { this.say(`${t.name}: ${name} — 효과 비활성화됨 (받지 않음)`, 'good'); return; }

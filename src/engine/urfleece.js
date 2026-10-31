@@ -123,7 +123,16 @@ export function installUrFleece(Game, { TitanDied, BattleOver }) {
     },
     async ufPull(t, n) {
       if (!t || !t.alive || t.onVP || !t.pos) return; if (this.prim.disabled.urPull) { this.say('(Ur-Pull 비활성화)'); return; }
-      this.say(`Ur-Pull ${n}: ${t.name}을(를) Ur-Fleece 쪽으로`, 'bad'); await this.pullTitan(t, n);
+      this.say(`Ur-Pull ${n}: ${t.name}을(를) Ur-Fleece 쪽으로`, 'bad'); this._lastPull = null; await this.pullTitan(t, n, { noPrimMove: true });
+      // Always There: Ur-Pull = Pull toward Ur-Fleece; the remaining Pull moves Ur-Fleece away (standard Pull), but it stops if it would have to leave its Black Abyss tile
+      const LP = this._lastPull; const rem = LP ? LP.x - LP.moved : 0;
+      if (rem > 0 && t.alive && t.pos && !t.onVP && !t.offBoard && Board.distToCells(t.pos, this.primCells()) === 1) {
+        const T = this.ufTile(); const inT = a => T && this.primCells(a).every(p => LANE[T.lane].includes(p.r) && p.c >= T.c && p.c <= T.c + 2);
+        const { x: cx, y: cy } = this.primCenter(); const dx = cx - t.pos.c, dy = cy - t.pos.r; const dir = Math.abs(dx) >= Math.abs(dy) ? (dx >= 0 ? 'E' : 'W') : (dy >= 0 ? 'N' : 'S');
+        let k = 0; for (; k < rem; k++) { const na = { c: this.prim.anchor.c + DIRS[dir][0], r: this.prim.anchor.r + DIRS[dir][1] }; if (!inT(na)) { this.say(`Ur-Pull: Ur-Fleece가 Black Abyss 타일을 떠나야 해서 Pull 중단 (남은 ${rem - k})`); break; } await this.primStep(na); }
+        if (k) { this.say(`Ur-Pull: ${t.name}이(가) 인접 — Ur-Fleece가 ${dir} 방향으로 ${k}칸 물러남`, 'ai'); await this.primEndMove([]); }
+      }
+      this.notify();
     },
     async ufPullToAbyss(t, n) {
       if (!t || !t.alive || t.onVP || !t.pos) return; const AB = [...this.board.terrain.values()].filter(z => z.abyss).map(z => z.cell); if (!AB.length) return;
@@ -182,8 +191,9 @@ export function installUrFleece(Game, { TitanDied, BattleOver }) {
       const X = this.prim.aetherSheet || 0; const fix = c => U.aethervoid ? { ...c, dice: X, steps: c.steps.map(s => s.replace(/X DANGER/, `${X} DANGER`)) } : c;
       if (U.zone) {
         const tg = forcedTarget && forcedTarget.alive ? [forcedTarget] : this.liveTitans().filter(t => !t.offBoard); this.say(`Zone 대상: ${tg.map(t => t.name).join(', ') || '(없음)'}`, 'ai'); if (!tg.length) return;
+        if ((U.pre || []).length && this.liveTitans()[0]) await this.reactionWindow(tg.find(x => x.alive) || this.liveTitans()[0], card, U.pre[0]);
         for (const t of tg) for (const s of U.pre || []) { if (t.alive) await this.solo(() => this.ufPre(t, s, card)); }
-        if (U.move) { await this.reactionWindow(this.liveTitans()[0], card, card.steps[0].split(' | ')[0]); await this.ufMove(U); }
+        if (this.liveTitans()[0]) await this.reactionWindow(this.liveTitans()[0], card, card.steps[0].split(' | ')[0]); if (U.move) await this.ufMove(U);
         const c2 = fix(this.ufCard(card, U)); const done = [];
         for (const t of tg) { if (!t.alive) continue; if (U.fm && U.fm[1] === 'die' && this.effFate(t) >= U.fm[0]) { this.say(`Fate ${U.fm[0]}+: ${t.name} 사망`, 'bad'); await this.solo(() => this.kill(t)); continue; } await this.ufAttackOne(t, c2); done.push(t); }
         if (card.afterFinal) { if (U.afterWin && this.liveTitans()[0]) await this.reactionWindow(this.liveTitans()[0], card, 'After Final Attack'); this.say(`After Final Attack: ${card.afterFinal}`); await this.ufAfter(null, card.afterFinal, card); }
@@ -192,6 +202,7 @@ export function installUrFleece(Game, { TitanDied, BattleOver }) {
       const ex = []; let t = forcedTarget && forcedTarget.alive && !forcedTarget.offBoard ? forcedTarget : this.ufPick(card.target, ex);
       if (!t) { if (card !== this.routine) { this.say('유효한 타겟 없음 → Routine', 'ai'); return this.resolveAI(this.routine); } return; }
       this.say(`타겟: ${t.name}`);
+      if ((U.pre || []).length) { await this.reactionWindow(t, card, U.pre[0]); if (!t.alive) return; }
       for (const s of U.pre || []) { await this.solo(() => this.ufPre(t, s, card)); }
       if (!t.alive) { if (U.retargetDespair) { ex.push(t); t = this.ufPick(card.target, ex); if (!t) return; this.say(`Despair로 사망 — 다음 타겟 ${t.name}`, 'ai'); } else return; }
       if (U.fm && U.fm[1] === 'phobia' && this.effFate(t) >= U.fm[0]) { this.say(`Fate ${U.fm[0]}+: 무작위 Phobia`); this.dpPhobia(t); }
@@ -204,8 +215,8 @@ export function installUrFleece(Game, { TitanDied, BattleOver }) {
       void isSignature;
     },
     async ufAfter(t, s, card, hits = 0) {
-      const parts = (s.replace(/ ⚡ /g, ' ').match(/[^.]+\.?/g) || []).map(x => x.trim()).filter(Boolean);
-      for (const q0 of parts) { const q = q0.replace(/^Then, /, ''); let m;
+      const parts = (s.replace(/\s*⚡\s*/g, ' ⚡').match(/⚡?[^.⚡]+\.?/g) || []).map(x => x.trim()).filter(Boolean);
+      for (let q0 of parts) { if (q0.startsWith('⚡')) { q0 = q0.slice(1).trim(); const w = t && t.alive ? t : this.liveTitans()[0]; if (w) await this.reactionWindow(w, card, q0); } const q = q0.replace(/^Then, /, ''); let m;
         if ((m = /^Ur-Pull (\d+)( each Titan)?\.?$/.exec(q))) { for (const o of m[2] ? [...this.liveTitans()] : [t]) if (o && o.alive) await this.solo(() => this.ufPull(o, +m[1])); continue; }
         if ((m = /^Ur-Knockback (\d+|X)( each Titan on the Battle Board)?\.?$/.exec(q))) { const n = m[1] === 'X' ? (this.prim.aetherSheet || 0) : +m[1]; for (const o of m[2] ? [...this.liveTitans()] : [t]) if (o && o.alive) await this.solo(() => this.ufKnock(o, n)); continue; }
         if (/^Black March\.?$/.test(q)) { await this.ufMarch(); continue; }
@@ -332,8 +343,22 @@ export function installUrFleece(Game, { TitanDied, BattleOver }) {
     if (!this.ufD() || !t || !t.alive) return o.call(this, t, max, label, ...r);
     const kindle = this.ufT('Mortal Kindling') && !this.trait('Mortal Embers') && this.ufHasLightKW(t) && ['이동', 'Rush', 'Run'].includes(label);
     const Z = kindle ? [...this.board.terrain.values()].filter(z => z.abyss) : []; for (const z of Z) z.chasm = false;
-    let res; try { res = await o.call(this, t, max, label, ...r); } finally { for (const z of Z) z.chasm = true; }
-    if (kindle && t.alive && t.pos && !t.onVP) { const z = this.board.terrainAt(t.pos.c, t.pos.r); if (z && z.abyss) { this.say(`Mortal Kindling: ${t.name} Black Abyss 위에서 이동 종료 — Ambrosia +1`, 'bad'); await this.gainAmbrosia(t, 1); } }
+    // during a single movement you may move through X spaces of Black Abyss (X = Light X); moving through or onto it → 1 Ambrosia at the end of the movement
+    const X = kindle ? this.lightOf(t) : 0; const oask = this.ask; let need = null; const from = t.pos ? { ...t.pos } : null;
+    if (kindle) this.ask = async q => {
+      if (q && q.type === 'move' && q.titan === t && from && Array.isArray(q.options)) {
+        const B = this.board; const dOf = o => { const m = /\((\d+)\)/.exec(o.label || ''); return m ? +m[1] : 0; }; const opt = q.options.filter(o => o.value && !o.value.stone); const mx = Math.max(0, ...opt.map(dOf));
+        const pass = new Set(opt.map(o => key(o.value.c, o.value.r))); for (const x of this.liveTitans()) if (x !== t && x.pos && !x.onVP) pass.add(key(x.pos.c, x.pos.r)); for (const z of Z) pass.add(key(z.cell.c, z.cell.r));
+        const isAb = k => { const z = B.terrain.get(k); return !!(z && z.abyss); }; const best = new Map([[key(from.c, from.r), 0]]); let fr = [[from, 0]];
+        for (let st = 1; st <= mx && fr.length; st++) { const nx = []; for (const [p, u] of fr) for (const dn of DIR_LIST) { const q2 = { c: p.c + DIRS[dn][0], r: p.r + DIRS[dn][1] }; const k = key(q2.c, q2.r); if (!pass.has(k) || B.hasWall(p, q2) || this.primContains(q2)) continue; const u2 = u + (isAb(k) ? 1 : 0); if (u2 > X) continue; if (best.has(k) && best.get(k) <= u2) continue; best.set(k, u2); nx.push([q2, u2]); } fr = nx; }
+        need = best; const ok = o => !o.value || o.value.stone || best.has(key(o.value.c, o.value.r)); const cut = q.options.filter(o => !ok(o)).length;
+        if (cut) this.say(`Mortal Kindling: Light ${X} — Black Abyss는 한 번의 이동에서 ${X}칸까지만 통과 (목적지 ${cut}곳 제외)`);
+        q = { ...q, options: q.options.filter(ok), cells: (q.cells || []).filter(c => !c || c.stone || best.has(key(c.c, c.r))) };
+      }
+      return oask.call(this, q);
+    };
+    let res; try { res = await o.call(this, t, max, label, ...r); } finally { for (const z of Z) z.chasm = true; if (kindle) this.ask = oask; }
+    if (kindle && t.alive && t.pos && !t.onVP && from && (t.pos.c !== from.c || t.pos.r !== from.r)) { const z = this.board.terrainAt(t.pos.c, t.pos.r); const u = need ? need.get(key(t.pos.c, t.pos.r)) : 0; if ((z && z.abyss) || u > 0) { this.say(`Mortal Kindling: ${t.name} Black Abyss를 ${z && z.abyss ? '밟고 이동 종료' : '지나감'} — 이동 끝에 Ambrosia +1`, 'bad'); await this.gainAmbrosia(t, 1); } }
     t._ufMoved = true; return res;
   });
   wrap('titanTurn', async function (o, t, ...r) {

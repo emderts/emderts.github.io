@@ -83,7 +83,7 @@ export class Board {
   inBounds(c, r) { return c >= 1 && c <= this.cols && r >= 1 && r <= this.rows; }
   addTerrain(cells, props) { const id = props.id; for (const l of cells) { const p = parseCell(l); this.terrain.set(key(p.c, p.r), { ...props, id, cell: p }); } }
   terrainAt(c, r) { return this.terrain.get(key(c, r)) || null; }
-  removeTerrainId(id) { for (const [k, t] of this.terrain) if (t.id === id) this.terrain.delete(k); }
+  removeTerrainId(id) { for (const [k, t] of this.terrain) if (t.id === id) { if (t.reinforced) { t.reinforced = false; if (t.type === 'Arcology') t.type = 'Ruined Arcology'; t._downgraded = true; } else this.terrain.delete(k); } } // Reinforced Destructible: first destruction downgrades (Arcology → Ruined Arcology)
   isObstacle(c, r) { if (this.tf != null && c <= this.tf) return true; const t = this.terrainAt(c, r); return !!(t && t.obstacle && !(this._elevMove && !t.cloud)); }
   static dist(a, b) { return Math.abs(a.c - b.c) + Math.abs(a.r - b.r); }
   // distance from a point to the nearest of a set of cells
