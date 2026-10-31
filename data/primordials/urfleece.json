@@ -274,7 +274,7 @@
    ],
    "steps": [
     "ATTACK | FATE 4+: +1 EVADE_DICE",
-    "Burn. Each hit deals 3 DANGER and 1 Ambrosia token."
+    "Burn.\nEach hit deals 3 DANGER and 1 Ambrosia token."
    ],
    "uf": {
     "pre": [
@@ -459,7 +459,7 @@
    ],
    "steps": [
     "FADE IN & ATTACK | FATE 4+: +1 EVADE_DICE",
-    "Burn. Each hit deals 4 DANGER. Flip 1 Oxygen token."
+    "Burn. Each hit deals 4 DANGER.\nFlip 1 Oxygen token."
    ],
    "uf": {
     "pre": [
@@ -468,7 +468,7 @@
     "move": "fadein",
     "afterWin": true
    },
-   "after": "Ur-Pull 4. Knockdown. Gain the Terror Condition card."
+   "after": "Ur-Pull 4. Knockdown.\nGain the Terror Condition card."
   },
   {
    "code": "ER3108",
@@ -506,7 +506,7 @@
    ],
    "steps": [
     "JUDGE | FATE 8+: You die",
-    "Gain the Fear Condition card. Gain the Terror Condition card. Each hit deals 4 DANGER and 1 Ambrosia token."
+    "Gain the Fear Condition card.\nGain the Terror Condition card.\nEach hit deals 4 DANGER and 1 Ambrosia token."
    ],
    "uf": {
     "pre": [
@@ -523,7 +523,7 @@
     ],
     "afterWin": true
    },
-   "afterFinal": "Black March. ⚡ Black March."
+   "afterFinal": "Black March.\n⚡ Black March."
   },
   {
    "code": "ER3118",
@@ -539,7 +539,7 @@
    ],
    "steps": [
     "FLICKER & ATTACK | FATE 9+: Permanently lose a chosen Argo Ability card and remove it from the game",
-    "Gain the Holy Terror Condition card. Each hit deals X DANGER."
+    "Gain the Holy Terror Condition card.\nEach hit deals X DANGER."
    ],
    "uf": {
     "pre": [
@@ -620,7 +620,7 @@
    ],
    "steps": [
     "FADE IN & ATTACK | FATE 4+: +1 EVADE_DICE",
-    "Burn. Each hit deals 5 DANGER. Flip 2 Oxygen tokens."
+    "Burn. Each hit deals 5 DANGER.\nFlip 2 Oxygen tokens."
    ],
    "uf": {
     "pre": [
@@ -629,7 +629,7 @@
     "move": "fadein",
     "afterWin": true
    },
-   "after": "Ur-Pull 5. Knockdown. Gain the Holy Terror Condition card. FATE 5+: Gain +1 Doom."
+   "after": "Ur-Pull 5. Knockdown.\nGain the Holy Terror Condition card. FATE 5+: Gain +1 Doom."
   },
   {
    "code": "ER3114",
@@ -705,7 +705,7 @@
    "toHit": 0,
    "target": [],
    "steps": [
-    "Lose -1 Argo resource. Move Ur-Fleece 6 spaces on the Abyss Track."
+    "Lose -1 Hull. Move Ur-Fleece 6 spaces on the Abyss Track."
    ],
    "uf": {
     "argoBurns": true
@@ -743,7 +743,8 @@
     "FAIL": "Gain 2 Ambrosia tokens. Ur-Knockback 4.",
     "WOUND": "Gain the Fear Condition card. Flicker."
    },
-   "critical": "Perform a Bonus Attack!"
+   "critical": "Perform a Bonus Attack!",
+   "qeye": false
   },
   {
    "code": "ES3124",
@@ -754,7 +755,8 @@
     "FAIL": "Gain 1 Despair token. Ur-Knockback 4.",
     "WOUND": "Burn. Gain 2 Ambrosia tokens. Flicker."
    },
-   "critical": "Each Titan may discard either their Despair tokens or a Condition card."
+   "critical": "Each Titan may discard either their Despair tokens or a Condition card.",
+   "qeye": false
   },
   {
    "code": "ES3123",
@@ -765,7 +767,8 @@
     "FAIL": "Gain the Fear Condition card. Ur-Knockback 4.",
     "WOUND": "Gain 2 Ambrosia tokens. Flicker."
    },
-   "critical": "Perform a Bonus Attack!"
+   "critical": "Perform a Bonus Attack!",
+   "qeye": false
   },
   {
    "code": "ES3128",
@@ -776,7 +779,8 @@
     "FAIL": "Gain 2 Ambrosia tokens. Flicker.",
     "WOUND": "Gain the Terror Condition card. Flicker."
    },
-   "critical": "Immediately move Ur-Fleece to a chosen Black Abyss tile!"
+   "critical": "Immediately move Ur-Fleece to a chosen Black Abyss tile!",
+   "qeye": true
   },
   {
    "code": "ES3127",
@@ -786,7 +790,9 @@
    "responses": {
     "INSTINCT": "Burn. Flip 1 Oxygen token. Flicker."
    },
-   "critical": "Gain the Flame-Hardened Plate card! (Secret deck 18, card 291)"
+   "critical": "Gain the Flame-Hardened Plate card! (Secret deck 18, card 291)",
+   "qeye": false,
+   "light": true
   },
   {
    "code": "ES3126",
@@ -797,7 +803,8 @@
     "FAIL": "Gain the Terror Condition card.",
     "WOUND": "Gain 1 Despair token. Flicker."
    },
-   "critical": "Immediately discard all Ambrosia tokens."
+   "critical": "Immediately discard all Ambrosia tokens.",
+   "qeye": true
   },
   {
    "code": "ES3131",
@@ -808,7 +815,9 @@
     "FAIL": "Burn. Gain 2 Ambrosia tokens. Flicker.",
     "WOUND": "Gain 2 Aether tokens. Flicker."
    },
-   "critical": "Gain the Headdress of the Deep card (Secret deck 18, card 293)! If you already have it, gain the Sea King's Crest Rare resource instead."
+   "critical": "Gain the Headdress of the Deep card (Secret deck 18, card 293)! If you already have it, gain the Sea King's Crest Rare resource instead.",
+   "qeye": false,
+   "light": true
   },
   {
    "code": "ES3130",
@@ -819,7 +828,8 @@
     "FAIL": "Burn. Each Titan gains 1 Despair token, then suffers Ur-Knockback 4.",
     "WOUND": "Gain the Holy Terror Condition card. Flicker."
    },
-   "critical": "Immediately remove from Battle all cards from the Obol deck except 1 You live! and 1 You died Obol card. Then, perform a Bonus Attack!"
+   "critical": "Immediately remove from Battle all cards from the Obol deck except 1 You live! and 1 You died Obol card. Then, perform a Bonus Attack!",
+   "qeye": false
   },
   {
    "code": "ES3129",
@@ -830,7 +840,9 @@
     "FAIL": "Gain the Holy Terror Condition card.",
     "WOUND": "Disable the Just a Memory Trait. Gain 1 Aether token. Flicker."
    },
-   "critical": "Disable the Fade In keyword."
+   "critical": "Disable the Fade In keyword.",
+   "qeye": false,
+   "light": true
   },
   {
    "code": "ES3134",
@@ -844,7 +856,8 @@
    "critical": "Permanently gain Tainted: Gain 1 Ambrosia token at the start of each Battle and increase your Awakening Range to 9-10 (once per Argonaut Lifetime).",
    "pre": [
     "You may voluntarily end this Attack before performing a Power Roll. If you do, clear the Kratos Pool."
-   ]
+   ],
+   "qeye": true
   },
   {
    "code": "ES3133",
@@ -855,7 +868,8 @@
     "FAIL": "Ur-Pull 2.",
     "WOUND": "Gain 2 Ambrosia tokens. Ur-Knockback 6. Flicker."
    },
-   "critical": "Disable the Ur-Knockback X keyword."
+   "critical": "Disable the Ur-Knockback X keyword.",
+   "qeye": false
   },
   {
    "code": "ES3132",
@@ -865,7 +879,8 @@
    "responses": {
     "INSTINCT": "Burn. Flip 1 Oxygen token. Ur-Knockback 6. Flicker."
    },
-   "critical": "Disable the Ur-Pull X keyword."
+   "critical": "Disable the Ur-Pull X keyword.",
+   "qeye": true
   },
   {
    "code": "ES3137",
@@ -876,7 +891,8 @@
     "FAIL": "Gain 3 Ambrosia tokens. Black March.",
     "WOUND": "Gain the Dread and Holy Terror Condition cards. Flicker."
    },
-   "critical": "Disable Ambrosia gain."
+   "critical": "Disable Ambrosia gain.",
+   "qeye": false
   },
   {
    "code": "ES3136",
@@ -889,7 +905,8 @@
    "critical": "Disable Fear, Dread, Terror, and Holy Terror Condition cards.",
    "pre": [
     "You may voluntarily end this Attack before performing a Power Roll. If you do, clear the Kratos Pool."
-   ]
+   ],
+   "qeye": false
   },
   {
    "code": "ES3135",
@@ -899,7 +916,9 @@
    "responses": {
     "INSTINCT": "Disable the Just a Memory Trait. Gain 2 Aether tokens. Flicker."
    },
-   "critical": "Disable Despair effects."
+   "critical": "Disable Despair effects.",
+   "qeye": true,
+   "light": true
   },
   {
    "code": "ES3140",
@@ -910,7 +929,8 @@
     "FAIL": "Burn. Gain 3 Ambrosia tokens.",
     "WOUND": "Gain 2 Aether tokens. Flicker."
    },
-   "critical": "Each Titan gains 1 Oxygen token and 2 Aether tokens."
+   "critical": "Each Titan gains 1 Oxygen token and 2 Aether tokens.",
+   "qeye": true
   },
   {
    "code": "ES3139",
@@ -920,7 +940,8 @@
    "responses": {
     "INSTINCT": "Disable the Just a Memory Trait. Then, Ur-Pull 3 each Titan. Flicker."
    },
-   "critical": "Disable the Black March keyword. Resolve The Tear Special Event."
+   "critical": "Disable the Black March keyword. Resolve The Tear Special Event.",
+   "qeye": false
   },
   {
    "code": "ES3138",
@@ -931,7 +952,8 @@
     "FAIL": "Draw and perform an AI card.",
     "WOUND": "Gain +4 FATE. Draw a Moiros card. Flicker."
    },
-   "critical": "Each Titan resets their FATE to 0, reset Doom to 0. Gain the Strungstring card (Secret deck 18, card 292)!"
+   "critical": "Each Titan resets their FATE to 0, reset Argo Fate to 0. Gain the Strungstring card (Secret deck 18, card 292)!",
+   "qeye": true
   }
  ],
  "vp": null,

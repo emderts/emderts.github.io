@@ -181,7 +181,7 @@ export function installUrFleece(Game, { TitanDied, BattleOver }) {
     async ufAI(card, { isSignature = false, forcedTarget = null } = {}) {
       const U = card.uf || {}; this.zoneShow = null;
       if (U.routine) { this.say('Coming of Darkness: 모든 타이탄 Terror · Black March · ⚡ Black March', 'ai'); for (const t of [...this.liveTitans()]) await this.solo(() => this.addCondition(t, 'Terror')); await this.ufMarch(); if (this.liveTitans()[0]) await this.reactionWindow(this.liveTitans()[0], card, 'Black March'); await this.ufMarch(); return; }
-      if (U.argoBurns) { this.say('Argo Burns: Argo 자원 −1 (캠페인), Ur-Fleece 6칸'); await this.ufTrack(6, 'Argo Burns'); return; }
+      if (U.argoBurns) { this.say('Argo Burns: Hull −1 (캠페인), Ur-Fleece 6칸'); await this.ufTrack(6, 'Argo Burns'); return; }
       if (U.ai0) {
         const L = this.rng.shuffle([...this.liveTitans()]); this.say('Fate of All Things: 무작위 타이탄 3명', 'ai');
         if (L[0]) await this.solo(() => this.addCondition(L[0], 'Fear')); if (L[1]) await this.solo(() => this.addCondition(L[1], 'Terror')); if (L[2]) await this.solo(() => this.gainDespair(L[2], 2));
@@ -281,8 +281,8 @@ export function installUrFleece(Game, { TitanDied, BattleOver }) {
         if (/^Disable Despair effects/.test(x)) { this.prim.disabled.despairFx = true; this.say('Despair 효과 비활성화', 'good'); continue; }
         if (/^Each Titan gains 1 Oxygen token and 2 Aether tokens/.test(x)) { for (const o of this.liveTitans()) { o.oxygen = (o.oxygen || 0) + 1; o.aether = (o.aether || 0) + 2; } this.say('모든 타이탄 Oxygen +1, Aether +2', 'good'); continue; }
         if (/^Disable the Black March keyword/.test(x)) { this.prim.disabled.march = true; this.say('Black March 비활성화', 'good'); continue; }
-        if ((m = /^Each Titan resets their FATE to 0/.exec(x))) { for (const o of this.liveTitans()) o.fate = 0; this.say('모든 타이탄 Fate 0 (Doom 0은 캠페인)', 'good'); continue; }
-        if (/Secret deck|campaign|Special Event|Rare resource|Permanently gain|Argonaut Lifetime|reset Doom|If you already have it|^\(/.test(x)) { this.say(`(${x} — 캠페인 보상)`, 'sys'); continue; }
+        if ((m = /^Each Titan resets their FATE to 0/.exec(x))) { for (const o of this.liveTitans()) o.fate = 0; this.say('모든 타이탄 Fate 0 (Argo Fate 0은 캠페인)', 'good'); continue; }
+        if (/Secret deck|campaign|Special Event|Rare resource|Permanently gain|Argonaut Lifetime|reset Doom|reset Argo Fate|If you already have it|^\(/.test(x)) { this.say(`(${x} — 캠페인 보상)`, 'sys'); continue; }
         this.say(`(Critical 효과 수동 적용 필요: ${x})`, 'sys');
       }
       return true;
