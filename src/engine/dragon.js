@@ -12,6 +12,7 @@ export function installDragon(Game, { TitanDied, BattleOver }) {
 
   Object.assign(P, {
     dpD() { return !!(this.prim && this.prim.def.dpD); },
+    c5x() { return !!(this.prim && (this.prim.def.dpD || this.prim.def.ufD)); },
     dpTrait(n) { return this.dpD() && this.trait(n) && !this.prim.disabled[n]; },
     // ---------- Titan facing (Cycle V) ----------
     dpCenterCell() { const a = this.prim.offBoard ? this.prim._last : this.prim.anchor; if (!a || a.c < 0) return null; return { c: a.c + 0.5, r: a.r + 0.5 }; },
@@ -290,17 +291,17 @@ export function installDragon(Game, { TitanDied, BattleOver }) {
   });
   wrap('chooseMove', async function (o, t, ...r) { const res = await o.call(this, t, ...r); if (this.dpD() && t && t.alive) this.dpFaceToward(t); return res; });
   wrap('titanTurn', async function (o, t, ...r) {
-    if (this.dpD() && t && t.alive && this.dpTrait('Psychosomatic Poisoning') && (t.conditions || []).length) { this.say(`Psychosomatic Poisoning: ${t.name} Condition 카드를 가진 채 턴 시작 — Ambrosia +1`, 'bad'); await this.solo(() => this.gainAmbrosia(t, 1)); if (!t.alive) return; }
+    if (this.c5x() && t && t.alive && this.trait('Psychosomatic Poisoning') && (t.conditions || []).length) { this.say(`Psychosomatic Poisoning: ${t.name} Condition 카드를 가진 채 턴 시작 — Ambrosia +1`, 'bad'); await this.solo(() => this.gainAmbrosia(t, 1)); if (!t.alive) return; }
     try { return await o.call(this, t, ...r); } finally { if (this.dpD() && t && t.alive) this.dpFaceToward(t); }
   });
   wrap('addCondition', async function (o, t, name, ...r) {
-    if (this.dpD() && (this.prim.dpNoCond || []).includes(name)) { this.say(`${t.name}: ${name} — 효과 비활성화됨 (받지 않음)`, 'good'); return; }
+    if (this.c5x() && (this.prim.dpNoCond || []).includes(name)) { this.say(`${t.name}: ${name} — 효과 비활성화됨 (받지 않음)`, 'good'); return; }
     const had = t && (t.conditions || []).length; const res = await o.call(this, t, name, ...r);
-    if (this.dpD() && t && t.alive && this.dpTrait('Psychosomatic Poisoning') && (t.conditions || []).length > had) { this.say(`Psychosomatic Poisoning: ${t.name} Condition 획득 — Ambrosia +1`, 'bad'); await this.gainAmbrosia(t, 1); }
+    if (this.c5x() && t && t.alive && this.trait('Psychosomatic Poisoning') && (t.conditions || []).length > had) { this.say(`Psychosomatic Poisoning: ${t.name} Condition 획득 — Ambrosia +1`, 'bad'); await this.gainAmbrosia(t, 1); }
     return res;
   });
-  wrap('gainAmbrosia', async function (o, t, n, ...r) { if (this.dpD() && this.prim.disabled.ambGain && n > 0) { this.say(`${t.name}: Ambrosia 획득 비활성화 (Ambrosia Ink Sac)`, 'good'); return; } return o.call(this, t, n, ...r); });
-  wrap('despairEff', function (o, t) { if (this.dpD() && this.prim.disabled.despairFx) return 0; return o.call(this, t); });
+  wrap('gainAmbrosia', async function (o, t, n, ...r) { if (this.c5x() && this.prim.disabled.ambGain && n > 0) { this.say(`${t.name}: Ambrosia 획득 비활성화 (Ambrosia Ink Sac)`, 'good'); return; } return o.call(this, t, n, ...r); });
+  wrap('despairEff', function (o, t) { if (this.c5x() && this.prim.disabled.despairFx) return 0; return o.call(this, t); });
   wrap('trait', function (o, n) { if (n === 'Temporal Ruthlessness' && this._dpNoLive) return true; return o.call(this, n); });
   wrap('applyWound', async function (o, A) {
     const b = this.woundCount(); const res = await o.call(this, A);

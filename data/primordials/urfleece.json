@@ -1,0 +1,941 @@
+{
+ "id": "urfleece",
+ "name": "Ur-Fleece",
+ "cycle": 5,
+ "type": "Mnestis",
+ "sheetCode": "EU3100",
+ "ufD": true,
+ "_notes": [
+  "Transcribed from sheet EU3100 (Lv I-IX), trait cards Mortal Kindling / Just a Memory, AI ER3101-ER3121 + Coming of Darkness, BP ES3123-ES3140, Storybook p.182-183 (Harsh Truth Battle) and p.7-8 rules.",
+  "99 Wounds: the Battle is won by escaping the Abyss Track (Argo beyond space 1).",
+  "Smother (Storybook p.6) is assumed to be in play because Ur-Fleece cards refer to smothered gear.",
+  "White Lie Battle (p.184-185) is a story battle and is not implemented."
+ ],
+ "footprint": {
+  "w": 2,
+  "h": 2,
+  "rear": "top-edge"
+ },
+ "ukb": 15,
+ "blindspots": "rear",
+ "levels": {
+  "1": {
+   "toHit": 11,
+   "speed": 99,
+   "wounds": 99,
+   "bonus": {},
+   "traits": [
+    "Just a Memory",
+    "End of Hope",
+    "Race Through Dark Places",
+    "It Spreads",
+    "Always There",
+    "No Other Gods Before Me",
+    "Microwave Shield",
+    "Mortal Kindling",
+    "Smother"
+   ]
+  },
+  "2": {
+   "toHit": 11,
+   "speed": 99,
+   "wounds": 99,
+   "bonus": {
+    "ESCALATION": 1,
+    "AT": 2
+   },
+   "traits": [
+    "Psychosomatic Poisoning",
+    "Argo's Parting Gift",
+    "All for All"
+   ],
+   "removeTraits": [
+    "Just a Memory"
+   ]
+  },
+  "3": {
+   "toHit": 12,
+   "speed": 99,
+   "wounds": 99,
+   "bonus": {
+    "ESCALATION": 1,
+    "AT": 3,
+    "DANGER": 1
+   },
+   "traits": [
+    "Mortal Embers"
+   ]
+  },
+  "4": {
+   "toHit": 12,
+   "speed": 99,
+   "wounds": 99,
+   "bonus": {
+    "ESCALATION": 2,
+    "AT": 4,
+    "DANGER": 1
+   },
+   "traits": [
+    "Darkest Before Dawn"
+   ]
+  },
+  "5": {
+   "toHit": 13,
+   "speed": 99,
+   "wounds": 99,
+   "bonus": {
+    "ESCALATION": 2,
+    "AT": 5,
+    "DANGER": 1
+   },
+   "traits": [
+    "Beginning of the End"
+   ],
+   "bonusPerHit": true
+  },
+  "6": {
+   "toHit": 14,
+   "speed": 99,
+   "wounds": 99,
+   "bonus": {
+    "ESCALATION": 3,
+    "AT": 6,
+    "DANGER": 2
+   },
+   "traits": [
+    "Deeper Depths"
+   ],
+   "bonusPerHit": true
+  },
+  "7": {
+   "toHit": 15,
+   "speed": 99,
+   "wounds": 99,
+   "bonus": {
+    "ESCALATION": 3,
+    "AT": 7,
+    "EVADE_DICE": 1,
+    "DANGER": 2
+   },
+   "traits": [
+    "Contagious Fear"
+   ],
+   "bonusPerHit": true
+  },
+  "8": {
+   "toHit": 16,
+   "speed": 99,
+   "wounds": 99,
+   "bonus": {
+    "ESCALATION": 4,
+    "AT": 8,
+    "EVADE_DICE": 2,
+    "DANGER": 2
+   },
+   "traits": [
+    "Unfathomable Depths"
+   ],
+   "bonusPerHit": true,
+   "removeTraits": [
+    "Deeper Depths"
+   ]
+  },
+  "9": {
+   "toHit": 17,
+   "speed": 99,
+   "wounds": 99,
+   "bonus": {
+    "ESCALATION": 5,
+    "AT": 9,
+    "EVADE_DICE": 3,
+    "DANGER": 3
+   },
+   "traits": [
+    "End of an Age",
+    "Ruthless"
+   ],
+   "bonusPerHit": true
+  }
+ },
+ "traits": {
+  "Just a Memory": "Ur-Fleece has -1 AT.",
+  "End of Hope": "End of Primordial Round: Perform Signature.",
+  "Race Through Dark Places": "Ignore during first Primordial Round. At the start of every Primordial Round, starting with the rightmost Black Abyss tile, move each tile 5 spaces toward the rightmost (highest number) column. Ur-Fleece moves with the Black Abyss tile he is standing on. Any tiles that would cross the Board Edge are removed from the Board. Then, place a new Black Abyss tile on the leftmost spaces of every lane where a Black Abyss tile was removed.",
+  "It Spreads": "Flicker: Ur-Fleece moves to the furthest spaces of the closest Black Abyss to the left, then turns toward the most Titans. If there is no viable tile to move to, immediately trigger the Race Through Dark Places Trait (as if it was the beginning of the Primordial Round), and then perform Flicker (if able). Triggers when prompted. Black March: Move Ur-Fleece and all the Black Abyss tiles it is currently standing on 5 spaces toward to the right (toward the highest-numbered) column. If this would cause a tile to overlap with another tile, move that other tile 5 spaces toward the right-most column too. If any tile would cross the Board Edge, remove it from the Battle Board and place a new Black Abyss tile on the left-most spaces of the same lane it was removed from. Fade In: Ur-Fleece moves to the furthest spaces of the closest Black Abyss to the right. If there is no tile to fade in to, Ur-Fleece moves off the Battle Board and wins. Full rules: Cycle V Storybook, p. 8.",
+  "Always There": "For the purposes of all Ur-Fleece Attacks and effects, Ur-Fleece is always considered adjacent to the Titan. The Titan is not considered adjacent to Ur-Fleece. Boundless: The left short Board Edge is Boundless. Ur-Knockback X: Knockback X toward the closest short Board Edge. Considered a Knockback. Ur-Pull X: Pull X toward Ur-Fleece. Ur-Fleece stops the Pull if it would be forced to leave a Black Abyss tile. Considered a Pull.",
+  "No Other Gods Before Me": "If you die while you are Awakened, permanently remove that Awakening from the game.",
+  "Microwave Shield": "Before performing an Attack Roll, for each space between you and Ur-Fleece, discard 1 token from the Kratos Pool.",
+  "Mortal Kindling": "If you have the Light X keyword, during a single movement, you may move through X spaces of a Black Abyss Terrain tile. In this way, you may end your movement on a Black Abyss space. When you move through or onto a Black Abyss tile, gain 1 Ambrosia token at the end of that movement. If a Titan starts its turn on a Black Abyss tile and doesn't move until the end of this turn, they gain 1 Ambrosia token. If at any point you do not have the Light X keyword while on a Black Abyss, you die. Relight: When you deal a Wound, move X Ambrosia tokens from a game element with Light X to your Sheet, where X is the BP level.",
+  "Smother": "(Cycle V Storybook p.6) When you gain Ambrosia tokens, if possible, place them on game elements with the Light X keyword that do not already have Ambrosia tokens on them. Those Ambrosia tokens still count toward your Ambrosia Limit. If a game element with Ambrosia tokens is discarded for any reason, move the Ambrosia tokens to your Titan Sheet. Disable Light X keywords on a game element with Ambrosia tokens on it.",
+  "Psychosomatic Poisoning": "Start of Battle: Place an Ambrosia token on the Condition deck. When you gain a Condition card, and each time you start your turn with a Condition card, gain 1 Ambrosia token.",
+  "Argo's Parting Gift": "(See Secret deck 15, card 309.)",
+  "All for All": "(See Secret deck 15, card 322.)",
+  "Mortal Embers": "Disable the Mortal Kindling Trait.",
+  "Darkest Before Dawn": "Each time Ur-Fleece gains a Wound (a Double Wound is treated as 2 Wounds), place a token on this Trait. After resolving the current action, if there are 4 or more tokens on this Trait, discard all tokens and spawn an additional Black Abyss tile on the leftmost spaces of the lane with the Black Abyss that Ur-Fleece is on. If this would cause the tile to overlap another tile, move that other tile as if it was affected by Black March.",
+  "Beginning of the End": "End of Primordial Round: Before End of Hope, draw and perform another AI card.",
+  "Deeper Depths": "Each Titan starts the Battle with 1 Oxygen token less.",
+  "Contagious Fear": "When a Titan gains a negative Condition card, each other Titan gains the same Condition.",
+  "Unfathomable Depths": "Each Titan starts the Battle with 2 Oxygen tokens less.",
+  "End of an Age": "You cannot Awaken.",
+  "Ruthless": "Remove all positive Trauma cards from the Trauma decks (except Obols)."
+ },
+ "ai": [
+  {
+   "code": "ER3107",
+   "tier": 1,
+   "name": "The Edge",
+   "kind": "ATTACK",
+   "dice": 4,
+   "toHit": 9,
+   "target": [
+    "Closest Titan in front",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "FADE IN & ATTACK",
+    "Each hit deals 3 DANGER. Burn."
+   ],
+   "uf": {
+    "pre": [
+     "Gain 1 Despair token."
+    ],
+    "move": "fadein",
+    "afterWin": true
+   },
+   "after": "Ur-Pull 3."
+  },
+  {
+   "code": "ER3106",
+   "tier": 1,
+   "name": "Absence of Light",
+   "kind": "JUDGEMENT",
+   "dice": 3,
+   "toHit": 9,
+   "target": [
+    "Most Light",
+    "Furthest Titan in front",
+    "Furthest Titan in sight"
+   ],
+   "steps": [
+    "FLICKER & JUDGE | FATE 3+: +1 EVADE_DICE",
+    "Gain the Terror Condition card. Burn. Each hit deals 5 DANGER."
+   ],
+   "uf": {
+    "pre": [
+     "Gain 2 Despair tokens."
+    ],
+    "move": "flicker",
+    "judge": [
+     "Endurance",
+     "Fury"
+    ]
+   },
+   "after": "Discard X Gear cards smothered with Ambrosia, where X is the number of hits."
+  },
+  {
+   "code": "ER3105",
+   "tier": 1,
+   "name": "Stare into the Abyss",
+   "kind": "JUDGEMENT",
+   "dice": 4,
+   "toHit": 10,
+   "target": [
+    "Least Despair",
+    "Closest Titan in front",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "JUDGE",
+    "One hit, gain the Terror Condition card; two hits, gain the Holy Terror Condition card; three hits, gain a random Phobia Affliction and die. Four or more hits, same as three, but repeat this Attack for the next eligible Target. Additionally, gain as many Ambrosia tokens as there are hits."
+   ],
+   "uf": {
+    "pre": [
+     "Gain 2 Despair tokens."
+    ],
+    "judge": [
+     "Courage",
+     "Wisdom"
+    ],
+    "afterWin": true,
+    "repeat4": true
+   },
+   "after": "Black March."
+  },
+  {
+   "code": "ER3104",
+   "tier": 1,
+   "name": "Black Pyre",
+   "kind": "ATTACK",
+   "dice": 4,
+   "toHit": 9,
+   "target": [
+    "Most Oxygen",
+    "Priority Target"
+   ],
+   "steps": [
+    "ATTACK | FATE 4+: +1 EVADE_DICE",
+    "Burn. Each hit deals 3 DANGER and 1 Ambrosia token."
+   ],
+   "uf": {
+    "pre": [
+     "Gain 1 Despair token."
+    ],
+    "afterWin": true
+   },
+   "after": "Knockdown. Ur-Knockback 5. Black March."
+  },
+  {
+   "code": "ER3103",
+   "tier": 1,
+   "name": "Firetendrils",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 11,
+   "target": [
+    "Closest Titan in front",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "FADE IN & ATTACK | FATE 4+: +1 EVADE_DICE",
+    "Burn. Each hit deals 3 DANGER. Flip 1 Oxygen token."
+   ],
+   "uf": {
+    "pre": [
+     "Gain 1 Despair token."
+    ],
+    "move": "fadein",
+    "afterWin": true
+   },
+   "after": "Ur-Pull 3. Knockdown."
+  },
+  {
+   "code": "ER3102",
+   "tier": 1,
+   "name": "Falling Tide",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Furthest Titan in front",
+    "Furthest Titan in sight"
+   ],
+   "steps": [
+    "FLICKER & ATTACK",
+    "Each hit deals 4 DANGER and 1 Ambrosia token."
+   ],
+   "uf": {
+    "pre": [
+     "Gain 1 Despair token."
+    ],
+    "move": "flicker",
+    "afterWin": true
+   },
+   "after": "Ur-Knockback 5. Black March."
+  },
+  {
+   "code": "ER3113",
+   "tier": 2,
+   "name": "The Precipice",
+   "kind": "JUDGEMENT",
+   "dice": 4,
+   "toHit": 10,
+   "target": [
+    "Closest Titan in front",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "FADE IN & JUDGE",
+    "Each hit deals 4 DANGER. Burn."
+   ],
+   "uf": {
+    "pre": [
+     "Gain 1 Despair token."
+    ],
+    "move": "fadein",
+    "judge": [
+     "Fury",
+     "Endurance"
+    ],
+    "afterWin": true
+   },
+   "after": "Ur-Pull 4."
+  },
+  {
+   "code": "ER3112",
+   "tier": 2,
+   "name": "Light Vacuum",
+   "kind": "JUDGEMENT",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Most Light",
+    "Furthest Titan in front",
+    "Furthest Titan in sight"
+   ],
+   "steps": [
+    "FLICKER & JUDGE | FATE 3+: +1 EVADE_DICE",
+    "Gain the Holy Terror Condition card. Burn. Each hit deals 6 DANGER."
+   ],
+   "uf": {
+    "pre": [
+     "Gain 2 Despair tokens."
+    ],
+    "move": "flicker",
+    "judge": [
+     "Wisdom",
+     "Courage"
+    ],
+    "afterWin": true
+   },
+   "after": "Ur-Knockback 6. Discard X Gear cards smothered with Ambrosia, where X is the number of hits. Then, Black March."
+  },
+  {
+   "code": "ER3111",
+   "tier": 2,
+   "name": "Walk into the Abyss",
+   "kind": "JUDGEMENT",
+   "dice": 5,
+   "toHit": 10,
+   "target": [
+    "Least Despair",
+    "Closest Titan in front",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "FADE IN & JUDGE | FATE 5+: Gain a random Phobia Affliction",
+    "One hit, gain the Terror Condition card; two hits, gain the Holy Terror Condition card; three hits, gain a random Phobia Affliction and die. Four or more hits, same as three, but repeat this Attack for the next eligible Target. Additionally, gain as many Ambrosia tokens as there are hits."
+   ],
+   "uf": {
+    "pre": [
+     "Gain 2 Despair tokens."
+    ],
+    "move": "fadein",
+    "judge": [
+     "Cunning",
+     "Will"
+    ],
+    "fm": [
+     5,
+     "phobia"
+    ],
+    "afterWin": true,
+    "repeat4": true
+   },
+   "after": "Black March."
+  },
+  {
+   "code": "ER3110",
+   "tier": 2,
+   "name": "Conflagration",
+   "kind": "ATTACK",
+   "dice": 4,
+   "toHit": 9,
+   "target": [
+    "Most Oxygen",
+    "Priority Target"
+   ],
+   "steps": [
+    "ATTACK | FATE 4+: +1 EVADE_DICE",
+    "Burn. Each hit deals 4 DANGER and 1 Ambrosia token."
+   ],
+   "uf": {
+    "pre": [
+     "Gain 1 Despair token."
+    ],
+    "afterWin": true
+   },
+   "after": "Knockdown. Ur-Knockback 6. Black March."
+  },
+  {
+   "code": "ER3109",
+   "tier": 2,
+   "name": "Fireconduit",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 11,
+   "target": [
+    "Closest Titan in front",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "FADE IN & ATTACK | FATE 4+: +1 EVADE_DICE",
+    "Burn. Each hit deals 4 DANGER. Flip 1 Oxygen token."
+   ],
+   "uf": {
+    "pre": [
+     "Gain 1 Despair token."
+    ],
+    "move": "fadein",
+    "afterWin": true
+   },
+   "after": "Ur-Pull 4. Knockdown. Gain the Terror Condition card."
+  },
+  {
+   "code": "ER3108",
+   "tier": 2,
+   "name": "Aethergust",
+   "kind": "ATTACK",
+   "dice": 4,
+   "toHit": 10,
+   "target": [
+    "Furthest Titan in front",
+    "Furthest Titan in sight"
+   ],
+   "steps": [
+    "BLACK MARCH & ATTACK",
+    "Each hit deals 4 DANGER and 1 Ambrosia token."
+   ],
+   "uf": {
+    "pre": [
+     "Gain 1 Despair token."
+    ],
+    "move": "march",
+    "afterWin": true
+   },
+   "after": "Ur-Knockback 6. Then, move Ur-Fleece X spaces on the Abyss Track, where X is the number of Aether tokens you have."
+  },
+  {
+   "code": "ER3119",
+   "tier": 3,
+   "name": "Black Ocean",
+   "kind": "ZONE JUDGEMENT",
+   "dice": 6,
+   "toHit": 9,
+   "target": [
+    "Battle Board"
+   ],
+   "steps": [
+    "JUDGE | FATE 8+: You die",
+    "Gain the Fear Condition card. Gain the Terror Condition card. Each hit deals 4 DANGER and 1 Ambrosia token."
+   ],
+   "uf": {
+    "pre": [
+     "Gain 1 Despair token."
+    ],
+    "judge": [
+     "Endurance",
+     "Wisdom"
+    ],
+    "zone": true,
+    "fm": [
+     8,
+     "die"
+    ],
+    "afterWin": true
+   },
+   "afterFinal": "Black March. ⚡ Black March."
+  },
+  {
+   "code": "ER3118",
+   "tier": 3,
+   "name": "Aethervoid",
+   "kind": "ATTACK",
+   "dice": "X",
+   "toHit": 10,
+   "target": [
+    "Most Light",
+    "Furthest Titan in front",
+    "Furthest Titan in sight"
+   ],
+   "steps": [
+    "FLICKER & ATTACK | FATE 9+: Permanently lose a chosen Argo Ability card and remove it from the game",
+    "Gain the Holy Terror Condition card. Each hit deals X DANGER."
+   ],
+   "uf": {
+    "pre": [
+     "Gain 2 Despair tokens."
+    ],
+    "aethervoid": true,
+    "move": "flicker",
+    "fm": [
+     9,
+     "argo"
+    ],
+    "afterWin": true
+   },
+   "after": "Ur-Knockback X each Titan on the Battle Board.",
+   "text_pre": "Take every Aether token from every Titan and place them on the Primordial Sheet. X is the number of Aether tokens on the Primordial Sheet."
+  },
+  {
+   "code": "ER3117",
+   "tier": 3,
+   "name": "Embrace the Abyss",
+   "kind": "ZONE JUDGEMENT",
+   "dice": 5,
+   "toHit": 10,
+   "target": [
+    "Battle Board"
+   ],
+   "steps": [
+    "FADE IN & JUDGE",
+    "No Skill. One hit, gain the Terror Condition card; two hits, gain the Holy Terror Condition card; three hits, gain a random Phobia Affliction and die. Four or more hits, same as three, but also permanently lose a chosen Mnemos card and remove it from the game. Additionally, gain as many Ambrosia tokens as there are hits."
+   ],
+   "uf": {
+    "pre": [
+     "Gain 2 Despair tokens."
+    ],
+    "move": "fadein",
+    "judge": [
+     "NoSkill"
+    ],
+    "zone": true,
+    "afterWin": true
+   },
+   "afterFinal": "Pull 3 each Titan on the Battle Board toward the closest Black Abyss tile."
+  },
+  {
+   "code": "ER3116",
+   "tier": 3,
+   "name": "Fademelt",
+   "kind": "ATTACK",
+   "dice": 4,
+   "toHit": 9,
+   "target": [
+    "Closest Titan in front",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "FADE IN & ATTACK | FATE 4+: +1 EVADE_DICE",
+    "Each hit deals 4 DANGER and 1 Ambrosia token. You permanently lose 1 smothered Gear card."
+   ],
+   "uf": {
+    "pre": [
+     "Gain 1 Despair token."
+    ],
+    "move": "fadein",
+    "afterWin": true
+   },
+   "after": "Move each Black Abyss tile so that they all line up with the tile Ur-Fleece is currently on."
+  },
+  {
+   "code": "ER3115",
+   "tier": 3,
+   "name": "Deluge of Fire",
+   "kind": "ATTACK",
+   "dice": 3,
+   "toHit": 11,
+   "target": [
+    "Most Oxygen",
+    "Priority Target"
+   ],
+   "steps": [
+    "FADE IN & ATTACK | FATE 4+: +1 EVADE_DICE",
+    "Burn. Each hit deals 5 DANGER. Flip 2 Oxygen tokens."
+   ],
+   "uf": {
+    "pre": [
+     "Gain 1 Despair token."
+    ],
+    "move": "fadein",
+    "afterWin": true
+   },
+   "after": "Ur-Pull 5. Knockdown. Gain the Holy Terror Condition card. FATE 5+: Gain +1 Doom."
+  },
+  {
+   "code": "ER3114",
+   "tier": 3,
+   "name": "Sum of All Fears",
+   "kind": "JUDGEMENT",
+   "dice": 4,
+   "toHit": 10,
+   "target": [
+    "Most Despair",
+    "Closest Titan in front",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "BLACK MARCH & JUDGE",
+    "Each hit deals 4 DANGER and either a Fear or Terror Condition card."
+   ],
+   "uf": {
+    "pre": [
+     "Gain 2 Despair tokens."
+    ],
+    "retargetDespair": true,
+    "move": "march",
+    "judge": [
+     "Cunning",
+     "Fury"
+    ],
+    "afterWin": true
+   },
+   "after": "Ur-Knockback 7. Then, move Ur-Fleece X spaces on the Abyss Track, where X is the number of Despair tokens and Conditions you have.",
+   "text_pre": "If you die from Despair, target next eligible Target."
+  },
+  {
+   "code": "ER3101",
+   "tier": 0,
+   "name": "Fate of All Things",
+   "kind": "JUDGEMENT",
+   "dice": 0,
+   "toHit": 0,
+   "target": [
+    "3 Random Titans"
+   ],
+   "steps": [
+    "JUDGE",
+    "A random Titan gains the Fear Condition card. Another random Titan gains the Terror Condition card. Third random Titan gains 2 Despair tokens. Then, escalate 1 (not this card). This card never escalates."
+   ],
+   "uf": {
+    "ai0": true
+   },
+   "after": "End the Primordial Round and remove this card from the deck."
+  },
+  {
+   "code": "MR-UF",
+   "tier": "X",
+   "name": "Coming of Darkness",
+   "kind": "MNESTIS ROUTINE",
+   "dice": 0,
+   "toHit": 0,
+   "target": [],
+   "steps": [
+    "All Titans gain the Terror Condition card. Black March. ⚡ Black March."
+   ],
+   "uf": {
+    "routine": true
+   }
+  },
+  {
+   "code": "ER3121",
+   "tier": "X",
+   "name": "Argo Burns",
+   "kind": "ROUTINE",
+   "dice": 0,
+   "toHit": 0,
+   "target": [],
+   "steps": [
+    "Lose -1 Argo resource. Move Ur-Fleece 6 spaces on the Abyss Track."
+   ],
+   "uf": {
+    "argoBurns": true
+   }
+  },
+  {
+   "code": "ER3120",
+   "tier": "X",
+   "name": "Rising Tide",
+   "kind": "SIGNATURE",
+   "dice": 3,
+   "toHit": 10,
+   "target": [
+    "Closest Titan in front",
+    "Closest Titan in sight"
+   ],
+   "steps": [
+    "ATTACK",
+    "Each hit deals 4 DANGER and 1 Ambrosia token. Ur-Knockback 6."
+   ],
+   "uf": {
+    "pre": [
+     "Gain 1 Despair token."
+    ]
+   }
+  }
+ ],
+ "bp": [
+  {
+   "code": "ES3125",
+   "tier": 1,
+   "name": "Fossilized Body",
+   "at": 9,
+   "responses": {
+    "FAIL": "Gain 2 Ambrosia tokens. Ur-Knockback 4.",
+    "WOUND": "Gain the Fear Condition card. Flicker."
+   },
+   "critical": "Perform a Bonus Attack!"
+  },
+  {
+   "code": "ES3124",
+   "tier": 1,
+   "name": "Pipe Organ Hand",
+   "at": 9,
+   "responses": {
+    "FAIL": "Gain 1 Despair token. Ur-Knockback 4.",
+    "WOUND": "Burn. Gain 2 Ambrosia tokens. Flicker."
+   },
+   "critical": "Each Titan may discard either their Despair tokens or a Condition card."
+  },
+  {
+   "code": "ES3123",
+   "tier": 1,
+   "name": "The Crawls",
+   "at": 10,
+   "responses": {
+    "FAIL": "Gain the Fear Condition card. Ur-Knockback 4.",
+    "WOUND": "Gain 2 Ambrosia tokens. Flicker."
+   },
+   "critical": "Perform a Bonus Attack!"
+  },
+  {
+   "code": "ES3128",
+   "tier": 1,
+   "name": "Seaweed Cloak",
+   "at": 8,
+   "responses": {
+    "FAIL": "Gain 2 Ambrosia tokens. Flicker.",
+    "WOUND": "Gain the Terror Condition card. Flicker."
+   },
+   "critical": "Immediately move Ur-Fleece to a chosen Black Abyss tile!"
+  },
+  {
+   "code": "ES3127",
+   "tier": 1,
+   "name": "Olympian Breastplate",
+   "at": 10,
+   "responses": {
+    "INSTINCT": "Burn. Flip 1 Oxygen token. Flicker."
+   },
+   "critical": "Gain the Flame-Hardened Plate card! (Secret deck 18, card 291)"
+  },
+  {
+   "code": "ES3126",
+   "tier": 1,
+   "name": "Oceancrowned Head",
+   "at": 8,
+   "responses": {
+    "FAIL": "Gain the Terror Condition card.",
+    "WOUND": "Gain 1 Despair token. Flicker."
+   },
+   "critical": "Immediately discard all Ambrosia tokens."
+  },
+  {
+   "code": "ES3131",
+   "tier": 2,
+   "name": "Olympian Remains",
+   "at": 12,
+   "responses": {
+    "FAIL": "Burn. Gain 2 Ambrosia tokens. Flicker.",
+    "WOUND": "Gain 2 Aether tokens. Flicker."
+   },
+   "critical": "Gain the Headdress of the Deep card (Secret deck 18, card 293)! If you already have it, gain the Sea King's Crest Rare resource instead."
+  },
+  {
+   "code": "ES3130",
+   "tier": 2,
+   "name": "Eyes That Saw",
+   "at": 11,
+   "responses": {
+    "FAIL": "Burn. Each Titan gains 1 Despair token, then suffers Ur-Knockback 4.",
+    "WOUND": "Gain the Holy Terror Condition card. Flicker."
+   },
+   "critical": "Immediately remove from Battle all cards from the Obol deck except 1 You live! and 1 You died Obol card. Then, perform a Bonus Attack!"
+  },
+  {
+   "code": "ES3129",
+   "tier": 2,
+   "name": "Soulhusk",
+   "at": 12,
+   "responses": {
+    "FAIL": "Gain the Holy Terror Condition card.",
+    "WOUND": "Disable the Just a Memory Trait. Gain 1 Aether token. Flicker."
+   },
+   "critical": "Disable the Fade In keyword."
+  },
+  {
+   "code": "ES3134",
+   "tier": 2,
+   "name": "Black Wool",
+   "at": 10,
+   "responses": {
+    "FAIL": "Gain 2 Ambrosia tokens. Fade In.",
+    "WOUND": "Gain 3 Ambrosia tokens. Flicker."
+   },
+   "critical": "Permanently gain Tainted: Gain 1 Ambrosia token at the start of each Battle and increase your Awakening Range to 9-10 (once per Argonaut Lifetime).",
+   "pre": [
+    "You may voluntarily end this Attack before performing a Power Roll. If you do, clear the Kratos Pool."
+   ]
+  },
+  {
+   "code": "ES3133",
+   "tier": 2,
+   "name": "Blacklight Xiphos",
+   "at": 11,
+   "responses": {
+    "FAIL": "Ur-Pull 2.",
+    "WOUND": "Gain 2 Ambrosia tokens. Ur-Knockback 6. Flicker."
+   },
+   "critical": "Disable the Ur-Knockback X keyword."
+  },
+  {
+   "code": "ES3132",
+   "tier": 2,
+   "name": "Aetherfire Cowl",
+   "at": 10,
+   "responses": {
+    "INSTINCT": "Burn. Flip 1 Oxygen token. Ur-Knockback 6. Flicker."
+   },
+   "critical": "Disable the Ur-Pull X keyword."
+  },
+  {
+   "code": "ES3137",
+   "tier": 3,
+   "name": "The Black Truth",
+   "at": 38,
+   "responses": {
+    "FAIL": "Gain 3 Ambrosia tokens. Black March.",
+    "WOUND": "Gain the Dread and Holy Terror Condition cards. Flicker."
+   },
+   "critical": "Disable Ambrosia gain."
+  },
+  {
+   "code": "ES3136",
+   "tier": 3,
+   "name": "Holy Phobosios",
+   "at": 40,
+   "responses": {
+    "INSTINCT": "Gain a random Phobia Affliction and die. Flicker."
+   },
+   "critical": "Disable Fear, Dread, Terror, and Holy Terror Condition cards.",
+   "pre": [
+    "You may voluntarily end this Attack before performing a Power Roll. If you do, clear the Kratos Pool."
+   ]
+  },
+  {
+   "code": "ES3135",
+   "tier": 3,
+   "name": "Tainted Godhood",
+   "at": 42,
+   "responses": {
+    "INSTINCT": "Disable the Just a Memory Trait. Gain 2 Aether tokens. Flicker."
+   },
+   "critical": "Disable Despair effects."
+  },
+  {
+   "code": "ES3140",
+   "tier": 3,
+   "name": "Lightgorging Mawbelly",
+   "at": 39,
+   "responses": {
+    "FAIL": "Burn. Gain 3 Ambrosia tokens.",
+    "WOUND": "Gain 2 Aether tokens. Flicker."
+   },
+   "critical": "Each Titan gains 1 Oxygen token and 2 Aether tokens."
+  },
+  {
+   "code": "ES3139",
+   "tier": 3,
+   "name": "The Tear",
+   "at": 41,
+   "responses": {
+    "INSTINCT": "Disable the Just a Memory Trait. Then, Ur-Pull 3 each Titan. Flicker."
+   },
+   "critical": "Disable the Black March keyword. Resolve The Tear Special Event."
+  },
+  {
+   "code": "ES3138",
+   "tier": 3,
+   "name": "String of Another",
+   "at": 38,
+   "responses": {
+    "FAIL": "Draw and perform an AI card.",
+    "WOUND": "Gain +4 FATE. Draw a Moiros card. Flicker."
+   },
+   "critical": "Each Titan resets their FATE to 0, reset Doom to 0. Gain the Strungstring card (Secret deck 18, card 292)!"
+  }
+ ],
+ "vp": null,
+ "basicTraits": [
+  "Oxygen and Aether"
+ ]
+}

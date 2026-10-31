@@ -244,7 +244,7 @@ export function installMeduketos(Game, { TitanDied, BattleOver }) {
     },
     // Microwave Shield: before the Attack Roll, discard 1 Kratos Pool token per space between attacker and Meduketos
     async medShield(t, A) {
-      if (!this.medD() || !this.trait('Microwave Shield') || t.onVP) return; const n = Math.max(0, this.distTo(t) - 1); if (!n) return;
+      if ((!this.medD() && !(this.ufD && this.ufD())) || !this.trait('Microwave Shield') || t.onVP) return; const n = Math.max(0, this.distTo(t) - 1); if (!n) return;
       const K = this.kratosPool; const NM = { opening: 'Opening', break: 'Break', fire: 'Fire', black: 'Black', hope: 'Hope', rouse: 'Rouse', closing: 'Closing', diversion: 'Diversion' };
       let left = n; this.say(`Microwave Shield: 사이 칸 ${n} — Kratos Pool 토큰 ${n}개 버림`, 'bad');
       while (left > 0) { const have = Object.keys(NM).filter(k => (K[k] || 0) > 0); if (!have.length) break; const k = have.length === 1 ? have[0] : await this.ask({ type: 'choice', titan: t, title: `Microwave Shield: 버릴 토큰 (${n - left + 1}/${n})`, options: have.map(x => ({ label: `${NM[x]} (${K[x]})`, value: x })) }) || have[0]; K[k]--; left--; this.say(`Kratos Pool: ${NM[k]} −1`); }

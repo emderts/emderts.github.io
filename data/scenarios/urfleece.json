@@ -1,0 +1,66 @@
+{
+ "id": "urfleece",
+ "source": "Harsh Truth Battle — Cycle V Storybook p.182-183",
+ "board": {
+  "cols": 20,
+  "rows": 14
+ },
+ "_notes": [
+  "Rows A and N (Trench / Abyss Track) are Board Edge — not part of the play area. Lanes: 1 = K-M, 2 = H-J, 3 = E-G, 4 = B-D. Black Abyss tiles K2-M4, H10-J12, E14-G16 (Ur-Fleece F15), B6-D8. Titan starts I18 H19 E19 D18. Abyss Track spaces 1-18 = columns 19..2 of row A."
+ ],
+ "setup": [
+  "Standard Preparations.",
+  "Primordial Positioning: Ur-Fleece on the indicated space, facing the most Titans.",
+  "Battle Track / Abyss Track: Argo and Ur-Fleece tokens by Battle Track boxes (level)."
+ ],
+ "center": "G10",
+ "variants": {
+  "all": {
+   "levels": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "primordial": {
+    "anchor": "F15"
+   },
+   "titanStarts": [
+    "I18",
+    "H19",
+    "E19",
+    "D18"
+   ],
+   "startChoices": [
+    "I18",
+    "H19",
+    "E19",
+    "D18"
+   ],
+   "terrain": {},
+   "ufTiles": [
+    {
+     "lane": 1,
+     "c": 2
+    },
+    {
+     "lane": 2,
+     "c": 10
+    },
+    {
+     "lane": 3,
+     "c": 14
+    },
+    {
+     "lane": 4,
+     "c": 6
+    }
+   ]
+  }
+ }
+}
