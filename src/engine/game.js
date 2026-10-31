@@ -1178,6 +1178,8 @@ export class Game {
     for (const o of pvPre) { if (!o.alive || o.onVP || !this.isAdj(o) || this.fr(o) <= 0 || this.hopeless(o) >= 2 || !this.prim.vp) continue; const pg = o.gear.find(g => !g.discarded && !g.exhausted && /Ψ⟳ Pole Vault:/.test(this.gearText(g, o))); if (!pg) continue; const ok = await this.ask({ type: 'yn', titan: o, title: `${pg.card.name}: Pole Vault — ${this.prim.name}이(가) 인접 — 즉시 VP Climb 테스트 (+2)? (Fate+1, 소진)`, options: [{ label: '사용', value: true }, { label: '패스', value: false }] }); if (!ok) continue; await this.payCost(o, 'Ψ⟳', pg); o._tmpClimb = 2; try { await this.solo(() => this.climbVP(o)); } finally { o._tmpClimb = 0; } }
   }
   // after a movement sequence: titans under the Primordial suffer Unavoidable Knockback
+  // a Chain Break can cut the Primordial's movement short (e.g. a Crash → Trauma → bonus attack): Titans left underneath still suffer Unavoidable Knockback
+  async overlapFix() { if (!this.prim || this.prim.offBoard) return; const L = this.liveTitans().filter(o => o.pos && !o.onVP && !o.impaled && !o.stair && !o.offBoard && this.primContains(o.pos)); for (const o of L) { this.say(`${o.name}: ${this.prim.name} 아래에 남음 — Unavoidable Knockback (이동이 Chain Break로 끊김)`, 'bad'); const prev = this.pendingBonus; try { await this.solo(async () => { await this.knockback(o, this.prim.ukb, this._lastStepDir || this.awayDir(o.pos, this.primCells()), true); if (o.alive && this.primContains(o.pos)) await this.displace(o); }); } catch (e) { if (!e || !e.chainBreak || e instanceof BattleOver) throw e; const nb = this.pendingBonus; this.pendingBonus = prev; if (o.alive && this.primContains(o.pos)) await this.solo(() => this.displace(o)); if (nb && nb !== prev) await this.safe(() => this.bonusAttackFlow(nb.titan, nb)); } } }
   async ukbOverlap(ignore = []) { for (const p of this.primCells()) { const o = this.titanAt(p.c, p.r); if (!o || ignore.includes(o) || !o.alive || o.onVP) continue;
       await this.solo(async () => { await this.knockback(o, this.prim.ukb, this._lastStepDir || this.awayDir(o.pos, this.primCells()), true); if (o.alive && this.primContains(o.pos)) await this.displace(o); }); } }
   async primEndMove(ignore = []) { for (const z of this.board.terrain.values()) if (z._ruinFresh) z._ruinFresh = false;
@@ -1298,7 +1300,7 @@ export class Game {
       await this.resolveTriggers(trig, 'Primordial Round 종료'); if (this.board.ambChasm) this.board.ambChasm = false; }
     this.notify();
   }
-  async safe(fn) { try { await fn(); } catch (e) { if (e instanceof BattleOver) throw e; if (e instanceof TitanDied) { this.say('(Mercy Rule: 남은 효과 취소)'); return; } if (e.chainBreak) { this.say(`Chain Break — 남은 효과 취소`, 'sys'); if (this.pendingBonus) { const pb = this.pendingBonus; this.pendingBonus = null; await this.safe(() => this.bonusAttackFlow(pb.titan, pb)); if (this._primRound && !(this._aiDepth > 0)) await this.extraAICheck(); } return; } throw e; } }
+  async safe(fn) { try { await fn(); } catch (e) { if (e instanceof BattleOver) throw e; if (e instanceof TitanDied) { this.say('(Mercy Rule: 남은 효과 취소)'); return; } if (e.chainBreak) { this.say(`Chain Break — 남은 효과 취소`, 'sys'); await this.overlapFix(); if (this.pendingBonus) { const pb = this.pendingBonus; this.pendingBonus = null; await this.safe(() => this.bonusAttackFlow(pb.titan, pb)); if (this._primRound && !(this._aiDepth > 0)) await this.extraAICheck(); } return; } throw e; } }
 
   async resolveAIOnly(t, fn) { const p = this._onlyT; this._onlyT = t; try { return await fn(); } finally { this._onlyT = p; } } // FAQ (Wishkeen/Wishagog): the AI is performed only against that Titan, wherever it is
   async resolveAI(card, opts = {}) { const sc0 = this.prim && this.prim.scorpion; try { return await this.resolveAI0(card, opts); } finally { if (sc0 && this.prim.scorpion === sc0) { this.prim.scorpion = 0; this.say('Scorpion 효과 종료'); } if (!this.currentAI || this.currentAI.card === card) for (const t of this.titans) { t.tempStalwart = false; t.tempRocksteady = false; } } }
@@ -2307,7 +2309,7 @@ export class Game {
       if (ok && (await this.skillTest(t, best, target))) { if (c === 'Berserk' && t.berserkToken) { t.berserkToken = false; this.say(`${t.name}: Berserk 토큰 — 랠리 실패 처리 (Red Polis)`, 'bad'); continue; } t.conditions = t.conditions.filter(x => x !== c); this.say(`${t.name}: ${c} 해제`, 'good'); }
     }
   }
-  async chainSafe(fn) { try { await fn(); } catch (e) { if (!e.chainBreak) throw e; this.say('Chain Break', 'sys'); if (this.pendingBonus) { const pb = this.pendingBonus; this.pendingBonus = null; await this.safe(() => this.bonusAttackFlow(pb.titan, pb)); } } }
+  async chainSafe(fn) { try { await fn(); } catch (e) { if (!e.chainBreak) throw e; this.say('Chain Break', 'sys'); await this.overlapFix(); if (this.pendingBonus) { const pb = this.pendingBonus; this.pendingBonus = null; await this.safe(() => this.bonusAttackFlow(pb.titan, pb)); } } }
   // Abandon (Kratos): must Move toward the closest Board Edge with full Speed (FAQ); crossing the edge = runs away (treated as dead)
   async abandonFlee(t) { if (t.onVP) await this.leaveVP(t); if (!t.pos) return; const C = this.board.cols, R = this.board.rows; const opts = [['W', t.pos.c - 1], ['E', C - t.pos.c], ['N', R - t.pos.r], ['S', t.pos.r - 1]]; const m = Math.min(...opts.map(o => o[1])); const ds = opts.filter(o => o[1] === m).map(o => o[0]);
     const dir = ds.length === 1 ? ds[0] : await this.ask({ type: 'choice', titan: t, title: 'Abandon: 가장 가까운 보드 끝 방향 선택', options: ds.map(d => ({ label: d, value: d })) }); const [dx, dy] = DIRS[dir]; const sp = this.speedOf(t);
@@ -3366,7 +3368,7 @@ export class Game {
   }
   queueBonusAttack(t) { this.pendingBonus = { titan: t }; this.say(`${t.name}: 보너스 공격! (Chain Break)`, 'good'); throw new ChainBreak('Bonus Attack'); }
   async sparkSave(t) { if (!this.awk || !this.awk.spark || !t.alive) return false; if (!(await this.awakenRoll(t, 10, 'Spark of the Dead Gods'))) return false; return this.awaken(t, { inline: true }); }
-  async bonusAttackFlow(t, pb = {}) {
+  async bonusAttackFlow(t, pb = {}) { await this.overlapFix();
     if (pb.awaken) { pb.awaken = false; return this.awakenBonus(t); }
     if (!t.alive) return;
     { const why = this.abilityLock(t); if (why) { this.say(`${t.name}: ${why} 상태 — 보너스 공격 불가`, 'bad'); return; } }
