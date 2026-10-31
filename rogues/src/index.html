@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kingdoms Forlorn — Rogue's Path</title>
+<style>
+:root { --bg:#141210; --panel:#1e1a16; --panel2:#2a241d; --ink:#e4d8c4; --muted:#998b76; --gold:#c9a85a; --rose:#b2434a; --good:#6fae5c; --warn:#d9a441; --line:#3a3128; }
+* { box-sizing:border-box; }
+html, body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.5 "Noto Sans KR", "Pretendard", system-ui, sans-serif; -webkit-text-size-adjust:100%; }
+h1 { font-family:Georgia, "Noto Serif KR", serif; letter-spacing:.06em; color:var(--gold); margin:0 0 4px; font-size:26px; }
+h2 { font-size:17px; color:var(--gold); margin:18px 0 8px; }
+.sub { color:var(--muted); margin:0 0 16px; }
+.muted { color:var(--muted); } .small { font-size:12px; } .warn { color:var(--warn); } .err { color:var(--rose); }
+button { background:var(--panel2); color:var(--ink); border:1px solid var(--line); border-radius:8px; padding:10px 14px; cursor:pointer; font:inherit; min-height:44px; }
+button:hover { border-color:var(--gold); }
+button.primary { background:var(--gold); color:#1a1208; font-weight:700; border-color:var(--gold); }
+button:disabled { opacity:.4; cursor:not-allowed; }
+select, input { background:var(--panel2); color:var(--ink); border:1px solid var(--line); border-radius:8px; padding:8px 10px; font:inherit; max-width:100%; min-height:44px; }
+#app { max-width:900px; margin:0 auto; padding:20px 14px calc(20px + env(safe-area-inset-bottom)); }
+.card { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px; margin:10px 0; }
+.row { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin:10px 0; }
+.log { font-size:13px; max-height:40vh; overflow:auto; }
+.log div { padding:3px 0; border-bottom:1px dashed var(--line); }
+a { color:var(--gold); }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>window.KF_DATA = __DATA__;</script>
+<script>__BUNDLE__</script>
+</body>
+</html>

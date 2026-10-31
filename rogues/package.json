@@ -1,0 +1,14 @@
+{
+  "name": "kf-rogues",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Kingdoms Forlorn — Rogue's Path (web single-player)",
+  "private": true,
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "for f in test/*.mjs; do node $f || exit 1; done"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  }
+}
