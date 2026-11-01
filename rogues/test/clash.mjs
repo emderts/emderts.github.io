@@ -12,14 +12,15 @@ let fails = 0; const ok = (c, m) => { if (!c) fails++; console.log((c ? 'PASS ' 
 const autoAsk = (clash) => async q => {
   switch (q.type) {
     case 'confirm': return q.default;
-    case 'powerReroll': return q.options.at(-1).value;
-    case 'reroll': { const k = clash.knights.find(x => x.id === q.knight); const spare = Math.max(0, k.heatLimit - k.heat - 1); return Math.min(q.max, spare); } // keep 1 Heat of headroom
+    case 'dice': { // re-roll failed dice within budget; for evasion keep 1 Heat headroom
+      const k = q.knight ? clash.knights.find(x => x.id === q.knight) : null; let budget = q.max; if (k && /Evasion|Attack/.test(q.text)) budget = Math.min(budget, Math.max(0, k.heatLimit - k.heat - 1) + clash.poolCount('closing'));
+      return q.dice.map((d, i) => ({ d, i })).filter(x => !x.d.hit && x.d.canReroll).slice(0, budget).map(x => x.i); }
+    case 'number': return q.default ?? q.options.at(-1).value;
+    case 'order': return q.options.map(o => o.value);
     case 'weapon': { const axe = q.options.find(o => /Axe|Cleaver/.test(o.label)); return axe ? axe.value : q.options[0].value; }
-    case 'pickKnight': case 'pick': case 'heartseeker': case 'arcOption': return q.options[0].value;
-    case 'number': return q.options[0].value;
-    case 'move': { // move toward the monster: pick the cell with smallest distance to the monster footprint
-      const k = clash.knights.find(x => x.id === q.knight); const d = c => clash.board.distance([c], clash.monster.cells, x => !clash.board.isObstacle(x));
-      const best = [...q.cells].sort((a, b) => d(a) - d(b))[0]; return d(best) < d(k.pos) ? best : null; }
+    case 'pick': { if (q.options.some(o => o.value === 'skip')) return 'skip'; return q.options[0].value; }
+    case 'pickKnight': case 'heartseeker': case 'arcOption': return q.options[0].value;
+    case 'move': { const k = clash.knights.find(x => x.id === q.knight); const d = c => clash.board.distance([c], clash.monster.cells, x => !clash.board.isObstacle(x)); const best = [...q.cells].sort((a, b) => d(a) - d(b))[0]; if (/Displace/.test(q.text || '')) return best; return d(best) < d(k.pos) ? best : null; }
     case 'action': { const v = q.options.map(o => o.value); if (v.includes('attack')) return 'attack'; if (v.includes('move')) { const k = clash.knights.find(x => x.id === q.knight); if (!clash.adjacentToMonster(k)) return 'move'; } const k2 = clash.knights.find(x => x.id === q.knight); const pose = v.find(x => x.startsWith('tech:Knight Pose')); if (pose && clash.knockedDown(k2)) return pose; const heal = v.find(x => x.startsWith('tech:Cured Darklin')); if (heal && k2.vigor <= k2.maxVigor - 3) return heal; return 'end'; }
     default: return q.options ? q.options[0].value : null;
   }
@@ -38,10 +39,10 @@ const mk = (seed, level = 1) => { const c = new Clash({ data, knights: [0, 1, 2,
 { const c = mk(2, 2); ok(c.armorTokens[1] === 2 && c.armorTokens[3] === 4 && c.monster.hasTrait('Jacked') && c.monster.toHit === 7, 'level 2: Panzeronion +1, Jacked, To Hit 7'); }
 
 // --- targeting
-{ const c = mk(3); c.monster.facing = 'N'; const tg = c.resolveTargeting({ ops: { targeting: ['Closest Knight in front', 'Closest Knight in sight'] } }); ok(tg && tg.primary && ['F1', 'F2'].includes(tg.primary.name), `closest in front (facing N → G row knights): ${tg && tg.primary && tg.primary.name}`);
-  const bs = c.resolveTargeting({ ops: { targeting: ['Knight in Blindspot'] } }); ok(bs === null, 'no knight in blindspot at start');
-  c.knights[2].pos = c.board.parse('D7'); const bs2 = c.resolveTargeting({ ops: { targeting: ['Knight in Blindspot'] } }); ok(bs2 && bs2.primary === c.knights[2], 'D7 is a Blindspot (rear) when facing N');
-  const z = c.resolveTargeting({ ops: { targeting: ['Zone 1'] } }); ok(z && z.zone && z.targets.length === 4, 'Zone 1 around the 2x2 footprint catches all four starting knights (G6/G9/D7/D9)'); }
+{ const c = mk(3); c.monster.facing = 'N'; const tg = await c.resolveTargeting({ ops: { targeting: ['Closest Knight in front', 'Closest Knight in sight'] } }); ok(tg && tg.primary && ['F1', 'F2'].includes(tg.primary.name), `closest in front (facing N → G row knights): ${tg && tg.primary && tg.primary.name}`);
+  const bs = await c.resolveTargeting({ ops: { targeting: ['Knight in Blindspot'] } }); ok(bs === null, 'no knight in blindspot at start');
+  c.knights[2].pos = c.board.parse('D7'); const bs2 = await c.resolveTargeting({ ops: { targeting: ['Knight in Blindspot'] } }); ok(bs2 && bs2.primary === c.knights[2], 'D7 is a Blindspot (rear) when facing N');
+  const z = await c.resolveTargeting({ ops: { targeting: ['Zone 1'] } }); ok(z && z.zone && z.targets.length === 4, 'Zone 1 around the 2x2 footprint catches all four starting knights (G6/G9/D7/D9)'); }
 
 // --- humpty charge & panzeronion
 { const c = mk(4); c.monster.facing = 'E'; const cols0 = [...c.board.terrain.values()].filter(t => t.id === 'column').length; const a0 = c.armorTokens[1];

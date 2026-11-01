@@ -47,17 +47,21 @@ export class Effects {
     // weapon keywords with first-window timing are offered in firstWindow
   }
   async firstWindow(k, A) {
-    const first = Object.values(A.arcChoice).flat().filter(t => ['Pushback', 'Vault', 'Hug', 'Reposition', 'Drag', 'Daze', 'Provoke'].includes(t.token));
-    for (const t of first) {
-      if (t.token === 'Pushback') { if (await this.c.yesNo(`Pushback ${t.n} 사용? (몬스터를 ${t.n}칸 밀어냄 — 밀려나면 근접 공격이 끊길 수 있음)`, false)) await this.pushMonster(k, t.n); }
-      else if (t.token === 'Vault') { if (await this.c.yesNo('Vault 사용? (몬스터 반대편으로 점프)', false)) await this.vault(k); }
-      else if (t.token === 'Hug') { if (await this.c.yesNo(`Hug ${t.n} 사용? (몬스터에 붙은 채 ${t.n}칸 이동)`, false)) await this.hug(k, t.n); }
+    const first = Object.values(A.arcChoice).flat().filter(t => ['Pushback', 'Vault', 'Hug', 'Reposition', 'Drag', 'Daze', 'Provoke'].includes(t.token)).map((t, i) => ({ ...t, id: i }));
+    const avail = [...first];
+    while (avail.length) {
+      const pick = await this.c.ask({ type: 'pick', knight: k.id, text: '1차 능력 창 — 사용할 능력과 순서를 선택 (끝내려면 "넘어가기")', options: [...avail.map(t => ({ label: `${t.token}${t.n ? ' ' + t.n : ''}`, value: t.id })), { label: '넘어가기', value: 'skip' }] });
+      if (pick === 'skip' || pick == null) break;
+      const t = avail.find(x => x.id === pick); if (!t) break; avail.splice(avail.indexOf(t), 1);
+      if (t.token === 'Pushback') await this.pushMonster(k, t.n);
+      else if (t.token === 'Vault') await this.vault(k);
+      else if (t.token === 'Hug') await this.hug(k, t.n);
       else if (t.token === 'Provoke') { this.c.priorityTarget = k; this.c.turnToward(k.pos); this.say(`Provoke: ${k.name}이 Priority Target, 몬스터가 바라봄`); }
-      else if (t.token === 'Daze') { if (this.c.adjacentToMonster(k)) { const f = this.c.monster.facing; const opp = { N: 'S', S: 'N', E: 'W', W: 'E' }[f]; this.c.monster.facing = opp; this.say('Daze: 몬스터가 등을 돌림'); } }
+      else if (t.token === 'Daze') { if (this.c.adjacentToMonster(k)) { const f = this.c.monster.facing; this.c.monster.facing = { N: 'S', S: 'N', E: 'W', W: 'E' }[f]; this.say('Daze: 몬스터가 등을 돌림'); } }
+      else if (t.token === 'Reposition') await this.c.knightMove(k, t.n);
       else this.say(`[1st window 미구현] ${t.token}`, 'warn');
       if (!this.c.adjacentToMonster(k)) throw new ChainBreak(`${k.name}: 사거리 이탈`);
     }
-    if (this.weaponHas(A.weapon, 'choice')) { /* Paired Cleavers Reposition/Drag */ }
     const ap = A.weapon.ops && A.weapon.ops.gates ? A.weapon.ops.gates.filter(g => g.when === 'GRAVE' && this.perilGateOk(k, 'GRAVE')).flatMap(g => g.ops).filter(o => o.op === 'armorPiercing') : []; for (const o of ap) { A.armorPiercing += o.n; this.say(`Armor-piercing ${o.n}`); }
   }
   async secondWindow(k, A) {

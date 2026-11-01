@@ -93,17 +93,28 @@ const logPane = () => { const el = h('div', { class: 'log' }, clash.log.slice(-2
 
 // ---------- bottom sheet (ask) ----------
 const answer = v => { const p = pending; pending = null; p.res(v); render(); };
+let diceSel = new Set(); let orderSel = [];
 const sheet = () => {
   if (!pending) return null; const q = pending.q;
-  const title = { action: '행동 선택', move: '이동할 칸을 보드에서 탭하세요', reroll: '재굴림', powerReroll: 'Power 재굴림', confirm: '확인', pickKnight: '기사 선택', weapon: '무기 선택', pick: '선택', heartseeker: 'Heartseeker — BP 선택', arcOption: 'Heroic Arc 옵션', number: '값 선택' }[q.type] || q.type;
+  const title = { action: '행동 선택', move: '이동할 칸을 보드에서 탭하세요', dice: '재굴림할 주사위 선택', confirm: '확인', pickKnight: '기사 선택', weapon: '무기 선택', pick: '선택', heartseeker: 'Heartseeker — BP 선택', arcOption: 'Heroic Arc 옵션', number: '개수 선택', order: '순서 선택' }[q.type] || q.type;
   const who = q.knight ? clash.knights.find(k => k.id === q.knight) : null;
   const opts = q.options || [];
-  const numeric = ['reroll', 'powerReroll', 'number'].includes(q.type);
+  if (q.type === 'dice') return h('div', { class: 'sheet' },
+    h('div', { class: 'q' }, who ? `${who.name} — ` : '', title, h('span', { class: 'small muted' }, ` (최대 ${q.max})`)),
+    q.text ? h('div', { class: 'small', style: 'margin-bottom:8px' }, q.text) : null,
+    h('div', { class: 'opts num' }, q.dice.map((d, i) => h('button', { class: (diceSel.has(i) ? 'primary' : '') + (d.hit ? ' good' : ''), style: d.crit ? 'border-color:#fff' : '', disabled: !d.canReroll, onclick: () => { if (diceSel.has(i)) diceSel.delete(i); else if (diceSel.size < q.max) diceSel.add(i); render(); } }, `${d.v}${d.crit ? '★' : ''}${d.colour ? ' ' + d.colour[0] : ''}${d.hit ? ' ✓' : ' ✗'}`))),
+    h('div', { class: 'row' }, h('button', { class: 'primary', onclick: () => { const v = [...diceSel]; diceSel = new Set(); answer(v); } }, diceSel.size ? `${diceSel.size}개 재굴림` : '재굴림 안 함')));
+  if (q.type === 'order') return h('div', { class: 'sheet' },
+    h('div', { class: 'q' }, title), q.text ? h('div', { class: 'small' }, q.text) : null,
+    h('div', { class: 'small muted' }, '순서대로 탭: ', orderSel.map(v => opts.find(o => o.value === v).label).join(' → ') || '—'),
+    h('div', { class: 'opts' }, opts.filter(o => !orderSel.includes(o.value)).map(o => h('button', { onclick: () => { orderSel.push(o.value); if (orderSel.length === opts.length) { const v = orderSel; orderSel = []; answer(v); } else render(); } }, o.label))),
+    h('div', { class: 'row' }, h('button', { class: 'sm', onclick: () => { orderSel = []; render(); } }, '초기화')));
+  const numeric = q.type === 'number';
   return h('div', { class: 'sheet' },
     h('div', { class: 'q' }, who ? `${who.name} — ` : '', title),
     q.text ? h('div', { class: 'small', style: 'margin-bottom:8px' }, q.text) : null,
-    q.type === 'move' ? h('div', { class: 'row' }, h('button', { onclick: () => answer(null) }, '이동 안 함')) : null,
-    h('div', { class: 'opts' + (numeric ? ' num' : '') }, opts.filter(o => q.type !== 'move').map(o => h('button', { class: o.value === 'attack' || o.value === true ? 'primary' : '', onclick: () => answer(o.value) }, o.label))),
+    q.type === 'move' ? h('div', { class: 'row' }, /Displace/.test(q.text || '') ? null : h('button', { onclick: () => answer(null) }, '이동 안 함')) : null,
+    h('div', { class: 'opts' + (numeric ? ' num' : '') }, opts.filter(o => q.type !== 'move').map(o => h('button', { class: o.value === 'attack' || o.value === true || (numeric && o.value === q.default) ? 'primary' : '', onclick: () => answer(o.value) }, o.label))),
   );
 };
 

@@ -1,0 +1,188 @@
+{
+ "_source": "Loot mini cards (16, codes 15A0861–0876). Each card: exchange for Gear of its type (rulebook p.67) OR the Gold value for the Knight's tier.",
+ "types": {
+  "fullClash": "Gear from the Monster you resolved the Full Clash against",
+  "exhibitionClash": "Gear from the Monster you resolved the Exhibition Clash against",
+  "kingdomGear": "Gear from the Kingdom you gained the Loot in",
+  "consumableGear": "a Consumable Gear card",
+  "upgrade": "a Gear Upgrade card"
+ },
+ "cards": [
+  {
+   "code": "15A0861",
+   "type": "fullClash",
+   "gold": {
+    "Mob": 3,
+    "Vassal": 4,
+    "King": 6,
+    "Devil": 8,
+    "Dragon": 10
+   }
+  },
+  {
+   "code": "15A0862",
+   "type": "fullClash",
+   "gold": {
+    "Mob": 3,
+    "Vassal": 4,
+    "King": 6,
+    "Devil": 8,
+    "Dragon": 10
+   }
+  },
+  {
+   "code": "15A0863",
+   "type": "exhibitionClash",
+   "gold": {
+    "Mob": 3,
+    "Vassal": 4,
+    "King": 6,
+    "Devil": 8,
+    "Dragon": 10
+   }
+  },
+  {
+   "code": "15A0864",
+   "type": "exhibitionClash",
+   "gold": {
+    "Mob": 3,
+    "Vassal": 4,
+    "King": 6,
+    "Devil": 8,
+    "Dragon": 10
+   }
+  },
+  {
+   "code": "15A0865",
+   "type": "kingdomGear",
+   "gold": {
+    "Mob": 2,
+    "Vassal": 3,
+    "King": 4,
+    "Devil": 5,
+    "Dragon": 6
+   }
+  },
+  {
+   "code": "15A0866",
+   "type": "kingdomGear",
+   "gold": {
+    "Mob": 2,
+    "Vassal": 3,
+    "King": 4,
+    "Devil": 5,
+    "Dragon": 6
+   }
+  },
+  {
+   "code": "15A0867",
+   "type": "kingdomGear",
+   "gold": {
+    "Mob": 2,
+    "Vassal": 3,
+    "King": 4,
+    "Devil": 5,
+    "Dragon": 6
+   }
+  },
+  {
+   "code": "15A0868",
+   "type": "kingdomGear",
+   "gold": {
+    "Mob": 2,
+    "Vassal": 3,
+    "King": 4,
+    "Devil": 5,
+    "Dragon": 6
+   }
+  },
+  {
+   "code": "15A0869",
+   "type": "consumableGear",
+   "gold": {
+    "Mob": 1,
+    "Vassal": 1,
+    "King": 2,
+    "Devil": 3,
+    "Dragon": 4
+   }
+  },
+  {
+   "code": "15A0870",
+   "type": "consumableGear",
+   "gold": {
+    "Mob": 1,
+    "Vassal": 1,
+    "King": 2,
+    "Devil": 3,
+    "Dragon": 4
+   }
+  },
+  {
+   "code": "15A0871",
+   "type": "consumableGear",
+   "gold": {
+    "Mob": 1,
+    "Vassal": 1,
+    "King": 2,
+    "Devil": 3,
+    "Dragon": 4
+   }
+  },
+  {
+   "code": "15A0872",
+   "type": "consumableGear",
+   "gold": {
+    "Mob": 1,
+    "Vassal": 1,
+    "King": 2,
+    "Devil": 3,
+    "Dragon": 4
+   }
+  },
+  {
+   "code": "15A0873",
+   "type": "upgrade",
+   "gold": {
+    "Mob": 2,
+    "Vassal": 3,
+    "King": 4,
+    "Devil": 5,
+    "Dragon": 6
+   }
+  },
+  {
+   "code": "15A0874",
+   "type": "upgrade",
+   "gold": {
+    "Mob": 2,
+    "Vassal": 3,
+    "King": 4,
+    "Devil": 5,
+    "Dragon": 6
+   }
+  },
+  {
+   "code": "15A0875",
+   "type": "upgrade",
+   "gold": {
+    "Mob": 2,
+    "Vassal": 3,
+    "King": 4,
+    "Devil": 5,
+    "Dragon": 6
+   }
+  },
+  {
+   "code": "15A0876",
+   "type": "upgrade",
+   "gold": {
+    "Mob": 2,
+    "Vassal": 3,
+    "King": 4,
+    "Devil": 5,
+    "Dragon": 6
+   }
+  }
+ ]
+}
