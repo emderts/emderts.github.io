@@ -345,9 +345,7 @@
      }
     },
     "bonus": {
-     "text": "After [icon], lose 1 Condition token",
-     "unclear": "Icon is a red elongated horizontal symbol (looks like a sword/attack icon); exact identity not certain from the crop.",
-     "guess": "[icon]=Combat Action(공격) 아이콘으로 추정"
+     "text": "After [Peril Check], lose 1 Condition token"
     }
    }
   ],
@@ -1964,9 +1962,7 @@
      }
     },
     "bonus": {
-     "text": "After [icon], gain +1 [Vigor icon]",
-     "unclear": "First icon is the same red elongated sword/attack-like symbol as on Meisterschlächter; second icon is the red 'V' Vigor mark (same as the track header).",
-     "guess": "[icon]=Combat Action(공격) 아이콘으로 추정"
+     "text": "After [Peril Check], gain +1 [Vigor icon]"
     }
    },
    {

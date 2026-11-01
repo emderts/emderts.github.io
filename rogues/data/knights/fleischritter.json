@@ -15,8 +15,8 @@
    "Fortitude": 2
   },
   "rapportBoon": {
-   "text": "During Encounters: +1 [icon]",
-   "note": "Encounter(Delve) 전용 → Rogue's Path에서 효과 없음 [확인]; 아이콘 미판독"
+   "text": "During Encounters: +1 [Precision]",
+   "note": "Encounter(Delve) 전용 — Clash에는 적용되지 않음(확정). Rogue's Path에서 효과 없음."
   },
   "explorationCipher": "**23",
   "portraits": [
@@ -395,7 +395,7 @@
      "options": [
       [
        {
-        "token": "AttackReroll",
+        "token": "Envenomed",
         "n": 1
        },
        {
@@ -446,8 +446,7 @@
      "options": [
       [
        {
-        "token": "Provoke",
-        "n": 1
+        "token": "Vault"
        },
        {
         "token": "Closing",
@@ -517,7 +516,7 @@
         "n": 1
        },
        {
-        "token": "AttackReroll",
+        "token": "Envenomed",
         "n": 1
        }
       ]
@@ -768,7 +767,7 @@
      "options": [
       [
        {
-        "token": "AttackReroll",
+        "token": "Envenomed",
         "n": 2
        },
        {
@@ -1074,7 +1073,7 @@
      "options": [
       [
        {
-        "token": "AttackReroll",
+        "token": "Envenomed",
         "n": 2
        },
        {

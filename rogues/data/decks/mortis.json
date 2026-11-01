@@ -441,13 +441,11 @@
    "code": "10A0436",
    "symbol": "cross",
    "flavor": "Walk along the razor's edge.",
-   "text": "Stand up. You may reset [Heat] and raise [Heat!] by 3. You may immediately move up to 3 spaces and perform a Bonus Attack!",
+   "text": "Stand up. You may reset [Heat] and raise [Heat Limit] by 3. You may immediately move up to 3 spaces and perform a Bonus Attack!",
    "marker": {
     "coord": "H12"
    },
-   "unclear": [
-    "second Heat icon has an exclamation mark ([Heat!]) - presumably Heat limit/maximum; transcribed as [Heat!]"
-   ],
+   "unclear": [],
    "ops": null
   },
   {
