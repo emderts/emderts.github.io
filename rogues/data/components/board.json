@@ -1,0 +1,7 @@
+{
+  "_source": "Clash Board photo (TTS). Columns 1–14 left→right, rows A–J bottom→top. Left edge: 'Mortis decks' area; top edge holds the Mob track (rulebook p.42). The central cross/diamond artwork (cols 7–8, rows A–J; diamond at rows D–G) is printed decoration — no inherent rules [확인: 지형 효과 없음으로 가정].",
+  "cols": 14,
+  "rows": 10,
+  "rowLabels": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"],
+  "mobTrack": 10
+}

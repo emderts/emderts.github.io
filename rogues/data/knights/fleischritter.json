@@ -1,0 +1,39 @@
+{
+  "id": "fleischritter",
+  "name": "Fleischritter",
+  "_source": "Knightbook 'The Fleischritter and the Famishing' (p.3–4 rules & Knight Setup, p.111 First Death Special Event) + Talent card sprite sheets.",
+  "resourceToken": { "id": "fleisch", "name": "Fleisch", "keyword": "Fleisch X: Place X Fleisch tokens in the Knight Pool.", "rule": "Fleisch tokens are mainly placed in the Knight Pool or your Knight Board, and they can be spent from there. Many Fleischritter Techniques use Fleisch as their cost. The most common source of Fleisch tokens is Fleischritter's Heroic Arc and the Fleisch X keyword. Fleischritter Talents also allow him to use Fleisch instead of Heat." },
+  "setup": {
+    "virtues": { "Bravery": 1, "Might": 1, "Fortitude": 2 },
+    "rapportBoon": { "text": "During Encounters: +1 [icon]", "note": "Encounter(Delve) 전용 → Rogue's Path에서 효과 없음 [확인]; 아이콘 미판독" },
+    "explorationCipher": "**23",
+    "portraits": ["Fleischritter", "Fleischknecht"],
+    "talent": "Fleischknecht",
+    "heroicArc": "Fleischknecht",
+    "perilArc": "Fleischknecht",
+    "techniques": [["Knight Pose", "Knight Prowess"], ["Knight Roll", "Pickled Rations"], ["Second Chance", "Come Out Swinging"], ["Cured Darklin", "Hearty Stew"], ["Food Runner", "Chef's Intuition"]],
+    "techniquesNote": "5 double-sided cards listed as 'A // B' in the Knightbook [확인: 양면=Delve면/Clash면인지, 서로 다른 두 기술인지]",
+    "gear": ["Knighves", "Chipped Axe"],
+    "gearNote": "Chipped Axe = Merchant Gear"
+  },
+  "firstDeath": { "text": "Fleischritter has perished this time, but something beyond the edge of this world is not done with him yet! Through the distorted nature of the Deep Fog, he will wander the Kingdoms Forlorn once more! Mark the First Death box on your Knight Sheet. Gain +1 Sigh of the Graal.", "ops": [{ "op": "markFirstDeath" }, { "op": "gainSigh", "n": 1 }], "note": "Knightbook: 'If you haven't unlocked the Unknown Saint yet, immediately see 9999 in the Kingdom Mysteries Section' — 스토리 분기, Rogue's Path에서는 생략 [확인]" },
+  "components": { "portraits": 2, "talents": 3, "heroicArcs": 4, "perilArcs": 4, "techniques": 26, "gear": 5, "fleischTokens": 5, "trapTokens": 1 },
+  "talents": [
+    { "id": "fleischknecht", "name": "Fleischknecht", "tier": "starting", "abilities": [
+      { "name": "Refreshing Fleisch", "text": "You may use Fleisch tokens from the Knight Pool instead of [Heat].", "ops": [{ "op": "fleischAsHeat" }] },
+      { "name": "Meat Provisions", "text": "When you attack, if there are no Opening or Break tokens in the Knight Pool, immediately place 1 Opening and 1 Break token in the Knight Pool.", "ops": [{ "op": "onAttackDeclare", "if": { "poolLacks": ["opening", "break"] }, "do": [{ "op": "pool", "token": "opening", "n": 1 }, { "op": "pool", "token": "break", "n": 1 }] }] } ] },
+    { "id": "fleischjager", "name": "Fleischjäger", "tier": "vassal", "abilities": [
+      { "name": "Nurturing Fleisch", "text": "1 Fleisch, X [Vigor]: An adjacent Knight gains +X [Vigor]. You may use Fleisch tokens from the Knight Pool instead of [Heat].", "ops": [{ "op": "active", "cost": { "fleisch": 1, "vigor": "X" }, "do": [{ "op": "gainVigor", "target": "adjacentKnight", "n": "X" }] }, { "op": "fleischAsHeat" }] },
+      { "name": "Rebound", "text": "During an Armor Roll, add all following tokens to the Knight Pool, depending on the number of mitigated [Vigor] loss: 1: [?] 1 · 2: [Opening?] 1 · 3: [Fleisch] 1 · 4: [?] 1 · 5: [?] 1", "ops": null, "unclear": "토큰 아이콘 5개 중 3(Fleisch)만 확실; 1·2·4·5 아이콘 판독 필요" } ] },
+    { "id": "fleischkrieger", "name": "Fleischkrieger", "tier": "vassal", "abilities": [
+      { "name": "Bolstering Fleisch", "text": "1 Fleisch, X [Heat]: When you are about to attack, add X Knight tokens to the Knight Pool, each from a different Level of your Heroic Arc, up to your [Passion] Level. You cannot benefit from those keywords again during the second ability window. You may use Fleisch tokens from the Knight Pool instead of [Heat].", "ops": null, "unclear": "Heroic Arc 레벨별 토큰 구조가 들어온 뒤 구현" },
+      { "name": "Ambidextrous", "text": "When you attack and have a Weapon with the Pair Trait or an inactive [1H?] Weapon, gain +1 [Attack die]. For the purpose of gathering your Power Pool, ignore any hits that exceed your Weapon's regular [Attack dice] number. During the second ability window, you may place up to 2 additional tokens from any stackable keyword on your inactive [1H?] Weapon or a Weapon with the Pair Trait.", "ops": null, "unclear": "손 슬롯 아이콘(한손/두손) 판독 필요" } ] },
+    { "id": "teufelsjager", "name": "Teufelsjäger", "tier": "devil", "abilities": [
+      { "name": "Empowering Fleisch", "text": "When you attack, you may spend X Fleisch to add +X [Attack dice] to your Attack Roll. If the number of hits exceeds your Weapon's [Attack dice] number, ignore those additional hits when creating the Power Pool, but immediately place a Sunder token in the Knight Pool. You may use Fleisch tokens from the Knight Pool instead of [Heat].", "ops": null },
+      { "name": "The Art of Gastronomy", "text": "Whenever you spend Fleisch on Techniques, place a Generic token on your Knight Board. You may discard an indicated number of those tokens to trigger the following effects (as a free action, unless stated otherwise): 1: When you attack, gain +2 Precision. 2: When you attack, gain Auto-hope 2. 3: Advanced Block. 5: Discard all Condition tokens and cards. 7: Ignore [Vigor] loss from a Monster Attack.", "ops": null } ] },
+    { "id": "schwarzesser", "name": "Schwarzesser", "tier": "devil", "abilities": [
+      { "name": "Famished Fleisch", "text": "Wound: If you're adjacent to another Knight, you may spend X Fleisch tokens to place X Generic tokens on your Knight Board. As long as there is at least 1 Generic token on your Knight Board, treat your Knight Power die as one tier higher, gain Immune to Mind Condition cards and Braced. At the start and the end of Knight Round, all adjacent Knights lose -5 [Vigor]. Discard 1 Generic token at the end of your turn, and whenever you fail to deal a Wound. You may use Fleisch tokens from the Knight Pool instead of [Heat].", "ops": null },
+      { "name": "Monstrous Strength", "text": "You can either use [2H?] Weapons as if they were [1H?], or when using a [1H?] Weapon, you may add +[red Power die] to the Power Pool.", "ops": null, "unclear": "손 슬롯 아이콘 판독 필요; 주사위 아이콘은 빨강으로 판독" } ] }
+  ],
+  "missing": ["Portrait cards ×2 (Fleischritter, Fleischknecht)", "Heroic Arc ×4", "Peril Arc ×4", "Technique cards ×26 (양면)", "Gear ×5 + Knighves + Chipped Axe", "Trap token 규칙"]
+}

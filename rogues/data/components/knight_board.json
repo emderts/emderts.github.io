@@ -1,0 +1,5 @@
+{
+  "_source": "Knight Board photo (TTS).",
+  "tracks": { "vigor": { "min": 0, "max": 15, "color": "red" }, "passion": { "min": 0, "max": 9, "color": "green", "glyph": "P" }, "heat": { "min": 0, "max": 9, "color": "blue", "glyph": "H" } },
+  "areas": ["Talent card", "Heroic Arc", "Peril Arc", "Portrait card", "Clue card", "Discard", "Delay", "Cooldown"]
+}
