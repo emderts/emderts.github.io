@@ -150,17 +150,15 @@ game.js       위 모듈을 묶는 파사드: new Game(data,{seed}) · setup(cfg
 
 PDF만으로 지금 바로 전사 가능한 것: Rosegraal map(p.78–79, 간선은 불확실 표시), Rosegraal Rewards(p.92–96), Keyword list(p.80–87), 몬스터 표(✔).
 
-## 8. 해석 확인 질문 (작업 후 모아서)
-- **Q1 기사 수**: 1–4명 중 선택 가능하게? 기본 4명? 1명일 때 True Solo 규칙(p.75: 랜덤 대상은 내 기사 우선, 항상 Priority Target 시작, Clash Setup마다 Armory에서 Gear 3장까지 교체)을 적용할지? (Rogue's Path는 "Squire 금지"라 Squire 보충 없음)
-- **Q2 지도 구조**: p.78(Sunken)+p.79(Principality, S 포함)를 하나의 연결 그래프로 볼지. 페이지 경계를 넘는 뿌리는 어떻게 이을지(전사 시 후보를 표시해 드릴 테니 확정만).
-- **Q3 승리 조건**: "마지막 노드를 크로스아웃하면 승리" = 지도의 **모든** 노드(약 100개) 클리어로 구현? 아니면 특정 종착 노드?
-- **Q4 보유 몬스터**: ★몬스터(Panzergeist, Stonemason Knight, Knighteater, First Men Lictor Hunters, Bog Witch, Young Devour Dragon) 보유 여부를 설정에서 체크 → 미보유 재굴림. 어떤 몬스터까지 전사할지 범위.
-- **Q5 Rewards 표의 Technique 칸**: 레벨별로 Technique 2장이 적혀 있음 — 보상 1회에 둘 다 획득인지, 하나 선택(각각 1회만)인지.
-- **Q6 부활 값**: 지도상 부활 수가 항상 노드 레벨과 같아 보이는데, 전사하면서 예외가 있으면 표시하겠음. 승리 시 "부활 0 & 생존자<4면 풀 복구만큼" 규칙은 기사 수가 4 미만일 때 "파티 정원"으로 읽어도 되는지.
-- **Q7 Outpost 티어**: 상점은 "현재 티어 이하" — Rogue's Path에서 '현재 티어'를 (a) 마지막으로 클리어한 최고 노드 레벨, (b) 다음에 공략할 노드 레벨, (c) 크로스아웃한 노드 중 최고 중 어느 것으로?
-- **Q8 "표준 Loot deck"**: Aftermath의 Victorious Search(Clash Scavenge 1 + Scavenge 3) + 몬스터 Loot로 구성하는 것으로 이해. Loot 카드의 Gold 가치는 카드에만 있음 [자료].
-- **Q9 Sigh of the Graal**: Clash 직전 스냅샷으로 되돌리기(몬스터 굴림 결과도 유지? 재굴림?).
-- **Q10 Rapport/Saint/Mercenary**: Wild Card 보상 "+2 Rapport with a chosen Knight"는 기사 2명 이상일 때만 의미 — 1명 플레이 시 어떻게 처리할지. Saint(Devotion)는 스토리 해금이라 Rogue's Path에서 제외해도 되는지.
-- **Q11 First Death Event**: Knightbook 서사 이벤트 — 웹에서는 체크 표시만 하고 건너뛸지.
-- **Q12 Exhibition/Full**: Rogue's Path Clash는 전부 Full Clash로 간주(Exhibition Wounds 미적용)?
-- **Q13 카드 효과 표현**: §3.2처럼 전사 시 `ops`로 구조화(제안) vs ATO식 텍스트 파싱. 구조화를 택하면 전사 때 원문과 함께 ops를 제가 작성하고 오딧 페이지에서 대조.
+## 8. 해석 결정 (2026-11-01 확정)
+- **Q1** 기사 4명 고정 (True Solo 규칙 불필요).
+- **Q2** p.78+p.79는 하나의 그래프. 사용자가 합친 지도 이미지 1장을 제공 → 그걸로 전사.
+- **Q3** 승리 = 지도의 모든 노드 크로스아웃.
+- **Q4** 몬스터는 전부 전사 예정(★ 포함). 설정의 "보유 몬스터" 체크는 유지(기본 전부 보유).
+- **Q5** Rewards 표의 Technique 2장 중 **하나 선택**. 보상은 노드 레벨 이하 레벨 중 선택, 각 보상 1회.
+- **Q6** 4명 고정이므로 "생존자<4" 규칙 그대로.
+- **Q7** Outpost/상점 티어 = 그 Rosegraal 라운드에 선택한 노드의 티어.
+- **Q8 Loot** (룰북 확인): Loot deck은 Scavenge 효과로만 채워짐(Scavenge 덱에서 뽑음). Rogue's Path에서 한 Clash의 Loot deck = Aftermath Victorious Search **Clash Scavenge 1 + Scavenge 3**(종류는 Kingdom Gear/Upgrade/Consumable 중 선택) + Clash 중 카드가 준 Scavenge. Full Clash Loot = 그 몬스터의 Gear로 교환(몬스터별 Gear 목록 [자료]). 교환 티어 = 노드 티어(몬스터 최저 레벨 티어가 더 높으면 그 티어까지). 분배: 기사당 1장 → 나머지 Spare Scrap은 파티 리더부터 순환, Gold로만 교환. Gambling Den은 코덱스 의존 → 1차 제외. 패배 시: Forlorn Search Scavenge 3 → "Loot는 유지"이므로 분배까지 수행 **[확인: 패배 시에도 Scavenge 3 + 분배?]**
+- **Q9 Sigh** (룰북 p.14): "Clash를 다시 치른다, Clash 이전 상태로 복구" → 같은 몬스터·레벨로 재전투(굴림 유지), 덱/셋업만 새로 섞음. 1인 1개 보유 제한 → Sigh 노드 보상은 미보유 기사 중 선택. 사용 시점: Clash 종료 직후(승/패 무관) 결과 적용 전.
+- **Q10** Rapport: 4명이라 유효 — Wild Card +2, 3하트에 Knightbook의 Rapport Boon [자료: 기사별 Boon 텍스트]. Saint: 스토리 해금 전용, Rosegraal 보상에도 없음 → 제외. Mercenary: Guild는 Outpost 정규 활동 → 유지(초기 레벨1 덱 + Wild Card "Tier 3 ○○ Mercenary"로 해금, Clash 능력만). First Death Event: Knightbook 서사 → 체크만 하고 생략. Exhibition/Full: Rogue's Path 본문에 구분 없음 → 전부 Full Clash(Exhibition Wounds 없음)로 구현.
+- **Q13** 카드 효과는 전사 시 `ops` 구조화 + 원문 보관.
