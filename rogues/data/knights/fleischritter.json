@@ -20,7 +20,6 @@
   },
   "explorationCipher": "**23",
   "portraits": [
-   "Fleischritter",
    "Fleischknecht"
   ],
   "talent": "Fleischknecht",
@@ -38,7 +37,8 @@
    "Knighves",
    "Chipped Axe"
   ],
-  "gearNote": "Chipped Axe = Merchant Gear"
+  "gearNote": "Chipped Axe = Merchant Gear",
+  "portrait": "fleischknecht"
  },
  "firstDeath": {
   "text": "Fleischritter has perished this time, but something beyond the edge of this world is not done with him yet! Through the distorted nature of the Deep Fog, he will wander the Kingdoms Forlorn once more! Mark the First Death box on your Knight Sheet. Gain +1 Sigh of the Graal.",
@@ -1815,8 +1815,56 @@
   }
  ],
  "missing": [
-  "Portrait cards ×2 (Fleischritter, Fleischknecht) — stats needed",
-  "Trap token rule"
+  "Portrait cards for King tier (Metzger) and Dragon tier (Meisterschlächter)",
+  "Trap token rule",
+  "Eggknight Clash Setup (Learn to Play book?)"
  ],
- "iconLegend": "Knight Tokens and Abilities legend (owner-supplied image, 2026-11-01)"
+ "iconLegend": "Knight Tokens and Abilities legend (owner-supplied image, 2026-11-01)",
+ "portraits": [
+  {
+   "id": "fleischknecht",
+   "name": "Fleischknecht",
+   "tier": "starting",
+   "classes": [
+    "Fleischknecht"
+   ],
+   "powerDie": "red",
+   "cardRefresh": 1,
+   "heatRefresh": 3,
+   "handLimit": 4,
+   "speed": 4,
+   "baneLimit": 4
+  },
+  {
+   "id": "fleischjager-krieger",
+   "name": "Fleischjäger / Fleischkrieger",
+   "tier": "vassal",
+   "classes": [
+    "Fleischjäger",
+    "Fleischkrieger"
+   ],
+   "powerDie": "red",
+   "cardRefresh": 1,
+   "heatRefresh": 4,
+   "handLimit": 5,
+   "speed": 4,
+   "baneLimit": 5
+  },
+  {
+   "id": "teufelsjager-schwarzesser",
+   "name": "Teufelsjäger / Schwarzesser",
+   "tier": "devil",
+   "classes": [
+    "Teufelsjäger",
+    "Schwarzesser"
+   ],
+   "powerDie": "black",
+   "cardRefresh": 2,
+   "heatRefresh": 5,
+   "handLimit": 6,
+   "speed": 5,
+   "baneLimit": 6
+  }
+ ],
+ "portraitsNote": "Portrait card stat row (left→right): Card Refresh [card↓], Heat Refresh [↑H↓], Hand Limit [cards!], Speed [running], Bane Limit [ring!]. Knight Power die = die icon beside the class names. Metzger/Meisterschlächter portraits (King/Dragon tier) not yet provided."
 }

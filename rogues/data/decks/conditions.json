@@ -1,0 +1,247 @@
+{
+ "_source": "Condition cards (20 faces; 7 double-sided pairs via flipSide). type body|mind (Malediction has no band).",
+ "iconLegend": {
+  "[Heat]": "blue square H icon",
+  "[Vigor]": "red square V icon",
+  "[Passion]": "green square P icon",
+  "[Precision]": "target/bullseye",
+  "[Evasion]": "feather/swoosh",
+  "[Speed]": "running-boot glyph",
+  "[Rear]": "R glyph (Rear space)",
+  "[Armor die]": "white die with chalice face",
+  "[Fail]": "bare chalice symbol (fail face)",
+  "[Red Power die]": "red die with sword face",
+  "[Power]": "bare sword symbol (Power-die hit)",
+  "[Move action]": "black box with running figure",
+  "[Attack action]": "black box with figure and sword"
+ },
+ "conditions": [
+  {
+   "name": "Exposed",
+   "type": "body",
+   "code": "09A0376",
+   "text": "You have -2 Evasion [Evasion].\nDiscard this Condition card after you perform an Evasion Roll.\nYou may spend a [Move action] or a [Attack action] to discard this Condition card.",
+   "squire": "Lower the number of evaded hits by 1.",
+   "flipSide": null,
+   "unclear": [
+    "The two black-box icons in 'spend a [..] or a [..]' read as Move action / Attack action (same glyphs used on the Tower card's Lunging Attack); not 100% certain."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Choked",
+   "type": "mind",
+   "code": "09A0360",
+   "text": "Your [Heat] cannot become equal to or lower than the Choke Limit. You or an adjacent Knight may spend a [Move action] or a [Attack action] to lower your Choke Limit by 3.\nDiscard this Condition card and the Choke Limit marker if you lower your Choke Limit to 0.",
+   "squire": null,
+   "flipSide": null,
+   "unclear": [
+    "Black-box action icons read as Move action / Attack action (see Exposed)."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Courage",
+   "type": "mind",
+   "code": "09A0372",
+   "text": "You have +2 Precision [Precision] and Auto-break 1.\nDiscard this Condition card if you fully miss an Attack or fail to deal a Wound.",
+   "squire": null,
+   "flipSide": null,
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Panzer Parasite",
+   "type": "body",
+   "code": "09A0388",
+   "text": "Whenever you're attacked by a Monster, treat X dice as hits without rolling them, where X is the number of tokens on this card. Gain Armor Re-roll X. If there are ever 5 or more tokens on this card, you are consumed by the Parasite (die).",
+   "squire": "Whenever you're attacked by a Monster, treat X dice as hits before drawing from the Mettle deck (they can't be evaded).",
+   "flipSide": null,
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Baptized in Metal",
+   "type": "mind",
+   "code": "09A0393",
+   "text": "You can't be moved to the Oubliette.\nWhen you Bargain, you may ignore „A” cards. (You still shuffle the discard pile into the deck after you Bargain.)\nOther Knights: Escape Difficulty +1.",
+   "squire": null,
+   "flipSide": null,
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Called by the Heavens",
+   "type": "mind",
+   "code": "09B0460",
+   "text": "If you are on a Tower Terrain tile during a Monster Attack, apply all of its Gated Effects. When you move onto a VP, discard this card.\nEnd of your turn: Move 3 spaces toward the closest Tower Terrain tile along the shortest path. Then, if you are on a Tower Terrain tile, gain +1 [Passion].",
+   "squire": null,
+   "flipSide": null,
+   "unclear": [
+    "Code is faint; read as 09B0460 (could be 09B0450)."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Clear Mind",
+   "type": "mind",
+   "code": null,
+   "text": "If you would gain the Subjugated Condition card, ignore that gain. Discard this card at the end of the next Round.",
+   "squire": null,
+   "flipSide": "Subjugated",
+   "unclear": [
+    "No code visible on this side."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Dread",
+   "type": "mind",
+   "code": null,
+   "text": "You have -4 Precision [Precision]. While on a Rear [Rear] space, you have -2 Precision [Precision] instead. If you gain this Condition card a second time or you gain the Fear Condition card, you die.\nFace Your Fear: When you deal a Wound, discard this Condition card and place 2 permanent positive Precision [Precision] tokens on your Knight Board.",
+   "squire": null,
+   "flipSide": "Fear",
+   "unclear": [
+    "No code visible on this side."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Drowning",
+   "type": "body",
+   "code": null,
+   "text": "When you're about to move voluntarily, roll [Armor die] and all your Armor dice. For each [Fail] gain +1 [Heat].\nIf you gain this Condition card a second time or you gain the Slimed Condition card, you die.\nEnd of your turn: If you didn't move during your turn, you die.\nWhen you move voluntarily, flip this card.",
+   "squire": "Gain +2 [Heat] instead.",
+   "flipSide": "Slimed",
+   "unclear": [
+    "First die icon is a white die with a chalice face (read as the basic Armor die); the per-result symbol is the bare chalice (read as [Fail]).",
+    "No code visible on this side."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Knockdown (Standing Up)",
+   "type": "body",
+   "code": null,
+   "text": "If you move voluntarily, attack, or use an action, active ability, or a Technique, stand up. At the start of your turn, stand up.\nIf this card is discarded by another effect, stand up.\nStand Up: Put your miniature in the normal position and discard this card.",
+   "squire": null,
+   "flipSide": "Knockdown (Falling Down)",
+   "unclear": [
+    "No code visible on this side."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Malediction (Manifested)",
+   "type": null,
+   "code": null,
+   "text": "Start of your turn: Flip this card. You cannot attack. Ignore Swamp Terrain tiles during movement. During an Attack against you, for each hit lose an additional -1 [Vigor].\nFlip and Exchange: If you are adjacent to another Knight, as a free action, you may flip this card and pass it to them.",
+   "squire": null,
+   "flipSide": "Malediction (Dormant)",
+   "unclear": [
+    "Bottom band is a decorative border with no BODY/MIND CONDITION label; type left null.",
+    "No code visible on this side."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Panicked",
+   "type": "mind",
+   "code": null,
+   "text": "Lower your Hand Limit by 4. Place cards over your limit under this card.\nIf you discard this card, add them back to your hand.",
+   "squire": "Active Squire abilities cost +2 [Heat] to use.",
+   "flipSide": "Distracted",
+   "unclear": [
+    "No code visible on this side."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Toxified",
+   "type": "body",
+   "code": null,
+   "text": "End of your turn: Roll a [Red Power die]. For each [Power] rolled gain an additional Poison token. Then, lose -1 [Vigor] for each token on this card.\nDo not discard this card if you have 0 Poison tokens.",
+   "squire": null,
+   "flipSide": "Poisoned",
+   "unclear": [
+    "Die icon is a red die with a sword face (read as red Power die).",
+    "No code visible on this side."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Subjugated",
+   "type": "mind",
+   "code": "09A0384",
+   "text": "You must Obey all Commands.\nIf you gain this Condition card a second time, you die.\nStart of your turn: You may test a chosen Virtue (9+).\nSuccess: Flip this card.",
+   "squire": null,
+   "flipSide": "Clear Mind",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Fear",
+   "type": "mind",
+   "code": "09A0368",
+   "text": "You have -2 Precision [Precision]. If you gain this Condition card a second time or you gain the Dread Condition card, flip this card.\nFace Your Fear: When you deal a Wound, discard this Condition card and place a permanent positive Precision [Precision] token on your Knight Board.",
+   "squire": null,
+   "flipSide": "Dread",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Slimed",
+   "type": "body",
+   "code": "09A0380",
+   "text": "When you're about to move voluntarily, roll [Armor die] and all your Armor dice. For each [Fail] gain +1 [Heat].\nIf you gain this Condition card a second time or you gain the Drowning Condition card, flip this card.\nEnd of your turn: If you didn't move during your turn, flip this card.\nWhen you move voluntarily, discard this card and gain a temporary positive Speed [Speed] token.",
+   "squire": "Gain +1 [Heat] instead.",
+   "flipSide": "Drowning",
+   "unclear": [
+    "Die/symbol icons as on Drowning (white Armor die; bare chalice = [Fail])."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Knockdown (Falling Down)",
+   "type": "body",
+   "code": "09A0352",
+   "text": "You are knocked down. Place your miniature on its side as a reminder.\nYou cannot move voluntarily, attack, or use actions, active abilities, or Techniques, unless stated otherwise.\nIf this card is discarded by another effect, stand up (see the other side of the card).\nAt the end of your next turn, flip this card.",
+   "squire": null,
+   "flipSide": "Knockdown (Standing Up)",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Malediction (Dormant)",
+   "type": null,
+   "code": "09A0392",
+   "text": "Start of your turn: Flip this card.\nExchange: If you are adjacent to another Knight, as a free action, you may pass this card to them.",
+   "squire": null,
+   "flipSide": "Malediction (Manifested)",
+   "unclear": [
+    "Bottom band is a decorative border with no BODY/MIND CONDITION label; type left null."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Distracted",
+   "type": "mind",
+   "code": "09A0356",
+   "text": "Lower your Hand Limit by 2. Place cards over your limit under this card.\nIf you discard this card, add them back to your hand.\nIf you gain this Condition card a second time or you gain the Panicked Condition card, flip this card.",
+   "squire": "Active Squire abilities cost +1 [Heat] to use.",
+   "flipSide": "Panicked",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Poisoned",
+   "type": "body",
+   "code": "09A0364",
+   "text": "End of your turn: Lose -1 [Vigor] for each token on this card. If your [Vigor] would drop to 0 or below, it stays at 1 instead.\nPoison Limit: 3\nIf there are 0 Poison tokens on this card, discard it.\nIf Poison tokens on this card exceed your Poison Limit, flip this card (move tokens to the other side).",
+   "squire": null,
+   "flipSide": "Toxified",
+   "unclear": [],
+   "ops": null
+  }
+ ]
+}

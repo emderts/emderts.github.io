@@ -1,0 +1,610 @@
+{
+ "_source": "Mortis deck (49 cards, codes 10A0401–10A0449): Minor 14 (arrow marker = random direction), Major 14 (number = random Knight / result), Grave 15 (board coordinate, e.g. Eggknight Panzeronion Column placement), Judicium 6 (You Live!, You Died + Massive Peril -5/-9/-12, Dragon's Sacrament).",
+ "iconLegend": {
+  "[Heat]": "blue H icon",
+  "[Heat!]": "blue H icon with exclamation mark (Heat limit / max Heat) - seen only on Push the Limit!",
+  "[Vigor]": "red V icon",
+  "[Passion]": "green P icon",
+  "[Gear]": "gear/pouch icon",
+  "[Opening]": "Opening token icon",
+  "[Break]": "Break token icon",
+  "[Speed]": "Speed (running knight) icon"
+ },
+ "minor": [
+  {
+   "name": "Stone Spell",
+   "kingdom": "principality",
+   "code": "10A0411",
+   "symbol": "weapon",
+   "text": "Perform a Curse Save (Curse Level +2). Fail: Bane X, where X is the number you failed the Save by.",
+   "marker": {
+    "arrow": "right"
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Panzerdecay",
+   "kingdom": "principality",
+   "code": "10A0412",
+   "symbol": "weapon",
+   "text": "Parasitize 1.",
+   "marker": {
+    "arrow": "down"
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Slime Spell",
+   "kingdom": "sunken",
+   "code": "10A0413",
+   "symbol": "weapon",
+   "text": "Perform a Curse Save (Curse Level +2). Fail: Bane X, where X is the number you failed the Save by.",
+   "marker": {
+    "arrow": "right"
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Poison",
+   "kingdom": "sunken",
+   "code": "10A0414",
+   "symbol": "weapon",
+   "text": "Poison 1. Gain +1 [Heat].",
+   "marker": {
+    "arrow": "down"
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Rebound",
+   "kingdom": null,
+   "code": "10A0410",
+   "symbol": "cross",
+   "text": "Lose -2 [Heat]. Refresh 1.",
+   "marker": {
+    "arrow": "left"
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Restrain",
+   "kingdom": null,
+   "code": "10A0409",
+   "symbol": "weapon",
+   "text": "Delay all cards in your Cooldown area.",
+   "marker": {
+    "arrow": "up"
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Subdue",
+   "kingdom": null,
+   "code": "10A0408",
+   "symbol": "weapon",
+   "text": "Place 1 random card from your hand into your Cooldown area.",
+   "marker": {
+    "arrow": "down"
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Distracted",
+   "kingdom": null,
+   "code": "10A0407",
+   "symbol": "weapon",
+   "text": "Gain the Distracted Condition card.",
+   "marker": {
+    "arrow": "right"
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Gash",
+   "kingdom": null,
+   "code": "10A0403",
+   "symbol": "weapon",
+   "text": "Lose -1 [Vigor]. Shuffle this card back into the Mortis deck, then resolve the Peril Check again.",
+   "marker": {
+    "arrow": "right"
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Thrown Off-Balance",
+   "kingdom": null,
+   "code": "10A0404",
+   "symbol": "weapon",
+   "text": "Exhaust all your exhaustable Gear [Gear] cards. If no Gear [Gear] cards were exhausted by this card, Knockdown.",
+   "marker": {
+    "arrow": "down"
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Feign Death",
+   "kingdom": null,
+   "code": "10A0405",
+   "symbol": "cross",
+   "text": "Immediately Chain Break the Monster Attack, gain the Knockdown (standing up) Condition card.",
+   "marker": {
+    "arrow": "up"
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Feint",
+   "kingdom": null,
+   "code": "10A0406",
+   "symbol": "cross",
+   "text": "Place 2 Opening [Opening] and/or Break [Break] tokens in the Knight Pool.",
+   "marker": {
+    "arrow": "left"
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Insulted",
+   "kingdom": null,
+   "code": "10A0402",
+   "symbol": "cross",
+   "text": "Stand up. You may immediately perform a Bonus Attack!",
+   "marker": {
+    "arrow": "left"
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Vision of the Graal",
+   "kingdom": null,
+   "code": "10A0401",
+   "symbol": "cross",
+   "text": "You may gain +1 [Passion].",
+   "marker": {
+    "arrow": "up"
+   },
+   "unclear": [],
+   "ops": null
+  }
+ ],
+ "major": [
+  {
+   "name": "Stone Hex",
+   "kingdom": "principality",
+   "code": "10A0425",
+   "symbol": "weapon",
+   "text": "Perform a Curse Save (Curse Level +3). Fail: Bane X, where X is the number you failed the Save by.",
+   "marker": {
+    "number": 4
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Panzerrust",
+   "kingdom": "principality",
+   "code": "10A0426",
+   "symbol": "weapon",
+   "text": "Parasitize 2.",
+   "marker": {
+    "number": 8
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Slime Hex",
+   "kingdom": "sunken",
+   "code": "10A0427",
+   "symbol": "weapon",
+   "text": "Perform a Curse Save (Curse Level +3). Fail: Bane X, where X is the number you failed the Save by. Gain the Slimed Condition card.",
+   "marker": {
+    "number": 4
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Poisoned",
+   "kingdom": "sunken",
+   "code": "10A0428",
+   "symbol": "weapon",
+   "text": "Poison 3. Gain +3 [Heat].",
+   "marker": {
+    "number": 8
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Heroic Death",
+   "kingdom": null,
+   "code": "10A0424",
+   "symbol": "weapon",
+   "text": "First Round Only: Ignore this card and draw the Feign Death Minor Mortis card instead.\nAny Other Round: You die, but you won't sell your life cheap! Immediately stand up, move up to 3 spaces and perform a Bonus Attack! Then, shuffle this card back into the Mortis deck and die.",
+   "marker": {
+    "number": 3
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Panicked",
+   "kingdom": null,
+   "code": "10A0423",
+   "symbol": "weapon",
+   "text": "Gain the Panicked Condition card.",
+   "marker": {
+    "number": 2
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Smother",
+   "kingdom": null,
+   "code": "10A0422",
+   "symbol": "weapon",
+   "text": "Delay all cards in your Cooldown area. If no card was delayed, suffer Knockdown.",
+   "marker": {
+    "number": 1
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Impair",
+   "kingdom": null,
+   "code": "10A0421",
+   "symbol": "weapon",
+   "text": "Discard 1 random card from your hand.",
+   "marker": {
+    "number": 7
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Inner Strength",
+   "kingdom": null,
+   "code": "10A0417",
+   "symbol": "cross",
+   "text": "Lose -2 [Heat]. Stand up. You may immediately perform a Bonus Attack!",
+   "marker": {
+    "number": 3
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Show of Willpower",
+   "kingdom": null,
+   "code": "10A0418",
+   "symbol": "cross",
+   "text": "You may discard 1 Condition card. If you don't, lose -2 [Heat] instead.",
+   "marker": {
+    "number": 4
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Counterattack",
+   "kingdom": null,
+   "code": "10A0419",
+   "symbol": "cross",
+   "text": "Stand up. Refresh 1. You may immediately move up to 3 spaces and perform a Bonus Attack!",
+   "marker": {
+    "number": 5
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Priestly Cunning",
+   "kingdom": null,
+   "code": "10A0420",
+   "symbol": "cross",
+   "text": "Place 3 Opening [Opening] and/or Break [Break] tokens in the Knight Pool.",
+   "marker": {
+    "number": 6
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Giant Gash",
+   "kingdom": null,
+   "code": "10A0416",
+   "symbol": "weapon",
+   "text": "Lose -1 [Vigor]. Shuffle this card back into the Mortis deck, then resolve the Peril Check again.",
+   "marker": {
+    "number": 2
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Whisper of the Graal",
+   "kingdom": null,
+   "code": "10A0415",
+   "symbol": "cross",
+   "text": "You may gain +2 [Passion].",
+   "marker": {
+    "number": 1
+   },
+   "unclear": [],
+   "ops": null
+  }
+ ],
+ "grave": [
+  {
+   "name": "Stone Scourge",
+   "kingdom": "principality",
+   "code": "10A0440",
+   "symbol": "weapon",
+   "text": "Perform a Curse Save (Curse Level +5). Fail: Bane X, where X is the number you failed the Save by.",
+   "marker": {
+    "coord": "F6"
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Panzerrot",
+   "kingdom": "principality",
+   "code": "10A0441",
+   "symbol": "weapon",
+   "text": "Parasitize 3.",
+   "marker": {
+    "coord": "E9"
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Slime Scourge",
+   "kingdom": "sunken",
+   "code": "10A0442",
+   "symbol": "weapon",
+   "text": "Perform a Curse Save (Curse Level +4). Fail: Bane X, where X is the number you failed the Save by. Gain the Drowning Condition card.",
+   "marker": {
+    "coord": "F6"
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Toxified",
+   "kingdom": "sunken",
+   "code": "10A0443",
+   "symbol": "weapon",
+   "text": "Toxify 2. Gain +3 [Heat].",
+   "marker": {
+    "coord": "E9"
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Call of the Graal",
+   "kingdom": null,
+   "code": "10A0439",
+   "symbol": "cross",
+   "text": "Gain +2 [Passion] and the Courage Condition card.",
+   "marker": {
+    "coord": "E9"
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Knight Counter",
+   "kingdom": null,
+   "code": "10A0438",
+   "symbol": "cross",
+   "text": "You may immediately move up to 4 spaces and perform a Bonus Attack! If you have the Knockdown (falling down) Condition card, immediately stand up and move up to 4 spaces instead.",
+   "marker": {
+    "coord": "C12"
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Sabotage",
+   "kingdom": null,
+   "code": "10A0437",
+   "symbol": "weapon",
+   "text": "Discard 2 random cards from your hand. If you couldn't discard any cards, suffer Knockdown.",
+   "marker": {
+    "coord": "E12"
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Push the Limit!",
+   "kingdom": null,
+   "code": "10A0436",
+   "symbol": "cross",
+   "flavor": "Walk along the razor's edge.",
+   "text": "Stand up. You may reset [Heat] and raise [Heat!] by 3. You may immediately move up to 3 spaces and perform a Bonus Attack!",
+   "marker": {
+    "coord": "H12"
+   },
+   "unclear": [
+    "second Heat icon has an exclamation mark ([Heat!]) - presumably Heat limit/maximum; transcribed as [Heat!]"
+   ],
+   "ops": null
+  },
+  {
+   "name": "Disemboweled",
+   "kingdom": null,
+   "code": "10A0432",
+   "symbol": "weapon",
+   "text": "You die. Shuffle this card back into the Mortis deck.",
+   "marker": {
+    "coord": "F6"
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Disemboweled",
+   "kingdom": null,
+   "code": "10A0433",
+   "symbol": "weapon",
+   "text": "You die. Shuffle this card back into the Mortis deck.",
+   "marker": {
+    "coord": "C7"
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Burning Heart",
+   "kingdom": null,
+   "code": "10A0434",
+   "symbol": "cross",
+   "flavor": "Bravely we hope, against all hope...",
+   "text": "Stand up. You may reset [Heat]. You may immediately perform a Bonus Attack!",
+   "marker": {
+    "coord": "H8"
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Godly Resolve",
+   "kingdom": null,
+   "code": "10A0435",
+   "symbol": "cross",
+   "flavor": "Don't stop believing...",
+   "text": "Discard all Condition cards. If you don't have any, reset [Heat] instead.",
+   "marker": {
+    "coord": "E9"
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Disemboweled",
+   "kingdom": null,
+   "code": "10A0431",
+   "symbol": "weapon",
+   "text": "You die. Shuffle this card back into the Mortis deck.",
+   "marker": {
+    "coord": "C3"
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Knight Stand",
+   "kingdom": null,
+   "code": "10A0430",
+   "symbol": "weapon",
+   "text": "You will probably die—but until then, you will fight with all your being! Immediately stand up, move up to your Speed [Speed] and perform a Bonus Attack! If you deal a Wound, you live! If not, you die. Then, shuffle this card back into the Mortis deck.",
+   "marker": {
+    "coord": "F3"
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "There Will Be a Reckoning",
+   "kingdom": null,
+   "code": "10A0429",
+   "symbol": "weapon",
+   "text": "Add the You Died Horribly Judicium to the Judicium deck.",
+   "marker": {
+    "coord": "H3"
+   },
+   "unclear": [],
+   "ops": null
+  }
+ ],
+ "judicium": [
+  {
+   "name": "You Live!",
+   "code": "10A0444",
+   "symbol": "cross",
+   "death": false,
+   "flavor": "Against all odds, you survive.",
+   "text": "",
+   "massivePerilThreshold": null,
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "You Died",
+   "code": "10A0445",
+   "symbol": "weapon",
+   "death": true,
+   "flavor": "Memento mori.",
+   "text": "",
+   "massivePerilThreshold": null,
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "You Died Horribly",
+   "code": "10A0446",
+   "symbol": "weapon",
+   "death": true,
+   "flavor": null,
+   "text": "Add this card to the Judicium deck if your [Vigor] would drop to -5 below 0.",
+   "massivePerilThreshold": -5,
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Your Gruesome Death Becomes Legend",
+   "code": "10A0447",
+   "symbol": "weapon",
+   "death": true,
+   "flavor": null,
+   "text": "Add this card to the Judicium deck if your [Vigor] would drop to -9 below 0.",
+   "massivePerilThreshold": -9,
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Your Death Beckons the Graal",
+   "code": "10A0448",
+   "symbol": "weapon",
+   "death": true,
+   "flavor": null,
+   "text": "Add this card to the Judicium deck if your [Vigor] would drop to -12 below 0.",
+   "massivePerilThreshold": -12,
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Your Death Becomes a Dragon's Sacrament",
+   "code": "10A0449",
+   "symbol": "weapon",
+   "death": true,
+   "flavor": "Come not between the Dragon and his wrath.",
+   "text": "",
+   "massivePerilThreshold": null,
+   "unclear": [
+    "No threshold / rules text printed on the card - only the flavor quote. Presumably added by a campaign/story effect rather than a Vigor threshold."
+   ],
+   "ops": null
+  }
+ ]
+}

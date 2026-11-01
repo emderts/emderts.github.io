@@ -1,0 +1,219 @@
+{
+ "_source": "Terrain cards (15). keywords per rulebook p.66 + Keyword List.",
+ "iconLegend": {
+  "[Heat]": "blue square H icon",
+  "[Vigor]": "red square V icon",
+  "[Passion]": "green square P icon",
+  "[Speed]": "running-boot glyph",
+  "[Blood]": "black drop token",
+  "[Attack die]": "black d-shaped attack die",
+  "[Gear]": "pouch/bag gear icon",
+  "[Armor token]": "breastplate icon",
+  "[Fire]": "Fire token glyph",
+  "[Tenacity]": "spiral/ram-horn Virtue icon",
+  "[Move+Attack action]": "wide black box with figure, plus sign and sword"
+ },
+ "terrain": [
+  {
+   "name": "Ruined Wall",
+   "sizes": [
+    "1x4",
+    "L"
+   ],
+   "keywords": [
+    "Destructible",
+    "Obscuring",
+    "Obstacle"
+   ],
+   "text": "Destructible. Obscuring. Obstacle.\nWhen this tile is destroyed, it turns into a Rubble Terrain tile.",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Rubble",
+   "sizes": [
+    "1x4",
+    "L",
+    "2x2"
+   ],
+   "keywords": [
+    "Difficult Terrain"
+   ],
+   "text": "Difficult Terrain.\nWhen a Knight is involuntarily moved onto this tile, they suffer Knockdown.",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Column",
+   "sizes": [
+    "1x1"
+   ],
+   "keywords": [
+    "Destructible",
+    "Obscuring",
+    "Obstacle"
+   ],
+   "text": "Destructible. Obscuring. Obstacle.",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Paleburrow",
+   "sizes": [
+    "1x1"
+   ],
+   "keywords": [
+    "Chasm",
+    "Obscuring"
+   ],
+   "text": "Chasm. Obscuring.\nWhen you are adjacent to this tile you may discard 1 Blood [Blood] token to lure out a Paleblood Worm that is not currently on the Board. If you do, place it on this tile.",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Rut",
+   "sizes": [
+    "1x2",
+    "2x2"
+   ],
+   "keywords": [
+    "Indestructible"
+   ],
+   "text": "Indestructible.\nIf at any point of your Attack you are on this tile, your active Weapon gains Cumbersome for that Attack.\nWhen a Monster moves onto this tile, flip it.",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Swamp",
+   "sizes": [
+    "1x2",
+    "2x2"
+   ],
+   "keywords": [
+    "Difficult Terrain"
+   ],
+   "text": "Difficult Terrain.\nIf you end your movement on this tile (voluntary or not), you die.\nWhen you move through this tile, roll a [Attack die], adding +1 to the result for every Armor die on your Armor [Gear] cards. If the result is higher than your current [Vigor], you die.\nWhen a Squire moves through or ends their movement on this tile, they die.",
+   "unclear": [
+    "Die icon after 'roll a' is the black d-shaped die (read as Attack die)."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Primal Remnant",
+   "sizes": [
+    "1x1"
+   ],
+   "keywords": [
+    "Indestructible",
+    "Obstacle"
+   ],
+   "text": "Indestructible. Obstacle.\nThis tile always maintains adjacency to the Dragon. When the Dragon finishes its movement, move this tile along the shortest path to maintain a relative position. If you can't, immediately Remnant Move 4.\nWhen this tile moves through or ends its movement on a Knight, that Knight dies.\nWhen this tile moves through an Armor [Armor token] token, place it on the Primal Remnant Trait card.",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Campfire",
+   "sizes": [
+    "2x2"
+   ],
+   "keywords": [
+    "Indestructible"
+   ],
+   "text": "Indestructible.\nIf you're adjacent to this tile, as a free action, you may gain +X [Heat] to place X Fire [Fire] tokens in the Knight Pool.\nWhen a Knight moves through, ends their movement, or starts their turn on this tile and doesn't move until the end of turn, they lose -1 [Vigor] for every Metal [Gear] card they have and discard all their Flammable [Gear] cards.",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Great Mangrove",
+   "sizes": [
+    "2x2"
+   ],
+   "keywords": [
+    "Indestructible",
+    "Obscuring",
+    "Obstacle"
+   ],
+   "text": "Indestructible. Obscuring. Obstacle.",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Loose String",
+   "sizes": [
+    "1x1"
+   ],
+   "keywords": [
+    "Destructible"
+   ],
+   "text": "Destructible.\nWhen you end your movement on this tile, immediately place your miniature on the VP and remove this tile.",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Bloodgeyser",
+   "sizes": [
+    "3x3"
+   ],
+   "keywords": [],
+   "text": "When a Paleblood Worm starts or ends its movement on this tile, place 1 Blood [Blood] token on its BP.\nWhen a Knight starts or ends their movement on this tile, they discard the amount of Blood [Blood] tokens equal to their [Passion].",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Slimy Throne",
+   "sizes": [
+    "1x1"
+   ],
+   "keywords": [
+    "Indestructible"
+   ],
+   "text": "Indestructible.\nTreat this tile as a Blindspot.\nIf you are on this tile, as a free action, you may test Tenacity [Tenacity] (4+) to command the Throne to jump.\nSuccess: The Throne listens to your command! Place this tile and your miniature on a chosen empty space without a Terrain tile.\nFail: Gain the Slimed Condition card.",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Bottomless Well",
+   "sizes": [
+    "2x2"
+   ],
+   "keywords": [
+    "Chasm",
+    "Indestructible"
+   ],
+   "text": "Chasm. Indestructible.",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Rotten Stump",
+   "sizes": [
+    "2x2"
+   ],
+   "keywords": [
+    "Obstacle",
+    "Destructible"
+   ],
+   "text": "Obstacle. Destructible.\nSearch: If you're adjacent to a Rotten Stump Terrain tile, as a free action, you may roll a [Attack die]. You may gain +X [Heat] to add +X to your result:\n1-2: Gain the Slimed Condition card.\n3-4: You may place your Knight on an empty space adjacent to another Rotten Stump tile. Gain the Slimed Condition card.\n5-10: You may place your Knight on an empty space adjacent to another Rotten Stump tile. If the Bog Witch is not on the Clash Board, you may place the Bog Witch on this Rotten Stump tile instead.\nEach Rotten Stump may be Searched once per Round.",
+   "unclear": [
+    "Die icon after 'roll a' is the black d-shaped die (read as Attack die)."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Tower",
+   "sizes": [
+    "2x2"
+   ],
+   "keywords": [
+    "Destructible",
+    "Obscuring",
+    "Obstacle"
+   ],
+   "text": "Destructible. Obscuring. Obstacle.\nWhen this tile is destroyed, it turns into a Rubble Terrain tile.\nWhen you are about to be involuntarily moved from this tile, suffer Crash and ignore all Obstacles during this movement.\n[Move+Attack action] Lunging Attack: If you're on a Tower, move up to your Speed [Speed] in a straight line until adjacent to a Monster and attack it. If your Attack hits, immediately move to the VP. Otherwise, suffer Knockdown.",
+   "unclear": [
+    "Icon before 'Lunging Attack' is a wide black box with two glyphs and a plus sign (read as Move+Attack action, matching the gear-card convention)."
+   ],
+   "ops": null
+  }
+ ]
+}
