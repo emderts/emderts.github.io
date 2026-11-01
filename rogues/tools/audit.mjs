@@ -5,6 +5,7 @@ import path from 'path';
 const rd = p => JSON.parse(fs.readFileSync(p, 'utf8'));
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const T = rd('data/rosegraal/monster_tables.json'), M = rd('data/rosegraal/map.json'), R = rd('data/rosegraal/rewards.json'), meta = rd('data/meta.json');
+const E = rd('data/monsters/eggknight.json');
 const K = rd('data/knights/fleischritter.json'), PA = rd('data/knights/peril_arcs.json'), G = rd('data/gear/gear.json'), DICE = rd('data/components/dice.json'), BOARD = rd('data/components/board.json');
 const unc = arr => arr && arr.length ? `<div class="warn small">⚠ ${arr.map(esc).join(' · ')}</div>` : '';
 const sec = [];
@@ -64,12 +65,24 @@ sec.push(`<section id="gear"><h2>6. Gear (${G.gear.length})</h2>
 <p class="impl">데이터: <code>data/gear/gear.json</code> — 시작 장비 2 + Rosegraal 보상 Gear 35(7기사×5) + Laxlaw 뒷면 · 구현: 장비 슬롯/스탯 → <code>knight.js</code>(슬롯 예정), 능력 텍스트 → <code>effects.js</code>(예정)</p>
 <table><tr><th>이름</th><th>기사</th><th>종류</th><th>티어</th><th>공격</th><th>방어</th><th>텍스트</th></tr>${G.gear.map(g => `<tr><td><b>${esc(g.name)}</b>${g.merchant ? ` <span class="small">(상점 ${g.price}G)</span>` : ''}</td><td>${g.knight || '-'}</td><td>${g.type}${g.hands ? ' ' + g.hands + 'H' : ''}</td><td>${g.tier}</td><td>${g.attackDice != null ? `⚔${g.attackDice} +${g.precision} ` : ''}${g.weaponPower ? esc(JSON.stringify(g.weaponPower)) : ''} ${g.bonusPower ? 'bonus ' + esc(JSON.stringify(g.bonusPower)) : ''}</td><td>${g.evasion != null ? 'Eva+' + g.evasion + ' ' : ''}${g.evasionReroll ? 'ER' + g.evasionReroll + ' ' : ''}${g.armorDice ? 'Armor ' + esc(JSON.stringify(g.armorDice)) : ''}</td><td>${esc(g.text).replace(/\n/g, '<br>')}${unc(g.unclear)}</td></tr>`).join('')}</table></section>`);
 
+// 7. Eggknight
+const aiRow = c => `<tr><td>${c.level ?? 'Sig'}</td><td><b>${esc(c.name)}</b><br><span class="small">${c.type}${c.zone && c.zone.cells ? ' (앞 2칸)' : ''}</span></td><td>${c.evasionDice}d ${c.evasionDifficulty}+</td><td>${c.targeting.map(esc).join('<br>')}</td><td>${c.move ? 'Move & Attack' : 'Attack'}<br>${c.gates.map(g => `<span class="warn">[${g.stat} ${g.gte}+ ▸ ${esc(g.effect)}]</span>`).join('<br>')}</td><td>${(c.keywordsBeforeAttack || []).map(esc).join(' ')} ${c.effects.map(esc).join('<br>')}</td><td>${c.afterAttack ? 'AA: ' + esc(c.afterAttack) : ''}${c.afterFinalAttack ? 'AFA: ' + esc(c.afterFinalAttack) : ''}</td><td class="small">${c.react.map(esc).join('<br>')}${unc(c.unclear)}</td></tr>`;
+const bpRow = c => `<tr><td>${c.level}</td><td><b>${esc(c.name)}</b></td><td>${c.at}</td><td>Overcome ${c.overcome.n}+: ${esc(c.overcome.effect)}</td>${['wound', 'fail', 'instinct', 'critical'].map(k => `<td>${c.responses[k] ? esc(c.responses[k]) : ''}</td>`).join('')}<td class="small">${c.react.map(esc).join('<br>')}${unc(c.unclear)}</td></tr>`;
+sec.push(`<section id="eggknight"><h2>7. Eggknight — Monster Sheet · AI/BP · Signature · Routine</h2>
+<p class="impl">데이터: <code>data/monsters/eggknight.json</code> · 구현: 레벨 스탯/덱/Escalation Chart → <code>monster.js</code> ✔ (<code>test/monster.mjs</code>), Trait·AI·BP 효과 → <code>effects.js</code>(예정, ops 미작성) · 테스트: <code>test/eggknight.mjs</code></p>
+<p>Footprint ${E.footprint.shape}, Rear/Blindspot: ${esc(E.footprint.blindspots)} · Basic: ${E.basicAbilities.map(b => b.name + (b.value ? ' ' + b.value : '')).join(', ')} · <span class="warn">Clash Setup(코덱스) 미입력</span></p>
+<table><tr><th>Lv</th><th>To Hit</th><th>Wounds</th><th>Exh.</th><th>Activations</th><th>보너스</th><th>Trait +</th></tr>${Object.entries(E.levels).map(([l, v]) => `<tr><td>${l}</td><td>${v.toHit}+</td><td>${v.wounds}</td><td>${v.exhibitionWounds}</td><td>${v.activations.join(',')}</td><td>${Object.entries(v.bonuses).map(([k, n]) => `${k} +${n}`).join(', ')}</td><td>${v.traitsAdd.join(', ')}</td></tr>`).join('')}</table>
+<h3>Traits</h3><table><tr><th>Lv</th><th>Trait</th><th>텍스트</th></tr>${E.traits.map(t => `<tr><td>${t.level}</td><td><b>${esc(t.name)}</b></td><td>${esc(t.text)}${unc(t.unclear ? [t.unclear] : [])}${t.setup && t.setup.unclear ? unc([t.setup.unclear]) : ''}</td></tr>`).join('')}</table>
+<h3>AI 카드 (18) + Signature</h3><table><tr><th>Lv</th><th>이름</th><th>회피</th><th>Targeting</th><th>이동/게이트</th><th>효과</th><th>After</th><th>REACT!</th></tr>${[...E.cards.ai, E.cards.signature].map(aiRow).join('')}</table>
+<h3>BP 카드 (18)</h3><table><tr><th>Lv</th><th>이름</th><th>AT</th><th>Overcome</th><th>Wound</th><th>Fail</th><th>Instinct</th><th>Critical</th><th>REACT!</th></tr>${E.cards.bp.map(bpRow).join('')}</table>
+<p><b>Routine — ${esc(E.cards.routine.name)}</b>: ${E.cards.routine.effects.map(esc).join(' ')}</p></section>`);
+
 const html = `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>KF Rogue's Path — 데이터·규칙 오딧</title>
 <style>body{margin:0;padding:16px;font:14px/1.5 system-ui,sans-serif;background:#1a1714;color:#e8dcc8;max-width:1400px}h1{color:#c9a85a;font-size:22px}h2{color:#c9a85a;margin-top:28px;border-bottom:1px solid #3a3128}h3{color:#d9c89a;margin:16px 0 6px}
 table{border-collapse:collapse;width:100%;font-size:13px}td,th{border:1px solid #3a3128;padding:4px 6px;vertical-align:top;text-align:left}th{background:#26211b}code{background:#2a241d;padding:1px 5px;border-radius:4px;color:#f0d9a0}
 .impl{background:#26211b;padding:8px 10px;border-left:3px solid #c9a85a;border-radius:4px}.small{font-size:12px;color:#998b76}.warn{color:#d9a441}details summary{cursor:pointer;color:#c9a85a}table.rw td{min-width:120px}nav a{color:#c9a85a;margin-right:12px}</style></head><body>
 <h1>Kingdoms Forlorn — Rogue's Path: 데이터·규칙 오딧</h1><p class="small">v${meta.version} · 생성 ${new Date().toISOString().slice(0, 16).replace('T', ' ')} UTC · 각 섹션: 전사 데이터 ↔ 엔진 구현 ↔ 테스트. 전사 불확실 항목은 노란색.</p>
-<nav><a href="#monsters">몬스터 표</a><a href="#map">Rosegraal 지도</a><a href="#rewards">Rewards</a><a href="#components">구성물</a><a href="#fleischritter">Fleischritter</a><a href="#gear">Gear</a></nav>
+<nav><a href="#monsters">몬스터 표</a><a href="#map">Rosegraal 지도</a><a href="#rewards">Rewards</a><a href="#components">구성물</a><a href="#fleischritter">Fleischritter</a><a href="#gear">Gear</a><a href="#eggknight">Eggknight</a></nav>
 ${sec.join('\n')}
 </body></html>`;
 fs.mkdirSync('docs/audit', { recursive: true }); fs.writeFileSync('docs/audit/index.html', html);

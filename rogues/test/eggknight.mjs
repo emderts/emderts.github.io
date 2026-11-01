@@ -1,0 +1,19 @@
+// Eggknight data integrity (sheet + 37 cards).
+import fs from 'fs';
+const rd = p => JSON.parse(fs.readFileSync(new URL(p, import.meta.url)));
+const E = rd('../data/monsters/eggknight.json'); const T = rd('../data/rosegraal/monster_tables.json');
+let fails = 0; const ok = (c, m) => { if (!c) fails++; console.log((c ? 'PASS ' : 'FAIL ') + m); };
+ok([1, 2, 3].every(l => E.cards.ai.filter(c => c.level === l).length === 6 && E.cards.bp.filter(c => c.level === l).length === 6), '6 AI + 6 BP cards per level');
+ok(E.cards.ai.every(c => c.evasionDice >= 2 && c.evasionDice <= 5 && c.evasionDifficulty >= 7 && c.evasionDifficulty <= 10 && c.targeting.length >= 1), 'AI cards: evasion dice 2–5, difficulty 7–10, targeting lines present');
+ok(E.cards.bp.every(c => c.at >= 2 && c.at <= 7 && c.overcome && Object.keys(c.responses).length === 4), 'BP cards: AT 2–7, Overcome, 4 response slots');
+ok(E.cards.bp.filter(c => c.level === 1).every(c => c.at <= 4) && E.cards.bp.filter(c => c.level === 3).every(c => c.at >= 5), 'AT grows with BP level');
+ok(E.cards.signature && E.cards.signature.afterFinalAttack === 'Humpty Charge.' && E.cards.routine.effects.length === 2, 'Signature + Routine present');
+ok(Object.keys(E.levels).length === 4 && [1, 2, 3, 4].every(l => E.levels[l].toHit && E.levels[l].wounds), 'levels 1–4 with To Hit and Wounds');
+const tableLevels = new Set(Object.values(T.levels).flatMap(k => [...k.principality, ...k.sunken]).filter(r => r.monster === 'eggknight').map(r => r.level));
+ok([...tableLevels].every(l => E.levels[l]), `every Eggknight level used by the node tables (${[...tableLevels].sort().join(',')}) exists on the sheet`);
+const traitNames = new Set(E.traits.map(t => t.name));
+ok(Object.values(E.levels).flatMap(l => l.traitsAdd).every(n => traitNames.has(n)), 'every level trait has a trait entry');
+const mentioned = [...E.cards.ai, ...E.cards.bp].flatMap(c => [...(c.effects || []), ...Object.values(c.responses || {}), c.afterAttack, c.afterFinalAttack]).filter(Boolean).join(' ');
+ok(/Humpty Charge/.test(mentioned) && /Signature/.test(mentioned), 'cards reference Humpty Charge and Signature (trait hooks needed)');
+console.log('INFO keywords used on cards:', [...new Set((mentioned.match(/\b(Cooldown|Discard|Restrain|Choke \d|Knockdown|Pushback \d|Distracted|Bonus Attack|Judicium|Single Wound)\b/g) || []))].join(', '));
+console.log(fails ? `${fails} FAIL` : 'ALL PASS'); process.exit(fails ? 1 : 0);

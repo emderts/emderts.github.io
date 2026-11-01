@@ -1,0 +1,1479 @@
+{
+ "id": "eggknight",
+ "name": "Eggknight",
+ "_source": "Eggknight Monster Sheet (both halves, code 26A1061) + card sheet. Clash Setup (board diagram, terrain, starting positions) is in the Principality of Stone Codex — NOT yet provided.",
+ "kind": "boss",
+ "traitsLine": [
+  "Vassal",
+  "Knight",
+  "Egg"
+ ],
+ "footprint": {
+  "size": 4,
+  "shape": "2x2",
+  "rear": "the 2 cells directly behind the footprint",
+  "blindspots": "both rear cells (R + eye)",
+  "facingOnSheet": "down"
+ },
+ "basicAbilities": [
+  {
+   "name": "Unavoidable Knockback",
+   "value": 5
+  },
+  {
+   "name": "Blindspot"
+  }
+ ],
+ "levels": {
+  "1": {
+   "toHit": 6,
+   "wounds": 8,
+   "exhibitionWounds": 2,
+   "activations": [
+    "AI"
+   ],
+   "bonuses": {},
+   "traitsAdd": [
+    "Humpty Charge",
+    "Humpty Fate",
+    "Counter",
+    "Panzeronion"
+   ],
+   "traitsRemove": []
+  },
+  "2": {
+   "toHit": 7,
+   "wounds": 10,
+   "exhibitionWounds": 4,
+   "activations": [
+    "AI"
+   ],
+   "bonuses": {
+    "at": 2
+   },
+   "traitsAdd": [
+    "Hardboiled",
+    "Egged On",
+    "Jacked"
+   ],
+   "traitsRemove": []
+  },
+  "3": {
+   "toHit": 9,
+   "wounds": 10,
+   "exhibitionWounds": 4,
+   "activations": [
+    "AI"
+   ],
+   "bonuses": {
+    "escalations": 1,
+    "at": 4,
+    "vigorLoss": 1
+   },
+   "traitsAdd": [
+    "Just a Scratch",
+    "Coup de Grace"
+   ],
+   "traitsRemove": []
+  },
+  "4": {
+   "toHit": 11,
+   "wounds": 10,
+   "exhibitionWounds": 4,
+   "activations": [
+    "AI"
+   ],
+   "bonuses": {
+    "escalations": 1,
+    "at": 6,
+    "vigorLoss": 2
+   },
+   "traitsAdd": [
+    "Impenetrable Shell"
+   ],
+   "traitsRemove": []
+  }
+ },
+ "levelsNote": "Level box: To Hit, Wounds, Exhibition Wounds, Activations. Blue bonus row icons: starburst-with-arrow = Escalations at start of Clash (rulebook p.46), ribcage = AT bonus, V = Vigor Loss bonus.",
+ "signatureRef": "Sword Cut (Zone Signature)",
+ "routineRef": "Hard-Boiled",
+ "traits": [
+  {
+   "id": "humpty-charge",
+   "name": "Humpty Charge",
+   "level": 1,
+   "text": "Humpty Charge: The Eggknight turns to face the Attacker (if any), and moves forward 6 spaces in a straight line, then turns to face the most Knights. Humpty Charge causes Crash. If the Eggknight moves through or ends its movement on a knocked down Knight, that Knight ignores the Crash and draws a Judicium instead. If, during Humpty Charge, the Eggknight moves onto an Obstacle, it immediately stops, turns to face the most Knights and discards an Armor token from the lowest BP Level with Armor token."
+  },
+  {
+   "id": "humpty-fate",
+   "name": "Humpty Fate",
+   "level": 1,
+   "text": "If, during Humpty Charge, the Eggknight is about to move into a Board Edge, it immediately stops, turns to face the most Knights and discards an Armor token from the lowest BP Level with Armor token."
+  },
+  {
+   "id": "counter",
+   "name": "Counter",
+   "level": 1,
+   "text": "Each time the Eggknight is dealt a Wound (a Double Wound is treated as 2 Wounds), place a Generic token on this Trait. When you finish resolving the current action, if there are 3 or more Generic tokens on this Trait, discard all Generic tokens and perform Signature."
+  },
+  {
+   "id": "panzeronion",
+   "name": "Panzeronion",
+   "level": 1,
+   "text": "Each BP Level has its own corresponding space on the Sheet. Each Armor token on that space increases AT of the corresponding BP cards by 1. Whenever the Eggknight loses Armor token as a result of Humpty Charge, draw the top Grave Mortis card and place a Column Terrain tile on the Board on a space designated by the coordinates on it. Additional Setup: Place a number of Armor tokens on this Trait denoted on the BP spaces below. Level 2+: Place 1 additional Armor token on each BP Level.",
+   "setup": {
+    "armorTokens": {
+     "bp1": null,
+     "bp2": null,
+     "bp3": null
+    },
+    "unclear": "BP 1/2/3 칸에 시작 Armor 토큰 수가 인쇄되어 있지 않음(사진) — 코덱스 Clash Setup 또는 레벨별 지시에 있을 가능성. 확인 필요"
+   }
+  },
+  {
+   "id": "hardboiled",
+   "name": "Hardboiled",
+   "level": 2,
+   "text": "Disable the Humpty Fate Trait. When Eggknight moves into a Board Edge during Humpty Charge, instead of stopping, it turns to face the most Knights and continues movement in that direction."
+  },
+  {
+   "id": "egged-on",
+   "name": "Egged On",
+   "level": 2,
+   "text": "All Eggknight Zone Attacks without an After Final Attack gain \"[Peril Check?] After Final Attack: Humpty Charge.\"",
+   "unclear": "따옴표 앞 아이콘(검은 이빨 모양) 판독 필요 — REACT 창 아이콘일 수 있음"
+  },
+  {
+   "id": "jacked",
+   "name": "Jacked",
+   "level": 2,
+   "text": "Place discarded Armor tokens on this Trait, and apply the following penalties based on the number of tokens: 2+: Evasion Roll difficulty +1. 5+: Monster Attacks gain +1 [Evasion die]. 9+: Monster Attacks additionally cause -3 [Vigor] loss. You cannot discard Armor tokens from this Trait by any means."
+  },
+  {
+   "id": "just-a-scratch",
+   "name": "Just a Scratch",
+   "level": 3,
+   "text": "Humpty Charge doesn't stop when moving onto Obstacles. The Eggknight can discard up to one Armor token during each Humpty Charge."
+  },
+  {
+   "id": "coup-de-grace",
+   "name": "Coup de Grace",
+   "level": 3,
+   "text": "If a knocked down Knight would draw a Judicium, they die instead."
+  },
+  {
+   "id": "impenetrable-shell",
+   "name": "Impenetrable Shell",
+   "level": 4,
+   "text": "Each BP that has an Armor token on a corresponding space on the Sheet gains \"Ultrainstinct: If you are on the Eggknight's front space, Knockback 1.\""
+  }
+ ],
+ "cards": {
+  "ai": [
+   {
+    "name": "Knightslap",
+    "level": 1,
+    "type": "melee",
+    "evasionDice": 3,
+    "evasionDifficulty": 9,
+    "zone": null,
+    "targeting": [
+     "Priority Target",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "move": true,
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "Pushback 2"
+     }
+    ],
+    "keywordsBeforeAttack": [],
+    "effects": [
+     "Cooldown.",
+     "For each hit lose -1 [Vigor]. [Peril Check].",
+     "Knockdown."
+    ],
+    "react": [
+     "after targeting",
+     "after 'For each hit lose -1 [Vigor]. [Peril Check].'"
+    ],
+    "afterAttack": null,
+    "afterFinalAttack": null,
+    "unclear": [],
+    "ops": null
+   },
+   {
+    "name": "Humpty Squat",
+    "level": 1,
+    "type": "zone",
+    "evasionDice": 2,
+    "evasionDifficulty": 7,
+    "zone": {
+     "facing": null,
+     "grid": null,
+     "monsterCells": null,
+     "cells": null,
+     "note": "No grid diagram on card; zone defined by targeting line 'Zone 1'."
+    },
+    "targeting": [
+     "Zone 1"
+    ],
+    "move": false,
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [Evasion die]"
+     }
+    ],
+    "keywordsBeforeAttack": [],
+    "effects": [
+     "Cooldown.",
+     "For each hit lose -2 [Vigor]. [Peril Check].",
+     "Knockdown."
+    ],
+    "react": [
+     "after targeting",
+     "after 'For each hit lose -2 [Vigor]. [Peril Check].'"
+    ],
+    "afterAttack": null,
+    "afterFinalAttack": null,
+    "unclear": [],
+    "ops": null
+   },
+   {
+    "name": "Backslash",
+    "level": 1,
+    "type": "zone",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "zone": {
+     "facing": "right",
+     "grid": [
+      5,
+      4
+     ],
+     "origin": "top-left cell of the 2x2 monster block = (0,0); +x right, +y down",
+     "monsterCells": [
+      [
+       0,
+       0
+      ],
+      [
+       1,
+       0
+      ],
+      [
+       0,
+       1
+      ],
+      [
+       1,
+       1
+      ]
+     ],
+     "cells": [
+      [
+       2,
+       0
+      ],
+      [
+       2,
+       1
+      ]
+     ],
+     "note": "Eggknight occupies a 2x2 block; the two red cells are the spaces directly in front of (to the right of) both monster rows."
+    },
+    "targeting": [
+     "Knight in Blindspot",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "move": true,
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "Lose -2 [Vigor] instead."
+     }
+    ],
+    "keywordsBeforeAttack": [
+     "Choke 3"
+    ],
+    "effects": [
+     "For each hit lose -1 [Vigor]. [Peril Check]."
+    ],
+    "react": [
+     "after targeting"
+    ],
+    "afterAttack": null,
+    "afterFinalAttack": null,
+    "unclear": [],
+    "ops": null
+   },
+   {
+    "name": "Double Slash",
+    "level": 1,
+    "type": "melee",
+    "evasionDice": 2,
+    "evasionDifficulty": 9,
+    "zone": null,
+    "targeting": [
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "move": true,
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "Lose -2 [Vigor] instead"
+     }
+    ],
+    "keywordsBeforeAttack": [],
+    "effects": [
+     "For each hit lose -1 [Vigor]. [Peril Check]."
+    ],
+    "react": [
+     "after targeting",
+     "after 'For each hit lose -1 [Vigor]. [Peril Check].'"
+    ],
+    "afterAttack": "Perform Signature.",
+    "afterFinalAttack": null,
+    "unclear": [],
+    "ops": null
+   },
+   {
+    "name": "Sword Thrust",
+    "level": 1,
+    "type": "zone",
+    "evasionDice": 2,
+    "evasionDifficulty": 8,
+    "zone": {
+     "facing": null,
+     "grid": null,
+     "monsterCells": null,
+     "cells": null,
+     "note": "No grid diagram on card; zone defined by targeting line '... and 1 space behind Target'."
+    },
+    "targeting": [
+     "Closest Knight in front and 1 space behind Target",
+     "Closest Knight in sight and 1 space behind Target"
+    ],
+    "move": true,
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [Evasion die]"
+     }
+    ],
+    "keywordsBeforeAttack": [],
+    "effects": [
+     "For each hit lose -2 [Vigor]. [Peril Check]."
+    ],
+    "react": [
+     "after targeting"
+    ],
+    "afterAttack": null,
+    "afterFinalAttack": null,
+    "unclear": [],
+    "ops": null
+   },
+   {
+    "name": "Sword Slash",
+    "level": 1,
+    "type": "zone",
+    "evasionDice": 3,
+    "evasionDifficulty": 9,
+    "zone": {
+     "facing": "right",
+     "grid": [
+      5,
+      4
+     ],
+     "origin": "top-left cell of the 2x2 monster block = (0,0); +x right, +y down",
+     "monsterCells": [
+      [
+       0,
+       0
+      ],
+      [
+       1,
+       0
+      ],
+      [
+       0,
+       1
+      ],
+      [
+       1,
+       1
+      ]
+     ],
+     "cells": [
+      [
+       2,
+       0
+      ],
+      [
+       2,
+       1
+      ]
+     ],
+     "note": "Eggknight occupies a 2x2 block; the two red cells are the spaces directly in front of (to the right of) both monster rows."
+    },
+    "targeting": [
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "move": true,
+    "gates": [],
+    "keywordsBeforeAttack": [],
+    "effects": [
+     "For each hit lose -1 [Vigor]. [Peril Check]."
+    ],
+    "react": [
+     "after targeting"
+    ],
+    "afterAttack": null,
+    "afterFinalAttack": null,
+    "unclear": [],
+    "ops": null
+   },
+   {
+    "name": "Flurry of Slashes",
+    "level": 2,
+    "type": "zone",
+    "evasionDice": 3,
+    "evasionDifficulty": 7,
+    "zone": {
+     "facing": "right",
+     "grid": [
+      5,
+      4
+     ],
+     "origin": "top-left cell of the 2x2 monster block = (0,0); +x right, +y down",
+     "monsterCells": [
+      [
+       0,
+       0
+      ],
+      [
+       1,
+       0
+      ],
+      [
+       0,
+       1
+      ],
+      [
+       1,
+       1
+      ]
+     ],
+     "cells": [
+      [
+       2,
+       0
+      ],
+      [
+       2,
+       1
+      ]
+     ],
+     "note": "Eggknight occupies a 2x2 block; the two red cells are the spaces directly in front of (to the right of) both monster rows."
+    },
+    "targeting": [
+     "Priority Target",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "move": true,
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [Evasion die]"
+     }
+    ],
+    "keywordsBeforeAttack": [],
+    "effects": [
+     "For each hit lose -1 [Vigor]. [Peril Check]."
+    ],
+    "react": [
+     "after targeting",
+     "after 'For each hit lose -1 [Vigor]. [Peril Check].'"
+    ],
+    "afterAttack": null,
+    "afterFinalAttack": "If [Vigor] was lost, immediately repeat Flurry of Slashes (once).",
+    "unclear": [],
+    "ops": null
+   },
+   {
+    "name": "Eggbutt",
+    "level": 2,
+    "type": "melee",
+    "evasionDice": 2,
+    "evasionDifficulty": 9,
+    "zone": null,
+    "targeting": [
+     "Knight in Blindspot",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "move": true,
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "Lose -2 [Vigor] instead"
+     }
+    ],
+    "keywordsBeforeAttack": [],
+    "effects": [
+     "Discard and Restrain.",
+     "For each hit lose -1 [Vigor]. [Peril Check].",
+     "Knockdown."
+    ],
+    "react": [
+     "after targeting",
+     "after 'For each hit lose -1 [Vigor]. [Peril Check].'",
+     "after 'Knockdown.'"
+    ],
+    "afterAttack": "Humpty Charge.",
+    "afterFinalAttack": null,
+    "unclear": [],
+    "ops": null
+   },
+   {
+    "name": "Poached Knight",
+    "level": 2,
+    "type": "melee",
+    "evasionDice": 4,
+    "evasionDifficulty": 9,
+    "zone": null,
+    "targeting": [
+     "Priority Target",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "move": true,
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "Lose -2 [Vigor] instead"
+     }
+    ],
+    "keywordsBeforeAttack": [],
+    "effects": [
+     "Pushback 2.",
+     "For each hit, in order: Cooldown, Restrain, Choke 3.",
+     "For each hit lose -1 [Vigor]. [Peril Check]."
+    ],
+    "react": [
+     "after targeting",
+     "after 'For each hit lose -1 [Vigor]. [Peril Check].'"
+    ],
+    "afterAttack": "Humpty Charge.",
+    "afterFinalAttack": null,
+    "unclear": [],
+    "ops": null
+   },
+   {
+    "name": "Humpty Shake",
+    "level": 2,
+    "type": "zone",
+    "evasionDice": 2,
+    "evasionDifficulty": 8,
+    "zone": {
+     "facing": null,
+     "grid": null,
+     "monsterCells": null,
+     "cells": null,
+     "note": "No grid diagram on card; zone defined by targeting line 'Zone 1'."
+    },
+    "targeting": [
+     "Zone 1"
+    ],
+    "move": false,
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [Evasion die]"
+     }
+    ],
+    "keywordsBeforeAttack": [],
+    "effects": [
+     "Discard.",
+     "For each hit lose -1 [Vigor]. [Peril Check].",
+     "Knockdown."
+    ],
+    "react": [
+     "after targeting",
+     "after 'For each hit lose -1 [Vigor]. [Peril Check].'"
+    ],
+    "afterAttack": null,
+    "afterFinalAttack": null,
+    "unclear": [],
+    "ops": null
+   },
+   {
+    "name": "Knightscramble",
+    "level": 2,
+    "type": "melee",
+    "evasionDice": 2,
+    "evasionDifficulty": 9,
+    "zone": null,
+    "targeting": [
+     "Priority Target",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "move": true,
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "Pushback 3"
+     }
+    ],
+    "keywordsBeforeAttack": [],
+    "effects": [
+     "Cooldown and Restrain.",
+     "For each hit lose -2 [Vigor]. [Peril Check].",
+     "Knockdown."
+    ],
+    "react": [
+     "after targeting",
+     "after 'For each hit lose -2 [Vigor]. [Peril Check].'",
+     "after 'Knockdown.'"
+    ],
+    "afterAttack": "Humpty Charge.",
+    "afterFinalAttack": null,
+    "unclear": [],
+    "ops": null
+   },
+   {
+    "name": "Backthrust",
+    "level": 2,
+    "type": "zone",
+    "evasionDice": 3,
+    "evasionDifficulty": 10,
+    "zone": {
+     "facing": null,
+     "grid": null,
+     "monsterCells": null,
+     "cells": null,
+     "note": "No grid diagram on card; zone defined by targeting line '... and 1 space behind Target'."
+    },
+    "targeting": [
+     "Knight in Blindspot and 1 space behind Target",
+     "Closest Knight in front and 1 space behind Target",
+     "Closest Knight in sight and 1 space behind Target"
+    ],
+    "move": true,
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 4,
+      "effect": "Lose -2 [Vigor] instead."
+     }
+    ],
+    "keywordsBeforeAttack": [
+     "Choke 3"
+    ],
+    "effects": [
+     "For each hit lose -1 [Vigor]. [Peril Check]."
+    ],
+    "react": [
+     "after targeting"
+    ],
+    "afterAttack": null,
+    "afterFinalAttack": null,
+    "unclear": [],
+    "ops": null
+   },
+   {
+    "name": "Insidious Thrust",
+    "level": 3,
+    "type": "zone",
+    "evasionDice": 2,
+    "evasionDifficulty": 10,
+    "zone": {
+     "facing": null,
+     "grid": null,
+     "monsterCells": null,
+     "cells": null,
+     "note": "No grid diagram on card; zone defined by targeting line '... and 1 space behind Target'."
+    },
+    "targeting": [
+     "Knight in Blindspot and 1 space behind Target",
+     "Closest Knight in front and 1 space behind Target",
+     "Closest Knight in sight and 1 space behind Target"
+    ],
+    "move": true,
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "Discard",
+      "attachedTo": "effects line 3 (in-body gate after 'For each hit lose -2 [Vigor]. [Peril Check].')"
+     }
+    ],
+    "keywordsBeforeAttack": [],
+    "effects": [
+     "Choke 3.",
+     "For each hit lose -2 [Vigor]. [Peril Check].",
+     "[Heat] 3+ ▸ DISCARD",
+     "Knockdown."
+    ],
+    "react": [
+     "after targeting",
+     "after '[Heat] 3+ ▸ DISCARD'"
+    ],
+    "afterAttack": null,
+    "afterFinalAttack": null,
+    "unclear": [],
+    "ops": null
+   },
+   {
+    "name": "Face to Face",
+    "level": 3,
+    "type": "melee",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "zone": null,
+    "targeting": [
+     "Priority Target",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "move": true,
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "Difficulty 9+ instead"
+     }
+    ],
+    "keywordsBeforeAttack": [],
+    "effects": [
+     "Gain the Distracted Condition card.",
+     "Choke 3.",
+     "For each hit lose -2 [Vigor]. [Peril Check].",
+     "Knockdown."
+    ],
+    "react": [
+     "after targeting",
+     "after 'For each hit lose -2 [Vigor]. [Peril Check].'",
+     "after 'Knockdown.'"
+    ],
+    "afterAttack": "Humpty Charge.",
+    "afterFinalAttack": null,
+    "unclear": [],
+    "ops": null
+   },
+   {
+    "name": "Humpty Quake",
+    "level": 3,
+    "type": "zone",
+    "evasionDice": 4,
+    "evasionDifficulty": 9,
+    "zone": {
+     "facing": null,
+     "grid": null,
+     "monsterCells": null,
+     "cells": null,
+     "note": "No grid diagram on card; zone defined by targeting line 'Zone 2'."
+    },
+    "targeting": [
+     "Zone 2"
+    ],
+    "move": false,
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "Lose -2 [Vigor] instead"
+     }
+    ],
+    "keywordsBeforeAttack": [],
+    "effects": [
+     "Discard and Restrain.",
+     "For each hit lose -1 [Vigor]. [Peril Check].",
+     "Knockdown."
+    ],
+    "react": [
+     "after targeting",
+     "after 'For each hit lose -1 [Vigor]. [Peril Check].'",
+     "after 'Knockdown.'"
+    ],
+    "afterAttack": null,
+    "afterFinalAttack": "Perform Signature.",
+    "unclear": [],
+    "ops": null
+   },
+   {
+    "name": "Deviled Egg",
+    "level": 3,
+    "type": "melee",
+    "evasionDice": 5,
+    "evasionDifficulty": 8,
+    "zone": null,
+    "targeting": [
+     "Knight in Blindspot",
+     "Priority Target",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "move": true,
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "Difficulty 9+ instead"
+     }
+    ],
+    "keywordsBeforeAttack": [],
+    "effects": [
+     "Pushback 2.",
+     "For each hit, in order: gain the Distracted Condition card, Cooldown, Restrain, Choke 3, Discard.",
+     "For each hit lose -1 [Vigor]. [Peril Check]."
+    ],
+    "react": [
+     "after targeting",
+     "after 'For each hit lose -1 [Vigor]. [Peril Check].'"
+    ],
+    "afterAttack": "Humpty Charge.",
+    "afterFinalAttack": null,
+    "unclear": [],
+    "ops": null
+   },
+   {
+    "name": "Sword Rend",
+    "level": 3,
+    "type": "zone",
+    "evasionDice": 3,
+    "evasionDifficulty": 9,
+    "zone": {
+     "facing": "right",
+     "grid": [
+      5,
+      4
+     ],
+     "origin": "top-left cell of the 2x2 monster block = (0,0); +x right, +y down",
+     "monsterCells": [
+      [
+       0,
+       0
+      ],
+      [
+       1,
+       0
+      ],
+      [
+       0,
+       1
+      ],
+      [
+       1,
+       1
+      ]
+     ],
+     "cells": [
+      [
+       2,
+       0
+      ],
+      [
+       2,
+       1
+      ]
+     ],
+     "note": "Eggknight occupies a 2x2 block; the two red cells are the spaces directly in front of (to the right of) both monster rows."
+    },
+    "targeting": [
+     "Priority Target",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "move": true,
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [Evasion die]"
+     }
+    ],
+    "keywordsBeforeAttack": [],
+    "effects": [
+     "For each hit lose -2 [Vigor]. [Peril Check]."
+    ],
+    "react": [
+     "after targeting"
+    ],
+    "afterAttack": null,
+    "afterFinalAttack": null,
+    "unclear": [],
+    "ops": null
+   },
+   {
+    "name": "Yolkman Strike",
+    "level": 3,
+    "type": "zone",
+    "evasionDice": 4,
+    "evasionDifficulty": 7,
+    "zone": {
+     "facing": "right",
+     "grid": [
+      5,
+      4
+     ],
+     "origin": "top-left cell of the 2x2 monster block = (0,0); +x right, +y down",
+     "monsterCells": [
+      [
+       0,
+       0
+      ],
+      [
+       1,
+       0
+      ],
+      [
+       0,
+       1
+      ],
+      [
+       1,
+       1
+      ]
+     ],
+     "cells": [
+      [
+       2,
+       0
+      ],
+      [
+       2,
+       1
+      ]
+     ],
+     "note": "Eggknight occupies a 2x2 block; the two red cells are the spaces directly in front of (to the right of) both monster rows."
+    },
+    "targeting": [
+     "Priority Target",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "move": true,
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 6,
+      "effect": "You die",
+      "attachedTo": "effects line 1 ('Pushback 2.')"
+     }
+    ],
+    "keywordsBeforeAttack": [],
+    "effects": [
+     "Pushback 2. [Heat] 6+ ▸ YOU DIE",
+     "For each hit lose -2 [Vigor].",
+     "Draw a Judicium."
+    ],
+    "react": [
+     "after targeting",
+     "after 'Draw a Judicium.'"
+    ],
+    "afterAttack": null,
+    "afterFinalAttack": "The Eggknight moves to the center of the Board, then turns to face the most Knights.",
+    "unclear": [
+     "No Peril Check icon after '-2 [Vigor]' on this card (unlike every other AI card) – read as intentionally absent."
+    ],
+    "ops": null
+   }
+  ],
+  "bp": [
+   {
+    "name": "Left Pauldron",
+    "level": 1,
+    "at": 3,
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "Humpty Charge.",
+     "fail": null,
+     "instinct": null,
+     "critical": "Place a permanent negative AT [AT icon] token on the Eggknight Sheet."
+    },
+    "react": [
+     "on WOUND header"
+    ],
+    "unclear": [],
+    "ops": null
+   },
+   {
+    "name": "Armored Chest",
+    "level": 1,
+    "at": 3,
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": null,
+     "fail": "Knockdown.",
+     "instinct": null,
+     "critical": "Another Knight may perform a Bonus Attack!"
+    },
+    "react": [
+     "on FAIL header"
+    ],
+    "unclear": [],
+    "ops": null
+   },
+   {
+    "name": "Giant Sabaton",
+    "level": 1,
+    "at": 4,
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": null,
+     "fail": "Knockdown.",
+     "instinct": null,
+     "critical": "You may perform a Bonus Attack!"
+    },
+    "react": [
+     "on FAIL header"
+    ],
+    "unclear": [],
+    "ops": null
+   },
+   {
+    "name": "Exposed Back",
+    "level": 1,
+    "at": 2,
+    "overcome": {
+     "n": 2,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": null,
+     "fail": "Humpty Charge.",
+     "instinct": null,
+     "critical": "Gain +2 [Passion]."
+    },
+    "react": [
+     "on FAIL header"
+    ],
+    "unclear": [],
+    "ops": null
+   },
+   {
+    "name": "Beady Eyes",
+    "level": 1,
+    "at": 2,
+    "overcome": {
+     "n": 2,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Humpty Charge.",
+     "critical": "Leave 2 additional Opening [Opening token] and/or Break [Break token] tokens."
+    },
+    "react": [
+     "on INSTINCT header"
+    ],
+    "unclear": [],
+    "ops": null
+   },
+   {
+    "name": "Right Pauldron",
+    "level": 1,
+    "at": 2,
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "Lose -1 [Vigor]. Pushback 2.",
+     "fail": null,
+     "instinct": null,
+     "critical": "Return all Technique cards to your hand. Reset your [Heat]."
+    },
+    "react": [],
+    "unclear": [],
+    "ops": null
+   },
+   {
+    "name": "Plate Gap",
+    "level": 2,
+    "at": 5,
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "Lose -2 [Vigor]. Pushback 3.",
+     "fail": null,
+     "instinct": null,
+     "critical": "You may perform a Bonus Attack!"
+    },
+    "react": [],
+    "unclear": [],
+    "ops": null
+   },
+   {
+    "name": "Armored Belt",
+    "level": 2,
+    "at": 5,
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Humpty Charge.",
+     "critical": "The Eggknight discards 2 Armor [Armor token] tokens from the lowest Level BP (do not count this token loss for the purposes of any Trait)."
+    },
+    "react": [
+     "on INSTINCT header"
+    ],
+    "unclear": [],
+    "ops": null
+   },
+   {
+    "name": "Small Hand",
+    "level": 2,
+    "at": 6,
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": null,
+     "fail": "Humpty Charge.",
+     "instinct": null,
+     "critical": "Disable the Eggknight's Cooldown and Discard keywords."
+    },
+    "react": [
+     "on FAIL header"
+    ],
+    "unclear": [
+     "Overcome banner slightly blurry; read as 3+."
+    ],
+    "ops": null
+   },
+   {
+    "name": "Weak Poleyn",
+    "level": 2,
+    "at": 3,
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "Lose -2 [Vigor]. Pushback 3. Knockdown.",
+     "fail": null,
+     "instinct": null,
+     "critical": "The Eggknight cannot perform Knockdowns (Crash still works)."
+    },
+    "react": [
+     "after 'Lose -2 [Vigor]. Pushback 3.' (before 'Knockdown.')"
+    ],
+    "unclear": [],
+    "ops": null
+   },
+   {
+    "name": "Back Armor Slit",
+    "level": 2,
+    "at": 4,
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "Humpty Charge.",
+     "fail": null,
+     "instinct": null,
+     "critical": "Deal an additional Single Wound!"
+    },
+    "react": [
+     "on WOUND header"
+    ],
+    "unclear": [],
+    "ops": null
+   },
+   {
+    "name": "Armored Gut",
+    "level": 2,
+    "at": 4,
+    "overcome": {
+     "n": 4,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Humpty Charge.",
+     "critical": "Leave 3 additional Opening [Opening token] and/or Break [Break token] tokens."
+    },
+    "react": [
+     "on INSTINCT header"
+    ],
+    "unclear": [],
+    "ops": null
+   },
+   {
+    "name": "Armored Heart",
+    "level": 3,
+    "at": 6,
+    "overcome": {
+     "n": 4,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": null,
+     "fail": "Humpty Charge.",
+     "instinct": null,
+     "critical": "Disable the Counter Trait."
+    },
+    "react": [],
+    "unclear": [
+     "Overcome banner blurry; read as 4+ (could be 3+)."
+    ],
+    "ops": null
+   },
+   {
+    "name": "Knight's Pride",
+    "level": 3,
+    "at": 5,
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "Knockdown. Humpty Charge.",
+     "fail": null,
+     "instinct": null,
+     "critical": "Disable Eggknight's Zone Attacks."
+    },
+    "react": [
+     "on WOUND header"
+    ],
+    "unclear": [],
+    "ops": null
+   },
+   {
+    "name": "Yolkman",
+    "level": 3,
+    "at": 7,
+    "overcome": {
+     "n": 5,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Knockdown. Humpty Charge.",
+     "critical": "Without the Yolkman to control it, the Eggknight dies! After the Clash, see 8573."
+    },
+    "react": [
+     "on INSTINCT header"
+    ],
+    "unclear": [],
+    "ops": null
+   },
+   {
+    "name": "Inner Shell",
+    "level": 3,
+    "at": 5,
+    "overcome": {
+     "n": 4,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "Lose -3 [Vigor]. Pushback 4.",
+     "fail": "Humpty Charge.",
+     "instinct": null,
+     "critical": "Place a permanent negative AT [AT icon] token on the Eggknight Sheet."
+    },
+    "react": [],
+    "unclear": [
+     "Overcome banner blurry; read as 4+ (could be 3+)."
+    ],
+    "ops": null
+   },
+   {
+    "name": "Panzerparasite",
+    "level": 3,
+    "at": 7,
+    "overcome": {
+     "n": 5,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "Lose -3 [Vigor]. Pushback 4. Knockdown.",
+     "fail": "Humpty Charge.",
+     "instinct": null,
+     "critical": "The Eggknight discards all Armor [Armor token] tokens from each BP (do not count this token loss for the purposes of any Trait)."
+    },
+    "react": [
+     "after 'Lose -3 [Vigor]. Pushback 4.' (before 'Knockdown.')"
+    ],
+    "unclear": [],
+    "ops": null
+   },
+   {
+    "name": "Deformed Head",
+    "level": 3,
+    "at": 6,
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Humpty Charge.",
+     "critical": "Deal an additional Single Wound."
+    },
+    "react": [],
+    "unclear": [],
+    "ops": null
+   }
+  ],
+  "signature": {
+   "name": "Sword Cut",
+   "level": null,
+   "type": "zone",
+   "evasionDice": 3,
+   "evasionDifficulty": 9,
+   "zone": {
+    "facing": "right",
+    "grid": [
+     5,
+     4
+    ],
+    "origin": "top-left cell of the 2x2 monster block = (0,0); +x right, +y down",
+    "monsterCells": [
+     [
+      0,
+      0
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      1
+     ]
+    ],
+    "cells": [
+     [
+      2,
+      0
+     ],
+     [
+      2,
+      1
+     ]
+    ],
+    "note": "Eggknight occupies a 2x2 block; the two red cells are the spaces directly in front of (to the right of) both monster rows."
+   },
+   "targeting": [
+    "Closest Knight in front",
+    "Closest Knight in sight"
+   ],
+   "move": true,
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 4,
+     "effect": "Lose -2 [Vigor] instead"
+    }
+   ],
+   "keywordsBeforeAttack": [],
+   "effects": [
+    "For each hit lose -1 [Vigor]. [Peril Check]."
+   ],
+   "react": [
+    "after targeting",
+    "after 'For each hit lose -1 [Vigor]. [Peril Check].'"
+   ],
+   "afterAttack": null,
+   "afterFinalAttack": "Humpty Charge.",
+   "unclear": [],
+   "subtitle": "ZONE SIGNATURE",
+   "ops": null
+  },
+  "routine": {
+   "name": "Hard-Boiled",
+   "effects": [
+    "Each Knight loses -3 [Vigor].",
+    "The Eggknight gains 2 Armor [Armor token] tokens on BP I level."
+   ],
+   "ops": null
+  }
+ },
+ "clashSetup": null,
+ "cardsText": {
+  "Knightslap": "KNIGHTSLAP / ATTACK / Evasion 3 dice, 9+ / TARGETING: • [Priority Target icon] Priority Target • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat] 3+ ▸ PUSHBACK 2 / Cooldown. / For each hit lose -1 [Vigor]. [Peril Check]. [REACT!] / Knockdown. / EGGKNIGHT – AI 1",
+  "Humpty Squat": "HUMPTY SQUAT / ZONE ATTACK / Evasion 2 dice, 7+ / TARGETING: • Zone 1 [REACT!] / ATTACK [Heat] 3+ ▸ +1 [Evasion die] / Cooldown. / For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / Knockdown. / EGGKNIGHT – AI 1",
+  "Backslash": "BACKSLASH / ZONE ATTACK / Evasion 3 dice, 8+ / [zone diagram] / TARGETING: • Knight in Blindspot • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat] 3+ ▸ LOSE -2 [Vigor] INSTEAD. / CHOKE 3 / For each hit lose -1 [Vigor]. [Peril Check]. / EGGKNIGHT – AI 1",
+  "Double Slash": "DOUBLE SLASH / ATTACK / Evasion 2 dice, 9+ / TARGETING: • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat] 3+ ▸ LOSE -2 [Vigor] INSTEAD / For each hit lose -1 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Perform Signature. / EGGKNIGHT – AI 1",
+  "Sword Thrust": "SWORD THRUST / ZONE ATTACK / Evasion 2 dice, 8+ / TARGETING: • Closest Knight in front and 1 space behind Target • Closest Knight in sight and 1 space behind Target [REACT!] / MOVE & ATTACK [Heat] 3+ ▸ +1 [Evasion die] / For each hit lose -2 [Vigor]. [Peril Check]. / EGGKNIGHT – AI 1",
+  "Sword Slash": "SWORD SLASH / ZONE ATTACK / Evasion 3 dice, 9+ / [zone diagram] / TARGETING: • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK / For each hit lose -1 [Vigor]. [Peril Check]. / EGGKNIGHT – AI 1",
+  "Flurry of Slashes": "FLURRY OF SLASHES / ZONE ATTACK / Evasion 3 dice, 7+ / [zone diagram] / TARGETING: • [Priority Target icon] Priority Target • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat] 3+ ▸ +1 [Evasion die] / For each hit lose -1 [Vigor]. [Peril Check]. [REACT!] / AFTER FINAL ATTACK / If [Vigor] was lost, immediately repeat Flurry of Slashes (once). / EGGKNIGHT – AI 2",
+  "Eggbutt": "EGGBUTT / ATTACK / Evasion 2 dice, 9+ / TARGETING: • Knight in Blindspot • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat] 3+ ▸ LOSE -2 [Vigor] INSTEAD / Discard and Restrain. / For each hit lose -1 [Vigor]. [Peril Check]. [REACT!] / Knockdown. [REACT!] / AFTER ATTACK / Humpty Charge. / EGGKNIGHT – AI 2",
+  "Poached Knight": "POACHED KNIGHT / ATTACK / Evasion 4 dice, 9+ / TARGETING: • [Priority Target icon] Priority Target • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat] 3+ ▸ LOSE -2 [Vigor] INSTEAD / Pushback 2. / For each hit, in order: / Cooldown, Restrain, Choke 3. / For each hit lose -1 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Humpty Charge. / EGGKNIGHT – AI 2",
+  "Humpty Shake": "HUMPTY SHAKE / ZONE ATTACK / Evasion 2 dice, 8+ / TARGETING: • Zone 1 [REACT!] / ATTACK [Heat] 3+ ▸ +1 [Evasion die] / Discard. / For each hit lose -1 [Vigor]. [Peril Check]. [REACT!] / Knockdown. / EGGKNIGHT – AI 2",
+  "Knightscramble": "KNIGHTSCRAMBLE / ATTACK / Evasion 2 dice, 9+ / TARGETING: • [Priority Target icon] Priority Target • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat] 3+ ▸ PUSHBACK 3 / Cooldown and Restrain. / For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / Knockdown. [REACT!] / AFTER ATTACK / Humpty Charge. / EGGKNIGHT – AI 2",
+  "Backthrust": "BACKTHRUST / ZONE ATTACK / Evasion 3 dice, 10+ / TARGETING: • Knight in Blindspot and 1 space behind Target • Closest Knight in front and 1 space behind Target • Closest Knight in sight and 1 space behind Target [REACT!] / MOVE & ATTACK [Heat] 4+ ▸ LOSE -2 [Vigor] INSTEAD. / CHOKE 3 / For each hit lose -1 [Vigor]. [Peril Check]. / EGGKNIGHT – AI 2",
+  "Insidious Thrust": "INSIDIOUS THRUST / ZONE ATTACK / Evasion 2 dice, 10+ / TARGETING: • Knight in Blindspot and 1 space behind Target • Closest Knight in front and 1 space behind Target • Closest Knight in sight and 1 space behind Target [REACT!] / MOVE & ATTACK / Choke 3. / For each hit lose -2 [Vigor]. [Peril Check]. / [Heat] 3+ ▸ DISCARD [REACT!] / Knockdown. / EGGKNIGHT – AI 3",
+  "Face to Face": "FACE TO FACE / ATTACK / Evasion 3 dice, 8+ / TARGETING: • [Priority Target icon] Priority Target • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat] 3+ ▸ DIFFICULTY 9+ INSTEAD / Gain the Distracted Condition card. / Choke 3. / For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / Knockdown. [REACT!] / AFTER ATTACK / Humpty Charge. / EGGKNIGHT – AI 3",
+  "Humpty Quake": "HUMPTY QUAKE / ZONE ATTACK / Evasion 4 dice, 9+ / TARGETING: • Zone 2 [REACT!] / ATTACK [Heat] 3+ ▸ LOSE -2 [Vigor] INSTEAD / Discard and Restrain. / For each hit lose -1 [Vigor]. [Peril Check]. [REACT!] / Knockdown. [REACT!] / AFTER FINAL ATTACK / Perform Signature. / EGGKNIGHT – AI 3",
+  "Deviled Egg": "DEVILED EGG / ATTACK / Evasion 5 dice, 8+ / TARGETING: • Knight in Blindspot • [Priority Target icon] Priority Target • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat] 3+ ▸ DIFFICULTY 9+ INSTEAD / Pushback 2. For each hit, in order: gain the Distracted Condition card, Cooldown, Restrain, Choke 3, Discard. / For each hit lose -1 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Humpty Charge. / EGGKNIGHT – AI 3",
+  "Sword Rend": "SWORD REND / ZONE ATTACK / Evasion 3 dice, 9+ / [zone diagram] / TARGETING: • [Priority Target icon] Priority Target • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat] 3+ ▸ +1 [Evasion die] / For each hit lose -2 [Vigor]. [Peril Check]. / EGGKNIGHT – AI 3",
+  "Yolkman Strike": "YOLKMAN STRIKE / ZONE ATTACK / Evasion 4 dice, 7+ / [zone diagram] / TARGETING: • [Priority Target icon] Priority Target • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK / Pushback 2. [Heat] 6+ ▸ YOU DIE / For each hit lose -2 [Vigor]. / Draw a Judicium. [REACT!] / AFTER FINAL ATTACK / The Eggknight moves to the center of the Board, then turns to face the most Knights. / EGGKNIGHT – AI 3",
+  "Left Pauldron": "LEFT PAULDRON / OVERCOME 3+ Power 1 / AT 3 / WOUND [REACT!] / Humpty Charge. / CRITICAL / Place a permanent negative AT [AT icon] token on the Eggknight Sheet. / EGGKNIGHT – BP 1",
+  "Armored Chest": "ARMORED CHEST / OVERCOME 3+ Power 1 / AT 3 / FAIL [REACT!] / Knockdown. / CRITICAL / Another Knight may perform a Bonus Attack! / EGGKNIGHT – BP 1",
+  "Giant Sabaton": "GIANT SABATON / OVERCOME 3+ Power 1 / AT 4 / FAIL [REACT!] / Knockdown. / CRITICAL / You may perform a Bonus Attack! / EGGKNIGHT – BP 1",
+  "Exposed Back": "EXPOSED BACK / OVERCOME 2+ Power 1 / AT 2 / FAIL [REACT!] / Humpty Charge. / CRITICAL / Gain +2 [Power]. / EGGKNIGHT – BP 1",
+  "Beady Eyes": "BEADY EYES / OVERCOME 2+ Power 1 / AT 2 / INSTINCT [REACT!] / Humpty Charge. / CRITICAL / Leave 2 additional Opening [Opening token] and/or Break [Break token] tokens. / EGGKNIGHT – BP 1",
+  "Right Pauldron": "RIGHT PAULDRON / OVERCOME 3+ Power 1 / AT 2 / WOUND / Lose -1 [Vigor]. Pushback 2. / CRITICAL / Return all Technique cards to your hand. Reset your [Heat]. / EGGKNIGHT – BP 1",
+  "Plate Gap": "PLATE GAP / OVERCOME 3+ Power 1 / AT 5 / WOUND / Lose -2 [Vigor]. Pushback 3. / CRITICAL / You may perform a Bonus Attack! / EGGKNIGHT – BP 2",
+  "Armored Belt": "ARMORED BELT / OVERCOME 3+ Power 1 / AT 5 / INSTINCT [REACT!] / Humpty Charge. / CRITICAL / The Eggknight discards 2 Armor [Armor token] tokens from the lowest Level BP (do not count this token loss for the purposes of any Trait). / EGGKNIGHT – BP 2",
+  "Small Hand": "SMALL HAND / OVERCOME 3+ Power 1 / AT 6 / FAIL [REACT!] / Humpty Charge. / CRITICAL / Disable the Eggknight's Cooldown and Discard keywords. / EGGKNIGHT – BP 2",
+  "Weak Poleyn": "WEAK POLEYN / OVERCOME 3+ Power 1 / AT 3 / WOUND / Lose -2 [Vigor]. Pushback 3. [REACT!] / Knockdown. / CRITICAL / The Eggknight cannot perform Knockdowns (Crash still works). / EGGKNIGHT – BP 2",
+  "Back Armor Slit": "BACK ARMOR SLIT / OVERCOME 3+ Power 1 / AT 4 / WOUND [REACT!] / Humpty Charge. / CRITICAL / Deal an additional Single Wound! / EGGKNIGHT – BP 2",
+  "Armored Gut": "ARMORED GUT / OVERCOME 4+ Power 1 / AT 4 / INSTINCT [REACT!] / Humpty Charge. / CRITICAL / Leave 3 additional Opening [Opening token] and/or Break [Break token] tokens. / EGGKNIGHT – BP 2",
+  "Armored Heart": "ARMORED HEART / OVERCOME 4+ Power 1 / AT 6 / FAIL / Humpty Charge. / CRITICAL / Disable the Counter Trait. / EGGKNIGHT – BP 3",
+  "Knight's Pride": "KNIGHT'S PRIDE / OVERCOME 3+ Power 1 / AT 5 / WOUND [REACT!] / Knockdown. / Humpty Charge. / CRITICAL / Disable Eggknight's Zone Attacks. / EGGKNIGHT – BP 3",
+  "Yolkman": "YOLKMAN / OVERCOME 5+ Power 1 / AT 7 / INSTINCT [REACT!] / Knockdown. / Humpty Charge. / CRITICAL / Without the Yolkman to control it, the Eggknight dies! / After the Clash, see 8573. / EGGKNIGHT – BP 3",
+  "Inner Shell": "INNER SHELL / OVERCOME 4+ Power 1 / AT 5 / WOUND / Lose -3 [Vigor]. Pushback 4. / FAIL / Humpty Charge. / CRITICAL / Place a permanent negative AT [AT icon] token on the Eggknight Sheet. / EGGKNIGHT – BP 3",
+  "Panzerparasite": "PANZERPARASITE / OVERCOME 5+ Power 1 / AT 7 / WOUND / Lose -3 [Vigor]. Pushback 4. [REACT!] / Knockdown. / FAIL / Humpty Charge. / CRITICAL / The Eggknight discards all Armor [Armor token] tokens from each BP (do not count this token loss for the purposes of any Trait). / EGGKNIGHT – BP 3",
+  "Deformed Head": "DEFORMED HEAD / OVERCOME 3+ Power 1 / AT 6 / INSTINCT / Humpty Charge. / CRITICAL / Deal an additional Single Wound. / EGGKNIGHT – BP 3",
+  "Sword Cut": "SWORD CUT / ZONE SIGNATURE / Evasion 3 dice, 9+ / [zone diagram] / TARGETING: • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat] 4+ ▸ LOSE -2 [Vigor] INSTEAD / For each hit lose -1 [Vigor]. [Peril Check]. [REACT!] / AFTER FINAL ATTACK / Humpty Charge. / EGGKNIGHT",
+  "Hard-Boiled": "HARD-BOILED / ROUTINE / Each Knight loses -3 [Vigor]. The Eggknight gains 2 Armor [Armor token] tokens on BP I level. / EGGKNIGHT"
+ },
+ "zoneNote": "All zone-diagram attacks (Backslash, Sword Slash, Flurry of Slashes, Sword Rend, Yolkman Strike, Sword Cut) hit the 2 spaces directly in front of the 2x2 footprint."
+}
