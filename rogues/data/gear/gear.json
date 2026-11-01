@@ -60,7 +60,20 @@
    "unclear": [
     "The black tag icon before ': +1 [Attack die]' shows two gauntlets (the two-hand slot icon); interpreted as a gate meaning 'when wielded two-handed / paired'."
    ],
-   "ops": null
+   "ops": {
+    "keywords": [],
+    "gates": [
+     {
+      "when": "twoHanded",
+      "ops": [
+       {
+        "op": "attackDice",
+        "n": 1
+       }
+      ]
+     }
+    ]
+   }
   },
   {
    "name": "Chipped Axe",
@@ -97,7 +110,52 @@
    "unclear": [
     "Two condition icons at the bottom are unidentified: a red X made of two crossed sticks (': +1 [Power sword] +1 [Fail chalice]') and a yellow open book (': +1 [Fail chalice]')."
    ],
-   "ops": null
+   "ops": {
+    "keywords": [
+     {
+      "op": "break",
+      "n": 1
+     },
+     {
+      "op": "commit"
+     }
+    ],
+    "gates": [
+     {
+      "when": "GRAVE",
+      "ops": [
+       {
+        "op": "armorPiercing",
+        "n": 1
+       }
+      ]
+     },
+     {
+      "when": "icon:redX",
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       },
+       {
+        "op": "potential",
+        "n": 1
+       }
+      ],
+      "unclear": "빨간 X 아이콘 조건 미확인"
+     },
+     {
+      "when": "icon:book",
+      "ops": [
+       {
+        "op": "potential",
+        "n": 1
+       }
+      ],
+      "unclear": "노란 책 아이콘 조건 미확인"
+     }
+    ]
+   }
   },
   {
    "name": "Cleaver Sword",
@@ -135,7 +193,46 @@
    "unclear": [
     "Code 13A0625 is faint."
    ],
-   "ops": null
+   "ops": {
+    "keywords": [
+     {
+      "op": "break",
+      "n": 1
+     },
+     {
+      "op": "commit"
+     },
+     {
+      "op": "cumbersome"
+     }
+    ],
+    "abilities": [
+     {
+      "timing": "beforeAttack",
+      "ops": [
+       {
+        "op": "discardPoolForPushback",
+        "tokens": [
+         "opening",
+         "break",
+         "fleisch"
+        ]
+       }
+      ]
+     }
+    ],
+    "gates": [
+     {
+      "when": "GRAVE",
+      "ops": [
+       {
+        "op": "armorPiercing",
+        "n": 1
+       }
+      ]
+     }
+    ]
+   }
   },
   {
    "name": "Great Antler Helm",
@@ -169,7 +266,33 @@
    "unclear": [
     "Bottom-right slot icon looks like the Support pouch rather than the Armor breastplate (helm as Support)."
    ],
-   "ops": null
+   "ops": {
+    "abilities": [
+     {
+      "timing": "onRush",
+      "ops": [
+       {
+        "op": "inspire",
+        "n": 1
+       },
+       {
+        "op": "powerReroll",
+        "n": 2
+       }
+      ]
+     }
+    ],
+    "gates": [
+     {
+      "when": "JUDICIUM",
+      "ops": [
+       {
+        "op": "armorRollDoubleSymbols"
+       }
+      ]
+     }
+    ]
+   }
   },
   {
    "name": "Paired Cleavers",
@@ -201,7 +324,52 @@
    "gates": [],
    "knight": "fleischritter",
    "unclear": [],
-   "ops": null
+   "ops": {
+    "keywords": [
+     {
+      "op": "opening",
+      "n": 2
+     },
+     {
+      "op": "break",
+      "n": 2
+     },
+     {
+      "op": "commit"
+     },
+     {
+      "op": "choice",
+      "options": [
+       [
+        {
+         "op": "reposition",
+         "n": 2
+        }
+       ],
+       [
+        {
+         "op": "drag",
+         "n": 2
+        }
+       ]
+      ]
+     }
+    ],
+    "abilities": [
+     {
+      "timing": "onInvoluntaryMove",
+      "cost": {
+       "heat": 2,
+       "exhaust": true
+      },
+      "ops": [
+       {
+        "op": "braced"
+       }
+      ]
+     }
+    ]
+   }
   },
   {
    "name": "Pighead Talisman",
@@ -231,7 +399,45 @@
    ],
    "knight": "fleischritter",
    "unclear": [],
-   "ops": null
+   "ops": {
+    "keywords": [
+     {
+      "op": "poisonResilience",
+      "n": 2
+     },
+     {
+      "op": "deploy",
+      "n": 3
+     },
+     {
+      "op": "provoke"
+     }
+    ],
+    "abilities": [
+     {
+      "timing": "onJudicium",
+      "cost": {
+       "heat": 1
+      },
+      "ops": [
+       {
+        "op": "removeMassivePerilForDraw"
+       }
+      ]
+     }
+    ],
+    "gates": [
+     {
+      "when": "JUDICIUM",
+      "ops": [
+       {
+        "op": "fleisch",
+        "n": "heat"
+       }
+      ]
+     }
+    ]
+   }
   },
   {
    "name": "Trophy Armor",
@@ -267,7 +473,47 @@
    "unclear": [
     "Icon before '1 [Heat] Improved Rush' is a black box with a running figure (read as the Move action icon)."
    ],
-   "ops": null
+   "ops": {
+    "keywords": [
+     {
+      "op": "inspire",
+      "n": 1
+     },
+     {
+      "op": "breakAsHope"
+     }
+    ],
+    "abilities": [
+     {
+      "timing": "moveAction",
+      "cost": {
+       "heat": 1
+      },
+      "ops": [
+       {
+        "op": "improvedRush"
+       }
+      ]
+     }
+    ],
+    "gates": [
+     {
+      "when": "MAJOR",
+      "ops": [
+       {
+        "op": "if",
+        "cond": "poolLacks:opening,break",
+        "then": [
+         {
+          "op": "autoHope",
+          "n": 2
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
   },
   {
    "name": "Reclaimed Spear",

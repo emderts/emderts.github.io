@@ -122,6 +122,7 @@
         "fleisch": 1,
         "vigor": "X"
        },
+       "timing": "free",
        "do": [
         {
          "op": "gainVigor",
@@ -192,12 +193,33 @@
     {
      "name": "Bolstering Fleisch",
      "text": "1 Fleisch, X [Heat]: When you are about to attack, add X Knight tokens to the Knight Pool, each from a different Level of your Heroic Arc, up to your [Passion] Level. You cannot benefit from those keywords again during the second ability window. You may use Fleisch tokens from the Knight Pool instead of [Heat].",
-     "ops": null
+     "ops": [
+      {
+       "op": "active",
+       "cost": {
+        "fleisch": 1,
+        "heat": "X"
+       },
+       "timing": "beforeAttack",
+       "do": [
+        {
+         "op": "bolsteringFleisch"
+        }
+       ]
+      },
+      {
+       "op": "fleischAsHeat"
+      }
+     ]
     },
     {
      "name": "Ambidextrous",
      "text": "When you attack and have a Weapon with the Pair Trait or an inactive [1H] Weapon, gain +1 [Attack die]. For the purpose of gathering your Power Pool, ignore any hits that exceed your Weapon's regular [Attack dice] number. During the second ability window, you may place up to 2 additional tokens from any stackable keyword on your inactive [1H] Weapon or a Weapon with the Pair Trait.",
-     "ops": null
+     "ops": [
+      {
+       "op": "ambidextrous"
+      }
+     ]
     }
    ]
   },
@@ -209,12 +231,23 @@
     {
      "name": "Empowering Fleisch",
      "text": "When you attack, you may spend X Fleisch to add +X [Attack dice] to your Attack Roll. If the number of hits exceeds your Weapon's [Attack dice] number, ignore those additional hits when creating the Power Pool, but immediately place a Sunder token in the Knight Pool. You may use Fleisch tokens from the Knight Pool instead of [Heat].",
-     "ops": null
+     "ops": [
+      {
+       "op": "empoweringFleisch"
+      },
+      {
+       "op": "fleischAsHeat"
+      }
+     ]
     },
     {
      "name": "The Art of Gastronomy",
      "text": "Whenever you spend Fleisch on Techniques, place a Generic token on your Knight Board. You may discard an indicated number of those tokens to trigger the following effects (as a free action, unless stated otherwise): 1: When you attack, gain +2 Precision. 2: When you attack, gain Auto-hope 2. 3: Advanced Block. 5: Discard all Condition tokens and cards. 7: Ignore [Vigor] loss from a Monster Attack.",
-     "ops": null
+     "ops": [
+      {
+       "op": "artOfGastronomy"
+      }
+     ]
     }
    ]
   },
@@ -226,12 +259,23 @@
     {
      "name": "Famished Fleisch",
      "text": "Wound: If you're adjacent to another Knight, you may spend X Fleisch tokens to place X Generic tokens on your Knight Board. As long as there is at least 1 Generic token on your Knight Board, treat your Knight Power die as one tier higher, gain Immune to Mind Condition cards and Braced. At the start and the end of Knight Round, all adjacent Knights lose -5 [Vigor]. Discard 1 Generic token at the end of your turn, and whenever you fail to deal a Wound. You may use Fleisch tokens from the Knight Pool instead of [Heat].",
-     "ops": null
+     "ops": [
+      {
+       "op": "famishedFleisch"
+      },
+      {
+       "op": "fleischAsHeat"
+      }
+     ]
     },
     {
      "name": "Monstrous Strength",
      "text": "You can either use [2H] Weapons as if they were [1H], or when using a [1H] Weapon, you may add +[red Power die] to the Power Pool.",
-     "ops": null
+     "ops": [
+      {
+       "op": "monstrousStrength"
+      }
+     ]
     }
    ]
   }
@@ -1313,7 +1357,19 @@
     "Cost printed as '+2 [Heat] or -1 [Fleisch]' (alternatives)",
     "Depletion icon is a black card with a white diamond containing an X; read as Discard"
    ],
-   "ops": null
+   "ops": [
+    {
+     "op": "secondChance"
+    }
+   ],
+   "timing": "onMortisDraw",
+   "gateOps": {
+    "KING": [
+     {
+      "op": "superiorChance"
+     }
+    ]
+   }
   },
   {
    "name": "Knight Roll",
@@ -1339,7 +1395,27 @@
    "unclear": [
     "An ornate wisp/tree-like glyph precedes 'Reflex' on each line (not in the token legend)"
    ],
-   "ops": null
+   "ops": [
+    {
+     "op": "reflex",
+     "n": 1
+    }
+   ],
+   "timing": "reaction",
+   "gateOps": {
+    "KING": [
+     {
+      "op": "reflex",
+      "n": 2
+     }
+    ],
+    "DEVIL": [
+     {
+      "op": "reflex",
+      "n": 3
+     }
+    ]
+   }
   },
   {
    "name": "Knight Pose",
@@ -1359,7 +1435,22 @@
    ],
    "depletion": "cooldown",
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "standUp"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {
+    "KING": [
+     {
+      "op": "standUp"
+     },
+     {
+      "op": "rocksteady"
+     }
+    ]
+   }
   },
   {
    "name": "Cured Darklin",
@@ -1386,7 +1477,27 @@
     "Title split across tiles tech_03/tech_04 ('CURED DAR' + 'KLIN')",
     "Depletion icon is a black card with a white diamond containing an X; read as Discard"
    ],
-   "ops": null
+   "ops": [
+    {
+     "op": "gainVigor",
+     "n": 3
+    }
+   ],
+   "timing": "free",
+   "gateOps": {
+    "KING": [
+     {
+      "op": "gainVigor",
+      "n": 5
+     }
+    ],
+    "DEVIL": [
+     {
+      "op": "gainVigor",
+      "n": 7
+     }
+    ]
+   }
   },
   {
    "name": "Food Runner",
@@ -1408,7 +1519,19 @@
    "unclear": [
     "Cost box has a white tag with two small figures and a diamond between them before '+2 [Heat]' (possibly a timing/phase marker)"
    ],
-   "ops": null
+   "ops": [
+    {
+     "op": "rush"
+    }
+   ],
+   "timing": "complicated",
+   "gateOps": {
+    "KING": [
+     {
+      "op": "improvedRush"
+     }
+    ]
+   }
   },
   {
    "name": "Crunchy Batter",
@@ -1430,7 +1553,23 @@
    "unclear": [
     "Depletion icon is a card with a clock/circular-arrow symbol; read as Delay"
    ],
-   "ops": null
+   "ops": [
+    {
+     "op": "reinforce",
+     "n": 2,
+     "colour": "red"
+    }
+   ],
+   "timing": "onArmorRoll",
+   "gateOps": {
+    "DEVIL": [
+     {
+      "op": "reinforce",
+      "n": 3,
+      "colour": "red"
+     }
+    ]
+   }
   },
   {
    "name": "Stick in Their Throat",
@@ -1454,7 +1593,27 @@
    ],
    "depletion": "cooldown",
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "reduceInvoluntary",
+     "n": 2
+    }
+   ],
+   "timing": "onInvoluntaryMove",
+   "gateOps": {
+    "KING": [
+     {
+      "op": "reduceInvoluntary",
+      "n": 3
+     }
+    ],
+    "DRAGON": [
+     {
+      "op": "reduceInvoluntary",
+      "n": 4
+     }
+    ]
+   }
   },
   {
    "name": "Fervid Meal",
@@ -1474,7 +1633,20 @@
    ],
    "depletion": "discard",
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "if",
+     "cond": "poolHas:fire",
+     "then": [
+      {
+       "op": "gainPassion",
+       "n": 1
+      }
+     ]
+    }
+   ],
+   "timing": "free",
+   "gateOps": {}
   },
   {
    "name": "Sizzling Striga",
@@ -1489,7 +1661,25 @@
    "gates": [],
    "depletion": "delay",
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "choice",
+     "options": [
+      [
+       {
+        "op": "provoke"
+       }
+      ],
+      [
+       {
+        "op": "daze"
+       }
+      ]
+     ]
+    }
+   ],
+   "timing": "free",
+   "gateOps": {}
   },
   {
    "name": "Mise en Place",
@@ -1509,7 +1699,21 @@
    ],
    "depletion": "cooldown",
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "unexhaustGear",
+     "n": 1
+    }
+   ],
+   "timing": "free",
+   "gateOps": {
+    "DEVIL": [
+     {
+      "op": "unexhaustGear",
+      "n": "all"
+     }
+    ]
+   }
   },
   {
    "name": "Meat Shield",
@@ -1529,7 +1733,23 @@
    ],
    "depletion": "cooldown",
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "reinforce",
+     "n": 2,
+     "colour": "black"
+    }
+   ],
+   "timing": "onArmorRoll",
+   "gateOps": {
+    "DRAGON": [
+     {
+      "op": "reinforce",
+      "n": 3,
+      "colour": "black"
+     }
+    ]
+   }
   },
   {
    "name": "Braise for Impact",
@@ -1544,7 +1764,14 @@
    "gates": [],
    "depletion": "cooldown",
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "braced",
+     "until": "nextTurn"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {}
   },
   {
    "name": "Prized Morsel",
@@ -1564,7 +1791,19 @@
    ],
    "depletion": "cooldown",
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "if",
+     "cond": "poolHas:opening",
+     "then": [
+      {
+       "op": "heartseeker"
+      }
+     ]
+    }
+   ],
+   "timing": "beforeAttack",
+   "gateOps": {}
   },
   {
    "name": "You Won't Like Me When I'm Hangry",
@@ -1587,7 +1826,25 @@
     "[PowerSymbol] = the sword glyph used for Power results",
     "[AT] = a dark hooded/creature-like glyph; the same glyph appears after 'AT' on Meat Puppet, so it is likely the monster AT stat icon"
    ],
-   "ops": null
+   "ops": [
+    {
+     "op": "poolPer",
+     "token": "power",
+     "per": 3,
+     "of": "overAT"
+    }
+   ],
+   "timing": "secondWindow",
+   "gateOps": {
+    "DEVIL": [
+     {
+      "op": "poolPer",
+      "token": "power",
+      "per": 3,
+      "of": "totalPower"
+     }
+    ]
+   }
   },
   {
    "name": "Panflip",
@@ -1607,7 +1864,13 @@
    ],
    "depletion": "cooldown",
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "flipBodyCondition"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {}
   },
   {
    "name": "Nothing Goes to Waste",
@@ -1622,7 +1885,13 @@
    "gates": [],
    "depletion": "delay",
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "skipClearPool"
+    }
+   ],
+   "timing": "onClearPool",
+   "gateOps": {}
   },
   {
    "name": "Distracting Bait",
@@ -1637,7 +1906,13 @@
    "gates": [],
    "depletion": "cooldown",
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "ignoreResponses"
+    }
+   ],
+   "timing": "afterAttackRoll",
+   "gateOps": {}
   },
   {
    "name": "Just a Fleisch Wound",
@@ -1657,7 +1932,14 @@
    ],
    "depletion": "discard",
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "discardCondition",
+     "type": "body"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {}
   },
   {
    "name": "Stick to the Recipe",
@@ -1677,7 +1959,14 @@
    ],
    "depletion": "cooldown",
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "motivate",
+     "n": 3
+    }
+   ],
+   "timing": "free",
+   "gateOps": {}
   },
   {
    "name": "White Meat Power Punch",
@@ -1704,7 +1993,14 @@
     "Cost is '+1 [Heat] -1 [Fleisch]' (both paid together, not alternatives)",
     "Card text literally reads 'is about perform' (missing 'to')"
    ],
-   "ops": null
+   "ops": [
+    {
+     "op": "addPowerDie",
+     "colour": "white"
+    }
+   ],
+   "timing": "beforePowerRoll",
+   "gateOps": {}
   },
   {
    "name": "The Power of Bacon Compels You!",
@@ -1719,7 +2015,14 @@
    "gates": [],
    "depletion": "discard",
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "resurrectAdjacent",
+     "vigor": "half"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {}
   },
   {
    "name": "Butcher's Twine",
@@ -1738,7 +2041,18 @@
    "gates": [],
    "depletion": "discard",
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "reach",
+     "n": 3
+    },
+    {
+     "op": "addPowerDie",
+     "colour": "black"
+    }
+   ],
+   "timing": "beforeAttack",
+   "gateOps": {}
   },
   {
    "name": "Meat Puppet",
@@ -1755,7 +2069,13 @@
    "unclear": [
     "[AT] = dark hooded/creature-like stat glyph following 'AT'"
    ],
-   "ops": null
+   "ops": [
+    {
+     "op": "meatPuppet"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {}
   },
   {
    "name": "Maillard Reaction",
@@ -1772,7 +2092,13 @@
    "unclear": [
     "Right edge of this card is cut off by the scan; visible text appears complete"
    ],
-   "ops": null
+   "ops": [
+    {
+     "op": "resetHeat"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {}
   },
   {
    "name": "Butcher's Bargain",
@@ -1789,7 +2115,13 @@
    "unclear": [
     "시트 끝 카드 — 소진 아이콘 discard로 추정"
    ],
-   "ops": null
+   "ops": [
+    {
+     "op": "chooseJudicium"
+    }
+   ],
+   "timing": "onJudicium",
+   "gateOps": {}
   },
   {
    "name": "Filleting Frenzy",
@@ -1810,7 +2142,13 @@
    "unclear": [
     "시트 끝 카드 — 소진 아이콘 discard로 추정"
    ],
-   "ops": null
+   "ops": [
+    {
+     "op": "extraCombatAction"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {}
   }
  ],
  "missing": [

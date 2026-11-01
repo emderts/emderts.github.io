@@ -21,7 +21,18 @@
     "arrow": "right"
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "curseSave",
+     "level": 2,
+     "fail": [
+      {
+       "op": "bane",
+       "n": "failedBy"
+      }
+     ]
+    }
+   ]
   },
   {
    "name": "Panzerdecay",
@@ -33,7 +44,12 @@
     "arrow": "down"
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "parasitize",
+     "n": 1
+    }
+   ]
   },
   {
    "name": "Slime Spell",
@@ -45,7 +61,18 @@
     "arrow": "right"
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "curseSave",
+     "level": 2,
+     "fail": [
+      {
+       "op": "bane",
+       "n": "failedBy"
+      }
+     ]
+    }
+   ]
   },
   {
    "name": "Poison",
@@ -57,7 +84,16 @@
     "arrow": "down"
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "poison",
+     "n": 1
+    },
+    {
+     "op": "gainHeat",
+     "n": 1
+    }
+   ]
   },
   {
    "name": "Rebound",
@@ -69,7 +105,16 @@
     "arrow": "left"
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "loseHeat",
+     "n": 2
+    },
+    {
+     "op": "refresh",
+     "n": 1
+    }
+   ]
   },
   {
    "name": "Restrain",
@@ -81,7 +126,11 @@
     "arrow": "up"
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "restrain"
+    }
+   ]
   },
   {
    "name": "Subdue",
@@ -93,7 +142,12 @@
     "arrow": "down"
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "cooldown",
+     "n": 1
+    }
+   ]
   },
   {
    "name": "Distracted",
@@ -105,7 +159,12 @@
     "arrow": "right"
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "condition",
+     "id": "Distracted"
+    }
+   ]
   },
   {
    "name": "Gash",
@@ -117,7 +176,18 @@
     "arrow": "right"
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "loseVigor",
+     "n": 1
+    },
+    {
+     "op": "shuffleBack"
+    },
+    {
+     "op": "perilCheck"
+    }
+   ]
   },
   {
    "name": "Thrown Off-Balance",
@@ -129,7 +199,16 @@
     "arrow": "down"
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "exhaustAllGear",
+     "ifNone": [
+      {
+       "op": "knockdown"
+      }
+     ]
+    }
+   ]
   },
   {
    "name": "Feign Death",
@@ -141,7 +220,15 @@
     "arrow": "up"
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "chainBreak"
+    },
+    {
+     "op": "condition",
+     "id": "Knockdown (Standing Up)"
+    }
+   ]
   },
   {
    "name": "Feint",
@@ -153,7 +240,16 @@
     "arrow": "left"
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "poolChoice",
+     "tokens": [
+      "opening",
+      "break"
+     ],
+     "n": 2
+    }
+   ]
   },
   {
    "name": "Insulted",
@@ -165,7 +261,15 @@
     "arrow": "left"
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "standUp"
+    },
+    {
+     "op": "bonusAttack",
+     "optional": true
+    }
+   ]
   },
   {
    "name": "Vision of the Graal",
@@ -177,7 +281,13 @@
     "arrow": "up"
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "gainPassion",
+     "n": 1,
+     "optional": true
+    }
+   ]
   }
  ],
  "major": [
@@ -191,7 +301,18 @@
     "number": 4
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "curseSave",
+     "level": 3,
+     "fail": [
+      {
+       "op": "bane",
+       "n": "failedBy"
+      }
+     ]
+    }
+   ]
   },
   {
    "name": "Panzerrust",
@@ -203,7 +324,12 @@
     "number": 8
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "parasitize",
+     "n": 2
+    }
+   ]
   },
   {
    "name": "Slime Hex",
@@ -215,7 +341,22 @@
     "number": 4
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "curseSave",
+     "level": 3,
+     "fail": [
+      {
+       "op": "bane",
+       "n": "failedBy"
+      },
+      {
+       "op": "condition",
+       "id": "Slimed"
+      }
+     ]
+    }
+   ]
   },
   {
    "name": "Poisoned",
@@ -227,7 +368,16 @@
     "number": 8
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "poison",
+     "n": 3
+    },
+    {
+     "op": "gainHeat",
+     "n": 3
+    }
+   ]
   },
   {
    "name": "Heroic Death",
@@ -239,7 +389,38 @@
     "number": 3
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "if",
+     "cond": "firstRound",
+     "then": [
+      {
+       "op": "drawNamed",
+       "name": "Feign Death"
+      }
+     ],
+     "else": [
+      {
+       "op": "standUp"
+      },
+      {
+       "op": "move",
+       "n": 3,
+       "optional": true
+      },
+      {
+       "op": "bonusAttack"
+      },
+      {
+       "op": "shuffleBack"
+      },
+      {
+       "op": "die",
+       "reason": "Heroic Death"
+      }
+     ]
+    }
+   ]
   },
   {
    "name": "Panicked",
@@ -251,7 +432,12 @@
     "number": 2
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "condition",
+     "id": "Panicked"
+    }
+   ]
   },
   {
    "name": "Smother",
@@ -263,7 +449,16 @@
     "number": 1
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "restrain",
+     "ifNone": [
+      {
+       "op": "knockdown"
+      }
+     ]
+    }
+   ]
   },
   {
    "name": "Impair",
@@ -275,7 +470,12 @@
     "number": 7
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "discard",
+     "n": 1
+    }
+   ]
   },
   {
    "name": "Inner Strength",
@@ -287,7 +487,19 @@
     "number": 3
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "loseHeat",
+     "n": 2
+    },
+    {
+     "op": "standUp"
+    },
+    {
+     "op": "bonusAttack",
+     "optional": true
+    }
+   ]
   },
   {
    "name": "Show of Willpower",
@@ -299,7 +511,18 @@
     "number": 4
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "discardCondition",
+     "optional": true,
+     "ifNot": [
+      {
+       "op": "loseHeat",
+       "n": 2
+      }
+     ]
+    }
+   ]
   },
   {
    "name": "Counterattack",
@@ -311,7 +534,24 @@
     "number": 5
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "standUp"
+    },
+    {
+     "op": "refresh",
+     "n": 1
+    },
+    {
+     "op": "move",
+     "n": 3,
+     "optional": true
+    },
+    {
+     "op": "bonusAttack",
+     "optional": true
+    }
+   ]
   },
   {
    "name": "Priestly Cunning",
@@ -323,7 +563,16 @@
     "number": 6
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "poolChoice",
+     "tokens": [
+      "opening",
+      "break"
+     ],
+     "n": 3
+    }
+   ]
   },
   {
    "name": "Giant Gash",
@@ -335,7 +584,18 @@
     "number": 2
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "loseVigor",
+     "n": 1
+    },
+    {
+     "op": "shuffleBack"
+    },
+    {
+     "op": "perilCheck"
+    }
+   ]
   },
   {
    "name": "Whisper of the Graal",
@@ -347,7 +607,13 @@
     "number": 1
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "gainPassion",
+     "n": 2,
+     "optional": true
+    }
+   ]
   }
  ],
  "grave": [
@@ -361,7 +627,18 @@
     "coord": "F6"
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "curseSave",
+     "level": 5,
+     "fail": [
+      {
+       "op": "bane",
+       "n": "failedBy"
+      }
+     ]
+    }
+   ]
   },
   {
    "name": "Panzerrot",
@@ -373,7 +650,12 @@
     "coord": "E9"
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "parasitize",
+     "n": 3
+    }
+   ]
   },
   {
    "name": "Slime Scourge",
@@ -385,7 +667,22 @@
     "coord": "F6"
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "curseSave",
+     "level": 4,
+     "fail": [
+      {
+       "op": "bane",
+       "n": "failedBy"
+      },
+      {
+       "op": "condition",
+       "id": "Drowning"
+      }
+     ]
+    }
+   ]
   },
   {
    "name": "Toxified",
@@ -397,7 +694,16 @@
     "coord": "E9"
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "toxify",
+     "n": 2
+    },
+    {
+     "op": "gainHeat",
+     "n": 3
+    }
+   ]
   },
   {
    "name": "Call of the Graal",
@@ -409,7 +715,16 @@
     "coord": "E9"
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "gainPassion",
+     "n": 2
+    },
+    {
+     "op": "condition",
+     "id": "Courage"
+    }
+   ]
   },
   {
    "name": "Knight Counter",
@@ -421,7 +736,33 @@
     "coord": "C12"
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "if",
+     "cond": "knockedDown",
+     "then": [
+      {
+       "op": "standUp"
+      },
+      {
+       "op": "move",
+       "n": 4,
+       "optional": true
+      }
+     ],
+     "else": [
+      {
+       "op": "move",
+       "n": 4,
+       "optional": true
+      },
+      {
+       "op": "bonusAttack",
+       "optional": true
+      }
+     ]
+    }
+   ]
   },
   {
    "name": "Sabotage",
@@ -433,7 +774,17 @@
     "coord": "E12"
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "discard",
+     "n": 2,
+     "ifNone": [
+      {
+       "op": "knockdown"
+      }
+     ]
+    }
+   ]
   },
   {
    "name": "Push the Limit!",
@@ -446,7 +797,25 @@
     "coord": "H12"
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "standUp"
+    },
+    {
+     "op": "resetHeatAndRaiseLimit",
+     "n": 3,
+     "optional": true
+    },
+    {
+     "op": "move",
+     "n": 3,
+     "optional": true
+    },
+    {
+     "op": "bonusAttack",
+     "optional": true
+    }
+   ]
   },
   {
    "name": "Disemboweled",
@@ -458,7 +827,15 @@
     "coord": "F6"
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "shuffleBack"
+    },
+    {
+     "op": "die",
+     "reason": "Disemboweled"
+    }
+   ]
   },
   {
    "name": "Disemboweled",
@@ -470,7 +847,15 @@
     "coord": "C7"
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "shuffleBack"
+    },
+    {
+     "op": "die",
+     "reason": "Disemboweled"
+    }
+   ]
   },
   {
    "name": "Burning Heart",
@@ -483,7 +868,19 @@
     "coord": "H8"
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "standUp"
+    },
+    {
+     "op": "resetHeat",
+     "optional": true
+    },
+    {
+     "op": "bonusAttack",
+     "optional": true
+    }
+   ]
   },
   {
    "name": "Godly Resolve",
@@ -496,7 +893,16 @@
     "coord": "E9"
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "discardAllConditions",
+     "ifNone": [
+      {
+       "op": "resetHeat"
+      }
+     ]
+    }
+   ]
   },
   {
    "name": "Disemboweled",
@@ -508,7 +914,15 @@
     "coord": "C3"
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "shuffleBack"
+    },
+    {
+     "op": "die",
+     "reason": "Disemboweled"
+    }
+   ]
   },
   {
    "name": "Knight Stand",
@@ -520,7 +934,29 @@
     "coord": "F3"
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "standUp"
+    },
+    {
+     "op": "move",
+     "n": "speed",
+     "optional": true
+    },
+    {
+     "op": "bonusAttack",
+     "onWound": "live",
+     "onFail": [
+      {
+       "op": "die",
+       "reason": "Knight Stand"
+      }
+     ]
+    },
+    {
+     "op": "shuffleBack"
+    }
+   ]
   },
   {
    "name": "There Will Be a Reckoning",
@@ -532,7 +968,12 @@
     "coord": "H3"
    },
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "addJudicium",
+     "name": "You Died Horribly"
+    }
+   ]
   }
  ],
  "judicium": [
@@ -545,7 +986,7 @@
    "text": "",
    "massivePerilThreshold": null,
    "unclear": [],
-   "ops": null
+   "ops": []
   },
   {
    "name": "You Died",
@@ -556,7 +997,12 @@
    "text": "",
    "massivePerilThreshold": null,
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "die",
+     "reason": "You Died"
+    }
+   ]
   },
   {
    "name": "You Died Horribly",
@@ -567,7 +1013,12 @@
    "text": "Add this card to the Judicium deck if your [Vigor] would drop to -5 below 0.",
    "massivePerilThreshold": -5,
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "die",
+     "reason": "You Died Horribly"
+    }
+   ]
   },
   {
    "name": "Your Gruesome Death Becomes Legend",
@@ -578,7 +1029,12 @@
    "text": "Add this card to the Judicium deck if your [Vigor] would drop to -9 below 0.",
    "massivePerilThreshold": -9,
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "die",
+     "reason": "Gruesome Death"
+    }
+   ]
   },
   {
    "name": "Your Death Beckons the Graal",
@@ -589,7 +1045,12 @@
    "text": "Add this card to the Judicium deck if your [Vigor] would drop to -12 below 0.",
    "massivePerilThreshold": -12,
    "unclear": [],
-   "ops": null
+   "ops": [
+    {
+     "op": "die",
+     "reason": "Death Beckons the Graal"
+    }
+   ]
   },
   {
    "name": "Your Death Becomes a Dragon's Sacrament",
@@ -602,7 +1063,16 @@
    "unclear": [
     "No threshold / rules text printed on the card - only the flavor quote. Presumably added by a campaign/story effect rather than a Vigor threshold."
    ],
-   "ops": null
+   "ops": [
+    {
+     "op": "die",
+     "reason": "Dragon's Sacrament"
+    }
+   ]
   }
- ]
+ ],
+ "rulesNote": {
+  "deckComposition": "Generic Mortis cards + the current Kingdom's specific cards (Rulebook p.27 Kingdom Setup step 7). Rogue's Path: Kingdom = the node's Kingdom.",
+  "curseSave": "Curse Save difficulty = Curse Level + X; Rogue's Path has no Kingdom track → Curse Level treated as 0 [확인]. Not a test (no Heat re-roll)."
+ }
 }

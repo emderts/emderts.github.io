@@ -26,7 +26,11 @@
    "unclear": [
     "The two black-box icons in 'spend a [..] or a [..]' read as Move action / Attack action (same glyphs used on the Tower card's Lunging Attack); not 100% certain."
    ],
-   "ops": null
+   "ops": {
+    "evasion": -2,
+    "discardAfterEvasionRoll": true,
+    "spendActionToDiscard": true
+   }
   },
   {
    "name": "Choked",
@@ -38,7 +42,10 @@
    "unclear": [
     "Black-box action icons read as Move action / Attack action (see Exposed)."
    ],
-   "ops": null
+   "ops": {
+    "heatFloor": "chokeLimit",
+    "spendActionLowerLimit": 3
+   }
   },
   {
    "name": "Courage",
@@ -48,7 +55,11 @@
    "squire": null,
    "flipSide": null,
    "unclear": [],
-   "ops": null
+   "ops": {
+    "precision": 2,
+    "autoBreak": 1,
+    "discardOnFullMissOrFail": true
+   }
   },
   {
    "name": "Panzer Parasite",
@@ -58,7 +69,11 @@
    "squire": "Whenever you're attacked by a Monster, treat X dice as hits before drawing from the Mettle deck (they can't be evaded).",
    "flipSide": null,
    "unclear": [],
-   "ops": null
+   "ops": {
+    "autoHitsOnAttacked": "tokens",
+    "armorReroll": "tokens",
+    "dieAt": 5
+   }
   },
   {
    "name": "Baptized in Metal",
@@ -68,7 +83,7 @@
    "squire": null,
    "flipSide": null,
    "unclear": [],
-   "ops": null
+   "ops": {}
   },
   {
    "name": "Called by the Heavens",
@@ -80,7 +95,7 @@
    "unclear": [
     "Code is faint; read as 09B0460 (could be 09B0450)."
    ],
-   "ops": null
+   "ops": {}
   },
   {
    "name": "Clear Mind",
@@ -92,7 +107,9 @@
    "unclear": [
     "No code visible on this side."
    ],
-   "ops": null
+   "ops": {
+    "ignoreSubjugated": true
+   }
   },
   {
    "name": "Dread",
@@ -104,7 +121,12 @@
    "unclear": [
     "No code visible on this side."
    ],
-   "ops": null
+   "ops": {
+    "precision": -4,
+    "precisionOnRear": -2,
+    "secondTime": "die",
+    "faceYourFear": true
+   }
   },
   {
    "name": "Drowning",
@@ -117,7 +139,11 @@
     "First die icon is a white die with a chalice face (read as the basic Armor die); the per-result symbol is the bare chalice (read as [Fail]).",
     "No code visible on this side."
    ],
-   "ops": null
+   "ops": {
+    "voluntaryMoveRoll": "armor+1",
+    "endTurnNoMove": "die",
+    "secondTime": "die"
+   }
   },
   {
    "name": "Knockdown (Standing Up)",
@@ -129,7 +155,11 @@
    "unclear": [
     "No code visible on this side."
    ],
-   "ops": null
+   "ops": {
+    "knockedDown": true,
+    "standUpOnAct": true,
+    "standUpAtStartOfTurn": true
+   }
   },
   {
    "name": "Malediction (Manifested)",
@@ -142,7 +172,9 @@
     "Bottom band is a decorative border with no BODY/MIND CONDITION label; type left null.",
     "No code visible on this side."
    ],
-   "ops": null
+   "ops": {
+    "noAttack": true
+   }
   },
   {
    "name": "Panicked",
@@ -154,7 +186,9 @@
    "unclear": [
     "No code visible on this side."
    ],
-   "ops": null
+   "ops": {
+    "handLimit": -4
+   }
   },
   {
    "name": "Toxified",
@@ -167,7 +201,9 @@
     "Die icon is a red die with a sword face (read as red Power die).",
     "No code visible on this side."
    ],
-   "ops": null
+   "ops": {
+    "endTurnRollRed": true
+   }
   },
   {
    "name": "Subjugated",
@@ -177,7 +213,11 @@
    "squire": null,
    "flipSide": "Clear Mind",
    "unclear": [],
-   "ops": null
+   "ops": {
+    "obeyCommands": true,
+    "secondTime": "die",
+    "startTurnTest": 9
+   }
   },
   {
    "name": "Fear",
@@ -187,7 +227,11 @@
    "squire": null,
    "flipSide": "Dread",
    "unclear": [],
-   "ops": null
+   "ops": {
+    "precision": -2,
+    "secondTime": "flip",
+    "faceYourFear": true
+   }
   },
   {
    "name": "Slimed",
@@ -199,7 +243,11 @@
    "unclear": [
     "Die/symbol icons as on Drowning (white Armor die; bare chalice = [Fail])."
    ],
-   "ops": null
+   "ops": {
+    "voluntaryMoveRoll": "armor+1",
+    "endTurnNoMove": "flip",
+    "secondTime": "flip"
+   }
   },
   {
    "name": "Knockdown (Falling Down)",
@@ -209,7 +257,11 @@
    "squire": null,
    "flipSide": "Knockdown (Standing Up)",
    "unclear": [],
-   "ops": null
+   "ops": {
+    "knockedDown": true,
+    "noActions": true,
+    "flipAtEndOfNextTurn": true
+   }
   },
   {
    "name": "Malediction (Dormant)",
@@ -221,7 +273,7 @@
    "unclear": [
     "Bottom band is a decorative border with no BODY/MIND CONDITION label; type left null."
    ],
-   "ops": null
+   "ops": {}
   },
   {
    "name": "Distracted",
@@ -231,7 +283,10 @@
    "squire": "Active Squire abilities cost +1 [Heat] to use.",
    "flipSide": "Panicked",
    "unclear": [],
-   "ops": null
+   "ops": {
+    "handLimit": -2,
+    "secondTime": "flip"
+   }
   },
   {
    "name": "Poisoned",
@@ -241,7 +296,11 @@
    "squire": null,
    "flipSide": "Toxified",
    "unclear": [],
-   "ops": null
+   "ops": {
+    "endTurnLoseVigorPerToken": 1,
+    "floor": 1,
+    "poisonLimit": 3
+   }
   }
  ]
 }

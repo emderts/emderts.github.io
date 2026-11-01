@@ -102,19 +102,44 @@
    "id": "humpty-charge",
    "name": "Humpty Charge",
    "level": 1,
-   "text": "Humpty Charge: The Eggknight turns to face the Attacker (if any), and moves forward 6 spaces in a straight line, then turns to face the most Knights. Humpty Charge causes Crash. If the Eggknight moves through or ends its movement on a knocked down Knight, that Knight ignores the Crash and draws a Judicium instead. If, during Humpty Charge, the Eggknight moves onto an Obstacle, it immediately stops, turns to face the most Knights and discards an Armor token from the lowest BP Level with Armor token."
+   "text": "Humpty Charge: The Eggknight turns to face the Attacker (if any), and moves forward 6 spaces in a straight line, then turns to face the most Knights. Humpty Charge causes Crash. If the Eggknight moves through or ends its movement on a knocked down Knight, that Knight ignores the Crash and draws a Judicium instead. If, during Humpty Charge, the Eggknight moves onto an Obstacle, it immediately stops, turns to face the most Knights and discards an Armor token from the lowest BP Level with Armor token.",
+   "ops": [
+    {
+     "op": "humptyCharge",
+     "distance": 6
+    }
+   ]
   },
   {
    "id": "humpty-fate",
    "name": "Humpty Fate",
    "level": 1,
-   "text": "If, during Humpty Charge, the Eggknight is about to move into a Board Edge, it immediately stops, turns to face the most Knights and discards an Armor token from the lowest BP Level with Armor token."
+   "text": "If, during Humpty Charge, the Eggknight is about to move into a Board Edge, it immediately stops, turns to face the most Knights and discards an Armor token from the lowest BP Level with Armor token.",
+   "ops": [
+    {
+     "op": "passive",
+     "hook": "humptyChargeBoardEdge",
+     "do": "stopFaceDiscardArmor"
+    }
+   ]
   },
   {
    "id": "counter",
    "name": "Counter",
    "level": 1,
-   "text": "Each time the Eggknight is dealt a Wound (a Double Wound is treated as 2 Wounds), place a Generic token on this Trait. When you finish resolving the current action, if there are 3 or more Generic tokens on this Trait, discard all Generic tokens and perform Signature."
+   "text": "Each time the Eggknight is dealt a Wound (a Double Wound is treated as 2 Wounds), place a Generic token on this Trait. When you finish resolving the current action, if there are 3 or more Generic tokens on this Trait, discard all Generic tokens and perform Signature.",
+   "ops": [
+    {
+     "op": "passive",
+     "hook": "onWound",
+     "counter": 3,
+     "then": [
+      {
+       "op": "signature"
+      }
+     ]
+    }
+   ]
   },
   {
    "id": "panzeronion",
@@ -129,44 +154,134 @@
     },
     "level2plus": 1,
     "note": "Owner-confirmed: tokens equal to the BP number (1/2/3); at Level 2+ one additional token on each space (2/3/4)."
-   }
+   },
+   "ops": [
+    {
+     "op": "passive",
+     "hook": "bpAt",
+     "atPerArmorToken": 1
+    },
+    {
+     "op": "passive",
+     "hook": "onArmorLostByHumptyCharge",
+     "do": [
+      {
+       "op": "drawGraveForColumn"
+      }
+     ]
+    }
+   ]
   },
   {
    "id": "hardboiled",
    "name": "Hardboiled",
    "level": 2,
-   "text": "Disable the Humpty Fate Trait. When Eggknight moves into a Board Edge during Humpty Charge, instead of stopping, it turns to face the most Knights and continues movement in that direction."
+   "text": "Disable the Humpty Fate Trait. When Eggknight moves into a Board Edge during Humpty Charge, instead of stopping, it turns to face the most Knights and continues movement in that direction.",
+   "ops": [
+    {
+     "op": "disableTrait",
+     "id": "humpty-fate"
+    },
+    {
+     "op": "passive",
+     "hook": "humptyChargeBoardEdge",
+     "do": "turnFaceMostKnightsContinue"
+    }
+   ]
   },
   {
    "id": "egged-on",
    "name": "Egged On",
    "level": 2,
    "text": "All Eggknight Zone Attacks without an After Final Attack gain \"[Peril Check?] After Final Attack: Humpty Charge.\"",
-   "unclear": "따옴표 앞 아이콘(검은 이빨 모양) 판독 필요 — REACT 창 아이콘일 수 있음"
+   "unclear": "따옴표 앞 아이콘(검은 이빨 모양) 판독 필요 — REACT 창 아이콘일 수 있음",
+   "ops": [
+    {
+     "op": "passive",
+     "hook": "zoneAttackWithoutAFA",
+     "addAfterFinalAttack": [
+      {
+       "op": "trait",
+       "id": "humpty-charge"
+      }
+     ]
+    }
+   ]
   },
   {
    "id": "jacked",
    "name": "Jacked",
    "level": 2,
-   "text": "Place discarded Armor tokens on this Trait, and apply the following penalties based on the number of tokens: 2+: Evasion Roll difficulty +1. 5+: Monster Attacks gain +1 [Evasion die]. 9+: Monster Attacks additionally cause -3 [Vigor] loss. You cannot discard Armor tokens from this Trait by any means."
+   "text": "Place discarded Armor tokens on this Trait, and apply the following penalties based on the number of tokens: 2+: Evasion Roll difficulty +1. 5+: Monster Attacks gain +1 [Evasion die]. 9+: Monster Attacks additionally cause -3 [Vigor] loss. You cannot discard Armor tokens from this Trait by any means.",
+   "ops": [
+    {
+     "op": "passive",
+     "hook": "jacked",
+     "thresholds": {
+      "2": {
+       "evasionDifficulty": 1
+      },
+      "5": {
+       "evasionDice": 1
+      },
+      "9": {
+       "vigorLoss": 3
+      }
+     }
+    }
+   ]
   },
   {
    "id": "just-a-scratch",
    "name": "Just a Scratch",
    "level": 3,
-   "text": "Humpty Charge doesn't stop when moving onto Obstacles. The Eggknight can discard up to one Armor token during each Humpty Charge."
+   "text": "Humpty Charge doesn't stop when moving onto Obstacles. The Eggknight can discard up to one Armor token during each Humpty Charge.",
+   "ops": [
+    {
+     "op": "passive",
+     "hook": "humptyChargeObstacle",
+     "do": "continue",
+     "maxArmorDiscardPerCharge": 1
+    }
+   ]
   },
   {
    "id": "coup-de-grace",
    "name": "Coup de Grace",
    "level": 3,
-   "text": "If a knocked down Knight would draw a Judicium, they die instead."
+   "text": "If a knocked down Knight would draw a Judicium, they die instead.",
+   "ops": [
+    {
+     "op": "passive",
+     "hook": "knockedDownJudicium",
+     "do": "die"
+    }
+   ]
   },
   {
    "id": "impenetrable-shell",
    "name": "Impenetrable Shell",
    "level": 4,
-   "text": "Each BP that has an Armor token on a corresponding space on the Sheet gains \"Ultrainstinct: If you are on the Eggknight's front space, Knockback 1.\""
+   "text": "Each BP that has an Armor token on a corresponding space on the Sheet gains \"Ultrainstinct: If you are on the Eggknight's front space, Knockback 1.\"",
+   "ops": [
+    {
+     "op": "passive",
+     "hook": "ultrainstinct",
+     "if": "bpHasArmorToken",
+     "do": [
+      {
+       "op": "if",
+       "cond": "attackerOnFrontSpace",
+       "then": [
+        {
+         "op": "knockback",
+         "n": 1
+        }
+       ]
+      }
+     ]
+    }
+   ]
   }
  ],
  "cards": {
@@ -204,7 +319,39 @@
     "afterAttack": null,
     "afterFinalAttack": null,
     "unclear": [],
-    "ops": null
+    "ops": {
+     "targeting": [
+      "Priority Target",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 3,
+       "op": "pushback",
+       "n": 2
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "cooldown",
+       "n": 1
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      },
+      {
+       "op": "knockdown"
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null
+    }
    },
    {
     "name": "Humpty Squat",
@@ -243,7 +390,37 @@
     "afterAttack": null,
     "afterFinalAttack": null,
     "unclear": [],
-    "ops": null
+    "ops": {
+     "targeting": [
+      "Zone 1"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 3,
+       "op": "evasionDice",
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "cooldown",
+       "n": 1
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "knockdown"
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null
+    }
    },
    {
     "name": "Backslash",
@@ -313,7 +490,37 @@
     "afterAttack": null,
     "afterFinalAttack": null,
     "unclear": [],
-    "ops": null
+    "ops": {
+     "targeting": [
+      "Knight in Blindspot",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 3,
+       "op": "vigorPerHitInstead",
+       "n": 2
+      }
+     ],
+     "before": [
+      {
+       "op": "choke",
+       "n": 3
+      }
+     ],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null
+    }
    },
    {
     "name": "Double Slash",
@@ -345,7 +552,35 @@
     "afterAttack": "Perform Signature.",
     "afterFinalAttack": null,
     "unclear": [],
-    "ops": null
+    "ops": {
+     "targeting": [
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 3,
+       "op": "vigorPerHitInstead",
+       "n": 2
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "signature"
+      }
+     ],
+     "afterFinalAttack": null
+    }
    },
    {
     "name": "Sword Thrust",
@@ -382,7 +617,31 @@
     "afterAttack": null,
     "afterFinalAttack": null,
     "unclear": [],
-    "ops": null
+    "ops": {
+     "targeting": [
+      "Closest Knight in front and 1 space behind Target",
+      "Closest Knight in sight and 1 space behind Target"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 3,
+       "op": "evasionDice",
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null
+    }
    },
    {
     "name": "Sword Slash",
@@ -443,7 +702,24 @@
     "afterAttack": null,
     "afterFinalAttack": null,
     "unclear": [],
-    "ops": null
+    "ops": {
+     "targeting": [
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null
+    }
    },
    {
     "name": "Flurry of Slashes",
@@ -512,7 +788,43 @@
     "afterAttack": null,
     "afterFinalAttack": "If [Vigor] was lost, immediately repeat Flurry of Slashes (once).",
     "unclear": [],
-    "ops": null
+    "ops": {
+     "targeting": [
+      "Priority Target",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 3,
+       "op": "evasionDice",
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "if",
+       "cond": "vigorLost",
+       "then": [
+        {
+         "op": "repeatCard",
+         "once": true
+        }
+       ]
+      }
+     ]
+    }
    },
    {
     "name": "Eggbutt",
@@ -548,7 +860,47 @@
     "afterAttack": "Humpty Charge.",
     "afterFinalAttack": null,
     "unclear": [],
-    "ops": null
+    "ops": {
+     "targeting": [
+      "Knight in Blindspot",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 3,
+       "op": "vigorPerHitInstead",
+       "n": 2
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "discard",
+       "n": 1
+      },
+      {
+       "op": "restrain"
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      },
+      {
+       "op": "knockdown"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "trait",
+       "id": "humpty-charge"
+      }
+     ],
+     "afterFinalAttack": null
+    }
    },
    {
     "name": "Poached Knight",
@@ -583,7 +935,57 @@
     "afterAttack": "Humpty Charge.",
     "afterFinalAttack": null,
     "unclear": [],
-    "ops": null
+    "ops": {
+     "targeting": [
+      "Priority Target",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 3,
+       "op": "vigorPerHitInstead",
+       "n": 2
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "pushback",
+       "n": 2
+      },
+      {
+       "op": "perHitInOrder",
+       "effects": [
+        {
+         "op": "cooldown",
+         "n": 1
+        },
+        {
+         "op": "restrain"
+        },
+        {
+         "op": "choke",
+         "n": 3
+        }
+       ]
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "trait",
+       "id": "humpty-charge"
+      }
+     ],
+     "afterFinalAttack": null
+    }
    },
    {
     "name": "Humpty Shake",
@@ -622,7 +1024,37 @@
     "afterAttack": null,
     "afterFinalAttack": null,
     "unclear": [],
-    "ops": null
+    "ops": {
+     "targeting": [
+      "Zone 1"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 3,
+       "op": "evasionDice",
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "discard",
+       "n": 1
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      },
+      {
+       "op": "knockdown"
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null
+    }
    },
    {
     "name": "Knightscramble",
@@ -658,7 +1090,47 @@
     "afterAttack": "Humpty Charge.",
     "afterFinalAttack": null,
     "unclear": [],
-    "ops": null
+    "ops": {
+     "targeting": [
+      "Priority Target",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 3,
+       "op": "pushback",
+       "n": 3
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "cooldown",
+       "n": 1
+      },
+      {
+       "op": "restrain"
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "knockdown"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "trait",
+       "id": "humpty-charge"
+      }
+     ],
+     "afterFinalAttack": null
+    }
    },
    {
     "name": "Backthrust",
@@ -698,7 +1170,37 @@
     "afterAttack": null,
     "afterFinalAttack": null,
     "unclear": [],
-    "ops": null
+    "ops": {
+     "targeting": [
+      "Knight in Blindspot and 1 space behind Target",
+      "Closest Knight in front and 1 space behind Target",
+      "Closest Knight in sight and 1 space behind Target"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 4,
+       "op": "vigorPerHitInstead",
+       "n": 2
+      }
+     ],
+     "before": [
+      {
+       "op": "choke",
+       "n": 3
+      }
+     ],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null
+    }
    },
    {
     "name": "Insidious Thrust",
@@ -741,7 +1243,45 @@
     "afterAttack": null,
     "afterFinalAttack": null,
     "unclear": [],
-    "ops": null
+    "ops": {
+     "targeting": [
+      "Knight in Blindspot and 1 space behind Target",
+      "Closest Knight in front and 1 space behind Target",
+      "Closest Knight in sight and 1 space behind Target"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "choke",
+       "n": 3
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "gated",
+       "gate": {
+        "stat": "heat",
+        "gte": 3
+       },
+       "then": [
+        {
+         "op": "discard",
+         "n": 1
+        }
+       ]
+      },
+      {
+       "op": "knockdown"
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null
+    }
    },
    {
     "name": "Face to Face",
@@ -778,7 +1318,48 @@
     "afterAttack": "Humpty Charge.",
     "afterFinalAttack": null,
     "unclear": [],
-    "ops": null
+    "ops": {
+     "targeting": [
+      "Priority Target",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 3,
+       "op": "difficultyInstead",
+       "n": 9
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "condition",
+       "id": "Distracted"
+      },
+      {
+       "op": "choke",
+       "n": 3
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "knockdown"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "trait",
+       "id": "humpty-charge"
+      }
+     ],
+     "afterFinalAttack": null
+    }
    },
    {
     "name": "Humpty Quake",
@@ -818,7 +1399,44 @@
     "afterAttack": null,
     "afterFinalAttack": "Perform Signature.",
     "unclear": [],
-    "ops": null
+    "ops": {
+     "targeting": [
+      "Zone 2"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 3,
+       "op": "vigorPerHitInstead",
+       "n": 2
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "discard",
+       "n": 1
+      },
+      {
+       "op": "restrain"
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      },
+      {
+       "op": "knockdown"
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "signature"
+      }
+     ]
+    }
    },
    {
     "name": "Deviled Egg",
@@ -854,7 +1472,66 @@
     "afterAttack": "Humpty Charge.",
     "afterFinalAttack": null,
     "unclear": [],
-    "ops": null
+    "ops": {
+     "targeting": [
+      "Knight in Blindspot",
+      "Priority Target",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 3,
+       "op": "difficultyInstead",
+       "n": 9
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "pushback",
+       "n": 2
+      },
+      {
+       "op": "perHitInOrder",
+       "effects": [
+        {
+         "op": "condition",
+         "id": "Distracted"
+        },
+        {
+         "op": "cooldown",
+         "n": 1
+        },
+        {
+         "op": "restrain"
+        },
+        {
+         "op": "choke",
+         "n": 3
+        },
+        {
+         "op": "discard",
+         "n": 1
+        }
+       ]
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "trait",
+       "id": "humpty-charge"
+      }
+     ],
+     "afterFinalAttack": null
+    }
    },
    {
     "name": "Sword Rend",
@@ -922,7 +1599,32 @@
     "afterAttack": null,
     "afterFinalAttack": null,
     "unclear": [],
-    "ops": null
+    "ops": {
+     "targeting": [
+      "Priority Target",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 3,
+       "op": "evasionDice",
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null
+    }
    },
    {
     "name": "Yolkman Strike",
@@ -996,7 +1698,46 @@
     "unclear": [
      "No Peril Check icon after '-2 [Vigor]' on this card (unlike every other AI card) – read as intentionally absent."
     ],
-    "ops": null
+    "ops": {
+     "targeting": [
+      "Priority Target",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 6,
+       "op": "die",
+       "after": "pushback"
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "pushback",
+       "n": 2
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": false
+      },
+      {
+       "op": "judicium"
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "moveToCenter"
+      },
+      {
+       "op": "faceMostKnights"
+      }
+     ]
+    }
    }
   ],
   "bp": [
@@ -1018,7 +1759,33 @@
      "on WOUND header"
     ],
     "unclear": [],
-    "ops": null
+    "ops": {
+     "at": 3,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "trait",
+       "id": "humpty-charge"
+      }
+     ],
+     "fail": null,
+     "instinct": null,
+     "critical": [
+      {
+       "op": "monsterModifier",
+       "stat": "at",
+       "n": -1
+      }
+     ]
+    }
    },
    {
     "name": "Armored Chest",
@@ -1038,7 +1805,32 @@
      "on FAIL header"
     ],
     "unclear": [],
-    "ops": null
+    "ops": {
+     "at": 3,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": null,
+     "fail": [
+      {
+       "op": "knockdown"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "bonusAttack",
+       "who": "otherKnight",
+       "optional": true
+      }
+     ]
+    }
    },
    {
     "name": "Giant Sabaton",
@@ -1058,7 +1850,31 @@
      "on FAIL header"
     ],
     "unclear": [],
-    "ops": null
+    "ops": {
+     "at": 4,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": null,
+     "fail": [
+      {
+       "op": "knockdown"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "bonusAttack",
+       "optional": true
+      }
+     ]
+    }
    },
    {
     "name": "Exposed Back",
@@ -1078,7 +1894,32 @@
      "on FAIL header"
     ],
     "unclear": [],
-    "ops": null
+    "ops": {
+     "at": 2,
+     "overcome": {
+      "n": 2,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": null,
+     "fail": [
+      {
+       "op": "trait",
+       "id": "humpty-charge"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "gainPassion",
+       "n": 2
+      }
+     ]
+    }
    },
    {
     "name": "Beady Eyes",
@@ -1098,7 +1939,36 @@
      "on INSTINCT header"
     ],
     "unclear": [],
-    "ops": null
+    "ops": {
+     "at": 2,
+     "overcome": {
+      "n": 2,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": null,
+     "fail": null,
+     "instinct": [
+      {
+       "op": "trait",
+       "id": "humpty-charge"
+      }
+     ],
+     "critical": [
+      {
+       "op": "leaveTokens",
+       "tokens": [
+        "opening",
+        "break"
+       ],
+       "n": 2
+      }
+     ]
+    }
    },
    {
     "name": "Right Pauldron",
@@ -1116,7 +1986,38 @@
     },
     "react": [],
     "unclear": [],
-    "ops": null
+    "ops": {
+     "at": 2,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "loseVigor",
+       "n": 1
+      },
+      {
+       "op": "pushback",
+       "n": 2
+      }
+     ],
+     "fail": null,
+     "instinct": null,
+     "critical": [
+      {
+       "op": "returnAllTechniques"
+      },
+      {
+       "op": "resetHeat"
+      }
+     ]
+    }
    },
    {
     "name": "Plate Gap",
@@ -1134,7 +2035,36 @@
     },
     "react": [],
     "unclear": [],
-    "ops": null
+    "ops": {
+     "at": 5,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "loseVigor",
+       "n": 2
+      },
+      {
+       "op": "pushback",
+       "n": 3
+      }
+     ],
+     "fail": null,
+     "instinct": null,
+     "critical": [
+      {
+       "op": "bonusAttack",
+       "optional": true
+      }
+     ]
+    }
    },
    {
     "name": "Armored Belt",
@@ -1154,7 +2084,34 @@
      "on INSTINCT header"
     ],
     "unclear": [],
-    "ops": null
+    "ops": {
+     "at": 5,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": null,
+     "fail": null,
+     "instinct": [
+      {
+       "op": "trait",
+       "id": "humpty-charge"
+      }
+     ],
+     "critical": [
+      {
+       "op": "discardArmorTokens",
+       "n": 2,
+       "from": "lowest",
+       "noTrait": true
+      }
+     ]
+    }
    },
    {
     "name": "Small Hand",
@@ -1176,7 +2133,35 @@
     "unclear": [
      "Overcome banner slightly blurry; read as 3+."
     ],
-    "ops": null
+    "ops": {
+     "at": 6,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": null,
+     "fail": [
+      {
+       "op": "trait",
+       "id": "humpty-charge"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "disableMonsterKeywords",
+       "keywords": [
+        "cooldown",
+        "discard"
+       ]
+      }
+     ]
+    }
    },
    {
     "name": "Weak Poleyn",
@@ -1196,7 +2181,41 @@
      "after 'Lose -2 [Vigor]. Pushback 3.' (before 'Knockdown.')"
     ],
     "unclear": [],
-    "ops": null
+    "ops": {
+     "at": 3,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "loseVigor",
+       "n": 2
+      },
+      {
+       "op": "pushback",
+       "n": 3
+      },
+      {
+       "op": "knockdown"
+      }
+     ],
+     "fail": null,
+     "instinct": null,
+     "critical": [
+      {
+       "op": "disableMonsterKeywords",
+       "keywords": [
+        "knockdown"
+       ]
+      }
+     ]
+    }
    },
    {
     "name": "Back Armor Slit",
@@ -1216,7 +2235,31 @@
      "on WOUND header"
     ],
     "unclear": [],
-    "ops": null
+    "ops": {
+     "at": 4,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "trait",
+       "id": "humpty-charge"
+      }
+     ],
+     "fail": null,
+     "instinct": null,
+     "critical": [
+      {
+       "op": "additionalSingleWound"
+      }
+     ]
+    }
    },
    {
     "name": "Armored Gut",
@@ -1236,7 +2279,36 @@
      "on INSTINCT header"
     ],
     "unclear": [],
-    "ops": null
+    "ops": {
+     "at": 4,
+     "overcome": {
+      "n": 4,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": null,
+     "fail": null,
+     "instinct": [
+      {
+       "op": "trait",
+       "id": "humpty-charge"
+      }
+     ],
+     "critical": [
+      {
+       "op": "leaveTokens",
+       "tokens": [
+        "opening",
+        "break"
+       ],
+       "n": 3
+      }
+     ]
+    }
    },
    {
     "name": "Armored Heart",
@@ -1256,7 +2328,32 @@
     "unclear": [
      "Overcome banner blurry; read as 4+ (could be 3+)."
     ],
-    "ops": null
+    "ops": {
+     "at": 6,
+     "overcome": {
+      "n": 4,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": null,
+     "fail": [
+      {
+       "op": "trait",
+       "id": "humpty-charge"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "disableTrait",
+       "id": "counter"
+      }
+     ]
+    }
    },
    {
     "name": "Knight's Pride",
@@ -1276,7 +2373,34 @@
      "on WOUND header"
     ],
     "unclear": [],
-    "ops": null
+    "ops": {
+     "at": 5,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "knockdown"
+      },
+      {
+       "op": "trait",
+       "id": "humpty-charge"
+      }
+     ],
+     "fail": null,
+     "instinct": null,
+     "critical": [
+      {
+       "op": "disableZoneAttacks"
+      }
+     ]
+    }
    },
    {
     "name": "Yolkman",
@@ -1296,7 +2420,35 @@
      "on INSTINCT header"
     ],
     "unclear": [],
-    "ops": null
+    "ops": {
+     "at": 7,
+     "overcome": {
+      "n": 5,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": null,
+     "fail": null,
+     "instinct": [
+      {
+       "op": "knockdown"
+      },
+      {
+       "op": "trait",
+       "id": "humpty-charge"
+      }
+     ],
+     "critical": [
+      {
+       "op": "slayMonster",
+       "note": "8573 story paragraph ignored in Rogue's Path"
+      }
+     ]
+    }
    },
    {
     "name": "Inner Shell",
@@ -1316,7 +2468,42 @@
     "unclear": [
      "Overcome banner blurry; read as 4+ (could be 3+)."
     ],
-    "ops": null
+    "ops": {
+     "at": 5,
+     "overcome": {
+      "n": 4,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "loseVigor",
+       "n": 3
+      },
+      {
+       "op": "pushback",
+       "n": 4
+      }
+     ],
+     "fail": [
+      {
+       "op": "trait",
+       "id": "humpty-charge"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "monsterModifier",
+       "stat": "at",
+       "n": -1
+      }
+     ]
+    }
    },
    {
     "name": "Panzerparasite",
@@ -1336,7 +2523,46 @@
      "after 'Lose -3 [Vigor]. Pushback 4.' (before 'Knockdown.')"
     ],
     "unclear": [],
-    "ops": null
+    "ops": {
+     "at": 7,
+     "overcome": {
+      "n": 5,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "loseVigor",
+       "n": 3
+      },
+      {
+       "op": "pushback",
+       "n": 4
+      },
+      {
+       "op": "knockdown"
+      }
+     ],
+     "fail": [
+      {
+       "op": "trait",
+       "id": "humpty-charge"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "discardArmorTokens",
+       "n": "all",
+       "from": "all",
+       "noTrait": true
+      }
+     ]
+    }
    },
    {
     "name": "Deformed Head",
@@ -1354,7 +2580,31 @@
     },
     "react": [],
     "unclear": [],
-    "ops": null
+    "ops": {
+     "at": 6,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": null,
+     "fail": null,
+     "instinct": [
+      {
+       "op": "trait",
+       "id": "humpty-charge"
+      }
+     ],
+     "critical": [
+      {
+       "op": "additionalSingleWound"
+      }
+     ]
+    }
    }
   ],
   "signature": {
@@ -1424,7 +2674,36 @@
    "afterFinalAttack": "Humpty Charge.",
    "unclear": [],
    "subtitle": "ZONE SIGNATURE",
-   "ops": null
+   "ops": {
+    "targeting": [
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "move": true,
+    "gates": [
+     {
+      "stat": "heat",
+      "gte": 4,
+      "op": "vigorPerHitInstead",
+      "n": 2
+     }
+    ],
+    "before": [],
+    "effects": [
+     {
+      "op": "loseVigorPerHit",
+      "n": 1,
+      "perilCheck": true
+     }
+    ],
+    "afterAttack": null,
+    "afterFinalAttack": [
+     {
+      "op": "trait",
+      "id": "humpty-charge"
+     }
+    ]
+   }
   },
   "routine": {
    "name": "Hard-Boiled",
@@ -1432,7 +2711,17 @@
     "Each Knight loses -3 [Vigor].",
     "The Eggknight gains 2 Armor [Armor token] tokens on BP I level."
    ],
-   "ops": null
+   "ops": [
+    {
+     "op": "allKnightsLoseVigor",
+     "n": 3
+    },
+    {
+     "op": "armorTokens",
+     "bp": 1,
+     "n": 2
+    }
+   ]
   }
  },
  "clashSetup": {
