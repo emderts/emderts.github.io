@@ -15,5 +15,6 @@ const traitNames = new Set(E.traits.map(t => t.name));
 ok(Object.values(E.levels).flatMap(l => l.traitsAdd).every(n => traitNames.has(n)), 'every level trait has a trait entry');
 const mentioned = [...E.cards.ai, ...E.cards.bp].flatMap(c => [...(c.effects || []), ...Object.values(c.responses || {}), c.afterAttack, c.afterFinalAttack]).filter(Boolean).join(' ');
 ok(/Humpty Charge/.test(mentioned) && /Signature/.test(mentioned), 'cards reference Humpty Charge and Signature (trait hooks needed)');
+ok(E.clashSetup && E.clashSetup.monsterCells.length === 4 && E.clashSetup.knightStart.length === 4 && E.clashSetup.terrain.length === 8 && E.clashSetup.terrain.every(t => t.tile === 'column'), 'Clash Setup: 2x2 monster, 4 knight starts, 8 Columns');
 console.log('INFO keywords used on cards:', [...new Set((mentioned.match(/\b(Cooldown|Discard|Restrain|Choke \d|Knockdown|Pushback \d|Distracted|Bonus Attack|Judicium|Single Wound)\b/g) || []))].join(', '));
 console.log(fails ? `${fails} FAIL` : 'ALL PASS'); process.exit(fails ? 1 : 0);
