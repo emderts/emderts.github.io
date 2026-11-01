@@ -1,0 +1,2255 @@
+{
+ "_source": "KF Core Rulebook p.78–79 Rosegraal (merged). Nodes auto-detected + read from 300dpi render; edges auto-traced from root artwork (cut radius 40px) — 'check' = not confirmed by all three trace settings. pos = merged-page pixel coords /4 (page width 620 each, total 1240x877).",
+ "size": [
+  1240,
+  877
+ ],
+ "start": "S",
+ "rewardCodes": {
+  "C": "Class",
+  "H": "Heroic Arc",
+  "P": "Peril Arc",
+  "T": "Technique",
+  "G": "Gear",
+  "V": "Virtue",
+  "W": "Wild Card",
+  "S": "Sigh of the Graal"
+ },
+ "nodes": [
+  {
+   "id": "K01",
+   "kingdom": "sunken",
+   "level": 5,
+   "res": 5,
+   "reward": "G",
+   "pos": [
+    376,
+    60
+   ]
+  },
+  {
+   "id": "K02",
+   "kingdom": "sunken",
+   "level": 4,
+   "res": 4,
+   "reward": "C",
+   "pos": [
+    494,
+    60
+   ]
+  },
+  {
+   "id": "K03",
+   "kingdom": "sunken",
+   "level": 4,
+   "res": 4,
+   "reward": "T",
+   "pos": [
+    335,
+    120
+   ]
+  },
+  {
+   "id": "K04",
+   "kingdom": "sunken",
+   "level": 4,
+   "res": 4,
+   "reward": "P",
+   "pos": [
+    460,
+    106
+   ]
+  },
+  {
+   "id": "K05",
+   "kingdom": "sunken",
+   "level": 5,
+   "res": 5,
+   "reward": "C",
+   "pos": [
+    560,
+    93
+   ]
+  },
+  {
+   "id": "K06",
+   "kingdom": "sunken",
+   "level": 3,
+   "res": 3,
+   "reward": "G",
+   "pos": [
+    412,
+    164
+   ]
+  },
+  {
+   "id": "K07",
+   "kingdom": "sunken",
+   "level": 3,
+   "res": 3,
+   "reward": "T",
+   "pos": [
+    555,
+    155
+   ]
+  },
+  {
+   "id": "K08",
+   "kingdom": "sunken",
+   "level": 5,
+   "res": 5,
+   "reward": "W",
+   "pos": [
+    316,
+    191
+   ]
+  },
+  {
+   "id": "K09",
+   "kingdom": "sunken",
+   "level": 3,
+   "res": 3,
+   "reward": "C",
+   "pos": [
+    479,
+    200
+   ]
+  },
+  {
+   "id": "K10",
+   "kingdom": "sunken",
+   "level": 3,
+   "res": 3,
+   "reward": "H",
+   "pos": [
+    386,
+    236
+   ]
+  },
+  {
+   "id": "K11",
+   "kingdom": "sunken",
+   "level": 2,
+   "res": 2,
+   "reward": "C",
+   "pos": [
+    555,
+    223
+   ]
+  },
+  {
+   "id": "K12",
+   "kingdom": "sunken",
+   "level": 2,
+   "res": 2,
+   "reward": "C",
+   "pos": [
+    342,
+    294
+   ]
+  },
+  {
+   "id": "K13",
+   "kingdom": "sunken",
+   "level": 2,
+   "res": 2,
+   "reward": "T",
+   "pos": [
+    458,
+    276
+   ]
+  },
+  {
+   "id": "K14",
+   "kingdom": "sunken",
+   "level": 1,
+   "res": 1,
+   "reward": "H",
+   "pos": [
+    553,
+    280
+   ]
+  },
+  {
+   "id": "K15",
+   "kingdom": "sunken",
+   "level": 2,
+   "res": 2,
+   "reward": "S",
+   "pos": [
+    417,
+    339
+   ]
+  },
+  {
+   "id": "K16",
+   "kingdom": "sunken",
+   "level": 1,
+   "res": 1,
+   "reward": "P",
+   "pos": [
+    507,
+    330
+   ]
+  },
+  {
+   "id": "K17",
+   "kingdom": "sunken",
+   "level": 2,
+   "res": 2,
+   "reward": "P",
+   "pos": [
+    328,
+    372
+   ]
+  },
+  {
+   "id": "K18",
+   "kingdom": "sunken",
+   "level": 1,
+   "res": 1,
+   "reward": "P",
+   "pos": [
+    560,
+    371
+   ]
+  },
+  {
+   "id": "K19",
+   "kingdom": "sunken",
+   "level": 1,
+   "res": 1,
+   "reward": "C",
+   "pos": [
+    406,
+    410
+   ]
+  },
+  {
+   "id": "K20",
+   "kingdom": "sunken",
+   "level": 1,
+   "res": 1,
+   "reward": "T",
+   "pos": [
+    487,
+    408
+   ]
+  },
+  {
+   "id": "K21",
+   "kingdom": "sunken",
+   "level": 2,
+   "res": 2,
+   "reward": "C",
+   "pos": [
+    328,
+    454
+   ]
+  },
+  {
+   "id": "K22",
+   "kingdom": "sunken",
+   "level": 1,
+   "res": 1,
+   "reward": "H",
+   "pos": [
+    560,
+    447
+   ]
+  },
+  {
+   "id": "K23",
+   "kingdom": "sunken",
+   "level": 3,
+   "res": 3,
+   "reward": "T",
+   "pos": [
+    401,
+    510
+   ]
+  },
+  {
+   "id": "K24",
+   "kingdom": "sunken",
+   "level": 2,
+   "res": 2,
+   "reward": "T",
+   "pos": [
+    466,
+    468
+   ]
+  },
+  {
+   "id": "K25",
+   "kingdom": "sunken",
+   "level": 1,
+   "res": 1,
+   "reward": "T",
+   "pos": [
+    543,
+    501
+   ]
+  },
+  {
+   "id": "K26",
+   "kingdom": "sunken",
+   "level": 4,
+   "res": 4,
+   "reward": "G",
+   "pos": [
+    140,
+    526
+   ]
+  },
+  {
+   "id": "K27",
+   "kingdom": "sunken",
+   "level": 3,
+   "res": 3,
+   "reward": "P",
+   "pos": [
+    240,
+    522
+   ]
+  },
+  {
+   "id": "K28",
+   "kingdom": "sunken",
+   "level": 3,
+   "res": 3,
+   "reward": "H",
+   "pos": [
+    326,
+    539
+   ]
+  },
+  {
+   "id": "K29",
+   "kingdom": "sunken",
+   "level": 1,
+   "res": 1,
+   "reward": "V",
+   "pos": [
+    477,
+    542
+   ]
+  },
+  {
+   "id": "K30",
+   "kingdom": "sunken",
+   "level": 5,
+   "res": 5,
+   "reward": "P",
+   "pos": [
+    80,
+    574
+   ]
+  },
+  {
+   "id": "K31",
+   "kingdom": "sunken",
+   "level": 4,
+   "res": 4,
+   "reward": "C",
+   "pos": [
+    162,
+    592
+   ]
+  },
+  {
+   "id": "K32",
+   "kingdom": "sunken",
+   "level": 1,
+   "res": 1,
+   "reward": "G",
+   "pos": [
+    551,
+    561
+   ]
+  },
+  {
+   "id": "K33",
+   "kingdom": "sunken",
+   "level": 4,
+   "res": 4,
+   "reward": "C",
+   "pos": [
+    264,
+    598
+   ]
+  },
+  {
+   "id": "K34",
+   "kingdom": "sunken",
+   "level": 2,
+   "res": 2,
+   "reward": "H",
+   "pos": [
+    369,
+    595
+   ]
+  },
+  {
+   "id": "K35",
+   "kingdom": "sunken",
+   "level": 1,
+   "res": 1,
+   "reward": "C",
+   "pos": [
+    465,
+    606
+   ]
+  },
+  {
+   "id": "K36",
+   "kingdom": "sunken",
+   "level": 5,
+   "res": 5,
+   "reward": "V",
+   "pos": [
+    80,
+    671
+   ]
+  },
+  {
+   "id": "K37",
+   "kingdom": "sunken",
+   "level": 4,
+   "res": 4,
+   "reward": "S",
+   "pos": [
+    186,
+    652
+   ]
+  },
+  {
+   "id": "K38",
+   "kingdom": "sunken",
+   "level": 3,
+   "res": 3,
+   "reward": "H",
+   "pos": [
+    279,
+    662
+   ]
+  },
+  {
+   "id": "K39",
+   "kingdom": "sunken",
+   "level": 3,
+   "res": 3,
+   "reward": "P",
+   "pos": [
+    396,
+    650
+   ]
+  },
+  {
+   "id": "K40",
+   "kingdom": "sunken",
+   "level": 2,
+   "res": 2,
+   "reward": "W",
+   "pos": [
+    550,
+    643
+   ]
+  },
+  {
+   "id": "K41",
+   "kingdom": "sunken",
+   "level": 5,
+   "res": 5,
+   "reward": "H",
+   "pos": [
+    163,
+    714
+   ]
+  },
+  {
+   "id": "K42",
+   "kingdom": "sunken",
+   "level": 4,
+   "res": 4,
+   "reward": "T",
+   "pos": [
+    370,
+    710
+   ]
+  },
+  {
+   "id": "K43",
+   "kingdom": "sunken",
+   "level": 2,
+   "res": 2,
+   "reward": "P",
+   "pos": [
+    483,
+    682
+   ]
+  },
+  {
+   "id": "K44",
+   "kingdom": "sunken",
+   "level": 2,
+   "res": 2,
+   "reward": "C",
+   "pos": [
+    560,
+    714
+   ]
+  },
+  {
+   "id": "K45",
+   "kingdom": "sunken",
+   "level": 5,
+   "res": 5,
+   "reward": "H",
+   "pos": [
+    80,
+    760
+   ]
+  },
+  {
+   "id": "K46",
+   "kingdom": "sunken",
+   "level": 4,
+   "res": 4,
+   "reward": "G",
+   "pos": [
+    280,
+    732
+   ]
+  },
+  {
+   "id": "K47",
+   "kingdom": "sunken",
+   "level": 4,
+   "res": 4,
+   "reward": "H",
+   "pos": [
+    448,
+    747
+   ]
+  },
+  {
+   "id": "K48",
+   "kingdom": "sunken",
+   "level": 4,
+   "res": 4,
+   "reward": "P",
+   "pos": [
+    189,
+    773
+   ]
+  },
+  {
+   "id": "K49",
+   "kingdom": "sunken",
+   "level": 5,
+   "res": 5,
+   "reward": "T",
+   "pos": [
+    334,
+    776
+   ]
+  },
+  {
+   "id": "K50",
+   "kingdom": "sunken",
+   "level": 3,
+   "res": 3,
+   "reward": "S",
+   "pos": [
+    530,
+    780
+   ]
+  },
+  {
+   "id": "K51",
+   "kingdom": "sunken",
+   "level": 5,
+   "res": 5,
+   "reward": "C",
+   "pos": [
+    416,
+    808
+   ]
+  },
+  {
+   "id": "P01",
+   "kingdom": "principality",
+   "level": 5,
+   "res": 5,
+   "reward": "P",
+   "pos": [
+    895,
+    114
+   ]
+  },
+  {
+   "id": "P02",
+   "kingdom": "principality",
+   "level": 3,
+   "res": 3,
+   "reward": "W",
+   "pos": [
+    776,
+    162
+   ]
+  },
+  {
+   "id": "P03",
+   "kingdom": "principality",
+   "level": 5,
+   "res": 5,
+   "reward": "H",
+   "pos": [
+    1008,
+    144
+   ]
+  },
+  {
+   "id": "P04",
+   "kingdom": "principality",
+   "level": 4,
+   "res": 4,
+   "reward": "P",
+   "pos": [
+    904,
+    181
+   ]
+  },
+  {
+   "id": "P05",
+   "kingdom": "principality",
+   "level": 4,
+   "res": 4,
+   "reward": "C",
+   "pos": [
+    1052,
+    198
+   ]
+  },
+  {
+   "id": "P06",
+   "kingdom": "principality",
+   "level": 2,
+   "res": 2,
+   "reward": "C",
+   "pos": [
+    743,
+    231
+   ]
+  },
+  {
+   "id": "P07",
+   "kingdom": "principality",
+   "level": 2,
+   "res": 2,
+   "reward": "T",
+   "pos": [
+    847,
+    227
+   ]
+  },
+  {
+   "id": "P08",
+   "kingdom": "principality",
+   "level": 3,
+   "res": 3,
+   "reward": "V",
+   "pos": [
+    972,
+    226
+   ]
+  },
+  {
+   "id": "P09",
+   "kingdom": "principality",
+   "level": 4,
+   "res": 4,
+   "reward": "H",
+   "pos": [
+    1122,
+    230
+   ]
+  },
+  {
+   "id": "P10",
+   "kingdom": "principality",
+   "level": 3,
+   "res": 3,
+   "reward": "T",
+   "pos": [
+    927,
+    271
+   ]
+  },
+  {
+   "id": "P11",
+   "kingdom": "principality",
+   "level": 3,
+   "res": 3,
+   "reward": "P",
+   "pos": [
+    1050,
+    273
+   ]
+  },
+  {
+   "id": "P12",
+   "kingdom": "principality",
+   "level": 1,
+   "res": 1,
+   "reward": "T",
+   "pos": [
+    746,
+    307
+   ]
+  },
+  {
+   "id": "P13",
+   "kingdom": "principality",
+   "level": 2,
+   "res": 2,
+   "reward": "G",
+   "pos": [
+    830,
+    306
+   ]
+  },
+  {
+   "id": "P14",
+   "kingdom": "principality",
+   "level": 1,
+   "res": 1,
+   "reward": "S",
+   "pos": [
+    916,
+    330
+   ]
+  },
+  {
+   "id": "P15",
+   "kingdom": "principality",
+   "level": 2,
+   "res": 2,
+   "reward": "C",
+   "pos": [
+    1000,
+    316
+   ]
+  },
+  {
+   "id": "P16",
+   "kingdom": "principality",
+   "level": 5,
+   "res": 5,
+   "reward": "T",
+   "pos": [
+    1128,
+    306
+   ]
+  },
+  {
+   "id": "P17",
+   "kingdom": "principality",
+   "level": 1,
+   "res": 1,
+   "reward": "V",
+   "pos": [
+    759,
+    375
+   ]
+  },
+  {
+   "id": "P18",
+   "kingdom": "principality",
+   "level": 3,
+   "res": 3,
+   "reward": "T",
+   "pos": [
+    1074,
+    356
+   ]
+  },
+  {
+   "id": "P19",
+   "kingdom": "principality",
+   "level": 5,
+   "res": 5,
+   "reward": "C",
+   "pos": [
+    1157,
+    379
+   ]
+  },
+  {
+   "id": "P20",
+   "kingdom": "principality",
+   "level": 1,
+   "res": 1,
+   "reward": "G",
+   "pos": [
+    820,
+    422
+   ]
+  },
+  {
+   "id": "P21",
+   "kingdom": "principality",
+   "level": 1,
+   "res": 1,
+   "reward": "C",
+   "pos": [
+    890,
+    388
+   ]
+  },
+  {
+   "id": "P22",
+   "kingdom": "principality",
+   "level": 2,
+   "res": 2,
+   "reward": "H",
+   "pos": [
+    1000,
+    384
+   ]
+  },
+  {
+   "id": "P23",
+   "kingdom": "principality",
+   "level": 4,
+   "res": 4,
+   "reward": "W",
+   "pos": [
+    1095,
+    415
+   ]
+  },
+  {
+   "id": "P24",
+   "kingdom": "principality",
+   "level": 2,
+   "res": 2,
+   "reward": "G",
+   "pos": [
+    914,
+    443
+   ]
+  },
+  {
+   "id": "P25",
+   "kingdom": "principality",
+   "level": 2,
+   "res": 2,
+   "reward": "P",
+   "pos": [
+    1001,
+    450
+   ]
+  },
+  {
+   "id": "P26",
+   "kingdom": "principality",
+   "level": 1,
+   "res": 1,
+   "reward": "T",
+   "pos": [
+    774,
+    497
+   ]
+  },
+  {
+   "id": "P27",
+   "kingdom": "principality",
+   "level": 1,
+   "res": 1,
+   "reward": "P",
+   "pos": [
+    858,
+    502
+   ]
+  },
+  {
+   "id": "P28",
+   "kingdom": "principality",
+   "level": 2,
+   "res": 2,
+   "reward": "V",
+   "pos": [
+    934,
+    506
+   ]
+  },
+  {
+   "id": "P29",
+   "kingdom": "principality",
+   "level": 3,
+   "res": 3,
+   "reward": "H",
+   "pos": [
+    1080,
+    472
+   ]
+  },
+  {
+   "id": "P30",
+   "kingdom": "principality",
+   "level": 5,
+   "res": 5,
+   "reward": "T",
+   "pos": [
+    1159,
+    470
+   ]
+  },
+  {
+   "id": "P31",
+   "kingdom": "principality",
+   "level": 3,
+   "res": 3,
+   "reward": "P",
+   "pos": [
+    1027,
+    514
+   ]
+  },
+  {
+   "id": "P32",
+   "kingdom": "principality",
+   "level": 4,
+   "res": 4,
+   "reward": "T",
+   "pos": [
+    1130,
+    532
+   ]
+  },
+  {
+   "id": "P33",
+   "kingdom": "principality",
+   "level": 1,
+   "res": 1,
+   "reward": "H",
+   "pos": [
+    756,
+    574
+   ]
+  },
+  {
+   "id": "P34",
+   "kingdom": "principality",
+   "level": 1,
+   "res": 1,
+   "reward": "W",
+   "pos": [
+    858,
+    573
+   ]
+  },
+  {
+   "id": "P35",
+   "kingdom": "principality",
+   "level": 2,
+   "res": 2,
+   "reward": "H",
+   "pos": [
+    986,
+    562
+   ]
+  },
+  {
+   "id": "P36",
+   "kingdom": "principality",
+   "level": 2,
+   "res": 2,
+   "reward": "T",
+   "pos": [
+    1075,
+    578
+   ]
+  },
+  {
+   "id": "P37",
+   "kingdom": "principality",
+   "level": 4,
+   "res": 4,
+   "reward": "C",
+   "pos": [
+    1152,
+    590
+   ]
+  },
+  {
+   "id": "P38",
+   "kingdom": "principality",
+   "level": 3,
+   "res": 3,
+   "reward": "V",
+   "pos": [
+    936,
+    607
+   ]
+  },
+  {
+   "id": "P39",
+   "kingdom": "principality",
+   "level": 4,
+   "res": 4,
+   "reward": "C",
+   "pos": [
+    1018,
+    637
+   ]
+  },
+  {
+   "id": "P40",
+   "kingdom": "principality",
+   "level": 1,
+   "res": 1,
+   "reward": "C",
+   "pos": [
+    788,
+    640
+   ]
+  },
+  {
+   "id": "P41",
+   "kingdom": "principality",
+   "level": 3,
+   "res": 3,
+   "reward": "C",
+   "pos": [
+    851,
+    679
+   ]
+  },
+  {
+   "id": "P42",
+   "kingdom": "principality",
+   "level": 2,
+   "res": 2,
+   "reward": "C",
+   "pos": [
+    929,
+    669
+   ]
+  },
+  {
+   "id": "P43",
+   "kingdom": "principality",
+   "level": 5,
+   "res": 5,
+   "reward": "V",
+   "pos": [
+    1114,
+    658
+   ]
+  },
+  {
+   "id": "P44",
+   "kingdom": "principality",
+   "level": 4,
+   "res": 4,
+   "reward": "V",
+   "pos": [
+    1021,
+    703
+   ]
+  },
+  {
+   "id": "P45",
+   "kingdom": "principality",
+   "level": 3,
+   "res": 3,
+   "reward": "G",
+   "pos": [
+    750,
+    726
+   ]
+  },
+  {
+   "id": "P46",
+   "kingdom": "principality",
+   "level": 4,
+   "res": 4,
+   "reward": "C",
+   "pos": [
+    848,
+    743
+   ]
+  },
+  {
+   "id": "P47",
+   "kingdom": "principality",
+   "level": 4,
+   "res": 4,
+   "reward": "T",
+   "pos": [
+    959,
+    746
+   ]
+  },
+  {
+   "id": "P48",
+   "kingdom": "principality",
+   "level": 5,
+   "res": 5,
+   "reward": "P",
+   "pos": [
+    1102,
+    734
+   ]
+  },
+  {
+   "id": "P49",
+   "kingdom": "principality",
+   "level": 5,
+   "res": 5,
+   "reward": "S",
+   "pos": [
+    773,
+    802
+   ]
+  },
+  {
+   "id": "P50",
+   "kingdom": "principality",
+   "level": 4,
+   "res": 4,
+   "reward": "H",
+   "pos": [
+    880,
+    806
+   ]
+  },
+  {
+   "id": "P51",
+   "kingdom": "principality",
+   "level": 5,
+   "res": 5,
+   "reward": "G",
+   "pos": [
+    1042,
+    799
+   ]
+  },
+  {
+   "id": "S",
+   "kingdom": "principality",
+   "level": 0,
+   "res": 0,
+   "reward": null,
+   "start": true,
+   "pos": [
+    714,
+    439
+   ]
+  }
+ ],
+ "edges": [
+  {
+   "a": "K01",
+   "b": "K03",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "K02",
+   "b": "K04",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K02",
+   "b": "K05",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K03",
+   "b": "K06",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K03",
+   "b": "K08",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "K04",
+   "b": "K06",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "K05",
+   "b": "K07",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "K06",
+   "b": "K09",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K07",
+   "b": "K09",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K09",
+   "b": "K11",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "K10",
+   "b": "K12",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "K10",
+   "b": "K13",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K11",
+   "b": "P06",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K12",
+   "b": "K15",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K13",
+   "b": "K16",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "K14",
+   "b": "K16",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K14",
+   "b": "K18",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K14",
+   "b": "P12",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K15",
+   "b": "K17",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K15",
+   "b": "K19",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "K16",
+   "b": "K20",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K17",
+   "b": "K21",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "K18",
+   "b": "P12",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K18",
+   "b": "S",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K19",
+   "b": "K20",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K19",
+   "b": "K23",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K19",
+   "b": "K24",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K19",
+   "b": "K28",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K20",
+   "b": "K22",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K21",
+   "b": "K27",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K22",
+   "b": "K25",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "K22",
+   "b": "S",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K23",
+   "b": "K28",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K23",
+   "b": "K34",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K24",
+   "b": "K29",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "K25",
+   "b": "K29",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "K25",
+   "b": "S",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K26",
+   "b": "K27",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K26",
+   "b": "K31",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K26",
+   "b": "K33",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K26",
+   "b": "K37",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K27",
+   "b": "K31",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "K27",
+   "b": "K33",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K27",
+   "b": "K37",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K28",
+   "b": "K33",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K28",
+   "b": "K34",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K29",
+   "b": "K32",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "K29",
+   "b": "K35",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K30",
+   "b": "K31",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K31",
+   "b": "K33",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "K31",
+   "b": "K37",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "K32",
+   "b": "K35",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K32",
+   "b": "K40",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K32",
+   "b": "K43",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K32",
+   "b": "P33",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K33",
+   "b": "K34",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K33",
+   "b": "K37",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K34",
+   "b": "K35",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K34",
+   "b": "K38",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K36",
+   "b": "K37",
+   "confidence": "check",
+   "detected_in": 1,
+   "note": "manual: root visible in crop"
+  },
+  {
+   "a": "K37",
+   "b": "K41",
+   "confidence": "check",
+   "detected_in": 1,
+   "note": "manual: root visible in crop"
+  },
+  {
+   "a": "K38",
+   "b": "K46",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "K39",
+   "b": "K42",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K39",
+   "b": "K47",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "K40",
+   "b": "K43",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K40",
+   "b": "K44",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "K40",
+   "b": "P40",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K40",
+   "b": "P45",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K41",
+   "b": "K45",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K42",
+   "b": "K46",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K42",
+   "b": "K47",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K42",
+   "b": "K49",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K43",
+   "b": "K47",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K43",
+   "b": "K50",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K44",
+   "b": "K50",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "K45",
+   "b": "K48",
+   "confidence": "check",
+   "detected_in": 1,
+   "note": "manual: root visible in crop"
+  },
+  {
+   "a": "K46",
+   "b": "K48",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K47",
+   "b": "K49",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K47",
+   "b": "K50",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "K47",
+   "b": "K51",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "P01",
+   "b": "P04",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "P02",
+   "b": "P06",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "P02",
+   "b": "P07",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P03",
+   "b": "P04",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P04",
+   "b": "P08",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P05",
+   "b": "P08",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P05",
+   "b": "P09",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P07",
+   "b": "P13",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P08",
+   "b": "P10",
+   "confidence": "check",
+   "detected_in": 1,
+   "note": "manual: root visible in crop"
+  },
+  {
+   "a": "P09",
+   "b": "P16",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "P10",
+   "b": "P11",
+   "confidence": "check",
+   "detected_in": 1,
+   "note": "manual: root visible in crop"
+  },
+  {
+   "a": "P11",
+   "b": "P15",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P13",
+   "b": "P14",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P14",
+   "b": "P15",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P14",
+   "b": "P21",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "P15",
+   "b": "P22",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "P16",
+   "b": "P19",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "P17",
+   "b": "P20",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P17",
+   "b": "P21",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P17",
+   "b": "S",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P18",
+   "b": "P22",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P18",
+   "b": "P23",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P18",
+   "b": "P25",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P19",
+   "b": "P23",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "P20",
+   "b": "P21",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P20",
+   "b": "P27",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P20",
+   "b": "S",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P22",
+   "b": "P25",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P23",
+   "b": "P30",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P24",
+   "b": "P25",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P24",
+   "b": "P28",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "P26",
+   "b": "P33",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P26",
+   "b": "S",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "P27",
+   "b": "P28",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "P27",
+   "b": "P34",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "P28",
+   "b": "P35",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P29",
+   "b": "P30",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "P29",
+   "b": "P31",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "P29",
+   "b": "P32",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "P31",
+   "b": "P35",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "P31",
+   "b": "P36",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P32",
+   "b": "P37",
+   "confidence": "check",
+   "detected_in": 1,
+   "note": "manual: root visible in crop"
+  },
+  {
+   "a": "P33",
+   "b": "P40",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "P34",
+   "b": "P38",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P34",
+   "b": "P40",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P34",
+   "b": "P42",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P35",
+   "b": "P36",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P35",
+   "b": "P38",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P35",
+   "b": "P39",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "P37",
+   "b": "P43",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "P38",
+   "b": "P39",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P38",
+   "b": "P42",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P39",
+   "b": "P42",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P40",
+   "b": "P41",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "P40",
+   "b": "P45",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P41",
+   "b": "P42",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P41",
+   "b": "P45",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P41",
+   "b": "P47",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P42",
+   "b": "P47",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P44",
+   "b": "P47",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "P44",
+   "b": "P48",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P44",
+   "b": "P51",
+   "confidence": "check",
+   "detected_in": 1,
+   "note": "manual: root visible in crop"
+  },
+  {
+   "a": "P46",
+   "b": "P47",
+   "confidence": "high",
+   "detected_in": 3
+  },
+  {
+   "a": "P46",
+   "b": "P50",
+   "confidence": "check",
+   "detected_in": 2
+  },
+  {
+   "a": "P49",
+   "b": "P50",
+   "confidence": "high",
+   "detected_in": 3
+  }
+ ],
+ "candidateEdges": [
+  {
+   "a": "K07",
+   "b": "K11"
+  },
+  {
+   "a": "K08",
+   "b": "K10"
+  },
+  {
+   "a": "K08",
+   "b": "K12"
+  },
+  {
+   "a": "K10",
+   "b": "K15"
+  },
+  {
+   "a": "K11",
+   "b": "K14"
+  },
+  {
+   "a": "K12",
+   "b": "K13"
+  },
+  {
+   "a": "K13",
+   "b": "K15"
+  },
+  {
+   "a": "K17",
+   "b": "K19"
+  },
+  {
+   "a": "K18",
+   "b": "K22"
+  },
+  {
+   "a": "K18",
+   "b": "K25"
+  },
+  {
+   "a": "K18",
+   "b": "P17"
+  },
+  {
+   "a": "K18",
+   "b": "P20"
+  },
+  {
+   "a": "K18",
+   "b": "P26"
+  },
+  {
+   "a": "K19",
+   "b": "K21"
+  },
+  {
+   "a": "K20",
+   "b": "K24"
+  },
+  {
+   "a": "K21",
+   "b": "K23"
+  },
+  {
+   "a": "K21",
+   "b": "K24"
+  },
+  {
+   "a": "K21",
+   "b": "K28"
+  },
+  {
+   "a": "K22",
+   "b": "P17"
+  },
+  {
+   "a": "K22",
+   "b": "P20"
+  },
+  {
+   "a": "K22",
+   "b": "P26"
+  },
+  {
+   "a": "K23",
+   "b": "K24"
+  },
+  {
+   "a": "K23",
+   "b": "K29"
+  },
+  {
+   "a": "K23",
+   "b": "K33"
+  },
+  {
+   "a": "K24",
+   "b": "K28"
+  },
+  {
+   "a": "K25",
+   "b": "P17"
+  },
+  {
+   "a": "K25",
+   "b": "P20"
+  },
+  {
+   "a": "K25",
+   "b": "P26"
+  },
+  {
+   "a": "K26",
+   "b": "K30"
+  },
+  {
+   "a": "K27",
+   "b": "K28"
+  },
+  {
+   "a": "K34",
+   "b": "K39"
+  },
+  {
+   "a": "K35",
+   "b": "K39"
+  },
+  {
+   "a": "K35",
+   "b": "K40"
+  },
+  {
+   "a": "K35",
+   "b": "K43"
+  },
+  {
+   "a": "K38",
+   "b": "K39"
+  },
+  {
+   "a": "K38",
+   "b": "K42"
+  },
+  {
+   "a": "K43",
+   "b": "K44"
+  },
+  {
+   "a": "P03",
+   "b": "P05"
+  },
+  {
+   "a": "P08",
+   "b": "P11"
+  },
+  {
+   "a": "P08",
+   "b": "P15"
+  },
+  {
+   "a": "P10",
+   "b": "P15"
+  },
+  {
+   "a": "P11",
+   "b": "P18"
+  },
+  {
+   "a": "P12",
+   "b": "P13"
+  },
+  {
+   "a": "P15",
+   "b": "P18"
+  },
+  {
+   "a": "P17",
+   "b": "P26"
+  },
+  {
+   "a": "P20",
+   "b": "P26"
+  },
+  {
+   "a": "P21",
+   "b": "P24"
+  },
+  {
+   "a": "P22",
+   "b": "P23"
+  },
+  {
+   "a": "P23",
+   "b": "P25"
+  },
+  {
+   "a": "P23",
+   "b": "P29"
+  },
+  {
+   "a": "P34",
+   "b": "P41"
+  },
+  {
+   "a": "P38",
+   "b": "P41"
+  },
+  {
+   "a": "P41",
+   "b": "P46"
+  },
+  {
+   "a": "P42",
+   "b": "P46"
+  },
+  {
+   "a": "P45",
+   "b": "P46"
+  }
+ ]
+}

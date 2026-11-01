@@ -152,13 +152,13 @@ PDF만으로 지금 바로 전사 가능한 것: Rosegraal map(p.78–79, 간선
 
 ## 8. 해석 결정 (2026-11-01 확정)
 - **Q1** 기사 4명 고정 (True Solo 규칙 불필요).
-- **Q2** p.78+p.79는 하나의 그래프. 사용자가 합친 지도 이미지 1장을 제공 → 그걸로 전사.
+- **Q2** p.78+p.79는 하나의 그래프. `data/rosegraal/map.json`으로 전사 완료(노드 103 = 51+51+S; 간선은 뿌리 그림을 자동 추적 → 확인용 페이지에서 사용자가 확정).
 - **Q3** 승리 = 지도의 모든 노드 크로스아웃.
 - **Q4** 몬스터는 전부 전사 예정(★ 포함). 설정의 "보유 몬스터" 체크는 유지(기본 전부 보유).
 - **Q5** Rewards 표의 Technique 2장 중 **하나 선택**. 보상은 노드 레벨 이하 레벨 중 선택, 각 보상 1회.
 - **Q6** 4명 고정이므로 "생존자<4" 규칙 그대로.
 - **Q7** Outpost/상점 티어 = 그 Rosegraal 라운드에 선택한 노드의 티어.
-- **Q8 Loot** (룰북 확인): Loot deck은 Scavenge 효과로만 채워짐(Scavenge 덱에서 뽑음). Rogue's Path에서 한 Clash의 Loot deck = Aftermath Victorious Search **Clash Scavenge 1 + Scavenge 3**(종류는 Kingdom Gear/Upgrade/Consumable 중 선택) + Clash 중 카드가 준 Scavenge. Full Clash Loot = 그 몬스터의 Gear로 교환(몬스터별 Gear 목록 [자료]). 교환 티어 = 노드 티어(몬스터 최저 레벨 티어가 더 높으면 그 티어까지). 분배: 기사당 1장 → 나머지 Spare Scrap은 파티 리더부터 순환, Gold로만 교환. Gambling Den은 코덱스 의존 → 1차 제외. 패배 시: Forlorn Search Scavenge 3 → "Loot는 유지"이므로 분배까지 수행 **[확인: 패배 시에도 Scavenge 3 + 분배?]**
+- **Q8 Loot** (룰북 확인): Loot deck은 Scavenge 효과로만 채워짐(Scavenge 덱에서 뽑음). Rogue's Path에서 한 Clash의 Loot deck = Aftermath Victorious Search **Clash Scavenge 1 + Scavenge 3**(종류는 Kingdom Gear/Upgrade/Consumable 중 선택) + Clash 중 카드가 준 Scavenge. Full Clash Loot = 그 몬스터의 Gear로 교환(몬스터별 Gear 목록 [자료]). 교환 티어 = 노드 티어(몬스터 최저 레벨 티어가 더 높으면 그 티어까지). 분배: 기사당 1장 → 나머지 Spare Scrap은 파티 리더부터 순환, Gold로만 교환. Gambling Den은 코덱스 의존 → 1차 제외. 패배 시: Forlorn Search(Scavenge 3) → 분배까지 수행 (확정: 부활을 소모했으니 Forlorn Search 기준으로 지급).
 - **Q9 Sigh** (룰북 p.14): "Clash를 다시 치른다, Clash 이전 상태로 복구" → 같은 몬스터·레벨로 재전투(굴림 유지), 덱/셋업만 새로 섞음. 1인 1개 보유 제한 → Sigh 노드 보상은 미보유 기사 중 선택. 사용 시점: Clash 종료 직후(승/패 무관) 결과 적용 전.
-- **Q10** Rapport: 4명이라 유효 — Wild Card +2, 3하트에 Knightbook의 Rapport Boon [자료: 기사별 Boon 텍스트]. Saint: 스토리 해금 전용, Rosegraal 보상에도 없음 → 제외. Mercenary: Guild는 Outpost 정규 활동 → 유지(초기 레벨1 덱 + Wild Card "Tier 3 ○○ Mercenary"로 해금, Clash 능력만). First Death Event: Knightbook 서사 → 체크만 하고 생략. Exhibition/Full: Rogue's Path 본문에 구분 없음 → 전부 Full Clash(Exhibition Wounds 없음)로 구현.
+- **Q10** Rapport: 4명이라 유효 — Wild Card +2, 3하트에 Knightbook의 Rapport Boon [자료: 기사별 Boon 텍스트]. Saint: 스토리 해금 전용, Rosegraal 보상에도 없음 → 제외. Mercenary: Guild는 Outpost 정규 활동 → 유지(초기 레벨1 덱 + Wild Card "Tier 3 ○○ Mercenary"로 해금, Clash 능력만). First Death Event: 게임 효과가 있으므로 사용자가 기사별 텍스트를 제공 → 데이터로 구현 (`knights/<knight>.json.firstDeath`). Exhibition/Full: 전부 Full Clash로 취급 (확정).
 - **Q13** 카드 효과는 전사 시 `ops` 구조화 + 원문 보관.
