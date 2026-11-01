@@ -1,0 +1,2479 @@
+{
+ "_source": "Peril Arc cards (all knights, 8 each) from the Arc sprite sheets. levels: Vigor range [hi,lo] per threshold and the Heat Limit at that threshold. bonus = extra effect printed in the top box.",
+ "arcs": {
+  "fleischritter": [
+   {
+    "name": "Feuerkoch",
+    "file": "arcs1_04.png",
+    "maxVigor": 12,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       12,
+       12
+      ],
+      "heatLimit": 3
+     },
+     "Minor": {
+      "vigor": [
+       11,
+       8
+      ],
+      "heatLimit": 4
+     },
+     "Major": {
+      "vigor": [
+       7,
+       4
+      ],
+      "heatLimit": 5
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 5
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 6
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Fleischkrieger",
+    "file": "arcs1_05.png",
+    "maxVigor": 13,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       13,
+       13
+      ],
+      "heatLimit": 4
+     },
+     "Minor": {
+      "vigor": [
+       12,
+       8
+      ],
+      "heatLimit": 5
+     },
+     "Major": {
+      "vigor": [
+       7,
+       4
+      ],
+      "heatLimit": 5
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 6
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 6
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Schwarzesser",
+    "file": "arcs1_06.png",
+    "maxVigor": 15,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       15,
+       15
+      ],
+      "heatLimit": 5
+     },
+     "Minor": {
+      "vigor": [
+       14,
+       10
+      ],
+      "heatLimit": 6
+     },
+     "Major": {
+      "vigor": [
+       9,
+       5
+      ],
+      "heatLimit": 6
+     },
+     "Grave": {
+      "vigor": [
+       4,
+       1
+      ],
+      "heatLimit": 7
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 7
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Metzger",
+    "file": "arcs1_07.png",
+    "maxVigor": 14,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       14,
+       14
+      ],
+      "heatLimit": 4
+     },
+     "Minor": {
+      "vigor": [
+       13,
+       9
+      ],
+      "heatLimit": 5
+     },
+     "Major": {
+      "vigor": [
+       8,
+       4
+      ],
+      "heatLimit": 6
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 6
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 7
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Fleischknecht",
+    "file": "arcs2_04.png",
+    "maxVigor": 11,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       11,
+       11
+      ],
+      "heatLimit": 3
+     },
+     "Minor": {
+      "vigor": [
+       10,
+       7
+      ],
+      "heatLimit": 4
+     },
+     "Major": {
+      "vigor": [
+       6,
+       4
+      ],
+      "heatLimit": 4
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 5
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 5
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Fleischjäger",
+    "file": "arcs2_05.png",
+    "maxVigor": 13,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       13,
+       13
+      ],
+      "heatLimit": 4
+     },
+     "Minor": {
+      "vigor": [
+       12,
+       8
+      ],
+      "heatLimit": 5
+     },
+     "Major": {
+      "vigor": [
+       7,
+       4
+      ],
+      "heatLimit": 5
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 6
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 6
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Teufelsjäger",
+    "file": "arcs2_06.png",
+    "maxVigor": 15,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       15,
+       15
+      ],
+      "heatLimit": 5
+     },
+     "Minor": {
+      "vigor": [
+       14,
+       10
+      ],
+      "heatLimit": 6
+     },
+     "Major": {
+      "vigor": [
+       9,
+       5
+      ],
+      "heatLimit": 6
+     },
+     "Grave": {
+      "vigor": [
+       4,
+       1
+      ],
+      "heatLimit": 7
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 7
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Meisterschlächter",
+    "file": "arcs2_07.png",
+    "maxVigor": 15,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       15,
+       15
+      ],
+      "heatLimit": 6
+     },
+     "Minor": {
+      "vigor": [
+       14,
+       9
+      ],
+      "heatLimit": 6
+     },
+     "Major": {
+      "vigor": [
+       8,
+       4
+      ],
+      "heatLimit": 7
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 7
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 8
+     }
+    },
+    "bonus": {
+     "text": "After [icon], lose 1 Condition token",
+     "unclear": "Icon is a red elongated horizontal symbol (looks like a sword/attack icon); exact identity not certain from the crop.",
+     "guess": "[icon]=Combat Action(공격) 아이콘으로 추정"
+    }
+   }
+  ],
+  "kara": [
+   {
+    "name": "Thrill-Seeker",
+    "file": "arcs1_12.png",
+    "maxVigor": 10,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       10,
+       10
+      ],
+      "heatLimit": 3
+     },
+     "Minor": {
+      "vigor": [
+       9,
+       7
+      ],
+      "heatLimit": 4
+     },
+     "Major": {
+      "vigor": [
+       6,
+       4
+      ],
+      "heatLimit": 5
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 6
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 6
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Kingsguard",
+    "file": "arcs1_13.png",
+    "maxVigor": 11,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       11,
+       11
+      ],
+      "heatLimit": 4
+     },
+     "Minor": {
+      "vigor": [
+       10,
+       7
+      ],
+      "heatLimit": 5
+     },
+     "Major": {
+      "vigor": [
+       6,
+       4
+      ],
+      "heatLimit": 6
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 7
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 7
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Steadfast",
+    "file": "arcs1_14.png",
+    "maxVigor": 12,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       12,
+       12
+      ],
+      "heatLimit": 5
+     },
+     "Minor": {
+      "vigor": [
+       11,
+       7
+      ],
+      "heatLimit": 7
+     },
+     "Major": {
+      "vigor": [
+       6,
+       4
+      ],
+      "heatLimit": 7
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 7
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 8
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Wildwalker",
+    "file": "arcs1_15.png",
+    "maxVigor": 12,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       12,
+       12
+      ],
+      "heatLimit": 4
+     },
+     "Minor": {
+      "vigor": [
+       11,
+       7
+      ],
+      "heatLimit": 6
+     },
+     "Major": {
+      "vigor": [
+       6,
+       4
+      ],
+      "heatLimit": 7
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 7
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 7
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Wildling",
+    "file": "arcs2_12.png",
+    "maxVigor": 10,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       10,
+       10
+      ],
+      "heatLimit": 3
+     },
+     "Minor": {
+      "vigor": [
+       9,
+       7
+      ],
+      "heatLimit": 4
+     },
+     "Major": {
+      "vigor": [
+       6,
+       4
+      ],
+      "heatLimit": 4
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 5
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 5
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Wilder Errant",
+    "file": "arcs2_13.png",
+    "maxVigor": 11,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       11,
+       11
+      ],
+      "heatLimit": 4
+     },
+     "Minor": {
+      "vigor": [
+       10,
+       7
+      ],
+      "heatLimit": 5
+     },
+     "Major": {
+      "vigor": [
+       6,
+       4
+      ],
+      "heatLimit": 6
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 7
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 7
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Oathbreaker",
+    "file": "arcs2_14.png",
+    "maxVigor": 13,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       13,
+       13
+      ],
+      "heatLimit": 5
+     },
+     "Minor": {
+      "vigor": [
+       12,
+       7
+      ],
+      "heatLimit": 6
+     },
+     "Major": {
+      "vigor": [
+       6,
+       4
+      ],
+      "heatLimit": 7
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 7
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 7
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Knight of the Grand Kingdoms",
+    "file": "arcs2_15.png",
+    "maxVigor": 14,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       14,
+       14
+      ],
+      "heatLimit": 6
+     },
+     "Minor": {
+      "vigor": [
+       13,
+       9
+      ],
+      "heatLimit": 7
+     },
+     "Major": {
+      "vigor": [
+       8,
+       4
+      ],
+      "heatLimit": 7
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 8
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 8
+     }
+    },
+    "bonus": {
+     "text": "Jump"
+    }
+   }
+  ],
+  "ser-sonch": [
+   {
+    "name": "Gravestalker",
+    "file": "arcs1_20.png",
+    "maxVigor": 10,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       10,
+       10
+      ],
+      "heatLimit": 4
+     },
+     "Minor": {
+      "vigor": [
+       9,
+       6
+      ],
+      "heatLimit": 4
+     },
+     "Major": {
+      "vigor": [
+       5,
+       3
+      ],
+      "heatLimit": 5
+     },
+     "Grave": {
+      "vigor": [
+       2,
+       1
+      ],
+      "heatLimit": 5
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 6
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Exemplary Leader",
+    "file": "arcs1_21.png",
+    "maxVigor": 11,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       11,
+       11
+      ],
+      "heatLimit": 4
+     },
+     "Minor": {
+      "vigor": [
+       10,
+       7
+      ],
+      "heatLimit": 5
+     },
+     "Major": {
+      "vigor": [
+       6,
+       4
+      ],
+      "heatLimit": 5
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 6
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 6
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Fameseeker",
+    "file": "arcs1_22.png",
+    "maxVigor": 11,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       11,
+       11
+      ],
+      "heatLimit": 7
+     },
+     "Minor": {
+      "vigor": [
+       10,
+       7
+      ],
+      "heatLimit": 7
+     },
+     "Major": {
+      "vigor": [
+       6,
+       4
+      ],
+      "heatLimit": 7
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 7
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 7
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "The Man, Made Myth",
+    "file": "arcs1_23.png",
+    "maxVigor": 11,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       11,
+       11
+      ],
+      "heatLimit": 5
+     },
+     "Minor": {
+      "vigor": [
+       10,
+       7
+      ],
+      "heatLimit": 5
+     },
+     "Major": {
+      "vigor": [
+       6,
+       4
+      ],
+      "heatLimit": 6
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 6
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 7
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Tracker Knight",
+    "file": "arcs2_20.png",
+    "maxVigor": 10,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       10,
+       10
+      ],
+      "heatLimit": 3
+     },
+     "Minor": {
+      "vigor": [
+       9,
+       7
+      ],
+      "heatLimit": 4
+     },
+     "Major": {
+      "vigor": [
+       6,
+       4
+      ],
+      "heatLimit": 5
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 5
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 6
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Vaunted Folk Tale",
+    "file": "arcs2_21.png",
+    "maxVigor": 11,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       11,
+       11
+      ],
+      "heatLimit": 4
+     },
+     "Minor": {
+      "vigor": [
+       10,
+       7
+      ],
+      "heatLimit": 5
+     },
+     "Major": {
+      "vigor": [
+       6,
+       4
+      ],
+      "heatLimit": 5
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 6
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 6
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Hero to the People",
+    "file": "arcs2_22.png",
+    "maxVigor": 13,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       13,
+       13
+      ],
+      "heatLimit": 5
+     },
+     "Minor": {
+      "vigor": [
+       12,
+       7
+      ],
+      "heatLimit": 5
+     },
+     "Major": {
+      "vigor": [
+       6,
+       4
+      ],
+      "heatLimit": 6
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 6
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 7
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Enduring Legend",
+    "file": "arcs2_23.png",
+    "maxVigor": 13,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       13,
+       13
+      ],
+      "heatLimit": 6
+     },
+     "Minor": {
+      "vigor": [
+       12,
+       7
+      ],
+      "heatLimit": 7
+     },
+     "Major": {
+      "vigor": [
+       6,
+       3
+      ],
+      "heatLimit": 7
+     },
+     "Grave": {
+      "vigor": [
+       2,
+       1
+      ],
+      "heatLimit": 8
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 9
+     }
+    },
+    "bonus": {
+     "text": "Soak 1"
+    }
+   }
+  ],
+  "renholder": [
+   {
+    "name": "Illusionist",
+    "file": "arcs1_28.png",
+    "maxVigor": 10,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       10,
+       10
+      ],
+      "heatLimit": 5
+     },
+     "Minor": {
+      "vigor": [
+       9,
+       7
+      ],
+      "heatLimit": 5
+     },
+     "Major": {
+      "vigor": [
+       6,
+       4
+      ],
+      "heatLimit": 6
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 6
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 7
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Tenebrist",
+    "file": "arcs1_29.png",
+    "maxVigor": 11,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       11,
+       11
+      ],
+      "heatLimit": 5
+     },
+     "Minor": {
+      "vigor": [
+       10,
+       7
+      ],
+      "heatLimit": 6
+     },
+     "Major": {
+      "vigor": [
+       6,
+       4
+      ],
+      "heatLimit": 6
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 7
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 8
+     }
+    },
+    "bonus": {
+     "text": "Guard 1"
+    }
+   },
+   {
+    "name": "Luxfire Magus",
+    "file": "arcs1_30.png",
+    "maxVigor": 12,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       12,
+       12
+      ],
+      "heatLimit": 7
+     },
+     "Minor": {
+      "vigor": [
+       11,
+       8
+      ],
+      "heatLimit": 7
+     },
+     "Major": {
+      "vigor": [
+       7,
+       4
+      ],
+      "heatLimit": 8
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 8
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 9
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Theurgist",
+    "file": "arcs1_31.png",
+    "maxVigor": 11,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       11,
+       11
+      ],
+      "heatLimit": 6
+     },
+     "Minor": {
+      "vigor": [
+       10,
+       7
+      ],
+      "heatLimit": 6
+     },
+     "Major": {
+      "vigor": [
+       6,
+       4
+      ],
+      "heatLimit": 7
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 7
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 8
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Mage Knight",
+    "file": "arcs2_28.png",
+    "maxVigor": 9,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       9,
+       9
+      ],
+      "heatLimit": 4
+     },
+     "Minor": {
+      "vigor": [
+       8,
+       6
+      ],
+      "heatLimit": 5
+     },
+     "Major": {
+      "vigor": [
+       5,
+       3
+      ],
+      "heatLimit": 5
+     },
+     "Grave": {
+      "vigor": [
+       2,
+       1
+      ],
+      "heatLimit": 6
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 6
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Luxite",
+    "file": "arcs2_29.png",
+    "maxVigor": 11,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       11,
+       11
+      ],
+      "heatLimit": 5
+     },
+     "Minor": {
+      "vigor": [
+       10,
+       7
+      ],
+      "heatLimit": 6
+     },
+     "Major": {
+      "vigor": [
+       6,
+       4
+      ],
+      "heatLimit": 6
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 7
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 8
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Harmonized Soul",
+    "file": "arcs2_30.png",
+    "maxVigor": 12,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       12,
+       12
+      ],
+      "heatLimit": 7
+     },
+     "Minor": {
+      "vigor": [
+       11,
+       8
+      ],
+      "heatLimit": 7
+     },
+     "Major": {
+      "vigor": [
+       7,
+       4
+      ],
+      "heatLimit": 8
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 8
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 9
+     }
+    },
+    "bonus": {
+     "text": "[icon] 1",
+     "unclear": "Bonus is an icon followed by '1'; icon is a black die with a circular arrow around it (re-roll symbol), so likely 'Re-roll 1'.",
+     "guess": "주사위+순환화살표 = Power Re-roll 1로 추정"
+    }
+   },
+   {
+    "name": "Hermetic Master",
+    "file": "arcs2_31.png",
+    "maxVigor": 13,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       13,
+       13
+      ],
+      "heatLimit": 7
+     },
+     "Minor": {
+      "vigor": [
+       12,
+       7
+      ],
+      "heatLimit": 7
+     },
+     "Major": {
+      "vigor": [
+       6,
+       4
+      ],
+      "heatLimit": 8
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 8
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 9
+     }
+    },
+    "bonus": {
+     "text": "+1 Magic Limit"
+    }
+   }
+  ],
+  "paracelsa": [
+   {
+    "name": "Faithful",
+    "file": "arcs1_36.png",
+    "maxVigor": 11,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       11,
+       11
+      ],
+      "heatLimit": 3
+     },
+     "Minor": {
+      "vigor": [
+       10,
+       8
+      ],
+      "heatLimit": 4
+     },
+     "Major": {
+      "vigor": [
+       7,
+       5
+      ],
+      "heatLimit": 5
+     },
+     "Grave": {
+      "vigor": [
+       4,
+       1
+      ],
+      "heatLimit": 5
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 6
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Fireheart Zealot",
+    "file": "arcs1_37.png",
+    "maxVigor": 12,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       12,
+       12
+      ],
+      "heatLimit": 4
+     },
+     "Minor": {
+      "vigor": [
+       11,
+       8
+      ],
+      "heatLimit": 5
+     },
+     "Major": {
+      "vigor": [
+       7,
+       5
+      ],
+      "heatLimit": 5
+     },
+     "Grave": {
+      "vigor": [
+       4,
+       1
+      ],
+      "heatLimit": 6
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 6
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Apostate",
+    "file": "arcs1_38.png",
+    "maxVigor": 13,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       13,
+       13
+      ],
+      "heatLimit": 4
+     },
+     "Minor": {
+      "vigor": [
+       12,
+       9
+      ],
+      "heatLimit": 5
+     },
+     "Major": {
+      "vigor": [
+       8,
+       5
+      ],
+      "heatLimit": 6
+     },
+     "Grave": {
+      "vigor": [
+       4,
+       1
+      ],
+      "heatLimit": 7
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 7
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Questioner",
+    "file": "arcs1_39.png",
+    "maxVigor": 12,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       12,
+       12
+      ],
+      "heatLimit": 4
+     },
+     "Minor": {
+      "vigor": [
+       11,
+       8
+      ],
+      "heatLimit": 5
+     },
+     "Major": {
+      "vigor": [
+       7,
+       4
+      ],
+      "heatLimit": 6
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 6
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 7
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Quester",
+    "file": "arcs2_36.png",
+    "maxVigor": 11,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       11,
+       11
+      ],
+      "heatLimit": 3
+     },
+     "Minor": {
+      "vigor": [
+       10,
+       7
+      ],
+      "heatLimit": 4
+     },
+     "Major": {
+      "vigor": [
+       6,
+       4
+      ],
+      "heatLimit": 4
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 5
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 5
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Truthseeker",
+    "file": "arcs2_37.png",
+    "maxVigor": 12,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       12,
+       12
+      ],
+      "heatLimit": 4
+     },
+     "Minor": {
+      "vigor": [
+       11,
+       9
+      ],
+      "heatLimit": 5
+     },
+     "Major": {
+      "vigor": [
+       8,
+       5
+      ],
+      "heatLimit": 5
+     },
+     "Grave": {
+      "vigor": [
+       4,
+       1
+      ],
+      "heatLimit": 6
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 6
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Inquisitor",
+    "file": "arcs2_38.png",
+    "maxVigor": 13,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       13,
+       13
+      ],
+      "heatLimit": 5
+     },
+     "Minor": {
+      "vigor": [
+       12,
+       9
+      ],
+      "heatLimit": 6
+     },
+     "Major": {
+      "vigor": [
+       8,
+       5
+      ],
+      "heatLimit": 6
+     },
+     "Grave": {
+      "vigor": [
+       4,
+       1
+      ],
+      "heatLimit": 6
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 7
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Reverent",
+    "file": "arcs2_39.png",
+    "maxVigor": 14,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       14,
+       14
+      ],
+      "heatLimit": 6
+     },
+     "Minor": {
+      "vigor": [
+       13,
+       10
+      ],
+      "heatLimit": 6
+     },
+     "Major": {
+      "vigor": [
+       9,
+       5
+      ],
+      "heatLimit": 7
+     },
+     "Grave": {
+      "vigor": [
+       4,
+       1
+      ],
+      "heatLimit": 7
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 8
+     }
+    },
+    "bonus": {
+     "text": "+1 to Virtue Tests"
+    }
+   }
+  ],
+  "ser-ubar": [
+   {
+    "name": "Ape Militant",
+    "file": "arcs1_44.png",
+    "maxVigor": 13,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       13,
+       13
+      ],
+      "heatLimit": 4
+     },
+     "Minor": {
+      "vigor": [
+       12,
+       10
+      ],
+      "heatLimit": 5
+     },
+     "Major": {
+      "vigor": [
+       9,
+       5
+      ],
+      "heatLimit": 6
+     },
+     "Grave": {
+      "vigor": [
+       4,
+       1
+      ],
+      "heatLimit": 7
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 7
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Beast Tamer",
+    "file": "arcs1_45.png",
+    "maxVigor": 14,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       14,
+       14
+      ],
+      "heatLimit": 5
+     },
+     "Minor": {
+      "vigor": [
+       13,
+       11
+      ],
+      "heatLimit": 6
+     },
+     "Major": {
+      "vigor": [
+       10,
+       6
+      ],
+      "heatLimit": 7
+     },
+     "Grave": {
+      "vigor": [
+       5,
+       1
+      ],
+      "heatLimit": 8
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 8
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Simian Strategist",
+    "file": "arcs1_46.png",
+    "maxVigor": 12,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       12,
+       12
+      ],
+      "heatLimit": 4
+     },
+     "Minor": {
+      "vigor": [
+       11,
+       9
+      ],
+      "heatLimit": 5
+     },
+     "Major": {
+      "vigor": [
+       8,
+       5
+      ],
+      "heatLimit": 5
+     },
+     "Grave": {
+      "vigor": [
+       4,
+       1
+      ],
+      "heatLimit": 6
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 6
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Simianthrope",
+    "file": "arcs1_47.png",
+    "maxVigor": 11,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       11,
+       11
+      ],
+      "heatLimit": 3
+     },
+     "Minor": {
+      "vigor": [
+       10,
+       7
+      ],
+      "heatLimit": 4
+     },
+     "Major": {
+      "vigor": [
+       6,
+       4
+      ],
+      "heatLimit": 4
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 5
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 6
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Champion of Utrebant",
+    "file": "arcs2_44.png",
+    "maxVigor": 15,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       15,
+       15
+      ],
+      "heatLimit": 5
+     },
+     "Minor": {
+      "vigor": [
+       14,
+       10
+      ],
+      "heatLimit": 6
+     },
+     "Major": {
+      "vigor": [
+       9,
+       5
+      ],
+      "heatLimit": 7
+     },
+     "Grave": {
+      "vigor": [
+       4,
+       1
+      ],
+      "heatLimit": 8
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 8
+     }
+    },
+    "bonus": {
+     "text": "After [icon], gain +1 [Vigor icon]",
+     "unclear": "First icon is the same red elongated sword/attack-like symbol as on Meisterschlächter; second icon is the red 'V' Vigor mark (same as the track header).",
+     "guess": "[icon]=Combat Action(공격) 아이콘으로 추정"
+    }
+   },
+   {
+    "name": "Rising Ape",
+    "file": "arcs2_45.png",
+    "maxVigor": 14,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       14,
+       14
+      ],
+      "heatLimit": 5
+     },
+     "Minor": {
+      "vigor": [
+       13,
+       10
+      ],
+      "heatLimit": 6
+     },
+     "Major": {
+      "vigor": [
+       9,
+       5
+      ],
+      "heatLimit": 7
+     },
+     "Grave": {
+      "vigor": [
+       4,
+       1
+      ],
+      "heatLimit": 7
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 8
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Primal Warrior",
+    "file": "arcs2_46.png",
+    "maxVigor": 12,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       12,
+       12
+      ],
+      "heatLimit": 4
+     },
+     "Minor": {
+      "vigor": [
+       11,
+       8
+      ],
+      "heatLimit": 5
+     },
+     "Major": {
+      "vigor": [
+       7,
+       4
+      ],
+      "heatLimit": 5
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 6
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 6
+     }
+    },
+    "bonus": null
+   },
+   {
+    "name": "Ape Knight",
+    "file": "arcs2_47.png",
+    "maxVigor": 11,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       11,
+       11
+      ],
+      "heatLimit": 3
+     },
+     "Minor": {
+      "vigor": [
+       10,
+       7
+      ],
+      "heatLimit": 4
+     },
+     "Major": {
+      "vigor": [
+       6,
+       4
+      ],
+      "heatLimit": 4
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 5
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 5
+     }
+    },
+    "bonus": null
+   }
+  ],
+  "stoneface": [
+   {
+    "name": "Marble Marionette",
+    "file": "arcs1_52.png",
+    "maxVigor": 14,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       14,
+       14
+      ],
+      "heatLimit": 4
+     },
+     "Minor": {
+      "vigor": [
+       13,
+       10
+      ],
+      "heatLimit": 5
+     },
+     "Major": {
+      "vigor": [
+       9,
+       6
+      ],
+      "heatLimit": 6
+     },
+     "Grave": {
+      "vigor": [
+       5,
+       1
+      ],
+      "heatLimit": 6
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 7
+     }
+    },
+    "bonus": {
+     "text": "You have 1 additional [icon] slot.",
+     "unclear": "Icon is a small black-outline round pouch/bag-like symbol (tied at top); exact slot type not identifiable from the crop.",
+     "guess": "[icon]=Support 슬롯 아이콘으로 추정"
+    }
+   },
+   {
+    "name": "Mangiarovina",
+    "file": "arcs1_53.png",
+    "maxVigor": 15,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       15,
+       15
+      ],
+      "heatLimit": 5
+     },
+     "Minor": {
+      "vigor": [
+       14,
+       11
+      ],
+      "heatLimit": 6
+     },
+     "Major": {
+      "vigor": [
+       10,
+       4
+      ],
+      "heatLimit": 6
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 7
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 7
+     }
+    },
+    "bonus": {
+     "text": "Soak 1."
+    }
+   },
+   {
+    "name": "Rebellious Child",
+    "file": "arcs1_54.png",
+    "maxVigor": 13,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       13,
+       13
+      ],
+      "heatLimit": 4
+     },
+     "Minor": {
+      "vigor": [
+       12,
+       9
+      ],
+      "heatLimit": 5
+     },
+     "Major": {
+      "vigor": [
+       8,
+       5
+      ],
+      "heatLimit": 5
+     },
+     "Grave": {
+      "vigor": [
+       4,
+       1
+      ],
+      "heatLimit": 6
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 6
+     }
+    },
+    "bonus": {
+     "text": "[icon]",
+     "unclear": "Bonus box contains only a small icon: a red cube/die with a white chalice (goblet) symbol; no text.",
+     "guess": "빨간(No Strings on Me는 검정) 주사위+성배 아이콘 = Armor die 1개(빨강/검정)로 추정"
+    }
+   },
+   {
+    "name": "Good, Strong Hands",
+    "file": "arcs1_55.png",
+    "maxVigor": 12,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       12,
+       12
+      ],
+      "heatLimit": 3
+     },
+     "Minor": {
+      "vigor": [
+       11,
+       8
+      ],
+      "heatLimit": 4
+     },
+     "Major": {
+      "vigor": [
+       7,
+       4
+      ],
+      "heatLimit": 5
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 5
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 6
+     }
+    },
+    "bonus": {
+     "text": "[icon]",
+     "unclear": "Bonus box contains only a small icon: a red cube/die with a white chalice (goblet) symbol (same icon as Rebellious Child); no text.",
+     "guess": "빨간(No Strings on Me는 검정) 주사위+성배 아이콘 = Armor die 1개(빨강/검정)로 추정"
+    }
+   },
+   {
+    "name": "Tableau Vivant",
+    "file": "arcs2_52.png",
+    "maxVigor": 15,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       15,
+       15
+      ],
+      "heatLimit": 6
+     },
+     "Minor": {
+      "vigor": [
+       14,
+       9
+      ],
+      "heatLimit": 6
+     },
+     "Major": {
+      "vigor": [
+       8,
+       4
+      ],
+      "heatLimit": 7
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 7
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 7
+     }
+    },
+    "bonus": {
+     "text": "Soak 1. You have 1 additional [icon] slot.",
+     "unclear": "Icon is the same small black-outline round pouch/bag-like slot symbol as on Marble Marionette; exact slot type not identifiable from the crop.",
+     "guess": "[icon]=Support 슬롯 아이콘으로 추정"
+    }
+   },
+   {
+    "name": "No Strings on Me",
+    "file": "arcs2_53.png",
+    "maxVigor": 15,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       15,
+       15
+      ],
+      "heatLimit": 5
+     },
+     "Minor": {
+      "vigor": [
+       14,
+       10
+      ],
+      "heatLimit": 6
+     },
+     "Major": {
+      "vigor": [
+       9,
+       5
+      ],
+      "heatLimit": 6
+     },
+     "Grave": {
+      "vigor": [
+       4,
+       1
+      ],
+      "heatLimit": 7
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 8
+     }
+    },
+    "bonus": {
+     "text": "[icon]",
+     "unclear": "Bonus box contains only a small icon: a BLACK cube/die with a white chalice (goblet) symbol (the other Stoneface cards show a red cube with the same chalice); no text.",
+     "guess": "빨간(No Strings on Me는 검정) 주사위+성배 아이콘 = Armor die 1개(빨강/검정)로 추정"
+    }
+   },
+   {
+    "name": "Obedient Son",
+    "file": "arcs2_54.png",
+    "maxVigor": 13,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       13,
+       13
+      ],
+      "heatLimit": 4
+     },
+     "Minor": {
+      "vigor": [
+       12,
+       9
+      ],
+      "heatLimit": 5
+     },
+     "Major": {
+      "vigor": [
+       8,
+       5
+      ],
+      "heatLimit": 5
+     },
+     "Grave": {
+      "vigor": [
+       4,
+       1
+      ],
+      "heatLimit": 6
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 6
+     }
+    },
+    "bonus": {
+     "text": "[icon]",
+     "unclear": "Bonus box contains only a small icon: a red cube/die with a white chalice (goblet) symbol; no text.",
+     "guess": "빨간(No Strings on Me는 검정) 주사위+성배 아이콘 = Armor die 1개(빨강/검정)로 추정"
+    }
+   },
+   {
+    "name": "Knight of Stone",
+    "file": "arcs2_55.png",
+    "maxVigor": 11,
+    "levels": {
+     "Uninjured": {
+      "vigor": [
+       11,
+       11
+      ],
+      "heatLimit": 3
+     },
+     "Minor": {
+      "vigor": [
+       10,
+       7
+      ],
+      "heatLimit": 4
+     },
+     "Major": {
+      "vigor": [
+       6,
+       4
+      ],
+      "heatLimit": 5
+     },
+     "Grave": {
+      "vigor": [
+       3,
+       1
+      ],
+      "heatLimit": 5
+     },
+     "Judicium": {
+      "vigor": [
+       0,
+       0
+      ],
+      "heatLimit": 6
+     }
+    },
+    "bonus": {
+     "text": "[icon]",
+     "unclear": "Bonus box contains only a small icon: a red cube/die with a white chalice (goblet) symbol; no text.",
+     "guess": "빨간(No Strings on Me는 검정) 주사위+성배 아이콘 = Armor die 1개(빨강/검정)로 추정"
+    }
+   }
+  ]
+ }
+}

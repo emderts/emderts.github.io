@@ -1,39 +1,1843 @@
 {
-  "id": "fleischritter",
-  "name": "Fleischritter",
-  "_source": "Knightbook 'The Fleischritter and the Famishing' (p.3–4 rules & Knight Setup, p.111 First Death Special Event) + Talent card sprite sheets.",
-  "resourceToken": { "id": "fleisch", "name": "Fleisch", "keyword": "Fleisch X: Place X Fleisch tokens in the Knight Pool.", "rule": "Fleisch tokens are mainly placed in the Knight Pool or your Knight Board, and they can be spent from there. Many Fleischritter Techniques use Fleisch as their cost. The most common source of Fleisch tokens is Fleischritter's Heroic Arc and the Fleisch X keyword. Fleischritter Talents also allow him to use Fleisch instead of Heat." },
-  "setup": {
-    "virtues": { "Bravery": 1, "Might": 1, "Fortitude": 2 },
-    "rapportBoon": { "text": "During Encounters: +1 [icon]", "note": "Encounter(Delve) 전용 → Rogue's Path에서 효과 없음 [확인]; 아이콘 미판독" },
-    "explorationCipher": "**23",
-    "portraits": ["Fleischritter", "Fleischknecht"],
-    "talent": "Fleischknecht",
-    "heroicArc": "Fleischknecht",
-    "perilArc": "Fleischknecht",
-    "techniques": [["Knight Pose", "Knight Prowess"], ["Knight Roll", "Pickled Rations"], ["Second Chance", "Come Out Swinging"], ["Cured Darklin", "Hearty Stew"], ["Food Runner", "Chef's Intuition"]],
-    "techniquesNote": "5 double-sided cards listed as 'A // B' in the Knightbook [확인: 양면=Delve면/Clash면인지, 서로 다른 두 기술인지]",
-    "gear": ["Knighves", "Chipped Axe"],
-    "gearNote": "Chipped Axe = Merchant Gear"
+ "id": "fleischritter",
+ "name": "Fleischritter",
+ "_source": "Knightbook 'The Fleischritter and the Famishing' (p.3–4 rules & Knight Setup, p.111 First Death Special Event) + Talent card sprite sheets.",
+ "resourceToken": {
+  "id": "fleisch",
+  "name": "Fleisch",
+  "keyword": "Fleisch X: Place X Fleisch tokens in the Knight Pool.",
+  "rule": "Fleisch tokens are mainly placed in the Knight Pool or your Knight Board, and they can be spent from there. Many Fleischritter Techniques use Fleisch as their cost. The most common source of Fleisch tokens is Fleischritter's Heroic Arc and the Fleisch X keyword. Fleischritter Talents also allow him to use Fleisch instead of Heat."
+ },
+ "setup": {
+  "virtues": {
+   "Bravery": 1,
+   "Might": 1,
+   "Fortitude": 2
   },
-  "firstDeath": { "text": "Fleischritter has perished this time, but something beyond the edge of this world is not done with him yet! Through the distorted nature of the Deep Fog, he will wander the Kingdoms Forlorn once more! Mark the First Death box on your Knight Sheet. Gain +1 Sigh of the Graal.", "ops": [{ "op": "markFirstDeath" }, { "op": "gainSigh", "n": 1 }], "note": "Knightbook: 'If you haven't unlocked the Unknown Saint yet, immediately see 9999 in the Kingdom Mysteries Section' — 스토리 분기, Rogue's Path에서는 생략 [확인]" },
-  "components": { "portraits": 2, "talents": 3, "heroicArcs": 4, "perilArcs": 4, "techniques": 26, "gear": 5, "fleischTokens": 5, "trapTokens": 1 },
-  "talents": [
-    { "id": "fleischknecht", "name": "Fleischknecht", "tier": "starting", "abilities": [
-      { "name": "Refreshing Fleisch", "text": "You may use Fleisch tokens from the Knight Pool instead of [Heat].", "ops": [{ "op": "fleischAsHeat" }] },
-      { "name": "Meat Provisions", "text": "When you attack, if there are no Opening or Break tokens in the Knight Pool, immediately place 1 Opening and 1 Break token in the Knight Pool.", "ops": [{ "op": "onAttackDeclare", "if": { "poolLacks": ["opening", "break"] }, "do": [{ "op": "pool", "token": "opening", "n": 1 }, { "op": "pool", "token": "break", "n": 1 }] }] } ] },
-    { "id": "fleischjager", "name": "Fleischjäger", "tier": "vassal", "abilities": [
-      { "name": "Nurturing Fleisch", "text": "1 Fleisch, X [Vigor]: An adjacent Knight gains +X [Vigor]. You may use Fleisch tokens from the Knight Pool instead of [Heat].", "ops": [{ "op": "active", "cost": { "fleisch": 1, "vigor": "X" }, "do": [{ "op": "gainVigor", "target": "adjacentKnight", "n": "X" }] }, { "op": "fleischAsHeat" }] },
-      { "name": "Rebound", "text": "During an Armor Roll, add all following tokens to the Knight Pool, depending on the number of mitigated [Vigor] loss: 1: [?] 1 · 2: [Opening?] 1 · 3: [Fleisch] 1 · 4: [?] 1 · 5: [?] 1", "ops": null, "unclear": "토큰 아이콘 5개 중 3(Fleisch)만 확실; 1·2·4·5 아이콘 판독 필요" } ] },
-    { "id": "fleischkrieger", "name": "Fleischkrieger", "tier": "vassal", "abilities": [
-      { "name": "Bolstering Fleisch", "text": "1 Fleisch, X [Heat]: When you are about to attack, add X Knight tokens to the Knight Pool, each from a different Level of your Heroic Arc, up to your [Passion] Level. You cannot benefit from those keywords again during the second ability window. You may use Fleisch tokens from the Knight Pool instead of [Heat].", "ops": null, "unclear": "Heroic Arc 레벨별 토큰 구조가 들어온 뒤 구현" },
-      { "name": "Ambidextrous", "text": "When you attack and have a Weapon with the Pair Trait or an inactive [1H?] Weapon, gain +1 [Attack die]. For the purpose of gathering your Power Pool, ignore any hits that exceed your Weapon's regular [Attack dice] number. During the second ability window, you may place up to 2 additional tokens from any stackable keyword on your inactive [1H?] Weapon or a Weapon with the Pair Trait.", "ops": null, "unclear": "손 슬롯 아이콘(한손/두손) 판독 필요" } ] },
-    { "id": "teufelsjager", "name": "Teufelsjäger", "tier": "devil", "abilities": [
-      { "name": "Empowering Fleisch", "text": "When you attack, you may spend X Fleisch to add +X [Attack dice] to your Attack Roll. If the number of hits exceeds your Weapon's [Attack dice] number, ignore those additional hits when creating the Power Pool, but immediately place a Sunder token in the Knight Pool. You may use Fleisch tokens from the Knight Pool instead of [Heat].", "ops": null },
-      { "name": "The Art of Gastronomy", "text": "Whenever you spend Fleisch on Techniques, place a Generic token on your Knight Board. You may discard an indicated number of those tokens to trigger the following effects (as a free action, unless stated otherwise): 1: When you attack, gain +2 Precision. 2: When you attack, gain Auto-hope 2. 3: Advanced Block. 5: Discard all Condition tokens and cards. 7: Ignore [Vigor] loss from a Monster Attack.", "ops": null } ] },
-    { "id": "schwarzesser", "name": "Schwarzesser", "tier": "devil", "abilities": [
-      { "name": "Famished Fleisch", "text": "Wound: If you're adjacent to another Knight, you may spend X Fleisch tokens to place X Generic tokens on your Knight Board. As long as there is at least 1 Generic token on your Knight Board, treat your Knight Power die as one tier higher, gain Immune to Mind Condition cards and Braced. At the start and the end of Knight Round, all adjacent Knights lose -5 [Vigor]. Discard 1 Generic token at the end of your turn, and whenever you fail to deal a Wound. You may use Fleisch tokens from the Knight Pool instead of [Heat].", "ops": null },
-      { "name": "Monstrous Strength", "text": "You can either use [2H?] Weapons as if they were [1H?], or when using a [1H?] Weapon, you may add +[red Power die] to the Power Pool.", "ops": null, "unclear": "손 슬롯 아이콘 판독 필요; 주사위 아이콘은 빨강으로 판독" } ] }
+  "rapportBoon": {
+   "text": "During Encounters: +1 [icon]",
+   "note": "Encounter(Delve) 전용 → Rogue's Path에서 효과 없음 [확인]; 아이콘 미판독"
+  },
+  "explorationCipher": "**23",
+  "portraits": [
+   "Fleischritter",
+   "Fleischknecht"
   ],
-  "missing": ["Portrait cards ×2 (Fleischritter, Fleischknecht)", "Heroic Arc ×4", "Peril Arc ×4", "Technique cards ×26 (양면)", "Gear ×5 + Knighves + Chipped Axe", "Trap token 규칙"]
+  "talent": "Fleischknecht",
+  "heroicArc": "Fleischknecht",
+  "perilArc": "Fleischknecht",
+  "techniques": [
+   "Second Chance",
+   "Knight Roll",
+   "Knight Pose",
+   "Cured Darklin",
+   "Food Runner"
+  ],
+  "techniquesNote": "Knightbook lists 'Clash side // Delve side' pairs; the 5 Start cards (Second Chance, Knight Roll, Knight Pose, Cured Darklin, Food Runner) are the starting hand. Delve sides are not used in Rogue's Path.",
+  "gear": [
+   "Knighves",
+   "Chipped Axe"
+  ],
+  "gearNote": "Chipped Axe = Merchant Gear"
+ },
+ "firstDeath": {
+  "text": "Fleischritter has perished this time, but something beyond the edge of this world is not done with him yet! Through the distorted nature of the Deep Fog, he will wander the Kingdoms Forlorn once more! Mark the First Death box on your Knight Sheet. Gain +1 Sigh of the Graal.",
+  "ops": [
+   {
+    "op": "markFirstDeath"
+   },
+   {
+    "op": "gainSigh",
+    "n": 1
+   }
+  ],
+  "note": "Knightbook: 'If you haven't unlocked the Unknown Saint yet, immediately see 9999 in the Kingdom Mysteries Section' — 스토리 분기, Rogue's Path에서는 생략 [확인]"
+ },
+ "components": {
+  "portraits": 2,
+  "talents": 3,
+  "heroicArcs": 4,
+  "perilArcs": 4,
+  "techniques": 26,
+  "gear": 5,
+  "fleischTokens": 5,
+  "trapTokens": 1
+ },
+ "talents": [
+  {
+   "id": "fleischknecht",
+   "name": "Fleischknecht",
+   "tier": "starting",
+   "abilities": [
+    {
+     "name": "Refreshing Fleisch",
+     "text": "You may use Fleisch tokens from the Knight Pool instead of [Heat].",
+     "ops": [
+      {
+       "op": "fleischAsHeat"
+      }
+     ]
+    },
+    {
+     "name": "Meat Provisions",
+     "text": "When you attack, if there are no Opening or Break tokens in the Knight Pool, immediately place 1 Opening and 1 Break token in the Knight Pool.",
+     "ops": [
+      {
+       "op": "onAttackDeclare",
+       "if": {
+        "poolLacks": [
+         "opening",
+         "break"
+        ]
+       },
+       "do": [
+        {
+         "op": "pool",
+         "token": "opening",
+         "n": 1
+        },
+        {
+         "op": "pool",
+         "token": "break",
+         "n": 1
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fleischjager",
+   "name": "Fleischjäger",
+   "tier": "vassal",
+   "abilities": [
+    {
+     "name": "Nurturing Fleisch",
+     "text": "1 Fleisch, X [Vigor]: An adjacent Knight gains +X [Vigor]. You may use Fleisch tokens from the Knight Pool instead of [Heat].",
+     "ops": [
+      {
+       "op": "active",
+       "cost": {
+        "fleisch": 1,
+        "vigor": "X"
+       },
+       "do": [
+        {
+         "op": "gainVigor",
+         "target": "adjacentKnight",
+         "n": "X"
+        }
+       ]
+      },
+      {
+       "op": "fleischAsHeat"
+      }
+     ]
+    },
+    {
+     "name": "Rebound",
+     "text": "During an Armor Roll, add all following tokens to the Knight Pool, depending on the number of mitigated [Vigor] loss: 1: [?] 1 · 2: [Opening?] 1 · 3: [Fleisch] 1 · 4: [?] 1 · 5: [?] 1",
+     "ops": null,
+     "unclear": "토큰 아이콘 5개 중 3(Fleisch)만 확실; 1·2·4·5 아이콘 판독 필요"
+    }
+   ]
+  },
+  {
+   "id": "fleischkrieger",
+   "name": "Fleischkrieger",
+   "tier": "vassal",
+   "abilities": [
+    {
+     "name": "Bolstering Fleisch",
+     "text": "1 Fleisch, X [Heat]: When you are about to attack, add X Knight tokens to the Knight Pool, each from a different Level of your Heroic Arc, up to your [Passion] Level. You cannot benefit from those keywords again during the second ability window. You may use Fleisch tokens from the Knight Pool instead of [Heat].",
+     "ops": null,
+     "unclear": "Heroic Arc 레벨별 토큰 구조가 들어온 뒤 구현"
+    },
+    {
+     "name": "Ambidextrous",
+     "text": "When you attack and have a Weapon with the Pair Trait or an inactive [1H?] Weapon, gain +1 [Attack die]. For the purpose of gathering your Power Pool, ignore any hits that exceed your Weapon's regular [Attack dice] number. During the second ability window, you may place up to 2 additional tokens from any stackable keyword on your inactive [1H?] Weapon or a Weapon with the Pair Trait.",
+     "ops": null,
+     "unclear": "손 슬롯 아이콘(한손/두손) 판독 필요"
+    }
+   ]
+  },
+  {
+   "id": "teufelsjager",
+   "name": "Teufelsjäger",
+   "tier": "devil",
+   "abilities": [
+    {
+     "name": "Empowering Fleisch",
+     "text": "When you attack, you may spend X Fleisch to add +X [Attack dice] to your Attack Roll. If the number of hits exceeds your Weapon's [Attack dice] number, ignore those additional hits when creating the Power Pool, but immediately place a Sunder token in the Knight Pool. You may use Fleisch tokens from the Knight Pool instead of [Heat].",
+     "ops": null
+    },
+    {
+     "name": "The Art of Gastronomy",
+     "text": "Whenever you spend Fleisch on Techniques, place a Generic token on your Knight Board. You may discard an indicated number of those tokens to trigger the following effects (as a free action, unless stated otherwise): 1: When you attack, gain +2 Precision. 2: When you attack, gain Auto-hope 2. 3: Advanced Block. 5: Discard all Condition tokens and cards. 7: Ignore [Vigor] loss from a Monster Attack.",
+     "ops": null
+    }
+   ]
+  },
+  {
+   "id": "schwarzesser",
+   "name": "Schwarzesser",
+   "tier": "devil",
+   "abilities": [
+    {
+     "name": "Famished Fleisch",
+     "text": "Wound: If you're adjacent to another Knight, you may spend X Fleisch tokens to place X Generic tokens on your Knight Board. As long as there is at least 1 Generic token on your Knight Board, treat your Knight Power die as one tier higher, gain Immune to Mind Condition cards and Braced. At the start and the end of Knight Round, all adjacent Knights lose -5 [Vigor]. Discard 1 Generic token at the end of your turn, and whenever you fail to deal a Wound. You may use Fleisch tokens from the Knight Pool instead of [Heat].",
+     "ops": null
+    },
+    {
+     "name": "Monstrous Strength",
+     "text": "You can either use [2H?] Weapons as if they were [1H?], or when using a [1H?] Weapon, you may add +[red Power die] to the Power Pool.",
+     "ops": null,
+     "unclear": "손 슬롯 아이콘 판독 필요; 주사위 아이콘은 빨강으로 판독"
+    }
+   ]
+  }
+ ],
+ "heroicArcs": [
+  {
+   "name": "Fleischknecht",
+   "file": "arcs2_03.png",
+   "plus": null,
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Break",
+        "n": 1
+       },
+       {
+        "token": "Pushback?",
+        "n": 1,
+        "icon": "[fist with left-pointing arrow and arc]"
+       }
+      ],
+      [
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Break",
+        "n": 1
+       },
+       {
+        "token": "Fleisch",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Opening",
+        "n": 1
+       },
+       {
+        "token": "Fleisch",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Pushback?",
+        "n": 1,
+        "icon": "[fist with left-pointing arrow and arc]"
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "Fleisch",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Break",
+        "n": 1
+       },
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": [
+    "Levels 1 and 4: fist icon with a left-pointing arrow and an arc (not in the token legend; possibly Knockback/Push); transcribed as [fist with left-pointing arrow and arc]"
+   ]
+  },
+  {
+   "name": "Fleischjäger",
+   "file": "arcs2_02.png",
+   "plus": {
+    "text": "[PowerReroll] 1",
+    "ops": [
+     {
+      "token": "PowerReroll",
+      "n": 1
+     }
+    ]
+   },
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Break",
+        "n": 1
+       },
+       {
+        "token": "Closing",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "Black",
+        "n": 1
+       },
+       {
+        "token": "Fleisch",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "AttackReroll",
+        "n": 1
+       },
+       {
+        "token": "Reflex?",
+        "n": 2,
+        "icon": "[pawn with upward arrow]"
+       }
+      ],
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "Reposition?",
+        "n": 2,
+        "icon": "[arrow with speed lines striking a figure]"
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "Black",
+        "n": 1
+       },
+       {
+        "token": "Fleisch",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Provoke?",
+        "n": 1,
+        "icon": "[hooded figure with curved arrow over it and sound lines]"
+       },
+       {
+        "token": "Closing",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "SecondChance?",
+        "n": 1,
+        "icon": "[card with heart and spade symbols]"
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": [
+    "Level 3: pawn/figure with an upward arrow, value 2 (possibly Movement +2)",
+    "Level 4: arrow with speed lines striking a figure, value 2 (possibly Knockback/Push 2)",
+    "Level 6: hooded figure with a curved arrow and sound lines, no number (does not match the legend's Diversion glyph)",
+    "Level 7: card with a heart and a spade on it, no number"
+   ]
+  },
+  {
+   "name": "Teufelsjäger",
+   "file": "arcs2_01.png",
+   "plus": {
+    "text": "+1 [Precision]",
+    "ops": [
+     {
+      "token": "Precision",
+      "n": 1
+     }
+    ]
+   },
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Hope",
+        "n": 1
+       },
+       {
+        "token": "Opening",
+        "n": 1
+       },
+       {
+        "token": "Fleisch",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 2
+       }
+      ],
+      [
+       {
+        "token": "Rouse",
+        "n": 1
+       },
+       {
+        "token": "AttackReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Sunder",
+        "n": 1
+       },
+       {
+        "token": "Pushback?",
+        "n": 1,
+        "icon": "[fist with left-pointing arrow and arc]"
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "Fleisch",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Closing",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Sunder",
+        "n": 1
+       },
+       {
+        "token": "Pushback?",
+        "n": 1,
+        "icon": "[fist with left-pointing arrow and arc]"
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "Deadly?",
+        "n": 1,
+        "icon": "[three diagonal claw slashes]"
+       }
+      ]
+     ]
+    },
+    {
+     "level": 8,
+     "options": [
+      [
+       {
+        "token": "PowerDicePromotion?",
+        "n": 1,
+        "icon": "[black Power die with red upward arrow]"
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": [
+    "Levels 3 and 6: [fist with left-pointing arrow and arc]",
+    "Level 7: three diagonal claw-like slashes, no number",
+    "Level 8: black Power die with a red upward arrow, no number (possibly upgrade a Power die tier)"
+   ]
+  },
+  {
+   "name": "Meisterschlächter",
+   "file": "arcs2_00.png",
+   "plus": {
+    "text": "[PowerReroll] 2",
+    "ops": [
+     {
+      "token": "PowerReroll",
+      "n": 2
+     }
+    ]
+   },
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Fire",
+        "n": 2
+       },
+       {
+        "token": "Fleisch",
+        "n": 1
+       },
+       {
+        "token": "Pushback?",
+        "n": 2,
+        "icon": "[fist with left-pointing arrow and arc]"
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "Closing",
+        "n": 1
+       },
+       {
+        "token": "Fleisch",
+        "n": 1
+       },
+       {
+        "token": "Vault?",
+        "n": 1,
+        "icon": "[hand gripping an arrow pointing up-left]"
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Sunder",
+        "n": 1
+       },
+       {
+        "token": "Fleisch",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerDieBlack",
+        "n": 1
+       },
+       {
+        "token": "Daze?",
+        "n": 1,
+        "icon": "[fist with spiral]"
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "Sunder",
+        "n": 1
+       },
+       {
+        "token": "Pushback?",
+        "n": 2,
+        "icon": "[fist with left-pointing arrow and arc]"
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Deadly?",
+        "n": 1,
+        "icon": "[three diagonal claw slashes]"
+       },
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "SuppressBP?",
+        "n": 1,
+        "icon": "[upward arrow with BP card]"
+       }
+      ],
+      [
+       {
+        "token": "SuppressAI?",
+        "n": 1,
+        "icon": "[upward arrow with AI card]"
+       }
+      ]
+     ]
+    },
+    {
+     "level": 8,
+     "options": [
+      [
+       {
+        "token": "Power",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": [
+    "Levels 1 and 5: [fist with left-pointing arrow and arc] with value 2",
+    "Level 2: hand gripping an arrow/dart pointing up-left, no number",
+    "Level 4: black Power die (no number) + fist with a spiral, no number",
+    "Level 6: three diagonal claw-like slashes, no number",
+    "Level 7: two options, an upward arrow beside a BP card and an upward arrow beside an AI card, no numbers"
+   ]
+  },
+  {
+   "name": "Metzger",
+   "file": "arcs1_00.png",
+   "plus": {
+    "text": "Auto-hope 1",
+    "ops": [
+     {
+      "token": "AutoHope",
+      "n": 1
+     }
+    ]
+   },
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "AttackReroll",
+        "n": 2
+       },
+       {
+        "token": "Fleisch",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Closing",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Vault?",
+        "n": 1,
+        "icon": "[hand gripping an arrow pointing up-left]"
+       },
+       {
+        "token": "Reposition?",
+        "n": 2,
+        "icon": "[pawn with four outward diagonal arrows]"
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "Sunder",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "Hope",
+        "n": 1
+       },
+       {
+        "token": "Fleisch",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Closing",
+        "n": 1
+       },
+       {
+        "token": "Fleisch",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Hope",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "SuppressBP?",
+        "n": 1,
+        "icon": "[upward arrow with BP card]"
+       }
+      ]
+     ]
+    },
+    {
+     "level": 8,
+     "options": [
+      [
+       {
+        "token": "Power",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": [
+    "Level 3: hand gripping an arrow (no number) + pawn/figure with four outward diagonal arrows, value 2",
+    "Level 7: upward arrow beside a BP card, no number"
+   ]
+  },
+  {
+   "name": "Schwarzesser",
+   "file": "arcs1_01.png",
+   "plus": {
+    "text": "Auto-black 1",
+    "ops": [
+     {
+      "token": "AutoBlack",
+      "n": 1
+     }
+    ]
+   },
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Black",
+        "n": 1
+       },
+       {
+        "token": "Closing",
+        "n": 1
+       },
+       {
+        "token": "Fleisch",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "Fire",
+        "n": 1
+       },
+       {
+        "token": "Black",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Closing",
+        "n": 1
+       },
+       {
+        "token": "Black",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Sunder",
+        "n": 1
+       },
+       {
+        "token": "Reposition?",
+        "n": 1,
+        "icon": "[arrow with speed lines striking a figure]"
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "Fleisch",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "Black",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Sunder",
+        "n": 1
+       },
+       {
+        "token": "Reposition?",
+        "n": 1,
+        "icon": "[arrow with speed lines striking a figure]"
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "SecondChance?",
+        "n": 1,
+        "icon": "[card with heart and spade symbols]"
+       }
+      ]
+     ]
+    },
+    {
+     "level": 8,
+     "options": [
+      [
+       {
+        "token": "PowerDicePromotion?",
+        "n": 1,
+        "icon": "[black Power die with red upward arrow]"
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": [
+    "Levels 3 and 6: [arrow with speed lines striking a figure], value 1",
+    "Level 7: card with a heart and a spade, no number",
+    "Level 8: black Power die with a red upward arrow, no number"
+   ]
+  },
+  {
+   "name": "Fleischkrieger",
+   "file": "arcs1_02.png",
+   "plus": {
+    "text": "[ArmorReroll] 1",
+    "ops": [
+     {
+      "token": "ArmorReroll",
+      "n": 1
+     }
+    ]
+   },
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Opening",
+        "n": 2
+       },
+       {
+        "token": "Pushback?",
+        "n": 1,
+        "icon": "[fist with left-pointing arrow and arc]"
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Fleisch",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "AttackReroll",
+        "n": 2
+       },
+       {
+        "token": "Pushback?",
+        "n": 1,
+        "icon": "[fist with left-pointing arrow and arc]"
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "Fleisch",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Pushback?",
+        "n": 1,
+        "icon": "[fist with left-pointing arrow and arc]"
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Hope",
+        "n": 1
+       },
+       {
+        "token": "Closing",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "Diversion",
+        "n": 1
+       },
+       {
+        "token": "Fleisch",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": [
+    "Plus row: black die with a goblet face and a curved arrow, read as an Armor die re-roll",
+    "Levels 1, 3 and 5: [fist with left-pointing arrow and arc]"
+   ]
+  },
+  {
+   "name": "Feuerkoch",
+   "file": "arcs1_03.png",
+   "plus": null,
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Fire",
+        "n": 1
+       },
+       {
+        "token": "Reposition?",
+        "n": 1,
+        "icon": "[arrow with speed lines striking a figure]"
+       }
+      ],
+      [
+       {
+        "token": "Opening",
+        "n": 1
+       },
+       {
+        "token": "Reposition?",
+        "n": 1,
+        "icon": "[arrow with speed lines striking a figure]"
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Fleisch",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Fire",
+        "n": 1
+       },
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Fleisch",
+        "n": 1
+       },
+       {
+        "token": "Reposition?",
+        "n": 1,
+        "icon": "[arrow with speed lines striking a figure]"
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "Break",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Fire",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Opening",
+        "n": 1
+       },
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "Fleisch",
+        "n": 1
+       },
+       {
+        "token": "Reposition?",
+        "n": 1,
+        "icon": "[arrow with speed lines striking a figure]"
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": [
+    "Levels 1, 4 and 7: [arrow with speed lines striking a figure], value 1"
+   ]
+  }
+ ],
+ "perilArcsRef": "data/knights/peril_arcs.json → arcs.fleischritter",
+ "techniques": [
+  {
+   "name": "Second Chance",
+   "unlock": "Start",
+   "cost": [
+    [
+     {
+      "res": "Heat",
+      "n": 2
+     }
+    ],
+    [
+     {
+      "res": "Fleisch",
+      "n": -1
+     }
+    ]
+   ],
+   "text": "Second Chance.",
+   "gates": [
+    {
+     "gate": "KING",
+     "text": "Superior Chance."
+    }
+   ],
+   "depletion": "discard",
+   "unclear": [
+    "Cost printed as '+2 [Heat] or -1 [Fleisch]' (alternatives)",
+    "Depletion icon is a black card with a white diamond containing an X; read as Discard"
+   ],
+   "ops": null
+  },
+  {
+   "name": "Knight Roll",
+   "unlock": "Start",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "[reaction glyph] Reflex.",
+   "gates": [
+    {
+     "gate": "KING",
+     "text": "[reaction glyph] Advanced Reflex."
+    },
+    {
+     "gate": "DEVIL",
+     "text": "[reaction glyph] Superior Reflex."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [
+    "An ornate wisp/tree-like glyph precedes 'Reflex' on each line (not in the token legend)"
+   ],
+   "ops": null
+  },
+  {
+   "name": "Knight Pose",
+   "unlock": "Start",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "Stand up.",
+   "gates": [
+    {
+     "gate": "KING",
+     "text": "Rocksteady."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Cured Darklin",
+   "unlock": "Start",
+   "cost": [
+    {
+     "res": "Fleisch",
+     "n": -2
+    }
+   ],
+   "text": "Gain +3 [Vigor].",
+   "gates": [
+    {
+     "gate": "KING",
+     "text": "+5 [Vigor] instead."
+    },
+    {
+     "gate": "DEVIL",
+     "text": "+7 [Vigor] instead."
+    }
+   ],
+   "depletion": "discard",
+   "unclear": [
+    "Title split across tiles tech_03/tech_04 ('CURED DAR' + 'KLIN')",
+    "Depletion icon is a black card with a white diamond containing an X; read as Discard"
+   ],
+   "ops": null
+  },
+  {
+   "name": "Food Runner",
+   "unlock": "Start",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "Rush.",
+   "gates": [
+    {
+     "gate": "KING",
+     "text": "Improved Rush instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [
+    "Cost box has a white tag with two small figures and a diamond between them before '+2 [Heat]' (possibly a timing/phase marker)"
+   ],
+   "ops": null
+  },
+  {
+   "name": "Crunchy Batter",
+   "unlock": "Investigation 1-2",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "Reinforce 2.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "Reinforce 3 instead."
+    }
+   ],
+   "depletion": "delay",
+   "unclear": [
+    "Depletion icon is a card with a clock/circular-arrow symbol; read as Delay"
+   ],
+   "ops": null
+  },
+  {
+   "name": "Stick in Their Throat",
+   "unlock": "Investigation 1-3",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "When you suffer involuntary movement, reduce it by up to 2.",
+   "gates": [
+    {
+     "gate": "KING",
+     "text": "3 instead."
+    },
+    {
+     "gate": "DRAGON",
+     "text": "4 instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Fervid Meal",
+   "unlock": "Quest: Feuerkoch",
+   "cost": [
+    {
+     "res": "Fleisch",
+     "n": -1
+    }
+   ],
+   "text": "If there is a Fire [Fire] token in the Knight Pool, gain +1 [Passion].",
+   "gates": [
+    {
+     "gate": "DRAGON",
+     "text": "You may discard 2 Fire [Fire] tokens from the Knight Pool to gain +2 [Passion] instead."
+    }
+   ],
+   "depletion": "discard",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Sizzling Striga",
+   "unlock": "Investigation 2-2",
+   "cost": [
+    {
+     "res": "Fleisch",
+     "n": -1
+    }
+   ],
+   "text": "Immediately Provoke or Daze.",
+   "gates": [],
+   "depletion": "delay",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Mise en Place",
+   "unlock": "Investigation 2-3",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "Unexhaust 1 Gear [Gear] card.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "Unexhaust all Gear [Gear] cards instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Meat Shield",
+   "unlock": "Quest: Fleischjäger",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "Advanced Reinforce 2.",
+   "gates": [
+    {
+     "gate": "DRAGON",
+     "text": "Advanced Reinforce 3 instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Braise for Impact",
+   "unlock": "Quest: Fleischjäger",
+   "cost": [
+    {
+     "res": "Fleisch",
+     "n": -1
+    }
+   ],
+   "text": "Gain Braced until your next turn (you cannot be involuntarily moved or suffer Knockdown, but you can still be Displaced).",
+   "gates": [],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Prized Morsel",
+   "unlock": "Quest: Fleischkrieger",
+   "cost": [
+    {
+     "res": "Fleisch",
+     "n": -1
+    }
+   ],
+   "text": "When you are about to attack, if there is an Opening [Opening] token in the Knight Pool, gain Heartseeker.",
+   "gates": [
+    {
+     "gate": "DRAGON",
+     "text": "When you are about to attack, if there are 3 Opening [Opening] tokens in the Knight Pool, gain Soulseeker."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "You Won't Like Me When I'm Hangry",
+   "unlock": "Quest: Fleischkrieger",
+   "cost": [
+    {
+     "res": "Fleisch",
+     "n": -1
+    }
+   ],
+   "text": "During the second ability window, place 1 Power [Power] token in the Knight Pool for every 3 [PowerSymbol] over the [AT].",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "For every 3 [PowerSymbol] of your Total Power instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [
+    "[PowerSymbol] = the sword glyph used for Power results",
+    "[AT] = a dark hooded/creature-like glyph; the same glyph appears after 'AT' on Meat Puppet, so it is likely the monster AT stat icon"
+   ],
+   "ops": null
+  },
+  {
+   "name": "Panflip",
+   "unlock": "Investigation 3-2",
+   "cost": [
+    {
+     "res": "Fleisch",
+     "n": -1
+    }
+   ],
+   "text": "Flip a Body Condition card.",
+   "gates": [
+    {
+     "gate": "DRAGON",
+     "text": "As long as this card is either in the Delay or Cooldown area, gain Immune to Body Condition cards. Place that Condition card under this Technique as a reminder."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Nothing Goes to Waste",
+   "unlock": "Investigation 3-3",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "When you're about to resolve the Clear the Knight Pool step of your Attack, skip that step.",
+   "gates": [],
+   "depletion": "delay",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Distracting Bait",
+   "unlock": "Quest: Metzger",
+   "cost": [
+    {
+     "res": "Fleisch",
+     "n": -1
+    }
+   ],
+   "text": "If your Attack hits, you may use this Technique to ignore Responses during that Attack.",
+   "gates": [],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Just a Fleisch Wound",
+   "unlock": "Investigation 4-2",
+   "cost": [
+    {
+     "res": "Fleisch",
+     "n": -1
+    }
+   ],
+   "text": "Discard a Body Condition card.",
+   "gates": [
+    {
+     "gate": "DRAGON",
+     "text": "Up to 2 Body Condition cards instead."
+    }
+   ],
+   "depletion": "discard",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Stick to the Recipe",
+   "unlock": "Investigation 4-3",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "Motivate 3.",
+   "gates": [
+    {
+     "gate": "DRAGON",
+     "text": "Motivate 5 instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "White Meat Power Punch",
+   "unlock": "Quest: Teufelsjäger",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    },
+    {
+     "res": "Fleisch",
+     "n": -1
+    }
+   ],
+   "text": "When you're about to perform a Power Roll, add [PowerDieWhite] to your Power Pool.",
+   "gates": [
+    {
+     "gate": "DRAGON",
+     "text": "When an adjacent Knight is about perform a Power Roll, add [PowerDieRed] to their Power Pool."
+    }
+   ],
+   "depletion": "discard",
+   "unclear": [
+    "Cost is '+1 [Heat] -1 [Fleisch]' (both paid together, not alternatives)",
+    "Card text literally reads 'is about perform' (missing 'to')"
+   ],
+   "ops": null
+  },
+  {
+   "name": "The Power of Bacon Compels You!",
+   "unlock": "Quest: Teufelsjäger",
+   "cost": [
+    {
+     "res": "Fleisch",
+     "n": -3
+    }
+   ],
+   "text": "Bring another Knight back to life. Place them adjacent to Fleischritter with half of their maximum [Vigor] (rounding up).",
+   "gates": [],
+   "depletion": "discard",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Butcher's Twine",
+   "unlock": "Quest: Schwarzesser",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    },
+    {
+     "res": "Fleisch",
+     "n": -1
+    }
+   ],
+   "text": "When you're about to attack, your active Weapon gains Reach 3. Then, before the Power Roll, add [PowerDieBlack] to your Power Pool.",
+   "gates": [],
+   "depletion": "discard",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Meat Puppet",
+   "unlock": "Quest: Schwarzesser",
+   "cost": [
+    {
+     "res": "Fleisch",
+     "n": -1
+    }
+   ],
+   "text": "Place a Fleisch [Fleisch] token on a space adjacent to you. When reading the first targeting line of an AI card, if there is no valid Target, the Fleisch [Fleisch] token becomes the Target instead. Perform Monster movement as usual, then discard the [Fleisch] token and Chain Break. The Monster gains a permanent negative AT [AT] token.",
+   "gates": [],
+   "depletion": "discard",
+   "unclear": [
+    "[AT] = dark hooded/creature-like stat glyph following 'AT'"
+   ],
+   "ops": null
+  },
+  {
+   "name": "Maillard Reaction",
+   "unlock": "Investigation 5-2",
+   "cost": [
+    {
+     "res": "Fleisch",
+     "n": -1
+    }
+   ],
+   "text": "Reset your [Heat].",
+   "gates": [],
+   "depletion": "cooldown",
+   "unclear": [
+    "Right edge of this card is cut off by the scan; visible text appears complete"
+   ],
+   "ops": null
+  },
+  {
+   "name": "Butcher's Bargain",
+   "unlock": "Investigation 5-3",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 3
+    }
+   ],
+   "text": "When you're about to draw a Judicium, you may choose whether to draw You Live! or You Died (once per Clash). If you do, the next time you draw a Judicium, you must draw the other card.",
+   "gates": [],
+   "depletion": "discard",
+   "unclear": [
+    "시트 끝 카드 — 소진 아이콘 discard로 추정"
+   ],
+   "ops": null
+  },
+  {
+   "name": "Filleting Frenzy",
+   "unlock": "Quest: Meisterschlächter",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    },
+    {
+     "res": "Fleisch",
+     "n": -2
+    }
+   ],
+   "text": "During your turn, you may perform an additional [Combat Action].",
+   "gates": [],
+   "depletion": "discard",
+   "unclear": [
+    "시트 끝 카드 — 소진 아이콘 discard로 추정"
+   ],
+   "ops": null
+  }
+ ],
+ "missing": [
+  "Portrait cards ×2 (Fleischritter, Fleischknecht) — stats needed",
+  "Trap token rule"
+ ]
 }

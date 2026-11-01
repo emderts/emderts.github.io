@@ -1,0 +1,1353 @@
+{
+ "_source": "Knighves + Chipped Axe (Fleischritter start) and 32 Rosegraal reward gear cards + Laxlaw (Pliant) side. Stats per rulebook p.20 icon legend. text verbatim with [icons].",
+ "_notes": {
+  "source": "gear_RC sheet was supplied as 35 tiles cut at 702px (gear/gear_<row><col>.png) while the real card pitch is ~772px; tiles were stitched back into row sheets and re-cropped. Rows 0-2 hold 10 cards each, row 3 holds 2 (Aegis of Averted Eyes is cut off on its right edge). 32 Rosegraal cards total.",
+  "iconKey": {
+   "[Heat]": "blue H box",
+   "[Vigor]": "red V box",
+   "[Passion]": "green P box",
+   "[Attack die]": "black d-shaped attack die",
+   "[Power]": "sword = raw Power / Power-die hit symbol",
+   "[Fail]": "chalice = Power-die fail symbol",
+   "[Exhaust]": "card with curved arrow",
+   "[Delay]": "card with z z",
+   "[Precision]": "target/bullseye",
+   "[Judicium-diamond icon]": "small tilted-square/diamond icon that precedes several reactive abilities (Great Antler Helm, Wilder Plate, Blinder Helm, Gloryseeker's Cape, Terracotta Emblem, Aegis) - exact meaning unverified",
+   "[Move action]": "black box with running figure",
+   "[Move+Attack action]": "black box with figure and sword",
+   "[Attack action]": "black box with sword",
+   "[Bane]": "circular arrow token",
+   "[Magic]": "star-burst token",
+   "[AT]": "ribcage icon",
+   "[Armor token]": "breastplate icon",
+   "[Evasion]": "feather/swoosh",
+   "[Sagacity]": "owl",
+   "[Tenacity]": "spiral/ram-horn",
+   "[Mortis]": "red coffin-like card icon"
+  },
+  "knightAssignment": "Knight for each Rosegraal card is inferred from sheet order (5 cards per knight in the order given: Fleischritter, Kara, Paracelsa, Renholder, Ser Sonch, Stoneface, then 2 for Ser Ubar). The church-themed set (Mantle of the Faithful ... Blade of the First Sacrament) was assigned to Paracelsa and the magic set (Wizard's Hat ... Lightgrasp) to Renholder; verify if the two knights are swapped."
+ },
+ "gear": [
+  {
+   "name": "Knighves",
+   "code": "13A0471",
+   "traits": [
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "All",
+   "merchant": false,
+   "price": null,
+   "attackDice": 1,
+   "precision": 0,
+   "weaponPower": {
+    "n": 1,
+    "colour": "red"
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "text": "[Two-handed icon]: +1 [Attack die].",
+   "gates": [
+    {
+     "gate": "TWO-HANDED",
+     "text": "+1 [Attack die]."
+    }
+   ],
+   "knight": null,
+   "unclear": [
+    "The black tag icon before ': +1 [Attack die]' shows two gauntlets (the two-hand slot icon); interpreted as a gate meaning 'when wielded two-handed / paired'."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Chipped Axe",
+   "code": "13A0477",
+   "traits": [
+    "Axe",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Mob",
+   "merchant": true,
+   "price": 5,
+   "attackDice": 1,
+   "precision": 0,
+   "weaponPower": {
+    "n": 1,
+    "colour": "white"
+   },
+   "bonusPower": {
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "text": "Break 1. Commit.\n[GRAVE] Armor-piercing 1.\n[red crossed-sticks X icon]: +1 [Power] +1 [Fail]\n[yellow open-book icon]: +1 [Fail]",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "Armor-piercing 1."
+    }
+   ],
+   "knight": null,
+   "unclear": [
+    "Two condition icons at the bottom are unidentified: a red X made of two crossed sticks (': +1 [Power sword] +1 [Fail chalice]') and a yellow open book (': +1 [Fail chalice]')."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Cleaver Sword",
+   "code": "13A0625",
+   "traits": [
+    "Sword",
+    "Metal",
+    "Heavy"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Mob",
+   "merchant": false,
+   "price": null,
+   "attackDice": 1,
+   "precision": 2,
+   "weaponPower": {
+    "n": 1,
+    "colour": "white"
+   },
+   "bonusPower": {
+    "raw": 2
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "text": "Break 1.\nCommit.\nCumbersome.\nWhen you're about to attack, you may discard X Opening [Opening], Break [Break], and/or Fleisch [Fleisch] tokens in the Knight Pool to gain Pushback X.\n[GRAVE] Armor-piercing 1.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "Armor-piercing 1."
+    }
+   ],
+   "knight": "fleischritter",
+   "unclear": [
+    "Code 13A0625 is faint."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Great Antler Helm",
+   "code": "13A0626",
+   "traits": [
+    "Metal",
+    "Bone"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Vassal",
+   "merchant": false,
+   "price": null,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": {
+    "white": 1
+   },
+   "text": "When you perform Rush, immediately Inspire 1 and gain Power Re-roll 2.\n[JUDICIUM] [Judicium-diamond icon] After performing an Armor Roll, treat each [Fail] you rolled as 2 [Fail].",
+   "gates": [
+    {
+     "gate": "JUDICIUM",
+     "text": "[Judicium-diamond icon] After performing an Armor Roll, treat each [Fail] you rolled as 2 [Fail]."
+    }
+   ],
+   "knight": "fleischritter",
+   "unclear": [
+    "Bottom-right slot icon looks like the Support pouch rather than the Armor breastplate (helm as Support)."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Paired Cleavers",
+   "code": "13A0627",
+   "traits": [
+    "Knife",
+    "Metal",
+    "Pair"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "King",
+   "merchant": false,
+   "price": null,
+   "attackDice": 3,
+   "precision": 4,
+   "weaponPower": {
+    "n": 1,
+    "colour": "red"
+   },
+   "bonusPower": {
+    "n": 1,
+    "colour": "white"
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "text": "Opening 2.\nBreak 2. Commit.\nReposition 2 or Drag 2.\n2 [Heat] [Exhaust] When you are about to be moved involuntarily, gain Braced.",
+   "gates": [],
+   "knight": "fleischritter",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Pighead Talisman",
+   "code": "13A0628",
+   "traits": [
+    "Meat",
+    "Rope"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Devil",
+   "merchant": false,
+   "price": null,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "text": "Poison Resilience 2.\nDeploy 3. Provoke.\n1 [Heat] When drawing a Judicium, remove all Massive Peril Judicium cards from the deck (for this draw only).\n[JUDICIUM] Fleisch X, where X is your [Heat].",
+   "gates": [
+    {
+     "gate": "JUDICIUM",
+     "text": "Fleisch X, where X is your [Heat]."
+    }
+   ],
+   "knight": "fleischritter",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Trophy Armor",
+   "code": "13A0629",
+   "traits": [
+    "Armor",
+    "Bone",
+    "Metal",
+    "Flesh"
+   ],
+   "type": "armor",
+   "hands": null,
+   "tier": "Dragon",
+   "merchant": false,
+   "price": null,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": {
+    "white": 2
+   },
+   "text": "Inspire 1.\nWhen you are about to place Break [Break] tokens in the Knight Pool, you may place Hope [Hope] tokens instead.\n[Move action] 1 [Heat] Improved Rush.\n[MAJOR] If there are no Opening [Opening] or Break [Break] tokens in the Knight Pool, Auto-hope 2.",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "If there are no Opening [Opening] or Break [Break] tokens in the Knight Pool, Auto-hope 2."
+    }
+   ],
+   "knight": "fleischritter",
+   "unclear": [
+    "Icon before '1 [Heat] Improved Rush' is a black box with a running figure (read as the Move action icon)."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Reclaimed Spear",
+   "code": "13A0610",
+   "traits": [
+    "Spear",
+    "Metal",
+    "Wood"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Mob",
+   "merchant": false,
+   "price": null,
+   "attackDice": 2,
+   "precision": -1,
+   "weaponPower": {
+    "n": 1,
+    "colour": "white"
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "text": "Reach 2.\nOpening 1.\n[Move+Attack action] 2 [Heat] Rush.\n[MAJOR] When you perform Rush, gain +2 Precision [Precision] and Reposition 1.",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "When you perform Rush, gain +2 Precision [Precision] and Reposition 1."
+    }
+   ],
+   "knight": "kara",
+   "unclear": [
+    "Icon before '2 [Heat] Rush' is a wide black box showing a figure, a plus sign and a sword (read as Move+Attack action).",
+    "Code 13A0610 is faint."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Wilder Cloak",
+   "code": "13A0611",
+   "traits": [
+    "Cloth",
+    "Fur",
+    "Flammable"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Vassal",
+   "merchant": false,
+   "price": null,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "text": "Bypass.\nPoison Resilience 1.\n[unknown scribbled icon] 1 [Heat] [Exhaust] Reflex.\nWhen you become the Target of a Monster Attack, you may gain +1 Evasion [Evasion] or 2 [Opening].\nIf you do, and fail to Fully Evade, lose -3 [Vigor].",
+   "gates": [],
+   "knight": "kara",
+   "unclear": [
+    "Small scribbled icon before '1 [Heat] [Exhaust] Reflex' is unidentified (same icon appears on Wyrdweave Garb next to Reflex; may be a Reflex timing icon)."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Masterforged Shield",
+   "code": "13A0612",
+   "traits": [
+    "Metal",
+    "Shield"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "King",
+   "merchant": false,
+   "price": null,
+   "attackDice": 3,
+   "precision": 2,
+   "weaponPower": {
+    "n": 1,
+    "colour": "red"
+   },
+   "bonusPower": {
+    "raw": 2
+   },
+   "evasion": null,
+   "evasionReroll": 2,
+   "armorDice": {
+    "white": 1
+   },
+   "text": "Opening 2. Break 2.\n1 [Heat] When you are about to exhaust another Weapon [Gear] card, you may exhaust this card instead.\n[GRAVE] Full Miss: Skip the Clear the Knight Pool step of your Attack.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "Full Miss: Skip the Clear the Knight Pool step of your Attack."
+    }
+   ],
+   "knight": "kara",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Wilder Plate",
+   "code": "13A0613",
+   "traits": [
+    "Metal",
+    "Fur"
+   ],
+   "type": "armor",
+   "hands": null,
+   "tier": "Devil",
+   "merchant": false,
+   "price": null,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": 1,
+   "evasionReroll": null,
+   "armorDice": null,
+   "extraStat": {
+    "sunEmblemValue": 3
+   },
+   "text": "1 [unknown circular wreath token icon] When you become the Target of an Attack, choose one:\n• Guard 1.\n• [red Armor die].\n• 1 Evasion Re-roll.\n[JUDICIUM] 1 [Heat] [Judicium-diamond icon] Superior Chance. If you survive, gain +1 [Passion].",
+   "gates": [
+    {
+     "gate": "JUDICIUM",
+     "text": "1 [Heat] [Judicium-diamond icon] Superior Chance. If you survive, gain +1 [Passion]."
+    }
+   ],
+   "knight": "kara",
+   "unclear": [
+    "Right column has a '3' inside a sun/gear emblem above the +1 Evasion; stat type unknown (recorded as extraStat.sunEmblemValue).",
+    "Cost icon in '1 [icon] When you become the Target...' is a circular wreath-like token, not Heat/Vigor/Passion; unidentified."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Horn Bow",
+   "code": "13A0614",
+   "traits": [
+    "Bow",
+    "Wood"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Dragon",
+   "merchant": false,
+   "price": null,
+   "attackDice": 2,
+   "precision": 3,
+   "weaponPower": {
+    "n": 1,
+    "colour": "white"
+   },
+   "bonusPower": {
+    "n": 1,
+    "colour": "white",
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "text": "Ranged 4-9.\nAuto-break X.\nClosing X. Black X.\nCumbersome. Ignore X Armor [Armor token] tokens.\nX is the sum of all Evasion [Evasion] bonuses on all Knights' Gear [Gear] cards. Gain +1 [Power] against Dragons.\n[MAJOR] +1 Evasion [Evasion].",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "+1 Evasion [Evasion]."
+    }
+   ],
+   "knight": "kara",
+   "unclear": [
+    "Card has two Bonus Power entries: one white Power die and +1 raw Power; both stored in bonusPower."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Mantle of the Faithful",
+   "code": "13A0630",
+   "traits": [
+    "Cape",
+    "Cloth",
+    "Holy"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Mob",
+   "merchant": false,
+   "price": null,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "text": "[Heat] When you're about to resolve a negative Minor or Major Mortis, lose respectively -1 [Vigor] or -2 [Vigor] instead.\nThen, shuffle that card back into the deck and resolve the [Mortis] again.\n[P 2+] Provoke.",
+   "gates": [
+    {
+     "gate": "PASSION 2+",
+     "text": "Provoke."
+    }
+   ],
+   "knight": "paracelsa",
+   "unclear": [
+    "Knight assignment inferred (see _notes.knightAssignment)."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Imperial Templar's Kite Shield",
+   "code": "13A0631",
+   "traits": [
+    "Shield",
+    "Wood",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Vassal",
+   "merchant": false,
+   "price": null,
+   "attackDice": 2,
+   "precision": 0,
+   "weaponPower": {
+    "n": 1,
+    "colour": "white"
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "text": "Break 2.\nArmor-piercing 1.\n2 [Heat] Soak 1.\n1 [Heat] [Exhaust] Block.\n1 [Vigor] Tumble.\nCrit Evade Fail: Immediately Zeal 1.\n[MAJOR] Your other Weapons gain Sacrifice.",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "Your other Weapons gain Sacrifice."
+    }
+   ],
+   "knight": "paracelsa",
+   "unclear": [
+    "Code 13A0631 is faint.",
+    "Knight assignment inferred."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Questing Champion's Chain Armor",
+   "code": "13A0632",
+   "traits": [
+    "Armor",
+    "Metal"
+   ],
+   "type": "armor",
+   "hands": null,
+   "tier": "King",
+   "merchant": false,
+   "price": null,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": {
+    "red": 1,
+    "white": 1
+   },
+   "text": "+1 Tenacity [Tenacity]. Inspire 1.\nYou may pay with [Vigor] to re-roll dice instead of [Heat].",
+   "gates": [],
+   "knight": "paracelsa",
+   "unclear": [
+    "Knight assignment inferred."
+   ],
+   "ops": null
+  },
+  {
+   "name": "The Bastard of the Church",
+   "code": "13A0633",
+   "traits": [
+    "Sword",
+    "Metal",
+    "Magic"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Devil",
+   "merchant": false,
+   "price": null,
+   "attackDice": 3,
+   "precision": 4,
+   "weaponPower": {
+    "n": 1,
+    "colour": "red"
+   },
+   "bonusPower": {
+    "n": 1,
+    "colour": "white",
+    "raw": 2
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "text": "Closing 2. Hope 2.\nBefore you proceed to the first ability window, you may change your active Weapon to another [one-hand] Weapon you have equipped (you cannot exceed the maximum number of hits of the new Weapon). If you don't, gain Auto-rouse 1.\n[GRAVE] Falsity.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "Falsity."
+    }
+   ],
+   "knight": "paracelsa",
+   "unclear": [
+    "Two Bonus Power entries (one white die and +2 raw).",
+    "Knight assignment inferred."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Blade of the First Sacrament",
+   "code": "13A0634",
+   "traits": [
+    "Sword",
+    "Metal",
+    "Magic"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Devil",
+   "merchant": false,
+   "price": null,
+   "attackDice": 1,
+   "precision": 0,
+   "weaponPower": {
+    "dice": {
+     "red": 1,
+     "white": 2
+    }
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "text": "Auto-hope 2.\nProvoke. Spotlight.\nWhen you are about to proceed to the second ability window, you may change your active Weapon to another [one-hand] Weapon you have equipped.\nIf you don't, Zeal 1.\n[MAJOR] Falsity.",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "Falsity."
+    }
+   ],
+   "knight": "paracelsa",
+   "unclear": [
+    "Weapon Power icon shows three dice of mixed colour (1 red + 2 white); stored as weaponPower.dice.",
+    "Knight assignment inferred."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Wide-brimmed Wizard's Hat",
+   "code": "13A0615",
+   "traits": [
+    "Cloth",
+    "Hat"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Mob",
+   "merchant": false,
+   "price": null,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "text": "Party Trick: 1 [Heat] You may place 1 card from your hand into the Cooldown area to Refresh 1.\n[MAJOR] +2 Sagacity [Sagacity].",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "+2 Sagacity [Sagacity]."
+    }
+   ],
+   "knight": "renholder",
+   "unclear": [
+    "Knight assignment inferred."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Bluesteel Sword",
+   "code": "13A0616",
+   "traits": [
+    "Sword",
+    "Magic",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Vassal",
+   "merchant": false,
+   "price": null,
+   "attackDice": 1,
+   "precision": 2,
+   "weaponPower": {
+    "n": 3,
+    "colour": "red"
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "text": "[MINOR] +1 [Power].\nOpening 2.\nAttack Re-roll 1.\nPower Re-roll 1.\nWhen you attack, you may spend 1 Magic [Magic] token to change this card's Opening 2 into Cantrip 2 instead.",
+   "gates": [
+    {
+     "gate": "MINOR",
+     "text": "+1 [Power]."
+    }
+   ],
+   "knight": "renholder",
+   "unclear": [
+    "The MINOR gate line sits under the trait line (top of card), not in the ability box.",
+    "Knight assignment inferred."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Wyrdweave Garb",
+   "code": "13A0617",
+   "traits": [
+    "Cloth",
+    "Cape"
+   ],
+   "type": "armor",
+   "hands": null,
+   "tier": "King",
+   "merchant": false,
+   "price": null,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "text": "Hand Limit +1.\n[Exhaust] Delay [Delay] a random Technique from your hand to Dodge.\n[MAJOR] [unknown scribbled icon] Delay [Delay] a random Technique from your hand to Reflex.",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "[unknown scribbled icon] Delay [Delay] a random Technique from your hand to Reflex."
+    }
+   ],
+   "knight": "renholder",
+   "unclear": [
+    "Scribbled icon after MAJOR is the same unidentified icon as on Wilder Cloak (both next to Reflex).",
+    "Knight assignment inferred."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Torchbearer's Swordstaff",
+   "code": "13A0618",
+   "traits": [
+    "Catalyst",
+    "Spear",
+    "Sword"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Devil",
+   "merchant": false,
+   "price": null,
+   "attackDice": 1,
+   "precision": 4,
+   "weaponPower": {
+    "dice": {
+     "white": 1,
+     "red": 3
+    }
+   },
+   "bonusPower": {
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "text": "Reach 3.\nCommit.\nSpell X.\nArmor-piercing X.\nPower Re-roll X.\nX is the number of Magic [Magic] tokens in the Knight Pool.",
+   "gates": [],
+   "knight": "renholder",
+   "unclear": [
+    "Weapon Power icon shows 1 white die above 3 red dice; stored as weaponPower.dice.",
+    "Knight assignment inferred."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Lightgrasp",
+   "code": "13A0619",
+   "traits": [
+    "Magic",
+    "Fire"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Dragon",
+   "merchant": false,
+   "price": null,
+   "attackDice": 2,
+   "precision": 6,
+   "weaponPower": {
+    "n": 1,
+    "colour": "white"
+   },
+   "bonusPower": {
+    "n": 1,
+    "colour": "white"
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "text": "Unwieldy.\nRanged 2-X. Fire X.\nCommit. Cumbersome.\nYou start each Clash with exactly 2 [Passion].\nX is equal to your [Passion].\n[GRAVE] This Weapon gains Area: Zone 2 around the Target.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "This Weapon gains Area: Zone 2 around the Target."
+    }
+   ],
+   "knight": "renholder",
+   "unclear": [
+    "Knight assignment inferred."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Storied Blade",
+   "code": "13A0620",
+   "traits": [
+    "Sword",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Mob",
+   "merchant": false,
+   "price": null,
+   "attackDice": 1,
+   "precision": 2,
+   "weaponPower": {
+    "n": 2,
+    "colour": "red"
+   },
+   "bonusPower": {
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "text": "Auto-break 1.\nAttack Re-roll 1.\nPower Re-roll 1.\nWhen you attack, lose -1 [Heat].\n[P 3+] Armor-piercing 1.",
+   "gates": [
+    {
+     "gate": "PASSION 3+",
+     "text": "Armor-piercing 1."
+    }
+   ],
+   "knight": "ser-sonch",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Blinder Helm",
+   "code": "13A0621",
+   "traits": [
+    "Metal",
+    "Helmet"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Vassal",
+   "merchant": false,
+   "price": null,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "text": "You do not benefit from Opening [Opening] tokens.\nRouse 1. +2 Precision [Precision].\nDuring Delve, you may move through Shortcuts.\n1 [Heat] [Judicium-diamond icon] Second Chance.\n[P 3+] Spotlight.",
+   "gates": [
+    {
+     "gate": "PASSION 3+",
+     "text": "Spotlight."
+    }
+   ],
+   "knight": "ser-sonch",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Brash Carapace",
+   "code": "13A0622",
+   "traits": [
+    "Armor",
+    "Metal",
+    "Leather"
+   ],
+   "type": "armor",
+   "hands": null,
+   "tier": "King",
+   "merchant": false,
+   "price": null,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": {
+    "red": 2
+   },
+   "text": "Deploy 2.\n1 [Heat] [Exhaust] When you are about to draw a Mortis card, look at the top card of the respective Mortis deck. Then, you may shuffle it.",
+   "gates": [],
+   "knight": "ser-sonch",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Gloryseeker's Cape",
+   "code": "13A0623",
+   "traits": [
+    "Cape",
+    "Cloth"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Devil",
+   "merchant": false,
+   "price": null,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": 1,
+   "evasionReroll": null,
+   "armorDice": null,
+   "text": "[Exhaust] Lose -X [Heat], where X is the Level of the top BP card.\n2 [Heat] [Exhaust] When you are about to draw an Exploration card, look at the top 3 cards and place 2 of them on the bottom of the deck in any order.\n1 [Heat] [Judicium-diamond icon] Superior Chance.",
+   "gates": [],
+   "knight": "ser-sonch",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Camaraderie Blades",
+   "code": "13A0624",
+   "traits": [
+    "Sword",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Dragon",
+   "merchant": false,
+   "price": null,
+   "attackDice": 2,
+   "precision": 3,
+   "weaponPower": {
+    "n": 1,
+    "colour": "white"
+   },
+   "bonusPower": {
+    "n": 1,
+    "colour": "white",
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "text": "Deadly.\nClosing 3.\nCommit.\nCumbersome.\n3 [Heat] [Exhaust] If Little Ser is adjacent to a Monster, perform a [Attack action].\nEach Miss: Gain a temporary positive Precision [Precision] token.\n[GRAVE] Immediately gain +1 [Passion] (once per Clash).",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "Immediately gain +1 [Passion] (once per Clash)."
+    }
+   ],
+   "knight": "ser-sonch",
+   "unclear": [
+    "Two Bonus Power entries (one white die and +1 raw).",
+    "Bottom-right slot icon shows a single gauntlet (one hand) despite the card depicting two swords."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Stalagmight",
+   "code": "13B0816",
+   "traits": [
+    "Sword",
+    "Stone",
+    "Cursed"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Mob",
+   "merchant": false,
+   "price": null,
+   "attackDice": 1,
+   "precision": 1,
+   "weaponPower": {
+    "n": 3,
+    "colour": "red"
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "text": "Opening 1.\nArmor-piercing 1.\nBane Limit +1.\nUnleash 3: During the second ability window, place a temporary negative AT [AT] in the Knight Pool.",
+   "gates": [],
+   "knight": "stoneface",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Ruinous Polehammer",
+   "code": "13B0817",
+   "traits": [
+    "Polearm",
+    "Hammer",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Vassal",
+   "merchant": false,
+   "price": null,
+   "attackDice": 2,
+   "precision": 3,
+   "weaponPower": {
+    "n": 1,
+    "colour": "red"
+   },
+   "bonusPower": {
+    "n": 1,
+    "colour": "white"
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "text": "Reach 2. Opening 3.\nArmor-piercing 1.\n[Bane 4+] Reach 3 instead, gain Unwieldy.",
+   "gates": [
+    {
+     "gate": "BANE 4+",
+     "text": "Reach 3 instead, gain Unwieldy."
+    }
+   ],
+   "knight": "stoneface",
+   "unclear": [
+    "Gate tag is purple with the Bane circular-arrow icon and '4+' (read as Bane 4+)."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Plate of the Sleeping Giant",
+   "code": "13B0818",
+   "traits": [
+    "Armor",
+    "Cloth",
+    "Cursed"
+   ],
+   "type": "armor",
+   "hands": null,
+   "tier": "King",
+   "merchant": false,
+   "price": null,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": {
+    "black": 1
+   },
+   "text": "Reduce involuntary movement by up to X, where X is the amount of Bane [Bane] tokens you have.\n[MAJOR] Leash 1 and turn [black Armor die] into [white Armor die].",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "Leash 1 and turn [black Armor die] into [white Armor die]."
+    }
+   ],
+   "knight": "stoneface",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Shield of the Defiant",
+   "code": "13B0819",
+   "traits": [
+    "Shield",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Devil",
+   "merchant": false,
+   "price": null,
+   "attackDice": 2,
+   "precision": 2,
+   "weaponPower": {
+    "n": 1,
+    "colour": "black"
+   },
+   "bonusPower": {
+    "raw": 2
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": {
+    "white": 1
+   },
+   "text": "Closing 2.\nSunder 2.\nPushback 2. Commit.\n[Exhaust] Leash 1 and Advanced Reinforce 1.\n[Bane 3+] [black Power die] turns into [white Power die].\n[Bane 5+] Another [black Power die] turns into [white Power die].",
+   "gates": [
+    {
+     "gate": "BANE 3+",
+     "text": "[black Power die] turns into [white Power die]."
+    },
+    {
+     "gate": "BANE 5+",
+     "text": "Another [black Power die] turns into [white Power die]."
+    }
+   ],
+   "knight": "stoneface",
+   "unclear": [
+    "Bottom-right slot icon shows two gauntlets (two-handed shield)."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Terracotta Emblem",
+   "code": "13B0820",
+   "traits": [
+    "Stone",
+    "Cursed",
+    "Charm"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Dragon",
+   "merchant": false,
+   "price": null,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "text": "Bane Limit -1.\nDuring the second ability window, if you deal a Wound, you may discard all Bane [Bane] tokens to place the same amount of Openings [Opening] and/or Breaks [Break] in the Knight Pool.\n[P 4+] [Judicium-diamond icon] When a Monster attacks, it loses -X [Attack die] (to a minimum of 1), where X is the number of Bane [Bane] tokens you have.",
+   "gates": [
+    {
+     "gate": "PASSION 4+",
+     "text": "[Judicium-diamond icon] When a Monster attacks, it loses -X [Attack die] (to a minimum of 1), where X is the number of Bane [Bane] tokens you have."
+    }
+   ],
+   "knight": "stoneface",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Helm of the Silent Witness",
+   "code": "13B0763",
+   "traits": [
+    "Helm",
+    "Ancient",
+    "Metal"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Mob",
+   "merchant": false,
+   "price": null,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": 1,
+   "armorDice": null,
+   "text": "Poison Limit +1.\nWhen you Shapeshift, lose -1 [Heat].",
+   "gates": [],
+   "knight": "ser-ubar",
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Aegis of Averted Eyes",
+   "code": null,
+   "traits": [
+    "Shield",
+    "Ancient",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": null,
+   "tier": "Vassal",
+   "merchant": false,
+   "price": null,
+   "attackDice": 1,
+   "precision": 2,
+   "weaponPower": {
+    "dice": {
+     "black": 1,
+     "red": 1
+    }
+   },
+   "bonusPower": {
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "text": "[HUMAN] 3 [Heat] Block.\n[APE] 1 [Heat] Reinforce 2.\n[MAJOR] [Judicium-diamond icon] When you are about to perform Card Refresh, perform Heat Refresh instead or vice versa.",
+   "gates": [
+    {
+     "gate": "HUMAN",
+     "text": "3 [Heat] Block."
+    },
+    {
+     "gate": "APE",
+     "text": "1 [Heat] Reinforce 2."
+    },
+    {
+     "gate": "MAJOR",
+     "text": "[Judicium-diamond icon] When you are about to perform Card Refresh, perform Heat Refresh instead or vice versa."
+    }
+   ],
+   "knight": "ser-ubar",
+   "unclear": [
+    "Card image is cut off on the right edge: code reads only '13B07..', the right-hand defensive column (if any) and the hand-slot icon are not visible.",
+    "Weapon Power icon shows one black and one red die; stored as weaponPower.dice."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Laxlaw's Dual Standard (Pliant)",
+   "code": null,
+   "traits": [
+    "Armor",
+    "Ancient",
+    "Metal",
+    "Leather"
+   ],
+   "type": "armor",
+   "hands": null,
+   "tier": "King",
+   "merchant": false,
+   "price": null,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "text": "Pushback 3.\nWhen you flip this card to this si[de], gain 1 temporary po[sitive] Speed [Speed] token and 1 Power [Power token] token in [the] Knight Pool.\nWhen you Shapeshi[ft into] a Human, flip this ca[rd].",
+   "gates": [],
+   "knight": "ser-ubar",
+   "unclear": [
+    "Image is cut off on the right: title suffix '(PLIANT' truncated, right-hand stat column, code and slot icon not visible; bracketed word endings in text are reconstructed.",
+    "Type 'armor' inferred from the Armor trait and the Standard's other side; no slot icon visible."
+   ],
+   "ops": null
+  },
+  {
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "attackDice": null,
+   "hands": null,
+   "merchant": false,
+   "price": null,
+   "ops": null,
+   "name": "Laxlaw's Dual Standard (Rigid)",
+   "code": "13B0765",
+   "traits": [
+    "Armor",
+    "Ancient",
+    "Metal",
+    "Leather"
+   ],
+   "type": "armor",
+   "tier": "King",
+   "text": "Deadly. Guard 2.\nWhen you flip this card to this side, Refresh 1.\nWhen you Shapeshift into an Ape, flip this card.\n[MAJOR] 2 [Heat] Precise.",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "2 [Heat] Precise."
+    }
+   ],
+   "knight": "ser-ubar",
+   "flipSide": "Laxlaw's Dual Standard (Pliant)",
+   "unclear": [
+    "우측 방어 스탯 열이 카드에 없음(없는 것으로 판독)"
+   ]
+  },
+  {
+   "precision": "X",
+   "weaponPower": {
+    "n": 1,
+    "colour": "white"
+   },
+   "bonusPower": {
+    "n": 1,
+    "colour": "red"
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "attackDice": 2,
+   "hands": 1,
+   "merchant": false,
+   "price": null,
+   "ops": null,
+   "name": "Uncompromising Justice",
+   "code": "13B0766",
+   "traits": [
+    "Spear",
+    "Metal",
+    "Fungus",
+    "Alive"
+   ],
+   "type": "weapon",
+   "tier": "Devil",
+   "text": "Commit.\nReach 2.\nClosing 2.\nEnvenomed 2.\n+2 to Virtue tests.\n[Exhaust] 2 [Heat] Perform an Attack with this Weapon, it gains Ranged 2–4. If you deal a Wound, place a permanent negative AT token on the Monster Sheet. Then discard this card.\n*X is equal to your [Heat].\n[GRAVE] Gain Unwieldy.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "Gain Unwieldy."
+    }
+   ],
+   "knight": "ser-ubar",
+   "unclear": [
+    "손 슬롯 아이콘(한손/두손) 미확인 — 한손으로 기록"
+   ]
+  },
+  {
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": 2,
+   "evasionReroll": null,
+   "armorDice": null,
+   "attackDice": null,
+   "hands": null,
+   "merchant": false,
+   "price": null,
+   "ops": null,
+   "name": "Mantle of the First Sin",
+   "code": "13B0767",
+   "traits": [
+    "Cloak",
+    "Fur",
+    "Cursed"
+   ],
+   "type": "armor",
+   "tier": "Dragon",
+   "text": "+1 Speed.\nDeploy 1.\nBypass.\nPoison Resilience 1.\n2 [Vigor] Ignore involuntary Shapeshift.\n[Move action] 1 [Heat] [Exhaust] Superior Reflex.\n[ANY CONDITION] When you start your turn in the same form you ended your previous turn in, your Knight Power die becomes one tier higher.",
+   "gates": [
+    {
+     "gate": "ANY CONDITION",
+     "text": "When you start your turn in the same form you ended your previous turn in, your Knight Power die becomes one tier higher."
+    }
+   ],
+   "knight": "ser-ubar",
+   "unclear": [
+    "우측 상단 \"+2\" 아이콘을 Evasion bonus로 판독(확인 필요)",
+    "슬롯 아이콘이 Support(주머니)로 보임 — Cloak이지만 Support일 수 있음"
+   ]
+  }
+ ]
+}
