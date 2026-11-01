@@ -115,8 +115,15 @@ export class Campaign {
       this.say(`${k.name}이 Sigh of the Graal 사용 → Clash 재시작`); return 'replay';
     }
     // resurrections
-    this.resurrections -= deaths; if (deaths) this.say(`부활 -${deaths} → ${this.resurrections}`);
-    if (this.resurrections < 0) { const short = -this.resurrections; this.resurrections = 0; let left = short; for (const kn of clash.knights) if (!kn.alive && left > 0) { const ck = this.knights.find(x => x.name === kn.name); ck.dead = true; left--; this.say(`${ck.name}: 부활 불가 → 캠페인에서 제외`, 'death'); } }
+    if (deaths && survivors > 0) {
+      // 확정(2026-11-02): 생존자가 있으면 부활 수가 모자라도 사망 기사 전원 부활, 부활은 0 아래로 내려가지 않음
+      const before = this.resurrections; this.resurrections = Math.max(0, before - deaths);
+      this.say(`부활 -${deaths} → ${this.resurrections}${before < deaths ? ' (부족분 무시: 생존자 있음 → 전원 부활)' : ''}`);
+    } else if (deaths) {
+      // 전멸: 부활 수만큼만 부활, 부족분은 캠페인에서 제외 [미확정]
+      this.resurrections -= deaths; this.say(`전멸 — 부활 -${deaths} → ${Math.max(0, this.resurrections)}`);
+      if (this.resurrections < 0) { let left = -this.resurrections; this.resurrections = 0; for (const kn of [...clash.knights].reverse()) if (!kn.alive && left > 0) { const ck = this.knights.find(x => x.name === kn.name); ck.dead = true; left--; this.say(`${ck.name}: 부활 불가 → 캠페인에서 제외`, 'death'); } }
+    }
     if (this.knights.every(k => k.dead)) { this.result = 'lose'; this.current = null; this.say('모든 기사 사망, 부활 없음 — 캠페인 패배', 'end'); return 'lose'; }
     // Loot (Victorious: Clash Scavenge 1 + Scavenge 3 / Forlorn: Scavenge 3)
     const lootDeck = [];
