@@ -1823,7 +1823,7 @@ export class Game {
     if ((m = /^For each DANGER dealt, exhaust 1 Gear\.? ?(?:\| FATE (\d)\+: Discard instead)?/.exec(p))) { if (!alive) return; const n = (this.currentAI && this.currentAI.dangerDealt) || 0; const disc = m[1] && this.effFate(t) >= +m[1]; for (let i = 0; i < n; i++) { const list = t.gear.filter(g => !g.discarded && (disc || !g.exhausted) && g.card.name !== 'Fists' && !g.card.isTech); if (!list.length) break; const g = await this.pickGear(t, list); if (disc) this.discardGear(t, g); else { g.exhausted = true; this.say(`${t.name}: 「${g.card.name}」 소진`); } } return; }
     if (/^Burn\.?$/.test(p)) { if (alive) await this.burn(t, !!ctx.card && !ctx.response); return; }
     if ((m = /^Kickback (\d+)\. \| SIS: Kickback (\d+) instead/.exec(p))) { if (alive) await this.kickback(t, t.sisyphean ? +m[2] : +m[1]); return; }
-    if ((m = /^Kickback (\d+)/.exec(p))) { if (alive) await this.kickback(t, +m[1]); return; }
+    if ((m = /^Kickback (\d+)/.exec(p))) { if (!alive) return; const far = ctx.inRange ? !ctx.inRange(t) : !this.isAdj(t); const ranged = ctx.card && (/ZONE|JUDGEMENT|SPECIAL|RANGED|SIMULTANEOUS/.test(ctx.card.kind || '') || ctx.card.pattern || ctx.card.unlimited || ctx.card.zoneSig); if (far && !ranged) { this.say(`${t.name}: 공격 사거리 밖 — Kickback 무시 (Knockback과 동일)`); return; } await this.kickback(t, +m[1]); return; }
     if (/^Rewind/.test(p)) { if (alive) await this.rewind(t); return; }
     if ((m = /^Gain (\d) negative Speed tokens?/.exec(p))) { if (alive) { t.tokens.speed = (t.tokens.speed || 0) - +m[1]; this.say(`${t.name}: −Speed 토큰 ${m[1]}`); } return; }
     if (/^Burden moves to the center of the Board/.test(p)) { await this.moveToCenter(true); return; }
