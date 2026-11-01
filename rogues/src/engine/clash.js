@@ -199,7 +199,7 @@ export class Clash {
     const newCells = nc.filter(x => !this.monster.cells.some(mc => cellEq(mc, x)));
     for (const x of newCells) { const t = B.terrainAt(x); if (t && t.obstacle) { if (charge && !this.monster.hasTrait('Just a Scratch')) return 'obstacle'; if (t.destructible) { B.terrain.delete(B.key(x)); this.say(`지형 ${t.id} 파괴 (${B.label(x)})`); } else return 'obstacle'; } }
     B.remove(this.monster.cells); this.monster.cells = nc; B.place({ kind: 'monster', id: this.monster.id }, nc);
-    for (const x of newCells) { const k = this.knightAt(x); if (k) await this.crash(k, { charge, through: true }); }
+    for (const x of newCells) { const k = this.knightAt(x); if (k) { try { await this.crash(k, { charge, through: true }); } catch (e) { if (!e.chainBreak) throw e; this.say(`Chain Break 중 돌진 계속 (${e.message})`, 'warn'); } } }
     return 'ok';
   }
   /** Crash (p.80): -1 Vigor + Knockdown. Charge over knocked-down Knight → Judicium instead (Humpty Charge). */
@@ -474,14 +474,14 @@ export class Clash {
     // 8. wounds & escalation (before responses that move the monster? Rulebook: responses step 7 then wounds step 8; responses that are Monster Attacks happen after)
     if (A.wounded) { const dealt = this.monster.wound(bp, { critical: A.critical }); this.monster.generic.counter = (this.monster.generic.counter || 0) + dealt; this.say(`Wound Stack ${this.monster.wounds}/${this.monster.woundsToKill}`, 'wound'); await this.fx.onWound(k, A); this.priorityLast = k; }
     else this.monster.discardBP(bp);
-    for (const [kind, rops] of resp) { if (ignore && kind !== 'Critical') { this.say(`${kind} Response 무시 (${A.ignoreResponses ? 'Distracting Bait' : 'Diversion'})`); continue; } this.say(`${kind} Response`); const isAttack = rops.some(o => o.op === 'signature' || o.op === 'aiAttack'); if (isAttack) deferred.push(rops); else await this.fx.runMonsterOps(rops, { attacker: k, attack: A, target: k }); }
+    for (const [kind, rops] of resp) { if (ignore && kind !== 'Critical') { this.say(`${kind} Response 무시 (${A.ignoreResponses ? 'Distracting Bait' : 'Diversion'})`); continue; } this.say(`${kind} Response`); const isAttack = rops.some(o => o.op === 'signature' || o.op === 'aiAttack'); if (isAttack) deferred.push(rops); else { try { await this.fx.runMonsterOps(rops, { attacker: k, attack: A, target: k }); } catch (e) { if (!e.chainBreak) throw e; this.say(`Chain Break: ${e.message}`, 'warn'); } } }
     if (this.monster.slain) { this.checkEnd(); }
     // 9. clear pool
     if (!this.fx.has(k, 'skipClearPool', A)) this.clearPool();
     // 10. second window
     await this.fx.secondWindow(k, A);
     this.currentKnightAttack = null;
-    for (const rops of deferred) await this.fx.runMonsterOps(rops, { attacker: k, attack: A, target: k });
+    for (const rops of deferred) { try { await this.fx.runMonsterOps(rops, { attacker: k, attack: A, target: k }); } catch (e) { if (!e.chainBreak) throw e; this.say(`Chain Break: ${e.message}`, 'warn'); } }
     for (let i = 0; i < k.bonusAttacks; i++) { k.bonusAttacks = 0; await this.knightAttack(k, { bonus: true }); }
     k.bonusAttacks = 0;
     await this.afterAction();

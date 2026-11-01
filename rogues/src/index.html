@@ -34,7 +34,8 @@ a { color:var(--gold); }
 .cell.sel { fill:#3d5a3a; stroke:#8fd37f; stroke-width:1.5; cursor:pointer; } .cell.sel:hover { fill:#56805a; }
 .ter { fill:#6b6a5a; stroke:#9a9680; stroke-width:.8; }
 .mon { fill:#6b2a2a; stroke:#d05050; stroke-width:1.2; }
-.kn { fill:#2b4d7a; stroke:#8ab4ff; stroke-width:1; }
+.kn { fill:#2b4d7a; stroke:#8ab4ff; stroke-width:1; pointer-events:none; }
+.lbl, .ter, .mon { pointer-events:none; }
 .kn.dead { fill:#333; stroke:#666; }
 .kn.kd { stroke-dasharray:2 1.5; }
 .lbl { font:bold 5px monospace; fill:#f0e6d2; text-anchor:middle; pointer-events:none; }

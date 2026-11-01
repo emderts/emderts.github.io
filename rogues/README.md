@@ -5,8 +5,10 @@ Same architecture as the ATO Mnestis Theatre project at the repo root (which thi
 
 ## Layout
 ```
-src/engine/*.js   pure game engine (ES modules, no DOM) — core.js (Rng/Deck), game.js (state + flow)
-src/ui/main.js    vanilla-JS single-page UI, mobile-first; talks to the engine via game.ask / game.log / game.state
+src/engine/*.js   pure game engine (ES modules, no DOM) — core.js (Rng/Deck), board.js, dice.js, knight.js, monster.js,
+                  clash.js (one Clash), effects.js (card ops), rosegraal.js (monster roll / rewards), campaign.js (Rogue's Path loop + save)
+src/ui/main.js    vanilla-JS single-page UI, mobile-first; every player decision goes through the async `ask` hook (bottom sheet)
+tools/audit.mjs   generates docs/audit/index.html (data ↔ engine ↔ test audit)
 src/index.html    HTML shell; __DATA__ and __BUNDLE__ are replaced at build time
 data/**/*.json    transcribed cards / rules (every data/*.json → DATA[name], data/<dir>/*.json → DATA[dir][name])
 test/*.mjs        node tests, print PASS/FAIL per check and ALL PASS at the end
@@ -17,7 +19,8 @@ build.mjs         esbuild → dist/rogues.html (single self-contained file, work
 ```
 npm install --no-save esbuild
 npm run build      # → dist/rogues.html
-npm test           # runs every test/*.mjs (build first: one test checks dist/rogues.html)
+npm test           # runs every test/*.mjs (build first: one test checks dist/rogues.html; ui.mjs needs Playwright, skipped otherwise)
+node tools/audit.mjs   # → docs/audit/index.html
 ```
 
 ## Deploy

@@ -162,3 +162,8 @@ PDF만으로 지금 바로 전사 가능한 것: Rosegraal map(p.78–79, 간선
 - **Q9 Sigh** (룰북 p.14): "Clash를 다시 치른다, Clash 이전 상태로 복구" → 같은 몬스터·레벨로 재전투(굴림 유지), 덱/셋업만 새로 섞음. 1인 1개 보유 제한 → Sigh 노드 보상은 미보유 기사 중 선택. 사용 시점: Clash 종료 직후(승/패 무관) 결과 적용 전.
 - **Q10** Rapport: 4명이라 유효 — Wild Card +2, 3하트에 Knightbook의 Rapport Boon [자료: 기사별 Boon 텍스트]. Saint: 스토리 해금 전용, Rosegraal 보상에도 없음 → 제외. Mercenary: Guild는 Outpost 정규 활동 → 유지(초기 레벨1 덱 + Wild Card "Tier 3 ○○ Mercenary"로 해금, Clash 능력만). First Death Event: 게임 효과가 있으므로 사용자가 기사별 텍스트를 제공 → 데이터로 구현 (`knights/<knight>.json.firstDeath`). Exhibition/Full: 전부 Full Clash로 취급 (확정).
 - **Q13** 카드 효과는 전사 시 `ops` 구조화 + 원문 보관.
+
+## 9. 구현 현황 (2026-11-02, v0.4.0)
+- 완료: 데이터 전사(Rosegraal 표·지도·Rewards, 구성물, Fleischritter, Gear 29 + Merchant 42, Eggknight, Mortis/Condition/Terrain/Outpost/Loot/Mercenary), 전투 엔진(Clash 전체 흐름·Eggknight 특성), 캠페인 레이어(`campaign.js`: 지도 → 노드 → 몬스터 굴림 → Clash → Aftermath 부활·Loot·Rewards·Sigh 재전투 → Outpost 구매·재련·고용 → 로드아웃 → 저장/복원), 모바일 UI, 오딧 생성기(`tools/audit.mjs` → `docs/audit/index.html`).
+- Sigh 재전투: Clash 직전 스냅샷으로 되감기, Sigh 1 소모, First Death 기록 유지(재발동 없음).
+- 미구현/대기: Coup de Grace, Meat Puppet, Mercenary ops(현재 수동 사용), 몬스터별 Full Clash Loot Gear 목록, Upgrade/Consumable 카드, 다른 기사·몬스터, Sunken 왕국 상점 덱.
