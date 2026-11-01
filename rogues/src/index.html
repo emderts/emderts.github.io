@@ -5,24 +5,59 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Kingdoms Forlorn — Rogue's Path</title>
 <style>
-:root { --bg:#141210; --panel:#1e1a16; --panel2:#2a241d; --ink:#e4d8c4; --muted:#998b76; --gold:#c9a85a; --rose:#b2434a; --good:#6fae5c; --warn:#d9a441; --line:#3a3128; }
+:root { --bg:#141210; --panel:#1e1a16; --panel2:#2a241d; --ink:#e4d8c4; --muted:#998b76; --gold:#c9a85a; --rose:#b2434a; --good:#6fae5c; --warn:#d9a441; --blue:#5b8dd6; --line:#3a3128; }
 * { box-sizing:border-box; }
-html, body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.5 "Noto Sans KR", "Pretendard", system-ui, sans-serif; -webkit-text-size-adjust:100%; }
-h1 { font-family:Georgia, "Noto Serif KR", serif; letter-spacing:.06em; color:var(--gold); margin:0 0 4px; font-size:26px; }
-h2 { font-size:17px; color:var(--gold); margin:18px 0 8px; }
-.sub { color:var(--muted); margin:0 0 16px; }
-.muted { color:var(--muted); } .small { font-size:12px; } .warn { color:var(--warn); } .err { color:var(--rose); }
-button { background:var(--panel2); color:var(--ink); border:1px solid var(--line); border-radius:8px; padding:10px 14px; cursor:pointer; font:inherit; min-height:44px; }
+html, body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.45 "Noto Sans KR", "Pretendard", system-ui, sans-serif; -webkit-text-size-adjust:100%; height:100%; }
+h1 { font-family:Georgia, "Noto Serif KR", serif; letter-spacing:.06em; color:var(--gold); margin:0 0 4px; font-size:24px; }
+h2 { font-size:16px; color:var(--gold); margin:14px 0 6px; }
+.sub { color:var(--muted); margin:0 0 14px; }
+.muted { color:var(--muted); } .small { font-size:12px; } .warn { color:var(--warn); } .err { color:var(--rose); } .good { color:var(--good); }
+button { background:var(--panel2); color:var(--ink); border:1px solid var(--line); border-radius:8px; padding:9px 12px; cursor:pointer; font:inherit; min-height:42px; }
 button:hover { border-color:var(--gold); }
 button.primary { background:var(--gold); color:#1a1208; font-weight:700; border-color:var(--gold); }
+button.sm { min-height:32px; padding:4px 9px; font-size:13px; }
 button:disabled { opacity:.4; cursor:not-allowed; }
-select, input { background:var(--panel2); color:var(--ink); border:1px solid var(--line); border-radius:8px; padding:8px 10px; font:inherit; max-width:100%; min-height:44px; }
-#app { max-width:900px; margin:0 auto; padding:20px 14px calc(20px + env(safe-area-inset-bottom)); }
-.card { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px; margin:10px 0; }
-.row { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin:10px 0; }
-.log { font-size:13px; max-height:40vh; overflow:auto; }
-.log div { padding:3px 0; border-bottom:1px dashed var(--line); }
+select, input { background:var(--panel2); color:var(--ink); border:1px solid var(--line); border-radius:8px; padding:8px 10px; font:inherit; max-width:100%; min-height:42px; }
+#app { max-width:960px; margin:0 auto; padding:14px 12px calc(14px + env(safe-area-inset-bottom)); }
+.card { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:12px; margin:10px 0; }
+.row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin:8px 0; }
+.grid2 { display:grid; grid-template-columns:repeat(auto-fill, minmax(220px,1fr)); gap:8px; }
 a { color:var(--gold); }
+/* clash */
+.clash { display:flex; flex-direction:column; gap:8px; height:calc(100vh - 20px); max-height:100vh; }
+#board { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:4px; flex:0 0 auto; }
+.bsvg { width:100%; height:auto; display:block; }
+.cell { fill:#241e19; stroke:#3a3128; stroke-width:.6; }
+.cell.alt { fill:#282119; }
+.cell.front { fill:#2e2619; }
+.cell.rear { fill:#1d2230; }
+.cell.sel { fill:#3d5a3a; stroke:#8fd37f; stroke-width:1.5; cursor:pointer; } .cell.sel:hover { fill:#56805a; }
+.ter { fill:#6b6a5a; stroke:#9a9680; stroke-width:.8; }
+.mon { fill:#6b2a2a; stroke:#d05050; stroke-width:1.2; }
+.kn { fill:#2b4d7a; stroke:#8ab4ff; stroke-width:1; }
+.kn.dead { fill:#333; stroke:#666; }
+.kn.kd { stroke-dasharray:2 1.5; }
+.lbl { font:bold 5px monospace; fill:#f0e6d2; text-anchor:middle; pointer-events:none; }
+.coord { font:3.8px monospace; fill:#8a7d68; text-anchor:middle; }
+.tabs { display:flex; gap:4px; }
+.tabs button { flex:1; border-radius:8px 8px 0 0; }
+.tabs button.on { background:var(--panel); border-bottom-color:var(--panel); color:var(--gold); font-weight:700; }
+.pane { background:var(--panel); border:1px solid var(--line); border-radius:0 0 10px 10px; padding:10px; flex:1 1 auto; min-height:120px; overflow:auto; }
+.log div { padding:2px 0; border-bottom:1px dashed var(--line); font-size:13px; }
+.log .phase { color:var(--gold); font-weight:700; margin-top:6px; } .log .ai { color:#e0a0a0; } .log .dice { color:#b9c7e8; } .log .dmg, .log .death { color:var(--rose); } .log .wound { color:var(--good); } .log .mortis { color:var(--warn); } .log .warn { color:var(--warn); } .log .turn { color:#9ad; font-weight:600; } .log .atk { color:#cfc; } .log .pool { color:#aaa; } .log .cond { color:#e8c0ff; }
+.kstat { display:grid; grid-template-columns:repeat(auto-fill, minmax(170px,1fr)); gap:6px; }
+.kbox { background:var(--panel2); border:1px solid var(--line); border-radius:8px; padding:8px; font-size:13px; }
+.kbox.dead { opacity:.45; }
+.track { display:flex; gap:2px; margin:3px 0; }
+.track i { display:inline-block; width:10px; height:10px; border-radius:2px; background:#3a3128; }
+.track.v i.on { background:var(--rose); } .track.h i.on { background:var(--blue); } .track.p i.on { background:var(--good); } .track i.lim { outline:1px solid #fff; }
+.tag { display:inline-block; background:#3a3128; border-radius:4px; padding:1px 6px; font-size:12px; margin:1px; }
+.sheet { position:fixed; left:0; right:0; bottom:0; background:#221c17; border-top:2px solid var(--gold); padding:12px 12px calc(12px + env(safe-area-inset-bottom)); max-height:55vh; overflow:auto; z-index:10; box-shadow:0 -6px 20px rgba(0,0,0,.5); }
+.sheet .q { color:var(--gold); font-weight:600; margin-bottom:8px; }
+.sheet .opts { display:flex; flex-wrap:wrap; gap:6px; }
+.sheet .opts button { flex:1 1 auto; min-width:120px; }
+.sheet .opts.num button { min-width:44px; flex:0 0 auto; }
+.chip { display:inline-block; padding:2px 8px; border-radius:10px; font-size:12px; background:#3a3128; margin:2px; }
 </style>
 </head>
 <body>

@@ -91,12 +91,37 @@ sec.push(`<section id="decks"><h2>8. Mortis · Condition · Terrain · Outpost</
 <h3>Terrain (${TE.terrain.length})</h3><table><tr><th>이름</th><th>크기</th><th>키워드</th><th>텍스트</th></tr>${TE.terrain.map(t => `<tr><td><b>${esc(t.name)}</b></td><td>${(t.sizes || []).join(', ')}</td><td>${t.keywords.join(', ')}</td><td>${esc(t.text)}${unc(t.unclear)}</td></tr>`).join('')}</table>
 <h3>Outpost — ${esc(OP.name)} (코덱스 p.6)</h3><table><tr><th>섹션</th><th>Early Bird</th><th>내용</th><th>Rogue's Path</th></tr>${Object.entries(OP.sections).map(([k, v]) => `<tr><td><b>${k}</b></td><td>${v.earlyBird ? esc(v.earlyBird.text) : ''}</td><td>${esc(v.text || '')}${v.results ? '<br>' + Object.entries(v.results).map(([n, r]) => `${n}. ${esc(r.text)} <span class="small warn">${esc(r.roguesPath)}</span>`).join('<br>') : ''}</td><td>${esc(v.roguesPath || '')}</td></tr>`).join('')}</table></section>`);
 
+// 9. Engine implementation map
+sec.push(`<section id="engine"><h2>9. 전투 엔진 — 규칙 ↔ 구현 대응</h2>
+<p class="impl">소스: <code>src/engine/clash.js</code>(흐름) · <code>effects.js</code>(카드 ops 해석) · <code>monster.js</code>(덱·Escalation) · <code>board.js</code> · <code>dice.js</code> · <code>knight.js</code> · 테스트: <code>test/clash.mjs</code>(ops 커버리지, 셋업, Targeting, Humpty Charge, 공격, 시드 시뮬레이션 12+1), <code>test/ui.mjs</code>(모바일 UI 스모크)</p>
+<table><tr><th>룰북</th><th>구현</th><th>비고 / 해석</th></tr>
+<tr><td>p.44 Clash Setup</td><td><code>Clash.setup()</code></td><td>코덱스 p.48–49 배치, Column 8, 방향 = Minor Mortis 바닥 카드 화살표, Panzeronion 토큰 1/2/3(+1 at L2+), 시작 Escalation(레벨 보너스)</td></tr>
+<tr><td>p.47 Monster Round / Activation</td><td><code>monsterRound, activationAI, performSignature, performRoutine</code></td><td>AI 드로우 → Targeting → 이동 → 회피 → 결과 → After Attack → 버림; 유효 대상 없으면 Routine</td></tr>
+<tr><td>p.48 Targeting lines</td><td><code>resolveTargeting</code></td><td>Priority Target / Knight in Blindspot / Closest in front / Closest in sight / Zone X / "and 1 space behind Target". 동률은 Priority Target, 아니면 첫 후보 <span class="warn">[룰: 플레이어 선택 → 추후 ask]</span></td></tr>
+<tr><td>p.49 Facing, LoS, Blindspot</td><td><code>board.inFront/rearCells/hasLoS</code></td><td>Eggknight 뒤 2칸 = Rear = Blindspot; Obscuring(Column)이 LoS 차단</td></tr>
+<tr><td>p.50 Monster movement</td><td><code>monsterMoveToward, monsterStep</code></td><td>인접할 때까지 직교 이동, 축 선택은 기사를 덜 밟는 쪽(플레이어 선택 규칙의 자동화), 통과 시 Crash, Destructible 지형 파괴</td></tr>
+<tr><td>p.51 Zone / Out of Reach</td><td><code>resolveMonsterAttack</code></td><td>Zone 다이어그램 = 정면 2칸(+Target 뒤 1칸); Zone X = 체비쇼프 거리; 근접 대상이 비인접이면 After Attack만</td></tr>
+<tr><td>p.52 Evasion Roll</td><td><code>attackOneTarget</code></td><td>Crit die 포함, 자연 10 성공/1 실패, 게이트(+1 die, 난이도 9+, -2 instead, Pushback, Discard, You die), Jacked 임계, Heat 재굴림(ask), Block</td></tr>
+<tr><td>p.53 Vigor loss / Armor Roll / Peril Check</td><td><code>loseVigor, perilCheck, drawMortis</code></td><td>Armor 주사위(잔 심볼) 경감 → 0이면 Peril Check 없음; Vigor≤0 → Massive Peril(-5/-9/-12) + Judicium</td></tr>
+<tr><td>p.53 Mortis / Judicium</td><td><code>drawMortis, drawJudicium, effects.runMortis</code></td><td>덱 = 일반 + 현재 왕국 카드; 처리 후 바닥(Gash류는 셔플), Second Chance 창; Judicium = You Live!/You Died + 추가 카드, 무작위</td></tr>
+<tr><td>p.54 After Attack / Chain Break / REACT!</td><td><code>resolveMonsterAttack, ChainBreak, reactions</code></td><td>AFA는 마지막 대상 기준; Egged On이 Zone 공격에 AFA Humpty Charge 부여; Zone/다중 대상은 Chain Break가 해당 기사만 종료; REACT!에 Knight Roll(Reflex) 제공</td></tr>
+<tr><td>p.55 Knight Round / Refresh</td><td><code>knightRound, knightTurn, Knight.refresh</code></td><td>순서 선택(ask), Heat -Refresh, Cooldown→손 X장, Delay→Cooldown; Knockdown(Falling)은 행동 불가·턴 끝 뒤집기·다음 턴 시작 기립</td></tr>
+<tr><td>p.56 Movement</td><td><code>reachable, knightMove</code></td><td>직교, 장애물·미니어처 통과 불가, Difficult Terrain 비용 2</td></tr>
+<tr><td>p.56–59 Knight Attack 10단계</td><td><code>knightAttack</code></td><td>무기 선택 → Commit → Passion+1/Priority → Attack Roll(+Precision, Opening/Closing, 재굴림) → Full Miss/Hit → 1차 창(Pushback/Vault/Hug/Provoke/Daze, Armor-piercing) → BP(Heartseeker) → Ultrainstinct(Impenetrable Shell) → Power 풀(무기 색 주사위×명중 + 보너스 + 기사 주사위 + Arc) → 재굴림 → 잔→Break/Sunder/Hope → Total Power vs AT(+Panzeronion) → Overcome → Response(Critical/Wound/Fail/Instinct, Diversion/Distracting Bait 무시) → Wound/Escalation → 풀 정리 → 2차 창(Arc 토큰, 무기 Break) → 지연 Response/Bonus Attack → Counter</td></tr>
+<tr><td>p.60–61 Wound Stack / Escalation</td><td><code>Monster.wound, escalateAI, escalateBP</code></td><td>Escalation Chart 전 케이스(테스트 monster.mjs)</td></tr>
+<tr><td>p.63 Death / Mercy Rule / Bane</td><td><code>die, Knight.gainBane</code></td><td>사망 시 Mercy Rule(Chain Break); First Death/Unknown Saint 훅(<code>listeners.beforeDeath</code>) — 캠페인 레이어에서 연결 예정</td></tr>
+<tr><td>p.64 Conditions</td><td><code>addCondition, conditions ops</code></td><td>두 번째 획득 시 뒤집기/사망(카드 데이터), Knockdown 양면, Distracted/Panicked 손패 제한, Choked(Choke Limit, 행동 소모로 -3), Exposed, Courage(Auto-break), Panzer Parasite(5개 사망), Poisoned(턴 종료 피해)</td></tr>
+<tr><td>p.56/80 Pushback / Knockback / Crash / Displace</td><td><code>pushback, crash, displace</code></td><td>직선, 가장자리 미끄러짐, 장애물 Crash(+파괴), Chasm 사망, Braced 무시, Unavoidable Knockback 5</td></tr>
+<tr><td>Eggknight Traits</td><td><code>humptyCharge, loseArmorToken, afterAction</code></td><td>Humpty Charge(공격자 방향 6칸 돌진, Crash/Judicium, 장애물·가장자리 정지 + Armor 토큰 -1 → Grave 좌표에 Column), Humpty Fate/Hardboiled, Counter(3→Signature), Panzeronion(AT+토큰), Jacked, Just a Scratch, Coup de Grace <span class="warn">[미구현: Coup de Grace 사망 치환]</span>, Impenetrable Shell</td></tr>
+<tr><td>미구현 / 수동</td><td>—</td><td>Meat Puppet, Curse Save(Curse Level 0 가정), Squire 라인, Mercenary, Saint Incarnation(캠페인 레이어), 플레이어 선택이 필요한 동률 Targeting</td></tr>
+</table></section>`);
+
 const html = `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>KF Rogue's Path — 데이터·규칙 오딧</title>
 <style>body{margin:0;padding:16px;font:14px/1.5 system-ui,sans-serif;background:#1a1714;color:#e8dcc8;max-width:1400px}h1{color:#c9a85a;font-size:22px}h2{color:#c9a85a;margin-top:28px;border-bottom:1px solid #3a3128}h3{color:#d9c89a;margin:16px 0 6px}
 table{border-collapse:collapse;width:100%;font-size:13px}td,th{border:1px solid #3a3128;padding:4px 6px;vertical-align:top;text-align:left}th{background:#26211b}code{background:#2a241d;padding:1px 5px;border-radius:4px;color:#f0d9a0}
 .impl{background:#26211b;padding:8px 10px;border-left:3px solid #c9a85a;border-radius:4px}.small{font-size:12px;color:#998b76}.warn{color:#d9a441}details summary{cursor:pointer;color:#c9a85a}table.rw td{min-width:120px}nav a{color:#c9a85a;margin-right:12px}</style></head><body>
 <h1>Kingdoms Forlorn — Rogue's Path: 데이터·규칙 오딧</h1><p class="small">v${meta.version} · 생성 ${new Date().toISOString().slice(0, 16).replace('T', ' ')} UTC · 각 섹션: 전사 데이터 ↔ 엔진 구현 ↔ 테스트. 전사 불확실 항목은 노란색.</p>
-<nav><a href="#monsters">몬스터 표</a><a href="#map">Rosegraal 지도</a><a href="#rewards">Rewards</a><a href="#components">구성물</a><a href="#fleischritter">Fleischritter</a><a href="#gear">Gear</a><a href="#eggknight">Eggknight</a><a href="#decks">Mortis·Condition·Terrain·Outpost</a></nav>
+<nav><a href="#monsters">몬스터 표</a><a href="#map">Rosegraal 지도</a><a href="#rewards">Rewards</a><a href="#components">구성물</a><a href="#fleischritter">Fleischritter</a><a href="#gear">Gear</a><a href="#eggknight">Eggknight</a><a href="#decks">Mortis·Condition·Terrain·Outpost</a><a href="#engine">엔진 대응</a></nav>
 ${sec.join('\n')}
 </body></html>`;
 fs.mkdirSync('docs/audit', { recursive: true }); fs.writeFileSync('docs/audit/index.html', html);

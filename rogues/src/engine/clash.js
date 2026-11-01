@@ -429,8 +429,8 @@ export class Clash {
     this.say(`${k.name} Attack Roll ${dice}d vs ${toHit}+ (+${prec}) → [${roll.dice.map(d => d.v + (d.rerolled ? '*' : '')).join(' ')}] 명중 ${A.hits}/${dice}${A.critChance ? ' ★Crit Chance' : ''}`, 'dice');
     if (A.hits === 0) { this.say(`${k.name} Full Miss`); await this.fx.onFullMiss(k, A); this.clearPool(); await this.fx.secondWindow(k, A); this.currentKnightAttack = null; return; }
     if (A.hits === dice) await this.fx.onFullHit(k, A);
-    // 4. first ability window
-    await this.fx.firstWindow(k, A);
+    // 4. first ability window (a Chain Break here ends the attack: clear pool + second window, p.54)
+    try { await this.fx.firstWindow(k, A); } catch (e) { if (!e.chainBreak) throw e; this.say(`Chain Break: ${e.message}`, 'warn'); this.clearPool(); await this.fx.secondWindow(k, A); this.currentKnightAttack = null; return; }
     // 5. determine BP
     let bp = this.monster.drawBP(); if (!bp) { this.say('BP 덱 비어 있음'); this.currentKnightAttack = null; return; }
     if (this.fx.has(k, 'heartseeker', A)) { const alt = this.monster.drawBP(); if (alt) { const pick = await this.ask({ type: 'heartseeker', options: [bp, alt].map(c => ({ label: `${c.name} (AT ${this.bpAT(c)})`, value: c.name })) }); const chosen = [bp, alt].find(c => c.name === pick); const other = chosen === bp ? alt : bp; this.monster.bp.cards.unshift(other); bp = chosen; } }
