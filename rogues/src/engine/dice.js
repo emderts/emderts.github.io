@@ -38,8 +38,8 @@ export function rollPowerPool(rng, pool, faces) {
   const sum = k => dice.reduce((a, d) => a + (d.face[k] || 0), 0);
   return { dice, power: sum('P') + (pool.raw || 0), potential: sum('T') + (pool.potential || 0), hope: sum('H') };
 }
-/** Armor Roll (p.53): roll Armor dice and count the armour symbol (which symbol is counted is still [UNCLEAR] — parameter). */
-export function rollArmor(rng, counts, faces, symbol = 'H') {
+/** Armor Roll (p.53): roll Armor dice and count the armour symbol (goblet = Potential symbol, confirmed by owner). */
+export function rollArmor(rng, counts, faces, symbol = 'T') {
   const dice = [];
   for (const colour of TIERS) for (let i = 0; i < (counts[colour] || 0); i++) dice.push({ colour, face: rng.pick(faces[colour]) });
   return { dice, mitigated: dice.reduce((a, d) => a + (d.face[symbol] || 0), 0) };

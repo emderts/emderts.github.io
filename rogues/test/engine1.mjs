@@ -37,7 +37,7 @@ ok(d10Success(10, -9, 20) && !d10Success(1, 20, 2) && d10Success(6, 1, 7) && !d1
   const w = buildPowerPool({ white: 4 }); ok(w.white === 3 && w.raw === 1 && w.potential === 1, '4 white → 3 white + 1 raw Power + 1 Potential');
   const c = buildPowerPool({ red: 10, black: 4 }); ok(c.red === 6 && c.black === 4 && c.white === 1, 'overflow cascades red→black→white (10r+4b → 6r 4b 1w)'); }
 { const rng = new Rng(9); const res = rollPowerPool(rng, { red: 3, black: 1, raw: 2 }, DICE.faces); ok(res.dice.length === 4 && res.power >= 2, `power roll: ${res.dice.length} dice, power ${res.power} (incl. 2 raw), potential ${res.potential}, hope ${res.hope}`); }
-{ const a = rollArmor(new Rng(2), { red: 2 }, DICE.faces, 'H'); ok(a.dice.length === 2 && a.mitigated >= 0, 'armor roll counts the chosen symbol'); }
+{ const a = rollArmor(new Rng(2), { red: 2 }, DICE.faces, DICE.armorSymbol); ok(a.dice.length === 2 && a.mitigated >= 0, 'armor roll counts the chosen symbol'); }
 ok(['red', 'black', 'white'].every(c => DICE.faces[c].length === 6), 'six faces per colour');
 
 // --- knight (Fleischknecht Peril Arc from card: max 11; Minor 10–7 H4, Major 6–4 H4, Grave 3–1 H5, Judicium 0 H5; Uninjured H3)

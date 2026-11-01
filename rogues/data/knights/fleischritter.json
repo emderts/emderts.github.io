@@ -137,9 +137,50 @@
     },
     {
      "name": "Rebound",
-     "text": "During an Armor Roll, add all following tokens to the Knight Pool, depending on the number of mitigated [Vigor] loss: 1: [?] 1 · 2: [Opening?] 1 · 3: [Fleisch] 1 · 4: [?] 1 · 5: [?] 1",
-     "ops": null,
-     "unclear": "토큰 아이콘 5개 중 3(Fleisch)만 확실; 1·2·4·5 아이콘 판독 필요"
+     "text": "During an Armor Roll, add all following tokens to the Knight Pool, depending on the number of mitigated [Vigor] loss: 1: Opening 1 · 2: Break 1 · 3: Fleisch 1 · 4: Rouse 1 · 5: Power 1",
+     "ops": [
+      {
+       "op": "onArmorRoll",
+       "byMitigated": {
+        "1": [
+         {
+          "op": "pool",
+          "token": "opening",
+          "n": 1
+         }
+        ],
+        "2": [
+         {
+          "op": "pool",
+          "token": "break",
+          "n": 1
+         }
+        ],
+        "3": [
+         {
+          "op": "pool",
+          "token": "fleisch",
+          "n": 1
+         }
+        ],
+        "4": [
+         {
+          "op": "pool",
+          "token": "rouse",
+          "n": 1
+         }
+        ],
+        "5": [
+         {
+          "op": "pool",
+          "token": "power",
+          "n": 1
+         }
+        ]
+       },
+       "cumulative": true
+      }
+     ]
     }
    ]
   },
@@ -151,14 +192,12 @@
     {
      "name": "Bolstering Fleisch",
      "text": "1 Fleisch, X [Heat]: When you are about to attack, add X Knight tokens to the Knight Pool, each from a different Level of your Heroic Arc, up to your [Passion] Level. You cannot benefit from those keywords again during the second ability window. You may use Fleisch tokens from the Knight Pool instead of [Heat].",
-     "ops": null,
-     "unclear": "Heroic Arc 레벨별 토큰 구조가 들어온 뒤 구현"
+     "ops": null
     },
     {
      "name": "Ambidextrous",
-     "text": "When you attack and have a Weapon with the Pair Trait or an inactive [1H?] Weapon, gain +1 [Attack die]. For the purpose of gathering your Power Pool, ignore any hits that exceed your Weapon's regular [Attack dice] number. During the second ability window, you may place up to 2 additional tokens from any stackable keyword on your inactive [1H?] Weapon or a Weapon with the Pair Trait.",
-     "ops": null,
-     "unclear": "손 슬롯 아이콘(한손/두손) 판독 필요"
+     "text": "When you attack and have a Weapon with the Pair Trait or an inactive [1H] Weapon, gain +1 [Attack die]. For the purpose of gathering your Power Pool, ignore any hits that exceed your Weapon's regular [Attack dice] number. During the second ability window, you may place up to 2 additional tokens from any stackable keyword on your inactive [1H] Weapon or a Weapon with the Pair Trait.",
+     "ops": null
     }
    ]
   },
@@ -191,9 +230,8 @@
     },
     {
      "name": "Monstrous Strength",
-     "text": "You can either use [2H?] Weapons as if they were [1H?], or when using a [1H?] Weapon, you may add +[red Power die] to the Power Pool.",
-     "ops": null,
-     "unclear": "손 슬롯 아이콘 판독 필요; 주사위 아이콘은 빨강으로 판독"
+     "text": "You can either use [2H] Weapons as if they were [1H], or when using a [1H] Weapon, you may add +[red Power die] to the Power Pool.",
+     "ops": null
     }
    ]
   }
@@ -213,9 +251,8 @@
         "n": 1
        },
        {
-        "token": "Pushback?",
-        "n": 1,
-        "icon": "[fist with left-pointing arrow and arc]"
+        "token": "Pushback",
+        "n": 1
        }
       ],
       [
@@ -271,9 +308,8 @@
         "n": 1
        },
        {
-        "token": "Pushback?",
-        "n": 1,
-        "icon": "[fist with left-pointing arrow and arc]"
+        "token": "Pushback",
+        "n": 1
        }
       ]
      ]
@@ -309,9 +345,7 @@
      ]
     }
    ],
-   "unclear": [
-    "Levels 1 and 4: fist icon with a left-pointing arrow and an arc (not in the token legend; possibly Knockback/Push); transcribed as [fist with left-pointing arrow and arc]"
-   ]
+   "unclear": []
   },
   {
    "name": "Fleischjäger",
@@ -365,9 +399,8 @@
         "n": 1
        },
        {
-        "token": "Reflex?",
-        "n": 2,
-        "icon": "[pawn with upward arrow]"
+        "token": "Hug",
+        "n": 2
        }
       ],
       [
@@ -387,9 +420,8 @@
         "n": 1
        },
        {
-        "token": "Reposition?",
-        "n": 2,
-        "icon": "[arrow with speed lines striking a figure]"
+        "token": "Drag",
+        "n": 2
        }
       ]
      ]
@@ -414,9 +446,8 @@
      "options": [
       [
        {
-        "token": "Provoke?",
-        "n": 1,
-        "icon": "[hooded figure with curved arrow over it and sound lines]"
+        "token": "Provoke",
+        "n": 1
        },
        {
         "token": "Closing",
@@ -430,20 +461,14 @@
      "options": [
       [
        {
-        "token": "SecondChance?",
-        "n": 1,
-        "icon": "[card with heart and spade symbols]"
+        "token": "Heartseeker",
+        "n": 1
        }
       ]
      ]
     }
    ],
-   "unclear": [
-    "Level 3: pawn/figure with an upward arrow, value 2 (possibly Movement +2)",
-    "Level 4: arrow with speed lines striking a figure, value 2 (possibly Knockback/Push 2)",
-    "Level 6: hooded figure with a curved arrow and sound lines, no number (does not match the legend's Diversion glyph)",
-    "Level 7: card with a heart and a spade on it, no number"
-   ]
+   "unclear": []
   },
   {
    "name": "Teufelsjäger",
@@ -507,9 +532,8 @@
         "n": 1
        },
        {
-        "token": "Pushback?",
-        "n": 1,
-        "icon": "[fist with left-pointing arrow and arc]"
+        "token": "Pushback",
+        "n": 1
        }
       ]
      ]
@@ -553,9 +577,8 @@
         "n": 1
        },
        {
-        "token": "Pushback?",
-        "n": 1,
-        "icon": "[fist with left-pointing arrow and arc]"
+        "token": "Pushback",
+        "n": 1
        }
       ]
      ]
@@ -565,9 +588,8 @@
      "options": [
       [
        {
-        "token": "Deadly?",
-        "n": 1,
-        "icon": "[three diagonal claw slashes]"
+        "token": "Deadly",
+        "n": 1
        }
       ]
      ]
@@ -577,19 +599,14 @@
      "options": [
       [
        {
-        "token": "PowerDicePromotion?",
-        "n": 1,
-        "icon": "[black Power die with red upward arrow]"
+        "token": "PowerDicePromotion",
+        "n": 1
        }
       ]
      ]
     }
    ],
-   "unclear": [
-    "Levels 3 and 6: [fist with left-pointing arrow and arc]",
-    "Level 7: three diagonal claw-like slashes, no number",
-    "Level 8: black Power die with a red upward arrow, no number (possibly upgrade a Power die tier)"
-   ]
+   "unclear": []
   },
   {
    "name": "Meisterschlächter",
@@ -617,9 +634,8 @@
         "n": 1
        },
        {
-        "token": "Pushback?",
-        "n": 2,
-        "icon": "[fist with left-pointing arrow and arc]"
+        "token": "Pushback",
+        "n": 2
        }
       ]
      ]
@@ -637,9 +653,8 @@
         "n": 1
        },
        {
-        "token": "Vault?",
-        "n": 1,
-        "icon": "[hand gripping an arrow pointing up-left]"
+        "token": "Tireless",
+        "n": 1
        }
       ]
      ]
@@ -668,9 +683,8 @@
         "n": 1
        },
        {
-        "token": "Daze?",
-        "n": 1,
-        "icon": "[fist with spiral]"
+        "token": "Daze",
+        "n": 1
        }
       ]
      ]
@@ -684,9 +698,8 @@
         "n": 1
        },
        {
-        "token": "Pushback?",
-        "n": 2,
-        "icon": "[fist with left-pointing arrow and arc]"
+        "token": "Pushback",
+        "n": 2
        }
       ]
      ]
@@ -696,9 +709,8 @@
      "options": [
       [
        {
-        "token": "Deadly?",
-        "n": 1,
-        "icon": "[three diagonal claw slashes]"
+        "token": "Deadly",
+        "n": 1
        },
        {
         "token": "PowerReroll",
@@ -712,16 +724,14 @@
      "options": [
       [
        {
-        "token": "SuppressBP?",
-        "n": 1,
-        "icon": "[upward arrow with BP card]"
+        "token": "BPSuppress",
+        "n": 1
        }
       ],
       [
        {
-        "token": "SuppressAI?",
-        "n": 1,
-        "icon": "[upward arrow with AI card]"
+        "token": "AISuppress",
+        "n": 1
        }
       ]
      ]
@@ -738,13 +748,7 @@
      ]
     }
    ],
-   "unclear": [
-    "Levels 1 and 5: [fist with left-pointing arrow and arc] with value 2",
-    "Level 2: hand gripping an arrow/dart pointing up-left, no number",
-    "Level 4: black Power die (no number) + fist with a spiral, no number",
-    "Level 6: three diagonal claw-like slashes, no number",
-    "Level 7: two options, an upward arrow beside a BP card and an upward arrow beside an AI card, no numbers"
-   ]
+   "unclear": []
   },
   {
    "name": "Metzger",
@@ -794,14 +798,12 @@
      "options": [
       [
        {
-        "token": "Vault?",
-        "n": 1,
-        "icon": "[hand gripping an arrow pointing up-left]"
+        "token": "Tireless",
+        "n": 1
        },
        {
-        "token": "Reposition?",
-        "n": 2,
-        "icon": "[pawn with four outward diagonal arrows]"
+        "token": "Reposition",
+        "n": 2
        }
       ]
      ]
@@ -866,9 +868,8 @@
      "options": [
       [
        {
-        "token": "SuppressBP?",
-        "n": 1,
-        "icon": "[upward arrow with BP card]"
+        "token": "BPSuppress",
+        "n": 1
        }
       ]
      ]
@@ -885,10 +886,7 @@
      ]
     }
    ],
-   "unclear": [
-    "Level 3: hand gripping an arrow (no number) + pawn/figure with four outward diagonal arrows, value 2",
-    "Level 7: upward arrow beside a BP card, no number"
-   ]
+   "unclear": []
   },
   {
    "name": "Schwarzesser",
@@ -956,9 +954,8 @@
         "n": 1
        },
        {
-        "token": "Reposition?",
-        "n": 1,
-        "icon": "[arrow with speed lines striking a figure]"
+        "token": "Drag",
+        "n": 1
        }
       ]
      ]
@@ -998,9 +995,8 @@
         "n": 1
        },
        {
-        "token": "Reposition?",
-        "n": 1,
-        "icon": "[arrow with speed lines striking a figure]"
+        "token": "Drag",
+        "n": 1
        }
       ]
      ]
@@ -1010,9 +1006,8 @@
      "options": [
       [
        {
-        "token": "SecondChance?",
-        "n": 1,
-        "icon": "[card with heart and spade symbols]"
+        "token": "Heartseeker",
+        "n": 1
        }
       ]
      ]
@@ -1022,19 +1017,14 @@
      "options": [
       [
        {
-        "token": "PowerDicePromotion?",
-        "n": 1,
-        "icon": "[black Power die with red upward arrow]"
+        "token": "PowerDicePromotion",
+        "n": 1
        }
       ]
      ]
     }
    ],
-   "unclear": [
-    "Levels 3 and 6: [arrow with speed lines striking a figure], value 1",
-    "Level 7: card with a heart and a spade, no number",
-    "Level 8: black Power die with a red upward arrow, no number"
-   ]
+   "unclear": []
   },
   {
    "name": "Fleischkrieger",
@@ -1058,9 +1048,8 @@
         "n": 2
        },
        {
-        "token": "Pushback?",
-        "n": 1,
-        "icon": "[fist with left-pointing arrow and arc]"
+        "token": "Pushback",
+        "n": 1
        }
       ]
      ]
@@ -1089,9 +1078,8 @@
         "n": 2
        },
        {
-        "token": "Pushback?",
-        "n": 1,
-        "icon": "[fist with left-pointing arrow and arc]"
+        "token": "Pushback",
+        "n": 1
        }
       ]
      ]
@@ -1120,9 +1108,8 @@
         "n": 1
        },
        {
-        "token": "Pushback?",
-        "n": 1,
-        "icon": "[fist with left-pointing arrow and arc]"
+        "token": "Pushback",
+        "n": 1
        }
       ]
      ]
@@ -1158,10 +1145,7 @@
      ]
     }
    ],
-   "unclear": [
-    "Plus row: black die with a goblet face and a curved arrow, read as an Armor die re-roll",
-    "Levels 1, 3 and 5: [fist with left-pointing arrow and arc]"
-   ]
+   "unclear": []
   },
   {
    "name": "Feuerkoch",
@@ -1177,9 +1161,8 @@
         "n": 1
        },
        {
-        "token": "Reposition?",
-        "n": 1,
-        "icon": "[arrow with speed lines striking a figure]"
+        "token": "Drag",
+        "n": 1
        }
       ],
       [
@@ -1188,9 +1171,8 @@
         "n": 1
        },
        {
-        "token": "Reposition?",
-        "n": 1,
-        "icon": "[arrow with speed lines striking a figure]"
+        "token": "Drag",
+        "n": 1
        }
       ]
      ]
@@ -1240,9 +1222,8 @@
         "n": 1
        },
        {
-        "token": "Reposition?",
-        "n": 1,
-        "icon": "[arrow with speed lines striking a figure]"
+        "token": "Drag",
+        "n": 1
        }
       ]
      ]
@@ -1292,17 +1273,14 @@
         "n": 1
        },
        {
-        "token": "Reposition?",
-        "n": 1,
-        "icon": "[arrow with speed lines striking a figure]"
+        "token": "Drag",
+        "n": 1
        }
       ]
      ]
     }
    ],
-   "unclear": [
-    "Levels 1, 4 and 7: [arrow with speed lines striking a figure], value 1"
-   ]
+   "unclear": []
   }
  ],
  "perilArcsRef": "data/knights/peril_arcs.json → arcs.fleischritter",
@@ -1839,5 +1817,6 @@
  "missing": [
   "Portrait cards ×2 (Fleischritter, Fleischknecht) — stats needed",
   "Trap token rule"
- ]
+ ],
+ "iconLegend": "Knight Tokens and Abilities legend (owner-supplied image, 2026-11-01)"
 }

@@ -1,12 +1,101 @@
 {
-  "_source": "Power/Armor dice photo (TTS render, 6 dice per colour, only top faces + partial sides visible). Symbols: sword = Power, claw = Potential, dove = Hope (rulebook 6.2/6.4, Hope X keyword). Face lists below are the SIX TOP FACES READ FROM THE PHOTO and may contain duplicates/missing faces — [UNCLEAR] until confirmed.",
-  "symbols": { "P": "Power (sword)", "T": "Potential (claw)", "H": "Hope (dove)" },
-  "limits": { "red": 7, "black": 4, "white": 3 },
-  "tiers": ["red", "black", "white"],
-  "faces": {
-    "red":   [{ "T": 1 }, { "P": 1, "H": 1 }, { "P": 1 }, { "P": 1, "T": 1 }, { "H": 1 }, { "P": 1, "T": 1 }],
-    "black": [{ "P": 1, "H": 1 }, { "P": 1, "T": 1 }, { "P": 1, "H": 1, "T": 2 }, { "P": 1, "T": 2 }, { "H": 1, "T": 1 }, { "P": 1, "T": 1 }],
-    "white": [{ "P": 1, "T": 3 }, { "P": 2, "H": 1, "T": 2 }, { "P": 1, "H": 1, "T": 2 }, { "P": 1, "T": 3 }, { "P": 1, "H": 1, "T": 1 }, { "P": 1, "H": 1, "T": 1 }]
-  },
-  "unclear": ["모든 색의 6면 구성은 사진의 윗면 6개를 그대로 적은 것 — 중복 면이 보여 실제 분포와 다를 수 있음. 색별 6면 목록 확인 필요.", "Armor Roll에서 세는 심볼(룰북 p.53 'count [?] symbols, not Power')이 어느 심볼인지 미확인."]
+ "_source": "Power/Armor dice faces confirmed by the owner (2026-11-01). Armor Roll counts goblet symbols.",
+ "symbols": {
+  "P": "Power (sword / 검)",
+  "T": "Potential (goblet / 잔) — also the symbol counted in Armor Rolls",
+  "H": "Hope (dove / 새)"
+ },
+ "limits": {
+  "red": 7,
+  "black": 4,
+  "white": 3
+ },
+ "tiers": [
+  "red",
+  "black",
+  "white"
+ ],
+ "faces": {
+  "red": [
+   {
+    "T": 1
+   },
+   {
+    "P": 2,
+    "H": 1
+   },
+   {
+    "P": 1
+   },
+   {
+    "P": 1,
+    "T": 1
+   },
+   {
+    "H": 1
+   },
+   {
+    "P": 1,
+    "T": 1
+   }
+  ],
+  "black": [
+   {
+    "P": 2,
+    "H": 1
+   },
+   {
+    "P": 1,
+    "T": 1
+   },
+   {
+    "P": 2,
+    "T": 2,
+    "H": 1
+   },
+   {
+    "P": 2,
+    "T": 2
+   },
+   {
+    "H": 1,
+    "T": 1
+   },
+   {
+    "P": 1,
+    "T": 1
+   }
+  ],
+  "white": [
+   {
+    "P": 1,
+    "T": 3
+   },
+   {
+    "P": 3,
+    "H": 1,
+    "T": 2
+   },
+   {
+    "P": 1,
+    "H": 1,
+    "T": 2
+   },
+   {
+    "P": 2,
+    "T": 3
+   },
+   {
+    "P": 1,
+    "H": 1,
+    "T": 1
+   },
+   {
+    "P": 2,
+    "H": 1,
+    "T": 1
+   }
+  ]
+ },
+ "armorSymbol": "T"
 }

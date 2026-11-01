@@ -56,7 +56,7 @@ sec.push(`<section id="fleischritter"><h2>5. Fleischritter — Knight Setup · T
 <p>First Death: ${esc(K.firstDeath.text)} <span class="warn">(${esc(K.firstDeath.note)})</span></p>
 <h3>Talents</h3><table><tr><th>Talent</th><th>Tier</th><th>능력</th></tr>${K.talents.map(t => `<tr><td><b>${esc(t.name)}</b></td><td>${t.tier}</td><td>${t.abilities.map(a => `<b>${esc(a.name)}</b>: ${esc(a.text)} ${a.ops ? '' : '<span class="warn">[ops 미작성]</span>'}${unc(a.unclear ? [a.unclear] : [])}`).join('<br>')}</td></tr>`).join('')}</table>
 <h3>Heroic Arcs (8)</h3><table><tr><th>이름</th><th>+행</th><th>레벨별 옵션</th><th></th></tr>${K.heroicArcs.map(arcRow).join('')}</table>
-<p class="small warn">토큰명 끝의 ?는 아이콘 추정(미확인).</p>
+<p class="small">토큰명은 Knight Tokens and Abilities 범례로 확정.</p>
 <h3>Peril Arcs (전 기사 56장)</h3>${Object.keys(PA.arcs).map(k => `<details${k === 'fleischritter' ? ' open' : ''}><summary>${k} (${PA.arcs[k].length})</summary><table><tr><th>이름</th><th>최대 Vigor</th><th>Uninjured</th><th>Minor</th><th>Major</th><th>Grave</th><th>Judicium</th><th>보너스</th></tr>${PA.arcs[k].map(perilRow).join('')}</table></details>`).join('')}
 <h3>Techniques (Clash 면, ${K.techniques.length})</h3><table><tr><th>이름</th><th>해금</th><th>비용</th><th>효과</th><th>게이트</th><th>소진</th></tr>${K.techniques.map(t => `<tr><td><b>${esc(t.name)}</b></td><td>${esc(t.unlock)}</td><td>${esc(JSON.stringify(t.cost))}</td><td>${esc(t.text)}${unc(t.unclear)}</td><td>${t.gates.map(g => `<b>${g.gate}</b>: ${esc(g.text)}`).join('<br>')}</td><td>${t.depletion}</td></tr>`).join('')}</table></section>`);
 
