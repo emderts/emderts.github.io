@@ -1,32 +1,6 @@
 {
  "_source": "Knighves + Chipped Axe (Fleischritter start) and 32 Rosegraal reward gear cards + Laxlaw (Pliant) side. Stats per rulebook p.20 icon legend. text verbatim with [icons].",
- "_notes": {
-  "source": "gear_RC sheet was supplied as 35 tiles cut at 702px (gear/gear_<row><col>.png) while the real card pitch is ~772px; tiles were stitched back into row sheets and re-cropped. Rows 0-2 hold 10 cards each, row 3 holds 2 (Aegis of Averted Eyes is cut off on its right edge). 32 Rosegraal cards total.",
-  "iconKey": {
-   "[Heat]": "blue H box",
-   "[Vigor]": "red V box",
-   "[Passion]": "green P box",
-   "[Attack die]": "black d-shaped attack die",
-   "[Power]": "sword = raw Power / Power-die hit symbol",
-   "[Fail]": "chalice = Power-die fail symbol",
-   "[Exhaust]": "card with curved arrow",
-   "[Delay]": "card with z z",
-   "[Precision]": "target/bullseye",
-   "[Judicium-diamond icon]": "small tilted-square/diamond icon that precedes several reactive abilities (Great Antler Helm, Wilder Plate, Blinder Helm, Gloryseeker's Cape, Terracotta Emblem, Aegis) - exact meaning unverified",
-   "[Move action]": "black box with running figure",
-   "[Move+Attack action]": "black box with figure and sword",
-   "[Attack action]": "black box with sword",
-   "[Bane]": "circular arrow token",
-   "[Magic]": "star-burst token",
-   "[AT]": "ribcage icon",
-   "[Armor token]": "breastplate icon",
-   "[Evasion]": "feather/swoosh",
-   "[Sagacity]": "owl",
-   "[Tenacity]": "spiral/ram-horn",
-   "[Mortis]": "red coffin-like card icon"
-  },
-  "knightAssignment": "Knight for each Rosegraal card is inferred from sheet order (5 cards per knight in the order given: Fleischritter, Kara, Paracelsa, Renholder, Ser Sonch, Stoneface, then 2 for Ser Ubar). The church-themed set (Mantle of the Faithful ... Blade of the First Sacrament) was assigned to Paracelsa and the magic set (Wizard's Hat ... Lightgrasp) to Renholder; verify if the two knights are swapped."
- },
+ "_notes": "[object Object] Die icon shades: red cube = red die, dark cube with white edges = black die, light cube = white die (re-checked 2026-11-02).",
  "gear": [
   {
    "name": "Knighves",
@@ -91,7 +65,7 @@
    "precision": 0,
    "weaponPower": {
     "n": 1,
-    "colour": "white"
+    "colour": "black"
    },
    "bonusPower": {
     "raw": 1
@@ -108,7 +82,8 @@
    ],
    "knight": null,
    "unclear": [
-    "Two condition icons at the bottom are unidentified: a red X made of two crossed sticks (': +1 [Power sword] +1 [Fail chalice]') and a yellow open book (': +1 [Fail chalice]')."
+    "Two condition icons at the bottom are unidentified: a red X made of two crossed sticks (': +1 [Power sword] +1 [Fail chalice]') and a yellow open book (': +1 [Fail chalice]').",
+    "Weapon die re-read as BLACK (dark cube) — card icon shades: red / dark=black / light=white [확인]"
    ],
    "ops": {
     "keywords": [
@@ -174,7 +149,7 @@
    "precision": 2,
    "weaponPower": {
     "n": 1,
-    "colour": "white"
+    "colour": "black"
    },
    "bonusPower": {
     "raw": 2
@@ -191,7 +166,8 @@
    ],
    "knight": "fleischritter",
    "unclear": [
-    "Code 13A0625 is faint."
+    "Code 13A0625 is faint.",
+    "Weapon die re-read as BLACK (dark cube) — card icon shades: red / dark=black / light=white [확인]"
    ],
    "ops": {
     "keywords": [
@@ -532,7 +508,7 @@
    "precision": -1,
    "weaponPower": {
     "n": 1,
-    "colour": "white"
+    "colour": "black"
    },
    "bonusPower": null,
    "evasion": null,
@@ -548,7 +524,8 @@
    "knight": "kara",
    "unclear": [
     "Icon before '2 [Heat] Rush' is a wide black box showing a figure, a plus sign and a sword (read as Move+Attack action).",
-    "Code 13A0610 is faint."
+    "Code 13A0610 is faint.",
+    "Weapon die re-read as BLACK (dark cube) — card icon shades: red / dark=black / light=white [확인]"
    ],
    "ops": null
   },
@@ -669,7 +646,7 @@
    "precision": 3,
    "weaponPower": {
     "n": 1,
-    "colour": "white"
+    "colour": "black"
    },
    "bonusPower": {
     "n": 1,
@@ -688,7 +665,8 @@
    ],
    "knight": "kara",
    "unclear": [
-    "Card has two Bonus Power entries: one white Power die and +1 raw Power; both stored in bonusPower."
+    "Card has two Bonus Power entries: one white Power die and +1 raw Power; both stored in bonusPower.",
+    "Weapon die re-read as BLACK (dark cube) — card icon shades: red / dark=black / light=white [확인]"
    ],
    "ops": null
   },
@@ -742,7 +720,7 @@
    "precision": 0,
    "weaponPower": {
     "n": 1,
-    "colour": "white"
+    "colour": "black"
    },
    "bonusPower": null,
    "evasion": null,
@@ -758,7 +736,8 @@
    "knight": "paracelsa",
    "unclear": [
     "Code 13A0631 is faint.",
-    "Knight assignment inferred."
+    "Knight assignment inferred.",
+    "Weapon die re-read as BLACK (dark cube) — card icon shades: red / dark=black / light=white [확인]"
    ],
    "ops": null
   },
@@ -1026,7 +1005,7 @@
    "precision": 6,
    "weaponPower": {
     "n": 1,
-    "colour": "white"
+    "colour": "black"
    },
    "bonusPower": {
     "n": 1,
@@ -1044,7 +1023,8 @@
    ],
    "knight": "renholder",
    "unclear": [
-    "Knight assignment inferred."
+    "Knight assignment inferred.",
+    "Weapon die re-read as BLACK (dark cube) — card icon shades: red / dark=black / light=white [확인]"
    ],
    "ops": null
   },
@@ -1182,7 +1162,7 @@
    "precision": 3,
    "weaponPower": {
     "n": 1,
-    "colour": "white"
+    "colour": "black"
    },
    "bonusPower": {
     "n": 1,
@@ -1202,7 +1182,8 @@
    "knight": "ser-sonch",
    "unclear": [
     "Two Bonus Power entries (one white die and +1 raw).",
-    "Bottom-right slot icon shows a single gauntlet (one hand) despite the card depicting two swords."
+    "Bottom-right slot icon shows a single gauntlet (one hand) despite the card depicting two swords.",
+    "Weapon die re-read as BLACK (dark cube) — card icon shades: red / dark=black / light=white [확인]"
    ],
    "ops": null
   },
@@ -1525,7 +1506,7 @@
    "precision": "X",
    "weaponPower": {
     "n": 1,
-    "colour": "white"
+    "colour": "black"
    },
    "bonusPower": {
     "n": 1,
@@ -1558,7 +1539,8 @@
    ],
    "knight": "ser-ubar",
    "unclear": [
-    "손 슬롯 아이콘(한손/두손) 미확인 — 한손으로 기록"
+    "손 슬롯 아이콘(한손/두손) 미확인 — 한손으로 기록",
+    "Weapon die re-read as BLACK (dark cube) — card icon shades: red / dark=black / light=white [확인]"
    ]
   },
   {

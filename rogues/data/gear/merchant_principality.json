@@ -1,0 +1,3219 @@
+{
+ "_source": "Merchant Gear (42 double-sided cards, codes 13A0476–13A0517): side = normal, reforged = Reforged Merchant Gear side. Price = buy, reforgePrice = cost to flip (Outpost). Die shades: red / dark=black / light=white.",
+ "notes": [
+  "Reforged sides carry no card code (top-right strip is blank), so reforgedCode is null.",
+  "Power/armor die colours: red = red-filled die; white = light-filled die; black = dark-filled die with white outline (matches the black armor dice on Light Lamellar / Kite Shield / Pavise).",
+  "bonusPower: {raw:N} = '+N [sword]'; {dice:[colour]} = '+ [die icon]'; both when both are printed.",
+  "Text tokens: [Heat] blue H cost, [Exhaust] card-with-arrow, [Power] sword icon, [Two-handed] double-gauntlet gate tag (gate name TWO-HANDED), [Star] unidentified token icon (see unclear), [GRAVE]/[MAJOR]/[JUDICIUM] red peril tags (also listed in gates).",
+  "triggers: monster-trait bonus rows; icon ids redX, book, greenCircle, blueTriangle; power = sword, potential = goblet.",
+  "evasion = '+N' with helmet-and-swoosh icon in the right column; evasionReroll used only for Scale Mail's circle-and-arrow icon (see its unclear entry).",
+  "hands: 0 for armor (breastplate slot). Shields use the single-gauntlet slot, so type weapon / hands 1."
+ ],
+ "gear": [
+  {
+   "name": "Crude Bow",
+   "code": "13A0479",
+   "reforgedName": "Short Bow",
+   "reforgedCode": null,
+   "traits": [
+    "Bow",
+    "Wood",
+    "Flammable"
+   ],
+   "reforgedTraits": [
+    "Bow",
+    "Wood",
+    "Flammable"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Mob",
+   "price": 4,
+   "reforgePrice": 4,
+   "side": {
+    "attackDice": 1,
+    "precision": 0,
+    "weaponPower": {
+     "n": 2,
+     "colour": "red",
+     "dice": [
+      "red",
+      "red"
+     ]
+    },
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Unwieldy.\nRanged 2-4.\nBreak 1. Cumbersome.",
+    "gates": [
+     {
+      "gate": "GRAVE",
+      "text": "+1 [Power]."
+     }
+    ],
+    "triggers": [
+     {
+      "icon": "greenCircle",
+      "power": 1,
+      "potential": 1
+     },
+     {
+      "icon": "blueTriangle",
+      "potential": 1
+     }
+    ]
+   },
+   "reforged": {
+    "attackDice": 1,
+    "precision": 2,
+    "weaponPower": {
+     "n": 2,
+     "colour": "mixed",
+     "dice": [
+      "white",
+      "red"
+     ]
+    },
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Unwieldy. Ranged 2-4.\nBreak 1. Cumbersome.",
+    "gates": [],
+    "triggers": [
+     {
+      "icon": "greenCircle",
+      "power": 1,
+      "potential": 1
+     },
+     {
+      "icon": "blueTriangle",
+      "potential": 1
+     }
+    ]
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Militia Morgenstern",
+   "code": "13A0478",
+   "reforgedName": "Officer's Morgenstern",
+   "reforgedCode": null,
+   "traits": [
+    "Mace",
+    "Wood"
+   ],
+   "reforgedTraits": [
+    "Mace",
+    "Wood",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Mob",
+   "price": 4,
+   "reforgePrice": 4,
+   "side": {
+    "attackDice": 1,
+    "precision": 1,
+    "weaponPower": {
+     "n": 2,
+     "colour": "red",
+     "dice": [
+      "red",
+      "red"
+     ]
+    },
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Break 1.\n[Two-handed]: +1 [Power].\nCumbersome.",
+    "gates": [
+     {
+      "gate": "TWO-HANDED",
+      "text": "+1 [Power]."
+     }
+    ],
+    "triggers": []
+   },
+   "reforged": {
+    "attackDice": 1,
+    "precision": 1,
+    "weaponPower": {
+     "n": 2,
+     "colour": "red",
+     "dice": [
+      "red",
+      "red"
+     ]
+    },
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Break 2.\n[Two-handed]: +1 [Power].\nCumbersome.",
+    "gates": [
+     {
+      "gate": "TWO-HANDED",
+      "text": "+1 [Power]."
+     }
+    ],
+    "triggers": []
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Chipped Axe",
+   "code": "13A0477",
+   "reforgedName": "Felling Axe",
+   "reforgedCode": null,
+   "traits": [
+    "Axe",
+    "Metal"
+   ],
+   "reforgedTraits": [
+    "Axe",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Mob",
+   "price": 5,
+   "reforgePrice": 4,
+   "side": {
+    "attackDice": 1,
+    "precision": 0,
+    "weaponPower": {
+     "n": 1,
+     "colour": "black",
+     "dice": [
+      "black"
+     ]
+    },
+    "bonusPower": {
+     "raw": 1
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Break 1. Commit.\n[GRAVE] Armor-piercing 1.",
+    "gates": [
+     {
+      "gate": "GRAVE",
+      "text": "Armor-piercing 1."
+     }
+    ],
+    "triggers": [
+     {
+      "icon": "redX",
+      "power": 1,
+      "potential": 1
+     },
+     {
+      "icon": "book",
+      "potential": 1
+     }
+    ]
+   },
+   "reforged": {
+    "attackDice": 1,
+    "precision": 1,
+    "weaponPower": {
+     "n": 2,
+     "colour": "mixed",
+     "dice": [
+      "white",
+      "red"
+     ]
+    },
+    "bonusPower": {
+     "raw": 1
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Break 1. Commit.\n[GRAVE] Armor-piercing 1.",
+    "gates": [
+     {
+      "gate": "GRAVE",
+      "text": "Armor-piercing 1."
+     }
+    ],
+    "triggers": [
+     {
+      "icon": "redX",
+      "power": 1,
+      "potential": 1
+     },
+     {
+      "icon": "book",
+      "potential": 1
+     }
+    ]
+   },
+   "unclear": [
+    "Weapon die is drawn dark-filled with white outline (same rendering as the black armor dice on Light Lamellar / Kite Shield), so transcribed as black; existing gear.json entry for Chipped Axe says white."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Broken Sword",
+   "code": "13A0476",
+   "reforgedName": "Arming Sword",
+   "reforgedCode": null,
+   "traits": [
+    "Sword",
+    "Metal"
+   ],
+   "reforgedTraits": [
+    "Sword",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Mob",
+   "price": 4,
+   "reforgePrice": 3,
+   "side": {
+    "attackDice": 2,
+    "precision": 2,
+    "weaponPower": {
+     "n": 1,
+     "colour": "red",
+     "dice": [
+      "red"
+     ]
+    },
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Opening 1.",
+    "gates": [],
+    "triggers": [
+     {
+      "icon": "greenCircle",
+      "power": 1
+     },
+     {
+      "icon": "blueTriangle",
+      "power": 1
+     }
+    ]
+   },
+   "reforged": {
+    "attackDice": 3,
+    "precision": 2,
+    "weaponPower": {
+     "n": 1,
+     "colour": "red",
+     "dice": [
+      "red"
+     ]
+    },
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Opening 2.",
+    "gates": [],
+    "triggers": [
+     {
+      "icon": "greenCircle",
+      "power": 1
+     },
+     {
+      "icon": "blueTriangle",
+      "power": 1
+     }
+    ]
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Shoddy Pitchfork",
+   "code": "13A0480",
+   "reforgedName": "Military Fork",
+   "reforgedCode": null,
+   "traits": [
+    "Spear",
+    "Metal",
+    "Wood"
+   ],
+   "reforgedTraits": [
+    "Spear",
+    "Metal",
+    "Wood"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Mob",
+   "price": 4,
+   "reforgePrice": 4,
+   "side": {
+    "attackDice": 2,
+    "precision": 1,
+    "weaponPower": {
+     "n": 1,
+     "colour": "red",
+     "dice": [
+      "red"
+     ]
+    },
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Unwieldy.\nReach 2. Opening 1.",
+    "gates": [],
+    "triggers": [
+     {
+      "icon": "redX",
+      "potential": 1
+     },
+     {
+      "icon": "book",
+      "potential": 2
+     }
+    ]
+   },
+   "reforged": {
+    "attackDice": 2,
+    "precision": 1,
+    "weaponPower": {
+     "n": 1,
+     "colour": "red",
+     "dice": [
+      "red"
+     ]
+    },
+    "bonusPower": {
+     "dice": [
+      "red"
+     ]
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Unwieldy.\nReach 2. Opening 2.",
+    "gates": [],
+    "triggers": [
+     {
+      "icon": "redX",
+      "potential": 1
+     },
+     {
+      "icon": "book",
+      "potential": 2
+     }
+    ]
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Rusted Shield",
+   "code": "13A0481",
+   "reforgedName": "Polished Shield",
+   "reforgedCode": null,
+   "traits": [
+    "Shield",
+    "Metal"
+   ],
+   "reforgedTraits": [
+    "Shield",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Mob",
+   "price": 3,
+   "reforgePrice": 3,
+   "side": {
+    "attackDice": 2,
+    "precision": 0,
+    "weaponPower": {
+     "n": 1,
+     "colour": "red",
+     "dice": [
+      "red"
+     ]
+    },
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "2 [Heat] [Exhaust] Guard 1.",
+    "gates": [],
+    "triggers": []
+   },
+   "reforged": {
+    "attackDice": 2,
+    "precision": 0,
+    "weaponPower": {
+     "n": 1,
+     "colour": "red",
+     "dice": [
+      "red"
+     ]
+    },
+    "bonusPower": null,
+    "evasion": 1,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "1 [Heat] [Exhaust] Guard 1.",
+    "gates": [],
+    "triggers": []
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Weathered Leather Armor",
+   "code": "13A0482",
+   "reforgedName": "Buffed Leather Armor",
+   "reforgedCode": null,
+   "traits": [
+    "Armor",
+    "Leather"
+   ],
+   "reforgedTraits": [
+    "Armor",
+    "Leather"
+   ],
+   "type": "armor",
+   "hands": 0,
+   "tier": "Mob",
+   "price": 3,
+   "reforgePrice": 4,
+   "side": {
+    "attackDice": null,
+    "precision": null,
+    "weaponPower": null,
+    "bonusPower": null,
+    "evasion": 1,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "",
+    "gates": [],
+    "triggers": []
+   },
+   "reforged": {
+    "attackDice": null,
+    "precision": null,
+    "weaponPower": null,
+    "bonusPower": null,
+    "evasion": 1,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Poison Limit +1.",
+    "gates": [],
+    "triggers": []
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Ragged Hauberk",
+   "code": "13A0483",
+   "reforgedName": "Full Hauberk",
+   "reforgedCode": null,
+   "traits": [
+    "Armor",
+    "Metal"
+   ],
+   "reforgedTraits": [
+    "Armor",
+    "Metal"
+   ],
+   "type": "armor",
+   "hands": 0,
+   "tier": "Mob",
+   "price": 3,
+   "reforgePrice": 3,
+   "side": {
+    "attackDice": null,
+    "precision": null,
+    "weaponPower": null,
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": {
+     "n": 1,
+     "dice": [
+      "red"
+     ]
+    },
+    "text": "",
+    "gates": [],
+    "triggers": []
+   },
+   "reforged": {
+    "attackDice": null,
+    "precision": null,
+    "weaponPower": null,
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": {
+     "n": 1,
+     "dice": [
+      "red"
+     ]
+    },
+    "text": "1 [Heat] Reinforce 1.",
+    "gates": [],
+    "triggers": []
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Ragged Hauberk",
+   "code": "13A0485",
+   "reforgedName": "Full Hauberk",
+   "reforgedCode": null,
+   "traits": [
+    "Armor",
+    "Metal"
+   ],
+   "reforgedTraits": [
+    "Armor",
+    "Metal"
+   ],
+   "type": "armor",
+   "hands": 0,
+   "tier": "Mob",
+   "price": 3,
+   "reforgePrice": 3,
+   "side": {
+    "attackDice": null,
+    "precision": null,
+    "weaponPower": null,
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": {
+     "n": 1,
+     "dice": [
+      "red"
+     ]
+    },
+    "text": "",
+    "gates": [],
+    "triggers": []
+   },
+   "reforged": {
+    "attackDice": null,
+    "precision": null,
+    "weaponPower": null,
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": {
+     "n": 1,
+     "dice": [
+      "red"
+     ]
+    },
+    "text": "1 [Heat] Reinforce 1.",
+    "gates": [],
+    "triggers": []
+   },
+   "unclear": [
+    "Second copy of Ragged Hauberk; code read as 13A0485 (zoomed)."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Weathered Leather Armor",
+   "code": "13A0484",
+   "reforgedName": "Buffed Leather Armor",
+   "reforgedCode": null,
+   "traits": [
+    "Armor",
+    "Leather"
+   ],
+   "reforgedTraits": [
+    "Armor",
+    "Leather"
+   ],
+   "type": "armor",
+   "hands": 0,
+   "tier": "Mob",
+   "price": 3,
+   "reforgePrice": 4,
+   "side": {
+    "attackDice": null,
+    "precision": null,
+    "weaponPower": null,
+    "bonusPower": null,
+    "evasion": 1,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "",
+    "gates": [],
+    "triggers": []
+   },
+   "reforged": {
+    "attackDice": null,
+    "precision": null,
+    "weaponPower": null,
+    "bonusPower": null,
+    "evasion": 1,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Poison Limit +1.",
+    "gates": [],
+    "triggers": []
+   },
+   "unclear": [
+    "Second copy of Weathered Leather Armor; code 13A0484."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Poor Man's Catalyst",
+   "code": "13A0487",
+   "reforgedName": "Embellished Catalyst",
+   "reforgedCode": null,
+   "traits": [
+    "Catalyst",
+    "Wood",
+    "Magic"
+   ],
+   "reforgedTraits": [
+    "Catalyst",
+    "Wood",
+    "Magic"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Vassal",
+   "price": 7,
+   "reforgePrice": 8,
+   "side": {
+    "attackDice": 3,
+    "precision": 1,
+    "weaponPower": {
+     "n": 1,
+     "colour": "red",
+     "dice": [
+      "red"
+     ]
+    },
+    "bonusPower": {
+     "raw": 1
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Unwieldy.\nRanged 3-4.\nCantrip 1. Commit.",
+    "gates": [],
+    "triggers": [
+     {
+      "icon": "redX",
+      "potential": 2
+     },
+     {
+      "icon": "greenCircle",
+      "potential": 1
+     },
+     {
+      "icon": "blueTriangle",
+      "power": 2,
+      "potential": 2
+     }
+    ]
+   },
+   "reforged": {
+    "attackDice": 3,
+    "precision": 2,
+    "weaponPower": {
+     "n": 1,
+     "colour": "red",
+     "dice": [
+      "red"
+     ]
+    },
+    "bonusPower": {
+     "raw": 1
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "[MAJOR] +1 [Power].\nRanged 3-4.\nCantrip 2. Commit.",
+    "gates": [
+     {
+      "gate": "MAJOR",
+      "text": "+1 [Power]."
+     }
+    ],
+    "triggers": [
+     {
+      "icon": "redX",
+      "potential": 2
+     },
+     {
+      "icon": "greenCircle",
+      "potential": 1
+     },
+     {
+      "icon": "blueTriangle",
+      "power": 2,
+      "potential": 2
+     }
+    ]
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Crude Knives",
+   "code": "13A0486",
+   "reforgedName": "Razor Knives",
+   "reforgedCode": null,
+   "traits": [
+    "Knife",
+    "Metal",
+    "Pair"
+   ],
+   "reforgedTraits": [
+    "Knife",
+    "Metal",
+    "Pair"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Vassal",
+   "price": 8,
+   "reforgePrice": 7,
+   "side": {
+    "attackDice": 2,
+    "precision": 1,
+    "weaponPower": {
+     "n": 1,
+     "colour": "black",
+     "dice": [
+      "black"
+     ]
+    },
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Opening 1. Break 1.",
+    "gates": [],
+    "triggers": [
+     {
+      "icon": "redX",
+      "power": 3,
+      "potential": 1
+     },
+     {
+      "icon": "greenCircle",
+      "potential": 3
+     }
+    ]
+   },
+   "reforged": {
+    "attackDice": 2,
+    "precision": 3,
+    "weaponPower": {
+     "n": 1,
+     "colour": "black",
+     "dice": [
+      "black"
+     ]
+    },
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Auto-break 1.\nOpening 1. Break 1.",
+    "gates": [],
+    "triggers": [
+     {
+      "icon": "redX",
+      "power": 3,
+      "potential": 1
+     },
+     {
+      "icon": "greenCircle",
+      "potential": 3
+     }
+    ]
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Old Messer",
+   "code": "13A0488",
+   "reforgedName": "Restored Messer",
+   "reforgedCode": null,
+   "traits": [
+    "Sword",
+    "Metal"
+   ],
+   "reforgedTraits": [
+    "Sword",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Vassal",
+   "price": 8,
+   "reforgePrice": 8,
+   "side": {
+    "attackDice": 1,
+    "precision": 0,
+    "weaponPower": {
+     "n": 3,
+     "colour": "red",
+     "dice": [
+      "red",
+      "red",
+      "red"
+     ]
+    },
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Opening 2.\nPower Re-roll 1.",
+    "gates": [],
+    "triggers": [
+     {
+      "icon": "blueTriangle",
+      "power": 2,
+      "potential": 1
+     },
+     {
+      "icon": "book",
+      "power": 2,
+      "potential": 1
+     }
+    ]
+   },
+   "reforged": {
+    "attackDice": 1,
+    "precision": 2,
+    "weaponPower": {
+     "n": 3,
+     "colour": "red",
+     "dice": [
+      "red",
+      "red",
+      "red"
+     ]
+    },
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "[MAJOR] +1 [Power].\nOpening 3.\nPower Re-roll 1.",
+    "gates": [
+     {
+      "gate": "MAJOR",
+      "text": "+1 [Power]."
+     }
+    ],
+    "triggers": [
+     {
+      "icon": "blueTriangle",
+      "power": 2,
+      "potential": 1
+     },
+     {
+      "icon": "book",
+      "power": 2,
+      "potential": 1
+     }
+    ]
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Scavenged Handaxe",
+   "code": "13A0489",
+   "reforgedName": "Hardened Battle-Axe",
+   "reforgedCode": null,
+   "traits": [
+    "Axe",
+    "Wood",
+    "Metal"
+   ],
+   "reforgedTraits": [
+    "Axe",
+    "Wood",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Vassal",
+   "price": 8,
+   "reforgePrice": 7,
+   "side": {
+    "attackDice": 1,
+    "precision": 0,
+    "weaponPower": {
+     "n": 2,
+     "colour": "black",
+     "dice": [
+      "black",
+      "black"
+     ]
+    },
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Break 2.\n2 [Heat] Gain Deadly.\n[Two-handed]: Armor-piercing 1.",
+    "gates": [
+     {
+      "gate": "TWO-HANDED",
+      "text": "Armor-piercing 1."
+     }
+    ],
+    "triggers": []
+   },
+   "reforged": {
+    "attackDice": 1,
+    "precision": 1,
+    "weaponPower": {
+     "n": 2,
+     "colour": "black",
+     "dice": [
+      "black",
+      "black"
+     ]
+    },
+    "bonusPower": {
+     "raw": 1
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Deadly. Break 3.\n[Two-handed]: Armor-piercing 1.",
+    "gates": [
+     {
+      "gate": "TWO-HANDED",
+      "text": "Armor-piercing 1."
+     }
+    ],
+    "triggers": []
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Dulled Spear",
+   "code": "13A0490",
+   "reforgedName": "Sharpened Spear",
+   "reforgedCode": null,
+   "traits": [
+    "Spear",
+    "Metal",
+    "Wood"
+   ],
+   "reforgedTraits": [
+    "Spear",
+    "Metal",
+    "Wood"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Vassal",
+   "price": 9,
+   "reforgePrice": 8,
+   "side": {
+    "attackDice": 4,
+    "precision": 2,
+    "weaponPower": {
+     "n": 1,
+     "colour": "red",
+     "dice": [
+      "red"
+     ]
+    },
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Unwieldy.\nReach 2. Opening 2.",
+    "gates": [],
+    "triggers": [
+     {
+      "icon": "redX",
+      "power": 2,
+      "potential": 1
+     },
+     {
+      "icon": "greenCircle",
+      "potential": 2
+     },
+     {
+      "icon": "blueTriangle",
+      "potential": 1
+     },
+     {
+      "icon": "book",
+      "potential": 1
+     }
+    ]
+   },
+   "reforged": {
+    "attackDice": 4,
+    "precision": 3,
+    "weaponPower": {
+     "n": 1,
+     "colour": "red",
+     "dice": [
+      "red"
+     ]
+    },
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Reach 2.\nOpening 3. Commit.",
+    "gates": [],
+    "triggers": [
+     {
+      "icon": "redX",
+      "power": 2,
+      "potential": 1
+     },
+     {
+      "icon": "greenCircle",
+      "potential": 2
+     },
+     {
+      "icon": "blueTriangle",
+      "potential": 1
+     },
+     {
+      "icon": "book",
+      "potential": 1
+     }
+    ]
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Parrying Buckler",
+   "code": "13A0491",
+   "reforgedName": "Spiked Buckler",
+   "reforgedCode": null,
+   "traits": [
+    "Shield",
+    "Metal"
+   ],
+   "reforgedTraits": [
+    "Shield",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Vassal",
+   "price": 7,
+   "reforgePrice": 8,
+   "side": {
+    "attackDice": 3,
+    "precision": 1,
+    "weaponPower": {
+     "n": 1,
+     "colour": "red",
+     "dice": [
+      "red"
+     ]
+    },
+    "bonusPower": {
+     "raw": 1
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": {
+     "n": 1,
+     "dice": [
+      "red"
+     ]
+    },
+    "text": "3 [Heat] [Exhaust] Block.",
+    "gates": [],
+    "triggers": []
+   },
+   "reforged": {
+    "attackDice": 3,
+    "precision": 2,
+    "weaponPower": {
+     "n": 1,
+     "colour": "red",
+     "dice": [
+      "red"
+     ]
+    },
+    "bonusPower": {
+     "raw": 1
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": {
+     "n": 1,
+     "dice": [
+      "red"
+     ]
+    },
+    "text": "1 [Heat] [Exhaust] Block.\n1 [Heat] Reinforce 1.",
+    "gates": [],
+    "triggers": []
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Light Lamellar Armor",
+   "code": "13A0493",
+   "reforgedName": "Heavy Lamellar Armor",
+   "reforgedCode": null,
+   "traits": [
+    "Armor",
+    "Leather"
+   ],
+   "reforgedTraits": [
+    "Armor",
+    "Leather"
+   ],
+   "type": "armor",
+   "hands": 0,
+   "tier": "Vassal",
+   "price": 8,
+   "reforgePrice": 7,
+   "side": {
+    "attackDice": null,
+    "precision": null,
+    "weaponPower": null,
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": {
+     "n": 1,
+     "dice": [
+      "black"
+     ]
+    },
+    "text": "Poison Limit +1.\n1 [Heat] [Exhaust] Reduce suffered Knockback or Pushback by 1.",
+    "gates": [],
+    "triggers": []
+   },
+   "reforged": {
+    "attackDice": null,
+    "precision": null,
+    "weaponPower": null,
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": {
+     "n": 1,
+     "dice": [
+      "black"
+     ]
+    },
+    "text": "Poison Limit +1.\n1 [Heat] [Exhaust] Reduce suffered Knockback or Pushback by up to 3.",
+    "gates": [],
+    "triggers": []
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Mail Shirt",
+   "code": "13A0492",
+   "reforgedName": "Plated Mail Shirt",
+   "reforgedCode": null,
+   "traits": [
+    "Armor",
+    "Metal"
+   ],
+   "reforgedTraits": [
+    "Armor",
+    "Metal"
+   ],
+   "type": "armor",
+   "hands": 0,
+   "tier": "Vassal",
+   "price": 7,
+   "reforgePrice": 7,
+   "side": {
+    "attackDice": null,
+    "precision": null,
+    "weaponPower": null,
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Guard 1.",
+    "gates": [],
+    "triggers": []
+   },
+   "reforged": {
+    "attackDice": null,
+    "precision": null,
+    "weaponPower": null,
+    "bonusPower": null,
+    "evasion": 1,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Guard 1.",
+    "gates": [],
+    "triggers": []
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Longaxe",
+   "code": "13A0495",
+   "reforgedName": "Reinforced Longaxe",
+   "reforgedCode": null,
+   "traits": [
+    "Axe",
+    "Metal",
+    "Wood"
+   ],
+   "reforgedTraits": [
+    "Axe",
+    "Metal",
+    "Wood"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "King",
+   "price": 14,
+   "reforgePrice": 13,
+   "side": {
+    "attackDice": 1,
+    "precision": 1,
+    "weaponPower": {
+     "n": 2,
+     "colour": "black",
+     "dice": [
+      "black",
+      "black"
+     ]
+    },
+    "bonusPower": {
+     "raw": 1
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Reach 2. Opening 2.\nBreak 1. Cumbersome.",
+    "gates": [],
+    "triggers": [
+     {
+      "icon": "redX",
+      "power": 2,
+      "potential": 3
+     },
+     {
+      "icon": "greenCircle",
+      "potential": 2
+     },
+     {
+      "icon": "blueTriangle",
+      "potential": 2
+     },
+     {
+      "icon": "book",
+      "potential": 2
+     }
+    ]
+   },
+   "reforged": {
+    "attackDice": 1,
+    "precision": 1,
+    "weaponPower": {
+     "n": 2,
+     "colour": "black",
+     "dice": [
+      "black",
+      "black"
+     ]
+    },
+    "bonusPower": {
+     "raw": 2
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Reach 2. Opening 3.\nHope 1. Cumbersome.",
+    "gates": [],
+    "triggers": [
+     {
+      "icon": "redX",
+      "power": 2,
+      "potential": 3
+     },
+     {
+      "icon": "greenCircle",
+      "potential": 2
+     },
+     {
+      "icon": "blueTriangle",
+      "potential": 2
+     },
+     {
+      "icon": "book",
+      "potential": 2
+     }
+    ]
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Mystic Wand",
+   "code": "13A0494",
+   "reforgedName": "Wyrdlight Wand",
+   "reforgedCode": null,
+   "traits": [
+    "Catalyst",
+    "Magic",
+    "Wood"
+   ],
+   "reforgedTraits": [
+    "Catalyst",
+    "Magic",
+    "Wood"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "King",
+   "price": 14,
+   "reforgePrice": 14,
+   "side": {
+    "attackDice": 1,
+    "precision": 2,
+    "weaponPower": {
+     "n": 2,
+     "colour": "red",
+     "dice": [
+      "red",
+      "red"
+     ]
+    },
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Ranged 2-4.\nCantrip 1. Commit.",
+    "gates": [],
+    "triggers": []
+   },
+   "reforged": {
+    "attackDice": 1,
+    "precision": 3,
+    "weaponPower": {
+     "n": 2,
+     "colour": "red",
+     "dice": [
+      "red",
+      "red"
+     ]
+    },
+    "bonusPower": {
+     "raw": 1
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Ranged 2-4.\nCantrip 2. Commit.",
+    "gates": [],
+    "triggers": []
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Weathered Pavise",
+   "code": "13A0496",
+   "reforgedName": "Painted Pavise",
+   "reforgedCode": null,
+   "traits": [
+    "Shield",
+    "Metal"
+   ],
+   "reforgedTraits": [
+    "Shield",
+    "Wood"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "King",
+   "price": 13,
+   "reforgePrice": 13,
+   "side": {
+    "attackDice": 4,
+    "precision": 2,
+    "weaponPower": {
+     "n": 1,
+     "colour": "red",
+     "dice": [
+      "red"
+     ]
+    },
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": {
+     "n": 1,
+     "dice": [
+      "black"
+     ]
+    },
+    "text": "Poison Resilience 1.\nOpening 1.\nBreak 1.\n1 [Heat] [Exhaust] Block.",
+    "gates": [],
+    "triggers": []
+   },
+   "reforged": {
+    "attackDice": 4,
+    "precision": 3,
+    "weaponPower": {
+     "n": 1,
+     "colour": "red",
+     "dice": [
+      "red"
+     ]
+    },
+    "bonusPower": {
+     "raw": 1
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": {
+     "n": 1,
+     "dice": [
+      "black"
+     ]
+    },
+    "text": "Poison Resilience 1.\nOpening 1.\nBreak 2.\n1 [Heat] [Exhaust] Block.",
+    "gates": [],
+    "triggers": []
+   },
+   "unclear": [
+    "Code read as 13A0496 (last digit faint; 0490 is Dulled Spear)."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Flanged Mace",
+   "code": "13A0497",
+   "reforgedName": "Heavy Flanged Mace",
+   "reforgedCode": null,
+   "traits": [
+    "Mace",
+    "Wood",
+    "Metal"
+   ],
+   "reforgedTraits": [
+    "Mace",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "King",
+   "price": 14,
+   "reforgePrice": 15,
+   "side": {
+    "attackDice": 1,
+    "precision": 0,
+    "weaponPower": {
+     "n": 2,
+     "colour": "black",
+     "dice": [
+      "black",
+      "black"
+     ]
+    },
+    "bonusPower": {
+     "raw": 1
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Break 2. Black 1. Commit.\n[Two-handed]: Armor-piercing 1.",
+    "gates": [
+     {
+      "gate": "TWO-HANDED",
+      "text": "Armor-piercing 1."
+     }
+    ],
+    "triggers": [
+     {
+      "icon": "redX",
+      "power": 3
+     },
+     {
+      "icon": "blueTriangle",
+      "power": 2,
+      "potential": 1
+     },
+     {
+      "icon": "book",
+      "power": 3
+     }
+    ]
+   },
+   "reforged": {
+    "attackDice": 1,
+    "precision": 2,
+    "weaponPower": {
+     "n": 3,
+     "colour": "mixed",
+     "dice": [
+      "red",
+      "black",
+      "black"
+     ]
+    },
+    "bonusPower": {
+     "raw": 1
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Auto-break 1.\nBlack 3. Commit.\n[Two-handed]: Armor-piercing 1.",
+    "gates": [
+     {
+      "gate": "TWO-HANDED",
+      "text": "Armor-piercing 1."
+     }
+    ],
+    "triggers": [
+     {
+      "icon": "redX",
+      "power": 3
+     },
+     {
+      "icon": "blueTriangle",
+      "power": 2,
+      "potential": 1
+     },
+     {
+      "icon": "book",
+      "power": 3
+     }
+    ]
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Worn Two-Hander",
+   "code": "13A0498",
+   "reforgedName": "Honed Two-Hander",
+   "reforgedCode": null,
+   "traits": [
+    "Sword",
+    "Metal"
+   ],
+   "reforgedTraits": [
+    "Sword",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "King",
+   "price": 14,
+   "reforgePrice": 14,
+   "side": {
+    "attackDice": 1,
+    "precision": 1,
+    "weaponPower": {
+     "n": 2,
+     "colour": "black",
+     "dice": [
+      "black",
+      "black"
+     ]
+    },
+    "bonusPower": {
+     "raw": 1
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Opening 2.\nPower Re-roll 1.\nReposition 1.",
+    "gates": [],
+    "triggers": [
+     {
+      "icon": "redX",
+      "power": 5,
+      "potential": 2
+     },
+     {
+      "icon": "greenCircle",
+      "power": 1,
+      "potential": 3
+     }
+    ]
+   },
+   "reforged": {
+    "attackDice": 1,
+    "precision": 3,
+    "weaponPower": {
+     "n": 2,
+     "colour": "black",
+     "dice": [
+      "black",
+      "black"
+     ]
+    },
+    "bonusPower": {
+     "raw": 1
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Opening 3.\nPower Re-roll 1.\nReposition 1.",
+    "gates": [],
+    "triggers": [
+     {
+      "icon": "redX",
+      "power": 5,
+      "potential": 2
+     },
+     {
+      "icon": "greenCircle",
+      "power": 1,
+      "potential": 3
+     }
+    ]
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Longbow",
+   "code": "13A0499",
+   "reforgedName": "Double Limbed Bow",
+   "reforgedCode": null,
+   "traits": [
+    "Bow",
+    "Wood"
+   ],
+   "reforgedTraits": [
+    "Bow",
+    "Wood"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "King",
+   "price": 15,
+   "reforgePrice": 13,
+   "side": {
+    "attackDice": 2,
+    "precision": 3,
+    "weaponPower": {
+     "n": 2,
+     "colour": "red",
+     "dice": [
+      "red",
+      "red"
+     ]
+    },
+    "bonusPower": {
+     "raw": 1
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Ranged 3-5.\nClosing 1. Break 2.\nReposition 1. Cumbersome.",
+    "gates": [],
+    "triggers": [
+     {
+      "icon": "greenCircle",
+      "potential": 2
+     },
+     {
+      "icon": "blueTriangle",
+      "power": 3,
+      "potential": 3
+     },
+     {
+      "icon": "book",
+      "potential": 3
+     }
+    ]
+   },
+   "reforged": {
+    "attackDice": 2,
+    "precision": 4,
+    "weaponPower": {
+     "n": 2,
+     "colour": "red",
+     "dice": [
+      "red",
+      "red"
+     ]
+    },
+    "bonusPower": {
+     "raw": 2
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Ranged 3-5.\nClosing 2. Break 2.\nReposition 2. Cumbersome.",
+    "gates": [],
+    "triggers": [
+     {
+      "icon": "greenCircle",
+      "potential": 2
+     },
+     {
+      "icon": "blueTriangle",
+      "power": 3,
+      "potential": 3
+     },
+     {
+      "icon": "book",
+      "potential": 3
+     }
+    ]
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Weathered Breastplate",
+   "code": "13A0501",
+   "reforgedName": "Renovated Breastplate",
+   "reforgedCode": null,
+   "traits": [
+    "Armor",
+    "Metal"
+   ],
+   "reforgedTraits": [
+    "Armor",
+    "Metal"
+   ],
+   "type": "armor",
+   "hands": 0,
+   "tier": "King",
+   "price": 14,
+   "reforgePrice": 15,
+   "side": {
+    "attackDice": null,
+    "precision": null,
+    "weaponPower": null,
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": {
+     "n": 2,
+     "dice": [
+      "red",
+      "black"
+     ]
+    },
+    "text": "Bane Limit +1.\nArmor Re-roll 1.",
+    "gates": [],
+    "triggers": []
+   },
+   "reforged": {
+    "attackDice": null,
+    "precision": null,
+    "weaponPower": null,
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": {
+     "n": 2,
+     "dice": [
+      "red",
+      "black"
+     ]
+    },
+    "text": "Bane Limit +1.\nArmor Re-roll 2.\n1 [Heat] [Exhaust] Wander.\n[MAJOR] Soak 1.",
+    "gates": [
+     {
+      "gate": "MAJOR",
+      "text": "Soak 1."
+     }
+    ],
+    "triggers": []
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Padded Jack",
+   "code": "13A0500",
+   "reforgedName": "Jack of Plate",
+   "reforgedCode": null,
+   "traits": [
+    "Armor",
+    "Leather"
+   ],
+   "reforgedTraits": [
+    "Armor",
+    "Leather"
+   ],
+   "type": "armor",
+   "hands": 0,
+   "tier": "King",
+   "price": 14,
+   "reforgePrice": 13,
+   "side": {
+    "attackDice": null,
+    "precision": null,
+    "weaponPower": null,
+    "bonusPower": null,
+    "evasion": 1,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Reposition 1.\n1 [Heat] [Exhaust] Dodge.\n[JUDICIUM] 1 [Heat] [Star] Second Chance.",
+    "gates": [
+     {
+      "gate": "JUDICIUM",
+      "text": "1 [Heat] [Star] Second Chance."
+     }
+    ],
+    "triggers": []
+   },
+   "reforged": {
+    "attackDice": null,
+    "precision": null,
+    "weaponPower": null,
+    "bonusPower": null,
+    "evasion": 2,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Reposition 1.\n1 [Heat] [Exhaust] Dodge.\n1 [Heat] Reinforce 2.\n[MAJOR] 1 [Heat] [Star] Second Chance.",
+    "gates": [
+     {
+      "gate": "MAJOR",
+      "text": "1 [Heat] [Star] Second Chance."
+     }
+    ],
+    "triggers": []
+   },
+   "unclear": [
+    "[Star] = unidentified cost icon: black shield/token with a white four-point star, printed after the Heat cost (also on Steel Fitted Kite Shield, Blackened Chestplate/Armor)."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Spetum",
+   "code": "13A0503",
+   "reforgedName": "Needle Spetum",
+   "reforgedCode": null,
+   "traits": [
+    "Javelin",
+    "Metal"
+   ],
+   "reforgedTraits": [
+    "Javelin",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Devil",
+   "price": 20,
+   "reforgePrice": 19,
+   "side": {
+    "attackDice": 3,
+    "precision": 3,
+    "weaponPower": {
+     "n": 1,
+     "colour": "red",
+     "dice": [
+      "red"
+     ]
+    },
+    "bonusPower": {
+     "dice": [
+      "white"
+     ]
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Reach 2.\nOpening 3.\nHope 1. Reposition 2.",
+    "gates": [],
+    "triggers": [
+     {
+      "icon": "redX",
+      "power": 1,
+      "potential": 3
+     },
+     {
+      "icon": "greenCircle",
+      "potential": 1
+     },
+     {
+      "icon": "blueTriangle",
+      "power": 1,
+      "potential": 3
+     },
+     {
+      "icon": "book",
+      "power": 3,
+      "potential": 2
+     }
+    ]
+   },
+   "reforged": {
+    "attackDice": 3,
+    "precision": 4,
+    "weaponPower": {
+     "n": 1,
+     "colour": "red",
+     "dice": [
+      "red"
+     ]
+    },
+    "bonusPower": {
+     "raw": 1,
+     "dice": [
+      "white"
+     ]
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Reach 2. Opening 3.\nHope 2. Reposition 3.",
+    "gates": [],
+    "triggers": [
+     {
+      "icon": "redX",
+      "power": 1,
+      "potential": 3
+     },
+     {
+      "icon": "greenCircle",
+      "potential": 1
+     },
+     {
+      "icon": "blueTriangle",
+      "power": 1,
+      "potential": 3
+     },
+     {
+      "icon": "book",
+      "power": 3,
+      "potential": 2
+     }
+    ]
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Siege Crossbow",
+   "code": "13A0502",
+   "reforgedName": "Double Crossbow",
+   "reforgedCode": null,
+   "traits": [
+    "Crossbow",
+    "Wood"
+   ],
+   "reforgedTraits": [
+    "Crossbow",
+    "Wood"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Devil",
+   "price": 20,
+   "reforgePrice": 19,
+   "side": {
+    "attackDice": 1,
+    "precision": 4,
+    "weaponPower": {
+     "n": 3,
+     "colour": "mixed",
+     "dice": [
+      "red",
+      "black",
+      "black"
+     ]
+    },
+    "bonusPower": {
+     "raw": 1
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Unwieldy.\nRanged 3-6. Break 4.\nCommit. Cumbersome.",
+    "gates": [],
+    "triggers": [
+     {
+      "icon": "redX",
+      "power": 3,
+      "potential": 3
+     },
+     {
+      "icon": "greenCircle",
+      "potential": 2
+     },
+     {
+      "icon": "blueTriangle",
+      "power": 4,
+      "potential": 2
+     }
+    ]
+   },
+   "reforged": {
+    "attackDice": 1,
+    "precision": 5,
+    "weaponPower": {
+     "n": 3,
+     "colour": "mixed",
+     "dice": [
+      "red",
+      "black",
+      "black"
+     ]
+    },
+    "bonusPower": {
+     "raw": 2
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Unwieldy.\nRanged 3-6.\nSunder 1. Break 3.\nCommit. Cumbersome.",
+    "gates": [],
+    "triggers": [
+     {
+      "icon": "redX",
+      "power": 3,
+      "potential": 3
+     },
+     {
+      "icon": "greenCircle",
+      "potential": 2
+     },
+     {
+      "icon": "blueTriangle",
+      "power": 4,
+      "potential": 2
+     }
+    ]
+   },
+   "unclear": [
+    "Three stacked power dice read as red + 2 black on both sides (dark-filled dice); second/third die colours are small."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Primordial Knives",
+   "code": "13A0504",
+   "reforgedName": "Vital Point Knives",
+   "reforgedCode": null,
+   "traits": [
+    "Knives",
+    "Metal",
+    "Pair"
+   ],
+   "reforgedTraits": [
+    "Knives",
+    "Metal",
+    "Pair"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Devil",
+   "price": 21,
+   "reforgePrice": 19,
+   "side": {
+    "attackDice": 3,
+    "precision": 1,
+    "weaponPower": {
+     "n": 1,
+     "colour": "black",
+     "dice": [
+      "black"
+     ]
+    },
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Provoke.\nBlack 2. Hug 2.",
+    "gates": [],
+    "triggers": [
+     {
+      "icon": "redX",
+      "potential": 2
+     },
+     {
+      "icon": "greenCircle",
+      "power": 5,
+      "potential": 2
+     },
+     {
+      "icon": "blueTriangle",
+      "power": 2,
+      "potential": 3
+     }
+    ]
+   },
+   "reforged": {
+    "attackDice": 3,
+    "precision": 3,
+    "weaponPower": {
+     "n": 1,
+     "colour": "black",
+     "dice": [
+      "black"
+     ]
+    },
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Deadly.\nProvoke. Black 2.\nOpening 1. Hug 4.",
+    "gates": [],
+    "triggers": [
+     {
+      "icon": "redX",
+      "potential": 2
+     },
+     {
+      "icon": "greenCircle",
+      "power": 5,
+      "potential": 2
+     },
+     {
+      "icon": "blueTriangle",
+      "power": 2,
+      "potential": 3
+     }
+    ]
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Hooked Blade",
+   "code": "13A0505",
+   "reforgedName": "Billhook",
+   "reforgedCode": null,
+   "traits": [
+    "Pole",
+    "Metal"
+   ],
+   "reforgedTraits": [
+    "Pole",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Devil",
+   "price": 18,
+   "reforgePrice": 19,
+   "side": {
+    "attackDice": 2,
+    "precision": 2,
+    "weaponPower": {
+     "n": 2,
+     "colour": "red",
+     "dice": [
+      "red",
+      "red"
+     ]
+    },
+    "bonusPower": {
+     "dice": [
+      "red"
+     ]
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "[MAJOR] +1 [Power].\nReach 2.\nOpening 3. Hope 1.\nAttack Re-roll 1.",
+    "gates": [
+     {
+      "gate": "MAJOR",
+      "text": "+1 [Power]."
+     }
+    ],
+    "triggers": []
+   },
+   "reforged": {
+    "attackDice": 2,
+    "precision": 4,
+    "weaponPower": {
+     "n": 2,
+     "colour": "red",
+     "dice": [
+      "red",
+      "red"
+     ]
+    },
+    "bonusPower": {
+     "dice": [
+      "black"
+     ]
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Reach 2.\nOpening 3. Hope 1.\nAttack Re-roll 1.",
+    "gates": [],
+    "triggers": []
+   },
+   "unclear": [
+    "Billhook bonus die is dark-filled (black); Hooked Blade bonus die is red."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Flail",
+   "code": "13A0506",
+   "reforgedName": "Three-Headed Flail",
+   "reforgedCode": null,
+   "traits": [
+    "Mace",
+    "Metal"
+   ],
+   "reforgedTraits": [
+    "Mace",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Devil",
+   "price": 20,
+   "reforgePrice": 19,
+   "side": {
+    "attackDice": 2,
+    "precision": 1,
+    "weaponPower": {
+     "n": 1,
+     "colour": "white",
+     "dice": [
+      "white"
+     ]
+    },
+    "bonusPower": {
+     "raw": 1
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Overbreak 2. Black 1.\nArmor-piercing 1.",
+    "gates": [],
+    "triggers": [
+     {
+      "icon": "redX",
+      "power": 5
+     },
+     {
+      "icon": "greenCircle",
+      "power": 2
+     },
+     {
+      "icon": "book",
+      "power": 5
+     }
+    ]
+   },
+   "reforged": {
+    "attackDice": 2,
+    "precision": 2,
+    "weaponPower": {
+     "n": 1,
+     "colour": "white",
+     "dice": [
+      "white"
+     ]
+    },
+    "bonusPower": {
+     "raw": 2
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Auto-break 1. Break 2.\nBlack 1. Armor-piercing 2.",
+    "gates": [],
+    "triggers": [
+     {
+      "icon": "redX",
+      "power": 5
+     },
+     {
+      "icon": "greenCircle",
+      "power": 2
+     },
+     {
+      "icon": "book",
+      "power": 5
+     }
+    ]
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Kite Shield",
+   "code": "13A0507",
+   "reforgedName": "Steel Fitted Kite Shield",
+   "reforgedCode": null,
+   "traits": [
+    "Shield",
+    "Wood"
+   ],
+   "reforgedTraits": [
+    "Shield",
+    "Wood",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Devil",
+   "price": 19,
+   "reforgePrice": 19,
+   "side": {
+    "attackDice": 2,
+    "precision": 2,
+    "weaponPower": {
+     "n": 1,
+     "colour": "black",
+     "dice": [
+      "black"
+     ]
+    },
+    "bonusPower": {
+     "raw": 1
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": {
+     "n": 1,
+     "dice": [
+      "black"
+     ]
+    },
+    "text": "Opening 1. Break 2.\n1 [Heat] Reinforce 1.",
+    "gates": [],
+    "triggers": []
+   },
+   "reforged": {
+    "attackDice": 2,
+    "precision": 2,
+    "weaponPower": {
+     "n": 1,
+     "colour": "black",
+     "dice": [
+      "black"
+     ]
+    },
+    "bonusPower": {
+     "raw": 2
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": {
+     "n": 1,
+     "dice": [
+      "black"
+     ]
+    },
+    "text": "Auto-break 1.\nOpening 1. Break 2.\n1 [Heat] Reinforce 2.\n[MAJOR] [Star] Second Chance.",
+    "gates": [
+     {
+      "gate": "MAJOR",
+      "text": "[Star] Second Chance."
+     }
+    ],
+    "triggers": []
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Brigandine",
+   "code": "13A0509",
+   "reforgedName": "Adorned Brigandine",
+   "reforgedCode": null,
+   "traits": [
+    "Armor",
+    "Metal",
+    "Leather"
+   ],
+   "reforgedTraits": [
+    "Armor",
+    "Metal",
+    "Leather"
+   ],
+   "type": "armor",
+   "hands": 0,
+   "tier": "Devil",
+   "price": 19,
+   "reforgePrice": 20,
+   "side": {
+    "attackDice": null,
+    "precision": null,
+    "weaponPower": null,
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": {
+     "n": 1,
+     "dice": [
+      "black"
+     ]
+    },
+    "text": "Poison Resilience 1.\nMotivate 1. Soak 1.",
+    "gates": [],
+    "triggers": []
+   },
+   "reforged": {
+    "attackDice": null,
+    "precision": null,
+    "weaponPower": null,
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": {
+     "n": 1,
+     "dice": [
+      "black"
+     ]
+    },
+    "text": "Poison Resilience 1.\nInspire 1. Motivate 1.\nSoak 2.",
+    "gates": [],
+    "triggers": []
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Scale Mail",
+   "code": "13A0508",
+   "reforgedName": "Reinforced Scale Mail",
+   "reforgedCode": null,
+   "traits": [
+    "Armor",
+    "Metal"
+   ],
+   "reforgedTraits": [
+    "Armor",
+    "Metal"
+   ],
+   "type": "armor",
+   "hands": 0,
+   "tier": "Devil",
+   "price": 19,
+   "reforgePrice": 19,
+   "side": {
+    "attackDice": null,
+    "precision": null,
+    "weaponPower": null,
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": 1,
+    "armorDice": null,
+    "text": "Deploy 1.\n2 [Heat] Soak 1.",
+    "gates": [],
+    "triggers": []
+   },
+   "reforged": {
+    "attackDice": null,
+    "precision": null,
+    "weaponPower": null,
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": 1,
+    "armorDice": null,
+    "text": "Deploy 2. Tumble.\n2 [Heat] Soak 2.",
+    "gates": [],
+    "triggers": []
+   },
+   "unclear": [
+    "Right-column stat is '+1' with a circle-and-arrow (Mars-like) icon, different from the helmet-with-swoosh icon used for Evasion on the leather armors; transcribed as Evasion Re-roll 1 per the legend but could be another stat (e.g. Movement)."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Great Cleaver",
+   "code": "13A0511",
+   "reforgedName": "Ringed Cleaver",
+   "reforgedCode": null,
+   "traits": [
+    "Sword",
+    "Metal"
+   ],
+   "reforgedTraits": [
+    "Sword",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Dragon",
+   "price": 26,
+   "reforgePrice": 25,
+   "side": {
+    "attackDice": 1,
+    "precision": 2,
+    "weaponPower": {
+     "n": 3,
+     "colour": "black",
+     "dice": [
+      "black",
+      "black",
+      "black"
+     ]
+    },
+    "bonusPower": {
+     "raw": 1
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Auto-black 1.\nClosing 2. Hope 1.\nPower Re-roll 1.",
+    "gates": [],
+    "triggers": [
+     {
+      "icon": "redX",
+      "power": 3,
+      "potential": 3
+     },
+     {
+      "icon": "greenCircle",
+      "power": 7,
+      "potential": 2
+     },
+     {
+      "icon": "book",
+      "power": 4
+     }
+    ]
+   },
+   "reforged": {
+    "attackDice": 1,
+    "precision": 3,
+    "weaponPower": {
+     "n": 3,
+     "colour": "black",
+     "dice": [
+      "black",
+      "black",
+      "black"
+     ]
+    },
+    "bonusPower": {
+     "raw": 1
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Auto-black 1.\nClosing 2. Hope 2.\nPower Re-roll 2.",
+    "gates": [],
+    "triggers": [
+     {
+      "icon": "redX",
+      "power": 3,
+      "potential": 3
+     },
+     {
+      "icon": "greenCircle",
+      "power": 7,
+      "potential": 2
+     },
+     {
+      "icon": "book",
+      "power": 4
+     }
+    ]
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Fire Gun",
+   "code": "13A0510",
+   "reforgedName": "Spark Gun",
+   "reforgedCode": null,
+   "traits": [
+    "Gun",
+    "Wood",
+    "Metal"
+   ],
+   "reforgedTraits": [
+    "Gun",
+    "Wood",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Dragon",
+   "price": 26,
+   "reforgePrice": 27,
+   "side": {
+    "attackDice": 3,
+    "precision": 3,
+    "weaponPower": {
+     "n": 1,
+     "colour": "red",
+     "dice": [
+      "red"
+     ]
+    },
+    "bonusPower": {
+     "dice": [
+      "black"
+     ]
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Ranged 3-5.\nFire 2. Black 1.\nCommit.\nCumbersome.\nFull hit: +2 [Power].",
+    "gates": [],
+    "triggers": []
+   },
+   "reforged": {
+    "attackDice": 3,
+    "precision": 3,
+    "weaponPower": {
+     "n": 1,
+     "colour": "red",
+     "dice": [
+      "red"
+     ]
+    },
+    "bonusPower": {
+     "dice": [
+      "white"
+     ]
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Ranged 3-5.\nAuto-break 1.\nFire 2. Black 1.\nSunder 1. Commit.\nCumbersome.\nFull hit: +2 [Power].",
+    "gates": [],
+    "triggers": []
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Dormant Luxfire Staff",
+   "code": "13A0512",
+   "reforgedName": "Awakened Luxfire Staff",
+   "reforgedCode": null,
+   "traits": [
+    "Catalyst",
+    "Magic",
+    "Wood"
+   ],
+   "reforgedTraits": [
+    "Catalyst",
+    "Magic",
+    "Wood"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Dragon",
+   "price": 27,
+   "reforgePrice": 25,
+   "side": {
+    "attackDice": 2,
+    "precision": 5,
+    "weaponPower": {
+     "n": 1,
+     "colour": "white",
+     "dice": [
+      "white"
+     ]
+    },
+    "bonusPower": {
+     "raw": 1
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "[MAJOR] +1 [Power].\nUnwieldy.\nRanged 2-5.\nCantrip 3. Spell 1.\nReposition 2. Commit.",
+    "gates": [
+     {
+      "gate": "MAJOR",
+      "text": "+1 [Power]."
+     }
+    ],
+    "triggers": [
+     {
+      "icon": "redX",
+      "potential": 2
+     },
+     {
+      "icon": "greenCircle",
+      "power": 2,
+      "potential": 3
+     },
+     {
+      "icon": "blueTriangle",
+      "power": 4,
+      "potential": 2
+     },
+     {
+      "icon": "book",
+      "power": 6
+     }
+    ]
+   },
+   "reforged": {
+    "attackDice": 2,
+    "precision": 6,
+    "weaponPower": {
+     "n": 1,
+     "colour": "white",
+     "dice": [
+      "white"
+     ]
+    },
+    "bonusPower": {
+     "raw": 1,
+     "dice": [
+      "red"
+     ]
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Unwieldy.\nRanged 2-5.\nCantrip 2. Spell 3.\nReposition 2. Commit.",
+    "gates": [],
+    "triggers": [
+     {
+      "icon": "redX",
+      "potential": 2
+     },
+     {
+      "icon": "greenCircle",
+      "power": 2,
+      "potential": 3
+     },
+     {
+      "icon": "blueTriangle",
+      "power": 4,
+      "potential": 2
+     },
+     {
+      "icon": "book",
+      "power": 6
+     }
+    ]
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Pole Hammer",
+   "code": "13A0513",
+   "reforgedName": "Pronged Pole Hammer",
+   "reforgedCode": null,
+   "traits": [
+    "Hammer",
+    "Polearm",
+    "Metal"
+   ],
+   "reforgedTraits": [
+    "Hammer",
+    "Polearm",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Dragon",
+   "price": 27,
+   "reforgePrice": 25,
+   "side": {
+    "attackDice": 1,
+    "precision": 3,
+    "weaponPower": {
+     "n": 3,
+     "colour": "mixed",
+     "dice": [
+      "red",
+      "black",
+      "white"
+     ]
+    },
+    "bonusPower": {
+     "raw": 2
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Unwieldy.\nReach 2. Overbreak 4.\nHope 1. Armor-piercing 2.\nCumbersome.",
+    "gates": [],
+    "triggers": [
+     {
+      "icon": "redX",
+      "power": 1,
+      "potential": 4
+     },
+     {
+      "icon": "greenCircle",
+      "power": 2,
+      "potential": 1
+     },
+     {
+      "icon": "blueTriangle",
+      "power": 2,
+      "potential": 3
+     },
+     {
+      "icon": "book",
+      "power": 2,
+      "potential": 4
+     }
+    ]
+   },
+   "reforged": {
+    "attackDice": 1,
+    "precision": 4,
+    "weaponPower": {
+     "n": 3,
+     "colour": "mixed",
+     "dice": [
+      "red",
+      "white",
+      "white"
+     ]
+    },
+    "bonusPower": {
+     "raw": 2
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Reach 2.\nOverbreak 4. Hope 1.\nArmor-piercing 2.\nReposition 3. Cumbersome.",
+    "gates": [],
+    "triggers": [
+     {
+      "icon": "redX",
+      "power": 1,
+      "potential": 4
+     },
+     {
+      "icon": "greenCircle",
+      "power": 2,
+      "potential": 1
+     },
+     {
+      "icon": "blueTriangle",
+      "power": 2,
+      "potential": 3
+     },
+     {
+      "icon": "book",
+      "power": 2,
+      "potential": 4
+     }
+    ]
+   },
+   "unclear": [
+    "Three stacked dice: A side read as red + black + white, B side as red + white + white (small icons)."
+   ],
+   "ops": null
+  },
+  {
+   "name": "Pale-Axe",
+   "code": "13A0514",
+   "reforgedName": "Bardiche",
+   "reforgedCode": null,
+   "traits": [
+    "Axe",
+    "Metal"
+   ],
+   "reforgedTraits": [
+    "Axe",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Dragon",
+   "price": 25,
+   "reforgePrice": 25,
+   "side": {
+    "attackDice": 1,
+    "precision": 3,
+    "weaponPower": {
+     "n": 3,
+     "colour": "mixed",
+     "dice": [
+      "black",
+      "red",
+      "red"
+     ]
+    },
+    "bonusPower": {
+     "raw": 2
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Deadly.\nClosing 2. Black 2.\n[JUDICIUM] Closing 3 instead. Black 3 instead.",
+    "gates": [
+     {
+      "gate": "JUDICIUM",
+      "text": "Closing 3 instead. Black 3 instead."
+     }
+    ],
+    "triggers": [
+     {
+      "icon": "redX",
+      "power": 4
+     },
+     {
+      "icon": "greenCircle",
+      "power": 4,
+      "potential": 3
+     },
+     {
+      "icon": "blueTriangle",
+      "power": 5
+     }
+    ]
+   },
+   "reforged": {
+    "attackDice": 1,
+    "precision": 4,
+    "weaponPower": {
+     "n": 3,
+     "colour": "mixed",
+     "dice": [
+      "white",
+      "red",
+      "red"
+     ]
+    },
+    "bonusPower": {
+     "raw": 2
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Deadly. Auto-break 1.\nClosing 2. Black 2.\n[JUDICIUM] Closing 3 instead. Black 3 instead.",
+    "gates": [
+     {
+      "gate": "JUDICIUM",
+      "text": "Closing 3 instead. Black 3 instead."
+     }
+    ],
+    "triggers": [
+     {
+      "icon": "redX",
+      "power": 4
+     },
+     {
+      "icon": "greenCircle",
+      "power": 4,
+      "potential": 3
+     },
+     {
+      "icon": "blueTriangle",
+      "power": 5
+     }
+    ]
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Plate Armor",
+   "code": "13A0517",
+   "reforgedName": "Full Plate",
+   "reforgedCode": null,
+   "traits": [
+    "Armor",
+    "Metal"
+   ],
+   "reforgedTraits": [
+    "Armor",
+    "Metal"
+   ],
+   "type": "armor",
+   "hands": 0,
+   "tier": "Dragon",
+   "price": 25,
+   "reforgePrice": 26,
+   "side": {
+    "attackDice": null,
+    "precision": null,
+    "weaponPower": null,
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": {
+     "n": 1,
+     "dice": [
+      "white"
+     ]
+    },
+    "text": "Poison Resilience 2.\nRocksteady.\n1 [Heat] [Exhaust] Second Chance.",
+    "gates": [],
+    "triggers": []
+   },
+   "reforged": {
+    "attackDice": null,
+    "precision": null,
+    "weaponPower": null,
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": {
+     "n": 2,
+     "dice": [
+      "white",
+      "white"
+     ]
+    },
+    "text": "Poison Resilience 2.\nRocksteady. Armor Re-roll 1.\n1 [Heat] [Exhaust] Superior Chance.",
+    "gates": [],
+    "triggers": []
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Blackened Chestplate",
+   "code": "13A0516",
+   "reforgedName": "Blackened Armor",
+   "reforgedCode": null,
+   "traits": [
+    "Armor",
+    "Metal",
+    "Cursed"
+   ],
+   "reforgedTraits": [
+    "Armor",
+    "Metal",
+    "Cursed"
+   ],
+   "type": "armor",
+   "hands": 0,
+   "tier": "Dragon",
+   "price": 25,
+   "reforgePrice": 27,
+   "side": {
+    "attackDice": null,
+    "precision": null,
+    "weaponPower": null,
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Bane Limit +2.\n[Exhaust] Soak 3.\n1 [Heat] [Exhaust] Advanced Defy.\n[JUDICIUM] [Star] Second Chance.",
+    "gates": [
+     {
+      "gate": "JUDICIUM",
+      "text": "[Star] Second Chance."
+     }
+    ],
+    "triggers": []
+   },
+   "reforged": {
+    "attackDice": null,
+    "precision": null,
+    "weaponPower": null,
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": null,
+    "text": "Bane Limit +2. Soak 3.\n1 [Heat] [Exhaust] Advanced Defy.\n[JUDICIUM] [Star] Superior Chance.",
+    "gates": [
+     {
+      "gate": "JUDICIUM",
+      "text": "[Star] Superior Chance."
+     }
+    ],
+    "triggers": []
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "name": "Tower Shield",
+   "code": "13A0515",
+   "reforgedName": "Armored Tower Shield",
+   "reforgedCode": null,
+   "traits": [
+    "Shield",
+    "Wood"
+   ],
+   "reforgedTraits": [
+    "Shield",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Dragon",
+   "price": 26,
+   "reforgePrice": 26,
+   "side": {
+    "attackDice": 3,
+    "precision": 4,
+    "weaponPower": {
+     "n": 1,
+     "colour": "black",
+     "dice": [
+      "black"
+     ]
+    },
+    "bonusPower": null,
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": {
+     "n": 2,
+     "dice": [
+      "red",
+      "black"
+     ]
+    },
+    "text": "Stalwart.\nAuto-break 1.\nOpening 4.\n2 [Heat] [Exhaust] Advanced Block.",
+    "gates": [],
+    "triggers": []
+   },
+   "reforged": {
+    "attackDice": 3,
+    "precision": 5,
+    "weaponPower": {
+     "n": 1,
+     "colour": "black",
+     "dice": [
+      "black"
+     ]
+    },
+    "bonusPower": {
+     "raw": 1
+    },
+    "evasion": null,
+    "evasionReroll": null,
+    "armorDice": {
+     "n": 2,
+     "dice": [
+      "red",
+      "black"
+     ]
+    },
+    "text": "Stalwart.\nAuto-break 1.\nOpening 4. Hope 1.\n2 [Heat] [Exhaust] Advanced Block.",
+    "gates": [],
+    "triggers": []
+   },
+   "unclear": [],
+   "ops": null
+  }
+ ]
+}

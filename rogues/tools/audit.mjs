@@ -5,7 +5,7 @@ import path from 'path';
 const rd = p => JSON.parse(fs.readFileSync(p, 'utf8'));
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const T = rd('data/rosegraal/monster_tables.json'), M = rd('data/rosegraal/map.json'), R = rd('data/rosegraal/rewards.json'), meta = rd('data/meta.json');
-const E = rd('data/monsters/eggknight.json'); const MO = rd('data/decks/mortis.json'), CO = rd('data/decks/conditions.json'), TE = rd('data/terrain.json'), OP = rd('data/outpost/principality.json');
+const E = rd('data/monsters/eggknight.json'); const MG = rd('data/gear/merchant_principality.json'), ME = rd('data/decks/mercenaries.json'), LO = rd('data/decks/loot.json'); const MO = rd('data/decks/mortis.json'), CO = rd('data/decks/conditions.json'), TE = rd('data/terrain.json'), OP = rd('data/outpost/principality.json');
 const K = rd('data/knights/fleischritter.json'), PA = rd('data/knights/peril_arcs.json'), G = rd('data/gear/gear.json'), DICE = rd('data/components/dice.json'), BOARD = rd('data/components/board.json');
 const unc = arr => arr && arr.length ? `<div class="warn small">⚠ ${arr.map(esc).join(' · ')}</div>` : '';
 const sec = [];
@@ -116,12 +116,22 @@ sec.push(`<section id="engine"><h2>9. 전투 엔진 — 규칙 ↔ 구현 대응
 <tr><td>미구현 / 수동</td><td>—</td><td>Meat Puppet, Curse Save(Curse Level 0 가정), Squire 라인, Mercenary, Saint Incarnation(캠페인 레이어), 플레이어 선택이 필요한 동률 Targeting</td></tr>
 </table></section>`);
 
+// 10. Shop / mercenaries / loot
+const sideTxt = x => `${x.attackDice != null ? `⚔${x.attackDice} +${x.precision} ` : ''}${x.weaponPower ? (x.weaponPower.dice || [x.weaponPower.colour]).map(c => c[0]).join('') + 'die ' : ''}${x.bonusPower ? 'bonus ' + esc(JSON.stringify(x.bonusPower)) + ' ' : ''}${x.evasion != null ? 'Eva+' + x.evasion + ' ' : ''}${x.evasionReroll ? 'ER' + x.evasionReroll + ' ' : ''}${x.armorDice ? 'Armor ' + esc(JSON.stringify(x.armorDice.dice || x.armorDice)) + ' ' : ''}<br>${esc(x.text).replace(/\n/g, '<br>')}${x.triggers && x.triggers.length ? '<br><span class="small">' + x.triggers.map(t => `${t.icon}: ${t.power ? '+' + t.power + '⚔ ' : ''}${t.potential ? '+' + t.potential + '✦' : ''}`).join(' · ') + '</span>' : ''}`;
+sec.push(`<section id="shop"><h2>10. Merchant Gear · Mercenaries · Loot</h2>
+<p class="impl">데이터: <code>data/gear/merchant_principality.json</code>(42×2면), <code>data/decks/mercenaries.json</code>(17), <code>data/decks/loot.json</code>(16) · 구현: Outpost(구매·재련·고용), Aftermath Loot 분배 → <code>campaign.js</code>(예정) · 테스트: <code>test/shop.mjs</code></p>
+<p class="small">주사위 아이콘 색: 빨강 = red, 어두운 큐브 = black, 밝은 큐브 = white (2026-11-02 재판독; 기사 보상 Gear의 Cleaver Sword·Reclaimed Spear·Horn Bow·Kite Shield·Lightgrasp·Camaraderie Blades·Uncompromising Justice·Chipped Axe를 black으로 정정 <span class="warn">[확인]</span>).</p>
+<table><tr><th>이름 → 재련</th><th>티어 / 가격</th><th>종류</th><th>일반 면</th><th>재련 면</th></tr>${MG.gear.map(g => `<tr><td><b>${esc(g.name)}</b><br>→ ${esc(g.reforgedName)}<br><span class="small">${esc(g.traits.join(', '))}</span></td><td>${g.tier}<br>${g.price}G / 재련 ${g.reforgePrice}G</td><td>${g.type}${g.hands ? ' ' + g.hands + 'H' : ''}</td><td>${sideTxt(g.side)}</td><td>${sideTxt(g.reforged)}${unc(g.unclear)}</td></tr>`).join('')}</table>
+<h3>Mercenaries (${ME.mercenaries.length})</h3><table><tr><th>클래스</th><th>Lv</th><th>비용</th><th>Side A — Clash</th><th>Side B — Clash</th></tr>${ME.mercenaries.map(m => `<tr><td><b>${esc(m.class)}</b>${m.kingdom ? ' <span class="small">(' + m.kingdom + ')</span>' : ''}</td><td>${m.level ?? '-'}</td><td>${m.cost}G</td><td>${esc(m.sideA.clash)}${(m.sideA.gates || []).filter(g => g.column !== 'delve').map(g => `<br><span class="warn">[${g.gate}]</span> ${esc(g.text)}`).join('')}</td><td>${esc(m.sideB.clash)}${(m.sideB.gates || []).filter(g => g.column !== 'delve').map(g => `<br><span class="warn">[${g.gate}]</span> ${esc(g.text)}`).join('')}${unc(m.unclear)}</td></tr>`).join('')}</table>
+<p class="small">Delve 능력은 Rogue's Path에서 사용하지 않음(데이터에는 보존).</p>
+<h3>Loot 미니카드 (${LO.cards.length})</h3><table><tr><th>종류</th><th>장수</th><th>Mob</th><th>Vassal</th><th>King</th><th>Devil</th><th>Dragon</th><th>교환</th></tr>${Object.keys(LO.types).map(t => { const cs = LO.cards.filter(c => c.type === t); const g = cs[0].gold; return `<tr><td><b>${t}</b></td><td>${cs.length}</td>${['Mob', 'Vassal', 'King', 'Devil', 'Dragon'].map(k => `<td>${g[k]}G</td>`).join('')}<td class="small">${esc(LO.types[t])}</td></tr>`; }).join('')}</table></section>`);
+
 const html = `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>KF Rogue's Path — 데이터·규칙 오딧</title>
 <style>body{margin:0;padding:16px;font:14px/1.5 system-ui,sans-serif;background:#1a1714;color:#e8dcc8;max-width:1400px}h1{color:#c9a85a;font-size:22px}h2{color:#c9a85a;margin-top:28px;border-bottom:1px solid #3a3128}h3{color:#d9c89a;margin:16px 0 6px}
 table{border-collapse:collapse;width:100%;font-size:13px}td,th{border:1px solid #3a3128;padding:4px 6px;vertical-align:top;text-align:left}th{background:#26211b}code{background:#2a241d;padding:1px 5px;border-radius:4px;color:#f0d9a0}
 .impl{background:#26211b;padding:8px 10px;border-left:3px solid #c9a85a;border-radius:4px}.small{font-size:12px;color:#998b76}.warn{color:#d9a441}details summary{cursor:pointer;color:#c9a85a}table.rw td{min-width:120px}nav a{color:#c9a85a;margin-right:12px}</style></head><body>
 <h1>Kingdoms Forlorn — Rogue's Path: 데이터·규칙 오딧</h1><p class="small">v${meta.version} · 생성 ${new Date().toISOString().slice(0, 16).replace('T', ' ')} UTC · 각 섹션: 전사 데이터 ↔ 엔진 구현 ↔ 테스트. 전사 불확실 항목은 노란색.</p>
-<nav><a href="#monsters">몬스터 표</a><a href="#map">Rosegraal 지도</a><a href="#rewards">Rewards</a><a href="#components">구성물</a><a href="#fleischritter">Fleischritter</a><a href="#gear">Gear</a><a href="#eggknight">Eggknight</a><a href="#decks">Mortis·Condition·Terrain·Outpost</a><a href="#engine">엔진 대응</a></nav>
+<nav><a href="#monsters">몬스터 표</a><a href="#map">Rosegraal 지도</a><a href="#rewards">Rewards</a><a href="#components">구성물</a><a href="#fleischritter">Fleischritter</a><a href="#gear">Gear</a><a href="#eggknight">Eggknight</a><a href="#decks">Mortis·Condition·Terrain·Outpost</a><a href="#engine">엔진 대응</a><a href="#shop">상점·용병·Loot</a></nav>
 ${sec.join('\n')}
 </body></html>`;
 fs.mkdirSync('docs/audit', { recursive: true }); fs.writeFileSync('docs/audit/index.html', html);

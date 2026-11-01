@@ -1,0 +1,482 @@
+{
+ "_source": "Mercenary cards (17): Bard/Healer/Mage/Rogue/Warrior L1–3 + Swamp Strider (Sunken) + Ruin Stalker (Principality). Side A → flip on use → Side B → discard on use (rulebook p.63). Rogue's Path: Clash abilities only.",
+ "mercenaries": [
+  {
+   "class": "Bard",
+   "level": 1,
+   "cost": 3,
+   "codeA": "20A0987",
+   "codeB": null,
+   "kingdom": null,
+   "sideA": {
+    "clash": "Each Knight rolls their Knight Power die and loses -1 [Heat] for every symbol they rolled. Squires lose -1 [Heat].",
+    "delve": "One Knight resets their [Heat].",
+    "gates": [
+     {
+      "gate": "DEVIL",
+      "column": "clash",
+      "text": "Squires lose -3 [Heat] instead."
+     }
+    ],
+    "resolution": "Flip this card to the other side."
+   },
+   "sideB": {
+    "clash": "Each Knight rolls their Knight Power die and loses -1 [Heat] for every symbol they rolled. Squires lose -1 [Heat].",
+    "delve": "One Knight resets their [Heat].",
+    "gates": [
+     {
+      "gate": "DEVIL",
+      "column": "clash",
+      "text": "Squires lose -3 [Heat] instead."
+     }
+    ],
+    "resolution": "Discard this card."
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "class": "Bard",
+   "level": 2,
+   "cost": 4,
+   "codeA": "20A0988",
+   "codeB": null,
+   "kingdom": null,
+   "sideA": {
+    "clash": "One Knight discards a Mind Condition card or gains +1 [Passion].",
+    "delve": "When one or more Knights are about to perform a Virtue test, each of them rolls their Knight Power die and adds +1 to their result for every symbol they rolled.",
+    "gates": [],
+    "resolution": "Flip this card to the other side."
+   },
+   "sideB": {
+    "clash": "One Knight discards a Mind Condition card and/or gains +1 [Passion].",
+    "delve": "When one or more Knights are about to perform a Virtue test, each of them rolls their Knight Power die and adds +1 to their result for every symbol they rolled.",
+    "gates": [],
+    "resolution": "Discard this card."
+   },
+   "unclear": [
+    "codeA blurry; 20A0988 inferred from numbering sequence (Bard 987-989)"
+   ],
+   "ops": null
+  },
+  {
+   "class": "Bard",
+   "level": 3,
+   "cost": 7,
+   "codeA": "20A0989",
+   "codeB": null,
+   "kingdom": null,
+   "sideA": {
+    "clash": "One Knight gains the Courage Condition card.",
+    "delve": "One Knight resets their [Heat].",
+    "gates": [],
+    "resolution": "Flip this card to the other side."
+   },
+   "sideB": {
+    "clash": "One Knight gains the Courage Condition card and +1 [Passion].",
+    "delve": "Each Knight reduces their current [Heat] by half (rounding up).",
+    "gates": [],
+    "resolution": "Discard this card."
+   },
+   "unclear": [
+    "codeA blurry; 20A0989 inferred from numbering sequence (Bard 987-989)"
+   ],
+   "ops": null
+  },
+  {
+   "class": "Healer",
+   "level": 1,
+   "cost": 2,
+   "codeA": "20A0981",
+   "codeB": null,
+   "kingdom": null,
+   "sideA": {
+    "clash": "One Knight rolls their Knight Power die and gains +1 [Vigor] or discards 1 Condition token for every symbol they rolled. Squires gain +1 [Vigor].",
+    "delve": "Each Knight may roll a [Red Power die], and gain +2 [Vigor] for every [Power] symbol and +1 [Vigor] for every [Potential] symbol they rolled. Squires gain +2 [Vigor].",
+    "gates": [
+     {
+      "gate": "DEVIL",
+      "column": "clash",
+      "text": "Squires gain +3 [Vigor] instead."
+     },
+     {
+      "gate": "DEVIL",
+      "column": "delve",
+      "text": "Squires gain +4 [Vigor] instead."
+     }
+    ],
+    "resolution": "Flip this card to the other side."
+   },
+   "sideB": {
+    "clash": "One Knight rolls their Knight Power die and gains +1 [Vigor] and/or discards 1 Condition token for every symbol they rolled. Squires gain +1 [Vigor].",
+    "delve": "Each Knight may roll a [Red Power die] and gain +2 [Vigor] for every [Power] symbol and +1 [Vigor] for every [Potential] symbol they rolled. Squires gain +2 [Vigor].",
+    "gates": [
+     {
+      "gate": "DEVIL",
+      "column": "clash",
+      "text": "Squires gain +3 [Vigor] instead."
+     },
+     {
+      "gate": "DEVIL",
+      "column": "delve",
+      "text": "Squires gain +4 [Vigor] instead."
+     }
+    ],
+    "resolution": "Discard this card."
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "class": "Healer",
+   "level": 2,
+   "cost": 4,
+   "codeA": "20A0982",
+   "codeB": null,
+   "kingdom": null,
+   "sideA": {
+    "clash": "One Knight discards a Body Condition card.",
+    "delve": "One Knight rolls their Knight Power die twice. They gain +2 [Vigor] for every [Power] symbol and lose -1 [Heat] for every [Potential] symbol.",
+    "gates": [],
+    "resolution": "Flip this card to the other side."
+   },
+   "sideB": {
+    "clash": "One Knight discards a Body Condition card.",
+    "delve": "One Knight rolls their Knight Power die twice. They gain +2 [Vigor] for every [Power] symbol and lose -1 [Heat] for every [Potential] symbol.",
+    "gates": [],
+    "resolution": "Discard this card."
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "class": "Healer",
+   "level": 3,
+   "cost": 8,
+   "codeA": "20A0983",
+   "codeB": null,
+   "kingdom": null,
+   "sideA": {
+    "clash": "When your [Vigor] is about to drop to 0 or below, it remains at 1 instead.",
+    "delve": "One Knight resets their [Vigor] and discards all Body Condition cards they have.",
+    "gates": [],
+    "resolution": "Flip this card to the other side."
+   },
+   "sideB": {
+    "clash": "When you are about to draw a Judicium, remove any additional cards (including Massive Peril) from the Judicium deck. These cards may be later added again according to Massive Peril rules.",
+    "delve": "One Knight resets their [Vigor] and discards all Body Condition cards they have.",
+    "gates": [],
+    "resolution": "Discard this card."
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "class": "Mage",
+   "level": 1,
+   "cost": 3,
+   "codeA": "20A0978",
+   "codeB": null,
+   "kingdom": null,
+   "sideA": {
+    "clash": "Place one Knight on an empty space up to 2 spaces away from their current position.",
+    "delve": "Place the Party Marker on an adjacent explored Kingdom tile.",
+    "gates": [],
+    "resolution": "Flip this card to the other side."
+   },
+   "sideB": {
+    "clash": "[Rampant beast glyph] Place one Knight on an empty space up to 2 spaces away from their current position.",
+    "delve": "Place the Party Marker on an adjacent explored Kingdom tile.",
+    "gates": [],
+    "resolution": "Discard this card."
+   },
+   "unclear": [
+    "codeA blurry; 20A0978 inferred from numbering sequence (Mage 978-980)",
+    "sideB clash begins with a small grey heraldic glyph (rampant beast/griffin) before 'Place one Knight' — meaning unknown, possibly a timing/keyword icon"
+   ],
+   "ops": null
+  },
+  {
+   "class": "Mage",
+   "level": 2,
+   "cost": 5,
+   "codeA": "20A0979",
+   "codeB": null,
+   "kingdom": null,
+   "sideA": {
+    "clash": "Two Knights on the Clash Board switch places.",
+    "delve": "Place the Party Marker on any explored Kingdom tile in your current District.",
+    "gates": [],
+    "resolution": "Flip this card to the other side."
+   },
+   "sideB": {
+    "clash": "[Rampant beast glyph] Two Knights on the Clash Board switch places.",
+    "delve": "Place the Party Marker on any explored Kingdom tile in your current District.",
+    "gates": [],
+    "resolution": "Discard this card."
+   },
+   "unclear": [
+    "codeA blurry; 20A0979 inferred from numbering sequence",
+    "sideB clash begins with the same unidentified heraldic glyph as Mage L1 side B"
+   ],
+   "ops": null
+  },
+  {
+   "class": "Mage",
+   "level": 3,
+   "cost": 9,
+   "codeA": "20A0980",
+   "codeB": null,
+   "kingdom": null,
+   "sideA": {
+    "clash": "Place one Knight on any empty space on the Clash Board.",
+    "delve": "Place the Party Marker on any explored Point of Interest [Point of Interest].",
+    "gates": [],
+    "resolution": "Flip this card to the other side."
+   },
+   "sideB": {
+    "clash": "[Rampant beast glyph] Place one Knight on an empty space closest to the center of the Clash Board.",
+    "delve": "Place the Party Marker on any explored Point of Interest [Point of Interest].",
+    "gates": [],
+    "resolution": "Discard this card."
+   },
+   "unclear": [
+    "codeA blurry; 20A0980 inferred from numbering sequence",
+    "sideB clash begins with the same unidentified heraldic glyph as Mage L1 side B"
+   ],
+   "ops": null
+  },
+  {
+   "class": "Rogue",
+   "level": 1,
+   "cost": 3,
+   "codeA": "20A0984",
+   "codeB": null,
+   "kingdom": null,
+   "sideA": {
+    "clash": "Look at the top BP card, you may put it at the bottom of the deck. If fighting against Mobs, look at a chosen BP card on the Mob track instead.",
+    "delve": "After you draw an Exploration card, ignore it and repeat the draw.",
+    "gates": [],
+    "resolution": "Flip this card to the other side."
+   },
+   "sideB": {
+    "clash": "One Knight immediately Hides (even if in front of a Monster). As long as they are Hidden, the next time they would be a valid Target for a Targeting line of an Attack, you may skip that Targeting line.",
+    "delve": "Ignore an Encounter, place the corresponding Monster token on the current Kingdom tile, and immediately Backtrack to the previous tile.",
+    "gates": [],
+    "resolution": "Discard this card."
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "class": "Rogue",
+   "level": 2,
+   "cost": 5,
+   "codeA": "20A0985",
+   "codeB": null,
+   "kingdom": null,
+   "sideA": {
+    "clash": "When you fail to Wound, place the attacked BP card back on top of the BP deck instead of discarding it. If fighting against Mobs, after resolving Fail Responses, flip the attacked BP card face down instead.",
+    "delve": "When you are about to draw an Exploration card, draw 2 Exploration cards instead. Choose one to resolve and discard the other.",
+    "gates": [],
+    "resolution": "Flip this card to the other side."
+   },
+   "sideB": {
+    "clash": "One Knight immediately Hides (even if in front of a Monster). As long as they are Hidden, they cannot become the Target of an Attack.",
+    "delve": "Ignore an Encounter or Ambush, place the corresponding Monster token on the current Kingdom tile, and immediately Backtrack to the previous tile.",
+    "gates": [],
+    "resolution": "Discard this card."
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "class": "Rogue",
+   "level": 3,
+   "cost": 9,
+   "codeA": "20A0986",
+   "codeB": null,
+   "kingdom": null,
+   "sideA": {
+    "clash": "During the Determine BP card step, choose a Level of a BP you want to attack. Perform BP Suppress then find the first BP of the chosen Level. Then, shuffle the BP deck. If fighting against Mobs, flip all BP cards on the Mob track face down instead.",
+    "delve": "When you are about to draw an Exploration card, draw 3 Exploration cards instead. Choose one to resolve, discard another one, and put the last one back on top of the deck.",
+    "gates": [],
+    "resolution": "Flip this card to the other side."
+   },
+   "sideB": {
+    "clash": "When a Knight is about to become the Target of an Attack, they immediately Hide (even if in front of a Monster), and another chosen Knight in range of that Attack becomes the Target instead.",
+    "delve": "Ignore an Encounter or Ambush.",
+    "gates": [],
+    "resolution": "Discard this card."
+   },
+   "unclear": [],
+   "ops": null
+  },
+  {
+   "class": "Warrior",
+   "level": 1,
+   "cost": 2,
+   "codeA": "20A0975",
+   "codeB": null,
+   "kingdom": null,
+   "sideA": {
+    "clash": "Re-roll your Armor Roll (all dice) or gain Power Re-roll 2.",
+    "delve": "Reduce your [Vigor] loss by up to 3.",
+    "gates": [],
+    "resolution": "Flip this card to the other side."
+   },
+   "sideB": {
+    "clash": "When you fully miss an Attack, don't clear the Knight Pool.",
+    "delve": "During an Encounter: When you are about to attack, place 1 Break [Break] token in the Knight Pool.",
+    "gates": [],
+    "resolution": "Discard this card."
+   },
+   "unclear": [
+    "codeA blurry; 20A0975 inferred from numbering sequence (Warrior 975-977)"
+   ],
+   "ops": null
+  },
+  {
+   "class": "Warrior",
+   "level": 2,
+   "cost": 5,
+   "codeA": "20A0976",
+   "codeB": null,
+   "kingdom": null,
+   "sideA": {
+    "clash": "When you are about to perform an Armor Roll, add your Knight Power die to the Armor dice Pool twice.",
+    "delve": "Ignore a Failure or Partial Success effect of an Encounter.",
+    "gates": [],
+    "resolution": "Flip this card to the other side."
+   },
+   "sideB": {
+    "clash": "When you fully miss an Attack, declare that you have hit with all dice instead. Don't add your Knight Power die to the Power Pool.",
+    "delve": "During an Encounter: When you are about to perform a Power Roll, gain Power Re-roll 1.",
+    "gates": [],
+    "resolution": "Discard this card."
+   },
+   "unclear": [
+    "codeA blurry; 20A0976 inferred from numbering sequence"
+   ],
+   "ops": null
+  },
+  {
+   "class": "Warrior",
+   "level": 3,
+   "cost": 8,
+   "codeA": "20A0977",
+   "codeB": null,
+   "kingdom": null,
+   "sideA": {
+    "clash": "When you are about to lose [Vigor] from a Monster Attack, reduce that loss by half (rounding up).",
+    "delve": "When you are about to die, ignore it and set your [Vigor] to 1 instead.",
+    "gates": [],
+    "resolution": "Flip this card to the other side."
+   },
+   "sideB": {
+    "clash": "When you attack, before the Power Roll, double your Power Pool.",
+    "delve": "During an Encounter: When a Knight fails to Scrape, do not clear the Encounter Pool, that Knight immediately performs an Attack Action again.",
+    "gates": [],
+    "resolution": "Discard this card."
+   },
+   "unclear": [
+    "codeA blurry; 20A0977 inferred from numbering sequence"
+   ],
+   "ops": null
+  },
+  {
+   "class": "Swamp Strider",
+   "level": null,
+   "levelLabel": "Sunken Kingdom",
+   "cost": 3,
+   "codeA": "20A0991",
+   "codeB": null,
+   "kingdom": "sunken",
+   "sideA": {
+    "clash": "Lifeline.",
+    "delve": "During the Travel step, ignore Flood [Flood] tokens. As long as this Mercenary is recruited, during the Travel step, you may move through Shortcuts.",
+    "gates": [
+     {
+      "gate": "KING",
+      "column": "clash",
+      "text": "During voluntary movement, treat connected Swamp Terrain tiles as 1 space (ignore the dice roll)."
+     },
+     {
+      "gate": "KING",
+      "column": "delve",
+      "text": "Additionally, discard 1 Surge [Surge] token."
+     }
+    ],
+    "resolution": "Flip this card to the other side."
+   },
+   "sideB": {
+    "clash": "Lifeline.",
+    "delve": "During the Travel step, ignore Flood [Flood] tokens. As long as this Mercenary is recruited, during the Travel step, you may move through Shortcuts.",
+    "gates": [
+     {
+      "gate": "KING",
+      "column": "clash",
+      "text": "During voluntary movement, treat connected Swamp Terrain tiles as 1 space (ignore the dice roll)."
+     },
+     {
+      "gate": "KING",
+      "column": "delve",
+      "text": "Additionally, discard 1 Surge [Surge] token."
+     }
+    ],
+    "resolution": "Discard this card."
+   },
+   "unclear": [
+    "codeA blurry; reads as 20A0991 (Ruin Stalker appears to be 20A0990)"
+   ],
+   "ops": null
+  },
+  {
+   "class": "Ruin Stalker",
+   "level": null,
+   "levelLabel": "Principality of Stone",
+   "cost": 3,
+   "codeA": "20A0990",
+   "codeB": null,
+   "kingdom": "principality",
+   "sideA": {
+    "clash": "Remove 1 Rubble Terrain tile from the Clash Board.",
+    "delve": "During the Travel step, ignore Single Panzergates [Panzergate]. As long as this Mercenary is recruited, during the Travel step, you may move through Shortcuts.",
+    "gates": [
+     {
+      "gate": "KING",
+      "column": "clash",
+      "text": "During voluntary movement, treat connected Rubble Terrain tiles as 1 space."
+     },
+     {
+      "gate": "KING",
+      "column": "delve",
+      "text": "Discard a Single Panzergate [Panzergate] token from any path."
+     }
+    ],
+    "resolution": "Flip this card to the other side."
+   },
+   "sideB": {
+    "clash": "Remove 1 Rubble Terrain tile from the Clash Board.",
+    "delve": "During the Travel step, ignore Single Panzergates [Panzergate]. As long as this Mercenary is recruited, during the Travel step, you may move through Shortcuts.",
+    "gates": [
+     {
+      "gate": "KING",
+      "column": "clash",
+      "text": "During voluntary movement, treat connected Rubble Terrain tiles as 1 space."
+     },
+     {
+      "gate": "KING",
+      "column": "delve",
+      "text": "Discard a Single Panzergate [Panzergate] token from any path."
+     }
+    ],
+    "resolution": "Discard this card."
+   },
+   "unclear": [
+    "codeA blurry; reads as 20A0990"
+   ],
+   "ops": null
+  }
+ ]
+}
