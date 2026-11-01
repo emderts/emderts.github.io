@@ -1,0 +1,1810 @@
+{
+ "_source": "KF Core Rulebook pp.92–96 Rosegraal Rewards 1/5–5/5. Each array entry = one checkbox = one once-only reward. Rogue's Path: a winning Knight picks one unclaimed reward of the conquered node's symbol kind, from the node level or lower. C 'portrait' = 'Portrait and Talent'.",
+ "knights": {
+  "fleischritter": {
+   "name": "Fleischritter"
+  },
+  "kara": {
+   "name": "Kara"
+  },
+  "ser-sonch": {
+   "name": "Ser Sonch"
+  },
+  "renholder": {
+   "name": "Renholder"
+  },
+  "paracelsa": {
+   "name": "Paracelsa"
+  },
+  "ser-ubar": {
+   "name": "Ser Ubar",
+   "expansion": "Ten Thousand Succulent Fears"
+  },
+  "stoneface": {
+   "name": "Stoneface",
+   "expansion": "Ten Thousand Succulent Fears"
+  }
+ },
+ "kinds": {
+  "C": "Class",
+  "H": "Heroic Arc",
+  "P": "Peril Arc",
+  "T": "Technique",
+  "V": "Virtue",
+  "G": "Gear",
+  "W": "Wild Card"
+ },
+ "virtues": [
+  "Bravery",
+  "Tenacity",
+  "Sagacity",
+  "Fortitude",
+  "Might",
+  "Insight"
+ ],
+ "levels": {
+  "1": {
+   "fleischritter": {
+    "C": [
+     {
+      "kind": "technique",
+      "name": "Fervid Meal"
+     }
+    ],
+    "H": [
+     "Feuerkoch"
+    ],
+    "P": [
+     "Feuerkoch"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Crunchy Batter"
+     },
+     {
+      "kind": "technique",
+      "name": "Stick in Their Throat"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Fortitude": 1
+      }
+     }
+    ],
+    "G": [
+     "Cleaver Sword"
+    ],
+    "W": [
+     {
+      "kind": "rapport",
+      "n": 1
+     }
+    ]
+   },
+   "kara": {
+    "C": [
+     {
+      "kind": "technique",
+      "name": "Picking Your Battles"
+     }
+    ],
+    "H": [
+     "Thrill-Seeker"
+    ],
+    "P": [
+     "Thrill-Seeker"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Dodge and Weave"
+     },
+     {
+      "kind": "technique",
+      "name": "Fleet of Foot"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Bravery": 1
+      }
+     }
+    ],
+    "G": [
+     "Reclaimed Spear"
+    ],
+    "W": [
+     {
+      "kind": "rapport",
+      "n": 1
+     }
+    ]
+   },
+   "ser-sonch": {
+    "C": [
+     {
+      "kind": "technique",
+      "name": "Quick, Find Me a Weak Spot!"
+     }
+    ],
+    "H": [
+     "Gravestalker"
+    ],
+    "P": [
+     "Gravestalker"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Bulwark"
+     },
+     {
+      "kind": "technique",
+      "name": "Corrente di Battaglia Style"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Bravery": 1
+      }
+     }
+    ],
+    "G": [
+     "Storied Blade"
+    ],
+    "W": [
+     {
+      "kind": "mercenary",
+      "tier": 2,
+      "cls": "Bard"
+     }
+    ]
+   },
+   "renholder": {
+    "C": [
+     {
+      "kind": "technique",
+      "name": "Brain over Brawn"
+     }
+    ],
+    "H": [
+     "Illusionist"
+    ],
+    "P": [
+     "Illusionist"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Dazzling Light"
+     },
+     {
+      "kind": "technique",
+      "name": "Mirage"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Sagacity": 1
+      }
+     }
+    ],
+    "G": [
+     "Wide-brimmed Wizard's Hat"
+    ],
+    "W": [
+     {
+      "kind": "rapport",
+      "n": 1
+     }
+    ]
+   },
+   "paracelsa": {
+    "C": [
+     {
+      "kind": "technique",
+      "name": "The Fire of my Faith"
+     }
+    ],
+    "H": [
+     "Faithful"
+    ],
+    "P": [
+     "Faithful"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Righteous Hand of God"
+     },
+     {
+      "kind": "technique",
+      "name": "Evade the Devil's Snare"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Insight": 1
+      }
+     }
+    ],
+    "G": [
+     "Mantle of the Faithful"
+    ],
+    "W": [
+     {
+      "kind": "rapport",
+      "n": 1
+     }
+    ]
+   },
+   "ser-ubar": {
+    "C": [
+     {
+      "kind": "technique",
+      "name": "Monkey See"
+     }
+    ],
+    "H": [
+     "Simianthrope"
+    ],
+    "P": [
+     "Simianthrope"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Cold Open"
+     },
+     {
+      "kind": "technique",
+      "name": "Knuckle Charge"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Tenacity": 1
+      }
+     }
+    ],
+    "G": [
+     "Helm of the Silent Witness"
+    ],
+    "W": [
+     {
+      "kind": "mercenary",
+      "tier": 2,
+      "cls": "Healer"
+     }
+    ]
+   },
+   "stoneface": {
+    "C": [
+     {
+      "kind": "technique",
+      "name": "Impossible to Ignore"
+     }
+    ],
+    "H": [
+     "Good, Strong Hands"
+    ],
+    "P": [
+     "Good, Strong Hands"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Unshakeable"
+     },
+     {
+      "kind": "technique",
+      "name": "Get Clear!"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Tenacity": 1
+      }
+     }
+    ],
+    "G": [
+     "Stalagmight"
+    ],
+    "W": [
+     {
+      "kind": "rapport",
+      "n": 1
+     }
+    ]
+   }
+  },
+  "2": {
+   "fleischritter": {
+    "C": [
+     {
+      "kind": "portrait",
+      "name": "Fleischjäger",
+      "note": "Portrait and Talent"
+     },
+     {
+      "kind": "technique",
+      "name": "Meat Shield"
+     },
+     {
+      "kind": "technique",
+      "name": "Braise for Impact"
+     },
+     {
+      "kind": "portrait",
+      "name": "Fleischkrieger",
+      "note": "Portrait and Talent"
+     },
+     {
+      "kind": "technique",
+      "name": "Prized Morsel"
+     },
+     {
+      "kind": "technique",
+      "name": "You Won't Like Me When I'm Hangry"
+     }
+    ],
+    "H": [
+     "Fleischjäger",
+     "Fleischkrieger"
+    ],
+    "P": [
+     "Fleischjäger",
+     "Fleischkrieger"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Sizzling Striga"
+     },
+     {
+      "kind": "technique",
+      "name": "Mise En Place"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Bravery": 1
+      }
+     }
+    ],
+    "G": [
+     "Great Antler Helm"
+    ],
+    "W": [
+     {
+      "kind": "rapport",
+      "n": 1
+     }
+    ]
+   },
+   "kara": {
+    "C": [
+     {
+      "kind": "portrait",
+      "name": "Wilder Errant",
+      "note": "Portrait and Talent"
+     },
+     {
+      "kind": "technique",
+      "name": "I'll Finish What You Started"
+     },
+     {
+      "kind": "technique",
+      "name": "Cunning Misdirection"
+     },
+     {
+      "kind": "portrait",
+      "name": "Kingsguard",
+      "note": "Portrait and Talent"
+     },
+     {
+      "kind": "technique",
+      "name": "Move Up!"
+     },
+     {
+      "kind": "technique",
+      "name": "You Can Do It!"
+     }
+    ],
+    "H": [
+     "Wilder Errant",
+     "Kingsguard"
+    ],
+    "P": [
+     "Wilder Errant",
+     "Kingsguard"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Keep on Rolling"
+     },
+     {
+      "kind": "technique",
+      "name": "Survival Hack"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Insight": 1
+      }
+     }
+    ],
+    "G": [
+     "Wilder Cloak"
+    ],
+    "W": [
+     {
+      "kind": "rapport",
+      "n": 1
+     }
+    ]
+   },
+   "ser-sonch": {
+    "C": [
+     {
+      "kind": "portrait",
+      "name": "Vaunted Folk Tale",
+      "note": "Portrait and Talent"
+     },
+     {
+      "kind": "technique",
+      "name": "Veteran's Insight"
+     },
+     {
+      "kind": "technique",
+      "name": "Carrot and Stick"
+     },
+     {
+      "kind": "portrait",
+      "name": "Exemplary Leader",
+      "note": "Portrait and Talent"
+     },
+     {
+      "kind": "technique",
+      "name": "One for All"
+     },
+     {
+      "kind": "technique",
+      "name": "Friend in Need"
+     }
+    ],
+    "H": [
+     "Vaunted Folk Tale",
+     "Exemplary Leader"
+    ],
+    "P": [
+     "Vaunted Folk Tale",
+     "Exemplary Leader"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Veteran's Orders"
+     },
+     {
+      "kind": "technique",
+      "name": "Simian Squire"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Might": 1
+      }
+     }
+    ],
+    "G": [
+     "Blinder Helm"
+    ],
+    "W": [
+     {
+      "kind": "rapport",
+      "n": 1
+     }
+    ]
+   },
+   "renholder": {
+    "C": [
+     {
+      "kind": "portrait",
+      "name": "Luxite",
+      "note": "Portrait and Talent"
+     },
+     {
+      "kind": "technique",
+      "name": "Luxite Purification"
+     },
+     {
+      "kind": "technique",
+      "name": "Burning Barrage"
+     },
+     {
+      "kind": "portrait",
+      "name": "Tenebrist",
+      "note": "Portrait and Talent"
+     },
+     {
+      "kind": "technique",
+      "name": "Dark Augury"
+     },
+     {
+      "kind": "technique",
+      "name": "Shadow Manipulation"
+     }
+    ],
+    "H": [
+     "Luxite",
+     "Tenebrist"
+    ],
+    "P": [
+     "Luxite",
+     "Tenebrist"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Inspiring Light"
+     },
+     {
+      "kind": "technique",
+      "name": "Gaze Beyond the Veil"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Sagacity": 1
+      }
+     }
+    ],
+    "G": [
+     "Bluesteel Sword"
+    ],
+    "W": [
+     {
+      "kind": "rapport",
+      "n": 1
+     }
+    ]
+   },
+   "paracelsa": {
+    "C": [
+     {
+      "kind": "portrait",
+      "name": "Truthseeker",
+      "note": "Portrait and Talent"
+     },
+     {
+      "kind": "technique",
+      "name": "Theocratic Warfare"
+     },
+     {
+      "kind": "technique",
+      "name": "Ours is the Hope"
+     },
+     {
+      "kind": "portrait",
+      "name": "Fireheart Zealot",
+      "note": "Portrait and Talent"
+     },
+     {
+      "kind": "technique",
+      "name": "Rewarded for my Trials"
+     },
+     {
+      "kind": "technique",
+      "name": "Second Chance"
+     }
+    ],
+    "H": [
+     "Truthseeker",
+     "Fireheart Zealot"
+    ],
+    "P": [
+     "Truthseeker",
+     "Fireheart Zealot"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Armed with Truth"
+     },
+     {
+      "kind": "technique",
+      "name": "Flee From Evil"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Bravery": 1
+      }
+     }
+    ],
+    "G": [
+     "Imperial Templar's Kite Shield"
+    ],
+    "W": [
+     {
+      "kind": "saint",
+      "name": "Linde"
+     }
+    ]
+   },
+   "ser-ubar": {
+    "C": [
+     {
+      "kind": "portrait",
+      "name": "Primal Warrior",
+      "note": "Portrait and Talent"
+     },
+     {
+      "kind": "technique",
+      "name": "Force of Nature"
+     },
+     {
+      "kind": "technique",
+      "name": "The Heart Relentless"
+     },
+     {
+      "kind": "portrait",
+      "name": "Simian Strategist",
+      "note": "Portrait and Talent"
+     },
+     {
+      "kind": "technique",
+      "name": "Warcry"
+     },
+     {
+      "kind": "technique",
+      "name": "Great Ape Flex"
+     }
+    ],
+    "H": [
+     "Primal Warrior",
+     "Simian Strategist"
+    ],
+    "P": [
+     "Primal Warrior",
+     "Simian Strategist"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Exploit Flaw"
+     },
+     {
+      "kind": "technique",
+      "name": "Primal Leap"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Sagacity": 1
+      }
+     }
+    ],
+    "G": [
+     "Aegis of Averted Eyes"
+    ],
+    "W": [
+     {
+      "kind": "rapport",
+      "n": 1
+     }
+    ]
+   },
+   "stoneface": {
+    "C": [
+     {
+      "kind": "portrait",
+      "name": "Obedient Son",
+      "note": "Portrait and Talent"
+     },
+     {
+      "kind": "technique",
+      "name": "Scrape Clean"
+     },
+     {
+      "kind": "technique",
+      "name": "Hammerthrow Momentum"
+     },
+     {
+      "kind": "portrait",
+      "name": "Rebellious Child",
+      "note": "Portrait and Talent"
+     },
+     {
+      "kind": "technique",
+      "name": "Eshin Ishitsugi"
+     },
+     {
+      "kind": "technique",
+      "name": "Avalanche Hammerstrike"
+     }
+    ],
+    "H": [
+     "Obedient Son",
+     "Rebellious Child"
+    ],
+    "P": [
+     "Obedient Son",
+     "Rebellious Child"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Danger Zone"
+     },
+     {
+      "kind": "technique",
+      "name": "Hard Headed"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Tenacity": 1
+      }
+     }
+    ],
+    "G": [
+     "Ruinous Polehammer"
+    ],
+    "W": [
+     {
+      "kind": "gold",
+      "n": 5
+     }
+    ]
+   }
+  },
+  "3": {
+   "fleischritter": {
+    "C": [
+     {
+      "kind": "technique",
+      "name": "Distracting Bait"
+     }
+    ],
+    "H": [
+     "Metzger"
+    ],
+    "P": [
+     "Metzger"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Panflip"
+     },
+     {
+      "kind": "technique",
+      "name": "Nothing Goes To Waste"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Bravery": 2
+      }
+     }
+    ],
+    "G": [
+     "Paired Cleavers"
+    ],
+    "W": [
+     {
+      "kind": "saint",
+      "name": "Eudes"
+     }
+    ]
+   },
+   "kara": {
+    "C": [
+     {
+      "kind": "technique",
+      "name": "Crusader's Strike"
+     }
+    ],
+    "H": [
+     "Wildwalker"
+    ],
+    "P": [
+     "Wildwalker"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Avert a Dire Fate"
+     },
+     {
+      "kind": "technique",
+      "name": "Rebuke, Reposition, Retaliate!"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Bravery": 2
+      }
+     }
+    ],
+    "G": [
+     "Masterforged Shield"
+    ],
+    "W": [
+     {
+      "kind": "gold",
+      "n": 5
+     }
+    ]
+   },
+   "ser-sonch": {
+    "C": [
+     {
+      "kind": "technique",
+      "name": "Double Roll"
+     }
+    ],
+    "H": [
+     "The Man, Made Myth"
+    ],
+    "P": [
+     "The Man, Made Myth"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Leader's Instinct"
+     },
+     {
+      "kind": "technique",
+      "name": "Time to Shine"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Insight": 1,
+       "Fortitude": 1
+      }
+     }
+    ],
+    "G": [
+     "Brash Carapace"
+    ],
+    "W": [
+     {
+      "kind": "rapport",
+      "n": 1
+     }
+    ]
+   },
+   "renholder": {
+    "C": [
+     {
+      "kind": "technique",
+      "name": "Placeholder"
+     }
+    ],
+    "H": [
+     "Theurgist"
+    ],
+    "P": [
+     "Theurgist"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Shadowslip"
+     },
+     {
+      "kind": "technique",
+      "name": "Infernal Bargain"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Insight": 2
+      }
+     }
+    ],
+    "G": [
+     "Wyrdweave Garb"
+    ],
+    "W": [
+     {
+      "kind": "gold",
+      "n": 5
+     }
+    ]
+   },
+   "paracelsa": {
+    "C": [
+     {
+      "kind": "technique",
+      "name": "Blinding Faith"
+     }
+    ],
+    "H": [
+     "Questioner"
+    ],
+    "P": [
+     "Questioner"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Scion of the Light"
+     },
+     {
+      "kind": "technique",
+      "name": "Shield of Faith"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Tenacity": 2
+      }
+     }
+    ],
+    "G": [
+     "Questing Champion's Chain Armor"
+    ],
+    "W": [
+     {
+      "kind": "rapport",
+      "n": 1
+     }
+    ]
+   },
+   "ser-ubar": {
+    "C": [
+     {
+      "kind": "technique",
+      "name": "Canopy Swing"
+     }
+    ],
+    "H": [
+     "Ape Militant"
+    ],
+    "P": [
+     "Ape Militant"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Fiery Eyes, Golden Pupils"
+     },
+     {
+      "kind": "technique",
+      "name": "Bestial Stamina"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Tenacity": 1,
+       "Sagacity": 1
+      }
+     }
+    ],
+    "G": [
+     "Laxlaw's Dual Standard (Rigid) // Laxlaw's Dual Standard (Pliant)"
+    ],
+    "W": [
+     {
+      "kind": "rapport",
+      "n": 1
+     }
+    ]
+   },
+   "stoneface": {
+    "C": [
+     {
+      "kind": "technique",
+      "name": "Go Beyond!"
+     }
+    ],
+    "H": [
+     "Marble Marionette"
+    ],
+    "P": [
+     "Marble Marionette"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Unstoppable Force"
+     },
+     {
+      "kind": "technique",
+      "name": "Take the Hit"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Might": 2
+      }
+     }
+    ],
+    "G": [
+     "Plate of the Sleeping Giant"
+    ],
+    "W": [
+     {
+      "kind": "rapport",
+      "n": 1
+     }
+    ]
+   }
+  },
+  "4": {
+   "fleischritter": {
+    "C": [
+     {
+      "kind": "portrait",
+      "name": "Teufelsjäger",
+      "note": "Portrait and Talent"
+     },
+     {
+      "kind": "technique",
+      "name": "White Meat Power Punch"
+     },
+     {
+      "kind": "technique",
+      "name": "The Power of Bacon Compels You!"
+     },
+     {
+      "kind": "portrait",
+      "name": "Schwarzesser",
+      "note": "Portrait and Talent"
+     },
+     {
+      "kind": "technique",
+      "name": "Butcher's Twine"
+     },
+     {
+      "kind": "technique",
+      "name": "Meat Puppet"
+     }
+    ],
+    "H": [
+     "Teufelsjäger",
+     "Schwarzesser"
+    ],
+    "P": [
+     "Teufelsjäger",
+     "Schwarzesser"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Just a Fleisch Wound"
+     },
+     {
+      "kind": "technique",
+      "name": "Stick to the Recipe"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Might": 2
+      }
+     }
+    ],
+    "G": [
+     "Pighead Talisman"
+    ],
+    "W": [
+     {
+      "kind": "rapport",
+      "n": 2
+     }
+    ]
+   },
+   "kara": {
+    "C": [
+     {
+      "kind": "portrait",
+      "name": "Oathbreaker",
+      "note": "Portrait and Talent"
+     },
+     {
+      "kind": "technique",
+      "name": "Dice with the Devil"
+     },
+     {
+      "kind": "technique",
+      "name": "Knight in Shining Armor"
+     },
+     {
+      "kind": "portrait",
+      "name": "Steadfast",
+      "note": "Portrait and Talent"
+     },
+     {
+      "kind": "technique",
+      "name": "Oath of Valor"
+     },
+     {
+      "kind": "technique",
+      "name": "Just Like We Practised"
+     }
+    ],
+    "H": [
+     "Oathbreaker",
+     "Steadfast"
+    ],
+    "P": [
+     "Oathbreaker",
+     "Steadfast"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Act on Instinct"
+     },
+     {
+      "kind": "technique",
+      "name": "Master the Terrain"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Tenacity": 2
+      }
+     }
+    ],
+    "G": [
+     "Wilder Plate"
+    ],
+    "W": [
+     {
+      "kind": "rapport",
+      "n": 2
+     }
+    ]
+   },
+   "ser-sonch": {
+    "C": [
+     {
+      "kind": "portrait",
+      "name": "Hero to the People",
+      "note": "Portrait and Talent"
+     },
+     {
+      "kind": "technique",
+      "name": "Tag Team"
+     },
+     {
+      "kind": "technique",
+      "name": "Friend Indeed"
+     },
+     {
+      "kind": "portrait",
+      "name": "Fameseeker",
+      "note": "Portrait and Talent"
+     },
+     {
+      "kind": "technique",
+      "name": "Knowing Is Half the Battle"
+     },
+     {
+      "kind": "technique",
+      "name": "Know Thine Enemy"
+     }
+    ],
+    "H": [
+     "Hero to the People",
+     "Fameseeker"
+    ],
+    "P": [
+     "Hero to the People",
+     "Fameseeker"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Lead by Example"
+     },
+     {
+      "kind": "technique",
+      "name": "Chaos Monkey"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Tenacity": 2
+      }
+     }
+    ],
+    "G": [
+     "Gloryseeker's Cape"
+    ],
+    "W": [
+     {
+      "kind": "rapport",
+      "n": 2
+     }
+    ]
+   },
+   "renholder": {
+    "C": [
+     {
+      "kind": "portrait",
+      "name": "Harmonized Soul",
+      "note": "Portrait and Talent"
+     },
+     {
+      "kind": "technique",
+      "name": "Chiaroscuro"
+     },
+     {
+      "kind": "technique",
+      "name": "Blackfire"
+     },
+     {
+      "kind": "portrait",
+      "name": "Luxfire Magus",
+      "note": "Portrait and Talent"
+     },
+     {
+      "kind": "technique",
+      "name": "The Maelstrom Within"
+     },
+     {
+      "kind": "technique",
+      "name": "Doublestrike Enchantment"
+     }
+    ],
+    "H": [
+     "Harmonized Soul",
+     "Luxfire Magus"
+    ],
+    "P": [
+     "Harmonized Soul",
+     "Luxfire Magus"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Soulscorch"
+     },
+     {
+      "kind": "technique",
+      "name": "Incandescent Aura"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Sagacity": 2
+      }
+     }
+    ],
+    "G": [
+     "Torchbearer's Swordstaff"
+    ],
+    "W": [
+     {
+      "kind": "mercenary",
+      "tier": 3,
+      "cls": "Mage"
+     }
+    ]
+   },
+   "paracelsa": {
+    "C": [
+     {
+      "kind": "portrait",
+      "name": "Inquisitor",
+      "note": "Portrait and Talent"
+     },
+     {
+      "kind": "technique",
+      "name": "The Just Blade of Kain"
+     },
+     {
+      "kind": "technique",
+      "name": "Through the Fires of Anatiocha"
+     },
+     {
+      "kind": "portrait",
+      "name": "Apostate",
+      "note": "Portrait and Talent"
+     },
+     {
+      "kind": "technique",
+      "name": "Inquisitor's Pursuit"
+     },
+     {
+      "kind": "technique",
+      "name": "Power of the Pious"
+     }
+    ],
+    "H": [
+     "Inquisitor",
+     "Apostate"
+    ],
+    "P": [
+     "Inquisitor",
+     "Apostate"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Become a Stumbling Block"
+     },
+     {
+      "kind": "technique",
+      "name": "Spare Not The Rod"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Bravery": 2
+      }
+     }
+    ],
+    "G": [
+     "The Bastard of the Church"
+    ],
+    "W": [
+     {
+      "kind": "rapport",
+      "n": 2
+     }
+    ]
+   },
+   "ser-ubar": {
+    "C": [
+     {
+      "kind": "portrait",
+      "name": "Rising Ape",
+      "note": "Portrait and Talent"
+     },
+     {
+      "kind": "technique",
+      "name": "Eye of the Storm"
+     },
+     {
+      "kind": "technique",
+      "name": "Adrenaline Rush"
+     },
+     {
+      "kind": "portrait",
+      "name": "Beast Tamer",
+      "note": "Portrait and Talent"
+     },
+     {
+      "kind": "technique",
+      "name": "Untouchable"
+     },
+     {
+      "kind": "technique",
+      "name": "Skull Crack"
+     }
+    ],
+    "H": [
+     "Rising Ape",
+     "Beast Tamer"
+    ],
+    "P": [
+     "Rising Ape",
+     "Beast Tamer"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Mind over Body"
+     },
+     {
+      "kind": "technique",
+      "name": "Fist of the Firstmen"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Tenacity": 1,
+       "Sagacity": 1
+      }
+     }
+    ],
+    "G": [
+     "Uncompromising Justice"
+    ],
+    "W": [
+     {
+      "kind": "mercenary",
+      "tier": 3,
+      "cls": "Warrior"
+     }
+    ]
+   },
+   "stoneface": {
+    "C": [
+     {
+      "kind": "portrait",
+      "name": "No Strings on Me",
+      "note": "Portrait and Talent"
+     },
+     {
+      "kind": "technique",
+      "name": "I'll Be Your Rock"
+     },
+     {
+      "kind": "technique",
+      "name": "Skipping Stone"
+     },
+     {
+      "kind": "portrait",
+      "name": "Mangiarovina",
+      "note": "Portrait and Talent"
+     },
+     {
+      "kind": "technique",
+      "name": "Rock, Meet Hard Place"
+     },
+     {
+      "kind": "technique",
+      "name": "Memories of Who I Was"
+     }
+    ],
+    "H": [
+     "No Strings on Me",
+     "Mangiarovina"
+    ],
+    "P": [
+     "No Strings on Me",
+     "Mangiarovina"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Solid Outside, Human Inside"
+     },
+     {
+      "kind": "technique",
+      "name": "Unassailable"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Fortitude": 2
+      }
+     }
+    ],
+    "G": [
+     "Shield of the Defiant"
+    ],
+    "W": [
+     {
+      "kind": "mercenary",
+      "tier": 3,
+      "cls": "Rogue"
+     }
+    ]
+   }
+  },
+  "5": {
+   "fleischritter": {
+    "C": [
+     {
+      "kind": "technique",
+      "name": "Filleting Frenzy"
+     }
+    ],
+    "H": [
+     "Meisterschlächter"
+    ],
+    "P": [
+     "Meisterschlächter"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Maillard Reaction"
+     },
+     {
+      "kind": "technique",
+      "name": "Butcher's Bargain"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Fortitude": 1,
+       "Might": 1
+      }
+     }
+    ],
+    "G": [
+     "Trophy Armor"
+    ],
+    "W": [
+     {
+      "kind": "mercenary",
+      "tier": 3,
+      "cls": "Warrior"
+     }
+    ]
+   },
+   "kara": {
+    "C": [
+     {
+      "kind": "technique",
+      "name": "Know Thyself"
+     }
+    ],
+    "H": [
+     "Knight of the Grand Kingdoms"
+    ],
+    "P": [
+     "Knight of the Grand Kingdoms"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Can't Catch Me!"
+     },
+     {
+      "kind": "technique",
+      "name": "Living Weapon"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Fortitude": 2
+      }
+     }
+    ],
+    "G": [
+     "Horn Bow"
+    ],
+    "W": [
+     {
+      "kind": "mercenary",
+      "tier": 3,
+      "cls": "Rogue"
+     }
+    ]
+   },
+   "ser-sonch": {
+    "C": [
+     {
+      "kind": "technique",
+      "name": "Call an Undertaker!"
+     }
+    ],
+    "H": [
+     "Enduring Legend"
+    ],
+    "P": [
+     "Enduring Legend"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Bastion"
+     },
+     {
+      "kind": "technique",
+      "name": "Fleur de Bataille Style"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Sagacity": 2
+      }
+     }
+    ],
+    "G": [
+     "Camaraderie Blades"
+    ],
+    "W": [
+     {
+      "kind": "mercenary",
+      "tier": 3,
+      "cls": "Bard"
+     }
+    ]
+   },
+   "renholder": {
+    "C": [
+     {
+      "kind": "technique",
+      "name": "Power Overwhelming"
+     }
+    ],
+    "H": [
+     "Hermetic Master"
+    ],
+    "P": [
+     "Hermetic Master"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Final Flash"
+     },
+     {
+      "kind": "technique",
+      "name": "Shadows Between Worlds"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Fortitude": 2
+      }
+     }
+    ],
+    "G": [
+     "Lightgrasp"
+    ],
+    "W": [
+     {
+      "kind": "rapport",
+      "n": 2
+     }
+    ]
+   },
+   "paracelsa": {
+    "C": [
+     {
+      "kind": "technique",
+      "name": "Divine Intervention"
+     }
+    ],
+    "H": [
+     "Reverent"
+    ],
+    "P": [
+     "Reverent"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Nothing Shall Stay My Hand"
+     },
+     {
+      "kind": "technique",
+      "name": "Not Your Time"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Insight": 2
+      }
+     }
+    ],
+    "G": [
+     "Blade of the First Sacrament"
+    ],
+    "W": [
+     {
+      "kind": "mercenary",
+      "tier": 3,
+      "cls": "Healer"
+     }
+    ]
+   },
+   "ser-ubar": {
+    "C": [
+     {
+      "kind": "technique",
+      "name": "Inner Turmoil"
+     }
+    ],
+    "H": [
+     "Champion of Utrebant"
+    ],
+    "P": [
+     "Champion of Utrebant"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Feral Aggression"
+     },
+     {
+      "kind": "technique",
+      "name": "Simian Sprint"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Might": 2
+      }
+     }
+    ],
+    "G": [
+     "Mantle of the First Sin"
+    ],
+    "W": [
+     {
+      "kind": "rapport",
+      "n": 2
+     }
+    ]
+   },
+   "stoneface": {
+    "C": [
+     {
+      "kind": "technique",
+      "name": "My Turn"
+     }
+    ],
+    "H": [
+     "Tableau Vivant"
+    ],
+    "P": [
+     "Tableau Vivant"
+    ],
+    "T": [
+     {
+      "kind": "technique",
+      "name": "Vita Ex Mortis"
+     },
+     {
+      "kind": "technique",
+      "name": "Split the Heavens"
+     }
+    ],
+    "V": [
+     {
+      "bonuses": {
+       "Tenacity": 2
+      }
+     }
+    ],
+    "G": [
+     "Terracotta Emblem"
+    ],
+    "W": [
+     {
+      "kind": "rapport",
+      "n": 2
+     }
+    ]
+   }
+  }
+ },
+ "unclear": [
+  "L3 Ser Ubar Gear: 'Laxlaw's Dual Standard (Rigid)//(Pliant)' — one checkbox, two-sided card (reforge?) → stored as one name with '//'",
+  "L3 Renholder Class 'Placeholder' is the printed Technique name (not a placeholder)"
+ ]
+}

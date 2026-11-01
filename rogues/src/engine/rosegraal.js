@@ -29,3 +29,26 @@ export function rollMonster(tables, rng, level, kingdom, owned = null) {
   }
   throw new Error('rollMonster: too many re-rolls');
 }
+
+// ---- Rosegraal Rewards (Rulebook p.76 + pp.92–96) ----
+// "each participating Knight also gains one reward of a given kind (…) of the current Node level or lower, as indicated by
+//  the reward symbol next to the conquered node. (…) each reward can be claimed only once!"
+export const SIGH = 'S';
+
+/** Stable id for one reward checkbox: `${knight}:${level}:${kind}:${index}` */
+export const rewardId = (knight, level, kind, index) => `${knight}:${level}:${kind}:${index}`;
+
+/**
+ * All unclaimed rewards a Knight may pick for a node of `nodeLevel` with reward symbol `kind` (C/H/P/T/V/G/W).
+ * claimed: Set of rewardIds already taken by this Knight. Returns [] when nothing is left (node still gets crossed out).
+ */
+export function eligibleRewards(rewards, knight, kind, nodeLevel, claimed = new Set()) {
+  if (kind === SIGH || !rewards.kinds[kind]) return [];
+  const out = [];
+  for (let lv = 1; lv <= nodeLevel; lv++) {
+    const row = rewards.levels[String(lv)] && rewards.levels[String(lv)][knight];
+    if (!row) continue;
+    (row[kind] || []).forEach((r, i) => { const id = rewardId(knight, lv, kind, i); if (!claimed.has(id)) out.push({ id, level: lv, kind, reward: r }); });
+  }
+  return out;
+}
