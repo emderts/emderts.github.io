@@ -1,0 +1,119 @@
+{
+  "_source": "KF Core Rulebook p.77 (Rogue's Path monster tables). Roll d10 when a node is chosen; row = node level I–V, column = Kingdom the node is in. 'optional' = starred (*) monster: re-roll if you don't own it.",
+  "tiers": { "1": "Mob", "2": "Vassal", "3": "King", "4": "Devil", "5": "Dragon" },
+  "levels": {
+    "1": {
+      "principality": [
+        { "roll": [1, 2], "monster": "ironcast-dead", "level": 1 },
+        { "roll": [3], "monster": "panzergeist", "level": 1, "optional": true },
+        { "roll": [4, 5], "monster": "eggknight", "level": 1 },
+        { "roll": [6], "monster": "paleblood-worms", "level": 1 },
+        { "roll": [7], "monster": "pumpkinheads", "level": 1 },
+        { "roll": [8], "monster": "stonemason-knight", "level": 1, "optional": true },
+        { "roll": [9], "monster": "winged-nightmare", "level": 1 },
+        { "roll": [10], "monster": "knighteater", "level": 1, "optional": true }
+      ],
+      "sunken": [
+        { "roll": [1, 2], "monster": "first-men-warriors", "level": 1 },
+        { "roll": [3], "monster": "first-men-lictor-hunters", "level": 1, "optional": true },
+        { "roll": [4, 5], "monster": "white-ape-troll", "level": 1 },
+        { "roll": [6], "monster": "haunts-of-utrebant", "level": 1 },
+        { "roll": [7], "monster": "paleblood-worms", "level": 1 },
+        { "roll": [8], "monster": "knights-of-fen", "level": 1 },
+        { "roll": [9], "monster": "ratwolves", "level": 2 },
+        { "roll": [10], "monster": "bog-witch", "level": 1, "optional": true }
+      ]
+    },
+    "2": {
+      "principality": [
+        { "roll": [1, 2], "monster": "ironcast-dead", "level": 2 },
+        { "roll": [3], "monster": "panzergeist", "level": 2, "optional": true },
+        { "roll": [4], "monster": "winged-nightmare", "level": 2 },
+        { "roll": [5], "monster": "paleblood-worms", "level": 2 },
+        { "roll": [6], "monster": "eggknight", "level": 2 },
+        { "roll": [7], "monster": "eggknight", "level": 2 },
+        { "roll": [8], "monster": "stonemason-knight", "level": 2, "optional": true },
+        { "roll": [9], "monster": "ratwolves", "level": 3 },
+        { "roll": [10], "monster": "knighteater", "level": 2, "optional": true }
+      ],
+      "sunken": [
+        { "roll": [1, 2], "monster": "first-men-warriors", "level": 2 },
+        { "roll": [3], "monster": "first-men-lictor-hunters", "level": 2, "optional": true },
+        { "roll": [4], "monster": "winged-nightmare", "level": 2 },
+        { "roll": [5], "monster": "pumpkinheads", "level": 2 },
+        { "roll": [6], "monster": "white-ape-troll", "level": 2 },
+        { "roll": [7], "monster": "white-ape-troll", "level": 2 },
+        { "roll": [8], "monster": "haunts-of-utrebant", "level": 2 },
+        { "roll": [9], "monster": "knights-of-fen", "level": 2 },
+        { "roll": [10], "monster": "bog-witch", "level": 2, "optional": true }
+      ]
+    },
+    "3": {
+      "principality": [
+        { "roll": [1], "monster": "ironcast-dead", "level": 3 },
+        { "roll": [2], "monster": "ratwolves", "level": 4 },
+        { "roll": [3, 4], "monster": "eggknight", "level": 3 },
+        { "roll": [5, 6], "monster": "puppet-king-edelhardt", "level": 1 },
+        { "roll": [7], "monster": "panzergeist", "level": 3, "optional": true },
+        { "roll": [8], "monster": "winged-nightmare", "level": 3 },
+        { "roll": [9, 10], "monster": "stonemason-knight", "level": 3, "optional": true }
+      ],
+      "sunken": [
+        { "roll": [1], "monster": "first-men-warriors", "level": 3 },
+        { "roll": [2], "monster": "haunts-of-utrebant", "level": 3 },
+        { "roll": [3, 4], "monster": "white-ape-troll", "level": 3 },
+        { "roll": [5, 6], "monster": "king-laid-low", "level": 1 },
+        { "roll": [7], "monster": "first-men-lictor-hunters", "level": 3, "optional": true },
+        { "roll": [8], "monster": "pumpkinheads", "level": 3 },
+        { "roll": [9, 10], "monster": "knights-of-fen", "level": 3 }
+      ]
+    },
+    "4": {
+      "principality": [
+        { "roll": [1], "monster": "panzergeist", "level": 4, "optional": true },
+        { "roll": [2], "monster": "pumpkinheads", "level": 4 },
+        { "roll": [3, 4], "monster": "eggknight", "level": 4 },
+        { "roll": [5, 6], "monster": "puppet-king-edelhardt", "level": 3 },
+        { "roll": [7, 8], "monster": "devil-of-the-smelted-fears", "level": 1 },
+        { "roll": [9], "monster": "knighteater", "level": 3, "optional": true },
+        { "roll": [10], "monster": "paleblood-worms", "level": 4 }
+      ],
+      "sunken": [
+        { "roll": [1], "monster": "first-men-lictor-hunters", "level": 4, "optional": true },
+        { "roll": [2], "monster": "haunts-of-utrebant", "level": 4 },
+        { "roll": [3, 4], "monster": "white-ape-troll", "level": 4 },
+        { "roll": [5, 6], "monster": "king-laid-low", "level": 3 },
+        { "roll": [7, 8], "monster": "devil-of-the-ancient-dusk", "level": 1 },
+        { "roll": [9], "monster": "bog-witch", "level": 3, "optional": true },
+        { "roll": [10], "monster": "winged-nightmare", "level": 4 }
+      ]
+    },
+    "5": {
+      "principality": [
+        { "roll": [1], "monster": "stonemason-knight", "level": 4, "optional": true },
+        { "roll": [2], "monster": "knights-of-fen", "level": 4 },
+        { "roll": [3, 4], "monster": "puppet-king-edelhardt", "level": 4 },
+        { "roll": [5, 6, 7], "monster": "devil-of-the-smelted-fears", "level": 3 },
+        { "roll": [8, 9], "monster": "panzerdragon-veldr", "level": 1 },
+        { "roll": [10], "monster": "young-devour-dragon", "level": 1, "optional": true }
+      ],
+      "sunken": [
+        { "roll": [1], "monster": "bog-witch", "level": 4, "optional": true },
+        { "roll": [2], "monster": "knighteater", "level": 4, "optional": true },
+        { "roll": [3, 4], "monster": "king-laid-low", "level": 4 },
+        { "roll": [5, 6, 7], "monster": "devil-of-the-ancient-dusk", "level": 3 },
+        { "roll": [8, 9], "monster": "toadragon", "level": 1 },
+        { "roll": [10], "monster": "young-devour-dragon", "level": 1, "optional": true }
+      ]
+    }
+  },
+  "monsterNames": {
+    "ironcast-dead": "Ironcast Dead", "panzergeist": "Panzergeist", "eggknight": "Eggknight", "paleblood-worms": "Paleblood Worms",
+    "pumpkinheads": "Pumpkinheads", "stonemason-knight": "Stonemason Knight", "winged-nightmare": "Winged Nightmare", "knighteater": "Knighteater",
+    "first-men-warriors": "First Men Warriors", "first-men-lictor-hunters": "First Men Lictor Hunters", "white-ape-troll": "White Ape Troll",
+    "haunts-of-utrebant": "Haunts of Utrebant", "knights-of-fen": "Knights of Fen", "ratwolves": "Ratwolves", "bog-witch": "Bog Witch",
+    "puppet-king-edelhardt": "Puppet King Edelhardt", "king-laid-low": "King Laid Low", "devil-of-the-smelted-fears": "Devil of the Smelted Fears",
+    "devil-of-the-ancient-dusk": "Devil of the Ancient Dusk", "panzerdragon-veldr": "Panzerdragon Veldr", "toadragon": "Toadragon",
+    "young-devour-dragon": "Young Devour Dragon"
+  }
+}
