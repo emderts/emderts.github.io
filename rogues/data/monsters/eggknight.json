@@ -124,11 +124,11 @@
    "setup": {
     "armorTokens": {
      "bp1": 1,
-     "bp2": 1,
-     "bp3": 1
+     "bp2": 2,
+     "bp3": 3
     },
     "level2plus": 1,
-    "unclear": "BP 1/2/3 칸에 Armor 아이콘이 1개씩 인쇄됨 → 레벨1: 각 1개, 레벨2+: 각 2개로 해석 [확인]"
+    "note": "Owner-confirmed: tokens equal to the BP number (1/2/3); at Level 2+ one additional token on each space (2/3/4)."
    }
   },
   {
@@ -1509,9 +1509,7 @@
    }
   ],
   "aftermath": "standard (Casualties, Recuperate, Loot: Victorious Search = Clash Scavenge 1 + Scavenge 3 / Forlorn Search = Scavenge 3)",
-  "unclear": [
-   "Panzeronion 시작 Armor 토큰: BP 칸의 아이콘 1개 = 1토큰으로 해석(레벨2+ 각 2개) [확인]"
-  ]
+  "unclear": []
  },
  "cardsText": {
   "Knightslap": "KNIGHTSLAP / ATTACK / Evasion 3 dice, 9+ / TARGETING: • [Priority Target icon] Priority Target • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat] 3+ ▸ PUSHBACK 2 / Cooldown. / For each hit lose -1 [Vigor]. [Peril Check]. [REACT!] / Knockdown. / EGGKNIGHT – AI 1",

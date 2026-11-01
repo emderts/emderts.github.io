@@ -1,0 +1,26 @@
+{
+ "_source": "Principality of Stone Codex, Kingdom Mysteries 9999 (First Death special event when the Unknown Saint is not yet unlocked). Triggered once per game on the first Knight death (Rulebook p.64).",
+ "event": {
+  "id": "9999",
+  "trigger": "first Knight death in the campaign, if the Unknown Saint is not unlocked",
+  "text": "Immediately Incarnate into the Unknown Saint. From now on, whenever a Knight is about to die and is not Devoted to any specific Saint, you may try to Incarnate into the Unknown Saint. To do so, roll a d10. You Incarnate on a \"10\", and during Incarnation you gain +1 [Power] (as denoted on the special Unknown Saint card). Return to the Delve.",
+  "ops": [
+   {
+    "op": "incarnate",
+    "saint": "unknown",
+    "automatic": true
+   },
+   {
+    "op": "unlock",
+    "what": "unknown-saint"
+   }
+  ]
+ },
+ "unknownSaint": {
+  "name": "Unknown Saint",
+  "incarnationRoll": 10,
+  "bonus": "+1 [Power] during Incarnation",
+  "rule": "Rulebook p.69: Unknown Saint — roll a natural 10 to Incarnate, no Commandment/Holy Infusion. Incarnation (p.69): when about to die → Chain Break, stand up, discard up to 2 Bane and any Condition cards, move up to 2 + Devotion spaces, perform a Bonus Attack; bonuses until end of your next turn; then lose the Saint card and all Devotion tokens; the Knight does not die.",
+  "roguesPath": "After the 9999 event, every Knight not Devoted to a specific Saint may attempt the Unknown Saint Incarnation (d10 = 10) when about to die. Knights whose Knightbook First Death Event then applies (e.g. Fleischritter: +1 Sigh) resolve it on their own first death. [확인: 9999는 캠페인 전체에서 1회, 첫 사망 기사만 자동 Incarnate]"
+ }
+}

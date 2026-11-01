@@ -51,7 +51,7 @@
     "n": 1
    }
   ],
-  "note": "Knightbook: 'If you haven't unlocked the Unknown Saint yet, immediately see 9999 in the Kingdom Mysteries Section' — 스토리 분기, Rogue's Path에서는 생략 [확인]"
+  "note": "If the Unknown Saint is not yet unlocked, resolve Kingdom Mysteries 9999 first (data/rules/unknown_saint.json) — this happens once per campaign, for whichever Knight dies first. Then (or otherwise) resolve this Knight's own First Death Event."
  },
  "components": {
   "portraits": 2,
