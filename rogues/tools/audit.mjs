@@ -19,14 +19,14 @@ ${[1, 2, 3, 4, 5].map(lv => { const p = T.levels[lv].principality, s = T.levels[
 const byK = k => M.nodes.filter(n => n.kingdom === k && n.id !== 'S');
 const cnt = (arr, f) => arr.reduce((a, n) => { const k = f(n); a[k] = (a[k] || 0) + 1; return a; }, {});
 sec.push(`<section id="map"><h2>2. Rosegraal 지도 (룰북 p.78–79, 합본)</h2>
-<p class="impl">데이터: <code>data/rosegraal/map.json</code> — 노드 ${M.nodes.length}(Sunken ${byK('sunken').length} + Principality ${byK('principality').length} + S), 간선 ${M.edges.length}(확실 ${M.edges.filter(e => e.confidence === 'high').length} / 확인 필요 ${M.edges.filter(e => e.confidence === 'check').length}), 후보 ${M.candidateEdges.length} · 테스트: <code>test/map.mjs</code> (노드 수, 레벨=부활, 보상 코드, 중복 간선, S에서 전 노드 도달) · 엔진: 노드 선택 규칙(크로스아웃 노드에 인접) → <code>campaign.js</code> 예정 · 간선 확인 페이지: <code>docs/audit/rosegraal_check.html</code></p>
+<p class="impl">데이터: <code>data/rosegraal/map.json</code> — 노드 ${M.nodes.length}(Sunken ${byK('sunken').length} + Principality ${byK('principality').length} + S), 간선 ${M.edges.length}(소유자가 물리 시트와 대조해 확정) · 테스트: <code>test/map.mjs</code> (노드 수, 레벨=부활, 보상 코드, 중복 간선, S에서 전 노드 도달) · 엔진: 노드 선택 규칙(크로스아웃 노드에 인접) → <code>campaign.js</code> 예정 · 간선 확인 페이지: <code>docs/audit/rosegraal_check.html</code></p>
 <table><tr><th></th><th>I</th><th>II</th><th>III</th><th>IV</th><th>V</th><th>C</th><th>H</th><th>P</th><th>T</th><th>G</th><th>V</th><th>W</th><th>Sigh</th></tr>
 ${['sunken', 'principality'].map(k => { const L = cnt(byK(k), n => n.level), Rw = cnt(byK(k), n => n.reward); return `<tr><td><b>${k}</b></td>${[1, 2, 3, 4, 5].map(l => `<td>${L[l] || 0}</td>`).join('')}${['C', 'H', 'P', 'T', 'G', 'V', 'W', 'S'].map(c => `<td>${Rw[c] || 0}</td>`).join('')}</tr>`; }).join('')}
 </table>
 <details><summary>노드 목록</summary><table><tr><th>id</th><th>왕국</th><th>Lv</th><th>부활</th><th>보상</th><th>인접</th></tr>
 ${M.nodes.map(n => `<tr><td>${n.id}</td><td>${n.kingdom}</td><td>${n.level || '-'}</td><td>${n.res || '-'}</td><td>${n.reward ? esc(M.rewardCodes[n.reward]) : (n.start ? 'START' : '')}</td><td>${M.edges.filter(e => e.a === n.id || e.b === n.id).map(e => { const o = e.a === n.id ? e.b : e.a; return e.confidence === 'check' ? `<span class="warn">${o}?</span>` : o; }).join(' ')}</td></tr>`).join('')}
 </table></details>
-<p class="small warn">불확실: 간선은 뿌리 그림을 자동 추적한 결과 — '?' 표시 간선은 물리 시트와 대조 필요. ${M.candidateEdges.length}개 후보 간선은 확인 페이지에서만 표시.</p></section>`);
+<p class="small">간선: 뿌리 그림 자동 추적(145) → 소유자 교정(-39, +7) → 114개 확정.</p></section>`);
 
 // 3. Rewards
 const fmt = r => r.kind === 'technique' ? `<i>${esc(r.name)}</i> Technique` : r.kind === 'portrait' ? `<i>${esc(r.name)}</i> Portrait+Talent` : r.kind === 'rapport' ? `+${r.n} Rapport with a chosen Knight` : r.kind === 'mercenary' ? `Tier ${r.tier} <i>${r.cls}</i> Mercenary` : r.kind === 'saint' ? `Devote to Saint ${esc(r.name)}` : r.kind === 'gold' ? `+${r.n} Gold` : r.bonuses ? Object.entries(r.bonuses).map(([v, n]) => `+${n} ${v}`).join(' & ') : `<i>${esc(r)}</i>`;

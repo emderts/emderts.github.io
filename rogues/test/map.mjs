@@ -16,7 +16,9 @@ const seen = new Set(); ok(M.edges.every(e => { const k = [e.a, e.b].sort().join
 const adj = {}; for (const n of M.nodes) adj[n.id] = []; for (const e of M.edges) { adj[e.a].push(e.b); adj[e.b].push(e.a); }
 const reach = new Set(['S']); const q = ['S']; while (q.length) { const u = q.shift(); for (const v of adj[u]) if (!reach.has(v)) { reach.add(v); q.push(v); } }
 const unreached = M.nodes.map(n => n.id).filter(id => !reach.has(id));
-console.log(`INFO reachable from S: ${reach.size}/103; unreached: ${unreached.join(', ') || 'none'}; edges ${M.edges.length} (check: ${M.edges.filter(e => e.confidence === 'check').length}, candidates: ${M.candidateEdges.length})`);
+console.log(`INFO reachable from S: ${reach.size}/103; unreached: ${unreached.join(', ') || 'none'}; edges ${M.edges.length} (confirmed: ${M.edges.filter(e => e.confidence === 'confirmed').length})`);
 ok(unreached.length === 0, 'every node reachable from S');
+ok(M.edges.every(e => e.confidence === 'confirmed'), 'all edges confirmed by the owner');
+ok(adj.S.length === 6 && adj.S.filter(x => x[0] === 'K').length === 3, 'S has 3 Sunken + 3 Principality neighbours');
 console.log(fails ? `${fails} FAIL` : 'ALL PASS');
 process.exit(fails ? 1 : 0);
