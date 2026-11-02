@@ -6,7 +6,7 @@
   "[Passion]": "green square P icon",
   "[Speed]": "running-boot glyph",
   "[Blood]": "black drop token",
-  "[Attack die]": "black d-shaped attack die",
+  "[d10]": "d10 (주사위 아이콘, 사용자 확인 2026-11-03)",
   "[Gear]": "pouch/bag gear icon",
   "[Armor token]": "breastplate icon",
   "[Fire]": "Fire token glyph",
@@ -92,11 +92,12 @@
    "keywords": [
     "Difficult Terrain"
    ],
-   "text": "Difficult Terrain.\nIf you end your movement on this tile (voluntary or not), you die.\nWhen you move through this tile, roll a [Attack die], adding +1 to the result for every Armor die on your Armor [Gear] cards. If the result is higher than your current [Vigor], you die.\nWhen a Squire moves through or ends their movement on this tile, they die.",
-   "unclear": [
-    "Die icon after 'roll a' is the black d-shaped die (read as Attack die)."
-   ],
-   "ops": null
+   "text": "Difficult Terrain.\nIf you end your movement on this tile (voluntary or not), you die.\nWhen you move through this tile, roll a [d10], adding +1 to the result for every Armor die on your Armor [Gear] cards. If the result is higher than your current [Vigor], you die.\nWhen a Squire moves through or ends their movement on this tile, they die.",
+   "unclear": [],
+   "ops": null,
+   "notes": [
+    "주사위 아이콘 = d10 (사용자 확인 2026-11-03)"
+   ]
   },
   {
    "name": "Primal Remnant",
@@ -193,11 +194,12 @@
     "Obstacle",
     "Destructible"
    ],
-   "text": "Obstacle. Destructible.\nSearch: If you're adjacent to a Rotten Stump Terrain tile, as a free action, you may roll a [Attack die]. You may gain +X [Heat] to add +X to your result:\n1-2: Gain the Slimed Condition card.\n3-4: You may place your Knight on an empty space adjacent to another Rotten Stump tile. Gain the Slimed Condition card.\n5-10: You may place your Knight on an empty space adjacent to another Rotten Stump tile. If the Bog Witch is not on the Clash Board, you may place the Bog Witch on this Rotten Stump tile instead.\nEach Rotten Stump may be Searched once per Round.",
-   "unclear": [
-    "Die icon after 'roll a' is the black d-shaped die (read as Attack die)."
-   ],
-   "ops": null
+   "text": "Obstacle. Destructible.\nSearch: If you're adjacent to a Rotten Stump Terrain tile, as a free action, you may roll a [d10]. You may gain +X [Heat] to add +X to your result:\n1-2: Gain the Slimed Condition card.\n3-4: You may place your Knight on an empty space adjacent to another Rotten Stump tile. Gain the Slimed Condition card.\n5-10: You may place your Knight on an empty space adjacent to another Rotten Stump tile. If the Bog Witch is not on the Clash Board, you may place the Bog Witch on this Rotten Stump tile instead.\nEach Rotten Stump may be Searched once per Round.",
+   "unclear": [],
+   "ops": null,
+   "notes": [
+    "주사위 아이콘 = d10 (사용자 확인 2026-11-03)"
+   ]
   },
   {
    "name": "Tower",

@@ -2,7 +2,7 @@
 <style>body{margin:0;padding:16px;font:14px/1.5 system-ui,sans-serif;background:#1a1714;color:#e8dcc8;max-width:1400px}h1{color:#c9a85a;font-size:22px}h2{color:#c9a85a;margin-top:28px;border-bottom:1px solid #3a3128}h3{color:#d9c89a;margin:16px 0 6px}
 table{border-collapse:collapse;width:100%;font-size:13px}td,th{border:1px solid #3a3128;padding:4px 6px;vertical-align:top;text-align:left}th{background:#26211b}code{background:#2a241d;padding:1px 5px;border-radius:4px;color:#f0d9a0}
 .impl{background:#26211b;padding:8px 10px;border-left:3px solid #c9a85a;border-radius:4px}.small{font-size:12px;color:#998b76}.warn{color:#d9a441}details summary{cursor:pointer;color:#c9a85a}table.rw td{min-width:120px}nav a{color:#c9a85a;margin-right:12px}</style></head><body>
-<h1>Kingdoms Forlorn — Rogue's Path: 데이터·규칙 오딧</h1><p class="small">v0.4.9 · 생성 2026-11-02 14:43 UTC · 각 섹션: 전사 데이터 ↔ 엔진 구현 ↔ 테스트. 전사 불확실 항목은 노란색.</p>
+<h1>Kingdoms Forlorn — Rogue's Path: 데이터·규칙 오딧</h1><p class="small">v0.4.10 · 생성 2026-11-02 15:04 UTC · 각 섹션: 전사 데이터 ↔ 엔진 구현 ↔ 테스트. 전사 불확실 항목은 노란색.</p>
 <nav><a href="#monsters">몬스터 표</a><a href="#map">Rosegraal 지도</a><a href="#rewards">Rewards</a><a href="#components">구성물</a><a href="#fleischritter">Fleischritter</a><a href="#gear">Gear</a><a href="#eggknight">Eggknight</a><a href="#decks">Mortis·Condition·Terrain·Outpost</a><a href="#engine">엔진 대응</a><a href="#shop">상점·용병·Loot</a><a href="#campaign">캠페인</a></nav>
 <section id="monsters"><h2>1. 노드 → 몬스터 표 (룰북 p.77)</h2>
 <p class="impl">구현: <code>src/engine/rosegraal.js · rollMonster()</code> — d10, 미보유(★ optional) 몬스터면 재굴림 · 테스트: <code>test/rosegraal.mjs</code> (각 레벨/왕국 1–10 커버리지, 재굴림, 보유 몬스터 없음 예외)</p>
@@ -101,8 +101,8 @@ When you are adjacent to this tile you may discard 1 Blood [Blood] token to lure
 If at any point of your Attack you are on this tile, your active Weapon gains Cumbersome for that Attack.
 When a Monster moves onto this tile, flip it.</td></tr><tr><td><b>Swamp</b></td><td>1x2, 2x2</td><td>Difficult Terrain</td><td>Difficult Terrain.
 If you end your movement on this tile (voluntary or not), you die.
-When you move through this tile, roll a [Attack die], adding +1 to the result for every Armor die on your Armor [Gear] cards. If the result is higher than your current [Vigor], you die.
-When a Squire moves through or ends their movement on this tile, they die.<div class="warn small">⚠ Die icon after 'roll a' is the black d-shaped die (read as Attack die).</div></td></tr><tr><td><b>Primal Remnant</b></td><td>1x1</td><td>Indestructible, Obstacle</td><td>Indestructible. Obstacle.
+When you move through this tile, roll a [d10], adding +1 to the result for every Armor die on your Armor [Gear] cards. If the result is higher than your current [Vigor], you die.
+When a Squire moves through or ends their movement on this tile, they die.</td></tr><tr><td><b>Primal Remnant</b></td><td>1x1</td><td>Indestructible, Obstacle</td><td>Indestructible. Obstacle.
 This tile always maintains adjacency to the Dragon. When the Dragon finishes its movement, move this tile along the shortest path to maintain a relative position. If you can't, immediately Remnant Move 4.
 When this tile moves through or ends its movement on a Knight, that Knight dies.
 When this tile moves through an Armor [Armor token] token, place it on the Primal Remnant Trait card.</td></tr><tr><td><b>Campfire</b></td><td>2x2</td><td>Indestructible</td><td>Indestructible.
@@ -114,11 +114,11 @@ Treat this tile as a Blindspot.
 If you are on this tile, as a free action, you may test Tenacity [Tenacity] (4+) to command the Throne to jump.
 Success: The Throne listens to your command! Place this tile and your miniature on a chosen empty space without a Terrain tile.
 Fail: Gain the Slimed Condition card.</td></tr><tr><td><b>Bottomless Well</b></td><td>2x2</td><td>Chasm, Indestructible</td><td>Chasm. Indestructible.</td></tr><tr><td><b>Rotten Stump</b></td><td>2x2</td><td>Obstacle, Destructible</td><td>Obstacle. Destructible.
-Search: If you're adjacent to a Rotten Stump Terrain tile, as a free action, you may roll a [Attack die]. You may gain +X [Heat] to add +X to your result:
+Search: If you're adjacent to a Rotten Stump Terrain tile, as a free action, you may roll a [d10]. You may gain +X [Heat] to add +X to your result:
 1-2: Gain the Slimed Condition card.
 3-4: You may place your Knight on an empty space adjacent to another Rotten Stump tile. Gain the Slimed Condition card.
 5-10: You may place your Knight on an empty space adjacent to another Rotten Stump tile. If the Bog Witch is not on the Clash Board, you may place the Bog Witch on this Rotten Stump tile instead.
-Each Rotten Stump may be Searched once per Round.<div class="warn small">⚠ Die icon after 'roll a' is the black d-shaped die (read as Attack die).</div></td></tr><tr><td><b>Tower</b></td><td>2x2</td><td>Destructible, Obscuring, Obstacle</td><td>Destructible. Obscuring. Obstacle.
+Each Rotten Stump may be Searched once per Round.</td></tr><tr><td><b>Tower</b></td><td>2x2</td><td>Destructible, Obscuring, Obstacle</td><td>Destructible. Obscuring. Obstacle.
 When this tile is destroyed, it turns into a Rubble Terrain tile.
 When you are about to be involuntarily moved from this tile, suffer Crash and ignore all Obstacles during this movement.
 [Move+Attack action] Lunging Attack: If you're on a Tower, move up to your Speed [Speed] in a straight line until adjacent to a Monster and attack it. If your Attack hits, immediately move to the VP. Otherwise, suffer Knockdown.<div class="warn small">⚠ Icon before 'Lunging Attack' is a wide black box with two glyphs and a plus sign (read as Move+Attack action, matching the gear-card convention).</div></td></tr></table>
