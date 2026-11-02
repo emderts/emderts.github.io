@@ -120,11 +120,11 @@ export class Campaign {
       const before = this.resurrections; this.resurrections = Math.max(0, before - deaths);
       this.say(`부활 -${deaths} → ${this.resurrections}${before < deaths ? ' (부족분 무시: 생존자 있음 → 전원 부활)' : ''}`);
     } else if (deaths) {
-      // 전멸: 부활 수만큼만 부활, 부족분은 캠페인에서 제외 [미확정]
-      this.resurrections -= deaths; this.say(`전멸 — 부활 -${deaths} → ${Math.max(0, this.resurrections)}`);
-      if (this.resurrections < 0) { let left = -this.resurrections; this.resurrections = 0; for (const kn of [...clash.knights].reverse()) if (!kn.alive && left > 0) { const ck = this.knights.find(x => x.name === kn.name); ck.dead = true; left--; this.say(`${ck.name}: 부활 불가 → 캠페인에서 제외`, 'death'); } }
+      // 확정(2026-11-02): 전멸 시 부활이 사망자 수 이상이면 전원 부활, 모자라면 캠페인 패배
+      if (this.resurrections < deaths) { for (const ck of this.knights) ck.dead = true; this.say(`전멸 — 부활 ${this.resurrections} < 사망 ${deaths} → 캠페인 패배`, 'end'); }
+      else { this.resurrections -= deaths; this.say(`전멸 — 부활 -${deaths} → ${this.resurrections}`); }
     }
-    if (this.knights.every(k => k.dead)) { this.result = 'lose'; this.current = null; this.say('모든 기사 사망, 부활 없음 — 캠페인 패배', 'end'); return 'lose'; }
+    if (this.knights.every(k => k.dead)) { this.result = 'lose'; this.current = null; this.say('전멸, 부활 부족 — 캠페인 패배', 'end'); return 'lose'; }
     // Loot (Victorious: Clash Scavenge 1 + Scavenge 3 / Forlorn: Scavenge 3)
     const lootDeck = [];
     const L = this.data.decks.loot.cards;

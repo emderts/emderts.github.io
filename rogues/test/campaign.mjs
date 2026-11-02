@@ -59,4 +59,10 @@ ok(stats.rounds >= 8, `campaign rounds simulated: ${stats.rounds} (win ${stats.w
   clash.knights[0].alive = false; clash.knights[1].alive = false; clash.result = 'lose'; clash.over = true;
   await c.aftermath(clash);
   ok(c.knights.every(k => !k.dead) && c.resurrections === 0, `2 deaths, 1 resurrection, survivors → all revived, resurrections ${c.resurrections}`); }
+{ const c = mk(8); const n = c.availableNodes().find(n => c.nodePlayable(n)); c.chooseNode(n.id); c.resurrections = 3;
+  const clash = c.buildClash(); clash.ask = clashAsk(clash); clash.setup(); clash.knights.forEach(k => k.alive = false); clash.result = 'lose';
+  const r = await c.aftermath(clash); ok(r === 'lose' && c.result === 'lose', 'wipe with 3 resurrections < 4 deaths → campaign lost'); }
+{ const c = mk(9); const n = c.availableNodes().find(n => c.nodePlayable(n)); c.chooseNode(n.id); c.resurrections = 4;
+  const clash = c.buildClash(); clash.ask = clashAsk(clash); clash.setup(); clash.knights.forEach(k => k.alive = false); clash.result = 'lose';
+  const r = await c.aftermath(clash); ok(r === 'lose' && !c.result && c.knights.every(k => !k.dead) && c.resurrections === 0, 'wipe with 4 resurrections → all revived, campaign continues'); }
 console.log(fails ? `${fails} FAIL` : 'ALL PASS'); process.exit(fails ? 1 : 0);
