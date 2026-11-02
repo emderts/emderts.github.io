@@ -26,11 +26,12 @@ export class Campaign {
     const def = this.data.knights[k.def];
     return { id: `${k.def}-${i}`, def: k.def, name: k.name || def.name + (i ? ' ' + (i + 1) : ''), gold: 10, sigh: 0, bane: 0, firstDeath: false, alive: true, dead: false,
       virtues: { ...def.setup.virtues }, unlocked: { techniques: [...def.setup.techniques], heroicArcs: [def.setup.heroicArc], perilArcs: [def.setup.perilArc], talents: [def.setup.talent], portraits: [def.setup.portrait] },
-      loadout: { portrait: def.setup.portrait, heroicArc: def.setup.heroicArc, perilArc: def.setup.perilArc, talent: def.setup.talent, techniques: [...def.setup.techniques], gear: [...def.setup.gear] },
+      loadout: { portrait: def.setup.portrait, heroicArc: def.setup.heroicArc, perilArc: def.setup.perilArc, talent: def.setup.talent, techniques: [...def.setup.techniques], gear: this._normalizeGear([...def.setup.gear]) },
       armory: [...def.setup.gear], claimed: [], rapport: {}, devotion: 0, saint: null };
   }
   _mercDeck() { return this.data.decks.mercenaries.mercenaries.filter(m => m.level === 1 || m.class === 'Ruin Stalker').map(m => ({ class: m.class, level: m.level, cost: m.cost, side: 'A', kingdom: m.kingdom })); }
   knightDef(k) { return this.data.knights[k.def]; }
+  _normalizeGear(names) { const hands = names.filter(n => n !== 'Knighves').map(n => this.gearDef(n)).filter(g => g && g.type === 'weapon').reduce((a, g) => a + (g.hands || 1), 0); return hands >= 2 ? names.filter(n => n !== 'Knighves') : names; }
   handLimit(k) { const p = this.knightDef(k).portraits.find(p => p.id === k.loadout.portrait); return p ? p.handLimit : 4; }
   gearDef(name) { return this.data.gear.gear.gear.find(g => g.name === name) || this._merchantAsGear(name); }
   _merchantAsGear(name) { for (const g of this.data.gear.merchant_principality.gear) { if (g.name === name) return this._sideToGear(g, g.side, false); if (g.reforgedName === name) return this._sideToGear(g, g.reforged, true); } return null; }

@@ -180,7 +180,7 @@
     "Metal"
    ],
    "type": "weapon",
-   "hands": 1,
+   "hands": 2,
    "tier": "Mob",
    "price": 5,
    "reforgePrice": 4,

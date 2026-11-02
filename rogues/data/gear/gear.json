@@ -60,7 +60,7 @@
     "Metal"
    ],
    "type": "weapon",
-   "hands": 1,
+   "hands": 2,
    "tier": "Mob",
    "merchant": true,
    "price": 5,
@@ -76,7 +76,7 @@
    "evasion": null,
    "evasionReroll": null,
    "armorDice": null,
-   "text": "Break 1. Commit.\n[GRAVE] Armor-piercing 1.\n[red crossed-sticks X icon]: +1 [Power] +1 [Fail]\n[yellow open-book icon]: +1 [Fail]",
+   "text": "Break 1. Commit.\n[GRAVE] Armor-piercing 1.\n[red crossed-sticks X icon]: +1 [Power] +1 [Potential]\n[yellow open-book icon]: +1 [Potential]",
    "gates": [
     {
      "gate": "GRAVE",
@@ -84,9 +84,7 @@
     }
    ],
    "knight": null,
-   "unclear": [
-    "Weapon die re-read as BLACK (dark cube) — card icon shades: red / dark=black / light=white [확인]"
-   ],
+   "unclear": [],
    "ops": {
     "keywords": [
      {
@@ -135,7 +133,11 @@
       ]
      }
     ]
-   }
+   },
+   "notes": [
+    "2H (사용자 확인 2026-11-02)",
+    "Weapon die black (사용자 확인 2026-11-02)"
+   ]
   },
   {
    "name": "Cleaver Sword",
@@ -234,19 +236,17 @@
    "evasion": null,
    "evasionReroll": null,
    "armorDice": {
-    "white": 1
+    "black": 1
    },
-   "text": "When you perform Rush, immediately Inspire 1 and gain Power Re-roll 2.\n[JUDICIUM] [Judicium-diamond icon] After performing an Armor Roll, treat each [Fail] you rolled as 2 [Fail].",
+   "text": "When you perform Rush, immediately Inspire 1 and gain Power Re-roll 2.\n[JUDICIUM] [Discard] After performing an Armor Roll, treat each [Potential] you rolled as 2 [Potential].",
    "gates": [
     {
      "gate": "JUDICIUM",
-     "text": "[Judicium-diamond icon] After performing an Armor Roll, treat each [Fail] you rolled as 2 [Fail]."
+     "text": "[Discard] After performing an Armor Roll, treat each [Potential] you rolled as 2 [Potential]."
     }
    ],
    "knight": "fleischritter",
-   "unclear": [
-    "Bottom-right slot icon looks like the Support pouch rather than the Armor breastplate (helm as Support)."
-   ],
+   "unclear": [],
    "ops": {
     "abilities": [
      {
@@ -266,6 +266,9 @@
     "gates": [
      {
       "when": "JUDICIUM",
+      "cost": {
+       "discardSelf": true
+      },
       "ops": [
        {
         "op": "armorRollDoubleSymbols"
@@ -273,7 +276,10 @@
       ]
      }
     ]
-   }
+   },
+   "notes": [
+    "JUDICIUM 오른쪽 아이콘 = Discard(이 카드 버림), 잔 = Potential, Armor die black (사용자 확인 2026-11-02)"
+   ]
   },
   {
    "name": "Paired Cleavers",
@@ -296,7 +302,7 @@
    },
    "bonusPower": {
     "n": 1,
-    "colour": "white"
+    "colour": "black"
    },
    "evasion": null,
    "evasionReroll": null,
@@ -350,7 +356,10 @@
       ]
      }
     ]
-   }
+   },
+   "notes": [
+    "Bonus power die black (사용자 확인 2026-11-02)"
+   ]
   },
   {
    "name": "Pighead Talisman",
@@ -443,7 +452,7 @@
    "armorDice": {
     "white": 2
    },
-   "text": "Inspire 1.\nWhen you are about to place Break [Break] tokens in the Knight Pool, you may place Hope [Hope] tokens instead.\n[Move action] 1 [Heat] Improved Rush.\n[MAJOR] If there are no Opening [Opening] or Break [Break] tokens in the Knight Pool, Auto-hope 2.",
+   "text": "Inspire 1.\nWhen you are about to place Break [Break] tokens in the Knight Pool, you may place Hope [Hope] tokens instead.\n[Combat action] 1 [Heat] Improved Rush.\n[MAJOR] If there are no Opening [Opening] or Break [Break] tokens in the Knight Pool, Auto-hope 2.",
    "gates": [
     {
      "gate": "MAJOR",
@@ -451,9 +460,7 @@
     }
    ],
    "knight": "fleischritter",
-   "unclear": [
-    "Icon before '1 [Heat] Improved Rush' is a black box with a running figure (read as the Move action icon)."
-   ],
+   "unclear": [],
    "ops": {
     "keywords": [
      {
@@ -466,9 +473,10 @@
     ],
     "abilities": [
      {
-      "timing": "moveAction",
+      "timing": "combatAction",
       "cost": {
-       "heat": 1
+       "heat": 1,
+       "action": "combat"
       },
       "ops": [
        {
@@ -494,7 +502,10 @@
       ]
      }
     ]
-   }
+   },
+   "notes": [
+    "비용 아이콘 = 전투 행동 (사용자 확인 2026-11-02)"
+   ]
   },
   {
    "name": "Reclaimed Spear",
@@ -554,13 +565,14 @@
    "evasion": null,
    "evasionReroll": null,
    "armorDice": null,
-   "text": "Bypass.\nPoison Resilience 1.\n[unknown scribbled icon] 1 [Heat] [Exhaust] Reflex.\nWhen you become the Target of a Monster Attack, you may gain +1 Evasion [Evasion] or 2 [Opening].\nIf you do, and fail to Fully Evade, lose -3 [Vigor].",
+   "text": "Bypass.\nPoison Resilience 1.\n[Reaction] 1 [Heat] [Exhaust] Reflex.\nWhen you become the Target of a Monster Attack, you may gain +1 Evasion [Evasion] or 2 [Evasion Re-roll].\nIf you do, and fail to Fully Evade, lose -3 [Vigor].",
    "gates": [],
    "knight": "kara",
-   "unclear": [
-    "Small scribbled icon before '1 [Heat] [Exhaust] Reflex' is unidentified (same icon appears on Wyrdweave Garb next to Reflex; may be a Reflex timing icon)."
-   ],
-   "ops": null
+   "unclear": [],
+   "ops": null,
+   "notes": [
+    "낙서 아이콘 = Reaction, \"2 Opening\" → 2 Evasion Re-roll (사용자 확인 2026-11-02)"
+   ]
   },
   {
    "name": "Masterforged Shield",
@@ -586,7 +598,7 @@
    "evasion": null,
    "evasionReroll": 2,
    "armorDice": {
-    "white": 1
+    "black": 1
    },
    "text": "Opening 2. Break 2.\n1 [Heat] When you are about to exhaust another Weapon [Gear] card, you may exhaust this card instead.\n[GRAVE] Full Miss: Skip the Clear the Knight Pool step of your Attack.",
    "gates": [
@@ -597,7 +609,10 @@
    ],
    "knight": "kara",
    "unclear": [],
-   "ops": null
+   "ops": null,
+   "notes": [
+    "Armor die black (사용자 확인 2026-11-02)"
+   ]
   },
   {
    "name": "Wilder Plate",
@@ -618,22 +633,20 @@
    "evasion": 1,
    "evasionReroll": null,
    "armorDice": null,
-   "extraStat": {
-    "sunEmblemValue": 3
-   },
-   "text": "1 [unknown circular wreath token icon] When you become the Target of an Attack, choose one:\n• Guard 1.\n• [red Armor die].\n• 1 Evasion Re-roll.\n[JUDICIUM] 1 [Heat] [Judicium-diamond icon] Superior Chance. If you survive, gain +1 [Passion].",
+   "text": "1 [Charge] When you become the Target of an Attack, choose one:\n• Guard 1.\n• [red Armor die].\n• 1 Evasion Re-roll.\n[JUDICIUM] 1 [Heat] [Discard] Superior Chance. If you survive, gain +1 [Passion].",
    "gates": [
     {
      "gate": "JUDICIUM",
-     "text": "1 [Heat] [Judicium-diamond icon] Superior Chance. If you survive, gain +1 [Passion]."
+     "text": "1 [Heat] [Discard] Superior Chance. If you survive, gain +1 [Passion]."
     }
    ],
    "knight": "kara",
-   "unclear": [
-    "Right column has a '3' inside a sun/gear emblem above the +1 Evasion; stat type unknown (recorded as extraStat.sunEmblemValue).",
-    "Cost icon in '1 [icon] When you become the Target...' is a circular wreath-like token, not Heat/Vigor/Passion; unidentified."
-   ],
-   "ops": null
+   "unclear": [],
+   "ops": null,
+   "charges": 3,
+   "notes": [
+    "우상단 숫자 = Charge 수(3), 원형 토큰 아이콘 = Charge, 마름모 = Discard (사용자 확인 2026-11-02)"
+   ]
   },
   {
    "name": "Horn Bow",
@@ -944,11 +957,11 @@
    "evasion": null,
    "evasionReroll": null,
    "armorDice": null,
-   "text": "Hand Limit +1.\n[Exhaust] Delay [Delay] a random Technique from your hand to Dodge.\n[MAJOR] [unknown scribbled icon] Delay [Delay] a random Technique from your hand to Reflex.",
+   "text": "Hand Limit +1.\n[Exhaust] Delay [Delay] a random Technique from your hand to Dodge.\n[MAJOR] [Reaction] Delay [Delay] a random Technique from your hand to Reflex.",
    "gates": [
     {
      "gate": "MAJOR",
-     "text": "[unknown scribbled icon] Delay [Delay] a random Technique from your hand to Reflex."
+     "text": "[Reaction] Delay [Delay] a random Technique from your hand to Reflex."
     }
    ],
    "knight": "renholder",
@@ -956,7 +969,10 @@
     "Scribbled icon after MAJOR is the same unidentified icon as on Wilder Cloak (both next to Reflex).",
     "Knight assignment inferred."
    ],
-   "ops": null
+   "ops": null,
+   "notes": [
+    "낙서 아이콘 = Reaction (사용자 확인 2026-11-02)"
+   ]
   },
   {
    "name": "Torchbearer's Swordstaff",
@@ -1087,7 +1103,7 @@
    "evasion": null,
    "evasionReroll": null,
    "armorDice": null,
-   "text": "You do not benefit from Opening [Opening] tokens.\nRouse 1. +2 Precision [Precision].\nDuring Delve, you may move through Shortcuts.\n1 [Heat] [Judicium-diamond icon] Second Chance.\n[P 3+] Spotlight.",
+   "text": "You do not benefit from Opening [Opening] tokens.\nRouse 1. +2 Precision [Precision].\nDuring Delve, you may move through Shortcuts.\n1 [Heat] [Discard] Second Chance.\n[P 3+] Spotlight.",
    "gates": [
     {
      "gate": "PASSION 3+",
@@ -1145,7 +1161,7 @@
    "evasion": 1,
    "evasionReroll": null,
    "armorDice": null,
-   "text": "[Exhaust] Lose -X [Heat], where X is the Level of the top BP card.\n2 [Heat] [Exhaust] When you are about to draw an Exploration card, look at the top 3 cards and place 2 of them on the bottom of the deck in any order.\n1 [Heat] [Judicium-diamond icon] Superior Chance.",
+   "text": "[Exhaust] Lose -X [Heat], where X is the Level of the top BP card.\n2 [Heat] [Exhaust] When you are about to draw an Exploration card, look at the top 3 cards and place 2 of them on the bottom of the deck in any order.\n1 [Heat] [Discard] Superior Chance.",
    "gates": [],
    "knight": "ser-sonch",
    "unclear": [],
@@ -1356,11 +1372,11 @@
    "evasion": null,
    "evasionReroll": null,
    "armorDice": null,
-   "text": "Bane Limit -1.\nDuring the second ability window, if you deal a Wound, you may discard all Bane [Bane] tokens to place the same amount of Openings [Opening] and/or Breaks [Break] in the Knight Pool.\n[P 4+] [Judicium-diamond icon] When a Monster attacks, it loses -X [Attack die] (to a minimum of 1), where X is the number of Bane [Bane] tokens you have.",
+   "text": "Bane Limit -1.\nDuring the second ability window, if you deal a Wound, you may discard all Bane [Bane] tokens to place the same amount of Openings [Opening] and/or Breaks [Break] in the Knight Pool.\n[P 4+] [Discard] When a Monster attacks, it loses -X [Attack die] (to a minimum of 1), where X is the number of Bane [Bane] tokens you have.",
    "gates": [
     {
      "gate": "PASSION 4+",
-     "text": "[Judicium-diamond icon] When a Monster attacks, it loses -X [Attack die] (to a minimum of 1), where X is the number of Bane [Bane] tokens you have."
+     "text": "[Discard] When a Monster attacks, it loses -X [Attack die] (to a minimum of 1), where X is the number of Bane [Bane] tokens you have."
     }
    ],
    "knight": "stoneface",
@@ -1420,7 +1436,7 @@
    "evasion": null,
    "evasionReroll": null,
    "armorDice": null,
-   "text": "[HUMAN] 3 [Heat] Block.\n[APE] 1 [Heat] Reinforce 2.\n[MAJOR] [Judicium-diamond icon] When you are about to perform Card Refresh, perform Heat Refresh instead or vice versa.",
+   "text": "[HUMAN] 3 [Heat] Block.\n[APE] 1 [Heat] Reinforce 2.\n[MAJOR] [Discard] When you are about to perform Card Refresh, perform Heat Refresh instead or vice versa.",
    "gates": [
     {
      "gate": "HUMAN",
@@ -1432,7 +1448,7 @@
     },
     {
      "gate": "MAJOR",
-     "text": "[Judicium-diamond icon] When you are about to perform Card Refresh, perform Heat Refresh instead or vice versa."
+     "text": "[Discard] When you are about to perform Card Refresh, perform Heat Refresh instead or vice versa."
     }
    ],
    "knight": "ser-ubar",

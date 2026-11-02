@@ -39,6 +39,7 @@ export class Clash {
     kn.heroicArc = def.heroicArcs.find(a => a.name === (k.heroicArc || def.setup.heroicArc)); kn.talent = def.talents.find(t => t.name === (k.talent || def.setup.talent));
     kn.hand = (k.techniques || def.setup.techniques).map(n => ({ ...def.techniques.find(t => t.name === n) }));
     kn.gear = (k.gear || def.setup.gear).map(n => ({ ...this.data.gear.gear.gear.find(g => g.name === n), exhausted: false, discarded: false }));
+    { const otherHands = kn.gear.filter(g => g.type === 'weapon' && g.name !== 'Knighves').reduce((a, g) => a + (g.hands || 1), 0); if (otherHands >= 2) { const kv = kn.gear.find(g => g.name === 'Knighves'); if (kv) { kn.gear = kn.gear.filter(g => g !== kv); kn.knighvesReserve = kv; } } } // Knighves only in a free hand slot (p.20)
     kn.virtues = { ...def.setup.virtues }; kn.tier = k.tier || 1; kn.pos = null; kn.conditions = []; kn.chokeLimit = 0; kn.braced = false; kn.usedArcLevels = new Set(); kn.bonusAttacks = 0; kn.heroicUsed = {};
     kn.gold = k.gold ?? 0; kn.sigh = k.sigh ?? 0; kn.fleischBoard = 0; kn.firstDeath = k.firstDeath || false; kn.turnsTaken = 0;
     return kn;
@@ -248,7 +249,7 @@ export class Clash {
   async loseVigor(k, n, { source = 'attack', perilCheck = false, armor = true } = {}) {
     if (!k.alive || n <= 0) return 0;
     let loss = n;
-    if (armor && source === 'attack') { const dice = this.fx.armorDice(k); if (dice.red + dice.black + dice.white > 0) { const r = rollArmor(this.rng, dice, this.data.components.dice.faces, this.data.components.dice.armorSymbol); let mit = r.mitigated; if (this.fx.has(k, 'armorRollDoubleSymbols')) mit *= 2; loss = Math.max(0, loss - mit); this.say(`${k.name} Armor Roll ${r.dice.length}d → 경감 ${mit}`, 'dice'); await this.fx.onArmorRoll(k, mit); if (loss === 0) { this.say(`${k.name} 피해 전부 경감 → Peril Check 없음`); return 0; } } }
+    if (armor && source === 'attack') { const dice = this.fx.armorDice(k); if (dice.red + dice.black + dice.white > 0) { const r = rollArmor(this.rng, dice, this.data.components.dice.faces, this.data.components.dice.armorSymbol); let mit = r.mitigated; if (this.fx.has(k, 'armorRollDoubleSymbols')) mit *= 2; else mit = await this.fx.armorDoubleGear(k, mit, loss); loss = Math.max(0, loss - mit); this.say(`${k.name} Armor Roll ${r.dice.length}d → 경감 ${mit}`, 'dice'); await this.fx.onArmorRoll(k, mit); if (loss === 0) { this.say(`${k.name} 피해 전부 경감 → Peril Check 없음`); return 0; } } }
     loss -= this.fx.soak(k); if (loss <= 0) return 0;
     const before = k.vigor; const eff = k.loseVigor(loss); this.say(`${k.name} Vigor -${loss} (${before}→${k.vigor})${eff < 0 ? ' [효과상 ' + eff + ']' : ''}`, 'dmg');
     if (this.currentAttack) this.currentAttack.vigorLost = true;
@@ -411,6 +412,7 @@ export class Clash {
   // ---------- Knight Attack (pp.56–62) ----------
   async knightAttack(k, { bonus = false } = {}) {
     const weapons = k.gear.filter(g => g.type === 'weapon' && (!g.exhausted || bonus) && !g.discarded);
+    if (!weapons.length && k.knighvesReserve && !k.gear.some(g => g.type === 'weapon' && !g.discarded)) { k.gear.push(k.knighvesReserve); weapons.push(k.knighvesReserve); k.knighvesReserve = null; this.say(`${k.name}: 무기를 잃어 Knighves 장착`); }
     if (!weapons.length) { this.say(`${k.name}: 사용 가능한 무기 없음`); return; }
     let w = weapons[0]; if (weapons.length > 1) { const wn = await this.ask({ type: 'weapon', knight: k.id, options: weapons.map(g => ({ label: `${g.name} (⚔${g.attackDice} +${g.precision})`, value: g.name })) }); w = weapons.find(g => g.name === wn) || weapons[0]; }
     if (bonus && w.exhausted) w.exhausted = false;

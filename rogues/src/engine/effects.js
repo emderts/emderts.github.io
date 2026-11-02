@@ -76,6 +76,13 @@ export class Effects {
   async onWound(k, A) { if (A.envenomed) { const extra = Math.min(A.envenomed, Math.max(0, A.overAT)); this.c.poolAdd('break', A.envenomed + extra); this.say(`Envenomed ${A.envenomed}`); } if (this.c.hasCondition(k, 'Courage')) { /* stays */ } }
   async onFullMiss(k, A) { if (this.c.hasCondition(k, 'Courage')) this.c.removeCondition(k, 'Courage'); }
   async onFullHit(k, A) { }
+  /** Gear gate "treat each [Potential] rolled as 2" with a Discard cost (Great Antler Helm, JUDICIUM gate): optional, discards the card. */
+  async armorDoubleGear(k, mit, loss) {
+    if (mit <= 0) return mit;
+    for (const g of k.gear) { if (g.discarded || !g.ops || !g.ops.gates) continue; const gate = g.ops.gates.find(x => x.ops.some(o => o.op === 'armorRollDoubleSymbols') && this.perilGateOk(k, x.when)); if (!gate) continue;
+      if (await this.c.yesNo(`${k.name}: ${g.name}를 버리고 Armor Roll의 잔(✦) ${mit}개를 2배로 (경감 ${mit} → ${mit * 2}, 피해 ${loss})?`, mit < loss)) { if (gate.cost && gate.cost.discardSelf) { g.discarded = true; this.say(`${k.name}: ${g.name} 버림`); } this.say(`잔 2배 → 경감 ${mit * 2}`); return mit * 2; } }
+    return mit;
+  }
   async onArmorRoll(k, mitigated) { const rb = k.talent && k.talent.abilities.find(a => a.ops && a.ops.some(o => o.op === 'onArmorRoll')); if (rb && mitigated > 0) { const op = rb.ops.find(o => o.op === 'onArmorRoll'); for (let i = 1; i <= Math.min(5, mitigated); i++) for (const o of op.byMitigated[i] || []) this.c.poolAdd(o.token, o.n, o.token === 'fleisch' ? { resource: true } : {}); } }
 
   async pushMonster(k, n) {

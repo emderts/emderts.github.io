@@ -35,7 +35,7 @@ const mk = (seed, level = 1) => { const c = new Clash({ data, knights: [0, 1, 2,
   ok(unkM.length === 0, 'all Eggknight ops implemented' + (unkM.length ? ': ' + unkM.join(',') : '')); ok(unkK.length === 0, 'all Mortis/Technique ops implemented' + (unkK.length ? ': ' + unkK.join(',') : '')); }
 
 // --- setup
-{ const c = mk(1); ok(c.monster.cells.map(x => c.board.label(x)).join() === 'E7,E8,F7,F8', 'monster on E7/E8/F7/F8'); ok(c.knights.map(k => c.board.label(k.pos)).join() === 'G6,G9,D6,D9', 'knights on G6/G9/D6/D9'); ok([...c.board.terrain.values()].filter(t => t.id === 'column').length === 8, '8 Columns placed'); ok(['N', 'S', 'E', 'W'].includes(c.monster.facing), 'facing from Minor Mortis bottom card'); ok(c.armorTokens[1] === 1 && c.armorTokens[2] === 2 && c.armorTokens[3] === 3, 'Panzeronion 1/2/3 at level 1'); ok(c.mortis.Minor.size === 12 && c.mortis.Major.size === 12 && c.mortis.Grave.size === 13, 'Mortis decks: generic + Principality cards only (12/12/13)'); ok(c.knights[0].vigor === 11 && c.knights[0].heatLimit === 3 && c.knights[0].hand.length === 5 && c.knights[0].gear.length === 2, 'Fleischritter: V11, HL3, 5 techniques, 2 gear'); }
+{ const c = mk(1); ok(c.monster.cells.map(x => c.board.label(x)).join() === 'E7,E8,F7,F8', 'monster on E7/E8/F7/F8'); ok(c.knights.map(k => c.board.label(k.pos)).join() === 'G6,G9,D6,D9', 'knights on G6/G9/D6/D9'); ok([...c.board.terrain.values()].filter(t => t.id === 'column').length === 8, '8 Columns placed'); ok(['N', 'S', 'E', 'W'].includes(c.monster.facing), 'facing from Minor Mortis bottom card'); ok(c.armorTokens[1] === 1 && c.armorTokens[2] === 2 && c.armorTokens[3] === 3, 'Panzeronion 1/2/3 at level 1'); ok(c.mortis.Minor.size === 12 && c.mortis.Major.size === 12 && c.mortis.Grave.size === 13, 'Mortis decks: generic + Principality cards only (12/12/13)'); ok(c.knights[0].vigor === 11 && c.knights[0].heatLimit === 3 && c.knights[0].hand.length === 5 && c.knights[0].gear.length === 1 && c.knights[0].knighvesReserve, 'Fleischritter: V11, HL3, 5 techniques, Chipped Axe 2H + Knighves in reserve'); }
 { const c = mk(2, 2); ok(c.armorTokens[1] === 2 && c.armorTokens[3] === 4 && c.monster.hasTrait('Jacked') && c.monster.toHit === 7, 'level 2: Panzeronion +1, Jacked, To Hit 7'); }
 
 // --- targeting
@@ -79,6 +79,18 @@ const mk = (seed, level = 1) => { const c = new Clash({ data, knights: [0, 1, 2,
   const h0 = k.heat; c.fx.pay(k, fr.cost); ok(!k.actions.move && !k.actions.combat && k.heat === h0 + 2, 'paying Food Runner spends both actions and +2 Heat');
   ok(/전투 행동\+이동 행동/.test(c.fx.costLabel(k, fr)), 'cost label shows both actions'); }
 { ok(data.gear.gear.gear.every(g => Array.isArray(g.traits) && g.traits.length) && data.gear.merchant_principality.gear.every(g => g.traits.length && (g.reforgedTraits || g.traits).length), 'every gear card has traits (name line)'); }
+
+// --- Great Antler Helm: JUDICIUM gate, discard the card to double the Armor Roll potentials
+{ const c = mk(9); const k = c.knights[0]; const helm = { ...data.gear.gear.gear.find(g => g.name === 'Great Antler Helm'), exhausted: false, discarded: false }; k.gear.push(helm);
+  ok(helm.armorDice.black === 1 && !helm.armorDice.white, 'Great Antler Helm armor die is black');
+  c.fx.perilGateOk = () => true; c.ask = async q => q.type === 'confirm' ? true : autoAsk(c)(q);
+  const m = await c.fx.armorDoubleGear(k, 2, 5); ok(m === 4 && helm.discarded, 'Antler Helm discarded to double 2 → 4');
+  const m2 = await c.fx.armorDoubleGear(k, 2, 5); ok(m2 === 2, 'once discarded it cannot be used again'); }
+{ const G = data.gear.gear.gear, by = n => G.find(g => g.name === n);
+  ok(by('Chipped Axe').hands === 2 && by('Paired Cleavers').bonusPower.colour === 'black' && by('Masterforged Shield').armorDice.black === 1 && by('Wilder Plate').charges === 3, 'owner corrections: Chipped Axe 2H, Paired Cleavers bonus black, Masterforged armor black, Wilder Plate 3 charges');
+  ok(!G.some(g => /Judicium-diamond|scribbled icon|wreath token|\[Fail\]/.test(g.text)), 'no unresolved icon placeholders / [Fail] chalice left in gear text'); }
+{ const c = mk(10); const k = c.knights[0]; ok(!k.gear.some(g => g.name === 'Knighves') && k.knighvesReserve, 'starting loadout: 2H Chipped Axe → Knighves set aside (no free hand)');
+  k.gear.find(g => g.name === 'Chipped Axe').discarded = true; k.pos = c.board.parse('G7'); c.board.place({ kind: 'knight', id: k.id }, [k.pos]); await c.knightAttack(k); ok(k.gear.some(g => g.name === 'Knighves'), 'weapon lost → Knighves equipped'); }
 
 // --- full simulations
 const results = { win: 0, lose: 0 }; const rounds = [];
