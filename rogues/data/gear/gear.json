@@ -1,6 +1,9 @@
 {
  "_source": "Knighves + Chipped Axe (Fleischritter start) and 32 Rosegraal reward gear cards + Laxlaw (Pliant) side. Stats per rulebook p.20 icon legend. text verbatim with [icons].",
- "_notes": "[object Object] Die icon shades: red cube = red die, dark cube with white edges = black die, light cube = white die (re-checked 2026-11-02).",
+ "_notes": [
+  "[object Object] Die icon shades: red cube = red die, dark cube with white edges = black die, light cube = white die (re-checked 2026-11-02).",
+  "squire: 카드 하단 아이콘(빨간 X / 노란 책 등) 줄은 스콰이어 전용 — Rogue's Path에서 무시"
+ ],
  "gear": [
   {
    "name": "Knighves",
@@ -82,7 +85,6 @@
    ],
    "knight": null,
    "unclear": [
-    "Two condition icons at the bottom are unidentified: a red X made of two crossed sticks (': +1 [Power sword] +1 [Fail chalice]') and a yellow open book (': +1 [Fail chalice]').",
     "Weapon die re-read as BLACK (dark cube) — card icon shades: red / dark=black / light=white [확인]"
    ],
    "ops": {
@@ -104,9 +106,14 @@
         "n": 1
        }
       ]
-     },
+     }
+    ]
+   },
+   "squire": {
+    "note": "스콰이어 처리용 아이콘 줄 — Rogue's Path에는 스콰이어가 없으므로 무시 (사용자 확인 2026-11-02)",
+    "rows": [
      {
-      "when": "icon:redX",
+      "icon": "redX",
       "ops": [
        {
         "op": "power",
@@ -116,18 +123,16 @@
         "op": "potential",
         "n": 1
        }
-      ],
-      "unclear": "빨간 X 아이콘 조건 미확인"
+      ]
      },
      {
-      "when": "icon:book",
+      "icon": "book",
       "ops": [
        {
         "op": "potential",
         "n": 1
        }
-      ],
-      "unclear": "노란 책 아이콘 조건 미확인"
+      ]
      }
     ]
    }

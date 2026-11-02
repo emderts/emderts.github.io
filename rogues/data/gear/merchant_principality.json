@@ -5,7 +5,7 @@
   "Power/armor die colours: red = red-filled die; white = light-filled die; black = dark-filled die with white outline (matches the black armor dice on Light Lamellar / Kite Shield / Pavise).",
   "bonusPower: {raw:N} = '+N [sword]'; {dice:[colour]} = '+ [die icon]'; both when both are printed.",
   "Text tokens: [Heat] blue H cost, [Exhaust] card-with-arrow, [Power] sword icon, [Two-handed] double-gauntlet gate tag (gate name TWO-HANDED), [Star] unidentified token icon (see unclear), [GRAVE]/[MAJOR]/[JUDICIUM] red peril tags (also listed in gates).",
-  "triggers: monster-trait bonus rows; icon ids redX, book, greenCircle, blueTriangle; power = sword, potential = goblet.",
+  "squireTriggers: 아이콘(redX/book/greenCircle/blueTriangle) 보너스 줄 = 스콰이어 처리용 — Rogue's Path에서 무시 (사용자 확인 2026-11-02); power = sword, potential = goblet.",
   "evasion = '+N' with helmet-and-swoosh icon in the right column; evasionReroll used only for Scale Mail's circle-and-arrow icon (see its unclear entry).",
   "hands: 0 for armor (breastplate slot). Shields use the single-gauntlet slot, so type weapon / hands 1."
  ],
@@ -52,7 +52,7 @@
       "text": "+1 [Power]."
      }
     ],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "greenCircle",
       "power": 1,
@@ -81,7 +81,7 @@
     "armorDice": null,
     "text": "Unwieldy. Ranged 2-4.\nBreak 1. Cumbersome.",
     "gates": [],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "greenCircle",
       "power": 1,
@@ -137,7 +137,7 @@
       "text": "+1 [Power]."
      }
     ],
-    "triggers": []
+    "squireTriggers": []
    },
    "reforged": {
     "attackDice": 1,
@@ -161,7 +161,7 @@
       "text": "+1 [Power]."
      }
     ],
-    "triggers": []
+    "squireTriggers": []
    },
    "unclear": [],
    "ops": null
@@ -207,7 +207,7 @@
       "text": "Armor-piercing 1."
      }
     ],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "power": 1,
@@ -243,7 +243,7 @@
       "text": "Armor-piercing 1."
      }
     ],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "power": 1,
@@ -294,7 +294,7 @@
     "armorDice": null,
     "text": "Opening 1.",
     "gates": [],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "greenCircle",
       "power": 1
@@ -321,7 +321,7 @@
     "armorDice": null,
     "text": "Opening 2.",
     "gates": [],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "greenCircle",
       "power": 1
@@ -371,7 +371,7 @@
     "armorDice": null,
     "text": "Unwieldy.\nReach 2. Opening 1.",
     "gates": [],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "potential": 1
@@ -402,7 +402,7 @@
     "armorDice": null,
     "text": "Unwieldy.\nReach 2. Opening 2.",
     "gates": [],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "potential": 1
@@ -450,7 +450,7 @@
     "armorDice": null,
     "text": "2 [Heat] [Exhaust] Guard 1.",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "reforged": {
     "attackDice": 2,
@@ -468,7 +468,7 @@
     "armorDice": null,
     "text": "1 [Heat] [Exhaust] Guard 1.",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "unclear": [],
    "ops": null
@@ -501,7 +501,7 @@
     "armorDice": null,
     "text": "",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "reforged": {
     "attackDice": null,
@@ -513,7 +513,7 @@
     "armorDice": null,
     "text": "Poison Limit +1.",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "unclear": [],
    "ops": null
@@ -551,7 +551,7 @@
     },
     "text": "",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "reforged": {
     "attackDice": null,
@@ -568,7 +568,7 @@
     },
     "text": "1 [Heat] Reinforce 1.",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "unclear": [],
    "ops": null
@@ -606,7 +606,7 @@
     },
     "text": "",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "reforged": {
     "attackDice": null,
@@ -623,7 +623,7 @@
     },
     "text": "1 [Heat] Reinforce 1.",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "unclear": [
     "Second copy of Ragged Hauberk; code read as 13A0485 (zoomed)."
@@ -658,7 +658,7 @@
     "armorDice": null,
     "text": "",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "reforged": {
     "attackDice": null,
@@ -670,7 +670,7 @@
     "armorDice": null,
     "text": "Poison Limit +1.",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "unclear": [
     "Second copy of Weathered Leather Armor; code 13A0484."
@@ -715,7 +715,7 @@
     "armorDice": null,
     "text": "Unwieldy.\nRanged 3-4.\nCantrip 1. Commit.",
     "gates": [],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "potential": 2
@@ -754,7 +754,7 @@
       "text": "+1 [Power]."
      }
     ],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "potential": 2
@@ -809,7 +809,7 @@
     "armorDice": null,
     "text": "Opening 1. Break 1.",
     "gates": [],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "power": 3,
@@ -837,7 +837,7 @@
     "armorDice": null,
     "text": "Auto-break 1.\nOpening 1. Break 1.",
     "gates": [],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "power": 3,
@@ -888,7 +888,7 @@
     "armorDice": null,
     "text": "Opening 2.\nPower Re-roll 1.",
     "gates": [],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "blueTriangle",
       "power": 2,
@@ -924,7 +924,7 @@
       "text": "+1 [Power]."
      }
     ],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "blueTriangle",
       "power": 2,
@@ -982,7 +982,7 @@
       "text": "Armor-piercing 1."
      }
     ],
-    "triggers": []
+    "squireTriggers": []
    },
    "reforged": {
     "attackDice": 1,
@@ -1008,7 +1008,7 @@
       "text": "Armor-piercing 1."
      }
     ],
-    "triggers": []
+    "squireTriggers": []
    },
    "unclear": [],
    "ops": null
@@ -1049,7 +1049,7 @@
     "armorDice": null,
     "text": "Unwieldy.\nReach 2. Opening 2.",
     "gates": [],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "power": 2,
@@ -1085,7 +1085,7 @@
     "armorDice": null,
     "text": "Reach 2.\nOpening 3. Commit.",
     "gates": [],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "power": 2,
@@ -1149,7 +1149,7 @@
     },
     "text": "3 [Heat] [Exhaust] Block.",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "reforged": {
     "attackDice": 3,
@@ -1174,7 +1174,7 @@
     },
     "text": "1 [Heat] [Exhaust] Block.\n1 [Heat] Reinforce 1.",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "unclear": [],
    "ops": null
@@ -1212,7 +1212,7 @@
     },
     "text": "Poison Limit +1.\n1 [Heat] [Exhaust] Reduce suffered Knockback or Pushback by 1.",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "reforged": {
     "attackDice": null,
@@ -1229,7 +1229,7 @@
     },
     "text": "Poison Limit +1.\n1 [Heat] [Exhaust] Reduce suffered Knockback or Pushback by up to 3.",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "unclear": [],
    "ops": null
@@ -1262,7 +1262,7 @@
     "armorDice": null,
     "text": "Guard 1.",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "reforged": {
     "attackDice": null,
@@ -1274,7 +1274,7 @@
     "armorDice": null,
     "text": "Guard 1.",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "unclear": [],
    "ops": null
@@ -1318,7 +1318,7 @@
     "armorDice": null,
     "text": "Reach 2. Opening 2.\nBreak 1. Cumbersome.",
     "gates": [],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "power": 2,
@@ -1357,7 +1357,7 @@
     "armorDice": null,
     "text": "Reach 2. Opening 3.\nHope 1. Cumbersome.",
     "gates": [],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "power": 2,
@@ -1417,7 +1417,7 @@
     "armorDice": null,
     "text": "Ranged 2-4.\nCantrip 1. Commit.",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "reforged": {
     "attackDice": 1,
@@ -1438,7 +1438,7 @@
     "armorDice": null,
     "text": "Ranged 2-4.\nCantrip 2. Commit.",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "unclear": [],
    "ops": null
@@ -1482,7 +1482,7 @@
     },
     "text": "Poison Resilience 1.\nOpening 1.\nBreak 1.\n1 [Heat] [Exhaust] Block.",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "reforged": {
     "attackDice": 4,
@@ -1507,7 +1507,7 @@
     },
     "text": "Poison Resilience 1.\nOpening 1.\nBreak 2.\n1 [Heat] [Exhaust] Block.",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "unclear": [
     "Code read as 13A0496 (last digit faint; 0490 is Dulled Spear)."
@@ -1557,7 +1557,7 @@
       "text": "Armor-piercing 1."
      }
     ],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "power": 3
@@ -1598,7 +1598,7 @@
       "text": "Armor-piercing 1."
      }
     ],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "power": 3
@@ -1654,7 +1654,7 @@
     "armorDice": null,
     "text": "Opening 2.\nPower Re-roll 1.\nReposition 1.",
     "gates": [],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "power": 5,
@@ -1686,7 +1686,7 @@
     "armorDice": null,
     "text": "Opening 3.\nPower Re-roll 1.\nReposition 1.",
     "gates": [],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "power": 5,
@@ -1739,7 +1739,7 @@
     "armorDice": null,
     "text": "Ranged 3-5.\nClosing 1. Break 2.\nReposition 1. Cumbersome.",
     "gates": [],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "greenCircle",
       "potential": 2
@@ -1774,7 +1774,7 @@
     "armorDice": null,
     "text": "Ranged 3-5.\nClosing 2. Break 2.\nReposition 2. Cumbersome.",
     "gates": [],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "greenCircle",
       "potential": 2
@@ -1827,7 +1827,7 @@
     },
     "text": "Bane Limit +1.\nArmor Re-roll 1.",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "reforged": {
     "attackDice": null,
@@ -1850,7 +1850,7 @@
       "text": "Soak 1."
      }
     ],
-    "triggers": []
+    "squireTriggers": []
    },
    "unclear": [],
    "ops": null
@@ -1888,7 +1888,7 @@
       "text": "1 [Heat] [Star] Second Chance."
      }
     ],
-    "triggers": []
+    "squireTriggers": []
    },
    "reforged": {
     "attackDice": null,
@@ -1905,7 +1905,7 @@
       "text": "1 [Heat] [Star] Second Chance."
      }
     ],
-    "triggers": []
+    "squireTriggers": []
    },
    "unclear": [
     "[Star] = unidentified cost icon: black shield/token with a white four-point star, printed after the Heat cost (also on Steel Fitted Kite Shield, Blackened Chestplate/Armor)."
@@ -1950,7 +1950,7 @@
     "armorDice": null,
     "text": "Reach 2.\nOpening 3.\nHope 1. Reposition 2.",
     "gates": [],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "power": 1,
@@ -1993,7 +1993,7 @@
     "armorDice": null,
     "text": "Reach 2. Opening 3.\nHope 2. Reposition 3.",
     "gates": [],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "power": 1,
@@ -2056,7 +2056,7 @@
     "armorDice": null,
     "text": "Unwieldy.\nRanged 3-6. Break 4.\nCommit. Cumbersome.",
     "gates": [],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "power": 3,
@@ -2093,7 +2093,7 @@
     "armorDice": null,
     "text": "Unwieldy.\nRanged 3-6.\nSunder 1. Break 3.\nCommit. Cumbersome.",
     "gates": [],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "power": 3,
@@ -2151,7 +2151,7 @@
     "armorDice": null,
     "text": "Provoke.\nBlack 2. Hug 2.",
     "gates": [],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "potential": 2
@@ -2184,7 +2184,7 @@
     "armorDice": null,
     "text": "Deadly.\nProvoke. Black 2.\nOpening 1. Hug 4.",
     "gates": [],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "potential": 2
@@ -2248,7 +2248,7 @@
       "text": "+1 [Power]."
      }
     ],
-    "triggers": []
+    "squireTriggers": []
    },
    "reforged": {
     "attackDice": 2,
@@ -2271,7 +2271,7 @@
     "armorDice": null,
     "text": "Reach 2.\nOpening 3. Hope 1.\nAttack Re-roll 1.",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "unclear": [
     "Billhook bonus die is dark-filled (black); Hooked Blade bonus die is red."
@@ -2314,7 +2314,7 @@
     "armorDice": null,
     "text": "Overbreak 2. Black 1.\nArmor-piercing 1.",
     "gates": [],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "power": 5
@@ -2347,7 +2347,7 @@
     "armorDice": null,
     "text": "Auto-break 1. Break 2.\nBlack 1. Armor-piercing 2.",
     "gates": [],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "power": 5
@@ -2407,7 +2407,7 @@
     },
     "text": "Opening 1. Break 2.\n1 [Heat] Reinforce 1.",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "reforged": {
     "attackDice": 2,
@@ -2437,7 +2437,7 @@
       "text": "[Star] Second Chance."
      }
     ],
-    "triggers": []
+    "squireTriggers": []
    },
    "unclear": [],
    "ops": null
@@ -2477,7 +2477,7 @@
     },
     "text": "Poison Resilience 1.\nMotivate 1. Soak 1.",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "reforged": {
     "attackDice": null,
@@ -2494,7 +2494,7 @@
     },
     "text": "Poison Resilience 1.\nInspire 1. Motivate 1.\nSoak 2.",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "unclear": [],
    "ops": null
@@ -2527,7 +2527,7 @@
     "armorDice": null,
     "text": "Deploy 1.\n2 [Heat] Soak 1.",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "reforged": {
     "attackDice": null,
@@ -2539,7 +2539,7 @@
     "armorDice": null,
     "text": "Deploy 2. Tumble.\n2 [Heat] Soak 2.",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "unclear": [
     "Right-column stat is '+1' with a circle-and-arrow (Mars-like) icon, different from the helmet-with-swoosh icon used for Evasion on the leather armors; transcribed as Evasion Re-roll 1 per the legend but could be another stat (e.g. Movement)."
@@ -2584,7 +2584,7 @@
     "armorDice": null,
     "text": "Auto-black 1.\nClosing 2. Hope 1.\nPower Re-roll 1.",
     "gates": [],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "power": 3,
@@ -2621,7 +2621,7 @@
     "armorDice": null,
     "text": "Auto-black 1.\nClosing 2. Hope 2.\nPower Re-roll 2.",
     "gates": [],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "power": 3,
@@ -2681,7 +2681,7 @@
     "armorDice": null,
     "text": "Ranged 3-5.\nFire 2. Black 1.\nCommit.\nCumbersome.\nFull hit: +2 [Power].",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "reforged": {
     "attackDice": 3,
@@ -2703,7 +2703,7 @@
     "armorDice": null,
     "text": "Ranged 3-5.\nAuto-break 1.\nFire 2. Black 1.\nSunder 1. Commit.\nCumbersome.\nFull hit: +2 [Power].",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "unclear": [],
    "ops": null
@@ -2751,7 +2751,7 @@
       "text": "+1 [Power]."
      }
     ],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "potential": 2
@@ -2793,7 +2793,7 @@
     "armorDice": null,
     "text": "Unwieldy.\nRanged 2-5.\nCantrip 2. Spell 3.\nReposition 2. Commit.",
     "gates": [],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "potential": 2
@@ -2857,7 +2857,7 @@
     "armorDice": null,
     "text": "Unwieldy.\nReach 2. Overbreak 4.\nHope 1. Armor-piercing 2.\nCumbersome.",
     "gates": [],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "power": 1,
@@ -2900,7 +2900,7 @@
     "armorDice": null,
     "text": "Reach 2.\nOverbreak 4. Hope 1.\nArmor-piercing 2.\nReposition 3. Cumbersome.",
     "gates": [],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "power": 1,
@@ -2971,7 +2971,7 @@
       "text": "Closing 3 instead. Black 3 instead."
      }
     ],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "power": 4
@@ -3012,7 +3012,7 @@
       "text": "Closing 3 instead. Black 3 instead."
      }
     ],
-    "triggers": [
+    "squireTriggers": [
      {
       "icon": "redX",
       "power": 4
@@ -3064,7 +3064,7 @@
     },
     "text": "Poison Resilience 2.\nRocksteady.\n1 [Heat] [Exhaust] Second Chance.",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "reforged": {
     "attackDice": null,
@@ -3082,7 +3082,7 @@
     },
     "text": "Poison Resilience 2.\nRocksteady. Armor Re-roll 1.\n1 [Heat] [Exhaust] Superior Chance.",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "unclear": [],
    "ops": null
@@ -3122,7 +3122,7 @@
       "text": "[Star] Second Chance."
      }
     ],
-    "triggers": []
+    "squireTriggers": []
    },
    "reforged": {
     "attackDice": null,
@@ -3139,7 +3139,7 @@
       "text": "[Star] Superior Chance."
      }
     ],
-    "triggers": []
+    "squireTriggers": []
    },
    "unclear": [],
    "ops": null
@@ -3184,7 +3184,7 @@
     },
     "text": "Stalwart.\nAuto-break 1.\nOpening 4.\n2 [Heat] [Exhaust] Advanced Block.",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "reforged": {
     "attackDice": 3,
@@ -3210,7 +3210,7 @@
     },
     "text": "Stalwart.\nAuto-break 1.\nOpening 4. Hope 1.\n2 [Heat] [Exhaust] Advanced Block.",
     "gates": [],
-    "triggers": []
+    "squireTriggers": []
    },
    "unclear": [],
    "ops": null
