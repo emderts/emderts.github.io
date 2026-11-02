@@ -167,6 +167,7 @@ export class Clash {
       // after attack
       if (ops.afterAttack) { this.say('After Attack'); await this.fx.runMonsterOps(ops.afterAttack, { attack, targets: attack.targets, primary: tg.primary }); }
       let afa = ops.afterFinalAttack; if (!afa && card.type === 'zone' && this.monster.hasTrait('Egged On')) afa = [{ op: 'trait', id: 'humpty-charge' }];
+      if (afa && !ops.afterFinalAttack) { this.say('Egged On — REACT!'); await this.windowOfOpportunity('react', attack); } // Egged On grants "REACT! After Final Attack: Humpty Charge" (owner-confirmed icon)
       if (afa) { this.say('After Final Attack'); await this.fx.runMonsterOps(afa, { attack, targets: attack.targets, primary: attack.targets.at(-1) || tg.primary, repeatCard: card }); }
     } catch (e) { if (e.chainBreak) { this.say(`Chain Break: ${e.message}`, 'warn'); } else throw e; }
     finally { this.currentAttack = null; }
@@ -239,6 +240,7 @@ export class Clash {
     const ctx = { attack, target: k, hits, vigorPerHitOverride: vigInstead ? vigInstead.n : null, gatesOn };
     for (const g of gatesOn.filter(g => g.op === 'pushback')) await this.pushback(k, g.n);
     for (const b of ops.before) await this.fx.runMonsterOp(b, ctx);
+    for (const g of gatesOn) for (const b of g.alsoOps || []) await this.fx.runMonsterOp(b, ctx); // gate tag chained under the Heat gate (e.g. Backslash/Backthrust Choke 3)
     await this.fx.runMonsterOps(ops.effects, ctx);
     for (const g of gatesOn.filter(g => g.op === 'discard')) await this.fx.runMonsterOp({ op: 'discard', n: g.n }, ctx);
     for (const g of gatesOn.filter(g => g.op === 'die')) { this.say(`${k.name}: Heat ${k.heat} ≥ ${g.gte} → YOU DIE`); await this.die(k, 'Yolkman Strike'); }

@@ -95,6 +95,12 @@ const mk = (seed, level = 1) => { const c = new Clash({ data, knights: [0, 1, 2,
   ok(by('Bluesteel Sword').weaponPower.n === 4 && by('Uncompromising Justice').hands === 2 && by('Uncompromising Justice').weaponPower.colour === 'white' && by('Aegis of Averted Eyes').hands === 1 && by('Mantle of the First Sin').type === 'support' && by('Mantle of the First Sin').evasionReroll === 2 && by("Laxlaw's Dual Standard (Pliant)").armorDice.black === 1 && by('Ruinous Polehammer').bonusPower.colour === 'black' && by('The Bastard of the Church').bonusPower.colour === 'black' && by('Shield of the Defiant').armorDice.black === 1 && by("Questing Champion's Chain Armor").armorDice.black === 1, 'owner corrections batch 2 (Gear §6)');
   ok(G.filter(g => g.type === 'weapon').every(g => g.hands === 1 || g.hands === 2), 'every weapon has a hand count'); }
 
+// --- Backslash: Choke 3 only when the Heat 3+ gate is on (owner: Choke tag chained under the gate)
+{ const card0 = data.monsters.eggknight.cards.ai.find(c => c.name === 'Backslash');
+  const run = async heat => { for (let seed = 30; seed < 60; seed++) { const c = mk(seed); const k = c.knights[0]; k.heat = heat; const card = JSON.parse(JSON.stringify(card0)); card.evasionDifficulty = 11; c.ask = async q => q.type === 'dice' ? [] : autoAsk(c)(q); const attack = { card, hits: {}, targets: [k] }; await c.attackOneTarget(attack, k); if (attack.hits[k.id] > 0) return !!c.hasCondition(k, 'Choked'); } return null; };
+  ok(await run(0) === false, 'Backslash below Heat 3: no Choke'); ok(await run(3) === true, 'Backslash at Heat 3+: Choke 3 applied');
+  ok(data.monsters.eggknight.traits.find(t => t.id === 'egged-on').ops[0].react === true, 'Egged On AFA carries a REACT! window'); }
+
 // --- full simulations
 const results = { win: 0, lose: 0 }; const rounds = [];
 for (let s = 100; s < 112; s++) { const c = mk(s); const r = await c.run(); results[r]++; rounds.push(c.round); if (c.log.some(l => l.kind === 'warn' && /미구현/.test(l.msg))) console.log('  warn seed', s, [...new Set(c.log.filter(l => /미구현/.test(l.msg)).map(l => l.msg))].join(' | ')); }

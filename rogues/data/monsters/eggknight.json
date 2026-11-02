@@ -193,8 +193,7 @@
    "id": "egged-on",
    "name": "Egged On",
    "level": 2,
-   "text": "All Eggknight Zone Attacks without an After Final Attack gain \"[Peril Check?] After Final Attack: Humpty Charge.\"",
-   "unclear": "따옴표 앞 아이콘(검은 이빨 모양) 판독 필요 — REACT 창 아이콘일 수 있음",
+   "text": "All Eggknight Zone Attacks without an After Final Attack gain \"[REACT!] After Final Attack: Humpty Charge.\"",
    "ops": [
     {
      "op": "passive",
@@ -204,9 +203,11 @@
        "op": "trait",
        "id": "humpty-charge"
       }
-     ]
+     ],
+     "react": true
     }
-   ]
+   ],
+   "note": "따옴표 앞 아이콘 = REACT! (사용자 확인 2026-11-02)"
   },
   {
    "id": "jacked",
@@ -475,12 +476,13 @@
      {
       "stat": "Heat",
       "gte": 3,
-      "effect": "Lose -2 [Vigor] instead."
+      "effect": "Lose -2 [Vigor] instead. ▸ Choke 3.",
+      "chained": [
+       "Choke 3"
+      ]
      }
     ],
-    "keywordsBeforeAttack": [
-     "Choke 3"
-    ],
+    "keywordsBeforeAttack": [],
     "effects": [
      "For each hit lose -1 [Vigor]. [Peril Check]."
     ],
@@ -502,15 +504,16 @@
        "stat": "heat",
        "gte": 3,
        "op": "vigorPerHitInstead",
-       "n": 2
+       "n": 2,
+       "alsoOps": [
+        {
+         "op": "choke",
+         "n": 3
+        }
+       ]
       }
      ],
-     "before": [
-      {
-       "op": "choke",
-       "n": 3
-      }
-     ],
+     "before": [],
      "effects": [
       {
        "op": "loseVigorPerHit",
@@ -520,7 +523,8 @@
      ],
      "afterAttack": null,
      "afterFinalAttack": null
-    }
+    },
+    "note": "Choke 3 태그는 Heat 게이트에 연결 (사용자 확인 2026-11-02)"
    },
    {
     "name": "Double Slash",
@@ -1155,12 +1159,13 @@
      {
       "stat": "Heat",
       "gte": 4,
-      "effect": "Lose -2 [Vigor] instead."
+      "effect": "Lose -2 [Vigor] instead. ▸ Choke 3.",
+      "chained": [
+       "Choke 3"
+      ]
      }
     ],
-    "keywordsBeforeAttack": [
-     "Choke 3"
-    ],
+    "keywordsBeforeAttack": [],
     "effects": [
      "For each hit lose -1 [Vigor]. [Peril Check]."
     ],
@@ -1182,15 +1187,16 @@
        "stat": "heat",
        "gte": 4,
        "op": "vigorPerHitInstead",
-       "n": 2
+       "n": 2,
+       "alsoOps": [
+        {
+         "op": "choke",
+         "n": 3
+        }
+       ]
       }
      ],
-     "before": [
-      {
-       "op": "choke",
-       "n": 3
-      }
-     ],
+     "before": [],
      "effects": [
       {
        "op": "loseVigorPerHit",
@@ -1200,7 +1206,8 @@
      ],
      "afterAttack": null,
      "afterFinalAttack": null
-    }
+    },
+    "note": "Choke 3 태그는 Heat 게이트에 연결 (사용자 확인 2026-11-02)"
    },
    {
     "name": "Insidious Thrust",
@@ -2840,5 +2847,6 @@
   "Sword Cut": "SWORD CUT / ZONE SIGNATURE / Evasion 3 dice, 9+ / [zone diagram] / TARGETING: • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat] 4+ ▸ LOSE -2 [Vigor] INSTEAD / For each hit lose -1 [Vigor]. [Peril Check]. [REACT!] / AFTER FINAL ATTACK / Humpty Charge. / EGGKNIGHT",
   "Hard-Boiled": "HARD-BOILED / ROUTINE / Each Knight loses -3 [Vigor]. The Eggknight gains 2 Armor [Armor token] tokens on BP I level. / EGGKNIGHT"
  },
- "zoneNote": "All zone-diagram attacks (Backslash, Sword Slash, Flurry of Slashes, Sword Rend, Yolkman Strike, Sword Cut) hit the 2 spaces directly in front of the 2x2 footprint."
+ "zoneNote": "All zone-diagram attacks (Backslash, Sword Slash, Flurry of Slashes, Sword Rend, Yolkman Strike, Sword Cut) hit the 2 spaces directly in front of the 2x2 footprint.",
+ "reviewed": "Eggknight 시트·카드 사용자 검수 완료 (2026-11-02)"
 }
