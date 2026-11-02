@@ -581,7 +581,7 @@ renderLoadout($('#app'));
     for (const [k, v] of Object.entries(DATA.titans.kratosAbilities || {})) add(k, v, 'Kratos');
     for (const c of Object.values(DATA.titans.classes || {})) for (const [k, v] of Object.entries(c.abilities || {})) add(k, v, c.name);
     for (const [k, v] of Object.entries(DATA.decks.conditions || {})) add(k, [v.text, v.faceYourFear, v.endOfBattle].filter(Boolean).join(' / '), 'Condition');
-    try { const P = (typeof game !== 'undefined' && game && game.prim) ? game.prim.def : (typeof loadout !== 'undefined' && loadout ? DATA.primordials[loadout.primordial] : null); if (P) { for (const [k, v] of Object.entries(P.traits || {})) add(k, v, P.name + ' Trait'); } } catch (e) {}
+    for (const [k, v] of Object.entries((DATA.glossary || {}).entries || {})) { if (!out.some(e => e.name.toLowerCase() === k.toLowerCase())) add(k, v, '키워드'); }
     return out;
   };
   const btn = h('button', { class: 'kwbtn', title: '키워드 정의 검색' }, '📖 키워드');
