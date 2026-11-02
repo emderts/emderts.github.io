@@ -2,7 +2,7 @@
 <style>body{margin:0;padding:16px;font:14px/1.5 system-ui,sans-serif;background:#1a1714;color:#e8dcc8;max-width:1400px}h1{color:#c9a85a;font-size:22px}h2{color:#c9a85a;margin-top:28px;border-bottom:1px solid #3a3128}h3{color:#d9c89a;margin:16px 0 6px}
 table{border-collapse:collapse;width:100%;font-size:13px}td,th{border:1px solid #3a3128;padding:4px 6px;vertical-align:top;text-align:left}th{background:#26211b}code{background:#2a241d;padding:1px 5px;border-radius:4px;color:#f0d9a0}
 .impl{background:#26211b;padding:8px 10px;border-left:3px solid #c9a85a;border-radius:4px}.small{font-size:12px;color:#998b76}.warn{color:#d9a441}details summary{cursor:pointer;color:#c9a85a}table.rw td{min-width:120px}nav a{color:#c9a85a;margin-right:12px}</style></head><body>
-<h1>Kingdoms Forlorn — Rogue's Path: 데이터·규칙 오딧</h1><p class="small">v0.4.8 · 생성 2026-11-02 14:42 UTC · 각 섹션: 전사 데이터 ↔ 엔진 구현 ↔ 테스트. 전사 불확실 항목은 노란색.</p>
+<h1>Kingdoms Forlorn — Rogue's Path: 데이터·규칙 오딧</h1><p class="small">v0.4.9 · 생성 2026-11-02 14:43 UTC · 각 섹션: 전사 데이터 ↔ 엔진 구현 ↔ 테스트. 전사 불확실 항목은 노란색.</p>
 <nav><a href="#monsters">몬스터 표</a><a href="#map">Rosegraal 지도</a><a href="#rewards">Rewards</a><a href="#components">구성물</a><a href="#fleischritter">Fleischritter</a><a href="#gear">Gear</a><a href="#eggknight">Eggknight</a><a href="#decks">Mortis·Condition·Terrain·Outpost</a><a href="#engine">엔진 대응</a><a href="#shop">상점·용병·Loot</a><a href="#campaign">캠페인</a></nav>
 <section id="monsters"><h2>1. 노드 → 몬스터 표 (룰북 p.77)</h2>
 <p class="impl">구현: <code>src/engine/rosegraal.js · rollMonster()</code> — d10, 미보유(★ optional) 몬스터면 재굴림 · 테스트: <code>test/rosegraal.mjs</code> (각 레벨/왕국 1–10 커버리지, 재굴림, 보유 몬스터 없음 예외)</p>
