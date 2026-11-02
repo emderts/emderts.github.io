@@ -1369,6 +1369,11 @@
       "op": "superiorChance"
      }
     ]
+   },
+   "exert": {
+    "token": "Break",
+    "n": 1,
+    "depletion": "discard"
    }
   },
   {
@@ -1415,6 +1420,11 @@
       "n": 3
      }
     ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
    }
   },
   {
@@ -1450,6 +1460,11 @@
       "op": "rocksteady"
      }
     ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
    }
   },
   {
@@ -1497,6 +1512,11 @@
       "n": 7
      }
     ]
+   },
+   "exert": {
+    "token": "Break",
+    "n": 1,
+    "depletion": "discard"
    }
   },
   {
@@ -1531,6 +1551,11 @@
       "op": "improvedRush"
      }
     ]
+   },
+   "exert": {
+    "token": "Opening",
+    "n": 1,
+    "depletion": "cooldown"
    }
   },
   {
@@ -1569,6 +1594,11 @@
       "colour": "red"
      }
     ]
+   },
+   "exert": {
+    "token": "Opening",
+    "n": 1,
+    "depletion": "delay"
    }
   },
   {
@@ -1613,6 +1643,11 @@
       "n": 4
      }
     ]
+   },
+   "exert": {
+    "token": "Opening",
+    "n": 1,
+    "depletion": "cooldown"
    }
   },
   {
@@ -1646,7 +1681,12 @@
     }
    ],
    "timing": "free",
-   "gateOps": {}
+   "gateOps": {},
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "discard"
+   }
   },
   {
    "name": "Sizzling Striga",
@@ -1679,7 +1719,12 @@
     }
    ],
    "timing": "free",
-   "gateOps": {}
+   "gateOps": {},
+   "exert": {
+    "token": "Opening",
+    "n": 1,
+    "depletion": "delay"
+   }
   },
   {
    "name": "Mise en Place",
@@ -1713,6 +1758,11 @@
       "n": "all"
      }
     ]
+   },
+   "exert": {
+    "token": "Break",
+    "n": 1,
+    "depletion": "cooldown"
    }
   },
   {
@@ -1749,6 +1799,11 @@
       "colour": "black"
      }
     ]
+   },
+   "exert": {
+    "token": "Opening",
+    "n": 1,
+    "depletion": "cooldown"
    }
   },
   {
@@ -1771,7 +1826,12 @@
     }
    ],
    "timing": "free",
-   "gateOps": {}
+   "gateOps": {},
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
   },
   {
    "name": "Prized Morsel",
@@ -1803,7 +1863,13 @@
     }
    ],
    "timing": "beforeAttack",
-   "gateOps": {}
+   "gateOps": {},
+   "exert": {
+    "token": "Fleisch",
+    "n": 1,
+    "depletion": "cooldown",
+    "unclear": "좌상단 아이콘이 닭다리 그림 — Knight Tokens 범례에 없음, Fleisch 자원 토큰으로 판독"
+   }
   },
   {
    "name": "You Won't Like Me When I'm Hangry",
@@ -1844,6 +1910,11 @@
       "of": "totalPower"
      }
     ]
+   },
+   "exert": {
+    "token": "Opening",
+    "n": 1,
+    "depletion": "cooldown"
    }
   },
   {
@@ -1870,7 +1941,12 @@
     }
    ],
    "timing": "free",
-   "gateOps": {}
+   "gateOps": {},
+   "exert": {
+    "token": "Fire",
+    "n": 1,
+    "depletion": "cooldown"
+   }
   },
   {
    "name": "Nothing Goes to Waste",
@@ -1891,7 +1967,12 @@
     }
    ],
    "timing": "onClearPool",
-   "gateOps": {}
+   "gateOps": {},
+   "exert": {
+    "token": "Opening",
+    "n": 1,
+    "depletion": "delay"
+   }
   },
   {
    "name": "Distracting Bait",
@@ -1912,7 +1993,12 @@
     }
    ],
    "timing": "afterAttackRoll",
-   "gateOps": {}
+   "gateOps": {},
+   "exert": {
+    "token": "Break",
+    "n": 1,
+    "depletion": "cooldown"
+   }
   },
   {
    "name": "Just a Fleisch Wound",
@@ -1939,7 +2025,12 @@
     }
    ],
    "timing": "free",
-   "gateOps": {}
+   "gateOps": {},
+   "exert": {
+    "token": "Black",
+    "n": 1,
+    "depletion": "discard"
+   }
   },
   {
    "name": "Stick to the Recipe",
@@ -1966,7 +2057,12 @@
     }
    ],
    "timing": "free",
-   "gateOps": {}
+   "gateOps": {},
+   "exert": {
+    "token": "Opening",
+    "n": 1,
+    "depletion": "cooldown"
+   }
   },
   {
    "name": "White Meat Power Punch",
@@ -2000,7 +2096,12 @@
     }
    ],
    "timing": "beforePowerRoll",
-   "gateOps": {}
+   "gateOps": {},
+   "exert": {
+    "token": "Fire",
+    "n": 1,
+    "depletion": "discard"
+   }
   },
   {
    "name": "The Power of Bacon Compels You!",
@@ -2022,7 +2123,12 @@
     }
    ],
    "timing": "free",
-   "gateOps": {}
+   "gateOps": {},
+   "exert": {
+    "token": "Fire",
+    "n": 1,
+    "depletion": "discard"
+   }
   },
   {
    "name": "Butcher's Twine",
@@ -2052,7 +2158,12 @@
     }
    ],
    "timing": "beforeAttack",
-   "gateOps": {}
+   "gateOps": {},
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "discard"
+   }
   },
   {
    "name": "Meat Puppet",
@@ -2075,7 +2186,12 @@
     }
    ],
    "timing": "free",
-   "gateOps": {}
+   "gateOps": {},
+   "exert": {
+    "token": "Hope",
+    "n": 1,
+    "depletion": "discard"
+   }
   },
   {
    "name": "Maillard Reaction",
@@ -2098,7 +2214,12 @@
     }
    ],
    "timing": "free",
-   "gateOps": {}
+   "gateOps": {},
+   "exert": {
+    "token": "Closing",
+    "n": 1,
+    "depletion": "cooldown"
+   }
   },
   {
    "name": "Butcher's Bargain",
@@ -2121,7 +2242,12 @@
     }
    ],
    "timing": "onJudicium",
-   "gateOps": {}
+   "gateOps": {},
+   "exert": {
+    "token": "Hope",
+    "n": 1,
+    "depletion": "discard"
+   }
   },
   {
    "name": "Filleting Frenzy",
@@ -2148,7 +2274,12 @@
     }
    ],
    "timing": "free",
-   "gateOps": {}
+   "gateOps": {},
+   "exert": {
+    "token": "Hope",
+    "n": 1,
+    "depletion": "discard"
+   }
   }
  ],
  "missing": [
@@ -2203,5 +2334,6 @@
    "baneLimit": 6
   }
  ],
- "portraitsNote": "Portrait card stat row (left→right): Card Refresh [card↓], Heat Refresh [↑H↓], Hand Limit [cards!], Speed [running], Bane Limit [ring!]. Knight Power die = die icon beside the class names. Metzger/Meisterschlächter portraits (King/Dragon tier) not yet provided."
+ "portraitsNote": "Portrait card stat row (left→right): Card Refresh [card↓], Heat Refresh [↑H↓], Hand Limit [cards!], Speed [running], Bane Limit [ring!]. Knight Power die = die icon beside the class names. Metzger/Meisterschlächter portraits (King/Dragon tier) not yet provided.",
+ "techniquesExertNote": "좌상단 Exert 아이콘 + 그 아래 소진 아이콘 (원본 시트 d2fb7113, 2026-11-02 판독). 룰북 p.18/23: Clash 중 공격 수행 시 언제든 비용 없이 손의 Technique를 Exert 소진 아이콘대로 소진하고 Exert 효과만 해결."
 }

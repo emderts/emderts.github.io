@@ -55,6 +55,23 @@ const mk = (seed, level = 1) => { const c = new Clash({ data, knights: [0, 1, 2,
 { const c = mk(6); const k = c.knights[0]; k.pos = c.board.parse('G7'); c.board.place({ kind: 'knight', id: k.id }, [k.pos]); ok(c.canAttack(k), 'knight at G7 can attack (adjacent, LoS)');
   const w0 = c.monster.wounds; await c.knightAttack(k); ok(k.passion === 1, 'attack raises Passion'); ok(c.monster.wounds >= w0, 'attack resolved without error'); }
 
+// --- Exert (upper-left technique ability): no cost, own depletion, token into the pool
+{ const c = mk(6); const k = c.knights[0]; k.pos = c.board.parse('G7'); c.board.place({ kind: 'knight', id: k.id }, [k.pos]);
+  const T = n => ({ ...data.knights.fleischritter.techniques.find(t => t.name === n) });
+  k.hand = [T('Food Runner'), T('Knight Roll'), T('Second Chance')]; const heat0 = k.heat;
+  ok(data.knights.fleischritter.techniques.every(t => t.exert && t.exert.token && t.exert.depletion), 'all 26 techniques have an Exert icon + depletion');
+  const seen = []; const base = autoAsk(c); let poolOpening = -1, rerollsSeen = 0;
+  c.ask = async q => { if (/Exert\?/.test(q.text || '')) { seen.push(q.text); const want = /Attack Roll 전/.test(q.text) ? 'Food Runner' : /Power Roll 전/.test(q.text) ? 'Knight Roll' : 'skip'; const o = q.options.find(o => o.value === want); return o ? o.value : 'skip'; } if (q.type === 'dice' && /Power 재굴림/.test(q.text)) rerollsSeen = q.max; return base(q); };
+  const origRoll = c.fx.exertWindow.bind(c.fx); c.fx.exertWindow = async (kk, A, st) => { const b = c.poolCount('opening'); await origRoll(kk, A, st); if (/Attack Roll 전/.test(st)) poolOpening = c.poolCount('opening') - b; };
+  await c.knightAttack(k);
+  ok(seen.some(t => /Attack Roll 전/.test(t)) && seen.some(t => /Power Roll 후/.test(t)), 'Exert offered at several steps of the attack');
+  ok(poolOpening === 1, 'Exert Food Runner → +1 Opening token in the Knight Pool before the Attack Roll');
+  ok(k.cooldown.some(t => t.name === 'Food Runner') && k.heat >= heat0 && k.hand.some(t => t.name === 'Second Chance'), 'Exert ignores cost, card goes to its Exert depletion (Cooldown)');
+  ok(!seen.some(t => /Power Roll 전/.test(t)) || k.cooldown.some(t => t.name === 'Knight Roll'), 'Knight Roll exerted for Power Re-roll before the Power Roll (when reached)');
+}
+// --- Fire tokens are mandatory and all but one unused stay in the pool
+{ const c = mk(7); c.pool = []; c.poolAdd('fire', 3); c.clearPool(); ok(c.poolCount('fire') === 2, 'Clear the Knight Pool leaves all but one unused Fire token'); }
+
 // --- full simulations
 const results = { win: 0, lose: 0 }; const rounds = [];
 for (let s = 100; s < 112; s++) { const c = mk(s); const r = await c.run(); results[r]++; rounds.push(c.round); if (c.log.some(l => l.kind === 'warn' && /미구현/.test(l.msg))) console.log('  warn seed', s, [...new Set(c.log.filter(l => /미구현/.test(l.msg)).map(l => l.msg))].join(' | ')); }

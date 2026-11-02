@@ -99,7 +99,24 @@ export class Effects {
     else await this.runKnightOps(ops, k, { technique: t });
     this.deplete(k, t);
   }
-  deplete(k, t) { const i = k.hand.indexOf(t); if (i >= 0) k.hand.splice(i, 1); if (t.depletion === 'cooldown') k.cooldown.push(t); else if (t.depletion === 'delay') k.delay.push(t); else if (t.depletion === 'discard') k.discard.push(t); else k.hand.push(t); }
+  deplete(k, t, how = t.depletion) { const i = k.hand.indexOf(t); if (i >= 0) k.hand.splice(i, 1); if (how === 'cooldown') k.cooldown.push(t); else if (how === 'delay') k.delay.push(t); else if (how === 'discard') k.discard.push(t); else if (how === 'instant') { (k.instant = k.instant || []).push(t); } else k.hand.push(t); }
+  /** Exert (rulebook p.18/23): while performing an Attack, at any moment deplete a Technique from hand (no cost) to resolve
+   *  only its upper-left Exert effect; deplete it by the symbol under the Exert icon. Offered at every step of the attack. */
+  async exertWindow(k, A, stage) {
+    const DEP = { cooldown: 'Cooldown', delay: 'Delay', discard: 'Discard', instant: 'Instant' };
+    const NAME = { PowerReroll: 'Power Re-roll 1', Fleisch: 'Fleisch 토큰 1' };
+    for (;;) {
+      const opts = k.hand.filter(t => t.exert); if (!opts.length) return;
+      const pick = await this.c.ask({ type: 'pick', knight: k.id, text: `${k.name} Exert? (${stage}) — 비용 없이 Technique를 소진하고 좌상단 효과만 사용`, options: [...opts.map(t => ({ label: `${t.name} → ${NAME[t.exert.token] || t.exert.token + ' 토큰 1'} (${DEP[t.exert.depletion]})`, value: t.name })), { label: '넘어가기', value: 'skip' }] });
+      if (!pick || pick === 'skip') return;
+      const t = opts.find(x => x.name === pick); if (!t) return;
+      const e = t.exert;
+      if (e.token === 'PowerReroll') { A.powerRerolls += e.n; this.say(`${k.name} Exert ${t.name}: Power Re-roll +${e.n}`); }
+      else if (e.token === 'Fleisch') { this.c.poolAdd('fleisch', e.n, { resource: true }); this.say(`${k.name} Exert ${t.name}: Fleisch +${e.n}`); }
+      else { this.c.poolAdd(TOKEN_KEY[e.token], e.n); this.say(`${k.name} Exert ${t.name}: ${e.token} +${e.n}`); }
+      this.deplete(k, t, e.depletion);
+    }
+  }
   freeActions(k) { const out = []; const ch = this.c.hasCondition(k, 'Choked'); if (ch && k.chokeLimit > 0 && (k.actions.move || k.actions.combat)) out.push({ id: 'lowerChoke', label: `행동 소모 → Choke Limit -3 (현재 ${k.chokeLimit})` }); const ex = this.c.hasCondition(k, 'Exposed'); if (ex && (k.actions.move || k.actions.combat)) out.push({ id: 'discardExposed', label: '행동 소모 → Exposed 제거' }); if (k.talent && k.talent.id === 'fleischjager' && this.c.poolCount('fleisch') >= 1 && k.vigor > 1) out.push({ id: 'nurturing', label: 'Nurturing Fleisch (1 Fleisch, X Vigor → 인접 기사 +X)' }); return out; }
   async doFreeAction(k, id) {
     const spend = () => { if (k.actions.move) k.actions.move = false; else k.actions.combat = false; };
