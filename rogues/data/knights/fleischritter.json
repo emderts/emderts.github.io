@@ -1524,6 +1524,13 @@
    "unlock": "Start",
    "cost": [
     {
+     "res": "Action",
+     "actions": [
+      "combat",
+      "move"
+     ]
+    },
+    {
      "res": "Heat",
      "n": 2
     }
@@ -1536,9 +1543,7 @@
     }
    ],
    "depletion": "cooldown",
-   "unclear": [
-    "Cost box has a white tag with two small figures and a diamond between them before '+2 [Heat]' (possibly a timing/phase marker)"
-   ],
+   "unclear": [],
    "ops": [
     {
      "op": "rush"
@@ -1556,7 +1561,8 @@
     "token": "Opening",
     "n": 1,
     "depletion": "cooldown"
-   }
+   },
+   "costNote": "비용 태그 = 전투 행동 + 이동 행동 소모 (사용자 확인 2026-11-02) + Heat +2"
   },
   {
    "name": "Crunchy Batter",

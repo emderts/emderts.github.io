@@ -72,6 +72,14 @@ const mk = (seed, level = 1) => { const c = new Clash({ data, knights: [0, 1, 2,
 // --- Fire tokens are mandatory and all but one unused stay in the pool
 { const c = mk(7); c.pool = []; c.poolAdd('fire', 3); c.clearPool(); ok(c.poolCount('fire') === 2, 'Clear the Knight Pool leaves all but one unused Fire token'); }
 
+// --- Food Runner: cost = combat action + move action + Heat 2
+{ const c = mk(8); const k = c.knights[0]; const T = n => ({ ...data.knights.fleischritter.techniques.find(t => t.name === n) }); const fr = T('Food Runner'); k.hand = [fr];
+  k.actions = { move: true, combat: false }; ok(!c.fx.canPay(k, fr.cost), 'Food Runner not payable without the combat action');
+  k.actions = { move: true, combat: true }; ok(c.fx.canPay(k, fr.cost), 'Food Runner payable with both actions');
+  const h0 = k.heat; c.fx.pay(k, fr.cost); ok(!k.actions.move && !k.actions.combat && k.heat === h0 + 2, 'paying Food Runner spends both actions and +2 Heat');
+  ok(/전투 행동\+이동 행동/.test(c.fx.costLabel(k, fr)), 'cost label shows both actions'); }
+{ ok(data.gear.gear.gear.every(g => Array.isArray(g.traits) && g.traits.length) && data.gear.merchant_principality.gear.every(g => g.traits.length && (g.reforgedTraits || g.traits).length), 'every gear card has traits (name line)'); }
+
 // --- full simulations
 const results = { win: 0, lose: 0 }; const rounds = [];
 for (let s = 100; s < 112; s++) { const c = mk(s); const r = await c.run(); results[r]++; rounds.push(c.round); if (c.log.some(l => l.kind === 'warn' && /미구현/.test(l.msg))) console.log('  warn seed', s, [...new Set(c.log.filter(l => /미구현/.test(l.msg)).map(l => l.msg))].join(' | ')); }
