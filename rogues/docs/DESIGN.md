@@ -167,3 +167,4 @@ PDF만으로 지금 바로 전사 가능한 것: Rosegraal map(p.78–79, 간선
 - 완료: 데이터 전사(Rosegraal 표·지도·Rewards, 구성물, Fleischritter, Gear 29 + Merchant 42, Eggknight, Mortis/Condition/Terrain/Outpost/Loot/Mercenary), 전투 엔진(Clash 전체 흐름·Eggknight 특성), 캠페인 레이어(`campaign.js`: 지도 → 노드 → 몬스터 굴림 → Clash → Aftermath 부활·Loot·Rewards·Sigh 재전투 → Outpost 구매·재련·고용 → 로드아웃 → 저장/복원), 모바일 UI, 오딧 생성기(`tools/audit.mjs` → `docs/audit/index.html`).
 - Sigh 재전투: Clash 직전 스냅샷으로 되감기, Sigh 1 소모, First Death 기록 유지(재발동 없음).
 - 미구현/대기: Coup de Grace, Meat Puppet, Mercenary ops(현재 수동 사용), 몬스터별 Full Clash Loot Gear 목록, Upgrade/Consumable 카드, 다른 기사·몬스터, Sunken 왕국 상점 덱.
+- **REACT! 창** (2026-11-02 확정): 리액션 능력은 공격 대상 여부와 무관하게 기사 누구나 사용 가능. (Egged On AFA 앞 REACT! 포함)
