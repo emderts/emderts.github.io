@@ -2,7 +2,8 @@
  "_source": "Knighves + Chipped Axe (Fleischritter start) and 32 Rosegraal reward gear cards + Laxlaw (Pliant) side. Stats per rulebook p.20 icon legend. text verbatim with [icons].",
  "_notes": [
   "[object Object] Die icon shades: red cube = red die, dark cube with white edges = black die, light cube = white die (re-checked 2026-11-02).",
-  "squire: 카드 하단 아이콘(빨간 X / 노란 책 등) 줄은 스콰이어 전용 — Rogue's Path에서 무시"
+  "squire: 카드 하단 아이콘(빨간 X / 노란 책 등) 줄은 스콰이어 전용 — Rogue's Path에서 무시",
+  "§6 Gear 전 카드 사용자 검수 완료 (2026-11-02)"
  ],
  "gear": [
   {
@@ -708,7 +709,7 @@
    "evasion": null,
    "evasionReroll": null,
    "armorDice": null,
-   "text": "[Heat] When you're about to resolve a negative Minor or Major Mortis, lose respectively -1 [Vigor] or -2 [Vigor] instead.\nThen, shuffle that card back into the deck and resolve the [Mortis] again.\n[P 2+] Provoke.",
+   "text": "[Heat] When you're about to resolve a negative Minor or Major Mortis, lose respectively -1 [Vigor] or -2 [Vigor] instead.\nThen, shuffle that card back into the deck and resolve the [Peril Check] again.\n[P 2+] Provoke.",
    "gates": [
     {
      "gate": "PASSION 2+",
@@ -716,10 +717,11 @@
     }
    ],
    "knight": "paracelsa",
-   "unclear": [
-    "Knight assignment inferred (see _notes.knightAssignment)."
-   ],
-   "ops": null
+   "unclear": [],
+   "ops": null,
+   "notes": [
+    "\"resolve the [Peril Check] again\" (사용자 확인 2026-11-02)"
+   ]
   },
   {
    "name": "Imperial Templar's Kite Shield",
@@ -754,7 +756,6 @@
    "knight": "paracelsa",
    "unclear": [
     "Code 13A0631 is faint.",
-    "Knight assignment inferred.",
     "Weapon die re-read as BLACK (dark cube) — card icon shades: red / dark=black / light=white [확인]"
    ],
    "ops": null
@@ -779,15 +780,16 @@
    "evasionReroll": null,
    "armorDice": {
     "red": 1,
-    "white": 1
+    "black": 1
    },
    "text": "+1 Tenacity [Tenacity]. Inspire 1.\nYou may pay with [Vigor] to re-roll dice instead of [Heat].",
    "gates": [],
    "knight": "paracelsa",
-   "unclear": [
-    "Knight assignment inferred."
-   ],
-   "ops": null
+   "unclear": [],
+   "ops": null,
+   "notes": [
+    "Armor red+black (사용자 확인 2026-11-02)"
+   ]
   },
   {
    "name": "The Bastard of the Church",
@@ -810,7 +812,7 @@
    },
    "bonusPower": {
     "n": 1,
-    "colour": "white",
+    "colour": "black",
     "raw": 2
    },
    "evasion": null,
@@ -824,11 +826,11 @@
     }
    ],
    "knight": "paracelsa",
-   "unclear": [
-    "Two Bonus Power entries (one white die and +2 raw).",
-    "Knight assignment inferred."
-   ],
-   "ops": null
+   "unclear": [],
+   "ops": null,
+   "notes": [
+    "Bonus black die + raw 2 (사용자 확인 2026-11-02)"
+   ]
   },
   {
    "name": "Blade of the First Sacrament",
@@ -864,8 +866,7 @@
    ],
    "knight": "paracelsa",
    "unclear": [
-    "Weapon Power icon shows three dice of mixed colour (1 red + 2 white); stored as weaponPower.dice.",
-    "Knight assignment inferred."
+    "Weapon Power icon shows three dice of mixed colour (1 red + 2 white); stored as weaponPower.dice."
    ],
    "ops": null
   },
@@ -896,9 +897,7 @@
     }
    ],
    "knight": "renholder",
-   "unclear": [
-    "Knight assignment inferred."
-   ],
+   "unclear": [],
    "ops": null
   },
   {
@@ -917,7 +916,7 @@
    "attackDice": 1,
    "precision": 2,
    "weaponPower": {
-    "n": 3,
+    "n": 4,
     "colour": "red"
    },
    "bonusPower": null,
@@ -933,10 +932,12 @@
    ],
    "knight": "renholder",
    "unclear": [
-    "The MINOR gate line sits under the trait line (top of card), not in the ability box.",
-    "Knight assignment inferred."
+    "The MINOR gate line sits under the trait line (top of card), not in the ability box."
    ],
-   "ops": null
+   "ops": null,
+   "notes": [
+    "Weapon power 4 (사용자 확인 2026-11-02)"
+   ]
   },
   {
    "name": "Wyrdweave Garb",
@@ -966,8 +967,7 @@
    ],
    "knight": "renholder",
    "unclear": [
-    "Scribbled icon after MAJOR is the same unidentified icon as on Wilder Cloak (both next to Reflex).",
-    "Knight assignment inferred."
+    "Scribbled icon after MAJOR is the same unidentified icon as on Wilder Cloak (both next to Reflex)."
    ],
    "ops": null,
    "notes": [
@@ -1005,8 +1005,7 @@
    "gates": [],
    "knight": "renholder",
    "unclear": [
-    "Weapon Power icon shows 1 white die above 3 red dice; stored as weaponPower.dice.",
-    "Knight assignment inferred."
+    "Weapon Power icon shows 1 white die above 3 red dice; stored as weaponPower.dice."
    ],
    "ops": null
   },
@@ -1044,7 +1043,6 @@
    ],
    "knight": "renholder",
    "unclear": [
-    "Knight assignment inferred.",
     "Weapon die re-read as BLACK (dark cube) — card icon shades: red / dark=black / light=white [확인]"
    ],
    "ops": null
@@ -1258,7 +1256,7 @@
    },
    "bonusPower": {
     "n": 1,
-    "colour": "white"
+    "colour": "black"
    },
    "evasion": null,
    "evasionReroll": null,
@@ -1274,7 +1272,10 @@
    "unclear": [
     "Gate tag is purple with the Bane circular-arrow icon and '4+' (read as Bane 4+)."
    ],
-   "ops": null
+   "ops": null,
+   "notes": [
+    "Bonus black (사용자 확인 2026-11-02)"
+   ]
   },
   {
    "name": "Plate of the Sleeping Giant",
@@ -1333,7 +1334,7 @@
    "evasion": null,
    "evasionReroll": null,
    "armorDice": {
-    "white": 1
+    "black": 1
    },
    "text": "Closing 2.\nSunder 2.\nPushback 2. Commit.\n[Exhaust] Leash 1 and Advanced Reinforce 1.\n[Bane 3+] [black Power die] turns into [white Power die].\n[Bane 5+] Another [black Power die] turns into [white Power die].",
    "gates": [
@@ -1350,7 +1351,10 @@
    "unclear": [
     "Bottom-right slot icon shows two gauntlets (two-handed shield)."
    ],
-   "ops": null
+   "ops": null,
+   "notes": [
+    "Armor black (사용자 확인 2026-11-02)"
+   ]
   },
   {
    "name": "Terracotta Emblem",
@@ -1418,7 +1422,7 @@
     "Metal"
    ],
    "type": "weapon",
-   "hands": null,
+   "hands": 1,
    "tier": "Vassal",
    "merchant": false,
    "price": null,
@@ -1453,10 +1457,12 @@
    ],
    "knight": "ser-ubar",
    "unclear": [
-    "Card image is cut off on the right edge: code reads only '13B07..', the right-hand defensive column (if any) and the hand-slot icon are not visible.",
     "Weapon Power icon shows one black and one red die; stored as weaponPower.dice."
    ],
-   "ops": null
+   "ops": null,
+   "notes": [
+    "1H weapon (사용자 확인 2026-11-02)"
+   ]
   },
   {
    "name": "Laxlaw's Dual Standard (Pliant)",
@@ -1478,15 +1484,20 @@
    "bonusPower": null,
    "evasion": null,
    "evasionReroll": null,
-   "armorDice": null,
+   "armorDice": {
+    "red": 1,
+    "black": 1
+   },
    "text": "Pushback 3.\nWhen you flip this card to this si[de], gain 1 temporary po[sitive] Speed [Speed] token and 1 Power [Power token] token in [the] Knight Pool.\nWhen you Shapeshi[ft into] a Human, flip this ca[rd].",
    "gates": [],
    "knight": "ser-ubar",
    "unclear": [
-    "Image is cut off on the right: title suffix '(PLIANT' truncated, right-hand stat column, code and slot icon not visible; bracketed word endings in text are reconstructed.",
-    "Type 'armor' inferred from the Armor trait and the Standard's other side; no slot icon visible."
+    "Image is cut off on the right: title suffix '(PLIANT' truncated, right-hand stat column, code and slot icon not visible; bracketed word endings in text are reconstructed."
    ],
-   "ops": null
+   "ops": null,
+   "notes": [
+    "Armor red+black (사용자 확인 2026-11-02)"
+   ]
   },
   {
    "precision": null,
@@ -1527,7 +1538,7 @@
    "precision": "X",
    "weaponPower": {
     "n": 1,
-    "colour": "black"
+    "colour": "white"
    },
    "bonusPower": {
     "n": 1,
@@ -1537,7 +1548,7 @@
    "evasionReroll": null,
    "armorDice": null,
    "attackDice": 2,
-   "hands": 1,
+   "hands": 2,
    "merchant": false,
    "price": null,
    "ops": null,
@@ -1551,7 +1562,7 @@
    ],
    "type": "weapon",
    "tier": "Devil",
-   "text": "Commit.\nReach 2.\nClosing 2.\nEnvenomed 2.\n+2 to Virtue tests.\n[Exhaust] 2 [Heat] Perform an Attack with this Weapon, it gains Ranged 2–4. If you deal a Wound, place a permanent negative AT token on the Monster Sheet. Then discard this card.\n*X is equal to your [Heat].\n[GRAVE] Gain Unwieldy.",
+   "text": "Commit.\nReach 2.\nClosing 2.\nEnvenomed 2.\n+2 to Virtue tests.\n[Combat action] 2 [Heat] Perform an Attack with this Weapon, it gains Ranged 2–4. If you deal a Wound, place a permanent negative AT token on the Monster Sheet. Then discard this card.\n*X is equal to your [Heat].\n[GRAVE] Gain Unwieldy.",
    "gates": [
     {
      "gate": "GRAVE",
@@ -1559,17 +1570,17 @@
     }
    ],
    "knight": "ser-ubar",
-   "unclear": [
-    "손 슬롯 아이콘(한손/두손) 미확인 — 한손으로 기록",
-    "Weapon die re-read as BLACK (dark cube) — card icon shades: red / dark=black / light=white [확인]"
+   "unclear": [],
+   "notes": [
+    "2H, power white, Exhaust → 전투 행동 (사용자 확인 2026-11-02)"
    ]
   },
   {
    "precision": null,
    "weaponPower": null,
    "bonusPower": null,
-   "evasion": 2,
-   "evasionReroll": null,
+   "evasion": null,
+   "evasionReroll": 2,
    "armorDice": null,
    "attackDice": null,
    "hands": null,
@@ -1583,9 +1594,9 @@
     "Fur",
     "Cursed"
    ],
-   "type": "armor",
+   "type": "support",
    "tier": "Dragon",
-   "text": "+1 Speed.\nDeploy 1.\nBypass.\nPoison Resilience 1.\n2 [Vigor] Ignore involuntary Shapeshift.\n[Move action] 1 [Heat] [Exhaust] Superior Reflex.\n[ANY CONDITION] When you start your turn in the same form you ended your previous turn in, your Knight Power die becomes one tier higher.",
+   "text": "+1 Speed.\nDeploy 1.\nBypass.\nPoison Resilience 1.\n2 [Vigor] Ignore involuntary Shapeshift.\n[Reaction] 1 [Heat] [Exhaust] Superior Reflex.\n[ANY CONDITION] When you start your turn in the same form you ended your previous turn in, your Knight Power die becomes one tier higher.",
    "gates": [
     {
      "gate": "ANY CONDITION",
@@ -1593,9 +1604,9 @@
     }
    ],
    "knight": "ser-ubar",
-   "unclear": [
-    "우측 상단 \"+2\" 아이콘을 Evasion bonus로 판독(확인 필요)",
-    "슬롯 아이콘이 Support(주머니)로 보임 — Cloak이지만 Support일 수 있음"
+   "unclear": [],
+   "notes": [
+    "Support, Evasion Re-roll 2, 이동 행동 → Reaction (사용자 확인 2026-11-02)"
    ]
   }
  ]

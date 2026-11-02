@@ -91,6 +91,9 @@ const mk = (seed, level = 1) => { const c = new Clash({ data, knights: [0, 1, 2,
   ok(!G.some(g => /Judicium-diamond|scribbled icon|wreath token|\[Fail\]/.test(g.text)), 'no unresolved icon placeholders / [Fail] chalice left in gear text'); }
 { const c = mk(10); const k = c.knights[0]; ok(!k.gear.some(g => g.name === 'Knighves') && k.knighvesReserve, 'starting loadout: 2H Chipped Axe → Knighves set aside (no free hand)');
   k.gear.find(g => g.name === 'Chipped Axe').discarded = true; k.pos = c.board.parse('G7'); c.board.place({ kind: 'knight', id: k.id }, [k.pos]); await c.knightAttack(k); ok(k.gear.some(g => g.name === 'Knighves'), 'weapon lost → Knighves equipped'); }
+{ const G = data.gear.gear.gear, by = n => G.find(g => g.name === n);
+  ok(by('Bluesteel Sword').weaponPower.n === 4 && by('Uncompromising Justice').hands === 2 && by('Uncompromising Justice').weaponPower.colour === 'white' && by('Aegis of Averted Eyes').hands === 1 && by('Mantle of the First Sin').type === 'support' && by('Mantle of the First Sin').evasionReroll === 2 && by("Laxlaw's Dual Standard (Pliant)").armorDice.black === 1 && by('Ruinous Polehammer').bonusPower.colour === 'black' && by('The Bastard of the Church').bonusPower.colour === 'black' && by('Shield of the Defiant').armorDice.black === 1 && by("Questing Champion's Chain Armor").armorDice.black === 1, 'owner corrections batch 2 (Gear §6)');
+  ok(G.filter(g => g.type === 'weapon').every(g => g.hands === 1 || g.hands === 2), 'every weapon has a hand count'); }
 
 // --- full simulations
 const results = { win: 0, lose: 0 }; const rounds = [];
