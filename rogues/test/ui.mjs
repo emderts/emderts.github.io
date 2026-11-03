@@ -18,6 +18,7 @@ ok(await p.evaluate(() => window.__fl) > 0, 'result pop-ups (dice / cards) shown
 await jsClick(await p.$('#mpane .tag.link')); await p.waitForTimeout(80); ok(await p.locator('.modal').count() === 1 && (await p.textContent('.modal')).includes('Trait'), 'tapping a trait opens its text'); await jsClick(await p.$('.modal .close')); await p.waitForTimeout(60);
 await jsClick(await p.$('#mpane .link')); await p.waitForTimeout(80); ok(await p.locator('.modal').count() === 1, 'Wound Stack / card viewer opens'); await jsClick(await p.$('.modal .close')); await p.waitForTimeout(60);
 await p.evaluate(() => document.querySelector('#kpane details').open = true); await p.waitForTimeout(80); { const t = await p.$('#kpane details .tag.link'); if (t) { await jsClick(t); await p.waitForTimeout(80); ok((await p.locator('.modal .cardview').count()) === 1, 'tapping a hand card shows the card'); await jsClick(await p.$('.modal .close')); } else ok(false, 'hand card tag present'); }
+for (const lab of ['Heroic', 'Peril']) { const bt = await p.$(`#kpane button:has-text("${lab}")`); await jsClick(bt); await p.waitForTimeout(80); ok((await p.textContent('.modal')).includes(lab + ' Arc'), `knight card shows the ${lab} Arc`); await jsClick(await p.$('.modal .close')); await p.waitForTimeout(60); }
 ok(!/(\w+), \1/.test(await p.textContent('#mpane')), 'Knight Pool shown grouped');
 ok(answered > 10, `answered ${answered} prompts`);
 ok((await p.textContent('#mpane')).includes('Wound Stack'), 'monster pane visible next to the board');

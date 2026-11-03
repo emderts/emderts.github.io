@@ -205,12 +205,26 @@ const poolChips = pool => { const g = new Map(); for (const t of pool) g.set(t.t
 // ---------- clash panes ----------
 const track = (cls, n, max, lim) => h('div', { class: 'track ' + cls }, Array.from({ length: max + 1 }, (_, i) => h('i', { class: (i <= n && i > 0 ? 'on' : '') + (lim != null && i === lim ? ' lim' : '') })));
 const openDetails = new Set();
+const tokTxt = t => `${t.token}${t.n != null ? ' ' + t.n : ''}`;
+const heroicView = k => { const a = k.heroicArc; if (!a) return h('div', { class: 'muted' }, '없음'); const lv = k.passion + (clash && clash.poolCount('rouse') ? 1 : 0);
+  return h('div', { class: 'cardview' }, h('div', { class: 'cv-title' }, `Heroic Arc — ${a.name}`), h('div', { class: 'small muted' }, `현재 Passion ${k.passion}${lv > k.passion ? ' (+Rouse)' : ''} → L${Math.min(lv, a.levels.length)}까지 사용 · 레벨당 옵션 1개, 2차 창에서 남은 것 강제`),
+    a.plus && a.plus.ops ? h('div', { class: 'cv-gate' }, h('b', {}, '+ '), a.plus.ops.map(tokTxt).join(' + ')) : null,
+    h('table', { class: 'kt' }, a.levels.map(L => h('tr', { class: L.level <= lv ? 'on' : 'off' }, h('td', { class: 'ktlv' }, `L${L.level}${L.level <= lv ? ' ✓' : ''}`), h('td', {}, L.options.map(o => o.map(tokTxt).join(' + ')).join('  또는  '))))));
+};
+const perilView = k => { const a = k.perilArcDef; if (!a) return h('div', { class: 'muted' }, '없음'); const cur = k.peril();
+  return h('div', { class: 'cardview' }, h('div', { class: 'cv-title' }, `Peril Arc — ${a.name}`), h('div', { class: 'small muted' }, `최대 Vigor ${a.maxVigor} · 현재 Vigor ${k.vigor} (${cur}) · Heat ${k.heat}/${k.heatLimit}`),
+    h('table', { class: 'kt' }, h('tr', {}, h('td', { class: 'small muted' }, 'Peril'), h('td', { class: 'small muted' }, 'Vigor'), h('td', { class: 'small muted' }, 'Heat Limit')), Object.entries(a.levels).map(([p, v]) => h('tr', { class: p === cur ? 'on' : '' }, h('td', { class: 'ktlv' }, p + (p === cur ? ' ◀' : '')), h('td', {}, v.vigor[0] === v.vigor[1] ? String(v.vigor[0]) : `${v.vigor[0]}–${v.vigor[1]}`), h('td', {}, String(v.heatLimit))))),
+    a.bonus ? h('div', { class: 'cv-gate' }, h('b', {}, '보너스 '), typeof a.bonus === 'string' ? a.bonus : (a.bonus.text || JSON.stringify(a.bonus))) : null);
+};
+const talentView = k => { const t = k.talent; if (!t) return null; return h('div', { class: 'cardview' }, h('div', { class: 'cv-title' }, `Talent — ${t.name}`), t.abilities.map(a => h('div', { class: 'cv-text' }, h('b', {}, a.name + ': '), a.text))); };
+
 const knightBox = k => { const active = pending && pending.q.knight === k.id;
   const stat = (cls, n, v, sub) => h('div', { class: 'stat ' + cls }, h('div', { class: 'sn' }, n), h('div', { class: 'sv' }, v), sub ? h('div', { class: 'ss' }, sub) : null);
   return h('div', { class: 'kbox' + (k.alive ? '' : ' dead') + (active ? ' active' : '') },
     h('div', {}, h('b', {}, k.name), ' ', h('span', { class: 'small muted' }, k.pos ? clash.board.label(k.pos) : '—'), clash.priorityTarget === k ? h('span', { class: 'tag warn' }, '★Priority') : null, k.alive ? '' : h('span', { class: 'err' }, ' ☠')),
     h('div', { class: 'trisk' }, stat('v', 'VIGOR', `${k.vigor}/${k.maxVigor}`, k.peril()), stat('h', 'HEAT', `${k.heat}/${k.heatLimit}`), stat('p', 'PASSION', k.passion, k.heroicArc ? `Arc L${Math.min(k.passion, 6)}` : '')),
     h('div', { class: 'small' }, k.conditions.map(c => h('span', { class: 'tag cond' }, c.id + (c.tokens ? ' ×' + c.tokens : ''))), k.gear.map(g => h('span', { class: 'tag', style: g.exhausted ? 'opacity:.5;text-decoration:line-through' : '', title: ((g.traits || []).join(', ') + '\n' + (g.text || '')).trim() }, g.name))),
+    h('div', { class: 'kbtns' }, h('button', { class: 'kbtn', title: k.heroicArc ? k.heroicArc.name : '', onclick: () => openModal(`${k.name} — Heroic Arc`, heroicView(k)) }, 'Heroic'), h('button', { class: 'kbtn', title: k.perilArcDef ? k.perilArcDef.name : '', onclick: () => openModal(`${k.name} — Peril Arc`, perilView(k)) }, 'Peril'), k.talent ? h('button', { class: 'kbtn', onclick: () => openModal(`${k.name} — Talent`, talentView(k)) }, 'Talent') : null),
     h('details', { open: openDetails.has(k.id) ? '' : null, ontoggle: e => { if (e.target.open) openDetails.add(k.id); else openDetails.delete(k.id); } },
       h('summary', { class: 'small muted' }, `손패 ${k.hand.length} · CD ${k.cooldown.length} / DL ${k.delay.length} / DC ${k.discard.length} · Bane ${k.bane}/${k.baneLimit}`),
       h('div', { class: 'small' }, k.hand.length ? k.hand.map(t => h('span', { class: 'tag link', onclick: () => openModal(`${k.name} — 손패`, techView(t)) }, t.name + (t.exert ? ` [${t.exert.token === 'PowerReroll' ? 'PR' : t.exert.token}]` : ''))) : '—'),

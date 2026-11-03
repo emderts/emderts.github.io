@@ -103,6 +103,8 @@ button.tog { border-style:dashed; } button.tog.on { background:#5a4a1a; border-c
 @keyframes fpop { from { transform:scale(.85); opacity:0; } to { transform:scale(1); opacity:1; } }
 @keyframes fout { to { transform:scale(1.03) translateY(-8px); opacity:0; } }
 @keyframes droll { 0% { transform:rotate(-25deg) scale(.6); opacity:0; } 60% { transform:rotate(8deg) scale(1.08); opacity:1; } 100% { transform:none; } }
+.kt { border-collapse:collapse; font-size:13px; width:100%; margin-top:6px; } .kt td { padding:3px 8px; border-bottom:1px solid var(--line); } .ktlv { color:var(--warn); font-weight:700; white-space:nowrap; } .kt tr.on td { background:#3a2f1a; } .kt tr.off td { opacity:.55; }
+.kbtns { display:flex; gap:4px; margin:4px 0 2px; } button.kbtn { flex:1; padding:2px 4px; min-height:26px; font-size:11px; border-radius:6px; }
 </style>
 </head>
 <body>
