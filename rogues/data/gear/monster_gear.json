@@ -1,5 +1,5 @@
 {
- "_source": "Monster gear sheet (owner scan 2026-11-03), backs give ownership: Devil of the Smelted Fears 8, Eggknight 8, Ironcast Dead 8, Panzerdragon Veldr 8, Panzergeists 8, Puppet King 8, Stonemason Knight 8. Transcribed from 2x crops; uncertain readings in unclear.",
+ "_source": "Monster gear sheet (owner scan 2026-11-03), backs give ownership: Devil of the Smelted Fears 8, Eggknight 8, Ironcast Dead 8, Panzerdragon Veldr 8, Panzergeists 8, Puppet King 8, Stonemason Knight 8. Transcribed from 2x crops; uncertain readings in unclear. | Sunken Kingdom monster gear (owner scan 2026-11-04): Knight of the Fen, Knighteater, Pumpkinhead Monstrosities, Ratwolves, Winged Nightmare, Paleblood Worms, Young Devour Dragon, Bog Witch, Devil of the Ancient Dusk, Firstmen Lictors, Firstmen Warriors, Haunts of Utrebrant, King Laid Low, Toadragon, White Ape Troll (8 each).",
  "gear": [
   {
    "name": "Horned Abyss Buckler",
@@ -1871,6 +1871,4019 @@
    "unclear": [
     "precision printed as '+X*' (stored as string 'X*')"
    ]
+  },
+  {
+   "name": "Mud Underarmor",
+   "code": "13A0659",
+   "monster": "knight-of-the-fen",
+   "traits": [
+    "Armor",
+    "Wood",
+    "Rope",
+    "Leather"
+   ],
+   "type": "armor",
+   "tier": "Mob",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": 1,
+   "armorDice": null,
+   "charges": null,
+   "text": "Poison Resilience 1.\n[Reaction] 2 [Heat] [Exhaust] Reflex.",
+   "gates": [],
+   "unclear": [
+    "Code digits blurry; read 13A0659 (fits sequence 0660-0662)",
+    "Evasion re-roll value '+1' partly merged with icon"
+   ],
+   "hands": null
+  },
+  {
+   "name": "Possessive Mudling",
+   "code": "13A0660",
+   "monster": "knight-of-the-fen",
+   "traits": [
+    "Sword",
+    "Armor",
+    "Mud",
+    "Alive"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Mob",
+   "attackDice": 2,
+   "precision": 1,
+   "weaponPower": {
+    "n": 1,
+    "colour": "red",
+    "dice": [
+     "red"
+    ]
+   },
+   "bonusPower": {
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Break 1.\nAttack Re-roll 1.\nPower Re-roll 1.\nCumbersome.\n1 [Heat] [Exhaust] Block.\n[JUDICIUM] [Exhaust] When you attack with another Weapon, that Weapon gains +1 Precision [Precision] and Auto-break 1.",
+   "gates": [
+    {
+     "gate": "JUDICIUM",
+     "text": "[Exhaust] When you attack with another Weapon, that Weapon gains +1 Precision [Precision] and Auto-break 1."
+    }
+   ],
+   "unclear": [
+    "Slot icon shows a single gauntlet above a breastplate (occupies 1 hand slot + the armor slot); stored as weapon, hands 1"
+   ]
+  },
+  {
+   "name": "Prisoner's Chainball",
+   "code": "13A0661",
+   "monster": "knight-of-the-fen",
+   "traits": [
+    "Club",
+    "Chain",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Vassal",
+   "attackDice": 1,
+   "precision": 3,
+   "weaponPower": {
+    "n": 3,
+    "colour": "mixed",
+    "dice": [
+     "red",
+     "black",
+     "black"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Opening 2. Black 1.\nKnockback 1. Commit.\n[MAJOR] Armor-piercing 1.",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "Armor-piercing 1."
+    }
+   ],
+   "unclear": [
+    "Weapon Power: 3 tiny overlapping dice; first red, 2nd and 3rd dark-filled with white outline (read black) by pixel sampling"
+   ]
+  },
+  {
+   "name": "Slime Helmet",
+   "code": "13A0662",
+   "monster": "knight-of-the-fen",
+   "traits": [
+    "Helm",
+    "Mud"
+   ],
+   "type": "support",
+   "tier": "Vassal",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Bane Limit +1.\n[Exhaust] When you perform a [red oval icon] (excluding Judicium Draw), look at the top 2 cards and choose one to resolve instead.\n[JUDICIUM] [Discard] Second Chance.",
+   "gates": [
+    {
+     "gate": "JUDICIUM",
+     "text": "[Discard] Second Chance."
+    }
+   ],
+   "unclear": [
+    "Red oval/banner icon after 'perform a' (likely a Peril/Judicium-draw symbol) unidentified",
+    "Slot icon is the pouch (support) despite Helm trait"
+   ],
+   "hands": null
+  },
+  {
+   "name": "Forgotten Sword",
+   "code": "13A0663",
+   "monster": "knight-of-the-fen",
+   "traits": [
+    "Sword",
+    "Metal",
+    "Cursed"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "King",
+   "attackDice": 1,
+   "precision": 3,
+   "weaponPower": {
+    "n": 4,
+    "colour": "mixed",
+    "dice": [
+     "black",
+     "red",
+     "red",
+     "red"
+    ]
+   },
+   "bonusPower": {
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Auto-break 2.\nOpening 1. Hope 1.\nArmor-piercing 2.\n2 [Heat] Precise.\n[GRAVE] [Discard] During your attack, gain +1 [Power].",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "[Discard] During your attack, gain +1 [Power]."
+    }
+   ],
+   "unclear": [
+    "Weapon Power is a stacked cluster: 1 black die on top of 3 red dice; count (4) and colours read at 6x zoom but overlapping"
+   ]
+  },
+  {
+   "name": "Muck Coating",
+   "code": "13A0664",
+   "monster": "knight-of-the-fen",
+   "traits": [
+    "Slime"
+   ],
+   "type": "support",
+   "tier": "King",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Provoke.\n[Exhaust] Gain the Slimed Condition card to discard another Condition card.\n[GRAVE] Ignore Swamp Terrain tiles.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "Ignore Swamp Terrain tiles."
+    }
+   ],
+   "unclear": [],
+   "hands": null
+  },
+  {
+   "name": "Handheld Ballista",
+   "code": "13A0665",
+   "monster": "knight-of-the-fen",
+   "traits": [
+    "Crossbow",
+    "Boltthrower",
+    "Wood"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Dragon",
+   "attackDice": 2,
+   "precision": 4,
+   "weaponPower": {
+    "n": 2,
+    "colour": "red",
+    "dice": [
+     "red",
+     "red"
+    ]
+   },
+   "bonusPower": {
+    "n": 1,
+    "colour": "white",
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "-1 Speed [Speed]. Unwieldy.\nRanged 3–7. Overbreak 2.\nClosing 2. Sunder 1.\nCommit. Cumbersome.\n[GRAVE] Critical Wound: Area: One space adjacent to and on the opposite site of the Target.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "Critical Wound: Area: One space adjacent to and on the opposite site of the Target."
+    }
+   ],
+   "unclear": [
+    "'opposite site' printed as-is (likely typo for 'side')"
+   ]
+  },
+  {
+   "name": "Living Sludge Armor",
+   "code": "13A0666",
+   "monster": "knight-of-the-fen",
+   "traits": [
+    "Armor",
+    "Metal",
+    "Plant",
+    "Animal",
+    "Ecosystem"
+   ],
+   "type": "armor",
+   "tier": "Dragon",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": 3,
+   "armorDice": null,
+   "charges": null,
+   "text": "Diversion.\n2 [Heat] [Discard] Discard all Condition cards.\n1 [Heat] Gain +2 [Vigor].\n[MAJOR] When you Escalate, AI or BP Suppress.",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "When you Escalate, AI or BP Suppress."
+    }
+   ],
+   "unclear": [],
+   "hands": null
+  },
+  {
+   "name": "Fleischmail",
+   "code": "13B0776",
+   "monster": "knighteater",
+   "traits": [
+    "Meat"
+   ],
+   "type": "armor",
+   "tier": "Mob",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": 2,
+   "armorDice": null,
+   "charges": 2,
+   "text": "When you become the Target of an Attack, place 1 Fleisch [Fleisch token] token in the Knight Pool and spend 1 [Charge].\nIf you cannot spend the [Charge], discard this card instead.\nStart of Clash: Gain the [Priority Target] Priority Target token.\nWhile you have this card, you cannot lose that token.\n[MAJOR] [Reaction] 1 [Heat] [Exhaust] Reflex.",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "[Reaction] 1 [Heat] [Exhaust] Reflex."
+    }
+   ],
+   "unclear": [
+    "Code blurry; read 13B0776 (sequence with 13B0777)",
+    "Small Fleisch token glyph (key/claw-like) given placeholder [Fleisch token]",
+    "'the [Charge]' printed blurry as 'thc'"
+   ],
+   "hands": null
+  },
+  {
+   "name": "Stitched Knightrobes",
+   "code": "13B0777",
+   "monster": "knighteater",
+   "traits": [
+    "Cloth",
+    "Leather",
+    "Flammable"
+   ],
+   "type": "armor",
+   "tier": "Mob",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Deploy 1.\n1 [Heat] You may exhaust another Gear [Gear] card with the Cloth Trait to gain a temporary positive Evasion [Evasion] token.\n[Reaction] 2 [Heat] [Exhaust] Reflex.\n[JUDICIUM] Full Evade: Look at the top AI and BP cards of the closest Monster.",
+   "gates": [
+    {
+     "gate": "JUDICIUM",
+     "text": "Full Evade: Look at the top AI and BP cards of the closest Monster."
+    }
+   ],
+   "unclear": [],
+   "hands": null
+  },
+  {
+   "name": "Decoy Shield",
+   "code": "13B0778",
+   "monster": "knighteater",
+   "traits": [
+    "Shield",
+    "Wood",
+    "Metal",
+    "Flammable"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Vassal",
+   "attackDice": 2,
+   "precision": 2,
+   "weaponPower": {
+    "n": 1,
+    "colour": "black",
+    "dice": [
+     "black"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": 2,
+   "armorDice": null,
+   "charges": null,
+   "text": "Provoke.\nDaze. Diversion.\n[Reaction] 1 [Heat] [Exhaust] Another Knight performs Reflex.\n[MAJOR] 3 [Heat] [Discard] If you are one of the viable Targets of an Attack, become the only Target of that Attack.",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "3 [Heat] [Discard] If you are one of the viable Targets of an Attack, become the only Target of that Attack."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Mailbreaker Pincer",
+   "code": "13B0779",
+   "monster": "knighteater",
+   "traits": [
+    "Sword",
+    "Pincer",
+    "Metal",
+    "Grappler"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Vassal",
+   "attackDice": 1,
+   "precision": 2,
+   "weaponPower": {
+    "n": 3,
+    "colour": "mixed",
+    "dice": [
+     "red",
+     "black",
+     "black"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Unwieldy.\nReach 2. Opening 2.\nBlack 1. Armor-piercing 2.\nDrag 2. Cumbersome.\n1 [Heat] When a Monster adjacent to you is about to move, Drag 2.\n[GRAVE] As long as this card is exhausted, you may move simultaneously with an adjacent Monster (the same direction and amount of spaces).",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "As long as this card is exhausted, you may move simultaneously with an adjacent Monster (the same direction and amount of spaces)."
+    }
+   ],
+   "unclear": [
+    "Code blurry; read 13B0779",
+    "Weapon Power: 3 tiny overlapping dice; red + 2 dark-filled (read black) by pixel sampling"
+   ]
+  },
+  {
+   "name": "Spike Swords",
+   "code": "13B0780",
+   "monster": "knighteater",
+   "traits": [
+    "Sword",
+    "Metal",
+    "Wood",
+    "Pair"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Devil",
+   "attackDice": 5,
+   "precision": 6,
+   "weaponPower": {
+    "n": 1,
+    "colour": "red",
+    "dice": [
+     "red"
+    ]
+   },
+   "bonusPower": {
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Unwieldy.\nReach 2.\nClosing 2.\nWhen you deal a Critical Wound, create a [W] on the space you attacked from.\nWhen you attack from a VP, a Blindspot or a [W] space, you may ignore Armor [Armor] tokens.\n[Reaction] [Exhaust] Reflex.\n[MINOR] Hug 2.\n[MAJOR] Vault.",
+   "gates": [
+    {
+     "gate": "MINOR",
+     "text": "Hug 2."
+    },
+    {
+     "gate": "MAJOR",
+     "text": "Vault."
+    }
+   ],
+   "unclear": [
+    "Bold 'W' glyph with wavy underline (terrain/token symbol) written as [W]"
+   ]
+  },
+  {
+   "name": "Spikeback Plate",
+   "code": "13B0781",
+   "monster": "knighteater",
+   "traits": [
+    "Light",
+    "Magic",
+    "Metal"
+   ],
+   "type": "armor",
+   "tier": "Devil",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "2 [Heat] Soak 3.\n2 [Heat] [Exhaust] When you attack, gain Spotlight for that Attack.\n[Reaction] 1 [Heat] [Exhaust] Reflex.\n[JUDICIUM] You may ignore Monster Move Responses.",
+   "gates": [
+    {
+     "gate": "JUDICIUM",
+     "text": "You may ignore Monster Move Responses."
+    }
+   ],
+   "unclear": [],
+   "hands": null
+  },
+  {
+   "name": "Knighteater Helm",
+   "code": "13B0782",
+   "monster": "knighteater",
+   "traits": [
+    "Helm",
+    "Metal"
+   ],
+   "type": "support",
+   "tier": "Dragon",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "1 [Heat] If you're fighting the Knighteater, trigger Wolf Down 0.\n2 [Heat] [Exhaust] Superior Chance.\n[Discard] Perform Rotation 1.\nFull Miss: Gain +1 [Passion].\n[JUDICIUM] 2 [Heat] [Discard] When you are about to die, ignore that death.",
+   "gates": [
+    {
+     "gate": "JUDICIUM",
+     "text": "2 [Heat] [Discard] When you are about to die, ignore that death."
+    }
+   ],
+   "unclear": [
+    "Slot icon is the pouch (support) despite Helm trait"
+   ],
+   "hands": null
+  },
+  {
+   "name": "Parasite Sword",
+   "code": "13B0783",
+   "monster": "knighteater",
+   "traits": [
+    "Whip",
+    "Sword",
+    "Alive",
+    "Cursed"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Dragon",
+   "attackDice": 4,
+   "precision": 4,
+   "weaponPower": {
+    "n": 1,
+    "colour": "red",
+    "dice": [
+     "red"
+    ]
+   },
+   "bonusPower": {
+    "n": 1,
+    "colour": "white",
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Reach 3. Deadly.\nClosing X. Hope X.\nPull 3. Drag 1.\nPower Re-roll 1.\nX is the amount of Armor [Armor] tokens the Monster had when you attacked (up to 4).\n[BANE 6+] You gain a Crit Chance on a natural X–10 result, where X is your [Vigor] (minimum 2 and maximum 9).",
+   "gates": [
+    {
+     "gate": "BANE 6+",
+     "text": "You gain a Crit Chance on a natural X–10 result, where X is your [Vigor] (minimum 2 and maximum 9)."
+    }
+   ],
+   "unclear": [
+    "Slot icon partly covered by artwork; single gauntlet visible (hands 1)"
+   ]
+  },
+  {
+   "name": "Harvest Sicklesword",
+   "code": "13A0651",
+   "monster": "pumpkinhead-monstrosities",
+   "traits": [
+    "Sickle",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Mob",
+   "attackDice": 3,
+   "precision": 3,
+   "weaponPower": {
+    "n": 1,
+    "colour": "red",
+    "dice": [
+     "red"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Opening 1.\nPower Re-roll 1.\nReposition 1.\n[GRAVE] Armor-piercing 1.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "Armor-piercing 1."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Carving Knife",
+   "code": "13A0652",
+   "monster": "pumpkinhead-monstrosities",
+   "traits": [
+    "Knife",
+    "Metal",
+    "Wood"
+   ],
+   "type": "support",
+   "tier": "Mob",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "When you trigger Overcome X in Melee range:\n2 [Heat] [Exhaust] After you wound a Pumpkinhead, place the Sapling in its place instead of random coordinates.\n[GRAVE] [Discard] Discard a Generic token from an adjacent Pumpkinhead.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "[Discard] Discard a Generic token from an adjacent Pumpkinhead."
+    }
+   ],
+   "unclear": [],
+   "hands": null
+  },
+  {
+   "name": "Sickle Scissors",
+   "code": "13A0653",
+   "monster": "pumpkinhead-monstrosities",
+   "traits": [
+    "Scissors",
+    "Metal",
+    "Wood",
+    "Pair"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Vassal",
+   "attackDice": 4,
+   "precision": 1,
+   "weaponPower": {
+    "n": 1,
+    "colour": "red",
+    "dice": [
+     "red"
+    ]
+   },
+   "bonusPower": {
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Opening 2.\nBlack 1. Wither 1.\nEach hit: Reposition 1.\n[MAJOR] Armor-piercing 1.",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "Armor-piercing 1."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Accursed Seeds",
+   "code": "13A0654",
+   "monster": "pumpkinhead-monstrosities",
+   "traits": [
+    "Plant",
+    "Alive",
+    "Cursed"
+   ],
+   "type": "support",
+   "tier": "Vassal",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Growth.\n2 [Heat] [Exhaust] Discard 1 Bane [Bane] token.\n1 [Heat] Discard 1 Condition token. You may use this ability more than once per turn.\n[GRAVE] Immediately discard this card and Bane 1.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "Immediately discard this card and Bane 1."
+    }
+   ],
+   "unclear": [],
+   "hands": null
+  },
+  {
+   "name": "Jack-O'-Lantern",
+   "code": "13A0655",
+   "monster": "pumpkinhead-monstrosities",
+   "traits": [
+    "Armor",
+    "Plant",
+    "Cursed"
+   ],
+   "type": "armor",
+   "tier": "King",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": 2,
+   "armorDice": null,
+   "charges": null,
+   "text": "Inspire 1.\n1 [Heat] Reinforce 1.\n2 [Heat] [Discard] Stalwart.",
+   "gates": [],
+   "unclear": [],
+   "hands": null
+  },
+  {
+   "name": "Living Polypores",
+   "code": "13A0656",
+   "monster": "pumpkinhead-monstrosities",
+   "traits": [
+    "Plant",
+    "Alive"
+   ],
+   "type": "support",
+   "tier": "King",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Growth. Poison Resilience 1.\n1 [Heat] [Exhaust] Flip a Condition card.\n1 [Heat] Gain +2 [Vigor].\n[PASSION 2+] [Discard] Full Miss: Do not clear the Knight Pool.",
+   "gates": [
+    {
+     "gate": "PASSION 2+",
+     "text": "[Discard] Full Miss: Do not clear the Knight Pool."
+    }
+   ],
+   "unclear": [],
+   "hands": null
+  },
+  {
+   "name": "Flaming Sword",
+   "code": "13A0657",
+   "monster": "pumpkinhead-monstrosities",
+   "traits": [
+    "Sword",
+    "Metal",
+    "Fire"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Devil",
+   "attackDice": 1,
+   "precision": 3,
+   "weaponPower": {
+    "n": 3,
+    "colour": "mixed",
+    "dice": [
+     "red",
+     "white",
+     "white"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Fire 4.\nWither 2.\nMotivate 3.\nAttack Re-roll 1.\n2 [Heat] [Exhaust] Flip an adjacent Mob's BP card.",
+   "gates": [],
+   "unclear": [
+    "Weapon Power: 3 tiny overlapping dice; red + 2 light (white)"
+   ]
+  },
+  {
+   "name": "Root Stockade",
+   "code": "13A0658",
+   "monster": "pumpkinhead-monstrosities",
+   "traits": [
+    "Armor",
+    "Wood",
+    "Plant"
+   ],
+   "type": "armor",
+   "tier": "Devil",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Poison Limit +2.\nDeploy 3. Soak 2.\nTake Root: If you didn't move during your turn, gain Braced until you move.",
+   "gates": [],
+   "unclear": [],
+   "hands": null
+  },
+  {
+   "name": "Teeth Amulet",
+   "code": "13A0835",
+   "monster": "ratwolves",
+   "traits": [
+    "Bone",
+    "Rope",
+    "Flammable"
+   ],
+   "type": "support",
+   "tier": "Mob",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Provoke.\nStart of your turn: Gain +2 [Vigor] and Bane 1.",
+   "gates": [],
+   "unclear": [
+    "Code blurry; read 13A0835"
+   ],
+   "hands": null
+  },
+  {
+   "name": "Panzerhide Cloak",
+   "code": "13A0836",
+   "monster": "ratwolves",
+   "traits": [
+    "Armor",
+    "Metal",
+    "Flesh",
+    "Fur"
+   ],
+   "type": "armor",
+   "tier": "Mob",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": {
+    "red": 2
+   },
+   "charges": null,
+   "text": "-1 Speed [Speed].\nPoison Limit +1.\n[MINOR] +1 Bravery [Bravery].",
+   "gates": [
+    {
+     "gate": "MINOR",
+     "text": "+1 Bravery [Bravery]."
+    }
+   ],
+   "unclear": [],
+   "hands": null
+  },
+  {
+   "name": "Ratail Whip",
+   "code": "13A0837",
+   "monster": "ratwolves",
+   "traits": [
+    "Whip",
+    "Flesh",
+    "Fur"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Mob",
+   "attackDice": 3,
+   "precision": 1,
+   "weaponPower": {
+    "n": 1,
+    "colour": "red",
+    "dice": [
+     "red"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Unwieldy. Reach 2.\nOpening 1. Drag 1.\n[GRAVE] Pull 1.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "Pull 1."
+    }
+   ],
+   "unclear": [
+    "Code blurry; read 13A0837 (sequence)"
+   ]
+  },
+  {
+   "name": "Subduer Spear",
+   "code": "13A0838",
+   "monster": "ratwolves",
+   "traits": [
+    "Spear",
+    "Bone",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Mob",
+   "attackDice": 1,
+   "precision": 1,
+   "weaponPower": {
+    "n": 2,
+    "colour": "red",
+    "dice": [
+     "red",
+     "red"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Unwieldy.\nReach 2.\nBreak 2.\nArmor-piercing 1.\nPushback 1.\n[GRAVE] Daze.\n[VASSAL] +1 [Attack die].",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "Daze."
+    },
+    {
+     "gate": "VASSAL",
+     "text": "+1 [Attack die]."
+    }
+   ],
+   "unclear": [
+    "Code blurry (could read 13A0638); 13A0838 assumed from ratwolves sequence 0835-0837",
+    "Black diamond icon after '+1' read as [Attack die]"
+   ]
+  },
+  {
+   "name": "Cheese Shield",
+   "code": "13A0639",
+   "monster": "ratwolves",
+   "traits": [
+    "Shield",
+    "Metal",
+    "Food"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Vassal",
+   "attackDice": 3,
+   "precision": 0,
+   "weaponPower": {
+    "n": 1,
+    "colour": "red",
+    "dice": [
+     "red"
+    ]
+   },
+   "bonusPower": {
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": 2,
+   "armorDice": null,
+   "charges": null,
+   "text": "Poison Resilience 1.\nProvoke. Opening 2.\nWhen you're hit by a Mob Monster, you may reveal that Mob's BP card.\n[MAJOR] [Discard] When you're about to suffer Drag X, ignore that Drag.",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "[Discard] When you're about to suffer Drag X, ignore that Drag."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Ratbone Carapace",
+   "code": "13A0640",
+   "monster": "ratwolves",
+   "traits": [
+    "Bone",
+    "Armor",
+    "Metal"
+   ],
+   "type": "armor",
+   "hands": null,
+   "tier": "Vassal",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Guard 2.\nFull Evade: A Monster that attacked you moves X spaces directly away from you, where X is the amount of dice you evaded.\n[JUDICIUM] [Discard] Second Chance.",
+   "gates": [
+    {
+     "gate": "JUDICIUM",
+     "text": "[Discard] Second Chance."
+    }
+   ],
+   "unclear": [
+    "code faint: read 13A0640 (fits sequence)",
+    "no stat badges printed (armorDice null)"
+   ]
+  },
+  {
+   "name": "Poisoned Ratwolf Bait",
+   "code": "13A0641",
+   "monster": "ratwolves",
+   "traits": [
+    "Food",
+    "Poison"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "King",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "2 [Heat] [Discard] Place this card adjacent to you on 2 spaces on the Clash Board. When a Monster enters any of this card's spaces, remove this card from the Board, and place 2 temporary negative AT [AT] tokens in the Knight Pool.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "The Incisors",
+   "code": "13A0642",
+   "monster": "ratwolves",
+   "traits": [
+    "Pair",
+    "Knives",
+    "Teeth"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "King",
+   "attackDice": 4,
+   "precision": 3,
+   "weaponPower": {
+    "n": 1,
+    "colour": "red",
+    "dice": [
+     "red"
+    ]
+   },
+   "bonusPower": {
+    "raw": 2
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Opening 2.\nEnvenomed 2.\nReposition 2 toward another Knight.\n[GRAVE] Motivate 2 toward you.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "Motivate 2 toward you."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Wingcloak",
+   "code": "13A0643",
+   "monster": "winged-nightmare",
+   "traits": [
+    "Armor",
+    "Flesh",
+    "Cloak"
+   ],
+   "type": "armor",
+   "hands": null,
+   "tier": "Mob",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "+1 Bravery [Bravery]. Guard 1.\nWhen you're about to suffer involuntary movement, you may reduce it by 1 (to a minimum of 1).",
+   "gates": [],
+   "unclear": [
+    "code faint: read 13A0643 (fits sequence)"
+   ]
+  },
+  {
+   "name": "Bone Bow",
+   "code": "13A0644",
+   "monster": "winged-nightmare",
+   "traits": [
+    "Bow",
+    "Wood",
+    "Flammable"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Mob",
+   "attackDice": 1,
+   "precision": 3,
+   "weaponPower": {
+    "n": 2,
+    "colour": "red",
+    "dice": [
+     "red",
+     "red"
+    ]
+   },
+   "bonusPower": {
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Ranged 3–5.\nOpening 2. Cumbersome.\n[GRAVE] When you deal a Wound, Knockback 1.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "When you deal a Wound, Knockback 1."
+    }
+   ],
+   "unclear": [
+    "code faint: read 13A0644 (fits sequence)"
+   ]
+  },
+  {
+   "name": "The Crippler",
+   "code": "13A0645",
+   "monster": "winged-nightmare",
+   "traits": [
+    "Sling",
+    "Rope",
+    "Stone"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Vassal",
+   "attackDice": 4,
+   "precision": 2,
+   "weaponPower": {
+    "n": 1,
+    "colour": "red",
+    "dice": [
+     "red"
+    ]
+   },
+   "bonusPower": {
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": 2,
+   "text": "Ranged 2–4. Daze.\nOpening 2. Black 1.\nAmmo Reserves 1.\nTo attack with this Weapon, spend 1 [Charge].",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Cruel Chainhooks",
+   "code": "13A0646",
+   "monster": "winged-nightmare",
+   "traits": [
+    "Metal",
+    "Rope"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Vassal",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Pull 2.\n1 [Heat] [Exhaust] Perform a Climb action in Zone 2.\n[MAJOR] [Discard] Lifeline.",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "[Discard] Lifeline."
+    }
+   ],
+   "unclear": [
+    "code faint: read 13A0646 (fits sequence)"
+   ]
+  },
+  {
+   "name": "Nightmare Partisan",
+   "code": "13A0647",
+   "monster": "winged-nightmare",
+   "traits": [
+    "Javelin",
+    "Stone",
+    "Cursed"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "King",
+   "attackDice": 2,
+   "precision": 3,
+   "weaponPower": {
+    "n": 1,
+    "colour": "black",
+    "dice": [
+     "black"
+    ]
+   },
+   "bonusPower": {
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "[MINOR] +1 [Power].\nReach 2.\nOpening 4. Daze.\nWhile you're on a Rear space, gain Deadly.\nWhen adjacent to the Monster you're attacking, gain +1 [Power].",
+   "gates": [
+    {
+     "gate": "MINOR",
+     "text": "+1 [Power]."
+    }
+   ],
+   "unclear": [
+    "the [MINOR] +1 [Power] line is printed in the header just below the traits, above the art (not in the text box); placed first in text"
+   ]
+  },
+  {
+   "name": "Nightmare Essence",
+   "code": "13A0648",
+   "monster": "winged-nightmare",
+   "traits": [
+    "Alive",
+    "Cursed",
+    "Flesh"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "King",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Drag 3.\n1 [Heat] [Exhaust] Defy.\n[MAJOR] [Discard] Lifeline.",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "[Discard] Lifeline."
+    }
+   ],
+   "unclear": [
+    "code faint: read 13A0648 (fits sequence)"
+   ]
+  },
+  {
+   "name": "Plate of a Drowned Soldier",
+   "code": "13A0649",
+   "monster": "winged-nightmare",
+   "traits": [
+    "Armor",
+    "Metal"
+   ],
+   "type": "armor",
+   "hands": null,
+   "tier": "Devil",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": {
+    "black": 1
+   },
+   "charges": null,
+   "text": "Inspire 2.\n1 [Heat] Advanced Reinforce 1.\n1 [Heat] [Exhaust] Braced.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Nightmare Tailspear",
+   "code": "13A0650",
+   "monster": "winged-nightmare",
+   "traits": [
+    "Spear",
+    "Bone",
+    "Flesh"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Devil",
+   "attackDice": 2,
+   "precision": 3,
+   "weaponPower": {
+    "n": 1,
+    "colour": "black",
+    "dice": [
+     "black"
+    ]
+   },
+   "bonusPower": {
+    "n": 1,
+    "colour": "red",
+    "raw": 3
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": 1,
+   "text": "Reach 3.\nEnvenomed 3.\nReposition 3.\n1 [Charge] When you deal a Wound, place 1 temporary negative Speed [Speed] token on the Monster Sheet. The next time that Monster moves, discard that token and stop the movement after 3 spaces.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Worm Hood",
+   "code": "13A0699",
+   "monster": "paleblood-worms",
+   "traits": [
+    "Armor",
+    "Leather",
+    "Bone"
+   ],
+   "type": "armor",
+   "hands": null,
+   "tier": "Mob",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Hug 1. Guard 1.",
+   "gates": [],
+   "unclear": [
+    "code faint: read 13A0699"
+   ]
+  },
+  {
+   "name": "Wormhook",
+   "code": "13A0700",
+   "monster": "paleblood-worms",
+   "traits": [
+    "Spear",
+    "Wood"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Mob",
+   "attackDice": 2,
+   "precision": 1,
+   "weaponPower": {
+    "n": 1,
+    "colour": "red",
+    "dice": [
+     "red"
+    ]
+   },
+   "bonusPower": {
+    "n": 1,
+    "colour": "red"
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Opening 2. Hug 1.\n2 [Heat] Ignore Burrow X.\n[GRAVE] 2 [Heat] [Discard] Lifeline.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "2 [Heat] [Discard] Lifeline."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Scorching Caltrops",
+   "code": "13A0702",
+   "monster": "paleblood-worms",
+   "traits": [
+    "Metal",
+    "Fire"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Vassal",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "1 [Heat] [Discard] Place this card adjacent to you on 2 spaces on the Clash Board. When a Monster moves onto this card's spaces, regain this Gear [Gear] card, then roll a [Attack die].\nOn 6+, stop the Monster's movement and place 2 Fire [Fire] tokens in the Knight Pool.",
+   "gates": [],
+   "unclear": [
+    "code read 13A0702 (could be 13A0701; 44 Bloatburst Leech appears to be 13A0701)"
+   ]
+  },
+  {
+   "name": "Springshot",
+   "code": "13A0703",
+   "monster": "paleblood-worms",
+   "traits": [
+    "Sling",
+    "Wood",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Vassal",
+   "attackDice": 2,
+   "precision": 1,
+   "weaponPower": {
+    "n": 2,
+    "colour": "red",
+    "dice": [
+     "red",
+     "red"
+    ]
+   },
+   "bonusPower": {
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Ranged 1–3.\nAuto-break 1. Opening 1.\nBreak 1. Cumbersome.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Bloatburst Leech",
+   "code": "13A0701",
+   "monster": "paleblood-worms",
+   "traits": [
+    "Alive"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "King",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": "0*",
+   "text": "Poison Resilience 1.\nX [Vigor] [Exhaust] *Gain X [Charge].\nX [Charge] [Discard] Choose a space as your Target in range 3–5 and roll a [Attack die]:\n• 1–5: The Target changes by 2 spaces in a random direction.\n• 6–10: Nothing happens.\nFor each Monster in Zone 3 from the Target, place X Opening [Opening] and/or Break [Break] tokens in the Knight Pool.",
+   "gates": [],
+   "unclear": [
+    "code faint: read 13A0701 (out of print order; could be 13A0702/0704)",
+    "charges printed as '0*' (stored as string)"
+   ]
+  },
+  {
+   "name": "Multilayered Safeguard",
+   "code": "13A0704",
+   "monster": "paleblood-worms",
+   "traits": [
+    "Armor",
+    "Leather",
+    "Rope",
+    "Bandage"
+   ],
+   "type": "armor",
+   "hands": null,
+   "tier": "King",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Poison Resilience 1.\nIgnore the Gash and Giant Gash Mortis cards.\n1 [Heat] [Exhaust] Soak 2.\n2 [Heat] When you're about to suffer Suck, ignore it.",
+   "gates": [],
+   "unclear": [
+    "code faint: read 13A0704",
+    "'Gash' and 'Giant Gash' are italic on the card"
+   ]
+  },
+  {
+   "name": "Blood Spewer",
+   "code": "13A0705",
+   "monster": "paleblood-worms",
+   "traits": [
+    "Bloodthrower",
+    "Mechanical",
+    "Wood",
+    "Metal",
+    "Flammable"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Devil",
+   "attackDice": 3,
+   "precision": 1,
+   "weaponPower": {
+    "n": 1,
+    "colour": "red",
+    "dice": [
+     "red"
+    ]
+   },
+   "bonusPower": {
+    "n": 1,
+    "colour": "white",
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Ranged 1–3.\nEnvenomed 3. Cumbersome.\nFull Hit: During the second ability window, place a temporary negative AT [AT] token in the Knight Pool.\n[GRAVE] When you Escalate, BP Suppress.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "When you Escalate, BP Suppress."
+    }
+   ],
+   "unclear": [
+    "code faint: read 13A0705"
+   ]
+  },
+  {
+   "name": "Maxilla Fists",
+   "code": "13A0706",
+   "monster": "paleblood-worms",
+   "traits": [
+    "Katar",
+    "Paired",
+    "Flesh",
+    "Fangs",
+    "Poison"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Devil",
+   "attackDice": 4,
+   "precision": 4,
+   "weaponPower": {
+    "n": 1,
+    "colour": "red",
+    "dice": [
+     "red"
+    ]
+   },
+   "bonusPower": {
+    "raw": 4
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Break 1.\nClosing 2.\nDiversion.\nBloodletter.\nEach hit: Hug 1, Pushback 1, and Armor-piercing 1.\n[GRAVE] When you Escalate, AI Suppress.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "When you Escalate, AI Suppress."
+    }
+   ],
+   "unclear": [
+    "code faint: read 13A0706"
+   ]
+  },
+  {
+   "name": "Whiskerfin Shield",
+   "code": "13B0769",
+   "monster": "young-devour-dragon",
+   "traits": [
+    "Shield",
+    "Flesh",
+    "Alive"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Dragon",
+   "attackDice": 3,
+   "precision": 5,
+   "weaponPower": {
+    "n": 1,
+    "colour": "red",
+    "dice": [
+     "red"
+    ]
+   },
+   "bonusPower": {
+    "n": 1,
+    "colour": "white"
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Closing 3.\nBlack 1. Hope 1.\n[Exhaust] Guard 3.\n1 [Heat] [Exhaust] Block or Defy.\n[GRAVE] When you are about to be devoured, draw a Judicium instead.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "When you are about to be devoured, draw a Judicium instead."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Stone Javelin",
+   "code": "13B0770",
+   "monster": "young-devour-dragon",
+   "traits": [
+    "Javelin",
+    "Stone"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Dragon",
+   "attackDice": 2,
+   "precision": 5,
+   "weaponPower": {
+    "n": 2,
+    "colour": "mixed",
+    "dice": [
+     "black",
+     "red"
+    ]
+   },
+   "bonusPower": {
+    "raw": 3
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": 1,
+   "text": "Unwieldy.\nRanged 3–10. Closing 3.\nBlack 2. Armor-piercing 3.\nCommit. Ammo Reserves 1.\nTo attack with this Weapon, spend 1 [Charge].\n1 [Charge] 1 [Heat] [Exhaust] When you are about to be devoured, ignore that devour.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Stillribbon",
+   "code": "13B0768",
+   "monster": "young-devour-dragon",
+   "traits": [
+    "Whip",
+    "Sword",
+    "Flesh"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Dragon",
+   "attackDice": 2,
+   "precision": 4,
+   "weaponPower": {
+    "n": 1,
+    "colour": "white",
+    "dice": [
+     "white"
+    ]
+   },
+   "bonusPower": {
+    "n": 1,
+    "colour": "red",
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Opening 3.\nAttack Re-roll 2.\nPower Re-roll 3.\nEach hit: Sunder 1.\n2 [Heat] [Exhaust] If you're adjacent to a Monster, move to its VP.\n[PASSION 4+] Ignore Wound Responses.",
+   "gates": [
+    {
+     "gate": "PASSION 4+",
+     "text": "Ignore Wound Responses."
+    }
+   ],
+   "unclear": [
+    "code read 13B0768 (out of print order, precedes Whiskerfin 13B0769)"
+   ]
+  },
+  {
+   "name": "Skyhooks",
+   "code": "13B0771",
+   "monster": "young-devour-dragon",
+   "traits": [
+    "Metal",
+    "Rope",
+    "Tool"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Dragon",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Power Re-roll 2.\nReposition 2. Vault.\n2 [Heat] [Exhaust] Lifeline.\n[Discard] If you're adjacent to a Monster, move to its VP.\n[GRAVE] 1 [Heat] [Discard] When a Monster moves adjacent to you, immediately stop that movement. You cannot use this ability during an AI or Signature.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "1 [Heat] [Discard] When a Monster moves adjacent to you, immediately stop that movement. You cannot use this ability during an AI or Signature."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Voracious Blade",
+   "code": "13B0772",
+   "monster": "young-devour-dragon",
+   "traits": [
+    "Sword",
+    "Bone"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Legendary",
+   "attackDice": 2,
+   "precision": 5,
+   "weaponPower": {
+    "n": 1,
+    "colour": "white",
+    "dice": [
+     "white"
+    ]
+   },
+   "bonusPower": {
+    "n": 1,
+    "colour": "black"
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Sunder 2. Power 2.\nYour Crit die misses only on a Crit Miss.\n[PASSION 3+] At the end of the second ability window, double all tokens in the Knight Pool.",
+   "gates": [
+    {
+     "gate": "PASSION 3+",
+     "text": "At the end of the second ability window, double all tokens in the Knight Pool."
+    }
+   ],
+   "unclear": [
+    "attack-dice diamond is black (Legendary style) rather than white"
+   ]
+  },
+  {
+   "name": "Fullplate of the Devourer",
+   "code": "13B0773",
+   "monster": "young-devour-dragon",
+   "traits": [
+    "Armor",
+    "Metal",
+    "Flesh",
+    "Camouflage"
+   ],
+   "type": "armor",
+   "hands": null,
+   "tier": "Legendary",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Braced.\nMotivate 2.\n1 [Heat] Soak 5.\n1 [Heat] If you're fighting the Young Devour Dragon, Hide.\n[PASSION 3+] Motivate 2 each Knight instead.",
+   "gates": [
+    {
+     "gate": "PASSION 3+",
+     "text": "Motivate 2 each Knight instead."
+    }
+   ],
+   "unclear": [
+    "no stat badges printed (armorDice null)"
+   ]
+  },
+  {
+   "name": "Skypiercer Lance",
+   "code": "13B0774",
+   "monster": "young-devour-dragon",
+   "traits": [
+    "Lance",
+    "Metal",
+    "Holy"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Legendary",
+   "attackDice": 2,
+   "precision": 4,
+   "weaponPower": {
+    "n": 2,
+    "colour": "red",
+    "dice": [
+     "red",
+     "red"
+    ]
+   },
+   "bonusPower": {
+    "n": 1,
+    "colour": "white",
+    "raw": 3
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Closing 2. Sunder 3.\n3 [Heat] [Exhaust] The Monster performs Signature against you. After you resolve it, perform a Bonus Attack!\nGain +1 [Power] against Dragons.\n[PASSION 5+] 3 [Heat] [Discard] When a moving Monster becomes adjacent to you, it immediately stops. This may cause a Chain Break.",
+   "gates": [
+    {
+     "gate": "PASSION 5+",
+     "text": "3 [Heat] [Discard] When a moving Monster becomes adjacent to you, it immediately stops. This may cause a Chain Break."
+    }
+   ],
+   "unclear": [
+    "code faint: looks like 13B0773 (same as Fullplate) — stored 13B0774 by sequence",
+    "'Dragons' italic on card",
+    "attack-dice diamond is black (Legendary style)"
+   ]
+  },
+  {
+   "name": "The Famisher",
+   "code": "13B0775",
+   "monster": "young-devour-dragon",
+   "traits": [
+    "Sword",
+    "Iron",
+    "Cursed"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Legendary",
+   "attackDice": 1,
+   "precision": 0,
+   "weaponPower": {
+    "n": 2,
+    "colour": "mixed",
+    "dice": [
+     "black",
+     "white"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Attack Re-roll 1.\nAuto-black 3.\nWhen you are about to attack, you may discard any amount of tokens from the Knight Pool. If you do, gain +1 [Power] for each token discarded this way.\n[PASSION 6+] 3 [Heat] Immediately resolve an additional turn. At the end of that turn, you die.",
+   "gates": [
+    {
+     "gate": "PASSION 6+",
+     "text": "3 [Heat] Immediately resolve an additional turn. At the end of that turn, you die."
+    }
+   ],
+   "unclear": [
+    "attack-dice diamond is black (Legendary style)"
+   ]
+  },
+  {
+   "name": "Ancestral Ritual Mask (Mob)",
+   "code": "13B0800",
+   "monster": "bog-witch",
+   "traits": [
+    "Obsidian",
+    "Gold",
+    "Mask",
+    "Ancient",
+    "Magic"
+   ],
+   "type": "support",
+   "tier": "Mob",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": "X",
+   "armorDice": null,
+   "charges": null,
+   "text": "+X* to all Judgement and Virtue tests.\n2 [Heat] [Exhaust] Swap spaces with another Knight with the Ancestral Ritual Mask [Gear] card.\nIf X* is 3 or more, you may use this card's ability as a [Reaction].\n*X is the number of Knights with the Ancestral Ritual Mask [Gear] card.\n[GRAVE] Rouse 1.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "Rouse 1."
+    }
+   ],
+   "unclear": [
+    "Right-column '+X' with die+circular-arrow icon stored as evasionReroll \"X\"",
+    "Glyph after 'as a' read as [Reaction] scribble",
+    "Code faint: read 13B0800"
+   ],
+   "hands": null,
+   "printedName": "Ancestral Ritual Mask"
+  },
+  {
+   "name": "Stump Hammer",
+   "code": "13B0801",
+   "monster": "bog-witch",
+   "traits": [
+    "Hammer",
+    "Wood",
+    "Mud",
+    "Heavy"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Mob",
+   "attackDice": 1,
+   "precision": 0,
+   "weaponPower": {
+    "n": 2,
+    "colour": "black",
+    "dice": [
+     "black",
+     "black"
+    ]
+   },
+   "bonusPower": {
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "-1 Speed [Speed]. Commit. Cumbersome.\n3 [Heat] [Exhaust] Destroy an adjacent destructible Obstacle Terrain tile.\n[GRAVE] 2 [Heat] [Discard] Place a Rotten Stump Terrain tile on an empty space adjacent to you.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "2 [Heat] [Discard] Place a Rotten Stump Terrain tile on an empty space adjacent to you."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Nithing Staff",
+   "code": "13B0802",
+   "monster": "bog-witch",
+   "traits": [
+    "Catalyst",
+    "Bone",
+    "Wood"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Vassal",
+   "attackDice": 2,
+   "precision": 1,
+   "weaponPower": {
+    "n": 1,
+    "colour": "black",
+    "dice": [
+     "black"
+    ]
+   },
+   "bonusPower": {
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Unwieldy.\nRanged 2–4. Cantrip 2.\nBlack 1. Commit.\n2 [Heat] [Exhaust] When either you or an adjacent Knight are about to move involuntarily or suffer Stray X, ignore that movement.",
+   "gates": [],
+   "unclear": [
+    "Card icon after '2 [Heat]' read as [Exhaust] (small scan; could carry a number)"
+   ]
+  },
+  {
+   "name": "Ancestral Ritual Mask (Vassal)",
+   "code": "13B0803",
+   "monster": "bog-witch",
+   "traits": [
+    "Obsidian",
+    "Gold",
+    "Mask",
+    "Ancient",
+    "Magic"
+   ],
+   "type": "support",
+   "tier": "Vassal",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": "X",
+   "armorDice": null,
+   "charges": null,
+   "text": "+X* to all Judgement and Virtue tests.\n2 [Heat] [Exhaust] Swap spaces with another Knight with the Ancestral Ritual Mask [Gear] card.\nIf X* is 3 or more, you may use this card's ability as a [Reaction].\n*X is the number of Knights with the Ancestral Ritual Mask [Gear] card.\n[GRAVE] Rouse 1.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "Rouse 1."
+    }
+   ],
+   "unclear": [
+    "Right-column '+X' with die+circular-arrow icon stored as evasionReroll \"X\"",
+    "Glyph after 'as a' read as [Reaction] scribble"
+   ],
+   "hands": null,
+   "printedName": "Ancestral Ritual Mask"
+  },
+  {
+   "name": "Ancestral Ritual Mask (Devil)",
+   "code": "13B0804",
+   "monster": "bog-witch",
+   "traits": [
+    "Obsidian",
+    "Gold",
+    "Mask",
+    "Ancient",
+    "Magic"
+   ],
+   "type": "support",
+   "tier": "Devil",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": "X",
+   "armorDice": null,
+   "charges": null,
+   "text": "+X* to all Judgement and Virtue tests.\n2 [Heat] [Exhaust] Swap spaces with another Knight with the Ancestral Ritual Mask [Gear] card.\nIf X* is 3 or more, you may use this card's ability as a [Reaction].\n*X is the number of Knights with the Ancestral Ritual Mask [Gear] card.\n[GRAVE] Rouse 1.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "Rouse 1."
+    }
+   ],
+   "unclear": [
+    "Right-column '+X' with die+circular-arrow icon stored as evasionReroll \"X\"",
+    "Glyph after 'as a' read as [Reaction] scribble"
+   ],
+   "hands": null,
+   "printedName": "Ancestral Ritual Mask"
+  },
+  {
+   "name": "Hexed Soul",
+   "code": "13B0805",
+   "monster": "bog-witch",
+   "traits": [
+    "Wood",
+    "Cursed",
+    "Talisman"
+   ],
+   "type": "support",
+   "tier": "Devil",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "*This card does not occupy a [Gear] slot.\n1 [Heat] You may give this card and a chosen Hex you have to an adjacent Knight.\n1 [Heat] [Exhaust] Flip a Condition card.\n1 [Heat] [Discard] Discard a Condition card.\nStart of your turn: Gain 1 Bane [Bane] token.\n[BANE 3+] You and adjacent Knights may ignore Stray.",
+   "gates": [
+    {
+     "gate": "BANE 3+",
+     "text": "You and adjacent Knights may ignore Stray."
+    }
+   ],
+   "unclear": [
+    "Slot icon is a white asterisk (*) instead of a slot glyph; type set to support"
+   ],
+   "hands": null
+  },
+  {
+   "name": "Gut-Churning Concoction",
+   "code": "13B0806",
+   "monster": "bog-witch",
+   "traits": [
+    "Potion",
+    "Rope",
+    "Glass",
+    "Flammable"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Dragon",
+   "attackDice": 2,
+   "precision": 3,
+   "weaponPower": {
+    "n": 1,
+    "colour": "white",
+    "dice": [
+     "white"
+    ]
+   },
+   "bonusPower": {
+    "n": 1,
+    "colour": "black"
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": 3,
+   "text": "Ranged 2–5.\nEnvenomed 4. Ammo Reserves 3. To attack with this Weapon, spend 2 [Charge].\n1 [Charge] 1 [Heat] [Exhaust] Flip a Condition card and gain +2 [Vigor].\n1 [Charge] 2 [Heat] [Exhaust] Flip a Condition card of a Knight in effective range of this Weapon. That Knight gains +3 [Vigor].",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Ancestral Ritual Mask (Dragon)",
+   "code": "13B0807",
+   "monster": "bog-witch",
+   "traits": [
+    "Obsidian",
+    "Gold",
+    "Mask",
+    "Ancient",
+    "Magic"
+   ],
+   "type": "support",
+   "tier": "Dragon",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": "X",
+   "armorDice": null,
+   "charges": null,
+   "text": "+X* to all Judgement and Virtue tests.\n2 [Heat] [Exhaust] Swap spaces with another Knight with the Ancestral Ritual Mask [Gear] card.\nIf X* is 3 or more, you may use this card's ability as a [Reaction].\n*X is the number of Knights with the Ancestral Ritual Mask [Gear] card.\n[GRAVE] Rouse 1.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "Rouse 1."
+    }
+   ],
+   "unclear": [
+    "Right-column '+X' with die+circular-arrow icon stored as evasionReroll \"X\"",
+    "Glyph after 'as a' read as [Reaction] scribble"
+   ],
+   "hands": null,
+   "printedName": "Ancestral Ritual Mask"
+  },
+  {
+   "name": "The Venomous Crest",
+   "code": "13A0739",
+   "monster": "devil-of-the-ancient-dusk",
+   "traits": [
+    "Alive",
+    "Flesh",
+    "Poison",
+    "Cursed"
+   ],
+   "type": "support",
+   "tier": "Devil",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Inspire 2.\nPoison Resilience 1.\n1 [Heat] [Exhaust] When you're about to attack, change up to 4 Break [Break] tokens in the Knight Pool into Black [Black] tokens and/or Opening [Opening] tokens into Closing [Closing] tokens.\n[DRAGON] When performing ↑[Heat]↓, lose additional -1 [Heat].",
+   "gates": [
+    {
+     "gate": "DRAGON",
+     "text": "When performing ↑[Heat]↓, lose additional -1 [Heat]."
+    }
+   ],
+   "unclear": [
+    "'↑[Heat]↓' is a Heat icon flanked by up/down arrows, transcribed literally"
+   ],
+   "hands": null
+  },
+  {
+   "name": "Mud Catalyst",
+   "code": "13A0740",
+   "monster": "devil-of-the-ancient-dusk",
+   "traits": [
+    "Catalyst",
+    "Magic",
+    "Cursed"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Devil",
+   "attackDice": 1,
+   "precision": 2,
+   "weaponPower": {
+    "n": 2,
+    "colour": "mixed",
+    "dice": [
+     "black",
+     "white"
+    ]
+   },
+   "bonusPower": {
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Ranged 4–8.\nEnvenomed 2.\nCantrip 2. Commit.\n1 [Heat] [Exhaust] Move the closest Swamp Terrain tile to any spaces in your effective range.\n[BANE 2+] Monsters on Swamp Terrain tiles gain -1 [AT].",
+   "gates": [
+    {
+     "gate": "BANE 2+",
+     "text": "Monsters on Swamp Terrain tiles gain -1 [AT]."
+    }
+   ],
+   "unclear": [
+    "Code blurry: 13A0740 vs 13A0741 (assumed sequential)",
+    "Weapon power dice read as 1 black + 1 white",
+    "Final icon after '-1' read as greave-like [AT] glyph"
+   ]
+  },
+  {
+   "name": "Visage of the Endless",
+   "code": "13A0741",
+   "monster": "devil-of-the-ancient-dusk",
+   "traits": [
+    "Helm",
+    "Gold"
+   ],
+   "type": "support",
+   "tier": "Devil",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "1 [Heat] [Exhaust] Draw a Mortis without resolving it. The next time you would perform a [red oval icon], resolve that card instead.\n[Discard] Superior Chance or Lifeline.\n[DRAGON] When you're about to die from the Disemboweled Mortis card, Incarnate into the Unknown Saint instead.",
+   "gates": [
+    {
+     "gate": "DRAGON",
+     "text": "When you're about to die from the Disemboweled Mortis card, Incarnate into the Unknown Saint instead."
+    }
+   ],
+   "unclear": [
+    "Code blurry: 13A0741 vs 13A0740",
+    "'[red oval icon]' is a small red oval/banner glyph (probably a Mortis draw symbol)"
+   ],
+   "hands": null
+  },
+  {
+   "name": "Deal-Taker's Razor",
+   "code": "13A0742",
+   "monster": "devil-of-the-ancient-dusk",
+   "traits": [
+    "Sword",
+    "Metal",
+    "Magic"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Devil",
+   "attackDice": 2,
+   "precision": 3,
+   "weaponPower": {
+    "n": 1,
+    "colour": "black",
+    "dice": [
+     "black"
+    ]
+   },
+   "bonusPower": {
+    "raw": 4
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Sunder 1.\nHope 1.\nClosing 2.\nDiversion.\nAttack Re-roll 1.\nDaze. Cumbersome.\nFull Hit: AI Suppress.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Golden Armguard",
+   "code": "13A0743",
+   "monster": "devil-of-the-ancient-dusk",
+   "traits": [
+    "Cestus",
+    "Shield",
+    "Gold",
+    "Pair"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Dragon",
+   "attackDice": 2,
+   "precision": 5,
+   "weaponPower": {
+    "n": 1,
+    "colour": "white",
+    "dice": [
+     "white"
+    ]
+   },
+   "bonusPower": {
+    "raw": 3
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Closing 2. Sunder 1.\nHope 2. Motivate 1 each Knight other than you.\n3 [Heat] [Exhaust] Advanced Block.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Unholy Aspect",
+   "code": "13A0744",
+   "monster": "devil-of-the-ancient-dusk",
+   "traits": [
+    "Gold",
+    "Cursed"
+   ],
+   "type": "support",
+   "tier": "Dragon",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Immune to Bane.\nPoison Resilience 2.\nWhen you're about to attack, you may reset your [Passion]. If you do, reset your [Heat].\nWhen your [Heat] exceeds your Heat Limit [Heat]!, you may gain [Passion] up to your Heat Limit [Heat]!.\n[MAJOR] [Discard] Lifeline.",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "[Discard] Lifeline."
+    }
+   ],
+   "unclear": [
+    "Heat Limit icon is a Heat icon with '!' — written '[Heat]!'"
+   ],
+   "hands": null
+  },
+  {
+   "name": "Consecrated Dirk",
+   "code": "13A0745",
+   "monster": "devil-of-the-ancient-dusk",
+   "traits": [
+    "Steel",
+    "Holy"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Legendary",
+   "attackDice": 6,
+   "precision": 2,
+   "weaponPower": {
+    "n": 1,
+    "colour": "red",
+    "dice": [
+     "red"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Fire 3.\nHope 3.\nReposition 5.\nEach hit: +1 [Power].\n2 [Heat] [Exhaust] When drawing a Judicium, resolve the opposite Judicium to the one you drew. You must use this ability before performing the draw.\nGain +2 [Power] against Devils.",
+   "gates": [],
+   "unclear": [
+    "Precision '+2' faint on gold background"
+   ]
+  },
+  {
+   "name": "The Law of Blood",
+   "code": "13A0746",
+   "monster": "devil-of-the-ancient-dusk",
+   "traits": [
+    "Spear",
+    "Blade",
+    "Holy",
+    "Relic"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Legendary",
+   "attackDice": 2,
+   "precision": 4,
+   "weaponPower": {
+    "n": 1,
+    "colour": "white",
+    "dice": [
+     "white"
+    ]
+   },
+   "bonusPower": {
+    "n": 1,
+    "colour": "black",
+    "raw": 2
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Ranged 1–3.\nEnvenomed 3.\nCumbersome.\nFull Hit: During the second ability window, place a permanent negative AT [AT] token on the Monster Sheet.\n[PASSION 3+] 2 [Heat] Draw a Judicium. If you survive, Devote.",
+   "gates": [
+    {
+     "gate": "PASSION 3+",
+     "text": "2 [Heat] Draw a Judicium. If you survive, Devote."
+    }
+   ],
+   "unclear": [
+    "Precision faint on gold: read +4"
+   ]
+  },
+  {
+   "name": "Blowgun",
+   "code": "13B0808",
+   "monster": "firstmen-lictors",
+   "traits": [
+    "Blowgun",
+    "Wood",
+    "Leather",
+    "Poison",
+    "Flammable"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Mob",
+   "attackDice": 1,
+   "precision": 2,
+   "weaponPower": {
+    "n": 2,
+    "colour": "red",
+    "dice": [
+     "red",
+     "red"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": 2,
+   "text": "Unwieldy.\nRanged 2–4.\nEnvenomed 1.\nAmmo Reserves 3.\nTo attack with this Weapon, spend 1 [Charge].\n1 [Charge] When you attack, place a Diversion [Diversion] token in the Knight Pool.",
+   "gates": [],
+   "unclear": [
+    "Weapon power red dice overlap and are tiny: read as 2 red (could be 3)"
+   ]
+  },
+  {
+   "name": "Lictor Mancatcher",
+   "code": "13B0809",
+   "monster": "firstmen-lictors",
+   "traits": [
+    "Spear",
+    "Wood",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Mob",
+   "attackDice": 3,
+   "precision": 1,
+   "weaponPower": {
+    "n": 1,
+    "colour": "red",
+    "dice": [
+     "red"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Unwieldy.\nReach 2. Opening 1.\nPull 1. Drag 2.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Poison Gladius and Knife",
+   "code": "13B0810",
+   "monster": "firstmen-lictors",
+   "traits": [
+    "Sword",
+    "Knife",
+    "Metal",
+    "Pair",
+    "Poison"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Vassal",
+   "attackDice": 2,
+   "precision": 3,
+   "weaponPower": {
+    "n": 1,
+    "colour": "black",
+    "dice": [
+     "black"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Opening 1. Envenomed 1.\nBlack 1. Power Re-roll 1.\nReposition 2.\n[JUDICIUM] When you Escalate, AI Suppress.",
+   "gates": [
+    {
+     "gate": "JUDICIUM",
+     "text": "When you Escalate, AI Suppress."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Espionage Countermeasure",
+   "code": "13B0811",
+   "monster": "firstmen-lictors",
+   "traits": [
+    "Torch",
+    "Wood",
+    "Flame"
+   ],
+   "type": "support",
+   "tier": "Vassal",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": 2,
+   "text": "1 [Charge] Place 1 Fire [Fire] token in the Knight Pool.\nWhenever you remove 1 unspent Fire [Fire] token from the Knight Pool, gain 1 [Charge].",
+   "gates": [],
+   "unclear": [],
+   "hands": null
+  },
+  {
+   "name": "Explorer's Machete",
+   "code": "13B0812",
+   "monster": "firstmen-lictors",
+   "traits": [
+    "Sword",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "King",
+   "attackDice": 2,
+   "precision": 2,
+   "weaponPower": {
+    "n": 1,
+    "colour": "black",
+    "dice": [
+     "black"
+    ]
+   },
+   "bonusPower": {
+    "n": 1,
+    "colour": "red"
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Auto-break 1. Break 3.\n1 [Heat] [Exhaust] During Delve, you may move through Shortcuts.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Appalling Trophy",
+   "code": "13B0813",
+   "monster": "firstmen-lictors",
+   "traits": [
+    "Flesh",
+    "Dead",
+    "Wood"
+   ],
+   "type": "support",
+   "tier": "King",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Provoke.\n[Reaction] [Exhaust] Gain +X [Heat] to move the closest Monster X spaces directly away from you. You may use this ability only during [black claw icon] preceding an After Attack or a Response.\n[Discard] Perform Rotation 1, or ignore a Rotation.\n[GRAVE] When you Escalate, BP Suppress.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "When you Escalate, BP Suppress."
+    }
+   ],
+   "unclear": [
+    "'[black claw icon]' after 'during' is an unknown black clawed-hand/beast glyph (likely a Monster attack/step symbol)"
+   ],
+   "hands": null
+  },
+  {
+   "name": "Fungal Focus",
+   "code": "13B0814",
+   "monster": "firstmen-lictors",
+   "traits": [
+    "Catalyst",
+    "Ancient",
+    "Wood",
+    "Flammable"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Devil",
+   "attackDice": 2,
+   "precision": 2,
+   "weaponPower": {
+    "n": 1,
+    "colour": "black",
+    "dice": [
+     "black"
+    ]
+   },
+   "bonusPower": {
+    "n": 1,
+    "colour": "red",
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Ranged 3–7.\nAuto-black 1.\nSpell 2. Cantrip 1.\nMotivate 3. Commit.\nDuring Delve, you may move through Shortcuts.\n1 [Heat] Place a Fire [Fire] token in the Knight Pool.\nYou may use this ability multiple times per turn.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Bog Camouflage",
+   "code": "13B0815",
+   "monster": "firstmen-lictors",
+   "traits": [
+    "Wood",
+    "Flammable"
+   ],
+   "type": "armor",
+   "tier": "Devil",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": 2,
+   "armorDice": null,
+   "charges": null,
+   "text": "Poison Resilience 2. Hide.\n[Reaction] 1 [Heat] [Exhaust] Advanced Reflex, then, Lesser Dodge.\n[MAJOR] You may move through Obstacles, but you cannot end your movement on an Obstacle.",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "You may move through Obstacles, but you cannot end your movement on an Obstacle."
+    }
+   ],
+   "unclear": [
+    "Right-column '+2' icon (die with circular arrow) read as evasionReroll"
+   ],
+   "hands": null
+  },
+  {
+   "name": "Lorica Segmentata",
+   "code": "13A0683",
+   "monster": "firstmen-warriors",
+   "traits": [
+    "Armor",
+    "Metal"
+   ],
+   "type": "armor",
+   "tier": "Mob",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": {
+    "red": 1
+   },
+   "charges": null,
+   "text": "Poison Limit +1.\n[GRAVE] You may reduce suffered Gangups by 1.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "You may reduce suffered Gangups by 1."
+    }
+   ],
+   "unclear": [],
+   "hands": null
+  },
+  {
+   "name": "Standard Spearmace",
+   "code": "13A0684",
+   "monster": "firstmen-warriors",
+   "traits": [
+    "Spear",
+    "Metal",
+    "Wood"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Mob",
+   "attackDice": 2,
+   "precision": 0,
+   "weaponPower": {
+    "n": 1,
+    "colour": "red",
+    "dice": [
+     "red"
+    ]
+   },
+   "bonusPower": {
+    "n": 1,
+    "colour": "red"
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Unwieldy.\nReach 2. Opening 1.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Gladius",
+   "code": "13A0685",
+   "monster": "firstmen-warriors",
+   "traits": [
+    "Sword",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Vassal",
+   "attackDice": 2,
+   "precision": 3,
+   "weaponPower": {
+    "n": 1,
+    "colour": "black",
+    "dice": [
+     "black"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Black 2.\nPower Re-roll 1.\nReposition 2.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Weighted Net",
+   "code": "13A0686",
+   "monster": "firstmen-warriors",
+   "traits": [
+    "Rope",
+    "Net"
+   ],
+   "type": "support",
+   "tier": "Vassal",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Deploy 1.\n1 [Heat] [Exhaust] Guard 1.\n[JUDICIUM] 1 [Heat] [Discard] When a Monster moves adjacent to you, immediately stop that movement. You cannot use this ability during an AI or a Signature.",
+   "gates": [
+    {
+     "gate": "JUDICIUM",
+     "text": "1 [Heat] [Discard] When a Monster moves adjacent to you, immediately stop that movement. You cannot use this ability during an AI or a Signature."
+    }
+   ],
+   "unclear": [],
+   "hands": null
+  },
+  {
+   "name": "Lorica Hamata",
+   "code": "13A0687",
+   "monster": "firstmen-warriors",
+   "traits": [
+    "Armor",
+    "Metal",
+    "Gold"
+   ],
+   "type": "armor",
+   "tier": "King",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": 1,
+   "armorDice": null,
+   "charges": null,
+   "text": "Poison Resilience 1.\nWhen attacking with a Reach or [Hand] Melee Weapon, gain +1 [Power].\n1 [Heat] Reduce suffered Pull by up to 3.",
+   "gates": [],
+   "unclear": [
+    "Right-column '+1' icon (die with circular arrow) read as evasionReroll",
+    "'[Hand]' = single gauntlet (one-hand) icon in text"
+   ],
+   "hands": null
+  },
+  {
+   "name": "Scutum",
+   "code": "13A0688",
+   "monster": "firstmen-warriors",
+   "traits": [
+    "Shield",
+    "Wood",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "King",
+   "attackDice": 2,
+   "precision": 1,
+   "weaponPower": {
+    "n": 1,
+    "colour": "black",
+    "dice": [
+     "black"
+    ]
+   },
+   "bonusPower": {
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Black 1.\nOpening 2. Pushback 2.\n1 [Heat] [Exhaust] Guard 2.\n1 [Heat] Reinforce 2.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Gladiator Helmet",
+   "code": "13A0689",
+   "monster": "firstmen-warriors",
+   "traits": [
+    "Helmet",
+    "Metal",
+    "Ancient"
+   ],
+   "type": "support",
+   "tier": "Devil",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Provoke.\n[Move action]+[Combat action] 2 [Heat] Improved Rush.\n[GRAVE] 2 [Heat] [Exhaust] Your Weapon gains Spotlight.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "2 [Heat] [Exhaust] Your Weapon gains Spotlight."
+    }
+   ],
+   "unclear": [
+    "Cost icon before '2 [Heat]' is a black box with two figures joined by '+'; read as [Move action]+[Combat action]",
+    "Slot icon is the pouch (support) although the card is a helmet"
+   ],
+   "hands": null
+  },
+  {
+   "name": "Bloodstained Cestus",
+   "code": "13A0690",
+   "monster": "firstmen-warriors",
+   "traits": [
+    "Cestus",
+    "Metal",
+    "Ancient"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Devil",
+   "attackDice": "4*",
+   "precision": 2,
+   "weaponPower": {
+    "n": 1,
+    "colour": "red",
+    "dice": [
+     "red"
+    ]
+   },
+   "bonusPower": {
+    "raw": 3
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Each hit: Opening 1.\nFull hit: Power 1.\n2 [Heat] [Exhaust] Block.\n[JUDICIUM] *6 [Attack die] instead.\nFor the purpose of gathering your Power Pool, ignore any hits that exceed this Weapon's original [Attack die] value.",
+   "gates": [
+    {
+     "gate": "JUDICIUM",
+     "text": "*6 [Attack die] instead."
+    }
+   ],
+   "unclear": [
+    "Unclear whether the 'For the purpose of gathering...' sentence belongs to the JUDICIUM gate; stored as ungated"
+   ]
+  },
+  {
+   "name": "Cloak of Ill Winds",
+   "code": "13A0691",
+   "monster": "haunts-of-utrebrant",
+   "traits": [
+    "Armor",
+    "Leather"
+   ],
+   "type": "armor",
+   "hands": null,
+   "tier": "Mob",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Guard 1.\n[Reaction] 2 [Heat] [Exhaust] Reflex.\n[JUDICIUM] 3 [Heat] [Discard] Lifeline.",
+   "gates": [
+    {
+     "gate": "JUDICIUM",
+     "text": "3 [Heat] [Discard] Lifeline."
+    }
+   ],
+   "unclear": [
+    "code faint: read as 13A0691",
+    "leading swirly glyph read as [Reaction]"
+   ]
+  },
+  {
+   "name": "Haunt Glaive",
+   "code": "13A0692",
+   "monster": "haunts-of-utrebrant",
+   "traits": [
+    "Spear",
+    "Ethereal",
+    "Magic"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Mob",
+   "attackDice": 1,
+   "precision": 2,
+   "weaponPower": {
+    "n": 2,
+    "colour": "red",
+    "dice": [
+     "red",
+     "red"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Unwieldy.\nReach 2. Closing 1.\nReposition 1.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Sinking Boots",
+   "code": "13A0693",
+   "monster": "haunts-of-utrebrant",
+   "traits": [
+    "Boots",
+    "Leather",
+    "Cursed"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Vassal",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "1 [Heat] [Exhaust] When performing a [Move action], gain +1 Speed [Speed].\n[Exhaust] During voluntary movement, gain +X [Heat] to ignore X spaces of a Terrain tile.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Haunted Cutlass",
+   "code": "13A0694",
+   "monster": "haunts-of-utrebrant",
+   "traits": [
+    "Sword",
+    "Ethereal",
+    "Cursed"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Vassal",
+   "attackDice": 1,
+   "precision": 0,
+   "weaponPower": {
+    "n": 2,
+    "colour": "mixed",
+    "dice": [
+     "black",
+     "white"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "[BANE 1+] +1 [Power].\nBlack 2.\nPower Re-roll 2.\n[GRAVE] [Discard] When you deal a Wound, gain 1 Gold [Gold].",
+   "gates": [
+    {
+     "gate": "BANE 1+",
+     "text": "+1 [Power]."
+    },
+    {
+     "gate": "GRAVE",
+     "text": "[Discard] When you deal a Wound, gain 1 Gold [Gold]."
+    }
+   ],
+   "unclear": [
+    "'+1 [Power]' sits under the stat column behind a purple Bane 1+ tag (gated bonus power); stored as gated text, bonusPower null",
+    "code faint: read as 13A0694"
+   ]
+  },
+  {
+   "name": "Heron's Beak",
+   "code": "13A0695",
+   "monster": "haunts-of-utrebrant",
+   "traits": [
+    "Hammer",
+    "Steel",
+    "Holy"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "King",
+   "attackDice": 2,
+   "precision": 1,
+   "weaponPower": {
+    "n": 1,
+    "colour": "black",
+    "dice": [
+     "black"
+    ]
+   },
+   "bonusPower": {
+    "raw": 2
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Sunder 2.\nArmor-piercing 1.\nPushback 3.\nFull hit: You may trigger Overcome or Overpower.",
+   "gates": [],
+   "unclear": [
+    "code faint: read as 13A0695"
+   ]
+  },
+  {
+   "name": "Sawed Man Escutcheon",
+   "code": "13A0696",
+   "monster": "haunts-of-utrebrant",
+   "traits": [
+    "Shield",
+    "Wood",
+    "Holy"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "King",
+   "attackDice": 2,
+   "precision": 2,
+   "weaponPower": {
+    "n": 2,
+    "colour": "red",
+    "dice": [
+     "red",
+     "red"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Closing 2.\n1 [Heat] [Exhaust] Guard 2.\nStart of your turn: Reveal the top card of each Mortis deck.\n[JUDICIUM] 1 [Heat] [Discard] When you're about to draw a Judicium, resolve a chosen Mortis revealed by this card instead.",
+   "gates": [
+    {
+     "gate": "JUDICIUM",
+     "text": "1 [Heat] [Discard] When you're about to draw a Judicium, resolve a chosen Mortis revealed by this card instead."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "The Banisher",
+   "code": "13A0697",
+   "monster": "haunts-of-utrebrant",
+   "traits": [
+    "Sword",
+    "Ethereal",
+    "Steel",
+    "Cursed"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Devil",
+   "attackDice": 1,
+   "precision": 0,
+   "weaponPower": {
+    "n": 2,
+    "colour": "black",
+    "dice": [
+     "black",
+     "black"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Closing 2. Hope 2.\nAttack Re-roll 1.\nWound: Gain 2 permanent positive Precision [Precision] tokens.\nFull Miss: Skip the Clear the Knight Pool step.\nGain +1 [Power] against Undead.",
+   "gates": [],
+   "unclear": [
+    "code faint: read as 13A0697",
+    "weapon power dice are small dark 3/4-view cubes: read as 2 black"
+   ]
+  },
+  {
+   "name": "Omen Fetish",
+   "code": "13A0698",
+   "monster": "haunts-of-utrebrant",
+   "traits": [
+    "Cursed",
+    "Charm"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Devil",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Tireless.\nPoison Resilience 2.\nDeploy 3. Attack Re-roll 3.\n1 [Heat] [Exhaust] Turn a chosen revealed BP face down.\nStart of your turn: Bane 2.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Scepter of Smothered Ages",
+   "code": "13A0723",
+   "monster": "king-laid-low",
+   "traits": [
+    "Catalyst",
+    "Wood",
+    "Magic"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "King",
+   "attackDice": 1,
+   "precision": 0,
+   "weaponPower": {
+    "n": 2,
+    "colour": "mixed",
+    "dice": [
+     "red",
+     "white"
+    ]
+   },
+   "bonusPower": {
+    "raw": 2
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Unwieldy.\nRanged 2-7.\nSpell 2.\nEnvenomed 1.\nCommit.\nCumbersome.\n1 [Heat] [Exhaust] Bane 1 to gain +2 [Vigor].",
+   "gates": [],
+   "unclear": [
+    "slot icon single gauntlet (1H) despite Unwieldy"
+   ]
+  },
+  {
+   "name": "Inverse Faceplate",
+   "code": "13A0724",
+   "monster": "king-laid-low",
+   "traits": [
+    "Armor",
+    "Magic"
+   ],
+   "type": "armor",
+   "hands": null,
+   "tier": "King",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Soak 1.\n1 [Heat] Reinforce 3.\nWhen you're about to suffer Knockdown, if the Knight Pool is empty, place 2 Opening [Opening] and/or Break [Break] tokens in the Knight Pool.\n[GRAVE] Rocksteady.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "Rocksteady."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Thronestilts",
+   "code": "13A0725",
+   "monster": "king-laid-low",
+   "traits": [
+    "Wood",
+    "Flammable"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "King",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Deploy X, where X is the number of Bane [Bane] tokens you have.\n1 [Heat] [Exhaust] When you're about to move, ignore a Swamp Terrain tile during that movement.\n[DEVIL] When you exhaust this card, double your Speed [Speed] until the end of turn.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "When you exhaust this card, double your Speed [Speed] until the end of turn."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Bejeweled Head",
+   "code": "13A0726",
+   "monster": "king-laid-low",
+   "traits": [
+    "Gold",
+    "Jewels",
+    "Bone"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "King",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Inspire 1.\nMotivate 2.\n[Reaction] 1 [Heat] [Exhaust] Another Knight may move 1 space.\n[DEVIL] When you deal a Wound, you may take a Condition card from the closest Knight.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "When you deal a Wound, you may take a Condition card from the closest Knight."
+    }
+   ],
+   "unclear": [
+    "leading swirly glyph read as [Reaction]"
+   ]
+  },
+  {
+   "name": "Axetlers",
+   "code": "13A0727",
+   "monster": "king-laid-low",
+   "traits": [
+    "Axe",
+    "Bone",
+    "Wood"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Devil",
+   "attackDice": 2,
+   "precision": 3,
+   "weaponPower": {
+    "n": 1,
+    "colour": "red",
+    "dice": [
+     "red"
+    ]
+   },
+   "bonusPower": {
+    "n": 1,
+    "colour": "white",
+    "raw": 3
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Auto-hope 1.\nClosing 3. When you deal a Wound, Bane 1.\n[BANE 2+] Deadly.\n[BANE 3+] Closing 5 instead.\n[BANE 4+] Auto-hope 2 instead.\n[BANE 5+] Gain +1 [Attack die].",
+   "gates": [
+    {
+     "gate": "BANE 2+",
+     "text": "Deadly."
+    },
+    {
+     "gate": "BANE 3+",
+     "text": "Closing 5 instead."
+    },
+    {
+     "gate": "BANE 4+",
+     "text": "Auto-hope 2 instead."
+    },
+    {
+     "gate": "BANE 5+",
+     "text": "Gain +1 [Attack die]."
+    }
+   ],
+   "unclear": [
+    "final icon (black four-point diamond) read as [Attack die]"
+   ]
+  },
+  {
+   "name": "Royal Red",
+   "code": "13A0728",
+   "monster": "king-laid-low",
+   "traits": [
+    "Armor",
+    "Cloth"
+   ],
+   "type": "armor",
+   "hands": null,
+   "tier": "Devil",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": 1,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "+1 Speed [Speed].\nPoison Resilience 2.\nTumble. Provoke.\n[SLIMED] When you Provoke, Motivate 1 each other Knight.",
+   "gates": [
+    {
+     "gate": "SLIMED",
+     "text": "When you Provoke, Motivate 1 each other Knight."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Two-Faced Shield",
+   "code": "13A0729",
+   "monster": "king-laid-low",
+   "traits": [
+    "Shield",
+    "Wood"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Dragon",
+   "attackDice": 3,
+   "precision": 6,
+   "weaponPower": {
+    "n": 1,
+    "colour": "black",
+    "dice": [
+     "black"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Closing 2.\nHope 3.\n1 [Heat] [Exhaust] Guard 3.\nIgnore the end of your turn effects on Slimed and Drowning Condition cards.\n[GRAVE] [Discard] Lifeline or discard a Body Condition card.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "[Discard] Lifeline or discard a Body Condition card."
+    }
+   ],
+   "unclear": [
+    "code faint: read as 13A0729"
+   ]
+  },
+  {
+   "name": "Congealed Spite",
+   "code": "13A0730",
+   "monster": "king-laid-low",
+   "traits": [
+    "Alive",
+    "Cursed"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Dragon",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": {
+    "white": 1
+   },
+   "charges": null,
+   "text": "Poison Resilience 2. Braced.\n[Exhaust] Gain the Slimed Condition card to discard another Condition card.\nIf you're on a Swamp Terrain tile, you drown (die).\n[HEAT 2+] [Discard] When you're about to die, ignore this death.",
+   "gates": [
+    {
+     "gate": "HEAT 2+",
+     "text": "[Discard] When you're about to die, ignore this death."
+    }
+   ],
+   "unclear": [
+    "right column: single white/light armor die (chalice) read as armorDice white 1",
+    "gate is a blue Heat-icon tag with '2+', written as HEAT 2+ (new gate type)"
+   ]
+  },
+  {
+   "name": "Toadscale",
+   "code": "13A0755",
+   "monster": "toadragon",
+   "traits": [
+    "Chainmail",
+    "Scale"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Dragon",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": "X",
+   "armorDice": null,
+   "charges": null,
+   "text": "Poison Resilience 2.\nWhen you're hit, AI and BP Suppress.\n[Reaction] 1 [Heat] [Exhaust] Superior Reflex.\n*X is the number of dice you were hit with.\n[POSTGAME] When you attack, if you have 3+ [Passion], you may gain Rouse X, where X is your [Passion], then reset your [Passion].",
+   "gates": [
+    {
+     "gate": "POSTGAME",
+     "text": "When you attack, if you have 3+ [Passion], you may gain Rouse X, where X is your [Passion], then reset your [Passion]."
+    }
+   ],
+   "unclear": [
+    "slot icon is the black pouch (support) despite Chainmail trait",
+    "evasionReroll printed '+X' (no visible asterisk; text explains *X)",
+    "leading swirly glyph read as [Reaction]"
+   ]
+  },
+  {
+   "name": "Membrane Halberd",
+   "code": "13A0756",
+   "monster": "toadragon",
+   "traits": [
+    "Spear",
+    "Axe",
+    "Flesh"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Dragon",
+   "attackDice": 1,
+   "precision": 3,
+   "weaponPower": {
+    "n": 2,
+    "colour": "black",
+    "dice": [
+     "black",
+     "black"
+    ]
+   },
+   "bonusPower": {
+    "raw": 2
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Reach 3. Closing 3.\nHope 2. Diversion.\nWhen you attack, for each space occupied by a Monster in your effective range other than the space you're attacking, place a Black [Black] token in the Knight Pool (up to 3).\n[MAJOR] [Discard] Lifeline.",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "[Discard] Lifeline."
+    }
+   ],
+   "unclear": [
+    "weapon power dice are dark 3/4-view cubes: read as 2 black"
+   ]
+  },
+  {
+   "name": "Tongue Lash",
+   "code": "13A0757",
+   "monster": "toadragon",
+   "traits": [
+    "Whip",
+    "Flesh"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Dragon",
+   "attackDice": 5,
+   "precision": 6,
+   "weaponPower": {
+    "n": 1,
+    "colour": "red",
+    "dice": [
+     "red"
+    ]
+   },
+   "bonusPower": {
+    "raw": "X*"
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Reach 2.\nClosing 2. Envenomed 2.\nSunder 1. Pull 2. Drag 4.\n*X is equal to half your [Passion] (rounding up).\n[POSTGAME] Equal to your [Passion] instead.\n[PASSION 2+] 1 [Heat] [Exhaust] Lifeline.",
+   "gates": [
+    {
+     "gate": "POSTGAME",
+     "text": "Equal to your [Passion] instead."
+    },
+    {
+     "gate": "PASSION 2+",
+     "text": "1 [Heat] [Exhaust] Lifeline."
+    }
+   ],
+   "unclear": [
+    "bonus power printed '+X*' with sword, stored raw 'X*'"
+   ]
+  },
+  {
+   "name": "Beady Helm",
+   "code": "13A0758",
+   "monster": "toadragon",
+   "traits": [
+    "Helm",
+    "Flesh",
+    "Metal"
+   ],
+   "type": "armor",
+   "hands": null,
+   "tier": "Dragon",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Deadly.\n+2 Precision [Precision]. Inspire 3.\n1 [Heat] [Exhaust] Second Chance.\n[GRAVE] Your Weapon gains +1 [Attack die]. For the purpose of gathering your Power Pool, ignore any hits that exceed your Weapon's regular [Attack die] value.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "Your Weapon gains +1 [Attack die]. For the purpose of gathering your Power Pool, ignore any hits that exceed your Weapon's regular [Attack die] value."
+    }
+   ],
+   "unclear": [
+    "black four-point diamond icon read as [Attack die]",
+    "code faint: read as 13A0758"
+   ]
+  },
+  {
+   "name": "Scale-Spike Armor",
+   "code": "13A0759",
+   "monster": "toadragon",
+   "traits": [
+    "Armor",
+    "Scale",
+    "Bone"
+   ],
+   "type": "armor",
+   "hands": null,
+   "tier": "Legendary",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Poison Resilience 2.\nInspire 1. Ignore Devour, Pull, and Drag.\n[Reaction] 1 [Heat] Superior Reflex.\nWhen you end your movement adjacent to a Monster, place a Break [Break] token in the Knight Pool.\n[MAJOR] Gain +1 [Evasion].\n[GRAVE] Gain +1 [Evasion].\n[JUDICIUM] Gain +1 [Evasion].",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "Gain +1 [Evasion]."
+    },
+    {
+     "gate": "GRAVE",
+     "text": "Gain +1 [Evasion]."
+    },
+    {
+     "gate": "JUDICIUM",
+     "text": "Gain +1 [Evasion]."
+    }
+   ],
+   "unclear": [
+    "'+1' icon after Gain is the Evasion-bonus swoosh, written [Evasion]",
+    "leading swirly glyph read as [Reaction]"
+   ]
+  },
+  {
+   "name": "Dragoon's Pride",
+   "code": "13A0760",
+   "monster": "toadragon",
+   "traits": [
+    "Lance",
+    "Holy"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Legendary",
+   "attackDice": 4,
+   "precision": 4,
+   "weaponPower": {
+    "n": 1,
+    "colour": "red",
+    "dice": [
+     "red"
+    ]
+   },
+   "bonusPower": {
+    "n": 1,
+    "colour": "black",
+    "raw": 3
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Unwieldy. Reach 2.\nEach hit: Closing 1, Fire 1, Inspire 1, Motivate 1.\n[Move action]+[Combat action] 1 [Heat] Gain Reach 3, then Improved Rush.\nGain +2 [Power] against Dragons.",
+   "gates": [],
+   "unclear": [
+    "black action box icon read as [Move action]+[Combat action] (same as earlier batch)",
+    "code faint: read as 13A0760"
+   ]
+  },
+  {
+   "name": "Sword of a Sunken Legacy",
+   "code": "13A0761",
+   "monster": "toadragon",
+   "traits": [
+    "Metal",
+    "Holy"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Legendary",
+   "attackDice": 1,
+   "precision": 4,
+   "weaponPower": {
+    "n": 3,
+    "colour": "mixed",
+    "dice": [
+     "red",
+     "white",
+     "white"
+    ]
+   },
+   "bonusPower": {
+    "raw": "X*"
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Auto-hope X*.\nClosing 2.\nHope 2. Sunder 1.\nPower Re-roll 2.\n*X is the amount of Devotion [Devotion] tokens you have.\n[PASSION 5+] Gain +3 to Incarnation rolls.",
+   "gates": [
+    {
+     "gate": "PASSION 5+",
+     "text": "Gain +3 to Incarnation rolls."
+    }
+   ],
+   "unclear": [
+    "precision on gold banner faint: +4 (possibly +1)",
+    "weapon power read as 3 dice: red, white, white (overlapping, small)",
+    "bonus power faint '+X*' with sword, stored raw 'X*'",
+    "Devotion icon (trident-like) written [Devotion]"
+   ]
+  },
+  {
+   "name": "Reclaimed Bogpump",
+   "code": "13A0762",
+   "monster": "toadragon",
+   "traits": [
+    "Wood",
+    "Metal",
+    "Mechanical",
+    "Ancient"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Legendary",
+   "attackDice": 3,
+   "precision": 3,
+   "weaponPower": {
+    "n": 1,
+    "colour": "black",
+    "dice": [
+     "black"
+    ]
+   },
+   "bonusPower": {
+    "n": 1,
+    "colour": "red",
+    "raw": 2
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Ranged 1-3.\nAuto-black 2. Closing 4.\nEnvenomed 2. Cumbersome. 2 [Heat] Remove a Swamp tile in your effective range and place it on this card.\n[Exhaust] Place all Swamps from this card on spaces in your effective range.\nWhen you attack, for each Swamp space in your effective range occupied by a Monster, place a Power [Power] token in the Knight Pool.",
+   "gates": [],
+   "unclear": [
+    "slot icon is two gauntlets on a gold-filled diamond (unusual variant); read as 2H weapon",
+    "precision on gold banner faint: +3"
+   ]
+  },
+  {
+   "name": "White Ape Coat",
+   "code": "13A0707",
+   "monster": "white-ape-troll",
+   "traits": [
+    "Armor",
+    "Cape",
+    "Fur"
+   ],
+   "type": "armor",
+   "hands": null,
+   "tier": "Mob",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Poison Limit +1.\n1 [Heat] Reinforce 1.\n[MAJOR] [Reaction] 1 [Heat] [Exhaust] Reflex.",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "[Reaction] 1 [Heat] [Exhaust] Reflex."
+    }
+   ],
+   "unclear": [
+    "leading swirly glyph read as [Reaction]",
+    "code faint: read as 13A0707"
+   ]
+  },
+  {
+   "name": "Toenail Buckler",
+   "code": "13A0708",
+   "monster": "white-ape-troll",
+   "traits": [
+    "Shield",
+    "Keratin"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Mob",
+   "attackDice": 1,
+   "precision": 2,
+   "weaponPower": {
+    "n": 2,
+    "colour": "red",
+    "dice": [
+     "red",
+     "red"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Opening 1. Break 1.\n1 [Heat] [Exhaust] Guard 1.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Triple Bow",
+   "code": "13A0709",
+   "monster": "white-ape-troll",
+   "traits": [
+    "Bow",
+    "Wood"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Vassal",
+   "attackDice": 3,
+   "precision": 2,
+   "weaponPower": {
+    "n": 1,
+    "colour": "red",
+    "dice": [
+     "red"
+    ]
+   },
+   "bonusPower": {
+    "n": 1,
+    "colour": "red",
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Ranged 3-5. Auto-black 1.\nOpening 1. Cumbersome.\nFull Hit: Daze.",
+   "gates": [],
+   "unclear": [
+    "code faint: read as 13A0709"
+   ]
+  },
+  {
+   "name": "Strapped Round Shield",
+   "code": "13A0710",
+   "monster": "white-ape-troll",
+   "traits": [
+    "Shield",
+    "Wood",
+    "Leather"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Vassal",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Tumble.\n2 [Heat] [Exhaust] Block.",
+   "gates": [],
+   "unclear": [
+    "slot icon is the black pouch (support) despite Shield trait; no stat column printed"
+   ]
+  },
+  {
+   "name": "Skull Pickaxe",
+   "code": "13A0711",
+   "monster": "white-ape-troll",
+   "traits": [
+    "Pickaxe",
+    "Wood",
+    "Bone"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "King",
+   "attackDice": 1,
+   "precision": 2,
+   "weaponPower": {
+    "n": 2,
+    "colour": "mixed",
+    "dice": [
+     "red",
+     "black"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Unwieldy.\nReach 2. Deadly.\nPower 2. Pushback 3.\nCrit Chance:\nArmor-piercing 1.",
+   "gates": [],
+   "unclear": [
+    "weapon power dice small/overlapping: read as red + black (2 dice)"
+   ]
+  },
+  {
+   "name": "Troll's Mug",
+   "code": "13A0712",
+   "monster": "white-ape-troll",
+   "traits": [
+    "Flesh",
+    "Fur",
+    "Bone"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "King",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Provoke.\nStart of your turn: 1 [Heat] [Exhaust] Hide. Ignore this ability's costs when fighting the White Ape Troll.\nX [Heat] [Exhaust] Move the closest Monster X spaces directly away from you.\n[MAJOR] 2 [Heat] [Discard] Superior Chance.",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "2 [Heat] [Discard] Superior Chance."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Troll's Fat",
+   "code": "13A0713",
+   "monster": "white-ape-troll",
+   "traits": [
+    "Ooze",
+    "Medicine",
+    "Flammable"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Devil",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "+1 Might [Might]. +1 Fortitude [Fortitude].\nPoison Resilience 2.\n2 [Heat] [Discard] Discard a Condition card and gain +3 [Vigor].",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Chainbreaker",
+   "code": "13A0714",
+   "monster": "white-ape-troll",
+   "traits": [
+    "Hammer",
+    "Metal",
+    "Ancient",
+    "Tool",
+    "Chains"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Devil",
+   "attackDice": 2,
+   "precision": 2,
+   "weaponPower": {
+    "n": 1,
+    "colour": "white",
+    "dice": [
+     "white"
+    ]
+   },
+   "bonusPower": {
+    "raw": 2
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Overbreak 2.\nEnvenomed 2.\nArmor-piercing 1.\nCommit. Cumbersome.\nWhen you trigger Overpower, lose -1 [Heat] and ignore Cumbersome.\n[MAJOR] When you trigger Overpower, gain a Crit Chance.",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "When you trigger Overpower, gain a Crit Chance."
+    }
+   ],
+   "unclear": []
   }
  ]
 }
