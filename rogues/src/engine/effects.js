@@ -16,7 +16,7 @@ export class Effects {
   // ---------- knight stat queries ----------
   evasionBonus(k) { let b = 0; for (const g of k.gear) if (!g.discarded && g.evasion) b += g.evasion; for (const c of k.conditions) { const d = this.c.conditionDefs[c.id]; if (d && d.ops && d.ops.evasion) b += d.ops.evasion; } return b; }
   precision(k) { let p = 0; for (const c of k.conditions) { const d = this.c.conditionDefs[c.id]; if (d && d.ops && d.ops.precision) p += d.ops.precision; } p += k.modifiers.precision || 0; return p; }
-  speed(k) { return k.speed + (k.modifiers.speed || 0); }
+  speed(k) { return k.speed + (k.modifiers.speed || 0) + (k.tempSpeed || 0); }
   armorDice(k) { const d = { red: 0, black: 0, white: 0 }; for (const g of k.gear) if (!g.discarded && g.armorDice) for (const col in g.armorDice) d[col] += g.armorDice[col]; if (k.tempArmor) for (const col in k.tempArmor) d[col] += k.tempArmor[col]; return d; }
   soak(k) { return k.soak || 0; }
   blockValue(k) { return k.block || 0; }

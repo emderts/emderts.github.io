@@ -117,6 +117,13 @@ const mk = (seed, level = 1) => { const c = new Clash({ data, knights: [0, 1, 2,
 { const c = mk(13); const tgt = c.knights[2]; const paths = [{ c: 1, r: 0 }, { c: 0, r: -1 }].map(d => c.simulateMonsterPath(tgt, d));
   ok(paths.every(p => !p.length || c.board.footprintsAdjacent(p.at(-1), [tgt.pos])), 'monster path preview ends adjacent to the target'); }
 
+// --- Drowning / Slimed (white / black extra Armor die, Potential → Heat), mixed weapon power
+{ const c = mk(14); const k = c.knights[0]; await c.addCondition(k, 'Slimed'); const h0 = k.heat; c.ask = async q => q.type === 'move' ? q.cells[0] : autoAsk(c)(q); await c.knightMove(k, 4);
+  ok(!c.hasCondition(k, 'Slimed') && k.tempSpeed === 1 && k.heat >= h0, 'Slimed: roll on voluntary move, then discarded + temporary Speed');
+  await c.addCondition(k, 'Slimed'); await c.addCondition(k, 'Drowning'); ok(c.hasCondition(k, 'Drowning') && !c.hasCondition(k, 'Slimed'), 'Slimed + gaining Drowning → flips to Drowning');
+  const def = data.decks.conditions.conditions.find(x => x.name === 'Drowning'); ok(def.ops.voluntaryMoveRoll.extra === 'white' && data.decks.conditions.conditions.find(x => x.name === 'Slimed').ops.voluntaryMoveRoll.extra === 'black', 'Drowning white / Slimed black extra Armor die'); }
+{ const M = data.gear.merchant_principality.gear, by = n => M.find(g => g.name === n); ok(by('Pale-Axe').side.weaponPower.dice.join('') === 'blackredredred' && by('Crude Bow').hands === 2 && by('Scale Mail').side.evasion === 1 && !by('Padded Jack').side.evasion && by('Padded Jack').side.evasionReroll === 1, 'merchant gear owner corrections (power dice, hands, Eva/ER)'); }
+
 // --- full simulations
 const results = { win: 0, lose: 0 }; const rounds = [];
 for (let s = 100; s < 112; s++) { const c = mk(s); const r = await c.run(); results[r]++; rounds.push(c.round); if (c.log.some(l => l.kind === 'warn' && /미구현/.test(l.msg))) console.log('  warn seed', s, [...new Set(c.log.filter(l => /미구현/.test(l.msg)).map(l => l.msg))].join(' | ')); }

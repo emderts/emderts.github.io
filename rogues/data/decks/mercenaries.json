@@ -185,16 +185,18 @@
     "resolution": "Flip this card to the other side."
    },
    "sideB": {
-    "clash": "[Rampant beast glyph] Place one Knight on an empty space up to 2 spaces away from their current position.",
+    "clash": "[Reaction] Place one Knight on an empty space up to 2 spaces away from their current position.",
     "delve": "Place the Party Marker on an adjacent explored Kingdom tile.",
     "gates": [],
     "resolution": "Discard this card."
    },
    "unclear": [
-    "codeA blurry; 20A0978 inferred from numbering sequence (Mage 978-980)",
-    "sideB clash begins with a small grey heraldic glyph (rampant beast/griffin) before 'Place one Knight' — meaning unknown, possibly a timing/keyword icon"
+    "codeA blurry; 20A0978 inferred from numbering sequence (Mage 978-980)"
    ],
-   "ops": null
+   "ops": null,
+   "notes": [
+    "B면 아이콘 = Reaction (사용자 확인 2026-11-03)"
+   ]
   },
   {
    "class": "Mage",
@@ -210,16 +212,18 @@
     "resolution": "Flip this card to the other side."
    },
    "sideB": {
-    "clash": "[Rampant beast glyph] Two Knights on the Clash Board switch places.",
+    "clash": "[Reaction] Two Knights on the Clash Board switch places.",
     "delve": "Place the Party Marker on any explored Kingdom tile in your current District.",
     "gates": [],
     "resolution": "Discard this card."
    },
    "unclear": [
-    "codeA blurry; 20A0979 inferred from numbering sequence",
-    "sideB clash begins with the same unidentified heraldic glyph as Mage L1 side B"
+    "codeA blurry; 20A0979 inferred from numbering sequence"
    ],
-   "ops": null
+   "ops": null,
+   "notes": [
+    "B면 아이콘 = Reaction (사용자 확인 2026-11-03)"
+   ]
   },
   {
    "class": "Mage",
@@ -235,16 +239,18 @@
     "resolution": "Flip this card to the other side."
    },
    "sideB": {
-    "clash": "[Rampant beast glyph] Place one Knight on an empty space closest to the center of the Clash Board.",
+    "clash": "[Reaction] Place one Knight on an empty space closest to the center of the Clash Board.",
     "delve": "Place the Party Marker on any explored Point of Interest [Point of Interest].",
     "gates": [],
     "resolution": "Discard this card."
    },
    "unclear": [
-    "codeA blurry; 20A0980 inferred from numbering sequence",
-    "sideB clash begins with the same unidentified heraldic glyph as Mage L1 side B"
+    "codeA blurry; 20A0980 inferred from numbering sequence"
    ],
-   "ops": null
+   "ops": null,
+   "notes": [
+    "B면 아이콘 = Reaction (사용자 확인 2026-11-03)"
+   ]
   },
   {
    "class": "Rogue",

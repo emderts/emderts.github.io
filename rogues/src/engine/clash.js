@@ -307,6 +307,7 @@ export class Clash {
   // ---------- conditions / movement effects ----------
   async addCondition(k, id, { tokens = 0 } = {}) {
     const def = this.conditionDefs[id]; if (!def) { this.say(`[미구현 Condition] ${id}`, 'warn'); return; }
+    for (const c of [...k.conditions]) { const cd = this.conditionDefs[c.id]; if (cd && cd.ops && cd.ops.crossGain && cd.flipSide === id) { if (cd.ops.crossGain === 'die') { this.say(`${k.name}: ${c.id} 상태에서 ${id} 획득 → 사망`, 'death'); await this.die(k, `${c.id} + ${id}`); return; } if (cd.ops.crossGain === 'flip') { c.id = cd.flipSide; this.say(`${k.name}: ${cd.name} 상태에서 ${id} 획득 → ${cd.flipSide}`, 'cond'); return; } } }
     const existing = this.hasCondition(k, id);
     if (existing) { if (def.ops && def.ops.secondTime === 'flip' && def.flipSide) { existing.id = def.flipSide; this.say(`${k.name}: ${id} 두 번째 → ${def.flipSide}`); } else if (def.ops && def.ops.secondTime === 'die') { await this.die(k, id + ' (second time)'); } else this.say(`${k.name}: 이미 ${id}`); return; }
     k.conditions.push({ id, tokens }); this.say(`${k.name} Condition: ${id}`, 'cond');
@@ -408,6 +409,9 @@ export class Clash {
       else if (choice.startsWith('free:')) await this.fx.doFreeAction(k, choice.slice(5));
       this.checkEnd();
     }
+    // Drowning / Slimed: end of turn without moving
+    for (const c of [...k.conditions]) { const def = this.conditionDefs[c.id]; const nm = def && def.ops && def.ops.endTurnNoMove; if (!nm || k.movedThisTurn) continue; if (nm === 'die') { this.say(`${k.name}: ${c.id} — 이동하지 않음 → 사망`, 'death'); await this.die(k, c.id); } else if (nm === 'flip' && def.flipSide) { c.id = def.flipSide; this.say(`${k.name}: ${def.name} — 이동하지 않음 → ${def.flipSide}`, 'cond'); } }
+    k.movedThisTurn = false;
     // end of turn: Knockdown (Falling Down) → flip
     const kd2 = k.conditions.find(c => c.id === 'Knockdown (Falling Down)'); if (kd2) { kd2.id = 'Knockdown (Standing Up)'; this.say(`${k.name}: Knockdown → Standing Up (다음 턴 시작 시 일어남)`); }
     await this.fx.endOfTurn(k);
@@ -421,7 +425,11 @@ export class Clash {
   async knightMove(k, speed) {
     const cells = this.reachable(k, speed); if (!cells.length) { this.say(`${k.name} 이동 불가`); return; }
     const target = await this.ask({ type: 'move', knight: k.id, cells, options: cells.map(c => ({ label: this.board.label(c), value: c })) });
-    if (!target) return; this.moveKnight(k, target); this.say(`${k.name} 이동 → ${this.board.label(target)}`);
+    if (!target) return;
+    // Drowning / Slimed: "When you're about to move voluntarily, roll [X Armor die] and all your Armor dice. For each [Potential] gain +1 Heat."
+    for (const c of [...k.conditions]) { const def = this.conditionDefs[c.id]; const vr = def && def.ops && def.ops.voluntaryMoveRoll; if (!vr || typeof vr !== 'object') continue; const dice = this.fx.armorDice(k); dice[vr.extra] = (dice[vr.extra] || 0) + 1; const r = rollArmor(this.rng, dice, this.data.components.dice.faces, this.data.components.dice.armorSymbol); this.say(`${k.name} ${c.id}: Armor ${r.dice.length}d → ✦${r.mitigated} → Heat +${r.mitigated}`, 'cond'); if (r.mitigated) k.gainHeat(r.mitigated); }
+    this.moveKnight(k, target); this.say(`${k.name} 이동 → ${this.board.label(target)}`); k.movedThisTurn = true; if (k.tempSpeed) k.tempSpeed = 0;
+    for (const c of [...k.conditions]) { const def = this.conditionDefs[c.id]; const on = def && def.ops && def.ops.onVoluntaryMove; if (on === 'flip' && def.flipSide) { c.id = def.flipSide; this.say(`${k.name}: ${def.name} → ${def.flipSide}`, 'cond'); } else if (on === 'discardSpeed') { this.removeCondition(k, c.id); k.tempSpeed = (k.tempSpeed || 0) + 1; this.say(`${k.name}: ${def.name} 제거, 임시 Speed +1`, 'cond'); } }
     const c = this.hasCondition(k, 'Knockdown (Standing Up)'); if (c) this.standUp(k);
   }
 
@@ -472,7 +480,8 @@ export class Clash {
     await this.fx.exertWindow(k, A, 'Power Roll 전');
     // 6. power roll
     const TIERS = ['red', 'black', 'white']; const kd = TIERS[Math.min(2, TIERS.indexOf(k.powerDie) + (A.promote || 0))]; if (A.promote) this.say(`Power Dice Promotion: Knight Power die ${k.powerDie} → ${kd}`);
-    const pool = buildPowerPool({ red: (w.weaponPower && w.weaponPower.colour === 'red' ? w.weaponPower.n * A.hits : 0) + (kd === 'red' ? 1 : 0) + A.extraPool.red, black: (w.weaponPower && w.weaponPower.colour === 'black' ? w.weaponPower.n * A.hits : 0) + (kd === 'black' ? 1 : 0) + A.extraPool.black, white: (w.weaponPower && w.weaponPower.colour === 'white' ? w.weaponPower.n * A.hits : 0) + (kd === 'white' ? 1 : 0) + A.extraPool.white, raw: (w.bonusPower && w.bonusPower.raw ? w.bonusPower.raw : 0) + A.extraPool.raw }, this.data.components.dice.limits);
+    const wpOf = col => { const p = w.weaponPower; if (!p) return 0; if (Array.isArray(p.dice)) return p.dice.filter(c => c === col).length; if (p.dice && typeof p.dice === 'object') return p.dice[col] || 0; return p.colour === col ? p.n : 0; }; // weapon power per hit, mixed colours supported
+    const pool = buildPowerPool({ red: wpOf('red') * A.hits + (kd === 'red' ? 1 : 0) + A.extraPool.red, black: wpOf('black') * A.hits + (kd === 'black' ? 1 : 0) + A.extraPool.black, white: wpOf('white') * A.hits + (kd === 'white' ? 1 : 0) + A.extraPool.white, raw: (w.bonusPower && w.bonusPower.raw ? w.bonusPower.raw : 0) + A.extraPool.raw }, this.data.components.dice.limits);
     if (w.bonusPower && w.bonusPower.colour) pool[w.bonusPower.colour] += w.bonusPower.n;
     const pr = rollPowerPool(this.rng, pool, this.data.components.dice.faces);
     this.say(`Power Roll ${pr.dice.map(d => d.colour[0]).join('')} +raw${pool.raw} → ⚔${pr.power} ✦${pr.potential} 🕊${pr.hope}`, 'dice');

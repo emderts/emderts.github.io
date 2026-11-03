@@ -7,7 +7,8 @@
   "Text tokens: [Heat] blue H cost, [Exhaust] card-with-arrow, [Power] sword icon, [Two-handed] double-gauntlet gate tag (gate name TWO-HANDED), [Star] unidentified token icon (see unclear), [GRAVE]/[MAJOR]/[JUDICIUM] red peril tags (also listed in gates).",
   "squireTriggers: 아이콘(redX/book/greenCircle/blueTriangle) 보너스 줄 = 스콰이어 처리용 — Rogue's Path에서 무시 (사용자 확인 2026-11-02); power = sword, potential = goblet.",
   "evasion = '+N' with helmet-and-swoosh icon in the right column; evasionReroll used only for Scale Mail's circle-and-arrow icon (see its unclear entry).",
-  "hands: 0 for armor (breastplate slot). Shields use the single-gauntlet slot, so type weapon / hands 1."
+  "hands: 0 for armor (breastplate slot). Shields use the single-gauntlet slot, so type weapon / hands 1.",
+  "Kingdom Gear Merchant 덱은 Principality와 동일 — Sunken 등 다른 왕국 Outpost도 이 덱 사용 (사용자 확인 2026-11-03)"
  ],
  "gear": [
   {
@@ -26,7 +27,7 @@
     "Flammable"
    ],
    "type": "weapon",
-   "hands": 1,
+   "hands": 2,
    "tier": "Mob",
    "price": 4,
    "reforgePrice": 4,
@@ -71,7 +72,7 @@
      "n": 2,
      "colour": "mixed",
      "dice": [
-      "white",
+      "black",
       "red"
      ]
     },
@@ -80,7 +81,12 @@
     "evasionReroll": null,
     "armorDice": null,
     "text": "Unwieldy. Ranged 2-4.\nBreak 1. Cumbersome.",
-    "gates": [],
+    "gates": [
+     {
+      "gate": "GRAVE",
+      "text": "+1 [Power]."
+     }
+    ],
     "squireTriggers": [
      {
       "icon": "greenCircle",
@@ -94,7 +100,10 @@
     ]
    },
    "unclear": [],
-   "ops": null
+   "ops": null,
+   "notes": [
+    "2H 양면, Short Bow GRAVE +1 Power, Short Bow power br (사용자 확인 2026-11-03)"
+   ]
   },
   {
    "name": "Militia Morgenstern",
@@ -143,9 +152,10 @@
     "attackDice": 1,
     "precision": 1,
     "weaponPower": {
-     "n": 2,
+     "n": 3,
      "colour": "red",
      "dice": [
+      "red",
       "red",
       "red"
      ]
@@ -164,7 +174,10 @@
     "squireTriggers": []
    },
    "unclear": [],
-   "ops": null
+   "ops": null,
+   "notes": [
+    "Officer's Morgenstern power rrr (사용자 확인 2026-11-03)"
+   ]
   },
   {
    "name": "Chipped Axe",
@@ -226,7 +239,7 @@
      "n": 2,
      "colour": "mixed",
      "dice": [
-      "white",
+      "black",
       "red"
      ]
     },
@@ -258,7 +271,10 @@
    "unclear": [
     "Weapon die is drawn dark-filled with white outline (same rendering as the black armor dice on Light Lamellar / Kite Shield), so transcribed as black; existing gear.json entry for Chipped Axe says white."
    ],
-   "ops": null
+   "ops": null,
+   "notes": [
+    "Felling Axe power br (사용자 확인 2026-11-03)"
+   ]
   },
   {
    "name": "Broken Sword",
@@ -463,15 +479,18 @@
      ]
     },
     "bonusPower": null,
-    "evasion": 1,
-    "evasionReroll": null,
+    "evasion": null,
+    "evasionReroll": 1,
     "armorDice": null,
     "text": "1 [Heat] [Exhaust] Guard 1.",
     "gates": [],
     "squireTriggers": []
    },
    "unclear": [],
-   "ops": null
+   "ops": null,
+   "notes": [
+    "Polished Shield Eva → Evasion Re-roll (사용자 확인 2026-11-03)"
+   ]
   },
   {
    "name": "Weathered Leather Armor",
@@ -496,8 +515,8 @@
     "precision": null,
     "weaponPower": null,
     "bonusPower": null,
-    "evasion": 1,
-    "evasionReroll": null,
+    "evasion": null,
+    "evasionReroll": 1,
     "armorDice": null,
     "text": "",
     "gates": [],
@@ -508,15 +527,18 @@
     "precision": null,
     "weaponPower": null,
     "bonusPower": null,
-    "evasion": 1,
-    "evasionReroll": null,
+    "evasion": null,
+    "evasionReroll": 1,
     "armorDice": null,
     "text": "Poison Limit +1.",
     "gates": [],
     "squireTriggers": []
    },
    "unclear": [],
-   "ops": null
+   "ops": null,
+   "notes": [
+    "Eva → Evasion Re-roll (양면) (사용자 확인 2026-11-03)"
+   ]
   },
   {
    "name": "Ragged Hauberk",
@@ -653,8 +675,8 @@
     "precision": null,
     "weaponPower": null,
     "bonusPower": null,
-    "evasion": 1,
-    "evasionReroll": null,
+    "evasion": null,
+    "evasionReroll": 1,
     "armorDice": null,
     "text": "",
     "gates": [],
@@ -665,8 +687,8 @@
     "precision": null,
     "weaponPower": null,
     "bonusPower": null,
-    "evasion": 1,
-    "evasionReroll": null,
+    "evasion": null,
+    "evasionReroll": 1,
     "armorDice": null,
     "text": "Poison Limit +1.",
     "gates": [],
@@ -675,7 +697,10 @@
    "unclear": [
     "Second copy of Weathered Leather Armor; code 13A0484."
    ],
-   "ops": null
+   "ops": null,
+   "notes": [
+    "Eva → Evasion Re-roll (양면) (사용자 확인 2026-11-03)"
+   ]
   },
   {
    "name": "Poor Man's Catalyst",
@@ -874,9 +899,10 @@
     "attackDice": 1,
     "precision": 0,
     "weaponPower": {
-     "n": 3,
+     "n": 4,
      "colour": "red",
      "dice": [
+      "red",
       "red",
       "red",
       "red"
@@ -905,9 +931,10 @@
     "attackDice": 1,
     "precision": 2,
     "weaponPower": {
-     "n": 3,
+     "n": 4,
      "colour": "red",
      "dice": [
+      "red",
       "red",
       "red",
       "red"
@@ -938,7 +965,10 @@
     ]
    },
    "unclear": [],
-   "ops": null
+   "ops": null,
+   "notes": [
+    "Power rrrr (양면) (사용자 확인 2026-11-03)"
+   ]
   },
   {
    "name": "Scavenged Handaxe",
@@ -1269,15 +1299,18 @@
     "precision": null,
     "weaponPower": null,
     "bonusPower": null,
-    "evasion": 1,
-    "evasionReroll": null,
+    "evasion": null,
+    "evasionReroll": 1,
     "armorDice": null,
     "text": "Guard 1.",
     "gates": [],
     "squireTriggers": []
    },
    "unclear": [],
-   "ops": null
+   "ops": null,
+   "notes": [
+    "Plated Mail Shirt Eva → Evasion Re-roll (사용자 확인 2026-11-03)"
+   ]
   },
   {
    "name": "Longaxe",
@@ -1404,11 +1437,12 @@
     "attackDice": 1,
     "precision": 2,
     "weaponPower": {
-     "n": 2,
-     "colour": "red",
+     "n": 3,
+     "colour": "mixed",
      "dice": [
       "red",
-      "red"
+      "red",
+      "black"
      ]
     },
     "bonusPower": null,
@@ -1423,11 +1457,12 @@
     "attackDice": 1,
     "precision": 3,
     "weaponPower": {
-     "n": 2,
-     "colour": "red",
+     "n": 3,
+     "colour": "mixed",
      "dice": [
       "red",
-      "red"
+      "red",
+      "black"
      ]
     },
     "bonusPower": {
@@ -1441,7 +1476,10 @@
     "squireTriggers": []
    },
    "unclear": [],
-   "ops": null
+   "ops": null,
+   "notes": [
+    "Power rrb (양면) (사용자 확인 2026-11-03)"
+   ]
   },
   {
    "name": "Weathered Pavise",
@@ -1672,10 +1710,10 @@
     "precision": 3,
     "weaponPower": {
      "n": 2,
-     "colour": "black",
+     "colour": "mixed",
      "dice": [
       "black",
-      "black"
+      "white"
      ]
     },
     "bonusPower": {
@@ -1700,7 +1738,10 @@
     ]
    },
    "unclear": [],
-   "ops": null
+   "ops": null,
+   "notes": [
+    "Honed Two-Hander power bw (사용자 확인 2026-11-03)"
+   ]
   },
   {
    "name": "Longbow",
@@ -1878,14 +1919,14 @@
     "precision": null,
     "weaponPower": null,
     "bonusPower": null,
-    "evasion": 1,
-    "evasionReroll": null,
+    "evasion": null,
+    "evasionReroll": 1,
     "armorDice": null,
-    "text": "Reposition 1.\n1 [Heat] [Exhaust] Dodge.\n[JUDICIUM] 1 [Heat] [Star] Second Chance.",
+    "text": "Reposition 1.\n1 [Heat] [Exhaust] Dodge.\n[JUDICIUM] 1 [Heat] [Discard] Second Chance.",
     "gates": [
      {
       "gate": "JUDICIUM",
-      "text": "1 [Heat] [Star] Second Chance."
+      "text": "1 [Heat] [Discard] Second Chance."
      }
     ],
     "squireTriggers": []
@@ -1895,22 +1936,24 @@
     "precision": null,
     "weaponPower": null,
     "bonusPower": null,
-    "evasion": 2,
-    "evasionReroll": null,
+    "evasion": null,
+    "evasionReroll": 2,
     "armorDice": null,
-    "text": "Reposition 1.\n1 [Heat] [Exhaust] Dodge.\n1 [Heat] Reinforce 2.\n[MAJOR] 1 [Heat] [Star] Second Chance.",
+    "text": "Reposition 1.\n1 [Heat] [Exhaust] Dodge.\n1 [Heat] Reinforce 2.\n[MAJOR] 1 [Heat] [Discard] Second Chance.",
     "gates": [
      {
       "gate": "MAJOR",
-      "text": "1 [Heat] [Star] Second Chance."
+      "text": "1 [Heat] [Discard] Second Chance."
      }
     ],
     "squireTriggers": []
    },
-   "unclear": [
-    "[Star] = unidentified cost icon: black shield/token with a white four-point star, printed after the Heat cost (also on Steel Fitted Kite Shield, Blackened Chestplate/Armor)."
-   ],
-   "ops": null
+   "unclear": [],
+   "ops": null,
+   "notes": [
+    "Eva → Evasion Re-roll (양면) (사용자 확인 2026-11-03)",
+    "[Star] → [Discard] (사용자 확인 2026-11-03)"
+   ]
   },
   {
    "name": "Spetum",
@@ -2430,17 +2473,20 @@
       "black"
      ]
     },
-    "text": "Auto-break 1.\nOpening 1. Break 2.\n1 [Heat] Reinforce 2.\n[MAJOR] [Star] Second Chance.",
+    "text": "Auto-break 1.\nOpening 1. Break 2.\n1 [Heat] Reinforce 2.\n[MAJOR] [Discard] Second Chance.",
     "gates": [
      {
       "gate": "MAJOR",
-      "text": "[Star] Second Chance."
+      "text": "[Discard] Second Chance."
      }
     ],
     "squireTriggers": []
    },
    "unclear": [],
-   "ops": null
+   "ops": null,
+   "notes": [
+    "[Star] → [Discard] (사용자 확인 2026-11-03)"
+   ]
   },
   {
    "name": "Brigandine",
@@ -2522,8 +2568,8 @@
     "precision": null,
     "weaponPower": null,
     "bonusPower": null,
-    "evasion": null,
-    "evasionReroll": 1,
+    "evasion": 1,
+    "evasionReroll": null,
     "armorDice": null,
     "text": "Deploy 1.\n2 [Heat] Soak 1.",
     "gates": [],
@@ -2534,17 +2580,18 @@
     "precision": null,
     "weaponPower": null,
     "bonusPower": null,
-    "evasion": null,
-    "evasionReroll": 1,
+    "evasion": 1,
+    "evasionReroll": null,
     "armorDice": null,
     "text": "Deploy 2. Tumble.\n2 [Heat] Soak 2.",
     "gates": [],
     "squireTriggers": []
    },
-   "unclear": [
-    "Right-column stat is '+1' with a circle-and-arrow (Mars-like) icon, different from the helmet-with-swoosh icon used for Evasion on the leather armors; transcribed as Evasion Re-roll 1 per the legend but could be another stat (e.g. Movement)."
-   ],
-   "ops": null
+   "unclear": [],
+   "ops": null,
+   "notes": [
+    "Evasion Re-roll → Evasion (양면) (사용자 확인 2026-11-03)"
+   ]
   },
   {
    "name": "Great Cleaver",
@@ -2606,11 +2653,11 @@
     "precision": 3,
     "weaponPower": {
      "n": 3,
-     "colour": "black",
+     "colour": "mixed",
      "dice": [
       "black",
       "black",
-      "black"
+      "white"
      ]
     },
     "bonusPower": {
@@ -2639,7 +2686,10 @@
     ]
    },
    "unclear": [],
-   "ops": null
+   "ops": null,
+   "notes": [
+    "Ringed Cleaver power bbw (사용자 확인 2026-11-03)"
+   ]
   },
   {
    "name": "Fire Gun",
@@ -2950,10 +3000,11 @@
     "attackDice": 1,
     "precision": 3,
     "weaponPower": {
-     "n": 3,
+     "n": 4,
      "colour": "mixed",
      "dice": [
       "black",
+      "red",
       "red",
       "red"
      ]
@@ -2991,10 +3042,11 @@
     "attackDice": 1,
     "precision": 4,
     "weaponPower": {
-     "n": 3,
+     "n": 4,
      "colour": "mixed",
      "dice": [
       "white",
+      "red",
       "red",
       "red"
      ]
@@ -3029,7 +3081,10 @@
     ]
    },
    "unclear": [],
-   "ops": null
+   "ops": null,
+   "notes": [
+    "Pale-Axe brrr, Bardiche wrrr (사용자 확인 2026-11-03)"
+   ]
   },
   {
    "name": "Plate Armor",
@@ -3115,11 +3170,11 @@
     "evasion": null,
     "evasionReroll": null,
     "armorDice": null,
-    "text": "Bane Limit +2.\n[Exhaust] Soak 3.\n1 [Heat] [Exhaust] Advanced Defy.\n[JUDICIUM] [Star] Second Chance.",
+    "text": "Bane Limit +2.\n[Exhaust] Soak 3.\n1 [Heat] [Exhaust] Advanced Defy.\n[JUDICIUM] [Discard] Second Chance.",
     "gates": [
      {
       "gate": "JUDICIUM",
-      "text": "[Star] Second Chance."
+      "text": "[Discard] Second Chance."
      }
     ],
     "squireTriggers": []
@@ -3132,17 +3187,20 @@
     "evasion": null,
     "evasionReroll": null,
     "armorDice": null,
-    "text": "Bane Limit +2. Soak 3.\n1 [Heat] [Exhaust] Advanced Defy.\n[JUDICIUM] [Star] Superior Chance.",
+    "text": "Bane Limit +2. Soak 3.\n1 [Heat] [Exhaust] Advanced Defy.\n[JUDICIUM] [Discard] Superior Chance.",
     "gates": [
      {
       "gate": "JUDICIUM",
-      "text": "[Star] Superior Chance."
+      "text": "[Discard] Superior Chance."
      }
     ],
     "squireTriggers": []
    },
    "unclear": [],
-   "ops": null
+   "ops": null,
+   "notes": [
+    "[Star] → [Discard] (사용자 확인 2026-11-03)"
+   ]
   },
   {
    "name": "Tower Shield",

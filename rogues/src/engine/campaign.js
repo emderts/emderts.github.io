@@ -68,6 +68,8 @@ export class Campaign {
     for (const kn of clash.knights) { const ck = this.knights.find(x => x.name === kn.name); kn.bane = ck.bane; kn.gear = kn.gear.map(g => g.name ? g : g); }
     // resolve gear through gearDef (merchant gear isn't in gear.json)
     for (const kn of clash.knights) { const ck = this.knights.find(x => x.name === kn.name); kn.gear = ck.loadout.gear.map(n => ({ ...this.gearDef(n), exhausted: false, discarded: false })); kn.hired = this.hired; }
+    // Inn buffs for this Rosegraal round
+    for (const kn of clash.knights) { const b = (this.roundBuffs || {})[kn.name]; if (!b) continue; if (b.heatLimit) kn.heatLimitBonus = (kn.heatLimitBonus || 0) + b.heatLimit; if (b.fortify) kn.extraVigor = (kn.extraVigor || 0) + b.fortify; if (b.passion) kn.gainPassion(b.passion); if (b.passionMin) kn.passionMin = b.passionMin; if (b.baneLimit) kn.baneLimit += b.baneLimit; if (b.resource) kn.fleischBoard = (kn.fleischBoard || 0) + b.resource; }
     clash.hired = this.hired; clash.campaign = this;
     this.clash = clash; return clash;
   }
@@ -115,6 +117,7 @@ export class Campaign {
       this.current.sighUsed = (this.current.sighUsed || 0) + 1;
       this.say(`${k.name}이 Sigh of the Graal 사용 → Clash 재시작`); return 'replay';
     }
+    this.roundBuffs = {}; // Inn effects last for this Rosegraal round only
     // resurrections
     if (deaths && survivors > 0) {
       // 확정(2026-11-02): 생존자가 있으면 부활 수가 모자라도 사망 기사 전원 부활, 부활은 0 아래로 내려가지 않음
@@ -169,7 +172,36 @@ export class Campaign {
   reforge(ck, name) { const g = this.data.gear.merchant_principality.gear.find(g => g.name === name); if (!g) throw new Error('재련 불가'); if ((ck.boughtThisOutpost || []).includes(name)) throw new Error('같은 Outpost에서 산 장비는 재련 불가'); if (!ck.armory.includes(name)) throw new Error('미보유'); if (ck.gold < g.reforgePrice) throw new Error('Gold 부족'); ck.gold -= g.reforgePrice; ck.armory[ck.armory.indexOf(name)] = g.reforgedName; const li = ck.loadout.gear.indexOf(name); if (li >= 0) ck.loadout.gear[li] = g.reforgedName; this.say(`${ck.name} 재련: ${name} → ${g.reforgedName} (-${g.reforgePrice}G)`); }
   hire(payer, mercClass, level) { if (this.hired.length >= 4) throw new Error('용병 최대 4'); const m = this.mercPool.find(m => m.class === mercClass && m.level === level); if (!m) throw new Error('없음'); if (this.hired.some(h => h.class === m.class)) throw new Error('같은 이름 용병 중복 불가'); if (payer.gold < m.cost) throw new Error('Gold 부족'); payer.gold -= m.cost; this.hired.push({ ...m, side: 'A' }); this.say(`${payer.name}이 ${m.class} L${m.level} 고용 (-${m.cost}G)`); }
   dismissAll() { this.hired = []; }
-  endOutpost() { for (const k of this.knights) delete k.boughtThisOutpost; }
+  /** Outpost state for this Rosegraal round: first section visited gets its Early Bird (rulebook p.28). */
+  outpostState() { if (!this.outpost || this.outpost.round !== this.round) this.outpost = { round: this.round, earlyBird: null, inn: null, tempMercs: [] }; return this.outpost; }
+  async earlyBird(section, tierLevel) {
+    const st = this.outpostState(); if (st.earlyBird) return st.earlyBird; st.earlyBird = section; const ask = this.ask;
+    const M = this.data.decks.mercenaries.mercenaries;
+    if (section === 'mercenaryGuild') {
+      let lvl = 2; if (tierLevel >= 4 && await ask({ type: 'confirm', text: 'Early Bird (Devil 티어): 레벨 2 대신 레벨 3 용병을 추가할까요?', default: true, options: [{ label: '레벨 3', value: true }, { label: '레벨 2', value: false }] })) lvl = 3;
+      const cands = M.filter(m => m.level === lvl && !this.mercPool.some(x => x.class === m.class && x.level === m.level)); if (cands.length) { const m = this.rng.pick(cands); const e = { class: m.class, level: m.level, cost: m.cost, side: 'A', kingdom: m.kingdom, temp: true }; this.mercPool.push(e); st.tempMercs.push(e); this.say(`Early Bird (Mercenary Guild): 레벨 ${lvl} ${m.class} 임시 추가`); }
+    } else if (section === 'inn') this.say('Early Bird (Inn): 굴리는 대신 결과를 고를 수 있음');
+    else if (section === 'merchantsWorkshop') this.say('Early Bird (Merchant\'s Workshop): 무작위 Consumable 추가 — Consumable 카드 자료 없음, 효과 없음');
+    return section;
+  }
+  /** Inn (codex p.6): once per Outpost, roll a d10 (results 6 and 7 are not used in Rogue's Path → re-roll), or choose with the Inn Early Bird. */
+  async innVisit(tierLevel, chosen = null) {
+    const st = this.outpostState(); if (st.inn) throw new Error('이번 Outpost에서 이미 Inn 사용'); if (!st.earlyBird) await this.earlyBird('inn', tierLevel);
+    const R = this.data.outpost.principality.sections.inn.results; let n = chosen;
+    if (n == null || st.earlyBird !== 'inn') { do { n = this.rng.die(10); } while (n === 6 || n === 7); }
+    st.inn = n; const alive = this.knights.filter(k => !k.dead); const pick2 = () => this.rng.shuffle([...alive]).slice(0, 2); const buf = k => { this.roundBuffs = this.roundBuffs || {}; return (this.roundBuffs[k.name] = this.roundBuffs[k.name] || {}); };
+    this.say(`Inn ${n}: ${R[n].text}`);
+    if (n === 1) for (const k of pick2()) { buf(k).virtue = (buf(k).virtue || 0) + 1; this.say(`${k.name}: Virtue +1 (Delve 전용 — Clash 효과 없음)`); }
+    else if (n === 2) for (const k of pick2()) { buf(k).heatLimit = (buf(k).heatLimit || 0) + 1; this.say(`${k.name}: Heat Limit +1 (이번 라운드)`); }
+    else if (n === 3) for (const k of pick2()) { buf(k).fortify = (buf(k).fortify || 0) + 2; this.say(`${k.name}: Fortify 2 (최대 Vigor → 추가 Vigor 2)`); }
+    else if (n === 4) { const k = this.rng.pick(alive); buf(k).passion = (buf(k).passion || 0) + 1; buf(k).passionMin = 1; this.say(`${k.name}: Passion +1, 이번 라운드 Passion 최소 1`); }
+    else if (n === 5) { const L = this.data.decks.loot.cards.filter(c => c.gold); const c = this.rng.pick(L); const g = c.gold[this.tierOf(tierLevel)] || 0; for (const k of alive) k.gold += g; this.say(`Loot ${c.type}: 기사마다 +${g}G`); }
+    else if (n === 8) { const k = this.rng.pick(alive); buf(k).baneLimit = (buf(k).baneLimit || 0) + 1; this.say(`${k.name}: Bane Limit +1 (이번 라운드)`); }
+    else if (n === 9) { const who = alive.length > 1 ? await this.ask({ type: 'pick', text: 'Inn 9: Resource 토큰(Fleisch)을 받을 기사', options: alive.map(k => ({ label: k.name, value: k.name })) }) : alive[0].name; const k = alive.find(x => x.name === who) || alive[0]; buf(k).resource = (buf(k).resource || 0) + 1; this.say(`${k.name}: Clash 시작 시 Fleisch 토큰 1`); }
+    else if (n === 10) { const k = this.rng.pick(alive); buf(k).parasiteBait = true; this.say(`${k.name}: Parasite Bait (Kingdom 카드 자료 없음 — 효과 미구현)`); }
+    return n;
+  }
+  endOutpost() { for (const k of this.knights) delete k.boughtThisOutpost; const st = this.outpost; if (st && st.tempMercs.length) { this.mercPool = this.mercPool.filter(m => !st.tempMercs.includes(m) && !(m.temp && !this.hired.some(h => h.class === m.class && h.level === m.level))); st.tempMercs = []; } }
   /** Loadout validation: 2 hand slots (2H weapon = 2), 1 armor, 2 support; Knighves auto-fills a free hand slot. */
   setLoadoutGear(ck, names) { const defs = names.map(n => this.gearDef(n)).filter(Boolean); let hands = 0, armor = 0, support = 0; for (const g of defs) { if (g.type === 'weapon') hands += g.hands || 1; else if (g.type === 'armor') armor++; else support++; } if (hands > SLOTS.hand || armor > SLOTS.armor || support > SLOTS.support) throw new Error(`슬롯 초과 (손 ${hands}/2, 갑옷 ${armor}/1, 보조 ${support}/2)`); const out = defs.map(g => g.name); if (hands < SLOTS.hand && !out.includes('Knighves')) out.push('Knighves'); ck.loadout.gear = out; }
   setLoadoutTechniques(ck, names) { const lim = this.handLimit(ck); if (names.length > lim) throw new Error(`Hand Limit ${lim}`); if (!names.every(n => ck.unlocked.techniques.includes(n))) throw new Error('미해금 기술'); ck.loadout.techniques = [...names]; }

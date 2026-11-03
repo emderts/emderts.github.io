@@ -132,18 +132,24 @@
    "name": "Drowning",
    "type": "body",
    "code": null,
-   "text": "When you're about to move voluntarily, roll [Armor die] and all your Armor dice. For each [Fail] gain +1 [Heat].\nIf you gain this Condition card a second time or you gain the Slimed Condition card, you die.\nEnd of your turn: If you didn't move during your turn, you die.\nWhen you move voluntarily, flip this card.",
+   "text": "When you're about to move voluntarily, roll [white Armor die] and all your Armor dice. For each [Potential] gain +1 [Heat].\nIf you gain this Condition card a second time or you gain the Slimed Condition card, you die.\nEnd of your turn: If you didn't move during your turn, you die.\nWhen you move voluntarily, flip this card.",
    "squire": "Gain +2 [Heat] instead.",
    "flipSide": "Slimed",
    "unclear": [
-    "First die icon is a white die with a chalice face (read as the basic Armor die); the per-result symbol is the bare chalice (read as [Fail]).",
     "No code visible on this side."
    ],
    "ops": {
-    "voluntaryMoveRoll": "armor+1",
+    "voluntaryMoveRoll": {
+     "extra": "white"
+    },
     "endTurnNoMove": "die",
-    "secondTime": "die"
-   }
+    "secondTime": "die",
+    "onVoluntaryMove": "flip",
+    "crossGain": "die"
+   },
+   "notes": [
+    "주사위 아이콘 = white Armor die, 잔 = Potential (사용자 확인 2026-11-03)"
+   ]
   },
   {
    "name": "Knockdown (Standing Up)",
@@ -237,17 +243,22 @@
    "name": "Slimed",
    "type": "body",
    "code": "09A0380",
-   "text": "When you're about to move voluntarily, roll [Armor die] and all your Armor dice. For each [Fail] gain +1 [Heat].\nIf you gain this Condition card a second time or you gain the Drowning Condition card, flip this card.\nEnd of your turn: If you didn't move during your turn, flip this card.\nWhen you move voluntarily, discard this card and gain a temporary positive Speed [Speed] token.",
+   "text": "When you're about to move voluntarily, roll [black Armor die] and all your Armor dice. For each [Potential] gain +1 [Heat].\nIf you gain this Condition card a second time or you gain the Drowning Condition card, flip this card.\nEnd of your turn: If you didn't move during your turn, flip this card.\nWhen you move voluntarily, discard this card and gain a temporary positive Speed [Speed] token.",
    "squire": "Gain +1 [Heat] instead.",
    "flipSide": "Drowning",
-   "unclear": [
-    "Die/symbol icons as on Drowning (white Armor die; bare chalice = [Fail])."
-   ],
+   "unclear": [],
    "ops": {
-    "voluntaryMoveRoll": "armor+1",
+    "voluntaryMoveRoll": {
+     "extra": "black"
+    },
     "endTurnNoMove": "flip",
-    "secondTime": "flip"
-   }
+    "secondTime": "flip",
+    "onVoluntaryMove": "discardSpeed",
+    "crossGain": "flip"
+   },
+   "notes": [
+    "주사위 아이콘 = black Armor die, 잔 = Potential (사용자 확인 2026-11-03)"
+   ]
   },
   {
    "name": "Knockdown (Falling Down)",

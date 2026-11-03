@@ -26,7 +26,7 @@ export class Knight {
     return out;
   }
   /** Heat Limit (black cube) rises as Vigor drops, per Peril Arc (p.17–18). */
-  get heatLimit() { const p = this.peril(); const t = this.thresholds.find(x => x.peril === p); return Math.min(HEAT_MAX, t ? t.heatLimit : this.uninjuredHeatLimit); }
+  get heatLimit() { const p = this.peril(); const t = this.thresholds.find(x => x.peril === p); return Math.min(HEAT_MAX, (t ? t.heatLimit : this.uninjuredHeatLimit) + (this.heatLimitBonus || 0)); }
   /**
    * Gain Heat (p.17): "If any effect would force you to raise your Heat above your Heat Limit, raise your Heat to your current
    * limit, then lose Vigor equal to the value by which you exceeded your Heat Limit." Voluntary costs that would exceed the limit are illegal.
@@ -41,7 +41,7 @@ export class Knight {
   /** Raise Passion (p.17/57): hard limit 9. */
   gainPassion(n = 1) { this.passion = Math.min(PASSION_MAX, this.passion + n); return this.passion; }
   /** Lose Vigor (p.53): track never shows below 0; the caller decides Peril Check / Judicium. Returns the (possibly negative) effective value. */
-  loseVigor(n) { const eff = this.vigor - n; this.vigor = Math.max(0, eff); return eff; }
+  loseVigor(n) { if (this.extraVigor > 0 && n > 0) { const a = Math.min(this.extraVigor, n); this.extraVigor -= a; n -= a; } const eff = this.vigor - n; this.vigor = Math.max(0, eff); return eff; }
   gainVigor(n) { this.vigor = Math.min(this.maxVigor, this.vigor + n); return this.vigor; }
   /** Lower maximum Vigor (e.g. gear of a higher tier, p.20): current clamps down to the new max. */
   setMaxVigor(n) { this.maxVigor = Math.max(0, Math.min(VIGOR_MAX, n)); if (this.vigor > this.maxVigor) this.vigor = this.maxVigor; }
