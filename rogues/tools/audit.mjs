@@ -113,6 +113,10 @@ sec.push(`<section id="engine"><h2>9. 전투 엔진 — 규칙 ↔ 구현 대응
 <tr><td>p.64 Conditions</td><td><code>addCondition, conditions ops</code></td><td>두 번째 획득 시 뒤집기/사망(카드 데이터), Knockdown 양면, Distracted/Panicked 손패 제한, Choked(Choke Limit, 행동 소모로 -3), Exposed, Courage(Auto-break), Panzer Parasite(5개 사망), Poisoned(턴 종료 피해)</td></tr>
 <tr><td>p.56/80 Pushback / Knockback / Crash / Displace</td><td><code>pushback, crash, displace</code></td><td>직선, 가장자리 미끄러짐, 장애물 Crash(+파괴), Chasm 사망, Braced 무시, Unavoidable Knockback 5</td></tr>
 <tr><td>Eggknight Traits</td><td><code>humptyCharge, loseArmorToken, afterAction</code></td><td>Humpty Charge(공격자 방향 6칸 돌진, Crash/Judicium, 장애물·가장자리 정지 + Armor 토큰 -1 → Grave 좌표에 Column), Humpty Fate/Hardboiled, Counter(3→Signature), Panzeronion(AT+토큰), Jacked, Just a Scratch, Coup de Grace <span class="warn">[미구현: Coup de Grace 사망 치환]</span>, Impenetrable Shell</td></tr>
+<tr><td>p.22 Heroic Arc 선택 시점</td><td><code>effects.arcAt</code></td><td>두 옵션 중 선택은 공격 시작 때 미리 정하지 않고, 어느 한쪽 옵션이 작동하는 가장 이른 단계(roll / 1차 창 / BP / Power / Wound / 2차 창)에서 물음. 남은 레벨은 2차 창에서 강제 적용(골든 룰) — 사용자 요청 2026-11-03. Power Dice Promotion·Precision(+행) 반영</td></tr>
+<tr><td>p.19 Break 토큰</td><td><code>knightAttack</code></td><td>선택이 아니라 강제: 남은 ✦마다 Break 토큰 자동 사용(사용자 확인 2026-11-03). Sunder·Hope는 선택 유지 [확인 필요]</td></tr>
+<tr><td>p.54 REACT!</td><td><code>effects.reactions</code></td><td>가능한 모든 기사의 리액션을 한 목록으로 제시 + 패스, 기사 누구나 사용(확정)</td></tr>
+<tr><td>p.50 몬스터 이동 경로</td><td><code>simulateMonsterPath</code></td><td>시작 방향 선택 시 각 방향의 지그재그 경로를 보드에 미리보기 후 확정</td></tr>
 <tr><td>미구현 / 수동</td><td>—</td><td>Meat Puppet, Curse Save(Curse Level 0 가정), Squire 라인, Mercenary 효과(수동 사용 탭), Coup de Grace</td></tr>
 </table></section>`);
 

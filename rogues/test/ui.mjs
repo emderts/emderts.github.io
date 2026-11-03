@@ -9,14 +9,23 @@ const errs = []; p.on('pageerror', e => errs.push(e.message)); p.on('console', m
 await p.goto(new URL('../dist/rogues.html', import.meta.url).href); ok(await p.locator('h1').count() === 1, 'home renders');
 await p.fill('#seed', '7'); await p.click('text=Clash 시작'); await p.waitForTimeout(400);
 ok(await p.locator('svg.bsvg').count() === 1 && await p.locator('.kn').count() === 4 && await p.locator('.mon').count() === 1, 'board with 4 knights and monster');
+const jsClick = el => el.evaluate(e => e.dispatchEvent(new MouseEvent('click', { bubbles: true })));
+await p.evaluate(() => { window.__fl = 0; new MutationObserver(() => { if (document.querySelector('#flash .fcard')) window.__fl++; }).observe(document.getElementById('flash'), { childList: true }); });
 let answered = 0;
-for (let i = 0; i < 60; i++) { const sel = await p.$('.cell.sel'); if (sel) { await sel.click(); answered++; await p.waitForTimeout(40); continue; } const btn = await p.$('.sheet .row button.primary') || await p.$('.sheet .opts button.primary') || await p.$('.sheet .opts button'); if (!btn) { await p.waitForTimeout(100); continue; } await btn.click(); answered++; await p.waitForTimeout(40); }
+for (let i = 0; i < 60; i++) { const sel = await p.$('.cell.sel'); if (sel) { await jsClick(sel); answered++; await p.waitForTimeout(40); continue; } const btn = await p.$('.sheet .row button.primary') || await p.$('.sheet .opts button.primary') || await p.$('.sheet .opts button'); if (!btn) { await p.waitForTimeout(100); continue; } await jsClick(btn); answered++; await p.waitForTimeout(40); }
+ok(await p.evaluate(() => window.__fl) > 0, 'result pop-ups (dice / cards) shown in the centre');
+{ const lp = await p.$eval('#lpane', e => e.scrollHeight - e.scrollTop - e.clientHeight); ok(lp < 5, `log pane scrolled to the bottom (${lp}px left)`); }
+await jsClick(await p.$('#mpane .tag.link')); await p.waitForTimeout(80); ok(await p.locator('.modal').count() === 1 && (await p.textContent('.modal')).includes('Trait'), 'tapping a trait opens its text'); await jsClick(await p.$('.modal .close')); await p.waitForTimeout(60);
+await jsClick(await p.$('#mpane .link')); await p.waitForTimeout(80); ok(await p.locator('.modal').count() === 1, 'Wound Stack / card viewer opens'); await jsClick(await p.$('.modal .close')); await p.waitForTimeout(60);
+await p.evaluate(() => document.querySelector('#kpane details').open = true); await p.waitForTimeout(80); { const t = await p.$('#kpane details .tag.link'); if (t) { await jsClick(t); await p.waitForTimeout(80); ok((await p.locator('.modal .cardview').count()) === 1, 'tapping a hand card shows the card'); await jsClick(await p.$('.modal .close')); } else ok(false, 'hand card tag present'); }
+ok(!/(\w+), \1/.test(await p.textContent('#mpane')), 'Knight Pool shown grouped');
 ok(answered > 10, `answered ${answered} prompts`);
 ok((await p.textContent('#mpane')).includes('Wound Stack'), 'monster pane visible next to the board');
 ok((await p.locator('#kpane .kbox').count()) === 4, 'knight pane shows 4 knights');
 { const bb = await p.$eval('#board', e => e.getBoundingClientRect().bottom); const st = await p.$eval('.battle .sheet', e => [e.getBoundingClientRect().top, getComputedStyle(e).position]); ok(st[1] !== 'fixed' && st[0] >= bb - 1, 'prompt sits below the board inline (does not cover it)'); }
 const w = await p.evaluate(() => document.documentElement.scrollWidth); ok(w <= 390, `no horizontal overflow at 390px (${w})`);
 // campaign flow
+await p.evaluate(() => localStorage.setItem('kf.flash', '0'));
 await p.goto(new URL('../dist/rogues.html', import.meta.url).href); p.on('dialog', d => d.accept());
 await p.click('text=새 캠페인'); await p.waitForTimeout(200); ok((await p.textContent('body')).includes('라운드 0'), 'campaign map renders');
 const nodes = await p.$$('svg g[style*="cursor"]'); ok(nodes.length === 6, `6 selectable nodes on the map (${nodes.length})`);

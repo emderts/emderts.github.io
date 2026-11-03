@@ -27,6 +27,7 @@ export class Clash {
     this._setupDecks();
     this.priorityTarget = null; this.firstRound = true; this.currentAttack = null; this.bpCounter = 0;
   }
+  flash(kind, d) { if (this.listeners.flash) this.listeners.flash(kind, d); }
   say(msg, kind = 'info') { this.log.push({ msg, kind, round: this.round }); if (this.listeners.log) this.listeners.log(msg, kind); return msg; }
 
   // ---------- setup ----------
@@ -112,11 +113,11 @@ export class Clash {
   }
   async activationAI() {
     const card = this.monster.drawAI(); if (!card) { this.say('AI 덱 없음'); return; }
-    this.say(`AI ${card.level}: ${card.name}`, 'ai');
+    this.say(`AI ${card.level}: ${card.name}`, 'ai'); this.lastAI = card; this.flash('card', { title: `AI ${card.level}`, name: card.name, text: (card.targeting || []).join(' / '), cls: 'ai' });
     await this.resolveMonsterAttack(card, { isAI: true });
     this.monster.discardAI(card);
   }
-  async performSignature() { const s = this.monster.signature; this.say(`Signature: ${s.name}`, 'ai'); await this.resolveMonsterAttack(s, { isSignature: true }); }
+  async performSignature() { const s = this.monster.signature; this.say(`Signature: ${s.name}`, 'ai'); this.lastAI = s; this.flash('card', { title: 'Signature', name: s.name, cls: 'ai' }); await this.resolveMonsterAttack(s, { isSignature: true }); }
   async performRoutine() { const r = this.monster.routine; this.say(`Routine: ${r.name}`, 'ai'); await this.fx.runMonsterOps(r.ops, { targets: this.alive() }); }
 
   /** Targeting (p.48): read lines top to bottom; first resolvable wins. Returns { targets:[Knight], zone?:[cells], line } or null. */
@@ -178,6 +179,18 @@ export class Clash {
   async faceMostKnights() { const counts = ['N', 'E', 'S', 'W'].map(f => ({ f, n: this.alive().filter(k => inFront(this.board, this.monster.cells, f, k.pos)).length })); const max = Math.max(...counts.map(x => x.n)); const best = counts.filter(x => x.n === max); let f = best[0].f; if (best.length > 1 && max > 0) { f = await this.ask({ type: 'pick', text: '가장 많은 기사를 향함 — 동률, 방향 선택', options: best.map(x => ({ label: this.dirName(DIRS[x.f]), value: x.f })) }); } else if (best.length > 1) f = best.includes(this.monster.facing) ? this.monster.facing : best[0].f; this.monster.facing = f; this.say(`몬스터가 가장 많은 기사 쪽(${f})을 향함`); }
 
   /** Boss movement toward target until adjacent (p.50): shortest path, moves through Knights (Crash), destroys Destructible terrain. */
+  /** Pure preview of the zigzag path (p.50) for a given starting direction: list of footprints, ignoring Crash stops. */
+  simulateMonsterPath(target, first) {
+    const B = this.board; let cells = this.monster.cells.map(c => ({ ...c })); const out = []; let lastAxis = null; let d = first;
+    for (let steps = 0; steps < 30 && !B.footprintsAdjacent(cells, [target.pos]); steps++) {
+      const mc = cells.reduce((a, c) => ({ c: a.c + c.c / cells.length, r: a.r + c.r / cells.length }), { c: 0, r: 0 });
+      const dc = target.pos.c - mc.c, dr = target.pos.r - mc.r; const opts = []; if (Math.abs(dc) > 0.5) opts.push({ c: Math.sign(dc), r: 0 }); if (Math.abs(dr) > 0.5) opts.push({ c: 0, r: Math.sign(dr) });
+      const valid = opts.filter(o => cells.every(x => B.inside({ c: x.c + o.c, r: x.r + o.r }))); if (!valid.length) break;
+      if (steps > 0 || !d) { d = (lastAxis ? valid.find(x => (x.c ? 'c' : 'r') !== lastAxis) : null) || valid[0]; }
+      lastAxis = d.c ? 'c' : 'r'; cells = cells.map(c => ({ c: c.c + d.c, r: c.r + d.r })); out.push(cells);
+    }
+    return out;
+  }
   async monsterMoveToward(target) {
     const B = this.board; let steps = 0; let lastAxis = null;
     while (!this.board.footprintsAdjacent(this.monster.cells, [target.pos]) && steps < 30) {
@@ -188,7 +201,7 @@ export class Clash {
       const valid = opts.filter(d => this.monster.cells.every(x => B.inside({ c: x.c + d.c, r: x.r + d.r })));
       if (!valid.length) break;
       let d = valid[0];
-      if (valid.length > 1) { const alt = lastAxis ? valid.find(x => (x.c ? 'c' : 'r') !== lastAxis) : null; if (alt) d = alt; else { const i = await this.ask({ type: 'pick', text: '몬스터 이동 시작 방향 (지그재그)', options: valid.map((x, i) => ({ label: this.dirName(x) + ' — 밟히는 기사 ' + this.monster.cells.map(m => ({ c: m.c + x.c, r: m.r + x.r })).filter(cc => this.knightAt(cc) && !this.monster.cells.some(mc => cellEq(mc, cc))).length + '명', value: i })) }); d = valid[i] || valid[0]; } }
+      if (valid.length > 1) { const alt = lastAxis ? valid.find(x => (x.c ? 'c' : 'r') !== lastAxis) : null; if (alt) d = alt; else { const i = await this.ask({ type: 'pick', preview: 'path', text: '몬스터 이동 시작 방향 (지그재그) — 옵션을 눌러 보드에서 경로 미리보기 후 확정', options: valid.map((x, i) => ({ path: this.simulateMonsterPath(target, x), label: this.dirName(x) + ' — 밟히는 기사 ' + this.monster.cells.map(m => ({ c: m.c + x.c, r: m.r + x.r })).filter(cc => this.knightAt(cc) && !this.monster.cells.some(mc => cellEq(mc, cc))).length + '명', value: i })) }); d = valid[i] || valid[0]; } }
       lastAxis = d.c ? 'c' : 'r';
       await this.monsterStep(d); steps++;
     }
@@ -231,6 +244,7 @@ export class Clash {
     hits = roll.dice.filter(d => !d10Success(d.v, evaBonus, diff)).length;
     // Block keyword
     hits = Math.max(0, hits - this.fx.blockValue(k));
+    this.flash('dice', { title: `${k.name} Evasion ${diff}+ (+${evaBonus})`, dice: roll.dice.map(d => ({ v: d.v, ok: d10Success(d.v, evaBonus, diff), crit: d.crit })), sub: hits ? `명중 ${hits}` : 'Full Evade', cls: hits ? 'bad' : 'good' });
     this.say(`${k.name} Evasion ${dice}d ${diff}+ → [${roll.dice.map(d => d.v + (d.rerolled ? '*' : '')).join(' ')}] 명중 ${hits}${roll.critChance ? ' (Crit Evade)' : ''}${roll.critFail ? ' (Crit Evade Fail)' : ''}`, 'dice');
     attack.hits[k.id] = hits;
     if (hits === 0) { this.say(`${k.name} Full Evade`); return; }
@@ -268,7 +282,7 @@ export class Clash {
   async drawMortis(k, tier, { named = null } = {}) {
     const deck = this.mortis[tier]; let card = named ? deck.cards.find(c => c.name === named) : deck.draw(); if (named && card) deck.cards.splice(deck.cards.indexOf(card), 1);
     if (!card) { this.say(`${tier} Mortis 덱 비어 있음`); return; }
-    this.say(`${k.name} ${tier} Mortis: ${card.name} — ${card.text}`, 'mortis');
+    this.say(`${k.name} ${tier} Mortis: ${card.name} — ${card.text}`, 'mortis'); this.flash('card', { title: `${k.name} — ${tier} Mortis`, name: card.name, text: card.text, cls: 'bad' });
     // Second Chance window
     const sc = await this.fx.secondChance(k, card, tier); if (sc) { deck.putBottom(card); card = deck.draw(); this.say(`Second Chance → 다시 뽑음: ${card.name} — ${card.text}`, 'mortis'); }
     const res = await this.fx.runMortis(card, k, tier);
@@ -276,7 +290,7 @@ export class Clash {
   }
   async drawJudicium(k) {
     if (!k.alive) return; const cards = [...this.judiciumBase, ...this.judiciumExtra]; const card = this.rng.pick(cards);
-    this.say(`${k.name} Judicium (${cards.length}장): ${card.name}`, 'mortis');
+    this.say(`${k.name} Judicium (${cards.length}장): ${card.name}`, 'mortis'); this.flash('card', { title: `${k.name} — Judicium`, name: card.name, text: card.text || '', cls: card.death ? 'bad' : 'good' });
     if (card.death) await this.die(k, card.name); else { k.vigor = Math.max(0, k.vigor); }
   }
   async die(k, reason) {
@@ -428,12 +442,12 @@ export class Clash {
     await this.fx.beforeAttack(k, A);
     await this.fx.exertWindow(k, A, 'Attack Roll 전');
     // 3. Attack roll
-    let dice = w.attackDice + this.fx.extraAttackDice(k, w, A); let prec = w.precision + this.fx.precision(k) + this.poolCount('opening') + this.poolCount('closing');
+    let dice = w.attackDice + this.fx.extraAttackDice(k, w, A); let prec = w.precision + this.fx.precision(k) + (A.extraPrecision || 0) + this.poolCount('opening') + this.poolCount('closing');
     const roll = rollD10s(this.rng, dice); const toHit = this.monster.toHit + this.monster.modifiers.toHit;
     const isHit = d => d.v === 10 ? true : d.v === 1 ? false : d.v + prec >= toHit;
     this.say(`${k.name} Attack Roll ${dice}d → [${roll.dice.map(d => d.v).join(' ')}] (재굴림 전)`, 'dice');
-    await this.fx.exertWindow(k, A, 'Attack Roll 후, 재굴림 전');
-    prec = w.precision + this.fx.precision(k) + this.poolCount('opening') + this.poolCount('closing');
+    await this.fx.exertWindow(k, A, `Attack Roll 후, 재굴림 전 — [${roll.dice.map(d => d.v + (isHit(d) ? '✓' : '✗')).join(' ')}] vs ${toHit}+ (보너스 +${prec}), 명중 ${roll.dice.filter(isHit).length}/${dice}`);
+    prec = w.precision + this.fx.precision(k) + (A.extraPrecision || 0) + this.poolCount('opening') + this.poolCount('closing');
     let misses = roll.dice.filter(d => !isHit(d));
     if (misses.length && (k.heat < k.heatLimit || this.poolCount('closing'))) {
       const maxR = Math.min(misses.length, (k.heatLimit - k.heat) + this.poolCount('closing'));
@@ -441,6 +455,7 @@ export class Clash {
       if (picked && picked.length) { const free = Math.min(picked.length, this.poolCount('closing')); this.poolTake('closing', free); const paid = picked.length - free; if (paid) k.gainHeat(paid, { voluntary: true }); for (const i of picked) { const d = roll.dice[i]; d.v = this.rng.die(10); d.rerolled = true; } }
     }
     A.hits = roll.dice.filter(isHit).length; A.critChance = roll.dice[0].v === 10 || (this.fx.has(k, 'deadly') && roll.dice[0].v >= 9);
+    this.flash('dice', { title: `${k.name} Attack Roll ${toHit}+ (+${prec})`, dice: roll.dice.map(d => ({ v: d.v, ok: isHit(d), crit: d.crit })), sub: `명중 ${A.hits}/${dice}${A.critChance ? ' ★Crit Chance' : ''}`, cls: A.hits ? 'good' : 'bad' });
     this.say(`${k.name} Attack Roll ${dice}d vs ${toHit}+ (+${prec}) → [${roll.dice.map(d => d.v + (d.rerolled ? '*' : '')).join(' ')}] 명중 ${A.hits}/${dice}${A.critChance ? ' ★Crit Chance' : ''}`, 'dice');
     if (A.hits === 0) { this.say(`${k.name} Full Miss`); await this.fx.onFullMiss(k, A); this.clearPool(); await this.fx.secondWindow(k, A); this.currentKnightAttack = null; return; }
     if (A.hits === dice) await this.fx.onFullHit(k, A);
@@ -448,34 +463,36 @@ export class Clash {
     try { await this.fx.firstWindow(k, A); } catch (e) { if (!e.chainBreak) throw e; this.say(`Chain Break: ${e.message}`, 'warn'); this.clearPool(); await this.fx.secondWindow(k, A); this.currentKnightAttack = null; return; }
     // 5. determine BP
     let bp = this.monster.drawBP(); if (!bp) { this.say('BP 덱 비어 있음'); this.currentKnightAttack = null; return; }
+    await this.fx.arcAt(k, A, 'bp');
     if (this.fx.has(k, 'heartseeker', A)) { const alt = this.monster.drawBP(); if (alt) { const pick = await this.ask({ type: 'heartseeker', options: [bp, alt].map(c => ({ label: `${c.name} (AT ${this.bpAT(c)})`, value: c.name })) }); const chosen = [bp, alt].find(c => c.name === pick); const other = chosen === bp ? alt : bp; this.monster.bp.cards.unshift(other); bp = chosen; } }
-    A.bp = bp; this.say(`BP ${bp.level}: ${bp.name} (AT ${this.bpAT(bp)})`, 'bp');
+    A.bp = bp; this.lastBP = bp; this.say(`BP ${bp.level}: ${bp.name} (AT ${this.bpAT(bp)})`, 'bp'); this.flash('card', { title: `BP ${bp.level}`, name: bp.name, text: `AT ${this.bpAT(bp)}`, cls: 'bp' });
     // Ultrainstinct (Impenetrable Shell)
     if (!A.critChance && this.monster.hasTrait('Impenetrable Shell') && this.armorTokens[bp.level] > 0 && this.frontCells().some(c => cellEq(c, k.pos))) { this.say('Ultrainstinct: Impenetrable Shell → Knockback 1'); await this.pushback(k, 1); }
+    await this.fx.arcAt(k, A, 'power');
     await this.fx.exertWindow(k, A, 'Power Roll 전');
     // 6. power roll
-    const pool = buildPowerPool({ red: (w.weaponPower && w.weaponPower.colour === 'red' ? w.weaponPower.n * A.hits : 0) + (k.powerDie === 'red' ? 1 : 0) + A.extraPool.red, black: (w.weaponPower && w.weaponPower.colour === 'black' ? w.weaponPower.n * A.hits : 0) + (k.powerDie === 'black' ? 1 : 0) + A.extraPool.black, white: (w.weaponPower && w.weaponPower.colour === 'white' ? w.weaponPower.n * A.hits : 0) + (k.powerDie === 'white' ? 1 : 0) + A.extraPool.white, raw: (w.bonusPower && w.bonusPower.raw ? w.bonusPower.raw : 0) + A.extraPool.raw }, this.data.components.dice.limits);
+    const TIERS = ['red', 'black', 'white']; const kd = TIERS[Math.min(2, TIERS.indexOf(k.powerDie) + (A.promote || 0))]; if (A.promote) this.say(`Power Dice Promotion: Knight Power die ${k.powerDie} → ${kd}`);
+    const pool = buildPowerPool({ red: (w.weaponPower && w.weaponPower.colour === 'red' ? w.weaponPower.n * A.hits : 0) + (kd === 'red' ? 1 : 0) + A.extraPool.red, black: (w.weaponPower && w.weaponPower.colour === 'black' ? w.weaponPower.n * A.hits : 0) + (kd === 'black' ? 1 : 0) + A.extraPool.black, white: (w.weaponPower && w.weaponPower.colour === 'white' ? w.weaponPower.n * A.hits : 0) + (kd === 'white' ? 1 : 0) + A.extraPool.white, raw: (w.bonusPower && w.bonusPower.raw ? w.bonusPower.raw : 0) + A.extraPool.raw }, this.data.components.dice.limits);
     if (w.bonusPower && w.bonusPower.colour) pool[w.bonusPower.colour] += w.bonusPower.n;
     const pr = rollPowerPool(this.rng, pool, this.data.components.dice.faces);
     this.say(`Power Roll ${pr.dice.map(d => d.colour[0]).join('')} +raw${pool.raw} → ⚔${pr.power} ✦${pr.potential} 🕊${pr.hope}`, 'dice');
-    await this.fx.exertWindow(k, A, 'Power Roll 후, 재굴림 전');
+    await this.fx.exertWindow(k, A, `Power Roll 후, 재굴림 전 — ${pr.dice.map(d => d.colour[0].toUpperCase() + ':' + ('⚔'.repeat(d.face.P || 0) + '✦'.repeat(d.face.T || 0) + '🕊'.repeat(d.face.H || 0) || '—')).join(' ')}${pool.raw ? ' +⚔' + pool.raw : ''} vs AT ${this.bpAT(bp)}`);
     // power re-rolls (Heroic Arc / tokens)
     let rerolls = A.powerRerolls + this.poolCount('black');
     if (rerolls && pr.dice.length) { const face = f => `${'⚔'.repeat(f.P || 0)}${'✦'.repeat(f.T || 0)}${'🕊'.repeat(f.H || 0)}` || '—'; const picked = await this.ask({ type: 'dice', knight: k.id, text: `Power 재굴림 가능 ${rerolls}개 (Black 토큰 ${this.poolCount('black')} 포함)`, dice: pr.dice.map(d => ({ v: face(d.face), colour: d.colour, hit: !!d.face.P, canReroll: true })), max: rerolls }); if (picked && picked.length) { const fromBlack = Math.max(0, picked.length - A.powerRerolls); this.poolTake('black', fromBlack); for (const i of picked) pr.dice[i].face = this.rng.pick(this.data.components.dice.faces[pr.dice[i].colour]); this.say(`재굴림 ${picked.length} → ⚔${pr.dice.reduce((a, d) => a + (d.face.P || 0), 0) + pool.raw}`); } }
     let power = pr.dice.reduce((a, d) => a + (d.face.P || 0), 0) + pool.raw; let potential = pr.dice.reduce((a, d) => a + (d.face.T || 0), 0) + pool.potential; const hope = pr.dice.reduce((a, d) => a + (d.face.H || 0), 0);
     // potentials → power via Break / Sunder / Hope / Fire tokens
+    await this.fx.exertWindow(k, A, `✦ 변환 단계 — 현재 ⚔${power} ✦${potential} 🕊${hope}`);
     let useS = 0, useB = 0, useH = 0;
     if (potential && this.poolCount('sunder')) { useS = await this.askCount(`Sunder 토큰 사용 (✦1 → ⚔2), 보유 ${this.poolCount('sunder')}, ✦${potential}`, Math.min(potential, this.poolCount('sunder'))); power += 2 * useS; potential -= useS; this.poolTake('sunder', useS); }
-    if (potential && this.poolCount('break')) { useB = await this.askCount(`Break 토큰 사용 (✦1 → ⚔1), 보유 ${this.poolCount('break')}, ✦${potential}`, Math.min(potential, this.poolCount('break'))); power += useB; potential -= useB; this.poolTake('break', useB); }
+    // Break: mandatory — every Break token converts a ✦ while any remain (owner-confirmed 2026-11-03)
+    if (potential && this.poolCount('break')) { useB = Math.min(potential, this.poolCount('break')); power += useB; potential -= useB; this.poolTake('break', useB); this.say(`Break 토큰 ${useB}개 사용 (✦ → ⚔)`); }
     if ((potential || hope) && this.poolCount('hope')) { useH = await this.askCount(`Hope 토큰 사용 (✦/🕊 1 → ⚔1), 보유 ${this.poolCount('hope')}`, Math.min(potential + hope, this.poolCount('hope'))); power += useH; this.poolTake('hope', useH); }
-    await this.fx.exertWindow(k, A, '✦ 변환 단계');
-    if (potential && this.poolCount('sunder') && !useS) { const n = await this.askCount(`Sunder 토큰 사용 (✦1 → ⚔2), 보유 ${this.poolCount('sunder')}, ✦${potential}`, Math.min(potential, this.poolCount('sunder'))); power += 2 * n; potential -= n; this.poolTake('sunder', n); useS += n; }
-    if (potential && this.poolCount('break')) { const n = await this.askCount(`Break 토큰 사용 (✦1 → ⚔1), 보유 ${this.poolCount('break')}, ✦${potential}`, Math.min(potential, this.poolCount('break'))); power += n; potential -= n; this.poolTake('break', n); useB += n; }
-    if ((potential || hope) && this.poolCount('hope')) { const n = await this.askCount(`Hope 토큰 사용 (✦/🕊 1 → ⚔1), 보유 ${this.poolCount('hope')}`, Math.min(potential + hope - useH, this.poolCount('hope'))); power += n; this.poolTake('hope', n); useH += n; }
     // Fire: other tokens may be used first, then as many Fire tokens as possible are mandatory (p.19)
     if (potential > 0 && this.poolCount('fire')) { const n = Math.min(potential, this.poolCount('fire')); power += n; potential -= n; this.poolTake('fire', n); this.say(`Fire 토큰 ${n}개 사용 (✦ → ⚔)`); }
     power += this.poolCount('power'); this.poolTake('power', 99);
     A.totalPower = power; const at = this.bpAT(bp) - A.armorPiercing;
+    this.flash('power', { title: `${k.name} Power Roll vs AT ${at}`, dice: pr.dice.map(d => ({ colour: d.colour, face: d.face })), raw: pool.raw, sub: `Total Power ${power} → ${power >= at ? (A.critChance ? '★ Critical Wound' : 'Wound!') : 'Fail'}`, cls: power >= at ? 'good' : 'bad' });
     this.say(`Total Power ${power} vs AT ${at}${useB ? ` (Break ${useB})` : ''}${useS ? ` (Sunder ${useS})` : ''}`, 'dice');
     // 6.5 resolve
     A.wounded = power >= at; A.critical = A.wounded && A.critChance; A.overAT = power - at;

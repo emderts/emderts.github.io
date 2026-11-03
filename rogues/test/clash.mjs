@@ -101,6 +101,22 @@ const mk = (seed, level = 1) => { const c = new Clash({ data, knights: [0, 1, 2,
   ok(await run(0) === false, 'Backslash below Heat 3: no Choke'); ok(await run(3) === true, 'Backslash at Heat 3+: Choke 3 applied');
   ok(data.monsters.eggknight.traits.find(t => t.id === 'egged-on').ops[0].react === true, 'Egged On AFA carries a REACT! window'); }
 
+// --- Heroic Arc choice asked at its timing (not up front); Break tokens mandatory; REACT menu; move path preview
+{ const c = mk(11); const k = c.knights[0]; k.pos = c.board.parse('G7'); c.board.place({ kind: 'knight', id: k.id }, [k.pos]);
+  const T = n => ({ ...data.knights.fleischritter.techniques.find(t => t.name === n) }); k.hand = [T('Food Runner')];
+  const seq = []; const base = autoAsk(c); c.ask = async q => { seq.push(q.type + ':' + (q.text || '')); return base(q); };
+  c.pool = []; c.poolAdd('break', 3);
+  await c.knightAttack(k);
+  const iArc = seq.findIndex(x => x.startsWith('arcOption')), iPre = seq.findIndex(x => /Attack Roll 전/.test(x));
+  ok(iArc > iPre && iPre >= 0, `Heroic Arc L1 choice asked at its window, after the attack roll started (arc #${iArc}, pre-roll exert #${iPre})`);
+  ok(!seq.some(x => /Break 토큰 사용/.test(x)), 'Break tokens are never asked about (mandatory)'); }
+{ const c = mk(12); const k = c.knights[0]; const kr = { ...data.knights.fleischritter.techniques.find(t => t.name === 'Knight Roll') }; c.knights[1].hand = [kr]; k.hand = [{ ...kr }];
+  const seen = []; c.ask = async q => { if (/REACT!/.test(q.text || '')) seen.push(q); return q.options && q.options.some(o => o.value === 'skip') ? 'skip' : autoAsk(c)(q); };
+  await c.fx.reactions('beforeAttack', { card: { name: 'Test' }, targets: [k] }, k);
+  ok(seen.length === 1 && seen[0].options.length === c.alive().filter(x => x.hand.some(t => t.timing === 'reaction')).length + 1 && seen[0].options.length >= 3 && seen[0].options.at(-1).label === '패스', 'REACT!: one menu listing every knight\'s reaction + Pass'); }
+{ const c = mk(13); const tgt = c.knights[2]; const paths = [{ c: 1, r: 0 }, { c: 0, r: -1 }].map(d => c.simulateMonsterPath(tgt, d));
+  ok(paths.every(p => !p.length || c.board.footprintsAdjacent(p.at(-1), [tgt.pos])), 'monster path preview ends adjacent to the target'); }
+
 // --- full simulations
 const results = { win: 0, lose: 0 }; const rounds = [];
 for (let s = 100; s < 112; s++) { const c = mk(s); const r = await c.run(); results[r]++; rounds.push(c.round); if (c.log.some(l => l.kind === 'warn' && /미구현/.test(l.msg))) console.log('  warn seed', s, [...new Set(c.log.filter(l => /미구현/.test(l.msg)).map(l => l.msg))].join(' | ')); }

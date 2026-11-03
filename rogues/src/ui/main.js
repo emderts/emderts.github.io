@@ -53,7 +53,7 @@ const renderHome = () => {
 const newCampaign = () => { if (loadSaved() && !confirm('저장된 캠페인을 덮어씁니다. 계속할까요?')) return; camp = new Campaign(DATA, { seed: Math.floor(Math.random() * 1e9), knights: [0, 1, 2, 3].map(i => ({ def: 'fleischritter' })), ask: askViaSheet, ownedMonsters: null }); save(); screen = 'map'; render(); };
 const startTestClash = () => {
   const seed = +$('#seed').value || Math.floor(Math.random() * 1e9); seedInput = String(seed);
-  clash = new Clash({ data: DATA, knights: [0, 1, 2, 3].map(i => ({ def: 'fleischritter', name: 'Fleischritter ' + (i + 1) })), monster: $('#mon').value, level: +$('#lv').value, kingdom: 'principality', seed, listeners: { log: () => scheduleRender() } });
+  clash = new Clash({ data: DATA, knights: [0, 1, 2, 3].map(i => ({ def: 'fleischritter', name: 'Fleischritter ' + (i + 1) })), monster: $('#mon').value, level: +$('#lv').value, kingdom: 'principality', seed, listeners: { log: () => scheduleRender(), flash: onFlash } });
   clash.ask = askViaSheet; clash.setup(); screen = 'clash'; tab = 'log'; render();
   clash.run().then(() => { pending = null; render(); });
 };
@@ -117,7 +117,7 @@ const renderEncounter = () => {
     ));
 };
 const startCampaignClash = () => {
-  clash = camp.buildClash({ ask: askViaSheet, listeners: { log: () => scheduleRender() } }); clash.setup(); screen = 'clash'; tab = 'log'; render();
+  clash = camp.buildClash({ ask: askViaSheet, listeners: { log: () => scheduleRender(), flash: onFlash } }); clash.setup(); screen = 'clash'; tab = 'log'; render();
   clash.run().then(async () => { pending = null; render(); const res = await camp.aftermath(clash); pending = null; save(); if (res === 'replay') { startCampaignClash(); return; } screen = 'aftermath'; render(); });
 };
 const renderAftermath = () => {
@@ -161,6 +161,7 @@ const renderBoard = () => {
   const M = clash.monster; const front = new Set(), rear = new Set(rearCells(B, M.cells, M.facing).map(c => B.key(c)));
   for (let r = 0; r < B.rows; r++) for (let c = 1; c <= B.cols; c++) { const cell = { c, r }; if (inFront(B, M.cells, M.facing, cell)) front.add(B.key(cell)); }
   const selCells = pending && pending.q.type === 'move' ? pending.q.cells : [];
+  const pv = pending && pending.q.preview === 'path' ? (pending.q.options[previewSel] || pending.q.options[0]).path || [] : [];
   for (let r = 0; r < B.rows; r++) for (let c = 1; c <= B.cols; c++) {
     const cell = { c, r }; const k = B.key(cell); const sel = selCells.find(x => x.c === c && x.r === r);
     const rect = svg('rect', { x: x(c), y: y(r), width: CW, height: CW, class: 'cell' + ((c + r) % 2 ? ' alt' : '') + (rear.has(k) ? ' rear' : front.has(k) ? ' front' : '') + (sel ? ' sel' : '') });
@@ -170,6 +171,7 @@ const renderBoard = () => {
   for (let r = 0; r < B.rows; r++) s.append(svg('text', { x: PAD - 2, y: y(r) + CW * .65, class: 'coord' }, B.rowLabels[r]));
   for (let c = 1; c <= B.cols; c++) s.append(svg('text', { x: x(c) + CW / 2, y: H - 1, class: 'coord' }, c));
   for (const [key, t] of B.terrain) { const [c, r] = key.split(',').map(Number); s.append(svg('rect', { x: x(c) + 1.5, y: y(r) + 1.5, width: CW - 3, height: CW - 3, rx: 1.5, class: 'ter' })); s.append(svg('text', { x: x(c) + CW / 2, y: y(r) + CW * .68, class: 'lbl' }, t.id[0].toUpperCase())); }
+  pv.forEach((fp, i) => { const last = i === pv.length - 1; for (const c of fp) s.append(svg('rect', { x: x(c.c) + .8, y: y(c.r) + .8, width: CW - 1.6, height: CW - 1.6, rx: 1, class: last ? 'pvend' : 'pvpath' })); const cc = fp.reduce((a, c) => ({ c: a.c + c.c / fp.length, r: a.r + c.r / fp.length }), { c: 0, r: 0 }); s.append(svg('text', { x: x(cc.c) + CW / 2, y: y(cc.r) + CW * .62, class: 'pvtxt' }, String(i + 1))); });
   const mc = M.cells; const minC = Math.min(...mc.map(c => c.c)), maxC = Math.max(...mc.map(c => c.c)), minR = Math.min(...mc.map(c => c.r)), maxR = Math.max(...mc.map(c => c.r));
   s.append(svg('rect', { x: x(minC) + 1, y: y(maxR) + 1, width: (maxC - minC + 1) * CW - 2, height: (maxR - minR + 1) * CW - 2, rx: 2, class: 'mon' }));
   const cx = x(minC) + (maxC - minC + 1) * CW / 2, cy = y(maxR) + (maxR - minR + 1) * CW / 2; const d = DIRS[M.facing];
@@ -178,6 +180,27 @@ const renderBoard = () => {
   for (const k of clash.knights) { if (!k.pos || !k.alive) continue; const dead = !k.alive, kd = clash.knockedDown(k); s.append(svg('circle', { cx: x(k.pos.c) + CW / 2, cy: y(k.pos.r) + CW / 2, r: CW * .4, class: 'kn' + (dead ? ' dead' : '') + (kd ? ' kd' : '') })); s.append(svg('text', { x: x(k.pos.c) + CW / 2, y: y(k.pos.r) + CW * .68, class: 'lbl' }, k.name.replace(/\D/g, '') || k.name[0])); }
   return s;
 };
+
+
+// ---------- modal (card / trait / pile viewer) & flash overlay (ATO-style) ----------
+let modal = null; const openModal = (title, ...body) => { modal = { title, body }; render(); };
+const modalEl = () => modal ? h('div', { class: 'overlay', onclick: e => { if (e.target.classList.contains('overlay')) { modal = null; render(); } } }, h('div', { class: 'modal' }, h('button', { class: 'sm close', onclick: () => { modal = null; render(); } }, '✕'), h('h3', {}, modal.title), ...modal.body)) : null;
+const techView = t => h('div', { class: 'cardview' }, h('div', { class: 'cv-title' }, t.name), h('div', { class: 'small muted' }, `${t.unlock || ''} · 비용 ${clash ? clash.fx.costLabel(null, t) : JSON.stringify(t.cost)} · 소진 ${t.depletion}`), h('div', { class: 'cv-text' }, t.text), ...(t.gates || []).map(g => h('div', { class: 'cv-gate' }, h('b', {}, g.gate + ' '), g.text)), t.exert ? h('div', { class: 'cv-gate' }, h('b', {}, 'Exert '), `${t.exert.token === 'PowerReroll' ? 'Power Re-roll' : t.exert.token} ${t.exert.n} → ${t.exert.depletion}`) : null);
+const aiView = c => h('div', { class: 'cardview ai' }, h('div', { class: 'cv-title' }, `${c.level ? 'AI ' + c.level + ' — ' : ''}${c.name}`), h('div', { class: 'small muted' }, `${c.type || ''}${c.evasionDice ? ` · 회피 ${c.evasionDice}d ${c.evasionDifficulty}+` : ''}${c.move ? ' · Move & Attack' : ''}`), c.targeting ? h('div', { class: 'cv-text' }, h('b', {}, 'Targeting: '), c.targeting.join(' / ')) : null, ...(c.gates || []).map(g => h('div', { class: 'cv-gate' }, `${g.stat} ${g.gte}+ ▸ ${g.effect}`)), (c.keywordsBeforeAttack || []).length ? h('div', { class: 'cv-text' }, c.keywordsBeforeAttack.join(' ')) : null, ...(c.effects || (c.text ? [c.text] : [])).map(e => h('div', { class: 'cv-text' }, e)), c.afterAttack ? h('div', { class: 'cv-text' }, 'After Attack: ' + c.afterAttack) : null, c.afterFinalAttack ? h('div', { class: 'cv-text' }, 'After Final Attack: ' + c.afterFinalAttack) : null);
+const bpView = c => h('div', { class: 'cardview bp' }, h('div', { class: 'cv-title' }, `BP ${c.level} — ${c.name}`), h('div', { class: 'small muted' }, `AT ${c.at}${clash ? ` (현재 ${clash.bpAT(c)})` : ''} · Overcome ${c.overcome ? c.overcome.n + '+: ' + c.overcome.effect : '-'}`), ...['wound', 'fail', 'instinct', 'critical'].filter(r => c.responses && c.responses[r]).map(r => h('div', { class: 'cv-text' }, h('b', {}, r.toUpperCase() + ': '), c.responses[r])));
+const anyView = x => x.at != null && x.responses ? bpView(x) : x.targeting || x.evasionDice ? aiView(x) : h('div', { class: 'cardview' }, h('div', { class: 'cv-title' }, x.name), h('div', { class: 'cv-text' }, x.text || ''));
+const pileBtn = (label, cards, view = anyView) => h('button', { class: 'sm link', onclick: () => openModal(`${label} (${cards.length})`, cards.length ? h('div', {}, cards.map(view)) : h('div', { class: 'muted' }, '비어 있음')) }, `${label} ${cards.length}`);
+let flashOn = true; try { flashOn = localStorage.getItem('kf.flash') !== '0'; } catch (e) { }
+const flashQ = []; let flashBusy = false;
+const PFACE = f => ('⚔'.repeat(f.P || 0) + '✦'.repeat(f.T || 0) + '🕊'.repeat(f.H || 0)) || '—';
+const flashNode = (kind, d) => { const box = h('div', { class: 'fcard ' + (d.cls || '') }, h('div', { class: 'ft' }, d.title || ''));
+  if (kind === 'dice') box.append(h('div', { class: 'fdice' }, d.dice.map(x => h('div', { class: 'die ' + (x.ok ? 'hit' : 'miss') + (x.crit ? ' crit' : '') }, String(x.v)))));
+  else if (kind === 'power') box.append(h('div', { class: 'fdice' }, d.dice.map(x => h('div', { class: 'pdie ' + x.colour[0] }, PFACE(x.face))), d.raw ? h('div', { class: 'pdie m' }, '+⚔' + d.raw) : null));
+  else if (kind === 'card') { box.append(h('div', { class: 'fname' }, d.name || '')); if (d.text) box.append(h('div', { class: 'ftext' }, d.text)); }
+  if (d.sub) box.append(h('div', { class: 'fs' }, d.sub)); return box; };
+const flashNext = () => { const el = $('#flash'); if (!el) return; if (!flashQ.length) { flashBusy = false; return; } flashBusy = true; const { kind, d } = flashQ.shift(); const node = flashNode(kind, d); let dur = kind === 'card' ? 2400 : 1600; if (flashQ.length) dur = Math.max(700, Math.round(dur / (1 + flashQ.length * 0.6))); node.style.setProperty('--fdur', dur + 'ms'); el.replaceChildren(node); let done = false; const fin = () => { if (done) return; done = true; node.remove(); flashNext(); }; node.addEventListener('click', fin); setTimeout(fin, dur + 350); };
+const onFlash = (kind, d) => { if (!flashOn) return; if (flashQ.length >= 6) flashQ.shift(); flashQ.push({ kind, d }); if (!flashBusy) flashNext(); };
+const poolChips = pool => { const g = new Map(); for (const t of pool) g.set(t.token, (g.get(t.token) || 0) + 1); return [...g].map(([t, n]) => h('span', { class: 'chip' }, `${t[0].toUpperCase() + t.slice(1)} ${n}`)); };
 
 // ---------- clash panes ----------
 const track = (cls, n, max, lim) => h('div', { class: 'track ' + cls }, Array.from({ length: max + 1 }, (_, i) => h('i', { class: (i <= n && i > 0 ? 'on' : '') + (lim != null && i === lim ? ' lim' : '') })));
@@ -190,26 +213,29 @@ const knightBox = k => { const active = pending && pending.q.knight === k.id;
     h('div', { class: 'small' }, k.conditions.map(c => h('span', { class: 'tag cond' }, c.id + (c.tokens ? ' ×' + c.tokens : ''))), k.gear.map(g => h('span', { class: 'tag', style: g.exhausted ? 'opacity:.5;text-decoration:line-through' : '', title: ((g.traits || []).join(', ') + '\n' + (g.text || '')).trim() }, g.name))),
     h('details', { open: openDetails.has(k.id) ? '' : null, ontoggle: e => { if (e.target.open) openDetails.add(k.id); else openDetails.delete(k.id); } },
       h('summary', { class: 'small muted' }, `손패 ${k.hand.length} · CD ${k.cooldown.length} / DL ${k.delay.length} / DC ${k.discard.length} · Bane ${k.bane}/${k.baneLimit}`),
-      h('div', { class: 'small muted' }, k.hand.map(t => t.name + (t.exert ? ` [Exert ${t.exert.token === 'PowerReroll' ? 'PR' : t.exert.token}]` : '')).join(', ') || '—'),
+      h('div', { class: 'small' }, k.hand.length ? k.hand.map(t => h('span', { class: 'tag link', onclick: () => openModal(`${k.name} — 손패`, techView(t)) }, t.name + (t.exert ? ` [${t.exert.token === 'PowerReroll' ? 'PR' : t.exert.token}]` : ''))) : '—'),
+      h('div', { class: 'small' }, pileBtn('Cooldown', k.cooldown, techView), ' ', pileBtn('Delay', k.delay, techView), ' ', pileBtn('Discard', k.discard, techView)),
       k.heroicArc ? h('div', { class: 'small muted' }, `Arc ${k.heroicArc.name}: ` + k.heroicArc.levels.map(l => `L${l.level}${l.level <= k.passion ? '✓' : ''}`).join(' ')) : null,
       h('div', { class: 'small muted' }, k.gear.map(g => `${g.name}${g.traits && g.traits.length ? ' (' + g.traits.join(', ') + ')' : ''}`).join(' · '))));
 };
 const mercPane = () => { if (!clash.hired || !clash.hired.length) return null; return h('div', {}, h('h3', { style: 'margin:8px 0 4px' }, '용병 (수동 발동)'), clash.hired.map(m => { const md = DATA.decks.mercenaries.mercenaries.find(x => x.class === m.class && x.level === m.level); const side = m.side === 'A' ? md.sideA : md.sideB; return h('div', { class: 'kbox' }, h('b', {}, `${m.class} L${m.level ?? '-'} — ${m.side}면`), h('div', { class: 'small' }, side.clash), m.side === 'X' ? h('span', { class: 'small muted' }, '사용 완료') : h('button', { class: 'sm', onclick: () => { clash.say(`용병 ${m.class} ${m.side}면 능력 사용: ${side.clash}`, 'tech'); m.side = m.side === 'A' ? 'B' : 'X'; render(); } }, m.side === 'A' ? '사용 → 뒤집기' : '사용 → 버리기')); })); };
-const monsterPane = () => { const M = clash.monster; return h('div', {},
+const monsterPane = () => { const M = clash.monster; const curAI = clash.currentAttack ? clash.currentAttack.card : clash.lastAI; const curBP = clash.currentKnightAttack && clash.currentKnightAttack.bp ? clash.currentKnightAttack.bp : clash.lastBP;
+  return h('div', {},
   h('div', {}, h('b', {}, `${M.name} Lv${M.level}`), ` · To Hit ${M.toHit + M.modifiers.toHit}+ · 방향 ${M.facing}`),
-  h('div', {}, `Wound Stack ${M.wounds} / ${M.woundsToKill}`), track('v', M.wounds, M.woundsToKill),
-  h('div', { class: 'small' }, `AI 덱 ${M.ai.size} (버림 ${M.ai.discard.length}) · BP 덱 ${M.bp.size} (버림 ${M.bp.discard.length}) · Esc AI2 ${M.aiEsc[2].size} AI3 ${M.aiEsc[3].size} · BP2 ${M.bpEsc[2].size} BP3 ${M.bpEsc[3].size}`),
+  h('div', {}, h('span', { class: 'link', onclick: () => openModal(`Wound Stack ${M.wounds}/${M.woundsToKill}`, M.woundStack.length ? h('div', {}, M.woundStack.map(w => w.card ? bpView(w.card) : h('div', { class: 'cardview' }, `Generic ${w.generic} Wound (${w.wounds})`))) : h('div', { class: 'muted' }, '비어 있음')) }, `Wound Stack ${M.wounds} / ${M.woundsToKill} ▸`)), track('v', M.wounds, M.woundsToKill),
+  h('div', { class: 'cards2' }, h('div', {}, h('div', { class: 'small muted' }, clash.currentAttack ? '현재 AI' : '최근 AI'), curAI ? h('div', { class: 'link', onclick: () => openModal('AI 카드', aiView(curAI)) }, aiView(curAI)) : h('div', { class: 'small muted' }, '—')), h('div', {}, h('div', { class: 'small muted' }, clash.currentKnightAttack && clash.currentKnightAttack.bp ? '현재 BP' : '최근 BP'), curBP ? h('div', { class: 'link', onclick: () => openModal('BP 카드', bpView(curBP)) }, bpView(curBP)) : h('div', { class: 'small muted' }, '—'))),
+  h('div', { class: 'small row', style: 'margin:4px 0' }, `AI 덱 ${M.ai.size}`, pileBtn('AI 버림', M.ai.discard, aiView), `BP 덱 ${M.bp.size}`, pileBtn('BP 버림', M.bp.discard, bpView), h('span', { class: 'muted' }, `Esc AI2 ${M.aiEsc[2].size} AI3 ${M.aiEsc[3].size} · BP2 ${M.bpEsc[2].size} BP3 ${M.bpEsc[3].size}`)),
   h('div', { class: 'small' }, `AT 보너스 +${M.bonuses.at + M.modifiers.at} · Armor 토큰 BP1 ${clash.armorTokens[1]} / BP2 ${clash.armorTokens[2]} / BP3 ${clash.armorTokens[3]}${M.hasTrait('Jacked') ? ' · Jacked ' + clash.jackedTokens : ''} · Counter ${M.generic.counter || 0}/3`),
-  h('div', {}, [...M.traits].map(t => { const td = clash.monsterDef.traits.find(x => x.name === t); return h('span', { class: 'tag' + (M.disabledTraits.has(t) ? ' muted' : ''), title: td ? td.text : '' }, t); })),
-  h('div', { class: 'small' }, h('b', {}, 'Knight Pool: '), clash.pool.length ? clash.pool.map(t => h('span', { class: 'chip' }, t.token)) : '비어 있음'),
+  h('div', {}, [...M.traits].map(t => { const td = clash.monsterDef.traits.find(x => x.name === t); return h('span', { class: 'tag link' + (M.disabledTraits.has(t) ? ' muted' : ''), onclick: () => openModal(`Trait — ${t}`, h('div', { class: 'cardview' }, h('div', { class: 'cv-title' }, t + (td && td.level ? ` (Lv${td.level})` : '')), h('div', { class: 'cv-text' }, td ? td.text : '설명 없음'), M.disabledTraits.has(t) ? h('div', { class: 'warn small' }, '비활성') : null)) }, t); })),
+  h('div', { class: 'small' }, h('b', {}, 'Knight Pool: '), clash.pool.length ? poolChips(clash.pool) : '비어 있음'),
   h('div', { class: 'small muted' }, `Judicium 덱: ${[...clash.judiciumBase, ...clash.judiciumExtra].map(c => c.name).join(', ')}`),
   mercPane(),
 ); };
-const logPane = () => { const el = h('div', { class: 'log' }, clash.log.slice(-200).map(l => h('div', { class: l.kind }, l.msg))); setTimeout(() => { el.scrollTop = el.scrollHeight; }, 0); return el; };
+const logPane = () => h('div', { class: 'log' }, clash.log.slice(-300).map(l => h('div', { class: l.kind }, l.msg)));
 
 // ---------- bottom sheet (ask) ----------
 const answer = v => { const p = pending; pending = null; p.res(v); render(); };
-let diceSel = new Set(); let orderSel = [];
+let diceSel = new Set(); let orderSel = []; let previewSel = 0;
 const sheet = () => {
   if (!pending) return null; const q = pending.q;
   const title = { action: '행동 선택', move: '이동할 칸을 보드에서 탭하세요', dice: '재굴림할 주사위 선택', confirm: '확인', pickKnight: '기사 선택', weapon: '무기 선택', pick: '선택', heartseeker: 'Heartseeker — BP 선택', arcOption: 'Heroic Arc 옵션', number: '개수 선택', order: '순서 선택' }[q.type] || q.type;
@@ -225,6 +251,10 @@ const sheet = () => {
     h('div', { class: 'small muted' }, '순서대로 탭: ', orderSel.map(v => opts.find(o => o.value === v).label).join(' → ') || '—'),
     h('div', { class: 'opts' }, opts.filter(o => !orderSel.includes(o.value)).map(o => h('button', { onclick: () => { orderSel.push(o.value); if (orderSel.length === opts.length) { const v = orderSel; orderSel = []; answer(v); } else render(); } }, o.label))),
     h('div', { class: 'row' }, h('button', { class: 'sm', onclick: () => { orderSel = []; render(); } }, '초기화')));
+  if (q.preview === 'path') return h('div', { class: 'sheet' },
+    h('div', { class: 'q' }, title), q.text ? h('div', { class: 'small', style: 'margin-bottom:8px' }, q.text) : null,
+    h('div', { class: 'opts' }, opts.map((o, i) => h('button', { class: 'tog' + (i === previewSel ? ' on' : ''), onclick: () => { previewSel = i; render(); } }, `${o.label} (${(o.path || []).length}칸)`))),
+    h('div', { class: 'row' }, h('button', { class: 'primary', onclick: () => { const v = opts[previewSel] ? opts[previewSel].value : opts[0].value; previewSel = 0; answer(v); } }, '이 경로로 확정')));
   const numeric = q.type === 'number';
   return h('div', { class: 'sheet' },
     h('div', { class: 'q' }, who ? `${who.name} — ` : '', title),
@@ -237,13 +267,17 @@ const sheet = () => {
 // ---------- clash screen (ATO-style: board + monster left, prompt + knights + log right; stacks on phones) ----------
 const renderClash = () => {
   const done = clash.result;
-  const header = h('div', { class: 'row bhead' }, h('b', { style: 'color:var(--gold)' }, `${clash.monster.name} Lv${clash.monster.level}`), h('span', { class: 'small muted' }, `라운드 ${clash.round} · 시드 ${clash.rng.seed}`), done ? h('span', { class: done === 'win' ? 'good' : 'err' }, done === 'win' ? ' 승리!' : ' 패배') : null, h('span', { style: 'flex:1' }), camp ? null : h('button', { class: 'sm', onclick: () => { screen = 'home'; clash = null; pending = null; render(); } }, done ? '처음으로' : '중단'));
+  const header = h('div', { class: 'row bhead' }, h('b', { style: 'color:var(--gold)' }, `${clash.monster.name} Lv${clash.monster.level}`), h('span', { class: 'small muted' }, `라운드 ${clash.round} · 시드 ${clash.rng.seed}`), done ? h('span', { class: done === 'win' ? 'good' : 'err' }, done === 'win' ? ' 승리!' : ' 패배') : null, h('span', { style: 'flex:1' }), h('label', { class: 'small muted', title: '주사위·카드 결과를 화면 가운데에 잠깐 표시' }, h('input', { type: 'checkbox', checked: flashOn ? '' : null, style: 'min-height:auto', onchange: e => { flashOn = e.target.checked; try { localStorage.setItem('kf.flash', flashOn ? '1' : '0'); } catch (er) { } } }), ' 결과 팝업'), camp ? null : h('button', { class: 'sm', onclick: () => { screen = 'home'; clash = null; pending = null; render(); } }, done ? '처음으로' : '중단'));
   const prompt = pending ? sheet() : h('div', { class: 'sheet idle' }, h('span', { class: 'small muted' }, done ? 'Clash 종료' : '진행 중…'));
   document.body.classList.add('wide');
+  const keep = id => { const e = document.getElementById(id); return e ? { top: e.scrollTop, bottom: e.scrollHeight - e.scrollTop - e.clientHeight < 40 } : null; };
+  const was = { lpane: keep('lpane'), mpane: keep('mpane'), kpane: keep('kpane') };
   app.replaceChildren(h('div', { class: 'battle' },
     h('div', { class: 'bleft' }, header, h('div', { id: 'board' }, renderBoard()), h('div', { id: 'mpane', class: 'pane' }, monsterPane())),
     h('div', { class: 'bright' }, prompt, h('div', { id: 'kpane', class: 'kstat' }, clash.knights.map(knightBox)), h('div', { id: 'lpane', class: 'pane' }, logPane())),
-  ));
+  ), modalEl());
+  const lp = document.getElementById('lpane'); if (lp) lp.scrollTop = !was.lpane || was.lpane.bottom ? lp.scrollHeight : was.lpane.top; // log sticks to the bottom unless the reader scrolled up
+  for (const id of ['mpane', 'kpane']) { const e = document.getElementById(id); if (e && was[id]) e.scrollTop = was[id].top; }
 };
 const render = () => {
   if (!(screen === 'clash' && clash)) document.body.classList.remove('wide');

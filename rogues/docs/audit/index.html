@@ -2,7 +2,7 @@
 <style>body{margin:0;padding:16px;font:14px/1.5 system-ui,sans-serif;background:#1a1714;color:#e8dcc8;max-width:1400px}h1{color:#c9a85a;font-size:22px}h2{color:#c9a85a;margin-top:28px;border-bottom:1px solid #3a3128}h3{color:#d9c89a;margin:16px 0 6px}
 table{border-collapse:collapse;width:100%;font-size:13px}td,th{border:1px solid #3a3128;padding:4px 6px;vertical-align:top;text-align:left}th{background:#26211b}code{background:#2a241d;padding:1px 5px;border-radius:4px;color:#f0d9a0}
 .impl{background:#26211b;padding:8px 10px;border-left:3px solid #c9a85a;border-radius:4px}.small{font-size:12px;color:#998b76}.warn{color:#d9a441}details summary{cursor:pointer;color:#c9a85a}table.rw td{min-width:120px}nav a{color:#c9a85a;margin-right:12px}</style></head><body>
-<h1>Kingdoms Forlorn — Rogue's Path: 데이터·규칙 오딧</h1><p class="small">v0.4.10 · 생성 2026-11-02 15:04 UTC · 각 섹션: 전사 데이터 ↔ 엔진 구현 ↔ 테스트. 전사 불확실 항목은 노란색.</p>
+<h1>Kingdoms Forlorn — Rogue's Path: 데이터·규칙 오딧</h1><p class="small">v0.5.1 · 생성 2026-11-03 03:56 UTC · 각 섹션: 전사 데이터 ↔ 엔진 구현 ↔ 테스트. 전사 불확실 항목은 노란색.</p>
 <nav><a href="#monsters">몬스터 표</a><a href="#map">Rosegraal 지도</a><a href="#rewards">Rewards</a><a href="#components">구성물</a><a href="#fleischritter">Fleischritter</a><a href="#gear">Gear</a><a href="#eggknight">Eggknight</a><a href="#decks">Mortis·Condition·Terrain·Outpost</a><a href="#engine">엔진 대응</a><a href="#shop">상점·용병·Loot</a><a href="#campaign">캠페인</a></nav>
 <section id="monsters"><h2>1. 노드 → 몬스터 표 (룰북 p.77)</h2>
 <p class="impl">구현: <code>src/engine/rosegraal.js · rollMonster()</code> — d10, 미보유(★ optional) 몬스터면 재굴림 · 테스트: <code>test/rosegraal.mjs</code> (각 레벨/왕국 1–10 커버리지, 재굴림, 보유 몬스터 없음 예외)</p>
@@ -144,6 +144,10 @@ When you are about to be involuntarily moved from this tile, suffer Crash and ig
 <tr><td>p.64 Conditions</td><td><code>addCondition, conditions ops</code></td><td>두 번째 획득 시 뒤집기/사망(카드 데이터), Knockdown 양면, Distracted/Panicked 손패 제한, Choked(Choke Limit, 행동 소모로 -3), Exposed, Courage(Auto-break), Panzer Parasite(5개 사망), Poisoned(턴 종료 피해)</td></tr>
 <tr><td>p.56/80 Pushback / Knockback / Crash / Displace</td><td><code>pushback, crash, displace</code></td><td>직선, 가장자리 미끄러짐, 장애물 Crash(+파괴), Chasm 사망, Braced 무시, Unavoidable Knockback 5</td></tr>
 <tr><td>Eggknight Traits</td><td><code>humptyCharge, loseArmorToken, afterAction</code></td><td>Humpty Charge(공격자 방향 6칸 돌진, Crash/Judicium, 장애물·가장자리 정지 + Armor 토큰 -1 → Grave 좌표에 Column), Humpty Fate/Hardboiled, Counter(3→Signature), Panzeronion(AT+토큰), Jacked, Just a Scratch, Coup de Grace <span class="warn">[미구현: Coup de Grace 사망 치환]</span>, Impenetrable Shell</td></tr>
+<tr><td>p.22 Heroic Arc 선택 시점</td><td><code>effects.arcAt</code></td><td>두 옵션 중 선택은 공격 시작 때 미리 정하지 않고, 어느 한쪽 옵션이 작동하는 가장 이른 단계(roll / 1차 창 / BP / Power / Wound / 2차 창)에서 물음. 남은 레벨은 2차 창에서 강제 적용(골든 룰) — 사용자 요청 2026-11-03. Power Dice Promotion·Precision(+행) 반영</td></tr>
+<tr><td>p.19 Break 토큰</td><td><code>knightAttack</code></td><td>선택이 아니라 강제: 남은 ✦마다 Break 토큰 자동 사용(사용자 확인 2026-11-03). Sunder·Hope는 선택 유지 [확인 필요]</td></tr>
+<tr><td>p.54 REACT!</td><td><code>effects.reactions</code></td><td>가능한 모든 기사의 리액션을 한 목록으로 제시 + 패스, 기사 누구나 사용(확정)</td></tr>
+<tr><td>p.50 몬스터 이동 경로</td><td><code>simulateMonsterPath</code></td><td>시작 방향 선택 시 각 방향의 지그재그 경로를 보드에 미리보기 후 확정</td></tr>
 <tr><td>미구현 / 수동</td><td>—</td><td>Meat Puppet, Curse Save(Curse Level 0 가정), Squire 라인, Mercenary 효과(수동 사용 탭), Coup de Grace</td></tr>
 </table></section>
 <section id="shop"><h2>10. Merchant Gear · Mercenaries · Loot</h2>

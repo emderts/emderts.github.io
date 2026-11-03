@@ -31,23 +31,46 @@ export class Effects {
   arcLevels(k) { return k.heroicArc.levels.filter(l => l.level <= k.passion + (this.c.poolCount('rouse') ? 1 : 0)); }
   arcPlus(k) { return k.heroicArc.plus ? k.heroicArc.plus.ops || [] : []; }
   tokensOf(opt, timing) { return opt.filter(t => (timing === 'first' ? ['Pushback', 'Vault', 'Hug', 'Reposition', 'Drag', 'Daze', 'Provoke', 'Tireless', 'Deadly', 'Heartseeker', 'Envenomed'].includes(t.token) : timing === 'power' ? ['PowerReroll', 'PowerDieRed', 'PowerDieBlack', 'PowerDieWhite', 'PowerDicePromotion'].includes(t.token) : ['Break', 'Opening', 'Closing', 'Hope', 'Fire', 'Black', 'Sunder', 'Rouse', 'Power', 'Diversion', 'Fleisch', 'BPSuppress', 'AISuppress'].includes(t.token))); }
+  /** Heroic Arc timing of each icon. A level's choice (when it offers two options) is asked at the earliest step where either option
+   *  would act, not up front; whatever is still open is resolved at the second window (golden rule, p.22). */
+  arcStage(token) { return ({ Precision: 'roll', Deadly: 'roll', AutoHope: 'roll', AutoBlack: 'roll', Pushback: 'first', Vault: 'first', Hug: 'first', Reposition: 'first', Drag: 'first', Daze: 'first', Provoke: 'first', Heartseeker: 'bp', PowerReroll: 'power', PowerDieRed: 'power', PowerDieBlack: 'power', PowerDieWhite: 'power', PowerDicePromotion: 'power', Tireless: 'power', Envenomed: 'wound' })[token] || 'second'; }
+  async arcAt(k, A, stage) {
+    const ORDER = ['roll', 'first', 'bp', 'power', 'wound', 'second']; const si = ORDER.indexOf(stage);
+    A.arcChoice = A.arcChoice || {}; A.arcApplied = A.arcApplied || new Set();
+    const out = [];
+    if (k.heroicArc) {
+      for (const L of this.arcLevels(k)) {
+        if (!(L.level in A.arcChoice)) {
+          const earliest = Math.min(...L.options.flat().map(t => ORDER.indexOf(this.arcStage(t.token))));
+          if (earliest > si && stage !== 'second') continue;
+          let opt = L.options[0];
+          if (L.options.length > 1) { const v = await this.c.ask({ type: 'arcOption', knight: k.id, level: L.level, text: `Heroic Arc ${k.heroicArc.name} L${L.level} — 지금 사용할 옵션 선택`, options: L.options.map((o, i) => ({ label: o.map(t => t.token + (t.n != null ? ' ' + t.n : '')).join(' + '), value: i })) }); opt = L.options[v] || opt; }
+          A.arcChoice[L.level] = opt; this.say(`Heroic Arc L${L.level}: ${opt.map(t => t.token + (t.n != null ? ' ' + t.n : '')).join(' + ')}`);
+        }
+        A.arcChoice[L.level].forEach((t, i) => { const id = `L${L.level}:${i}`; if (this.arcStage(t.token) === stage && !A.arcApplied.has(id)) { A.arcApplied.add(id); out.push(t); } });
+      }
+      this.arcPlus(k).forEach((o, i) => { const id = `P:${i}`; if (this.arcStage(o.token) === stage && !A.arcApplied.has(id)) { A.arcApplied.add(id); out.push({ token: o.token, n: o.n }); } });
+    }
+    for (const t of out) { const n = t.n || 1;
+      if (t.token === 'PowerReroll') A.powerRerolls += n; else if (t.token === 'PowerDieRed') A.extraPool.red += n; else if (t.token === 'PowerDieBlack') A.extraPool.black += n; else if (t.token === 'PowerDieWhite') A.extraPool.white += n; else if (t.token === 'PowerDicePromotion') A.promote = (A.promote || 0) + 1;
+      else if (t.token === 'Deadly') A.flags.add('deadly'); else if (t.token === 'Heartseeker') A.flags.add('heartseeker'); else if (t.token === 'Tireless') A.flags.add('tireless'); else if (t.token === 'Envenomed') A.envenomed = (A.envenomed || 0) + n; else if (t.token === 'Precision') A.extraPrecision = (A.extraPrecision || 0) + n;
+      else if (t.token === 'AutoHope') this.c.poolAdd('hope', n); else if (t.token === 'AutoBlack') this.c.poolAdd('black', n);
+      else if (stage === 'second') { const key = TOKEN_KEY[t.token]; if (key === 'fleisch') this.c.poolAdd('fleisch', n, { resource: true }); else if (key) this.c.poolAdd(key, n); else if (t.token === 'BPSuppress') { this.c.monster.bp.cards.push(...this.c.monster.bp.discard); this.c.monster.bp.discard = []; this.c.monster.bp.shuffle(); this.say('BP Suppress'); } else if (t.token === 'AISuppress') { this.c.monster.ai.cards.push(...this.c.monster.ai.discard); this.c.monster.ai.discard = []; this.c.monster.ai.shuffle(); this.say('AI Suppress'); } }
+    }
+    return out;
+  }
   async beforeAttack(k, A) {
-    A.flags = new Set(); A.arcChoice = {};
+    A.flags = new Set(); A.arcChoice = {}; A.arcApplied = new Set();
     // Talent: Meat Provisions
     if (k.talent && k.talent.abilities.some(a => a.ops && a.ops.some(o => o.op === 'onAttackDeclare'))) { if (!this.c.poolCount('opening') && !this.c.poolCount('break')) { this.c.poolAdd('opening', 1); this.c.poolAdd('break', 1); this.say('Meat Provisions'); } }
-    // Heroic Arc: choose one option per level (ask when two)
-    for (const L of this.arcLevels(k)) { let opt = L.options[0]; if (L.options.length > 1) { const v = await this.c.ask({ type: 'arcOption', knight: k.id, level: L.level, options: L.options.map((o, i) => ({ label: `L${L.level}: ${o.map(t => t.token + (t.n != null ? ' ' + t.n : '')).join(' + ')}`, value: i })) }); opt = L.options[v]; } A.arcChoice[L.level] = opt; }
-    // plus row + power-timing tokens
-    const allTok = [...this.arcPlus(k).map(o => ({ token: o.token, n: o.n })), ...Object.values(A.arcChoice).flat()];
-    for (const t of allTok) { if (t.token === 'PowerReroll') A.powerRerolls += t.n || 1; if (t.token === 'PowerDieRed') A.extraPool.red += t.n || 1; if (t.token === 'PowerDieBlack') A.extraPool.black += t.n || 1; if (t.token === 'PowerDieWhite') A.extraPool.white += t.n || 1; if (t.token === 'Deadly') A.flags.add('deadly'); if (t.token === 'Heartseeker') A.flags.add('heartseeker'); if (t.token === 'Tireless') A.flags.add('tireless'); if (t.token === 'Envenomed') A.envenomed = (A.envenomed || 0) + (t.n || 1); if (t.token === 'Precision') A.extraPrecision = (A.extraPrecision || 0) + (t.n || 1); if (t.token === 'ArmorReroll') { /* defensive */ } if (t.token === 'AutoHope') { this.c.poolAdd('hope', t.n || 1); } if (t.token === 'AutoBlack') this.c.poolAdd('black', t.n || 1); }
+    await this.arcAt(k, A, 'roll');
     // Courage: Auto-break 1
     if (this.c.hasCondition(k, 'Courage')) this.c.poolAdd('break', 1);
     // pre-attack techniques (Prized Morsel, Butcher's Twine) are used as free actions before attacking; flags set there
     if (k.pendingAttackFlags) { for (const f of k.pendingAttackFlags) A.flags.add(f); if (k.pendingExtraPool) for (const col in k.pendingExtraPool) A.extraPool[col] += k.pendingExtraPool[col]; k.pendingAttackFlags = null; k.pendingExtraPool = null; }
-    // weapon keywords with first-window timing are offered in firstWindow
   }
   async firstWindow(k, A) {
-    const first = Object.values(A.arcChoice).flat().filter(t => ['Pushback', 'Vault', 'Hug', 'Reposition', 'Drag', 'Daze', 'Provoke'].includes(t.token)).map((t, i) => ({ ...t, id: i }));
+    const first = (await this.arcAt(k, A, 'first')).map((t, i) => ({ ...t, id: i }));
     const avail = [...first];
     while (avail.length) {
       const pick = await this.c.ask({ type: 'pick', knight: k.id, text: '1차 능력 창 — 사용할 능력과 순서를 선택 (끝내려면 "넘어가기")', options: [...avail.map(t => ({ label: `${t.token}${t.n ? ' ' + t.n : ''}`, value: t.id })), { label: '넘어가기', value: 'skip' }] });
@@ -65,15 +88,14 @@ export class Effects {
     const ap = A.weapon.ops && A.weapon.ops.gates ? A.weapon.ops.gates.filter(g => g.when === 'GRAVE' && this.perilGateOk(k, 'GRAVE')).flatMap(g => g.ops).filter(o => o.op === 'armorPiercing') : []; for (const o of ap) { A.armorPiercing += o.n; this.say(`Armor-piercing ${o.n}`); }
   }
   async secondWindow(k, A) {
-    // Heroic Arc tokens (mandatory, 1 option per level) + weapon keywords (Break X etc.)
-    const toks = Object.values(A.arcChoice || {}).flat();
-    for (const t of toks) { const key = TOKEN_KEY[t.token]; if (key === 'fleisch') { this.c.poolAdd('fleisch', t.n || 1, { resource: true }); } else if (key) this.c.poolAdd(key, t.n || 1); else if (t.token === 'BPSuppress') { this.c.monster.bp.cards.push(...this.c.monster.bp.discard); this.c.monster.bp.discard = []; this.c.monster.bp.shuffle(); this.say('BP Suppress'); } else if (t.token === 'AISuppress') { this.c.monster.ai.cards.push(...this.c.monster.ai.discard); this.c.monster.ai.discard = []; this.c.monster.ai.shuffle(); this.say('AI Suppress'); } }
+    // Heroic Arc: everything still open is chosen/applied now (golden rule) + weapon keywords (Break X etc.)
+    await this.arcAt(k, A, 'second');
     if (A.weapon.ops && A.weapon.ops.keywords) for (const o of A.weapon.ops.keywords) { if (o.op === 'break') this.c.poolAdd('break', o.n); if (o.op === 'opening') this.c.poolAdd('opening', o.n); }
     // Hangry technique
     if (A.flags && A.flags.has('hangry')) { const n = Math.floor(Math.max(0, A.overAT || 0) / 3); if (n) this.c.poolAdd('power', n); }
     if (A.leaveTokens) { for (const [tok, n] of A.leaveTokens) this.c.poolAdd(tok, n); }
   }
-  async onWound(k, A) { if (A.envenomed) { const extra = Math.min(A.envenomed, Math.max(0, A.overAT)); this.c.poolAdd('break', A.envenomed + extra); this.say(`Envenomed ${A.envenomed}`); } if (this.c.hasCondition(k, 'Courage')) { /* stays */ } }
+  async onWound(k, A) { await this.arcAt(k, A, 'wound'); if (A.envenomed) { const extra = Math.min(A.envenomed, Math.max(0, A.overAT)); this.c.poolAdd('break', A.envenomed + extra); this.say(`Envenomed ${A.envenomed}`); } if (this.c.hasCondition(k, 'Courage')) { /* stays */ } }
   async onFullMiss(k, A) { if (this.c.hasCondition(k, 'Courage')) this.c.removeCondition(k, 'Courage'); }
   async onFullHit(k, A) { }
   /** Gear gate "treat each [Potential] rolled as 2" with a Discard cost (Great Antler Helm, JUDICIUM gate): optional, discards the card. */
@@ -134,7 +156,16 @@ export class Effects {
   }
   async endOfTurn(k) { const p = this.c.hasCondition(k, 'Poisoned'); if (p && p.tokens) { const before = k.vigor; k.vigor = Math.max(1, k.vigor - p.tokens); this.say(`${k.name} Poisoned: Vigor -${before - k.vigor}`); } k.braced = false; }
   async endOfKnightRound(k) { }
-  async reactions(when, attack, target) { /* Knight Roll (Reflex) as reaction: offered to the target before the attack */ if (when !== 'beforeAttack' && when !== 'react') return; for (const k of this.c.alive()) { for (const t of k.hand.filter(t => t.timing === 'reaction' && this.canPay(k, t.cost))) { if (await this.c.yesNo(`${k.name}: ${t.name} (${this.costLabel(k, t)}) 사용? (Reflex: 1칸 이동)`, false)) { this.pay(k, t.cost); const n = this.activeOps(k, t)[0].n || 1; const cells = this.c.reachable(k, n); if (cells.length) { const dest = await this.c.ask({ type: 'move', knight: k.id, cells, options: cells.map(c => ({ label: this.c.board.label(c), value: c })) }); if (dest) this.c.moveKnight(k, dest); } this.deplete(k, t); } } } }
+  async reactions(when, attack, target) { /* REACT! window: every knight may react (owner-confirmed). One menu with every available reaction + Pass. */
+    if (when !== 'beforeAttack' && when !== 'react') return; const used = new Set();
+    for (;;) {
+      const cands = []; for (const k of this.c.alive()) for (const t of k.hand) if (t.timing === 'reaction' && !used.has(t) && this.canPay(k, t.cost)) cands.push({ k, t });
+      if (!cands.length) return;
+      const pick = await this.c.ask({ type: 'pick', text: `REACT! — 사용할 리액션 선택 (${attack && attack.card ? attack.card.name : ''})`, options: [...cands.map((c, i) => ({ label: `${c.k.name}: ${c.t.name} (${this.costLabel(c.k, c.t)}) — ${c.t.text}`, value: i })), { label: '패스', value: 'skip' }] });
+      if (pick == null || pick === 'skip') return; const c = cands[pick]; if (!c) return; used.add(c.t);
+      const { k, t } = c; this.pay(k, t.cost); this.say(`${k.name} REACT: ${t.name}`, 'tech'); const n = this.activeOps(k, t)[0].n || 1; const cells = this.c.reachable(k, n); if (cells.length) { const dest = await this.c.ask({ type: 'move', knight: k.id, text: `${t.name} Reflex: 이동할 칸 (최대 ${n})`, cells, options: cells.map(c => ({ label: this.c.board.label(c), value: c })) }); if (dest) this.c.moveKnight(k, dest); } this.deplete(k, t);
+    }
+  }
   async secondChance(k, card, tier) { const t = k.hand.find(t => t.timing === 'onMortisDraw' && this.canPay(k, t.cost)); if (!t) return false; if (!await this.c.yesNo(`${k.name}: ${t.name} 사용해 ${card.name} 무시하고 다시 뽑기? (${this.costLabel(k, t)})`, card.ops.some(o => o.op === 'die'))) return false; this.pay(k, t.cost); this.deplete(k, t); return true; }
 
   // ---------- knight ops (Mortis / Technique) ----------
