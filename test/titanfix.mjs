@@ -30,3 +30,5 @@ const safe = async f => { try { await f(); } catch (e) { if (!(e && (e.chainBrea
 // Overbreak C4 / Lifeline C4 / UKB
 { const g = mk(['dreamwalker', 'earthshaker'], 'midascore'); const [A] = g.titans; ok((g.prim.def.cycle || 0) >= 4, 'midascore is cycle 4'); }
 { const g = mk(['dreamwalker', 'earthshaker']); const [A, B] = g.titans; god(g, B, 'Demeter'); const p0 = { ...B.pos }; await safe(() => g.knockback(B, 2, null, true)); ok(B.pos.c !== p0.c || B.pos.r !== p0.r || !B.alive, 'Demeter cannot ignore Unavoidable Knockback'); }
+// Rush with no valid cell: Fate not paid (pay hook not run)
+{ const g = mk(['dreamwalker', 'earthshaker']); const [A] = g.titans; const cells = g.primCells(); const c = cells[0]; const adj = [[1,0],[-1,0],[0,1],[0,-1]].map(([x,y]) => ({ c: c.c + x, r: c.r + y })).find(p => g.board.inBounds(p.c, p.r) && !g.primContains(p) && !g.titanAt(p.c, p.r)); A.pos = adj; let paid = 0; A._rushPay = async () => { paid++; }; await g.chooseMove(A, 6, 'Rush', 3); ok(paid === 0, 'Rush cancel: no cost paid'); }
