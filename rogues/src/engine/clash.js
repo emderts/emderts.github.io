@@ -479,15 +479,22 @@ export class Clash {
     await this.fx.exertWindow(k, A, `Power Roll 후, 재굴림 전 — ${pr.dice.map(d => d.colour[0].toUpperCase() + ':' + ('⚔'.repeat(d.face.P || 0) + '✦'.repeat(d.face.T || 0) + '🕊'.repeat(d.face.H || 0) || '—')).join(' ')}${pool.raw ? ' +⚔' + pool.raw : ''} vs AT ${this.bpAT(bp)}`);
     // power re-rolls (Heroic Arc / tokens)
     let rerolls = A.powerRerolls + this.poolCount('black');
-    if (rerolls && pr.dice.length) { const face = f => `${'⚔'.repeat(f.P || 0)}${'✦'.repeat(f.T || 0)}${'🕊'.repeat(f.H || 0)}` || '—'; const picked = await this.ask({ type: 'dice', knight: k.id, text: `Power 재굴림 가능 ${rerolls}개 (Black 토큰 ${this.poolCount('black')} 포함)`, dice: pr.dice.map(d => ({ v: face(d.face), colour: d.colour, hit: !!d.face.P, canReroll: true })), max: rerolls }); if (picked && picked.length) { const fromBlack = Math.max(0, picked.length - A.powerRerolls); this.poolTake('black', fromBlack); for (const i of picked) pr.dice[i].face = this.rng.pick(this.data.components.dice.faces[pr.dice[i].colour]); this.say(`재굴림 ${picked.length} → ⚔${pr.dice.reduce((a, d) => a + (d.face.P || 0), 0) + pool.raw}`); } }
+    if (rerolls && pr.dice.length) { const face = f => `${'⚔'.repeat(f.P || 0)}${'✦'.repeat(f.T || 0)}${'🕊'.repeat(f.H || 0)}` || '—'; const picked = await this.ask({ type: 'dice', knight: k.id, text: `Power 재굴림 가능 ${rerolls}개 (Black 토큰 ${this.poolCount('black')} 포함)`, dice: pr.dice.map(d => ({ v: face(d.face), colour: d.colour, hit: !!d.face.P, canReroll: true })), max: rerolls }); if (picked && picked.length) { const fromBlack = Math.max(0, picked.length - A.powerRerolls); this.poolTake('black', fromBlack); for (const i of picked) pr.dice[i].face = this.rng.pick(this.data.components.dice.faces[pr.dice[i].colour]); this.say(`재굴림 ${picked.length} → ⚔${pr.dice.reduce((a, d) => a + (d.face.P || 0), 0) + pool.raw}`);
+        // Black: the re-roll is optional, and so is turning 1 ✦ on a die re-rolled this way into ⚔ (owner ruling 2026-11-03)
+        let blackLeft = fromBlack; for (const i of picked) { if (blackLeft <= 0) break; const f = pr.dice[i].face; if (!(f.T > 0)) continue; if (await this.yesNo(`Black: 재굴림한 ${pr.dice[i].colour} 주사위(${face(f)})의 ✦1 → ⚔1?`, true)) { pr.dice[i].face = { ...f, T: f.T - 1, P: (f.P || 0) + 1 }; blackLeft--; this.say('Black: ✦ → ⚔'); } } } }
     let power = pr.dice.reduce((a, d) => a + (d.face.P || 0), 0) + pool.raw; let potential = pr.dice.reduce((a, d) => a + (d.face.T || 0), 0) + pool.potential; const hope = pr.dice.reduce((a, d) => a + (d.face.H || 0), 0);
     // potentials → power via Break / Sunder / Hope / Fire tokens
     await this.fx.exertWindow(k, A, `✦ 변환 단계 — 현재 ⚔${power} ✦${potential} 🕊${hope}`);
-    let useS = 0, useB = 0, useH = 0;
-    if (potential && this.poolCount('sunder')) { useS = await this.askCount(`Sunder 토큰 사용 (✦1 → ⚔2), 보유 ${this.poolCount('sunder')}, ✦${potential}`, Math.min(potential, this.poolCount('sunder'))); power += 2 * useS; potential -= useS; this.poolTake('sunder', useS); }
-    // Break: mandatory — every Break token converts a ✦ while any remain (owner-confirmed 2026-11-03)
-    if (potential && this.poolCount('break')) { useB = Math.min(potential, this.poolCount('break')); power += useB; potential -= useB; this.poolTake('break', useB); this.say(`Break 토큰 ${useB}개 사용 (✦ → ⚔)`); }
-    if ((potential || hope) && this.poolCount('hope')) { useH = await this.askCount(`Hope 토큰 사용 (✦/🕊 1 → ⚔1), 보유 ${this.poolCount('hope')}`, Math.min(potential + hope, this.poolCount('hope'))); power += useH; this.poolTake('hope', useH); }
+    // Break / Sunder / Hope are mandatory: every token converts while symbols remain (owner ruling 2026-11-03).
+    // When ✦ are too few for both Sunder and Break, the player chooses how many go to Sunder (the rest to Break).
+    let useS = 0, useB = 0, useH = 0; const nS = this.poolCount('sunder'), nB = this.poolCount('break');
+    if (potential && (nS || nB)) {
+      if (nS && nB && potential < nS + nB) { const lo = Math.max(0, potential - nB), hi = Math.min(potential, nS); useS = lo === hi ? lo : await this.ask({ type: 'number', knight: k.id, text: `✦${potential}개에 Sunder ${nS} / Break ${nB} — Sunder(✦1→⚔2)에 쓸 개수 (나머지는 Break)`, default: hi, options: Array.from({ length: hi - lo + 1 }, (_, i) => ({ label: String(lo + i), value: lo + i })) }); useB = Math.min(nB, potential - useS); }
+      else { useS = Math.min(nS, potential); useB = Math.min(nB, potential - useS); }
+      power += 2 * useS + useB; potential -= useS + useB; this.poolTake('sunder', useS); this.poolTake('break', useB);
+      if (useS) this.say(`Sunder 토큰 ${useS}개 사용 (✦ → ⚔⚔)`); if (useB) this.say(`Break 토큰 ${useB}개 사용 (✦ → ⚔)`);
+    }
+    if ((potential || hope) && this.poolCount('hope')) { useH = Math.min(potential + hope, this.poolCount('hope')); const onT = Math.min(useH, potential); power += useH; potential -= onT; this.poolTake('hope', useH); this.say(`Hope 토큰 ${useH}개 사용 (✦/🕊 → ⚔)`); }
     // Fire: other tokens may be used first, then as many Fire tokens as possible are mandatory (p.19)
     if (potential > 0 && this.poolCount('fire')) { const n = Math.min(potential, this.poolCount('fire')); power += n; potential -= n; this.poolTake('fire', n); this.say(`Fire 토큰 ${n}개 사용 (✦ → ⚔)`); }
     power += this.poolCount('power'); this.poolTake('power', 99);
