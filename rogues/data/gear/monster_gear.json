@@ -1,0 +1,1876 @@
+{
+ "_source": "Monster gear sheet (owner scan 2026-11-03), backs give ownership: Devil of the Smelted Fears 8, Eggknight 8, Ironcast Dead 8, Panzerdragon Veldr 8, Panzergeists 8, Puppet King 8, Stonemason Knight 8. Transcribed from 2x crops; uncertain readings in unclear.",
+ "gear": [
+  {
+   "name": "Horned Abyss Buckler",
+   "code": "13A0733",
+   "monster": "devil-of-the-smelted-fears",
+   "traits": [
+    "Shield",
+    "Bone",
+    "Cursed"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Devil",
+   "attackDice": 2,
+   "precision": 4,
+   "weaponPower": {
+    "n": 1,
+    "colour": "white",
+    "dice": [
+     "white"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": 2,
+   "armorDice": null,
+   "charges": null,
+   "text": "Closing 2. Hope 2.\n[Move action]+[Combat action] 1 [Heat] Gain Armor-piercing 2, then Rush.\nWhen you're about to gain Bane [Bane] tokens, you may lose that much [Vigor] instead.\nThis card cannot be exhausted in any way.",
+   "gates": [],
+   "unclear": [
+    "Cost icon before '1 [Heat]' is a black box with two figures joined by '+'; read as [Move action]+[Combat action]",
+    "Right-column +2 icon (die with curved arrow) read as evasionReroll, not evasion bonus"
+   ]
+  },
+  {
+   "name": "Stalking Parasite",
+   "code": "13A0734",
+   "monster": "devil-of-the-smelted-fears",
+   "traits": [
+    "Alive",
+    "Cursed"
+   ],
+   "type": "support",
+   "tier": "Devil",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "When you perform ↑[Heat]↓, lose additional -1 [Heat].\n2 [Heat] [Discard] Look at a chosen BP. Ignore up to 1 Panzer Parasite Condition token.\nStart of Clash: Parasitize 1.\n[DRAGON] Bane Limit +3.",
+   "gates": [
+    {
+     "gate": "DRAGON",
+     "text": "Bane Limit +3."
+    }
+   ],
+   "unclear": [
+    "'↑[Heat]↓' is a Heat icon flanked by up/down arrows (a heat-shift action symbol), transcribed literally"
+   ],
+   "hands": null
+  },
+  {
+   "name": "Wretched Iron Plate",
+   "code": "13A0731",
+   "monster": "devil-of-the-smelted-fears",
+   "traits": [
+    "Armor",
+    "Metal"
+   ],
+   "type": "armor",
+   "tier": "Devil",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": {
+    "white": 2
+   },
+   "charges": null,
+   "text": "-1 Speed [Speed]. Stalwart.\n1 [Vigor] Lose -1 [Heat].\nThis card cannot be exhausted in any way.",
+   "gates": [],
+   "unclear": [],
+   "hands": null
+  },
+  {
+   "name": "Spear of the Third Sacrament",
+   "code": "13A0732",
+   "monster": "devil-of-the-smelted-fears",
+   "traits": [
+    "Spear",
+    "Metal",
+    "Magic"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Devil",
+   "attackDice": 2,
+   "precision": 3,
+   "weaponPower": {
+    "n": 2,
+    "colour": "red",
+    "dice": [
+     "red",
+     "red"
+    ]
+   },
+   "bonusPower": {
+    "n": 1,
+    "colour": "red",
+    "raw": 2
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Reach 2.\nAuto-black 1.\nSpell 2. Armor-piercing 2.\n[JUDICIUM] Reach 3, Spell 3 and Armor-piercing 3 instead.",
+   "gates": [
+    {
+     "gate": "JUDICIUM",
+     "text": "Reach 3, Spell 3 and Armor-piercing 3 instead."
+    }
+   ],
+   "unclear": [
+    "Left column has TWO bonus rows: '+[red die]' and '+2 [Power]'; encoded as bonusPower {n:1,colour:red,raw:2}"
+   ]
+  },
+  {
+   "name": "First Crusader's Testament",
+   "code": "13A0736",
+   "monster": "devil-of-the-smelted-fears",
+   "traits": [
+    "Book",
+    "Holy"
+   ],
+   "type": "support",
+   "tier": "Dragon",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "When any Knight Full Misses, do not clear the Knight Pool.\nDuring Delve, you may move through Shortcuts.\n2 [Vigor] [Exhaust] Perform ↑[Heat]↓.\n[JUDICIUM] When you perform ↑[Heat]↓, gain +1 [Passion] for every 3 [Heat] lost this way.",
+   "gates": [
+    {
+     "gate": "JUDICIUM",
+     "text": "When you perform ↑[Heat]↓, gain +1 [Passion] for every 3 [Heat] lost this way."
+    }
+   ],
+   "unclear": [],
+   "hands": null
+  },
+  {
+   "name": "Profane Panoply",
+   "code": "13A0735",
+   "monster": "devil-of-the-smelted-fears",
+   "traits": [
+    "Armor",
+    "Metal",
+    "Cursed"
+   ],
+   "type": "armor",
+   "tier": "Dragon",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": {
+    "white": 2
+   },
+   "charges": null,
+   "text": "Rocksteady. Soak 2.\n2 [Bane] 2 [Vigor] Place a Power [Power] token in the Knight Pool.\nThis card cannot be exhausted in any way.",
+   "gates": [],
+   "unclear": [
+    "Icon after 'Power' is the Power knight-token glyph; written [Power]"
+   ],
+   "hands": null
+  },
+  {
+   "name": "Anointed Splinter of Forgotten Sin",
+   "code": "13A0737",
+   "monster": "devil-of-the-smelted-fears",
+   "traits": [
+    "Spear",
+    "Wood",
+    "Alive",
+    "Holy"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Legendary",
+   "attackDice": 3,
+   "precision": 5,
+   "weaponPower": {
+    "n": 1,
+    "colour": "white",
+    "dice": [
+     "white"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "[GRAVE] +1 [Power].\nReach 2.\nClosing 4. Hope 4.\nWound: After resolving the Attack, exchange your [Passion] and [Heat].\n[MAJOR] Precise.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "+1 [Power]."
+    },
+    {
+     "gate": "MAJOR",
+     "text": "Precise."
+    }
+   ],
+   "unclear": [
+    "'[GRAVE] +1 [Power].' is printed under the traits (gated bonus power), not in the stat column"
+   ]
+  },
+  {
+   "name": "Chains of the Damned",
+   "code": "13A0738",
+   "monster": "devil-of-the-smelted-fears",
+   "traits": [
+    "Metal",
+    "Cursed",
+    "Bone"
+   ],
+   "type": "support",
+   "tier": "Legendary",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "2 [Heat] Flip a revealed card face down.\n1 [Heat] [Exhaust] Place the top BP or AI card at the bottom of the deck.\nStart of your turn: Bane 1.\n[BANE 3+] Braced.",
+   "gates": [
+    {
+     "gate": "BANE 3+",
+     "text": "Braced."
+    }
+   ],
+   "unclear": [],
+   "hands": null
+  },
+  {
+   "name": "Egglure",
+   "code": "13A0675",
+   "monster": "eggknight",
+   "traits": [
+    "Egg",
+    "Food",
+    "Metal"
+   ],
+   "type": "support",
+   "tier": "Mob",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": 2,
+   "text": "1 [Charge] 1 [Heat] [Exhaust] Place the top BP card at the bottom of the deck.\n[PRINCIPALITY OF STONE] Provoke.",
+   "gates": [
+    {
+     "gate": "PRINCIPALITY OF STONE",
+     "text": "Provoke."
+    }
+   ],
+   "unclear": [],
+   "hands": null
+  },
+  {
+   "name": "Shell Helmet",
+   "code": "13A0676",
+   "monster": "eggknight",
+   "traits": [
+    "Helmet",
+    "Metal"
+   ],
+   "type": "support",
+   "tier": "Mob",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "1 [Heat] Reinforce 1.\n[MAJOR] You cannot involuntarily Discard [Discard] Technique cards from your hand.",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "You cannot involuntarily Discard [Discard] Technique cards from your hand."
+    }
+   ],
+   "unclear": [],
+   "hands": null
+  },
+  {
+   "name": "Egg Greatsword",
+   "code": "13A0677",
+   "monster": "eggknight",
+   "traits": [
+    "Sword",
+    "Heavy",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Vassal",
+   "attackDice": 1,
+   "precision": 0,
+   "weaponPower": {
+    "n": 2,
+    "colour": "black",
+    "dice": [
+     "black",
+     "black"
+    ]
+   },
+   "bonusPower": {
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Pushback 2.\nWhen you Pushback a Monster into an Obstacle, immediately place 1 Break [Break] token in the Knight Pool.\n[MAJOR] Armor-piercing 1.",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "Armor-piercing 1."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Panzerplate Shroud",
+   "code": "13A0678",
+   "monster": "eggknight",
+   "traits": [
+    "Armor",
+    "Metal",
+    "Cloth"
+   ],
+   "type": "armor",
+   "tier": "Vassal",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": 1,
+   "armorDice": null,
+   "charges": null,
+   "text": "[Reaction] 1 [Heat] [Exhaust] Reflex.\n[MAJOR] Tumble.",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "Tumble."
+    }
+   ],
+   "unclear": [
+    "Leading glyph (small swirly figure) read as [Reaction]",
+    "Right-column +1 (die with curved arrow) read as evasionReroll"
+   ],
+   "hands": null
+  },
+  {
+   "name": "Egghelm",
+   "code": "13A0679",
+   "monster": "eggknight",
+   "traits": [
+    "Helmet",
+    "Metal"
+   ],
+   "type": "support",
+   "tier": "King",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "You cannot involuntarily Discard [Discard] or Delay [Delay] Technique cards from your hand.\n1 [Heat] Advanced Reinforce 1.\n[GRAVE] 1 [Heat] [Discard] Second Chance.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "1 [Heat] [Discard] Second Chance."
+    }
+   ],
+   "unclear": [
+    "Icon after 'Delay' shows a card with z/Z marks (looks like the Cooldown glyph); written [Delay] to match the word"
+   ],
+   "hands": null
+  },
+  {
+   "name": "Egg Cracker",
+   "code": "13A0680",
+   "monster": "eggknight",
+   "traits": [
+    "Hammer",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "King",
+   "attackDice": 4,
+   "precision": 2,
+   "weaponPower": {
+    "n": 1,
+    "colour": "red",
+    "dice": [
+     "red"
+    ]
+   },
+   "bonusPower": {
+    "raw": 2
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Overbreak 4.\nArmor-piercing 2.\nStart of Clash: If fighting the Eggknight, gain +1 [Passion].\n[GRAVE] When you attack a Monster with 1+ Armor [Armor] tokens, gain Deadly.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "When you attack a Monster with 1+ Armor [Armor] tokens, gain Deadly."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Yolk-Coated Spear",
+   "code": "13A0681",
+   "monster": "eggknight",
+   "traits": [
+    "Spear",
+    "Egg",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Devil",
+   "attackDice": 3,
+   "precision": 2,
+   "weaponPower": {
+    "n": 1,
+    "colour": "black",
+    "dice": [
+     "black"
+    ]
+   },
+   "bonusPower": {
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Reach 2.\nAuto-black 1. Closing 3.\nArmor-piercing 1. Hug 3.\n[PRINCIPALITY OF STONE] Provoke.",
+   "gates": [
+    {
+     "gate": "PRINCIPALITY OF STONE",
+     "text": "Provoke."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Eggplate",
+   "code": "13A0682",
+   "monster": "eggknight",
+   "traits": [
+    "Armor",
+    "Metal",
+    "Egg"
+   ],
+   "type": "armor",
+   "tier": "Devil",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": {
+    "white": 1
+   },
+   "charges": null,
+   "text": "-1 Speed [Speed]. Deploy 2.\n1 [Heat] Roll Out (suffer Knockback 4 instead of Knockdown if adjacent).\n[Move action] 2 [Heat] [Exhaust] Move X spaces in a straight line, where X is twice your Speed [Speed].",
+   "gates": [],
+   "unclear": [],
+   "hands": null
+  },
+  {
+   "name": "Eisernwald Falchion",
+   "code": "13A0667",
+   "monster": "ironcast-dead",
+   "traits": [
+    "Sword",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Mob",
+   "attackDice": 1,
+   "precision": 0,
+   "weaponPower": {
+    "n": 3,
+    "colour": "red",
+    "dice": [
+     "red",
+     "red",
+     "red"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Opening 2.\nArmor-piercing 1.\nPower Re-roll 1. Commit.\n[2H] Loses Commit.",
+   "gates": [
+    {
+     "gate": "2H",
+     "text": "Loses Commit."
+    }
+   ],
+   "unclear": [
+    "Black banner gate shows the two-gauntlet (2H) slot icon; written [2H]",
+    "3 small red dice, overlapping"
+   ]
+  },
+  {
+   "name": "Skullshield",
+   "code": "13A0668",
+   "monster": "ironcast-dead",
+   "traits": [
+    "Shield",
+    "Bone",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Mob",
+   "attackDice": 2,
+   "precision": 1,
+   "weaponPower": {
+    "n": 1,
+    "colour": "red",
+    "dice": [
+     "red"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": {
+    "red": 1
+   },
+   "charges": "0*",
+   "text": "Break 1.\n*When you resolve a negative Mortis card, this card gains 1 [Charge].\nYou may spend X [Charge] to gain Reinforce X.",
+   "gates": [],
+   "unclear": [
+    "charges emblem prints '0*' (stored as string)"
+   ]
+  },
+  {
+   "name": "Heavy Panzershield",
+   "code": "13A0669",
+   "monster": "ironcast-dead",
+   "traits": [
+    "Shield",
+    "Metal",
+    "Heavy"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Vassal",
+   "attackDice": 1,
+   "precision": 0,
+   "weaponPower": {
+    "n": 2,
+    "colour": "black",
+    "dice": [
+     "black",
+     "black"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": {
+    "black": 1
+   },
+   "charges": null,
+   "text": "Armor-piercing 1.\n2 [Heat] [Discard] Block.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Rust Mace",
+   "code": "13A0670",
+   "monster": "ironcast-dead",
+   "traits": [
+    "Mace",
+    "Curse",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Vassal",
+   "attackDice": 1,
+   "precision": 0,
+   "weaponPower": {
+    "n": 2,
+    "colour": "black",
+    "dice": [
+     "black",
+     "black"
+    ]
+   },
+   "bonusPower": {
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Overbreak 2.\nBlack 1. Cumbersome.\nFull Miss: Exhaust this card.\n[MAJOR] Armor-piercing 1.",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "Armor-piercing 1."
+    }
+   ],
+   "unclear": [
+    "Trait printed 'Curse' (not 'Cursed')"
+   ]
+  },
+  {
+   "name": "Automail Hand",
+   "code": "13A0671",
+   "monster": "ironcast-dead",
+   "traits": [
+    "Machinated",
+    "Hand",
+    "Metal"
+   ],
+   "type": "support",
+   "tier": "King",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Clockwork.\nYou have an additional [Hand slot] slot.\n[Discard] When you're about to attack with a Melee Weapon, gain Reach 2 for that Attack.",
+   "gates": [],
+   "unclear": [
+    "Slot glyph in text is the single-gauntlet hand slot; written [Hand slot]"
+   ],
+   "hands": null
+  },
+  {
+   "name": "Skullplate",
+   "code": "13A0672",
+   "monster": "ironcast-dead",
+   "traits": [
+    "Metal",
+    "Bone"
+   ],
+   "type": "armor",
+   "tier": "King",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": {
+    "red": 1,
+    "black": 1
+   },
+   "charges": null,
+   "text": "Reinforce X, where X is the value of Swarm X of the Attack.\n[JUDICIUM] Each [Power] symbol on your Armor dice mitigates [Vigor] loss as if it were [Armor symbol].",
+   "gates": [
+    {
+     "gate": "JUDICIUM",
+     "text": "Each [Power] symbol on your Armor dice mitigates [Vigor] loss as if it were [Armor symbol]."
+    }
+   ],
+   "unclear": [
+    "Final glyph is the chalice armor-die face symbol; written [Armor symbol]"
+   ],
+   "hands": null
+  },
+  {
+   "name": "Spiked Shield",
+   "code": "13A0673",
+   "monster": "ironcast-dead",
+   "traits": [
+    "Shield",
+    "Metal",
+    "Blade"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Devil",
+   "attackDice": 2,
+   "precision": 0,
+   "weaponPower": {
+    "n": 1,
+    "colour": "black",
+    "dice": [
+     "black"
+    ]
+   },
+   "bonusPower": {
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": {
+    "red": 2
+   },
+   "charges": null,
+   "text": "[MAJOR] +1 [Power].\nPass 3. When you perform an Armor Roll, you may place a Break [Break] token in the Knight Pool for each [Power] symbol you roll on your Armor dice.\n[MAJOR] Advanced Reinforce 1.",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "+1 [Power]."
+    },
+    {
+     "gate": "MAJOR",
+     "text": "Advanced Reinforce 1."
+    }
+   ],
+   "unclear": [
+    "'[MAJOR] +1 [Power].' printed under traits (gated bonus power)"
+   ]
+  },
+  {
+   "name": "Cone Armor",
+   "code": "13A0674",
+   "monster": "ironcast-dead",
+   "traits": [
+    "Armor",
+    "Metal"
+   ],
+   "type": "armor",
+   "tier": "Devil",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": 4,
+   "armorDice": null,
+   "charges": null,
+   "text": "[Exhaust] When you're about to suffer Pushback or Gangup, you may gain +X [Heat] to reduce it by X. Then, for each space you moved, place a Break [Break] token in the Knight Pool.",
+   "gates": [],
+   "unclear": [
+    "Right-column +4 (die with curved arrow) read as evasionReroll"
+   ],
+   "hands": null
+  },
+  {
+   "name": "Dragon Plattenpanzer",
+   "code": "13A0747",
+   "monster": "panzerdragon-veldr",
+   "traits": [
+    "Armor",
+    "Metal"
+   ],
+   "type": "armor",
+   "tier": "Dragon",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": {
+    "white": 2
+   },
+   "charges": null,
+   "text": "-1 Speed [Speed]. You have one additional [Support slot] slot.\n1 [Heat] Advanced Reinforce *X.\nWhen you deal a Wound, move 1 Armor [Armor] token from the Monster to this card.\n*X is equal to the number of [Armor] on this card.\n[GRAVE] [Discard] When you're about to die, ignore this death.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "[Discard] When you're about to die, ignore this death."
+    }
+   ],
+   "unclear": [
+    "Slot glyph in text is the pouch (support) slot; written [Support slot]"
+   ],
+   "hands": null
+  },
+  {
+   "name": "Dragonrazor",
+   "code": "13A0748",
+   "monster": "panzerdragon-veldr",
+   "traits": [
+    "Dagger",
+    "Metal",
+    "Stone"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Dragon",
+   "attackDice": 2,
+   "precision": 4,
+   "weaponPower": {
+    "n": 2,
+    "colour": "red",
+    "dice": [
+     "red",
+     "red"
+    ]
+   },
+   "bonusPower": {
+    "n": 1,
+    "colour": "white"
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Break 2.\nBlack 2.\nSunder 1.\nArmor-piercing 3.\nReposition 4.\nWhen you're about to perform a climb test, automatically succeed at that test instead.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Dragontail Flail",
+   "code": "13A0749",
+   "monster": "panzerdragon-veldr",
+   "traits": [
+    "Flail",
+    "Metal",
+    "Rust"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Dragon",
+   "attackDice": 2,
+   "precision": 2,
+   "weaponPower": {
+    "n": 1,
+    "colour": "white",
+    "dice": [
+     "white"
+    ]
+   },
+   "bonusPower": {
+    "raw": 2
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "[JUDICIUM] +1 [Power].\nPower 3. Rouse 1.\nArmor-piercing 2.\nKnockback 3.\nIgnore Lumbering.\n[POSTGAME] Spotlight.",
+   "gates": [
+    {
+     "gate": "JUDICIUM",
+     "text": "+1 [Power]."
+    },
+    {
+     "gate": "POSTGAME",
+     "text": "Spotlight."
+    }
+   ],
+   "unclear": [
+    "'[JUDICIUM] +1 [Power].' printed under traits (gated bonus power)"
+   ]
+  },
+  {
+   "name": "Rusted Giant's Carapace",
+   "code": "13A0750",
+   "monster": "panzerdragon-veldr",
+   "traits": [
+    "Armor",
+    "Metal",
+    "Flesh",
+    "Cursed",
+    "Rust"
+   ],
+   "type": "armor",
+   "tier": "Dragon",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": {
+    "black": 4
+   },
+   "charges": null,
+   "text": "When you die, the closest Knight equips this card (discarding another Armor [Gear] card if needed).\n[Discard] Return a Knight to life on a space adjacent to you and reset their [Vigor].\n[POSTGAME] [Exhaust] Ignore non-Judicium death.",
+   "gates": [
+    {
+     "gate": "POSTGAME",
+     "text": "[Exhaust] Ignore non-Judicium death."
+    }
+   ],
+   "unclear": [
+    "Code faint: 13A0750 or 13A0730 (0750 fits the 0747-0749 sequence)",
+    "Armor dice: 4 small dark dice in a pyramid (1 over 3); read as 4 black"
+   ],
+   "hands": null
+  },
+  {
+   "name": "Blackscale Hornblade",
+   "code": "13A0751",
+   "monster": "panzerdragon-veldr",
+   "traits": [
+    "Knife",
+    "Bone",
+    "Rust",
+    "Cursed"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Legendary",
+   "attackDice": 3,
+   "precision": "X*",
+   "weaponPower": {
+    "n": 1,
+    "colour": "black",
+    "dice": [
+     "black"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Each hit: +1 [Power], Reposition 1, either Closing 1 or Opening 2.\nCrit Chance: Ignore any additional [Greaves icon] (including Armor [Armor] tokens).\n*X is equal to the amount of Bane [Bane] tokens you have.",
+   "gates": [],
+   "unclear": [
+    "code faint: read as 13A0751 (sequence guess; could be 13A0773/13A0753-ish)",
+    "precision printed as '+X*' (stored as string 'X*')",
+    "icon after 'any additional' is a tall armour/greaves-like glyph, not identified (black pair-of-greaves glyph, distinct from the Armor breastplate icon), transcribed [Greaves icon]"
+   ]
+  },
+  {
+   "name": "Infested Heart",
+   "code": "13A0752",
+   "monster": "panzerdragon-veldr",
+   "traits": [
+    "Stone",
+    "Cursed"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Legendary",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Bane Limit +3. Braced. Ignore Body Condition cards.\nWhen you're about to die, you may petrify one [Gear] slot instead (place a Generic token on it and discard any [Gear] cards from it—you lose that slot).",
+   "gates": [],
+   "unclear": [
+    "code faint: read as 13A0752 (sequence guess)"
+   ]
+  },
+  {
+   "name": "King's Reward",
+   "code": "13A0753",
+   "monster": "panzerdragon-veldr",
+   "traits": [
+    "Hammer",
+    "Stone",
+    "Metal",
+    "Holy"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Legendary",
+   "attackDice": 1,
+   "precision": 5,
+   "weaponPower": {
+    "n": 3,
+    "colour": "white",
+    "dice": [
+     "white",
+     "white",
+     "white"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Opening 2.\nClosing 3.\nSunder 2.\nArmor-piercing 3.\n[GRAVE] [Discard] During your attack, gain +1 [Power], then equip a Gear [Gear] card with the Sword Trait from an Armory of any Knight until the end of Clash.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "[Discard] During your attack, gain +1 [Power], then equip a Gear [Gear] card with the Sword Trait from an Armory of any Knight until the end of Clash."
+    }
+   ],
+   "unclear": [
+    "code faint: read 13A0753"
+   ]
+  },
+  {
+   "name": "Eudes-Blessed Lance",
+   "code": "13A0754",
+   "monster": "panzerdragon-veldr",
+   "traits": [
+    "Lance",
+    "Holy"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Legendary",
+   "attackDice": 3,
+   "precision": 5,
+   "weaponPower": {
+    "n": 1,
+    "colour": "black",
+    "dice": [
+     "black"
+    ]
+   },
+   "bonusPower": {
+    "raw": 4
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Opening 5. Break 5. Ignore Armor [Armor] tokens.\n2 [Heat] [Exhaust] When you are about to resolve a [red Monster-ability icon], ignore it.\n[Move action]+[Combat action] 1 [Heat] Improved Rush, then perform Pushback 5.\nGain +2 [Power] against Dragons.",
+   "gates": [],
+   "unclear": [
+    "red oval icon in 'resolve a ___, ignore it' not identified (red banner with wave/claw-like glyphs; possibly a Monster attack/response type icon)",
+    "'[Move action]+[Combat action]' black box icon read as running figure + combat figure"
+   ]
+  },
+  {
+   "name": "Geistly Flame",
+   "code": "13B0784",
+   "monster": "panzergeists",
+   "traits": [
+    "Catalyst",
+    "Flame",
+    "Undead",
+    "Magic",
+    "Ethereal"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Mob",
+   "attackDice": 2,
+   "precision": 1,
+   "weaponPower": {
+    "n": 1,
+    "colour": "red",
+    "dice": [
+     "red"
+    ]
+   },
+   "bonusPower": {
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Unwieldy. Ranged 3–5. Cantrip 2. Commit.\n[MAJOR] Knights may change Cantrip [Cantrip] tokens into Fire [Fire] tokens instead of Break [Break] tokens.",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "Knights may change Cantrip [Cantrip] tokens into Fire [Fire] tokens instead of Break [Break] tokens."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Holy Hammer",
+   "code": "13B0785",
+   "monster": "panzergeists",
+   "traits": [
+    "Hammer",
+    "Stone",
+    "Holy"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Mob",
+   "attackDice": 1,
+   "precision": 0,
+   "weaponPower": {
+    "n": 2,
+    "colour": "black",
+    "dice": [
+     "black",
+     "black"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Break 1.\nPower Re-roll 1.\nWhen you are about to attack, gain +1 [Heat] to ignore 1 Armor [Armor] token.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Ghost Bitten Shield",
+   "code": "13B0787",
+   "monster": "panzergeists",
+   "traits": [
+    "Shield",
+    "Iron",
+    "Ethereal"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Vassal",
+   "attackDice": 1,
+   "precision": 0,
+   "weaponPower": {
+    "n": 2,
+    "colour": "black",
+    "dice": [
+     "black",
+     "black"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": 2,
+   "armorDice": null,
+   "charges": null,
+   "text": "1 [Heat] [Exhaust] Block.\n1 [Heat] Reinforce 1.\nYou cannot be Possessed.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Shrouded Armor",
+   "code": "13B0786",
+   "monster": "panzergeists",
+   "traits": [
+    "Armor",
+    "Steel",
+    "Ethereal"
+   ],
+   "type": "armor",
+   "hands": null,
+   "tier": "Vassal",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": 2,
+   "armorDice": {
+    "black": 1
+   },
+   "charges": null,
+   "text": "1 [Heat] [Exhaust] Hide.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Ghostly Blade",
+   "code": "13B0789",
+   "monster": "panzergeists",
+   "traits": [
+    "Sword",
+    "Ethereal",
+    "Magic"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "King",
+   "attackDice": 1,
+   "precision": 2,
+   "weaponPower": {
+    "n": 4,
+    "colour": "red",
+    "dice": [
+     "red",
+     "red",
+     "red",
+     "red"
+    ]
+   },
+   "bonusPower": {
+    "raw": 2
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Cantrip 3.\nArmor-piercing 1.\nHug 2.\nWhen you are about to attack, Bane 1.\n[BANE 4+] [Reaction] You may perform a Bonus Attack with this Weapon, then discard it and gain 1 Bane [Bane] token.",
+   "gates": [
+    {
+     "gate": "BANE 4+",
+     "text": "[Reaction] You may perform a Bonus Attack with this Weapon, then discard it and gain 1 Bane [Bane] token."
+    }
+   ],
+   "unclear": [
+    "weapon power is a stacked pile of red dice: read as 4 (one on top, three below); could be 3",
+    "glyph after BANE 4+ read as [Reaction]"
+   ]
+  },
+  {
+   "name": "Haunted Bread",
+   "code": "13B0788",
+   "monster": "panzergeists",
+   "traits": [
+    "Food",
+    "Ethereal"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "King",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Bane Limit +2.\n2 [Heat] [Exhaust] When you are about to gain Bane [Bane] tokens, lower that gain to 1.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Geistling",
+   "code": "13B0790",
+   "monster": "panzergeists",
+   "traits": [
+    "Armor",
+    "Iron",
+    "Rust",
+    "Ethereal"
+   ],
+   "type": "armor",
+   "hands": null,
+   "tier": "Devil",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Soak X. You have 1 additional [Hand] slot.\nYour active Weapon gains the Ethereal Trait. You cannot be Possessed.\nX is the number of Bane [Bane] tokens you have.\n[BANE 3+] [Discard] Gain +6 [Vigor], raising your Maximum [Vigor] if needed.",
+   "gates": [
+    {
+     "gate": "BANE 3+",
+     "text": "[Discard] Gain +6 [Vigor], raising your Maximum [Vigor] if needed."
+    }
+   ],
+   "unclear": [
+    "'[Hand]' = single-gauntlet hand-slot icon"
+   ]
+  },
+  {
+   "name": "Ghost Catalyst",
+   "code": "13B0791",
+   "monster": "panzergeists",
+   "traits": [
+    "Catalyst",
+    "Ethereal",
+    "Fire"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Devil",
+   "attackDice": 2,
+   "precision": 3,
+   "weaponPower": {
+    "n": 1,
+    "colour": "white",
+    "dice": [
+     "white"
+    ]
+   },
+   "bonusPower": {
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Unwieldy.\nRanged 2–7.\nSuperior Bypass.\nSpell 3. Power 1.\nArmor-piercing 1.\nCommit. Cumbersome.\n[JUDICIUM] 2 [Heat] [Exhaust] Place your Knight on a space in effective range of this Weapon.",
+   "gates": [
+    {
+     "gate": "JUDICIUM",
+     "text": "2 [Heat] [Exhaust] Place your Knight on a space in effective range of this Weapon."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Kingkiller",
+   "code": "13A0715",
+   "monster": "puppet-king",
+   "traits": [
+    "Spear",
+    "Metal"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "King",
+   "attackDice": 5,
+   "precision": 3,
+   "weaponPower": {
+    "n": 1,
+    "colour": "red",
+    "dice": [
+     "red"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "[DEVIL] +1 [Power].\nReach 3.\nOpening 4.\nArmor-piercing 1.\n1 [Heat] Precise.\nGain +1 [Power] against Kings.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "+1 [Power]."
+    }
+   ],
+   "unclear": [
+    "code last digit unclear (13A0715 or 13A0719)",
+    "DEVIL banner '+1 [Power].' is printed under the traits line, beside the stat column"
+   ]
+  },
+  {
+   "name": "Seat of State",
+   "code": "13A0718",
+   "monster": "puppet-king",
+   "traits": [
+    "Throne",
+    "Club",
+    "Wood",
+    "Stone"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "King",
+   "attackDice": 2,
+   "precision": 2,
+   "weaponPower": {
+    "n": 1,
+    "colour": "white",
+    "dice": [
+     "white"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Closing 2.\nOpening 2.\nArmor-piercing 1.\nWhen hit with a Wave Attack, automatically evade 1 hit.\nStart of Monster Round: 1 [Heat] Move all Activation tokens onto chosen Mobs.\n[JUDICIUM] You die immediately.",
+   "gates": [
+    {
+     "gate": "JUDICIUM",
+     "text": "You die immediately."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Grasping Whip",
+   "code": "13A0716",
+   "monster": "puppet-king",
+   "traits": [
+    "Whip",
+    "Rope",
+    "Magic"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "King",
+   "attackDice": 2,
+   "precision": 3,
+   "weaponPower": {
+    "n": 2,
+    "colour": "red",
+    "dice": [
+     "red",
+     "red"
+    ]
+   },
+   "bonusPower": {
+    "n": 1,
+    "colour": "red"
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Reach 3. Opening 2. Break 2. Armor-piercing 1. Pull 3.\n[Exhaust] Inspire 1 and Motivate 3 a Knight in effective range of this Weapon.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "The Puppet's Crown",
+   "code": "13A0717",
+   "monster": "puppet-king",
+   "traits": [
+    "Helm",
+    "Gold"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "King",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "You may ignore gaining Mind Condition cards. Provoke.\nGain +1 Precision [Precision] for each knocked down Knight.\n[DEVIL] When you're about to draw a Judicium, you may resolve a You Live! or You Died Judicium instead. The next time you draw a Judicium, resolve the other one.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "When you're about to draw a Judicium, you may resolve a You Live! or You Died Judicium instead. The next time you draw a Judicium, resolve the other one."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Stringbow",
+   "code": "13A0719",
+   "monster": "puppet-king",
+   "traits": [
+    "Bow",
+    "Wood"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Devil",
+   "attackDice": 2,
+   "precision": 3,
+   "weaponPower": {
+    "n": 2,
+    "colour": "mixed",
+    "dice": [
+     "black",
+     "red"
+    ]
+   },
+   "bonusPower": {
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Ranged 3–7. Closing 3. Hope 1. Armor-piercing 2. Cumbersome.\nPuppeteer: 1 [Heat] When you deal a Wound, each other Knight gains 1 Bane [Bane] token and moves up to 3 spaces toward the closest Monster. This is considered involuntary movement.",
+   "gates": [],
+   "unclear": [
+    "code faint: 13A0719 or 13A0710"
+   ]
+  },
+  {
+   "name": "Parasitic Gambeson",
+   "code": "13A0720",
+   "monster": "puppet-king",
+   "traits": [
+    "Alive",
+    "Cursed"
+   ],
+   "type": "armor",
+   "hands": null,
+   "tier": "Devil",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": {
+    "white": 1
+   },
+   "charges": null,
+   "text": "-1 Speed [Speed].\n2 [Heat] Superior Reinforce 1.\n1 [Heat] [Exhaust] When you're about to gain Bane [Bane] tokens, lower that gain to 1.\nStart of Clash: Parasitize 1.\n[JUDICIUM] You cannot die from the Panzer Parasite Condition card.",
+   "gates": [
+    {
+     "gate": "JUDICIUM",
+     "text": "You cannot die from the Panzer Parasite Condition card."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Riesenmörder",
+   "code": "13A0721",
+   "monster": "puppet-king",
+   "traits": [
+    "Sword",
+    "Steel",
+    "Cursed",
+    "Ancient"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Dragon",
+   "attackDice": 1,
+   "precision": 5,
+   "weaponPower": {
+    "n": 3,
+    "colour": "white",
+    "dice": [
+     "white",
+     "white",
+     "white"
+    ]
+   },
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Closing 2.\nBlack 3.\nArmor-piercing 2.\nAttack Re-roll 1.\nPower Re-roll 4.\nGain +2 [Power] while on a VP.\n[JUDICIUM] When you trigger Overpower, you may perform a Bonus Attack (once per Round).",
+   "gates": [
+    {
+     "gate": "JUDICIUM",
+     "text": "When you trigger Overpower, you may perform a Bonus Attack (once per Round)."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "The Command",
+   "code": "13A0722",
+   "monster": "puppet-king",
+   "traits": [
+    "Club",
+    "Flesh",
+    "Bone",
+    "Cursed"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Dragon",
+   "attackDice": 2,
+   "precision": 2,
+   "weaponPower": {
+    "n": 1,
+    "colour": "black",
+    "dice": [
+     "black"
+    ]
+   },
+   "bonusPower": {
+    "n": 1,
+    "colour": "black",
+    "raw": 2
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Sunder 4.\nArmor-piercing 3.\nKnockback 5.\nCumbersome.\nMonarch: 3 [Heat] [Exhaust] When you draw an AI, before resolving it, discard it and draw another AI.\n[GRAVE] When using the Monarch ability, trigger Signature instead.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "When using the Monarch ability, trigger Signature instead."
+    }
+   ],
+   "unclear": [
+    "two bonus-power rows: '+[black Power die]' and '+2 [Power]' — stored combined as {n:1,colour:black,raw:2}",
+    "code last digit faint (13A0722 or 13A0723)"
+   ]
+  },
+  {
+   "name": "Magnetic Helm",
+   "code": "13B0792",
+   "monster": "stonemason-knight",
+   "traits": [
+    "Helm",
+    "Metal"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Mob",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "1 [Heat] Reinforce 1.\nWhen you deal a Wound, you may place an Armor [Armor] token on a chosen Stonemason Ward Node or move 1 Armor [Armor] token between Mobs.\n[MAJOR] 1 [Heat] [Discard] Second Chance.",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "1 [Heat] [Discard] Second Chance."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Fist Spear",
+   "code": "13B0793",
+   "monster": "stonemason-knight",
+   "traits": [
+    "Spear",
+    "Stone"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Mob",
+   "attackDice": 1,
+   "precision": 0,
+   "weaponPower": {
+    "n": 2,
+    "colour": "red",
+    "dice": [
+     "red",
+     "red"
+    ]
+   },
+   "bonusPower": {
+    "raw": 2
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Unwieldy.\nReach 2. Overbreak 2.\nArmor-piercing 1.\n[BANE 2+] Overbreak 4 instead.",
+   "gates": [
+    {
+     "gate": "BANE 2+",
+     "text": "Overbreak 4 instead."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Magnetized Fists",
+   "code": "13B0794",
+   "monster": "stonemason-knight",
+   "traits": [
+    "Cestus",
+    "Metal",
+    "Pair"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Vassal",
+   "attackDice": 2,
+   "precision": 5,
+   "weaponPower": {
+    "n": 1,
+    "colour": "black",
+    "dice": [
+     "black"
+    ]
+   },
+   "bonusPower": {
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "3 [Heat] [Exhaust] Block.\n1 [Heat] When you are about to involuntarily exhaust or discard this Weapon, ignore it.\nGain +1 [Power] against the Stonemason Knight.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Mason's Plate",
+   "code": "13B0795",
+   "monster": "stonemason-knight",
+   "traits": [
+    "Armor",
+    "Stone",
+    "Cursed"
+   ],
+   "type": "armor",
+   "hands": null,
+   "tier": "Vassal",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": {
+    "black": 1
+   },
+   "charges": 2,
+   "text": "Bane Limit +1.\nWhen you are hit, discard 1 [Charge]. If you cannot, discard this card instead.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Demagnetized Leather Armor",
+   "code": "13B0796",
+   "monster": "stonemason-knight",
+   "traits": [
+    "Armor",
+    "Leather"
+   ],
+   "type": "armor",
+   "hands": null,
+   "tier": "King",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "1 [Heat] [Exhaust] Dodge.\nIgnore Rubble Terrain tiles.\n[MAJOR] [Discard] When you are hit, discard all Armor [Armor] tokens from Stonemason Ward Nodes or up to 3 Armor [Armor] tokens from a chosen Monster BP or Sheet.",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "[Discard] When you are hit, discard all Armor [Armor] tokens from Stonemason Ward Nodes or up to 3 Armor [Armor] tokens from a chosen Monster BP or Sheet."
+    }
+   ],
+   "unclear": [
+    "code last digit faint (13B0796 or 13B0798; 13B0798 is Martyrial Rags)"
+   ]
+  },
+  {
+   "name": "Petrified Tree Club",
+   "code": "13B0797",
+   "monster": "stonemason-knight",
+   "traits": [
+    "Club",
+    "Stone",
+    "Wood"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "King",
+   "attackDice": 1,
+   "precision": 2,
+   "weaponPower": {
+    "n": 2,
+    "colour": "mixed",
+    "dice": [
+     "black",
+     "white"
+    ]
+   },
+   "bonusPower": {
+    "raw": 2
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "+1 Bravery [Bravery].\nBane Limit +1. Hope 2.\nArmor-piercing 2.\n[BANE 3+] Power 1.\n[BANE 6+] Power 2 instead.",
+   "gates": [
+    {
+     "gate": "BANE 3+",
+     "text": "Power 1."
+    },
+    {
+     "gate": "BANE 6+",
+     "text": "Power 2 instead."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Martyrial Rags",
+   "code": "13B0798",
+   "monster": "stonemason-knight",
+   "traits": [
+    "Cloth",
+    "Flammable"
+   ],
+   "type": "armor",
+   "hands": null,
+   "tier": "Dragon",
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": 1,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "[Discard] Superior Chance.\nStart of Clash: Draw a Judicium without resolving it. The next time you would draw a Judicium, resolve this one instead.\n[BANE 2+] [Discard] When you are about to die from a Judicium or an instant death effect, ignore it.",
+   "gates": [
+    {
+     "gate": "BANE 2+",
+     "text": "[Discard] When you are about to die from a Judicium or an instant death effect, ignore it."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Anvil of Andermainz",
+   "code": "13B0799",
+   "monster": "stonemason-knight",
+   "traits": [
+    "Catalyst",
+    "Iron",
+    "Magic"
+   ],
+   "type": "weapon",
+   "hands": 2,
+   "tier": "Dragon",
+   "attackDice": 3,
+   "precision": "X*",
+   "weaponPower": {
+    "n": 1,
+    "colour": "black",
+    "dice": [
+     "black"
+    ]
+   },
+   "bonusPower": {
+    "raw": 2
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Ranged 3–5. Spell X*.\nArmor-piercing 2.\nCommit. Cumbersome.\n3 [Heat] Remove a Rubble Terrain tile in your effective range and place it on this card. *X is the number of Bane [Bane] tokens you have.\n[JUDICIUM] [Discard] Place all Rubble tiles from this card anywhere on the Board.",
+   "gates": [
+    {
+     "gate": "JUDICIUM",
+     "text": "[Discard] Place all Rubble tiles from this card anywhere on the Board."
+    }
+   ],
+   "unclear": [
+    "precision printed as '+X*' (stored as string 'X*')"
+   ]
+  }
+ ]
+}

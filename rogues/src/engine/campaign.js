@@ -33,7 +33,21 @@ export class Campaign {
   knightDef(k) { return this.data.knights[k.def]; }
   _normalizeGear(names) { const hands = names.filter(n => n !== 'Knighves').map(n => this.gearDef(n)).filter(g => g && g.type === 'weapon').reduce((a, g) => a + (g.hands || 1), 0); return hands >= 2 ? names.filter(n => n !== 'Knighves') : names; }
   handLimit(k) { const p = this.knightDef(k).portraits.find(p => p.id === k.loadout.portrait); return p ? p.handLimit : 4; }
-  gearDef(name) { return this.data.gear.gear.gear.find(g => g.name === name) || this._merchantAsGear(name); }
+  gearDef(name) { const G = this.data.gear; return G.gear.gear.find(g => g.name === name) || (G.monster_gear ? this._withKw(G.monster_gear.gear.find(g => g.name === name)) : null) || this._consumableAsGear(name) || this._merchantAsGear(name); }
+  _withKw(g) { if (!g) return null; return g.ops ? g : { ...g, ops: { keywords: this._kwFromText(g.text) } }; }
+  consumableDef(name) { const C = this.data.gear.consumables; return C ? C.consumables.find(c => c.name === name) : null; }
+  _consumableAsGear(name) { const c = this.consumableDef(name); if (!c) return null; return { name: c.name, code: c.code, traits: c.traits, type: 'support', hands: null, tier: c.tier, consumable: true, price: c.price, charges: c.charges, text: c.text, gates: c.gates, ops: { keywords: this._kwFromText(c.text) } }; }
+  upgradeDef(name) { const U = this.data.gear.upgrades; return U ? U.upgrades.find(u => u.name === name) : null; }
+  /** Upgrade (rulebook p.21): attach to a non-Merchant Gear card of the matching type (Weapon / Armor), at most one per card, detachable. */
+  setUpgrade(ck, gearName, upgradeName) {
+    ck.upgrades = ck.upgrades || []; ck.loadout.upgrades = ck.loadout.upgrades || {};
+    if (!upgradeName) { delete ck.loadout.upgrades[gearName]; return; }
+    const u = this.upgradeDef(upgradeName), g = this.gearDef(gearName); if (!u || !g) throw new Error('없는 카드');
+    if (!ck.upgrades.includes(upgradeName)) throw new Error('미보유 Upgrade'); if (g.merchant) throw new Error('Merchant Gear에는 Upgrade를 붙일 수 없음');
+    if ((u.kind === 'weapon') !== (g.type === 'weapon') || (u.kind === 'armor' && g.type !== 'armor')) throw new Error(`${u.kind === 'weapon' ? 'Weapon' : 'Armor'} 전용 Upgrade`);
+    for (const [gn, un] of Object.entries(ck.loadout.upgrades)) if (un === upgradeName && gn !== gearName) delete ck.loadout.upgrades[gn];
+    ck.loadout.upgrades[gearName] = upgradeName;
+  }
   _merchantAsGear(name) { for (const g of this.data.gear.merchant_principality.gear) { if (g.name === name) return this._sideToGear(g, g.side, false); if (g.reforgedName === name) return this._sideToGear(g, g.reforged, true); } return null; }
   _sideToGear(g, side, reforged) { return { name: reforged ? g.reforgedName : g.name, code: g.code, traits: reforged ? (g.reforgedTraits || g.traits) : g.traits, type: g.type, hands: g.type === 'weapon' ? (g.hands || 1) : null, tier: g.tier, merchant: true, price: g.price, reforgePrice: g.reforgePrice, reforgedName: reforged ? null : g.reforgedName, attackDice: side.attackDice, precision: side.precision, weaponPower: side.weaponPower ? { n: side.weaponPower.n, colour: side.weaponPower.colour === 'mixed' ? side.weaponPower.dice[0] : side.weaponPower.colour, dice: side.weaponPower.dice } : null, bonusPower: side.bonusPower, evasion: side.evasion, evasionReroll: side.evasionReroll, armorDice: side.armorDice ? (side.armorDice.dice ? side.armorDice.dice.reduce((a, c) => { a[c] = (a[c] || 0) + 1; return a; }, {}) : side.armorDice) : null, text: side.text, gates: side.gates, triggers: side.triggers, ops: { keywords: this._kwFromText(side.text) } }; }
   _kwFromText(t) { const out = []; for (const kw of ['break', 'opening', 'commit', 'cumbersome', 'deadly', 'closing', 'hope', 'sunder', 'black', 'fire']) { const m = new RegExp('(^|\\. |\\n)' + kw[0].toUpperCase() + kw.slice(1) + '( (\\d+))?\\.', 'i').exec(t || ''); if (m) out.push(m[3] ? { op: kw, n: +m[3] } : { op: kw }); } return out; }
@@ -67,7 +81,7 @@ export class Campaign {
     clash.ask = opts.ask || this.ask; clash.curseLevel = this.curseLevel; clash.gearDef = n => this.gearDef(n);
     for (const kn of clash.knights) { const ck = this.knights.find(x => x.name === kn.name); kn.bane = ck.bane; kn.gear = kn.gear.map(g => g.name ? g : g); }
     // resolve gear through gearDef (merchant gear isn't in gear.json)
-    for (const kn of clash.knights) { const ck = this.knights.find(x => x.name === kn.name); kn.gear = ck.loadout.gear.map(n => ({ ...this.gearDef(n), exhausted: false, discarded: false })); kn.hired = this.hired; }
+    for (const kn of clash.knights) { const ck = this.knights.find(x => x.name === kn.name); kn.gear = ck.loadout.gear.map(n => { const g = { ...this.gearDef(n), exhausted: false, discarded: false }; const un = ck.loadout.upgrades && ck.loadout.upgrades[n]; const u = un && this.upgradeDef(un); if (u) { g.upgrade = u; g.text = `${g.text || ''}\n[Upgrade: ${u.name}] ${u.text}`; g.ops = { ...(g.ops || {}), keywords: [...((g.ops && g.ops.keywords) || []), ...this._kwFromText(u.text)] }; } if (g.consumable) g.chargesLeft = g.charges; return g; }); kn.hired = this.hired; }
     // Inn buffs for this Rosegraal round
     for (const kn of clash.knights) { const b = (this.roundBuffs || {})[kn.name]; if (!b) continue; if (b.heatLimit) kn.heatLimitBonus = (kn.heatLimitBonus || 0) + b.heatLimit; if (b.fortify) kn.extraVigor = (kn.extraVigor || 0) + b.fortify; if (b.passion) kn.gainPassion(b.passion); if (b.passionMin) kn.passionMin = b.passionMin; if (b.baneLimit) kn.baneLimit += b.baneLimit; if (b.resource) kn.fleischBoard = (kn.fleischBoard || 0) + b.resource; }
     clash.hired = this.hired; clash.campaign = this;
@@ -118,6 +132,8 @@ export class Campaign {
       this.say(`${k.name}이 Sigh of the Graal 사용 → Clash 재시작`); return 'replay';
     }
     this.roundBuffs = {}; // Inn effects last for this Rosegraal round only
+    // Consumable Gear equipped for this Clash moves to the Merchant deck (rulebook p.66 Loot / p.29)
+    for (const ck of this.knights) { const used = (ck.loadout.gear || []).filter(n => this.consumableDef(n)); for (const n of used) { ck.loadout.gear = ck.loadout.gear.filter(x => x !== n); const i = ck.armory.indexOf(n); if (i >= 0) ck.armory.splice(i, 1); (this.merchantConsumables = this.merchantConsumables || []).push(n); this.say(`${ck.name}: Consumable ${n} → Merchant 덱으로`); } }
     // resurrections
     if (deaths && survivors > 0) {
       // 확정(2026-11-02): 생존자가 있으면 부활 수가 모자라도 사망 기사 전원 부활, 부활은 0 아래로 내려가지 않음
@@ -167,8 +183,9 @@ export class Campaign {
   }
 
   // ---------- Outpost (codex p.6, rulebook p.28–29) ----------
-  merchantDeck(tierLevel) { return this.data.gear.merchant_principality.gear.filter(g => TIER_IDX[g.tier] <= tierLevel); }
-  buyGear(ck, name, tierLevel) { const g = this.merchantDeck(tierLevel).find(g => g.name === name); if (!g) throw new Error('not in merchant deck'); if (ck.gold < g.price) throw new Error('Gold 부족'); ck.gold -= g.price; ck.armory.push(g.name); ck.boughtThisOutpost = (ck.boughtThisOutpost || []).concat(g.name); this.say(`${ck.name} 구매: ${g.name} (-${g.price}G, 남은 ${ck.gold}G)`); }
+  merchantDeck(tierLevel) { const cons = [...(this.merchantConsumables || []), ...((this.outpost && this.outpost.round === this.round && this.outpost.tempConsumables) || [])].map(n => this.consumableDef(n)).filter(c => c && TIER_IDX[c.tier] <= tierLevel).map(c => ({ name: c.name, tier: c.tier, price: c.price, type: 'support', consumable: true, traits: c.traits, side: { text: `[Consumable · Charge ${c.charges}] ${c.text}` } }));
+    return [...this.data.gear.merchant_principality.gear.filter(g => TIER_IDX[g.tier] <= tierLevel), ...cons]; }
+  buyGear(ck, name, tierLevel) { const g = this.merchantDeck(tierLevel).find(g => g.name === name); if (!g) throw new Error('not in merchant deck'); if (ck.gold < g.price) throw new Error('Gold 부족'); ck.gold -= g.price; ck.armory.push(g.name); if (g.consumable) { const i = (this.merchantConsumables || []).indexOf(g.name); if (i >= 0) this.merchantConsumables.splice(i, 1); else if (this.outpost && this.outpost.tempConsumables) { const j = this.outpost.tempConsumables.indexOf(g.name); if (j >= 0) this.outpost.tempConsumables.splice(j, 1); } } ck.boughtThisOutpost = (ck.boughtThisOutpost || []).concat(g.name); this.say(`${ck.name} 구매: ${g.name} (-${g.price}G, 남은 ${ck.gold}G)`); }
   reforge(ck, name) { const g = this.data.gear.merchant_principality.gear.find(g => g.name === name); if (!g) throw new Error('재련 불가'); if ((ck.boughtThisOutpost || []).includes(name)) throw new Error('같은 Outpost에서 산 장비는 재련 불가'); if (!ck.armory.includes(name)) throw new Error('미보유'); if (ck.gold < g.reforgePrice) throw new Error('Gold 부족'); ck.gold -= g.reforgePrice; ck.armory[ck.armory.indexOf(name)] = g.reforgedName; const li = ck.loadout.gear.indexOf(name); if (li >= 0) ck.loadout.gear[li] = g.reforgedName; this.say(`${ck.name} 재련: ${name} → ${g.reforgedName} (-${g.reforgePrice}G)`); }
   hire(payer, mercClass, level) { if (this.hired.length >= 4) throw new Error('용병 최대 4'); const m = this.mercPool.find(m => m.class === mercClass && m.level === level); if (!m) throw new Error('없음'); if (this.hired.some(h => h.class === m.class)) throw new Error('같은 이름 용병 중복 불가'); if (payer.gold < m.cost) throw new Error('Gold 부족'); payer.gold -= m.cost; this.hired.push({ ...m, side: 'A' }); this.say(`${payer.name}이 ${m.class} L${m.level} 고용 (-${m.cost}G)`); }
   dismissAll() { this.hired = []; }
@@ -181,7 +198,7 @@ export class Campaign {
       let lvl = 2; if (tierLevel >= 4 && await ask({ type: 'confirm', text: 'Early Bird (Devil 티어): 레벨 2 대신 레벨 3 용병을 추가할까요?', default: true, options: [{ label: '레벨 3', value: true }, { label: '레벨 2', value: false }] })) lvl = 3;
       const cands = M.filter(m => m.level === lvl && !this.mercPool.some(x => x.class === m.class && x.level === m.level)); if (cands.length) { const m = this.rng.pick(cands); const e = { class: m.class, level: m.level, cost: m.cost, side: 'A', kingdom: m.kingdom, temp: true }; this.mercPool.push(e); st.tempMercs.push(e); this.say(`Early Bird (Mercenary Guild): 레벨 ${lvl} ${m.class} 임시 추가`); }
     } else if (section === 'inn') this.say('Early Bird (Inn): 굴리는 대신 결과를 고를 수 있음');
-    else if (section === 'merchantsWorkshop') this.say('Early Bird (Merchant\'s Workshop): 무작위 Consumable 추가 — Consumable 카드 자료 없음, 효과 없음');
+    else if (section === 'merchantsWorkshop') { const C = this.data.gear.consumables ? this.data.gear.consumables.consumables.filter(c => c.tier === this.tierOf(tierLevel)) : []; if (C.length) { const c = this.rng.pick(C); (st.tempConsumables = st.tempConsumables || []).push(c.name); this.say(`Early Bird (Merchant's Workshop): ${c.name} (${c.tier}, ${c.price}G) 임시 추가`); } else this.say('Early Bird (Merchant\'s Workshop): 해당 티어 Consumable 없음'); }
     return section;
   }
   /** Inn (codex p.6): once per Outpost, roll a d10 (results 6 and 7 are not used in Rogue's Path → re-roll), or choose with the Inn Early Bird. */
@@ -210,12 +227,14 @@ export class Campaign {
     const gold = card.gold[tier]; const tierLevel = TIER_IDX[tier];
     let gearOpts = [];
     if (allowGear) {
-      if (card.type === 'fullClash' || card.type === 'exhibitionClash') { const mon = this.data.monsters[this.current.monster]; gearOpts = (mon && mon.loot ? mon.loot : []).map(n => ({ label: n + ' (몬스터 Gear)', value: 'gear:' + n })); if (!gearOpts.length) this.say(`${cur0(this)} 몬스터 Loot Gear 목록 없음 → Gold만 가능 [자료 필요]`); }
-      else if (card.type === 'kingdomGear') gearOpts = this.merchantDeck(tierLevel).map(g => ({ label: `${g.name} (${g.tier})`, value: 'gear:' + g.name }));
-      else this.say(`${card.type} Loot: ${card.type === 'upgrade' ? 'Upgrade' : 'Consumable'} 카드 자료 없음 → Gold만 가능 [자료 필요]`);
+      const G = this.data.gear; const okTier = t => t !== 'Legendary' && TIER_IDX[t] <= tierLevel;
+      if (card.type === 'fullClash' || card.type === 'exhibitionClash') { const mg = G.monster_gear ? G.monster_gear.gear.filter(g => g.monster === this.current.monster && okTier(g.tier)) : []; gearOpts = mg.map(g => ({ label: `${g.name} (${g.tier} · ${g.type}${g.hands ? ' ' + g.hands + 'H' : ''})`, value: 'gear:' + g.name })); if (!gearOpts.length) this.say(`${cur0(this)}: 교환 가능한 몬스터 Gear 없음 → Gold`); }
+      else if (card.type === 'kingdomGear') gearOpts = this.merchantDeck(tierLevel).filter(g => !g.consumable).map(g => ({ label: `${g.name} (${g.tier})`, value: 'gear:' + g.name }));
+      else if (card.type === 'consumableGear') gearOpts = (G.consumables ? G.consumables.consumables.filter(c => okTier(c.tier)) : []).map(c => ({ label: `${c.name} (${c.tier} · Charge ${c.charges})`, value: 'gear:' + c.name }));
+      else if (card.type === 'upgrade') gearOpts = (G.upgrades ? G.upgrades.upgrades.filter(u => okTier(u.tier)) : []).map(u => ({ label: `${u.name} (${u.tier} ${u.kind === 'weapon' ? 'Weapon' : 'Armor'} Upgrade)`, value: 'upg:' + u.name }));
     }
     const v = gearOpts.length ? await this.ask({ type: 'pick', text: `${ck.name} — ${card.type} Loot 교환`, options: [{ label: `Gold +${gold}`, value: 'gold' }, ...gearOpts] }) : 'gold';
-    if (v === 'gold' || !v) { ck.gold += gold; this.say(`${ck.name} Loot → +${gold}G (${ck.gold}G)`); } else { const n = v.slice(5); ck.armory.push(n); this.say(`${ck.name} Loot → ${n}`); }
+    if (v === 'gold' || !v) { ck.gold += gold; this.say(`${ck.name} Loot → +${gold}G (${ck.gold}G)`); } else if (v.startsWith('upg:')) { const n = v.slice(4); (ck.upgrades = ck.upgrades || []).push(n); this.say(`${ck.name} Loot → Upgrade ${n}`); } else { const n = v.slice(5); ck.armory.push(n); this.say(`${ck.name} Loot → ${n}`); }
     function cur0(c) { return c.current ? c.current.monsterName : ''; }
   }
 

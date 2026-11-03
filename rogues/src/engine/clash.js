@@ -450,12 +450,12 @@ export class Clash {
     await this.fx.beforeAttack(k, A);
     await this.fx.exertWindow(k, A, 'Attack Roll 전');
     // 3. Attack roll
-    let dice = w.attackDice + this.fx.extraAttackDice(k, w, A); let prec = w.precision + this.fx.precision(k) + (A.extraPrecision || 0) + this.poolCount('opening') + this.poolCount('closing');
+    let dice = w.attackDice + this.fx.extraAttackDice(k, w, A); let prec = (Number(w.precision) || 0) + this.fx.precision(k) + (A.extraPrecision || 0) + this.poolCount('opening') + this.poolCount('closing');
     const roll = rollD10s(this.rng, dice); const toHit = this.monster.toHit + this.monster.modifiers.toHit;
     const isHit = d => d.v === 10 ? true : d.v === 1 ? false : d.v + prec >= toHit;
     this.say(`${k.name} Attack Roll ${dice}d → [${roll.dice.map(d => d.v).join(' ')}] (재굴림 전)`, 'dice');
     await this.fx.exertWindow(k, A, `Attack Roll 후, 재굴림 전 — [${roll.dice.map(d => d.v + (isHit(d) ? '✓' : '✗')).join(' ')}] vs ${toHit}+ (보너스 +${prec}), 명중 ${roll.dice.filter(isHit).length}/${dice}`);
-    prec = w.precision + this.fx.precision(k) + (A.extraPrecision || 0) + this.poolCount('opening') + this.poolCount('closing');
+    prec = (Number(w.precision) || 0) + this.fx.precision(k) + (A.extraPrecision || 0) + this.poolCount('opening') + this.poolCount('closing');
     let misses = roll.dice.filter(d => !isHit(d));
     if (misses.length && (k.heat < k.heatLimit || this.poolCount('closing'))) {
       const maxR = Math.min(misses.length, (k.heatLimit - k.heat) + this.poolCount('closing'));

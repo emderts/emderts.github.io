@@ -1,0 +1,266 @@
+{
+ "_source": "Consumable Gear sheet (owner scan 2026-11-03), 15 cards x2 copies",
+ "consumables": [
+  {
+   "name": "Crackling Stones",
+   "code": "13A0521",
+   "traits": [
+    "Consumable",
+    "Stone"
+   ],
+   "tier": "Mob",
+   "price": 1,
+   "charges": 2,
+   "text": "1 [Charge] Place 1 Break [Break] or 1 Opening [Opening] token in the Knight Pool.\n[Move action] or [Combat action] Gain 2 [Charge].\n[JUDICIUM] [Discard] Discard 1 Armor [Armor] token from anywhere.",
+   "gates": [
+    {
+     "gate": "JUDICIUM",
+     "text": "[Discard] Discard 1 Armor [Armor] token from anywhere."
+    }
+   ],
+   "copies": 2,
+   "unclear": [
+    "Two black action-box icons before 'or ... Gain 2': read as [Move action] (figure with speed lines) and [Combat action] (striking fist/figure); which is which is uncertain",
+    "Icon after 'Armor' is the breastplate/armor icon, written [Armor]"
+   ]
+  },
+  {
+   "name": "Smelling Salts",
+   "code": "13A0519",
+   "traits": [
+    "Consumable",
+    "Medicine"
+   ],
+   "tier": "Mob",
+   "price": 2,
+   "charges": 2,
+   "text": "1 [Charge] Lose -1 [Heat].\n2 [Charge] Lose -3 [Heat].",
+   "gates": [],
+   "copies": 2,
+   "unclear": []
+  },
+  {
+   "name": "Flickering Torch",
+   "code": "13A0523",
+   "traits": [
+    "Consumable",
+    "Wood",
+    "Flammable"
+   ],
+   "tier": "Mob",
+   "price": 2,
+   "charges": 3,
+   "text": "1 [Charge] Wander.\n2 [Charge] Choose a direction. Turn one Monster to face the chosen direction.\n3 [Charge] Perform Rotation 1.",
+   "gates": [],
+   "copies": 2,
+   "unclear": []
+  },
+  {
+   "name": "Fluorescent Pebbles",
+   "code": "13A0525",
+   "traits": [
+    "Consumable",
+    "Stone",
+    "Magic"
+   ],
+   "tier": "Vassal",
+   "price": 4,
+   "charges": 3,
+   "text": "Spend X [Charge] to Trailmake 1+X. X must be 1 or more.",
+   "gates": [],
+   "copies": 2,
+   "unclear": []
+  },
+  {
+   "name": "Pocket Sand",
+   "code": "13A0529",
+   "traits": [
+    "Consumable",
+    "Curse",
+    "Magic",
+    "Sand"
+   ],
+   "tier": "Vassal",
+   "price": 3,
+   "charges": 4,
+   "text": "Tumble. When you're knocked down or ignore Knockdown, spend X [Charge] from this card to place X Opening [Opening] tokens in the Knight Pool.\n3 [Charge] Ignore a Rotation.",
+   "gates": [],
+   "copies": 2,
+   "unclear": [
+    "Trait reads 'Curse' (not 'Cursed' as on Devil's Hand Charm); small italic print"
+   ]
+  },
+  {
+   "name": "Alleviating Ointment",
+   "code": "13A0527",
+   "traits": [
+    "Consumable",
+    "Medicine"
+   ],
+   "tier": "Vassal",
+   "price": 4,
+   "charges": 2,
+   "text": "1 [Charge] Gain +3 [Vigor] or discard 1 Poison token.\n2 [Charge] Second Chance.",
+   "gates": [],
+   "copies": 2,
+   "unclear": []
+  },
+  {
+   "name": "Basphille Herbal Brew",
+   "code": "13A0532",
+   "traits": [
+    "Consumable",
+    "Drink",
+    "Medicine"
+   ],
+   "tier": "King",
+   "price": 8,
+   "charges": 3,
+   "text": "[Combat action]+[Move action] 1 [Charge] Improved Rush.\nWhen you spend the last [Charge] from this card, gain +1 [Passion].",
+   "gates": [],
+   "copies": 2,
+   "unclear": [
+    "Leading combined black action box with two icons joined by '+': read as [Combat action]+[Move action]; identity/order of the two icons uncertain"
+   ]
+  },
+  {
+   "name": "Red Fire-Wine",
+   "code": "13A0531",
+   "traits": [
+    "Consumable",
+    "Drink",
+    "Flammable"
+   ],
+   "tier": "King",
+   "price": 7,
+   "charges": 3,
+   "text": "During Adventure: After a Knight tests [Bravery], spend X [Charge] to add +X to the result.\nDuring Clash: Spend all [Charge] from this card to Fire X, where X is the number of [Charge] spent.",
+   "gates": [],
+   "copies": 2,
+   "unclear": [
+    "Stat icon after 'tests' read as [Bravery] (matches the Bravery icon on Sign of the Saints)"
+   ]
+  },
+  {
+   "name": "Holy Pendant",
+   "code": "13A0534",
+   "traits": [
+    "Consumable",
+    "Holy",
+    "Wood",
+    "Flammable"
+   ],
+   "tier": "King",
+   "price": 7,
+   "charges": 3,
+   "text": "Your active Weapon gains the Holy Trait.\n1 [Charge] Inspire 1.\nSpend X [Charge] to Motivate X.",
+   "gates": [],
+   "copies": 2,
+   "unclear": [
+    "Code last digit blurry (13A0534 vs 13A0524)"
+   ]
+  },
+  {
+   "name": "Preventive Leeches",
+   "code": "13A0538",
+   "traits": [
+    "Consumable",
+    "Alive",
+    "Medicine"
+   ],
+   "tier": "Devil",
+   "price": 10,
+   "charges": 3,
+   "text": "Start of Clash: Spend X [Charge] and place them on your Knight Board.\nThe next time you would gain Condition tokens, you may discard X [Charge] from your Knight Board to ignore X of them.\nX [Charge] Lose -X [Vigor].",
+   "gates": [],
+   "copies": 2,
+   "unclear": [
+    "Code blurry: 13A0538 (could be 13A0539)"
+   ]
+  },
+  {
+   "name": "Lightfoot Map",
+   "code": "13A0537",
+   "traits": [
+    "Consumable",
+    "Magic"
+   ],
+   "tier": "Devil",
+   "price": 10,
+   "charges": 5,
+   "text": "During Delve, you may move through Shortcuts.\n1 [Charge] Trailmake 2. You may Wander during this Deep Fog Traversal (once).\n3 [Charge] When you are about to resolve an Ambush, resolve an Encounter instead.",
+   "gates": [],
+   "copies": 2,
+   "unclear": []
+  },
+  {
+   "name": "Alchemical Reactants",
+   "code": "13A0540",
+   "traits": [
+    "Consumable",
+    "Potion",
+    "Ingredient",
+    "Alchemy"
+   ],
+   "tier": "Devil",
+   "price": 10,
+   "charges": 3,
+   "text": "[Reaction] 1 [Charge] Reflex.\n[Reaction] 2 [Charge] Superior Reflex.",
+   "gates": [],
+   "copies": 2,
+   "unclear": []
+  },
+  {
+   "name": "Heart's Sacrament Wine",
+   "code": "13A0542",
+   "traits": [
+    "Consumable",
+    "Drink",
+    "Flammable"
+   ],
+   "tier": "Dragon",
+   "price": 13,
+   "charges": 2,
+   "text": "X [Charge] When you are about to test any Virtue (including Judgements), add +X to the result.\n1 [Charge] When a Monster performs an AI, become its Target. When you lose [Vigor], gain that many [Charge].",
+   "gates": [],
+   "copies": 2,
+   "unclear": []
+  },
+  {
+   "name": "Devil's Hand Charm",
+   "code": "13A0547",
+   "traits": [
+    "Consumable",
+    "Cursed",
+    "Alive",
+    "Flesh"
+   ],
+   "tier": "Dragon",
+   "price": 13,
+   "charges": 3,
+   "text": "X [Charge] Discard X Bane [Bane] tokens.\n3 [Charge] Change a result of one [Attack die] you just rolled to a chosen result, then Bane 3.",
+   "gates": [],
+   "copies": 2,
+   "unclear": []
+  },
+  {
+   "name": "Vicious Fang Necklace",
+   "code": "13A0545",
+   "traits": [
+    "Consumable",
+    "Bone",
+    "Rope",
+    "Flammable"
+   ],
+   "tier": "Dragon",
+   "price": 14,
+   "charges": 3,
+   "text": "1 [Charge] Re-roll your Attack Roll (all dice). When you spend the last [Charge] from this card, perform a Bonus Attack!",
+   "gates": [],
+   "copies": 2,
+   "unclear": [
+    "Code blurry: 13A0545 (could be 13A0546)"
+   ]
+  }
+ ]
+}

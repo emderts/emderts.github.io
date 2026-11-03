@@ -74,4 +74,17 @@ ok(stats.rounds >= 8, `campaign rounds simulated: ${stats.rounds} (win ${stats.w
 { const c = mk(32); await c.earlyBird('inn', 1); await c.innVisit(1, 2); const buffed = Object.keys(c.roundBuffs); ok(buffed.length === 2, 'Inn 2 (chosen via Early Bird): two knights Heat Limit +1');
   const n = c.availableNodes().find(n => c.nodePlayable(n)); c.chooseNode(n.id); const clash = c.buildClash(); const kn = clash.knights.find(k => k.name === buffed[0]); ok(kn.heatLimit === 4, `buffed knight Heat Limit ${kn.heatLimit} (3+1)`);
   clash.ask = clashAsk(clash); clash.setup(); await clash.run(); await c.aftermath(clash); ok(!c.roundBuffs || !Object.keys(c.roundBuffs).length, 'Inn effects end with the Rosegraal round'); }
+// Monster gear / Consumables / Upgrades: Loot exchange, Upgrade attach rules, Consumables return to the Merchant deck
+{ ok(data.gear.monster_gear.gear.length === 56 && data.gear.monster_gear.gear.filter(g => g.monster === 'eggknight').length === 8 && data.gear.consumables.consumables.length === 15 && data.gear.upgrades.upgrades.length === 40, 'monster gear 56 (Eggknight 8), consumables 15, upgrades 40');
+  const c = mk(41); const n = c.availableNodes().find(n => c.nodePlayable(n)); c.chooseNode(n.id); const k = c.knights[0];
+  c.ask = async q => { const o = q.options && q.options.find(o => String(o.value).startsWith('gear:') || String(o.value).startsWith('upg:')); return o ? o.value : campAsk(q); };
+  await c.exchangeLoot(k, data.decks.loot.cards.find(x => x.type === 'fullClash'), 'Mob', true); ok(k.armory.some(nm => data.gear.monster_gear.gear.find(g => g.name === nm && g.monster === 'eggknight' && g.tier === 'Mob')), 'Full Clash Loot → Eggknight gear of tier ≤ Mob');
+  await c.exchangeLoot(k, data.decks.loot.cards.find(x => x.type === 'consumableGear'), 'Mob', true); const cons = k.armory.find(nm => c.consumableDef(nm)); ok(!!cons, 'Consumable Loot → consumable gear');
+  await c.exchangeLoot(k, data.decks.loot.cards.find(x => x.type === 'upgrade'), 'Mob', true); ok(k.upgrades && k.upgrades.length === 1, 'Upgrade Loot → upgrade card');
+  const wu = data.gear.upgrades.upgrades.find(u => u.kind === 'weapon' && u.tier === 'Mob'); k.upgrades.push(wu.name); let threw = false; try { c.setUpgrade(k, 'Chipped Axe', wu.name); } catch (e) { threw = true; } ok(threw, 'Upgrade cannot go on Merchant Gear (Chipped Axe)');
+  k.armory.push('Egg Greatsword'); c.setUpgrade(k, 'Egg Greatsword', wu.name); c.setLoadoutGear(k, ['Egg Greatsword', cons]);
+  const clash = c.buildClash(); const g = clash.knights[0].gear.find(x => x.name === 'Egg Greatsword'); ok(g.upgrade && g.upgrade.name === wu.name && g.text.includes(wu.name), 'attached Upgrade travels with the Gear into the Clash');
+  ok(clash.knights[0].gear.find(x => x.name === cons).chargesLeft === c.consumableDef(cons).charges, 'consumable starts the Clash with full charges');
+  clash.ask = clashAsk(clash); clash.setup(); await clash.run(); await c.aftermath(clash);
+  ok(!k.armory.includes(cons) && (c.merchantConsumables || []).includes(cons) && c.merchantDeck(5).some(x => x.name === cons), 'equipped consumable moves to the Merchant deck after the Clash'); }
 console.log(fails ? `${fails} FAIL` : 'ALL PASS'); process.exit(fails ? 1 : 0);

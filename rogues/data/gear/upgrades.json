@@ -1,0 +1,392 @@
+{
+ "_source": "Upgrade mini cards (owner scan 2026-11-03), 40 cards 14A0821-14A0860",
+ "upgrades": [
+  {
+   "name": "Rugged Camo",
+   "code": "14A0824",
+   "kind": "armor",
+   "tier": "Mob",
+   "text": "3 [Heat] When you move, ignore Swamp Terrain tiles for this movement.\n[JUDICIUM] Hide.",
+   "gates": [
+    {
+     "gate": "JUDICIUM",
+     "text": "Hide."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Sanded Grip",
+   "code": "14A0823",
+   "kind": "weapon",
+   "tier": "Mob",
+   "text": "This Weapon cannot be involuntarily exhausted or discarded.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Leather Strapguard",
+   "code": "14A0822",
+   "kind": "weapon",
+   "tier": "Mob",
+   "text": "2 [Heat] Ignore an Exhaust or Discard of this Weapon (even a voluntary one!).",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Spider Venom Curse",
+   "code": "14A0821",
+   "kind": "weapon",
+   "tier": "Mob",
+   "text": "During the second ability window, you may discard this Upgrade from your Weapon to gain Envenomed 1.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Temporary Petrification",
+   "code": "14A0825",
+   "kind": "armor",
+   "tier": "Mob",
+   "text": "This Armor gains the Stone Trait and loses the Metal Trait. After rolling Armor dice, you may decide to mitigate damage with [Power] symbols instead of [Potential].",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Hunter's Prize",
+   "code": "14A0826",
+   "kind": "armor",
+   "tier": "Mob",
+   "text": "If you're 5 or more spaces away from the closest Monster, gain +1 Speed [Speed].\n[Reaction] [Exhaust] If you're adjacent to a Monster, Reflex.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Tethered Blades",
+   "code": "14A0827",
+   "kind": "weapon",
+   "tier": "Mob",
+   "text": "When you attack, you may lose -1 [Vigor] to gain Auto-break 1. This Weapon gains the Blade Trait.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Spare Shieldplate",
+   "code": "14A0828",
+   "kind": "armor",
+   "tier": "Mob",
+   "text": "This Armor [Gear] card gains the Shield Trait.\n[Discard] Block.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Studded Steel Plates",
+   "code": "14A0832",
+   "kind": "armor",
+   "tier": "Vassal",
+   "text": "This Armor [Gear] card gains the Metal Trait.\n1 [Heat] Reinforce 1.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Fog Essence",
+   "code": "14A0831",
+   "kind": "weapon",
+   "tier": "Vassal",
+   "text": "Gain +1 Precision [Precision] for each Bane [Bane] token you have. When you deal a Wound, Bane 1.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Improvised Modifications",
+   "code": "14A0830",
+   "kind": "weapon",
+   "tier": "Vassal",
+   "text": "When you are about to attack, you may change up to 2 Opening [Opening] tokens in the Knight Pool into Break [Break] tokens and vice versa.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Battle Scope",
+   "code": "14A0829",
+   "kind": "weapon",
+   "tier": "Vassal",
+   "text": "2 [Heat] Precise.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Oil Pouch",
+   "code": "14A0833",
+   "kind": "weapon",
+   "tier": "Vassal",
+   "text": "1 [Heat] This Weapon gains the Flammable Trait and Fire 1 until the end of your turn.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Tattered War Banner",
+   "code": "14A0834",
+   "kind": "armor",
+   "tier": "Vassal",
+   "text": "Motivate 1. The Knight you use this Motivate on may only move toward a Monster during that Motivate.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Steelsplinter Solution",
+   "code": "14A0835",
+   "kind": "armor",
+   "tier": "Vassal",
+   "text": "When you are hit by a Monster Attack, place 1 Opening [Opening] and 1 Black [Black] token in the Knight Pool.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Lightweight Alloy",
+   "code": "14A0836",
+   "kind": "armor",
+   "tier": "Vassal",
+   "text": "Bypass. Ignore up to -1 Speed [Speed] penalty. This Armor [Gear] card gains the Magic Trait.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Hook, Line, and Sinker",
+   "code": "14A0841",
+   "kind": "weapon",
+   "tier": "King",
+   "text": "Pull 3. Drag 1.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Red Paintjob",
+   "code": "14A0842",
+   "kind": "armor",
+   "tier": "King",
+   "text": "Deploy 2. +1 Speed [Speed].",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Holy Engravings",
+   "code": "14A0843",
+   "kind": "weapon",
+   "tier": "King",
+   "text": "All adjacent Knights have +1 Precision [Precision]. This Weapon gains the Holy Trait.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Enchanted Adapters",
+   "code": "14A0844",
+   "kind": "armor",
+   "tier": "King",
+   "text": "When you become the Target of a Monster Attack, you may change all your [Evasion Re-roll] into [red Armor die] and vice versa.",
+   "gates": [],
+   "unclear": [
+    "First icon (die with circular arrow) read as Evasion Re-roll icon, written [Evasion Re-roll]; second is a red Armor die icon, written [red Armor die]"
+   ]
+  },
+  {
+   "name": "Anti-Parasite Rust",
+   "code": "14A0840",
+   "kind": "weapon",
+   "tier": "King",
+   "text": "Bane Limit [Bane Limit] +1.\nThis Weapon gains the Rust Trait. Discard this Upgrade to discard the Panzer Parasite Condition card.",
+   "gates": [],
+   "unclear": [
+    "Icon after 'Bane Limit' is a Bane circle with '!' - not in legends, written [Bane Limit]"
+   ]
+  },
+  {
+   "name": "Toxic Bile",
+   "code": "14A0839",
+   "kind": "armor",
+   "tier": "King",
+   "text": "When you are hit with a Monster Attack, you may suffer Poison 1 to place 1 temporary negative AT [AT] token in the Knight Pool.",
+   "gates": [],
+   "unclear": [
+    "Icon after 'AT' (pair of greave/claw-like shapes) is not in the legends; written as [AT]"
+   ]
+  },
+  {
+   "name": "Enreaching Handle",
+   "code": "14A0838",
+   "kind": "weapon",
+   "tier": "King",
+   "text": "Reach 2.\nThis Weapon becomes [2 hands]. If it already was [2 hands], gain 2 permanent negative Precision [Precision] tokens. You cannot equip this Upgrade on a Weapon with the Ranged keyword.",
+   "gates": [],
+   "unclear": [
+    "Inline icon is the two-gauntlet (two-handed) slot icon, written [2 hands]",
+    "Title reads 'ENREACHING' as printed"
+   ]
+  },
+  {
+   "name": "Strapped Incendiaries",
+   "code": "14A0837",
+   "kind": "weapon",
+   "tier": "King",
+   "text": "3 [Heat] During the Power Roll step, you may discard this Upgrade to gain +3 [Power].",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Blessings of a High Priest",
+   "code": "14A0849",
+   "kind": "weapon",
+   "tier": "Devil",
+   "text": "During your Power Roll, if you fail to meet the [AT], place up to 2 Fire [Fire] tokens in the Knight Pool. When you Wound, move a chosen Monster up to X spaces away, where X is the Level of the wounded BP.",
+   "gates": [],
+   "unclear": [
+    "Icon after 'meet the' is the same greave/claw-like icon as on Toxic Bile; written [AT]"
+   ]
+  },
+  {
+   "name": "Interdimensional Reshaper",
+   "code": "14A0850",
+   "kind": "weapon",
+   "tier": "Devil",
+   "text": "At the start of a Delve Phase choose 2 different Upgrades.\n1 [Heat] Equip one of the chosen Upgrades on this Weapon until the end of turn.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Bloodletting Incisions",
+   "code": "14A0851",
+   "kind": "weapon",
+   "tier": "Devil",
+   "text": "2 [Heat] [Exhaust] When you deal a Wound, place 1 temporary negative AT [AT] token in the Knight Pool.",
+   "gates": [],
+   "unclear": [
+    "Icon after 'AT' (pair of greave/claw-like shapes) is not in the legends; written as [AT]"
+   ]
+  },
+  {
+   "name": "Counterweights",
+   "code": "14A0852",
+   "kind": "armor",
+   "tier": "Devil",
+   "text": "When you are about to gain up to +2 [Heat] as a cost of an ability or effect, you may exhaust this Armor [Gear] card instead.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Force Deflector",
+   "code": "14A0848",
+   "kind": "armor",
+   "tier": "Devil",
+   "text": "During an Armor Roll, for each [Potential] you roll place a Break [Break] token in the Knight Pool.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "30-Foot-Long Chain",
+   "code": "14A0847",
+   "kind": "weapon",
+   "tier": "Devil",
+   "text": "Ranged 2-5. Cumbersome. You cannot equip this Upgrade on a Weapon with the Ranged keyword or the Cumbersome keyword.",
+   "gates": [],
+   "unclear": [
+    "'2-5' may be printed with an en dash (2–5)"
+   ]
+  },
+  {
+   "name": "Sign of the Saints",
+   "code": "14A0846",
+   "kind": "weapon",
+   "tier": "Devil",
+   "text": "+1 Bravery [Bravery].\nYou may use this Weapon's Block as Defy.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Power Bank",
+   "code": "14A0845",
+   "kind": "weapon",
+   "tier": "Devil",
+   "text": "Start of Clash: Gain 1 [Charge].\n[Discard] Move all [Charge] from this Weapon onto any of your other Gear [Gear] cards.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Holy Water",
+   "code": "14A0857",
+   "kind": "weapon",
+   "tier": "Dragon",
+   "text": "Inspire 2. Motivate 2. This Weapon gains the Holy Trait. You may discard this Upgrade to discard a Mind Condition card. Additionally, you may gain +2 [Heat] to use this effect on an adjacent Knight instead.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Seal of Hygia",
+   "code": "14A0858",
+   "kind": "weapon",
+   "tier": "Dragon",
+   "text": "1 [Heat] Change up to 2 Knight tokens in the Knight Pool into Hope [Hope] tokens.\nIf there are 4 or more Hope [Hope] tokens in the Knight Pool, each Knight gains +2 Precision [Precision].",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Eye-Opening Frescos",
+   "code": "14A0859",
+   "kind": "armor",
+   "tier": "Dragon",
+   "text": "This Armor [Gear] card gains the Magic Trait.\n1 [Heat] Reveal the top card of a chosen Mortis deck.",
+   "gates": [],
+   "unclear": [
+    "Code blurry; read 14A0859 (fits the 0821-0860 sequence; 0839 is Toxic Bile)"
+   ]
+  },
+  {
+   "name": "Cursed Ichor",
+   "code": "14A0860",
+   "kind": "armor",
+   "tier": "Dragon",
+   "text": "Start of your turn: Bane 1.Soak X, where X is the amount of Bane [Bane] tokens you have.",
+   "gates": [],
+   "unclear": [
+    "Printed without a space: 'Bane 1.Soak X' (kept verbatim)"
+   ]
+  },
+  {
+   "name": "Sinking Weight",
+   "code": "14A0856",
+   "kind": "weapon",
+   "tier": "Dragon",
+   "text": "This Weapon gains the Cursed Trait. When you attack with this Weapon, you may gain +1 [Heat] to gain +2 [Power].\n1 [Heat] [Exhaust] Braced.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Fashionable Jewels",
+   "code": "14A0855",
+   "kind": "weapon",
+   "tier": "Dragon",
+   "text": "Provoke. Inspire 1. All Knights in Zone 2 gain Power Re-roll 1.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Strike Suspenser",
+   "code": "14A0854",
+   "kind": "weapon",
+   "tier": "Dragon",
+   "text": "During the second ability window, place a Power [Power] token in the Knight Pool for each [AT] you exceeded during this Attack's Power Roll (up to 3).",
+   "gates": [],
+   "unclear": [
+    "Icon after 'each' is the greave/claw-like icon (as on Toxic Bile), written [AT]",
+    "Icon after 'Power' is the Power knight-token icon; written [Power] (same as the sword placeholder)"
+   ]
+  },
+  {
+   "name": "Hieronymus's Insight",
+   "code": "14A0853",
+   "kind": "weapon",
+   "tier": "Dragon",
+   "text": "When you attack, after Escalation reveal the top AI card. If a Monster performs the revealed AI, all Knights gain [Reaction] 1 [Heat] Reflex for the duration of that AI.",
+   "gates": [],
+   "unclear": []
+  }
+ ]
+}
