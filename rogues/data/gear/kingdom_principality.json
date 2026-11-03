@@ -1,0 +1,451 @@
+{
+ "_source": "Principality of Stone Kingdom Gear (owner scan 2026-11-03): 14 kinds ×2 + 2 Story cards; slot icon = Support pouch except the two Story cards",
+ "gear": [
+  {
+   "name": "Petrified Chest Wound",
+   "code": "13A0549",
+   "kingdom": "principality",
+   "traits": [
+    "Stone",
+    "Curse"
+   ],
+   "type": "armor",
+   "hands": null,
+   "tier": "Story",
+   "copies": 1,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": {
+    "red": 1
+   },
+   "charges": null,
+   "text": "You must equip this card if you own it. You cannot discard this card in any way.\nWhen you die, return this card to the box (you do not own it anymore).",
+   "gates": [],
+   "unclear": [],
+   "story": true
+  },
+  {
+   "name": "Petrified Hand",
+   "code": "13A0548",
+   "kingdom": "principality",
+   "traits": [
+    "Improvised",
+    "Stone",
+    "Curse"
+   ],
+   "type": "weapon",
+   "hands": 1,
+   "tier": "Story",
+   "copies": 1,
+   "attackDice": 1,
+   "precision": 0,
+   "weaponPower": null,
+   "bonusPower": {
+    "raw": 1
+   },
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "You must equip this card if you own it. You cannot discard this card in any way.\nWhen you die, return this card to the box (you do not own it anymore).",
+   "gates": [],
+   "unclear": [],
+   "story": true
+  },
+  {
+   "name": "Regional Map",
+   "code": "13A0551",
+   "kingdom": "principality",
+   "traits": [
+    "Cloth",
+    "Flammable"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Mob",
+   "copies": 2,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Deploy 1.\n[Exhaust] During Delve, you may move through Shortcuts.\n2 [Heat] [Exhaust] When you perform a [Move action], gain +1 Speed [Speed] for that movement.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Cowhide Turnshoes",
+   "code": "13A0552",
+   "kingdom": "principality",
+   "traits": [
+    "Leather",
+    "Boots"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Mob",
+   "copies": 2,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Reposition 1.\n1 [Heat] [Exhaust] Lesser Dodge.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Parasite Bait",
+   "code": "13A0554",
+   "kingdom": "principality",
+   "traits": [
+    "Fleisch",
+    "Leather",
+    "Flammable"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Mob",
+   "copies": 2,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "+1 Fortitude [Fortitude].\n1 [Heat] [Exhaust] When you are about to suffer Parasitize X, lower X by 1 (to a minimum of 0).\n[GRAVE] 1 [Heat] [Discard] Discard 1 Armor [Armor] token from anywhere.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "1 [Heat] [Discard] Discard 1 Armor [Armor] token from anywhere."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Dismantling Hooks",
+   "code": "13A0559",
+   "kingdom": "principality",
+   "traits": [
+    "Metal",
+    "Hook",
+    "Tool"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Vassal",
+   "copies": 2,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "1 [Heat] [Exhaust] When you are about to attack, you may change up to 3 Break [Break] tokens in the Knight Pool into Opening [Opening] tokens and vice versa.\n[Discard] Ignore a Rotation.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Firefly Lantern",
+   "code": "13A0557",
+   "kingdom": "principality",
+   "traits": [
+    "Staff",
+    "Wood"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Vassal",
+   "copies": 2,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "2 [Heat] [Exhaust] Wander.\n2 [Heat] [Exhaust] Look at the top BP card of the closest Monster.\n[JUDICIUM] Gain +1 Precision [Precision].",
+   "gates": [
+    {
+     "gate": "JUDICIUM",
+     "text": "Gain +1 Precision [Precision]."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Rust Dust",
+   "code": "13A0562",
+   "kingdom": "principality",
+   "traits": [
+    "Magic",
+    "Rust",
+    "Curse"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "King",
+   "copies": 2,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Power Re-roll 1.\nDuring an Attack ignore up to X Armor [Armor] tokens, where X is the number of Bane [Bane] tokens you have.\nStart of your turn: Bane 1.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Spikesole Boots",
+   "code": "13A0564",
+   "kingdom": "principality",
+   "traits": [
+    "Hook",
+    "Metal",
+    "Boots"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "King",
+   "copies": 2,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "You may reduce suffered Drags and Pulls by 1.\n[Move action] Gain Rocksteady and Stalwart until your next turn.\n[MAJOR] Gain +1 [Heat] to use this card's ability instead of its regular cost.",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "Gain +1 [Heat] to use this card's ability instead of its regular cost."
+    }
+   ],
+   "unclear": [
+    "비용 아이콘(달리는 사람 박스)을 [Move action]으로 판독"
+   ]
+  },
+  {
+   "name": "Pauldron of a Cursed Knight",
+   "code": "13A0566",
+   "kingdom": "principality",
+   "traits": [
+    "Metal",
+    "Rust",
+    "Cursed"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "King",
+   "copies": 2,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Your Heat Limit [Heat Limit] becomes 9. You cannot lose [Heat] in any way.\n[JUDICIUM] [Discard] Second Chance.",
+   "gates": [
+    {
+     "gate": "JUDICIUM",
+     "text": "[Discard] Second Chance."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Adaptable Haversack",
+   "code": "13A0571",
+   "kingdom": "principality",
+   "traits": [
+    "Leather",
+    "Sheath",
+    "Flammable"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Devil",
+   "copies": 2,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "2 [Heat] [Exhaust] You may exchange one of your Weapon [Gear] cards for one Weapon from your Knight Armory. You may use this ability as a [Reaction].\n[Exhaust] Unexhaust 1 Weapon [Gear] card.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Sack of Possessions",
+   "code": "13A0569",
+   "kingdom": "principality",
+   "traits": [
+    "Cloth",
+    "Flammable",
+    "Bag"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Devil",
+   "copies": 2,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "When you discard another Gear [Gear] card, you may place it underneath this card.\nX [Heat] [Discard] Return X cards from underneath this card to your Knight.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Petrified Shrine Statue",
+   "code": "13A0572",
+   "kingdom": "principality",
+   "traits": [
+    "Cursed",
+    "Relic",
+    "Stone"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Devil",
+   "copies": 2,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Start of Clash: Draw a Judicium without resolving it, then return it to the deck. The next time you would draw a Judicium, resolve that Judicium instead.\n1 [Heat] [Exhaust] Block or Defy, [red oval icon].\n[GRAVE] X [Heat] [Discard] Discard X Armor [Armor] tokens from anywhere.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "X [Heat] [Discard] Discard X Armor [Armor] tokens from anywhere."
+    }
+   ],
+   "unclear": [
+    "'Block or Defy,' 뒤 빨간 타원 아이콘 미확인 (Eudes-Blessed Lance와 같은 아이콘)"
+   ]
+  },
+  {
+   "name": "Iron Crow",
+   "code": "13A0574",
+   "kingdom": "principality",
+   "traits": [
+    "Metal",
+    "Idol",
+    "Magic"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Dragon",
+   "copies": 2,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Armor-piercing 2.\n[JUDICIUM] [Discard] Draw a Judicium. If you survive, discard all Armor [Armor] tokens from anywhere.",
+   "gates": [
+    {
+     "gate": "JUDICIUM",
+     "text": "[Discard] Draw a Judicium. If you survive, discard all Armor [Armor] tokens from anywhere."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Tenebrae-Infused Gauntlets",
+   "code": "13A0576",
+   "kingdom": "principality",
+   "traits": [
+    "Gloves",
+    "Metal",
+    "Cursed"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Dragon",
+   "copies": 2,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Deadly.\n[Exhaust] Re-roll your Crit die, even if you already re-rolled it during this roll.\n[JUDICIUM] 2 [Heat] [Exhaust] When your Attack hits, gain a Crit Chance.",
+   "gates": [
+    {
+     "gate": "JUDICIUM",
+     "text": "2 [Heat] [Exhaust] When your Attack hits, gain a Crit Chance."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Reverse Curse Charm",
+   "code": "13A0577",
+   "kingdom": "principality",
+   "traits": [
+    "Talisman",
+    "Magic",
+    "Flammable"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Dragon",
+   "copies": 2,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "+1 Insight [Insight]. Bane Limit +2. Poison Limit +2. Gain +1 Speed [Speed] for each Bane [Bane] token you have. You cannot perform Armor Rolls.\n[GRAVE] [Discard] Before an Evasion Roll, gain +X Evasion [Evasion], where X is the number of your Bane [Bane] tokens.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "[Discard] Before an Evasion Roll, gain +X Evasion [Evasion], where X is the number of your Bane [Bane] tokens."
+    }
+   ],
+   "unclear": []
+  }
+ ]
+}

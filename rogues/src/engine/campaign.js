@@ -33,8 +33,10 @@ export class Campaign {
   knightDef(k) { return this.data.knights[k.def]; }
   _normalizeGear(names) { const hands = names.filter(n => n !== 'Knighves').map(n => this.gearDef(n)).filter(g => g && g.type === 'weapon').reduce((a, g) => a + (g.hands || 1), 0); return hands >= 2 ? names.filter(n => n !== 'Knighves') : names; }
   handLimit(k) { const p = this.knightDef(k).portraits.find(p => p.id === k.loadout.portrait); return p ? p.handLimit : 4; }
-  gearDef(name) { const G = this.data.gear; return G.gear.gear.find(g => g.name === name) || (G.monster_gear ? this._withKw(G.monster_gear.gear.find(g => g.name === name)) : null) || this._consumableAsGear(name) || this._merchantAsGear(name); }
+  gearDef(name) { const G = this.data.gear; return G.gear.gear.find(g => g.name === name) || (G.monster_gear ? this._withKw(G.monster_gear.gear.find(g => g.name === name)) : null) || this._withKw(this.kingdomGearList().find(g => g.name === name)) || this._consumableAsGear(name) || this._merchantAsGear(name); }
   _withKw(g) { if (!g) return null; return g.ops ? g : { ...g, ops: { keywords: this._kwFromText(g.text) } }; }
+  kingdomGearList(kingdom = null) { const G = this.data.gear; const all = [G.kingdom_principality ? G.kingdom_principality.gear : []].flat(); return kingdom ? all.filter(g => g.kingdom === kingdom) : all; }
+  ownedCount(name) { return this.knights.reduce((a, k) => a + k.armory.filter(n => n === name).length, 0); }
   consumableDef(name) { const C = this.data.gear.consumables; return C ? C.consumables.find(c => c.name === name) : null; }
   _consumableAsGear(name) { const c = this.consumableDef(name); if (!c) return null; return { name: c.name, code: c.code, traits: c.traits, type: 'support', hands: null, tier: c.tier, consumable: true, price: c.price, charges: c.charges, text: c.text, gates: c.gates, ops: { keywords: this._kwFromText(c.text) } }; }
   upgradeDef(name) { const U = this.data.gear.upgrades; return U ? U.upgrades.find(u => u.name === name) : null; }
@@ -83,7 +85,7 @@ export class Campaign {
     // resolve gear through gearDef (merchant gear isn't in gear.json)
     for (const kn of clash.knights) { const ck = this.knights.find(x => x.name === kn.name); kn.gear = ck.loadout.gear.map(n => { const g = { ...this.gearDef(n), exhausted: false, discarded: false }; const un = ck.loadout.upgrades && ck.loadout.upgrades[n]; const u = un && this.upgradeDef(un); if (u) { g.upgrade = u; g.text = `${g.text || ''}\n[Upgrade: ${u.name}] ${u.text}`; g.ops = { ...(g.ops || {}), keywords: [...((g.ops && g.ops.keywords) || []), ...this._kwFromText(u.text)] }; } if (g.consumable) g.chargesLeft = g.charges; return g; }); kn.hired = this.hired; }
     // Inn buffs for this Rosegraal round
-    for (const kn of clash.knights) { const b = (this.roundBuffs || {})[kn.name]; if (!b) continue; if (b.heatLimit) kn.heatLimitBonus = (kn.heatLimitBonus || 0) + b.heatLimit; if (b.fortify) kn.extraVigor = (kn.extraVigor || 0) + b.fortify; if (b.passion) kn.gainPassion(b.passion); if (b.passionMin) kn.passionMin = b.passionMin; if (b.baneLimit) kn.baneLimit += b.baneLimit; if (b.resource) kn.fleischBoard = (kn.fleischBoard || 0) + b.resource; }
+    for (const kn of clash.knights) { const b = (this.roundBuffs || {})[kn.name]; if (!b) continue; if (b.heatLimit) kn.heatLimitBonus = (kn.heatLimitBonus || 0) + b.heatLimit; if (b.fortify) kn.extraVigor = (kn.extraVigor || 0) + b.fortify; if (b.passion) kn.gainPassion(b.passion); if (b.passionMin) kn.passionMin = b.passionMin; if (b.baneLimit) kn.baneLimit += b.baneLimit; if (b.resource) kn.fleischBoard = (kn.fleischBoard || 0) + b.resource; if (b.parasiteBait) { const pb = this.gearDef('Parasite Bait'); if (pb) kn.gear.push({ ...pb, exhausted: false, discarded: false, temp: true }); } }
     clash.hired = this.hired; clash.campaign = this;
     this.clash = clash; return clash;
   }
@@ -215,7 +217,7 @@ export class Campaign {
     else if (n === 5) { const L = this.data.decks.loot.cards.filter(c => c.gold); const c = this.rng.pick(L); const g = c.gold[this.tierOf(tierLevel)] || 0; for (const k of alive) k.gold += g; this.say(`Loot ${c.type}: 기사마다 +${g}G`); }
     else if (n === 8) { const k = this.rng.pick(alive); buf(k).baneLimit = (buf(k).baneLimit || 0) + 1; this.say(`${k.name}: Bane Limit +1 (이번 라운드)`); }
     else if (n === 9) { const who = alive.length > 1 ? await this.ask({ type: 'pick', text: 'Inn 9: Resource 토큰(Fleisch)을 받을 기사', options: alive.map(k => ({ label: k.name, value: k.name })) }) : alive[0].name; const k = alive.find(x => x.name === who) || alive[0]; buf(k).resource = (buf(k).resource || 0) + 1; this.say(`${k.name}: Clash 시작 시 Fleisch 토큰 1`); }
-    else if (n === 10) { const k = this.rng.pick(alive); buf(k).parasiteBait = true; this.say(`${k.name}: Parasite Bait (Kingdom 카드 자료 없음 — 효과 미구현)`); }
+    else if (n === 10) { const k = this.rng.pick(alive); buf(k).parasiteBait = true; this.say(`${k.name}: Parasite Bait Kingdom 카드를 이번 라운드 동안 추가 장착`); }
     return n;
   }
   endOutpost() { for (const k of this.knights) delete k.boughtThisOutpost; const st = this.outpost; if (st && st.tempMercs.length) { this.mercPool = this.mercPool.filter(m => !st.tempMercs.includes(m) && !(m.temp && !this.hired.some(h => h.class === m.class && h.level === m.level))); st.tempMercs = []; } }
@@ -229,7 +231,7 @@ export class Campaign {
     if (allowGear) {
       const G = this.data.gear; const okTier = t => t !== 'Legendary' && TIER_IDX[t] <= tierLevel;
       if (card.type === 'fullClash' || card.type === 'exhibitionClash') { const mg = G.monster_gear ? G.monster_gear.gear.filter(g => g.monster === this.current.monster && okTier(g.tier)) : []; gearOpts = mg.map(g => ({ label: `${g.name} (${g.tier} · ${g.type}${g.hands ? ' ' + g.hands + 'H' : ''})`, value: 'gear:' + g.name })); if (!gearOpts.length) this.say(`${cur0(this)}: 교환 가능한 몬스터 Gear 없음 → Gold`); }
-      else if (card.type === 'kingdomGear') gearOpts = this.merchantDeck(tierLevel).filter(g => !g.consumable).map(g => ({ label: `${g.name} (${g.tier})`, value: 'gear:' + g.name }));
+      else if (card.type === 'kingdomGear') { const kg = this.kingdomGearList(this.current.kingdom).filter(g => !g.story && okTier(g.tier) && this.ownedCount(g.name) < (g.copies || 1)); gearOpts = kg.map(g => ({ label: `${g.name} (${g.tier} Kingdom Gear)`, value: 'gear:' + g.name })); if (!this.kingdomGearList(this.current.kingdom).length) this.say(`${this.current.kingdom} Kingdom Gear 자료 없음 → Gold`); }
       else if (card.type === 'consumableGear') gearOpts = (G.consumables ? G.consumables.consumables.filter(c => okTier(c.tier)) : []).map(c => ({ label: `${c.name} (${c.tier} · Charge ${c.charges})`, value: 'gear:' + c.name }));
       else if (card.type === 'upgrade') gearOpts = (G.upgrades ? G.upgrades.upgrades.filter(u => okTier(u.tier)) : []).map(u => ({ label: `${u.name} (${u.tier} ${u.kind === 'weapon' ? 'Weapon' : 'Armor'} Upgrade)`, value: 'upg:' + u.name }));
     }

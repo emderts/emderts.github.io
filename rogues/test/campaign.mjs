@@ -87,4 +87,11 @@ ok(stats.rounds >= 8, `campaign rounds simulated: ${stats.rounds} (win ${stats.w
   ok(clash.knights[0].gear.find(x => x.name === cons).chargesLeft === c.consumableDef(cons).charges, 'consumable starts the Clash with full charges');
   clash.ask = clashAsk(clash); clash.setup(); await clash.run(); await c.aftermath(clash);
   ok(!k.armory.includes(cons) && (c.merchantConsumables || []).includes(cons) && c.merchantDeck(5).some(x => x.name === cons), 'equipped consumable moves to the Merchant deck after the Clash'); }
+// Principality Kingdom Gear: Kingdom Gear Loot, copies, Story cards excluded, Inn 10 Parasite Bait
+{ const KG = data.gear.kingdom_principality.gear; ok(KG.length === 16 && KG.filter(g => g.story).length === 2, 'Principality Kingdom Gear 14 kinds + 2 Story');
+  const c = mk(42); const n = c.availableNodes().find(n => c.nodePlayable(n) && c.node(n.id).kingdom === 'principality') || c.availableNodes().find(n => c.nodePlayable(n)); c.chooseNode(n.id); const k = c.knights[0]; const seen = [];
+  c.ask = async q => { const o = q.options && q.options.filter(o => String(o.value).startsWith('gear:')); if (o && o.length) { seen.push(...o.map(x => x.value.slice(5))); return o[0].value; } return campAsk(q); };
+  await c.exchangeLoot(k, data.decks.loot.cards.find(x => x.type === 'kingdomGear'), 'Vassal', true);
+  ok(seen.length && seen.every(nm => KG.find(g => g.name === nm && !g.story && ['Mob', 'Vassal'].includes(g.tier))), `Kingdom Gear Loot offers Principality Kingdom Gear ≤ Vassal (${seen.length})`);
+  await c.earlyBird('inn', 1); await c.innVisit(1, 10); const who = Object.keys(c.roundBuffs)[0]; const clash = c.buildClash(); ok(clash.knights.find(x => x.name === who).gear.some(g => g.name === 'Parasite Bait'), 'Inn 10: that knight carries Parasite Bait this round'); }
 console.log(fails ? `${fails} FAIL` : 'ALL PASS'); process.exit(fails ? 1 : 0);
