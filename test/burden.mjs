@@ -27,6 +27,7 @@ const AI = n => data.primordials.burden.ai.find(a => a.name === n);
 { const g = mk(9); const [A] = g.titans; A.sisyphean = true; g.woundStack.push({ card: null, value: 1 }); await g.endOfPrimRoundC2(); ok(g.woundCount() === 0, 'Game is Rigged: heal'); }
 // --- Kickback in a Response is melee (like Knockback): a ranged attacker outside adjacency ignores it
 { const g = mk(2); const [A] = g.titans; g.prim.anchor = { c: 10, r: 7 }; A.pos = { c: 3, r: 7 }; const p0 = { ...A.pos }; await g.doEffects(A, 'Gain +2 Danger. Knockdown. Kickback 10.', { response: true, card: { name: 'Axis Allegory' } }); ok(A.pos.c === p0.c && A.pos.r === p0.r && !A.knockdown, 'Response Kickback ignored when the attacker is not adjacent (ranged weapon)'); }
+{ const g = mk(1); const [A] = g.titans; g.prim.anchor = { c: 15, r: 7 }; A.pos = { c: 10, r: 7 }; A.godform = { def: { name: 'Demeter' }, trespass: 2 }; const p0 = { ...A.pos }; await g.kickback(A, 6, 'W'); ok(A.pos.c === p0.c && A.pos.r === p0.r, 'Demeter (Roots of the Earth) ignores Kickback'); }
 // --- Tethered
 { const g = mk(1); const [A, B, C, D] = g.titans; g.prim.anchor = { c: 18, r: 12 }; A.pos = { c: 3, r: 5 }; B.pos = { c: 9, r: 5 }; C.pos = { c: 9, r: 6 }; D.pos = { c: 9, r: 7 };
   ok(g.tetherScore() === 0, 'start within limit');

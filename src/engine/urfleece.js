@@ -136,7 +136,7 @@ export function installUrFleece(Game, { TitanDied, BattleOver }) {
       this.notify();
     },
     async ufPullToAbyss(t, n) {
-      if (!t || !t.alive || t.onVP || !t.pos) return; const AB = [...this.board.terrain.values()].filter(z => z.abyss).map(z => z.cell); if (!AB.length) return;
+      if (!t || !t.alive || t.onVP || !t.pos) return; if (this.gf(t, 'Demeter')) { this.say(`${t.name}: Roots of the Earth — 끌려가지 않음`); return; } const AB = [...this.board.terrain.values()].filter(z => z.abyss).map(z => z.cell); if (!AB.length) return;
       for (let i = 0; i < n && t.alive; i++) {
         const d0 = Math.min(...AB.map(p => Board.dist(p, t.pos))); if (d0 === 0) break;
         const opts = DIR_LIST.map(d => ({ c: t.pos.c + DIRS[d][0], r: t.pos.r + DIRS[d][1] })).filter(q => this.board.inBounds(q.c, q.r) && Math.min(...AB.map(p => Board.dist(p, q))) < d0 && !this.primContains(q) && !this.titanAt(q.c, q.r));

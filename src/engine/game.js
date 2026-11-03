@@ -1937,7 +1937,7 @@ export class Game {
     while (this.tetherScore() > 0 && this.liveTitans().length > 1 && g++ < 4) { const bad = this.liveTitans().filter(t => this.tetherExcess(t) > 0); this.say(`Tethered: 밧줄 한계(10칸)를 벗어난 타이탄 — ${bad.map(t => `${t.name}(+${this.tetherExcess(t)})`).join(', ')}`, 'bad'); const v = bad.length === 1 ? bad[0] : await this.ask({ type: 'choice', title: 'Tethered: 한계를 지키도록 사망할 타이탄 선택', options: bad.map(t => ({ label: `${t.name} (초과 ${this.tetherExcess(t)})`, value: t })) }); await this.solo(() => this.kill(v)); }
   }
   async kickback(t, x, dir = null) { if (t && t.gear && t.gear.some(g => !g.discarded && /Ignore Kickbacks/.test(g.card.text || ''))) { this.say(`${t.name}: Kickback 무시`); return; }
-    if (!t.alive || x <= 0) return; if (t.absorbed) return;
+    if (!t.alive || x <= 0) return; if (t.absorbed) return; if (this.gf(t, 'Demeter')) { this.say(`${t.name}: Roots of the Earth — Kickback 무시`); return; }
     if (this.trait('Slippery Slope')) { x += 3; this.say(`Slippery Slope: Kickback +3 → ${x}`); }
     x = await this.reduceSuffered(t, 'Kickbacks', x); if (x <= 0) return;
     if (!dir) { const cells = this.primCells(); const near = cells.reduce((a, b) => Board.dist(t.pos, b) < Board.dist(t.pos, a) ? b : a); const dx = t.pos.c - near.c, dy = t.pos.r - near.r; dir = Math.abs(dx) >= Math.abs(dy) ? (dx >= 0 ? 'E' : 'W') : (dy >= 0 ? 'N' : 'S'); if (Math.abs(dx) === Math.abs(dy) && dx !== 0) dir = dx < 0 ? 'W' : (dy >= 0 ? 'N' : 'S'); }
