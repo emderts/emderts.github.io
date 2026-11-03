@@ -35,7 +35,7 @@ export class Campaign {
   handLimit(k) { const p = this.knightDef(k).portraits.find(p => p.id === k.loadout.portrait); return p ? p.handLimit : 4; }
   gearDef(name) { const G = this.data.gear; return G.gear.gear.find(g => g.name === name) || (G.monster_gear ? this._withKw(G.monster_gear.gear.find(g => g.name === name)) : null) || this._withKw(this.kingdomGearList().find(g => g.name === name)) || this._consumableAsGear(name) || this._merchantAsGear(name); }
   _withKw(g) { if (!g) return null; return g.ops ? g : { ...g, ops: { keywords: this._kwFromText(g.text) } }; }
-  kingdomGearList(kingdom = null) { const G = this.data.gear; const all = [G.kingdom_principality ? G.kingdom_principality.gear : []].flat(); return kingdom ? all.filter(g => g.kingdom === kingdom) : all; }
+  kingdomGearList(kingdom = null) { const G = this.data.gear; const all = [G.kingdom_principality ? G.kingdom_principality.gear : [], G.kingdom_sunken ? G.kingdom_sunken.gear : []].flat(); return kingdom ? all.filter(g => g.kingdom === kingdom) : all; }
   ownedCount(name) { return this.knights.reduce((a, k) => a + k.armory.filter(n => n === name).length, 0); }
   consumableDef(name) { const C = this.data.gear.consumables; return C ? C.consumables.find(c => c.name === name) : null; }
   _consumableAsGear(name) { const c = this.consumableDef(name); if (!c) return null; return { name: c.name, code: c.code, traits: c.traits, type: 'support', hands: null, tier: c.tier, consumable: true, price: c.price, charges: c.charges, text: c.text, gates: c.gates, ops: { keywords: this._kwFromText(c.text) } }; }

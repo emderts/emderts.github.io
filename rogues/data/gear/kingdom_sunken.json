@@ -1,0 +1,423 @@
+{
+ "_source": "Sunken Kingdom Gear (owner scan 2026-11-03, one of each shown; copies assumed 2 like Principality [확인 필요])",
+ "gear": [
+  {
+   "name": "Ancient Totem",
+   "code": "13A0582",
+   "kingdom": "sunken",
+   "traits": [
+    "Stone",
+    "Curse",
+    "Primitive"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Mob",
+   "copies": 2,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "When moving through a Swamp Terrain tile, you may re-roll the [d10] rolled on the Swamp effect (once).\n2 [Heat] [Discard] Ignore a Rotation.\n[GRAVE] 2 [Heat] [Discard] Lifeline.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "2 [Heat] [Discard] Lifeline."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Gladiator Armguard",
+   "code": "13A0580",
+   "kingdom": "sunken",
+   "traits": [
+    "Armor",
+    "Metal"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Mob",
+   "copies": 2,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "+1 Might [Might].\n2 [Heat] [Exhaust] Ignore Unwieldy on your Weapons until the end of your turn.",
+   "gates": [],
+   "unclear": [
+    "트레잇에 Armor가 있지만 슬롯 아이콘은 Support(주머니)"
+   ]
+  },
+  {
+   "name": "Fragrant Herbs",
+   "code": "13A0586",
+   "kingdom": "sunken",
+   "traits": [
+    "Medicine",
+    "Leaves",
+    "Flammable"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Vassal",
+   "copies": 2,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "[Exhaust] Lose up to -3 [Vigor] to lose the same amount of [Heat] (minimum 1). Then, discard up to 2 Poison tokens.\n[MAJOR] Adjacent Knights may use this card's ability as a free action (they still need to pay its cost).",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "Adjacent Knights may use this card's ability as a free action (they still need to pay its cost)."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Firenzance Oil Lamp",
+   "code": "13A0585",
+   "kingdom": "sunken",
+   "traits": [
+    "Metal",
+    "Fire",
+    "Magic"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Mob",
+   "copies": 2,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "2 [Heat] [Exhaust] Trailmake 3, then place 1 Fire [Fire] token in the Knight Pool.\n1 [Heat] [Exhaust] Move 1 space.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Silverine Solution",
+   "code": "13A0590",
+   "kingdom": "sunken",
+   "traits": [
+    "Glass",
+    "Silver"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Vassal",
+   "copies": 2,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Poison Limit +2.\nYou may gain 1 Bane [Bane] token to ignore the effects of 1 Condition card until the end of your turn.\nStart of your turn: Bane 1.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Lightweight Scroll",
+   "code": "13A0589",
+   "kingdom": "sunken",
+   "traits": [
+    "Spell",
+    "Magic",
+    "Paper",
+    "Flammable"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Vassal",
+   "copies": 2,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "1 [Heat] [Exhaust] Unexhaust 1 Weapon [Gear] card.\n[Reaction] 1 [Heat] [Exhaust] Tumble.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Oozeboots",
+   "code": "13A0593",
+   "kingdom": "sunken",
+   "traits": [
+    "Slime",
+    "Boots",
+    "Leather"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "King",
+   "copies": 2,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "+1 Speed [Speed].\nYou may use your [Combat action] as a [Move action].",
+   "gates": [],
+   "unclear": [
+    "두 행동 아이콘을 전투 행동 → 이동 행동 순으로 판독"
+   ]
+  },
+  {
+   "name": "Wastewood Camo",
+   "code": "13A0595",
+   "kingdom": "sunken",
+   "traits": [
+    "Wood",
+    "Leaves",
+    "Flammable"
+   ],
+   "type": "armor",
+   "hands": null,
+   "tier": "King",
+   "copies": 2,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": 2,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Poison Resilience 1.\nHide. Daze.\n1 [Heat] During Delve, you may move through Shortcuts.",
+   "gates": [],
+   "unclear": [
+    "우상단 +2 아이콘을 Evasion bonus로 판독; 슬롯 아이콘 = Armor"
+   ]
+  },
+  {
+   "name": "Reactive Underarmor",
+   "code": "13A0606",
+   "kingdom": "sunken",
+   "traits": [
+    "Leather",
+    "Magic"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Dragon",
+   "copies": 2,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "[Reaction] 2 [Heat] [Exhaust] Move up to X* spaces. Use this ability only during a Monster Attack, after an Evasion Roll.\n*X is the amount of Evasion dice you rolled during this Attack.",
+   "gates": [],
+   "unclear": []
+  },
+  {
+   "name": "Divine Distillate",
+   "code": "13A0608",
+   "kingdom": "sunken",
+   "traits": [
+    "Cursed",
+    "Relic",
+    "Ancient"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Dragon",
+   "copies": 2,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "1 [Heat] [Exhaust] After drawing a Judicium, resolve the opposite Judicium. You must use this ability before performing the draw.\n[PASSION 3+] 2 [Heat] [Discard] Draw a Judicium. If you survive, return a chosen Knight to life adjacent to you (do not reset their [Vigor]).",
+   "gates": [
+    {
+     "gate": "PASSION 3+",
+     "text": "2 [Heat] [Discard] Draw a Judicium. If you survive, return a chosen Knight to life adjacent to you (do not reset their [Vigor])."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Ever-Sinking Stilts",
+   "code": "13A0605",
+   "kingdom": "sunken",
+   "traits": [
+    "Wood",
+    "Slime",
+    "Cursed"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Dragon",
+   "copies": 2,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "2 [Heat] [Exhaust] During movement, ignore all Terrain tiles.\n[GRAVE] [Discard] Destroy an adjacent Destructible Terrain tile.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "[Discard] Destroy an adjacent Destructible Terrain tile."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Gardener-Alchemist's Talisman",
+   "code": "13A0602",
+   "kingdom": "sunken",
+   "traits": [
+    "Plant",
+    "Poison",
+    "Talisman"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Devil",
+   "copies": 2,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "Poison Resilience 2.\nStart of your turn: Lose -1 [Vigor].\nYou may pay with [Vigor] to re-roll your dice instead of [Heat].\n[PASSION 5+] [Discard] Reset your [Vigor].",
+   "gates": [
+    {
+     "gate": "PASSION 5+",
+     "text": "[Discard] Reset your [Vigor]."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Cat Eye Glasses",
+   "code": "13A0598",
+   "kingdom": "sunken",
+   "traits": [
+    "Glass",
+    "Leather",
+    "Headgear"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Devil",
+   "copies": 2,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "+1 Insight [Insight]. Closing 1.\nIgnore Obscuring.\n[MAJOR] [Discard] When you attack with a Ranged Weapon, double its maximum range for this Attack.",
+   "gates": [
+    {
+     "gate": "MAJOR",
+     "text": "[Discard] When you attack with a Ranged Weapon, double its maximum range for this Attack."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Gorilla Grip Charm",
+   "code": "13A0600",
+   "kingdom": "sunken",
+   "traits": [
+    "Holy",
+    "Charm",
+    "Flammable"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "Devil",
+   "copies": 2,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": null,
+   "text": "If you're using [2 hands] Weapons, they lose Cumbersome, Unwieldy, and Commit.\n[GRAVE] Once per Clash, immediately perform a Bonus Attack, then suffer Knockdown.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "Once per Clash, immediately perform a Bonus Attack, then suffer Knockdown."
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Royal Luxblossom",
+   "code": "13A0597",
+   "kingdom": "sunken",
+   "traits": [
+    "Medicine",
+    "Leaves"
+   ],
+   "type": "support",
+   "hands": null,
+   "tier": "King",
+   "copies": 2,
+   "attackDice": null,
+   "precision": null,
+   "weaponPower": null,
+   "bonusPower": null,
+   "evasion": null,
+   "evasionReroll": null,
+   "armorDice": null,
+   "charges": 1,
+   "text": "1 [Charge] 1 [Heat] Gain +6 [Vigor].\n1 [Heat] [Discard] Perform Rotation 1.\nEnd of your turn: If this card has no [Charge], lose -1 [Vigor].\n[GRAVE] 1 [Heat] [Discard] Gain a permanent positive Precision [Precision] token.",
+   "gates": [
+    {
+     "gate": "GRAVE",
+     "text": "1 [Heat] [Discard] Gain a permanent positive Precision [Precision] token."
+    }
+   ],
+   "unclear": []
+  }
+ ]
+}
