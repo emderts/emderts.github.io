@@ -181,16 +181,19 @@ const renderBoard = () => {
 
 // ---------- clash panes ----------
 const track = (cls, n, max, lim) => h('div', { class: 'track ' + cls }, Array.from({ length: max + 1 }, (_, i) => h('i', { class: (i <= n && i > 0 ? 'on' : '') + (lim != null && i === lim ? ' lim' : '') })));
-const knightBox = k => h('div', { class: 'kbox' + (k.alive ? '' : ' dead') },
-  h('div', {}, h('b', {}, k.name), ' ', h('span', { class: 'small muted' }, k.pos ? clash.board.label(k.pos) : '—'), k.alive ? '' : h('span', { class: 'err' }, ' ☠')),
-  h('div', { class: 'small' }, `V ${k.vigor}/${k.maxVigor} (${k.peril()})`), track('v', k.vigor, 15),
-  h('div', { class: 'small' }, `H ${k.heat} / 한계 ${k.heatLimit}`), track('h', k.heat, 9, k.heatLimit),
-  h('div', { class: 'small' }, `P ${k.passion}${clash.priorityTarget === k ? ' · ★Priority' : ''}`), track('p', k.passion, 9),
-  h('div', { class: 'small' }, `Bane ${k.bane}/${k.baneLimit} · 손패 ${k.hand.length} (CD ${k.cooldown.length} / DL ${k.delay.length} / DC ${k.discard.length})`),
-  h('div', {}, k.conditions.map(c => h('span', { class: 'tag' }, c.id + (c.tokens ? ' ×' + c.tokens : ''))), k.gear.map(g => h('span', { class: 'tag', style: g.exhausted ? 'opacity:.5' : '', title: ((g.traits || []).join(', ') + '\n' + (g.text || '')).trim() }, g.name + (g.traits && g.traits.length ? ` (${g.traits.join(', ')})` : '')))),
-  h('div', { class: 'small muted' }, '손패: ' + k.hand.map(t => t.name + (t.exert ? ` [Exert ${t.exert.token === 'PowerReroll' ? 'PR' : t.exert.token}]` : '')).join(', ')),
-  k.heroicArc ? h('div', { class: 'small muted' }, `Arc ${k.heroicArc.name}: ` + k.heroicArc.levels.map(l => `L${l.level}${l.level <= k.passion ? '✓' : ''}`).join(' ')) : null,
-);
+const openDetails = new Set();
+const knightBox = k => { const active = pending && pending.q.knight === k.id;
+  const stat = (cls, n, v, sub) => h('div', { class: 'stat ' + cls }, h('div', { class: 'sn' }, n), h('div', { class: 'sv' }, v), sub ? h('div', { class: 'ss' }, sub) : null);
+  return h('div', { class: 'kbox' + (k.alive ? '' : ' dead') + (active ? ' active' : '') },
+    h('div', {}, h('b', {}, k.name), ' ', h('span', { class: 'small muted' }, k.pos ? clash.board.label(k.pos) : '—'), clash.priorityTarget === k ? h('span', { class: 'tag warn' }, '★Priority') : null, k.alive ? '' : h('span', { class: 'err' }, ' ☠')),
+    h('div', { class: 'trisk' }, stat('v', 'VIGOR', `${k.vigor}/${k.maxVigor}`, k.peril()), stat('h', 'HEAT', `${k.heat}/${k.heatLimit}`), stat('p', 'PASSION', k.passion, k.heroicArc ? `Arc L${Math.min(k.passion, 6)}` : '')),
+    h('div', { class: 'small' }, k.conditions.map(c => h('span', { class: 'tag cond' }, c.id + (c.tokens ? ' ×' + c.tokens : ''))), k.gear.map(g => h('span', { class: 'tag', style: g.exhausted ? 'opacity:.5;text-decoration:line-through' : '', title: ((g.traits || []).join(', ') + '\n' + (g.text || '')).trim() }, g.name))),
+    h('details', { open: openDetails.has(k.id) ? '' : null, ontoggle: e => { if (e.target.open) openDetails.add(k.id); else openDetails.delete(k.id); } },
+      h('summary', { class: 'small muted' }, `손패 ${k.hand.length} · CD ${k.cooldown.length} / DL ${k.delay.length} / DC ${k.discard.length} · Bane ${k.bane}/${k.baneLimit}`),
+      h('div', { class: 'small muted' }, k.hand.map(t => t.name + (t.exert ? ` [Exert ${t.exert.token === 'PowerReroll' ? 'PR' : t.exert.token}]` : '')).join(', ') || '—'),
+      k.heroicArc ? h('div', { class: 'small muted' }, `Arc ${k.heroicArc.name}: ` + k.heroicArc.levels.map(l => `L${l.level}${l.level <= k.passion ? '✓' : ''}`).join(' ')) : null,
+      h('div', { class: 'small muted' }, k.gear.map(g => `${g.name}${g.traits && g.traits.length ? ' (' + g.traits.join(', ') + ')' : ''}`).join(' · '))));
+};
 const mercPane = () => { if (!clash.hired || !clash.hired.length) return null; return h('div', {}, h('h3', { style: 'margin:8px 0 4px' }, '용병 (수동 발동)'), clash.hired.map(m => { const md = DATA.decks.mercenaries.mercenaries.find(x => x.class === m.class && x.level === m.level); const side = m.side === 'A' ? md.sideA : md.sideB; return h('div', { class: 'kbox' }, h('b', {}, `${m.class} L${m.level ?? '-'} — ${m.side}면`), h('div', { class: 'small' }, side.clash), m.side === 'X' ? h('span', { class: 'small muted' }, '사용 완료') : h('button', { class: 'sm', onclick: () => { clash.say(`용병 ${m.class} ${m.side}면 능력 사용: ${side.clash}`, 'tech'); m.side = m.side === 'A' ? 'B' : 'X'; render(); } }, m.side === 'A' ? '사용 → 뒤집기' : '사용 → 버리기')); })); };
 const monsterPane = () => { const M = clash.monster; return h('div', {},
   h('div', {}, h('b', {}, `${M.name} Lv${M.level}`), ` · To Hit ${M.toHit + M.modifiers.toHit}+ · 방향 ${M.facing}`),
@@ -231,18 +234,19 @@ const sheet = () => {
   );
 };
 
-// ---------- clash screen ----------
+// ---------- clash screen (ATO-style: board + monster left, prompt + knights + log right; stacks on phones) ----------
 const renderClash = () => {
   const done = clash.result;
-  app.replaceChildren(h('div', { class: 'clash' },
-    h('div', { class: 'row', style: 'margin:0' }, h('b', { style: 'color:var(--gold)' }, `${clash.monster.name} Lv${clash.monster.level}`), h('span', { class: 'small muted' }, `라운드 ${clash.round} · 시드 ${clash.rng.seed}`), done ? h('span', { class: done === 'win' ? 'good' : 'err' }, done === 'win' ? ' 승리!' : ' 패배') : null, h('span', { style: 'flex:1' }), camp ? null : h('button', { class: 'sm', onclick: () => { screen = 'home'; clash = null; pending = null; render(); } }, done ? '처음으로' : '중단')),
-    h('div', { id: 'board' }, renderBoard()),
-    h('div', { class: 'tabs' }, ['log', 'knights', 'monster'].map(t => h('button', { class: tab === t ? 'on' : '', onclick: () => { tab = t; render(); } }, { log: '로그', knights: '기사', monster: '몬스터' }[t]))),
-    h('div', { class: 'pane' }, tab === 'log' ? logPane() : tab === 'knights' ? h('div', { class: 'kstat' }, clash.knights.map(knightBox)) : monsterPane()),
-    pending ? h('div', { style: 'height:40vh' }) : null,
-  ), sheet());
+  const header = h('div', { class: 'row bhead' }, h('b', { style: 'color:var(--gold)' }, `${clash.monster.name} Lv${clash.monster.level}`), h('span', { class: 'small muted' }, `라운드 ${clash.round} · 시드 ${clash.rng.seed}`), done ? h('span', { class: done === 'win' ? 'good' : 'err' }, done === 'win' ? ' 승리!' : ' 패배') : null, h('span', { style: 'flex:1' }), camp ? null : h('button', { class: 'sm', onclick: () => { screen = 'home'; clash = null; pending = null; render(); } }, done ? '처음으로' : '중단'));
+  const prompt = pending ? sheet() : h('div', { class: 'sheet idle' }, h('span', { class: 'small muted' }, done ? 'Clash 종료' : '진행 중…'));
+  document.body.classList.add('wide');
+  app.replaceChildren(h('div', { class: 'battle' },
+    h('div', { class: 'bleft' }, header, h('div', { id: 'board' }, renderBoard()), h('div', { id: 'mpane', class: 'pane' }, monsterPane())),
+    h('div', { class: 'bright' }, prompt, h('div', { id: 'kpane', class: 'kstat' }, clash.knights.map(knightBox)), h('div', { id: 'lpane', class: 'pane' }, logPane())),
+  ));
 };
 const render = () => {
+  if (!(screen === 'clash' && clash)) document.body.classList.remove('wide');
   if (screen === 'clash' && clash) return renderClash();
   if (camp && screen === 'map') { renderMap(); if (pending) app.append(sheet()); return; }
   if (camp && screen === 'encounter') return renderEncounter();

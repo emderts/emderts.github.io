@@ -12,8 +12,9 @@ ok(await p.locator('svg.bsvg').count() === 1 && await p.locator('.kn').count() =
 let answered = 0;
 for (let i = 0; i < 60; i++) { const sel = await p.$('.cell.sel'); if (sel) { await sel.click(); answered++; await p.waitForTimeout(40); continue; } const btn = await p.$('.sheet .row button.primary') || await p.$('.sheet .opts button.primary') || await p.$('.sheet .opts button'); if (!btn) { await p.waitForTimeout(100); continue; } await btn.click(); answered++; await p.waitForTimeout(40); }
 ok(answered > 10, `answered ${answered} prompts`);
-await p.click('text=몬스터'); ok((await p.textContent('.pane')).includes('Wound Stack'), 'monster pane');
-await p.click('text=기사'); ok((await p.locator('.kbox').count()) === 4, 'knight pane shows 4 knights');
+ok((await p.textContent('#mpane')).includes('Wound Stack'), 'monster pane visible next to the board');
+ok((await p.locator('#kpane .kbox').count()) === 4, 'knight pane shows 4 knights');
+{ const bb = await p.$eval('#board', e => e.getBoundingClientRect().bottom); const st = await p.$eval('.battle .sheet', e => [e.getBoundingClientRect().top, getComputedStyle(e).position]); ok(st[1] !== 'fixed' && st[0] >= bb - 1, 'prompt sits below the board inline (does not cover it)'); }
 const w = await p.evaluate(() => document.documentElement.scrollWidth); ok(w <= 390, `no horizontal overflow at 390px (${w})`);
 // campaign flow
 await p.goto(new URL('../dist/rogues.html', import.meta.url).href); p.on('dialog', d => d.accept());
