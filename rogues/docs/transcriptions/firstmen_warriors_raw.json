@@ -144,9 +144,11 @@
   "levelsNote": "Level 1 TRAITS box prints '+Battle Tactics, Mangrove Deployment, Long Howl' and has no blue bonus row. Bonus rows: L2 '+2 [AT]  +1 [Vigor]'; L3 '+3 [AT]  +2 [Vigor]'; L4 '1 [Escalation starburst]  +6 [AT]  +3 [Vigor]'. All levels print '2 AI'. No evasion-dice bonus printed.",
   "unclear": [
    "sheet code: tiny pale print at top-right of sheet1; best reading 26A1066",
-   "level 4 AT bonus reads clearly as +6 on zoom (noted because it jumps from +3 at level 3)",
    "bold lead-ins as printed: 'Additional Setup:', 'Tactics X:', 'At the End of Knight Round:', 'Start of Monster Round:'; italics: Long Howl, Muscular Chest, Rampage Strike",
    "sheet uses both 'Firstman Warrior' (singular) and 'Firstmen Warriors' as printed"
+  ],
+  "notes": [
+   "Lv4 AT 보너스 +6 — 소유자 확인 2026-11-15"
   ]
  },
  "ai": [
@@ -968,10 +970,12 @@
    "footer": "FIRSTMEN WARRIORS – BP 2",
    "unclear": [
     "code: tiny faint print; best reading 28A1653 (digits partly inferred from the sheet-order sequence 28A1644–28A1661)",
-    "OVERCOME number blurred: best reading 4+ (could be 3+; the other Legionary copy, 29.png, reads 3+)",
     "icon after the number is a small two-lobed ribcage glyph, read as [AT]"
    ],
-   "text": "LEGIONARY / OVERCOME 4+ ▸ Power 1 / [AT] 5 / WOUND: The furthest Mob performs Signature against the Attacker. / FAIL: Tactic A: 3. / CRITICAL: You may flip a chosen BP card face down. / FIRSTMEN WARRIORS – BP 2 / While this BP is revealed: Every Monster in Zone 2 from this Mob has +1 [AT]."
+   "text": "LEGIONARY / OVERCOME 4+ ▸ Power 1 / [AT] 5 / WOUND: The furthest Mob performs Signature against the Attacker. / FAIL: Tactic A: 3. / CRITICAL: You may flip a chosen BP card face down. / FIRSTMEN WARRIORS – BP 2 / While this BP is revealed: Every Monster in Zone 2 from this Mob has +1 [AT].",
+   "notes": [
+    "OVERCOME 4 (두 장의 Legionary는 3+ / 4+로 서로 다름) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "25.png",
@@ -995,10 +999,12 @@
    "whileRevealed": null,
    "footer": "FIRSTMEN WARRIORS – BP 2",
    "unclear": [
-    "code: tiny faint print; best reading 28A1654 (digits partly inferred from the sheet-order sequence 28A1644–28A1661)",
-    "OVERCOME number blurred: best reading 4+ (could be 3+)"
+    "code: tiny faint print; best reading 28A1654 (digits partly inferred from the sheet-order sequence 28A1644–28A1661)"
    ],
-   "text": "When you reveal this BP: Escalate the lowest unrevealed Mob (BP and AI). / CENTURION / OVERCOME 4+ ▸ Power 1 / [AT] 6 / WOUND: Draw AI for another closest Mob. / FAIL: Tactic A: 3. / CRITICAL: Another Knight may immediately move up to 2 spaces and perform a Bonus Attack! / FIRSTMEN WARRIORS – BP 2"
+   "text": "When you reveal this BP: Escalate the lowest unrevealed Mob (BP and AI). / CENTURION / OVERCOME 4+ ▸ Power 1 / [AT] 6 / WOUND: Draw AI for another closest Mob. / FAIL: Tactic A: 3. / CRITICAL: Another Knight may immediately move up to 2 spaces and perform a Bonus Attack! / FIRSTMEN WARRIORS – BP 2",
+   "notes": [
+    "OVERCOME 4+ — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "26.png",
@@ -1105,10 +1111,12 @@
    "footer": "FIRSTMEN WARRIORS – BP 2",
    "unclear": [
     "code: tiny faint print; best reading 28A1652 (digits partly inferred from the sheet-order sequence 28A1644–28A1661)",
-    "OVERCOME reads 3+ here while the other Legionary copy (24.png) looks like 4+",
     "icon after the number is a small two-lobed ribcage glyph, read as [AT]"
    ],
-   "text": "LEGIONARY / OVERCOME 3+ ▸ Power 1 / [AT] 5 / WOUND: The furthest Mob performs Signature against the Attacker. / FAIL: Tactic A: 3. / CRITICAL: You may flip a chosen BP card face down. / FIRSTMEN WARRIORS – BP 2 / While this BP is revealed: Every Monster in Zone 2 from this Mob has +1 [AT]."
+   "text": "LEGIONARY / OVERCOME 3+ ▸ Power 1 / [AT] 5 / WOUND: The furthest Mob performs Signature against the Attacker. / FAIL: Tactic A: 3. / CRITICAL: You may flip a chosen BP card face down. / FIRSTMEN WARRIORS – BP 2 / While this BP is revealed: Every Monster in Zone 2 from this Mob has +1 [AT].",
+   "notes": [
+    "OVERCOME 3 (두 장의 Legionary는 3+ / 4+로 서로 다름) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "30.png",
@@ -1133,10 +1141,12 @@
    "footer": "FIRSTMEN WARRIORS – BP 3",
    "unclear": [
     "code: tiny faint print; best reading 28A1659 (digits partly inferred from the sheet-order sequence 28A1644–28A1661)",
-    "While-revealed icon after 'performs a' is a black square with a white striding/kneeling figure — not in the brief's icon list; transcribed as [Move] (best guess, could be another action icon)",
     "BP 3 cards print only INSTINCT and CRITICAL responses (no WOUND/FAIL)"
    ],
-   "text": "CESTUS / OVERCOME 5+ ▸ Power 1 / [AT] 7 / INSTINCT: Forced Vault. Knockdown. / CRITICAL: Until the end of Clash, all Firstmen Warrior Attacks have -1 [d10]. / FIRSTMEN WARRIORS – BP 3 / While this BP is revealed: If a Knight starts their turn or performs a [Move] in Zone 1 from Cestus, they may attack only Cestus this turn. When Cestus attacks, add its Instinct Response to the After Attack."
+   "text": "CESTUS / OVERCOME 5+ ▸ Power 1 / [AT] 7 / INSTINCT: Forced Vault. Knockdown. / CRITICAL: Until the end of Clash, all Firstmen Warrior Attacks have -1 [d10]. / FIRSTMEN WARRIORS – BP 3 / While this BP is revealed: If a Knight starts their turn or performs a [Move] in Zone 1 from Cestus, they may attack only Cestus this turn. When Cestus attacks, add its Instinct Response to the After Attack.",
+   "notes": [
+    "검은 사각형 흰 인물 아이콘 = 이동 행동 [Move] — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "31.png",

@@ -2626,6 +2626,6 @@
   "Healed Mob returns face up (revealed) [소유자 확인 2026-11-15 — 일단 앞면]",
   "Curse / Threat effects: no Kingdom track in Rogue's Path → no effect",
   "BP REACT! markers open a Window of Opportunity right before the marked instruction (rulebook p.54) — implemented 2026-11-15 (Clash.bpReactIndices / runResponseOps)",
-  "Difficult Terrain (rulebook p.81): Monsters on Difficult Terrain have -1 AT (icon = AT, owner 2026-11-15); applies to every Monster without Ignore Difficult Terrain — a spawned Ironcast Dead on Rubble has -1 AT"
+  "Difficult Terrain (rulebook p.81): Monsters on Difficult Terrain have -1 AT (icon = AT, owner 2026-11-15); applies to every Monster without Ignore Difficult Terrain; a multi-space Monster counts as on it if any occupied space is Difficult Terrain (owner 2026-11-15) — a spawned Ironcast Dead on Rubble has -1 AT"
  ]
 }
