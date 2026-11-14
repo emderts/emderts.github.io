@@ -2623,8 +2623,9 @@
   "\"If no other Knight in Zone X\" = Zone X of the attacking Mob, other than the Target [소유자 확인 2026-11-15]",
   "\"Draw AI for the furthest / closest Mob\" (BP responses) = measured from the attacking Knight; ties chosen by the players [소유자 확인 2026-11-15]",
   "In front (Mob) = spaces beyond the Mob's front edge with LoS, same as the Boss rule [확인 필요]",
-  "Healed Mob returns face up (revealed) [확인 필요]",
+  "Healed Mob returns face up (revealed) [소유자 확인 2026-11-15 — 일단 앞면]",
   "Curse / Threat effects: no Kingdom track in Rogue's Path → no effect",
-  "REACT! markers on BP responses are recorded (reactWindows) but no separate window is opened yet"
+  "BP REACT! markers open a Window of Opportunity right before the marked instruction (rulebook p.54) — implemented 2026-11-15 (Clash.bpReactIndices / runResponseOps)",
+  "Difficult Terrain (rulebook p.81): Monsters on Difficult Terrain have -1 AT (icon = AT, owner 2026-11-15); applies to every Monster without Ignore Difficult Terrain — a spawned Ironcast Dead on Rubble has -1 AT"
  ]
 }

@@ -86,4 +86,16 @@ const L = (c, cell) => c.board.label(cell);
   ok(wins + losses === N, `${N} seeded Mob Clashes finished: ${wins} win / ${losses} lose, avg ${(rounds / N).toFixed(1)} rounds`);
   const c = mk(203, 3); const r = await c.run(); ok(['win', 'lose'].includes(r), `level 3 simulation finished (${r}, ${c.round} rounds)`); }
 
+
+// BP REACT! windows (rulebook p.54) and Difficult Terrain −1 AT (p.81)
+{ const c = mk(31); const bone = ID.cards.bp.find(b => b.name === 'Bone Knight'); ok(JSON.stringify(c.bpReactIndices(bone, 'Fail')) === '[1]', 'Bone Knight Fail: REACT! window after Gangup 4, before Draw AI');
+  const ds = ID.cards.bp.find(b => b.name === 'Damned Sergeant'); ok(JSON.stringify(c.bpReactIndices(ds, 'Instinct')) === '[0]' && c.bpReactIndices(ds, 'Fail').length === 0, 'Damned Sergeant: window before Knockdown (Instinct only)');
+  const eg = data.monsters.eggknight.cards.bp; ok(JSON.stringify(c.bpReactIndices(eg.find(b => b.name === 'Weak Poleyn'), 'Wound')) === '[2]' && JSON.stringify(c.bpReactIndices(eg.find(b => b.name === 'Armored Chest'), 'Fail')) === '[0]', 'Eggknight BP markers: header → before response, mid-text → before Knockdown');
+  const seq = []; c.windowOfOpportunity = async () => seq.push('REACT'); c.fx.runMonsterOps = async ops => { for (const o of ops) seq.push(o.op); };
+  await c.runResponseOps([{ op: 'gangup' }, { op: 'drawAIFor' }], [1], {}); ok(seq.join() === 'gangup,REACT,drawAIFor', `response ops split by the window (${seq.join()})`); }
+{ const c = mk(32); const mob = c.monster.mobs[0]; const base = c.mobAT(mob); const rub = [...c.board.terrain.entries()].filter(([, t]) => t.id === 'rubble').map(([k]) => { const [cc, r] = k.split(',').map(Number); return { c: cc, r }; }).find(x => c.cellFree(x));
+  c.mobStepTo(mob, rub);
+  ok(c.mobAT(mob) === base - 1, `Mob on Rubble (Difficult Terrain) has −1 AT (${base} → ${c.mobAT(mob)})`); }
+{ const c = mk(33); const mob = c.monster.mobs[0]; c.revealMob = c.revealMob; c.monster.woundStack.push({ card: mob.card, wounds: 1 }); c.board.remove(mob.cells); c.monster.mobs = c.monster.mobs.filter(x => x !== mob);
+  const back = await c.healMob(c.monster.mobs[0]); ok(back && back.revealed === true, 'Heal: returned Mob is face up (owner 2026-11-15)'); }
 console.log(fails ? `${fails} FAIL` : 'ALL PASS'); process.exit(fails ? 1 : 0);

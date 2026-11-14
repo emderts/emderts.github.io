@@ -536,24 +536,50 @@ export class Clash {
     // 8. wounds & escalation (before responses that move the monster? Rulebook: responses step 7 then wounds step 8; responses that are Monster Attacks happen after)
     if (A.wounded) { const dealt = this.monster.isMob ? this.killMob(A.mob) : this.monster.wound(bp, { critical: A.critical }); this.monster.generic.counter = (this.monster.generic.counter || 0) + dealt; this.say(`Wound Stack ${this.monster.wounds}/${this.monster.woundsToKill}`, 'wound'); await this.fx.onWound(k, A); this.priorityLast = k; }
     else if (!this.monster.isMob) this.monster.discardBP(bp);
-    for (const [kind, rops] of resp) { if (ignore && kind !== 'Critical') { this.say(`${kind} Response 무시 (${A.ignoreResponses ? 'Distracting Bait' : 'Diversion'})`); continue; } this.say(`${kind} Response`); const isAttack = rops.some(o => o.op === 'signature' || o.op === 'aiAttack' || o.op === 'drawAIFor'); if (isAttack) deferred.push(rops); else { try { await this.fx.runMonsterOps(rops, { attacker: k, attack: A, target: k }); } catch (e) { if (!e.chainBreak) throw e; this.say(`Chain Break: ${e.message}`, 'warn'); } } }
+    for (const [kind, rops] of resp) { if (ignore && kind !== 'Critical') { this.say(`${kind} Response 무시 (${A.ignoreResponses ? 'Distracting Bait' : 'Diversion'})`); continue; } this.say(`${kind} Response`); const isAttack = rops.some(o => o.op === 'signature' || o.op === 'aiAttack' || o.op === 'drawAIFor'); const rIdx = this.bpReactIndices(bp, kind); if (isAttack) deferred.push([rops, rIdx]); else { try { await this.runResponseOps(rops, rIdx, { attacker: k, attack: A, target: k }); } catch (e) { if (!e.chainBreak) throw e; this.say(`Chain Break: ${e.message}`, 'warn'); } } }
     if (this.monster.slain) { this.checkEnd(); }
     // 9. clear pool
     if (!this.fx.has(k, 'skipClearPool', A)) this.clearPool();
     // 10. second window
     await this.fx.secondWindow(k, A);
     this.currentKnightAttack = null;
-    for (const rops of deferred) { try { await this.fx.runMonsterOps(rops, { attacker: k, attack: A, target: k }); } catch (e) { if (!e.chainBreak) throw e; this.say(`Chain Break: ${e.message}`, 'warn'); } }
+    for (const [rops, rIdx] of deferred) { try { await this.runResponseOps(rops, rIdx, { attacker: k, attack: A, target: k }); } catch (e) { if (!e.chainBreak) throw e; this.say(`Chain Break: ${e.message}`, 'warn'); } }
     for (let i = 0; i < k.bonusAttacks; i++) { k.bonusAttacks = 0; await this.knightAttack(k, { bonus: true }); }
     k.bonusAttacks = 0;
     await this.afterAction();
   }
-  bpAT(bp) { if (this.monster.isMob) { const m = this.monster.mobs.find(x => x.card === bp); return m ? this.mobAT(m) : bp.at + this.monster.bonuses.at + this.monster.modifiers.at; } return this.monster.atOf(bp, (this.monster.hasTrait('Panzeronion') ? this.armorTokens[bp.level] : 0)); }
+  /** Rulebook p.81 Difficult Terrain: "Monsters on Difficult Terrain have -1 [AT]" (icon = AT, owner 2026-11-15). A Monster counts as on it when any occupied space is Difficult Terrain. */
+  difficultTerrainAT(cells) { const ign = (this.monsterDef.basicAbilities || []).some(b => /ignore difficult terrain/i.test(b.name)); if (ign || !cells || !cells.length) return 0; return cells.some(c => { const t = this.board.terrainAt(c); return t && t.difficult; }) ? -1 : 0; }
+  bpAT(bp) { if (this.monster.isMob) { const m = this.monster.mobs.find(x => x.card === bp); return m ? this.mobAT(m) : bp.at + this.monster.bonuses.at + this.monster.modifiers.at; } return this.monster.atOf(bp, (this.monster.hasTrait('Panzeronion') ? this.armorTokens[bp.level] : 0) + this.difficultTerrainAT(this.monster.cells)); }
   clearPool() { const fire = this.pool.filter(t => t.token === 'fire'); const keep = [...this.pool.filter(t => t.resource), ...fire.slice(1)]; /* Fire: leave all but one unused Fire token (p.19) */ const n = this.pool.length - keep.length; this.pool = keep; if (n) this.say(`Knight Pool 정리 (-${n})`, 'pool'); }
   /** After any action: Counter trait (Eggknight). */
   async afterAction() {
     if (this.monster.isMob) await this.mobAfterAction();
     if (this.monster.hasTrait('Counter') && (this.monster.generic.counter || 0) >= 3) { this.monster.generic.counter = 0; this.say('Counter: 토큰 3 → Signature'); await this.performSignature(); }
+  }
+  /** BP REACT! markers (rulebook p.54: a REACT! symbol preceding an instruction opens a Window of Opportunity right before it).
+   *  card.reactWindows entries: "on WOUND header" / "wound" → before the whole response; "fail:after 'Gangup 4.'" / "instinct:before 'Knockdown.'" → between sentences.
+   *  Returns the op indices before which a window opens (sentence index ≙ op index when the counts match; otherwise the window opens before the response). */
+  bpReactIndices(card, kind) {
+    const K = kind.toLowerCase(); const text = (card.responses || {})[K] || ''; const ops = (card.ops || {})[K] || []; const out = new Set();
+    const sents = text.split(/(?<=[.!])\s+/).map(x => x.trim()).filter(Boolean); const norm = x => x.replace(/\s+/g, ' ').trim().toLowerCase();
+    const find = frag => { const f = norm(frag); const i = sents.findIndex(x => norm(x).startsWith(f) || f.startsWith(norm(x))); return i; };
+    for (const raw of [].concat(card.reactWindows || card.react || [])) {
+      const w = String(raw); const head = w.match(/^on (\w+) header/i); const pre = w.match(/^(\w+)(?::|$)/);
+      let k2 = head ? head[1].toLowerCase() : pre && ['wound', 'fail', 'instinct', 'critical'].includes(pre[1].toLowerCase()) ? pre[1].toLowerCase() : null;
+      const bef = w.match(/before '([^']+)'/i), aft = w.match(/after '([^']+)'/i);
+      if (!k2 && (bef || aft)) k2 = ['wound', 'fail', 'instinct', 'critical'].find(x => { const t = norm((card.responses || {})[x] || ''); return t && t.includes(norm((bef || aft)[1]).slice(0, 12)); }) || null;
+      if (k2 !== K) continue;
+      let idx = 0;
+      if (bef) { const i = find(bef[1]); idx = i < 0 ? 0 : i; } else if (aft) { const frag = aft[1]; const n = frag.split(/(?<=[.!])\s+/).filter(Boolean).length; const i = find(frag.split(/(?<=[.!])\s+/)[0]); idx = i < 0 ? 0 : i + n; }
+      if (sents.length !== ops.length && idx > 0) idx = 0; // cannot align text with ops safely → open before the response
+      out.add(Math.min(idx, Math.max(0, ops.length - 1)));
+    }
+    return [...out].sort((a, b) => a - b);
+  }
+  async runResponseOps(rops, rIdx, ctx) {
+    if (!rIdx || !rIdx.length) return this.fx.runMonsterOps(rops, ctx);
+    let from = 0; for (const i of [...rIdx, rops.length]) { if (i > from) await this.fx.runMonsterOps(rops.slice(from, i), ctx); if (i < rops.length) { this.say('REACT! (BP 응답)'); await this.windowOfOpportunity('react', ctx.attack); } from = i; }
   }
   async windowOfOpportunity(when, attack, target = null) { await this.fx.reactions(when, attack, target); }
 }
