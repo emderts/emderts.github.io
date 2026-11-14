@@ -1078,7 +1078,7 @@
   {
    "name": "Geistly Flame",
    "code": "13B0784",
-   "monster": "panzergeists",
+   "monster": "panzergeist",
    "traits": [
     "Catalyst",
     "Flame",
@@ -1112,12 +1112,13 @@
      "text": "Knights may change Cantrip [Cantrip] tokens into Fire [Fire] tokens instead of Break [Break] tokens."
     }
    ],
-   "unclear": []
+   "unclear": [],
+   "backName": "panzergeists"
   },
   {
    "name": "Holy Hammer",
    "code": "13B0785",
-   "monster": "panzergeists",
+   "monster": "panzergeist",
    "traits": [
     "Hammer",
     "Stone",
@@ -1143,12 +1144,13 @@
    "charges": null,
    "text": "Break 1.\nPower Re-roll 1.\nWhen you are about to attack, gain +1 [Heat] to ignore 1 Armor [Armor] token.",
    "gates": [],
-   "unclear": []
+   "unclear": [],
+   "backName": "panzergeists"
   },
   {
    "name": "Ghost Bitten Shield",
    "code": "13B0787",
-   "monster": "panzergeists",
+   "monster": "panzergeist",
    "traits": [
     "Shield",
     "Iron",
@@ -1174,12 +1176,13 @@
    "charges": null,
    "text": "1 [Heat] [Exhaust] Block.\n1 [Heat] Reinforce 1.\nYou cannot be Possessed.",
    "gates": [],
-   "unclear": []
+   "unclear": [],
+   "backName": "panzergeists"
   },
   {
    "name": "Shrouded Armor",
    "code": "13B0786",
-   "monster": "panzergeists",
+   "monster": "panzergeist",
    "traits": [
     "Armor",
     "Steel",
@@ -1200,12 +1203,13 @@
    "charges": null,
    "text": "1 [Heat] [Exhaust] Hide.",
    "gates": [],
-   "unclear": []
+   "unclear": [],
+   "backName": "panzergeists"
   },
   {
    "name": "Ghostly Blade",
    "code": "13B0789",
-   "monster": "panzergeists",
+   "monster": "panzergeist",
    "traits": [
     "Sword",
     "Ethereal",
@@ -1243,12 +1247,13 @@
    "unclear": [
     "weapon power is a stacked pile of red dice: read as 4 (one on top, three below); could be 3",
     "glyph after BANE 4+ read as [Reaction]"
-   ]
+   ],
+   "backName": "panzergeists"
   },
   {
    "name": "Haunted Bread",
    "code": "13B0788",
-   "monster": "panzergeists",
+   "monster": "panzergeist",
    "traits": [
     "Food",
     "Ethereal"
@@ -1266,12 +1271,13 @@
    "charges": null,
    "text": "Bane Limit +2.\n2 [Heat] [Exhaust] When you are about to gain Bane [Bane] tokens, lower that gain to 1.",
    "gates": [],
-   "unclear": []
+   "unclear": [],
+   "backName": "panzergeists"
   },
   {
    "name": "Geistling",
    "code": "13B0790",
-   "monster": "panzergeists",
+   "monster": "panzergeist",
    "traits": [
     "Armor",
     "Iron",
@@ -1298,12 +1304,13 @@
    ],
    "unclear": [
     "'[Hand]' = single-gauntlet hand-slot icon"
-   ]
+   ],
+   "backName": "panzergeists"
   },
   {
    "name": "Ghost Catalyst",
    "code": "13B0791",
-   "monster": "panzergeists",
+   "monster": "panzergeist",
    "traits": [
     "Catalyst",
     "Ethereal",
@@ -1335,12 +1342,13 @@
      "text": "2 [Heat] [Exhaust] Place your Knight on a space in effective range of this Weapon."
     }
    ],
-   "unclear": []
+   "unclear": [],
+   "backName": "panzergeists"
   },
   {
    "name": "Kingkiller",
    "code": "13A0715",
-   "monster": "puppet-king",
+   "monster": "puppet-king-edelhardt",
    "traits": [
     "Spear",
     "Metal"
@@ -1372,12 +1380,13 @@
    "unclear": [
     "code last digit unclear (13A0715 or 13A0719)",
     "DEVIL banner '+1 [Power].' is printed under the traits line, beside the stat column"
-   ]
+   ],
+   "backName": "puppet-king"
   },
   {
    "name": "Seat of State",
    "code": "13A0718",
-   "monster": "puppet-king",
+   "monster": "puppet-king-edelhardt",
    "traits": [
     "Throne",
     "Club",
@@ -1408,12 +1417,13 @@
      "text": "You die immediately."
     }
    ],
-   "unclear": []
+   "unclear": [],
+   "backName": "puppet-king"
   },
   {
    "name": "Grasping Whip",
    "code": "13A0716",
-   "monster": "puppet-king",
+   "monster": "puppet-king-edelhardt",
    "traits": [
     "Whip",
     "Rope",
@@ -1442,12 +1452,13 @@
    "charges": null,
    "text": "Reach 3. Opening 2. Break 2. Armor-piercing 1. Pull 3.\n[Exhaust] Inspire 1 and Motivate 3 a Knight in effective range of this Weapon.",
    "gates": [],
-   "unclear": []
+   "unclear": [],
+   "backName": "puppet-king"
   },
   {
    "name": "The Puppet's Crown",
    "code": "13A0717",
-   "monster": "puppet-king",
+   "monster": "puppet-king-edelhardt",
    "traits": [
     "Helm",
     "Gold"
@@ -1470,12 +1481,13 @@
      "text": "When you're about to draw a Judicium, you may resolve a You Live! or You Died Judicium instead. The next time you draw a Judicium, resolve the other one."
     }
    ],
-   "unclear": []
+   "unclear": [],
+   "backName": "puppet-king"
   },
   {
    "name": "Stringbow",
    "code": "13A0719",
-   "monster": "puppet-king",
+   "monster": "puppet-king-edelhardt",
    "traits": [
     "Bow",
     "Wood"
@@ -1504,12 +1516,13 @@
    "gates": [],
    "unclear": [
     "code faint: 13A0719 or 13A0710"
-   ]
+   ],
+   "backName": "puppet-king"
   },
   {
    "name": "Parasitic Gambeson",
    "code": "13A0720",
-   "monster": "puppet-king",
+   "monster": "puppet-king-edelhardt",
    "traits": [
     "Alive",
     "Cursed"
@@ -1534,12 +1547,13 @@
      "text": "You cannot die from the Panzer Parasite Condition card."
     }
    ],
-   "unclear": []
+   "unclear": [],
+   "backName": "puppet-king"
   },
   {
    "name": "Riesenmörder",
    "code": "13A0721",
-   "monster": "puppet-king",
+   "monster": "puppet-king-edelhardt",
    "traits": [
     "Sword",
     "Steel",
@@ -1575,12 +1589,13 @@
    "unclear": [],
    "notes": [
     "Power bww (사용자 확인 2026-11-14)"
-   ]
+   ],
+   "backName": "puppet-king"
   },
   {
    "name": "The Command",
    "code": "13A0722",
-   "monster": "puppet-king",
+   "monster": "puppet-king-edelhardt",
    "traits": [
     "Club",
     "Flesh",
@@ -1618,7 +1633,8 @@
    "unclear": [
     "two bonus-power rows: '+[black Power die]' and '+2 [Power]' — stored combined as {n:1,colour:black,raw:2}",
     "code last digit faint (13A0722 or 13A0723)"
-   ]
+   ],
+   "backName": "puppet-king"
   },
   {
    "name": "Magnetic Helm",
@@ -1885,7 +1901,7 @@
   {
    "name": "Mud Underarmor",
    "code": "13A0659",
-   "monster": "knight-of-the-fen",
+   "monster": "knights-of-fen",
    "traits": [
     "Armor",
     "Wood",
@@ -1908,12 +1924,13 @@
     "Code digits blurry; read 13A0659 (fits sequence 0660-0662)",
     "Evasion re-roll value '+1' partly merged with icon"
    ],
-   "hands": null
+   "hands": null,
+   "backName": "knight-of-the-fen"
   },
   {
    "name": "Possessive Mudling",
    "code": "13A0660",
-   "monster": "knight-of-the-fen",
+   "monster": "knights-of-fen",
    "traits": [
     "Sword",
     "Armor",
@@ -1952,12 +1969,13 @@
    ],
    "notes": [
     "슬롯 = 1H + Armor (사용자 확인 2026-11-14)"
-   ]
+   ],
+   "backName": "knight-of-the-fen"
   },
   {
    "name": "Prisoner's Chainball",
    "code": "13A0661",
-   "monster": "knight-of-the-fen",
+   "monster": "knights-of-fen",
    "traits": [
     "Club",
     "Chain",
@@ -1991,12 +2009,13 @@
    ],
    "unclear": [
     "Weapon Power: 3 tiny overlapping dice; first red, 2nd and 3rd dark-filled with white outline (read black) by pixel sampling"
-   ]
+   ],
+   "backName": "knight-of-the-fen"
   },
   {
    "name": "Slime Helmet",
    "code": "13A0662",
-   "monster": "knight-of-the-fen",
+   "monster": "knights-of-fen",
    "traits": [
     "Helm",
     "Mud"
@@ -2024,12 +2043,13 @@
    "hands": null,
    "notes": [
     "빨간 아이콘 = Peril Check (사용자 확인 2026-11-14)"
-   ]
+   ],
+   "backName": "knight-of-the-fen"
   },
   {
    "name": "Forgotten Sword",
    "code": "13A0663",
-   "monster": "knight-of-the-fen",
+   "monster": "knights-of-fen",
    "traits": [
     "Sword",
     "Metal",
@@ -2066,12 +2086,13 @@
    ],
    "unclear": [
     "Weapon Power is a stacked cluster: 1 black die on top of 3 red dice; count (4) and colours read at 6x zoom but overlapping"
-   ]
+   ],
+   "backName": "knight-of-the-fen"
   },
   {
    "name": "Muck Coating",
    "code": "13A0664",
-   "monster": "knight-of-the-fen",
+   "monster": "knights-of-fen",
    "traits": [
     "Slime"
    ],
@@ -2093,12 +2114,13 @@
     }
    ],
    "unclear": [],
-   "hands": null
+   "hands": null,
+   "backName": "knight-of-the-fen"
   },
   {
    "name": "Handheld Ballista",
    "code": "13A0665",
-   "monster": "knight-of-the-fen",
+   "monster": "knights-of-fen",
    "traits": [
     "Crossbow",
     "Boltthrower",
@@ -2135,12 +2157,13 @@
    ],
    "unclear": [
     "'opposite site' printed as-is (likely typo for 'side')"
-   ]
+   ],
+   "backName": "knight-of-the-fen"
   },
   {
    "name": "Living Sludge Armor",
    "code": "13A0666",
-   "monster": "knight-of-the-fen",
+   "monster": "knights-of-fen",
    "traits": [
     "Armor",
     "Metal",
@@ -2166,7 +2189,8 @@
     }
    ],
    "unclear": [],
-   "hands": null
+   "hands": null,
+   "backName": "knight-of-the-fen"
   },
   {
    "name": "Fleischmail",
@@ -2453,7 +2477,7 @@
   {
    "name": "Harvest Sicklesword",
    "code": "13A0651",
-   "monster": "pumpkinhead-monstrosities",
+   "monster": "pumpkinheads",
    "traits": [
     "Sickle",
     "Metal"
@@ -2482,12 +2506,13 @@
      "text": "Armor-piercing 1."
     }
    ],
-   "unclear": []
+   "unclear": [],
+   "backName": "pumpkinhead-monstrosities"
   },
   {
    "name": "Carving Knife",
    "code": "13A0652",
-   "monster": "pumpkinhead-monstrosities",
+   "monster": "pumpkinheads",
    "traits": [
     "Knife",
     "Metal",
@@ -2511,12 +2536,13 @@
     }
    ],
    "unclear": [],
-   "hands": null
+   "hands": null,
+   "backName": "pumpkinhead-monstrosities"
   },
   {
    "name": "Sickle Scissors",
    "code": "13A0653",
-   "monster": "pumpkinhead-monstrosities",
+   "monster": "pumpkinheads",
    "traits": [
     "Scissors",
     "Metal",
@@ -2549,12 +2575,13 @@
      "text": "Armor-piercing 1."
     }
    ],
-   "unclear": []
+   "unclear": [],
+   "backName": "pumpkinhead-monstrosities"
   },
   {
    "name": "Accursed Seeds",
    "code": "13A0654",
-   "monster": "pumpkinhead-monstrosities",
+   "monster": "pumpkinheads",
    "traits": [
     "Plant",
     "Alive",
@@ -2578,12 +2605,13 @@
     }
    ],
    "unclear": [],
-   "hands": null
+   "hands": null,
+   "backName": "pumpkinhead-monstrosities"
   },
   {
    "name": "Jack-O'-Lantern",
    "code": "13A0655",
-   "monster": "pumpkinhead-monstrosities",
+   "monster": "pumpkinheads",
    "traits": [
     "Armor",
     "Plant",
@@ -2602,12 +2630,13 @@
    "text": "Inspire 1.\n1 [Heat] Reinforce 1.\n2 [Heat] [Discard] Stalwart.",
    "gates": [],
    "unclear": [],
-   "hands": null
+   "hands": null,
+   "backName": "pumpkinhead-monstrosities"
   },
   {
    "name": "Living Polypores",
    "code": "13A0656",
-   "monster": "pumpkinhead-monstrosities",
+   "monster": "pumpkinheads",
    "traits": [
     "Plant",
     "Alive"
@@ -2630,12 +2659,13 @@
     }
    ],
    "unclear": [],
-   "hands": null
+   "hands": null,
+   "backName": "pumpkinhead-monstrosities"
   },
   {
    "name": "Flaming Sword",
    "code": "13A0657",
-   "monster": "pumpkinhead-monstrosities",
+   "monster": "pumpkinheads",
    "traits": [
     "Sword",
     "Metal",
@@ -2664,12 +2694,13 @@
    "gates": [],
    "unclear": [
     "Weapon Power: 3 tiny overlapping dice; red + 2 light (white)"
-   ]
+   ],
+   "backName": "pumpkinhead-monstrosities"
   },
   {
    "name": "Root Stockade",
    "code": "13A0658",
-   "monster": "pumpkinhead-monstrosities",
+   "monster": "pumpkinheads",
    "traits": [
     "Armor",
     "Wood",
@@ -2688,7 +2719,8 @@
    "text": "Poison Limit +2.\nDeploy 3. Soak 2.\nTake Root: If you didn't move during your turn, gain Braced until you move.",
    "gates": [],
    "unclear": [],
-   "hands": null
+   "hands": null,
+   "backName": "pumpkinhead-monstrosities"
   },
   {
    "name": "Teeth Amulet",
@@ -4111,17 +4143,19 @@
    "evasionReroll": null,
    "armorDice": null,
    "charges": null,
-   "text": "Ranged 4–8.\nEnvenomed 2.\nCantrip 2. Commit.\n1 [Heat] [Exhaust] Move the closest Swamp Terrain tile to any spaces in your effective range.\n[BANE 2+] Monsters on Swamp Terrain tiles gain -1 [AT].",
+   "text": "Ranged 4–8.\nEnvenomed 2.\nCantrip 2. Commit.\n1 [Heat] [Exhaust] Move the closest Swamp Terrain tile to any spaces in your effective range.\n[BANE 2+] Monsters on Swamp Terrain tiles gain -1 [To Hit].",
    "gates": [
     {
      "gate": "BANE 2+",
-     "text": "Monsters on Swamp Terrain tiles gain -1 [AT]."
+     "text": "Monsters on Swamp Terrain tiles gain -1 [To Hit]."
     }
    ],
    "unclear": [
     "Code blurry: 13A0740 vs 13A0741 (assumed sequential)",
-    "Weapon power dice read as 1 black + 1 white",
-    "Final icon after '-1' read as greave-like [AT] glyph"
+    "Weapon power dice read as 1 black + 1 white"
+   ],
+   "notes": [
+    "아이콘 = To Hit (사용자 확인 2026-11-15)"
    ]
   },
   {
@@ -4142,7 +4176,7 @@
    "evasionReroll": null,
    "armorDice": null,
    "charges": null,
-   "text": "1 [Heat] [Exhaust] Draw a Mortis without resolving it. The next time you would perform a [red oval icon], resolve that card instead.\n[Discard] Superior Chance or Lifeline.\n[DRAGON] When you're about to die from the Disemboweled Mortis card, Incarnate into the Unknown Saint instead.",
+   "text": "1 [Heat] [Exhaust] Draw a Mortis without resolving it. The next time you would perform a [Peril Check], resolve that card instead.\n[Discard] Superior Chance or Lifeline.\n[DRAGON] When you're about to die from the Disemboweled Mortis card, Incarnate into the Unknown Saint instead.",
    "gates": [
     {
      "gate": "DRAGON",
@@ -4150,11 +4184,12 @@
     }
    ],
    "unclear": [
-    "Code blurry: 13A0741 vs 13A0740",
-    "'[red oval icon]' is a small red oval/banner glyph (probably a Mortis draw symbol)",
-    "Slime Helmet과 같은 빨간 아이콘이면 [Peril Check] — 확인 필요"
+    "Code blurry: 13A0741 vs 13A0740"
    ],
-   "hands": null
+   "hands": null,
+   "notes": [
+    "빨간 아이콘 = Peril Check (사용자 확인 2026-11-15)"
+   ]
   },
   {
    "name": "Deal-Taker's Razor",
@@ -4327,7 +4362,7 @@
   {
    "name": "Blowgun",
    "code": "13B0808",
-   "monster": "firstmen-lictors",
+   "monster": "first-men-lictor-hunters",
    "traits": [
     "Blowgun",
     "Wood",
@@ -4341,9 +4376,10 @@
    "attackDice": 1,
    "precision": 2,
    "weaponPower": {
-    "n": 2,
+    "n": 3,
     "colour": "red",
     "dice": [
+     "red",
      "red",
      "red"
     ]
@@ -4355,14 +4391,16 @@
    "charges": 2,
    "text": "Unwieldy.\nRanged 2–4.\nEnvenomed 1.\nAmmo Reserves 3.\nTo attack with this Weapon, spend 1 [Charge].\n1 [Charge] When you attack, place a Diversion [Diversion] token in the Knight Pool.",
    "gates": [],
-   "unclear": [
-    "Weapon power red dice overlap and are tiny: read as 2 red (could be 3)"
-   ]
+   "unclear": [],
+   "notes": [
+    "Power rrr (사용자 확인 2026-11-15)"
+   ],
+   "backName": "firstmen-lictors"
   },
   {
    "name": "Lictor Mancatcher",
    "code": "13B0809",
-   "monster": "firstmen-lictors",
+   "monster": "first-men-lictor-hunters",
    "traits": [
     "Spear",
     "Wood",
@@ -4387,12 +4425,13 @@
    "charges": null,
    "text": "Unwieldy.\nReach 2. Opening 1.\nPull 1. Drag 2.",
    "gates": [],
-   "unclear": []
+   "unclear": [],
+   "backName": "firstmen-lictors"
   },
   {
    "name": "Poison Gladius and Knife",
    "code": "13B0810",
-   "monster": "firstmen-lictors",
+   "monster": "first-men-lictor-hunters",
    "traits": [
     "Sword",
     "Knife",
@@ -4424,12 +4463,13 @@
      "text": "When you Escalate, AI Suppress."
     }
    ],
-   "unclear": []
+   "unclear": [],
+   "backName": "firstmen-lictors"
   },
   {
    "name": "Espionage Countermeasure",
    "code": "13B0811",
-   "monster": "firstmen-lictors",
+   "monster": "first-men-lictor-hunters",
    "traits": [
     "Torch",
     "Wood",
@@ -4448,12 +4488,13 @@
    "text": "1 [Charge] Place 1 Fire [Fire] token in the Knight Pool.\nWhenever you remove 1 unspent Fire [Fire] token from the Knight Pool, gain 1 [Charge].",
    "gates": [],
    "unclear": [],
-   "hands": null
+   "hands": null,
+   "backName": "firstmen-lictors"
   },
   {
    "name": "Explorer's Machete",
    "code": "13B0812",
-   "monster": "firstmen-lictors",
+   "monster": "first-men-lictor-hunters",
    "traits": [
     "Sword",
     "Metal"
@@ -4480,12 +4521,13 @@
    "charges": null,
    "text": "Auto-break 1. Break 3.\n1 [Heat] [Exhaust] During Delve, you may move through Shortcuts.",
    "gates": [],
-   "unclear": []
+   "unclear": [],
+   "backName": "firstmen-lictors"
   },
   {
    "name": "Appalling Trophy",
    "code": "13B0813",
-   "monster": "firstmen-lictors",
+   "monster": "first-men-lictor-hunters",
    "traits": [
     "Flesh",
     "Dead",
@@ -4501,22 +4543,24 @@
    "evasionReroll": null,
    "armorDice": null,
    "charges": null,
-   "text": "Provoke.\n[Reaction] [Exhaust] Gain +X [Heat] to move the closest Monster X spaces directly away from you. You may use this ability only during [black claw icon] preceding an After Attack or a Response.\n[Discard] Perform Rotation 1, or ignore a Rotation.\n[GRAVE] When you Escalate, BP Suppress.",
+   "text": "Provoke.\n[Reaction] [Exhaust] Gain +X [Heat] to move the closest Monster X spaces directly away from you. You may use this ability only during [REACT! window] preceding an After Attack or a Response.\n[Discard] Perform Rotation 1, or ignore a Rotation.\n[GRAVE] When you Escalate, BP Suppress.",
    "gates": [
     {
      "gate": "GRAVE",
      "text": "When you Escalate, BP Suppress."
     }
    ],
-   "unclear": [
-    "'[black claw icon]' after 'during' is an unknown black clawed-hand/beast glyph (likely a Monster attack/step symbol)"
+   "unclear": [],
+   "hands": null,
+   "notes": [
+    "검은 아이콘 = REACT! 창 (사용자 확인 2026-11-15)"
    ],
-   "hands": null
+   "backName": "firstmen-lictors"
   },
   {
    "name": "Fungal Focus",
    "code": "13B0814",
-   "monster": "firstmen-lictors",
+   "monster": "first-men-lictor-hunters",
    "traits": [
     "Catalyst",
     "Ancient",
@@ -4546,12 +4590,13 @@
    "charges": null,
    "text": "Ranged 3–7.\nAuto-black 1.\nSpell 2. Cantrip 1.\nMotivate 3. Commit.\nDuring Delve, you may move through Shortcuts.\n1 [Heat] Place a Fire [Fire] token in the Knight Pool.\nYou may use this ability multiple times per turn.",
    "gates": [],
-   "unclear": []
+   "unclear": [],
+   "backName": "firstmen-lictors"
   },
   {
    "name": "Bog Camouflage",
    "code": "13B0815",
-   "monster": "firstmen-lictors",
+   "monster": "first-men-lictor-hunters",
    "traits": [
     "Wood",
     "Flammable"
@@ -4576,12 +4621,13 @@
    "unclear": [
     "Right-column '+2' icon (die with circular arrow) read as evasionReroll"
    ],
-   "hands": null
+   "hands": null,
+   "backName": "firstmen-lictors"
   },
   {
    "name": "Lorica Segmentata",
    "code": "13A0683",
-   "monster": "firstmen-warriors",
+   "monster": "first-men-warriors",
    "traits": [
     "Armor",
     "Metal"
@@ -4606,12 +4652,13 @@
     }
    ],
    "unclear": [],
-   "hands": null
+   "hands": null,
+   "backName": "firstmen-warriors"
   },
   {
    "name": "Standard Spearmace",
    "code": "13A0684",
-   "monster": "firstmen-warriors",
+   "monster": "first-men-warriors",
    "traits": [
     "Spear",
     "Metal",
@@ -4639,12 +4686,13 @@
    "charges": null,
    "text": "Unwieldy.\nReach 2. Opening 1.",
    "gates": [],
-   "unclear": []
+   "unclear": [],
+   "backName": "firstmen-warriors"
   },
   {
    "name": "Gladius",
    "code": "13A0685",
-   "monster": "firstmen-warriors",
+   "monster": "first-men-warriors",
    "traits": [
     "Sword",
     "Metal"
@@ -4668,12 +4716,13 @@
    "charges": null,
    "text": "Black 2.\nPower Re-roll 1.\nReposition 2.",
    "gates": [],
-   "unclear": []
+   "unclear": [],
+   "backName": "firstmen-warriors"
   },
   {
    "name": "Weighted Net",
    "code": "13A0686",
-   "monster": "firstmen-warriors",
+   "monster": "first-men-warriors",
    "traits": [
     "Rope",
     "Net"
@@ -4696,12 +4745,13 @@
     }
    ],
    "unclear": [],
-   "hands": null
+   "hands": null,
+   "backName": "firstmen-warriors"
   },
   {
    "name": "Lorica Hamata",
    "code": "13A0687",
-   "monster": "firstmen-warriors",
+   "monster": "first-men-warriors",
    "traits": [
     "Armor",
     "Metal",
@@ -4723,12 +4773,13 @@
     "Right-column '+1' icon (die with circular arrow) read as evasionReroll",
     "'[Hand]' = single gauntlet (one-hand) icon in text"
    ],
-   "hands": null
+   "hands": null,
+   "backName": "firstmen-warriors"
   },
   {
    "name": "Scutum",
    "code": "13A0688",
-   "monster": "firstmen-warriors",
+   "monster": "first-men-warriors",
    "traits": [
     "Shield",
     "Wood",
@@ -4755,12 +4806,13 @@
    "charges": null,
    "text": "Black 1.\nOpening 2. Pushback 2.\n1 [Heat] [Exhaust] Guard 2.\n1 [Heat] Reinforce 2.",
    "gates": [],
-   "unclear": []
+   "unclear": [],
+   "backName": "firstmen-warriors"
   },
   {
    "name": "Gladiator Helmet",
    "code": "13A0689",
-   "monster": "firstmen-warriors",
+   "monster": "first-men-warriors",
    "traits": [
     "Helmet",
     "Metal",
@@ -4787,12 +4839,13 @@
     "Cost icon before '2 [Heat]' is a black box with two figures joined by '+'; read as [Move action]+[Combat action]",
     "Slot icon is the pouch (support) although the card is a helmet"
    ],
-   "hands": null
+   "hands": null,
+   "backName": "firstmen-warriors"
   },
   {
    "name": "Bloodstained Cestus",
    "code": "13A0690",
-   "monster": "firstmen-warriors",
+   "monster": "first-men-warriors",
    "traits": [
     "Cestus",
     "Metal",
@@ -4826,12 +4879,13 @@
    ],
    "unclear": [
     "Unclear whether the 'For the purpose of gathering...' sentence belongs to the JUDICIUM gate; stored as ungated"
-   ]
+   ],
+   "backName": "firstmen-warriors"
   },
   {
    "name": "Cloak of Ill Winds",
    "code": "13A0691",
-   "monster": "haunts-of-utrebrant",
+   "monster": "haunts-of-utrebant",
    "traits": [
     "Armor",
     "Leather"
@@ -4857,12 +4911,13 @@
    "unclear": [
     "code faint: read as 13A0691",
     "leading swirly glyph read as [Reaction]"
-   ]
+   ],
+   "backName": "haunts-of-utrebrant"
   },
   {
    "name": "Haunt Glaive",
    "code": "13A0692",
-   "monster": "haunts-of-utrebrant",
+   "monster": "haunts-of-utrebant",
    "traits": [
     "Spear",
     "Ethereal",
@@ -4874,9 +4929,10 @@
    "attackDice": 1,
    "precision": 2,
    "weaponPower": {
-    "n": 2,
+    "n": 3,
     "colour": "red",
     "dice": [
+     "red",
      "red",
      "red"
     ]
@@ -4888,12 +4944,16 @@
    "charges": null,
    "text": "Unwieldy.\nReach 2. Closing 1.\nReposition 1.",
    "gates": [],
-   "unclear": []
+   "unclear": [],
+   "notes": [
+    "Power rrr (사용자 확인 2026-11-15)"
+   ],
+   "backName": "haunts-of-utrebrant"
   },
   {
    "name": "Sinking Boots",
    "code": "13A0693",
-   "monster": "haunts-of-utrebrant",
+   "monster": "haunts-of-utrebant",
    "traits": [
     "Boots",
     "Leather",
@@ -4912,12 +4972,13 @@
    "charges": null,
    "text": "1 [Heat] [Exhaust] When performing a [Move action], gain +1 Speed [Speed].\n[Exhaust] During voluntary movement, gain +X [Heat] to ignore X spaces of a Terrain tile.",
    "gates": [],
-   "unclear": []
+   "unclear": [],
+   "backName": "haunts-of-utrebrant"
   },
   {
    "name": "Haunted Cutlass",
    "code": "13A0694",
-   "monster": "haunts-of-utrebrant",
+   "monster": "haunts-of-utrebant",
    "traits": [
     "Sword",
     "Ethereal",
@@ -4941,10 +5002,10 @@
    "evasionReroll": null,
    "armorDice": null,
    "charges": null,
-   "text": "[BANE 1+] +1 [Power].\nBlack 2.\nPower Re-roll 2.\n[GRAVE] [Discard] When you deal a Wound, gain 1 Gold [Gold].",
+   "text": "[BANE 4+] +1 [Power].\nBlack 2.\nPower Re-roll 2.\n[GRAVE] [Discard] When you deal a Wound, gain 1 Gold [Gold].",
    "gates": [
     {
-     "gate": "BANE 1+",
+     "gate": "BANE 4+",
      "text": "+1 [Power]."
     },
     {
@@ -4953,14 +5014,18 @@
     }
    ],
    "unclear": [
-    "'+1 [Power]' sits under the stat column behind a purple Bane 1+ tag (gated bonus power); stored as gated text, bonusPower null",
+    "'+1 [Power]' sits under the stat column behind a purple Bane 4+ tag (gated bonus power); stored as gated text, bonusPower null",
     "code faint: read as 13A0694"
-   ]
+   ],
+   "notes": [
+    "Bane 4+ (사용자 확인 2026-11-15)"
+   ],
+   "backName": "haunts-of-utrebrant"
   },
   {
    "name": "Heron's Beak",
    "code": "13A0695",
-   "monster": "haunts-of-utrebrant",
+   "monster": "haunts-of-utrebant",
    "traits": [
     "Hammer",
     "Steel",
@@ -4989,12 +5054,13 @@
    "gates": [],
    "unclear": [
     "code faint: read as 13A0695"
-   ]
+   ],
+   "backName": "haunts-of-utrebrant"
   },
   {
    "name": "Sawed Man Escutcheon",
    "code": "13A0696",
-   "monster": "haunts-of-utrebrant",
+   "monster": "haunts-of-utrebant",
    "traits": [
     "Shield",
     "Wood",
@@ -5025,12 +5091,13 @@
      "text": "1 [Heat] [Discard] When you're about to draw a Judicium, resolve a chosen Mortis revealed by this card instead."
     }
    ],
-   "unclear": []
+   "unclear": [],
+   "backName": "haunts-of-utrebrant"
   },
   {
    "name": "The Banisher",
    "code": "13A0697",
-   "monster": "haunts-of-utrebrant",
+   "monster": "haunts-of-utrebant",
    "traits": [
     "Sword",
     "Ethereal",
@@ -5043,9 +5110,10 @@
    "attackDice": 1,
    "precision": 0,
    "weaponPower": {
-    "n": 2,
+    "n": 3,
     "colour": "black",
     "dice": [
+     "black",
      "black",
      "black"
     ]
@@ -5058,14 +5126,17 @@
    "text": "Closing 2. Hope 2.\nAttack Re-roll 1.\nWound: Gain 2 permanent positive Precision [Precision] tokens.\nFull Miss: Skip the Clear the Knight Pool step.\nGain +1 [Power] against Undead.",
    "gates": [],
    "unclear": [
-    "code faint: read as 13A0697",
-    "weapon power dice are small dark 3/4-view cubes: read as 2 black"
-   ]
+    "code faint: read as 13A0697"
+   ],
+   "notes": [
+    "Power bbb (사용자 확인 2026-11-15)"
+   ],
+   "backName": "haunts-of-utrebrant"
   },
   {
    "name": "Omen Fetish",
    "code": "13A0698",
-   "monster": "haunts-of-utrebrant",
+   "monster": "haunts-of-utrebant",
    "traits": [
     "Cursed",
     "Charm"
@@ -5083,7 +5154,8 @@
    "charges": null,
    "text": "Tireless.\nPoison Resilience 2.\nDeploy 3. Attack Re-roll 3.\n1 [Heat] [Exhaust] Turn a chosen revealed BP face down.\nStart of your turn: Bane 2.",
    "gates": [],
-   "unclear": []
+   "unclear": [],
+   "backName": "haunts-of-utrebrant"
   },
   {
    "name": "Scepter of Smothered Ages",
@@ -5404,9 +5476,10 @@
    "attackDice": 1,
    "precision": 3,
    "weaponPower": {
-    "n": 2,
+    "n": 3,
     "colour": "black",
     "dice": [
+     "black",
      "black",
      "black"
     ]
@@ -5425,8 +5498,9 @@
      "text": "[Discard] Lifeline."
     }
    ],
-   "unclear": [
-    "weapon power dice are dark 3/4-view cubes: read as 2 black"
+   "unclear": [],
+   "notes": [
+    "Power bbb (사용자 확인 2026-11-15)"
    ]
   },
   {
@@ -5798,10 +5872,11 @@
    "attackDice": 1,
    "precision": 2,
    "weaponPower": {
-    "n": 2,
+    "n": 3,
     "colour": "mixed",
     "dice": [
      "red",
+     "black",
      "black"
     ]
    },
@@ -5812,8 +5887,9 @@
    "charges": null,
    "text": "Unwieldy.\nReach 2. Deadly.\nPower 2. Pushback 3.\nCrit Chance:\nArmor-piercing 1.",
    "gates": [],
-   "unclear": [
-    "weapon power dice small/overlapping: read as red + black (2 dice)"
+   "unclear": [],
+   "notes": [
+    "Power rbb (사용자 확인 2026-11-15)"
    ]
   },
   {

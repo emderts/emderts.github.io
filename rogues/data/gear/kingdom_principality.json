@@ -346,15 +346,16 @@
    "evasionReroll": null,
    "armorDice": null,
    "charges": null,
-   "text": "Start of Clash: Draw a Judicium without resolving it, then return it to the deck. The next time you would draw a Judicium, resolve that Judicium instead.\n1 [Heat] [Exhaust] Block or Defy, [red oval icon].\n[GRAVE] X [Heat] [Discard] Discard X Armor [Armor] tokens from anywhere.",
+   "text": "Start of Clash: Draw a Judicium without resolving it, then return it to the deck. The next time you would draw a Judicium, resolve that Judicium instead.\n1 [Heat] [Exhaust] Block or Defy, [Peril Check].\n[GRAVE] X [Heat] [Discard] Discard X Armor [Armor] tokens from anywhere.",
    "gates": [
     {
      "gate": "GRAVE",
      "text": "X [Heat] [Discard] Discard X Armor [Armor] tokens from anywhere."
     }
    ],
-   "unclear": [
-    "'Block or Defy,' 뒤 빨간 타원 아이콘 미확인 (Eudes-Blessed Lance와 같은 아이콘)"
+   "unclear": [],
+   "notes": [
+    "빨간 아이콘 = Peril Check (사용자 확인 2026-11-15)"
    ]
   },
   {

@@ -238,10 +238,13 @@
    "tier": "Dragon",
    "price": 13,
    "charges": 3,
-   "text": "X [Charge] Discard X Bane [Bane] tokens.\n3 [Charge] Change a result of one [Attack die] you just rolled to a chosen result, then Bane 3.",
+   "text": "X [Charge] Discard X Bane [Bane] tokens.\n3 [Charge] Change a result of one [d10] you just rolled to a chosen result, then Bane 3.",
    "gates": [],
    "copies": 2,
-   "unclear": []
+   "unclear": [],
+   "notes": [
+    "주사위 아이콘 = d10 (사용자 확인 2026-11-15)"
+   ]
   },
   {
    "name": "Vicious Fang Necklace",

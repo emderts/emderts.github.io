@@ -74,6 +74,7 @@ ok(stats.rounds >= 8, `campaign rounds simulated: ${stats.rounds} (win ${stats.w
 { const c = mk(32); await c.earlyBird('inn', 1); await c.innVisit(1, 2); const buffed = Object.keys(c.roundBuffs); ok(buffed.length === 2, 'Inn 2 (chosen via Early Bird): two knights Heat Limit +1');
   const n = c.availableNodes().find(n => c.nodePlayable(n)); c.chooseNode(n.id); const clash = c.buildClash(); const kn = clash.knights.find(k => k.name === buffed[0]); ok(kn.heatLimit === 4, `buffed knight Heat Limit ${kn.heatLimit} (3+1)`);
   clash.ask = clashAsk(clash); clash.setup(); await clash.run(); await c.aftermath(clash); ok(!c.roundBuffs || !Object.keys(c.roundBuffs).length, 'Inn effects end with the Rosegraal round'); }
+{ const ids = new Set(Object.values(data.rosegraal.monster_tables.levels).flatMap(L => Object.values(L).flat()).map(e => e.monster)); ok(data.gear.monster_gear.gear.every(g => ids.has(g.monster)) && ids.size === 22, 'every monster gear card maps to a Rosegraal table monster id (22)'); }
 // Monster gear / Consumables / Upgrades: Loot exchange, Upgrade attach rules, Consumables return to the Merchant deck
 { ok(data.gear.monster_gear.gear.length === 176 && data.gear.monster_gear.gear.filter(g => g.monster === 'eggknight').length === 8 && data.gear.consumables.consumables.length === 15 && data.gear.upgrades.upgrades.length === 40, 'monster gear 176 = 22 monsters × 8 (Eggknight 8), consumables 15, upgrades 40');
   const c = mk(41); const n = c.availableNodes().find(n => c.nodePlayable(n)); c.chooseNode(n.id); const k = c.knights[0];

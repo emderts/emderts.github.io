@@ -206,14 +206,15 @@
    "precision": null,
    "weaponPower": null,
    "bonusPower": null,
-   "evasion": 2,
-   "evasionReroll": null,
+   "evasion": null,
+   "evasionReroll": 2,
    "armorDice": null,
    "charges": null,
    "text": "Poison Resilience 1.\nHide. Daze.\n1 [Heat] During Delve, you may move through Shortcuts.",
    "gates": [],
-   "unclear": [
-    "우상단 +2 아이콘을 Evasion bonus로 판독; 슬롯 아이콘 = Armor"
+   "unclear": [],
+   "notes": [
+    "+2 = Evasion Re-roll (사용자 확인 2026-11-15)"
    ]
   },
   {
