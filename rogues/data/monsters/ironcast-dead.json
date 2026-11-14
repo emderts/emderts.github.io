@@ -19,7 +19,8 @@
  "basicAbilities": [
   {
    "name": "Interval Spawn",
-   "text": "INTERVAL SPAWN"
+   "text": "INTERVAL SPAWN",
+   "rule": "Rulebook p.62: Trait 토큰 누적 후(Necrofusion: Wound 3) 현재 행동 해결이 끝나면, Escalation 덱의 가장 낮은 레벨 BP를 Mob track 가장 왼쪽 빈 칸에 놓고 Mob을 배치, 가장 많은 기사를 향함. track이 가득하면 무효."
   }
  ],
  "levels": {
@@ -2612,14 +2613,15 @@
     "shape": "L"
    }
   ],
-  "unclear": [
-   "Rubble L 타일 칸: G11/F11/E11/E10로 판독 (도면에서 세로 3칸 + 왼쪽 아래 1칸)"
+  "unclear": [],
+  "notes": [
+   "Rubble L = G11/F11/E11/E10 — 소유자 확인 2026-11-15"
   ]
  },
  "rulings": [
-  "\"you\" on AI cards = the targeted Knight (e.g. \"If you’re not adjacent to another Mob\" = the Knight is not adjacent to a Mob other than the attacker) [확인 필요]",
-  "\"If no other Knight in Zone X\" = Zone X of the attacking Mob, other than the Target [확인 필요]",
-  "\"Draw AI for the furthest / closest Mob\" (BP responses) = measured from the attacking Knight; ties chosen by the players [확인 필요]",
+  "\"you\" on AI cards = the targeted Knight (e.g. \"If you’re not adjacent to another Mob\" = the Knight is not adjacent to a Mob other than the attacker) [소유자 확인 2026-11-15]",
+  "\"If no other Knight in Zone X\" = Zone X of the attacking Mob, other than the Target [소유자 확인 2026-11-15]",
+  "\"Draw AI for the furthest / closest Mob\" (BP responses) = measured from the attacking Knight; ties chosen by the players [소유자 확인 2026-11-15]",
   "In front (Mob) = spaces beyond the Mob's front edge with LoS, same as the Boss rule [확인 필요]",
   "Healed Mob returns face up (revealed) [확인 필요]",
   "Curse / Threat effects: no Kingdom track in Rogue's Path → no effect",
