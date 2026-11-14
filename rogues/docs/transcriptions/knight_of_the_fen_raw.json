@@ -1,0 +1,1570 @@
+{
+ "sheet": {
+  "name": "Knight of the Fen",
+  "code": "26A1075",
+  "traitsLine": [
+   "Vassal",
+   "Knight",
+   "Ooze"
+  ],
+  "levels": {
+   "1": {
+    "toHit": 6,
+    "toHitText": "6+",
+    "wounds": 8,
+    "exhibitionWounds": 2,
+    "activations": [
+     "AI"
+    ],
+    "activationsText": "1 AI",
+    "bonuses": {
+     "escalations": 0,
+     "at": 0,
+     "vigorLoss": 0,
+     "evasionDice": 0
+    },
+    "traitsAdd": [
+     "One with the Swamp",
+     "We Are Many",
+     "Doppelknight",
+     "Ooze Trap",
+     "Doppelganger",
+     "Spread Thin",
+     "Kingdom Trait (see Clash Setup)"
+    ]
+   },
+   "2": {
+    "toHit": 8,
+    "toHitText": "8+",
+    "wounds": 10,
+    "exhibitionWounds": 4,
+    "activations": [
+     "AI"
+    ],
+    "activationsText": "1 AI",
+    "bonuses": {
+     "escalations": 0,
+     "at": 2,
+     "vigorLoss": 1,
+     "evasionDice": 0
+    },
+    "traitsAdd": [
+     "Living Wasteheap",
+     "Absorb the Fallen"
+    ]
+   },
+   "3": {
+    "toHit": 9,
+    "toHitText": "9+",
+    "wounds": 10,
+    "exhibitionWounds": 4,
+    "activations": [
+     "AI"
+    ],
+    "activationsText": "1 AI",
+    "bonuses": {
+     "escalations": 1,
+     "at": 3,
+     "vigorLoss": 2,
+     "evasionDice": 0
+    },
+    "traitsAdd": [
+     "Concentrated Strength"
+    ]
+   },
+   "4": {
+    "toHit": 11,
+    "toHitText": "11+",
+    "wounds": 10,
+    "exhibitionWounds": 4,
+    "activations": [
+     "AI"
+    ],
+    "activationsText": "1 AI",
+    "bonuses": {
+     "escalations": 2,
+     "at": 4,
+     "vigorLoss": 4,
+     "evasionDice": 0
+    },
+    "traitsAdd": [
+     "We Are Legion",
+     "Inescapable Slime"
+    ]
+   }
+  },
+  "traits": [
+   {
+    "name": "One with the Swamp",
+    "level": 1,
+    "text": "Dwell: Move the Monster miniature to the closest unoccupied space on a Swamp Terrain tile."
+   },
+   {
+    "name": "We Are Many",
+    "level": 1,
+    "text": "Whenever the Knight of the Fen is dealt a Wound, (a Double Wound is treated as 2 Wounds) place a Generic token on this Trait. After you finish resolving the current action, if there are 4 or more Generic tokens on this Trait, discard all Generic tokens, Spawn a Doppelknight on the closest Swamp Terrain tile that doesn’t have a Doppelknight on it, and perform Signature."
+   },
+   {
+    "name": "Doppelknight",
+    "level": 1,
+    "text": "Start of Clash: Spawn a Doppelknight on a Swamp Terrain tile closest to Knight of the Fen.\n\nWhen Spawning a Doppelknight, place its token on the designated space in a Mob base ring with the lowest available number. Then, take the top card of the BP deck and place it face down on the leftmost empty space on the Mob track—this is the Doppelknight’s BP card.\n\nDoppelknights are Mobs without Activation tokens (they can still activate, see the Doppelganger Trait). They have Advanced Bypass, Odd Spawn, and the same To Hit [To Hit] value as Knight of the Fen. After wounding a Doppelknight BP, place it on the Wound Stack, remove the Doppelknight token, and place a 1x2 Swamp Terrain tile on its space. Escalate as if you dealt a Wound to Knight of the Fen. When a Knight is involuntarily moved onto a Doppelknight token, they are Displaced and gain the Slimed Condition card.\n\nIf at any point there are no cards in the BP deck and discard pile, you immediately lose the Clash!"
+   },
+   {
+    "name": "Ooze Trap",
+    "level": 1,
+    "text": "Additional Setup: Place the Engulfed Trait card near the Monster Sheet.\nWhen Knight of the Fen or Doppelknight moves through a space with a Knight on it, that Knight doesn’t suffer Crash, but gains the Slimed Condition card instead.\n\nLevel 2–3: They additionally lose -2 [Vigor].\nWhen Knight of the Fen ends its movement on a Knight, that Knight becomes Engulfed (place your miniature on Engulfed Trait card and gain the Slimed Condition card)."
+   },
+   {
+    "name": "Doppelganger",
+    "level": 1,
+    "text": "All Doppelknights activate after Knight of the Fen, starting from the lowest number on the Mob track, and perform Attacks using the Doppelganger effect on the drawn AI card (if there’s any), using the same Evasion stats. If a Doppelknight doesn’t have a valid Target during its Activation, skip its Attack. If there’s a Chain Break during Knight of the Fen’s or Doppelknight’s Activation, do not activate any more Doppelknights during that Monster Round."
+   },
+   {
+    "name": "Spread Thin",
+    "level": 1,
+    "text": "Every Doppelknight on the Clash Board lowers Knight of the Fen’s [AT] by 1, to a minimum of 1."
+   },
+   {
+    "name": "Living Wasteheap",
+    "level": 2,
+    "text": "All Knights gain “Crit Miss: Discard a chosen Gear [Gear] card and place it on the Living Wasteheap Trait.”\nThe Knight of the Fen gains the following benefits depending on the Gear [Gear] cards on this Trait:\nFor every Weapon: Knight of the Fen’s Attacks additionally cause -1 [Vigor] loss.\nWhenever Armor is placed: Place 2 Armor [Armor] tokens on the Sheet.\nFor every Support: Knight of the Fen gains +1 [To Hit]."
+   },
+   {
+    "name": "Absorb the Fallen",
+    "level": 2,
+    "text": "When a Doppelknight dies, place an Armor [Armor] token on the Monster Sheet."
+   },
+   {
+    "name": "Concentrated Strength",
+    "level": 3,
+    "text": "When spawning a Doppelknight, resolve it as normal, except take the top 2 BP cards instead of 1, and place them in a face down stack on the leftmost empty space on the Mob track. If you cannot (i.e. when there’s only 1 card left in the BP deck), you lose the Clash!\nWhen you would reveal a Doppelknight BP, reveal both of its BP cards (keep them in the same order).\nWhen attacking a Doppelknight, if your Total Power exceeds the summed [AT] of both BPs, you Wound both cards and resolve the Critical Response. Otherwise, you fail to wound either card, and must resolve the Fail or Instinct Response. Resolve all Attack Responses, as well as Overcome or Overpower effects only from the top BP card in the stack. Always Escalate the top wounded BP first."
+   },
+   {
+    "name": "We Are Legion",
+    "level": 4,
+    "text": "Disable the Spread Thin Trait.\n\nStart of Clash: Spawn an additional Doppelknight on a Swamp Terrain tile closest to Knight of the Fen."
+   },
+   {
+    "name": "Inescapable Slime",
+    "level": 4,
+    "text": "Disable the Ooze Trap Trait.\nWhen Knight of the Fen moves through a Knight, that Knight doesn’t suffer Crash and becomes Engulfed instead.\nWhen a Doppelknight moves through a Knight, that Knight gains the Slimed Condition card and loses -2 [Vigor]."
+   }
+  ],
+  "basicAbilities": [
+   {
+    "name": "Ignore Difficult Terrain",
+    "text": "IGNORE DIFFICULT TERRAIN"
+   }
+  ],
+  "facingDiagram": {
+   "grid": [
+    4,
+    4
+   ],
+   "footprint": "2x2",
+   "monsterCells": "centre 2x2 (rows 2-3, columns 2-3)",
+   "rows": [
+    ".RR.",
+    ".MM.",
+    ".MM.",
+    "...."
+   ],
+   "rear": "the two cells directly above the monster (row 1, columns 2-3), each marked R",
+   "front": "arrow below the monster token (pointing down)",
+   "facingOnSheet": "down",
+   "blindspots": "none shown (R only, no eye icon)"
+  },
+  "levelsNote": "Stat columns: fist = To Hit (N+), heart with slashes = Wounds, broken heart = Exhibition Wounds, AI card = Activations ('1 AI' at every level, no Signature activation printed). Bonus row (blue): starburst-with-arrow N = Escalations, +N ribcage = AT bonus, +N V = Vigor Loss bonus; the fourth blue cell is empty at every level (no evasion-dice bonus). Level 1 has no bonus row. Level 1 TRAITS box prints '+One with the Swamp, We Are Many, Doppelknight, Ooze Trap, Doppelganger, Spread Thin, Kingdom Trait (see Clash Setup)'.",
+  "unclear": [
+   "sheet code: tiny pale print at top-right of sheet1; best reading 26A1075 (last digit could be 3)",
+   "Ooze Trap: the lead-in reads \"Level 2–3:\" (not 2–4) - printed so; note level 4 disables Ooze Trap via Inescapable Slime",
+   "bold lead-ins: Dwell:, Start of Clash:, Additional Setup:, Level 2–3:, Crit Miss:, For every Weapon:, Whenever Armor is placed:, For every Support:; the final Doppelknight sentence (\"If at any point ... lose the Clash!\") and the word \"both\" in Concentrated Strength are bold; Doppelganger/Engulfed/Slimed/Living Wasteheap/Spread Thin/Ooze Trap names inside text are italic",
+   "We Are Many: comma after \"Wound\" before the parenthesis is printed so"
+  ]
+ },
+ "ai": [
+  {
+   "file": "00.png",
+   "name": "Encroaching Slime",
+   "code": "27A1439",
+   "level": 1,
+   "type": "ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 10,
+   "preTargeting": null,
+   "targeting": [
+    "Closest Knight in front",
+    "[Priority Target] Priority Target",
+    "Closest Knight in sight"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "DIFFICULTY 11+ INSTEAD",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "For each hit lose -1 [Vigor] and Poison 1. [Peril Check].",
+    "Three or more hits, become Engulfed."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:1"
+   ],
+   "afterAttack": null,
+   "aiResponse": null,
+   "doppelganger": "Move & Attack the closest Knight. For each hit lose -1 [Vigor]. [Peril Check].",
+   "footer": "KNIGHT OF THE FEN – AI 1",
+   "unclear": [
+    "code: faint tiny print; best reading 27A1439 (digits blurred, chosen with help of the sheet-order sequence pattern)"
+   ],
+   "text": "ENCROACHING SLIME / ATTACK / Evasion 3 dice, 10+ / TARGETING: • Closest Knight in front • [Priority Target] Priority Target • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat 3+ ▸ DIFFICULTY 11+ INSTEAD] / For each hit lose -1 [Vigor] and Poison 1. [Peril Check]. Three or more hits, become Engulfed. [REACT!] / DOPPELGANGER: Move & Attack the closest Knight. For each hit lose -1 [Vigor]. [Peril Check]. / KNIGHT OF THE FEN – AI 1",
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line."
+  },
+  {
+   "file": "01.png",
+   "name": "Uncertain Footing",
+   "code": "27A1440",
+   "level": 1,
+   "type": "ZONE ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "[Priority Target] Priority Target",
+    "Closest Knight in sight"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "+1 [d10]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "One hit, gain the Slimed Condition card.",
+    "Two or more hits, gain the Drowning Condition card instead."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:1"
+   ],
+   "afterAttack": null,
+   "aiResponse": null,
+   "doppelganger": "Move & Attack the furthest Knight. For each hit gain +1 [Heat].",
+   "footer": "KNIGHT OF THE FEN – AI 1",
+   "unclear": [
+    "code: faint tiny print; best reading 27A1440 (digits blurred, chosen with help of the sheet-order sequence pattern)"
+   ],
+   "text": "UNCERTAIN FOOTING / ZONE ATTACK / Evasion 2 dice, 8+ / TARGETING: • [Priority Target] Priority Target • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat 3+ ▸ +1 [d10]] / One hit, gain the Slimed Condition card. Two or more hits, gain the Drowning Condition card instead. [REACT!] / DOPPELGANGER: Move & Attack the furthest Knight. For each hit gain +1 [Heat]. / KNIGHT OF THE FEN – AI 1",
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line.",
+   "zoneDiagram": {
+    "grid": [
+     8,
+     7
+    ],
+    "gridNote": "8 rows x 7 columns",
+    "rows": [
+     ".....R.",
+     "....RR.",
+     "...RRR.",
+     ">>RRRR.",
+     ">>RRRR.",
+     "...RRR.",
+     "....RR.",
+     ".....R."
+    ],
+    "monster": "2x2 black marker with white chevron pointing right, at rows 4-5 (of 8), columns 1-2",
+    "redCells": 20,
+    "yellowCells": 0,
+    "note": "triangle/cone opening to the right of the monster: columns 3, 4, 5, 6 hold 2, 4, 6, 8 red cells; last (7th) column empty"
+   }
+  },
+  {
+   "file": "02.png",
+   "name": "Shortsword Jab",
+   "code": "27A1441",
+   "level": 1,
+   "type": "ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "Highest [Heat]",
+    "Furthest Knight in front"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 4,
+     "effect": "+1 [d10]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "One hit, lose -3 [Vigor].",
+    "Two hits, lose -5 [Vigor].",
+    "Three or more hits, lose -5 [Vigor] and Knockdown. [Peril Check]."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:2"
+   ],
+   "afterAttack": null,
+   "aiResponse": null,
+   "doppelganger": "Move & Attack the closest Knight. For each hit lose -1 [Vigor]. [Peril Check]. Swarm 2.",
+   "footer": "KNIGHT OF THE FEN – AI 1",
+   "unclear": [
+    "code: faint tiny print; best reading 27A1441 (digits blurred, chosen with help of the sheet-order sequence pattern)",
+    "Heat gate threshold read as 4+ (other cards print 3+); the digit is small but looks like a 4"
+   ],
+   "text": "SHORTSWORD JAB / ATTACK / Evasion 3 dice, 8+ / TARGETING: • Highest [Heat] • Furthest Knight in front [REACT!] / MOVE & ATTACK [Heat 4+ ▸ +1 [d10]] / One hit, lose -3 [Vigor]. Two hits, lose -5 [Vigor]. Three or more hits, lose -5 [Vigor] and Knockdown. [Peril Check]. [REACT!] / DOPPELGANGER: Move & Attack the closest Knight. For each hit lose -1 [Vigor]. [Peril Check]. Swarm 2. / KNIGHT OF THE FEN – AI 1",
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line."
+  },
+  {
+   "file": "03.png",
+   "name": "Mud in Your Eye",
+   "code": "27A1438",
+   "level": 1,
+   "type": "RANGE ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "Furthest Knight in front, in range",
+    "Furthest Knight in sight, in range"
+   ],
+   "move": false,
+   "moveTag": "RANGE ATTACK 6",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "IGNORE ALL [REACT! window]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "For each hit lose -1 [Vigor]. [Peril Check].",
+    "Two or more hits, gain the Slimed Condition card.",
+    "Dwell.",
+    "Crit Evade Fail: Gain the Slimed Condition card."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:3"
+   ],
+   "afterAttack": null,
+   "aiResponse": null,
+   "doppelganger": "Move & Range Attack 4 the closest Knight. For each hit lose -1 [Vigor]. [Peril Check].",
+   "footer": "KNIGHT OF THE FEN – AI 1",
+   "unclear": [
+    "code: faint tiny print; best reading 27A1438 (digits blurred, chosen with help of the sheet-order sequence pattern)",
+    "Heat 3+ gate reads \"IGNORE ALL\" followed by a small white glyph; best reading is the REACT! claw glyph (i.e. ignore all React windows) but the glyph is only a few pixels and could be another icon",
+    "move tag is \"RANGE ATTACK 6\" with no MOVE (the Doppelganger line does say \"Move & Range Attack 4\")"
+   ],
+   "text": "MUD IN YOUR EYE / RANGE ATTACK / Evasion 4 dice, 8+ / TARGETING: • Furthest Knight in front, in range • Furthest Knight in sight, in range [REACT!] / RANGE ATTACK 6 [Heat 3+ ▸ IGNORE ALL [REACT! window]] / For each hit lose -1 [Vigor]. [Peril Check]. Two or more hits, gain the Slimed Condition card. Dwell. Crit Evade Fail: Gain the Slimed Condition card. [REACT!] / DOPPELGANGER: Move & Range Attack 4 the closest Knight. For each hit lose -1 [Vigor]. [Peril Check]. / KNIGHT OF THE FEN – AI 1",
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line."
+  },
+  {
+   "file": "04.png",
+   "name": "Retaliatory Thrust",
+   "code": "27A1437",
+   "level": 1,
+   "type": "RANGE ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": 9,
+   "preTargeting": null,
+   "targeting": [
+    "Last Knight to wound",
+    "[Priority Target] Priority Target",
+    "Closest Knight in sight"
+   ],
+   "move": true,
+   "moveTag": "MOVE & RANGE ATTACK 2",
+   "gates": [],
+   "effects": [
+    "If hit, lose -5 [Vigor]. [Peril Check].",
+    "Dwell."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:1"
+   ],
+   "afterAttack": null,
+   "aiResponse": null,
+   "doppelganger": "Move & Attack the furthest Knight. If hit, lose -3 [Vigor]. [Peril Check].",
+   "footer": "KNIGHT OF THE FEN – AI 1",
+   "unclear": [
+    "code: faint tiny print; best reading 27A1437 (digits blurred, chosen with help of the sheet-order sequence pattern)"
+   ],
+   "text": "RETALIATORY THRUST / RANGE ATTACK / Evasion 2 dice, 9+ / TARGETING: • Last Knight to wound • [Priority Target] Priority Target • Closest Knight in sight [REACT!] / MOVE & RANGE ATTACK 2 / If hit, lose -5 [Vigor]. [Peril Check]. Dwell. [REACT!] / DOPPELGANGER: Move & Attack the furthest Knight. If hit, lose -3 [Vigor]. [Peril Check]. / KNIGHT OF THE FEN – AI 1",
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line."
+  },
+  {
+   "file": "05.png",
+   "name": "Slimy Stab",
+   "code": "27A1436",
+   "level": 1,
+   "type": "ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 9,
+   "preTargeting": null,
+   "targeting": [
+    "Furthest Knight in front",
+    "[Priority Target] Priority Target",
+    "Furthest Knight in sight"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 2,
+     "effect": "+1 [d10]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "For each hit lose -2 [Vigor]. [Peril Check].",
+    "3+ hits, gain the Slimed Condition card."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:1"
+   ],
+   "afterAttack": null,
+   "aiResponse": null,
+   "doppelganger": "Move & Attack the closest Knight. For each hit lose -1 [Vigor]. [Peril Check].",
+   "footer": "KNIGHT OF THE FEN – AI 1",
+   "unclear": [
+    "code: faint tiny print; best reading 27A1436 (digits blurred, chosen with help of the sheet-order sequence pattern)",
+    "Heat gate threshold read as 2+ (small digit)"
+   ],
+   "text": "SLIMY STAB / ATTACK / Evasion 3 dice, 9+ / TARGETING: • Furthest Knight in front • [Priority Target] Priority Target • Furthest Knight in sight [REACT!] / MOVE & ATTACK [Heat 2+ ▸ +1 [d10]] / For each hit lose -2 [Vigor]. [Peril Check]. 3+ hits, gain the Slimed Condition card. [REACT!] / DOPPELGANGER: Move & Attack the closest Knight. For each hit lose -1 [Vigor]. [Peril Check]. / KNIGHT OF THE FEN – AI 1",
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line."
+  },
+  {
+   "file": "06.png",
+   "name": "Stifling Sludge",
+   "code": "27A1445",
+   "level": 2,
+   "type": "ZONE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 10,
+   "preTargeting": null,
+   "targeting": [
+    "[Priority Target] Priority Target",
+    "Closest Knight in sight",
+    "Closest Knight in front"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "+1 [d10]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "For each hit lose -1 [Vigor].",
+    "One hit, gain the Slimed Condition card.",
+    "Two or more hits, gain the Drowning Condition card instead. [Peril Check]."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:2"
+   ],
+   "afterAttack": null,
+   "aiResponse": null,
+   "doppelganger": "Move & Attack the furthest Knight. For each hit lose -1 [Vigor] and gain +1 [Heat]. [Peril Check]",
+   "footer": "KNIGHT OF THE FEN – AI 2",
+   "unclear": [
+    "code: faint tiny print; best reading 27A1445 (digits blurred, chosen with help of the sheet-order sequence pattern)",
+    "Doppelganger text ends with the Peril Check icon on its own line and no visible final period",
+    "zone diagram: lower-right grid cells are covered by the illustration (assumed empty)"
+   ],
+   "text": "STIFLING SLUDGE / ZONE ATTACK / Evasion 3 dice, 10+ / TARGETING: • [Priority Target] Priority Target • Closest Knight in sight • Closest Knight in front [REACT!] / MOVE & ATTACK [Heat 3+ ▸ +1 [d10]] / For each hit lose -1 [Vigor]. One hit, gain the Slimed Condition card. Two or more hits, gain the Drowning Condition card instead. [Peril Check]. [REACT!] / DOPPELGANGER: Move & Attack the furthest Knight. For each hit lose -1 [Vigor] and gain +1 [Heat]. [Peril Check] / KNIGHT OF THE FEN – AI 2",
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line.",
+   "zoneDiagram": {
+    "grid": [
+     8,
+     10
+    ],
+    "gridNote": "8 rows x 10 columns",
+    "rows": [
+     "..........",
+     "RRRRRRRRRR",
+     ".RRRRRRRR.",
+     "..RRRRRR..",
+     "...RRRR...",
+     "....RR....",
+     "....^^....",
+     "....^^...."
+    ],
+    "monster": "2x2 black marker with white chevron pointing up, at rows 7-8 (bottom), columns 5-6",
+    "redCells": 30,
+    "yellowCells": 0,
+    "note": "inverted triangle in front of the monster (2,4,6,8,10 cells wide going away); top row empty; lower-right cells partly hidden by the art"
+   }
+  },
+  {
+   "file": "07.png",
+   "name": "Tornado of Blades",
+   "code": "27A1446",
+   "level": 2,
+   "type": "ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 9,
+   "preTargeting": null,
+   "targeting": [
+    "Furthest Knight in front",
+    "Furthest Knight in sight",
+    "[Priority Target] Priority Target"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "GAIN THE SLIMED CONDITION CARD",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "If hit, roll two additional [d10].",
+    "One hit, lose -3 [Vigor].",
+    "Two hits, lose -5 [Vigor].",
+    "Three or more hits, lose -7 [Vigor] and Knockdown.",
+    "Five hits, lose -7 [Vigor] and become Engulfed. [Peril Check]."
+   ],
+   "reactWindows": [
+    "targeting"
+   ],
+   "afterAttack": null,
+   "aiResponse": null,
+   "doppelganger": "Repeat this Attack against another Target (once).",
+   "footer": "KNIGHT OF THE FEN – AI 2",
+   "unclear": [
+    "code: faint tiny print; best reading 27A1446 (digits blurred, chosen with help of the sheet-order sequence pattern)",
+    "Heat gate tag wraps onto a second blue tag line (\"GAIN THE SLIMED\" / \"CONDITION CARD\")",
+    "no REACT! marker on the Doppelganger header line (only after Targeting)"
+   ],
+   "text": "TORNADO OF BLADES / ATTACK / Evasion 3 dice, 9+ / TARGETING: • Furthest Knight in front • Furthest Knight in sight • [Priority Target] Priority Target [REACT!] / MOVE & ATTACK [Heat 3+ ▸ GAIN THE SLIMED CONDITION CARD] / If hit, roll two additional [d10]. One hit, lose -3 [Vigor]. Two hits, lose -5 [Vigor]. Three or more hits, lose -7 [Vigor] and Knockdown. Five hits, lose -7 [Vigor] and become Engulfed. [Peril Check]. / DOPPELGANGER: Repeat this Attack against another Target (once). / KNIGHT OF THE FEN – AI 2",
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line."
+  },
+  {
+   "file": "08.png",
+   "name": "Tandem Strike",
+   "code": "27A1447",
+   "level": 2,
+   "type": "ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "Knight with the Slimed Condition card",
+    "[Priority Target] Priority Target",
+    "Closest Knight in front"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK",
+   "gates": [],
+   "effects": [
+    "For each hit lose -1 [Vigor]. [Peril Check]."
+   ],
+   "reactWindows": [
+    "targeting"
+   ],
+   "afterAttack": null,
+   "aiResponse": null,
+   "doppelganger": "Move & Attack the last target. For each hit lose -1 [Vigor]. [Peril Check]. Swarm 1.",
+   "footer": "KNIGHT OF THE FEN – AI 2",
+   "unclear": [
+    "code: faint tiny print; best reading 27A1447 (digits blurred, chosen with help of the sheet-order sequence pattern)",
+    "no REACT! marker on the Doppelganger header line (only after Targeting)"
+   ],
+   "text": "TANDEM STRIKE / ATTACK / Evasion 3 dice, 8+ / TARGETING: • Knight with the Slimed Condition card • [Priority Target] Priority Target • Closest Knight in front [REACT!] / MOVE & ATTACK / For each hit lose -1 [Vigor]. [Peril Check]. / DOPPELGANGER: Move & Attack the last target. For each hit lose -1 [Vigor]. [Peril Check]. Swarm 1. / KNIGHT OF THE FEN – AI 2",
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line."
+  },
+  {
+   "file": "09.png",
+   "name": "Surging Slime",
+   "code": "27A1444",
+   "level": 2,
+   "type": "ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 10,
+   "preTargeting": null,
+   "targeting": [
+    "Knight with the Slimed Condition card",
+    "Closest Knight in sight",
+    "[Priority Target] Priority Target"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "DIFFICULTY 11+ INSTEAD",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "If hit, roll an additional [d10].",
+    "For each hit lose -2 [Vigor].",
+    "Two or more hits, gain the Slimed Condition card. [Peril Check].",
+    "Dwell."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:3"
+   ],
+   "afterAttack": null,
+   "aiResponse": null,
+   "doppelganger": "Move & Attack the furthest Knight. For each hit lose -1 [Vigor]. [Peril Check].",
+   "footer": "KNIGHT OF THE FEN – AI 2",
+   "unclear": [
+    "code: faint tiny print; best reading 27A1444 (digits blurred, chosen with help of the sheet-order sequence pattern)"
+   ],
+   "text": "SURGING SLIME / ATTACK / Evasion 4 dice, 10+ / TARGETING: • Knight with the Slimed Condition card • Closest Knight in sight • [Priority Target] Priority Target [REACT!] / MOVE & ATTACK [Heat 3+ ▸ DIFFICULTY 11+ INSTEAD] / If hit, roll an additional [d10]. For each hit lose -2 [Vigor]. Two or more hits, gain the Slimed Condition card. [Peril Check]. Dwell. [REACT!] / DOPPELGANGER: Move & Attack the furthest Knight. For each hit lose -1 [Vigor]. [Peril Check]. / KNIGHT OF THE FEN – AI 2",
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line."
+  },
+  {
+   "file": "10.png",
+   "name": "Blade Barrage",
+   "code": "27A1443",
+   "level": 2,
+   "type": "SEQUENTIAL ATTACK",
+   "evasionDice": 6,
+   "evasionDifficulty": 9,
+   "preTargeting": null,
+   "targeting": [
+    "Two closest Knights in front",
+    "Two closest Knights in sight"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK",
+   "gates": [],
+   "effects": [
+    "If hit, roll two additional [d10].",
+    "For each hit lose -1 [Vigor]. [Peril Check]."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:1"
+   ],
+   "afterAttack": null,
+   "aiResponse": null,
+   "doppelganger": "Move & Attack the furthest Knight. For each hit lose -1 [Vigor]. [Peril Check]. Swarm 2.",
+   "footer": "KNIGHT OF THE FEN – AI 2",
+   "unclear": [
+    "code: faint tiny print; best reading 27A1443 (digits blurred, chosen with help of the sheet-order sequence pattern)",
+    "the first REACT! marker is printed slightly lower than usual, on the MOVE & ATTACK tag line (still read as the post-Targeting window)"
+   ],
+   "text": "BLADE BARRAGE / SEQUENTIAL ATTACK / Evasion 6 dice, 9+ / TARGETING: • Two closest Knights in front • Two closest Knights in sight [REACT!] / MOVE & ATTACK / If hit, roll two additional [d10]. For each hit lose -1 [Vigor]. [Peril Check]. [REACT!] / DOPPELGANGER: Move & Attack the furthest Knight. For each hit lose -1 [Vigor]. [Peril Check]. Swarm 2. / KNIGHT OF THE FEN – AI 2",
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line."
+  },
+  {
+   "file": "11.png",
+   "name": "From Every Angle",
+   "code": "27A1442",
+   "level": 2,
+   "type": "ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 10,
+   "preTargeting": null,
+   "targeting": [
+    "Closest Knight in front",
+    "[Priority Target] Priority Target",
+    "Closest Knight in sight"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "+1 [d10]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "If hit, roll an additional [d10].",
+    "For each hit lose -2 [Vigor].",
+    "Two or more hits, gain the Slimed Condition card. [Peril Check]."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:2"
+   ],
+   "afterAttack": null,
+   "aiResponse": null,
+   "doppelganger": "Move & Attack the closest Knight. For each hit lose -1 [Vigor]. [Peril Check]. Swarm 2.",
+   "footer": "KNIGHT OF THE FEN – AI 2",
+   "unclear": [
+    "code: faint tiny print; best reading 27A1442 (digits blurred, chosen with help of the sheet-order sequence pattern)"
+   ],
+   "text": "FROM EVERY ANGLE / ATTACK / Evasion 4 dice, 10+ / TARGETING: • Closest Knight in front • [Priority Target] Priority Target • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat 3+ ▸ +1 [d10]] / If hit, roll an additional [d10]. For each hit lose -2 [Vigor]. Two or more hits, gain the Slimed Condition card. [Peril Check]. [REACT!] / DOPPELGANGER: Move & Attack the closest Knight. For each hit lose -1 [Vigor]. [Peril Check]. Swarm 2. / KNIGHT OF THE FEN – AI 2",
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line."
+  },
+  {
+   "file": "12.png",
+   "name": "Drowning Sorrows",
+   "code": "27A1451",
+   "level": 3,
+   "type": "ZONE ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 10,
+   "preTargeting": null,
+   "targeting": [
+    "[Priority Target] Priority Target",
+    "Closest Knight in sight",
+    "Closest Knight in front"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 5,
+     "effect": "+1 [d10]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "For each hit lose -2 [Vigor].",
+    "One hit, gain the Slimed Condition card.",
+    "Two hits, gain the Drowning Condition card instead.",
+    "Three or more hits, you die. [Peril Check]."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:3"
+   ],
+   "afterAttack": null,
+   "aiResponse": null,
+   "doppelganger": "Move & Attack the Knight closest to a Swamp Terrain tile. For each hit lose -2 [Vigor] and gain +1 [Heat]. [Peril Check]. Swarm 2.",
+   "footer": "KNIGHT OF THE FEN – AI 3",
+   "unclear": [
+    "code: faint tiny print; best reading 27A1451 (digits blurred, chosen with help of the sheet-order sequence pattern)",
+    "Heat gate threshold read as 5+ (small digit)",
+    "zone diagram: lower-right grid cells are covered by the illustration (assumed empty)"
+   ],
+   "text": "DROWNING SORROWS / ZONE ATTACK / Evasion 4 dice, 10+ / TARGETING: • [Priority Target] Priority Target • Closest Knight in sight • Closest Knight in front [REACT!] / MOVE & ATTACK [Heat 5+ ▸ +1 [d10]] / For each hit lose -2 [Vigor]. One hit, gain the Slimed Condition card. Two hits, gain the Drowning Condition card instead. Three or more hits, you die. [Peril Check]. [REACT!] / DOPPELGANGER: Move & Attack the Knight closest to a Swamp Terrain tile. For each hit lose -2 [Vigor] and gain +1 [Heat]. [Peril Check]. Swarm 2. / KNIGHT OF THE FEN – AI 3",
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line.",
+   "zoneDiagram": {
+    "grid": [
+     8,
+     12
+    ],
+    "gridNote": "8 rows x 12 columns",
+    "rows": [
+     "RRRRRRRRRRRR",
+     ".RRRRRRRRRR.",
+     "..RRRRRRRR..",
+     "...RRRRRR...",
+     "....RRRR....",
+     ".....RR.....",
+     ".....^^.....",
+     ".....^^....."
+    ],
+    "monster": "2x2 black marker with white chevron pointing up, at rows 7-8 (bottom), columns 6-7",
+    "redCells": 42,
+    "yellowCells": 0,
+    "note": "inverted triangle in front of the monster (2,4,6,8,10,12 cells wide going away); lower-right cells partly hidden by the art"
+   }
+  },
+  {
+   "file": "13.png",
+   "name": "The Thousand Arms",
+   "code": "27A1452",
+   "level": 3,
+   "type": "ZONE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 10,
+   "preTargeting": null,
+   "targeting": [
+    "Zone 4"
+   ],
+   "move": false,
+   "moveTag": "ATTACK",
+   "gates": [],
+   "effects": [
+    "For each hit roll an additional [d10] (once).",
+    "For each hit lose -3 [Vigor].",
+    "Three hits, gain the Fear Condition card. [Peril Check]."
+   ],
+   "reactWindows": [
+    "effect:2"
+   ],
+   "afterAttack": null,
+   "aiResponse": null,
+   "doppelganger": "Move & Attack the closest Knight. For each hit lose -2 [Vigor]. [Peril Check]. Gain the Slimed Condition card.",
+   "footer": "KNIGHT OF THE FEN – AI 3",
+   "unclear": [
+    "code: faint tiny print; best reading 27A1452 (digits blurred, chosen with help of the sheet-order sequence pattern)",
+    "no REACT! marker after Targeting (only on the Doppelganger header line)",
+    "no zone diagram printed; Targeting is \"Zone 4\""
+   ],
+   "text": "THE THOUSAND ARMS / ZONE ATTACK / Evasion 3 dice, 10+ / TARGETING: • Zone 4 / ATTACK / For each hit roll an additional [d10] (once). For each hit lose -3 [Vigor]. Three hits, gain the Fear Condition card. [Peril Check]. [REACT!] / DOPPELGANGER: Move & Attack the closest Knight. For each hit lose -2 [Vigor]. [Peril Check]. Gain the Slimed Condition card. / KNIGHT OF THE FEN – AI 3",
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line."
+  },
+  {
+   "file": "14.png",
+   "name": "All as One",
+   "code": "27A1453",
+   "level": 3,
+   "type": "ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 9,
+   "preTargeting": null,
+   "targeting": [
+    "Knight with the Slimed Condition card",
+    "[Priority Target] Priority Target",
+    "Closest Knight in sight"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK",
+   "gates": [],
+   "effects": [
+    "For each hit lose -3 [Vigor]. [Peril Check]."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:0"
+   ],
+   "afterAttack": null,
+   "aiResponse": null,
+   "doppelganger": "Move & Attack the last target. For each hit lose -2 [Vigor]. [Peril Check]. Swarm 2.",
+   "footer": "KNIGHT OF THE FEN – AI 3",
+   "unclear": [
+    "code: faint tiny print; best reading 27A1453 (digits blurred, chosen with help of the sheet-order sequence pattern)"
+   ],
+   "text": "ALL AS ONE / ATTACK / Evasion 3 dice, 9+ / TARGETING: • Knight with the Slimed Condition card • [Priority Target] Priority Target • Closest Knight in sight [REACT!] / MOVE & ATTACK / For each hit lose -3 [Vigor]. [Peril Check]. [REACT!] / DOPPELGANGER: Move & Attack the last target. For each hit lose -2 [Vigor]. [Peril Check]. Swarm 2. / KNIGHT OF THE FEN – AI 3",
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line."
+  },
+  {
+   "file": "15.png",
+   "name": "One with the Slime",
+   "code": "27A1450",
+   "level": 3,
+   "type": "ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 10,
+   "preTargeting": null,
+   "targeting": [
+    "Knight with the Slimed Condition card",
+    "Highest [Heat]",
+    "[Priority Target] Priority Target"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "DIFFICULTY 11+ INSTEAD",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "For each hit lose -2 [Vigor]. [Peril Check].",
+    "Poison 2.",
+    "If hit, become Engulfed.",
+    "Dwell."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:3"
+   ],
+   "afterAttack": null,
+   "aiResponse": null,
+   "doppelganger": "Move & Attack the furthest Knight in front. For each hit lose -2 [Vigor]. [Peril Check].",
+   "footer": "KNIGHT OF THE FEN – AI 3",
+   "unclear": [
+    "code: faint tiny print; best reading 27A1450 (digits blurred, chosen with help of the sheet-order sequence pattern)"
+   ],
+   "text": "ONE WITH THE SLIME / ATTACK / Evasion 4 dice, 10+ / TARGETING: • Knight with the Slimed Condition card • Highest [Heat] • [Priority Target] Priority Target [REACT!] / MOVE & ATTACK [Heat 3+ ▸ DIFFICULTY 11+ INSTEAD] / For each hit lose -2 [Vigor]. [Peril Check]. Poison 2. If hit, become Engulfed. Dwell. [REACT!] / DOPPELGANGER: Move & Attack the furthest Knight in front. For each hit lose -2 [Vigor]. [Peril Check]. / KNIGHT OF THE FEN – AI 3",
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line."
+  },
+  {
+   "file": "16.png",
+   "name": "Final Cut",
+   "code": "27A1449",
+   "level": 3,
+   "type": "SEQUENTIAL ZONE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 11,
+   "preTargeting": null,
+   "targeting": [
+    "Furthest Knight in sight",
+    "[Priority Target] Priority Target"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK ALL KNIGHTS IN PATH THEN ATTACK ZONE 2",
+   "gates": [],
+   "effects": [
+    "If hit, roll two additional [d10].",
+    "One hit, lose -5 [Vigor].",
+    "Two hits, lose -7 [Vigor].",
+    "Three hits, lose -7 [Vigor] and Knockdown. [Peril Check]."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:3"
+   ],
+   "afterAttack": null,
+   "aiResponse": null,
+   "doppelganger": "Move & Attack the furthest Knight. For each hit lose -2 [Vigor]. [Peril Check].",
+   "footer": "KNIGHT OF THE FEN – AI 3",
+   "unclear": [
+    "code: faint tiny print; best reading 27A1449 (digits blurred, chosen with help of the sheet-order sequence pattern)",
+    "move tag is printed as two red tags: \"MOVE & ATTACK ALL KNIGHTS IN PATH\" then (second line) \"THEN ATTACK ZONE 2\""
+   ],
+   "text": "FINAL CUT / SEQUENTIAL ZONE ATTACK / Evasion 3 dice, 11+ / TARGETING: • Furthest Knight in sight • [Priority Target] Priority Target [REACT!] / MOVE & ATTACK ALL KNIGHTS IN PATH THEN ATTACK ZONE 2 / If hit, roll two additional [d10]. One hit, lose -5 [Vigor]. Two hits, lose -7 [Vigor]. Three hits, lose -7 [Vigor] and Knockdown. [Peril Check]. [REACT!] / DOPPELGANGER: Move & Attack the furthest Knight. For each hit lose -2 [Vigor]. [Peril Check]. / KNIGHT OF THE FEN – AI 3",
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line."
+  },
+  {
+   "file": "17.png",
+   "name": "Forest of the Fallen",
+   "code": "27A1448",
+   "level": 3,
+   "type": "ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 11,
+   "preTargeting": null,
+   "targeting": [
+    "Closest Knight in front",
+    "[Priority Target] Priority Target",
+    "Closest Knight in sight"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK",
+   "gates": [],
+   "effects": [
+    "If hit, roll two additional [d10].",
+    "For each hit lose -2 [Vigor].",
+    "Two or more hits, gain the Slimed Condition card. [Peril Check]."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:2"
+   ],
+   "afterAttack": null,
+   "aiResponse": null,
+   "doppelganger": "Move & Attack the furthest Knight in sight. For each hit lose -2 [Vigor]. [Peril Check]. Swarm 2.",
+   "footer": "KNIGHT OF THE FEN – AI 3",
+   "unclear": [
+    "code: faint tiny print; best reading 27A1448 (digits blurred, chosen with help of the sheet-order sequence pattern)"
+   ],
+   "text": "FOREST OF THE FALLEN / ATTACK / Evasion 4 dice, 11+ / TARGETING: • Closest Knight in front • [Priority Target] Priority Target • Closest Knight in sight [REACT!] / MOVE & ATTACK / If hit, roll two additional [d10]. For each hit lose -2 [Vigor]. Two or more hits, gain the Slimed Condition card. [Peril Check]. [REACT!] / DOPPELGANGER: Move & Attack the furthest Knight in sight. For each hit lose -2 [Vigor]. [Peril Check]. Swarm 2. / KNIGHT OF THE FEN – AI 3",
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line."
+  }
+ ],
+ "bp": [
+  {
+   "file": "18.png",
+   "name": "Crusty Helm",
+   "code": "28A1793",
+   "level": 1,
+   "at": 5,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 3,
+    "effect": "Sunder 1"
+   },
+   "responses": {
+    "wound": "Place a 2x2 Swamp Terrain tile under Knight of the Fen.",
+    "fail": "Gain the Exposed Condition card.",
+    "instinct": null,
+    "critical": "You may perform a Bonus Attack!"
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "KNIGHT OF THE FEN – BP 1",
+   "unclear": [
+    "code: faint tiny print; best reading 28A1793 (digits blurred, chosen with help of the sheet-order sequence pattern)",
+    "OVERCOME threshold is tiny pale print on a grey tag; best reading 3+"
+   ],
+   "text": "CRUSTY HELM / OVERCOME 3+ ▸ Sunder 1 / [AT] 5 / WOUND: Place a 2x2 Swamp Terrain tile under Knight of the Fen. / FAIL: Gain the Exposed Condition card. / CRITICAL: You may perform a Bonus Attack! / KNIGHT OF THE FEN – BP 1"
+  },
+  {
+   "file": "19.png",
+   "name": "Incorporated Carcass",
+   "code": "28A1794",
+   "level": 1,
+   "at": 3,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 2,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "Gain the Slimed Condition card.",
+    "fail": "Become Engulfed.",
+    "instinct": null,
+    "critical": "Gain the Courage Condition card. You may perform a Bonus Attack!"
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "KNIGHT OF THE FEN – BP 1",
+   "unclear": [
+    "code: faint tiny print; best reading 28A1794 (digits blurred, chosen with help of the sheet-order sequence pattern)",
+    "OVERCOME threshold is tiny pale print on a grey tag; best reading 2+"
+   ],
+   "text": "INCORPORATED CARCASS / OVERCOME 2+ ▸ Power 1 / [AT] 3 / WOUND: Gain the Slimed Condition card. / FAIL: Become Engulfed. / CRITICAL: Gain the Courage Condition card. You may perform a Bonus Attack! / KNIGHT OF THE FEN – BP 1"
+  },
+  {
+   "file": "20.png",
+   "name": "Sludge-Bloated Rope",
+   "code": "28A1795",
+   "level": 1,
+   "at": 4,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 3,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "Gain the Slimed Condition card.",
+    "fail": "Knockdown.",
+    "instinct": null,
+    "critical": "Unexhaust all your Weapons or lose up to -3 [Heat]."
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "KNIGHT OF THE FEN – BP 1",
+   "unclear": [
+    "code: faint tiny print; best reading 28A1795 (digits blurred, chosen with help of the sheet-order sequence pattern)",
+    "OVERCOME threshold is tiny pale print on a grey tag; best reading 3+ (could be 2+)"
+   ],
+   "text": "SLUDGE-BLOATED ROPE / OVERCOME 3+ ▸ Power 1 / [AT] 4 / WOUND: Gain the Slimed Condition card. / FAIL: Knockdown. / CRITICAL: Unexhaust all your Weapons or lose up to -3 [Heat]. / KNIGHT OF THE FEN – BP 1"
+  },
+  {
+   "file": "21.png",
+   "name": "Rusty Kneepad",
+   "code": "28A1792",
+   "level": 1,
+   "at": 4,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 2,
+    "effect": "Power 1 or discard 1 Armor [Armor] token"
+   },
+   "responses": {
+    "wound": "Pushback 3.",
+    "fail": "Gain the Exposed Condition card.",
+    "instinct": null,
+    "critical": "You may reset your [Heat]!"
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "KNIGHT OF THE FEN – BP 1",
+   "unclear": [
+    "code: faint tiny print; best reading 28A1792 (digits blurred, chosen with help of the sheet-order sequence pattern)",
+    "OVERCOME threshold is tiny pale print on a grey tag; best reading 2+ (could be 3+; digit very faint)"
+   ],
+   "text": "RUSTY KNEEPAD / OVERCOME 2+ ▸ Power 1 or discard 1 Armor [Armor] token / [AT] 4 / WOUND: Pushback 3. / FAIL: Gain the Exposed Condition card. / CRITICAL: You may reset your [Heat]! / KNIGHT OF THE FEN – BP 1"
+  },
+  {
+   "file": "22.png",
+   "name": "Corroded Pauldron",
+   "code": "28A1791",
+   "level": 1,
+   "at": 4,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 2,
+    "effect": "Power 1 or discard 1 Armor [Armor] token"
+   },
+   "responses": {
+    "wound": "Knight of the Fen moves adjacent to the furthest Knight.",
+    "fail": "Gain the Exposed Condition card.",
+    "instinct": null,
+    "critical": "Another Knight may perform a Bonus Attack!"
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "KNIGHT OF THE FEN – BP 1",
+   "unclear": [
+    "code: faint tiny print; best reading 28A1791 (digits blurred, chosen with help of the sheet-order sequence pattern)",
+    "OVERCOME threshold is tiny pale print on a grey tag; best reading 2+"
+   ],
+   "text": "CORRODED PAULDRON / OVERCOME 2+ ▸ Power 1 or discard 1 Armor [Armor] token / [AT] 4 / WOUND: Knight of the Fen moves adjacent to the furthest Knight. / FAIL: Gain the Exposed Condition card. / CRITICAL: Another Knight may perform a Bonus Attack! / KNIGHT OF THE FEN – BP 1"
+  },
+  {
+   "file": "23.png",
+   "name": "Slime Hand",
+   "code": "28A1790",
+   "level": 1,
+   "at": 3,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 2,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "Spawn a new Doppelknight on the closest Swamp without a Doppelknight on it.",
+    "fail": "Knockback 4.",
+    "instinct": null,
+    "critical": "You may move up to 3 spaces and perform a Bonus Attack!"
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "KNIGHT OF THE FEN – BP 1",
+   "unclear": [
+    "code: faint tiny print; best reading 28A1790 (digits blurred, chosen with help of the sheet-order sequence pattern)",
+    "OVERCOME threshold is tiny pale print on a grey tag; best reading 2+",
+    "WOUND text says \"closest Swamp\" (no \"Terrain tile\"), unlike the Instinct wording on other cards - printed so"
+   ],
+   "text": "SLIME HAND / OVERCOME 2+ ▸ Power 1 / [AT] 3 / WOUND: Spawn a new Doppelknight on the closest Swamp without a Doppelknight on it. / FAIL: Knockback 4. / CRITICAL: You may move up to 3 spaces and perform a Bonus Attack! / KNIGHT OF THE FEN – BP 1"
+  },
+  {
+   "file": "24.png",
+   "name": "Cluster of Rotting Eyes",
+   "code": "28A1798",
+   "level": 2,
+   "at": 5,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 3,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "Knight of the Fen moves to the closest Swamp Terrain tile.",
+    "fail": "Perform AI.",
+    "instinct": null,
+    "critical": "Until the end of Clash, Knight of the Fen has -1 AT [AT] when attacked from a Rear space."
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "KNIGHT OF THE FEN – BP 2",
+   "unclear": [
+    "code: faint tiny print; best reading 28A1798 (digits blurred, chosen with help of the sheet-order sequence pattern)",
+    "OVERCOME threshold is tiny pale print on a grey tag; best reading 3+ (digit very faint)"
+   ],
+   "text": "CLUSTER OF ROTTING EYES / OVERCOME 3+ ▸ Power 1 / [AT] 5 / WOUND: Knight of the Fen moves to the closest Swamp Terrain tile. / FAIL: Perform AI. / CRITICAL: Until the end of Clash, Knight of the Fen has -1 AT [AT] when attacked from a Rear space. / KNIGHT OF THE FEN – BP 2"
+  },
+  {
+   "file": "25.png",
+   "name": "Decaying Brain Collection",
+   "code": "28A1799",
+   "level": 2,
+   "at": 6,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 4,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": null,
+    "fail": null,
+    "instinct": "Spawn a new Doppelknight on the closest Swamp Terrain tile without a Doppelknight on it.",
+    "critical": "Ignore the next Signature."
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "KNIGHT OF THE FEN – BP 2",
+   "unclear": [
+    "code: faint tiny print; best reading 28A1799 (digits blurred, chosen with help of the sheet-order sequence pattern)"
+   ],
+   "text": "DECAYING BRAIN COLLECTION / OVERCOME 4+ ▸ Power 1 / [AT] 6 / INSTINCT: Spawn a new Doppelknight on the closest Swamp Terrain tile without a Doppelknight on it. / CRITICAL: Ignore the next Signature. / KNIGHT OF THE FEN – BP 2"
+  },
+  {
+   "file": "26.png",
+   "name": "Discarded Arsenal",
+   "code": "28A1800",
+   "level": 2,
+   "at": 6,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 4,
+    "effect": "Sunder 1 or discard 1 Armor [Armor] token"
+   },
+   "responses": {
+    "wound": null,
+    "fail": null,
+    "instinct": "Spawn a new Doppelknight on the closest Swamp Terrain tile without a Doppelknight on it.",
+    "critical": "Another Knight may perform a Bonus Attack!"
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "KNIGHT OF THE FEN – BP 2",
+   "unclear": [
+    "code: faint tiny print; best reading 28A1800 (digits blurred, chosen with help of the sheet-order sequence pattern)"
+   ],
+   "text": "DISCARDED ARSENAL / OVERCOME 4+ ▸ Sunder 1 or discard 1 Armor [Armor] token / [AT] 6 / INSTINCT: Spawn a new Doppelknight on the closest Swamp Terrain tile without a Doppelknight on it. / CRITICAL: Another Knight may perform a Bonus Attack! / KNIGHT OF THE FEN – BP 2"
+  },
+  {
+   "file": "27.png",
+   "name": "Muck Gambeson",
+   "code": "28A1797",
+   "level": 2,
+   "at": 5,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 3,
+    "effect": "Sunder 1"
+   },
+   "responses": {
+    "wound": null,
+    "fail": null,
+    "instinct": "Spawn a new Doppelknight on the closest Swamp Terrain tile without a Doppelknight on it.",
+    "critical": "Discard all Condition cards."
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "KNIGHT OF THE FEN – BP 2",
+   "unclear": [
+    "code: faint tiny print; best reading 28A1797 (digits blurred, chosen with help of the sheet-order sequence pattern)",
+    "OVERCOME threshold is tiny pale print on a grey tag; best reading 3+"
+   ],
+   "text": "MUCK GAMBESON / OVERCOME 3+ ▸ Sunder 1 / [AT] 5 / INSTINCT: Spawn a new Doppelknight on the closest Swamp Terrain tile without a Doppelknight on it. / CRITICAL: Discard all Condition cards. / KNIGHT OF THE FEN – BP 2"
+  },
+  {
+   "file": "28.png",
+   "name": "Ooze-Choked Armor",
+   "code": "28A1796",
+   "level": 2,
+   "at": 7,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 5,
+    "effect": "Power 1 or discard 1 Armor [Armor] token"
+   },
+   "responses": {
+    "wound": "Gain the Slimed Condition card.",
+    "fail": "Knockback 5.",
+    "instinct": null,
+    "critical": "You may discard all Condition cards."
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "KNIGHT OF THE FEN – BP 2",
+   "unclear": [
+    "code: faint tiny print; best reading 28A1796 (digits blurred, chosen with help of the sheet-order sequence pattern)"
+   ],
+   "text": "OOZE-CHOKED ARMOR / OVERCOME 5+ ▸ Power 1 or discard 1 Armor [Armor] token / [AT] 7 / WOUND: Gain the Slimed Condition card. / FAIL: Knockback 5. / CRITICAL: You may discard all Condition cards. / KNIGHT OF THE FEN – BP 2"
+  },
+  {
+   "file": "29.png",
+   "name": "Shambling Graveyard",
+   "code": "28A1801",
+   "level": 2,
+   "at": 5,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 3,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "Gain the Slimed Condition card. Poison 1.",
+    "fail": "Become Engulfed.",
+    "instinct": null,
+    "critical": "You may reset your [Heat] and perform a Bonus Attack!"
+   },
+   "reactWindows": [
+    "fail"
+   ],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "KNIGHT OF THE FEN – BP 2",
+   "unclear": [
+    "code: faint tiny print; best reading 28A1801 (digits blurred, chosen with help of the sheet-order sequence pattern)",
+    "OVERCOME threshold is tiny pale print on a grey tag; best reading 3+"
+   ],
+   "text": "SHAMBLING GRAVEYARD / OVERCOME 3+ ▸ Power 1 / [AT] 5 / WOUND: Gain the Slimed Condition card. Poison 1. / FAIL: Become Engulfed. [REACT!] / CRITICAL: You may reset your [Heat] and perform a Bonus Attack! / KNIGHT OF THE FEN – BP 2"
+  },
+  {
+   "file": "30.png",
+   "name": "Doppelknight Buds",
+   "code": "28A1805",
+   "level": 3,
+   "at": 7,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 5,
+    "effect": "Power 1 or discard 2 Armor [Armor] tokens"
+   },
+   "responses": {
+    "wound": null,
+    "fail": null,
+    "instinct": "Spawn a new Doppelknight on the closest Swamp Terrain tile without a Doppelknight on it.",
+    "critical": "Disable the Doppelknight Trait!"
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "KNIGHT OF THE FEN – BP 3",
+   "unclear": [
+    "code: faint tiny print; best reading 28A1805 (digits blurred, chosen with help of the sheet-order sequence pattern)",
+    "OVERCOME threshold is tiny pale print on a grey tag; best reading 5+"
+   ],
+   "text": "DOPPELKNIGHT BUDS / OVERCOME 5+ ▸ Power 1 or discard 2 Armor [Armor] tokens / [AT] 7 / INSTINCT: Spawn a new Doppelknight on the closest Swamp Terrain tile without a Doppelknight on it. / CRITICAL: Disable the Doppelknight Trait! / KNIGHT OF THE FEN – BP 3"
+  },
+  {
+   "file": "31.png",
+   "name": "Primeval Slime",
+   "code": "28A1806",
+   "level": 3,
+   "at": 9,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 5,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": null,
+    "fail": null,
+    "instinct": "Gain the Drowning Condition card.",
+    "critical": "You may move up to 3 spaces and perform a Bonus Attack!"
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "KNIGHT OF THE FEN – BP 3",
+   "unclear": [
+    "code: faint tiny print; best reading 28A1806 (digits blurred, chosen with help of the sheet-order sequence pattern)",
+    "OVERCOME threshold is tiny pale print on a grey tag; best reading 5+"
+   ],
+   "text": "PRIMEVAL SLIME / OVERCOME 5+ ▸ Power 1 / [AT] 9 / INSTINCT: Gain the Drowning Condition card. / CRITICAL: You may move up to 3 spaces and perform a Bonus Attack! / KNIGHT OF THE FEN – BP 3"
+  },
+  {
+   "file": "32.png",
+   "name": "Slimesoul",
+   "code": "28A1807",
+   "level": 3,
+   "at": 9,
+   "overcomeTag": "OVERPOWER",
+   "overcome": {
+    "n": 3,
+    "effect": "Sunder 1 or discard 2 Armor [Armor] tokens"
+   },
+   "responses": {
+    "wound": null,
+    "fail": null,
+    "instinct": "Spawn a new Doppelknight on the closest Swamp Terrain tile without a Doppelknight on it. Perform AI.",
+    "critical": "Knight of the Fen dies!"
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "KNIGHT OF THE FEN – BP 3",
+   "unclear": [
+    "code: faint tiny print; best reading 28A1807 (digits blurred, chosen with help of the sheet-order sequence pattern)"
+   ],
+   "text": "SLIMESOUL / OVERPOWER 3+ ▸ Sunder 1 or discard 2 Armor [Armor] tokens / [AT] 9 / INSTINCT: Spawn a new Doppelknight on the closest Swamp Terrain tile without a Doppelknight on it. Perform AI. / CRITICAL: Knight of the Fen dies! / KNIGHT OF THE FEN – BP 3"
+  },
+  {
+   "file": "33.png",
+   "name": "Gunk Maw",
+   "code": "28A1802",
+   "level": 3,
+   "at": 8,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 5,
+    "effect": "Sunder 1"
+   },
+   "responses": {
+    "wound": "Choke 3.",
+    "fail": "Become Engulfed.",
+    "instinct": null,
+    "critical": "One Engulfed Knight can escape!"
+   },
+   "reactWindows": [
+    "fail"
+   ],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "KNIGHT OF THE FEN – BP 3",
+   "unclear": [
+    "code: faint tiny print; best reading 28A1802 (digits blurred, chosen with help of the sheet-order sequence pattern)"
+   ],
+   "text": "GUNK MAW / OVERCOME 5+ ▸ Sunder 1 / [AT] 8 / WOUND: Choke 3. / FAIL: Become Engulfed. [REACT!] / CRITICAL: One Engulfed Knight can escape! / KNIGHT OF THE FEN – BP 3"
+  },
+  {
+   "file": "34.png",
+   "name": "Swallowed Siege Engine",
+   "code": "28A1803",
+   "level": 3,
+   "at": 8,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 5,
+    "effect": "Power 1 or discard 2 Armor [Armor] tokens"
+   },
+   "responses": {
+    "wound": "Gain the Slimed Condition card.",
+    "fail": "Become Engulfed.",
+    "instinct": null,
+    "critical": "You may reset your [Heat] and perform a Bonus Attack!"
+   },
+   "reactWindows": [
+    "fail"
+   ],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "KNIGHT OF THE FEN – BP 3",
+   "unclear": [
+    "code: faint tiny print; best reading 28A1803 (digits blurred, chosen with help of the sheet-order sequence pattern)",
+    "OVERCOME threshold is tiny pale print on a grey tag; best reading 5+"
+   ],
+   "text": "SWALLOWED SIEGE ENGINE / OVERCOME 5+ ▸ Power 1 or discard 2 Armor [Armor] tokens / [AT] 8 / WOUND: Gain the Slimed Condition card. / FAIL: Become Engulfed. [REACT!] / CRITICAL: You may reset your [Heat] and perform a Bonus Attack! / KNIGHT OF THE FEN – BP 3"
+  },
+  {
+   "file": "35.png",
+   "name": "Trinket of a Lost Lightfoot",
+   "code": "28A1804",
+   "level": 3,
+   "at": 8,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 5,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": null,
+    "fail": null,
+    "instinct": "Knight of the Fen moves to the closest Swamp Terrain tile.",
+    "critical": "Disable the Doppelganger Trait!"
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "KNIGHT OF THE FEN – BP 3",
+   "unclear": [
+    "code: faint tiny print; best reading 28A1804 (digits blurred, chosen with help of the sheet-order sequence pattern)",
+    "OVERCOME threshold is tiny pale print on a grey tag; best reading 5+"
+   ],
+   "text": "TRINKET OF A LOST LIGHTFOOT / OVERCOME 5+ ▸ Power 1 / [AT] 8 / INSTINCT: Knight of the Fen moves to the closest Swamp Terrain tile. / CRITICAL: Disable the Doppelganger Trait! / KNIGHT OF THE FEN – BP 3"
+  }
+ ],
+ "routine": {
+  "file": "36.png",
+  "name": "Dopplergenesis",
+  "code": null,
+  "type": "ROUTINE",
+  "text": "Spawn two new Doppelknights and perform AI for each Doppelknight on the Clash Board.",
+  "footer": "KNIGHT OF THE FEN",
+  "unclear": [
+   "no card code visible in the scan (top-right corner blank/faded)",
+   "name is printed \"DOPPLERGENESIS\" (Doppler-, not Doppel-)"
+  ]
+ },
+ "signature": {
+  "file": "sig.png",
+  "name": "All-Out Strike",
+  "code": "27A1454",
+  "type": "SIGNATURE",
+  "evasionDice": "X*",
+  "evasionDifficulty": 8,
+  "preTargeting": null,
+  "targeting": [
+   "Closest Knight in front",
+   "[Priority Target] Priority Target",
+   "Closest Knight in sight"
+  ],
+  "move": true,
+  "moveTag": "MOVE & ATTACK",
+  "gates": [],
+  "effects": [
+   "*X is 1 plus the number of Doppelknights on the Clash Board.",
+   "For each hit lose -2 [Vigor]. [Peril Check]."
+  ],
+  "reactWindows": [
+   "targeting",
+   "effect:1"
+  ],
+  "afterAttack": null,
+  "aiResponse": null,
+  "doppelganger": "Move & Attack the furthest Knight. For each hit lose -1 [Vigor]. [Peril Check].",
+  "footer": "KNIGHT OF THE FEN",
+  "unclear": [
+   "code: illegible in the 311px screenshot (reads roughly 27A14?4/27A1451); 27A1454 chosen as the next number after the AI sequence 27A1436-27A1453",
+   "card read from a small tilted screenshot; evasion die shows \"X\" with a small asterisk (\"X*\"), difficulty 8+",
+   "vigor-loss digits (-2 main, -1 Doppelganger) are small; best readings"
+  ],
+  "text": "ALL-OUT STRIKE / SIGNATURE / Evasion X* dice, 8+ / TARGETING: • Closest Knight in front • [Priority Target] Priority Target • Closest Knight in sight [REACT!] / MOVE & ATTACK / *X is 1 plus the number of Doppelknights on the Clash Board. For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / DOPPELGANGER: Move & Attack the furthest Knight. For each hit lose -1 [Vigor]. [Peril Check]. / KNIGHT OF THE FEN"
+ },
+ "extra": [
+  {
+   "file": "37.png",
+   "name": "Recycled Armor",
+   "kind": "kingdomTrait",
+   "kingdom": "Principality of Stone",
+   "code": "25A1048",
+   "text": "Each time a Doppelknight moves through or ends its movement on a Swamp Terrain tile, it gains an Armor [Armor] token.",
+   "footer": "KNIGHT OF THE FEN / PRINCIPALITY OF STONE",
+   "unclear": [
+    "code: very faint; best reading 25A1048 (last two digits uncertain)"
+   ]
+  },
+  {
+   "file": "38.png",
+   "name": "Engulfed",
+   "kind": "trait",
+   "code": "25A1043",
+   "text": "When you become Engulfed, place your miniature on this card and gain the Slimed Condition card. During your turn, you can either try to Sabotage or attack. You can use only Melee Weapons while Engulfed.\n\n[Wound icon] When you deal a Wound, additionally to normal Responses, you become free (Displace).\n\n[action icon] or 3 [Heat] Sabotage: Test Fortitude [Fortitude] or Might [Might] (10+). If you succeed, immediately AI Suppress or discard all Armor [Armor] tokens.",
+   "woundLine": "[Wound icon] When you deal a Wound, additionally to normal Responses, you become free (Displace).",
+   "sabotage": {
+    "cost": "[action icon] or 3 [Heat]",
+    "name": "Sabotage",
+    "test": "Fortitude [Fortitude] or Might [Might]",
+    "difficulty": "10+",
+    "text": "[action icon] or 3 [Heat] Sabotage: Test Fortitude [Fortitude] or Might [Might] (10+). If you succeed, immediately AI Suppress or discard all Armor [Armor] tokens."
+   },
+   "endOfYourTurn": "If you started your turn Engulfed, Poison 2.",
+   "bottomBox": "End of your turn: If you started your turn Engulfed, Poison 2.",
+   "footer": "KNIGHT OF THE FEN",
+   "unclear": [
+    "code: best reading 25A1043 (last two digits uncertain, could be 1049)",
+    "icon before \"When you deal a Wound\": small black heart-shaped glyph with a pale mark inside (looks like the Wounds heart from the Monster Sheet); written as [Wound icon]",
+    "icon before \"or 3 [Heat] Sabotage:\": small black square with a white glyph (an action-cost icon; possibly the [Weapon]/attack-action glyph) - not identifiable at this resolution; written as [action icon]",
+    "\"Sabotage:\" and \"End of your turn:\" are bold lead-ins; \"Slimed\" is italic"
+   ]
+  },
+  {
+   "file": "39.png",
+   "name": "Quick Summons",
+   "kind": "kingdomTrait",
+   "kingdom": "Sunken Kingdom",
+   "code": "25A1047",
+   "text": "When you Spawn a Doppelknight, the closest Knight gains the Exposed Condition card.",
+   "footer": "KNIGHT OF THE FEN / SUNKEN KINGDOM",
+   "unclear": [
+    "code: very faint; best reading 25A1047 (last two digits uncertain)"
+   ]
+  }
+ ],
+ "_notes": {
+  "monster": "Knight of the Fen (Boss/Vassal) with Doppelknight Mobs",
+  "codes": "AI codes 27A1436-27A1453 and BP codes 28A1790-28A1807 are tiny, faint print; clearly legible ones (e.g. 27A1451/1452/1453/1450, 28A1800/1802/1803/1804/1807) anchor the sequence, the rest are best readings consistent with it",
+  "reactWindows": "AI cards: 'targeting' = REACT! on the rule after Targeting; 'effect:i' = REACT! on the rule after the effect block / DOPPELGANGER header. BP cards: 'fail' = REACT! on the FAIL line."
+ }
+}

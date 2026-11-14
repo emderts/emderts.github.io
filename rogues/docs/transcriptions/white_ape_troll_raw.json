@@ -1,0 +1,1610 @@
+{
+ "sheet": {
+  "name": "White Ape Troll",
+  "code": "26A1067",
+  "traitsLine": [
+   "Vassal",
+   "Ape",
+   "Beast"
+  ],
+  "levels": {
+   "1": {
+    "toHit": "6+!",
+    "wounds": 6,
+    "exhibitionWounds": 1,
+    "activations": [
+     "AI"
+    ],
+    "activationsText": "1 AI",
+    "bonuses": {
+     "escalations": 0,
+     "at": 0,
+     "vigorLoss": 0,
+     "evasionDice": 0
+    },
+    "traitsAdd": [
+     "Regeneration",
+     "Firstmen Guardians",
+     "Reinforcements Have Arrived",
+     "Vantage Seeker"
+    ]
+   },
+   "2": {
+    "toHit": "7+!",
+    "wounds": 8,
+    "exhibitionWounds": 3,
+    "activations": [
+     "AI"
+    ],
+    "activationsText": "1 AI",
+    "bonuses": {
+     "escalations": 0,
+     "at": 2,
+     "vigorLoss": 1,
+     "evasionDice": 0
+    },
+    "traitsAdd": [
+     "Strength in Numbers",
+     "Avenger of the Tribe"
+    ]
+   },
+   "3": {
+    "toHit": "8+!",
+    "wounds": 8,
+    "exhibitionWounds": 3,
+    "activations": [
+     "AI"
+    ],
+    "activationsText": "1 AI",
+    "bonuses": {
+     "escalations": 0,
+     "at": 3,
+     "vigorLoss": 2,
+     "evasionDice": 0
+    },
+    "traitsAdd": [
+     "We Are Legion"
+    ]
+   },
+   "4": {
+    "toHit": "8+!",
+    "wounds": 8,
+    "exhibitionWounds": 3,
+    "activations": [
+     "AI"
+    ],
+    "activationsText": "1 AI",
+    "bonuses": {
+     "escalations": 1,
+     "at": 6,
+     "vigorLoss": 4,
+     "evasionDice": 0
+    },
+    "traitsAdd": [
+     "Unnerving Presence"
+    ]
+   }
+  },
+  "toHitNote": "To Hit values are printed with a trailing '!' (6+!, 7+!, 8+!, 8+!). The '!' refers to the bold '!' rule at the end of the Firstmen Guardians trait: +1 To Hit for every Firstman Guardian adjacent to the White Ape Troll; with 4+ adjacent, every Attack Roll against it is a Full Miss.",
+  "traits": [
+   {
+    "name": "Regeneration",
+    "level": 1,
+    "text": "Start of Monster Round: Place the Thick Skin BP card on the top of the BP deck, unless it’s already there. When the Thick Skin BP card is wounded, place it next to the BP deck, and do not Escalate. If the Thick Skin BP card is on top of the BP deck and any effect would let you interact with the BP deck, ignore that interaction."
+   },
+   {
+    "name": "Firstmen Guardians",
+    "level": 1,
+    "text": "Additional Setup: Place the Firstman Guardian Trait BP card on the leftmost space on the Mob track.\nFirstmen Guardians are Mobs represented by a single Trait BP card. When you Spawn or kill a Firstman Guardian, do not Escalate or place any cards on the Wound Stack. If that Mob had the BP card on the Mob track, pass it the next Mob or, if there’s none, place it on the leftmost space. When Spawning (odd), place Firstmen Guardians on empty spaces adjacent to the Great Mangrove Terrain tiles, closest to the White Ape Troll until you reach the Firstmen Guardians Limit on the Clash Board:\nLevel 1–2: Firstmen Guardians Limit: 4.\nLevel 3: Firstmen Guardians Limit: 5. Level 4+: Firstmen Guardians Limit: 6.\n\nStart of Monster Round: Spawn 1 new Firstman Guardian. Then, check which Firstman Guardian has the BP card on the Mob track. That Mob performs Coordinated Attack. Pass the BP card to the next Mob (if there’s any).\nEnd of Monster Round: Each Firstman Guardian moves to the closest space adjacent to the White Ape Troll not occupied by another Firstman Guardian, in order from closest to furthest. If the targeted space is occupied by a Knight, that Knight suffers Crash and Unavoidable Knockback 2.\n\n! The White Ape Troll has +1 To Hit [To Hit] for every Firstman Guardian adjacent to it. If there are 4+ Firstmen Guardians adjacent to the White Ape Troll, every Attack Roll against it is a Full Miss.",
+    "limits": {
+     "1": 4,
+     "2": 4,
+     "3": 5,
+     "4": 6
+    }
+   },
+   {
+    "name": "Reinforcements Have Arrived",
+    "level": 1,
+    "text": "Each time the White Ape Troll is dealt a Wound or you wound the Thick Skin BP card (a Double Wound is treated as 2 Wounds), place a Generic token on this Trait. When you finish resolving the current action, if there are 4 or more Generic tokens on this Trait, discard all Generic tokens and Spawn a Firstman Guardian. The Spawned Guardian performs Coordinated Attack. If no Guardian can Spawn due to the Limit, the next Guardian performs Coordinated Attack instead."
+   },
+   {
+    "name": "Vantage Seeker",
+    "level": 1,
+    "text": "Tree Climb: Move the White Ape Troll to the closest Great Mangrove Terrain tile, so that its base is fully placed on the Terrain tile."
+   },
+   {
+    "name": "Strength in Numbers",
+    "level": 2,
+    "text": "When a Firstman Guardian performs Coordinated Attack against you, lose additional -X [Vigor], where X is the number of other Firstmen Guardians on the Clash Board."
+   },
+   {
+    "name": "Avenger of the Tribe",
+    "level": 2,
+    "text": "Each time a Firstman Guardian is killed, place a Generic token on this Trait. When you finish resolving the current action, if there are 5 Generic tokens on this Trait, discard all Generic tokens and resolve the top AI card.\nLevel 3: 4 Generic tokens instead.\nLevel 4+: 3 Generic tokens instead."
+   },
+   {
+    "name": "We Are Legion",
+    "level": 3,
+    "text": "Start of Monster Round: Spawn 2 new Firstmen Guardians instead."
+   },
+   {
+    "name": "Unnerving Presence",
+    "level": 4,
+    "text": "Knights no longer discard the Exposed Condition card after an Evasion Roll. When a Knight with the Exposed Condition card is attacked, one of the Evasion dice is an automatic hit."
+   }
+  ],
+  "basicAbilities": [
+   {
+    "name": "Unavoidable Knockback 4",
+    "text": "UNAVOIDABLE KNOCKBACK 4"
+   },
+   {
+    "name": "Blindspot",
+    "text": "BLINDSPOT"
+   }
+  ],
+  "facingDiagram": {
+   "grid": [
+    4,
+    4
+   ],
+   "rows": [
+    "....",
+    ".WW.",
+    ".WW.",
+    "...."
+   ],
+   "rowsWithMarkers": [
+    ".BB.",
+    ".WW.",
+    ".WW.",
+    "...."
+   ],
+   "legend": "W = monster base (2x2, centre), B = cell marked 'R / eye' (Rear + Blindspot)",
+   "footprint": "2x2",
+   "front": "arrow under the monster token pointing down (toward the bottom row)",
+   "facingOnSheet": "down",
+   "rear": "the two cells directly above the token (top row, middle two columns), each marked 'R' over a diagonal slash",
+   "blindspots": "the same two rear cells: each shows 'R / eye icon' (Rear and Blindspot)"
+  },
+  "levelsNote": "Level bar icons: fist = To Hit, clawed heart = Wounds, broken heart = Exhibition Wounds, AI card = activations ('1 AI' at every level). Blue bonus row: L1 none; L2 '+2 [AT]', '+1 [Vigor]'; L3 '+3 [AT]', '+2 [Vigor]'; L4 '1 [starburst-arrow = Escalations]', '+6 [AT]', '+4 [Vigor]'. No evasion-dice bonus printed at any level. TRAITS boxes: L1 '+Regeneration, Firstmen Guardians, Reinforcements Have Arrived, Vantage Seeker'; L2 '+Strength in Numbers, Avenger of the Tribe'; L3 '+We Are Legion'; L4 '+Unnerving Presence'.",
+  "unclear": [
+   "toHit kept as printed strings with '!' (\"6+!\" etc.), not integers",
+   "Firstmen Guardians: 'pass it the next Mob' is printed without 'to' - kept verbatim",
+   "bold lead-ins on sheet: 'Start of Monster Round', 'Additional Setup', 'Level 1–2', 'Level 3', 'Level 4+', 'End of Monster Round', 'Tree Climb', and the whole final '!' paragraph of Firstmen Guardians",
+   "L4 AT bonus reads clearly as +6 (jump from +3 at L3) - noted because unusual",
+   "no tier numeral seen on the sheet"
+  ]
+ },
+ "ai": [
+  {
+   "file": "00.png",
+   "name": "Roaring Stomp",
+   "code": "27A1279",
+   "level": 1,
+   "type": "ZONE ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": "6+",
+   "preTargeting": null,
+   "targeting": [
+    "Closest Knight in sight"
+   ],
+   "move": false,
+   "moveTag": "PUSHBACK 3 & ZONE ATTACK 1",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 2,
+     "effect": "DIFFICULTY 8+ INSTEAD",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "For each hit lose -1 [Vigor]. [Peril Check].",
+    "Knockdown."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:0"
+   ],
+   "afterAttack": null,
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "WHITE APE TROLL – AI 1",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 27A1279, corroborated by the sheet-order sequence pattern",
+    "Heat gate is printed on its own line directly under the red tag (before the first effect line)"
+   ],
+   "text": "ROARING STOMP / ZONE ATTACK / Evasion 4 dice, 6+ / TARGETING: • Closest Knight in sight [REACT!] / PUSHBACK 3 & ZONE ATTACK 1 / [Heat 2+ ▸ DIFFICULTY 8+ INSTEAD] / For each hit lose -1 [Vigor]. [Peril Check]. [REACT!] / Knockdown. / WHITE APE TROLL – AI 1",
+   "moveNote": "tag has no MOVE keyword (printed: PUSHBACK 3 & ZONE ATTACK 1)"
+  },
+  {
+   "file": "01.png",
+   "name": "Ramming Charge",
+   "code": "27A1280",
+   "level": 1,
+   "type": "SEQUENTIAL ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": "7+",
+   "preTargeting": null,
+   "targeting": [
+    "Furthest Knight in front",
+    "Furthest Knight in sight"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK ALL KNIGHTS IN PATH",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "+1 [d10]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "For each hit lose -1 [Vigor]. [Peril Check]."
+   ],
+   "reactWindows": [
+    "targeting",
+    "afterAttack (marker on the rule under the AFTER ATTACK header, before 'Knockback 3 to the side.')",
+    "afterFinalAttack (marker on the rule between 'Pushback 3.' and 'Knockback 3 to the side.')"
+   ],
+   "afterAttack": "[REACT!] Knockback 3 to the side.",
+   "afterFinalAttack": "Pushback 3. [REACT!] Knockback 3 to the side.",
+   "aiResponse": null,
+   "footer": "WHITE APE TROLL – AI 1",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 27A1280, corroborated by the sheet-order sequence pattern",
+    "Heat gate is printed on its own line directly under the red tag"
+   ],
+   "text": "RAMMING CHARGE / SEQUENTIAL ATTACK / Evasion 4 dice, 7+ / TARGETING: • Furthest Knight in front • Furthest Knight in sight [REACT!] / MOVE & ATTACK ALL KNIGHTS IN PATH / [Heat 3+ ▸ +1 [d10]] / For each hit lose -1 [Vigor]. [Peril Check]. / AFTER ATTACK [REACT!] / Knockback 3 to the side. / AFTER FINAL ATTACK / Pushback 3. [REACT!] / Knockback 3 to the side. / WHITE APE TROLL – AI 1"
+  },
+  {
+   "file": "02.png",
+   "name": "Big Bonk",
+   "code": "27A1281",
+   "level": 1,
+   "type": "ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": "8+",
+   "preTargeting": null,
+   "targeting": [
+    "Furthest Knight in sight"
+   ],
+   "move": false,
+   "moveTag": "JUMP & ATTACK",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "KNOCKDOWN",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "For each hit lose -2 [Vigor]. [Peril Check].",
+    "Knockback 4."
+   ],
+   "reactWindows": [
+    "targeting"
+   ],
+   "afterAttack": null,
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "WHITE APE TROLL – AI 1",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 27A1281, corroborated by the sheet-order sequence pattern"
+   ],
+   "text": "BIG BONK / ATTACK / Evasion 2 dice, 8+ / TARGETING: • Furthest Knight in sight [REACT!] / JUMP & ATTACK [Heat 3+ ▸ KNOCKDOWN] / For each hit lose -2 [Vigor]. [Peril Check]. / Knockback 4. / WHITE APE TROLL – AI 1",
+   "moveNote": "tag has no MOVE keyword (printed: JUMP & ATTACK)"
+  },
+  {
+   "file": "03.png",
+   "name": "Wild Punch",
+   "code": "27A1278",
+   "level": 1,
+   "type": "ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": "9+",
+   "preTargeting": null,
+   "targeting": [
+    "Closest Knight in front",
+    "Closest Knight in sight"
+   ],
+   "move": true,
+   "moveTag": "MOVE, PUSHBACK 3 & ATTACK",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "+1 [d10]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "Gain the Exposed Condition card.",
+    "For each hit lose -1 [Vigor]. [Peril Check].",
+    "Cooldown.",
+    "Knockback 3."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:2"
+   ],
+   "afterAttack": null,
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "WHITE APE TROLL – AI 1",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 27A1278, corroborated by the sheet-order sequence pattern"
+   ],
+   "text": "WILD PUNCH / ATTACK / Evasion 3 dice, 9+ / TARGETING: • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE, PUSHBACK 3 & ATTACK [Heat 3+ ▸ +1 [d10]] / Gain the Exposed Condition card. / For each hit lose -1 [Vigor]. [Peril Check]. / Cooldown. [REACT!] / Knockback 3. / WHITE APE TROLL – AI 1"
+  },
+  {
+   "file": "04.png",
+   "name": "Stone Toss",
+   "code": "27A1277",
+   "level": 1,
+   "type": "RANGE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": "9+",
+   "preTargeting": null,
+   "targeting": [
+    "Furthest Knight in front",
+    "Furthest Knight in sight"
+   ],
+   "move": false,
+   "moveTag": "TREE CLIMB & RANGE ATTACK UNLIMITED",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "+1 [d10]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "Gain the Exposed Condition card.",
+    "For each hit lose -1 [Vigor]. [Peril Check]."
+   ],
+   "reactWindows": [
+    "targeting"
+   ],
+   "afterAttack": null,
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "WHITE APE TROLL – AI 1",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 27A1277, corroborated by the sheet-order sequence pattern",
+    "Heat gate is printed on its own line directly under the red tag"
+   ],
+   "text": "STONE TOSS / RANGE ATTACK / Evasion 3 dice, 9+ / TARGETING: • Furthest Knight in front • Furthest Knight in sight [REACT!] / TREE CLIMB & RANGE ATTACK UNLIMITED / [Heat 3+ ▸ +1 [d10]] / Gain the Exposed Condition card. / For each hit lose -1 [Vigor]. [Peril Check]. / WHITE APE TROLL – AI 1",
+   "moveNote": "tag has no MOVE; TREE CLIMB (Vantage Seeker trait) repositions the monster"
+  },
+  {
+   "file": "05.png",
+   "name": "Fierce Swing",
+   "code": "27A1276",
+   "level": 1,
+   "type": "ZONE ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": "7+",
+   "preTargeting": null,
+   "targeting": [
+    "Closest Knight with the Exposed Condition card",
+    "Closest Knight in front",
+    "Closest Knight in sight"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK",
+   "gates": [],
+   "effects": [
+    "One hit, lose -1 [Vigor]. Two hits, lose -3 [Vigor]. [Peril Check].",
+    "Knockback 4."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:0"
+   ],
+   "afterAttack": null,
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "WHITE APE TROLL – AI 1",
+   "zoneDiagram": {
+    "grid": [
+     6,
+     6
+    ],
+    "rows": [
+     "......",
+     "...R..",
+     ".>>RR.",
+     ".>>RR.",
+     "...R..",
+     "......"
+    ],
+    "monster": "2x2 black block marked with a white chevron pointing right (facing right)",
+    "note": "6 red cells directly in front of the monster: a 2x2 block adjacent to its front plus one cell above and one below the nearer column. No yellow cells."
+   },
+   "unclear": [
+    "code: tiny low-resolution print; best reading 27A1276, corroborated by the sheet-order sequence pattern"
+   ],
+   "text": "FIERCE SWING / ZONE ATTACK / [zone diagram] / Evasion 2 dice, 7+ / TARGETING: • Closest Knight with the Exposed Condition card • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK / One hit, lose -1 [Vigor]. Two hits, lose -3 [Vigor]. [Peril Check]. [REACT!] / Knockback 4. / WHITE APE TROLL – AI 1"
+  },
+  {
+   "file": "06.png",
+   "name": "Ground Smash",
+   "code": "27A1285",
+   "level": 2,
+   "type": "ZONE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": "6+",
+   "preTargeting": null,
+   "targeting": [
+    "Closest Knight in sight"
+   ],
+   "move": false,
+   "moveTag": "PUSHBACK 3 & ZONE ATTACK 1",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 2,
+     "effect": "DIFFICULTY 8+ INSTEAD",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "For each hit lose -2 [Vigor]. [Peril Check].",
+    "Knockdown."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:0"
+   ],
+   "afterAttack": null,
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "WHITE APE TROLL – AI 2",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 27A1285, corroborated by the sheet-order sequence pattern",
+    "Heat gate is printed on its own line directly under the red tag"
+   ],
+   "text": "GROUND SMASH / ZONE ATTACK / Evasion 3 dice, 6+ / TARGETING: • Closest Knight in sight [REACT!] / PUSHBACK 3 & ZONE ATTACK 1 / [Heat 2+ ▸ DIFFICULTY 8+ INSTEAD] / For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / Knockdown. / WHITE APE TROLL – AI 2",
+   "moveNote": "tag has no MOVE keyword (printed: PUSHBACK 3 & ZONE ATTACK 1)"
+  },
+  {
+   "file": "07.png",
+   "name": "Skull Crusher",
+   "code": "27A1286",
+   "level": 2,
+   "type": "ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": "8+",
+   "preTargeting": null,
+   "targeting": [
+    "Knight in Blindspot",
+    "[Priority Target] Priority Target",
+    "Closest Knight in sight"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "+1 [d10]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "Gain the Exposed Condition card.",
+    "For each hit lose -2 [Vigor]. [Peril Check]. Choke 3.",
+    "Force Vault. Pushback 3."
+   ],
+   "reactWindows": [
+    "targeting"
+   ],
+   "afterAttack": null,
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "WHITE APE TROLL – AI 2",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 27A1286, corroborated by the sheet-order sequence pattern",
+    "last code digit illegible (looks like 6/8/0); 1286 inferred from sequence",
+    "printed 'Force Vault.' here (Headhunter prints 'Forced Vault.') - kept as printed"
+   ],
+   "text": "SKULL CRUSHER / ATTACK / Evasion 3 dice, 8+ / TARGETING: • Knight in Blindspot • [Priority Target] Priority Target • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat 3+ ▸ +1 [d10]] / Gain the Exposed Condition card. / For each hit lose -2 [Vigor]. [Peril Check]. Choke 3. / Force Vault. Pushback 3. / WHITE APE TROLL – AI 2"
+  },
+  {
+   "file": "08.png",
+   "name": "Monkey Flip",
+   "code": "27A1287",
+   "level": 2,
+   "type": "ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": "8+",
+   "preTargeting": null,
+   "targeting": [
+    "Furthest Knight in sight"
+   ],
+   "move": false,
+   "moveTag": "JUMP & ATTACK",
+   "gates": [],
+   "effects": [
+    "For each hit lose -2 [Vigor]. [Peril Check].",
+    "Knockdown. Knockback 5."
+   ],
+   "reactWindows": [
+    "targeting"
+   ],
+   "afterAttack": null,
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "WHITE APE TROLL – AI 2",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 27A1287, corroborated by the sheet-order sequence pattern"
+   ],
+   "text": "MONKEY FLIP / ATTACK / Evasion 3 dice, 8+ / TARGETING: • Furthest Knight in sight [REACT!] / JUMP & ATTACK / For each hit lose -2 [Vigor]. [Peril Check]. / Knockdown. Knockback 5. / WHITE APE TROLL – AI 2",
+   "moveNote": "tag has no MOVE keyword (printed: JUMP & ATTACK)"
+  },
+  {
+   "file": "09.png",
+   "name": "Rampage Strike",
+   "code": "27A1284",
+   "level": 2,
+   "type": "ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": "9+",
+   "preTargeting": null,
+   "targeting": [
+    "Closest Knight in front",
+    "Closest Knight in sight"
+   ],
+   "move": true,
+   "moveTag": "MOVE, PUSHBACK 3 & ATTACK",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "+1 [d10]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "Gain the Exposed Condition card.",
+    "For each hit lose -2 [Vigor]. [Peril Check]. Delay.",
+    "Knockback 4."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:1"
+   ],
+   "afterAttack": null,
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "WHITE APE TROLL – AI 2",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 27A1284, corroborated by the sheet-order sequence pattern"
+   ],
+   "text": "RAMPAGE STRIKE / ATTACK / Evasion 2 dice, 9+ / TARGETING: • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE, PUSHBACK 3 & ATTACK [Heat 3+ ▸ +1 [d10]] / Gain the Exposed Condition card. / For each hit lose -2 [Vigor]. [Peril Check]. Delay. [REACT!] / Knockback 4. / WHITE APE TROLL – AI 2"
+  },
+  {
+   "file": "10.png",
+   "name": "Rock Hurl",
+   "code": "27A1283",
+   "level": 2,
+   "type": "RANGE ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": "9+",
+   "preTargeting": null,
+   "targeting": [
+    "Furthest Knight in front",
+    "Furthest Knight in sight"
+   ],
+   "move": false,
+   "moveTag": "TREE CLIMB & RANGE ATTACK UNLIMITED",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "+1 [d10]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "Gain the Exposed Condition card.",
+    "For each hit lose -2 [Vigor]. [Peril Check].",
+    "Gain the Distracted Condition card."
+   ],
+   "reactWindows": [
+    "targeting"
+   ],
+   "afterAttack": null,
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "WHITE APE TROLL – AI 2",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 27A1283, corroborated by the sheet-order sequence pattern",
+    "Heat gate is printed on its own line directly under the red tag"
+   ],
+   "text": "ROCK HURL / RANGE ATTACK / Evasion 2 dice, 9+ / TARGETING: • Furthest Knight in front • Furthest Knight in sight [REACT!] / TREE CLIMB & RANGE ATTACK UNLIMITED / [Heat 3+ ▸ +1 [d10]] / Gain the Exposed Condition card. / For each hit lose -2 [Vigor]. [Peril Check]. / Gain the Distracted Condition card. / WHITE APE TROLL – AI 2",
+   "moveNote": "tag has no MOVE; TREE CLIMB (Vantage Seeker trait) repositions the monster"
+  },
+  {
+   "file": "11.png",
+   "name": "Savage Sweep",
+   "code": "27A1282",
+   "level": 2,
+   "type": "ZONE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": "7+",
+   "preTargeting": null,
+   "targeting": [
+    "Closest Knight with the Exposed Condition card",
+    "Closest Knight in front",
+    "Closest Knight in sight"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK",
+   "gates": [],
+   "effects": [
+    "One hit, lose -1 [Vigor]. Two hits, lose -3 [Vigor]. Three or more hits, lose -5 [Vigor]. [Peril Check].",
+    "Knockback 5."
+   ],
+   "reactWindows": [
+    "targeting"
+   ],
+   "afterAttack": null,
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "WHITE APE TROLL – AI 2",
+   "zoneDiagram": {
+    "grid": [
+     6,
+     6
+    ],
+    "rows": [
+     "......",
+     "..RR..",
+     ".>>RR.",
+     ".>>RR.",
+     "..RR..",
+     "......"
+    ],
+    "monster": "2x2 black block marked with a white chevron pointing right (facing right)",
+    "note": "8 red cells: 2x2 block adjacent to the front, plus two cells above and two below (above/below the monster's front column and the first column in front). No yellow cells."
+   },
+   "unclear": [
+    "code: tiny low-resolution print; best reading 27A1282, corroborated by the sheet-order sequence pattern"
+   ],
+   "text": "SAVAGE SWEEP / ZONE ATTACK / [zone diagram] / Evasion 3 dice, 7+ / TARGETING: • Closest Knight with the Exposed Condition card • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK / One hit, lose -1 [Vigor]. Two hits, lose -3 [Vigor]. Three or more hits, lose -5 [Vigor]. [Peril Check]. / Knockback 5. / WHITE APE TROLL – AI 2"
+  },
+  {
+   "file": "12.png",
+   "name": "Unstoppable Momentum",
+   "code": "27A1291",
+   "level": 3,
+   "type": "SEQUENTIAL ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": "7+",
+   "preTargeting": null,
+   "targeting": [
+    "Furthest Knight in front",
+    "Furthest Knight in sight"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK ALL KNIGHTS IN PATH",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "+1 [d10]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "For each hit lose -2 [Vigor]. [Peril Check].",
+    "Knockdown."
+   ],
+   "reactWindows": [
+    "targeting"
+   ],
+   "afterAttack": "Knockback 4 to the side.",
+   "afterFinalAttack": "Pushback 4. Knockback 4 to the side.",
+   "aiResponse": null,
+   "footer": "WHITE APE TROLL – AI 3",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 27A1291, corroborated by the sheet-order sequence pattern",
+    "Heat gate is printed on its own line directly under the red tag"
+   ],
+   "text": "UNSTOPPABLE MOMENTUM / SEQUENTIAL ATTACK / Evasion 4 dice, 7+ / TARGETING: • Furthest Knight in front • Furthest Knight in sight [REACT!] / MOVE & ATTACK ALL KNIGHTS IN PATH / [Heat 3+ ▸ +1 [d10]] / For each hit lose -2 [Vigor]. [Peril Check]. / Knockdown. / AFTER ATTACK / Knockback 4 to the side. / AFTER FINAL ATTACK / Pushback 4. Knockback 4 to the side. / WHITE APE TROLL – AI 3"
+  },
+  {
+   "file": "13.png",
+   "name": "Headhunter",
+   "code": "27A1292",
+   "level": 3,
+   "type": "ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": "8+",
+   "preTargeting": null,
+   "targeting": [
+    "Knight in Blindspot",
+    "[Priority Target] Priority Target",
+    "Closest Knight in sight"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "+1 [d10]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "If the Attack hits, lower your [Vigor] to 0, and draw a Judicium card."
+   ],
+   "reactWindows": [
+    "targeting"
+   ],
+   "afterAttack": "Gain the Exposed Condition card. Choke 3. Forced Vault. Pushback 3.",
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "WHITE APE TROLL – AI 3",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 27A1292, corroborated by the sheet-order sequence pattern",
+    "no [Peril Check] icon printed after the Vigor line"
+   ],
+   "text": "HEADHUNTER / ATTACK / Evasion 2 dice, 8+ / TARGETING: • Knight in Blindspot • [Priority Target] Priority Target • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat 3+ ▸ +1 [d10]] / If the Attack hits, lower your [Vigor] to 0, and draw a Judicium card. / AFTER ATTACK / Gain the Exposed Condition card. Choke 3. Forced Vault. Pushback 3. / WHITE APE TROLL – AI 3"
+  },
+  {
+   "file": "14.png",
+   "name": "Ape Out",
+   "code": "27A1293",
+   "level": 3,
+   "type": "ZONE ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": "6+",
+   "preTargeting": null,
+   "targeting": [
+    "Closest Knight in sight"
+   ],
+   "move": false,
+   "moveTag": "LAND ON TOP & ZONE ATTACK 2",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "IGNORE [REACT! window]",
+     "where": "targeting"
+    },
+    {
+     "stat": "Heat",
+     "gte": 2,
+     "effect": "DIFFICULTY 8+ INSTEAD",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "For each hit lose -2 [Vigor]. [Peril Check].",
+    "Knockdown."
+   ],
+   "reactWindows": [
+    "targeting"
+   ],
+   "afterAttack": null,
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "WHITE APE TROLL – AI 3",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 27A1293, corroborated by the sheet-order sequence pattern",
+    "targeting-header gate reads 'IGNORE' followed by the black beast/claw REACT glyph (i.e. Heat 3+: ignore the REACT! window on the targeting line) - glyph interpretation",
+    "moveTag gate: 'Heat 2+' sits at the end of the red tag row and its effect 'DIFFICULTY 8+ INSTEAD' wraps to the next line"
+   ],
+   "text": "APE OUT / ZONE ATTACK / Evasion 4 dice, 6+ / TARGETING [Heat 3+ ▸ IGNORE [REACT! window]]: • Closest Knight in sight [REACT!] / LAND ON TOP & ZONE ATTACK 2 [Heat 2+ ▸ DIFFICULTY 8+ INSTEAD] / For each hit lose -2 [Vigor]. [Peril Check]. / Knockdown. / WHITE APE TROLL – AI 3",
+   "moveNote": "tag has no MOVE keyword (printed: LAND ON TOP & ZONE ATTACK 2)"
+  },
+  {
+   "file": "15.png",
+   "name": "Feral Blow",
+   "code": "27A1290",
+   "level": 3,
+   "type": "ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": "9+",
+   "preTargeting": null,
+   "targeting": [
+    "Closest Squire in front",
+    "Closest Knight in front",
+    "Closest Knight in sight"
+   ],
+   "move": true,
+   "moveTag": "MOVE, PUSHBACK 3 & ATTACK",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "+1 [d10]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "Gain the Exposed Condition card.",
+    "For each hit lose -2 [Vigor]. [Peril Check].",
+    "Discard. Knockback 5.",
+    "Knockdown."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:2"
+   ],
+   "afterAttack": null,
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "WHITE APE TROLL – AI 3",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 27A1290, corroborated by the sheet-order sequence pattern"
+   ],
+   "text": "FERAL BLOW / ATTACK / Evasion 3 dice, 9+ / TARGETING: • Closest Squire in front • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE, PUSHBACK 3 & ATTACK [Heat 3+ ▸ +1 [d10]] / Gain the Exposed Condition card. / For each hit lose -2 [Vigor]. [Peril Check]. / Discard. Knockback 5. [REACT!] / Knockdown. / WHITE APE TROLL – AI 3"
+  },
+  {
+   "file": "16.png",
+   "name": "Boulder Lob",
+   "code": "27A1289",
+   "level": 3,
+   "type": "RANGE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": "9+",
+   "preTargeting": null,
+   "targeting": [
+    "Furthest Knight in front",
+    "Furthest Knight in sight"
+   ],
+   "move": false,
+   "moveTag": "TREE CLIMB & RANGE ATTACK UNLIMITED",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "+1 [d10]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "Gain the Exposed Condition card.",
+    "For each hit lose -2 [Vigor]. [Peril Check].",
+    "Gain the Panicked Condition card."
+   ],
+   "reactWindows": [
+    "targeting"
+   ],
+   "afterAttack": null,
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "WHITE APE TROLL – AI 3",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 27A1289, corroborated by the sheet-order sequence pattern",
+    "Heat gate is printed on its own line directly under the red tag"
+   ],
+   "text": "BOULDER LOB / RANGE ATTACK / Evasion 3 dice, 9+ / TARGETING: • Furthest Knight in front • Furthest Knight in sight [REACT!] / TREE CLIMB & RANGE ATTACK UNLIMITED / [Heat 3+ ▸ +1 [d10]] / Gain the Exposed Condition card. / For each hit lose -2 [Vigor]. [Peril Check]. / Gain the Panicked Condition card. / WHITE APE TROLL – AI 3",
+   "moveNote": "tag has no MOVE; TREE CLIMB (Vantage Seeker trait) repositions the monster"
+  },
+  {
+   "file": "17.png",
+   "name": "Ferocious Slam",
+   "code": "27A1288",
+   "level": 3,
+   "type": "ZONE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": "7+",
+   "preTargeting": null,
+   "targeting": [
+    "Closest Knight with the Exposed Condition card",
+    "Closest Knight in front",
+    "Closest Knight in sight"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK",
+   "gates": [],
+   "effects": [
+    "Gain the Exposed Condition card.",
+    "One hit, lose -3 [Vigor].",
+    "Two hits, lose -5 [Vigor].",
+    "Three or more hits, lose -7 [Vigor]. [Peril Check].",
+    "Knockback 6."
+   ],
+   "reactWindows": [
+    "targeting"
+   ],
+   "afterAttack": null,
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "WHITE APE TROLL – AI 3",
+   "zoneDiagram": {
+    "grid": [
+     6,
+     7
+    ],
+    "rows": [
+     ".......",
+     "...RR..",
+     ".>>RRR.",
+     ".>>RRR.",
+     "...RR..",
+     "......."
+    ],
+    "monster": "2x2 black block marked with a white chevron pointing right (facing right)",
+    "note": "10 red cells: a 3-wide x 2-high block adjacent to the front, plus two cells above and two below its two nearer columns. Grid printed 7 columns x 6 rows. No yellow cells."
+   },
+   "unclear": [
+    "code: tiny low-resolution print; best reading 27A1288, corroborated by the sheet-order sequence pattern"
+   ],
+   "text": "FEROCIOUS SLAM / ZONE ATTACK / [zone diagram] / Evasion 3 dice, 7+ / TARGETING: • Closest Knight with the Exposed Condition card • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK / Gain the Exposed Condition card. / One hit, lose -3 [Vigor]. / Two hits, lose -5 [Vigor]. / Three or more hits, lose -7 [Vigor]. [Peril Check]. / Knockback 6. / WHITE APE TROLL – AI 3"
+  }
+ ],
+ "bp": [
+  {
+   "file": "18.png",
+   "name": "Thick Skin",
+   "code": "28A1680",
+   "level": null,
+   "at": 4,
+   "overcomeTag": "OVERPOWER",
+   "overcome": {
+    "n": 3,
+    "effect": "You may perform a Bonus Attack!"
+   },
+   "responses": {
+    "wound": "Place this card next to the BP deck and flip it.",
+    "fail": "Gain the Exposed Condition card.",
+    "instinct": null,
+    "critical": "Place this card next to the BP deck and flip it. You may perform a Bonus Attack!"
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "WHITE APE TROLL",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 28A1680, corroborated by the sheet-order sequence pattern",
+    "code digits after 28A16 are illegible on this card (look like 80/85/86); 28A1680 is a sequence-based guess, NOT a confident reading",
+    "no level in footer (footer is just 'WHITE APE TROLL') -> level null",
+    "double-sided card: back side transcribed in extra ('Thick Skin (Back)')"
+   ],
+   "text": "THICK SKIN / OVERPOWER 3+ ▸ You may perform a Bonus Attack! / [AT] 4 / WOUND: Place this card next to the BP deck and flip it. / FAIL: Gain the Exposed Condition card. / CRITICAL: Place this card next to the BP deck and flip it. You may perform a Bonus Attack! / WHITE APE TROLL"
+  },
+  {
+   "file": "19.png",
+   "name": "Bulky Biceps",
+   "code": "28A1665",
+   "level": 1,
+   "at": 4,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 3,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "Pushback 3.",
+    "fail": "Perform Signature against the Attacker.",
+    "instinct": null,
+    "critical": "White Ape Troll cannot perform Range Attacks."
+   },
+   "reactWindows": [
+    "wound"
+   ],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "WHITE APE TROLL – BP 1",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 28A1665, corroborated by the sheet-order sequence pattern"
+   ],
+   "text": "BULKY BICEPS / OVERCOME 3+ ▸ Power 1 / [AT] 4 / WOUND: [REACT!] Pushback 3. / FAIL: Perform Signature against the Attacker. / CRITICAL: White Ape Troll cannot perform Range Attacks. / WHITE APE TROLL – BP 1"
+  },
+  {
+   "file": "20.png",
+   "name": "Saggy Gut",
+   "code": "28A1666",
+   "level": 1,
+   "at": 5,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 3,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "Cooldown.",
+    "fail": "Gain the Exposed Condition card.",
+    "instinct": null,
+    "critical": "You may perform a Bonus Attack!"
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "WHITE APE TROLL – BP 1",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 28A1666, corroborated by the sheet-order sequence pattern"
+   ],
+   "text": "SAGGY GUT / OVERCOME 3+ ▸ Power 1 / [AT] 5 / WOUND: Cooldown. / FAIL: Gain the Exposed Condition card. / CRITICAL: You may perform a Bonus Attack! / WHITE APE TROLL – BP 1"
+  },
+  {
+   "file": "21.png",
+   "name": "Furry Shoulder",
+   "code": "28A1667",
+   "level": 1,
+   "at": 5,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 3,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "Gain the Exposed Condition card. All Firstmen Guardians move 5 spaces toward White Ape Troll until adjacent.",
+    "fail": "Knockdown.",
+    "instinct": null,
+    "critical": "Discard all Mind Condition cards and gain the Courage Condition card."
+   },
+   "reactWindows": [
+    "fail"
+   ],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "WHITE APE TROLL – BP 1",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 28A1667, corroborated by the sheet-order sequence pattern"
+   ],
+   "text": "FURRY SHOULDER / OVERCOME 3+ ▸ Power 1 / [AT] 5 / WOUND: Gain the Exposed Condition card. All Firstmen Guardians move 5 spaces toward White Ape Troll until adjacent. / FAIL: [REACT!] Knockdown. / CRITICAL: Discard all Mind Condition cards and gain the Courage Condition card. / WHITE APE TROLL – BP 1"
+  },
+  {
+   "file": "22.png",
+   "name": "Misshapen Toes",
+   "code": "28A1662",
+   "level": 1,
+   "at": 3,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 2,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "White Ape Troll moves 2 spaces directly away from the Attacker (without turning).",
+    "fail": "Gain the Exposed Condition card.",
+    "instinct": null,
+    "critical": "Leave 2 additional Opening [Opening] and/or Break [Break] tokens."
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "WHITE APE TROLL – BP 1",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 28A1662, corroborated by the sheet-order sequence pattern"
+   ],
+   "text": "MISSHAPEN TOES / OVERCOME 2+ ▸ Power 1 / [AT] 3 / WOUND: White Ape Troll moves 2 spaces directly away from the Attacker (without turning). / FAIL: Gain the Exposed Condition card. / CRITICAL: Leave 2 additional Opening [Opening] and/or Break [Break] tokens. / WHITE APE TROLL – BP 1"
+  },
+  {
+   "file": "23.png",
+   "name": "Clenched Fist",
+   "code": "28A1663",
+   "level": 1,
+   "at": 3,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 2,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "Perform Signature against the Attacker.",
+    "fail": "Pushback 3.",
+    "instinct": null,
+    "critical": "Gain +1 [Passion]. White Ape Troll gains 1 permanent negative Precision [Precision] token."
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "WHITE APE TROLL – BP 1",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 28A1663, corroborated by the sheet-order sequence pattern"
+   ],
+   "text": "CLENCHED FIST / OVERCOME 2+ ▸ Power 1 / [AT] 3 / WOUND: Perform Signature against the Attacker. / FAIL: Pushback 3. / CRITICAL: Gain +1 [Passion]. White Ape Troll gains 1 permanent negative Precision [Precision] token. / WHITE APE TROLL – BP 1"
+  },
+  {
+   "file": "24.png",
+   "name": "Massive Thigh",
+   "code": "28A1664",
+   "level": 1,
+   "at": 4,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 2,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "Knockback 4. All Firstmen Guardians move 5 spaces toward White Ape Troll until adjacent.",
+    "fail": "Gain the Exposed Condition card.",
+    "instinct": null,
+    "critical": "Another Knight may perform a Bonus Attack!"
+   },
+   "reactWindows": [
+    "wound"
+   ],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "WHITE APE TROLL – BP 1",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 28A1664, corroborated by the sheet-order sequence pattern"
+   ],
+   "text": "MASSIVE THIGH / OVERCOME 2+ ▸ Power 1 / [AT] 4 / WOUND: [REACT!] Knockback 4. All Firstmen Guardians move 5 spaces toward White Ape Troll until adjacent. / FAIL: Gain the Exposed Condition card. / CRITICAL: Another Knight may perform a Bonus Attack! / WHITE APE TROLL – BP 1"
+  },
+  {
+   "file": "25.png",
+   "name": "Muscular Chest",
+   "code": "28A1671",
+   "level": 2,
+   "at": 6,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 4,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "Pushback 4.",
+    "fail": "Gain the Exposed Condition card.",
+    "instinct": null,
+    "critical": "You may perform a Bonus Attack with Auto-break 2!"
+   },
+   "reactWindows": [
+    "wound"
+   ],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "WHITE APE TROLL – BP 2",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 28A1671, corroborated by the sheet-order sequence pattern",
+    "OVERCOME number blurry; best reading 4+"
+   ],
+   "text": "MUSCULAR CHEST / OVERCOME 4+ ▸ Power 1 / [AT] 6 / WOUND: [REACT!] Pushback 4. / FAIL: Gain the Exposed Condition card. / CRITICAL: You may perform a Bonus Attack with Auto-break 2! / WHITE APE TROLL – BP 2"
+  },
+  {
+   "file": "26.png",
+   "name": "Monstrous Head",
+   "code": "28A1672",
+   "level": 2,
+   "at": 6,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 4,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "Gain the Exposed Condition card. All Firstmen Guardians move 5 spaces toward White Ape Troll until adjacent.",
+    "fail": "Perform Signature against the Attacker.",
+    "instinct": null,
+    "critical": "You may perform a Bonus Attack with Auto-break 2!"
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "WHITE APE TROLL – BP 2",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 28A1672, corroborated by the sheet-order sequence pattern",
+    "OVERCOME number blurry; best reading 4+"
+   ],
+   "text": "MONSTROUS HEAD / OVERCOME 4+ ▸ Power 1 / [AT] 6 / WOUND: Gain the Exposed Condition card. All Firstmen Guardians move 5 spaces toward White Ape Troll until adjacent. / FAIL: Perform Signature against the Attacker. / CRITICAL: You may perform a Bonus Attack with Auto-break 2! / WHITE APE TROLL – BP 2"
+  },
+  {
+   "file": "27.png",
+   "name": "Round Shield Trophy",
+   "code": "28A1673",
+   "level": 2,
+   "at": 7,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 4,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "Gain the Exposed Condition card. Delay. All Firstmen Guardians move 5 spaces toward White Ape Troll until adjacent.",
+    "fail": "Knockdown.",
+    "instinct": null,
+    "critical": "Scavenge 2."
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "WHITE APE TROLL – BP 2",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 28A1673, corroborated by the sheet-order sequence pattern",
+    "OVERCOME number illegible; best reading 4+ (could be 3+)"
+   ],
+   "text": "ROUND SHIELD TROPHY / OVERCOME 4+ ▸ Power 1 / [AT] 7 / WOUND: Gain the Exposed Condition card. Delay. All Firstmen Guardians move 5 spaces toward White Ape Troll until adjacent. / FAIL: Knockdown. / CRITICAL: Scavenge 2. / WHITE APE TROLL – BP 2"
+  },
+  {
+   "file": "28.png",
+   "name": "Heavy Lower Jaw",
+   "code": "28A1668",
+   "level": 2,
+   "at": 5,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 3,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "Perform Signature against the Attacker.",
+    "fail": "Lose -3 [Vigor].",
+    "instinct": null,
+    "critical": "All Knights may discard the Exposed Condition card."
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "WHITE APE TROLL – BP 2",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 28A1668, corroborated by the sheet-order sequence pattern",
+    "OVERCOME number illegible; best reading 3+ (could be 2+)",
+    "no [Peril Check] icon printed after 'Lose -3 [Vigor].'"
+   ],
+   "text": "HEAVY LOWER JAW / OVERCOME 3+ ▸ Power 1 / [AT] 5 / WOUND: Perform Signature against the Attacker. / FAIL: Lose -3 [Vigor]. / CRITICAL: All Knights may discard the Exposed Condition card. / WHITE APE TROLL – BP 2"
+  },
+  {
+   "file": "29.png",
+   "name": "Strong Knee",
+   "code": "28A1669",
+   "level": 2,
+   "at": 5,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 3,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "White Ape Troll moves 3 spaces directly away from the Attacker (without turning).",
+    "fail": "Gain the Exposed Condition card. Pushback 4.",
+    "instinct": null,
+    "critical": "Leave 3 additional Opening [Opening] and/or Break [Break] tokens."
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "WHITE APE TROLL – BP 2",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 28A1669, corroborated by the sheet-order sequence pattern",
+    "OVERCOME number blurry; best reading 3+"
+   ],
+   "text": "STRONG KNEE / OVERCOME 3+ ▸ Power 1 / [AT] 5 / WOUND: White Ape Troll moves 3 spaces directly away from the Attacker (without turning). / FAIL: Gain the Exposed Condition card. Pushback 4. / CRITICAL: Leave 3 additional Opening [Opening] and/or Break [Break] tokens. / WHITE APE TROLL – BP 2"
+  },
+  {
+   "file": "30.png",
+   "name": "Hairy Back",
+   "code": "28A1670",
+   "level": 2,
+   "at": 6,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 3,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "Perform Signature against the Attacker.",
+    "fail": "Knockback 5.",
+    "instinct": null,
+    "critical": "Deal an additional Single Wound!"
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "WHITE APE TROLL – BP 2",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 28A1670, corroborated by the sheet-order sequence pattern",
+    "OVERCOME number blurry; best reading 3+"
+   ],
+   "text": "HAIRY BACK / OVERCOME 3+ ▸ Power 1 / [AT] 6 / WOUND: Perform Signature against the Attacker. / FAIL: Knockback 5. / CRITICAL: Deal an additional Single Wound! / WHITE APE TROLL – BP 2"
+  },
+  {
+   "file": "31.png",
+   "name": "Spine Column",
+   "code": "28A1677",
+   "level": 3,
+   "at": 7,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 5,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "Perform Signature against the Attacker.",
+    "fail": "Pushback 5. Knockdown.",
+    "instinct": null,
+    "critical": "Disable the Regeneration Trait."
+   },
+   "reactWindows": [
+    "fail"
+   ],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "WHITE APE TROLL – BP 3",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 28A1677, corroborated by the sheet-order sequence pattern"
+   ],
+   "text": "SPINE COLUMN / OVERCOME 5+ ▸ Power 1 / [AT] 7 / WOUND: Perform Signature against the Attacker. / FAIL: [REACT!] Pushback 5. Knockdown. / CRITICAL: Disable the Regeneration Trait. / WHITE APE TROLL – BP 3"
+  },
+  {
+   "file": "32.png",
+   "name": "Monkey Brain",
+   "code": "28A1678",
+   "level": 3,
+   "at": 8,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 5,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": null,
+    "fail": null,
+    "instinct": "Gain the Exposed Condition card. Perform Signature against the Attacker.",
+    "critical": "Until the end of Clash, ignore token penalty from the Firstmen Guardians Trait."
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "WHITE APE TROLL – BP 3",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 28A1678, corroborated by the sheet-order sequence pattern",
+    "card has INSTINCT + CRITICAL only (no WOUND/FAIL)"
+   ],
+   "text": "MONKEY BRAIN / OVERCOME 5+ ▸ Power 1 / [AT] 8 / INSTINCT: Gain the Exposed Condition card. Perform Signature against the Attacker. / CRITICAL: Until the end of Clash, ignore token penalty from the Firstmen Guardians Trait. / WHITE APE TROLL – BP 3"
+  },
+  {
+   "file": "33.png",
+   "name": "Wild Heart",
+   "code": "28A1679",
+   "level": 3,
+   "at": 9,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 5,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "Gain the Exposed Condition card. Discard. All Firstmen Guardians move 5 spaces toward White Ape Troll until adjacent.",
+    "fail": "Draw a Judicium.",
+    "instinct": null,
+    "critical": "The White Ape Troll dies!"
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "WHITE APE TROLL – BP 3",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 28A1679, corroborated by the sheet-order sequence pattern",
+    "OVERCOME number illegible in scan; 5+ is a best guess (could be 4+ or 6+)"
+   ],
+   "text": "WILD HEART / OVERCOME 5+ ▸ Power 1 / [AT] 9 / WOUND: Gain the Exposed Condition card. Discard. All Firstmen Guardians move 5 spaces toward White Ape Troll until adjacent. / FAIL: Draw a Judicium. / CRITICAL: The White Ape Troll dies! / WHITE APE TROLL – BP 3"
+  },
+  {
+   "file": "34.png",
+   "name": "Milky Eyes",
+   "code": "28A1674",
+   "level": 3,
+   "at": 6,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 3,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "Perform Signature against the Attacker.",
+    "fail": "Gain the Exposed Condition card.",
+    "instinct": null,
+    "critical": "All Knights discard the Exposed Condition card. Until the end of Clash, Knights can’t gain the Exposed Condition card."
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "WHITE APE TROLL – BP 3",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 28A1674, corroborated by the sheet-order sequence pattern",
+    "OVERCOME number blurry; best reading 3+"
+   ],
+   "text": "MILKY EYES / OVERCOME 3+ ▸ Power 1 / [AT] 6 / WOUND: Perform Signature against the Attacker. / FAIL: Gain the Exposed Condition card. / CRITICAL: All Knights discard the Exposed Condition card. Until the end of Clash, Knights can’t gain the Exposed Condition card. / WHITE APE TROLL – BP 3"
+  },
+  {
+   "file": "35.png",
+   "name": "Exposed Armpit",
+   "code": "28A1675",
+   "level": 3,
+   "at": 6,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 4,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": null,
+    "fail": null,
+    "instinct": "Lose -3 [Vigor]. Gain the Exposed Condition card. Knockback 6. All Firstmen Guardians move 5 spaces toward White Ape Troll until adjacent.",
+    "critical": "White Ape Troll’s Attacks have -1 [d10]."
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "WHITE APE TROLL – BP 3",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 28A1675, corroborated by the sheet-order sequence pattern",
+    "OVERCOME number blurry (looks like '1' or '4'); best reading 4+",
+    "card has INSTINCT + CRITICAL only (no WOUND/FAIL)",
+    "no [Peril Check] icon printed after 'Lose -3 [Vigor].'"
+   ],
+   "text": "EXPOSED ARMPIT / OVERCOME 4+ ▸ Power 1 / [AT] 6 / INSTINCT: Lose -3 [Vigor]. Gain the Exposed Condition card. Knockback 6. All Firstmen Guardians move 5 spaces toward White Ape Troll until adjacent. / CRITICAL: White Ape Troll’s Attacks have -1 [d10]. / WHITE APE TROLL – BP 3"
+  },
+  {
+   "file": "36.png",
+   "name": "Covered Groin",
+   "code": "28A1676",
+   "level": 3,
+   "at": 7,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 4,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "White Ape Troll moves 4 spaces directly away from the Attacker (without turning).",
+    "fail": "Pushback 5.",
+    "instinct": null,
+    "critical": "You may perform a Bonus Attack with +1 [Power]!"
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "WHITE APE TROLL – BP 3",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 28A1676, corroborated by the sheet-order sequence pattern",
+    "OVERCOME number blurry; best reading 4+"
+   ],
+   "text": "COVERED GROIN / OVERCOME 4+ ▸ Power 1 / [AT] 7 / WOUND: White Ape Troll moves 4 spaces directly away from the Attacker (without turning). / FAIL: Pushback 5. / CRITICAL: You may perform a Bonus Attack with +1 [Power]! / WHITE APE TROLL – BP 3"
+  }
+ ],
+ "routine": {
+  "file": "37.png",
+  "name": "Lil’ Nap",
+  "code": null,
+  "type": "ROUTINE",
+  "text": "White Ape Troll moves to the center of the Clash Board. Heal 1. Escalate 1.",
+  "footer": "WHITE APE TROLL",
+  "unclear": [
+   "no card code visible in the scan"
+  ]
+ },
+ "signature": {
+  "file": "haft_shove.png",
+  "name": "Haft Shove",
+  "code": "27A1294",
+  "type": "SIGNATURE",
+  "evasionDice": 3,
+  "evasionDifficulty": "9+",
+  "preTargeting": null,
+  "targeting": [
+   "Closest Knight not in front, in sight",
+   "Furthest Knight in sight"
+  ],
+  "move": true,
+  "moveTag": "MOVE, PUSHBACK 3 & ATTACK",
+  "gates": [
+   {
+    "stat": "Heat",
+    "gte": 3,
+    "effect": "+1 [d10]",
+    "where": "moveTag"
+   }
+  ],
+  "effects": [
+   "Gain the Exposed Condition card.",
+   "For each hit lose -1 [Vigor]. [Peril Check].",
+   "Knockback 3 to the side."
+  ],
+  "reactWindows": [
+   "targeting",
+   "effect:1"
+  ],
+  "afterAttack": null,
+  "afterFinalAttack": null,
+  "aiResponse": null,
+  "footer": "WHITE APE TROLL",
+  "unclear": [
+   "code: tiny low-resolution print; best reading 27A1294, corroborated by the sheet-order sequence pattern"
+  ],
+  "text": "HAFT SHOVE / SIGNATURE / Evasion 3 dice, 9+ / TARGETING: • Closest Knight not in front, in sight • Furthest Knight in sight [REACT!] / MOVE, PUSHBACK 3 & ATTACK [Heat 3+ ▸ +1 [d10]] / Gain the Exposed Condition card. / For each hit lose -1 [Vigor]. [Peril Check]. [REACT!] / Knockback 3 to the side. / WHITE APE TROLL"
+ },
+ "extra": [
+  {
+   "file": "38.png",
+   "name": "Firstman Guardian",
+   "kind": "traitBP",
+   "code": "28A1682",
+   "level": null,
+   "at": 4,
+   "overcomeTag": null,
+   "overcome": null,
+   "responses": {
+    "wound": "The Firstman Guardian dies. You may perform a Bonus Attack (perform once per round, per Knight).",
+    "fail": "Gain the Exposed Condition card.",
+    "instinct": null,
+    "critical": "The Firstman Guardian dies. You may perform a Bonus Attack! Leave 2 additional Opening [Opening] and/or Break [Break] tokens."
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "bottomBox": "7+ [To Hit]. Advanced Bypass.\n\nEnd of Monster Round: Move all Firstmen Guardians adjacent to the White Ape Troll, starting from the lowest number.",
+   "toHit": "7+",
+   "abilities": [
+    "Advanced Bypass"
+   ],
+   "footer": "WHITE APE TROLL",
+   "unclear": [
+    "code: tiny faint print; best reading 28A1682",
+    "no OVERCOME/OVERPOWER tag printed on this card",
+    "'End of Monster Round:' is bold; bottom box sits below the footer on a darker band",
+    "critical text hyphenated across lines as 'additio-nal' -> 'additional'"
+   ],
+   "text": "FIRSTMAN GUARDIAN / [AT] 4 / WOUND: The Firstman Guardian dies. You may perform a Bonus Attack (perform once per round, per Knight). / FAIL: Gain the Exposed Condition card. / CRITICAL: The Firstman Guardian dies. You may perform a Bonus Attack! Leave 2 additional Opening [Opening] and/or Break [Break] tokens. / WHITE APE TROLL / 7+ [To Hit]. Advanced Bypass. / End of Monster Round: Move all Firstmen Guardians adjacent to the White Ape Troll, starting from the lowest number."
+  },
+  {
+   "file": "39.png",
+   "name": "Coordinated Attack",
+   "code": "27A1296",
+   "level": null,
+   "type": "TRAIT ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": "9+",
+   "preTargeting": null,
+   "targeting": [
+    "Closest Knight without the Exposed Condition card",
+    "Closest Knight in sight"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK",
+   "gates": [],
+   "effects": [
+    "Gain the Exposed Condition card.",
+    "For each hit lose -1 [Vigor]. [Peril Check]."
+   ],
+   "reactWindows": [
+    "targeting"
+   ],
+   "afterAttack": null,
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "WHITE APE TROLL",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 27A1296, corroborated by the sheet-order sequence pattern",
+    "no level in footer"
+   ],
+   "text": "COORDINATED ATTACK / TRAIT ATTACK / Evasion 3 dice, 9+ / TARGETING: • Closest Knight without the Exposed Condition card • Closest Knight in sight [REACT!] / MOVE & ATTACK / Gain the Exposed Condition card. / For each hit lose -1 [Vigor]. [Peril Check]. / WHITE APE TROLL",
+   "kind": "traitAttack"
+  },
+  {
+   "file": "thick_skin_back.png",
+   "name": "Thick Skin (Back)",
+   "kind": "cardBack",
+   "backOf": "Thick Skin",
+   "code": null,
+   "text": "Start of Monster Round: Place the Thick Skin BP on the top of the BP deck, unless it’s already there. If the Thick Skin BP card is wounded, place it next to the BP deck, and do not Escalate. If the Thick Skin BP card is on top of the BP deck and any effect would let you interact with the BP Deck, ignore that interaction.",
+   "footer": "WHITE APE TROLL",
+   "unclear": [
+    "no code, AT box or response boxes on this side",
+    "'Start of Monster Round:' is bold; 'Thick Skin' italic",
+    "wording differs slightly from the sheet's Regeneration trait (card: 'Thick Skin BP on the top', 'If the ... is wounded', 'BP Deck'; sheet: 'Thick Skin BP card on the top', 'When the ... is wounded', 'BP deck') - both kept as printed"
+   ]
+  }
+ ],
+ "_notes": [
+  "Card scans are 3x upscales of small crops: body text is clear, card codes and OVERCOME numbers are the weak spots (see per-card unclear).",
+  "AI codes: L1 27A1276-1281, L2 1282-1287, L3 1288-1293, Signature 1294, Trait Attack 1296. BP codes: L1 28A1662-1667, L2 1668-1673, L3 1674-1679, Trait BP 1682; Thick Skin code unread.",
+  "reactWindows on BP cards name the response whose header rule carries the REACT! marker.",
+  "Exposed / Distracted / Panicked / Courage / Thick Skin / Regeneration / Firstmen Guardians / Coordinated Attack are printed in italics where they name a card or trait."
+ ]
+}

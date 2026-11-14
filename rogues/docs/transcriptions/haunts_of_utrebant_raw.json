@@ -1,0 +1,1274 @@
+{
+ "sheet": {
+  "name": "Haunts of Utrebant",
+  "code": "26A1065",
+  "tier": "I",
+  "traitsLine": [
+   "Mob",
+   "Undead",
+   "Ancient"
+  ],
+  "levels": {
+   "1": {
+    "toHit": 6,
+    "wounds": 7,
+    "exhibitionWounds": 1,
+    "activations": [
+     "AI",
+     "S"
+    ],
+    "activationsText": "1 AI 1 S",
+    "bonuses": {
+     "escalations": 0,
+     "at": 0,
+     "vigorLoss": 0,
+     "evasionDice": 0
+    },
+    "traitsAdd": [
+     "Intangible",
+     "Ethereal Unity",
+     "Spectral Step"
+    ]
+   },
+   "2": {
+    "toHit": 8,
+    "wounds": 8,
+    "exhibitionWounds": 2,
+    "activations": [
+     "AI",
+     "S"
+    ],
+    "activationsText": "1 AI 1 S",
+    "bonuses": {
+     "escalations": 0,
+     "at": 2,
+     "vigorLoss": 0,
+     "evasionDice": 0
+    },
+    "traitsAdd": [
+     "Obscured Vision",
+     "The Grim Gift"
+    ]
+   },
+   "3": {
+    "toHit": 9,
+    "wounds": 8,
+    "exhibitionWounds": 2,
+    "activations": [
+     "AI",
+     "AI"
+    ],
+    "activationsText": "2 AI",
+    "bonuses": {
+     "escalations": 0,
+     "at": 3,
+     "vigorLoss": 1,
+     "evasionDice": 0
+    },
+    "traitsAdd": [
+     "Revenge Served Ghastly Cold"
+    ]
+   },
+   "4": {
+    "toHit": 10,
+    "wounds": 9,
+    "exhibitionWounds": 2,
+    "activations": [
+     "AI",
+     "AI"
+    ],
+    "activationsText": "2 AI",
+    "bonuses": {
+     "escalations": 0,
+     "at": 5,
+     "vigorLoss": 2,
+     "evasionDice": 0
+    },
+    "traitsAdd": [
+     "No Mercy"
+    ]
+   }
+  },
+  "traits": [
+   {
+    "name": "Intangible",
+    "level": 1,
+    "text": "Haunts of Utrebant ignore Terrain tiles for the purposes of both voluntary and involuntary movement, and Line of Sight."
+   },
+   {
+    "name": "Ethereal Unity",
+    "level": 1,
+    "text": "! If any effect during the Delve instructed you to Escalate the BP deck, ignore that effect.\n\nEach time a Haunt of Utrebant is removed from the Board, place a Generic token on this Trait. After you finish resolving the current action, if there are 3 or more tokens on this Trait, discard all tokens and Spawn three new Haunts of Utrebant. Draw three cards from the top of the Fool’s deck, and place new Haunts on the Board according to coordinates on the cards. If a Haunt were to Spawn on a space occupied by a Knight, instead place it on an unoccupied adjacent space. Assign Activation tokens starting from the left of the Mob track.\n\nFor every token on the Ethereal Unity Trait, all Haunts of Utrebant currently on the Clash Board gain the following bonuses:\n1 token: +1 To Hit [To Hit].\n2 tokens: All Attacks cause an additional -1 [Vigor] loss.\nThe effects of this Trait can stack."
+   },
+   {
+    "name": "Spectral Step",
+    "level": 1,
+    "text": "Certain Zone Attacks include specially designated spaces on their diagrams. After performing a Zone Attack, the attacking Haunt will appear on that space.\n\nIf a Haunt were to appear on a space occupied by a Knight as a result of this Trait, that Knight suffers Unavoidable Knockback 3 and Crash. If a Haunt were to appear beyond a Board Edge, it appears adjacent to that Board Edge instead."
+   },
+   {
+    "name": "Obscured Vision",
+    "level": 2,
+    "text": "All Knights lose -2 Precision [Precision] when adjacent to a Ruined Wall Terrain tile."
+   },
+   {
+    "name": "The Grim Gift",
+    "level": 2,
+    "text": "During AI Escalation, always Escalate the lowest AI card from the AI deck or discard pile (prioritize the deck). This Trait takes precedence over regular Escalation rules."
+   },
+   {
+    "name": "Revenge Served Ghastly Cold",
+    "level": 3,
+    "text": "When you Spawn new Haunts of Utrebant, the leftmost Haunt performs Signature. Ignore during the first Monster Round."
+   },
+   {
+    "name": "No Mercy",
+    "level": 4,
+    "text": "Zone sizes of all Zone Judgments change from 1 to 2, and diagrams of all Zone Attacks increase in size as indicated by the yellow colored spaces on the diagram. If a Haunt of Utrebant moves onto a space occupied by a Knight at the end of a Zone Attack, that Knight dies!"
+   }
+  ],
+  "basicAbilities": [
+   {
+    "name": "Superior Bypass",
+    "text": "SUPERIOR BYPASS"
+   },
+   {
+    "name": "Interval Spawn",
+    "text": "INTERVAL SPAWN"
+   }
+  ],
+  "facingDiagram": {
+   "grid": [
+    3,
+    3
+   ],
+   "mobCell": "center",
+   "rear": "cell directly above the mob token (marked R)",
+   "front": "arrow below the mob token (pointing down)",
+   "facingOnSheet": "down",
+   "blindspots": "none shown (R only, no eye icon)",
+   "footprint": "1x1"
+  },
+  "levelsNote": "Bonus row (blue): +N ribcage = AT bonus, +N V = Vigor Loss bonus. No starburst (Escalations) or die (Evasion dice) bonus icons are printed at any level, stored as 0. Level 1 has no bonus row. TRAITS boxes print '+Intangible, Ethereal Unity, Spectral Step' / '+Obscured Vision, The Grim Gift' / '+Revenge Served Ghastly Cold' / '+No Mercy'. Levels 3–4 have no S (Signature) activation column, only '2 AI'.",
+  "unclear": [
+   "Bold print: Ethereal Unity first paragraph (with a leading '!' mark), '1 token:' / '2 tokens:' lead-ins; Revenge Served Ghastly Cold 'Ignore during the first Monster Round.'; the second 'Ethereal Unity' in that trait is italic",
+   "No Mercy prints 'Zone Judgments' (cards print 'ZONE JUDGEMENT')",
+   "tier 'I' assumed by analogy with the reference file; not separately printed on the sheet",
+   "Ethereal Unity '+1 To Hit' is followed by the gauntlet icon → [To Hit]"
+  ]
+ },
+ "ai": [
+  {
+   "file": "00.png",
+   "name": "Fleeting Visitation",
+   "code": "27A1239",
+   "level": 1,
+   "type": "ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 7,
+   "preTargeting": null,
+   "targeting": [
+    "Furthest Knight in sight"
+   ],
+   "moveTag": "APPEAR BEHIND & ATTACK",
+   "move": false,
+   "gates": [],
+   "effects": [
+    "For each hit lose -2 [Vigor]. [Peril Check]."
+   ],
+   "reactWindows": [],
+   "afterAttack": "Move 3 spaces directly away from the Target.",
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "HAUNTS OF UTREBANT – AI 1",
+   "unclear": [
+    "code: tiny faint print; best reading 27A1239 (last digit reads 8 or 9; 03.png reads 27A1238, so 9 chosen from the AI-1 run 27A1236–27A1241)",
+    "no REACT! markers printed on this card"
+   ],
+   "text": "FLEETING VISITATION / ATTACK / Evasion 3 dice, 7+ / TARGETING: • Furthest Knight in sight / APPEAR BEHIND & ATTACK / For each hit lose -2 [Vigor]. [Peril Check]. / AFTER ATTACK / Move 3 spaces directly away from the Target. / HAUNTS OF UTREBANT – AI 1",
+   "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT]."
+  },
+  {
+   "file": "01.png",
+   "name": "Poltergeist Pirouette",
+   "code": "27A1240",
+   "level": 1,
+   "type": "ZONE ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "Closest Grouped Knight",
+    "Closest Knight"
+   ],
+   "moveTag": "MOVE & ATTACK",
+   "move": true,
+   "gates": [],
+   "effects": [
+    "For each hit lose -3 [Vigor]. [Peril Check]."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:0"
+   ],
+   "afterAttack": "Knockback 3.",
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "HAUNTS OF UTREBANT – AI 1",
+   "zoneDiagram": {
+    "grid": [
+     7,
+     7
+    ],
+    "gridNote": "[columns, rows]",
+    "rows": [
+     "...Y...",
+     "..YRY..",
+     ".YRRRY.",
+     "YRR^RRY",
+     ".YRRRY.",
+     "..YRY..",
+     "...Y..."
+    ],
+    "legend": "Rows top-to-bottom as printed, one char per cell: R red, Y yellow, . empty (tan), ^ > single-chevron black marker (the Haunt, pointing in that direction), ⇑ » double-chevron black marker pointing up / right (the specially designated space of the Spectral Step trait, where the Haunt appears after the attack).",
+    "red": 12,
+    "yellow": 12,
+    "note": "7x7 grid; Haunt (single chevron, facing up) at centre; red = 12 cells within distance 2 (diamond); yellow = 12-cell ring at distance 3. Bottom rows partly overlapped by the art (whip) but all cells visible. No double-chevron marker on this card."
+   },
+   "unclear": [
+    "code: tiny faint print; best reading 27A1240"
+   ],
+   "text": "POLTERGEIST PIROUETTE / ZONE ATTACK / Evasion 2 dice, 8+ / ZONE DIAGRAM (see zoneDiagram) / TARGETING: • Closest Grouped Knight • Closest Knight [REACT!] / MOVE & ATTACK / For each hit lose -3 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Knockback 3. / HAUNTS OF UTREBANT – AI 1",
+   "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT]."
+  },
+  {
+   "file": "02.png",
+   "name": "Phantom Pain",
+   "code": "27A1241",
+   "level": 1,
+   "type": "ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "Closest Knight in front",
+    "Closest Knight in sight"
+   ],
+   "moveTag": "MOVE & ATTACK",
+   "move": true,
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "+1 [d10]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "Choke 1. For each hit lose -2 [Vigor]. [Peril Check]."
+   ],
+   "reactWindows": [
+    "targeting"
+   ],
+   "afterAttack": "Knockdown.",
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "HAUNTS OF UTREBANT – AI 1",
+   "unclear": [
+    "code: tiny faint print; best reading 27A1241"
+   ],
+   "text": "PHANTOM PAIN / ATTACK / Evasion 2 dice, 8+ / TARGETING: • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat 3+ ▸ +1 [d10]] / Choke 1. For each hit lose -2 [Vigor]. [Peril Check]. / AFTER ATTACK / Knockdown. / HAUNTS OF UTREBANT – AI 1",
+   "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT]."
+  },
+  {
+   "file": "03.png",
+   "name": "Piercing Gaze",
+   "code": "27A1238",
+   "level": 1,
+   "type": "ZONE JUDGEMENT",
+   "evasionDice": 2,
+   "evasionDifficulty": 9,
+   "preTargeting": null,
+   "targeting": [
+    "[Priority Target] Priority Target and Zone 1 around them"
+   ],
+   "moveTag": "JUDGE",
+   "move": false,
+   "gates": [],
+   "effects": [
+    "Bravery [Bravery] / Insight [Insight].",
+    "If hit, lose -4 [Vigor]. [Peril Check].",
+    "Gain the Fear Condition card."
+   ],
+   "reactWindows": [
+    "targeting"
+   ],
+   "afterAttack": "Cooldown. Restrain.",
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "HAUNTS OF UTREBANT – AI 1",
+   "unclear": [
+    "code: tiny faint print; best reading 27A1238",
+    "'Fear' is printed in italics"
+   ],
+   "text": "PIERCING GAZE / ZONE JUDGEMENT / Evasion 2 dice, 9+ / TARGETING: • [Priority Target] Priority Target and Zone 1 around them [REACT!] / JUDGE / Bravery [Bravery] / Insight [Insight]. / If hit, lose -4 [Vigor]. [Peril Check]. / Gain the Fear Condition card. / AFTER ATTACK / Cooldown. Restrain. / HAUNTS OF UTREBANT – AI 1",
+   "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT]."
+  },
+  {
+   "file": "04.png",
+   "name": "Cut Down",
+   "code": "27A1237",
+   "level": 1,
+   "type": "ZONE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 6,
+   "preTargeting": null,
+   "targeting": [
+    "[Priority Target] Priority Target",
+    "Closest Knight in front",
+    "Closest Knight in sight"
+   ],
+   "moveTag": "MOVE & ATTACK",
+   "move": true,
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "-3 [Vigor] INSTEAD",
+     "where": "effect:1"
+    }
+   ],
+   "effects": [
+    "For each hit lose -2 [Vigor].",
+    "[Heat 3+ ▸ -3 [Vigor] INSTEAD] [Peril Check]."
+   ],
+   "reactWindows": [
+    "targeting"
+   ],
+   "afterAttack": "Cooldown.",
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "HAUNTS OF UTREBANT – AI 1",
+   "zoneDiagram": {
+    "grid": [
+     6,
+     5
+    ],
+    "gridNote": "[columns, rows]",
+    "rows": [
+     "..Y...",
+     "..RY..",
+     ".>RR».",
+     "..RY..",
+     "..Y..."
+    ],
+    "legend": "Rows top-to-bottom as printed, one char per cell: R red, Y yellow, . empty (tan), ^ > single-chevron black marker (the Haunt, pointing in that direction), ⇑ » double-chevron black marker pointing up / right (the specially designated space of the Spectral Step trait, where the Haunt appears after the attack).",
+    "red": 4,
+    "yellow": 4,
+    "note": "6 columns x 5 rows. Haunt (single chevron pointing right) at row 3, col 2; double chevron pointing right at row 3, col 5 (Spectral Step destination). Red: (r2,c3) (r3,c3) (r3,c4) (r4,c3). Yellow: (r1,c3) (r2,c4) (r4,c4) (r5,c3)."
+   },
+   "unclear": [
+    "code: tiny faint print; best reading 27A1237",
+    "Heat gate tag text is small: read '-3 [Vigor] INSTEAD'; the [Peril Check] oval is printed after the gate tag, followed by a full stop"
+   ],
+   "text": "CUT DOWN / ZONE ATTACK / Evasion 3 dice, 6+ / ZONE DIAGRAM (see zoneDiagram) / TARGETING: • [Priority Target] Priority Target • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK / For each hit lose -2 [Vigor]. / [Heat 3+ ▸ -3 [Vigor] INSTEAD] [Peril Check]. / AFTER ATTACK / Cooldown. / HAUNTS OF UTREBANT – AI 1",
+   "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT]."
+  },
+  {
+   "file": "05.png",
+   "name": "Polearm Thrust",
+   "code": "27A1236",
+   "level": 1,
+   "type": "ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": 7,
+   "preTargeting": null,
+   "targeting": [
+    "Closest Knight in front",
+    "Closest Knight in sight"
+   ],
+   "moveTag": "MOVE & ATTACK",
+   "move": true,
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "+1 [d10]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "For each hit lose -2 [Vigor]. [Peril Check]."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:0"
+   ],
+   "afterAttack": "Knockback 3.",
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "HAUNTS OF UTREBANT – AI 1",
+   "unclear": [
+    "code: tiny faint print; best reading 27A1236 (last digit 6 or 9; 6 chosen from the run)",
+    "Heat gate sign: the '+' is blurred and could be read as '-1'; '+1 [d10]' given to match every other Heat gate of this monster"
+   ],
+   "text": "POLEARM THRUST / ATTACK / Evasion 2 dice, 7+ / TARGETING: • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat 3+ ▸ +1 [d10]] / For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Knockback 3. / HAUNTS OF UTREBANT – AI 1",
+   "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT]."
+  },
+  {
+   "file": "06.png",
+   "name": "Blast from the Beyond",
+   "code": "27A1245",
+   "level": 2,
+   "type": "ZONE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 7,
+   "preTargeting": null,
+   "targeting": [
+    "Closest Grouped Knight",
+    "Closest Knight"
+   ],
+   "moveTag": "MOVE & ATTACK",
+   "move": true,
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 4,
+     "effect": "+1 [d10]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "For each hit lose -2 [Vigor]. [Peril Check]."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:0"
+   ],
+   "afterAttack": "Knockback 3. Knockdown.",
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "HAUNTS OF UTREBANT – AI 2",
+   "zoneDiagram": {
+    "grid": [
+     9,
+     9
+    ],
+    "gridNote": "[columns, rows]",
+    "rows": [
+     "....Y....",
+     "...YYY...",
+     "..YYRYY..",
+     ".YYRRRYY.",
+     "YYRR^RRYY",
+     ".YYRRRYY.",
+     "..YYRYY..",
+     "...YYY...",
+     "....Y...."
+    ],
+    "legend": "Rows top-to-bottom as printed, one char per cell: R red, Y yellow, . empty (tan), ^ > single-chevron black marker (the Haunt, pointing in that direction), ⇑ » double-chevron black marker pointing up / right (the specially designated space of the Spectral Step trait, where the Haunt appears after the attack).",
+    "red": 12,
+    "yellow": 28,
+    "note": "9x9 grid; Haunt (single chevron, up) at centre; red = 12 cells within distance 2 (diamond); yellow = the 28 cells at distance 3–4 (diamond of radius 4). No double-chevron marker."
+   },
+   "unclear": [
+    "code: tiny faint print; best reading 27A1245 (last digit 3 or 5; 09.png reads 27A1243 more clearly, so 5 chosen)",
+    "zone diagram: cell row 5/col 8 (and the right edge of rows 5–9) is partly covered by the art; read as yellow by symmetry",
+    "Heat gate threshold reads 4+ (small print)"
+   ],
+   "text": "BLAST FROM THE BEYOND / ZONE ATTACK / Evasion 3 dice, 7+ / ZONE DIAGRAM (see zoneDiagram) / TARGETING: • Closest Grouped Knight • Closest Knight [REACT!] / MOVE & ATTACK [Heat 4+ ▸ +1 [d10]] / For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Knockback 3. Knockdown. / HAUNTS OF UTREBANT – AI 2",
+   "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT]."
+  },
+  {
+   "file": "07.png",
+   "name": "Childish Kick",
+   "code": "27A1246",
+   "level": 2,
+   "type": "ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": 9,
+   "preTargeting": null,
+   "targeting": [
+    "[Priority Target] Priority Target",
+    "Furthest Knight in sight"
+   ],
+   "moveTag": "APPEAR BEHIND & ATTACK",
+   "move": false,
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 4,
+     "effect": "+1 [d10]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "One hit, lose -3 [Vigor], two or more hits, lose -5 [Vigor]. [Peril Check]."
+   ],
+   "reactWindows": [
+    "effect:0"
+   ],
+   "afterAttack": "Knockback 3.",
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "HAUNTS OF UTREBANT – AI 2",
+   "unclear": [
+    "code: tiny faint print; best reading 27A1246 (last two digits very blurred; 46 chosen as the only unused code in the AI-2 run 27A1242–27A1247)",
+    "Heat gate threshold reads 4+ (small print)",
+    "no REACT! marker on the targeting line"
+   ],
+   "text": "CHILDISH KICK / ATTACK / Evasion 2 dice, 9+ / TARGETING: • [Priority Target] Priority Target • Furthest Knight in sight / APPEAR BEHIND & ATTACK [Heat 4+ ▸ +1 [d10]] / One hit, lose -3 [Vigor], two or more hits, lose -5 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Knockback 3. / HAUNTS OF UTREBANT – AI 2",
+   "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT]."
+  },
+  {
+   "file": "08.png",
+   "name": "Blood-Curdling Whispers",
+   "code": "27A1247",
+   "level": 2,
+   "type": "ZONE JUDGEMENT",
+   "evasionDice": 3,
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "Furthest Knight and Zone 1 around them"
+   ],
+   "moveTag": "JUDGE",
+   "move": false,
+   "gates": [],
+   "effects": [
+    "Bravery [Bravery].",
+    "If hit, gain the Fear Condition card, and lose -4 [Vigor]. [Peril Check]."
+   ],
+   "reactWindows": [
+    "targeting"
+   ],
+   "afterAttack": "Cooldown. Cooldown.",
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "HAUNTS OF UTREBANT – AI 2",
+   "unclear": [
+    "code: tiny faint print; best reading 27A1247",
+    "'Fear' is printed in italics",
+    "AFTER ATTACK really prints 'Cooldown.' twice"
+   ],
+   "text": "BLOOD-CURDLING WHISPERS / ZONE JUDGEMENT / Evasion 3 dice, 8+ / TARGETING: • Furthest Knight and Zone 1 around them [REACT!] / JUDGE / Bravery [Bravery]. / If hit, gain the Fear Condition card, and lose -4 [Vigor]. [Peril Check]. / AFTER ATTACK / Cooldown. Cooldown. / HAUNTS OF UTREBANT – AI 2",
+   "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT]."
+  },
+  {
+   "file": "09.png",
+   "name": "Overhead Smite",
+   "code": "27A1243",
+   "level": 2,
+   "type": "ZONE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "[Priority Target] Priority Target",
+    "Closest Knight in front",
+    "Closest Knight in sight"
+   ],
+   "moveTag": "MOVE & ATTACK",
+   "move": true,
+   "gates": [],
+   "effects": [
+    "For each hit lose -2 [Vigor]. [Peril Check]."
+   ],
+   "reactWindows": [
+    "targeting"
+   ],
+   "afterAttack": "Delay.",
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "HAUNTS OF UTREBANT – AI 2",
+   "zoneDiagram": {
+    "grid": [
+     7,
+     5
+    ],
+    "gridNote": "[columns, rows]",
+    "rows": [
+     "...⇑...",
+     "..YRY..",
+     ".YRRRY.",
+     "YYRRRYY",
+     "...^..."
+    ],
+    "legend": "Rows top-to-bottom as printed, one char per cell: R red, Y yellow, . empty (tan), ^ > single-chevron black marker (the Haunt, pointing in that direction), ⇑ » double-chevron black marker pointing up / right (the specially designated space of the Spectral Step trait, where the Haunt appears after the attack).",
+    "red": 7,
+    "yellow": 8,
+    "note": "7 columns x 5 rows. Haunt (single chevron, up) at bottom row centre (r5,c4); double chevron (up) at top row centre (r1,c4). Red: r2 c4; r3 c3–5; r4 c3–5 (7 cells). Yellow: r2 c3,c5; r3 c2,c6; r4 c1,c2,c6,c7 (8 cells)."
+   },
+   "unclear": [
+    "code: tiny faint print; best reading 27A1243"
+   ],
+   "text": "OVERHEAD SMITE / ZONE ATTACK / Evasion 3 dice, 8+ / ZONE DIAGRAM (see zoneDiagram) / TARGETING: • [Priority Target] Priority Target • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK / For each hit lose -2 [Vigor]. [Peril Check]. / AFTER ATTACK / Delay. / HAUNTS OF UTREBANT – AI 2",
+   "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT]."
+  },
+  {
+   "file": "10.png",
+   "name": "Terrorize",
+   "code": "27A1244",
+   "level": 2,
+   "type": "ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "[Priority Target] Priority Target",
+    "Closest Knight"
+   ],
+   "moveTag": "MOVE & ATTACK",
+   "move": true,
+   "gates": [],
+   "effects": [
+    "Choke 2.",
+    "For each hit lose -2 [Vigor]. [Peril Check]."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:1"
+   ],
+   "afterAttack": "Knockback 4.",
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "HAUNTS OF UTREBANT – AI 2",
+   "unclear": [
+    "code: tiny faint print; best reading 27A1244"
+   ],
+   "text": "TERRORIZE / ATTACK / Evasion 3 dice, 8+ / TARGETING: • [Priority Target] Priority Target • Closest Knight [REACT!] / MOVE & ATTACK / Choke 2. / For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Knockback 4. / HAUNTS OF UTREBANT – AI 2",
+   "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT]."
+  },
+  {
+   "file": "11.png",
+   "name": "Hysterical Screech",
+   "code": "27A1242",
+   "level": 2,
+   "type": "JUDGEMENT",
+   "evasionDice": 2,
+   "evasionDifficulty": 9,
+   "preTargeting": null,
+   "targeting": [
+    "Closest Knight in front",
+    "Closest Knight"
+   ],
+   "moveTag": "JUDGE",
+   "move": false,
+   "gates": [],
+   "effects": [
+    "Fortitude [Fortitude].",
+    "Gain the Dread Condition card.",
+    "If hit, lose -3 [Vigor]. [Peril Check]."
+   ],
+   "reactWindows": [],
+   "afterAttack": "Restrain. Forced Vault.",
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "HAUNTS OF UTREBANT – AI 2",
+   "unclear": [
+    "code: tiny faint print; best reading 27A1242",
+    "'Dread' is printed in italics",
+    "no REACT! markers printed on this card"
+   ],
+   "text": "HYSTERICAL SCREECH / JUDGEMENT / Evasion 2 dice, 9+ / TARGETING: • Closest Knight in front • Closest Knight / JUDGE / Fortitude [Fortitude]. / Gain the Dread Condition card. / If hit, lose -3 [Vigor]. [Peril Check]. / AFTER ATTACK / Restrain. Forced Vault. / HAUNTS OF UTREBANT – AI 2",
+   "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT]."
+  },
+  {
+   "file": "12.png",
+   "name": "A Wraith’s Lament",
+   "code": "27A1251",
+   "level": 3,
+   "type": "JUDGEMENT",
+   "evasionDice": 3,
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "Closest Knight with a Condition card",
+    "Closest Knight"
+   ],
+   "moveTag": "JUDGE",
+   "move": false,
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 4,
+     "effect": "+1 [d10]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "Bravery [Bravery].",
+    "If hit, lose -6 [Vigor]. [Peril Check].",
+    "Gain the Dread Condition card."
+   ],
+   "reactWindows": [],
+   "afterAttack": "Cooldown. Restrain. Forced Vault.",
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "HAUNTS OF UTREBANT – AI 3",
+   "unclear": [
+    "code: tiny faint print; best reading 27A1251",
+    "Heat gate threshold reads 4+ (small print)",
+    "'Dread' is printed in italics",
+    "no REACT! markers printed on this card"
+   ],
+   "text": "A WRAITH’S LAMENT / JUDGEMENT / Evasion 3 dice, 8+ / TARGETING: • Closest Knight with a Condition card • Closest Knight / JUDGE [Heat 4+ ▸ +1 [d10]] / Bravery [Bravery]. / If hit, lose -6 [Vigor]. [Peril Check]. / Gain the Dread Condition card. / AFTER ATTACK / Cooldown. Restrain. Forced Vault. / HAUNTS OF UTREBANT – AI 3",
+   "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT]."
+  },
+  {
+   "file": "13.png",
+   "name": "Addled by Fear",
+   "code": "27A1252",
+   "level": 3,
+   "type": "JUDGEMENT",
+   "evasionDice": 1,
+   "evasionDifficulty": 10,
+   "preTargeting": null,
+   "targeting": [
+    "Furthest Knight in front",
+    "Furthest Knight"
+   ],
+   "moveTag": "JUDGE",
+   "move": false,
+   "gates": [],
+   "effects": [
+    "Chosen Virtue. If hit, lose -8 [Vigor]. [Peril Check].",
+    "Choke 2. Gain the Panicked Condition card."
+   ],
+   "reactWindows": [],
+   "afterAttack": "Delay.",
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "HAUNTS OF UTREBANT – AI 3",
+   "unclear": [
+    "code: tiny faint print; best reading 27A1252",
+    "'Panicked' is printed in italics",
+    "no REACT! markers printed on this card"
+   ],
+   "text": "ADDLED BY FEAR / JUDGEMENT / Evasion 1 dice, 10+ / TARGETING: • Furthest Knight in front • Furthest Knight / JUDGE / Chosen Virtue. If hit, lose -8 [Vigor]. [Peril Check]. / Choke 2. Gain the Panicked Condition card. / AFTER ATTACK / Delay. / HAUNTS OF UTREBANT – AI 3",
+   "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT]."
+  },
+  {
+   "file": "14.png",
+   "name": "The Ghastly Truth",
+   "code": "27A1253",
+   "level": 3,
+   "type": "ZONE JUDGEMENT",
+   "evasionDice": 5,
+   "evasionDifficulty": 7,
+   "preTargeting": null,
+   "targeting": [
+    "Zone 1 around every Terrain tile on the Board"
+   ],
+   "moveTag": "JUDGE",
+   "move": false,
+   "gates": [],
+   "effects": [
+    "Bravery [Bravery] / Insight [Insight].",
+    "If hit, gain the Dread Condition card and lose -7 [Vigor]. [Peril Check]."
+   ],
+   "reactWindows": [
+    "targeting"
+   ],
+   "afterAttack": "Delay. Discard.",
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "HAUNTS OF UTREBANT – AI 3",
+   "unclear": [
+    "code: tiny faint print; best reading 27A1253",
+    "'Dread' is printed in italics"
+   ],
+   "text": "THE GHASTLY TRUTH / ZONE JUDGEMENT / Evasion 5 dice, 7+ / TARGETING: • Zone 1 around every Terrain tile on the Board [REACT!] / JUDGE / Bravery [Bravery] / Insight [Insight]. / If hit, gain the Dread Condition card and lose -7 [Vigor]. [Peril Check]. / AFTER ATTACK / Delay. Discard. / HAUNTS OF UTREBANT – AI 3",
+   "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT]."
+  },
+  {
+   "file": "15.png",
+   "name": "Spectral Strike",
+   "code": "27A1250",
+   "level": 3,
+   "type": "ZONE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "Zone"
+   ],
+   "moveTag": "ATTACK",
+   "move": false,
+   "gates": [],
+   "effects": [
+    "For each hit lose -3 [Vigor]. [Peril Check]."
+   ],
+   "reactWindows": [
+    "targeting"
+   ],
+   "afterAttack": "Knockback 4.",
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "HAUNTS OF UTREBANT – AI 3",
+   "zoneDiagram": {
+    "grid": [
+     11,
+     11
+    ],
+    "gridNote": "[columns, rows]",
+    "rows": [
+     ".....Y.....",
+     "....YYY....",
+     "...YYRYY...",
+     "..YYRRRYY..",
+     ".YYRRRRRYY.",
+     "YYRRR^RRRYY",
+     ".YYRRRRRYY.",
+     "..YYRRRYY..",
+     "...YYRYY...",
+     "....YYY....",
+     ".....Y....."
+    ],
+    "legend": "Rows top-to-bottom as printed, one char per cell: R red, Y yellow, . empty (tan), ^ > single-chevron black marker (the Haunt, pointing in that direction), ⇑ » double-chevron black marker pointing up / right (the specially designated space of the Spectral Step trait, where the Haunt appears after the attack).",
+    "red": 24,
+    "yellow": 36,
+    "note": "11x11 grid; Haunt (single chevron, up) at centre; red = 24 cells within distance 3 (diamond); yellow = the 36 cells at distance 4–5 (diamond of radius 5). No double-chevron marker; red tag is plain 'ATTACK' (no move)."
+   },
+   "unclear": [
+    "code: tiny faint print; best reading 27A1250 (last two digits blurred: 50 / 90)",
+    "zone diagram: lower-right cells (rows 8–11, cols 8–11) are partly covered by the art; yellow cells there read by symmetry (r8c9, r9c8)"
+   ],
+   "text": "SPECTRAL STRIKE / ZONE ATTACK / Evasion 3 dice, 8+ / ZONE DIAGRAM (see zoneDiagram) / TARGETING: • Zone [REACT!] / ATTACK / For each hit lose -3 [Vigor]. [Peril Check]. / AFTER ATTACK / Knockback 4. / HAUNTS OF UTREBANT – AI 3",
+   "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT]."
+  },
+  {
+   "file": "16.png",
+   "name": "Touch of Death",
+   "code": "27A1249",
+   "level": 3,
+   "type": "ATTACK",
+   "evasionDice": 5,
+   "evasionDifficulty": 7,
+   "preTargeting": null,
+   "targeting": [
+    "Furthest Knight in front",
+    "Furthest Knight"
+   ],
+   "moveTag": "APPEAR BEHIND & ATTACK",
+   "move": false,
+   "gates": [],
+   "effects": [
+    "Choke 3.",
+    "For each hit lose -2 [Vigor]. [Peril Check]."
+   ],
+   "reactWindows": [
+    "effect:1"
+   ],
+   "afterAttack": "Knockback 3. Knockdown.",
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "HAUNTS OF UTREBANT – AI 3",
+   "unclear": [
+    "code: tiny faint print; best reading 27A1249 (digits almost illegible; 49 chosen as the only unused code in the AI-3 run 27A1248–27A1253)",
+    "no REACT! marker on the targeting line"
+   ],
+   "text": "TOUCH OF DEATH / ATTACK / Evasion 5 dice, 7+ / TARGETING: • Furthest Knight in front • Furthest Knight / APPEAR BEHIND & ATTACK / Choke 3. / For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Knockback 3. Knockdown. / HAUNTS OF UTREBANT – AI 3",
+   "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT]."
+  },
+  {
+   "file": "17.png",
+   "name": "Phantom Fissure",
+   "code": "27A1248",
+   "level": 3,
+   "type": "ZONE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 9,
+   "preTargeting": null,
+   "targeting": [
+    "[Priority Target] Priority Target",
+    "Closest Knight in front",
+    "Closest Knight in sight"
+   ],
+   "moveTag": "MOVE & ATTACK",
+   "move": true,
+   "gates": [],
+   "effects": [
+    "For each hit lose -4 [Vigor]. [Peril Check]."
+   ],
+   "reactWindows": [
+    "targeting"
+   ],
+   "afterAttack": "Discard. Forced Vault.",
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "HAUNTS OF UTREBANT – AI 3",
+   "zoneDiagram": {
+    "grid": [
+     9,
+     6
+    ],
+    "gridNote": "[columns, rows]",
+    "rows": [
+     "....Y....",
+     "...Y⇑Y...",
+     "..YYRYY..",
+     ".YYRRRYY.",
+     "YYRRRRRYY",
+     "....^...."
+    ],
+    "legend": "Rows top-to-bottom as printed, one char per cell: R red, Y yellow, . empty (tan), ^ > single-chevron black marker (the Haunt, pointing in that direction), ⇑ » double-chevron black marker pointing up / right (the specially designated space of the Spectral Step trait, where the Haunt appears after the attack).",
+    "red": 9,
+    "yellow": 15,
+    "note": "9 columns x 6 rows. Haunt (single chevron, up) at bottom row centre (r6,c5); double chevron (up) at r2,c5. Red triangle: r3 c5; r4 c4–6; r5 c3–7 (9 cells). Yellow: r1 c5; r2 c4,c6; r3 c3,c4,c6,c7; r4 c2,c3,c7,c8; r5 c1,c2,c8,c9 (15 cells)."
+   },
+   "unclear": [
+    "code: tiny faint print; best reading 27A1248 (last digit blurred)",
+    "zone diagram: the r5,c9 yellow cell and bottom-right corner are partly covered by the art"
+   ],
+   "text": "PHANTOM FISSURE / ZONE ATTACK / Evasion 3 dice, 9+ / ZONE DIAGRAM (see zoneDiagram) / TARGETING: • [Priority Target] Priority Target • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK / For each hit lose -4 [Vigor]. [Peril Check]. / AFTER ATTACK / Discard. Forced Vault. / HAUNTS OF UTREBANT – AI 3",
+   "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT]."
+  }
+ ],
+ "bp": [
+  {
+   "file": "18.png",
+   "name": "Executed Prisoner",
+   "code": "28A1635",
+   "level": 1,
+   "at": 3,
+   "overcomeTag": null,
+   "overcome": null,
+   "responses": {
+    "wound": null,
+    "fail": null,
+    "instinct": "Knockback 3.",
+    "critical": "Gain a permanent positive Precision [Precision] token."
+   },
+   "gates": [],
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "HAUNTS OF UTREBANT – BP 1",
+   "unclear": [
+    "code: tiny faint print; best reading 28A1635",
+    "no OVERCOME tag printed"
+   ],
+   "responseOrder": [
+    "INSTINCT",
+    "CRITICAL"
+   ],
+   "text": "EXECUTED PRISONER / [AT] 3 / INSTINCT: Knockback 3. / CRITICAL: Gain a permanent positive Precision [Precision] token. / HAUNTS OF UTREBANT – BP 1"
+  },
+  {
+   "file": "19.png",
+   "name": "Unknown Soldier",
+   "code": "28A1636",
+   "level": 1,
+   "at": 3,
+   "overcomeTag": null,
+   "overcome": null,
+   "responses": {
+    "wound": "Choke 1.",
+    "fail": null,
+    "instinct": null,
+    "critical": "Gain a permanent positive Precision [Precision] token."
+   },
+   "gates": [],
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": "All Mobs gain +2 to Knockback.",
+   "footer": "HAUNTS OF UTREBANT – BP 1",
+   "unclear": [
+    "code: tiny faint print; best reading 28A1636 (last digit 6 or 8)",
+    "no OVERCOME tag printed"
+   ],
+   "responseOrder": [
+    "WOUND",
+    "CRITICAL"
+   ],
+   "text": "UNKNOWN SOLDIER / [AT] 3 / WOUND: Choke 1. / CRITICAL: Gain a permanent positive Precision [Precision] token. / HAUNTS OF UTREBANT – BP 1 / While this BP is revealed: All Mobs gain +2 to Knockback."
+  },
+  {
+   "file": "20.png",
+   "name": "Man Denied Burial",
+   "code": "28A1637",
+   "level": 1,
+   "at": 4,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 2,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "Gain the Fear Condition card.",
+    "fail": "Knockback 3.",
+    "instinct": null,
+    "critical": "Another Knight may move up to 3 spaces and perform a Bonus Attack!"
+   },
+   "gates": [],
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "HAUNTS OF UTREBANT – BP 1",
+   "unclear": [
+    "code: tiny faint print; best reading 28A1637",
+    "overcome threshold small pale print; reads 2+",
+    "'Fear' italic; 'Bonus Attack' bold"
+   ],
+   "responseOrder": [
+    "WOUND",
+    "FAIL",
+    "CRITICAL"
+   ],
+   "text": "MAN DENIED BURIAL / OVERCOME 2+ ▸ Power 1 / [AT] 4 / WOUND: Gain the Fear Condition card. / FAIL: Knockback 3. / CRITICAL: Another Knight may move up to 3 spaces and perform a Bonus Attack! / HAUNTS OF UTREBANT – BP 1"
+  },
+  {
+   "file": "21.png",
+   "name": "Percy, Doomed by the Tide",
+   "code": "28A1638",
+   "level": 2,
+   "at": 4,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 3,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "Place a 1x2 Swamp Terrain tile under this Mob, prioritizing spaces without Terrain tiles.",
+    "fail": null,
+    "instinct": "Gain the Slimed Condition card.",
+    "critical": "Gain the Courage Condition card!"
+   },
+   "gates": [],
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "HAUNTS OF UTREBANT – BP 2",
+   "unclear": [
+    "code: tiny faint print; best reading 28A1638 (last digit 8 or 9)",
+    "overcome threshold small pale print; reads 3+",
+    "'Slimed' and 'Courage' italic; INSTINCT is printed above WOUND"
+   ],
+   "responseOrder": [
+    "INSTINCT",
+    "WOUND",
+    "CRITICAL"
+   ],
+   "text": "PERCY, DOOMED BY THE TIDE / OVERCOME 3+ ▸ Power 1 / [AT] 4 / INSTINCT: Gain the Slimed Condition card. / WOUND: Place a 1x2 Swamp Terrain tile under this Mob, prioritizing spaces without Terrain tiles. / CRITICAL: Gain the Courage Condition card! / HAUNTS OF UTREBANT – BP 2"
+  },
+  {
+   "file": "22.png",
+   "name": "The Unremarkable One",
+   "code": "28A1639",
+   "level": 2,
+   "at": 5,
+   "overcomeTag": null,
+   "overcome": null,
+   "responses": {
+    "wound": "Escalate the lowest AI.",
+    "fail": null,
+    "instinct": null,
+    "critical": "You may move up to 3 spaces and perform a Bonus Attack! Immediately see 8915."
+   },
+   "gates": [],
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "HAUNTS OF UTREBANT – BP 2",
+   "unclear": [
+    "code: tiny faint print; best reading 28A1639 (last digit nearly illegible; 9 from sequence)",
+    "no OVERCOME tag printed",
+    "'Bonus Attack' bold; story reference number reads 8915"
+   ],
+   "responseOrder": [
+    "WOUND",
+    "CRITICAL"
+   ],
+   "text": "THE UNREMARKABLE ONE / [AT] 5 / WOUND: Escalate the lowest AI. / CRITICAL: You may move up to 3 spaces and perform a Bonus Attack! Immediately see 8915. / HAUNTS OF UTREBANT – BP 2"
+  },
+  {
+   "file": "23.png",
+   "name": "Gordon, Adored by Many",
+   "code": "28A1640",
+   "level": 2,
+   "at": 5,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 5,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": null,
+    "fail": null,
+    "instinct": "Forced Vault.",
+    "critical": "You may move up to 3 spaces and perform a Bonus Attack!"
+   },
+   "gates": [],
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": "All Monster Attacks in Zone 2 from this Mob additionally cause -2 [Vigor] loss.",
+   "footer": "HAUNTS OF UTREBANT – BP 2",
+   "unclear": [
+    "code: tiny faint print; best reading 28A1640",
+    "overcome threshold small pale print; reads 5+ (could be 3+)"
+   ],
+   "responseOrder": [
+    "INSTINCT",
+    "CRITICAL"
+   ],
+   "text": "GORDON, ADORED BY MANY / OVERCOME 5+ ▸ Power 1 / [AT] 5 / INSTINCT: Forced Vault. / CRITICAL: You may move up to 3 spaces and perform a Bonus Attack! / HAUNTS OF UTREBANT – BP 2 / While this BP is revealed: All Monster Attacks in Zone 2 from this Mob additionally cause -2 [Vigor] loss."
+  },
+  {
+   "file": "24.png",
+   "name": "Amelie, Peacefully Asleep",
+   "code": "28A1641",
+   "level": 3,
+   "at": 7,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 4,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "Lose -2 [Vigor].",
+    "fail": "Forced Vault.",
+    "instinct": null,
+    "critical": "Another Knight may move up to 3 spaces and perform a Bonus Attack!"
+   },
+   "gates": [],
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": "Resolve all Gated Effects on AI cards.",
+   "footer": "HAUNTS OF UTREBANT – BP 3",
+   "unclear": [
+    "code: tiny faint print; best reading 28A1641",
+    "overcome threshold digit is the least legible of the set: best reading 4+ (could be 1+)"
+   ],
+   "responseOrder": [
+    "WOUND",
+    "FAIL",
+    "CRITICAL"
+   ],
+   "text": "AMELIE, PEACEFULLY ASLEEP / OVERCOME 4+ ▸ Power 1 / [AT] 7 / WOUND: Lose -2 [Vigor]. / FAIL: Forced Vault. / CRITICAL: Another Knight may move up to 3 spaces and perform a Bonus Attack! / HAUNTS OF UTREBANT – BP 3 / While this BP is revealed: Resolve all Gated Effects on AI cards."
+  },
+  {
+   "file": "25.png",
+   "name": "Peter, Gone Too Young",
+   "code": "28A1642",
+   "level": 3,
+   "at": 6,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 5,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "Knockback 5.",
+    "fail": "Choke 2.",
+    "instinct": null,
+    "critical": "You may flip a chosen BP card."
+   },
+   "gates": [],
+   "reactWindows": [],
+   "whenRevealed": "Gain +1 Curse [Curse].",
+   "whileRevealed": null,
+   "footer": "HAUNTS OF UTREBANT – BP 3",
+   "unclear": [
+    "code: tiny faint print; best reading 28A1642 (very faint; 42 fits the sequence)",
+    "overcome threshold small pale print; reads 5+",
+    "icon after 'Curse' is a small dark knot/skull-like glyph, transcribed as [Curse]"
+   ],
+   "responseOrder": [
+    "WOUND",
+    "FAIL",
+    "CRITICAL"
+   ],
+   "text": "When you reveal this BP: Gain +1 Curse [Curse]. / PETER, GONE TOO YOUNG / OVERCOME 5+ ▸ Power 1 / [AT] 6 / WOUND: Knockback 5. / FAIL: Choke 2. / CRITICAL: You may flip a chosen BP card. / HAUNTS OF UTREBANT – BP 3"
+  },
+  {
+   "file": "26.png",
+   "name": "Woolf, the Unyielding",
+   "code": "28A1643",
+   "level": 3,
+   "at": 7,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 5,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": null,
+    "fail": null,
+    "instinct": "The furthest Mob performs Signature against the Attacker.",
+    "critical": "Gain the Courage Condition card!"
+   },
+   "gates": [],
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": "In Zone 2 from this Mob, you cannot attack other Mobs.",
+   "footer": "HAUNTS OF UTREBANT – BP 3",
+   "unclear": [
+    "code: tiny faint print; best reading 28A1643",
+    "overcome threshold small pale print; reads 5+",
+    "'Courage' italic"
+   ],
+   "responseOrder": [
+    "INSTINCT",
+    "CRITICAL"
+   ],
+   "text": "WOOLF, THE UNYIELDING / OVERCOME 5+ ▸ Power 1 / [AT] 7 / INSTINCT: The furthest Mob performs Signature against the Attacker. / CRITICAL: Gain the Courage Condition card! / HAUNTS OF UTREBANT – BP 3 / While this BP is revealed: In Zone 2 from this Mob, you cannot attack other Mobs."
+  }
+ ],
+ "routine": {
+  "file": "27.png",
+  "name": "Tide of Terror",
+  "code": null,
+  "type": "ROUTINE",
+  "text": "Each Knight gains the Drowning Condition card.",
+  "footer": "HAUNTS OF UTREBANT",
+  "unclear": [
+   "no card code visible in the scan",
+   "'Drowning' is printed in italics"
+  ]
+ },
+ "signature": {
+  "file": "sig.png",
+  "name": "Ice in Your Veins",
+  "code": "27A1254",
+  "type": "SIGNATURE",
+  "evasionDice": 3,
+  "evasionDifficulty": 9,
+  "preTargeting": null,
+  "targeting": [
+   "Closest Knight in sight"
+  ],
+  "moveTag": "MOVE & ATTACK",
+  "move": true,
+  "gates": [
+   {
+    "stat": "Heat",
+    "gte": 3,
+    "effect": "+1 [d10]",
+    "where": "moveTag"
+   }
+  ],
+  "effects": [
+   "For each hit lose -1 [Vigor]. [Peril Check]."
+  ],
+  "reactWindows": [
+   "targeting",
+   "effect:0"
+  ],
+  "afterAttack": "Forced Vault. Move 4 spaces directly away from the Target.",
+  "afterFinalAttack": null,
+  "aiResponse": null,
+  "footer": "HAUNTS OF UTREBANT",
+  "unclear": [
+   "code: illegible in the 389px screenshot; best reading 27A1254 (continues the AI sequence 27A1236–27A1253)",
+   "card read from a small tilted screenshot: evasion 3 dice / 9+, Heat gate '3+ ▸ +1 [d10]' and vigor loss '-1' are best readings of small print"
+  ],
+  "text": "ICE IN YOUR VEINS / SIGNATURE / Evasion 3 dice, 9+ / TARGETING: • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat 3+ ▸ +1 [d10]] / For each hit lose -1 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Forced Vault. Move 4 spaces directly away from the Target. / HAUNTS OF UTREBANT"
+ },
+ "extra": [],
+ "_notes": [
+  "Card codes are tiny pale print on 3x-upscaled crops; values are best readings reconciled with the run 27A1236–27A1253 (AI, six per level), 27A1254 (Signature), 28A1635–28A1643 (BP).",
+  "Icons: [Vigor], [Peril Check], [Heat], [d10], [Priority Target], [Precision], [To Hit], virtue icons [Bravery]/[Insight]/[Fortitude], [Curse] (glyph after the word Curse).",
+  "zoneDiagram.rows: see each legend. Single chevron = the Haunt; double chevron = Spectral Step destination space (sheet trait). Yellow cells are the Level-4 'No Mercy' enlargement.",
+  "Condition card names (Fear, Dread, Panicked, Slimed, Courage, Drowning) are printed in italics."
+ ]
+}
