@@ -144,6 +144,35 @@ ${mons.map(m => `<h3>${esc(m)} (${MO.filter(g => g.monster === m).length})</h3><
 <h3>Upgrade (${UP.length})</h3><table><tr><th>이름</th><th>티어</th><th>대상</th><th>텍스트</th></tr>${UP.map(u => `<tr><td><b>${esc(u.name)}</b> <span class="small">${esc(u.code || '')}</span></td><td>${u.tier}</td><td>${u.kind === 'weapon' ? 'Weapon' : 'Armor'}</td><td>${esc(u.text).replace(/\n/g, '<br>')}${unc(u.unclear)}</td></tr>`).join('')}</table></section>`); }
 
 // 11. Campaign layer
+const one = v => v == null ? '' : typeof v === 'string' ? esc(v) : Array.isArray(v) ? v.map(one).join('<br>') : esc(JSON.stringify(v));
+const gAi = c => `<tr><td>${c.level ?? 'Sig'}</td><td><b>${esc(c.name)}</b><br><span class="small">${esc(c.type || '')} · ${esc(c.code || '')}</span></td><td>${c.evasionDice}d ${esc(c.evasionDifficulty)}</td><td>${one(c.preTargeting)} ${one(c.targeting)}</td><td>${esc(c.moveTag || '')}<br>${(c.gates || []).map(g => `<span class="warn">[${esc(g.stat)} ${g.gte ?? (g.lte != null ? '≤' + g.lte : g.eq ?? '')}${g.gte != null ? '+' : ''} ▸ ${esc(g.effect)}]</span>`).join('<br>')}</td><td>${one(c.effects)}</td><td>${c.afterAttack ? 'AA: ' + one(c.afterAttack) : ''}${c.afterFinalAttack ? ' AFA: ' + one(c.afterFinalAttack) : ''}${c.aiResponse ? '<br>AI Response: ' + one(c.aiResponse) : ''}</td><td class="small">${c.ops ? '✔ ops' : ''}${unc(c.unclear)}</td></tr>`;
+const gBp = c => `<tr><td>${c.level}</td><td><b>${esc(c.name)}</b><br><span class="small">${esc(c.code || '')}</span></td><td>${c.at}</td><td>${c.overcome ? esc((c.overcome.n ?? '') + (String(c.overcome.n ?? '').includes('+') ? '' : '+') + ' ' + (c.overcome.effect || '')) : ''}</td>${['wound', 'fail', 'instinct', 'critical'].map(k => `<td>${one((c.responses || {})[k])}</td>`).join('')}<td class="small">${c.whenRevealed ? 'When revealed: ' + one(c.whenRevealed) + '<br>' : ''}${c.whileRevealed ? 'While: ' + one(c.whileRevealed) : ''}${unc(c.unclear)}</td></tr>`;
+const cardTables = (ai, bp) => `<h3>AI 카드 (${ai.length - 1}) + Signature</h3><table><tr><th>Lv</th><th>이름</th><th>회피</th><th>Targeting</th><th>태그/게이트</th><th>효과</th><th>After / Response</th><th>비고</th></tr>${ai.map(gAi).join('')}</table>
+<h3>BP 카드 (${bp.length})</h3><table><tr><th>Lv</th><th>이름</th><th>AT</th><th>Overcome</th><th>Wound</th><th>Fail</th><th>Instinct</th><th>Critical</th><th>Revealed / 비고</th></tr>${bp.map(gBp).join('')}</table>`;
+// 13. Mob monsters
+for (const [mid, M] of fs.readdirSync('data/monsters').map(f => [f.replace('.json', ''), rd('data/monsters/' + f)]).filter(([, m]) => m.kind === 'mob')) {
+  const cs = M.clashSetup || {};
+  sec.push(`<section id="mob-${mid}"><h2>13. ${esc(M.name)} — Mob Clash (Sheet · AI/BP · Signature · Routine · Setup)</h2>
+<p class="impl">데이터: <code>data/monsters/${mid}.json</code> · 구현: <code>src/engine/mobs.js</code> (Mob track · Activation 토큰 회전 · Engaged 타게팅 · Gangup/Swarm/Heal/Spawn · Armor 토큰) · 테스트: <code>test/mobs.mjs</code></p>
+<table><tr><th>Lv</th><th>To Hit</th><th>Wounds</th><th>Activations</th><th>보너스</th><th>Trait +</th></tr>${Object.entries(M.levels).map(([l, v]) => `<tr><td>${l}</td><td>${v.toHit}+</td><td>${v.wounds ?? '-'}</td><td>${(v.activations || []).join(',')}</td><td>${Object.entries(v.bonuses || {}).map(([k, n]) => `${k} +${n}`).join(', ')}</td><td>${(v.traitsAdd || []).join(', ')}</td></tr>`).join('')}</table>
+<h3>Traits</h3><table><tr><th>Lv</th><th>Trait</th><th>텍스트</th><th>구현</th></tr>${M.traits.map(t => `<tr><td>${t.level}</td><td><b>${esc(t.name)}</b></td><td>${esc(t.text)}${unc(t.unclear ? [].concat(t.unclear) : [])}</td><td>${t.implemented === false ? '✘ 미구현' : '✔'}</td></tr>`).join('')}</table>
+<h3>Clash Setup</h3><pre class="small">${esc(JSON.stringify(cs, null, 1))}</pre>
+${cardTables([...M.cards.ai, M.cards.signature], M.cards.bp)}
+<p><b>Routine — ${esc(M.cards.routine.name)}</b>: ${(M.cards.routine.effects || [M.cards.routine.text]).map(esc).join(' ')}</p>
+<h3>해석 · 확인 필요</h3><ul>${(M.rulings || []).map(r => `<li>${esc(r)}</li>`).join('')}</ul></section>`);
+}
+// 14. Transcribed, not yet implemented
+if (fs.existsSync('docs/transcriptions')) for (const f of fs.readdirSync('docs/transcriptions').filter(f => f.endsWith('_raw.json'))) {
+  const Rw = rd('docs/transcriptions/' + f), S = Rw.sheet;
+  sec.push(`<section id="raw-${f.replace('_raw.json', '')}"><h2>14. ${esc(S.name)} — 전사 완료 · 엔진 미구현</h2>
+<p class="impl">원본 전사: <code>docs/transcriptions/${f}</code> · 게임 데이터(<code>data/monsters</code>)에는 아직 넣지 않음 → 해당 노드는 출정 불가</p>${unc(S.unclear)}
+<table><tr><th>Lv</th><th>To Hit</th><th>Wounds</th><th>Exh.</th><th>Activations</th><th>보너스</th><th>Trait +</th></tr>${Object.entries(S.levels).map(([l, v]) => `<tr><td>${l}</td><td>${esc(v.toHit)}</td><td>${v.wounds ?? '-'}</td><td>${v.exhibitionWounds ?? '-'}</td><td>${esc(v.activationsText || (v.activations || []).join(','))}</td><td>${Object.entries(v.bonuses || {}).filter(([, n]) => n).map(([k, n]) => `${k} +${n}`).join(', ')}</td><td>${one(v.traitsAdd)}</td></tr>`).join('')}</table>
+<p>Basic: ${one(S.basicAbilities)} · ${esc(S.traitsLine || '')}</p>
+<h3>Traits</h3><table><tr><th>Lv</th><th>Trait</th><th>텍스트</th></tr>${S.traits.map(t => `<tr><td>${t.level}</td><td><b>${esc(t.name)}</b></td><td>${esc(t.text)}${unc(t.unclear ? [].concat(t.unclear) : [])}</td></tr>`).join('')}</table>
+${cardTables([...Rw.ai, Rw.signature], Rw.bp)}
+<p><b>Routine — ${esc(Rw.routine.name)}</b>: ${esc(Rw.routine.text || one(Rw.routine.effects))}</p>
+${(Rw.extra || []).map(x => `<p><b>${esc(x.name)}</b> (${esc(x.kind || '')}${x.kingdom ? ' · ' + esc(x.kingdom) : ''}): ${esc(x.text || '')} ${x.transformingSeed ? '<br>Transforming Seed: ' + esc(x.transformingSeed) : ''}${unc(x.unclear)}</p>`).join('')}</section>`);
+}
 sec.push(`<section id="campaign"><h2>11. 캠페인 레이어 — Rosegraal 루프 ↔ 구현 대응</h2>
 <p class="impl">소스: <code>src/engine/campaign.js</code> · UI: <code>src/ui/main.js</code>(home/map/encounter/clash/aftermath/outpost) · 테스트: <code>test/campaign.mjs</code>(6시드 × 최대 6라운드 시뮬레이션, 저장/복원, 로드아웃 규칙, Sigh 재전투), <code>test/ui.mjs</code>(지도 → 노드 → 출정 → Clash → Aftermath → 지도 → 저장 확인)</p>
 <table><tr><th>룰북</th><th>구현</th><th>비고 / 해석</th></tr>

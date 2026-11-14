@@ -27,16 +27,16 @@
    "evasion": null,
    "evasionReroll": null,
    "armorDice": null,
-   "text": "[Two-handed icon]: +1 [Attack die].",
+   "text": "[Two-handed icon]: +1 [d10].",
    "gates": [
     {
      "gate": "TWO-HANDED",
-     "text": "+1 [Attack die]."
+     "text": "+1 [d10]."
     }
    ],
    "knight": null,
    "unclear": [
-    "The black tag icon before ': +1 [Attack die]' shows two gauntlets (the two-hand slot icon); interpreted as a gate meaning 'when wielded two-handed / paired'."
+    "The black tag icon before ': +1 [d10]' shows two gauntlets (the two-hand slot icon); interpreted as a gate meaning 'when wielded two-handed / paired'."
    ],
    "ops": {
     "keywords": [],
@@ -1376,11 +1376,11 @@
    "evasion": null,
    "evasionReroll": null,
    "armorDice": null,
-   "text": "Bane Limit -1.\nDuring the second ability window, if you deal a Wound, you may discard all Bane [Bane] tokens to place the same amount of Openings [Opening] and/or Breaks [Break] in the Knight Pool.\n[P 4+] [Discard] When a Monster attacks, it loses -X [Attack die] (to a minimum of 1), where X is the number of Bane [Bane] tokens you have.",
+   "text": "Bane Limit -1.\nDuring the second ability window, if you deal a Wound, you may discard all Bane [Bane] tokens to place the same amount of Openings [Opening] and/or Breaks [Break] in the Knight Pool.\n[P 4+] [Discard] When a Monster attacks, it loses -X [d10] (to a minimum of 1), where X is the number of Bane [Bane] tokens you have.",
    "gates": [
     {
      "gate": "PASSION 4+",
-     "text": "[Discard] When a Monster attacks, it loses -X [Attack die] (to a minimum of 1), where X is the number of Bane [Bane] tokens you have."
+     "text": "[Discard] When a Monster attacks, it loses -X [d10] (to a minimum of 1), where X is the number of Bane [Bane] tokens you have."
     }
    ],
    "knight": "stoneface",

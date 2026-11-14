@@ -167,8 +167,8 @@ const renderBoard = () => {
   const B = clash.board; const CW = 10, PAD = 4; const W = B.cols * CW + PAD * 2, H = B.rows * CW + PAD * 2;
   const x = c => PAD + (c - 1) * CW, y = r => PAD + (B.rows - 1 - r) * CW;
   const s = svg('svg', { viewBox: `0 0 ${W} ${H}`, class: 'bsvg' });
-  const M = clash.monster; const front = new Set(), rear = new Set(rearCells(B, M.cells, M.facing).map(c => B.key(c)));
-  for (let r = 0; r < B.rows; r++) for (let c = 1; c <= B.cols; c++) { const cell = { c, r }; if (inFront(B, M.cells, M.facing, cell)) front.add(B.key(cell)); }
+  const M = clash.monster; const shade = !M.isMob || (M.cur && M.cur.cells.length && (clash.currentAttack || clash.currentKnightAttack)); const front = new Set(), rear = new Set(shade ? rearCells(B, M.cells, M.facing).map(c => B.key(c)) : []);
+  if (shade) for (let r = 0; r < B.rows; r++) for (let c = 1; c <= B.cols; c++) { const cell = { c, r }; if (inFront(B, M.cells, M.facing, cell)) front.add(B.key(cell)); }
   const selCells = pending && pending.q.type === 'move' ? pending.q.cells : [];
   const pv = pending && pending.q.preview === 'path' ? (pending.q.options[previewSel] || pending.q.options[0]).path || [] : [];
   for (let r = 0; r < B.rows; r++) for (let c = 1; c <= B.cols; c++) {
@@ -181,11 +181,25 @@ const renderBoard = () => {
   for (let c = 1; c <= B.cols; c++) s.append(svg('text', { x: x(c) + CW / 2, y: H - 1, class: 'coord' }, c));
   for (const [key, t] of B.terrain) { const [c, r] = key.split(',').map(Number); s.append(svg('rect', { x: x(c) + 1.5, y: y(r) + 1.5, width: CW - 3, height: CW - 3, rx: 1.5, class: 'ter' })); s.append(svg('text', { x: x(c) + CW / 2, y: y(r) + CW * .68, class: 'lbl' }, t.id[0].toUpperCase())); }
   pv.forEach((fp, i) => { const last = i === pv.length - 1; for (const c of fp) s.append(svg('rect', { x: x(c.c) + .8, y: y(c.r) + .8, width: CW - 1.6, height: CW - 1.6, rx: 1, class: last ? 'pvend' : 'pvpath' })); const cc = fp.reduce((a, c) => ({ c: a.c + c.c / fp.length, r: a.r + c.r / fp.length }), { c: 0, r: 0 }); s.append(svg('text', { x: x(cc.c) + CW / 2, y: y(cc.r) + CW * .62, class: 'pvtxt' }, String(i + 1))); });
+  if (M.isMob) {
+    const pickable = pending && pending.q.kind === 'mob' ? new Set(pending.q.options.map(o => o.value)) : null;
+    for (const m of M.mobs) { const c = m.cells[0]; const cx = x(c.c) + CW / 2, cy = y(c.r) + CW / 2; const d = DIRS[m.facing]; const act = M.cur === m && (clash.currentAttack || clash.currentKnightAttack);
+      const g = svg('g', { class: 'mobg' + (pickable && pickable.has(m.n) ? ' pick' : '') });
+      g.append(svg('rect', { x: x(c.c) + 1, y: y(c.r) + 1, width: CW - 2, height: CW - 2, rx: 2, class: 'mon mob' + (m.revealed ? ' rev' : '') + (act ? ' act' : '') }));
+      g.append(svg('polygon', { points: `${cx + d.c * 4.6},${cy - d.r * 4.6} ${cx - d.r * 2 + d.c * 2.4},${cy - d.c * 2 - d.r * 2.4} ${cx + d.r * 2 + d.c * 2.4},${cy + d.c * 2 - d.r * 2.4}`, fill: '#ffd27a' }));
+      g.append(svg('text', { x: cx, y: cy + 1.6, class: 'lbl' }, String(m.n)));
+      if (m.tokens.length) g.append(svg('circle', { cx: x(c.c) + CW - 2, cy: y(c.r) + 2, r: 1.4, fill: m.tokens.some(t => t.ready) ? '#ff5a4a' : '#6b5a4a', stroke: '#000', 'stroke-width': .3 }));
+      if (m.armor) g.append(svg('text', { x: x(c.c) + 2.2, y: y(c.r) + 3.4, class: 'pvtxt', style: 'fill:#9fd0ff;font-size:3px' }, '🛡' + m.armor));
+      if (pickable && pickable.has(m.n)) { g.style.pointerEvents = 'auto'; g.style.cursor = 'pointer'; g.addEventListener('click', () => answer(m.n)); }
+      s.append(g);
+    }
+  } else {
   const mc = M.cells; const minC = Math.min(...mc.map(c => c.c)), maxC = Math.max(...mc.map(c => c.c)), minR = Math.min(...mc.map(c => c.r)), maxR = Math.max(...mc.map(c => c.r));
   s.append(svg('rect', { x: x(minC) + 1, y: y(maxR) + 1, width: (maxC - minC + 1) * CW - 2, height: (maxR - minR + 1) * CW - 2, rx: 2, class: 'mon' }));
   const cx = x(minC) + (maxC - minC + 1) * CW / 2, cy = y(maxR) + (maxR - minR + 1) * CW / 2; const d = DIRS[M.facing];
   s.append(svg('polygon', { points: `${cx + d.c * 7},${cy - d.r * 7} ${cx - d.r * 3 + d.c * 2},${cy - d.c * 3 - d.r * 2} ${cx + d.r * 3 + d.c * 2},${cy + d.c * 3 - d.r * 2}`, fill: '#ffd27a' }));
   s.append(svg('text', { x: cx, y: cy + 1.8, class: 'lbl' }, M.name[0]));
+  }
   for (const k of clash.knights) { if (!k.pos || !k.alive) continue; const dead = !k.alive, kd = clash.knockedDown(k); s.append(svg('circle', { cx: x(k.pos.c) + CW / 2, cy: y(k.pos.r) + CW / 2, r: CW * .4, class: 'kn' + (dead ? ' dead' : '') + (kd ? ' kd' : '') })); s.append(svg('text', { x: x(k.pos.c) + CW / 2, y: y(k.pos.r) + CW * .68, class: 'lbl' }, k.name.replace(/\D/g, '') || k.name[0])); }
   return s;
 };
@@ -248,7 +262,12 @@ const monsterPane = () => { const M = clash.monster; const curAI = clash.current
   h('div', {}, h('b', {}, `${M.name} Lv${M.level}`), ` · To Hit ${M.toHit + M.modifiers.toHit}+ · 방향 ${M.facing}`),
   h('div', {}, h('span', { class: 'link', onclick: () => openModal(`Wound Stack ${M.wounds}/${M.woundsToKill}`, M.woundStack.length ? h('div', {}, M.woundStack.map(w => w.card ? bpView(w.card) : h('div', { class: 'cardview' }, `Generic ${w.generic} Wound (${w.wounds})`))) : h('div', { class: 'muted' }, '비어 있음')) }, `Wound Stack ${M.wounds} / ${M.woundsToKill} ▸`)), track('v', M.wounds, M.woundsToKill),
   h('div', { class: 'cards2' }, h('div', {}, h('div', { class: 'small muted' }, clash.currentAttack ? '현재 AI' : '최근 AI'), curAI ? h('div', { class: 'link', onclick: () => openModal('AI 카드', aiView(curAI)) }, aiView(curAI)) : h('div', { class: 'small muted' }, '—')), h('div', {}, h('div', { class: 'small muted' }, clash.currentKnightAttack && clash.currentKnightAttack.bp ? '현재 BP' : '최근 BP'), curBP ? h('div', { class: 'link', onclick: () => openModal('BP 카드', bpView(curBP)) }, bpView(curBP)) : h('div', { class: 'small muted' }, '—'))),
-  h('div', { class: 'small row', style: 'margin:4px 0' }, `AI 덱 ${M.ai.size}`, pileBtn('AI 버림', M.ai.discard, aiView), `BP 덱 ${M.bp.size}`, pileBtn('BP 버림', M.bp.discard, bpView), h('span', { class: 'muted' }, `Esc AI2 ${M.aiEsc[2].size} AI3 ${M.aiEsc[3].size} · BP2 ${M.bpEsc[2].size} BP3 ${M.bpEsc[3].size}`)),
+  M.isMob ? h('div', { class: 'mtrack' }, Array.from({ length: 10 }, (_, i) => { const m = M.mobs.find(x => x.n === i + 1); if (!m) return h('div', { class: 'mslot empty' }, String(i + 1)); const known = m.revealed || m.peeked;
+    return h('div', { class: 'mslot link' + (m.revealed ? ' rev' : '') + (M.cur === m && (clash.currentAttack || clash.currentKnightAttack) ? ' act' : ''), onclick: () => openModal(`Mob #${m.n} — ${clash.board.label(m.cells[0])}`, known ? bpView(m.card) : h('div', { class: 'cardview bp' }, h('div', { class: 'cv-title' }, `BP ${m.card.level} (비공개)`), h('div', { class: 'small muted' }, '카드 뒷면의 레벨만 보입니다. 공격하면 공개됩니다.')), h('div', { class: 'small' }, `Armor 토큰 ${m.armor} · Activation 토큰 ${m.tokens.map(t => t.type + (t.ready ? '' : '(사용)')).join(', ') || '없음'}`)) },
+      h('b', {}, '#' + m.n), h('div', { class: 'small' }, known ? m.card.name : `BP${m.card.level} ?`), h('div', { class: 'small muted' }, `${clash.board.label(m.cells[0])}${known ? ' · AT ' + clash.mobAT(m) : ''}${m.armor ? ' 🛡' + m.armor : ''}`), m.tokens.length ? h('div', { class: 'small', style: 'color:' + (m.tokens.some(t => t.ready) ? 'var(--rose)' : 'var(--muted)') }, m.tokens.map(t => t.type).join('+')) : null); })) : null,
+  M.isMob && M.hasTrait('Necrofusion') ? h('div', { class: 'small' }, `Necrofusion 토큰 ${clash.necro}/3`) : null,
+  h('div', { class: 'small row', style: 'margin:4px 0' }, `AI 덱 ${M.ai.size}`, pileBtn('AI 버림', M.ai.discard, aiView), M.isMob ? `BP 풀 L1 ${M.bpPool[1].size} / L2 ${M.bpPool[2].size} / L3 ${M.bpPool[3].size}` : `BP 덱 ${M.bp.size}`, M.isMob ? null : pileBtn('BP 버림', M.bp.discard, bpView), h('span', { class: 'muted' }, `Esc AI2 ${M.aiEsc[2].size} AI3 ${M.aiEsc[3].size} · BP2 ${M.bpEsc[2].size} BP3 ${M.bpEsc[3].size}`)),
+  M.isMob ? h('div', { class: 'small' }, `AT 보너스 +${M.bonuses.at + M.modifiers.at} · Vigor 손실 보너스 +${M.bonuses.vigorLoss || 0}${clash.mobArmorDisabled ? ' · Armor 토큰 효과 없음' : ''}`) :
   h('div', { class: 'small' }, `AT 보너스 +${M.bonuses.at + M.modifiers.at} · Armor 토큰 BP1 ${clash.armorTokens[1]} / BP2 ${clash.armorTokens[2]} / BP3 ${clash.armorTokens[3]}${M.hasTrait('Jacked') ? ' · Jacked ' + clash.jackedTokens : ''} · Counter ${M.generic.counter || 0}/3`),
   h('div', {}, [...M.traits].map(t => { const td = clash.monsterDef.traits.find(x => x.name === t); return h('span', { class: 'tag link' + (M.disabledTraits.has(t) ? ' muted' : ''), onclick: () => openModal(`Trait — ${t}`, h('div', { class: 'cardview' }, h('div', { class: 'cv-title' }, t + (td && td.level ? ` (Lv${td.level})` : '')), h('div', { class: 'cv-text' }, td ? td.text : '설명 없음'), M.disabledTraits.has(t) ? h('div', { class: 'warn small' }, '비활성') : null)) }, t); })),
   h('div', { class: 'small' }, h('b', {}, 'Knight Pool: '), clash.pool.length ? poolChips(clash.pool) : '비어 있음'),

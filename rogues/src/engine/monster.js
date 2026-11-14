@@ -11,12 +11,19 @@ export class Monster {
     const L = def.levels[String(level)]; if (!L) throw new Error(`${def.id}: no level ${level}`);
     this.toHit = L.toHit; this.woundsToKill = L.wounds; this.bonuses = { at: 0, vigorLoss: 0, evasionDice: 0, escalations: 0, ...L.bonuses };
     this.activations = (L.activations || ['AI']).map(t => ({ type: t, ready: true }));
+    this.isMob = def.kind === 'mob';
+    if (this.isMob) { // Mob Clash: cells / facing are those of the current Mob
+      this.mobs = []; this.cur = null;
+      Object.defineProperty(this, 'cells', { get: () => (this.cur ? this.cur.cells : []), set: v => { if (this.cur) this.cur.cells = v; }, enumerable: true, configurable: true });
+      Object.defineProperty(this, 'facing', { get: () => (this.cur ? this.cur.facing : 'N'), set: v => { if (this.cur) this.cur.facing = v; }, enumerable: true, configurable: true });
+    }
     this.traits = new Set(); for (let l = 1; l <= level; l++) { const x = def.levels[String(l)]; (x.traitsAdd || []).forEach(t => this.traits.add(t)); (x.traitsRemove || []).forEach(t => this.traits.delete(t)); }
     this.disabledTraits = new Set();
     const cards = def.cards || { ai: [], bp: [] };
     const byLv = (arr, lv) => arr.filter(c => c.level === lv).map(c => ({ ...c }));
     this.ai = new Deck(byLv(cards.ai, 1), rng).shuffle(); this.aiEsc = { 2: new Deck(byLv(cards.ai, 2), rng).shuffle(), 3: new Deck(byLv(cards.ai, 3), rng).shuffle() };
     this.bp = new Deck(byLv(cards.bp, 1), rng).shuffle(); this.bpEsc = { 2: new Deck(byLv(cards.bp, 2), rng).shuffle(), 3: new Deck(byLv(cards.bp, 3), rng).shuffle() };
+    if (this.isMob) { this.bpPool = { 1: this.bp, 2: this.bpEsc[2], 3: this.bpEsc[3] }; this.bp = new Deck([], rng); } // Mobs have no BP deck: BP cards sit on the Mob track (p.62)
     this.removed = []; this.setAsideBp3 = null;
     this.woundStack = []; // entries: { card?, generic?:'single'|'double', wounds: 1|2 }
     this.signature = cards.signature || null; this.routine = cards.routine || null;

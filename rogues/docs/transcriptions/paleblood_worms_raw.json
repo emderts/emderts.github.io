@@ -1,0 +1,1159 @@
+{
+ "sheet": {
+  "name": "Paleblood Worms",
+  "code": "26A1071",
+  "traitsLine": [
+   "Mob",
+   "Parasite",
+   "Blood",
+   "Beast"
+  ],
+  "levels": {
+   "1": {
+    "toHit": 6,
+    "wounds": 7,
+    "exhibitionWounds": 1,
+    "activations": [
+     "AI",
+     "S"
+    ],
+    "activationsText": "1 AI 1 S",
+    "bonuses": {
+     "escalations": 0,
+     "at": 0,
+     "vigorLoss": 0,
+     "evasionDice": 0
+    },
+    "traitsAdd": [
+     "Bloodrush",
+     "It Sucks!",
+     "Bloodbath",
+     "Subterranean Menace"
+    ]
+   },
+   "2": {
+    "toHit": 8,
+    "wounds": 8,
+    "exhibitionWounds": 2,
+    "activations": [
+     "AI",
+     "S"
+    ],
+    "activationsText": "1 AI 1 S",
+    "bonuses": {
+     "escalations": 0,
+     "at": 1,
+     "vigorLoss": 1,
+     "evasionDice": 0
+    },
+    "traitsAdd": [
+     "Red Soil"
+    ]
+   },
+   "3": {
+    "toHit": 9,
+    "wounds": 8,
+    "exhibitionWounds": 2,
+    "activations": [
+     "AI",
+     "S"
+    ],
+    "activationsText": "1 AI 1 S",
+    "bonuses": {
+     "escalations": 1,
+     "at": 1,
+     "vigorLoss": 2,
+     "evasionDice": 0
+    },
+    "traitsAdd": [
+     "Scab Armor"
+    ]
+   },
+   "4": {
+    "toHit": 10,
+    "wounds": 8,
+    "exhibitionWounds": 2,
+    "activations": [
+     "AI",
+     "S"
+    ],
+    "activationsText": "1 AI 1 S",
+    "bonuses": {
+     "escalations": 1,
+     "at": 3,
+     "vigorLoss": 3,
+     "evasionDice": 0
+    },
+    "traitsAdd": [
+     "Bloodline"
+    ]
+   }
+  },
+  "traits": [
+   {
+    "name": "Bloodrush",
+    "level": 1,
+    "text": "Start of Clash: Each Knight places 5 Blood [Blood] tokens on their Knight Board. If at any point there are more than 5 Blood [Blood] tokens on your Knight Board, immediately discard all excess tokens. If at any point there are no Blood [Blood] tokens on your Knight Board, you bleed out (you die) unless you are Incarnated."
+   },
+   {
+    "name": "It Sucks!",
+    "level": 1,
+    "text": "Suck X: Move X Blood [Blood] tokens from the Target or the Attacker onto this Paleblood Worm’s BP card.\n[Blood gate] Gates on AI and BP cards refer to the number of Blood [Blood] tokens on the corresponding Mob."
+   },
+   {
+    "name": "Bloodbath",
+    "level": 1,
+    "text": "Whenever a Paleblood Worm with Blood [Blood] tokens dies, distribute the tokens among Knights in Zone X, where X is the amount of those tokens. If there are no eligible Targets in the Zone, discard those tokens.\n\nDuring Escalation, if there are no more cards in the Escalation decks, place a Blood [Blood] token on every card on the Mob track instead."
+   },
+   {
+    "name": "Subterranean Menace",
+    "level": 1,
+    "text": "When a Paleblood Worm dies, finish resolving the current action, then Spawn a new Paleblood Worm outside the Clash Board.\n\nWhen a Paleblood Worm outside the Clash Board is about to activate, place it on the Paleburrow Terrain tile closest to the [Priority Target] Priority Target.\n\nBurrow X: Place the Paleblood Worm on the designated Paleburrow tile, where X is the number shown on that tile."
+   },
+   {
+    "name": "Red Soil",
+    "level": 2,
+    "text": "Whenever you discard a Blood [Blood] token, place it on this Trait instead. After you finish the current action, if there are 3 or more tokens on this Trait, remove all tokens from this Trait and Activate 1 for every 3 tokens discarded this way."
+   },
+   {
+    "name": "Scab Armor",
+    "level": 3,
+    "text": "Start of Clash: Place a Blood [Blood] token on every BP card on the Mob track.\n\nPaleblood Worms Spawn with a Blood [Blood] token on them.\n\nEach Paleblood Worm gains +1 [AT] for every Blood [Blood] token on its BP card."
+   },
+   {
+    "name": "Bloodline",
+    "level": 4,
+    "text": "When you trigger the Bloodbath Trait, first check if there is another Paleblood Worm in the Zone. If there is, move all Blood [Blood] tokes onto that Paleblood Worm instead."
+   }
+  ],
+  "basicAbilities": [
+   {
+    "name": "Immediate Spawn",
+    "text": "IMMEDIATE SPAWN"
+   }
+  ],
+  "facingDiagram": {
+   "grid": [
+    3,
+    3
+   ],
+   "mobCell": "center",
+   "rear": "cell directly above the mob token (marked R)",
+   "front": "arrow below the mob token (pointing down)",
+   "facingOnSheet": "down",
+   "blindspots": "none shown (R only, no eye icon)",
+   "footprint": "1x1"
+  },
+  "levelsNote": "Bonus row (blue): starburst-with-arrow N = Escalations, +N ribcage = AT bonus, +N V = Vigor Loss bonus. Level 1 has no bonus row; unlike other sheets its TRAITS box lists '+Bloodrush, It Sucks!, Bloodbath, Subterranean Menace'. Level 2: '+1 [AT] +1 [Vigor]'; level 3: '1 [Escalation] +1 [AT] +2 [Vigor]'; level 4: '1 [Escalation] +3 [AT] +3 [Vigor]'. No evasion-dice bonus printed at any level (stored as 0).",
+  "unclear": [
+   "Bloodline: printed typo 'tokes' (for 'tokens') kept verbatim; 'Bloodbath' is italic",
+   "Bold lead-ins: 'Start of Clash:' (Bloodrush, Scab Armor), 'Suck X:' (It Sucks!), 'Burrow X:' (Subterranean Menace)",
+   "It Sucks! second paragraph begins with the red-drop arrow gate icon (written as [Blood gate])",
+   "Level 3 AT bonus reads +1 while level 2 is +1 and level 4 is +3 (as printed, clear on the scan)",
+   "sheet code 26A1071 read from small print at top-right of sheet1"
+  ]
+ },
+ "ai": [
+  {
+   "file": "00.png",
+   "name": "Infectious Leech",
+   "code": "27A1379",
+   "level": 1,
+   "type": "ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 7,
+   "preTargeting": null,
+   "targeting": [
+    "Closest Knight with the most Blood [Blood] tokens"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "Blood",
+     "gte": 3,
+     "effect": "KNOCKDOWN",
+     "text": "KNOCKDOWN",
+     "where": "afterAttack"
+    }
+   ],
+   "effects": [
+    "For each hit lose -1 [Vigor]. [Peril Check].",
+    "If 2+ [Vigor] was lost, Suck 2."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:1"
+   ],
+   "afterAttack": "[Blood 3+ ▸ KNOCKDOWN] Burrow 6.",
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "PALEBLOOD WORMS – AI 1",
+   "unclear": [
+    "Blood-gate tag is printed on the AFTER ATTACK header line, with 'Burrow 6.' on the line below"
+   ],
+   "text": "INFECTIOUS LEECH / ATTACK / Evasion 3 dice, 7+ / TARGETING: • Closest Knight with the most Blood [Blood] tokens [REACT!] / MOVE & ATTACK / For each hit lose -1 [Vigor]. [Peril Check]. / If 2+ [Vigor] was lost, Suck 2. [REACT!] / AFTER ATTACK / [Blood 3+ ▸ KNOCKDOWN] Burrow 6. / PALEBLOOD WORMS – AI 1",
+   "effectsNote": "Each array entry is one printed line/sentence group; gate tags printed on their own line are separate entries written inline as [Stat N+ ▸ EFFECT]. 'effect:i' = REACT! marker on the rule under effects[i]."
+  },
+  {
+   "file": "01.png",
+   "name": "Bloodsucker’s Proboscis",
+   "code": "27A1380",
+   "level": 1,
+   "type": "ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": 9,
+   "preTargeting": null,
+   "targeting": [
+    "Knight with the most Blood [Blood] tokens in front"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "Blood",
+     "gte": 2,
+     "effect": "KNOCKDOWN",
+     "text": "KNOCKDOWN",
+     "where": "afterAttack"
+    }
+   ],
+   "effects": [
+    "For each hit lose -2 [Vigor]. [Peril Check]. Suck 1."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:0"
+   ],
+   "afterAttack": "[Blood 2+ ▸ KNOCKDOWN] Burrow 3.",
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "PALEBLOOD WORMS – AI 1",
+   "unclear": [
+    "code digits faint (27A1380 from print + sequence)"
+   ],
+   "text": "BLOODSUCKER’S PROBOSCIS / ATTACK / Evasion 2 dice, 9+ / TARGETING: • Knight with the most Blood [Blood] tokens in front [REACT!] / MOVE & ATTACK / For each hit lose -2 [Vigor]. [Peril Check]. Suck 1. [REACT!] / AFTER ATTACK / [Blood 2+ ▸ KNOCKDOWN] Burrow 3. / PALEBLOOD WORMS – AI 1",
+   "effectsNote": "Each array entry is one printed line/sentence group; gate tags printed on their own line are separate entries written inline as [Stat N+ ▸ EFFECT]. 'effect:i' = REACT! marker on the rule under effects[i]."
+  },
+  {
+   "file": "02.png",
+   "name": "Snapping at Your Heels",
+   "code": "27A1381",
+   "level": 1,
+   "type": "ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "Closest Knight with the most Blood [Blood] tokens"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "Blood",
+     "gte": 1,
+     "effect": "+1 [d10]",
+     "text": "+1 [d10]",
+     "where": "moveTag"
+    },
+    {
+     "stat": "Blood",
+     "gte": 2,
+     "effect": "BURROW 2 INSTEAD",
+     "text": "BURROW 2 INSTEAD",
+     "where": "afterAttack"
+    }
+   ],
+   "effects": [
+    "For each hit lose -1 [Vigor]. [Peril Check]. Suck 1."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:0"
+   ],
+   "afterAttack": "Burrow 4. [Blood 2+ ▸ BURROW 2 INSTEAD]",
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "PALEBLOOD WORMS – AI 1",
+   "unclear": [
+    "moveTag gate effect: small '+1' then die icon; sign faint, read as '+1 [d10]'"
+   ],
+   "text": "SNAPPING AT YOUR HEELS / ATTACK / Evasion 4 dice, 8+ / TARGETING: • Closest Knight with the most Blood [Blood] tokens [REACT!] / MOVE & ATTACK [Blood 1+ ▸ +1 [d10]] / For each hit lose -1 [Vigor]. [Peril Check]. Suck 1. [REACT!] / AFTER ATTACK / Burrow 4. [Blood 2+ ▸ BURROW 2 INSTEAD] / PALEBLOOD WORMS – AI 1",
+   "effectsNote": "Each array entry is one printed line/sentence group; gate tags printed on their own line are separate entries written inline as [Stat N+ ▸ EFFECT]. 'effect:i' = REACT! marker on the rule under effects[i]."
+  },
+  {
+   "file": "03.png",
+   "name": "Swarming Bite",
+   "code": "27A1378",
+   "level": 1,
+   "type": "SEQUENTIAL ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 9,
+   "preTargeting": null,
+   "targeting": [
+    "Knight with the least Blood [Blood] tokens"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "Blood",
+     "gte": 2,
+     "effect": "REPEAT THIS ATTACK (ONCE)",
+     "text": "REPEAT THIS ATTACK (ONCE)",
+     "where": "effect:1"
+    }
+   ],
+   "effects": [
+    "For each hit lose -1 [Vigor]. [Peril Check]. Suck 1.",
+    "[Blood 2+ ▸ REPEAT THIS ATTACK (ONCE)]"
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:1"
+   ],
+   "afterAttack": null,
+   "afterFinalAttack": "Burrow 7.",
+   "aiResponse": null,
+   "footer": "PALEBLOOD WORMS – AI 1",
+   "unclear": [],
+   "text": "SWARMING BITE / SEQUENTIAL ATTACK / Evasion 3 dice, 9+ / TARGETING: • Knight with the least Blood [Blood] tokens [REACT!] / MOVE & ATTACK / For each hit lose -1 [Vigor]. [Peril Check]. Suck 1. / [Blood 2+ ▸ REPEAT THIS ATTACK (ONCE)] [REACT!] / AFTER FINAL ATTACK / Burrow 7. / PALEBLOOD WORMS – AI 1",
+   "effectsNote": "Each array entry is one printed line/sentence group; gate tags printed on their own line are separate entries written inline as [Stat N+ ▸ EFFECT]. 'effect:i' = REACT! marker on the rule under effects[i]."
+  },
+  {
+   "file": "04.png",
+   "name": "Feeding Frenzy",
+   "code": "27A1383",
+   "level": 2,
+   "type": "SEQUENTIAL ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "Knight with the most Blood [Blood] tokens in front"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "Blood",
+     "gte": 3,
+     "effect": "REPEAT THIS ATTACK (ONCE)",
+     "text": "REPEAT THIS ATTACK (ONCE)",
+     "where": "effect:1"
+    },
+    {
+     "stat": "Blood",
+     "gte": 2,
+     "effect": "BURROW 1 INSTEAD",
+     "text": "BURROW 1 INSTEAD",
+     "where": "afterAttack"
+    }
+   ],
+   "effects": [
+    "Suck 1. For each hit lose -X [Vigor], where X is the amount of Blood [Blood] tokens on this Mob. [Peril Check]. Suck 1.",
+    "[Blood 3+ ▸ REPEAT THIS ATTACK (ONCE)]"
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:1"
+   ],
+   "afterAttack": null,
+   "afterFinalAttack": "Burrow 10. [Blood 2+ ▸ BURROW 1 INSTEAD]",
+   "aiResponse": null,
+   "footer": "PALEBLOOD WORMS – AI 2",
+   "unclear": [
+    "code: best reading 27A1383 (faint; sequence-corroborated)",
+    "the BURROW 1 INSTEAD gate sits in the AFTER FINAL ATTACK section (gate.where recorded as 'afterAttack')"
+   ],
+   "text": "FEEDING FRENZY / SEQUENTIAL ATTACK / Evasion 4 dice, 8+ / TARGETING: • Knight with the most Blood [Blood] tokens in front [REACT!] / MOVE & ATTACK / Suck 1. For each hit lose -X [Vigor], where X is the amount of Blood [Blood] tokens on this Mob. [Peril Check]. Suck 1. / [Blood 3+ ▸ REPEAT THIS ATTACK (ONCE)] [REACT!] / AFTER FINAL ATTACK / Burrow 10. [Blood 2+ ▸ BURROW 1 INSTEAD] / PALEBLOOD WORMS – AI 2",
+   "effectsNote": "Each array entry is one printed line/sentence group; gate tags printed on their own line are separate entries written inline as [Stat N+ ▸ EFFECT]. 'effect:i' = REACT! marker on the rule under effects[i]."
+  },
+  {
+   "file": "05.png",
+   "name": "Brutal Bloodletting",
+   "code": "27A1384",
+   "level": 2,
+   "type": "JUDGEMENT",
+   "evasionDice": "X",
+   "evasionDifficulty": 9,
+   "preTargeting": null,
+   "targeting": [
+    "Knight with the least Blood [Blood] tokens"
+   ],
+   "move": true,
+   "moveTag": "MOVE & JUDGE",
+   "gates": [],
+   "effects": [
+    "*X is twice the amount of Blood [Blood] tokens on this Mob.",
+    "Fortitude [Fortitude] / Might [Might].",
+    "For each hit lose -2 [Vigor]. [Peril Check]."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:2"
+   ],
+   "afterAttack": "Suck 1. Burrow 2.",
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "PALEBLOOD WORMS – AI 2",
+   "unclear": [
+    "evasion dice diamond shows 'X' with a small asterisk (X*), explained by the '*X is twice…' line",
+    "'SUCK 1' is printed in a pale outlined box directly right of the MOVE & JUDGE tag (not an arrow gate); recorded as moveTagBox",
+    "code: best reading 27A1384 (faint)"
+   ],
+   "text": "BRUTAL BLOODLETTING / JUDGEMENT / Evasion X dice, 9+ / TARGETING: • Knight with the least Blood [Blood] tokens [REACT!] / MOVE & JUDGE [SUCK 1] / *X is twice the amount of Blood [Blood] tokens on this Mob. / Fortitude [Fortitude] / Might [Might]. / For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Suck 1. Burrow 2. / PALEBLOOD WORMS – AI 2",
+   "effectsNote": "Each array entry is one printed line/sentence group; gate tags printed on their own line are separate entries written inline as [Stat N+ ▸ EFFECT]. 'effect:i' = REACT! marker on the rule under effects[i].",
+   "moveTagBox": "SUCK 1",
+   "evasionDiceNote": "X* — X is twice the amount of Blood tokens on this Mob"
+  },
+  {
+   "file": "06.png",
+   "name": "Bite from Below",
+   "code": "27A1385",
+   "level": 2,
+   "type": "ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 9,
+   "preTargeting": null,
+   "targeting": [
+    "Zone 1 around each Paleburrow Terrain tile"
+   ],
+   "move": false,
+   "moveTag": "ZONE ATTACK",
+   "gates": [
+    {
+     "stat": "Blood",
+     "gte": 3,
+     "effect": "ZONE 2 INSTEAD",
+     "text": "ZONE 2 INSTEAD",
+     "where": "targeting"
+    },
+    {
+     "stat": "Blood",
+     "gte": 1,
+     "effect": "KNOCKDOWN",
+     "text": "KNOCKDOWN",
+     "where": "afterAttack"
+    }
+   ],
+   "effects": [
+    "Remove all other Paleblood Worms from the Clash Board.",
+    "For each hit lose -2 [Vigor]. [Peril Check]."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:1"
+   ],
+   "afterAttack": "[Blood 1+ ▸ KNOCKDOWN]",
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "PALEBLOOD WORMS – AI 2",
+   "unclear": [
+    "type printed under the name is 'ATTACK' while the red tag reads 'ZONE ATTACK'",
+    "code: best reading 27A1385 (faint)"
+   ],
+   "text": "BITE FROM BELOW / ATTACK / Evasion 3 dice, 9+ / TARGETING: • Zone 1 around each Paleburrow Terrain tile [Blood 3+ ▸ ZONE 2 INSTEAD] [REACT!] / ZONE ATTACK / Remove all other Paleblood Worms from the Clash Board. / For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / [Blood 1+ ▸ KNOCKDOWN] / PALEBLOOD WORMS – AI 2",
+   "effectsNote": "Each array entry is one printed line/sentence group; gate tags printed on their own line are separate entries written inline as [Stat N+ ▸ EFFECT]. 'effect:i' = REACT! marker on the rule under effects[i]."
+  },
+  {
+   "file": "07.png",
+   "name": "Vicious Bite",
+   "code": "27A1382",
+   "level": 2,
+   "type": "ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 7,
+   "preTargeting": null,
+   "targeting": [
+    "Knight with the least Blood [Blood] tokens"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "Blood",
+     "gte": 3,
+     "effect": "DISCARD AN ARMOR [Armor] CARD",
+     "text": "DISCARD AN ARMOR [Armor] CARD",
+     "where": "moveTag"
+    },
+    {
+     "stat": "Blood",
+     "gte": 2,
+     "effect": "KNOCKBACK 4",
+     "text": "KNOCKBACK 4",
+     "where": "afterAttack"
+    }
+   ],
+   "effects": [
+    "For each hit lose -2 [Vigor]. [Peril Check]. Suck 1.",
+    "If 4+ [Vigor] was lost, Suck 1."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:1"
+   ],
+   "afterAttack": "[Blood 2+ ▸ KNOCKBACK 4] Burrow 8.",
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "PALEBLOOD WORMS – AI 2",
+   "unclear": [
+    "moveTag gate text wraps over two tag lines: 'DISCARD' / 'AN ARMOR [icon] CARD'; small icon after ARMOR read as the armor/breastplate icon",
+    "code: best reading 27A1382 (faint)"
+   ],
+   "text": "VICIOUS BITE / ATTACK / Evasion 4 dice, 7+ / TARGETING: • Knight with the least Blood [Blood] tokens [REACT!] / MOVE & ATTACK [Blood 3+ ▸ DISCARD AN ARMOR [Armor] CARD] / For each hit lose -2 [Vigor]. [Peril Check]. Suck 1. / If 4+ [Vigor] was lost, Suck 1. [REACT!] / AFTER ATTACK / [Blood 2+ ▸ KNOCKBACK 4] Burrow 8. / PALEBLOOD WORMS – AI 2",
+   "effectsNote": "Each array entry is one printed line/sentence group; gate tags printed on their own line are separate entries written inline as [Stat N+ ▸ EFFECT]. 'effect:i' = REACT! marker on the rule under effects[i]."
+  },
+  {
+   "file": "08.png",
+   "name": "Paint the Swamp Red",
+   "code": "27A1386",
+   "level": 3,
+   "type": "ZONE ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": 11,
+   "preTargeting": null,
+   "targeting": [
+    "Knight with the most Blood [Blood] tokens in front"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "Blood",
+     "lte": 2,
+     "gte": null,
+     "effect": "IGNORE ALL [REACT! window]",
+     "text": "IGNORE ALL [REACT! window]",
+     "where": "moveTag"
+    },
+    {
+     "stat": "Blood",
+     "gte": 2,
+     "effect": "YOU ARE BLOWN TO PIECES (YOU DIE) INSTEAD",
+     "text": "YOU ARE BLOWN TO PIECES (YOU DIE) INSTEAD",
+     "where": "effect:1"
+    }
+   ],
+   "effects": [
+    "If hit, lower your [Vigor] to 0. [Peril Check].",
+    "[Blood 2+ ▸ YOU ARE BLOWN TO PIECES (YOU DIE) INSTEAD]"
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:1"
+   ],
+   "afterAttack": "Discard all Blood [Blood] tokens from this Mob and remove it from the Clash Board.",
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "PALEBLOOD WORMS – AI 3",
+   "unclear": [
+    "moveTag gate threshold reads '2-' (minus, i.e. 2 or fewer Blood) rather than '2+'; the mark after the 2 is a short dash but could be a faint '+'. Stored as lte:2, gte:null",
+    "moveTag gate effect: 'IGNORE ALL' followed by a white claw/hand glyph, read as the [REACT! window] glyph (i.e. ignore all REACT! windows)",
+    "type under name is 'ZONE ATTACK' while the red tag reads 'MOVE & ATTACK'",
+    "code: last digit blurred, best reading 27A1386 (only unused number in the 27A1378–1389 run besides those read on other cards)"
+   ],
+   "text": "PAINT THE SWAMP RED / ZONE ATTACK / Evasion 2 dice, 11+ / TARGETING: • Knight with the most Blood [Blood] tokens in front [REACT!] / MOVE & ATTACK [Blood 2- ▸ IGNORE ALL [REACT! window]] / If hit, lower your [Vigor] to 0. [Peril Check]. / [Blood 2+ ▸ YOU ARE BLOWN TO PIECES (YOU DIE) INSTEAD] [REACT!] / AFTER ATTACK / Discard all Blood [Blood] tokens from this Mob and remove it from the Clash Board. / PALEBLOOD WORMS – AI 3",
+   "effectsNote": "Each array entry is one printed line/sentence group; gate tags printed on their own line are separate entries written inline as [Stat N+ ▸ EFFECT]. 'effect:i' = REACT! marker on the rule under effects[i].",
+   "zoneDiagram": {
+    "grid": [
+     7,
+     7
+    ],
+    "red": "inner 5x5 block (Zone 2 around the Mob)",
+    "mobCell": "center, arrow pointing up",
+    "note": "art partially covers the bottom-right of the grid"
+   }
+  },
+  {
+   "file": "09.png",
+   "name": "Violent Dismemberment",
+   "code": "27A1389",
+   "level": 3,
+   "type": "SEQUENTIAL ATTACK",
+   "evasionDice": 6,
+   "evasionDifficulty": 9,
+   "preTargeting": null,
+   "targeting": [
+    "[Priority Target] Priority Target"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "Blood",
+     "gte": 2,
+     "effect": "-2 [Vigor] INSTEAD",
+     "text": "-2 [Vigor] INSTEAD",
+     "where": "effect:1"
+    }
+   ],
+   "effects": [
+    "For each hit lose -1 [Vigor].",
+    "[Blood 2+ ▸ -2 [Vigor] INSTEAD] [Peril Check].",
+    "If you die, repeat this Attack."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:2"
+   ],
+   "afterAttack": null,
+   "afterFinalAttack": "Suck 1. Burrow 1.",
+   "aiResponse": null,
+   "footer": "PALEBLOOD WORMS – AI 3",
+   "unclear": [
+    "code: best reading 27A1389 (last digit 8/9 blurred)"
+   ],
+   "text": "VIOLENT DISMEMBERMENT / SEQUENTIAL ATTACK / Evasion 6 dice, 9+ / TARGETING: • [Priority Target] Priority Target [REACT!] / MOVE & ATTACK / For each hit lose -1 [Vigor]. / [Blood 2+ ▸ -2 [Vigor] INSTEAD] [Peril Check]. / If you die, repeat this Attack. [REACT!] / AFTER FINAL ATTACK / Suck 1. Burrow 1. / PALEBLOOD WORMS – AI 3",
+   "effectsNote": "Each array entry is one printed line/sentence group; gate tags printed on their own line are separate entries written inline as [Stat N+ ▸ EFFECT]. 'effect:i' = REACT! marker on the rule under effects[i]."
+  },
+  {
+   "file": "10.png",
+   "name": "Suppertime!",
+   "code": "27A1387",
+   "level": 3,
+   "type": "JUDGEMENT",
+   "evasionDice": 2,
+   "evasionDifficulty": 9,
+   "preTargeting": null,
+   "targeting": [
+    "All Knights on the Clash Board"
+   ],
+   "move": false,
+   "moveTag": "JUDGE",
+   "gates": [],
+   "effects": [
+    "Bravery [Bravery] / Tenacity [Tenacity].",
+    "All Knights adjacent to Paleburrow Terrain tiles die.",
+    "For each hit lose -X [Vigor], where X is the amount of Blood [Blood] tokens on this Mob."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:2"
+   ],
+   "afterAttack": "Discard all Blood [Blood] tokens from this Mob.",
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "PALEBLOOD WORMS – AI 3",
+   "unclear": [
+    "no [Peril Check] icon is printed after the vigor-loss sentence on this card",
+    "code: best reading 27A1387 (faint)"
+   ],
+   "text": "SUPPERTIME! / JUDGEMENT / Evasion 2 dice, 9+ / TARGETING: • All Knights on the Clash Board [REACT!] / JUDGE / Bravery [Bravery] / Tenacity [Tenacity]. / All Knights adjacent to Paleburrow Terrain tiles die. / For each hit lose -X [Vigor], where X is the amount of Blood [Blood] tokens on this Mob. [REACT!] / AFTER ATTACK / Discard all Blood [Blood] tokens from this Mob. / PALEBLOOD WORMS – AI 3",
+   "effectsNote": "Each array entry is one printed line/sentence group; gate tags printed on their own line are separate entries written inline as [Stat N+ ▸ EFFECT]. 'effect:i' = REACT! marker on the rule under effects[i]."
+  },
+  {
+   "file": "11.png",
+   "name": "Death by a Thousand Bites",
+   "code": "27A1388",
+   "level": 3,
+   "type": "ATTACK",
+   "evasionDice": 6,
+   "evasionDifficulty": 6,
+   "preTargeting": null,
+   "targeting": [
+    "Knight with the least Blood [Blood] tokens"
+   ],
+   "move": true,
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "SUCK 1",
+     "text": "SUCK 1",
+     "where": "afterAttack"
+    }
+   ],
+   "effects": [
+    "For every two hits, Suck 1 and roll an additional +1 [d10] (once).",
+    "For each hit lose -2 [Vigor]. [Peril Check]."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:1"
+   ],
+   "afterAttack": "[Heat 3+ ▸ SUCK 1] Burrow 9.",
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "PALEBLOOD WORMS – AI 3",
+   "unclear": [
+    "After-attack gate is a BLUE Heat (H) tag, the only Heat gate in this deck (all others are Blood gates)",
+    "code: best reading 27A1388 (last digit 6/8 blurred)"
+   ],
+   "text": "DEATH BY A THOUSAND BITES / ATTACK / Evasion 6 dice, 6+ / TARGETING: • Knight with the least Blood [Blood] tokens [REACT!] / MOVE & ATTACK / For every two hits, Suck 1 and roll an additional +1 [d10] (once). / For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / [Heat 3+ ▸ SUCK 1] Burrow 9. / PALEBLOOD WORMS – AI 3",
+   "effectsNote": "Each array entry is one printed line/sentence group; gate tags printed on their own line are separate entries written inline as [Stat N+ ▸ EFFECT]. 'effect:i' = REACT! marker on the rule under effects[i]."
+  }
+ ],
+ "bp": [
+  {
+   "file": "12.png",
+   "name": "Pustulent Bloodworm",
+   "code": "28A1756",
+   "level": 1,
+   "at": 3,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 2,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "[Blood 2+ ▸ KNOCKDOWN]",
+    "fail": "Suck 1. Burrow 6.",
+    "instinct": null,
+    "critical": "Move 1 Blood [Blood] token from a chosen BP card onto your Knight."
+   },
+   "gates": [
+    {
+     "stat": "Blood",
+     "gte": 2,
+     "effect": "KNOCKDOWN",
+     "text": "KNOCKDOWN",
+     "where": "wound"
+    }
+   ],
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "PALEBLOOD WORMS – BP 1",
+   "unclear": [
+    "code: best reading 28A1756; tiny pale print, corroborated by sheet-order sequence (28A1755–28A1766)"
+   ],
+   "text": "PUSTULENT BLOODWORM / OVERCOME 2+ ▸ Power 1 / [AT] 3 / WOUND: [Blood 2+ ▸ KNOCKDOWN] / FAIL: Suck 1. Burrow 6. / CRITICAL: Move 1 Blood [Blood] token from a chosen BP card onto your Knight. / PALEBLOOD WORMS – BP 1"
+  },
+  {
+   "file": "13.png",
+   "name": "Pinkish Bloodworm",
+   "code": "28A1757",
+   "level": 1,
+   "at": 4,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 3,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "Knockback 4.",
+    "fail": "Suck 1.",
+    "instinct": null,
+    "critical": "Gain +3 [Vigor]."
+   },
+   "gates": [],
+   "reactWindows": [],
+   "whenRevealed": "Discard 1 Blood [Blood] token from the closest Knight.",
+   "whileRevealed": null,
+   "footer": "PALEBLOOD WORMS – BP 1",
+   "unclear": [
+    "code: best reading 28A1757; tiny pale print, corroborated by sheet-order sequence (28A1755–28A1766)",
+    "overcome threshold digit is small/blurred pale print; best reading given (3+)"
+   ],
+   "text": "When you reveal this BP: Discard 1 Blood [Blood] token from the closest Knight. / PINKISH BLOODWORM / OVERCOME 3+ ▸ Power 1 / [AT] 4 / WOUND: Knockback 4. / FAIL: Suck 1. / CRITICAL: Gain +3 [Vigor]. / PALEBLOOD WORMS – BP 1"
+  },
+  {
+   "file": "14.png",
+   "name": "Albino Bloodworm",
+   "code": "28A1758",
+   "level": 1,
+   "at": 4,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 3,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "Knockback 4.",
+    "fail": "Burrow 4.",
+    "instinct": null,
+    "critical": "You may move up to 3 spaces and perform a Bonus Attack!"
+   },
+   "gates": [],
+   "reactWindows": [],
+   "whenRevealed": "Discard 1 Blood [Blood] token from the closest Knight.",
+   "whileRevealed": null,
+   "footer": "PALEBLOOD WORMS – BP 1",
+   "unclear": [
+    "code: best reading 28A1758; tiny pale print, corroborated by sheet-order sequence (28A1755–28A1766)",
+    "overcome threshold digit is small/blurred pale print; best reading given (3+)"
+   ],
+   "text": "When you reveal this BP: Discard 1 Blood [Blood] token from the closest Knight. / ALBINO BLOODWORM / OVERCOME 3+ ▸ Power 1 / [AT] 4 / WOUND: Knockback 4. / FAIL: Burrow 4. / CRITICAL: You may move up to 3 spaces and perform a Bonus Attack! / PALEBLOOD WORMS – BP 1"
+  },
+  {
+   "file": "15.png",
+   "name": "Desiccated Bloodworm",
+   "code": "28A1755",
+   "level": 1,
+   "at": 3,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 2,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "[Blood 2+ ▸ ACTIVATE 1]",
+    "fail": "Suck 1.",
+    "instinct": null,
+    "critical": "You may move 3 spaces and perform a Bonus Attack!"
+   },
+   "gates": [
+    {
+     "stat": "Blood",
+     "gte": 2,
+     "effect": "ACTIVATE 1",
+     "text": "ACTIVATE 1",
+     "where": "wound"
+    }
+   ],
+   "reactWindows": [],
+   "whenRevealed": "Move 1 Blood [Blood] token from the closest Knight onto this BP card.",
+   "whileRevealed": null,
+   "footer": "PALEBLOOD WORMS – BP 1",
+   "unclear": [
+    "code: best reading 28A1755; tiny pale print, corroborated by sheet-order sequence (28A1755–28A1766)",
+    "overcome threshold digit is small/blurred pale print; best reading given (2+)",
+    "critical reads 'move 3 spaces' (no 'up to'), unlike Albino Bloodworm"
+   ],
+   "text": "When you reveal this BP: Move 1 Blood [Blood] token from the closest Knight onto this BP card. / DESICCATED BLOODWORM / OVERCOME 2+ ▸ Power 1 / [AT] 3 / WOUND: [Blood 2+ ▸ ACTIVATE 1] / FAIL: Suck 1. / CRITICAL: You may move 3 spaces and perform a Bonus Attack! / PALEBLOOD WORMS – BP 1"
+  },
+  {
+   "file": "16.png",
+   "name": "Tunnelling Bloodworm",
+   "code": "28A1759",
+   "level": 2,
+   "at": 4,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 3,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "[Blood 1+ ▸ ACTIVATE 1]",
+    "fail": "Knockdown. [Blood 1+ ▸ KNOCKBACK 4]",
+    "instinct": null,
+    "critical": "Until the end of Clash, you may choose the Burrow X value!"
+   },
+   "gates": [
+    {
+     "stat": "Blood",
+     "gte": 1,
+     "effect": "ACTIVATE 1",
+     "text": "ACTIVATE 1",
+     "where": "wound"
+    },
+    {
+     "stat": "Blood",
+     "gte": 1,
+     "effect": "KNOCKBACK 4",
+     "text": "KNOCKBACK 4",
+     "where": "fail"
+    }
+   ],
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": "Burrow X becomes \"Roll a [d10] and place the Paleblood Worm on a Paleburrow Terrain tile corresponding to the result.\"",
+   "footer": "PALEBLOOD WORMS – BP 2",
+   "unclear": [
+    "code: best reading 28A1759; tiny pale print, corroborated by sheet-order sequence (28A1755–28A1766)",
+    "overcome threshold digit is small/blurred pale print; best reading given (3+)"
+   ],
+   "text": "TUNNELLING BLOODWORM / OVERCOME 3+ ▸ Power 1 / [AT] 4 / WOUND: [Blood 1+ ▸ ACTIVATE 1] / FAIL: Knockdown. [Blood 1+ ▸ KNOCKBACK 4] / CRITICAL: Until the end of Clash, you may choose the Burrow X value! / PALEBLOOD WORMS – BP 2 / While this BP is revealed: Burrow X becomes \"Roll a [d10] and place the Paleblood Worm on a Paleburrow Terrain tile corresponding to the result.\""
+  },
+  {
+   "file": "17.png",
+   "name": "Diseased Bloodworm",
+   "code": "28A1760",
+   "level": 2,
+   "at": 5,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 4,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": null,
+    "fail": null,
+    "instinct": "Suck 1. Lose -X [Vigor], where X is the amount of Blood [Blood] tokens on this card. [Peril Check].",
+    "critical": "One Knight may gain up to 5 Blood [Blood] tokens!"
+   },
+   "gates": [],
+   "reactWindows": [],
+   "whenRevealed": "Each Knight must either lose [Vigor] equal to the amount of Blood [Blood] tokens they have, or discard Blood [Blood] tokens equal to their [Passion].",
+   "whileRevealed": null,
+   "footer": "PALEBLOOD WORMS – BP 2",
+   "unclear": [
+    "code: best reading 28A1760; tiny pale print, corroborated by sheet-order sequence (28A1755–28A1766)",
+    "overcome threshold badly blurred: best reading 4+ (could be 3+)",
+    "green icon at the end of the When-revealed box read as [Passion] (green P)"
+   ],
+   "text": "When you reveal this BP: Each Knight must either lose [Vigor] equal to the amount of Blood [Blood] tokens they have, or discard Blood [Blood] tokens equal to their [Passion]. / DISEASED BLOODWORM / OVERCOME 4+ ▸ Power 1 / [AT] 5 / INSTINCT: Suck 1. Lose -X [Vigor], where X is the amount of Blood [Blood] tokens on this card. [Peril Check]. / CRITICAL: One Knight may gain up to 5 Blood [Blood] tokens! / PALEBLOOD WORMS – BP 2"
+  },
+  {
+   "file": "18.png",
+   "name": "Writhing Bloodworm",
+   "code": "28A1761",
+   "level": 2,
+   "at": 4,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 3,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "The closest Paleblood Worm performs Burrow 5.",
+    "fail": "Suck 1.",
+    "instinct": null,
+    "critical": "You may perform a Bonus Attack!"
+   },
+   "gates": [],
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "PALEBLOOD WORMS – BP 2",
+   "unclear": [
+    "code: best reading 28A1761; tiny pale print, corroborated by sheet-order sequence (28A1755–28A1766)",
+    "overcome threshold digit is small/blurred pale print; best reading given (3+)"
+   ],
+   "text": "WRITHING BLOODWORM / OVERCOME 3+ ▸ Power 1 / [AT] 4 / WOUND: The closest Paleblood Worm performs Burrow 5. / FAIL: Suck 1. / CRITICAL: You may perform a Bonus Attack! / PALEBLOOD WORMS – BP 2"
+  },
+  {
+   "file": "19.png",
+   "name": "Famished Bloodworm",
+   "code": "28A1762",
+   "level": 2,
+   "at": 4,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 3,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "[Blood 3+ ▸ DISCARD ALL BLOOD [Blood] TOKENS FROM THIS CARD]",
+    "fail": "Suck 1.",
+    "instinct": null,
+    "critical": "You may perform a Bonus Attack!"
+   },
+   "gates": [
+    {
+     "stat": "Blood",
+     "gte": 3,
+     "effect": "DISCARD ALL BLOOD [Blood] TOKENS FROM THIS CARD",
+     "text": "DISCARD ALL BLOOD [Blood] TOKENS FROM THIS CARD",
+     "where": "wound"
+    }
+   ],
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": "Increase all Suck X values by 1.",
+   "footer": "PALEBLOOD WORMS – BP 2",
+   "unclear": [
+    "code: best reading 28A1762; tiny pale print, corroborated by sheet-order sequence (28A1755–28A1766)",
+    "overcome threshold digit is small/blurred pale print; best reading given (3+)"
+   ],
+   "text": "FAMISHED BLOODWORM / OVERCOME 3+ ▸ Power 1 / [AT] 4 / WOUND: [Blood 3+ ▸ DISCARD ALL BLOOD [Blood] TOKENS FROM THIS CARD] / FAIL: Suck 1. / CRITICAL: You may perform a Bonus Attack! / PALEBLOOD WORMS – BP 2 / While this BP is revealed: Increase all Suck X values by 1."
+  },
+  {
+   "file": "20.png",
+   "name": "The Perfect Specimen",
+   "code": "28A1764",
+   "level": 3,
+   "at": 7,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 5,
+    "effect": "Power 1 and Break 1"
+   },
+   "responses": {
+    "wound": "You may gain up to 2 Blood [Blood] tokens.",
+    "fail": "Lose -2 [Vigor] for each Blood [Blood] token on this BP. [Peril Check]. Then, discard half Blood [Blood] tokens from this BP (rounding up).",
+    "instinct": null,
+    "critical": "You may move up to 5 spaces and perform a Bonus Attack!"
+   },
+   "gates": [],
+   "reactWindows": [],
+   "whenRevealed": "Move 1 Blood [Blood] token from each Knight onto this BP card.",
+   "whileRevealed": null,
+   "footer": "PALEBLOOD WORMS – BP 3",
+   "unclear": [
+    "code: best reading 28A1764; tiny pale print, corroborated by sheet-order sequence (28A1755–28A1766)"
+   ],
+   "text": "When you reveal this BP: Move 1 Blood [Blood] token from each Knight onto this BP card. / THE PERFECT SPECIMEN / OVERCOME 5+ ▸ Power 1 and Break 1 / [AT] 7 / WOUND: You may gain up to 2 Blood [Blood] tokens. / FAIL: Lose -2 [Vigor] for each Blood [Blood] token on this BP. [Peril Check]. Then, discard half Blood [Blood] tokens from this BP (rounding up). / CRITICAL: You may move up to 5 spaces and perform a Bonus Attack! / PALEBLOOD WORMS – BP 3"
+  },
+  {
+   "file": "21.png",
+   "name": "Bursting Bloodworm",
+   "code": "28A1765",
+   "level": 3,
+   "at": 6,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 5,
+    "effect": "Power 1 and Break 1"
+   },
+   "responses": {
+    "wound": "Suck 2. Move all Blood [Blood] tokens from this card onto an adjacent BP card.",
+    "fail": "Suck 2. Burrow 1.",
+    "instinct": null,
+    "critical": "Each Knight may gain up to 5 Blood [Blood] tokens!"
+   },
+   "gates": [],
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": "Disable the Bloodbath Trait.",
+   "footer": "PALEBLOOD WORMS – BP 3",
+   "unclear": [
+    "code: best reading 28A1765; tiny pale print, corroborated by sheet-order sequence (28A1755–28A1766)",
+    "'Bloodbath' is printed in italics"
+   ],
+   "text": "BURSTING BLOODWORM / OVERCOME 5+ ▸ Power 1 and Break 1 / [AT] 6 / WOUND: Suck 2. Move all Blood [Blood] tokens from this card onto an adjacent BP card. / FAIL: Suck 2. Burrow 1. / CRITICAL: Each Knight may gain up to 5 Blood [Blood] tokens! / PALEBLOOD WORMS – BP 3 / While this BP is revealed: Disable the Bloodbath Trait."
+  },
+  {
+   "file": "22.png",
+   "name": "Siamese Bloodworm",
+   "code": "28A1766",
+   "level": 3,
+   "at": 7,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 5,
+    "effect": "Power 1 and Break 1"
+   },
+   "responses": {
+    "wound": "[Blood 2+ ▸ KNOCKDOWN] Knockback 4.",
+    "fail": "Suck 2. [Blood 3+ ▸ ACTIVATE 1]",
+    "instinct": null,
+    "critical": "You may move 3 spaces and perform a Bonus Attack!"
+   },
+   "gates": [
+    {
+     "stat": "Blood",
+     "gte": 2,
+     "effect": "KNOCKDOWN",
+     "text": "KNOCKDOWN",
+     "where": "wound"
+    },
+    {
+     "stat": "Blood",
+     "gte": 3,
+     "effect": "ACTIVATE 1",
+     "text": "ACTIVATE 1",
+     "where": "fail"
+    }
+   ],
+   "reactWindows": [],
+   "whenRevealed": "Discard 1 Blood [Blood] token from each Knight.",
+   "whileRevealed": null,
+   "footer": "PALEBLOOD WORMS – BP 3",
+   "unclear": [
+    "code: best reading 28A1766; tiny pale print, corroborated by sheet-order sequence (28A1755–28A1766)"
+   ],
+   "text": "When you reveal this BP: Discard 1 Blood [Blood] token from each Knight. / SIAMESE BLOODWORM / OVERCOME 5+ ▸ Power 1 and Break 1 / [AT] 7 / WOUND: [Blood 2+ ▸ KNOCKDOWN] Knockback 4. / FAIL: Suck 2. [Blood 3+ ▸ ACTIVATE 1] / CRITICAL: You may move 3 spaces and perform a Bonus Attack! / PALEBLOOD WORMS – BP 3"
+  },
+  {
+   "file": "23.png",
+   "name": "Bloated Broodmother",
+   "code": "28A1763",
+   "level": 3,
+   "at": 6,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 5,
+    "effect": "Power 1 and Break 1"
+   },
+   "responses": {
+    "wound": "Activate 1. [Blood 1+ ▸ ACTIVATE 1]",
+    "fail": "Suck 2. Move 1 Blood [Blood] token from this card onto an adjacent BP card.",
+    "instinct": null,
+    "critical": "Disable the It Sucks! Trait!"
+   },
+   "gates": [
+    {
+     "stat": "Blood",
+     "gte": 1,
+     "effect": "ACTIVATE 1",
+     "text": "ACTIVATE 1",
+     "where": "wound"
+    }
+   ],
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": "Increase all Suck X values by 2.",
+   "footer": "PALEBLOOD WORMS – BP 3",
+   "unclear": [
+    "code: best reading 28A1763; tiny pale print, corroborated by sheet-order sequence (28A1755–28A1766)",
+    "'It Sucks!' is printed in italics",
+    "overcome threshold blurred; best reading 5+"
+   ],
+   "text": "BLOATED BROODMOTHER / OVERCOME 5+ ▸ Power 1 and Break 1 / [AT] 6 / WOUND: Activate 1. [Blood 1+ ▸ ACTIVATE 1] / FAIL: Suck 2. Move 1 Blood [Blood] token from this card onto an adjacent BP card. / CRITICAL: Disable the It Sucks! Trait! / PALEBLOOD WORMS – BP 3 / While this BP is revealed: Increase all Suck X values by 2."
+  }
+ ],
+ "routine": {
+  "file": "24.png",
+  "name": "Global Worming",
+  "code": null,
+  "type": "ROUTINE",
+  "text": "Each Knight discards 2 Blood [Blood] tokens from their Knight Board.",
+  "footer": "PALEBLOOD WORMS",
+  "unclear": [
+   "no card code visible in the scan (top-right corner blank)"
+  ]
+ },
+ "signature": {
+  "file": "sig.png",
+  "name": "Bloodslash",
+  "code": "27A1390",
+  "level": null,
+  "type": "SIGNATURE",
+  "evasionDice": 3,
+  "evasionDifficulty": 9,
+  "preTargeting": null,
+  "targeting": [
+   "Closest Knight with the most Blood [Blood] tokens"
+  ],
+  "move": true,
+  "moveTag": "MOVE & ATTACK",
+  "gates": [
+   {
+    "stat": "Blood",
+    "gte": 1,
+    "effect": "+1 [d10]",
+    "text": "+1 [d10]",
+    "where": "moveTag"
+   },
+   {
+    "stat": "Blood",
+    "gte": 2,
+    "effect": "KNOCKDOWN",
+    "text": "KNOCKDOWN",
+    "where": "effect:1"
+   }
+  ],
+  "effects": [
+   "Suck 1. For each hit lose -1 [Vigor]. [Peril Check].",
+   "[Blood 2+ ▸ KNOCKDOWN] Suck 1."
+  ],
+  "reactWindows": [
+   "targeting",
+   "effect:1"
+  ],
+  "afterAttack": "Roll a [d10], and perform Burrow X, where X is the result rolled.",
+  "afterFinalAttack": null,
+  "aiResponse": null,
+  "footer": "PALEBLOOD WORMS",
+  "unclear": [
+   "code: tiny in the 414px screenshot; best reading 27A1390 (continues the AI run 27A1378–1389); last digits not truly legible",
+   "read from a small screenshot: gate thresholds '1+' (moveTag, +1 [d10]) and '2+' (KNOCKDOWN) are a few pixels tall; best readings given",
+   "evasion 3 dice / 9+ read from the small screenshot"
+  ],
+  "text": "BLOODSLASH / SIGNATURE / Evasion 3 dice, 9+ / TARGETING: • Closest Knight with the most Blood [Blood] tokens [REACT!] / MOVE & ATTACK [Blood 1+ ▸ +1 [d10]] / Suck 1. For each hit lose -1 [Vigor]. [Peril Check]. / [Blood 2+ ▸ KNOCKDOWN] Suck 1. [REACT!] / AFTER ATTACK / Roll a [d10], and perform Burrow X, where X is the result rolled. / PALEBLOOD WORMS",
+  "effectsNote": "Each array entry is one printed line/sentence group; gate tags printed on their own line are separate entries written inline as [Stat N+ ▸ EFFECT]. 'effect:i' = REACT! marker on the rule under effects[i]."
+ },
+ "extra": [],
+ "_notes": {
+  "icons": "[Vigor] red shield V; [Peril Check] red oval after vigor loss; [Blood] black drop; [Heat] blue H; [d10] black diamond die; [Armor]; [AT] ribcage; [Passion] green P; [Priority Target]; [Fortitude] [Might] [Bravery] [Tenacity] virtue icons; [REACT! window] claw glyph",
+  "gates": "Red-drop arrow tags are Blood gates (number of Blood tokens on the corresponding Mob, per the It Sucks! trait). gate.text/effect = printed tag text; gate.where = moveTag | targeting | effect:i | afterAttack (also used for AFTER FINAL ATTACK) | wound | fail (BP). One gate (Paint the Swamp Red moveTag) is stored with lte instead of gte.",
+  "reactWindows": "AI: 'targeting' = REACT! on the rule under the targeting block; 'effect:i' = REACT! on the rule under effects[i]. No BP card in this deck shows a REACT! marker.",
+  "cornerGlyph": "Every card shows an ornate 'P' in the top-left crest; level comes from the footer.",
+  "codes": "AI codes 27A1378–27A1389, BP codes 28A1755–28A1766, read from tiny pale print (5x zoom) and consistent with a contiguous run; individual last digits are uncertain where noted."
+ }
+}

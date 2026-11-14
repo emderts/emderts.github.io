@@ -25,6 +25,13 @@ ok((await p.textContent('#mpane')).includes('Wound Stack'), 'monster pane visibl
 ok((await p.locator('#kpane .kbox').count()) === 4, 'knight pane shows 4 knights');
 { const bb = await p.$eval('#board', e => e.getBoundingClientRect().bottom); const st = await p.$eval('.battle .sheet', e => [e.getBoundingClientRect().top, getComputedStyle(e).position]); ok(st[1] !== 'fixed' && st[0] >= bb - 1, 'prompt sits below the board inline (does not cover it)'); }
 const w = await p.evaluate(() => document.documentElement.scrollWidth); ok(w <= 390, `no horizontal overflow at 390px (${w})`);
+// Mob Clash smoke (Ironcast Dead)
+{ const q = await b.newPage({ viewport: { width: 390, height: 800 } }); const e2 = []; q.on('pageerror', e => e2.push(e.message));
+  await q.goto(new URL('../dist/rogues.html', import.meta.url).href); await q.evaluate(() => localStorage.setItem('kf.flash', '0')); await q.reload();
+  await q.selectOption('#mon', 'ironcast-dead'); await q.fill('#seed', '5'); await q.click('text=Clash 시작'); await q.waitForTimeout(300);
+  ok(await q.locator('.mon.mob').count() === 8 && await q.locator('.mslot').count() === 10, 'mob clash: 8 Mobs on the board, 10-slot Mob track');
+  let n = 0, picks = 0; for (let i = 0; i < 250; i++) { const mp = await q.$('.mobg.pick'); if (mp) { await jsClick(mp); picks++; n++; await q.waitForTimeout(25); continue; } const sel = await q.$('.cell.sel'); if (sel) { await jsClick(sel); n++; await q.waitForTimeout(25); continue; } const btn = await q.$('.sheet .row button.primary') || await q.$('.sheet button:not([disabled])'); if (btn) { await jsClick(btn); n++; await q.waitForTimeout(25); } else await q.waitForTimeout(50); }
+  ok(n > 50 && picks > 0, `mob clash: answered ${n} prompts, picked a Mob on the board ${picks}×`); ok(e2.length === 0, 'mob clash: no page errors ' + e2.slice(0, 2).join(' | ')); await q.close(); }
 // campaign flow
 await p.evaluate(() => localStorage.setItem('kf.flash', '0'));
 await p.goto(new URL('../dist/rogues.html', import.meta.url).href); p.on('dialog', d => d.accept());

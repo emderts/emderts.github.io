@@ -152,7 +152,8 @@ export class Campaign {
     const L = this.data.decks.loot.cards;
     const take = type => { const c = L.find(c => c.type === type && !lootDeck.includes(c) && !this.lootUsed?.includes(c.code)); if (c) lootDeck.push(c); return c; };
     if (win) take('fullClash');
-    for (let i = 0; i < 3; i++) { const t = await this.ask({ type: 'pick', text: `Scavenge ${i + 1}/3 — Loot 종류 선택`, options: [['kingdomGear', 'Kingdom Gear'], ['upgrade', 'Upgrade'], ['consumableGear', 'Consumable Gear']].map(([v, l]) => ({ label: l, value: v })) }); take(t || 'kingdomGear'); }
+    const nScav = 3 + (clash.scavengeBonus || 0);
+    for (let i = 0; i < nScav; i++) { const t = await this.ask({ type: 'pick', text: `Scavenge ${i + 1}/${nScav} — Loot 종류 선택`, options: [['kingdomGear', 'Kingdom Gear'], ['upgrade', 'Upgrade'], ['consumableGear', 'Consumable Gear']].map(([v, l]) => ({ label: l, value: v })) }); take(t || 'kingdomGear'); }
     this.say(`Loot deck: ${lootDeck.map(c => c.type).join(', ')}`);
     const tier = TIER[cur.nodeLevel]; const alive = this.knights.filter(k => !k.dead);
     // distribution: each Knight picks 1 (party decides order), then spare scrap round robin → gold

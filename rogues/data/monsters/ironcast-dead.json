@@ -1,0 +1,2628 @@
+{
+ "id": "ironcast-dead",
+ "name": "Ironcast Dead",
+ "_source": "Monster Sheet (2 pages), AI/BP/Routine card sheet, Signature card image — owner scans 2026-11-15; Clash Setup: Principality of Stone Codex p.46–47 (Ironcast Dead Clash)",
+ "kind": "mob",
+ "code": "26A1060",
+ "traitsLine": [
+  "Mob",
+  "Undead",
+  "Machinated",
+  "Soldier"
+ ],
+ "footprint": {
+  "size": 1,
+  "shape": "1x1",
+  "rear": "the single cell directly behind (R on the sheet diagram)",
+  "facingOnSheet": "down"
+ },
+ "basicAbilities": [
+  {
+   "name": "Interval Spawn",
+   "text": "INTERVAL SPAWN"
+  }
+ ],
+ "levels": {
+  "1": {
+   "toHit": 5,
+   "wounds": 7,
+   "exhibitionWounds": 1,
+   "activations": [
+    "AI",
+    "S"
+   ],
+   "activationsText": "1 AI 1 S",
+   "bonuses": {
+    "escalations": 0,
+    "at": 0,
+    "vigorLoss": 0
+   },
+   "traitsAdd": []
+  },
+  "2": {
+   "toHit": 6,
+   "wounds": 8,
+   "exhibitionWounds": 2,
+   "activations": [
+    "AI",
+    "S"
+   ],
+   "activationsText": "1 AI 1 S",
+   "bonuses": {
+    "escalations": 0,
+    "at": 1,
+    "vigorLoss": 1
+   },
+   "traitsAdd": [
+    "Necrofusion"
+   ]
+  },
+  "3": {
+   "toHit": 8,
+   "wounds": 8,
+   "exhibitionWounds": 2,
+   "activations": [
+    "AI",
+    "S"
+   ],
+   "activationsText": "1 AI 1 S",
+   "bonuses": {
+    "escalations": 1,
+    "at": 2,
+    "vigorLoss": 3
+   },
+   "traitsAdd": [
+    "Armored Reawakening"
+   ]
+  },
+  "4": {
+   "toHit": 9,
+   "wounds": 8,
+   "exhibitionWounds": 2,
+   "activations": [
+    "AI",
+    "S"
+   ],
+   "activationsText": "1 AI 1 S",
+   "bonuses": {
+    "escalations": 1,
+    "at": 3,
+    "vigorLoss": 6
+   },
+   "traitsAdd": [
+    "Armored Dead",
+    "Lifeless Army"
+   ]
+  }
+ },
+ "levelsNote": "Level box: To Hit, Wounds, Exhibition Wounds, Activations (1 AI + 1 Signature token on the Mob track). Bonus row: starburst-arrow = Escalations at start of Clash, ribcage = AT bonus, V = Vigor Loss bonus. Rosegraal uses levels 1–3; level 4 Traits (Armored Dead, Lifeless Army) are transcribed but not implemented.",
+ "traits": [
+  {
+   "id": "necrofusion",
+   "name": "Necrofusion",
+   "level": 2,
+   "text": "Each time an Ironcast Dead is dealt a Wound (a Double Wound is treated as 2 Wounds), place a Generic token on this Trait. After resolving the current action, if there are 3 or more Generic tokens on this Trait, discard all tokens and Spawn an Ironcast Dead on an empty space of a Rubble Terrain tile closest to the [Priority Target] Priority Target. That Ironcast Dead immediately performs Signature.",
+   "implemented": true
+  },
+  {
+   "id": "armored-reawakening",
+   "name": "Armored Reawakening",
+   "level": 3,
+   "text": "The Ironcast Dead that Spawn during the Clash gain an Armor [Armor] token.",
+   "implemented": true
+  },
+  {
+   "id": "armored-dead",
+   "name": "Armored Dead",
+   "level": 4,
+   "text": "When you deal a Wound to an Ironcast Dead with at least 1 Armor [Armor] token, place all of its Armor [Armor] tokens on the space it occupied. Treat Armor [Armor] tokens on the Clash Board as Rubble Terrain tiles. When a Mob moves onto or through a space with an Armor [Armor] token on it, place it on that Mob’s BP. A Knight on or adjacent to an Armor [Armor] token may, as a free action, test Might [Might] (7+) to remove that token from the Clash Board.\n\nEnd of Knight Round: Remove 1 Armor [Armor] token from each space with Armor [Armor] tokens on the Board. When you remove the last Armor [Armor] token from a single space, Heal 1 (place the new Mob on that space).",
+   "implemented": false
+  },
+  {
+   "id": "lifeless-army",
+   "name": "Lifeless Army",
+   "level": 4,
+   "text": "Ignore during the first Round.\n\nIroncast Dead additionally have Odd Spawn. Before each Activation: Spawn an Ironcast Dead on an empty space of a Rubble Terrain tile closest to the [Priority Target] Priority Target, that Mob immediately performs Gangup 1 against the [Priority Target]. If you cannot Spawn an Ironcast Dead, immediately perform Routine instead.",
+   "implemented": false
+  }
+ ],
+ "cards": {
+  "ai": [
+   {
+    "name": "Slashigor",
+    "code": "27A1085",
+    "level": 1,
+    "type": "ATTACK",
+    "evasionDice": 5,
+    "evasionDifficulty": 6,
+    "targeting": [
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "For every 2 hits, roll an additional [d10] (resolve once).",
+     "For each hit lose -1 [Vigor]. [Peril Check]."
+    ],
+    "afterAttack": "Gangup 3.",
+    "reactWindows": [
+     "targeting",
+     "effect:1"
+    ],
+    "text": "SLASHIGOR / ATTACK / Evasion 5 dice, 6+ / TARGETING: • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK / For every 2 hits, roll an additional [d10] (resolve once). / For each hit lose -1 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Gangup 3. / IRONCAST DEAD – AI 1",
+    "unclear": [
+     "code: best reading 27A1085; code digits read from low-resolution print; reading corroborated by the sheet-order sequence pattern (27A1082-27A1099)"
+    ],
+    "move": true,
+    "ops": {
+     "targeting": [
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "gangup",
+       "n": 3
+      }
+     ],
+     "afterFinalAttack": null,
+     "extraDice": {
+      "perHits": 2
+     }
+    }
+   },
+   {
+    "name": "Amass",
+    "code": "27A1086",
+    "level": 1,
+    "type": "ATTACK",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "targeting": [
+     "Closest Engaged Knight",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "For each hit lose -1 [Vigor]. [Peril Check].",
+     "Swarm 1.",
+     "Knockdown."
+    ],
+    "afterAttack": "If no other Knight in Zone 2, Escalate the lowest unrevealed Mob (BP and AI).",
+    "reactWindows": [
+     "targeting",
+     "effect:1",
+     "effect:2"
+    ],
+    "text": "AMASS / ATTACK / Evasion 3 dice, 8+ / TARGETING: • Closest Engaged Knight • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK / For each hit lose -1 [Vigor]. [Peril Check]. / Swarm 1. [REACT!] / Knockdown. [REACT!] / AFTER ATTACK / If no other Knight in Zone 2, Escalate the lowest unrevealed Mob (BP and AI). / IRONCAST DEAD – AI 1",
+    "unclear": [
+     "code: best reading 27A1086; code digits read from low-resolution print; reading corroborated by the sheet-order sequence pattern (27A1082-27A1099)"
+    ],
+    "move": true,
+    "ops": {
+     "targeting": [
+      "Closest Engaged Knight",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      },
+      {
+       "op": "swarm",
+       "n": 1
+      },
+      {
+       "op": "knockdown"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "mobIf",
+       "cond": {
+        "noOtherKnightInZone": 2
+       },
+       "then": [
+        {
+         "op": "escalateLowestUnrevealed"
+        }
+       ]
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Isolator",
+    "code": "27A1087",
+    "level": 1,
+    "type": "ATTACK",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "targeting": [
+     "Closest non-Engaged Knight",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [d10]",
+      "text": "+1 [d10]"
+     }
+    ],
+    "effects": [
+     "If you’re not adjacent to another Mob, Gangup 3.",
+     "For each hit lose -1 [Vigor]. [Peril Check]."
+    ],
+    "afterAttack": "Gangup 3.",
+    "reactWindows": [
+     "targeting",
+     "effect:1"
+    ],
+    "text": "ISOLATOR / ATTACK / Evasion 3 dice, 8+ / TARGETING: • Closest non-Engaged Knight • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat] 3+ ▸ +1 [d10] / If you’re not adjacent to another Mob, Gangup 3. / For each hit lose -1 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Gangup 3. / IRONCAST DEAD – AI 1",
+    "unclear": [
+     "code: best reading 27A1087; code digits read from low-resolution print; reading corroborated by the sheet-order sequence pattern (27A1082-27A1099)"
+    ],
+    "move": true,
+    "ops": {
+     "targeting": [
+      "Closest non-Engaged Knight",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 3,
+       "text": "+1 [d10]",
+       "op": "evasionDice",
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "mobIf",
+       "cond": {
+        "knightNotAdjacentToOtherMob": true
+       },
+       "then": [
+        {
+         "op": "gangup",
+         "n": 3
+        }
+       ]
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "gangup",
+       "n": 3
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Bony Embrace",
+    "code": "27A1084",
+    "level": 1,
+    "type": "ATTACK",
+    "evasionDice": 2,
+    "evasionDifficulty": 9,
+    "targeting": [
+     "Closest Engaged Knight",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "For each hit lose -1 [Vigor]. [Peril Check].",
+     "Swarm 1. Parasitize 1."
+    ],
+    "afterAttack": null,
+    "reactWindows": [
+     "targeting"
+    ],
+    "text": "BONY EMBRACE / ATTACK / Evasion 2 dice, 9+ / TARGETING: • Closest Engaged Knight • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK / For each hit lose -1 [Vigor]. [Peril Check]. / Swarm 1. Parasitize 1. / IRONCAST DEAD – AI 1",
+    "unclear": [
+     "code: best reading 27A1084; code digits read from low-resolution print; reading corroborated by the sheet-order sequence pattern (27A1082-27A1099)"
+    ],
+    "move": true,
+    "ops": {
+     "targeting": [
+      "Closest Engaged Knight",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      },
+      {
+       "op": "swarm",
+       "n": 1
+      },
+      {
+       "op": "parasitize",
+       "n": 1
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Rusted Slash",
+    "code": "27A1083",
+    "level": 1,
+    "type": "ATTACK",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "targeting": [
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "For each hit lose -1 [Vigor]. [Peril Check]."
+    ],
+    "afterAttack": "Gangup 3.",
+    "reactWindows": [
+     "targeting",
+     "effect:0"
+    ],
+    "text": "RUSTED SLASH / ATTACK / Evasion 3 dice, 8+ / TARGETING: • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK / For each hit lose -1 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Gangup 3. / IRONCAST DEAD – AI 1",
+    "unclear": [
+     "code: best reading 27A1083; code digits read from low-resolution print; reading corroborated by the sheet-order sequence pattern (27A1082-27A1099)"
+    ],
+    "move": true,
+    "ops": {
+     "targeting": [
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "gangup",
+       "n": 3
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Rusted Slash",
+    "code": "27A1082",
+    "level": 1,
+    "type": "ATTACK",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "targeting": [
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "For each hit lose -1 [Vigor]. [Peril Check]."
+    ],
+    "afterAttack": "Gangup 3.",
+    "reactWindows": [
+     "targeting",
+     "effect:0"
+    ],
+    "text": "RUSTED SLASH / ATTACK / Evasion 3 dice, 8+ / TARGETING: • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK / For each hit lose -1 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Gangup 3. / IRONCAST DEAD – AI 1",
+    "unclear": [
+     "code: best reading 27A1082; code digits read from low-resolution print; reading corroborated by the sheet-order sequence pattern (27A1082-27A1099)"
+    ],
+    "move": true,
+    "ops": {
+     "targeting": [
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "gangup",
+       "n": 3
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Overwhelm",
+    "code": "27A1091",
+    "level": 2,
+    "type": "ATTACK",
+    "evasionDice": 5,
+    "evasionDifficulty": 7,
+    "targeting": [
+     "Closest Engaged Knight",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 4,
+      "effect": "+1 [d10]",
+      "text": "+1 [d10]"
+     }
+    ],
+    "effects": [
+     "For each hit lose -1 [Vigor]. [Peril Check].",
+     "Swarm 1."
+    ],
+    "afterAttack": "If no other Knight in Zone 2, Escalate the lowest unrevealed Mob (BP and AI).",
+    "reactWindows": [
+     "targeting",
+     "effect:1"
+    ],
+    "text": "OVERWHELM / ATTACK / Evasion 5 dice, 7+ / TARGETING: • Closest Engaged Knight • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat] 4+ ▸ +1 [d10] / For each hit lose -1 [Vigor]. [Peril Check]. / Swarm 1. [REACT!] / AFTER ATTACK / If no other Knight in Zone 2, Escalate the lowest unrevealed Mob (BP and AI). / IRONCAST DEAD – AI 2",
+    "unclear": [
+     "code: best reading 27A1091; code digits read from low-resolution print; reading corroborated by the sheet-order sequence pattern (27A1082-27A1099)",
+     "gate effect: sign before '1 [d10]' is faint; read as '+1' (matches other cards), could be '-1'"
+    ],
+    "move": true,
+    "ops": {
+     "targeting": [
+      "Closest Engaged Knight",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 4,
+       "text": "+1 [d10]",
+       "op": "evasionDice",
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      },
+      {
+       "op": "swarm",
+       "n": 1
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "mobIf",
+       "cond": {
+        "noOtherKnightInZone": 2
+       },
+       "then": [
+        {
+         "op": "escalateLowestUnrevealed"
+        }
+       ]
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Flanking Strike",
+    "code": "27A1092",
+    "level": 2,
+    "type": "ATTACK",
+    "evasionDice": 3,
+    "evasionDifficulty": 9,
+    "targeting": [
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "-2 [Vigor] INSTEAD",
+      "text": "-2 [Vigor] INSTEAD"
+     }
+    ],
+    "effects": [
+     "For each hit lose -1 [Vigor]. [Peril Check].",
+     "Swarm 1."
+    ],
+    "afterAttack": "Knockback 3.",
+    "reactWindows": [
+     "targeting",
+     "effect:1"
+    ],
+    "text": "FLANKING STRIKE / ATTACK / Evasion 3 dice, 9+ / TARGETING: • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat] 3+ ▸ -2 [Vigor] INSTEAD / For each hit lose -1 [Vigor]. [Peril Check]. / Swarm 1. [REACT!] / AFTER ATTACK / Knockback 3. / IRONCAST DEAD – AI 2",
+    "unclear": [
+     "code: best reading 27A1092; code digits read from low-resolution print; reading corroborated by the sheet-order sequence pattern (27A1082-27A1099)"
+    ],
+    "move": true,
+    "ops": {
+     "targeting": [
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 3,
+       "text": "-2 [Vigor] INSTEAD",
+       "op": "vigorPerHitInstead",
+       "n": 2
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      },
+      {
+       "op": "swarm",
+       "n": 1
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "knockback",
+       "n": 3
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Flanking Strike",
+    "code": "27A1093",
+    "level": 2,
+    "type": "ATTACK",
+    "evasionDice": 3,
+    "evasionDifficulty": 9,
+    "targeting": [
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "-2 [Vigor] INSTEAD",
+      "text": "-2 [Vigor] INSTEAD"
+     }
+    ],
+    "effects": [
+     "For each hit lose -1 [Vigor]. [Peril Check].",
+     "Swarm 1."
+    ],
+    "afterAttack": "Knockback 3.",
+    "reactWindows": [
+     "targeting",
+     "effect:1"
+    ],
+    "text": "FLANKING STRIKE / ATTACK / Evasion 3 dice, 9+ / TARGETING: • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat] 3+ ▸ -2 [Vigor] INSTEAD / For each hit lose -1 [Vigor]. [Peril Check]. / Swarm 1. [REACT!] / AFTER ATTACK / Knockback 3. / IRONCAST DEAD – AI 2",
+    "unclear": [
+     "code: best reading 27A1093; code digits read from low-resolution print; reading corroborated by the sheet-order sequence pattern (27A1082-27A1099)"
+    ],
+    "move": true,
+    "ops": {
+     "targeting": [
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 3,
+       "text": "-2 [Vigor] INSTEAD",
+       "op": "vigorPerHitInstead",
+       "n": 2
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      },
+      {
+       "op": "swarm",
+       "n": 1
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "knockback",
+       "n": 3
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Mindless Slasher",
+    "code": "27A1090",
+    "level": 2,
+    "type": "ATTACK",
+    "evasionDice": 3,
+    "evasionDifficulty": 7,
+    "targeting": [
+     "Closest Knight in sight",
+     "Closest Knight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [d10]",
+      "text": "+1 [d10]"
+     }
+    ],
+    "effects": [
+     "For each 1 hit, roll an additional [d10] (resolve once).",
+     "For each hit lose -1 [Vigor]. [Peril Check].",
+     "Parasitize 2. Choke 3.",
+     "If no other Knight in Zone 1, Knockdown."
+    ],
+    "afterAttack": "Knockback 3.",
+    "reactWindows": [
+     "targeting",
+     "effect:2",
+     "effect:3"
+    ],
+    "text": "MINDLESS SLASHER / ATTACK / Evasion 3 dice, 7+ / TARGETING: • Closest Knight in sight • Closest Knight [REACT!] / MOVE & ATTACK [Heat] 3+ ▸ +1 [d10] / For each 1 hit, roll an additional [d10] (resolve once). / For each hit lose -1 [Vigor]. [Peril Check]. / Parasitize 2. Choke 3. [REACT!] / If no other Knight in Zone 1, Knockdown. [REACT!] / AFTER ATTACK / Knockback 3. / IRONCAST DEAD – AI 2",
+    "unclear": [
+     "code: best reading 27A1090; code digits read from low-resolution print; reading corroborated by the sheet-order sequence pattern (27A1082-27A1099)"
+    ],
+    "move": true,
+    "ops": {
+     "targeting": [
+      "Closest Knight in sight",
+      "Closest Knight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 3,
+       "text": "+1 [d10]",
+       "op": "evasionDice",
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      },
+      {
+       "op": "parasitize",
+       "n": 2
+      },
+      {
+       "op": "choke",
+       "n": 3
+      },
+      {
+       "op": "mobIf",
+       "cond": {
+        "noOtherKnightInZone": 1
+       },
+       "then": [
+        {
+         "op": "knockdown"
+        }
+       ]
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "knockback",
+       "n": 3
+      }
+     ],
+     "afterFinalAttack": null,
+     "extraDice": {
+      "perHits": 1
+     }
+    }
+   },
+   {
+    "name": "Bones of the Kingdom",
+    "code": "27A1089",
+    "level": 2,
+    "type": "ATTACK",
+    "evasionDice": 3,
+    "evasionDifficulty": 9,
+    "targeting": [
+     "Closest Engaged Knight in sight",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "GANGUP 3",
+      "text": "GANGUP 3"
+     }
+    ],
+    "effects": [
+     "For each hit lose -1 [Vigor]. [Peril Check].",
+     "Swarm 2."
+    ],
+    "afterAttack": "If no other Knight in Zone 2, Escalate the lowest unrevealed Mob (BP and AI).",
+    "reactWindows": [
+     "targeting",
+     "effect:1"
+    ],
+    "text": "BONES OF THE KINGDOM / ATTACK / Evasion 3 dice, 9+ / TARGETING: • Closest Engaged Knight in sight • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat] 3+ ▸ GANGUP 3 / For each hit lose -1 [Vigor]. [Peril Check]. / Swarm 2. [REACT!] / AFTER ATTACK / If no other Knight in Zone 2, Escalate the lowest unrevealed Mob (BP and AI). / IRONCAST DEAD – AI 2",
+    "unclear": [
+     "code: best reading 27A1089; code digits read from low-resolution print; reading corroborated by the sheet-order sequence pattern (27A1082-27A1099)",
+     "gate threshold digit is faint; read as '3+'"
+    ],
+    "move": true,
+    "ops": {
+     "targeting": [
+      "Closest Engaged Knight in sight",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 3,
+       "text": "GANGUP 3",
+       "op": "moveGangup",
+       "n": 3
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      },
+      {
+       "op": "swarm",
+       "n": 2
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "mobIf",
+       "cond": {
+        "noOtherKnightInZone": 2
+       },
+       "then": [
+        {
+         "op": "escalateLowestUnrevealed"
+        }
+       ]
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Swarmigor",
+    "code": "27A1088",
+    "level": 2,
+    "type": "ATTACK",
+    "evasionDice": 2,
+    "evasionDifficulty": 8,
+    "targeting": [
+     "Closest Engaged Knight",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "For each hit lose -2 [Vigor]. [Peril Check].",
+     "Swarm 1.",
+     "Knockdown."
+    ],
+    "afterAttack": "Gangup 3.",
+    "reactWindows": [
+     "targeting",
+     "effect:1",
+     "effect:2"
+    ],
+    "text": "SWARMIGOR / ATTACK / Evasion 2 dice, 8+ / TARGETING: • Closest Engaged Knight • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK / For each hit lose -2 [Vigor]. [Peril Check]. / Swarm 1. [REACT!] / Knockdown. [REACT!] / AFTER ATTACK / Gangup 3. / IRONCAST DEAD – AI 2",
+    "unclear": [
+     "code: best reading 27A1088; code digits read from low-resolution print; reading corroborated by the sheet-order sequence pattern (27A1082-27A1099)"
+    ],
+    "move": true,
+    "ops": {
+     "targeting": [
+      "Closest Engaged Knight",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "swarm",
+       "n": 1
+      },
+      {
+       "op": "knockdown"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "gangup",
+       "n": 3
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Ironcast Wall",
+    "code": "27A1097",
+    "level": 3,
+    "type": "ATTACK",
+    "evasionDice": 4,
+    "evasionDifficulty": 7,
+    "targeting": [
+     "Closest non-Engaged Knight",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "GANGUP 5 & ATTACK",
+    "gates": [],
+    "effects": [
+     "For each hit lose -2 [Vigor]. [Peril Check].",
+     "Swarm 2."
+    ],
+    "afterAttack": "Place 1 Armor [Armor] token on every other Mob in Zone 1.",
+    "reactWindows": [
+     "targeting",
+     "effect:1"
+    ],
+    "text": "IRONCAST WALL / ATTACK / Evasion 4 dice, 7+ / TARGETING: • Closest non-Engaged Knight • Closest Knight in front • Closest Knight in sight [REACT!] / GANGUP 5 & ATTACK / For each hit lose -2 [Vigor]. [Peril Check]. / Swarm 2. [REACT!] / AFTER ATTACK / Place 1 Armor [Armor] token on every other Mob in Zone 1. / IRONCAST DEAD – AI 3",
+    "unclear": [
+     "code: best reading 27A1097; code digits read from low-resolution print; reading corroborated by the sheet-order sequence pattern (27A1082-27A1099)"
+    ],
+    "move": false,
+    "ops": {
+     "targeting": [
+      "Closest non-Engaged Knight",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "swarm",
+       "n": 2
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "armorToken",
+       "to": "otherMobsInZone",
+       "z": 1,
+       "n": 1
+      }
+     ],
+     "afterFinalAttack": null,
+     "moveGangup": 5
+    }
+   },
+   {
+    "name": "Ironcast Embrace",
+    "code": "27A1098",
+    "level": 3,
+    "type": "ATTACK",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "targeting": [
+     "Closest Engaged Knight",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "For each hit lose -2 [Vigor]. [Peril Check].",
+     "Swarm 2.",
+     "If you’re adjacent to 2 or more Mobs, gain the Distracted Condition card."
+    ],
+    "afterAttack": "If 5+ [Vigor] was lost, Heal 1, then draw AI for the new Mob.",
+    "reactWindows": [
+     "targeting",
+     "effect:1",
+     "effect:2"
+    ],
+    "text": "IRONCAST EMBRACE / ATTACK / Evasion 3 dice, 8+ / TARGETING: • Closest Engaged Knight • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK / For each hit lose -2 [Vigor]. [Peril Check]. / Swarm 2. [REACT!] / If you’re adjacent to 2 or more Mobs, gain the Distracted Condition card. [REACT!] / AFTER ATTACK / If 5+ [Vigor] was lost, Heal 1, then draw AI for the new Mob. / IRONCAST DEAD – AI 3",
+    "unclear": [
+     "code: best reading 27A1098; code digits read from low-resolution print; reading corroborated by the sheet-order sequence pattern (27A1082-27A1099)",
+     "'Distracted' is printed in italics"
+    ],
+    "move": true,
+    "ops": {
+     "targeting": [
+      "Closest Engaged Knight",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "swarm",
+       "n": 2
+      },
+      {
+       "op": "mobIf",
+       "cond": {
+        "knightAdjacentMobs": 2
+       },
+       "then": [
+        {
+         "op": "condition",
+         "id": "Distracted"
+        }
+       ]
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "mobIf",
+       "cond": {
+        "vigorLostAtLeast": 5
+       },
+       "then": [
+        {
+         "op": "healMob",
+         "n": 1
+        },
+        {
+         "op": "drawAIFor",
+         "which": "new"
+        }
+       ]
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Corrosive Blade",
+    "code": "27A1099",
+    "level": 3,
+    "type": "ATTACK",
+    "evasionDice": 3,
+    "evasionDifficulty": 9,
+    "targeting": [
+     "Closest Knight in sight",
+     "Closest Knight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "For each hit lose -2 [Vigor]. [Peril Check]."
+    ],
+    "afterAttack": "Knockback 3.",
+    "reactWindows": [
+     "targeting",
+     "effect:0"
+    ],
+    "text": "CORROSIVE BLADE / ATTACK / Evasion 3 dice, 9+ / TARGETING: • Closest Knight in sight • Closest Knight [REACT!] / MOVE & ATTACK / For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Knockback 3. / IRONCAST DEAD – AI 3",
+    "unclear": [
+     "code: best reading 27A1099; code digits read from low-resolution print; reading corroborated by the sheet-order sequence pattern (27A1082-27A1099)"
+    ],
+    "move": true,
+    "ops": {
+     "targeting": [
+      "Closest Knight in sight",
+      "Closest Knight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "knockback",
+       "n": 3
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Automated Slash",
+    "code": "27A1094",
+    "level": 3,
+    "type": "ATTACK",
+    "evasionDice": 1,
+    "evasionDifficulty": 10,
+    "targeting": [
+     "Closest Knight in sight",
+     "Closest Knight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "If hit, roll 2 additional [d10].",
+     "For each hit lose -3 [Vigor]. [Peril Check].",
+     "Choke 3.",
+     "If no other Knight in Zone 1, Knockdown."
+    ],
+    "afterAttack": "Gangup 4.",
+    "reactWindows": [
+     "targeting",
+     "effect:2",
+     "effect:3"
+    ],
+    "text": "AUTOMATED SLASH / ATTACK / Evasion 1 dice, 10+ / TARGETING: • Closest Knight in sight • Closest Knight [REACT!] / MOVE & ATTACK / If hit, roll 2 additional [d10]. / For each hit lose -3 [Vigor]. [Peril Check]. / Choke 3. [REACT!] / If no other Knight in Zone 1, Knockdown. [REACT!] / AFTER ATTACK / Gangup 4. / IRONCAST DEAD – AI 3",
+    "unclear": [
+     "code: best reading 27A1094; code digits read from low-resolution print; reading corroborated by the sheet-order sequence pattern (27A1082-27A1099)",
+     "code last digit very faint (looks like 1081/1091/1094); 27A1094 chosen from sequence pattern"
+    ],
+    "move": true,
+    "ops": {
+     "targeting": [
+      "Closest Knight in sight",
+      "Closest Knight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 3,
+       "perilCheck": true
+      },
+      {
+       "op": "choke",
+       "n": 3
+      },
+      {
+       "op": "mobIf",
+       "cond": {
+        "noOtherKnightInZone": 1
+       },
+       "then": [
+        {
+         "op": "knockdown"
+        }
+       ]
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "gangup",
+       "n": 4
+      }
+     ],
+     "afterFinalAttack": null,
+     "extraDice": {
+      "ifHit": 2
+     }
+    }
+   },
+   {
+    "name": "Summon the Horde",
+    "code": "27A1095",
+    "level": 3,
+    "type": "ATTACK",
+    "evasionDice": 3,
+    "evasionDifficulty": 9,
+    "targeting": [
+     "Closest non-Engaged Knight",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 4,
+      "effect": "-3 [Vigor] INSTEAD",
+      "text": "-3 [Vigor] INSTEAD"
+     }
+    ],
+    "effects": [
+     "All other Mobs in Zone 2 move up to 2 spaces toward you.",
+     "For each hit lose -2 [Vigor]. [Peril Check].",
+     "Swarm 1."
+    ],
+    "afterAttack": null,
+    "reactWindows": [
+     "targeting"
+    ],
+    "text": "SUMMON THE HORDE / ATTACK / Evasion 3 dice, 9+ / TARGETING: • Closest non-Engaged Knight • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat] 4+ ▸ -3 [Vigor] INSTEAD / All other Mobs in Zone 2 move up to 2 spaces toward you. / For each hit lose -2 [Vigor]. [Peril Check]. / Swarm 1. / IRONCAST DEAD – AI 3",
+    "unclear": [
+     "code: best reading 27A1095; code digits read from low-resolution print; reading corroborated by the sheet-order sequence pattern (27A1082-27A1099)",
+     "the three effect sentences are printed as one running paragraph: 'All other Mobs in Zone 2 move up to 2 spaces toward you. For each hit lose -2 [Vigor]. [Peril Check]. Swarm 1.'"
+    ],
+    "move": true,
+    "ops": {
+     "targeting": [
+      "Closest non-Engaged Knight",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 4,
+       "text": "-3 [Vigor] INSTEAD",
+       "op": "vigorPerHitInstead",
+       "n": 3
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "moveOtherMobsToward",
+       "z": 2,
+       "n": 2
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "swarm",
+       "n": 1
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Rotting Legion",
+    "code": "27A1096",
+    "level": 3,
+    "type": "ATTACK",
+    "evasionDice": 4,
+    "evasionDifficulty": 9,
+    "targeting": [
+     "Closest Engaged Knight",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 5,
+      "effect": "+1 [d10] FOR EVERY OTHER MOB ADJACENT TO YOU",
+      "text": "+1 [d10] FOR EVERY OTHER MOB ADJACENT TO YOU"
+     }
+    ],
+    "effects": [
+     "Gangup 3.",
+     "For each hit lose -1 [Vigor]. [Peril Check].",
+     "Parasitize 3."
+    ],
+    "afterAttack": "Bane 3.",
+    "reactWindows": [
+     "targeting",
+     "effect:0"
+    ],
+    "text": "ROTTING LEGION / ATTACK / Evasion 4 dice, 9+ / TARGETING: • Closest Engaged Knight • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat] 5+ ▸ +1 [d10] FOR EVERY OTHER MOB ADJACENT TO YOU / Gangup 3. [REACT!] / For each hit lose -1 [Vigor]. [Peril Check]. / Parasitize 3. / AFTER ATTACK / Bane 3. / IRONCAST DEAD – AI 3",
+    "unclear": [
+     "code: best reading 27A1096; code digits read from low-resolution print; reading corroborated by the sheet-order sequence pattern (27A1082-27A1099)"
+    ],
+    "move": true,
+    "ops": {
+     "targeting": [
+      "Closest Engaged Knight",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 5,
+       "text": "+1 [d10] FOR EVERY OTHER MOB ADJACENT TO YOU",
+       "op": "evasionDicePerAdjacentMob",
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "gangup",
+       "n": 3
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      },
+      {
+       "op": "parasitize",
+       "n": 3
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "bane",
+       "n": 3
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   }
+  ],
+  "bp": [
+   {
+    "name": "Man-at-Bones",
+    "code": "28A1500",
+    "level": 1,
+    "at": 3,
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "Draw AI for the furthest Mob.",
+     "fail": "Gangup 3.",
+     "instinct": null,
+     "critical": "You may flip a chosen BP card face down."
+    },
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "reactWindows": [],
+    "text": "MAN-AT-BONES / OVERCOME 3+ ▸ Power 1 / [AT] 3 / WOUND: Draw AI for the furthest Mob. / FAIL: Gangup 3. / CRITICAL: You may flip a chosen BP card face down. / IRONCAST DEAD – BP 1",
+    "unclear": [
+     "code: best reading 28A1500; code digits read from low-resolution print; corroborated by sheet-order sequence pattern (28A1497-28A1514)"
+    ],
+    "ops": {
+     "at": 3,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "drawAIFor",
+       "which": "furthest"
+      }
+     ],
+     "fail": [
+      {
+       "op": "gangup",
+       "n": 3
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "flipBPDown"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Armorhead",
+    "code": "28A1501",
+    "level": 1,
+    "at": 4,
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Draw AI for the furthest Mob.",
+     "critical": "Another Knight may perform a Bonus Attack!"
+    },
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "reactWindows": [],
+    "text": "ARMORHEAD / OVERCOME 3+ ▸ Power 1 / [AT] 4 / INSTINCT: Draw AI for the furthest Mob. / CRITICAL: Another Knight may perform a Bonus Attack! / IRONCAST DEAD – BP 1",
+    "unclear": [
+     "code: best reading 28A1501; code digits read from low-resolution print; corroborated by sheet-order sequence pattern (28A1497-28A1514)"
+    ],
+    "ops": {
+     "at": 4,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": null,
+     "fail": null,
+     "instinct": [
+      {
+       "op": "drawAIFor",
+       "which": "furthest"
+      }
+     ],
+     "critical": [
+      {
+       "op": "bonusAttack",
+       "who": "otherKnight",
+       "optional": true
+      }
+     ]
+    }
+   },
+   {
+    "name": "Armorhead",
+    "code": "28A1502",
+    "level": 1,
+    "at": 4,
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Draw AI for the furthest Mob.",
+     "critical": "You may perform a Bonus Attack!"
+    },
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "reactWindows": [],
+    "text": "ARMORHEAD / OVERCOME 3+ ▸ Power 1 / [AT] 4 / INSTINCT: Draw AI for the furthest Mob. / CRITICAL: You may perform a Bonus Attack! / IRONCAST DEAD – BP 1",
+    "unclear": [
+     "code: best reading 28A1502; code digits read from low-resolution print; corroborated by sheet-order sequence pattern (28A1497-28A1514)"
+    ],
+    "ops": {
+     "at": 4,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": null,
+     "fail": null,
+     "instinct": [
+      {
+       "op": "drawAIFor",
+       "which": "furthest"
+      }
+     ],
+     "critical": [
+      {
+       "op": "bonusAttack",
+       "who": "self",
+       "optional": true
+      }
+     ]
+    }
+   },
+   {
+    "name": "Bone-at-Arms",
+    "code": "28A1499",
+    "level": 1,
+    "at": 3,
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "Draw AI for the furthest Mob.",
+     "fail": "Gangup 3.",
+     "instinct": null,
+     "critical": "You may flip a chosen BP card face down."
+    },
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "reactWindows": [],
+    "text": "BONE-AT-ARMS / OVERCOME 3+ ▸ Power 1 / [AT] 3 / WOUND: Draw AI for the furthest Mob. / FAIL: Gangup 3. / CRITICAL: You may flip a chosen BP card face down. / IRONCAST DEAD – BP 1",
+    "unclear": [
+     "code: best reading 28A1499; code digits read from low-resolution print; corroborated by sheet-order sequence pattern (28A1497-28A1514)",
+     "overcome threshold digit is small/blurred; best reading given (3+)",
+     "code last digit could be 5 or 9; 1499 from sequence"
+    ],
+    "ops": {
+     "at": 3,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "drawAIFor",
+       "which": "furthest"
+      }
+     ],
+     "fail": [
+      {
+       "op": "gangup",
+       "n": 3
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "flipBPDown"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Bone Squire",
+    "code": "28A1498",
+    "level": 1,
+    "at": 2,
+    "overcome": {
+     "n": 2,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "Reveal the rightmost unrevealed BP.",
+     "fail": "Gangup 3.",
+     "instinct": null,
+     "critical": "Look at a chosen BP card."
+    },
+    "whenRevealed": null,
+    "whileRevealed": "All Knights have -1 Precision [Precision].",
+    "reactWindows": [],
+    "text": "BONE SQUIRE / OVERCOME 2+ ▸ Power 1 / [AT] 2 / WOUND: Reveal the rightmost unrevealed BP. / FAIL: Gangup 3. / CRITICAL: Look at a chosen BP card. / IRONCAST DEAD – BP 1 / While this BP is revealed: All Knights have -1 Precision [Precision].",
+    "unclear": [
+     "code: best reading 28A1498; code digits read from low-resolution print; corroborated by sheet-order sequence pattern (28A1497-28A1514)"
+    ],
+    "ops": {
+     "at": 2,
+     "overcome": {
+      "n": 2,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "revealBP",
+       "side": "rightmost"
+      }
+     ],
+     "fail": [
+      {
+       "op": "gangup",
+       "n": 3
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "lookBP"
+      }
+     ],
+     "aura": {
+      "knightPrecision": -1
+     }
+    }
+   },
+   {
+    "name": "Bone Squire",
+    "code": "28A1497",
+    "level": 1,
+    "at": 2,
+    "overcome": {
+     "n": 2,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "Reveal the leftmost unrevealed BP.",
+     "fail": "Gangup 3.",
+     "instinct": null,
+     "critical": "Look at a chosen BP card."
+    },
+    "whenRevealed": null,
+    "whileRevealed": "All Knights have -1 Precision [Precision].",
+    "reactWindows": [],
+    "text": "BONE SQUIRE / OVERCOME 2+ ▸ Power 1 / [AT] 2 / WOUND: Reveal the leftmost unrevealed BP. / FAIL: Gangup 3. / CRITICAL: Look at a chosen BP card. / IRONCAST DEAD – BP 1 / While this BP is revealed: All Knights have -1 Precision [Precision].",
+    "unclear": [
+     "code: best reading 28A1497; code digits read from low-resolution print; corroborated by sheet-order sequence pattern (28A1497-28A1514)"
+    ],
+    "ops": {
+     "at": 2,
+     "overcome": {
+      "n": 2,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "revealBP",
+       "side": "leftmost"
+      }
+     ],
+     "fail": [
+      {
+       "op": "gangup",
+       "n": 3
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "lookBP"
+      }
+     ],
+     "aura": {
+      "knightPrecision": -1
+     }
+    }
+   },
+   {
+    "name": "Bone Knight",
+    "code": "28A1506",
+    "level": 2,
+    "at": 6,
+    "overcome": {
+     "n": 4,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": null,
+     "fail": "Gangup 4. Draw AI for the closest Mob.",
+     "instinct": null,
+     "critical": "Another Knight may perform a Bonus Attack!"
+    },
+    "whenRevealed": "Place 1 Armor [Armor] token on this Mob.",
+    "whileRevealed": null,
+    "reactWindows": [
+     "fail:after 'Gangup 4.'"
+    ],
+    "text": "When you reveal this BP: Place 1 Armor [Armor] token on this Mob. / BONE KNIGHT / OVERCOME 4+ ▸ Power 1 / [AT] 6 / FAIL: Gangup 4. Draw AI for the closest Mob. / CRITICAL: Another Knight may perform a Bonus Attack! / REACT!: fail:after 'Gangup 4.' / IRONCAST DEAD – BP 2",
+    "unclear": [
+     "code: best reading 28A1506; code digits read from low-resolution print; corroborated by sheet-order sequence pattern (28A1497-28A1514)"
+    ],
+    "ops": {
+     "at": 6,
+     "overcome": {
+      "n": 4,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": null,
+     "fail": [
+      {
+       "op": "gangup",
+       "n": 4
+      },
+      {
+       "op": "drawAIFor",
+       "which": "closest"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "bonusAttack",
+       "who": "otherKnight",
+       "optional": true
+      }
+     ],
+     "whenRevealed": [
+      {
+       "op": "armorToken",
+       "to": "this",
+       "n": 1
+      }
+     ]
+    }
+   },
+   {
+    "name": "Mindless Veteran",
+    "code": "28A1507",
+    "level": 2,
+    "at": 5,
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "Draw AI for the closest Mob.",
+     "fail": "Draw AI for this Mob.",
+     "instinct": null,
+     "critical": "You may perform a Bonus Attack!"
+    },
+    "whenRevealed": "Escalate the lowest unrevealed Mob (BP and AI).",
+    "whileRevealed": null,
+    "reactWindows": [],
+    "text": "When you reveal this BP: Escalate the lowest unrevealed Mob (BP and AI). / MINDLESS VETERAN / OVERCOME 3+ ▸ Power 1 / [AT] 5 / WOUND: Draw AI for the closest Mob. / FAIL: Draw AI for this Mob. / CRITICAL: You may perform a Bonus Attack! / IRONCAST DEAD – BP 2",
+    "unclear": [
+     "code: best reading 28A1507; code digits read from low-resolution print; corroborated by sheet-order sequence pattern (28A1497-28A1514)"
+    ],
+    "ops": {
+     "at": 5,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "drawAIFor",
+       "which": "closest"
+      }
+     ],
+     "fail": [
+      {
+       "op": "drawAIFor",
+       "which": "this"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "bonusAttack",
+       "who": "self",
+       "optional": true
+      }
+     ],
+     "whenRevealed": [
+      {
+       "op": "escalateLowestUnrevealed"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Chaplain of the Church",
+    "code": "28A1508",
+    "level": 2,
+    "at": 5,
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "Draw AI for the furthest Mob.",
+     "fail": "Heal 1.",
+     "instinct": null,
+     "critical": "Scavenge 2."
+    },
+    "whenRevealed": null,
+    "whileRevealed": "At the end of the Monster Round, Heal 1.",
+    "reactWindows": [],
+    "text": "CHAPLAIN OF THE CHURCH / OVERCOME 3+ ▸ Power 1 / [AT] 5 / WOUND: Draw AI for the furthest Mob. / FAIL: Heal 1. / CRITICAL: Scavenge 2. / IRONCAST DEAD – BP 2 / While this BP is revealed: At the end of the Monster Round, Heal 1.",
+    "unclear": [
+     "code: best reading 28A1508; code digits read from low-resolution print; corroborated by sheet-order sequence pattern (28A1497-28A1514)"
+    ],
+    "ops": {
+     "at": 5,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "drawAIFor",
+       "which": "furthest"
+      }
+     ],
+     "fail": [
+      {
+       "op": "healMob",
+       "n": 1
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "scavenge",
+       "n": 2
+      }
+     ],
+     "aura": {
+      "endOfMonsterRound": [
+       {
+        "op": "healMob",
+        "n": 1
+       }
+      ]
+     }
+    }
+   },
+   {
+    "name": "Panzerdead",
+    "code": "28A1505",
+    "level": 2,
+    "at": 4,
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "Reveal the rightmost unrevealed BP.",
+     "fail": null,
+     "instinct": null,
+     "critical": "You may flip a chosen BP card face down."
+    },
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "reactWindows": [],
+    "text": "PANZERDEAD / OVERCOME 3+ ▸ Power 1 / [AT] 4 / WOUND: Reveal the rightmost unrevealed BP. / CRITICAL: You may flip a chosen BP card face down. / IRONCAST DEAD – BP 2",
+    "unclear": [
+     "code: best reading 28A1505; code digits read from low-resolution print; corroborated by sheet-order sequence pattern (28A1497-28A1514)",
+     "overcome threshold digit is small/blurred; best reading given (3+)"
+    ],
+    "ops": {
+     "at": 4,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "revealBP",
+       "side": "rightmost"
+      }
+     ],
+     "fail": null,
+     "instinct": null,
+     "critical": [
+      {
+       "op": "flipBPDown"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Panzerdead",
+    "code": "28A1504",
+    "level": 2,
+    "at": 4,
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Draw AI for the furthest Mob.",
+     "critical": "You may flip a chosen BP card face down."
+    },
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "reactWindows": [],
+    "text": "PANZERDEAD / OVERCOME 3+ ▸ Power 1 / [AT] 4 / INSTINCT: Draw AI for the furthest Mob. / CRITICAL: You may flip a chosen BP card face down. / IRONCAST DEAD – BP 2",
+    "unclear": [
+     "code: best reading 28A1504; code digits read from low-resolution print; corroborated by sheet-order sequence pattern (28A1497-28A1514)",
+     "overcome threshold digit is small/blurred; best reading given (3+)"
+    ],
+    "ops": {
+     "at": 4,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": null,
+     "fail": null,
+     "instinct": [
+      {
+       "op": "drawAIFor",
+       "which": "furthest"
+      }
+     ],
+     "critical": [
+      {
+       "op": "flipBPDown"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Damned Sergeant",
+    "code": "28A1503",
+    "level": 2,
+    "at": 5,
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "Draw AI for the closest Mob.",
+     "fail": "Gangup 4.",
+     "instinct": "Knockdown.",
+     "critical": "Another Knight may perform a Bonus Attack!"
+    },
+    "whenRevealed": null,
+    "whileRevealed": "All Mobs gain Gangup +1.",
+    "reactWindows": [
+     "instinct:before 'Knockdown.'"
+    ],
+    "text": "DAMNED SERGEANT / OVERCOME 3+ ▸ Power 1 / [AT] 5 / WOUND: Draw AI for the closest Mob. / FAIL: Gangup 4. / INSTINCT: Knockdown. / CRITICAL: Another Knight may perform a Bonus Attack! / REACT!: instinct:before 'Knockdown.' / IRONCAST DEAD – BP 2 / While this BP is revealed: All Mobs gain Gangup +1.",
+    "unclear": [
+     "code: best reading 28A1503; code digits read from low-resolution print; corroborated by sheet-order sequence pattern (28A1497-28A1514)",
+     "overcome threshold digit is small/blurred; best reading given (3+)",
+     "REACT! rule sits between FAIL 'Gangup 4.' and INSTINCT 'Knockdown.' at the height of the INSTINCT tag; read as a window before the Instinct text, but it could be a window after the Fail 'Gangup 4.'"
+    ],
+    "ops": {
+     "at": 5,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "drawAIFor",
+       "which": "closest"
+      }
+     ],
+     "fail": [
+      {
+       "op": "gangup",
+       "n": 4
+      }
+     ],
+     "instinct": [
+      {
+       "op": "knockdown"
+      }
+     ],
+     "critical": [
+      {
+       "op": "bonusAttack",
+       "who": "otherKnight",
+       "optional": true
+      }
+     ],
+     "aura": {
+      "gangupBonus": 1
+     }
+    }
+   },
+   {
+    "name": "Necronode",
+    "code": "28A1512",
+    "level": 3,
+    "at": 7,
+    "overcome": {
+     "n": 5,
+     "effect": "Power 1 and Opening 1"
+    },
+    "responses": {
+     "wound": "Draw AI for the closest Mob.",
+     "fail": "Gangup 4. Heal 1.",
+     "instinct": null,
+     "critical": "Killing the Necronode has rendered all other Ironcast Dead inert! You win!"
+    },
+    "whenRevealed": null,
+    "whileRevealed": "At the end of the Monster Round, Heal 1.",
+    "reactWindows": [
+     "fail:after 'Gangup 4.'"
+    ],
+    "text": "NECRONODE / OVERCOME 5+ ▸ Power 1 and Opening 1 / [AT] 7 / WOUND: Draw AI for the closest Mob. / FAIL: Gangup 4. Heal 1. / CRITICAL: Killing the Necronode has rendered all other Ironcast Dead inert! You win! / REACT!: fail:after 'Gangup 4.' / IRONCAST DEAD – BP 3 / While this BP is revealed: At the end of the Monster Round, Heal 1.",
+    "unclear": [
+     "code: best reading 28A1512; code digits read from low-resolution print; corroborated by sheet-order sequence pattern (28A1497-28A1514)",
+     "overcome threshold digit is badly blurred; best reading 5+ (could be 3+)"
+    ],
+    "ops": {
+     "at": 7,
+     "overcome": {
+      "n": 5,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       },
+       {
+        "op": "poolToken",
+        "token": "opening",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "drawAIFor",
+       "which": "closest"
+      }
+     ],
+     "fail": [
+      {
+       "op": "gangup",
+       "n": 4
+      },
+      {
+       "op": "healMob",
+       "n": 1
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "winClash",
+       "text": "Necronode 처치 — 다른 Ironcast Dead가 모두 멈춤. 승리!"
+      }
+     ],
+     "aura": {
+      "endOfMonsterRound": [
+       {
+        "op": "healMob",
+        "n": 1
+       }
+      ]
+     }
+    }
+   },
+   {
+    "name": "Plaguebearer",
+    "code": "28A1513",
+    "level": 3,
+    "at": 6,
+    "overcome": {
+     "n": 4,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "Draw AI for the closest Mob.",
+     "fail": "Parasitize 2. Gangup 4.",
+     "instinct": null,
+     "critical": "Lose -1 Curse [Curse]."
+    },
+    "whenRevealed": null,
+    "whileRevealed": "At the end of the Monster Round, gain +1 Threat [Threat] (up to 9).",
+    "reactWindows": [
+     "fail:before 'Parasitize 2.'"
+    ],
+    "text": "PLAGUEBEARER / OVERCOME 4+ ▸ Power 1 / [AT] 6 / WOUND: Draw AI for the closest Mob. / FAIL: Parasitize 2. Gangup 4. / CRITICAL: Lose -1 Curse [Curse]. / REACT!: fail:before 'Parasitize 2.' / IRONCAST DEAD – BP 3 / While this BP is revealed: At the end of the Monster Round, gain +1 Threat [Threat] (up to 9).",
+    "unclear": [
+     "code: best reading 28A1513; code digits read from low-resolution print; corroborated by sheet-order sequence pattern (28A1497-28A1514)",
+     "REACT! rule sits at the FAIL tag, above 'Parasitize 2.'; read as a window before the Fail text (could instead belong to the end of the Wound text above)"
+    ],
+    "ops": {
+     "at": 6,
+     "overcome": {
+      "n": 4,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "drawAIFor",
+       "which": "closest"
+      }
+     ],
+     "fail": [
+      {
+       "op": "parasitize",
+       "n": 2
+      },
+      {
+       "op": "gangup",
+       "n": 4
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "kingdomTrack",
+       "stat": "Curse",
+       "n": -1
+      }
+     ],
+     "aura": {
+      "endOfMonsterRound": [
+       {
+        "op": "kingdomTrack",
+        "stat": "Threat",
+        "n": 1
+       }
+      ]
+     }
+    }
+   },
+   {
+    "name": "Accursed Wanderer",
+    "code": "28A1514",
+    "level": 3,
+    "at": 8,
+    "overcome": {
+     "n": 6,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "Escalate AI. Draw AI for the furthest Mob.",
+     "fail": "Gangup 4. Escalate lowest AI. Draw AI for the closest Mob.",
+     "instinct": null,
+     "critical": "You may perform a Bonus Attack with +1 [Power]!"
+    },
+    "whenRevealed": null,
+    "whileRevealed": "At the end of the Monster Round, Escalate the lowest unrevealed Mob (BP and AI).",
+    "reactWindows": [
+     "wound:before 'Escalate AI.'",
+     "fail:after 'Gangup 4.'"
+    ],
+    "text": "ACCURSED WANDERER / OVERCOME 6+ ▸ Power 1 / [AT] 8 / WOUND: Escalate AI. Draw AI for the furthest Mob. / FAIL: Gangup 4. Escalate lowest AI. Draw AI for the closest Mob. / CRITICAL: You may perform a Bonus Attack with +1 [Power]! / REACT!: wound:before 'Escalate AI.', fail:after 'Gangup 4.' / IRONCAST DEAD – BP 3 / While this BP is revealed: At the end of the Monster Round, Escalate the lowest unrevealed Mob (BP and AI).",
+    "unclear": [
+     "code: best reading 28A1514; code digits read from low-resolution print; corroborated by sheet-order sequence pattern (28A1497-28A1514)",
+     "overcome threshold digit is small/blurred; best reading given (6+)"
+    ],
+    "ops": {
+     "at": 8,
+     "overcome": {
+      "n": 6,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "escalateAI"
+      },
+      {
+       "op": "drawAIFor",
+       "which": "furthest"
+      }
+     ],
+     "fail": [
+      {
+       "op": "gangup",
+       "n": 4
+      },
+      {
+       "op": "escalateAI"
+      },
+      {
+       "op": "drawAIFor",
+       "which": "closest"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "bonusAttackPower",
+       "n": 1,
+       "optional": true
+      }
+     ],
+     "aura": {
+      "endOfMonsterRound": [
+       {
+        "op": "escalateLowestUnrevealed"
+       }
+      ]
+     }
+    }
+   },
+   {
+    "name": "Heavy Enforcer",
+    "code": "28A1511",
+    "level": 3,
+    "at": 7,
+    "overcome": {
+     "n": 5,
+     "effect": "Power 1 and Break 1"
+    },
+    "responses": {
+     "wound": "Draw AI for the furthest Mob.",
+     "fail": "Gangup 4. Knockdown.",
+     "instinct": null,
+     "critical": "Another Knight may perform a Bonus Attack!"
+    },
+    "whenRevealed": null,
+    "whileRevealed": "Every other Mob in Zone 2 has +1 [AT].",
+    "reactWindows": [
+     "fail:after 'Gangup 4.'"
+    ],
+    "text": "HEAVY ENFORCER / OVERCOME 5+ ▸ Power 1 and Break 1 / [AT] 7 / WOUND: Draw AI for the furthest Mob. / FAIL: Gangup 4. Knockdown. / CRITICAL: Another Knight may perform a Bonus Attack! / REACT!: fail:after 'Gangup 4.' / IRONCAST DEAD – BP 3 / While this BP is revealed: Every other Mob in Zone 2 has +1 [AT].",
+    "unclear": [
+     "code: best reading 28A1511; code digits read from low-resolution print; corroborated by sheet-order sequence pattern (28A1497-28A1514)",
+     "overcome threshold digit is small/blurred; best reading given (5+)",
+     "icon after '+1' in the While-revealed box is tiny; read as the ribcage [AT] icon"
+    ],
+    "ops": {
+     "at": 7,
+     "overcome": {
+      "n": 5,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       },
+       {
+        "op": "poolToken",
+        "token": "break",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "drawAIFor",
+       "which": "furthest"
+      }
+     ],
+     "fail": [
+      {
+       "op": "gangup",
+       "n": 4
+      },
+      {
+       "op": "knockdown"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "bonusAttack",
+       "who": "otherKnight",
+       "optional": true
+      }
+     ],
+     "aura": {
+      "atOtherMobsZone": {
+       "z": 2,
+       "n": 1
+      }
+     }
+    }
+   },
+   {
+    "name": "Automail Smith",
+    "code": "28A1510",
+    "level": 3,
+    "at": 6,
+    "overcome": {
+     "n": 4,
+     "effect": "Power 1 and Break 1"
+    },
+    "responses": {
+     "wound": "Place 1 Armor [Armor] token on the closest Mob.",
+     "fail": "Escalate the lowest unrevealed Mob (BP and AI).",
+     "instinct": null,
+     "critical": "The Ironcast Dead do not gain benefits from Armor [Armor] tokens."
+    },
+    "whenRevealed": "Place 1 Armor [Armor] token on this Mob.",
+    "whileRevealed": "At the end of the Monster Round, place 1 Armor [Armor] token on this Mob if there are none.",
+    "reactWindows": [],
+    "text": "When you reveal this BP: Place 1 Armor [Armor] token on this Mob. / AUTOMAIL SMITH / OVERCOME 4+ ▸ Power 1 and Break 1 / [AT] 6 / WOUND: Place 1 Armor [Armor] token on the closest Mob. / FAIL: Escalate the lowest unrevealed Mob (BP and AI). / CRITICAL: The Ironcast Dead do not gain benefits from Armor [Armor] tokens. / IRONCAST DEAD – BP 3 / While this BP is revealed: At the end of the Monster Round, place 1 Armor [Armor] token on this Mob if there are none.",
+    "unclear": [
+     "code: best reading 28A1510; code digits read from low-resolution print; corroborated by sheet-order sequence pattern (28A1497-28A1514)"
+    ],
+    "ops": {
+     "at": 6,
+     "overcome": {
+      "n": 4,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       },
+       {
+        "op": "poolToken",
+        "token": "break",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "armorToken",
+       "to": "closest",
+       "n": 1
+      }
+     ],
+     "fail": [
+      {
+       "op": "escalateLowestUnrevealed"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "disableArmorBenefit"
+      }
+     ],
+     "whenRevealed": [
+      {
+       "op": "armorToken",
+       "to": "this",
+       "n": 1
+      }
+     ],
+     "aura": {
+      "endOfMonsterRound": [
+       {
+        "op": "armorToken",
+        "to": "this",
+        "n": 1,
+        "ifNone": true
+       }
+      ]
+     }
+    }
+   },
+   {
+    "name": "Ironcast Knight",
+    "code": "28A1509",
+    "level": 3,
+    "at": 8,
+    "overcome": {
+     "n": 6,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Draw AI for the furthest Mob.",
+     "critical": "You may perform a Bonus Attack! After the Clash, see 5666."
+    },
+    "whenRevealed": null,
+    "whileRevealed": "Every Mob Attack causes Knights to lose an additional -1 [Vigor].",
+    "reactWindows": [],
+    "text": "IRONCAST KNIGHT / OVERCOME 6+ ▸ Power 1 / [AT] 8 / INSTINCT: Draw AI for the furthest Mob. / CRITICAL: You may perform a Bonus Attack! After the Clash, see 5666. / IRONCAST DEAD – BP 3 / While this BP is revealed: Every Mob Attack causes Knights to lose an additional -1 [Vigor].",
+    "unclear": [
+     "code: best reading 28A1509; code digits read from low-resolution print; corroborated by sheet-order sequence pattern (28A1497-28A1514)",
+     "overcome threshold digit is small/blurred; best reading given (6+)"
+    ],
+    "ops": {
+     "at": 8,
+     "overcome": {
+      "n": 6,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": null,
+     "fail": null,
+     "instinct": [
+      {
+       "op": "drawAIFor",
+       "which": "furthest"
+      }
+     ],
+     "critical": [
+      {
+       "op": "bonusAttack",
+       "who": "self",
+       "optional": true
+      },
+      {
+       "op": "passive",
+       "note": "Knightbook 5666 (스토리) — Rogue's Path에서는 미사용"
+      }
+     ],
+     "aura": {
+      "mobAttackVigor": 1
+     }
+    }
+   }
+  ],
+  "signature": {
+   "name": "Slash",
+   "code": "27A1100",
+   "level": null,
+   "type": "signature",
+   "evasionDice": 3,
+   "evasionDifficulty": 8,
+   "targeting": [
+    "Closest Knight in front",
+    "Closest Knight in sight"
+   ],
+   "moveTag": "MOVE & ATTACK",
+   "gates": [],
+   "effects": [
+    "For each hit lose -1 [Vigor]. [Peril Check]."
+   ],
+   "afterAttack": "Gangup 3.",
+   "reactWindows": [
+    "targeting",
+    "effect:0"
+   ],
+   "text": "SLASH / SIGNATURE / Evasion 3 dice, 8+ / TARGETING: • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK / For each hit lose -1 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Gangup 3. / IRONCAST DEAD",
+   "unclear": [
+    "code: tiny in the 320px screenshot; best reading 27A1100 (continues the AI sequence), last three digits not legible",
+    "card read from a small tilted screenshot; text matches Rusted Slash layout"
+   ],
+   "move": true,
+   "ops": {
+    "targeting": [
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "move": true,
+    "gates": [],
+    "before": [],
+    "effects": [
+     {
+      "op": "loseVigorPerHit",
+      "n": 1,
+      "perilCheck": true
+     }
+    ],
+    "afterAttack": [
+     {
+      "op": "gangup",
+      "n": 3
+     }
+    ],
+    "afterFinalAttack": null
+   }
+  },
+  "routine": {
+   "name": "Ironcast March",
+   "type": "routine",
+   "code": null,
+   "text": "All Mobs move adjacent to the closest Knight and perform Swarm 3 (one by one).",
+   "ops": [
+    {
+     "op": "ironcastMarch",
+     "n": 3
+    }
+   ],
+   "unclear": [
+    "no card code visible in the scan (top-right corner blank/faded)"
+   ]
+  }
+ },
+ "clashSetup": {
+  "_source": "Principality of Stone Codex p.46–47",
+  "requiredTiles": {
+   "column": 8,
+   "rubble 2x2": 1,
+   "rubble L": 1
+  },
+  "steps": [
+   "Standard Preparations (Rulebook p.44)",
+   "Monster Positioning: Put numbered base rings on all Ironcast Dead miniatures. Randomly place Ironcast Dead miniatures numbered 1–8 on the spaces designated on the diagram. Note the facing direction indicated by the arrows. Then, place 4 BP 1, 3 BP 2 and 1 BP 3 cards face down in a random order on spaces 1–8 on the Mob track.",
+   "Additional Setup: Follow additional Clash Setup instructions introduced by Traits (if any)."
+  ],
+  "mobStart": [
+   {
+    "cell": "J7",
+    "facing": "down"
+   },
+   {
+    "cell": "I6",
+    "facing": "down"
+   },
+   {
+    "cell": "I9",
+    "facing": "down"
+   },
+   {
+    "cell": "G4",
+    "facing": "right"
+   },
+   {
+    "cell": "F3",
+    "facing": "right"
+   },
+   {
+    "cell": "B6",
+    "facing": "up"
+   },
+   {
+    "cell": "B9",
+    "facing": "up"
+   },
+   {
+    "cell": "A8",
+    "facing": "up"
+   }
+  ],
+  "mobTrack": {
+   "1": 4,
+   "2": 3,
+   "3": 1
+  },
+  "knightStart": [
+   "G8",
+   "F7",
+   "E8",
+   "D7"
+  ],
+  "terrain": [
+   {
+    "tile": "column",
+    "cells": [
+     "I4",
+     "H2",
+     "C5",
+     "B2",
+     "I11",
+     "H13",
+     "C11",
+     "B13"
+    ]
+   },
+   {
+    "tile": "rubble",
+    "cells": [
+     "E4",
+     "E5",
+     "D4",
+     "D5"
+    ],
+    "shape": "2x2"
+   },
+   {
+    "tile": "rubble",
+    "cells": [
+     "G11",
+     "F11",
+     "E11",
+     "E10"
+    ],
+    "shape": "L"
+   }
+  ],
+  "unclear": [
+   "Rubble L 타일 칸: G11/F11/E11/E10로 판독 (도면에서 세로 3칸 + 왼쪽 아래 1칸)"
+  ]
+ },
+ "rulings": [
+  "\"you\" on AI cards = the targeted Knight (e.g. \"If you’re not adjacent to another Mob\" = the Knight is not adjacent to a Mob other than the attacker) [확인 필요]",
+  "\"If no other Knight in Zone X\" = Zone X of the attacking Mob, other than the Target [확인 필요]",
+  "\"Draw AI for the furthest / closest Mob\" (BP responses) = measured from the attacking Knight; ties chosen by the players [확인 필요]",
+  "In front (Mob) = spaces beyond the Mob's front edge with LoS, same as the Boss rule [확인 필요]",
+  "Healed Mob returns face up (revealed) [확인 필요]",
+  "Curse / Threat effects: no Kingdom track in Rogue's Path → no effect",
+  "REACT! markers on BP responses are recorded (reactWindows) but no separate window is opened yet"
+ ]
+}

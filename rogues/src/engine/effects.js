@@ -1,5 +1,6 @@
 // Effects: interprets data `ops` for Monster cards/traits, Mortis, Conditions, Techniques, Gear, Heroic Arcs, Talents.
 // Every op name used by data must exist in MONSTER_OPS / MORTIS_OPS / KNIGHT_OPS; test/ops.mjs checks that.
+import { MOB_OPS } from './mobs.js';
 import { ChainBreak } from './clash.js';
 
 const TIER_RANK = { MOB: 1, VASSAL: 2, KING: 3, DEVIL: 4, DRAGON: 5 };
@@ -229,9 +230,9 @@ export class Effects {
   // ---------- monster ops (AI effects, responses, traits) ----------
   async runMonsterOps(ops, ctx) { for (const o of ops || []) await this.runMonsterOp(o, ctx); }
   async runMonsterOp(o, ctx) {
-    const C = this.c; const t = ctx.target || ctx.attacker; const M = C.monster;
+    const C = this.c; const t = ctx.target || ctx.attacker || ctx.primary; const M = C.monster;
     switch (o.op) {
-      case 'loseVigorPerHit': { const per = ctx.vigorPerHitOverride ?? o.n; const total = per * ctx.hits + M.bonuses.vigorLoss + (M.hasTrait('Jacked') && C.jackedTokens >= 9 ? 3 : 0) + (M.bonuses.vigorLossPerHit || 0) * ctx.hits; return C.loseVigor(t, total, { source: 'attack', perilCheck: o.perilCheck }); }
+      case 'loseVigorPerHit': { const per = ctx.vigorPerHitOverride ?? o.n; const total = per * ctx.hits + M.bonuses.vigorLoss + (M.hasTrait('Jacked') && C.jackedTokens >= 9 ? 3 : 0) + (M.bonuses.vigorLossPerHit || 0) * ctx.hits + (M.isMob ? C.mobAura('mobAttackVigor') : 0); return C.loseVigor(t, total, { source: 'attack', perilCheck: o.perilCheck }); }
       case 'loseVigor': return C.loseVigor(t, o.n, { source: 'response', armor: false });
       case 'allKnightsLoseVigor': { for (const k of C.alive()) await C.loseVigor(k, o.n, { source: 'routine', armor: false }); return; }
       case 'knockdown': if (C.monsterDisabled && C.monsterDisabled.has('knockdown')) return; if (ctx.attack && ctx.attack.card && !C.adjacentToMonster(t) && ctx.attacker) return; return C.knockdown(t);
@@ -267,9 +268,9 @@ export class Effects {
       case 'power': C.poolAdd('power', o.n); return;
       case 'armorTokens': C.armorTokens[o.bp] += o.n; this.say(`BP${o.bp} Armor 토큰 +${o.n}`); return;
       case 'passive': return;
-      default: this.say(`[미구현 monster op] ${o.op}`, 'warn');
+      default: if (C.mobOp && await C.mobOp(o, ctx)) return; this.say(`[미구현 monster op] ${o.op}`, 'warn');
     }
   }
 }
-export const KNOWN_OPS = { monster: ['loseVigorPerHit', 'loseVigor', 'allKnightsLoseVigor', 'knockdown', 'pushback', 'knockback', 'cooldown', 'discard', 'restrain', 'choke', 'condition', 'perHitInOrder', 'gated', 'judicium', 'die', 'trait', 'signature', 'if', 'repeatCard', 'moveToCenter', 'faceMostKnights', 'monsterModifier', 'bonusAttack', 'gainPassion', 'leaveTokens', 'returnAllTechniques', 'resetHeat', 'discardArmorTokens', 'disableMonsterKeywords', 'additionalSingleWound', 'disableTrait', 'disableZoneAttacks', 'slayMonster', 'power', 'armorTokens', 'passive', 'humptyCharge', 'evasionDice', 'vigorPerHitInstead', 'difficultyInstead', 'drawGraveForColumn'],
+export const KNOWN_OPS = { monster: ['loseVigorPerHit', 'loseVigor', 'allKnightsLoseVigor', 'knockdown', 'pushback', 'knockback', 'cooldown', 'discard', 'restrain', 'choke', 'condition', 'perHitInOrder', 'gated', 'judicium', 'die', 'trait', 'signature', 'if', 'repeatCard', 'moveToCenter', 'faceMostKnights', 'monsterModifier', 'bonusAttack', 'gainPassion', 'leaveTokens', 'returnAllTechniques', 'resetHeat', 'discardArmorTokens', 'disableMonsterKeywords', 'additionalSingleWound', 'disableTrait', 'disableZoneAttacks', 'slayMonster', 'power', 'armorTokens', 'passive', 'humptyCharge', 'evasionDice', 'vigorPerHitInstead', 'difficultyInstead', 'drawGraveForColumn', 'evasionDicePerAdjacentMob', 'moveGangup', ...MOB_OPS],
   knight: ['loseVigor', 'gainVigor', 'loseHeat', 'gainHeat', 'resetHeat', 'resetHeatAndRaiseLimit', 'gainPassion', 'refresh', 'restrain', 'cooldown', 'discard', 'delay', 'knockdown', 'standUp', 'condition', 'discardCondition', 'discardAllConditions', 'exhaustAllGear', 'unexhaustGear', 'poolChoice', 'bonusAttack', 'move', 'chainBreak', 'die', 'shuffleBack', 'perilCheck', 'judicium', 'addJudicium', 'drawNamed', 'if', 'curseSave', 'bane', 'parasitize', 'poison', 'toxify', 'choice', 'provoke', 'daze', 'reflex', 'rush', 'improvedRush', 'braced', 'rocksteady', 'motivate', 'flipBodyCondition', 'resurrectAdjacent', 'extraCombatAction', 'meatPuppet', 'secondChance', 'superiorChance', 'chooseJudicium', 'reinforce', 'reduceInvoluntary', 'heartseeker', 'addPowerDie', 'ignoreResponses', 'skipClearPool', 'poolPer', 'reach'] };

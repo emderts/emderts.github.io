@@ -2844,7 +2844,7 @@
    "evasionReroll": null,
    "armorDice": null,
    "charges": null,
-   "text": "Unwieldy.\nReach 2.\nBreak 2.\nArmor-piercing 1.\nPushback 1.\n[GRAVE] Daze.\n[VASSAL] +1 [Attack die].",
+   "text": "Unwieldy.\nReach 2.\nBreak 2.\nArmor-piercing 1.\nPushback 1.\n[GRAVE] Daze.\n[VASSAL] +1 [d10].",
    "gates": [
     {
      "gate": "GRAVE",
@@ -2852,12 +2852,12 @@
     },
     {
      "gate": "VASSAL",
-     "text": "+1 [Attack die]."
+     "text": "+1 [d10]."
     }
    ],
    "unclear": [
     "Code blurry (could read 13A0638); 13A0838 assumed from ratwolves sequence 0835-0837",
-    "Black diamond icon after '+1' read as [Attack die]"
+    "Black diamond icon after '+1' read as [d10]"
    ]
   },
   {
@@ -3332,7 +3332,7 @@
    "evasionReroll": null,
    "armorDice": null,
    "charges": null,
-   "text": "1 [Heat] [Discard] Place this card adjacent to you on 2 spaces on the Clash Board. When a Monster moves onto this card's spaces, regain this Gear [Gear] card, then roll a [Attack die].\nOn 6+, stop the Monster's movement and place 2 Fire [Fire] tokens in the Knight Pool.",
+   "text": "1 [Heat] [Discard] Place this card adjacent to you on 2 spaces on the Clash Board. When a Monster moves onto this card's spaces, regain this Gear [Gear] card, then roll a [d10].\nOn 6+, stop the Monster's movement and place 2 Fire [Fire] tokens in the Knight Pool.",
    "gates": [],
    "unclear": [
     "code read 13A0702 (could be 13A0701; 44 Bloatburst Leech appears to be 13A0701)"
@@ -3389,7 +3389,7 @@
    "evasionReroll": null,
    "armorDice": null,
    "charges": "0*",
-   "text": "Poison Resilience 1.\nX [Vigor] [Exhaust] *Gain X [Charge].\nX [Charge] [Discard] Choose a space as your Target in range 3–5 and roll a [Attack die]:\n• 1–5: The Target changes by 2 spaces in a random direction.\n• 6–10: Nothing happens.\nFor each Monster in Zone 3 from the Target, place X Opening [Opening] and/or Break [Break] tokens in the Knight Pool.",
+   "text": "Poison Resilience 1.\nX [Vigor] [Exhaust] *Gain X [Charge].\nX [Charge] [Discard] Choose a space as your Target in range 3–5 and roll a [d10]:\n• 1–5: The Target changes by 2 spaces in a random direction.\n• 6–10: Nothing happens.\nFor each Monster in Zone 3 from the Target, place X Opening [Opening] and/or Break [Break] tokens in the Knight Pool.",
    "gates": [],
    "unclear": [
     "code faint: read 13A0701 (out of print order; could be 13A0702/0704)",
@@ -4870,11 +4870,11 @@
    "evasionReroll": null,
    "armorDice": null,
    "charges": null,
-   "text": "Each hit: Opening 1.\nFull hit: Power 1.\n2 [Heat] [Exhaust] Block.\n[JUDICIUM] *6 [Attack die] instead.\nFor the purpose of gathering your Power Pool, ignore any hits that exceed this Weapon's original [Attack die] value.",
+   "text": "Each hit: Opening 1.\nFull hit: Power 1.\n2 [Heat] [Exhaust] Block.\n[JUDICIUM] *6 [d10] instead.\nFor the purpose of gathering your Power Pool, ignore any hits that exceed this Weapon's original [d10] value.",
    "gates": [
     {
      "gate": "JUDICIUM",
-     "text": "*6 [Attack die] instead."
+     "text": "*6 [d10] instead."
     }
    ],
    "unclear": [
@@ -5309,7 +5309,7 @@
    "evasionReroll": null,
    "armorDice": null,
    "charges": null,
-   "text": "Auto-hope 1.\nClosing 3. When you deal a Wound, Bane 1.\n[BANE 2+] Deadly.\n[BANE 3+] Closing 5 instead.\n[BANE 4+] Auto-hope 2 instead.\n[BANE 5+] Gain +1 [Attack die].",
+   "text": "Auto-hope 1.\nClosing 3. When you deal a Wound, Bane 1.\n[BANE 2+] Deadly.\n[BANE 3+] Closing 5 instead.\n[BANE 4+] Auto-hope 2 instead.\n[BANE 5+] Gain +1 [d10].",
    "gates": [
     {
      "gate": "BANE 2+",
@@ -5325,11 +5325,11 @@
     },
     {
      "gate": "BANE 5+",
-     "text": "Gain +1 [Attack die]."
+     "text": "Gain +1 [d10]."
     }
    ],
    "unclear": [
-    "final icon (black four-point diamond) read as [Attack die]"
+    "final icon (black four-point diamond) read as [d10]"
    ]
   },
   {
@@ -5565,15 +5565,15 @@
    "evasionReroll": null,
    "armorDice": null,
    "charges": null,
-   "text": "Deadly.\n+2 Precision [Precision]. Inspire 3.\n1 [Heat] [Exhaust] Second Chance.\n[GRAVE] Your Weapon gains +1 [Attack die]. For the purpose of gathering your Power Pool, ignore any hits that exceed your Weapon's regular [Attack die] value.",
+   "text": "Deadly.\n+2 Precision [Precision]. Inspire 3.\n1 [Heat] [Exhaust] Second Chance.\n[GRAVE] Your Weapon gains +1 [d10]. For the purpose of gathering your Power Pool, ignore any hits that exceed your Weapon's regular [d10] value.",
    "gates": [
     {
      "gate": "GRAVE",
-     "text": "Your Weapon gains +1 [Attack die]. For the purpose of gathering your Power Pool, ignore any hits that exceed your Weapon's regular [Attack die] value."
+     "text": "Your Weapon gains +1 [d10]. For the purpose of gathering your Power Pool, ignore any hits that exceed your Weapon's regular [d10] value."
     }
    ],
    "unclear": [
-    "black four-point diamond icon read as [Attack die]",
+    "black four-point diamond icon read as [d10]",
     "code faint: read as 13A0758"
    ]
   },
