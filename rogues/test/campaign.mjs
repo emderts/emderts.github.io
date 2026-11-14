@@ -94,4 +94,7 @@ ok(stats.rounds >= 8, `campaign rounds simulated: ${stats.rounds} (win ${stats.w
   await c.exchangeLoot(k, data.decks.loot.cards.find(x => x.type === 'kingdomGear'), 'Vassal', true);
   ok(seen.length && seen.every(nm => KG.find(g => g.name === nm && !g.story && ['Mob', 'Vassal'].includes(g.tier))), `Kingdom Gear Loot offers Principality Kingdom Gear ≤ Vassal (${seen.length})`);
   await c.earlyBird('inn', 1); await c.innVisit(1, 10); const who = Object.keys(c.roundBuffs)[0]; const clash = c.buildClash(); ok(clash.knights.find(x => x.name === who).gear.some(g => g.name === 'Parasite Bait'), 'Inn 10: that knight carries Parasite Bait this round'); }
+{ const c = mk(43); const k = c.knights[0]; k.armory.push('Possessive Mudling', 'Hexed Soul', 'Eggplate', 'Egglure', 'Shell Helmet');
+  let threw = false; try { c.setLoadoutGear(k, ['Possessive Mudling', 'Eggplate']); } catch (e) { threw = true; } ok(threw, 'Possessive Mudling takes 1 hand + the Armor slot');
+  c.setLoadoutGear(k, ['Possessive Mudling', 'Egglure', 'Shell Helmet', 'Hexed Soul']); ok(k.loadout.gear.includes('Hexed Soul'), 'Hexed Soul occupies no slot (fits with 2 supports)'); }
 console.log(fails ? `${fails} FAIL` : 'ALL PASS'); process.exit(fails ? 1 : 0);

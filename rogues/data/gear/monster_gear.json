@@ -52,7 +52,7 @@
    "evasionReroll": null,
    "armorDice": null,
    "charges": null,
-   "text": "When you perform ↑[Heat]↓, lose additional -1 [Heat].\n2 [Heat] [Discard] Look at a chosen BP. Ignore up to 1 Panzer Parasite Condition token.\nStart of Clash: Parasitize 1.\n[DRAGON] Bane Limit +3.",
+   "text": "When you perform ↑[Heat]↓, lose additional -1 [Heat].\n2 [Heat] [Discard] Look at a chosen BP.\nIgnore up to 1 Panzer Parasite Condition token.\nStart of Clash: Parasitize 1.\n[DRAGON] Bane Limit +3.",
    "gates": [
     {
      "gate": "DRAGON",
@@ -62,7 +62,10 @@
    "unclear": [
     "'↑[Heat]↓' is a Heat icon flanked by up/down arrows (a heat-shift action symbol), transcribed literally"
    ],
-   "hands": null
+   "hands": null,
+   "notes": [
+    "\"Ignore up to 1…\" 앞 개행 — 별도 능력 (사용자 확인 2026-11-14)"
+   ]
   },
   {
    "name": "Wretched Iron Plate",
@@ -961,12 +964,14 @@
    "evasionReroll": null,
    "armorDice": null,
    "charges": null,
-   "text": "Each hit: +1 [Power], Reposition 1, either Closing 1 or Opening 2.\nCrit Chance: Ignore any additional [Greaves icon] (including Armor [Armor] tokens).\n*X is equal to the amount of Bane [Bane] tokens you have.",
+   "text": "Each hit: +1 [Power], Reposition 1, either Closing 1 or Opening 2.\nCrit Chance: Ignore any additional [AT] (including Armor [Armor] tokens).\n*X is equal to the amount of Bane [Bane] tokens you have.",
    "gates": [],
    "unclear": [
     "code faint: read as 13A0751 (sequence guess; could be 13A0773/13A0753-ish)",
-    "precision printed as '+X*' (stored as string 'X*')",
-    "icon after 'any additional' is a tall armour/greaves-like glyph, not identified (black pair-of-greaves glyph, distinct from the Armor breastplate icon), transcribed [Greaves icon]"
+    "precision printed as '+X*' (stored as string 'X*')"
+   ],
+   "notes": [
+    "아이콘 = AT (사용자 확인 2026-11-14)"
    ]
   },
   {
@@ -1061,11 +1066,13 @@
    "evasionReroll": null,
    "armorDice": null,
    "charges": null,
-   "text": "Opening 5. Break 5. Ignore Armor [Armor] tokens.\n2 [Heat] [Exhaust] When you are about to resolve a [red Monster-ability icon], ignore it.\n[Move action]+[Combat action] 1 [Heat] Improved Rush, then perform Pushback 5.\nGain +2 [Power] against Dragons.",
+   "text": "Opening 5. Break 5. Ignore Armor [Armor] tokens.\n2 [Heat] [Exhaust] When you are about to resolve a [Peril Check], ignore it.\n[Move action]+[Combat action] 1 [Heat] Improved Rush, then perform Pushback 5.\nGain +2 [Power] against Dragons.",
    "gates": [],
    "unclear": [
-    "red oval icon in 'resolve a ___, ignore it' not identified (red banner with wave/claw-like glyphs; possibly a Monster attack/response type icon)",
     "'[Move action]+[Combat action]' black box icon read as running figure + combat figure"
+   ],
+   "notes": [
+    "빨간 아이콘 = Peril Check (사용자 확인 2026-11-14)"
    ]
   },
   {
@@ -1546,9 +1553,9 @@
    "precision": 5,
    "weaponPower": {
     "n": 3,
-    "colour": "white",
+    "colour": "mixed",
     "dice": [
-     "white",
+     "black",
      "white",
      "white"
     ]
@@ -1565,7 +1572,10 @@
      "text": "When you trigger Overpower, you may perform a Bonus Attack (once per Round)."
     }
    ],
-   "unclear": []
+   "unclear": [],
+   "notes": [
+    "Power bww (사용자 확인 2026-11-14)"
+   ]
   },
   {
    "name": "The Command",
@@ -1936,8 +1946,12 @@
      "text": "[Exhaust] When you attack with another Weapon, that Weapon gains +1 Precision [Precision] and Auto-break 1."
     }
    ],
-   "unclear": [
-    "Slot icon shows a single gauntlet above a breastplate (occupies 1 hand slot + the armor slot); stored as weapon, hands 1"
+   "unclear": [],
+   "alsoSlots": [
+    "armor"
+   ],
+   "notes": [
+    "슬롯 = 1H + Armor (사용자 확인 2026-11-14)"
    ]
   },
   {
@@ -1997,7 +2011,7 @@
    "evasionReroll": null,
    "armorDice": null,
    "charges": null,
-   "text": "Bane Limit +1.\n[Exhaust] When you perform a [red oval icon] (excluding Judicium Draw), look at the top 2 cards and choose one to resolve instead.\n[JUDICIUM] [Discard] Second Chance.",
+   "text": "Bane Limit +1.\n[Exhaust] When you perform a [Peril Check] (excluding Judicium Draw), look at the top 2 cards and choose one to resolve instead.\n[JUDICIUM] [Discard] Second Chance.",
    "gates": [
     {
      "gate": "JUDICIUM",
@@ -2005,10 +2019,12 @@
     }
    ],
    "unclear": [
-    "Red oval/banner icon after 'perform a' (likely a Peril/Judicium-draw symbol) unidentified",
     "Slot icon is the pouch (support) despite Helm trait"
    ],
-   "hands": null
+   "hands": null,
+   "notes": [
+    "빨간 아이콘 = Peril Check (사용자 확인 2026-11-14)"
+   ]
   },
   {
    "name": "Forgotten Sword",
@@ -2982,9 +2998,10 @@
    "attackDice": 1,
    "precision": 3,
    "weaponPower": {
-    "n": 2,
+    "n": 3,
     "colour": "red",
     "dice": [
+     "red",
      "red",
      "red"
     ]
@@ -3005,6 +3022,9 @@
    ],
    "unclear": [
     "code faint: read 13A0644 (fits sequence)"
+   ],
+   "notes": [
+    "Power rrr (사용자 확인 2026-11-14)"
    ]
   },
   {
@@ -3954,10 +3974,12 @@
      "text": "You and adjacent Knights may ignore Stray."
     }
    ],
-   "unclear": [
-    "Slot icon is a white asterisk (*) instead of a slot glyph; type set to support"
-   ],
-   "hands": null
+   "unclear": [],
+   "hands": null,
+   "noSlot": true,
+   "notes": [
+    "슬롯 없음 (사용자 확인 2026-11-14)"
+   ]
   },
   {
    "name": "Gut-Churning Concoction",
@@ -4129,7 +4151,8 @@
    ],
    "unclear": [
     "Code blurry: 13A0741 vs 13A0740",
-    "'[red oval icon]' is a small red oval/banner glyph (probably a Mortis draw symbol)"
+    "'[red oval icon]' is a small red oval/banner glyph (probably a Mortis draw symbol)",
+    "Slime Helmet과 같은 빨간 아이콘이면 [Peril Check] — 확인 필요"
    ],
    "hands": null
   },
