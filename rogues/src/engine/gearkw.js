@@ -316,6 +316,15 @@ const SPECIAL = [
   [/^When you're about to draw a Judicium, resolve a chosen Mortis revealed by this card instead$/, () => ({ op: 'judiciumToMortis', active: true })],
   [/^When you become the Target of a Monster Attack, you may change all your \[Evasion Re-roll\] into \[red Armor die\] and vice versa$/, () => ({ op: 'swapERArmor' })],
   [/^You may exhaust another Gear \[Gear\] card with the Cloth Trait to gain a temporary positive Evasion \[Evasion\] token$/, () => ({ op: 'fClothEvasion', free: true })],
+  [/^Puppeteer: (\d+) \[Heat\] When you deal a Wound, each other Knight gains (\d+) Bane \[Bane\] token and moves up to (\d+) spaces toward the closest Monster$/, m => ({ op: 'woundPuppeteer', heat: +m[1], bane: +m[2], n: +m[3] })],
+  [/^This is considered involuntary movement$/, () => ({ op: 'note', na: true })],
+  [/^Move the closest Swamp Terrain tile to any spaces in your effective range$/, () => ({ op: 'fMoveSwamp', free: true })],
+  [/^Place a Rotten Stump Terrain tile on an empty space adjacent to you$/, () => ({ op: 'fPlaceStump', free: true })],
+  [/^Discard a (Body|Mind) Condition card$/, m => ({ op: 'fDiscardCondType', type: m[1].toLowerCase(), free: true })],
+  [/^When you die, the closest Knight equips this card \(discarding another Armor \[Gear\] card if needed\)$/, () => ({ op: 'deathPassOn' })],
+  [/^When you are about to perform Card Refresh, perform Heat Refresh instead or vice versa$/, () => ({ op: 'refreshSwap', active: true })],
+  [/^You may use this Weapon's Block as Defy$/, () => ({ op: 'blockAsDefy' })],
+  [/^When you're about to perform a climb test, automatically succeed at that test instead$/, () => ({ op: 'note', na: true })],
   [/^Roll Out(?: \(.*\))?$/, () => ({ op: 'rollOut', active: true })],
   [/^Ignore Swamp Terrain tiles$/, () => ({ op: 'ignoreSwamp' })],
   [/^When you're about to suffer involuntary movement, you may reduce it by 1 \(to a minimum of 1\)$/, () => ({ op: 'reduceInvol' })],
@@ -389,6 +398,7 @@ export function parseGearText(text) { if (!text) return []; const ss = String(te
     if ((m = /^((?:\[[^\]]+\]\s*)*[A-Z][A-Za-z\- ]*) \*?X\*?, where X is (the (?:number|amount) of Bane \[Bane\] tokens you have|your \[Heat\])\.?$/.exec(t))) { const p = parseSentence(m[1] + ' 0.'); if (typeof p.n === 'number' && p.status !== 'text') { p.status = 'ok'; p.x = /Bane/.test(m[2]) ? 'bane' : 'heat'; p.text = t; out.push(p); continue; } }
     if (xdef && (m = /^Ranged (\d+)[-–]X\.?$/.exec(t))) { out.push({ op: 'ranged', n: +m[1], m: 'X', x: xdef, status: 'ok', text: t }); continue; }
     if (xdef && (m = /^((?:\[[^\]]+\]\s*)*[A-Z][A-Za-z\- ]*) \*?X\*?\.?$/.exec(t))) { const p = parseSentence(m[1] + ' 0.'); if (typeof p.n === 'number' && p.status !== 'text' && p.op !== 'ranged') { p.status = 'ok'; p.x = xdef; p.text = t; out.push(p); continue; } }
+    if ((m = /^((?:\[[^\]]+\]\s*|\d+ \[Heat\]\s*)+)(Superior Chance|Lifeline) or (Lifeline|[Dd]iscard a Body Condition card)\.?$/.exec(t))) { const cap = x => x[0].toUpperCase() + x.slice(1); const p1 = parseSentence(m[1] + m[2] + '.'), p2 = parseSentence(m[1] + cap(m[3]) + '.'); if (p1.status === 'ok' && p2.status === 'ok') { p1.text = t; p2.text = t; out.push(p1, p2); continue; } }
     if ((m = /^(.*\S )Block or Defy\.?$/.exec(t)) && /\[Heat\]|\[Exhaust\]|\[Discard\]|\[Charge\]/.test(m[1])) { const p1 = parseSentence(m[1] + 'Block.'), p2 = parseSentence(m[1] + 'Defy.'); if (p1.status === 'ok' && p2.status === 'ok') { p1.text = t; p2.text = t; out.push(p1, p2); continue; } }
     out.push(parseSentence(t)); }
   { let up = null; for (const o of out) { if (o.upgrade) up = o.upgrade; else if (up) o.upgrade = up; } }
