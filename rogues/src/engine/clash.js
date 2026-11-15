@@ -276,7 +276,8 @@ export class Clash {
   }
   async monsterMoveToward(target) {
     const B = this.board; let steps = 0; let lastAxis = null; this._moveCrashed = new Set();
-    while (!this.board.footprintsAdjacent(this.monster.cells, [target.pos]) && steps < 30) {
+    const cap = this.slowToken ? 3 : 30; if (this.slowToken) { this.slowToken = false; this.say('임시 Speed 토큰: 이번 이동은 3칸에서 멈춤 (토큰 버림)', 'tech'); }
+    while (!this.board.footprintsAdjacent(this.monster.cells, [target.pos]) && steps < cap) {
       const m = this.monsterCenter(); const dc = target.pos.c - m.c, dr = target.pos.r - m.r;
       const opts = []; if (Math.abs(dc) > 0.5) opts.push({ c: Math.sign(dc), r: 0 }); if (Math.abs(dr) > 0.5) opts.push({ c: 0, r: Math.sign(dr) });
       if (!opts.length) break;
@@ -377,6 +378,7 @@ export class Clash {
     if (armor && source === 'attack') { const dice = this.fx.armorDice(k); if (dice.red + dice.black + dice.white > 0) { const r = rollArmor(this.rng, dice, this.data.components.dice.faces, this.data.components.dice.armorSymbol); let mit = r.mitigated; if (this.fx.has(k, 'armorRollDoubleSymbols')) mit *= 2; else mit = await this.fx.armorDoubleGear(k, mit, loss); loss = Math.max(0, loss - mit); this.say(`${k.name} Armor Roll ${r.dice.length}d → 경감 ${mit}`, 'dice'); await this.fx.onArmorRoll(k, mit); if (loss === 0) { this.say(`${k.name} 피해 전부 경감 → Peril Check 없음`); return 0; } } }
     loss -= this.fx.soak(k); if (loss <= 0) return 0;
     const before = k.vigor; const eff = k.loseVigor(loss); this.say(`${k.name} Vigor -${loss} (${before}→${k.vigor})${eff < 0 ? ' [효과상 ' + eff + ']' : ''}`, 'dmg');
+    await this.fx.gateSweep(k);
     if (this.currentAttack) { this.currentAttack.vigorLost = true; this.currentAttack.vigorLostTotal = (this.currentAttack.vigorLostTotal || 0) + loss; }
     if (eff <= 0) { await this.massivePeril(k, eff); await this.drawJudicium(k); return loss; }
     if (perilCheck) await this.perilCheck(k);
@@ -588,7 +590,7 @@ export class Clash {
     await this.fx.beforeAttack(k, A);
     await this.fx.exertWindow(k, A, 'Attack Roll 전');
     // 3. Attack roll
-    let dice = w.attackDice + this.fx.extraAttackDice(k, w, A); let prec = (Number(w.precision) || 0) + this.fx.precision(k) + (A.extraPrecision || 0) + this.poolCount('opening') + this.poolCount('closing') + (this.monster.isMob ? this.mobAura('knightPrecision') : 0) + this.hauntPrecision(k) + (!A.guardian && !k.engulfed && (!this.monster.isMob || (A.mob && A.mob.isTroll)) && this.inBlindspot(k) ? 1 : 0);
+    let dice = (parseInt(w.attackDice, 10) || 0) + this.fx.extraAttackDice(k, w, A); { const ck = this.fx.constKw(k, w); const di = ck.find(o => o.op === 'attackDiceInstead'); if (ck.some(o => o.op === 'powerHitCap')) A.powerHitCap = parseInt(w.attackDice, 10); if (di) { dice = dice - parseInt(w.attackDice, 10) + di.n; this.say(`${w.name}: ${di.gate} — 공격 주사위 ${di.n}개`, 'tech'); } } let prec = (Number(w.precision) || 0) + this.fx.precision(k) + (A.extraPrecision || 0) + this.poolCount('opening') + this.poolCount('closing') + (this.monster.isMob ? this.mobAura('knightPrecision') : 0) + this.hauntPrecision(k) + (!A.guardian && !k.engulfed && (!this.monster.isMob || (A.mob && A.mob.isTroll)) && this.inBlindspot(k) ? 1 : 0);
     const roll = rollD10s(this.rng, dice); const tt = !A.guardian ? this.trollToHit() : { bonus: 0, fullMiss: false }; const toHit = A.guardian ? this.guardianToHit(A.guardian) : this.monster.toHit + this.monster.modifiers.toHit + this.hauntToHit() + tt.bonus + (this.isWN ? this.wnToHit(k) : 0) + (this.monster.isMob && A.mob ? this.firstmenToHit(A.mob) : 0); if (tt.bonus) this.say(`Firstmen Guardians: 인접 Guardian ${tt.bonus} → To Hit +${tt.bonus}${tt.fullMiss ? ' · 4+ → 모든 Attack Roll Full Miss' : ''}`); if (tt.fullMiss) for (const d of roll.dice) d.v = 1;
     const isHit = d => d.v === 10 ? true : d.v === 1 ? false : d.v + prec >= toHit;
     this.say(`${k.name} Attack Roll ${dice}d → [${roll.dice.map(d => d.v).join(' ')}] (재굴림 전)`, 'dice');
@@ -625,7 +627,8 @@ export class Clash {
     // 6. power roll
     const TIERS = ['red', 'black', 'white']; const kd = TIERS[Math.min(2, TIERS.indexOf(k.powerDie) + (A.promote || 0))]; if (A.promote) this.say(`Power Dice Promotion: Knight Power die ${k.powerDie} → ${kd}`);
     const wpOf = col => { const p = w.weaponPower; if (!p) return 0; if (Array.isArray(p.dice)) return p.dice.filter(c => c === col).length; if (p.dice && typeof p.dice === 'object') return p.dice[col] || 0; return p.colour === col ? p.n : 0; }; // weapon power per hit, mixed colours supported
-    const pool = buildPowerPool({ red: wpOf('red') * A.hits + (kd === 'red' ? 1 : 0) + A.extraPool.red, black: wpOf('black') * A.hits + (kd === 'black' ? 1 : 0) + A.extraPool.black, white: wpOf('white') * A.hits + (kd === 'white' ? 1 : 0) + A.extraPool.white, raw: (w.bonusPower && w.bonusPower.raw ? w.bonusPower.raw : 0) + A.extraPool.raw }, this.data.components.dice.limits);
+    const pHits = A.powerHitCap ? Math.min(A.hits, A.powerHitCap) : A.hits; if (pHits < A.hits) this.say(`Power Pool은 명중 ${pHits}개까지만 계산`);
+    const pool = buildPowerPool({ red: wpOf('red') * pHits + (kd === 'red' ? 1 : 0) + A.extraPool.red, black: wpOf('black') * pHits + (kd === 'black' ? 1 : 0) + A.extraPool.black, white: wpOf('white') * pHits + (kd === 'white' ? 1 : 0) + A.extraPool.white, raw: (w.bonusPower && w.bonusPower.raw ? w.bonusPower.raw : 0) + A.extraPool.raw }, this.data.components.dice.limits);
     if (w.bonusPower && w.bonusPower.colour) pool[w.bonusPower.colour] += w.bonusPower.n;
     const pr = rollPowerPool(this.rng, pool, this.data.components.dice.faces);
     this.say(`Power Roll ${pr.dice.map(d => d.colour[0]).join('')} +raw${pool.raw} → ⚔${pr.power} ✦${pr.potential} 🕊${pr.hope}`, 'dice');
@@ -652,7 +655,7 @@ export class Clash {
     // Fire: other tokens may be used first, then as many Fire tokens as possible are mandatory (p.19)
     if (potential > 0 && this.poolCount('fire')) { const n = Math.min(potential, this.poolCount('fire')); power += n; potential -= n; this.poolTake('fire', n); this.say(`Fire 토큰 ${n}개 사용 (✦ → ⚔)`); }
     power += this.poolCount('power'); this.poolTake('power', 99);
-    A.totalPower = power; const at = this.bpAT(bp) - A.armorPiercing; if (this.isWN && this.wnEndure) { this.say(`Endure: 임시 AT +${this.wnEndure} 적용 후 제거`); this.wnEndure = 0; }
+    A.totalPower = power; const neg = this.negAT || 0; if (neg) { this.say(`임시 AT -${neg} 토큰 적용 후 버림`, 'tech'); this.negAT = 0; } const at = this.bpAT(bp) - A.armorPiercing - neg; if (this.isWN && this.wnEndure) { this.say(`Endure: 임시 AT +${this.wnEndure} 적용 후 제거`); this.wnEndure = 0; }
     this.flash('power', { title: `${k.name} Power Roll vs AT ${at}`, dice: pr.dice.map(d => ({ colour: d.colour, face: d.face })), raw: pool.raw, sub: `Total Power ${power} → ${power >= at ? (A.critChance ? '★ Critical Wound' : 'Wound!') : 'Fail'}`, cls: power >= at ? 'good' : 'bad' });
     this.say(`Total Power ${power} vs AT ${at}${useB ? ` (Break ${useB})` : ''}${useS ? ` (Sunder ${useS})` : ''}`, 'dice');
     // 6.5 resolve

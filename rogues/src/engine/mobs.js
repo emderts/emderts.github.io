@@ -95,6 +95,7 @@ export const MobMixin = {
   mobStepTo(mob, cell) { const B = this.board; B.remove(mob.cells); mob.cells = [cell]; B.place({ kind: 'mob', n: mob.n }, [cell]); this.icdPickup(mob, cell); },
   /** Mob movement toward a cell until adjacent (or `max` spaces): shortest path around occupied and Obstacle spaces, zigzag on ties (p.50). */
   async mobMoveToward(mob, target, max = Infinity, { ask = true } = {}) {
+    if (mob && mob.slowToken) { mob.slowToken = false; max = Math.min(max, 3); this.say(`임시 Speed 토큰: Mob #${mob.n}의 이번 이동은 3칸에서 멈춤 (토큰 버림)`, 'tech'); }
     const B = this.board; let steps = 0, lastAxis = null; const from = B.label(mob.cells[0]); const start = mob.cells[0];
     mob.facing = faceToward(mob.cells, target, mob.facing);
     while (steps < max && steps < 60 && !B.adjacent(mob.cells[0], target)) {
