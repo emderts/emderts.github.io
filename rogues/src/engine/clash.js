@@ -604,6 +604,7 @@ export class Clash {
     if (A.hits === dice) await this.fx.onFullHit(k, A);
     // 4. first ability window (a Chain Break here ends the attack: clear pool + second window, p.54)
     await this.fx.afterHits(k, A, roll.dice.length);
+    await this.fx.sacrificeWindow(k, A);
     try { await this.fx.firstWindow(k, A); } catch (e) { if (!e.chainBreak) throw e; this.say(`Chain Break: ${e.message}`, 'warn'); this.clearPool(); await this.fx.secondWindow(k, A); this.currentKnightAttack = null; return; }
     // 5. determine BP
     if (this.monster.isMob && !this.monster.mobs.includes(A.mob)) { this.say('대상 Mob이 이미 없음'); this.clearPool(); this.currentKnightAttack = null; return; }
@@ -654,7 +655,7 @@ export class Clash {
     const ops = bp.ops;
     if (A.wounded) this.say(`${A.critical ? '★ Critical Wound' : 'Wound'}!`, 'wound'); else this.say('Fail to wound');
     // Overcome
-    if (ops.overcome && ((!A.wounded && power >= ops.overcome.n) || (A.wounded && A.overAT >= ops.overcome.n))) { this.say(`Overcome ${ops.overcome.n}+`); await this.fx.runMonsterOps(ops.overcome.ops, { attacker: k, attack: A }); }
+    if (ops.overcome && (A.forceOvercome || (!A.wounded && power >= ops.overcome.n) || (A.wounded && A.overAT >= ops.overcome.n))) { this.say(`Overcome ${ops.overcome.n}+`); for (const o of A.kw || []) if (o.op === 'overpowerBoon' && A.bp && A.bp.overcomeTag === 'OVERPOWER') { k.heat = Math.max(0, k.heat - o.n); A.ignoreCumbersome = true; this.say(`${A.weapon.name}: Overpower — Heat -${o.n}, Cumbersome 무시`, 'tech'); } await this.fx.runMonsterOps(ops.overcome.ops, { attacker: k, attack: A }); }
     // 7. responses
     const resp = []; if (A.critical) { if (ops.critical) resp.push(['Critical', ops.critical]); } else { if (A.wounded && ops.wound) resp.push(['Wound', ops.wound]); if (!A.wounded && ops.fail) resp.push(['Fail', ops.fail]); if (ops.instinct) resp.push(['Instinct', ops.instinct]); }
     if (stack2) { const b = A.guardian.cards[1]; const noAtk = l => (l || []).filter(o => !['signature', 'aiAttack', 'drawAIFor', 'fenPerformAI', 'signatureAgainstAttacker'].includes(o.op)); const add = (kind, l) => { const x = noAtk(l); if (x.length) resp.push([`${kind} (아래 BP: ${b.name})`, x]); }; if (A.critical) add('Critical', b.ops.critical); else { if (!A.wounded) add('Fail', b.ops.fail); add('Instinct', b.ops.instinct); } }

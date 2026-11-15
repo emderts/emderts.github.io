@@ -79,6 +79,15 @@ const SPECIAL = [
   [/^Gain (\d+) \[Charge\]$/, m => ({ op: 'fGainCharge', n: +m[1], free: true })],
   [/^Discard (\d+) Armor \[Armor\] tokens? from anywhere$/, m => ({ op: 'fDiscardArmor', n: +m[1], free: true })],
   [/^Hide$/, () => ({ op: 'hide', active: true })],
+  [/^Full hit: You may trigger Overcome or Overpower$/i, () => ({ op: 'fullHitOvercome' })],
+  [/^When you trigger Overpower, lose -(\d+) \[Heat\] and ignore Cumbersome$/, m => ({ op: 'overpowerBoon', n: +m[1] })],
+  [/^Sacrifice$/, () => ({ op: 'sacrifice' })],
+  [/^Your other Weapons gain Sacrifice$/, () => ({ op: 'othersSacrifice' })],
+  [/^When you are about to attack, you may change up to (\d+) (?:Opening \[Opening\] tokens in the Knight Pool into Break \[Break\]|Break \[Break\] tokens in the Knight Pool into Opening \[Opening\]) tokens and vice versa$/, m => ({ op: 'poolSwap', n: +m[1], active: true })],
+  [/^When you attack, you may lose -(\d+) \[Vigor\] to gain Auto-break (\d+)$/, m => ({ op: 'vigorAutoBreak', v: +m[1], n: +m[2] })],
+  [/^All adjacent Knights have \+(\d+) Precision \[Precision\]$/, m => ({ op: 'auraPrecision', n: +m[1] })],
+  [/^Start of Clash: Gain (\d+) \[Charge\]$/, m => ({ op: 'startCharge', n: +m[1] })],
+  [/^Discard X Bane \[Bane\] tokens$/, () => ({ op: 'fDiscardBaneX', free: true })],
   [/^Roll Out(?: \(.*\))?$/, () => ({ op: 'rollOut', active: true })],
   [/^Ignore Swamp Terrain tiles$/, () => ({ op: 'ignoreSwamp' })],
   [/^When you're about to suffer involuntary movement, you may reduce it by 1 \(to a minimum of 1\)$/, () => ({ op: 'reduceInvol' })],
@@ -94,7 +103,7 @@ function body(b) {
   if ((m = /^\+(\d+) (?:Precision )?\[Precision\]$/.exec(b))) return { op: 'plusPrecision', n: +m[1], status: 'ok' };
   if ((m = /^([+-]\d+) Speed \[Speed\]$/.exec(b))) return { op: 'speed', n: +m[1], status: 'ok' };
   if ((m = /^\+(\d+) (?:Evasion )?\[Evasion\]$/.exec(b))) return { op: 'plusEvasion', n: +m[1], status: 'ok' };
-  if ((m = /^Poison Limit \+(\d+)$/.exec(b))) return { op: 'poisonLimit', n: +m[1], status: 'pending' };
+  if ((m = /^Poison Limit \+(\d+)$/.exec(b))) return { op: 'poisonLimit', n: +m[1], status: 'ok' };
   if ((m = /^Bane Limit \+?(\d+)$/.exec(b))) return { op: 'baneLimit', n: +m[1], status: 'na' };
   if ((m = /^\+(\d+) (Bravery|Tenacity|Fortitude|Might|Insight|Sagacity) \[\2\]$/.exec(b))) return { op: 'virtue', virtue: m[2], n: +m[1], status: 'ok' };
   if ((m = /^(.+?) or (.+)$/.exec(b))) { const a = body(m[1]), c = body(m[2]); if (a && c && a.status !== 'text' && c.status !== 'text') return { op: 'choice', options: [a, c], status: a.status === 'ok' && c.status === 'ok' ? 'ok' : 'pending' }; }
@@ -118,6 +127,7 @@ export function parseSentence(s) {
     if ((m = /^\[(?:PASSION|P) (\d+)\+\]\s*/.exec(r))) { o.passionMin = +m[1]; r = r.slice(m[0].length); continue; }
     if ((m = /^\[Combat action\]\+\[Move action\]\s*/i.exec(r)) || (m = /^\[Move\+Attack action\]\s*/i.exec(r))) { (o.cost = o.cost || {}).action = 'both'; r = r.slice(m[0].length); continue; }
     if ((m = /^\[Move action\] or \[Combat action\]\s*/i.exec(r))) { o.eitherAction = true; r = r.slice(m[0].length); continue; }
+    if ((m = /^X \[Charge\]\s*/.exec(r))) { o.chargeX = true; r = r.slice(m[0].length); continue; }
     if ((m = /^\[2H\]\s*/.exec(r))) { o.twoHanded = true; r = r.slice(m[0].length); continue; }
     if ((m = /^\[Two-handed(?: icon)?\]:?\s*/i.exec(r))) { o.twoHanded = true; r = r.slice(m[0].length); continue; }
     if ((m = /^\[Reaction\]\s*/.exec(r))) { o.reaction = true; r = r.slice(m[0].length); continue; }
