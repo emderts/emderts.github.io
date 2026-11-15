@@ -56,6 +56,7 @@ export const MobMixin = {
     for (const m of M.mobs) for (const t of m.tokens) t.ready = true;
     for (let guard = 0; guard < 40; guard++) {
       const mob = M.mobs.find(m => m.tokens.some(t => t.ready)); if (!mob) break; const tok = mob.tokens.find(t => t.ready);
+      await this.guard(() => this.icdBeforeActivation()); if (!M.mobs.includes(mob) || !mob.tokens.includes(tok)) continue;
       M.cur = mob; this.say(`▷ Mob #${mob.n} (${mob.cells[0] ? this.board.label(mob.cells[0]) : '보드 밖'}) 활성화 — ${tok.type === 'AI' ? 'AI' : 'Signature'}`, 'ai');
       await this.guard(async () => { if (await this.emergeIfOffboard(mob)) { if (tok.type === 'AI' && !(mob.isPump && mob.side === 'sapling')) await this.activationAI(); else { if (mob.isPump) this.say(`Sapling #${mob.n}: AI 대신 Signature`); await this.performSignature(); } } });
       if (M.mobs.includes(mob) && mob.tokens.includes(tok)) this.moveToken(mob.n, tok, true); else tok.ready = false;
@@ -91,7 +92,7 @@ export const MobMixin = {
     }
     return out;
   },
-  mobStepTo(mob, cell) { const B = this.board; B.remove(mob.cells); mob.cells = [cell]; B.place({ kind: 'mob', n: mob.n }, [cell]); },
+  mobStepTo(mob, cell) { const B = this.board; B.remove(mob.cells); mob.cells = [cell]; B.place({ kind: 'mob', n: mob.n }, [cell]); this.icdPickup(mob, cell); },
   /** Mob movement toward a cell until adjacent (or `max` spaces): shortest path around occupied and Obstacle spaces, zigzag on ties (p.50). */
   async mobMoveToward(mob, target, max = Infinity, { ask = true } = {}) {
     const B = this.board; let steps = 0, lastAxis = null; const from = B.label(mob.cells[0]); const start = mob.cells[0];
@@ -133,11 +134,11 @@ export const MobMixin = {
   /** Swarm X (p.87): the attacked Knight loses -X Vigor for each other adjacent Monster. */
   async swarm(mob, k, x) { const n = this.monster.mobs.filter(m => m !== mob && m.cells.length && this.board.adjacent(m.cells[0], k.pos)).length; this.say(`Swarm ${x}: 인접한 다른 Mob ${n}`); if (n) await this.loseVigor(k, x * n, { source: 'effect', armor: false }); },
   /** Heal 1 (Mob Clash, p.82): top BP of the Wound Stack returns to the leftmost empty space of the Mob track, adjacent to the source. */
-  async healMob(source) {
+  async healMob(source, at = null) {
     const M = this.monster, B = this.board; const i = M.woundStack.length - 1; if (i < 0 || !M.woundStack[i].card) { this.say('Heal: Wound Stack에 BP 없음'); return null; }
     const e = M.woundStack.pop(); const slot = this.freeSlot(); if (!slot) { M.removed.push(e.card); this.say(`Heal: Mob track 가득 → ${e.card.name} 제거 (Wound ${M.wounds}/${M.woundsToKill})`); return null; }
     const origin = source && (source.cells[0] || source.lastCell) || (this.priorityTarget && this.priorityTarget.pos) || { c: 7, r: 4 };
-    let cells = B.neighbors(origin).filter(c => this.cellFree(c));
+    let cells = at && this.cellFree(at) ? [at] : B.neighbors(at || origin).filter(c => this.cellFree(c));
     if (!cells.length) { const all = []; for (let c = 1; c <= B.cols; c++) for (let r = 0; r < B.rows; r++) if (this.cellFree({ c, r })) all.push({ c, r }); const d = x => Math.abs(x.c - origin.c) + Math.abs(x.r - origin.r); const m = Math.min(...all.map(d)); cells = all.filter(x => d(x) === m); }
     if (!cells.length) { M.removed.push(e.card); return null; }
     let cell = cells[0]; if (cells.length > 1) cell = await this.ask({ type: 'move', text: `Heal: ${e.card.name} 배치할 칸`, cells, options: cells.map(c => ({ label: B.label(c), value: c })) }) || cells[0];
@@ -158,7 +159,7 @@ export const MobMixin = {
     this.say(`Spawn: Mob #${slot} (BP${mob.card.level}) → ${B.label(cell)}`, 'ai'); return mob;
   },
   killMob(mob) {
-    const M = this.monster; mob.lastCell = mob.cells[0]; this.board.remove(mob.cells); M.mobs = M.mobs.filter(x => x !== mob);
+    const M = this.monster; mob.lastCell = mob.cells[0]; this.board.remove(mob.cells); M.mobs = M.mobs.filter(x => x !== mob); this.icdDropArmor(mob);
     const w = mob.card.level === 3 ? 2 : 1; M.woundStack.push({ card: mob.card, wounds: w, mob }); M.escalateAI(mob.card.level); this.queueMobDeath(mob); this.etherealOnDeath(); if (this.monsterDef.battleTactics) { (this.pendingMangrove = this.pendingMangrove || []).push(mob); if (M.hasTrait('Retribution') && M.woundStack.filter(w => !w.troll).length === 4) this.retributionPending = true; if (mob.card.ops.aura && mob.card.ops.aura.extraSignatureToken) for (const o of M.mobs) o.tokens = o.tokens.filter(t => t.extra !== mob.n); }
     for (const tok of [...mob.tokens]) this.moveToken(mob.n, tok, false); mob.tokens = []; mob.cells = []; mob.dead = true;
     if (M.hasTrait('Necrofusion')) { this.necro += w; this.say(`Necrofusion 토큰 ${this.necro}/3`); }

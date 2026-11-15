@@ -257,7 +257,8 @@
      "hook": "knockedDownJudicium",
      "do": "die"
     }
-   ]
+   ],
+   "implemented": true
   },
   {
    "id": "impenetrable-shell",

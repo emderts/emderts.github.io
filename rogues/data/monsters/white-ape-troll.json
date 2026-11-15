@@ -3238,6 +3238,7 @@
   "Thick Skin wounded: set next to the BP deck — no Wound, no Escalation; it returns to the top of the BP deck at the Start of the next Monster Round (Regeneration)",
   "Firstmen Guardians: Mobs sharing the single Firstman Guardian Trait BP (AT 4, To Hit 7+, Advanced Bypass); killing one adds no Wound and no Escalation; the Mob-track BP card passes to the next Guardian",
   "Guardian Bonus Attack \"once per round, per Knight\": tracked per Knight per round",
+  "Owner reference sheet WAT v1.2 (2026-11-15): a failed attack on Thick Skin leaves it on top of the BP deck; the Guardian BP (AT 4) and Coordinated Attack gain the Troll's level AT / Vigor bonuses; End of Monster Round Guardians move in number order; attacking from the Blindspot gives +1 Precision",
   "Routine Lil' Nap \"Heal 1\": remove the top card of the Wound Stack (소유자 확인 2026-11-15)"
  ]
 }

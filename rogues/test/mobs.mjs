@@ -98,4 +98,8 @@ const L = (c, cell) => c.board.label(cell);
   ok(c.mobAT(mob) === base - 1, `Mob on Rubble (Difficult Terrain) has −1 AT (${base} → ${c.mobAT(mob)})`); }
 { const c = mk(33); const mob = c.monster.mobs[0]; c.revealMob = c.revealMob; c.monster.woundStack.push({ card: mob.card, wounds: 1 }); c.board.remove(mob.cells); c.monster.mobs = c.monster.mobs.filter(x => x !== mob);
   const back = await c.healMob(c.monster.mobs[0]); ok(back && back.revealed === true, 'Heal: returned Mob is face up (owner 2026-11-15)'); }
+{ const c = mk(31, 4); const M = c.monster; const m = M.mobs[0]; m.armor = 2; const cell = m.cells[0]; c.killMob(m); ok(c.armorPiles.get(c.board.key(cell)) === 2, 'Armored Dead (L4): a wounded Mob leaves its Armor tokens on its space');
+  const o = M.mobs[0]; const a0 = o.armor; c.mobStepTo(o, cell); ok(o.armor === a0 + 2 && !c.armorPiles.size, 'Armored Dead: a Mob entering the space takes the tokens');
+  o.armor = 1; const cell2 = o.cells[0]; c.killMob(o); const n0 = M.mobs.length; await c.icdEndKnightRound(); ok(M.mobs.length === n0 + 1 && !c.armorPiles.size, 'Armored Dead: last token removed at End of Knight Round → Heal 1 on that space'); }
+{ const c = mk(32, 4); const M = c.monster; c.round = 2; const n0 = M.mobs.length; const free = c.freeSlot(); await c.icdBeforeActivation(); ok(!free || M.mobs.length === n0 + 1 || c.log.some(l => /Routine/.test(l.msg)), 'Lifeless Army (L4): Spawn before an Activation from Round 2 (Routine if impossible)'); c.round = 1; const n1 = M.mobs.length; await c.icdBeforeActivation(); ok(M.mobs.length === n1, 'Lifeless Army: ignored during the first Round'); }
 console.log(fails ? `${fails} FAIL` : 'ALL PASS'); process.exit(fails ? 1 : 0);

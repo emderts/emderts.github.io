@@ -159,9 +159,9 @@ export class Effects {
       this.deplete(k, t, e.depletion);
     }
   }
-  freeActions(k) { const out = [...(this.c.lureOptions ? this.c.lureOptions(k) : []), ...(this.c.wnFreeActions ? this.c.wnFreeActions(k) : []), ...(this.c.pumpFreeActions ? this.c.pumpFreeActions(k) : [])]; const ch = this.c.hasCondition(k, 'Choked'); if (ch && k.chokeLimit > 0 && (k.actions.move || k.actions.combat)) out.push({ id: 'lowerChoke', label: `행동 소모 → Choke Limit -3 (현재 ${k.chokeLimit})` }); const ex = this.c.hasCondition(k, 'Exposed'); if (ex && (k.actions.move || k.actions.combat)) out.push({ id: 'discardExposed', label: '행동 소모 → Exposed 제거' }); if (k.talent && k.talent.id === 'fleischjager' && this.c.poolCount('fleisch') >= 1 && k.vigor > 1) out.push({ id: 'nurturing', label: 'Nurturing Fleisch (1 Fleisch, X Vigor → 인접 기사 +X)' }); return out; }
+  freeActions(k) { const out = [...(this.c.lureOptions ? this.c.lureOptions(k) : []), ...(this.c.wnFreeActions ? this.c.wnFreeActions(k) : []), ...(this.c.pumpFreeActions ? this.c.pumpFreeActions(k) : []), ...(this.c.icdFreeActions ? this.c.icdFreeActions(k) : [])]; const ch = this.c.hasCondition(k, 'Choked'); if (ch && k.chokeLimit > 0 && (k.actions.move || k.actions.combat)) out.push({ id: 'lowerChoke', label: `행동 소모 → Choke Limit -3 (현재 ${k.chokeLimit})` }); const ex = this.c.hasCondition(k, 'Exposed'); if (ex && (k.actions.move || k.actions.combat)) out.push({ id: 'discardExposed', label: '행동 소모 → Exposed 제거' }); if (k.talent && k.talent.id === 'fleischjager' && this.c.poolCount('fleisch') >= 1 && k.vigor > 1) out.push({ id: 'nurturing', label: 'Nurturing Fleisch (1 Fleisch, X Vigor → 인접 기사 +X)' }); return out; }
   async doFreeAction(k, id) {
-    if (id.startsWith('climb:')) return this.c.wnClimb(k, id.slice(6)); if (id === 'campfire') return this.c.pumpCampfire(k);
+    if (id.startsWith('climb:')) return this.c.wnClimb(k, id.slice(6)); if (id === 'campfire') return this.c.pumpCampfire(k); if (id.startsWith('armorpile:')) return this.c.icdRemoveToken(k, id.slice(10));
     if (id.startsWith('lure:')) return this.c.lure(k, id.slice(5));
     const spend = () => { if (k.actions.move) k.actions.move = false; else k.actions.combat = false; };
     if (id === 'lowerChoke') { spend(); k.chokeLimit = Math.max(0, k.chokeLimit - 3); if (k.chokeLimit === 0) this.c.removeCondition(k, 'Choked'); }

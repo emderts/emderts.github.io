@@ -47,7 +47,7 @@ export const TrollMixin = {
   },
   async coordinatedAttack(g) { if (!g || !this.alive().length) return; this.say(`Guardian #${g.n}: Coordinated Attack`, 'ai'); await this.withGuardian(g, () => this.resolveMonsterAttack(this.monsterDef.guardian.attack, { guardian: g })); },
   async guardiansToTroll(n = Infinity, { crash = false } = {}) {
-    const B = this.board; const order = [...this.guardians].sort((a, b) => B.distance(this.monster.cells, a.cells) - B.distance(this.monster.cells, b.cells));
+    const B = this.board; const order = [...this.guardians].sort((a, b) => a.n - b.n);
     for (const g of order) {
       if (this.trollAdjacent(g.cells[0])) continue; const cand = []; for (const c of this.monster.cells) for (const x of B.neighbors(c)) if (B.inside(x) && !B.isObstacle(x) && !this.guardianAt(x) && !this.monster.cells.some(m => cellEq(m, x)) && (crash || !this.knightAt(x)) && !cand.some(y => cellEq(y, x))) cand.push(x);
       if (!cand.length) continue; const d = c => B.distance(g.cells, [c]); const best = Math.min(...cand.map(d)); if (best > n) { await this.withGuardian(g, () => this.guardianMoveToward(this.monster.cells[0])); continue; }

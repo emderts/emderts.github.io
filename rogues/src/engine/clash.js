@@ -14,6 +14,7 @@ import { TrollMixin } from './troll.js';
 import { NightmareMixin } from './nightmare.js';
 import { FenMixin } from './fen.js';
 import { PumpMixin } from './pump.js';
+import { IroncastMixin } from './ironcast.js';
 
 export class ChainBreak extends Error { constructor(msg = 'Chain Break') { super(msg); this.chainBreak = true; } }
 const sum = a => a.reduce((x, y) => x + y, 0);
@@ -300,6 +301,7 @@ export class Clash {
   }
   /** Crash (p.80): -1 Vigor + Knockdown. Charge over knocked-down Knight → Judicium instead (Humpty Charge). */
   async crash(k, opts = {}) { const { charge = false } = opts; if (this.isFen && opts.through && !this.actingGuardian) return this.monster.hasTrait('Inescapable Slime') ? this.fenOoze(k, 'boss') : this.fenPass(k);
+    if (charge && this.knockedDown(k) && this.monster.hasTrait('Coup de Grace')) { this.say(`${k.name}: 넘어진 채로 돌진당함 — Coup de Grace: Judicium 대신 사망`, 'death'); await this.die(k, 'Coup de Grace'); return; }
     if (charge && this.knockedDown(k)) { this.say(`${k.name}: 넘어진 채로 돌진당함 → Judicium`); await this.drawJudicium(k); return; }
     this.say(`${k.name} Crash`); await this.loseVigor(k, 1, { source: 'crash' }); await this.knockdown(k);
   }
@@ -486,7 +488,7 @@ export class Clash {
       acted.add(k.id); await this.guard(() => this.knightTurn(k)); this.checkEnd(); if (this.isWN) await this.guard(() => this.wnNixie(acted.size + empty()));
     }
     for (const k of this.alive()) await this.guard(() => this.fx.endOfKnightRound(k));
-    if (this.monster.isMob) { for (const k of this.knights) k.cestusLock = null; await this.guard(() => this.firstmenEndKnightRound()); }
+    if (this.monster.isMob) { for (const k of this.knights) k.cestusLock = null; await this.guard(() => this.firstmenEndKnightRound()); await this.guard(() => this.icdEndKnightRound()); }
   }
   async knightTurn(k) {
     this.say(`▶ ${k.name} 턴 (V${k.vigor} H${k.heat}/${k.heatLimit} P${k.passion})`, 'turn'); k.turnsTaken++; k.cestusLock = null; if (this.monster.isMob) this.cestusCheck(k);
@@ -567,7 +569,7 @@ export class Clash {
     await this.fx.beforeAttack(k, A);
     await this.fx.exertWindow(k, A, 'Attack Roll 전');
     // 3. Attack roll
-    let dice = w.attackDice + this.fx.extraAttackDice(k, w, A); let prec = (Number(w.precision) || 0) + this.fx.precision(k) + (A.extraPrecision || 0) + this.poolCount('opening') + this.poolCount('closing') + (this.monster.isMob ? this.mobAura('knightPrecision') : 0) + this.hauntPrecision(k);
+    let dice = w.attackDice + this.fx.extraAttackDice(k, w, A); let prec = (Number(w.precision) || 0) + this.fx.precision(k) + (A.extraPrecision || 0) + this.poolCount('opening') + this.poolCount('closing') + (this.monster.isMob ? this.mobAura('knightPrecision') : 0) + this.hauntPrecision(k) + (!A.guardian && !k.engulfed && (!this.monster.isMob || (A.mob && A.mob.isTroll)) && this.inBlindspot(k) ? 1 : 0);
     const roll = rollD10s(this.rng, dice); const tt = !A.guardian ? this.trollToHit() : { bonus: 0, fullMiss: false }; const toHit = A.guardian ? this.guardianToHit(A.guardian) : this.monster.toHit + this.monster.modifiers.toHit + this.hauntToHit() + tt.bonus + (this.isWN ? this.wnToHit(k) : 0) + (this.monster.isMob && A.mob ? this.firstmenToHit(A.mob) : 0); if (tt.bonus) this.say(`Firstmen Guardians: 인접 Guardian ${tt.bonus} → To Hit +${tt.bonus}${tt.fullMiss ? ' · 4+ → 모든 Attack Roll Full Miss' : ''}`); if (tt.fullMiss) for (const d of roll.dice) d.v = 1;
     const isHit = d => d.v === 10 ? true : d.v === 1 ? false : d.v + prec >= toHit;
     this.say(`${k.name} Attack Roll ${dice}d → [${roll.dice.map(d => d.v).join(' ')}] (재굴림 전)`, 'dice');
@@ -644,6 +646,7 @@ export class Clash {
     const deferred = [];
     // 8. wounds & escalation (before responses that move the monster? Rulebook: responses step 7 then wounds step 8; responses that are Monster Attacks happen after)
     if (A.wounded) { const dealt = A.guardian ? (A.guardian.isDopp ? await this.doppWound(A) : 0) : bp.isThickSkin ? (this.thickSkinAside = true, this.say('Thick Skin 부상: BP 덱 옆에 두고 뒤집음 — Wound·Escalation 없음', 'bp'), this.onTrollWound(1), 0) : this.monster.isMob ? (A.mob.isTroll ? this.trollWound() : A.mob.isNightmare ? this.nightmareWound(A) : A.mob.isPump ? this.pumpWound(A) : this.killMob(A.mob)) : this.monster.wound(bp, { critical: A.critical }); if (!this.monster.isMob && !A.guardian && !bp.isThickSkin) this.onTrollWound(dealt); if (this.isFen && (!A.guardian || A.guardian.isDopp)) { this.wamTokens += dealt; this.wamKnight = k; if (this.monster.hasTrait('We Are Many')) this.say(`We Are Many 토큰 ${this.wamTokens}/4`); } this.monster.generic.counter = (this.monster.generic.counter || 0) + dealt; this.say(`Wound Stack ${this.monster.wounds}/${this.monster.woundsToKill}`, 'wound'); await this.fx.onWound(k, A); this.priorityLast = k; }
+    else if (!this.monster.isMob && !A.guardian && bp.isThickSkin) { this.monster.bp.putTop(bp); this.say('Thick Skin: Wound 실패 → BP 덱 맨 위에 그대로'); }
     else if (!this.monster.isMob && !A.guardian) this.monster.discardBP(bp);
     if (A.wnDefianceNow) { const o2 = this.wn.card.ops; resp.length = 0; resp.push(A.critical ? ['Critical', o2.critical] : ['Wound', o2.wound]); }
     for (const [kind, rops] of resp) { if (ignore && !kind.startsWith('Critical')) { this.say(`${kind} Response 무시 (${A.ignoreResponses ? 'Distracting Bait' : 'Diversion'})`); continue; } this.say(`${kind} Response`); const isAttack = rops.some(o => o.op === 'signature' || o.op === 'aiAttack' || o.op === 'drawAIFor'); const rIdx = this.bpReactIndices(bp, kind); if (isAttack) deferred.push([rops, rIdx]); else { try { await this.runResponseOps(rops, rIdx, { attacker: k, attack: A, target: k }); } catch (e) { if (!e.chainBreak) throw e; this.say(`Chain Break: ${e.message}`, 'warn'); } } }
@@ -663,7 +666,7 @@ export class Clash {
   }
   /** Rulebook p.81 Difficult Terrain: "Monsters on Difficult Terrain have -1 [AT]" (icon = AT, owner 2026-11-15). A Monster counts as on it when any occupied space is Difficult Terrain. */
   difficultTerrainAT(cells) { const ign = (this.monsterDef.basicAbilities || []).some(b => /ignore difficult terrain/i.test(b.name)); if (ign || !cells || !cells.length) return 0; return cells.some(c => { const t = this.board.terrainAt(c); return t && t.difficult; }) ? -1 : 0; }
-  bpAT(bp) { if (bp && bp.isGuardianBP) return bp.at; if (this.isFen) { const g = this.guardians.find(g => g.cards.includes(bp)); return g ? this.doppAT(g) : this.fenAT(bp); } if (this.monster.isMob) { const m = this.monster.mobs.find(x => x.card === bp); return m ? this.mobAT(m) : bp.at + this.monster.bonuses.at + this.monster.modifiers.at; } return this.monster.atOf(bp, (this.monster.hasTrait('Panzeronion') ? this.armorTokens[bp.level] : 0) + this.difficultTerrainAT(this.monster.cells)); }
+  bpAT(bp) { if (bp && bp.isGuardianBP) return bp.at + this.monster.bonuses.at + this.monster.modifiers.at; if (this.isFen) { const g = this.guardians.find(g => g.cards.includes(bp)); return g ? this.doppAT(g) : this.fenAT(bp); } if (this.monster.isMob) { const m = this.monster.mobs.find(x => x.card === bp); return m ? this.mobAT(m) : bp.at + this.monster.bonuses.at + this.monster.modifiers.at; } return this.monster.atOf(bp, (this.monster.hasTrait('Panzeronion') ? this.armorTokens[bp.level] : 0) + this.difficultTerrainAT(this.monster.cells)); }
   clearPool() { const fire = this.pool.filter(t => t.token === 'fire'); const keep = [...this.pool.filter(t => t.resource), ...fire.slice(1)]; /* Fire: leave all but one unused Fire token (p.19) */ const n = this.pool.length - keep.length; this.pool = keep; if (n) this.say(`Knight Pool 정리 (-${n})`, 'pool'); }
   /** After any action: Counter trait (Eggknight). */
   async afterAction() { await this.swampSweep(); await this.fenAfterAction(); await this.pumpAfterAction(); if (!this.monster.isMob) await this.trollAfterAction();
@@ -696,4 +699,4 @@ export class Clash {
   }
   async windowOfOpportunity(when, attack, target = null) { const a = attack || this.currentAttack; if (a && a.noReact && when !== 'beforeEffects') { this.say('REACT! 무시 (Blood 게이트)'); return; } await this.fx.reactions(when, attack, target); }
 }
-Object.assign(Clash.prototype, MobMixin, BloodMixin, HauntsMixin, FirstmenMixin, TrollMixin, NightmareMixin, FenMixin, PumpMixin);
+Object.assign(Clash.prototype, MobMixin, BloodMixin, HauntsMixin, FirstmenMixin, TrollMixin, NightmareMixin, FenMixin, PumpMixin, IroncastMixin);
