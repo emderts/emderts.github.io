@@ -30,7 +30,7 @@ export class Clash {
     this.kingdom = cfg.kingdom || 'principality'; this.round = 0; this.result = null; this.listeners = cfg.listeners || {};
     this.board = new Board(this.data.components.board);
     this.pool = []; // Knight Pool tokens: {token, temp}
-    this.monsterDef = this.data.monsters[cfg.monster]; this.monster = new Monster(this.monsterDef, cfg.level, this.rng);
+    this.monsterDef = this.data.monsters[cfg.monster]; this.monster = new Monster(this.monsterDef, cfg.level, this.rng); this.nodeLevel = cfg.nodeLevel || cfg.level || 1; /* Rogue's Path: tier gates ([VASSAL] etc.) follow the node level */
     this.knights = cfg.knights.map((k, i) => this._mkKnight(k, i));
     this.fx = new Effects(this);
     this._setupDecks();
