@@ -65,7 +65,7 @@ const SPECIAL = [
   [/^Gain \+(\d+) Precision \[Precision\] for each Bane \[Bane\] token you have$/, m => ({ op: 'precisionPerBane', n: +m[1] })],
   [/^If you're (\d+) or more spaces away from the closest Monster, gain \+(\d+) Speed \[Speed\]$/, m => ({ op: 'speedFar', d: +m[1], n: +m[2] })],
   [/^When you deal a Wound, Bane (\d+)$/, m => ({ op: 'woundBane', n: +m[1] })],
-  [/^Gain \+(\d+) \[Power\] against Dragons$/, m => ({ op: 'powerVsTrait', trait: 'Dragon', n: +m[1] })],
+  [/^Gain \+(\d+) \[Power\] against (?:the )?(Dragon|King|Devil|Stonemason Knight)s?$/, m => ({ op: 'powerVsTrait', trait: m[2], n: +m[1] })],
   [/^Gain \+(\d+) Precision \[Precision\]$/, m => ({ op: 'flatPrecision', n: +m[1] })],
   [/^Full Miss: Skip the Clear the Knight Pool step of your Attack$/, () => ({ op: 'fullMissKeepPool' })],
   [/^Lose -(\d+) \[Heat\]$/, m => ({ op: 'fLoseHeat', n: +m[1], free: true })],
@@ -110,6 +110,34 @@ const SPECIAL = [
   [/^The next time that Monster moves, discard that token and stop the movement after 3 spaces$/, () => ({ op: 'note', na: true })],
   [/^\*(\d+) \[d10\] instead$/, m => ({ op: 'attackDiceInstead', n: +m[1] })],
   [/^For the purpose of gathering your Power Pool, ignore any hits that exceed this Weapon's original \[d10\] value$/, () => ({ op: 'powerHitCap' })],
+  [/^When any Knight Full Misses, do not clear the Knight Pool$/, () => ({ op: 'anyFullMissKeepPool' })],
+  [/^Flip a revealed card face down$/, () => ({ op: 'fBPFaceDown', free: true })],
+  [/^Place the top BP or AI card at the bottom of the deck$/, () => ({ op: 'fBPorAIBottom', free: true })],
+  [/^Each hit: (Sunder|Opening|Closing|Break|Hope|Black|Fire) (\d+)$/, m => ({ op: 'eachHitToken', token: m[1].toLowerCase(), n: +m[2] })],
+  [/^Each hit: \+(\d+) \[Power\]$/, m => ({ op: 'eachHitPower', n: +m[1] })],
+  [/^Full Hit: AI Suppress$/i, () => ({ op: 'fullHitAISuppress' })],
+  [/^Full Miss: Gain \+(\d+) \[Passion\]$/, m => ({ op: 'fullMissPassion', n: +m[1] })],
+  [/^Start of your turn: Gain \+(\d+) \[Vigor\] and Bane (\d+)$/, m => ({ op: 'turnVigorBane', v: +m[1], n: +m[2] })],
+  [/^Start of your turn: Gain (\d+) Bane \[Bane\] token$/, m => ({ op: 'turnBane', n: +m[1] })],
+  [/^When you are about to attack, Bane (\d+)$/, m => ({ op: 'attackBane', n: +m[1] })],
+  [/^Place (?:a|(\d+)) (Fire|Break|Opening|Hope|Black|Closing) \[\w+\] tokens? in the Knight Pool$/, m => ({ op: 'fPoolToken', token: m[2].toLowerCase(), n: +(m[1] || 1), free: true })],
+  [/^You may use this ability multiple times per turn$/, () => ({ op: 'note', na: true })],
+  [/^When you attack, place a Diversion \[Diversion\] token in the Knight Pool$/, () => ({ op: 'attackDiversion', active: true })],
+  [/^Discard a Condition card$/, () => ({ op: 'fDiscardCond', free: true })],
+  [/^Bane (\d+) to gain \+(\d+) \[Vigor\]$/, m => ({ op: 'fBaneVigor', b: +m[1], n: +m[2], free: true })],
+  [/^Immune to Bane$/, () => ({ op: 'immuneBane' })],
+  [/^Gain \+(\d+) \[Evasion\]$/, m => ({ op: 'plusEvasion', n: +m[1] })],
+  [/^Gain \+(\d+) Precision \[Precision\] for each knocked down Knight$/, m => ({ op: 'precisionPerKnockedDown', n: +m[1] })],
+  [/^When you(?:'re| are) about to gain Bane \[Bane\] tokens, lower that gain to (\d+)$/, m => ({ op: 'baneLower', n: +m[1], active: true })],
+  [/^When you're about to gain Bane \[Bane\] tokens, you may lose that much \[Vigor\] instead$/, () => ({ op: 'baneToVigor' })],
+  [/^When you(?:'re| are) about to die, ignore (?:that|this) death$/, () => ({ op: 'ignoreDeath', active: true })],
+  [/^When drawing a Judicium, resolve the opposite Judicium to the one you drew$/, () => ({ op: 'judiciumOppositeAfter', active: true })],
+  [/^When you are about to resolve a \[Peril Check\], ignore it$/, () => ({ op: 'ignorePeril', active: true })],
+  [/^When you're hit by a Mob Monster, you may reveal that Mob's BP card$/, () => ({ op: 'hitRevealMob' })],
+  [/^When you're about to attack, you may reset your \[Passion\]$/, () => ({ op: 'attackResetPassion' })],
+  [/^If you do, reset your \[Heat\]$/, () => ({ op: 'note', na: true })],
+  [/^When you are hit, discard (\d+) \[Charge\]$/, m => ({ op: 'hitDiscardCharge', n: +m[1] })],
+  [/^If you cannot, discard this card instead$/, () => ({ op: 'note', na: true })],
   [/^Roll Out(?: \(.*\))?$/, () => ({ op: 'rollOut', active: true })],
   [/^Ignore Swamp Terrain tiles$/, () => ({ op: 'ignoreSwamp' })],
   [/^When you're about to suffer involuntary movement, you may reduce it by 1 \(to a minimum of 1\)$/, () => ({ op: 'reduceInvol' })],
@@ -153,6 +181,7 @@ export function parseSentence(s) {
     if ((m = /^X \[Heat\]\s*/.exec(r))) { o.heatX = true; r = r.slice(m[0].length); continue; }
     if ((m = /^Start of your turn:\s*(?=\d+ \[Heat\])/.exec(r))) { o.atTurnStart = true; r = r.slice(m[0].length); continue; }
     if ((m = /^When you trigger Overcome X in Melee range:\s*/.exec(r))) { o.overcomeMelee = true; r = r.slice(m[0].length); continue; }
+    if ((m = /^(\d+) \[Vigor\]\s+(?=\[|[A-Z])/.exec(r))) { (o.cost = o.cost || {}).vigor = +m[1]; r = r.slice(m[0].length); continue; }
     if ((m = /^\[2H\]\s*/.exec(r))) { o.twoHanded = true; r = r.slice(m[0].length); continue; }
     if ((m = /^\[Two-handed(?: icon)?\]:?\s*/i.exec(r))) { o.twoHanded = true; r = r.slice(m[0].length); continue; }
     if ((m = /^\[Reaction\]\s*/.exec(r))) { o.reaction = true; r = r.slice(m[0].length); continue; }
@@ -163,7 +192,7 @@ export function parseSentence(s) {
     if ((m = /^(\d+) \[Charge\]\s*/.exec(r))) { (o.cost = o.cost || {}).charge = +m[1]; r = r.slice(m[0].length); continue; }
     break; }
   const b = body(r); if (!b) { if (/\b(Delve|Deep Fog|Trailmake|Wander|Rotation|Adventure|Ambush|Encounter|Exploration|Shortcuts?|Possessed|Clues?|District|Investigation)\b/.test(text)) return { op: 'nonClash', status: 'na', text }; return { op: 'text', status: 'text', text }; }
-  const k = { ...b, ...o, text }; if (k.atTurnStart && k.op === 'hide') k.op = 'hideStart'; if (k.status === 'ok' && (k.cost || k.reaction) && !ACTIVE_OK.has(k.op) && !k.special) k.status = 'pending'; // costed versions of constant keywords need their own timing window
+  const k = { ...b, ...o, text }; if (k.atTurnStart && k.op === 'hide') k.op = 'hideStart'; if (k.op === 'soak' && k.cost) { k.op = 'soakPaid'; k.special = true; k.active = true; } if (k.status === 'ok' && (k.cost || k.reaction) && !ACTIVE_OK.has(k.op) && !k.special) k.status = 'pending'; // costed versions of constant keywords need their own timing window
   return k;
 }
 /** Parse a whole ability text → list of keywords (one per sentence). */
