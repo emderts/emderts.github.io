@@ -38,6 +38,7 @@ const L = (c, cell) => c.board.label(cell); const P = (c, l) => c.board.parse(l)
 { const c = await mk(7); c.wamTokens = 4; const n = c.guardians.length; let sig = 0; const p0 = c.performSignature.bind(c); c.performSignature = async o => { sig++; }; await c.fenAfterAction(); ok(c.guardians.length === n + 1 && sig === 1 && c.wamTokens === 0, 'We Are Many: 4 tokens → Spawn + Signature'); }
 { const c = await mk(8); const M = c.monster; M.bp.cards = []; M.bp.discard = []; let lost = false; try { c.fenCheckBP(); } catch (e) { lost = c.result === 'lose'; } ok(lost, 'no cards in the BP deck and discard pile → the Clash is lost'); }
 { const c = await mk(9, 2); const k = c.knights[0]; const v0 = k.vigor; await c.fenOoze(k, 'boss'); ok(c.hasCondition(k, 'Slimed') && k.vigor === v0 - 2, 'Ooze Trap (Level 2): moved through → Slimed and -2 Vigor (no Crash)'); }
+{ const c = await mk(12, 3); const g = c.guardians[0]; ok(g.cards.length === 2 && c.doppAT(g) === g.cards.reduce((a, x) => a + c.monster.atOf(x), 0), 'Concentrated Strength (L3): Doppelknight carries 2 BPs, AT = summed AT'); }
 { let wins = 0, losses = 0; const N = 10;
   for (let s = 1; s <= N; s++) { const c = await mk(3000 + s); const r = await c.run(); if (r === 'win') wins++; else losses++; const bad = c.log.filter(l => /미구현/.test(l.msg)); if (bad.length) ok(false, `seed ${s}: ${bad[0].msg}`); }
   ok(wins + losses === N, `${N} seeded Knight of the Fen Clashes finished: ${wins} win / ${losses} lose`);
