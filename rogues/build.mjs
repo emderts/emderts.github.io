@@ -16,6 +16,8 @@ const loadData = (dir = 'data') => {
   return out;
 };
 const data = loadData();
+// Owner-confirmed transcriptions the engine does not implement yet → shown in the in-game monster info viewer.
+{ const names = new Set(Object.values(data.monsters || {}).map(m => String(m.name).toLowerCase())); data.rawMonsters = {}; const td = 'docs/transcriptions'; if (fs.existsSync(td)) for (const f of fs.readdirSync(td).filter(f => f.endsWith('_raw.json'))) { const r = rd(path.join(td, f)); if (r.sheet && !names.has(String(r.sheet.name).toLowerCase())) data.rawMonsters[f.replace('_raw.json', '')] = r; } }
 data.meta = { ...(data.meta || {}), builtAt: new Date().toISOString() };
 
 const r = await build({ entryPoints: ['src/ui/main.js'], bundle: true, format: 'iife', write: false, minify: false, target: 'es2020' });

@@ -2,6 +2,7 @@
 import { Clash } from '../engine/clash.js';
 import { Campaign } from '../engine/campaign.js';
 import { DIRS, inFront, rearCells } from '../engine/board.js';
+import { mountMonsterInfo } from './monsterinfo.js';
 
 const DATA = window.KF_DATA;
 const $ = (sel, el = document) => el.querySelector(sel);
@@ -346,3 +347,4 @@ const render = () => {
   renderHome();
 };
 render();
+mountMonsterInfo(DATA, h, () => (clash && clash.monsterDef && clash.monsterDef.id) || null);

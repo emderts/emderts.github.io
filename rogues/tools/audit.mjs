@@ -214,13 +214,20 @@ sec.push(`<section id="campaign"><h2>11. 캠페인 레이어 — Rosegraal 루�
 </table></section>`);
 
 
+// Monster sections whose transcription + rulings the owner has fully confirmed leave the audit page (they are browsable in the game:
+// 👁 몬스터 정보). A section stays if it still carries a "확인 필요" marker. `node tools/audit.mjs --full` keeps everything.
+const FULL = process.argv.includes('--full'); const isMonSec = x => /^<section id="(eggknight|mob-|boss-|raw-|fools)/.test(x); const pending = x => /\[해석, 확인 필요\]/.test(x);
+const done = sec.filter(x => isMonSec(x) && !pending(x) && !FULL).map(x => (x.match(/<h2>(?:\d+b?\.\s*)?([^<—]+)/) || [])[1].trim());
+const out = sec.filter(x => FULL || !isMonSec(x) || pending(x));
+if (done.length) out.push(`<section id="mon-done"><h2>몬스터 — 오딧 완료 (${done.length})</h2><p class="impl">소유자 확인이 끝난 몬스터는 이 페이지에서 빼고, 게임 화면 오른쪽 위 <b>👁 몬스터</b> 버튼(몬스터 정보: Sheet · Trait · AI/BP · Signature/Routine · Setup · 규칙 해석)에서 볼 수 있습니다. 전체 표가 필요하면 <code>node tools/audit.mjs --full</code>.</p><ul>${done.map(n => `<li>${esc(n)}</li>`).join('')}</ul></section>`);
+
 const html = `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>KF Rogue's Path — 데이터·규칙 오딧</title>
 <style>body{margin:0;padding:16px;font:14px/1.5 system-ui,sans-serif;background:#1a1714;color:#e8dcc8;max-width:1400px}h1{color:#c9a85a;font-size:22px}h2{color:#c9a85a;margin-top:28px;border-bottom:1px solid #3a3128}h3{color:#d9c89a;margin:16px 0 6px}
 table{border-collapse:collapse;width:100%;font-size:13px}td,th{border:1px solid #3a3128;padding:4px 6px;vertical-align:top;text-align:left}th{background:#26211b}code{background:#2a241d;padding:1px 5px;border-radius:4px;color:#f0d9a0}
 .impl{background:#26211b;padding:8px 10px;border-left:3px solid #c9a85a;border-radius:4px}.small{font-size:12px;color:#998b76}.warn{color:#d9a441}details summary{cursor:pointer;color:#c9a85a}table.rw td{min-width:120px}nav a{color:#c9a85a;margin-right:12px}</style></head><body>
 <h1>Kingdoms Forlorn — Rogue's Path: 데이터·규칙 오딧</h1><p class="small">v${meta.version} · 생성 ${new Date().toISOString().slice(0, 16).replace('T', ' ')} UTC · 각 섹션: 전사 데이터 ↔ 엔진 구현 ↔ 테스트. 전사 불확실 항목은 노란색.</p>
-<nav><a href="#monsters">몬스터 표</a><a href="#map">Rosegraal 지도</a><a href="#rewards">Rewards</a><a href="#components">구성물</a><a href="#fleischritter">Fleischritter</a><a href="#gear">Gear</a><a href="#eggknight">Eggknight</a><a href="#decks">Mortis·Condition·Terrain·Outpost</a><a href="#engine">엔진 대응</a><a href="#shop">상점·용병·Loot</a><a href="#campaign">캠페인</a><a href="#mgear">몬스터 Gear·Consumable·Upgrade</a></nav>
-${sec.join('\n')}
+<nav><a href="#monsters">몬스터 표</a><a href="#map">Rosegraal 지도</a><a href="#rewards">Rewards</a><a href="#components">구성물</a><a href="#fleischritter">Fleischritter</a><a href="#gear">Gear</a><a href="#mon-done">몬스터(완료)</a><a href="#decks">Mortis·Condition·Terrain·Outpost</a><a href="#engine">엔진 대응</a><a href="#shop">상점·용병·Loot</a><a href="#campaign">캠페인</a><a href="#mgear">몬스터 Gear·Consumable·Upgrade</a></nav>
+${out.join('\n')}
 </body></html>`;
 fs.mkdirSync('docs/audit', { recursive: true }); fs.writeFileSync('docs/audit/index.html', html);
 console.log('wrote docs/audit/index.html', (html.length / 1024).toFixed(0), 'KB');
