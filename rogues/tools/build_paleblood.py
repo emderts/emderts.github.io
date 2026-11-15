@@ -25,7 +25,7 @@ AI = {
  'Brutal Bloodletting': dict(judge=['Fortitude', 'Might'], diceFromBlood=2, moveOps=[SUCK(1)], effects=[V(2)], afterAttack=[SUCK(1), BURROW(2)]),
  'Bite from Below': dict(zoneAroundTile={'tile': 'paleburrow', 'z': 1, 'gate': {'stat': 'blood', 'gte': 3, 'z': 2}}, beforeAttack=[{'op': 'removeOtherWorms'}], effects=[V(2)], afterAttack=[G(1, [KD])]),
  'Vicious Bite': dict(gates=[{'op': 'discardArmorGear', 'stat': 'blood', 'gte': 3}], effects=[V(2), SUCK(1), {'op': 'mobIf', 'cond': {'vigorLostAtLeast': 4}, 'then': [SUCK(1)]}], afterAttack=[G(2, [KB(4)]), BURROW(8)]),
- 'Paint the Swamp Red': dict(gates=[{'op': 'ignoreReact', 'stat': 'blood', 'gte': 2}], effects=[G(2, [{'op': 'die', 'reason': 'Blown to pieces'}], [{'op': 'vigorToZero', 'perilCheck': True}])], afterAttack=[{'op': 'discardMobBlood'}, {'op': 'removeSelf'}]),
+ 'Paint the Swamp Red': dict(zoneAroundSelf=2, gates=[{'op': 'ignoreReact', 'stat': 'blood', 'gte': 2}], effects=[G(2, [{'op': 'die', 'reason': 'Blown to pieces'}], [{'op': 'vigorToZero', 'perilCheck': True}])], afterAttack=[{'op': 'discardMobBlood'}, {'op': 'removeSelf'}]),
  'Violent Dismemberment': dict(gates=[{'op': 'vigorPerHitInstead', 'stat': 'blood', 'gte': 2, 'n': 2}], effects=[V(1), {'op': 'repeatIfTargetDied'}], afterFinalAttack=[SUCK(1), BURROW(1)]),
  'Suppertime!': dict(judge=['Bravery', 'Tenacity'], effects=[{'op': 'dieIfAdjacentToTile', 'tile': 'paleburrow'}, VX(False)], afterAttack=[{'op': 'discardMobBlood'}]),
  'Death by a Thousand Bites': dict(extraDice={'perHits': 2}, effects=[{'op': 'suckPerHits', 'per': 2, 'n': 1}, V(2)], afterAttack=[G(3, [SUCK(1)], stat='heat'), BURROW(9)]),
@@ -58,8 +58,8 @@ def ai(c, spec):
     ops.update(spec)
     if 'react' not in ops: ops['reactWindows'] = c.get('reactWindows', [])
     c['type'] = TYPE.get(c['type'], c['type'].lower())
-    if c['name'] == 'Paint the Swamp Red':  # printed type ZONE ATTACK, tag MOVE & ATTACK, no diagram → resolved as a single-target attack
-        c['type'] = 'attack'; c.setdefault('notes', []).append('ZONE ATTACK로 인쇄됐지만 Zone 도식이 없고 태그가 MOVE & ATTACK → 단일 대상 공격으로 처리 [확인 필요]')
+    if c['name'] == 'Paint the Swamp Red':  # diagram: red 5x5 around the Mob = Zone 2 after moving toward the Target (owner 2026-11-15)
+        c.setdefault('notes', []).append('Zone 도식: Mob 주위 5×5 빨간 칸 = Zone 2 — 대상 쪽으로 이동한 뒤 Zone 2 안의 모든 기사 공격 (소유자 지적 2026-11-15)')
     if c['evasionDice'] == 'X': c['evasionDice'] = 0
     c['ops'] = ops; return c
 
@@ -97,7 +97,7 @@ d = {
             'Monster Positioning: Put numbered base rings on all Paleblood Worm miniatures. Randomly place Paleblood Worm miniatures numbered 1–4 on the spaces designated on the diagram. Note the facing direction indicated by the arrows. Then, place 4 BP 1 cards face down in a random order on spaces 1–4 on the Mob track.',
             'Additional Setup: Place Blood tokens near the Monster Sheet. Follow additional Clash Setup instructions introduced by Traits (if any).',
             'This Clash uses numbered Terrain tiles — the numbered Generic tokens on these tiles follow the diagram.'],
-  'mobStart': [{'cell': 'H7', 'facing': 'down'}, {'cell': 'F7', 'facing': 'left'}, {'cell': 'E8', 'facing': 'right'}, {'cell': 'C7', 'facing': 'up'}],
+  'mobStart': [{'cell': 'H8', 'facing': 'down'}, {'cell': 'F7', 'facing': 'left'}, {'cell': 'E8', 'facing': 'right'}, {'cell': 'C7', 'facing': 'up'}],
   'mobTrack': {'1': 4}, 'knightStart': ['G6', 'F9', 'E6', 'D9'],
   'terrain': [
    {'tile': 'column', 'cells': ['C3', 'F4', 'B5', 'G9', 'H12']},
@@ -105,18 +105,17 @@ d = {
    {'tile': 'ruined wall', 'cells': ['F12', 'F13', 'F14', 'E12'], 'shape': 'L'},
    {'tile': 'paleburrow', 'cells': ['I2', 'C2', 'G4', 'D5', 'A5', 'H9', 'C10', 'H13', 'E14', 'B13'], 'numbers': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]},
    {'tile': 'bloodgeyser', 'cells': ['F7', 'F8', 'F9', 'E7', 'E8', 'E9', 'D7', 'D8', 'D9'], 'shape': '3x3'}],
-  'unclear': ['Ruined Wall L 두 개의 정확한 칸(J3·I3·H3·H2 / F12·F13·F14·E12)은 코덱스 도식에서 읽음', 'Bloodgeyser 3×3 = D7–F9로 읽음 (기사 F9·D9와 Mob F7·E8이 그 위에서 시작)']},
+  'unclear': [], 'notes': ['Ruined Wall L J3·I3·H3·H2 / F12·F13·F14·E12, Bloodgeyser D7–F9 — 소유자 확인 2026-11-15', 'Mob 시작 H8(↓) — 소유자 정정 2026-11-15 (H7 아님)']},
  'rulings': [
   'Blood gates on AI cards read the Blood tokens on the attacking Mob; on BP cards, the Blood on that BP (It Sucks!)',
-  'Bloodbath/Bloodline resolve when the wounded Worm actually dies — after its Wound/Fail/Instinct Responses (Knight Attack step 8) [해석]',
-  'Activate X = "Draw AI for the next X Mobs on the Mob track" (rulebook glossary); counted to the right of the source Mob, looping, skipping the source [해석, 확인 필요]',
-  'Red Soil: Activate 1 per 3 tokens counts from the leftmost Mob on the track [해석, 확인 필요]',
-  'Burrow X onto a Paleburrow already holding another Worm → the closest free Paleburrow to it [해석, 확인 필요]',
-  'Sequential Attack with a single Target: "Repeat this Attack (once)" re-resolves the card (Targeting included) without its After Final Attack [해석, 확인 필요]',
-  'Judgement: roll the Evasion dice adding the chosen Virtue to each die; no Armor Roll, no Block; Heat re-rolls allowed [해석, 확인 필요]',
-  'Suppertime!: "All Knights adjacent to Paleburrow tiles die" applies to each Judged Knight that is hit [해석, 확인 필요]',
-  'Brutal Bloodletting: the SUCK 1 box beside MOVE & JUDGE resolves after movement, before the dice X are counted [해석, 확인 필요]',
-  'Bloodgeyser: a Worm/Knight that starts or ends a movement on it triggers once per movement [해석, 확인 필요]',
+  'Bloodbath/Bloodline resolve when the wounded Worm actually dies — after its Wound/Fail/Instinct Responses (Knight Attack step 8) (소유자 확인 2026-11-15)',
+  'Activate X (keyword, Red Soil 포함): 일반 Mob 활성화처럼 Activation 토큰을 가진 Mob이 AI를 뽑고, 토큰을 오른쪽 Mob에게 넘김 — X번 반복 (소유자 확인 2026-11-15). 사용 토큰 = AI 토큰, 토큰의 사용/미사용 상태는 그대로 [해석]',
+  'Burrow X onto a Paleburrow already holding another Worm → goes there anyway and Displaces that Worm (소유자 확인 2026-11-15)',
+  'Sequential Attack with a single Target: "Repeat this Attack (once)" re-resolves the card (Targeting included) without its After Final Attack (소유자 확인 2026-11-15)',
+  'Judgement: roll the Evasion dice adding the chosen Virtue to each die; no Armor Roll, no Block; Heat re-rolls allowed (소유자 확인 2026-11-15)',
+  'Suppertime!: "All Knights adjacent to Paleburrow tiles die" applies to each Judged Knight that is hit (소유자 확인 2026-11-15)',
+  'Brutal Bloodletting: the SUCK 1 box beside MOVE & JUDGE resolves after movement, before the dice X are counted (소유자 확인 2026-11-15)',
+  'Bloodgeyser: a Worm/Knight that starts or ends a movement on it triggers once per movement (소유자 확인 2026-11-15)',
   'Paleburrow lure: a free action on your turn while adjacent to a Paleburrow and a Worm is off the board',
   'Monsters may move through and stop on Chasm spaces (Chasm only restricts Knights, rulebook p.80)',
  ],

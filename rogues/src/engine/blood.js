@@ -54,8 +54,17 @@ export const BloodMixin = {
     if (this.bloodAura('burrowRoll')) { const r = this.rng.die(10); this.say(`Tunnelling Bloodworm: Burrow → d10 = ${r}`, 'dice'); x = r; }
     if (this.burrowChoice) { const v = await this.ask({ type: 'number', text: `Burrow X 값 선택 (Tunnelling Bloodworm Critical) — 원래 ${x}`, min: 1, max: 10, default: x, options: [...Array(10)].map((_, i) => ({ label: String(i + 1), value: i + 1 })) }); if (v) x = v; }
     const tile = this.paleburrow(x); if (!tile) { this.say(`Burrow ${x}: Paleburrow 없음`); return; }
-    let cell = tile; const occ = this.mobAt(tile); if ((occ && occ !== m) || this.knightAt(tile)) { const free = this.freePaleburrows(m); if (!free.length) { this.say(`Burrow ${x}: 빈 Paleburrow 없음`); return; } const d = c => Math.abs(c.c - tile.c) + Math.abs(c.r - tile.r); const best = Math.min(...free.map(d)); const cand = free.filter(c => d(c) === best); cell = cand.length > 1 ? await this.ask({ type: 'move', text: `Burrow ${x}: Paleburrow ${x}에 다른 Worm — 가장 가까운 빈 Paleburrow (동률)`, cells: cand, options: cand.map(c => ({ label: `${this.board.label(c)} (#${c.num})`, value: c })) }) || cand[0] : cand[0]; }
-    await this.placeMob(m, cell, `Burrow ${x}${cell === tile ? '' : ` → #${cell.num}`}`);
+    const occ = this.mobAt(tile); if (occ && occ !== m) await this.displaceMob(occ, tile, m);
+    const kn = this.knightAt(tile); if (kn) { this.say(`${kn.name}: Paleburrow #${x}의 Worm 등장 → Displace`); await this.displace(kn); }
+    await this.placeMob(m, tile, `Burrow ${x}`);
+  },
+  /** Displace (p.80-ish): the Mob moves to the closest unoccupied space adjacent to where it stood (ties → player). */
+  async displaceMob(o, from, incoming = null) {
+    const B = this.board; const free = x => this.cellFree(x, o) && !cellEq(x, from); let cand = B.neighbors(from).filter(free);
+    if (!cand.length) { const seen = new Set([B.key(from)]); let fr = [from]; while (fr.length && !cand.length) { const nx = []; for (const c of fr) for (const n of B.neighbors(c)) { if (seen.has(B.key(n))) continue; seen.add(B.key(n)); nx.push(n); } cand = nx.filter(free); fr = nx; } }
+    if (!cand.length) { this.removeFromBoard(o, 'Displace 불가'); return; }
+    const cell = cand.length > 1 ? await this.ask({ type: 'move', text: `Mob #${o.n} Displace — 옮길 칸`, cells: cand, options: cand.map(c => ({ label: B.label(c), value: c })) }) || cand[0] : cand[0];
+    B.remove(o.cells); o.cells = [cell]; B.place({ kind: 'mob', n: o.n }, [cell]); this.say(`Mob #${o.n} Displace → ${B.label(cell)}`);
   },
   /** Subterranean Menace: a Worm outside the board that is about to activate goes to the Paleburrow closest to the Priority Target. */
   async emergeIfOffboard(m) {
@@ -104,17 +113,23 @@ export const BloodMixin = {
       this.say(`Subterranean Menace: 새 Worm #${slot} (BP${lv}) — 보드 밖에서 대기${nm.blood ? ' · Scab Armor Blood 1' : ''}`, 'ai');
     }
   },
-  /** Activate X: draw AI for the next X Mobs on the Mob track (to the right of the source, looping). */
-  async activateMobs(src, n, { fromLeft = false } = {}) {
-    const M = this.monster; const at = fromLeft ? 0 : (src ? src.n : 0);
-    const order = [...M.mobs.filter(m => m.n > at), ...M.mobs.filter(m => m.n <= at)].filter(m => m !== src);
-    for (const m of order.slice(0, n)) { if (!M.mobs.includes(m)) continue; this.say(`Activate: Mob #${m.n}`, 'ai'); if (!(await this.emergeIfOffboard(m))) continue; await this.withMob(m, () => this.activationAI()); }
+  /** Activate X (keyword and Red Soil, owner 2026-11-15): like a normal Mob activation — the Mob holding the (AI) Activation token draws AI,
+   *  then the token passes to the next Mob to the right; repeated X times. The token keeps its spent/unspent state. */
+  async activateMobs(src, n) {
+    const M = this.monster;
+    for (let i = 0; i < n; i++) {
+      const holder = M.mobs.find(m => m.tokens.some(t => t.type === 'AI')) || M.mobs.find(m => m.tokens.length); if (!holder) { this.say('Activate: Activation 토큰 없음'); return; }
+      const tok = holder.tokens.find(t => t.type === 'AI') || holder.tokens[0]; const ready = tok.ready;
+      this.say(`Activate: ${tok.type} 토큰을 가진 Mob #${holder.n}`, 'ai');
+      if (await this.emergeIfOffboard(holder)) { if (tok.type === 'AI') await this.withMob(holder, () => this.activationAI()); else await this.withMob(holder, () => this.performSignature()); }
+      if (M.mobs.includes(holder) && holder.tokens.includes(tok)) { this.moveToken(holder.n, tok, false); tok.ready = ready; }
+    }
   },
   async bloodAfterAction() {
     const M = this.monster; if (this._bloodAfter) return; this._bloodAfter = true;
     try {
       await this.resolveMobDeaths(); await this.spawnWorms();
-      if (M.hasTrait('Red Soil') && this.redSoil >= 3) { const n = Math.floor(this.redSoil / 3); this.say(`Red Soil: 토큰 ${this.redSoil} → Activate ${n}`, 'ai'); this.redSoil = 0; await this.activateMobs(null, n, { fromLeft: true }); await this.resolveMobDeaths(); await this.spawnWorms(); }
+      if (M.hasTrait('Red Soil') && this.redSoil >= 3) { const n = Math.floor(this.redSoil / 3); this.say(`Red Soil: 토큰 ${this.redSoil} → Activate ${n}`, 'ai'); this.redSoil = 0; await this.activateMobs(null, n); await this.resolveMobDeaths(); await this.spawnWorms(); }
     } finally { this._bloodAfter = false; }
   },
 

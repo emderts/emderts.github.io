@@ -31,7 +31,7 @@ const L = (c, cell) => c.board.label(cell);
   ok(PW.cards.ai.length === 12 && PW.cards.bp.length === 12 && unknown.length === 0, `12 AI + 12 BP, every op known ${unknown.join(',')}`); }
 // setup
 { const c = mk(1); const M = c.monster;
-  ok(M.mobs.length === 4 && M.mobs.every(m => m.card.level === 1) && M.mobs.map(m => L(c, m.cells[0])).sort().join() === 'C7,E8,F7,H7', 'setup: 4 Worms (BP1) on H7/F7/E8/C7');
+  ok(M.mobs.length === 4 && M.mobs.every(m => m.card.level === 1) && M.mobs.map(m => L(c, m.cells[0])).sort().join() === 'C7,E8,F7,H8', 'setup: 4 Worms (BP1) on H8/F7/E8/C7');
   ok(c.knights.every(k => k.blood === 5), 'Bloodrush: every Knight starts with 5 Blood');
   ok(c.tileCells('paleburrow').length === 10 && L(c, c.paleburrow(1)) === 'I2' && L(c, c.paleburrow(10)) === 'B13', 'Paleburrows 1–10 numbered (1 = I2 … 10 = B13)');
   ok(c.tileCells('bloodgeyser').length === 9 && c.board.terrainAt(c.board.parse('G9')).obstacle, 'Bloodgeyser 3×3, Columns are Obstacles'); }
@@ -45,8 +45,8 @@ const L = (c, cell) => c.board.label(cell);
   mob.revealed = true; mob.card = { ...mob.card, ops: { ...mob.card.ops, aura: { suckBonus: 1 } } }; await c.suck(mob, k, 1); ok(k.blood === 1 && mob.blood === 4, 'revealed Famished Bloodworm: Suck +1');
   await c.suck(mob, k, 3); ok(!k.alive, 'Knight at 0 Blood bleeds out'); }
 // Burrow + Bloodgeyser + chasm
-{ const c = mk(4); const mob = c.monster.mobs.find(m => L(c, m.cells[0]) === 'H7'); await c.burrow(mob, 6); ok(L(c, mob.cells[0]) === 'H9', 'Burrow 6 → Paleburrow #6 (H9)');
-  const other = c.monster.mobs.find(m => m !== mob); await c.burrow(other, 6); ok(L(c, other.cells[0]) !== 'H9' && c.board.terrainAt(other.cells[0]).id === 'paleburrow', 'Burrow onto an occupied Paleburrow → closest free Paleburrow');
+{ const c = mk(4); const mob = c.monster.mobs.find(m => L(c, m.cells[0]) === 'H8'); await c.burrow(mob, 6); ok(L(c, mob.cells[0]) === 'H9', 'Burrow 6 → Paleburrow #6 (H9)');
+  const other = c.monster.mobs.find(m => m !== mob); await c.burrow(other, 6); ok(L(c, other.cells[0]) === 'H9' && mob.cells.length && L(c, mob.cells[0]) !== 'H9' && c.board.adjacent(mob.cells[0], other.cells[0]), `Burrow onto an occupied Paleburrow → goes there, the Worm already there is Displaced (${L(c, mob.cells[0])})`);
   const g = c.monster.mobs.find(m => L(c, m.cells[0]) === 'F7' || L(c, m.cells[0]) === 'E8'); if (g) { const b0 = g.blood; await c.mobMoveToward(g, c.board.parse('A1'), 1, { ask: false }); ok(g.blood === b0 + 1, 'Worm starting its movement on the Bloodgeyser gains 1 Blood'); } }
 // death → Bloodbath + Subterranean Menace spawn off-board + emergence
 { const c = mk(5); const M = c.monster; const mob = M.mobs[0]; mob.blood = 2; const k = c.knights[0]; k.blood = 3; c.moveKnight(k, c.board.neighbors(mob.cells[0]).find(x => c.cellFree(x)));
@@ -56,7 +56,8 @@ const L = (c, cell) => c.board.label(cell);
 // Judgement (Suppertime!): Virtue added, no armor
 { const c = mk(6); const card = PW.cards.ai.find(x => x.name === 'Suppertime!'); c.monster.cur = c.monster.mobs[0]; c.monster.cur.blood = 1; const r = await c.resolveTargeting(card); ok(r.targets.length === 4, 'Suppertime!: all Knights targeted'); }
 // Activate X
-{ const c = mk(7); const M = c.monster; let n = 0; c.activationAI = async () => { n++; }; await c.activateMobs(M.mobs[0], 2); ok(n === 2, 'Activate 2: draws AI for the next 2 Mobs'); }
+{ const c = mk(7); const M = c.monster; const seen = []; c.activationAI = async () => { seen.push(M.cur.n); }; const h0 = M.mobs.find(m => m.tokens.some(t => t.type === 'AI')).n; await c.activateMobs(M.mobs[0], 2); const h2 = M.mobs.find(m => m.tokens.some(t => t.type === 'AI')).n; ok(seen.length === 2 && seen[0] === h0 && seen[1] !== h0 && h2 !== seen[1], `Activate 2: AI-token holder #${h0} activates, token passes right, next holder #${seen[1]} activates, token now on #${h2}`); }
+{ const c = mk(10); const card = PW.cards.ai.find(x => x.name === 'Paint the Swamp Red'); ok(card.type === 'zone' && card.ops.zoneAroundSelf === 2, 'Paint the Swamp Red: Zone 2 around the Mob (card diagram)'); }
 // Red Soil (L2)
 { const c = mk(8, 2); const M = c.monster; let n = 0; c.activationAI = async () => { n++; }; c.bloodDiscarded(4); ok(c.redSoil === 4, 'Red Soil collects discarded Blood'); await c.bloodAfterAction(); ok(n === 1 && c.redSoil === 0, 'Red Soil 4 → Activate 1, tokens removed'); }
 // Scab Armor (L3)
