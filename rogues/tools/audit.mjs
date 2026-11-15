@@ -166,6 +166,19 @@ ${cardTables([...M.cards.ai, M.cards.signature], M.cards.bp)}
 <p><b>Routine — ${esc(M.cards.routine.name)}</b>: ${(M.cards.routine.effects || [M.cards.routine.text]).map(esc).join(' ')}</p>
 <h3>해석 · 확인 필요</h3><ul>${(M.rulings || []).map(r => `<li>${esc(r)}</li>`).join('')}</ul></section>`);
 }
+// 13b. White Ape Troll (Boss Clash with Firstmen Guardians)
+{ const mid = 'white-ape-troll'; const M = rd('data/monsters/' + mid + '.json'); const G = M.guardian; const cs = M.clashSetup || {};
+  sec.push(`<section id="boss-${mid}"><h2>13b. ${esc(M.name)} — Boss Clash + Firstmen Guardians (Sheet · AI/BP · Signature · Routine · Guardian · Setup)</h2>
+<p class="impl">데이터: <code>data/monsters/${mid}.json</code> (생성: <code>tools/build_wat.py</code>) · 구현: <code>src/engine/troll.js</code> (Guardians Spawn/Limit/Coordinated Attack/MR 종료 이동·Crash · To Hit +1/인접 Guardian, 4+ Full Miss · Thick Skin/Regeneration · Reinforcements · Avenger · Strength in Numbers · Unnerving Presence · Jump/Land on Top/Tree Climb/경로 공격 · 2×2 카드 도식 Zone) · 테스트: <code>test/troll.mjs</code></p>
+<table><tr><th>Lv</th><th>To Hit</th><th>Wounds</th><th>Activations</th><th>보너스</th><th>Trait +</th></tr>${Object.entries(M.levels).map(([l, v]) => `<tr><td>${l}</td><td>${v.toHit}+</td><td>${v.wounds ?? '-'}</td><td>${(v.activations || []).join(',')}</td><td>${Object.entries(v.bonuses || {}).map(([k, n]) => `${k} +${n}`).join(', ')}</td><td>${(v.traitsAdd || []).join(', ')}</td></tr>`).join('')}</table>
+<p><b>Basic</b>: ${(M.basicAbilities || []).map(b => `<b>${esc(b.name)}${b.value ? ' ' + b.value : ''}</b>${b.rule ? ' — ' + esc(b.rule) : ''}`).join('; ')}</p>
+<h3>Traits</h3><table><tr><th>Lv</th><th>Trait</th><th>텍스트</th><th>구현</th></tr>${M.traits.map(t => `<tr><td>${t.level}</td><td><b>${esc(t.name)}</b></td><td>${esc(t.text)}${unc(t.unclear ? [].concat(t.unclear) : [])}</td><td>${t.implemented === false ? '✘ 미구현' : '✔'}</td></tr>`).join('')}</table>
+<h3>Firstman Guardian</h3><p>Limit ${Object.entries(G.limit).map(([l, n]) => `Lv${l}: ${n}`).join(' · ')} · Trait BP <b>${esc(G.bp.name)}</b> To Hit ${G.bp.ops.toHit}+ · AT ${G.bp.at}</p>
+${cardTables([G.attack], [G.bp])}
+<h3>Clash Setup</h3><pre class="small">${esc(JSON.stringify(cs, null, 1))}</pre>
+${cardTables([...M.cards.ai, M.cards.signature], M.cards.bp)}
+<p><b>Routine — ${esc(M.cards.routine.name)}</b>: ${(M.cards.routine.effects || [M.cards.routine.text]).map(esc).join(' ')}</p>
+<h3>해석 · 확인 필요</h3><ul>${(M.rulings || []).map(r => `<li>${esc(r)}</li>`).join('')}${(M.unclear || []).map(r => `<li class="warn">${esc(r)}</li>`).join('')}</ul></section>`); }
 // Fool's deck
 { const FD = rd('data/decks/fools.json'); sec.push(`<section id="fools"><h2>Fool's Deck (${FD.cards.length})</h2><p class="impl">데이터: <code>data/decks/fools.json</code> · 사용처: Haunts of Utrebant Ethereal Unity 스폰 좌표 (미구현), 룰북 p.67 글자 규칙</p><p>${esc(FD.rules)}</p>
 <table><tr><th>코드</th><th>이름</th><th>글자</th><th>좌표</th></tr>${FD.cards.map(c => `<tr><td class="small">${c.code}</td><td><b>${esc(c.name)}</b></td><td>${c.letter}</td><td>${c.coord || '선택: ' + c.coordChoice.join(' 또는 ')}</td></tr>`).join('')}</table>${(FD.notes || []).map(n => `<p class="small">${esc(n)}</p>`).join('')}</section>`); }
