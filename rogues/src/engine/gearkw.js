@@ -95,6 +95,14 @@ const SPECIAL = [
   [/^After drawing a Judicium, resolve the opposite Judicium$/, () => ({ op: 'judiciumOpposite', active: true })],
   [/^When you (?:perform a \[Move action\]|are performing a \[Move action\]|performing a \[Move action\]), gain \+(\d+) Speed \[Speed\](?: for that movement)?$/i, m => ({ op: 'fMoveSpeed', n: +m[1], free: true })],
   [/^When performing a \[Move action\], gain \+(\d+) Speed \[Speed\]$/, m => ({ op: 'fMoveSpeed', n: +m[1], free: true })],
+  [/^Crit Chance: Armor-piercing (\d+)$/, m => ({ op: 'critAP', n: +m[1] })],
+  [/^Reduce suffered Pull by up to (\d+)$/, m => ({ op: 'reducePull', n: +m[1], active: true })],
+  [/^You may reduce suffered Drags and Pulls by (\d+)$/, m => ({ op: 'reduceDragPull', n: +m[1] })],
+  [/^Full Miss: Do not clear the Knight Pool$/, () => ({ op: 'fullMissKeepPoolPaid', active: true })],
+  [/^Discard (\d+) Bane \[Bane\] tokens?$/, m => ({ op: 'fDiscardBane', n: +m[1], free: true })],
+  [/^(?:You may use this ability more than once per turn|Ignore this ability's costs when fighting the White Ape Troll)$/, () => ({ op: 'note', na: true })],
+  [/^Immediately discard this card and Bane (\d+)$/, m => ({ op: 'gateDiscardBane', n: +m[1] })],
+  [/^Move the closest Monster X spaces directly away from you$/, () => ({ op: 'fPushAway', free: true })],
   [/^Roll Out(?: \(.*\))?$/, () => ({ op: 'rollOut', active: true })],
   [/^Ignore Swamp Terrain tiles$/, () => ({ op: 'ignoreSwamp' })],
   [/^When you're about to suffer involuntary movement, you may reduce it by 1 \(to a minimum of 1\)$/, () => ({ op: 'reduceInvol' })],
@@ -135,6 +143,9 @@ export function parseSentence(s) {
     if ((m = /^\[Combat action\]\+\[Move action\]\s*/i.exec(r)) || (m = /^\[Move\+Attack action\]\s*/i.exec(r))) { (o.cost = o.cost || {}).action = 'both'; r = r.slice(m[0].length); continue; }
     if ((m = /^\[Move action\] or \[Combat action\]\s*/i.exec(r))) { o.eitherAction = true; r = r.slice(m[0].length); continue; }
     if ((m = /^X \[Charge\]\s*/.exec(r))) { o.chargeX = true; r = r.slice(m[0].length); continue; }
+    if ((m = /^X \[Heat\]\s*/.exec(r))) { o.heatX = true; r = r.slice(m[0].length); continue; }
+    if ((m = /^Start of your turn:\s*(?=\d+ \[Heat\])/.exec(r))) { o.atTurnStart = true; r = r.slice(m[0].length); continue; }
+    if ((m = /^When you trigger Overcome X in Melee range:\s*/.exec(r))) { o.overcomeMelee = true; r = r.slice(m[0].length); continue; }
     if ((m = /^\[2H\]\s*/.exec(r))) { o.twoHanded = true; r = r.slice(m[0].length); continue; }
     if ((m = /^\[Two-handed(?: icon)?\]:?\s*/i.exec(r))) { o.twoHanded = true; r = r.slice(m[0].length); continue; }
     if ((m = /^\[Reaction\]\s*/.exec(r))) { o.reaction = true; r = r.slice(m[0].length); continue; }
@@ -145,10 +156,10 @@ export function parseSentence(s) {
     if ((m = /^(\d+) \[Charge\]\s*/.exec(r))) { (o.cost = o.cost || {}).charge = +m[1]; r = r.slice(m[0].length); continue; }
     break; }
   const b = body(r); if (!b) { if (/\b(Delve|Deep Fog|Trailmake|Wander|Rotation|Adventure|Ambush|Encounter|Exploration|Shortcuts?|Possessed|Clues?|District|Investigation)\b/.test(text)) return { op: 'nonClash', status: 'na', text }; return { op: 'text', status: 'text', text }; }
-  const k = { ...b, ...o, text }; if (k.status === 'ok' && (k.cost || k.reaction) && !ACTIVE_OK.has(k.op) && !k.special) k.status = 'pending'; // costed versions of constant keywords need their own timing window
+  const k = { ...b, ...o, text }; if (k.atTurnStart && k.op === 'hide') k.op = 'hideStart'; if (k.status === 'ok' && (k.cost || k.reaction) && !ACTIVE_OK.has(k.op) && !k.special) k.status = 'pending'; // costed versions of constant keywords need their own timing window
   return k;
 }
 /** Parse a whole ability text → list of keywords (one per sentence). */
-export function parseGearText(text) { if (!text) return []; return String(text).split(/\n|(?<=\.)\s+(?=[\[A-Z+\-\d])/).map(s => s.trim()).filter(Boolean).map(parseSentence); }
+export function parseGearText(text) { if (!text) return []; return String(text).replace(/(Crit Chance|in Melee range):\n/g, '$1: ').split(/\n|(?<=\.)\s+(?=[\[A-Z+\-\d])/).map(s => s.trim()).filter(Boolean).map(parseSentence); }
 export const isDefensive = op => DEFENSIVE.has(op);
 export const KEYWORD_STATUS = { TOKENS, OK, PENDING, NA };
