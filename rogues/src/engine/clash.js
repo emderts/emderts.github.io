@@ -110,6 +110,7 @@ export class Clash {
   // ---------- run ----------
   async run() {
     try {
+      if (!this._deployed) { this._deployed = true; await this.fx.deployAll(); }
       await this.fenStart();
       if (this._askPriority) { this._askPriority = false; const id = await this.ask({ type: 'pickKnight', text: 'Passion 동률 — 시작 Priority Target 선택', options: this.knights.map(k => ({ label: k.name, value: k.id })) }); this.priorityTarget = this.knights.find(k => k.id === id) || this.knights[0]; this.say(`Priority Target: ${this.priorityTarget.name}`); }
       while (!this.result) { this.round++; await this.monsterRound(); if (this.result) break; await this.knightRound(); this.firstRound = false; }
@@ -330,6 +331,7 @@ export class Clash {
     // roll + Heat re-rolls: ask which dice to re-roll (cost +1 Heat each) — offered only if some die would fail
     const evade = async (n, label = '') => {
       const r = rollD10s(this.rng, n);
+      if (r.dice.some(d => !d10Success(d.v, evaBonus, diff))) { const gd = await this.fx.gearUse(k, ['guard'], `Evasion [${r.dice.map(d => d.v).join(' ')}] vs ${diff}+ — Guard 사용?`); if (gd) { for (let x = gd.n || 1; x > 0; x--) { const fail = r.dice.map((d, i) => ({ d, i })).filter(z => !d10Success(z.d.v, evaBonus, diff) && z.d.v > 1); if (!fail.length) break; const i = fail.length > 1 ? await this.ask({ type: 'pick', knight: k.id, text: `Guard: +1을 줄 주사위 (남은 ${x})`, options: fail.map(z => ({ label: `주사위 ${z.i + 1}: ${z.d.v}`, value: z.i })) }) : fail[0].i; const d = r.dice[i == null ? fail[0].i : i]; d.v = Math.min(10, d.v + 1); d.rerolled = true; } this.say(`Guard → [${r.dice.map(d => d.v).join(' ')}]`); } }
       if (r.dice.some(d => !d10Success(d.v, evaBonus, diff)) && k.heat < k.heatLimit) {
         const picked = await this.ask({ type: 'dice', knight: k.id, text: `${k.name} Evasion ${label}${n}d ${diff}+ (보너스 +${evaBonus}) — Heat 재굴림 (Heat ${k.heat}/${k.heatLimit}, 주사위당 +1)`, dice: r.dice.map(d => ({ v: d.v, crit: d.crit, hit: d10Success(d.v, evaBonus, diff), canReroll: !d.rerolled })), max: k.heatLimit - k.heat });
         if (picked && picked.length) { k.gainHeat(picked.length, { voluntary: true }); for (const i of picked) { const d = r.dice[i]; d.v = this.rng.die(10); d.rerolled = true; if (d.crit && d.v === 1) this.say('Crit Evade Fail (재굴림)'); } }
@@ -342,7 +344,7 @@ export class Clash {
     let hits = roll.dice.filter(d => !d10Success(d.v, evaBonus, diff)).length;
     if (this.hasCondition(k, 'Exposed')) { if (M.hasTrait('Unnerving Presence')) { if (hits < roll.dice.length) { hits++; this.say(`Unnerving Presence: ${k.name}(Exposed) — Evasion 주사위 1개 자동 명중`); } } else { this.removeCondition(k, 'Exposed'); } }
     // Block keyword (not against Judgements, p.52)
-    if (!ops.judge) hits = Math.max(0, hits - this.fx.blockValue(k) - dw.block);
+    if (!ops.judge) hits = Math.max(0, hits - this.fx.blockValue(k) - dw.block); else hits = Math.max(0, hits - this.fx.defyValue(k) - dw.block);
     this.flash('dice', { title: `${k.name} Evasion ${diff}+ (+${evaBonus})`, dice: roll.dice.map(d => ({ v: d.v, ok: d10Success(d.v, evaBonus, diff), crit: d.crit })), sub: hits ? `명중 ${hits}` : 'Full Evade', cls: hits ? 'bad' : 'good' });
     this.say(`${k.name} Evasion ${dice}d ${diff}+ → [${roll.dice.map(d => d.v + (d.rerolled ? '*' : '')).join(' ')}] 명중 ${hits}${roll.critChance ? ' (Crit Evade)' : ''}${roll.critFail ? ' (Crit Evade Fail)' : ''}`, 'dice');
     attack.hits[k.id] = hits; attack.firstHits = attack.firstHits || {}; if (!(k.id in attack.firstHits)) attack.firstHits[k.id] = hits;
@@ -423,7 +425,8 @@ export class Clash {
   standUp(k) { const c = k.conditions.find(c => /^Knockdown/.test(c.id)); if (c) { k.conditions.splice(k.conditions.indexOf(c), 1); this.say(`${k.name} 일어남`); return true; } return false; }
   /** Involuntary straight-line movement away from the monster (Pushback / Knockback). Obstacles: Crash (+destroy if destructible); edge: slide along (p.56). */
   async pushback(k, n, { unavoidable = false, dir = null } = {}) {
-    if (!k.alive || n <= 0 || k.engulfed) return; if (await this.wnColumnGuard(k, '비자발적 이동')) return; if ((k.braced || this.fx.gearHas(k, 'braced')) && !unavoidable) { this.say(`${k.name} Braced: 밀려나지 않음`); return; }
+    if (!k.alive || n <= 0 || k.engulfed) return; if (await this.wnColumnGuard(k, '비자발적 이동')) return; if (!unavoidable && !k.braced && !this.fx.gearHas(k, 'braced') && this.fx.gearAbilities(k, ['braced']).length && await this.fx.gearUse(k, ['braced'], `비자발적 이동 ${n}칸 — Braced 사용?`)) k.braced = true;
+    if ((k.braced || this.fx.gearHas(k, 'braced')) && !unavoidable) { this.say(`${k.name} Braced: 밀려나지 않음`); return; }
     n = Math.max(0, n - (unavoidable ? 0 : this.fx.involuntaryReduction(k)));
     let d = dir || this.dirFromMonster(k.pos); const B = this.board; let moved = 0; const trail = [];
     for (let i = 0; i < n; i++) {
@@ -434,7 +437,7 @@ export class Clash {
       }
       const t = B.terrainAt(next);
       if (t && t.obstacle) { await this.crash(k); if (t.destructible) { B.terrain.delete(B.key(next)); this.say(`${t.id} 파괴`); } else break; if (!k.alive) return; }
-      if (t && t.chasm) { this.moveKnight(k, next); await this.die(k, 'Chasm'); return; }
+      if (t && t.chasm) { this.moveKnight(k, next); if (await this.fx.gearUse(k, ['lifeline'], 'Chasm으로 이동 → 사망. Lifeline으로 Displace?')) { k._moved = false; await this.displace(k); return; } await this.die(k, 'Chasm'); return; }
       if (this.isFen && this.guardianAt(next)) { this.say(`${k.name}: Doppelknight 위로 비자발적 이동 → Displace + Slimed`); await this.addCondition(k, 'Slimed'); break; }
       if (this.monsterOccupies(next)) { await this.crash(k); break; }
       const other = this.knightAt(next); this.moveKnight(k, next); moved++; trail.push(next);
@@ -443,7 +446,7 @@ export class Clash {
     this.say(`${k.name} ${unavoidable ? 'Unavoidable Knockback' : 'Pushback'} ${moved}/${n}칸 → ${B.label(k.pos)}`);
     await this.swampThrough(k, trail.slice(0, -1).filter(c => B.terrainAt(c) && B.terrainAt(c).id === 'swamp')); if (k.alive && trail.some(c => B.terrainAt(c) && B.terrainAt(c).id === 'rubble')) { this.say(`${k.name}: Rubble 위로 비자발적 이동 → Knockdown`); await this.knockdown(k); } await this.swampSweep();
   }
-  async knockback(k, n, opts = {}) { if (!opts.unavoidable && k.alive && this.fx.gearHas(k, 'stalwart') && await this.yesNo(`${k.name}: Stalwart — Knockback ${n} 무시?`, true)) { this.say(`${k.name} Stalwart: Knockback 무시`); return; } return this.pushback(k, n, opts); }
+  async knockback(k, n, opts = {}) { if (!opts.unavoidable && k.alive && this.fx.gearAbilities(k, ['stalwart']).length && await this.fx.gearUse(k, ['stalwart'], `Knockback ${n} — Stalwart로 무시?`)) { this.say(`${k.name} Stalwart: Knockback 무시`); return; } return this.pushback(k, n, opts); }
   async displace(k) { if (k.engulfed) return; const B = this.board; const free = B.neighbors(k.pos).filter(c => !B.isObstacle(c) && !this.knightAt(c) && !this.monsterOccupies(c)); if (!free.length) { await this.die(k, 'Displace 불가'); return; } const dest = free.length === 1 ? free[0] : await this.ask({ type: 'move', knight: k.id, text: `${k.name} Displace — 칸 선택`, cells: free, options: free.map(c => ({ label: B.label(c), value: c })) }) || free[0]; this.moveKnight(k, dest); this.say(`${k.name} Displace → ${B.label(dest)}`); await this.swampSweep(); }
   moveKnight(k, cell) { k._moved = true; this.board.remove([k.pos]); k.pos = cell; this.board.place({ kind: 'knight', id: k.id }, [cell]); }
 
@@ -528,8 +531,8 @@ export class Clash {
   }
   canAttack(k) { return this.fx.usableWeapons(k).some(w => this.attackTargets(k, w).length > 0); }
   reachable(k, speed) {
-    const B = this.board; const out = new Map(); const t0 = B.terrainAt(k.pos); const q = [{ cell: k.pos, d: t0 && t0.difficult ? 1 : 0 }]; /* starting a move on Difficult Terrain costs +1 (Q&A, owner reference 2026-11-15) */ const seen = new Set([B.key(k.pos)]);
-    while (q.length) { const { cell, d } = q.shift(); if (d >= speed) continue; for (const n of B.neighbors(cell)) { const key = B.key(n); if (seen.has(key)) continue; if (B.isObstacle(n) || this.knightAt(n) || this.monsterOccupies(n)) continue; seen.add(key); const t = B.terrainAt(n); const cost = t && t.difficult ? 2 : 1; if (d + cost > speed) continue; out.set(key, n); q.push({ cell: n, d: d + cost }); } }
+    const byp = this.fx.gearHas(k, 'bypass'); const B = this.board; const out = new Map(); const t0 = B.terrainAt(k.pos); const q = [{ cell: k.pos, d: t0 && t0.difficult ? 1 : 0 }]; /* starting a move on Difficult Terrain costs +1 (Q&A, owner reference 2026-11-15) */ const seen = new Set([B.key(k.pos)]);
+    while (q.length) { const { cell, d } = q.shift(); if (d >= speed) continue; for (const n of B.neighbors(cell)) { const key = B.key(n); if (seen.has(key)) continue; if (B.isObstacle(n)) continue; const occ = this.knightAt(n) || this.monsterOccupies(n); if (occ && !byp) continue; seen.add(key); const t = B.terrainAt(n); const cost = t && t.difficult ? 2 : 1; if (d + cost > speed) continue; if (!occ) out.set(key, n); q.push({ cell: n, d: d + cost }); } }
     return [...out.values()].filter(c => !(B.terrainAt(c) && B.terrainAt(c).id === 'swamp')); // ending a move on a Swamp kills → never offered as a destination
   }
   /** Cheapest path to `target` within `speed` that crosses the fewest Swamp spaces; returns the Swamp spaces moved through (destination excluded). */
@@ -544,7 +547,7 @@ export class Clash {
   async campfireBurn(k) { const metal = k.gear.filter(g => !g.discarded && (g.traits || []).includes('Metal')).length; const fl = k.gear.filter(g => !g.discarded && (g.traits || []).includes('Flammable')); this.say(`${k.name}: Campfire — Metal Gear ${metal}장 → -${metal} Vigor${fl.length ? `, Flammable Gear 버림 (${fl.map(g => g.name).join(', ')})` : ''}`); for (const g of fl) g.discarded = true; if (metal) await this.loseVigor(k, metal, { source: 'effect', armor: false }); }
   async swampThrough(k, cells) { for (const c of cells) { if (!k.alive) return; { const tt = this.board.terrainAt(c); if (tt && tt.id === 'campfire') { await this.campfireBurn(k); continue; } } const d = this.rng.die(10), a = this.armorGearDice(k); const dead = d + a > k.vigor; this.say(`${k.name}: Swamp(${this.board.label(c)}) 통과 — d10 ${d}${a ? ` +${a} (Armor die)` : ''} = ${d + a} vs Vigor ${k.vigor} → ${dead ? '사망' : '통과'}`, dead ? 'death' : 'dice'); if (dead) await this.die(k, 'Swamp'); } }
   /** Swamp: "If you end your movement on this tile (voluntary or not), you die." Checked for every Knight that moved since the last sweep. */
-  async swampSweep() { for (const k of this.knights) { if (!k._moved) continue; k._moved = false; if (!k.alive) continue; const t = this.board.terrainAt(k.pos); if (t && t.id === 'campfire') { await this.campfireBurn(k); continue; } if (t && t.id === 'swamp') { this.say(`${k.name}: Swamp(${this.board.label(k.pos)})에서 이동 종료 → 사망`, 'death'); await this.die(k, 'Swamp'); } } }
+  async swampSweep() { for (const k of this.knights) { if (!k._moved) continue; k._moved = false; if (!k.alive) continue; const t = this.board.terrainAt(k.pos); if (t && t.id === 'campfire') { await this.campfireBurn(k); continue; } if (t && t.id === 'swamp') { if (await this.fx.gearUse(k, ['lifeline'], 'Swamp에서 이동 종료 → 사망. Lifeline으로 Displace?')) { await this.displace(k); continue; } this.say(`${k.name}: Swamp(${this.board.label(k.pos)})에서 이동 종료 → 사망`, 'death'); await this.die(k, 'Swamp'); } } }
   async knightMove(k, speed) {
     const cells = this.reachable(k, speed); if (!cells.length) { this.say(`${k.name} 이동 불가`); return; }
     const target = await this.ask({ type: 'move', knight: k.id, cells, options: cells.map(c => ({ label: this.board.label(c), value: c })) });
@@ -600,6 +603,7 @@ export class Clash {
     // 5. determine BP
     if (this.monster.isMob && !this.monster.mobs.includes(A.mob)) { this.say('대상 Mob이 이미 없음'); this.clearPool(); this.currentKnightAttack = null; return; }
     let bp = A.guardian ? this.guardianBP(A.guardian) : this.monster.isMob ? A.mob.card : this.monster.drawBP(); if (this.monster.isMob) await this.revealMob(A.mob); if (!bp) { this.say('BP 덱 비어 있음'); this.currentKnightAttack = null; return; }
+    if (!this.monster.isMob && !A.guardian && !bp.isThickSkin && this.monster.bp.discard.length && await this.fx.gearUse(k, ['precise'], `BP ${bp.name} 대신 버림 더미 맨 위 ${this.monster.bp.discard.at(-1).name}을(를) 공격 (Precise)?`)) { const top = this.monster.bp.discard.pop(); this.monster.bp.cards.push(bp); this.monster.bp.shuffle(); bp = top; this.say(`Precise: 버림 더미의 ${bp.name} 공격, 뽑은 카드는 덱에 섞음`); }
     await this.fx.arcAt(k, A, 'bp');
     if (!this.monster.isMob && !A.guardian && this.fx.has(k, 'heartseeker', A)) { const alt = this.monster.drawBP(); if (alt) { const pick = await this.ask({ type: 'heartseeker', options: [bp, alt].map(c => ({ label: `${c.name} (AT ${this.bpAT(c)})`, value: c.name })) }); const chosen = [bp, alt].find(c => c.name === pick); const other = chosen === bp ? alt : bp; this.monster.bp.cards.unshift(other); bp = chosen; } }
     A.bp = bp; this.lastBP = bp; this.say(`BP ${bp.level}: ${bp.name} (AT ${this.bpAT(bp)})`, 'bp'); this.flash('card', { title: `BP ${bp.level}`, name: bp.name, text: `AT ${this.bpAT(bp)}`, cls: 'bp' });

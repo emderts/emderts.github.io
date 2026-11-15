@@ -44,13 +44,33 @@ export class Effects {
   async defenseWindow(k, { judge = false } = {}) {
     const out = { block: 0, evasion: 0 }; k.reinforce = null; if (this.c.knockedDown(k)) return out; const used = new Set();
     while (true) {
-      const opts = []; for (const g of k.gear) for (const o of this.kwList(g)) if (o.status === 'ok' && o.cost && isDefensive(o.op) && !used.has(o) && this.gearCanPay(k, g, o) && !(judge && o.op.startsWith('block')) && !(o.op === 'dodge0' && this.evasionBonus(k) + out.evasion > 0)) opts.push({ g, o });
+      const opts = []; for (const g of k.gear) for (const o of this.kwList(g)) if (o.status === 'ok' && o.cost && isDefensive(o.op) && !used.has(o) && this.gearCanPay(k, g, o) && !(judge && o.op.startsWith('block')) && !(!judge && o.op.startsWith('defy')) && !(o.op === 'dodge0' && this.evasionBonus(k) + out.evasion > 0)) opts.push({ g, o });
       if (!opts.length) break; const i = await this.c.ask({ type: 'pick', knight: k.id, text: `${k.name}: Evasion Roll 전 — 사용할 Gear 능력`, options: [...opts.map((x, i) => ({ label: `${x.g.name}: ${x.o.text}`, value: i })), { label: '사용 안 함', value: 'skip' }] }); if (i === 'skip' || i == null) break;
       const { g, o } = opts[i]; used.add(o); this.gearPay(k, g, o); this.say(`${k.name}: ${g.name} — ${o.text}`, 'tech');
-      if (o.op.startsWith('block')) out.block += o.op === 'block3' ? 3 : o.op === 'block2' ? 2 : 1; else if (o.op.startsWith('dodge')) out.evasion += o.op === 'dodge3' ? 3 : o.op === 'dodge2' ? 2 : 1; else { const col = o.op === 'reinforceBlack' ? 'black' : o.op === 'reinforceWhite' ? 'white' : 'red'; k.reinforce = k.reinforce || { red: 0, black: 0, white: 0 }; k.reinforce[col] += o.n || 1; }
+      if (o.op.startsWith('block') || o.op.startsWith('defy')) out.block += /3$/.test(o.op) ? 3 : /2$/.test(o.op) ? 2 : 1; else if (o.op.startsWith('dodge')) out.evasion += o.op === 'dodge3' ? 3 : o.op === 'dodge2' ? 2 : 1; else { const col = o.op === 'reinforceBlack' ? 'black' : o.op === 'reinforceWhite' ? 'white' : 'red'; k.reinforce = k.reinforce || { red: 0, black: 0, white: 0 }; k.reinforce[col] += o.n || 1; }
     }
     return out;
   }
+  /** Gear abilities of the given keyword(s) the Knight could use right now (constant, or costed and payable). */
+  gearAbilities(k, ops) { const out = []; for (const g of k.gear) { if (g.discarded || g.exhausted) continue; for (const o of this.kwList(g)) if (o.status === 'ok' && ops.includes(o.op) && (o.cost || o.reaction ? this.gearCanPay(k, g, o) : this.kwGateOk(k, g, o))) out.push({ g, o }); } return out; }
+  /** Ask whether to use one of those abilities; pays its cost. Returns the keyword used or null. */
+  async gearUse(k, ops, text, def = true) { const c = this.gearAbilities(k, ops); if (!c.length) return null; const i = await this.c.ask({ type: 'pick', knight: k.id, text: `${k.name}: ${text}`, options: [...c.map((x, i) => ({ label: `${x.g.name}: ${x.o.text}`, value: i })), { label: '사용 안 함', value: 'skip' }] }); if (i == null || i === 'skip') return null; const { g, o } = c[i] || c[0]; if (o.cost || o.reaction) this.gearPay(k, g, o); this.say(`${k.name}: ${g.name} — ${o.text}`, 'tech'); return o; }
+  /** Armor-piercing X (Keyword List): during the second ability window, discard up to X Armor tokens from the Target. */
+  async armorPierce(k, A) { const C = this.c; const n = A.apCount || 0; if (!n) return; let have = 0, where = null; if (A.guardian) { have = A.guardian.armor || 0; where = 'guardian'; } else if (A.mob) { have = A.mob.armor || 0; where = 'mob'; } else if (C.isFen) { have = C.fenArmor || 0; where = 'fen'; } else if (C.armorTokens) { have = C.armorTokens[1] + C.armorTokens[2] + C.armorTokens[3]; where = 'egg'; }
+    if (!have) { this.say(`Armor-piercing ${n}: 대상에 Armor 토큰 없음`); return; } const x = await C.askCount(`${k.name}: Armor-piercing ${n} — 버릴 Armor 토큰 수 (대상 보유 ${have})`, Math.min(n, have), Math.min(n, have)); if (!x) return;
+    if (where === 'egg') await C.loseArmorToken('armorPiercing', { n: x, noTrait: true }); else if (where === 'fen') C.fenArmor -= x; else (where === 'mob' ? A.mob : A.guardian).armor -= x; this.say(`Armor-piercing: 대상의 Armor 토큰 ${x}개 버림`, 'tech'); }
+  /** Move-like keywords from Gear usable in either ability window (not both): Pushback, Vault, Hug, Daze, Drag, Pull, Knockback. */
+  gearMoves(A) { const NAME = { pushback: 'Pushback', vault: 'Vault', hug: 'Hug', daze: 'Daze', drag: 'Drag', pull: 'Pull', knockback: 'Knockback' }; const out = []; for (const o of A.kw || []) { if (NAME[o.op]) out.push({ token: NAME[o.op], n: o.n, gear: true, src: o }); if (o.op === 'choice') for (const x of o.options) if (NAME[x.op]) out.push({ token: NAME[x.op], n: x.n, gear: true, src: o, choice: o }); } return out.filter(t => !(A.dualUsed && A.dualUsed.has(t.src))); }
+  async runMove(k, A, t) { const C = this.c; if (t.src) (A.dualUsed = A.dualUsed || new Set()).add(t.src);
+    if (t.token === 'Pushback' || t.token === 'Knockback') await this.pushMonster(k, t.n, A); else if (t.token === 'Vault') await this.vault(k); else if (t.token === 'Hug') await this.hug(k, t.n); else if (t.token === 'Drag') await this.dragMonster(k, A, t.n); else if (t.token === 'Pull') await this.pullMonster(k, A, t.n);
+    else if (t.token === 'Daze') { if (C.adjacentToMonster(k)) { const f = C.monster.facing; C.monster.facing = { N: 'S', S: 'N', E: 'W', W: 'E' }[f]; this.say('Daze: 몬스터가 등을 돌림'); } } }
+  /** Pull X by a Knight: the Monster moves up to X spaces toward the Knight until adjacent. */
+  async pullMonster(k, A, n) { const C = this.c, B = C.board; if (A && A.mob && !A.mob.isTroll && C.monster.isMob) { if (A.mob.isPump && A.mob.side === 'sapling') { this.say('Lumbering: Sapling은 비자발적으로 움직일 수 없음'); return; } const m = await C.mobMoveToward(A.mob, k.pos, n, { ask: false }); this.say(`${k.name} Pull ${n}: Mob #${A.mob.n} ${m || 0}칸 끌려옴`); return; }
+    if (A && A.guardian) { const g = A.guardian; let m = 0; for (let i = 0; i < n && !B.adjacent(g.cells[0], k.pos); i++) { const opts = B.neighbors(g.cells[0]).filter(c => !B.isObstacle(c) && !C.knightAt(c) && !C.monsterOccupies(c)).sort((a, b) => (Math.abs(a.c - k.pos.c) + Math.abs(a.r - k.pos.r)) - (Math.abs(b.c - k.pos.c) + Math.abs(b.r - k.pos.r))); if (!opts.length) break; B.remove(g.cells); g.cells = [opts[0]]; B.place({ kind: 'mob', n: 'G' + g.n }, g.cells); m++; } this.say(`${k.name} Pull ${n}: ${C.guardianName(g)} ${m}칸 끌려옴`); return; }
+    let m = 0; for (let i = 0; i < n && !C.adjacentToMonster(k); i++) { const c0 = C.monsterCenter(); const dc = k.pos.c - c0.c, dr = k.pos.r - c0.r; const d = Math.abs(dc) >= Math.abs(dr) ? { c: Math.sign(dc), r: 0 } : { c: 0, r: Math.sign(dr) }; if (await C.monsterStep(d) !== 'ok') break; m++; } this.say(`${k.name} Pull ${n}: 몬스터 ${m}칸 끌려옴`); if (C.fenAfterMove) await C.fenAfterMove(); }
+  /** Deploy X: at Clash Setup the Knight may move X spaces. */
+  async deployAll() { for (const k of this.c.alive()) { const n = this.gearSum(k, 'deploy'); if (n && await this.c.yesNo(`${k.name}: Deploy ${n} — 시작 전 최대 ${n}칸 이동?`, false)) await this.c.knightMove(k, n); } }
+  defyValue(k) { return this.gearSum(k, 'defy') + 2 * this.gearSum(k, 'defy2') + 3 * this.gearSum(k, 'defy3'); }
   virtueBonus(k, v) { let n = 0; for (const g of k.gear) if (!g.discarded) for (const o of this.kwList(g)) if (o.op === 'virtue' && o.virtue === v && !o.cost && this.kwGateOk(k, g, o)) n += o.n; return n; }
   evasionBonus(k) { let b = this.gearSum(k, 'plusEvasion'); for (const g of k.gear) if (!g.discarded && !g.exhausted && g.evasion) b += g.evasion; for (const c of k.conditions) { const d = this.c.conditionDefs[c.id]; if (d && d.ops && d.ops.evasion) b += d.ops.evasion; } return b; }
   precision(k) { let p = 0; for (const c of k.conditions) { const d = this.c.conditionDefs[c.id]; if (d && d.ops && d.ops.precision) p += d.ops.precision; } p += k.modifiers.precision || 0; return p; }
@@ -106,7 +126,7 @@ export class Effects {
     { const sp = this.c.poolCount('spell'); if (sp) { this.c.poolTake('spell', sp); this.c.poolAdd('opening', sp); this.c.poolAdd('break', sp); this.say(`Spell 토큰 ${sp}개 → Opening + Break`); } }
     // constant weapon keywords that modify this Attack
     A.kw = [...this.constKw(k, A.weapon), ...k.gear.filter(g => g.type !== 'weapon' && !g.discarded && !g.exhausted).flatMap(g => this.constKw(k, g))]; A.attackRerolls = 0; // active weapon + every other equipped (non-weapon) card
-    for (const o of A.kw) { if (o.op === 'attackReroll') A.attackRerolls += o.n; else if (o.op === 'powerReroll') A.powerRerolls += o.n; else if (o.op === 'plusPower') { A.extraPool.raw += o.n; this.say(`${A.weapon.name}: +${o.n} Power`); } else if (o.op === 'plusPrecision') A.extraPrecision = (A.extraPrecision || 0) + o.n; else if (o.op === 'envenomed') A.envenomed = Math.max(A.envenomed || 0, o.n); else if (o.op === 'armorPiercing') { A.armorPiercing += o.n; this.say(`Armor-piercing ${o.n}`); } }
+    for (const o of A.kw) { if (o.op === 'attackReroll') A.attackRerolls += o.n; else if (o.op === 'powerReroll') A.powerRerolls += o.n; else if (o.op === 'plusPower') { A.extraPool.raw += o.n; this.say(`${A.weapon.name}: +${o.n} Power`); } else if (o.op === 'plusPrecision') A.extraPrecision = (A.extraPrecision || 0) + o.n; else if (o.op === 'envenomed') A.envenomed = Math.max(A.envenomed || 0, o.n); else if (o.op === 'armorPiercing') A.apCount = (A.apCount || 0) + o.n; }
     await this.arcAt(k, A, 'roll');
     // Courage: Auto-break 1
     if (this.c.hasCondition(k, 'Courage')) this.c.poolAdd('break', 1);
@@ -118,14 +138,15 @@ export class Effects {
   }
   async firstWindow(k, A) {
     for (const o of A.kw || []) if (o.op === 'auto') { this.c.poolAdd(o.token, o.n); this.say(`${A.weapon.name}: Auto-${o.token} ${o.n}`); }
-    const NAME = { pushback: 'Pushback', vault: 'Vault', hug: 'Hug', daze: 'Daze', provoke: 'Provoke', drag: 'Drag', inspire: 'Inspire' }; const wk = []; for (const o of A.kw || []) { if (NAME[o.op]) wk.push({ token: NAME[o.op], n: o.n, gear: true }); if (o.op === 'choice') for (const x of o.options) if (NAME[x.op]) wk.push({ token: NAME[x.op], n: x.n, gear: true, choice: o }); }
+    const wk = this.gearMoves(A); for (const o of A.kw || []) if (o.op === 'provoke' || o.op === 'inspire') wk.push({ token: o.op === 'provoke' ? 'Provoke' : 'Inspire', n: o.n, gear: true });
     const first = [...(await this.arcAt(k, A, 'first')), ...wk].map((t, i) => ({ ...t, id: i }));
     const avail = [...first];
     while (avail.length) {
       const pick = await this.c.ask({ type: 'pick', knight: k.id, text: '1차 능력 창 — 사용할 능력과 순서를 선택 (끝내려면 "넘어가기")', options: [...avail.map(t => ({ label: `${t.token}${t.n ? ' ' + t.n : ''}`, value: t.id })), { label: '넘어가기', value: 'skip' }] });
       if (pick === 'skip' || pick == null) break;
       const t = avail.find(x => x.id === pick); if (!t) break; avail.splice(avail.indexOf(t), 1); if (t.choice) { A.choiceUsed = A.choiceUsed || new Set(); A.choiceUsed.add(t.choice); for (const x of [...avail]) if (x.choice === t.choice) avail.splice(avail.indexOf(x), 1); }
-      if (t.token === 'Pushback') await this.pushMonster(k, t.n);
+      if (t.gear && t.src) await this.runMove(k, A, t);
+      else if (t.token === 'Pushback') await this.pushMonster(k, t.n);
       else if (t.token === 'Vault') await this.vault(k);
       else if (t.token === 'Hug') await this.hug(k, t.n);
       else if (t.token === 'Provoke') { this.c.priorityTarget = k; this.c.turnToward(k.pos); this.say(`Provoke: ${k.name}이 Priority Target, 몬스터가 바라봄`); }
@@ -136,11 +157,13 @@ export class Effects {
       else this.say(`[1st window 미구현] ${t.token}`, 'warn');
       if (!this.c.inAttackRange(k, A)) throw new ChainBreak(`${k.name}: 사거리 이탈`);
     }
-    const ap = A.weapon.ops && A.weapon.ops.gates ? A.weapon.ops.gates.filter(g => g.when === 'GRAVE' && this.perilGateOk(k, 'GRAVE')).flatMap(g => g.ops).filter(o => o.op === 'armorPiercing') : []; for (const o of ap) { A.armorPiercing += o.n; this.say(`Armor-piercing ${o.n}`); }
+    const ap = A.weapon.ops && A.weapon.ops.gates ? A.weapon.ops.gates.filter(g => g.when === 'GRAVE' && this.perilGateOk(k, 'GRAVE')).flatMap(g => g.ops).filter(o => o.op === 'armorPiercing') : []; for (const o of ap) A.apCount = (A.apCount || 0) + o.n;
   }
   async secondWindow(k, A) {
     // Heroic Arc: everything still open is chosen/applied now (golden rule) + weapon keywords (Break X etc.)
     await this.arcAt(k, A, 'second');
+    await this.armorPierce(k, A);
+    if (k.alive && !k.engulfed) for (;;) { const mv = this.gearMoves(A).filter(t => !(t.choice && A.choiceUsed && A.choiceUsed.has(t.choice))); if (!mv.length) break; const i = await this.c.ask({ type: 'pick', knight: k.id, text: '2차 능력 창 — 1차 창에서 쓰지 않은 이동류 능력', options: [...mv.map((t, i) => ({ label: `${t.token}${t.n ? ' ' + t.n : ''}`, value: i })), { label: '넘어가기', value: 'skip' }] }); if (i == null || i === 'skip') break; const t = mv[i]; if (!t) break; if (t.choice) (A.choiceUsed = A.choiceUsed || new Set()).add(t.choice); await this.runMove(k, A, t); }
     for (const o of A.kw || []) {
       if (o.op === 'token') { if (o.token === 'fleisch') this.c.poolAdd('fleisch', o.n, { resource: true }); else this.c.poolAdd(o.token, o.n); }
       else if (o.op === 'overbreak' && A.wounded && (A.overAT || 0) >= 1) { this.c.poolAdd('break', o.n); this.say(`Overbreak ${o.n}`); }
@@ -165,9 +188,12 @@ export class Effects {
   async onArmorRoll(k, mitigated) { const rb = k.talent && k.talent.abilities.find(a => a.ops && a.ops.some(o => o.op === 'onArmorRoll')); if (rb && mitigated > 0) { const op = rb.ops.find(o => o.op === 'onArmorRoll'); for (let i = 1; i <= Math.min(5, mitigated); i++) for (const o of op.byMitigated[i] || []) this.c.poolAdd(o.token, o.n, o.token === 'fleisch' ? { resource: true } : {}); } }
 
   /** Drag X by a Knight (Keyword box p.81): the Knight moves X spaces directly away, the Monster follows the path. Implemented for Mobs / the Winged Nightmare. */
-  async dragMonster(k, A, n) { const C = this.c; if (C.isWN) return C.wnDraggedBy(k, n); const mob = A && A.mob; if (!C.monster.isMob || !mob || mob.isTroll || !mob.cells.length) { this.say('[미구현] Boss를 대상으로 한 Drag', 'warn'); return; } const B = C.board; const me = mob.cells[0]; if (!B.adjacent(me, k.pos)) return; if (mob.isPump && mob.side === 'sapling') { this.say('Lumbering: Sapling은 비자발적으로 움직일 수 없음'); return; }
+  async dragMonster(k, A, n) { const C = this.c; if (C.isWN) return C.wnDraggedBy(k, n); const B = C.board; const mob = A && A.mob;
+    if (!C.monster.isMob || !mob || mob.isTroll || !mob.cells.length) { const g = A && A.guardian; const cells = g ? g.cells : C.monster.cells; const near = cells.filter(c => B.adjacent(c, k.pos))[0]; if (!near) return; const d = { c: k.pos.c - near.c, r: k.pos.r - near.r }; let m = 0; for (let i = 0; i < n; i++) { const nx = { c: k.pos.c + d.c, r: k.pos.r + d.r }; if (!B.inside(nx) || B.isObstacle(nx) || C.knightAt(nx) || C.monsterOccupies(nx)) break; C.moveKnight(k, nx); m++; } if (!m) { this.say('Drag: 기사가 물러날 수 없음'); return; }
+      if (g) { B.remove(g.cells); g.cells = [{ c: near.c + d.c * m, r: near.r + d.r * m }]; B.place({ kind: 'mob', n: 'G' + g.n }, g.cells); } else { for (let i = 0; i < m; i++) if (await C.monsterStep(d) !== 'ok') break; if (C.fenAfterMove) await C.fenAfterMove(); }
+      this.say(`${k.name} Drag ${n}: ${m}칸 물러나고 ${g ? C.guardianName(g) : C.monster.name}이(가) 따라옴`); await C.swampSweep(); return; } const me = mob.cells[0]; if (!B.adjacent(me, k.pos)) return; if (mob.isPump && mob.side === 'sapling') { this.say('Lumbering: Sapling은 비자발적으로 움직일 수 없음'); return; }
     const d = { c: k.pos.c - me.c, r: k.pos.r - me.r }; const start = k.pos; let m = 0; for (let i = 0; i < n; i++) { const nx = { c: k.pos.c + d.c, r: k.pos.r + d.r }; if (!B.inside(nx) || B.isObstacle(nx) || C.knightAt(nx) || C.monsterOccupies(nx)) break; C.moveKnight(k, nx); m++; } if (!m) return; C.mobStepTo(mob, { c: start.c + d.c * (m - 1), r: start.r + d.r * (m - 1) }); this.say(`${k.name} Drag ${n}: ${m}칸 물러나고 Mob #${mob.n}이(가) 따라옴`); await C.swampSweep(); }
-  async pushMonster(k, n) {
+  async pushMonster(k, n, A = null) {
     if (this.c.isWN) return this.c.wnPushedBy(k, n); if (this.c.isPump && this.c.monster.cur && this.c.monster.cur.side === 'sapling') { this.say('Lumbering: Sapling은 비자발적으로 움직일 수 없음'); return; }
     const M = this.c.monster, B = this.c.board; const m = this.c.monsterCenter(); const dc = m.c - k.pos.c, dr = m.r - k.pos.r; const d = Math.abs(dc) >= Math.abs(dr) ? { c: Math.sign(dc), r: 0 } : { c: 0, r: Math.sign(dr) };
     let moved = 0; for (let i = 0; i < n; i++) { const r = await this.c.monsterStep(d); if (r !== 'ok') break; moved++; }
@@ -223,13 +249,15 @@ export class Effects {
     if (when !== 'beforeAttack' && when !== 'react') return; const used = new Set();
     for (;;) {
       const cands = []; for (const k of this.c.alive()) for (const t of k.hand) if (t.timing === 'reaction' && !used.has(t) && this.canPay(k, t.cost)) cands.push({ k, t });
+      for (const k of this.c.alive()) if (!this.c.knockedDown(k) && !k.engulfed) for (const x of this.gearAbilities(k, ['reflex', 'reflex2', 'reflex3'])) if (!used.has(x.o)) cands.push({ k, gear: x, t: { name: x.g.name, text: x.o.text } });
       if (!cands.length) return;
-      const pick = await this.c.ask({ type: 'pick', text: `REACT! — 사용할 리액션 선택 (${attack && attack.card ? attack.card.name : ''})`, options: [...cands.map((c, i) => ({ label: `${c.k.name}: ${c.t.name} (${this.costLabel(c.k, c.t)}) — ${c.t.text}`, value: i })), { label: '패스', value: 'skip' }] });
-      if (pick == null || pick === 'skip') return; const c = cands[pick]; if (!c) return; used.add(c.t);
+      const pick = await this.c.ask({ type: 'pick', text: `REACT! — 사용할 리액션 선택 (${attack && attack.card ? attack.card.name : ''})`, options: [...cands.map((c, i) => ({ label: c.gear ? `${c.k.name}: ${c.t.name} — ${c.t.text}` : `${c.k.name}: ${c.t.name} (${this.costLabel(c.k, c.t)}) — ${c.t.text}`, value: i })), { label: '패스', value: 'skip' }] });
+      if (pick == null || pick === 'skip') return; const c = cands[pick]; if (!c) return; used.add(c.gear ? c.gear.o : c.t);
+      if (c.gear) { const { g, o } = c.gear; this.gearPay(c.k, g, o); const n = o.op === 'reflex3' ? 3 : o.op === 'reflex2' ? 2 : 1; this.say(`${c.k.name} REACT: ${g.name} — Reflex ${n}`, 'tech'); const cells = this.c.reachable(c.k, n); if (cells.length) { const dest = await this.c.ask({ type: 'move', knight: c.k.id, text: `${g.name} Reflex: 이동할 칸 (최대 ${n})`, cells, options: cells.map(x => ({ label: this.c.board.label(x), value: x })) }); if (dest) { this.c.moveKnight(c.k, dest); await this.c.swampSweep(); } } continue; }
       const { k, t } = c; this.pay(k, t.cost); this.say(`${k.name} REACT: ${t.name}`, 'tech'); const n = this.activeOps(k, t)[0].n || 1; const cells = this.c.reachable(k, n); if (cells.length) { const dest = await this.c.ask({ type: 'move', knight: k.id, text: `${t.name} Reflex: 이동할 칸 (최대 ${n})`, cells, options: cells.map(c => ({ label: this.c.board.label(c), value: c })) }); if (dest) this.c.moveKnight(k, dest); } this.deplete(k, t);
     }
   }
-  async secondChance(k, card, tier) { const t = k.hand.find(t => t.timing === 'onMortisDraw' && this.canPay(k, t.cost)); if (!t) return false; if (!await this.c.yesNo(`${k.name}: ${t.name} 사용해 ${card.name} 무시하고 다시 뽑기? (${this.costLabel(k, t)})`, card.ops.some(o => o.op === 'die'))) return false; this.pay(k, t.cost); this.deplete(k, t); return true; }
+  async secondChance(k, card, tier) { const t = k.hand.find(t => t.timing === 'onMortisDraw' && this.canPay(k, t.cost)); if (!t) return !!(await this.gearUse(k, ['secondChance'], `${card.name} — Second Chance로 무시하고 다시 뽑기?`)); if (!await this.c.yesNo(`${k.name}: ${t.name} 사용해 ${card.name} 무시하고 다시 뽑기? (${this.costLabel(k, t)})`, card.ops.some(o => o.op === 'die'))) return false; this.pay(k, t.cost); this.deplete(k, t); return true; }
 
   // ---------- knight ops (Mortis / Technique) ----------
   async runKnightOps(ops, k, ctx = {}) { for (const o of ops) await this.runKnightOp(o, k, ctx); }

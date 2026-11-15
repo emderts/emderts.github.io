@@ -6,13 +6,14 @@ const TOKENS = { 'Break': 'break', 'Opening': 'opening', 'Closing': 'closing', '
 const OK = { 'Commit': 'commit', 'Cumbersome': 'cumbersome', 'Tireless': 'tireless', 'Deadly': 'deadly', 'Overbreak': 'overbreak', 'Envenomed': 'envenomed', 'Attack Re-roll': 'attackReroll', 'Power Re-roll': 'powerReroll',
   'Reposition': 'reposition', 'Pushback': 'pushback', 'Vault': 'vault', 'Hug': 'hug', 'Daze': 'daze', 'Provoke': 'provoke', 'Inspire': 'inspire', 'Motivate': 'motivate', 'Drag': 'drag', 'Reach': 'reach', 'Unwieldy': 'unwieldy',
   'Soak': 'soak', 'Poison Resilience': 'poisonResilience', 'Tumble': 'tumble', 'Stalwart': 'stalwart', 'Rocksteady': 'rocksteady', 'Braced': 'braced', 'Armor-piercing': 'armorPiercing',
+  'Deploy': 'deploy', 'Guard': 'guard', 'Pull': 'pull', 'Knockback': 'knockback', 'Second Chance': 'secondChance', 'Superior Chance': 'secondChance', 'Lifeline': 'lifeline', 'Reflex': 'reflex', 'Advanced Reflex': 'reflex2', 'Superior Reflex': 'reflex3', 'Precise': 'precise', 'Bypass': 'bypass', 'Advanced Bypass': 'bypass', 'Defy': 'defy', 'Advanced Defy': 'defy2', 'Superior Defy': 'defy3',
   'Block': 'block', 'Advanced Block': 'block2', 'Superior Block': 'block3', 'Dodge': 'dodge', 'Lesser Dodge': 'dodge0', 'Advanced Dodge': 'dodge2', 'Superior Dodge': 'dodge3', 'Reinforce': 'reinforce', 'Advanced Reinforce': 'reinforceBlack', 'Superior Reinforce': 'reinforceWhite' };
-const PENDING = ['Deploy', 'Guard', 'Pull', 'Knockback', 'Ammo Reserves', 'Bypass', 'Advanced Bypass', 'Superior Bypass', 'Armor Re-roll', 'Hide', 'Pass', 'Greater Pass', 'Spotlight', 'Second Chance', 'Superior Chance', 'Lifeline', 'Reflex', 'Advanced Reflex', 'Superior Reflex', 'Precise', 'Heartseeker', 'Soulseeker', 'Fortify', 'Acrobatics', 'Roll Out', 'Jump', 'Advanced Jump', 'Area', 'Bane', 'Parasitize', 'Poison', 'Toxify', 'Sacrifice', 'Rush', 'Improved Rush', 'Refresh', 'Defy', 'Advanced Defy', 'Superior Defy', 'Falsity', 'Zeal', 'Devote', 'Magic', 'Scavenge', 'Suppress', 'BP Suppress', 'AI Suppress', 'Immune to Fear', 'Ignore Lumbering', 'Ignore Obscuring'];
+const PENDING = ['Ammo Reserves', 'Superior Bypass', 'Armor Re-roll', 'Hide', 'Pass', 'Greater Pass', 'Spotlight', 'Heartseeker', 'Soulseeker', 'Fortify', 'Acrobatics', 'Roll Out', 'Jump', 'Advanced Jump', 'Area', 'Bane', 'Parasitize', 'Poison', 'Toxify', 'Sacrifice', 'Rush', 'Improved Rush', 'Refresh', 'Falsity', 'Zeal', 'Devote', 'Magic', 'Scavenge', 'Suppress', 'BP Suppress', 'AI Suppress', 'Immune to Fear', 'Ignore Lumbering', 'Ignore Obscuring'];
 const NA = ['Wither', 'Growth', 'Clockwork', 'Bloodletter', 'Leech'];
 const camel = s => s.replace(/[^A-Za-z ]/g, '').split(' ').map((w, i) => i ? w[0].toUpperCase() + w.slice(1).toLowerCase() : w.toLowerCase()).join('');
 /** Keywords the engine resolves only when printed without a cost (constant) — with a cost they are 'pending' unless listed in ACTIVE_OK. */
-const ACTIVE_OK = new Set(['block', 'block2', 'block3', 'dodge', 'dodge0', 'dodge2', 'dodge3', 'reinforce', 'reinforceBlack', 'reinforceWhite']);
-const DEFENSIVE = ACTIVE_OK;
+const DEFENSIVE = new Set(['block', 'block2', 'block3', 'dodge', 'dodge0', 'dodge2', 'dodge3', 'reinforce', 'reinforceBlack', 'reinforceWhite', 'defy', 'defy2', 'defy3']);
+const ACTIVE_OK = new Set([...DEFENSIVE, 'guard', 'secondChance', 'lifeline', 'reflex', 'reflex2', 'reflex3', 'precise', 'braced', 'stalwart']);
 
 function body(b) {
   let m;

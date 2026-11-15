@@ -225,12 +225,13 @@ sec.push(`<section id="campaign"><h2>11. 캠페인 레이어 — Rosegraal 루�
 <h3>엔진이 해결하는 키워드</h3><table><tr><th>분류</th><th>키워드</th><th>처리</th></tr>
 <tr><td>토큰 (2차 창)</td><td>${Object.keys(KEYWORD_STATUS.TOKENS).join(', ')}</td><td>공격자의 활성 무기 + 다른 장착 카드(Exhaust 아님)의 키워드를 2차 능력 창에 Knight Pool로. Cantrip은 공격 선언 시 Opening/Break 선택, Spell은 Opening+Break</td></tr>
 <tr><td>Auto-X Y</td><td>Auto-break, Auto-black, Auto-hope …</td><td>1차 능력 창에 토큰 배치</td></tr>
-<tr><td>공격 수정</td><td>Commit, Deadly, Attack Re-roll X, Power Re-roll X, +N Power, +N Precision, Envenomed X, Overbreak X, Armor-piercing X</td><td>Attack Re-roll = 무료 재굴림 X개 · Overbreak = Wound이고 Power가 AT 초과 시 Break X · Armor-piercing은 기존 구현(AT −X) 유지 <span class="warn">[해석, 확인 필요: Keyword List는 "2차 창에 대상의 Armor 토큰 X개 버림"]</span></td></tr>
+<tr><td>공격 수정</td><td>Commit, Deadly, Attack Re-roll X, Power Re-roll X, +N Power, +N Precision, Envenomed X, Overbreak X, Armor-piercing X</td><td>Attack Re-roll = 무료 재굴림 X개 · Overbreak = Wound이고 Power가 AT 초과 시 Break X · Armor-piercing = 2차 창에 대상의 Armor 토큰을 X개까지 버림 (소유자 확인 2026-11-15)</td></tr>
 <tr><td>Cumbersome / Tireless</td><td></td><td>Wound 성공 시 2차 창에서 무기 Exhaust. Exhaust된 카드는 활성 무기·방어 수치·능력 사용 불가(p.21). 이동/전투 행동으로 모든 장비 Unexhaust</td></tr>
 <tr><td>사거리</td><td>Reach X, Ranged X–Y, Unwieldy</td><td>공격 가능 여부·대상 선택에 반영 (거리 = 가로+세로 칸 수, Unwieldy = 같은 행/열)</td></tr>
-<tr><td>1차 창 이동류</td><td>Pushback, Vault, Hug, Daze, Provoke, Drag(Mob·Winged Nightmare만), Inspire, "A or B"</td><td>선택 사용. 1차/2차 겸용 키워드는 1차 창에서만 제시</td></tr>
+<tr><td>1차 창 이동류</td><td>Pushback, Knockback, Vault, Hug, Daze, Drag, Pull, Provoke, Inspire, "A or B"</td><td>선택 사용. Pushback·Knockback·Vault·Hug·Daze·Drag·Pull은 1차 또는 2차 창 중 한 번 (소유자 확인 2026-11-15)</td></tr>
 <tr><td>2차 창</td><td>Reposition X, Motivate X</td><td>선택 사용</td></tr>
 <tr><td>방어 상시</td><td>Soak X, Poison Resilience X, Tumble, Stalwart, Rocksteady, Braced, ±Speed, +Virtue, +Evasion</td><td>Tumble = Crash 시 d10 6+ 무시 · Stalwart = Knockback 무시 선택</td></tr>
+<tr><td>타이밍 능력</td><td>Second Chance, Lifeline, Reflex 계열(REACT 창), Guard X, Defy 계열, Precise, Deploy X, Bypass, 비용형 Braced/Stalwart</td><td>Mortis/Judicium 다시 뽑기 · 지형 사망 대신 Displace · Evasion 재굴림 전 +X 분배 · Judgement 명중 무시 · BP 버림 더미 공격 · 시작 전 이동 · 미니어처 통과</td></tr>
 <tr><td>방어 활성 (비용)</td><td>Block / Advanced / Superior, Dodge 계열, Reinforce 계열</td><td>Evasion Roll 전에 사용 여부를 묻고 Heat·Exhaust·Discard·Charge 비용 지불. 능력당 라운드 1회</td></tr></table>
 <h3>인식만 되고 효과가 없는 키워드 (${st.pending})</h3><p>${Object.entries(pend).sort((a, b) => b[1] - a[1]).map(([k, n]) => `${esc(k)} ×${n}`).join(' · ')}</p>
 <details><summary>카드별 미해결 문장 (${rows.length}장)</summary><table><tr><th>파일</th><th>카드</th><th>엔진이 해결하지 않는 문장</th></tr>${rows.join('')}</table></details></section>`); }
