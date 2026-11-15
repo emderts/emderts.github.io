@@ -2628,7 +2628,7 @@
   "BP REACT! markers open a Window of Opportunity right before the marked instruction (rulebook p.54) — implemented 2026-11-15 (Clash.bpReactIndices / runResponseOps)",
   "Difficult Terrain (rulebook p.81): Monsters on Difficult Terrain have -1 AT (icon = AT, owner 2026-11-15); applies to every Monster without Ignore Difficult Terrain; a multi-space Monster counts as on it if any occupied space is Difficult Terrain (owner 2026-11-15) — a spawned Ironcast Dead on Rubble has -1 AT",
   "Armored Dead (Level 4): Armor tokens of a wounded Mob stay on its space (treated as Rubble); a Mob entering the space takes them; free action Test Might (d10 + Might ≥ 7) on or adjacent removes 1 token; End of Knight Round each space loses 1 token, the last one → Heal 1 on that space",
-  "Lifeless Army (Level 4): from Round 2, before each Activation a Mob Spawns (Rubble closest to the Priority Target) and performs Gangup 1 against the Priority Target; if no Spawn is possible → Routine, then the Activation continues [해석, 확인 필요]",
-  "Heal: the returning BP is placed face up (소유자 결정 2026-11-15 \"일단 앞면\"); the owner reference sheet (Ironcast Dead v1.3) says face down like a normal Spawn [해석, 확인 필요]"
+  "Heal: the returning BP is placed face down like any Spawn (owner reference sheet Ironcast Dead v1.3; 소유자 확인 2026-11-15)",
+  "Lifeless Army (Level 4): from Round 2, before each Activation a Mob Spawns (Rubble closest to the Priority Target) and performs Gangup 1 against the Priority Target; if no Spawn is possible → Routine, then the Activation continues (소유자 확인 2026-11-15, 일단 유지)"
  ]
 }

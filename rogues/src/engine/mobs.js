@@ -142,7 +142,7 @@ export const MobMixin = {
     if (!cells.length) { const all = []; for (let c = 1; c <= B.cols; c++) for (let r = 0; r < B.rows; r++) if (this.cellFree({ c, r })) all.push({ c, r }); const d = x => Math.abs(x.c - origin.c) + Math.abs(x.r - origin.r); const m = Math.min(...all.map(d)); cells = all.filter(x => d(x) === m); }
     if (!cells.length) { M.removed.push(e.card); return null; }
     let cell = cells[0]; if (cells.length > 1) cell = await this.ask({ type: 'move', text: `Heal: ${e.card.name} 배치할 칸`, cells, options: cells.map(c => ({ label: B.label(c), value: c })) }) || cells[0];
-    const mob = this.addMob(e.card, cell, 'N', slot, { revealed: true }); await this.withMob(mob, () => this.faceMostKnights());
+    const mob = this.addMob(e.card, cell, 'N', slot, { revealed: false }); await this.withMob(mob, () => this.faceMostKnights()); // Heal is a Spawn: BP face down (소유자 확인 2026-11-15)
     this.say(`Heal: ${e.card.name} 복귀 → #${slot} ${B.label(cell)} (Wound ${M.wounds}/${M.woundsToKill})`, 'wound'); return mob;
   },
   /** Interval / Odd Spawn (p.62): lowest-level available BP from the Escalation decks → leftmost empty track space, on an empty Rubble space closest to the Priority Target. */

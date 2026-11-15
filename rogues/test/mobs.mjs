@@ -70,7 +70,7 @@ const L = (c, cell) => c.board.label(cell);
 
 // --- Heal, Spawn (Necrofusion), reveal effects
 { const c = mk(6, 2); const M = c.monster; const mob = M.mobs[2]; c.killMob(mob); c.killMob(M.mobs[2]); ok(M.wounds >= 2 && c.necro >= 2, 'two kills → Necrofusion tokens');
-  const src = M.mobs[0]; const healed = await c.healMob(src); ok(healed && healed.revealed && M.mobs.includes(healed) && c.board.adjacent(healed.cells[0], src.cells[0]), 'Heal 1: top Wound returns adjacent to the source');
+  const src = M.mobs[0]; const healed = await c.healMob(src); ok(healed && !healed.revealed && M.mobs.includes(healed) && c.board.adjacent(healed.cells[0], src.cells[0]), 'Heal 1: top Wound returns adjacent to the source');
   c.necro = 3; const n0 = M.mobs.length; await c.mobAfterAction(); const sp = M.mobs.find(m => c.board.terrainAt(m.cells[0]) && c.board.terrainAt(m.cells[0]).id === 'rubble');
   ok(M.mobs.length === n0 + 1 && c.necro === 0 && c.log.some(l => /Spawn: Mob/.test(l.msg)) && c.log.some(l => /Signature: Slash/.test(l.msg)), 'Necrofusion at 3 tokens: Spawn on a Rubble space (then Signature)'); }
 { const c = mk(7); const M = c.monster; const bk = ID.cards.bp.find(x => x.name === 'Bone Knight'); const mob = M.mobs[0]; mob.card = JSON.parse(JSON.stringify(bk)); await c.revealMob(mob); ok(mob.armor === 1 && c.mobAT(mob) === 7, 'Bone Knight revealed: +1 Armor token → AT 7');
@@ -97,7 +97,7 @@ const L = (c, cell) => c.board.label(cell);
   c.mobStepTo(mob, rub);
   ok(c.mobAT(mob) === base - 1, `Mob on Rubble (Difficult Terrain) has −1 AT (${base} → ${c.mobAT(mob)})`); }
 { const c = mk(33); const mob = c.monster.mobs[0]; c.revealMob = c.revealMob; c.monster.woundStack.push({ card: mob.card, wounds: 1 }); c.board.remove(mob.cells); c.monster.mobs = c.monster.mobs.filter(x => x !== mob);
-  const back = await c.healMob(c.monster.mobs[0]); ok(back && back.revealed === true, 'Heal: returned Mob is face up (owner 2026-11-15)'); }
+  const back = await c.healMob(c.monster.mobs[0]); ok(back && back.revealed === false, 'Heal: returned Mob is face down like a Spawn (owner 2026-11-15)'); }
 { const c = mk(31, 4); const M = c.monster; const m = M.mobs[0]; m.armor = 2; const cell = m.cells[0]; c.killMob(m); ok(c.armorPiles.get(c.board.key(cell)) === 2, 'Armored Dead (L4): a wounded Mob leaves its Armor tokens on its space');
   const o = M.mobs[0]; const a0 = o.armor; c.mobStepTo(o, cell); ok(o.armor === a0 + 2 && !c.armorPiles.size, 'Armored Dead: a Mob entering the space takes the tokens');
   o.armor = 1; const cell2 = o.cells[0]; c.killMob(o); const n0 = M.mobs.length; await c.icdEndKnightRound(); ok(M.mobs.length === n0 + 1 && !c.armorPiles.size, 'Armored Dead: last token removed at End of Knight Round → Heal 1 on that space'); }
