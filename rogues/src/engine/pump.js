@@ -13,7 +13,7 @@ export const PumpMixin = {
     const FD = this.data.decks && this.data.decks.fools; this.pumpFools = FD ? this.rng.shuffle([...FD.cards]) : []; this.pumpFoolsDiscard = [];
     const cards = this.rng.shuffle(D.cards.bp.map(c => ({ front: { ...c }, back: { ...c.back } }))); const sapIdx = new Set(this.rng.shuffle([0, 1, 2, 3, 4, 5]).slice(0, 2));
     const pSpots = this.rng.shuffle(cs.pumpkinStart.map(s => ({ ...s }))); const sSpots = this.rng.shuffle([...cs.saplingStart]);
-    cards.forEach((c, i) => { const sap = sapIdx.has(i); const spot = sap ? { cell: sSpots.pop(), facing: 'S' } : pSpots.pop(); const mob = this.addMob(sap ? c.back : c.front, B.parse(spot.cell), spot.facing, i + 1, { revealed: true }); mob.isPump = true; mob.front = c.front; mob.back = c.back; mob.side = sap ? 'sapling' : 'pumpkin'; mob.red = sap; mob.generic = sap ? 1 : 0; });
+    cards.forEach((c, i) => { const sap = sapIdx.has(i); const spot = sap ? { cell: sSpots.pop(), facing: 'S' } : pSpots.pop(); const mob = this.addMob(sap ? c.back : c.front, B.parse(spot.cell), spot.facing, i + 1, { revealed: true }); mob.isPump = true; mob.front = c.front; mob.back = c.back; mob.side = sap ? 'sapling' : 'pumpkin'; mob.red = sap && !M.hasTrait('Accelerated Regrowth'); mob.generic = sap ? 1 : 0; });
     M.activations.forEach((a, i) => { const mob = M.mobs[i]; if (mob) mob.tokens.push({ type: a.type, ready: true }); }); this.necro = 0; this.scavengeBonus = 0; this.mobArmorDisabled = false;
     this.say(`Kingdom Trait: ${kt} · Mob track: ${M.mobs.map(m => `#${m.n} ${m.card.name}${m.side === 'sapling' ? ' (Sapling)' : ''} ${B.label(m.cells[0])}`).join(' · ')}`);
   },
@@ -38,7 +38,7 @@ export const PumpMixin = {
     this.say(`Pumpkinhead #${mob.n} 이동 ${path.indexOf(stop) + 1}칸 → ${B.label(stop)}${burn ? ' (Campfire!)' : ''}`); if (burn) mob.burning = true; return path.length;
   },
   /** Fire Walk with Me: resolved at the end of the current action (or as a wound when it was the Target of a Knight Attack — not possible while it moves). */
-  async pumpBurn() { for (const mob of [...this.monster.mobs]) { if (!mob.burning) continue; mob.burning = false; this.say(`Fire Walk with Me: Pumpkinhead #${mob.n} ${mob.card.name}이(가) Campfire 위로 이동 → 사망`, 'wound'); this.monster.woundStack.push({ generic: 'single', wounds: 1 }); this.say(`Generic Single Wound → Wound Stack ${this.monster.wounds}/${this.monster.woundsToKill}`, 'wound'); this.pumpEscalate(1); await this.pumpToSapling(mob, this.monster.level >= 2 ? 2 : 1); } },
+  async pumpBurn() { for (const mob of [...this.monster.mobs]) { if (!mob.burning) continue; mob.burning = false; this.say(`Fire Walk with Me: Pumpkinhead #${mob.n} ${mob.card.name}이(가) Campfire 위로 이동 → 사망`, 'wound'); this.monster.woundStack.push({ generic: 'single', wounds: 1 }); this.say(`Generic Single Wound → Wound Stack ${this.monster.wounds}/${this.monster.woundsToKill}`, 'wound'); await this.pumpToSapling(mob, this.monster.level >= 2 ? 2 : 1); this.pumpEscalate(mob.generic || 1); } },
   pumpEscalate(level) { const M = this.monster; level = Math.max(1, Math.min(3, level)); this.say(`AI Escalation (Generic 토큰 ${level} → AI ${level} 제거)`); M.escalateAI(level); for (const m of M.log.splice(0)) this.say(m); },
   // ---------- Cursed Overgrowth / wounds ----------
   async pumpToSapling(mob, tokens = 1) {

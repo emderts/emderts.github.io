@@ -119,7 +119,7 @@ export class Effects {
   async onArmorRoll(k, mitigated) { const rb = k.talent && k.talent.abilities.find(a => a.ops && a.ops.some(o => o.op === 'onArmorRoll')); if (rb && mitigated > 0) { const op = rb.ops.find(o => o.op === 'onArmorRoll'); for (let i = 1; i <= Math.min(5, mitigated); i++) for (const o of op.byMitigated[i] || []) this.c.poolAdd(o.token, o.n, o.token === 'fleisch' ? { resource: true } : {}); } }
 
   async pushMonster(k, n) {
-    if (this.c.isWN) return this.c.wnPushedBy(k, n);
+    if (this.c.isWN) return this.c.wnPushedBy(k, n); if (this.c.isPump && this.c.monster.cur && this.c.monster.cur.side === 'sapling') { this.say('Lumbering: Sapling은 비자발적으로 움직일 수 없음'); return; }
     const M = this.c.monster, B = this.c.board; const m = this.c.monsterCenter(); const dc = m.c - k.pos.c, dr = m.r - k.pos.r; const d = Math.abs(dc) >= Math.abs(dr) ? { c: Math.sign(dc), r: 0 } : { c: 0, r: Math.sign(dr) };
     let moved = 0; for (let i = 0; i < n; i++) { const r = await this.c.monsterStep(d); if (r !== 'ok') break; moved++; }
     this.say(`${k.name} Pushback ${moved}/${n}: 몬스터 → ${M.cells.map(c => B.label(c)).join('/')}`);
