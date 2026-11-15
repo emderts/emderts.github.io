@@ -1,0 +1,3097 @@
+{
+ "id": "first-men-warriors",
+ "name": "Firstmen Warriors",
+ "kind": "mob",
+ "code": "26A1066",
+ "traitsLine": [
+  "Mob",
+  "Ape",
+  "Soldier"
+ ],
+ "_source": "Monster Sheet (2 pages), AI/BP/Battle Tactics card sheet, Signature — owner scans 2026-11-15 (readings owner-confirmed); Clash Setup: Sunken Kingdom Codex p.46–47",
+ "footprint": {
+  "size": 1,
+  "shape": "1x1",
+  "rear": "the cell directly behind (R / eye on the sheet diagram = Rear + Blindspot)",
+  "facingOnSheet": "down"
+ },
+ "basicAbilities": [
+  {
+   "name": "Advanced Bypass",
+   "rule": "Rulebook p.80: may move through other miniatures; cannot end on one."
+  },
+  {
+   "name": "Blindspot",
+   "rule": "The space behind each Warrior is a Blindspot: Knights there are not in sight and gain +1 Precision."
+  },
+  {
+   "name": "Immediate Spawn",
+   "rule": "Rulebook p.62 + Mangrove Deployment: a killed Warrior is replaced at once (BP one level higher) on a Great Mangrove tile, cycling 1→2→3."
+  }
+ ],
+ "levels": {
+  "1": {
+   "toHit": 6,
+   "wounds": 7,
+   "exhibitionWounds": 1,
+   "activations": [
+    "AI",
+    "AI"
+   ],
+   "activationsText": "2 AI",
+   "traitsAdd": [
+    "Battle Tactics",
+    "Mangrove Deployment",
+    "Long Howl"
+   ],
+   "bonuses": {
+    "escalations": 0,
+    "at": 0,
+    "vigorLoss": 0
+   }
+  },
+  "2": {
+   "toHit": 7,
+   "wounds": 8,
+   "exhibitionWounds": 2,
+   "activations": [
+    "AI",
+    "AI"
+   ],
+   "activationsText": "2 AI",
+   "traitsAdd": [
+    "Show of Strength"
+   ],
+   "bonuses": {
+    "escalations": 0,
+    "at": 2,
+    "vigorLoss": 1
+   }
+  },
+  "3": {
+   "toHit": 8,
+   "wounds": 8,
+   "exhibitionWounds": 2,
+   "activations": [
+    "AI",
+    "AI"
+   ],
+   "activationsText": "2 AI",
+   "traitsAdd": [
+    "Retribution"
+   ],
+   "bonuses": {
+    "escalations": 0,
+    "at": 3,
+    "vigorLoss": 2
+   }
+  },
+  "4": {
+   "toHit": 9,
+   "wounds": 9,
+   "exhibitionWounds": 2,
+   "activations": [
+    "AI",
+    "AI"
+   ],
+   "activationsText": "2 AI",
+   "traitsAdd": [
+    "Keeping Up the Pressure"
+   ],
+   "bonuses": {
+    "escalations": 1,
+    "at": 6,
+    "vigorLoss": 3
+   }
+  }
+ },
+ "traits": [
+  {
+   "id": "battle-tactics",
+   "name": "Battle Tactics",
+   "level": 1,
+   "text": "Additional Setup: Draw one Battle Tactics card.\nTactics X: Add the effect corresponding to given Tactic A and Tactic B on the Battle Tactics card.",
+   "implemented": true
+  },
+  {
+   "id": "mangrove-deployment",
+   "name": "Mangrove Deployment",
+   "level": 1,
+   "text": "When you kill a Firstman Warrior, immediately Spawn a new one on the Great Mangrove Terrain tile, starting with location number 1 (see Clash Diagram), then going clockwise.\n\nTreat all Firstmen Warriors on Great Mangrove Terrain tiles as if they weren’t on the Clash Board. They cannot be attacked, activated, or affected in any way until they leave those tiles.\n\nAt the End of Knight Round: All Firstmen Warriors on Great Mangrove Terrain tiles, starting from the Mob with the lowest number, move adjacent to those tiles, onto the closest possible space to any Knight.",
+   "implemented": true
+  },
+  {
+   "id": "long-howl",
+   "name": "Long Howl",
+   "level": 1,
+   "text": "If any effect triggers Long Howl, Spawn the White Ape Troll in the center of the Clash Board (Displace any miniatures if needed), then turn it to face the most Knights. If this effect would trigger when the Ape Troll is already on the Clash Board, ignore it. The Ape Troll uses Firstman Warrior attributes. Look for BP 2 Muscular Chest and AI 2 Rampage Strike from the Ape Troll’s decks and place them revealed next to the Clash Board. Never discard or Escalate these cards. The Ape Troll activates after Firstmen Warriors and performs Rampage Strike. When you attack the Ape Troll, you always target the Muscular Chest BP. When you wound that BP, Escalate the Firstmen Warriors AI deck, then place a Generic token on the BP and place a Generic Single Wound card on the Wound Stack. If there are 4 Generic tokens on the BP, the White Ape Troll will flee from the Clash. Remove it from the Clash Board.",
+   "implemented": true
+  },
+  {
+   "id": "show-of-strength",
+   "name": "Show of Strength",
+   "level": 2,
+   "text": "Start of Monster Round: Reveal the leftmost unrevealed BP card on the Mob track.",
+   "implemented": true
+  },
+  {
+   "id": "retribution",
+   "name": "Retribution",
+   "level": 3,
+   "text": "When the fourth BP card goes into the Wound Stack, after you finish resolving the current action, trigger the Long Howl Trait and activate the White Ape Troll.",
+   "implemented": true
+  },
+  {
+   "id": "keeping-up-the-pressure",
+   "name": "Keeping Up the Pressure",
+   "level": 4,
+   "text": "When a Knight performs a Full Evade or reduces [Vigor] loss from an AI to 0, after you finish resolving the current AI, the next Monster on the Mob track performs Signature against that Knight.",
+   "implemented": true
+  }
+ ],
+ "cards": {
+  "ai": [
+   {
+    "file": "00.png",
+    "name": "Quick Jab",
+    "code": "27A1259",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 10,
+    "targeting": [
+     "Tactics Target",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "move": true,
+    "moveTag": "MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "Tactic A: 2. One hit, lose -1 [Vigor].",
+     "Two or more hits, lose -3 [Vigor].",
+     "Tactic B: 1. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting"
+    ],
+    "footer": "FIRSTMEN WARRIORS – AI 1",
+    "unclear": [
+     "code: tiny faint print; best reading 27A1259 (digits partly inferred from the sheet-order sequence 27A1256–27A1273)"
+    ],
+    "text": "QUICK JAB / ATTACK / Evasion 2 dice, 10+ / TARGETING: • Tactics Target • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK / Tactic A: 2. One hit, lose -1 [Vigor]. / Two or more hits, lose -3 [Vigor]. / Tactic B: 1. [Peril Check]. / FIRSTMEN WARRIORS – AI 1",
+    "effectsNote": "Effect lines follow the printed line/sentence breaks; 'Tactic A: n.' / 'Tactic B: n.' kept verbatim. Heat gate tag sits to the right of the red move tag.",
+    "ops": {
+     "targeting": [
+      "Tactics Target",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "tactic",
+       "which": "A",
+       "n": 2
+      },
+      {
+       "op": "vigorByHits",
+       "one": 1,
+       "more": 3,
+       "perilCheck": true
+      },
+      {
+       "op": "tactic",
+       "which": "B",
+       "n": 1
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "file": "01.png",
+    "name": "Shield Ram",
+    "code": "27A1260",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "targeting": [
+     "Tactics Target",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "move": true,
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [d10]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "Gain the Exposed Condition card.",
+     "Tactic A: 2. For each hit lose -1 [Vigor].",
+     "Tactic B: 1. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting",
+     "effect:2"
+    ],
+    "afterAttack": "Forced Vault. For each hit Pushback 1.",
+    "footer": "FIRSTMEN WARRIORS – AI 1",
+    "unclear": [
+     "code: tiny faint print; best reading 27A1260 (digits partly inferred from the sheet-order sequence 27A1256–27A1273)"
+    ],
+    "text": "SHIELD RAM / ATTACK / Evasion 3 dice, 8+ / TARGETING: • Tactics Target • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat 3+ ▸ +1 [d10]] / Gain the Exposed Condition card. / Tactic A: 2. For each hit lose -1 [Vigor]. / Tactic B: 1. [Peril Check]. [REACT!] / AFTER ATTACK / Forced Vault. For each hit Pushback 1. / FIRSTMEN WARRIORS – AI 1",
+    "effectsNote": "Effect lines follow the printed line/sentence breaks; 'Tactic A: n.' / 'Tactic B: n.' kept verbatim. Heat gate tag sits to the right of the red move tag.",
+    "ops": {
+     "targeting": [
+      "Tactics Target",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 3,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "condition",
+       "id": "Exposed"
+      },
+      {
+       "op": "tactic",
+       "which": "A",
+       "n": 2
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      },
+      {
+       "op": "tactic",
+       "which": "B",
+       "n": 1
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "forcedVault"
+      },
+      {
+       "op": "pushbackPerHit",
+       "n": 1
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "file": "02.png",
+    "name": "Sling-Bullet",
+    "code": "27A1261",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "targeting": [
+     "Furthest Knight in sight"
+    ],
+    "move": false,
+    "moveTag": "RANGE ATTACK UNLIMITED",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [d10]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "Gain the Exposed Condition card.",
+     "For each hit lose -1 [Vigor]. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting"
+    ],
+    "footer": "FIRSTMEN WARRIORS – AI 1",
+    "unclear": [
+     "code: tiny faint print; best reading 27A1261 (digits partly inferred from the sheet-order sequence 27A1256–27A1273)"
+    ],
+    "text": "SLING-BULLET / RANGE ATTACK / Evasion 3 dice, 8+ / TARGETING: • Furthest Knight in sight [REACT!] / RANGE ATTACK UNLIMITED [Heat 3+ ▸ +1 [d10]] / Gain the Exposed Condition card. / For each hit lose -1 [Vigor]. [Peril Check]. / FIRSTMEN WARRIORS – AI 1",
+    "effectsNote": "Effect lines follow the printed line/sentence breaks; 'Tactic A: n.' / 'Tactic B: n.' kept verbatim. Heat gate tag sits to the right of the red move tag.",
+    "ops": {
+     "targeting": [
+      "Furthest Knight in sight"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 3,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "condition",
+       "id": "Exposed"
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null,
+     "range": "unlimited"
+    }
+   },
+   {
+    "file": "03.png",
+    "name": "Probing Incursion",
+    "code": "27A1258",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 9,
+    "targeting": [
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "move": true,
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [d10]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "Tactic A: 2. For each hit lose -1 [Vigor].",
+     "Tactic B: 1. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting"
+    ],
+    "footer": "FIRSTMEN WARRIORS – AI 1",
+    "unclear": [
+     "code: tiny faint print; best reading 27A1258 (digits partly inferred from the sheet-order sequence 27A1256–27A1273)"
+    ],
+    "text": "PROBING INCURSION / ATTACK / Evasion 2 dice, 9+ / TARGETING: • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat 3+ ▸ +1 [d10]] / Tactic A: 2. For each hit lose -1 [Vigor]. / Tactic B: 1. [Peril Check]. / FIRSTMEN WARRIORS – AI 1",
+    "effectsNote": "Effect lines follow the printed line/sentence breaks; 'Tactic A: n.' / 'Tactic B: n.' kept verbatim. Heat gate tag sits to the right of the red move tag.",
+    "ops": {
+     "targeting": [
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 3,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "tactic",
+       "which": "A",
+       "n": 2
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      },
+      {
+       "op": "tactic",
+       "which": "B",
+       "n": 1
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "file": "04.png",
+    "name": "Pommel Strike",
+    "code": "27A1257",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 9,
+    "targeting": [
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "move": true,
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [d10]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "Gain the Exposed Condition card.",
+     "Tactic A: 2. For each hit lose -1 [Vigor].",
+     "Tactic B: 1. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting"
+    ],
+    "footer": "FIRSTMEN WARRIORS – AI 1",
+    "unclear": [
+     "code: tiny faint print; best reading 27A1257 (digits partly inferred from the sheet-order sequence 27A1256–27A1273)"
+    ],
+    "text": "POMMEL STRIKE / ATTACK / Evasion 2 dice, 9+ / TARGETING: • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat 3+ ▸ +1 [d10]] / Gain the Exposed Condition card. / Tactic A: 2. For each hit lose -1 [Vigor]. / Tactic B: 1. [Peril Check]. / FIRSTMEN WARRIORS – AI 1",
+    "effectsNote": "Effect lines follow the printed line/sentence breaks; 'Tactic A: n.' / 'Tactic B: n.' kept verbatim. Heat gate tag sits to the right of the red move tag.",
+    "ops": {
+     "targeting": [
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 3,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "condition",
+       "id": "Exposed"
+      },
+      {
+       "op": "tactic",
+       "which": "A",
+       "n": 2
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      },
+      {
+       "op": "tactic",
+       "which": "B",
+       "n": 1
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "file": "05.png",
+    "name": "Net Snare",
+    "code": "27A1256",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 9,
+    "targeting": [
+     "[Priority Target] Priority Target in sight",
+     "Closest Knight in sight"
+    ],
+    "move": false,
+    "moveTag": "RANGE ATTACK UNLIMITED",
+    "gates": [],
+    "effects": [
+     "For each hit lose -1 [Vigor]. [Peril Check].",
+     "Cooldown. Gain a temporary negative Speed [Speed] token."
+    ],
+    "reactWindows": [
+     "targeting"
+    ],
+    "footer": "FIRSTMEN WARRIORS – AI 1",
+    "unclear": [
+     "code: tiny faint print; best reading 27A1256 (digits partly inferred from the sheet-order sequence 27A1256–27A1273)"
+    ],
+    "text": "NET SNARE / RANGE ATTACK / Evasion 2 dice, 9+ / TARGETING: • [Priority Target] Priority Target in sight • Closest Knight in sight [REACT!] / RANGE ATTACK UNLIMITED / For each hit lose -1 [Vigor]. [Peril Check]. / Cooldown. Gain a temporary negative Speed [Speed] token. / FIRSTMEN WARRIORS – AI 1",
+    "effectsNote": "Effect lines follow the printed line/sentence breaks; 'Tactic A: n.' / 'Tactic B: n.' kept verbatim. Heat gate tag sits to the right of the red move tag.",
+    "ops": {
+     "targeting": [
+      "[Priority Target] Priority Target in sight",
+      "Closest Knight in sight"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      },
+      {
+       "op": "cooldown"
+      },
+      {
+       "op": "tempSpeed",
+       "n": -1
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null,
+     "range": "unlimited"
+    }
+   },
+   {
+    "file": "06.png",
+    "name": "Piercing Thrust",
+    "code": "27A1265",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 9,
+    "targeting": [
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "move": true,
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [d10]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "Tactic A: 3. For each hit lose -1 [Vigor].",
+     "Tactic B: 1. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting"
+    ],
+    "footer": "FIRSTMEN WARRIORS – AI 2",
+    "unclear": [
+     "code: tiny faint print; best reading 27A1265 (digits partly inferred from the sheet-order sequence 27A1256–27A1273)"
+    ],
+    "text": "PIERCING THRUST / ATTACK / Evasion 3 dice, 9+ / TARGETING: • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat 3+ ▸ +1 [d10]] / Tactic A: 3. For each hit lose -1 [Vigor]. / Tactic B: 1. [Peril Check]. / FIRSTMEN WARRIORS – AI 2",
+    "effectsNote": "Effect lines follow the printed line/sentence breaks; 'Tactic A: n.' / 'Tactic B: n.' kept verbatim. Heat gate tag sits to the right of the red move tag.",
+    "ops": {
+     "targeting": [
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 3,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "tactic",
+       "which": "A",
+       "n": 3
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      },
+      {
+       "op": "tactic",
+       "which": "B",
+       "n": 1
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "file": "07.png",
+    "name": "Heavy Javelin Throw",
+    "code": "27A1266",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 8,
+    "targeting": [
+     "Furthest Knight in sight"
+    ],
+    "move": false,
+    "moveTag": "RANGE ATTACK UNLIMITED",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [d10]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "Gain the Exposed Condition card.",
+     "For each hit lose -2 [Vigor]. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting"
+    ],
+    "footer": "FIRSTMEN WARRIORS – AI 2",
+    "unclear": [
+     "code: tiny faint print; best reading 27A1266 (digits partly inferred from the sheet-order sequence 27A1256–27A1273)"
+    ],
+    "text": "HEAVY JAVELIN THROW / RANGE ATTACK / Evasion 2 dice, 8+ / TARGETING: • Furthest Knight in sight [REACT!] / RANGE ATTACK UNLIMITED [Heat 3+ ▸ +1 [d10]] / Gain the Exposed Condition card. / For each hit lose -2 [Vigor]. [Peril Check]. / FIRSTMEN WARRIORS – AI 2",
+    "effectsNote": "Effect lines follow the printed line/sentence breaks; 'Tactic A: n.' / 'Tactic B: n.' kept verbatim. Heat gate tag sits to the right of the red move tag.",
+    "ops": {
+     "targeting": [
+      "Furthest Knight in sight"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 3,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "condition",
+       "id": "Exposed"
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null,
+     "range": "unlimited"
+    }
+   },
+   {
+    "file": "08.png",
+    "name": "Fierce Charge",
+    "code": "27A1267",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 4,
+    "evasionDifficulty": 8,
+    "targeting": [
+     "Tactics Target",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "move": true,
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [d10]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "Gain the Exposed Condition card.",
+     "Tactic A: 3. For each hit lose -1 [Vigor].",
+     "Tactic B: 1. [Peril Check].",
+     "Knockdown."
+    ],
+    "reactWindows": [
+     "targeting",
+     "effect:2"
+    ],
+    "afterAttack": "Forced Vault. For each hit Pushback 1.",
+    "footer": "FIRSTMEN WARRIORS – AI 2",
+    "unclear": [
+     "code: tiny faint print; best reading 27A1267 (digits partly inferred from the sheet-order sequence 27A1256–27A1273)",
+     "'Knockdown.' is printed on its own line below the second REACT! rule and above the AFTER ATTACK tag (so it resolves after that React window)"
+    ],
+    "text": "FIERCE CHARGE / ATTACK / Evasion 4 dice, 8+ / TARGETING: • Tactics Target • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat 3+ ▸ +1 [d10]] / Gain the Exposed Condition card. / Tactic A: 3. For each hit lose -1 [Vigor]. / Tactic B: 1. [Peril Check]. [REACT!] / Knockdown. / AFTER ATTACK / Forced Vault. For each hit Pushback 1. / FIRSTMEN WARRIORS – AI 2",
+    "effectsNote": "Effect lines follow the printed line/sentence breaks; 'Tactic A: n.' / 'Tactic B: n.' kept verbatim. Heat gate tag sits to the right of the red move tag.",
+    "ops": {
+     "targeting": [
+      "Tactics Target",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 3,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "condition",
+       "id": "Exposed"
+      },
+      {
+       "op": "tactic",
+       "which": "A",
+       "n": 3
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      },
+      {
+       "op": "tactic",
+       "which": "B",
+       "n": 1
+      },
+      {
+       "op": "knockdown"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "forcedVault"
+      },
+      {
+       "op": "pushbackPerHit",
+       "n": 1
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "file": "09.png",
+    "name": "Hidden Blade",
+    "code": "27A1264",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 10,
+    "targeting": [
+     "Tactics Target",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "move": true,
+    "moveTag": "MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "Gain the Exposed Condition card.",
+     "Tactic A: 3. For each hit lose -2 [Vigor].",
+     "Tactic B: 1. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting"
+    ],
+    "footer": "FIRSTMEN WARRIORS – AI 2",
+    "unclear": [
+     "code: tiny faint print; best reading 27A1264 (digits partly inferred from the sheet-order sequence 27A1256–27A1273)"
+    ],
+    "text": "HIDDEN BLADE / ATTACK / Evasion 2 dice, 10+ / TARGETING: • Tactics Target • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK / Gain the Exposed Condition card. / Tactic A: 3. For each hit lose -2 [Vigor]. / Tactic B: 1. [Peril Check]. / FIRSTMEN WARRIORS – AI 2",
+    "effectsNote": "Effect lines follow the printed line/sentence breaks; 'Tactic A: n.' / 'Tactic B: n.' kept verbatim. Heat gate tag sits to the right of the red move tag.",
+    "ops": {
+     "targeting": [
+      "Tactics Target",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "condition",
+       "id": "Exposed"
+      },
+      {
+       "op": "tactic",
+       "which": "A",
+       "n": 3
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "tactic",
+       "which": "B",
+       "n": 1
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "file": "10.png",
+    "name": "Pinning Throw",
+    "code": "27A1263",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 9,
+    "targeting": [
+     "Furthest Knight in sight"
+    ],
+    "move": false,
+    "moveTag": "RANGE ATTACK UNLIMITED",
+    "gates": [],
+    "effects": [
+     "For each hit lose -1 [Vigor]. [Peril Check]. Delay."
+    ],
+    "reactWindows": [
+     "targeting"
+    ],
+    "footer": "FIRSTMEN WARRIORS – AI 2",
+    "unclear": [
+     "code: tiny faint print; best reading 27A1263 (digits partly inferred from the sheet-order sequence 27A1256–27A1273)"
+    ],
+    "text": "PINNING THROW / RANGE ATTACK / Evasion 3 dice, 9+ / TARGETING: • Furthest Knight in sight [REACT!] / RANGE ATTACK UNLIMITED / For each hit lose -1 [Vigor]. [Peril Check]. Delay. / FIRSTMEN WARRIORS – AI 2",
+    "effectsNote": "Effect lines follow the printed line/sentence breaks; 'Tactic A: n.' / 'Tactic B: n.' kept verbatim. Heat gate tag sits to the right of the red move tag.",
+    "ops": {
+     "targeting": [
+      "Furthest Knight in sight"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      },
+      {
+       "op": "delay"
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null,
+     "range": "unlimited"
+    }
+   },
+   {
+    "file": "11.png",
+    "name": "Centurion Strike",
+    "code": "27A1262",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 9,
+    "targeting": [
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "move": true,
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [d10]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "Tactic A: 3. For each hit lose -1 [Vigor].",
+     "Tactic B: 1. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting"
+    ],
+    "footer": "FIRSTMEN WARRIORS – AI 2",
+    "unclear": [
+     "code: tiny faint print; best reading 27A1262 (digits partly inferred from the sheet-order sequence 27A1256–27A1273)"
+    ],
+    "text": "CENTURION STRIKE / ATTACK / Evasion 3 dice, 9+ / TARGETING: • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat 3+ ▸ +1 [d10]] / Tactic A: 3. For each hit lose -1 [Vigor]. / Tactic B: 1. [Peril Check]. / FIRSTMEN WARRIORS – AI 2",
+    "effectsNote": "Effect lines follow the printed line/sentence breaks; 'Tactic A: n.' / 'Tactic B: n.' kept verbatim. Heat gate tag sits to the right of the red move tag.",
+    "ops": {
+     "targeting": [
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 3,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "tactic",
+       "which": "A",
+       "n": 3
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      },
+      {
+       "op": "tactic",
+       "which": "B",
+       "n": 1
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "file": "12.png",
+    "name": "Fall of an Empire",
+    "code": "27A1271",
+    "level": 3,
+    "type": "zone",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "targeting": [
+     "Tactics Target",
+     "[Priority Target] Priority Target",
+     "Furthest Knight in sight"
+    ],
+    "move": false,
+    "moveTag": "LAND ON TOP & ZONE ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [d10]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "Gain the Exposed Condition card.",
+     "For each hit lose -2 [Vigor]. [Peril Check].",
+     "Knockdown."
+    ],
+    "reactWindows": [
+     "targeting"
+    ],
+    "afterFinalAttack": "Tactic A: 4. Tactic B: 2.",
+    "footer": "FIRSTMEN WARRIORS – AI 3",
+    "zoneDiagram": {
+     "grid": [
+      5,
+      5
+     ],
+     "rows": [
+      ".....",
+      "..R..",
+      ".R^R.",
+      "..R..",
+      "....."
+     ],
+     "note": "5x5 grid; 4 red cells orthogonally adjacent to the centre; black monster marker in the centre cell with white chevron pointing up; no yellow cells"
+    },
+    "unclear": [
+     "code: tiny faint print; best reading 27A1271 (digits partly inferred from the sheet-order sequence 27A1256–27A1273)"
+    ],
+    "text": "FALL OF AN EMPIRE / ZONE ATTACK / Evasion 3 dice, 8+ / TARGETING: • Tactics Target • [Priority Target] Priority Target • Furthest Knight in sight [REACT!] / LAND ON TOP & ZONE ATTACK [Heat 3+ ▸ +1 [d10]] / Gain the Exposed Condition card. / For each hit lose -2 [Vigor]. [Peril Check]. / Knockdown. / AFTER FINAL ATTACK / Tactic A: 4. Tactic B: 2. / FIRSTMEN WARRIORS – AI 3",
+    "effectsNote": "Effect lines follow the printed line/sentence breaks; 'Tactic A: n.' / 'Tactic B: n.' kept verbatim. Heat gate tag sits to the right of the red move tag.",
+    "ops": {
+     "targeting": [
+      "Tactics Target",
+      "[Priority Target] Priority Target",
+      "Furthest Knight in sight"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 3,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "condition",
+       "id": "Exposed"
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "knockdown"
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "tactic",
+       "which": "A",
+       "n": 4
+      },
+      {
+       "op": "tactic",
+       "which": "B",
+       "n": 2
+      }
+     ],
+     "landOnTop": true,
+     "zoneDiagram": {
+      "red": [
+       [
+        1,
+        0
+       ],
+       [
+        0,
+        -1
+       ],
+       [
+        0,
+        1
+       ],
+       [
+        -1,
+        0
+       ]
+      ],
+      "yellow": [],
+      "step": null
+     }
+    }
+   },
+   {
+    "file": "13.png",
+    "name": "Iron Rain",
+    "code": "27A1272",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "targeting": [
+     "Furthest Knight in sight"
+    ],
+    "move": false,
+    "moveTag": "RANGE ATTACK UNLIMITED",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [d10]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "Gain the Exposed Condition card.",
+     "For each hit lose -2 [Vigor]. Lose -1 [Vigor] for every Mob adjacent to the Attacker. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting"
+    ],
+    "footer": "FIRSTMEN WARRIORS – AI 3",
+    "unclear": [
+     "code: tiny faint print; best reading 27A1272 (digits partly inferred from the sheet-order sequence 27A1256–27A1273)"
+    ],
+    "text": "IRON RAIN / RANGE ATTACK / Evasion 3 dice, 8+ / TARGETING: • Furthest Knight in sight [REACT!] / RANGE ATTACK UNLIMITED [Heat 3+ ▸ +1 [d10]] / Gain the Exposed Condition card. / For each hit lose -2 [Vigor]. Lose -1 [Vigor] for every Mob adjacent to the Attacker. [Peril Check]. / FIRSTMEN WARRIORS – AI 3",
+    "effectsNote": "Effect lines follow the printed line/sentence breaks; 'Tactic A: n.' / 'Tactic B: n.' kept verbatim. Heat gate tag sits to the right of the red move tag.",
+    "ops": {
+     "targeting": [
+      "Furthest Knight in sight"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 3,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "condition",
+       "id": "Exposed"
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": false
+      },
+      {
+       "op": "vigorPerAdjacentMob",
+       "n": 1,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null,
+     "range": "unlimited"
+    }
+   },
+   {
+    "file": "14.png",
+    "name": "Et Tu",
+    "code": "27A1273",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 10,
+    "targeting": [
+     "[Priority Target] Priority Target",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "move": true,
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [d10]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "Tactic A: 3. For each hit lose -2 [Vigor].",
+     "Tactic B: 2. If you would draw a Grave Mortis, draw a Judicium instead. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting"
+    ],
+    "footer": "FIRSTMEN WARRIORS – AI 3",
+    "unclear": [
+     "code: tiny faint print; best reading 27A1273 (digits partly inferred from the sheet-order sequence 27A1256–27A1273)"
+    ],
+    "text": "ET TU / ATTACK / Evasion 3 dice, 10+ / TARGETING: • [Priority Target] Priority Target • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat 3+ ▸ +1 [d10]] / Tactic A: 3. For each hit lose -2 [Vigor]. / Tactic B: 2. If you would draw a Grave Mortis, draw a Judicium instead. [Peril Check]. / FIRSTMEN WARRIORS – AI 3",
+    "effectsNote": "Effect lines follow the printed line/sentence breaks; 'Tactic A: n.' / 'Tactic B: n.' kept verbatim. Heat gate tag sits to the right of the red move tag.",
+    "ops": {
+     "targeting": [
+      "[Priority Target] Priority Target",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 3,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "tactic",
+       "which": "A",
+       "n": 3
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "tactic",
+       "which": "B",
+       "n": 2
+      },
+      {
+       "op": "graveToJudicium"
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "file": "15.png",
+    "name": "Brutal Skewering",
+    "code": "27A1270",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 9,
+    "targeting": [
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "move": true,
+    "moveTag": "MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "Gain the Exposed Condition card.",
+     "Tactic A: 3. One hit, lose -3 [Vigor].",
+     "Two or more hits, lose -5 [Vigor].",
+     "Tactic B: 2. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting"
+    ],
+    "footer": "FIRSTMEN WARRIORS – AI 3",
+    "unclear": [
+     "code: tiny faint print; best reading 27A1270 (digits partly inferred from the sheet-order sequence 27A1256–27A1273)"
+    ],
+    "text": "BRUTAL SKEWERING / ATTACK / Evasion 2 dice, 9+ / TARGETING: • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK / Gain the Exposed Condition card. / Tactic A: 3. One hit, lose -3 [Vigor]. / Two or more hits, lose -5 [Vigor]. / Tactic B: 2. [Peril Check]. / FIRSTMEN WARRIORS – AI 3",
+    "effectsNote": "Effect lines follow the printed line/sentence breaks; 'Tactic A: n.' / 'Tactic B: n.' kept verbatim. Heat gate tag sits to the right of the red move tag.",
+    "ops": {
+     "targeting": [
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "condition",
+       "id": "Exposed"
+      },
+      {
+       "op": "tactic",
+       "which": "A",
+       "n": 3
+      },
+      {
+       "op": "vigorByHits",
+       "one": 3,
+       "more": 5,
+       "perilCheck": true
+      },
+      {
+       "op": "tactic",
+       "which": "B",
+       "n": 2
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "file": "16.png",
+    "name": "Razor Snare",
+    "code": "27A1269",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 9,
+    "targeting": [
+     "[Priority Target] Priority Target in sight",
+     "Closest Knight in sight"
+    ],
+    "move": false,
+    "moveTag": "RANGE ATTACK UNLIMITED",
+    "gates": [],
+    "effects": [
+     "For each hit lose -2 [Vigor]. [Peril Check].",
+     "Discard. Gain a temporary negative Speed [Speed] token."
+    ],
+    "reactWindows": [
+     "targeting"
+    ],
+    "footer": "FIRSTMEN WARRIORS – AI 3",
+    "unclear": [
+     "code: tiny faint print; best reading 27A1269 (digits partly inferred from the sheet-order sequence 27A1256–27A1273)"
+    ],
+    "text": "RAZOR SNARE / RANGE ATTACK / Evasion 2 dice, 9+ / TARGETING: • [Priority Target] Priority Target in sight • Closest Knight in sight [REACT!] / RANGE ATTACK UNLIMITED / For each hit lose -2 [Vigor]. [Peril Check]. / Discard. Gain a temporary negative Speed [Speed] token. / FIRSTMEN WARRIORS – AI 3",
+    "effectsNote": "Effect lines follow the printed line/sentence breaks; 'Tactic A: n.' / 'Tactic B: n.' kept verbatim. Heat gate tag sits to the right of the red move tag.",
+    "ops": {
+     "targeting": [
+      "[Priority Target] Priority Target in sight",
+      "Closest Knight in sight"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "discard"
+      },
+      {
+       "op": "tempSpeed",
+       "n": -1
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null,
+     "range": "unlimited"
+    }
+   },
+   {
+    "file": "17.png",
+    "name": "Vicious Stab",
+    "code": "27A1268",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 9,
+    "targeting": [
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "move": true,
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [d10]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "Tactic A: 3. For each hit lose -2 [Vigor].",
+     "Tactic B: 2. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting"
+    ],
+    "footer": "FIRSTMEN WARRIORS – AI 3",
+    "unclear": [
+     "code: tiny faint print; best reading 27A1268 (digits partly inferred from the sheet-order sequence 27A1256–27A1273)"
+    ],
+    "text": "VICIOUS STAB / ATTACK / Evasion 2 dice, 9+ / TARGETING: • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat 3+ ▸ +1 [d10]] / Tactic A: 3. For each hit lose -2 [Vigor]. / Tactic B: 2. [Peril Check]. / FIRSTMEN WARRIORS – AI 3",
+    "effectsNote": "Effect lines follow the printed line/sentence breaks; 'Tactic A: n.' / 'Tactic B: n.' kept verbatim. Heat gate tag sits to the right of the red move tag.",
+    "ops": {
+     "targeting": [
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 3,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "tactic",
+       "which": "A",
+       "n": 3
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "tactic",
+       "which": "B",
+       "n": 2
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null
+    }
+   }
+  ],
+  "bp": [
+   {
+    "file": "18.png",
+    "name": "Hastati",
+    "code": "28A1647",
+    "level": 1,
+    "at": 3,
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 3,
+     "effect": "Opening 1"
+    },
+    "responses": {
+     "wound": "Reveal the rightmost unrevealed BP.",
+     "fail": "Tactic A: 2.",
+     "instinct": null,
+     "critical": "You may flip a chosen BP card face down."
+    },
+    "reactWindows": [],
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "footer": "FIRSTMEN WARRIORS – BP 1",
+    "unclear": [
+     "code: tiny faint print; best reading 28A1647 (digits partly inferred from the sheet-order sequence 28A1644–28A1661)"
+    ],
+    "text": "HASTATI / OVERCOME 3+ ▸ Opening 1 / [AT] 3 / WOUND: Reveal the rightmost unrevealed BP. / FAIL: Tactic A: 2. / CRITICAL: You may flip a chosen BP card face down. / FIRSTMEN WARRIORS – BP 1",
+    "ops": {
+     "at": 3,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "poolToken",
+        "token": "opening",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "revealBP",
+       "side": "rightmost"
+      }
+     ],
+     "fail": [
+      {
+       "op": "tactic",
+       "which": "A",
+       "n": 2
+      }
+     ],
+     "critical": [
+      {
+       "op": "flipBPDown"
+      }
+     ]
+    }
+   },
+   {
+    "file": "19.png",
+    "name": "Principes",
+    "code": "28A1648",
+    "level": 1,
+    "at": 4,
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 3,
+     "effect": "Break 1 and Opening 1"
+    },
+    "responses": {
+     "wound": "The furthest Mob performs Signature against the Attacker.",
+     "fail": "Tactic A: 2.",
+     "instinct": null,
+     "critical": "Another Knight may immediately move 1 space and perform a Bonus Attack!"
+    },
+    "reactWindows": [],
+    "whenRevealed": null,
+    "whileRevealed": "Every Monster in Zone 2 from Principes has +1 [To Hit].",
+    "footer": "FIRSTMEN WARRIORS – BP 1",
+    "unclear": [
+     "code: tiny faint print; best reading 28A1648 (digits partly inferred from the sheet-order sequence 28A1644–28A1661)",
+     "icon after '±1' is a small swirly fist/gauntlet glyph, read as [To Hit]"
+    ],
+    "text": "PRINCIPES / OVERCOME 3+ ▸ Break 1 and Opening 1 / [AT] 4 / WOUND: The furthest Mob performs Signature against the Attacker. / FAIL: Tactic A: 2. / CRITICAL: Another Knight may immediately move 1 space and perform a Bonus Attack! / FIRSTMEN WARRIORS – BP 1 / While this BP is revealed: Every Monster in Zone 2 from Principes has +1 [To Hit].",
+    "ops": {
+     "at": 4,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "poolToken",
+        "token": "break",
+        "n": 1
+       },
+       {
+        "op": "poolToken",
+        "token": "opening",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "mobSignatureAgainst",
+       "which": "furthest"
+      }
+     ],
+     "fail": [
+      {
+       "op": "tactic",
+       "which": "A",
+       "n": 2
+      }
+     ],
+     "critical": [
+      {
+       "op": "moveAndBonusAttack",
+       "n": 1,
+       "upTo": false,
+       "who": "other"
+      }
+     ],
+     "aura": {
+      "zone2ToHit": 1
+     }
+    }
+   },
+   {
+    "file": "20.png",
+    "name": "Triarii",
+    "code": "28A1649",
+    "level": 1,
+    "at": 4,
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 3,
+     "effect": "Break 1 and Opening 1"
+    },
+    "responses": {
+     "wound": "The furthest Mob performs Signature against the Attacker.",
+     "fail": "Tactic A: 2.",
+     "instinct": null,
+     "critical": "You may immediately move 1 space and perform a Bonus Attack!"
+    },
+    "reactWindows": [],
+    "whenRevealed": null,
+    "whileRevealed": "Every Monster Attack in Zone 2 from Triarii causes additional -1 [Vigor] loss.",
+    "footer": "FIRSTMEN WARRIORS – BP 1",
+    "unclear": [
+     "code: tiny faint print; best reading 28A1649 (digits partly inferred from the sheet-order sequence 28A1644–28A1661)"
+    ],
+    "text": "TRIARII / OVERCOME 3+ ▸ Break 1 and Opening 1 / [AT] 4 / WOUND: The furthest Mob performs Signature against the Attacker. / FAIL: Tactic A: 2. / CRITICAL: You may immediately move 1 space and perform a Bonus Attack! / FIRSTMEN WARRIORS – BP 1 / While this BP is revealed: Every Monster Attack in Zone 2 from Triarii causes additional -1 [Vigor] loss.",
+    "ops": {
+     "at": 4,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "poolToken",
+        "token": "break",
+        "n": 1
+       },
+       {
+        "op": "poolToken",
+        "token": "opening",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "mobSignatureAgainst",
+       "which": "furthest"
+      }
+     ],
+     "fail": [
+      {
+       "op": "tactic",
+       "which": "A",
+       "n": 2
+      }
+     ],
+     "critical": [
+      {
+       "op": "moveAndBonusAttack",
+       "n": 1,
+       "upTo": false
+      }
+     ],
+     "aura": {
+      "zone2Vigor": 1
+     }
+    }
+   },
+   {
+    "file": "21.png",
+    "name": "Velites",
+    "code": "28A1644",
+    "level": 1,
+    "at": 2,
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 2,
+     "effect": "Break 1"
+    },
+    "responses": {
+     "wound": "Reveal the leftmost unrevealed BP.",
+     "fail": "Tactic A: 2.",
+     "instinct": null,
+     "critical": "Look at a chosen BP card."
+    },
+    "reactWindows": [],
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "footer": "FIRSTMEN WARRIORS – BP 1",
+    "unclear": [
+     "code: tiny faint print; best reading 28A1644 (digits partly inferred from the sheet-order sequence 28A1644–28A1661)"
+    ],
+    "text": "VELITES / OVERCOME 2+ ▸ Break 1 / [AT] 2 / WOUND: Reveal the leftmost unrevealed BP. / FAIL: Tactic A: 2. / CRITICAL: Look at a chosen BP card. / FIRSTMEN WARRIORS – BP 1",
+    "ops": {
+     "at": 2,
+     "overcome": {
+      "n": 2,
+      "ops": [
+       {
+        "op": "poolToken",
+        "token": "break",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "revealBP",
+       "side": "leftmost"
+      }
+     ],
+     "fail": [
+      {
+       "op": "tactic",
+       "which": "A",
+       "n": 2
+      }
+     ],
+     "critical": [
+      {
+       "op": "lookBP"
+      }
+     ]
+    }
+   },
+   {
+    "file": "22.png",
+    "name": "Velites",
+    "code": "28A1645",
+    "level": 1,
+    "at": 2,
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 2,
+     "effect": "Opening 1"
+    },
+    "responses": {
+     "wound": "Reveal the leftmost unrevealed BP.",
+     "fail": "Tactic A: 2.",
+     "instinct": null,
+     "critical": "Look at a chosen BP card."
+    },
+    "reactWindows": [],
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "footer": "FIRSTMEN WARRIORS – BP 1",
+    "unclear": [
+     "code: tiny faint print; best reading 28A1645 (digits partly inferred from the sheet-order sequence 28A1644–28A1661)"
+    ],
+    "text": "VELITES / OVERCOME 2+ ▸ Opening 1 / [AT] 2 / WOUND: Reveal the leftmost unrevealed BP. / FAIL: Tactic A: 2. / CRITICAL: Look at a chosen BP card. / FIRSTMEN WARRIORS – BP 1",
+    "ops": {
+     "at": 2,
+     "overcome": {
+      "n": 2,
+      "ops": [
+       {
+        "op": "poolToken",
+        "token": "opening",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "revealBP",
+       "side": "leftmost"
+      }
+     ],
+     "fail": [
+      {
+       "op": "tactic",
+       "which": "A",
+       "n": 2
+      }
+     ],
+     "critical": [
+      {
+       "op": "lookBP"
+      }
+     ]
+    }
+   },
+   {
+    "file": "23.png",
+    "name": "Hastati",
+    "code": "28A1646",
+    "level": 1,
+    "at": 3,
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 2,
+     "effect": "Break 1"
+    },
+    "responses": {
+     "wound": "Reveal the rightmost unrevealed BP.",
+     "fail": "Tactic A: 2.",
+     "instinct": null,
+     "critical": "You may flip a chosen BP card face down."
+    },
+    "reactWindows": [],
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "footer": "FIRSTMEN WARRIORS – BP 1",
+    "unclear": [
+     "code: tiny faint print; best reading 28A1646 (digits partly inferred from the sheet-order sequence 28A1644–28A1661)"
+    ],
+    "text": "HASTATI / OVERCOME 2+ ▸ Break 1 / [AT] 3 / WOUND: Reveal the rightmost unrevealed BP. / FAIL: Tactic A: 2. / CRITICAL: You may flip a chosen BP card face down. / FIRSTMEN WARRIORS – BP 1",
+    "ops": {
+     "at": 3,
+     "overcome": {
+      "n": 2,
+      "ops": [
+       {
+        "op": "poolToken",
+        "token": "break",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "revealBP",
+       "side": "rightmost"
+      }
+     ],
+     "fail": [
+      {
+       "op": "tactic",
+       "which": "A",
+       "n": 2
+      }
+     ],
+     "critical": [
+      {
+       "op": "flipBPDown"
+      }
+     ]
+    }
+   },
+   {
+    "file": "24.png",
+    "name": "Legionary",
+    "code": "28A1653",
+    "level": 2,
+    "at": 5,
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 4,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "The furthest Mob performs Signature against the Attacker.",
+     "fail": "Tactic A: 3.",
+     "instinct": null,
+     "critical": "You may flip a chosen BP card face down."
+    },
+    "reactWindows": [],
+    "whenRevealed": null,
+    "whileRevealed": "Every Monster in Zone 2 from this Mob has +1 [AT].",
+    "footer": "FIRSTMEN WARRIORS – BP 2",
+    "unclear": [
+     "code: tiny faint print; best reading 28A1653 (digits partly inferred from the sheet-order sequence 28A1644–28A1661)",
+     "icon after the number is a small two-lobed ribcage glyph, read as [AT]"
+    ],
+    "text": "LEGIONARY / OVERCOME 4+ ▸ Power 1 / [AT] 5 / WOUND: The furthest Mob performs Signature against the Attacker. / FAIL: Tactic A: 3. / CRITICAL: You may flip a chosen BP card face down. / FIRSTMEN WARRIORS – BP 2 / While this BP is revealed: Every Monster in Zone 2 from this Mob has +1 [AT].",
+    "notes": [
+     "OVERCOME 4 (두 장의 Legionary는 3+ / 4+로 서로 다름) — 소유자 확인 2026-11-15"
+    ],
+    "ops": {
+     "at": 5,
+     "overcome": {
+      "n": 4,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "mobSignatureAgainst",
+       "which": "furthest"
+      }
+     ],
+     "fail": [
+      {
+       "op": "tactic",
+       "which": "A",
+       "n": 3
+      }
+     ],
+     "critical": [
+      {
+       "op": "flipBPDown"
+      }
+     ],
+     "aura": {
+      "zone2AT": 1
+     }
+    }
+   },
+   {
+    "file": "25.png",
+    "name": "Centurion",
+    "code": "28A1654",
+    "level": 2,
+    "at": 6,
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 4,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "Draw AI for another closest Mob.",
+     "fail": "Tactic A: 3.",
+     "instinct": null,
+     "critical": "Another Knight may immediately move up to 2 spaces and perform a Bonus Attack!"
+    },
+    "reactWindows": [],
+    "whenRevealed": "Escalate the lowest unrevealed Mob (BP and AI).",
+    "whileRevealed": null,
+    "footer": "FIRSTMEN WARRIORS – BP 2",
+    "unclear": [
+     "code: tiny faint print; best reading 28A1654 (digits partly inferred from the sheet-order sequence 28A1644–28A1661)"
+    ],
+    "text": "When you reveal this BP: Escalate the lowest unrevealed Mob (BP and AI). / CENTURION / OVERCOME 4+ ▸ Power 1 / [AT] 6 / WOUND: Draw AI for another closest Mob. / FAIL: Tactic A: 3. / CRITICAL: Another Knight may immediately move up to 2 spaces and perform a Bonus Attack! / FIRSTMEN WARRIORS – BP 2",
+    "notes": [
+     "OVERCOME 4+ — 소유자 확인 2026-11-15"
+    ],
+    "ops": {
+     "at": 6,
+     "overcome": {
+      "n": 4,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "drawAIFor",
+       "which": "closestOther"
+      }
+     ],
+     "fail": [
+      {
+       "op": "tactic",
+       "which": "A",
+       "n": 3
+      }
+     ],
+     "critical": [
+      {
+       "op": "moveAndBonusAttack",
+       "n": 2,
+       "upTo": true,
+       "who": "other"
+      }
+     ],
+     "whenRevealed": [
+      {
+       "op": "escalateLowestUnrevealed"
+      }
+     ]
+    }
+   },
+   {
+    "file": "26.png",
+    "name": "Praetorian",
+    "code": "28A1655",
+    "level": 2,
+    "at": 6,
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 5,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "Escalate the lowest unrevealed Mob (BP and AI).",
+     "fail": "Tactic A: 3.",
+     "instinct": null,
+     "critical": "You may immediately move up to 2 spaces and perform a Bonus Attack!"
+    },
+    "reactWindows": [],
+    "whenRevealed": null,
+    "whileRevealed": "Every Monster Attack in Zone 2 from Praetorian causes additional -2 [Vigor] loss.",
+    "footer": "FIRSTMEN WARRIORS – BP 2",
+    "unclear": [
+     "code: tiny faint print; best reading 28A1655 (digits partly inferred from the sheet-order sequence 28A1644–28A1661)"
+    ],
+    "text": "PRAETORIAN / OVERCOME 5+ ▸ Power 1 / [AT] 6 / WOUND: Escalate the lowest unrevealed Mob (BP and AI). / FAIL: Tactic A: 3. / CRITICAL: You may immediately move up to 2 spaces and perform a Bonus Attack! / FIRSTMEN WARRIORS – BP 2 / While this BP is revealed: Every Monster Attack in Zone 2 from Praetorian causes additional -2 [Vigor] loss.",
+    "ops": {
+     "at": 6,
+     "overcome": {
+      "n": 5,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "escalateLowestUnrevealed"
+      }
+     ],
+     "fail": [
+      {
+       "op": "tactic",
+       "which": "A",
+       "n": 3
+      }
+     ],
+     "critical": [
+      {
+       "op": "moveAndBonusAttack",
+       "n": 2,
+       "upTo": true
+      }
+     ],
+     "aura": {
+      "zone2Vigor": 2
+     }
+    }
+   },
+   {
+    "file": "27.png",
+    "name": "Venator",
+    "code": "28A1650",
+    "level": 2,
+    "at": 4,
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "Activate X, where X is the number of Generic tokens on this card.",
+     "fail": "Tactic A: 3. Discard 1 Generic token from this card.",
+     "instinct": null,
+     "critical": "Until the end of Clash, Knights cannot gain negative Speed [Speed] tokens as a result of AIs."
+    },
+    "reactWindows": [],
+    "whenRevealed": "Place 1 Generic token on this card.",
+    "whileRevealed": "At the start of the Monster Round, discard 1 Generic token. If you cannot, trigger the Long Howl Trait (once per Clash).",
+    "footer": "FIRSTMEN WARRIORS – BP 2",
+    "unclear": [
+     "code: tiny faint print; best reading 28A1650 (digits partly inferred from the sheet-order sequence 28A1644–28A1661)"
+    ],
+    "text": "When you reveal this BP: Place 1 Generic token on this card. / VENATOR / OVERCOME 3+ ▸ Power 1 / [AT] 4 / WOUND: Activate X, where X is the number of Generic tokens on this card. / FAIL: Tactic A: 3. Discard 1 Generic token from this card. / CRITICAL: Until the end of Clash, Knights cannot gain negative Speed [Speed] tokens as a result of AIs. / FIRSTMEN WARRIORS – BP 2 / While this BP is revealed: At the start of the Monster Round, discard 1 Generic token. If you cannot, trigger the Long Howl Trait (once per Clash).",
+    "ops": {
+     "at": 4,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "activateFromTokens"
+      }
+     ],
+     "fail": [
+      {
+       "op": "tactic",
+       "which": "A",
+       "n": 3
+      },
+      {
+       "op": "genericToken",
+       "n": -1
+      }
+     ],
+     "critical": [
+      {
+       "op": "clashFlag",
+       "flag": "noAiSpeed"
+      }
+     ],
+     "whenRevealed": [
+      {
+       "op": "genericToken",
+       "n": 1
+      }
+     ],
+     "aura": {
+      "venator": true
+     }
+    }
+   },
+   {
+    "file": "28.png",
+    "name": "Augur",
+    "code": "28A1651",
+    "level": 2,
+    "at": 4,
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "Place a 1x2 Swamp Terrain tile under Augur. Gain the Slimed Condition card.",
+     "fail": "Place a 1x2 Swamp Terrain tile on the space from which Augur was attacked.",
+     "instinct": null,
+     "critical": "Remove all Swamp Terrain tiles from the Clash Board."
+    },
+    "reactWindows": [
+     "fail",
+     "whileRevealed"
+    ],
+    "whenRevealed": null,
+    "whileRevealed": "At the start of the Monster Round, target the space under a Knight closest to Augur. [REACT! window] Place a 1x2 Swamp Terrain tile on that space.",
+    "footer": "FIRSTMEN WARRIORS – BP 2",
+    "unclear": [
+     "code: tiny faint print; best reading 28A1651 (digits partly inferred from the sheet-order sequence 28A1644–28A1661)",
+     "REACT! marker sits on the rule between the FAIL tag and the Fail text (i.e. before the Fail response resolves)"
+    ],
+    "text": "AUGUR / OVERCOME 3+ ▸ Power 1 / [AT] 4 / WOUND: Place a 1x2 Swamp Terrain tile under Augur. Gain the Slimed Condition card. / FAIL: [REACT!] Place a 1x2 Swamp Terrain tile on the space from which Augur was attacked. / CRITICAL: Remove all Swamp Terrain tiles from the Clash Board. / FIRSTMEN WARRIORS – BP 2 / While this BP is revealed: At the start of the Monster Round, target the space under a Knight closest to Augur. [REACT! window] Place a 1x2 Swamp Terrain tile on that space.",
+    "ops": {
+     "at": 4,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "swampUnder",
+       "where": "mob"
+      },
+      {
+       "op": "condition",
+       "id": "Slimed"
+      }
+     ],
+     "fail": [
+      {
+       "op": "swampUnder",
+       "where": "attacker"
+      }
+     ],
+     "critical": [
+      {
+       "op": "removeAllSwamps"
+      }
+     ],
+     "aura": {
+      "augur": true
+     }
+    }
+   },
+   {
+    "file": "29.png",
+    "name": "Legionary",
+    "code": "28A1652",
+    "level": 2,
+    "at": 5,
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "The furthest Mob performs Signature against the Attacker.",
+     "fail": "Tactic A: 3.",
+     "instinct": null,
+     "critical": "You may flip a chosen BP card face down."
+    },
+    "reactWindows": [],
+    "whenRevealed": null,
+    "whileRevealed": "Every Monster in Zone 2 from this Mob has +1 [AT].",
+    "footer": "FIRSTMEN WARRIORS – BP 2",
+    "unclear": [
+     "code: tiny faint print; best reading 28A1652 (digits partly inferred from the sheet-order sequence 28A1644–28A1661)",
+     "icon after the number is a small two-lobed ribcage glyph, read as [AT]"
+    ],
+    "text": "LEGIONARY / OVERCOME 3+ ▸ Power 1 / [AT] 5 / WOUND: The furthest Mob performs Signature against the Attacker. / FAIL: Tactic A: 3. / CRITICAL: You may flip a chosen BP card face down. / FIRSTMEN WARRIORS – BP 2 / While this BP is revealed: Every Monster in Zone 2 from this Mob has +1 [AT].",
+    "notes": [
+     "OVERCOME 3 (두 장의 Legionary는 3+ / 4+로 서로 다름) — 소유자 확인 2026-11-15"
+    ],
+    "ops": {
+     "at": 5,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "mobSignatureAgainst",
+       "which": "furthest"
+      }
+     ],
+     "fail": [
+      {
+       "op": "tactic",
+       "which": "A",
+       "n": 3
+      }
+     ],
+     "critical": [
+      {
+       "op": "flipBPDown"
+      }
+     ],
+     "aura": {
+      "zone2AT": 1
+     }
+    }
+   },
+   {
+    "file": "30.png",
+    "name": "Cestus",
+    "code": "28A1659",
+    "level": 3,
+    "at": 7,
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 5,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Forced Vault. Knockdown.",
+     "critical": "Until the end of Clash, all Firstmen Warrior Attacks have -1 [d10]."
+    },
+    "reactWindows": [],
+    "whenRevealed": null,
+    "whileRevealed": "If a Knight starts their turn or performs a [Move] in Zone 1 from Cestus, they may attack only Cestus this turn. When Cestus attacks, add its Instinct Response to the After Attack.",
+    "footer": "FIRSTMEN WARRIORS – BP 3",
+    "unclear": [
+     "code: tiny faint print; best reading 28A1659 (digits partly inferred from the sheet-order sequence 28A1644–28A1661)",
+     "BP 3 cards print only INSTINCT and CRITICAL responses (no WOUND/FAIL)"
+    ],
+    "text": "CESTUS / OVERCOME 5+ ▸ Power 1 / [AT] 7 / INSTINCT: Forced Vault. Knockdown. / CRITICAL: Until the end of Clash, all Firstmen Warrior Attacks have -1 [d10]. / FIRSTMEN WARRIORS – BP 3 / While this BP is revealed: If a Knight starts their turn or performs a [Move] in Zone 1 from Cestus, they may attack only Cestus this turn. When Cestus attacks, add its Instinct Response to the After Attack.",
+    "notes": [
+     "검은 사각형 흰 인물 아이콘 = 이동 행동 [Move] — 소유자 확인 2026-11-15"
+    ],
+    "ops": {
+     "at": 7,
+     "overcome": {
+      "n": 5,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "instinct": [
+      {
+       "op": "forcedVault"
+      },
+      {
+       "op": "knockdown"
+      }
+     ],
+     "critical": [
+      {
+       "op": "clashFlag",
+       "flag": "firstmenMinusDie"
+      }
+     ],
+     "aura": {
+      "cestus": true,
+      "instinctOnAttack": true
+     }
+    }
+   },
+   {
+    "file": "31.png",
+    "name": "Murmillo",
+    "code": "28A1660",
+    "level": 3,
+    "at": 7,
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 5,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Exhaust your active Weapon [Weapon] card.",
+     "critical": "Until the end of Clash, all Firstmen Warriors have -1 [AT]."
+    },
+    "reactWindows": [],
+    "whenRevealed": "Place 1 Generic token on this card. When you wound Murmillo, if there is a Generic token on this card, discard it and immediately fail instead.",
+    "whileRevealed": "If there are no Generic tokens on this card, Murmillo has -2 [AT]. When Murmillo attacks, add its Instinct Response to the After Attack.",
+    "footer": "FIRSTMEN WARRIORS – BP 3",
+    "unclear": [
+     "code: tiny faint print; best reading 28A1660 (digits partly inferred from the sheet-order sequence 28A1644–28A1661)",
+     "icon after the number is a small two-lobed ribcage glyph, read as [AT]",
+     "BP 3 cards print only INSTINCT and CRITICAL responses (no WOUND/FAIL)"
+    ],
+    "text": "When you reveal this BP: Place 1 Generic token on this card. When you wound Murmillo, if there is a Generic token on this card, discard it and immediately fail instead. / MURMILLO / OVERCOME 5+ ▸ Power 1 / [AT] 7 / INSTINCT: Exhaust your active Weapon [Weapon] card. / CRITICAL: Until the end of Clash, all Firstmen Warriors have -1 [AT]. / FIRSTMEN WARRIORS – BP 3 / While this BP is revealed: If there are no Generic tokens on this card, Murmillo has -2 [AT]. When Murmillo attacks, add its Instinct Response to the After Attack.",
+    "ops": {
+     "at": 7,
+     "overcome": {
+      "n": 5,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "instinct": [
+      {
+       "op": "exhaustActiveWeapon"
+      }
+     ],
+     "critical": [
+      {
+       "op": "clashFlag",
+       "flag": "firstmenMinusAT"
+      }
+     ],
+     "whenRevealed": [
+      {
+       "op": "genericToken",
+       "n": 1
+      }
+     ],
+     "aura": {
+      "murmillo": true,
+      "instinctOnAttack": true
+     }
+    }
+   },
+   {
+    "file": "32.png",
+    "name": "Scissor",
+    "code": "28A1661",
+    "level": 3,
+    "at": 8,
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 5,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Draw AI 3 for another closest Mob from the AI deck or discard pile (prioritize the deck).",
+     "critical": "The Firstmen Warriors flee in fear. You win!"
+    },
+    "reactWindows": [],
+    "whenRevealed": null,
+    "whileRevealed": "Firstmen Warriors gain an additional Signature Activation token. When Scissor attacks, add its Instinct Response to the After Attack.",
+    "footer": "FIRSTMEN WARRIORS – BP 3",
+    "unclear": [
+     "code: tiny faint print; best reading 28A1661 (digits partly inferred from the sheet-order sequence 28A1644–28A1661)",
+     "BP 3 cards print only INSTINCT and CRITICAL responses (no WOUND/FAIL)"
+    ],
+    "text": "SCISSOR / OVERCOME 5+ ▸ Power 1 / [AT] 8 / INSTINCT: Draw AI 3 for another closest Mob from the AI deck or discard pile (prioritize the deck). / CRITICAL: The Firstmen Warriors flee in fear. You win! / FIRSTMEN WARRIORS – BP 3 / While this BP is revealed: Firstmen Warriors gain an additional Signature Activation token. When Scissor attacks, add its Instinct Response to the After Attack.",
+    "ops": {
+     "at": 8,
+     "overcome": {
+      "n": 5,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "instinct": [
+      {
+       "op": "drawAIFor",
+       "which": "closestOther",
+       "level": 3
+      }
+     ],
+     "critical": [
+      {
+       "op": "winClash"
+      }
+     ],
+     "aura": {
+      "extraSignatureToken": true,
+      "instinctOnAttack": true
+     }
+    }
+   },
+   {
+    "file": "33.png",
+    "name": "Retiarius",
+    "code": "28A1656",
+    "level": 3,
+    "at": 5,
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 4,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Gain the Exposed Condition card. Gain a temporary negative Speed [Speed] token.",
+     "critical": "Until the end of Clash, all Firstmen Warriors have -1 [To Hit]."
+    },
+    "reactWindows": [],
+    "whenRevealed": "Place 1 Generic token on this card. If you attack Retiarius and there is a Generic token on this card, discard it and repeat your Attack Roll with -2 [Precision].",
+    "whileRevealed": "When Retiarius attacks, add its Instinct Response to the After Attack.",
+    "footer": "FIRSTMEN WARRIORS – BP 3",
+    "unclear": [
+     "code: tiny faint print; best reading 28A1656 (digits partly inferred from the sheet-order sequence 28A1644–28A1661)",
+     "icon after '±1' is a small swirly fist/gauntlet glyph, read as [To Hit]",
+     "BP 3 cards print only INSTINCT and CRITICAL responses (no WOUND/FAIL)"
+    ],
+    "text": "When you reveal this BP: Place 1 Generic token on this card. If you attack Retiarius and there is a Generic token on this card, discard it and repeat your Attack Roll with -2 [Precision]. / RETIARIUS / OVERCOME 4+ ▸ Power 1 / [AT] 5 / INSTINCT: Gain the Exposed Condition card. Gain a temporary negative Speed [Speed] token. / CRITICAL: Until the end of Clash, all Firstmen Warriors have -1 [To Hit]. / FIRSTMEN WARRIORS – BP 3 / While this BP is revealed: When Retiarius attacks, add its Instinct Response to the After Attack.",
+    "ops": {
+     "at": 5,
+     "overcome": {
+      "n": 4,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "instinct": [
+      {
+       "op": "condition",
+       "id": "Exposed"
+      },
+      {
+       "op": "tempSpeed",
+       "n": -1
+      }
+     ],
+     "critical": [
+      {
+       "op": "clashFlag",
+       "flag": "firstmenMinusToHit"
+      }
+     ],
+     "whenRevealed": [
+      {
+       "op": "genericToken",
+       "n": 1
+      }
+     ],
+     "aura": {
+      "retiarius": true,
+      "instinctOnAttack": true
+     }
+    }
+   },
+   {
+    "file": "34.png",
+    "name": "Hoplomachus",
+    "code": "28A1657",
+    "level": 3,
+    "at": 6,
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 4,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Lose -2 [Vigor].",
+     "critical": "Until the end of Clash, all Firstmen Warrior Attacks cause 2 less [Vigor] loss."
+    },
+    "reactWindows": [],
+    "whenRevealed": null,
+    "whileRevealed": "Knights lose -2 [Vigor] every time they attack a Monster in Zone 2 other than Hoplomachus. When Hoplomachus attacks, add its Instinct Response to the After Attack.",
+    "footer": "FIRSTMEN WARRIORS – BP 3",
+    "unclear": [
+     "code: tiny faint print; best reading 28A1657 (digits partly inferred from the sheet-order sequence 28A1644–28A1661)",
+     "BP 3 cards print only INSTINCT and CRITICAL responses (no WOUND/FAIL)"
+    ],
+    "text": "HOPLOMACHUS / OVERCOME 4+ ▸ Power 1 / [AT] 6 / INSTINCT: Lose -2 [Vigor]. / CRITICAL: Until the end of Clash, all Firstmen Warrior Attacks cause 2 less [Vigor] loss. / FIRSTMEN WARRIORS – BP 3 / While this BP is revealed: Knights lose -2 [Vigor] every time they attack a Monster in Zone 2 other than Hoplomachus. When Hoplomachus attacks, add its Instinct Response to the After Attack.",
+    "ops": {
+     "at": 6,
+     "overcome": {
+      "n": 4,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "instinct": [
+      {
+       "op": "loseVigor",
+       "n": 2
+      }
+     ],
+     "critical": [
+      {
+       "op": "clashFlag",
+       "flag": "firstmenLessVigor"
+      }
+     ],
+     "aura": {
+      "hoplomachus": true,
+      "instinctOnAttack": true
+     }
+    }
+   },
+   {
+    "file": "35.png",
+    "name": "Thraex",
+    "code": "28A1658",
+    "level": 3,
+    "at": 6,
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 4,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Discard.",
+     "critical": "Disable the Battle Tactics Trait."
+    },
+    "reactWindows": [],
+    "whenRevealed": null,
+    "whileRevealed": "Every Monster Attack in Zone 2 from Thraex causes additional -1 [Vigor] loss per hit. When Thraex attacks, add its Instinct Response to the After Attack.",
+    "footer": "FIRSTMEN WARRIORS – BP 3",
+    "unclear": [
+     "code: tiny faint print; best reading 28A1658 (digits partly inferred from the sheet-order sequence 28A1644–28A1661)",
+     "BP 3 cards print only INSTINCT and CRITICAL responses (no WOUND/FAIL)"
+    ],
+    "text": "THRAEX / OVERCOME 4+ ▸ Power 1 / [AT] 6 / INSTINCT: Discard. / CRITICAL: Disable the Battle Tactics Trait. / FIRSTMEN WARRIORS – BP 3 / While this BP is revealed: Every Monster Attack in Zone 2 from Thraex causes additional -1 [Vigor] loss per hit. When Thraex attacks, add its Instinct Response to the After Attack.",
+    "ops": {
+     "at": 6,
+     "overcome": {
+      "n": 4,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "instinct": [
+      {
+       "op": "discard"
+      }
+     ],
+     "critical": [
+      {
+       "op": "disableTrait",
+       "id": "Battle Tactics"
+      }
+     ],
+     "aura": {
+      "zone2VigorPerHit": 1,
+      "instinctOnAttack": true
+     }
+    }
+   }
+  ],
+  "signature": {
+   "file": "sig.png",
+   "name": "Long Throw",
+   "code": "27A1274",
+   "type": "attack",
+   "evasionDice": 3,
+   "evasionDifficulty": 9,
+   "targeting": [
+    "Tactics Target",
+    "Furthest Knight in sight"
+   ],
+   "move": false,
+   "moveTag": "RANGE ATTACK UNLIMITED",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "+1 [d10]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "For each hit lose -1 [Vigor].",
+    "Tactic B: 2. [Peril Check]."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:1"
+   ],
+   "afterAttack": "This Firstman Warrior moves 2 spaces away from the Target.",
+   "footer": "FIRSTMEN WARRIORS",
+   "unclear": [
+    "code: illegible at screenshot size; best reading 27A1274 (continues the AI sequence 27A1256–27A1273)",
+    "read from a small screenshot; no 'Tactic A' line is printed (only 'Tactic B: 2.')"
+   ],
+   "text": "LONG THROW / RANGE SIGNATURE / Evasion 3 dice, 9+ / TARGETING: • Tactics Target • Furthest Knight in sight [REACT!] / RANGE ATTACK UNLIMITED [Heat 3+ ▸ +1 [d10]] / For each hit lose -1 [Vigor]. / Tactic B: 2. [Peril Check]. [REACT!] / AFTER ATTACK / This Firstman Warrior moves 2 spaces away from the Target. / FIRSTMEN WARRIORS",
+   "ops": {
+    "targeting": [
+     "Tactics Target",
+     "Furthest Knight in sight"
+    ],
+    "move": false,
+    "gates": [
+     {
+      "op": "evasionDice",
+      "stat": "heat",
+      "gte": 3,
+      "n": 1
+     }
+    ],
+    "before": [],
+    "effects": [
+     {
+      "op": "loseVigorPerHit",
+      "n": 1,
+      "perilCheck": true
+     },
+     {
+      "op": "tactic",
+      "which": "B",
+      "n": 2
+     }
+    ],
+    "afterAttack": [
+     {
+      "op": "moveAway",
+      "n": 2
+     }
+    ],
+    "afterFinalAttack": null,
+    "range": "unlimited"
+   }
+  },
+  "routine": {
+   "file": "36.png",
+   "name": "Beast Calling",
+   "code": null,
+   "type": "routine",
+   "text": "Trigger the Long Howl Trait (once per Clash). Escalate 1.",
+   "footer": "FIRSTMEN WARRIORS",
+   "unclear": [
+    "no card code visible in the scan"
+   ],
+   "ops": [
+    {
+     "op": "longHowl",
+     "oncePerClash": true
+    },
+    {
+     "op": "escalateX",
+     "n": 1
+    }
+   ]
+  }
+ },
+ "battleTactics": {
+  "Horde Tactics": {
+   "file": "37.png",
+   "name": "Horde Tactics",
+   "kind": "battleTactics",
+   "type": "BATTLE TACTICS",
+   "code": "25A1038",
+   "tacticsTarget": "Closest non-Engaged Knight",
+   "extraLine": null,
+   "tacticA": "Tactic A: X: Gangup X.",
+   "tacticB": "Tactic B: X: Swarm X.",
+   "endOfMonsterRound": "Starting from the lowest number, each Mob moves 2 spaces to another closest Mob until adjacent.",
+   "footer": "FIRSTMEN WARRIORS",
+   "text": "HORDE TACTICS / BATTLE TACTICS / Tactics Target: Closest non-Engaged Knight / Tactic A: X: Gangup X. / Tactic B: X: Swarm X. / FIRSTMEN WARRIORS / End of Monster Round: Starting from the lowest number, each Mob moves 2 spaces to another closest Mob until adjacent.",
+   "unclear": [
+    "code: very faint; best reading 25A1038 (prefix could be 25A/26A/28A; last digits inferred from sequence 1038–1040)"
+   ],
+   "ops": {
+    "target": "Closest non-Engaged Knight",
+    "loneExtraVigor": 0,
+    "A": [
+     {
+      "op": "gangup",
+      "n": "X"
+     }
+    ],
+    "B": [
+     {
+      "op": "swarm",
+      "n": "X"
+     }
+    ],
+    "endOfMonsterRound": {
+     "move": 2,
+     "toward": "closestMob"
+    }
+   }
+  },
+  "Predator Tactics": {
+   "file": "38.png",
+   "name": "Predator Tactics",
+   "kind": "battleTactics",
+   "type": "BATTLE TACTICS",
+   "code": "25A1039",
+   "tacticsTarget": "Closest Lone Knight",
+   "extraLine": "Lone Knights additionally lose -2 [Vigor].",
+   "tacticA": "Tactic A: X: Pull X, Drag X.",
+   "tacticB": "Tactic B: X: Pull X, Drag X.",
+   "endOfMonsterRound": "Starting from the lowest number, each Mob moves 2 spaces directly away from most Knights.",
+   "footer": "FIRSTMEN WARRIORS",
+   "text": "PREDATOR TACTICS / BATTLE TACTICS / Tactics Target: Closest Lone Knight / Lone Knights additionally lose -2 [Vigor]. / Tactic A: X: Pull X, Drag X. / Tactic B: X: Pull X, Drag X. / FIRSTMEN WARRIORS / End of Monster Round: Starting from the lowest number, each Mob moves 2 spaces directly away from most Knights.",
+   "unclear": [
+    "code: very faint; best reading 25A1039 (prefix could be 25A/26A/28A; last digits inferred from sequence 1038–1040)",
+    "Tactic A and Tactic B both print 'Pull X, Drag X.' (identical, as printed)"
+   ],
+   "ops": {
+    "target": "Closest Lone Knight",
+    "loneExtraVigor": 2,
+    "A": [
+     {
+      "op": "pull",
+      "n": "X"
+     },
+     {
+      "op": "drag",
+      "n": "X"
+     }
+    ],
+    "B": [
+     {
+      "op": "pull",
+      "n": "X"
+     },
+     {
+      "op": "drag",
+      "n": "X"
+     }
+    ],
+    "endOfMonsterRound": {
+     "move": 2,
+     "awayFromMostKnights": true
+    }
+   }
+  },
+  "Shepherd Tactics": {
+   "file": "39.png",
+   "name": "Shepherd Tactics",
+   "kind": "battleTactics",
+   "type": "BATTLE TACTICS",
+   "code": "25A1040",
+   "tacticsTarget": "Closest Grouped Knight",
+   "extraLine": null,
+   "tacticA": "Tactic A: X: Herd X.",
+   "tacticB": "Tactic B: X: Splinter X.",
+   "endOfMonsterRound": "Starting from the lowest number, each Mob moves 2 spaces to another closest Mob until adjacent.",
+   "footer": "FIRSTMEN WARRIORS",
+   "text": "SHEPHERD TACTICS / BATTLE TACTICS / Tactics Target: Closest Grouped Knight / Tactic A: X: Herd X. / Tactic B: X: Splinter X. / FIRSTMEN WARRIORS / End of Monster Round: Starting from the lowest number, each Mob moves 2 spaces to another closest Mob until adjacent.",
+   "unclear": [
+    "code: very faint; best reading 25A1040 (prefix could be 25A/26A/28A; last digits inferred from sequence 1038–1040)"
+   ],
+   "ops": {
+    "target": "Closest Grouped Knight",
+    "loneExtraVigor": 0,
+    "A": [
+     {
+      "op": "herd",
+      "n": "X"
+     }
+    ],
+    "B": [
+     {
+      "op": "splinter",
+      "n": "X"
+     }
+    ],
+    "endOfMonsterRound": {
+     "move": 2,
+     "toward": "closestMob"
+    }
+   }
+  }
+ },
+ "troll": {
+  "ai": {
+   "file": "09.png",
+   "name": "Rampage Strike",
+   "code": "27A1284",
+   "level": 2,
+   "type": "attack",
+   "evasionDice": 2,
+   "evasionDifficulty": "9+",
+   "preTargeting": null,
+   "targeting": [
+    "Closest Knight in front",
+    "Closest Knight in sight"
+   ],
+   "move": true,
+   "moveTag": "MOVE, PUSHBACK 3 & ATTACK",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "+1 [d10]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "Gain the Exposed Condition card.",
+    "For each hit lose -2 [Vigor]. [Peril Check]. Delay.",
+    "Knockback 4."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:1"
+   ],
+   "afterAttack": null,
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "WHITE APE TROLL – AI 2",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 27A1284, corroborated by the sheet-order sequence pattern"
+   ],
+   "text": "RAMPAGE STRIKE / ATTACK / Evasion 2 dice, 9+ / TARGETING: • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE, PUSHBACK 3 & ATTACK [Heat 3+ ▸ +1 [d10]] / Gain the Exposed Condition card. / For each hit lose -2 [Vigor]. [Peril Check]. Delay. [REACT!] / Knockback 4. / WHITE APE TROLL – AI 2",
+   "ops": {
+    "targeting": [
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "move": true,
+    "gates": [
+     {
+      "op": "evasionDice",
+      "stat": "heat",
+      "gte": 3,
+      "n": 1
+     },
+     {
+      "op": "pushback",
+      "stat": "always",
+      "n": 3
+     }
+    ],
+    "before": [],
+    "effects": [
+     {
+      "op": "condition",
+      "id": "Exposed"
+     },
+     {
+      "op": "loseVigorPerHit",
+      "n": 2,
+      "perilCheck": true
+     },
+     {
+      "op": "delay"
+     },
+     {
+      "op": "knockback",
+      "n": 4
+     }
+    ],
+    "afterAttack": null,
+    "afterFinalAttack": null
+   }
+  },
+  "bp": {
+   "file": "25.png",
+   "name": "Muscular Chest",
+   "code": "28A1671",
+   "level": 2,
+   "at": 6,
+   "overcomeTag": "OVERCOME",
+   "overcome": {
+    "n": 4,
+    "effect": "Power 1"
+   },
+   "responses": {
+    "wound": "Pushback 4.",
+    "fail": "Gain the Exposed Condition card.",
+    "instinct": null,
+    "critical": "You may perform a Bonus Attack with Auto-break 2!"
+   },
+   "reactWindows": [
+    "wound"
+   ],
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "footer": "WHITE APE TROLL – BP 2",
+   "unclear": [
+    "code: tiny low-resolution print; best reading 28A1671, corroborated by the sheet-order sequence pattern",
+    "OVERCOME number blurry; best reading 4+"
+   ],
+   "text": "MUSCULAR CHEST / OVERCOME 4+ ▸ Power 1 / [AT] 6 / WOUND: [REACT!] Pushback 4. / FAIL: Gain the Exposed Condition card. / CRITICAL: You may perform a Bonus Attack with Auto-break 2! / WHITE APE TROLL – BP 2",
+   "ops": {
+    "at": 6,
+    "overcome": {
+     "n": 4,
+     "ops": [
+      {
+       "op": "power",
+       "n": 1
+      }
+     ]
+    },
+    "wound": [
+     {
+      "op": "pushback",
+      "n": 4
+     }
+    ],
+    "fail": [
+     {
+      "op": "condition",
+      "id": "Exposed"
+     }
+    ],
+    "critical": [
+     {
+      "op": "bonusAttack",
+      "who": "self",
+      "optional": true,
+      "autoBreak": 2
+     }
+    ]
+   }
+  }
+ },
+ "clashSetup": {
+  "_source": "Sunken Kingdom Codex p.46–47 (Firstmen Warriors Clash)",
+  "requiredTiles": {
+   "swamp 1x2": 8,
+   "swamp 2x2": 1,
+   "great mangrove": 3,
+   "rubble 2x2": 2,
+   "rubble L": 1
+  },
+  "steps": [
+   "Standard Preparations (Rulebook p.44)",
+   "Monster Positioning: Randomly place Firstmen Warrior miniatures numbered 1–6 on the designated spaces (facing per arrows). Then place 6 BP 1 cards face down in a random order on spaces 1–6 of the Mob track.",
+   "Additional Setup: Follow Trait instructions (Battle Tactics: draw one Battle Tactics card). Set aside all Battle Tactics cards not used in this Clash.",
+   "Numbered Terrain tiles: Great Mangrove 1–3."
+  ],
+  "mobStart": [
+   {
+    "cell": "G5",
+    "facing": "right"
+   },
+   {
+    "cell": "G6",
+    "facing": "right"
+   },
+   {
+    "cell": "G7",
+    "facing": "right"
+   },
+   {
+    "cell": "D5",
+    "facing": "right"
+   },
+   {
+    "cell": "D6",
+    "facing": "right"
+   },
+   {
+    "cell": "D7",
+    "facing": "right"
+   }
+  ],
+  "mobTrack": {
+   "1": 6
+  },
+  "knightStart": [
+   "H9",
+   "F9",
+   "E9",
+   "C9"
+  ],
+  "terrain": [
+   {
+    "tile": "great mangrove",
+    "cells": [
+     "J7",
+     "J8",
+     "I7",
+     "I8"
+    ],
+    "num": 1
+   },
+   {
+    "tile": "great mangrove",
+    "cells": [
+     "D11",
+     "D12",
+     "C11",
+     "C12"
+    ],
+    "num": 2
+   },
+   {
+    "tile": "great mangrove",
+    "cells": [
+     "E2",
+     "E3",
+     "D2",
+     "D3"
+    ],
+    "num": 3
+   },
+   {
+    "tile": "swamp",
+    "cells": [
+     "J1",
+     "J2"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "cells": [
+     "J3",
+     "J4"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "cells": [
+     "I1",
+     "H1"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "cells": [
+     "J12",
+     "J13"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "cells": [
+     "J14",
+     "I14"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "cells": [
+     "A1",
+     "A2"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "cells": [
+     "A3",
+     "A4"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "cells": [
+     "D13",
+     "C13"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "cells": [
+     "B13",
+     "B14",
+     "A13",
+     "A14"
+    ],
+    "shape": "2x2"
+   },
+   {
+    "tile": "rubble",
+    "cells": [
+     "I2",
+     "I3",
+     "H2",
+     "H3"
+    ],
+    "shape": "2x2"
+   },
+   {
+    "tile": "rubble",
+    "cells": [
+     "B5",
+     "B6",
+     "A5",
+     "A6"
+    ],
+    "shape": "2x2"
+   },
+   {
+    "tile": "rubble",
+    "cells": [
+     "I12",
+     "I13",
+     "H13",
+     "G13"
+    ],
+    "shape": "L"
+   }
+  ],
+  "unclear": [
+   "지형 칸 위치는 코덱스 도식에서 읽음 — 확인 필요"
+  ]
+ },
+ "rulings": [
+  "Tactic A/B lines resolve in card order on a hit, using the drawn Battle Tactics card with X = the printed number; on BP Fail responses they target the Attacker [해석, 확인 필요]",
+  "Tactics Target = the Battle Tactics card's targeting line (Closest non-Engaged / Closest Lone / Closest Grouped Knight)",
+  "Predator Tactics \"Lone Knights additionally lose -2 Vigor\" applies to every Firstmen Attack that causes Vigor loss to a Lone Knight [해석, 확인 필요]",
+  "Mangrove Deployment: the new Warrior (BP one level higher, leftmost empty track space) waits on the Mangrove tile — off the Clash Board — until the End of the Knight Round, then moves adjacent to that tile onto the free space closest to any Knight (lowest number first)",
+  "RANGE ATTACK UNLIMITED: no movement; any Knight in sight can be targeted",
+  "LAND ON TOP: the Warrior moves onto the Target's space, the Target is Displaced to a front space; the Zone is the card diagram around the Warrior",
+  "Iron Rain \"every Mob adjacent to the Attacker\": Mobs adjacent to the attacking Warrior [해석, 확인 필요]",
+  "Long Howl: the White Ape Troll (2x2) Spawns on the centre (F7/F8/E7/E8, Displacing miniatures), faces the most Knights, uses the Firstmen To Hit/AT/Vigor bonuses, activates after the Warriors each Monster Round with Rampage Strike; Knights attacking it always hit Muscular Chest; wounding it Escalates the Firstmen AI deck, adds a Generic token and a Single Wound to the Wound Stack; 4 tokens → it flees",
+  "Rampage Strike \"MOVE, PUSHBACK 3 & ATTACK\": Pushback 3 on a hit, before the effects [해석, 확인 필요]",
+  "\"When X attacks, add its Instinct Response to the After Attack\": the revealed BP3 Warrior's own Instinct Response is resolved against its Target after its attacks"
+ ]
+}

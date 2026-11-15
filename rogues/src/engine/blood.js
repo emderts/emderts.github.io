@@ -68,7 +68,7 @@ export const BloodMixin = {
   },
   /** Subterranean Menace: a Worm outside the board that is about to activate goes to the Paleburrow closest to the Priority Target. */
   async emergeIfOffboard(m) {
-    if (!m || this.onBoard(m)) return true; const pt = this.priorityTarget && this.priorityTarget.alive ? this.priorityTarget : this.alive()[0]; if (!pt) return false;
+    if (!m || this.onBoard(m)) return true; if (m.mangrove) { this.say(`Mob #${m.n}: Great Mangrove 위 — 활성화 불가`); return false; } const pt = this.priorityTarget && this.priorityTarget.alive ? this.priorityTarget : this.alive()[0]; if (!pt) return false;
     const free = this.freePaleburrows(); if (!free.length) { this.say(`Mob #${m.n}: 빈 Paleburrow 없음 — 보드 밖에 머묾`); return false; }
     const d = c => this.board.distance([c], [pt.pos]); const best = Math.min(...free.map(d)); const cand = free.filter(c => d(c) === best);
     const cell = cand.length > 1 ? await this.ask({ type: 'move', text: `Mob #${m.n} 등장: Priority Target(${pt.name})에 가장 가까운 Paleburrow (동률)`, cells: cand, options: cand.map(c => ({ label: `${this.board.label(c)} (#${c.num})`, value: c })) }) || cand[0] : cand[0];
@@ -176,7 +176,7 @@ export const BloodMixin = {
         const adj = M.mobs.filter(m => m !== src && Math.abs(m.n - src.n) === 1); if (!adj.length) { this.mobDiscardBlood(src, n); return true; }
         const m = await this.pickMob(adj, `Blood ${n}을 옮길 인접 BP 카드 (Mob track)`); src.blood -= n; this.mobAddBlood(m, n, `#${src.n}에서 이동`); return true;
       }
-      case 'moveAndBonusAttack': { if (!k || !k.alive) return true; if (!await this.yesNo(`${k.name}: ${o.upTo ? '최대 ' : ''}${o.n}칸 이동 후 Bonus Attack?`, true)) return true; await this.knightMove(k, o.n); if (this.canAttack(k)) k.bonusAttacks++; else this.say(`${k.name}: 인접한 Mob 없음 → Bonus Attack 불가`); return true; }
+      case 'moveAndBonusAttack': { if (o.who === 'other') { const others = this.alive().filter(x => x !== k); if (!others.length) return true; const id = await this.ask({ type: 'pickKnight', text: `다른 기사 선택 — ${o.upTo ? '최대 ' : ''}${o.n}칸 이동 후 Bonus Attack`, options: others.map(x => ({ label: x.name, value: x.id })) }); const x = others.find(y => y.id === id) || others[0]; return this.bloodOp({ ...o, who: null }, { ...ctx, attacker: x, target: x }); } if (!k || !k.alive) return true; if (!await this.yesNo(`${k.name}: ${o.upTo ? '최대 ' : ''}${o.n}칸 이동 후 Bonus Attack?`, true)) return true; await this.knightMove(k, o.n); if (this.canAttack(k)) k.bonusAttacks++; else this.say(`${k.name}: 인접한 Mob 없음 → Bonus Attack 불가`); return true; }
       default: return false;
     }
   },

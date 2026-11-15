@@ -31,9 +31,9 @@ export const MobMixin = {
     return mob;
   },
   freeSlot() { for (let n = 1; n <= 10; n++) if (!this.monster.mobs.some(m => m.n === n)) return n; return null; },
-  mobAt(cell) { return this.monster.isMob ? this.monster.mobs.find(m => cellEq(m.cells[0], cell)) || null : null; },
+  mobAt(cell) { if (!this.monster.isMob) return null; if (this.troll && this.troll.cells.some(c => cellEq(c, cell))) return this.troll; return this.monster.mobs.find(m => cellEq(m.cells[0], cell)) || null; },
   monsterOccupies(cell) { return this.monster.isMob ? !!this.mobAt(cell) : this.monster.cells.some(m => cellEq(m, cell)); },
-  adjacentMobs(k) { return this.monster.mobs.filter(m => m.cells.length && this.board.adjacent(m.cells[0], k.pos)); },
+  adjacentMobs(k) { const a = this.monster.mobs.filter(m => m.cells.length && this.board.adjacent(m.cells[0], k.pos)); if (this.troll && this.troll.cells.some(c => this.board.adjacent(c, k.pos))) a.push(this.troll); return a; },
   engaged(k) { return this.monster.isMob ? this.adjacentMobs(k).length > 0 : this.adjacentToMonster(k); },
   mobLabel(m) { return `#${m.n} ${m.cells[0] ? this.board.label(m.cells[0]) : '보드 밖'}${m.revealed ? ' ' + m.card.name : ` (BP${m.card.level}?)`}`; },
   async withMob(mob, fn) { const M = this.monster; const prev = M.cur; M.cur = mob; try { return await fn(); } finally { M.cur = prev; } },
@@ -45,14 +45,14 @@ export const MobMixin = {
   // ---------- auras of revealed BPs ----------
   mobAura(key) { let n = 0; for (const m of this.monster.mobs || []) if (m.revealed && m.card.ops.aura && typeof m.card.ops.aura[key] === 'number') n += m.card.ops.aura[key]; return n; },
   mobAT(mob) {
-    const M = this.monster; let at = mob.card.at + M.bonuses.at + M.modifiers.at + (this.mobArmorDisabled ? 0 : mob.armor) + this.difficultTerrainAT(mob.cells) + (M.hasTrait('Scab Armor') ? mob.blood || 0 : 0);
+    const M = this.monster; let at = mob.card.at + M.bonuses.at + M.modifiers.at + (this.mobArmorDisabled ? 0 : mob.armor) + this.difficultTerrainAT(mob.cells) + (M.hasTrait('Scab Armor') ? mob.blood || 0 : 0) + (this.monsterDef.battleTactics ? this.firstmenAT(mob) : 0);
     for (const o of M.mobs) { if (o === mob || !o.revealed || !o.cells.length || !mob.cells.length) continue; const a = o.card.ops.aura && o.card.ops.aura.atOtherMobsZone; if (a && Math.max(Math.abs(o.cells[0].c - mob.cells[0].c), Math.abs(o.cells[0].r - mob.cells[0].r)) <= a.z) at += a.n; }
     return at;
   },
 
   // ---------- Monster Round (p.47) ----------
   async mobMonsterRound() {
-    const M = this.monster;
+    const M = this.monster; await this.firstmenStartMR();
     for (const m of M.mobs) for (const t of m.tokens) t.ready = true;
     for (let guard = 0; guard < 40; guard++) {
       const mob = M.mobs.find(m => m.tokens.some(t => t.ready)); if (!mob) break; const tok = mob.tokens.find(t => t.ready);
@@ -61,6 +61,7 @@ export const MobMixin = {
       if (M.mobs.includes(mob) && mob.tokens.includes(tok)) this.moveToken(mob.n, tok, true); else tok.ready = false;
       await this.afterAction(); this.checkEnd();
     }
+    await this.firstmenEndMR();
     // "While this BP is revealed: At the end of the Monster Round, …"
     for (const mob of [...M.mobs]) { const a = mob.revealed && mob.card.ops.aura && mob.card.ops.aura.endOfMonsterRound; if (!a || !M.mobs.includes(mob)) continue; this.say(`Monster Round 종료 — ${mob.card.name} (#${mob.n})`); await this.withMob(mob, () => this.fx.runMonsterOps(a, { source: mob, targets: this.alive() })); }
     this.checkEnd();
@@ -158,7 +159,7 @@ export const MobMixin = {
   },
   killMob(mob) {
     const M = this.monster; mob.lastCell = mob.cells[0]; this.board.remove(mob.cells); M.mobs = M.mobs.filter(x => x !== mob);
-    const w = mob.card.level === 3 ? 2 : 1; M.woundStack.push({ card: mob.card, wounds: w, mob }); M.escalateAI(mob.card.level); this.queueMobDeath(mob); this.etherealOnDeath();
+    const w = mob.card.level === 3 ? 2 : 1; M.woundStack.push({ card: mob.card, wounds: w, mob }); M.escalateAI(mob.card.level); this.queueMobDeath(mob); this.etherealOnDeath(); if (this.monsterDef.battleTactics) { (this.pendingMangrove = this.pendingMangrove || []).push(mob); if (M.hasTrait('Retribution') && M.woundStack.filter(w => !w.troll).length === 4) this.retributionPending = true; if (mob.card.ops.aura && mob.card.ops.aura.extraSignatureToken) for (const o of M.mobs) o.tokens = o.tokens.filter(t => t.extra !== mob.n); }
     for (const tok of [...mob.tokens]) this.moveToken(mob.n, tok, false); mob.tokens = []; mob.cells = []; mob.dead = true;
     if (M.hasTrait('Necrofusion')) { this.necro += w; this.say(`Necrofusion 토큰 ${this.necro}/3`); }
     this.say(`Mob #${mob.n} ${mob.card.name} 처치${w === 2 ? ' (Double Wound)' : ''}`, 'wound'); return w;
@@ -166,6 +167,7 @@ export const MobMixin = {
   async mobAfterAction() {
     if (this.bloodOn || this.monster.hasTrait('Subterranean Menace')) await this.bloodAfterAction();
     if (this.monster.hasTrait('Ethereal Unity')) await this.etherealSpawn();
+    if (this.monsterDef.battleTactics) { await this.firstmenDeaths(); if (this.retributionPending) { this.retributionPending = false; this.say('Retribution: 4번째 BP가 Wound Stack에 — Long Howl + White Ape Troll 활성화', 'ai'); await this.longHowl(); await this.trollActivate(); } }
     if (this.monster.hasTrait('Necrofusion') && this.necro >= 3 && !this._spawning) { this.necro = 0; this._spawning = true; try { this.say('Necrofusion: 토큰 3 → Spawn + Signature', 'ai'); const mob = await this.spawnMob(); if (mob) await this.withMob(mob, () => this.performSignature()); } finally { this._spawning = false; } this.checkEnd(); }
   },
   /** Escalate the lowest (unrevealed) Mob: BP → a random BP one level higher in its place, and AI Escalation (p.62). */
@@ -177,7 +179,7 @@ export const MobMixin = {
     M.escalateAI(lv);
   },
   async revealMob(mob) {
-    if (mob.revealed) return; mob.revealed = true; this.say(`BP 공개: #${mob.n} ${mob.card.name} (AT ${this.mobAT(mob)})`, 'bp');
+    if (mob.revealed) return; mob.revealed = true; if (mob.card.ops.aura && mob.card.ops.aura.extraSignatureToken) { const t = { type: 'S', ready: false, extra: mob.n }; this.moveToken(mob.n, t, false); this.say(`${mob.card.name}: 추가 Signature Activation 토큰`); } this.say(`BP 공개: #${mob.n} ${mob.card.name} (AT ${this.mobAT(mob)})`, 'bp');
     if (mob.card.ops.whenRevealed) { this.say(`When revealed — ${mob.card.name}`); await this.withMob(mob, () => this.fx.runMonsterOps(mob.card.ops.whenRevealed, { source: mob, targets: this.alive() })); }
   },
   async pickMob(list, text) { if (!list.length) return null; if (list.length === 1) return list[0]; const n = await this.ask({ type: 'pick', kind: 'mob', text, options: list.map(m => ({ label: this.mobLabel(m), value: m.n })) }); return list.find(m => m.n === n) || list[0]; },
