@@ -119,3 +119,38 @@ export const GEAR_QUESTIONS = [
   ['추가 슬롯', '"You have an additional [Hand/Support] slot" — 로드아웃 슬롯 확장을 캠페인 장착 화면에 반영할지 (Automail Hand, Geistling, Dragon Plattenpanzer).'],
   ['Haunted Cutlass', 'Clash 중 얻은 Gold를 캠페인 Gold에 바로 더해도 되는가?'],
 ];
+// Renholder (added 2026-11-16) — interpretations and missing material.
+export const KNIGHT_RULINGS = [
+  ['Renholder — Heroic Arc 아이콘', '검은 역삼각형 = Diversion, 무늬 있는 역삼각형 = Improved Diversion, 네 방향 화살표가 달린 인물 = Reposition, 손 모양 = Tireless로 판독.'],
+  ['Renholder — 판독 못 한 Heroic Arc 아이콘 (미적용)', 'Tenebrist L6 · Harmonized Soul L7 첫 옵션의 물결 화살표, Hermetic Master L6 두 번째 아이콘. 어떤 토큰인지 알려주시면 적용.'],
+  ['Renholder — Devil 등급 Portrait', 'Knight Power die 아이콘이 빨간 주사위 2개 → 빨간 Knight Power die 2개로 처리.'],
+  ['Magic Limit', '플레이 중인 Talent의 Magic Limit 중 가장 높은 값(+Hermetic Master Peril Arc의 +1)을 적용. 한도를 넘는 Magic 토큰은 놓지 못한다.'],
+  ['비용 선택', '"+1 Heat or -1 Magic"처럼 대안이 있으면 둘 다 낼 수 있을 때 플레이어가 고른다. X 비용은 사용할 때 값을 고른다.'],
+  ['Vigor 비용', 'Vigor를 비용으로 낼 때 0 이하로는 못 내린다. 비용으로 잃은 Vigor에는 Peril Check를 하지 않는다 (Power from Pain은 발동).'],
+  ['주문 공격 (Dazzling Light, Burning Barrage, Blackfire, Final Flash)', '카드에 적힌 Dice / Precision / Power die / Bonus Power로 임시 Weapon을 만들어 공격. "Power die"는 명중당 그 색 주사위 1개(Burning Barrage는 빨강 2개). 사거리 표기가 없는 주문은 근접(1칸).'],
+  ['Area 공격 미구현', 'Burning Barrage(같은 방향의 모든 칸), Blackfire(대상 주변 Zone 1)는 지금 대상 하나만 공격한다.'],
+  ['Final Flash', 'Wound를 주고 Total Power가 AT를 3 이상 넘으면 Response를 무시하고, 공격이 끝난 뒤 같은 공격을 한 번 더 한다.'],
+  ['Mirage', 'Monster Attack의 대상이 되었을 때 사용: Guard 2(DEVIL 3 / DRAGON 4) + Priority Target 토큰을 Passion이 가장 높은 다른 기사에게.'],
+  ['Shadow Manipulation', '몬스터가 AI를 뽑기 직전에 사용 여부를 묻고, 쓰면 AI 대신 Signature를 수행한다.'],
+  ['Soulscorch', 'Wound를 줄 때 사용. 임시 AT -1(다음 Power Roll), To Hit -1(다음 Attack Roll), Precision -1(다음 Monster Attack의 Evasion 난이도 -1) 토큰을 각각 1개.'],
+  ['Incandescent Aura', '다음 본인 턴 시작까지, 몬스터가 일반 이동으로 인접 칸에 들어올 때 이동당 한 번 임시 AT -1 토큰.'],
+  ['Infernal Bargain', 'Second Chance와 같은 처리(뽑은 Mortis를 무시하고 다시 뽑기). DEVIL이면 다른 기사의 Mortis에도 쓸 수 있다. JUDICIUM이면 비용이 +1 Heat 또는 -1 Magic.'],
+  ['Placeholder', '토큰이 없으면 본인 칸에 놓고, 이미 있으면 토큰을 버리고 그 칸으로 이동(막혀 있으면 가장 가까운 빈 칸).'],
+  ['Shadows Between Worlds', '프리 액션 사용, Priority Target 넘기기, Delay/Cooldown에 있는 동안 Evasion +1만 구현. Advanced Bypass · 대상 제외 · Reaction 사용은 미구현.'],
+  ['Brain over Brawn', '사용해 두면 다음 공격에 적용: Rear 칸이면 Deadly, 아니면 Catalyst Weapon일 때 Magic 1로 조건 무시.'],
+  ['Critical Light', 'Attack Roll의 Crit Chance, 또는 Evasion Roll에서 Crit die(첫 주사위)가 10일 때 Magic 1.'],
+  ['Power from Camaraderie', '다른 기사가 Technique를 쓸 때 Knight Round당 1회 · Monster Round당 1회. Squire는 미구현.'],
+  ['Aura of Illumination', '켜진 동안 본인과 Zone 1의 기사가 공격할 때 Fire 1, Crit Chance면 +1 Power. 다음 본인 턴 종료에 토큰을 버린다.'],
+  ['Cloak of Shadows', '보드에 놓인 Magic 토큰은 Clash가 끝날 때까지 남는다. 그 칸이나 Zone 1의 기사는 공격받을 때 Guard 2, Crit die가 10이면 임시 Evasion +1 토큰.'],
+  ['Sympathetic Magic / Manifestation', '다른 기사가 명중당하거나 Wound에 실패하면 그 기사 보드에 Magic 1. Manifestation은 본인 턴 프리 액션으로만(Reaction 사용 미구현), 효과는 그 라운드 끝까지.'],
+  ['Ebb and Flow of the Arcane', 'Heat가 다른 값에서 0이 되거나 Heat Limit에 닿을 때마다 Magic 1 (JUDICIUM이면 2).'],
+  ['Unholy Furnace', '턴당 1회 Magic 1로 Heat Refresh. 턴 시작 Refresh 때 Card Refresh ↔ Heat Refresh 맞바꾸기를 묻는다.'],
+  ['Peril Arc 보너스', 'Tenebrist "Guard 1"과 Hermetic Master "+1 Magic Limit"만 적용. Harmonized Soul의 "[아이콘] 1"은 판독 불확실로 미적용.'],
+  ['Renholder — Rapport boon', '"Start of Clash: Cantrip 1" — Rogue\'s Path에서 적용할지 미정이라 현재 미적용.'],
+  ['Renholder — First Death', '이벤트 결말 문단을 스캔에서 찾지 못해 Fleischritter와 같은 보상(+1 Sigh of the Graal)으로 처리.'],
+];
+export const KNIGHT_QUESTIONS = [
+  ['Crude Bow', 'Renholder 시작 장비(Merchant Gear)인데 카드가 아직 없음 — 지금은 Knighves만 들고 시작.'],
+  ['Doublestrike Enchantment / Power Overwhelming', 'BP를 여러 장 뽑는 공격이라 미구현 (Exert로만 사용 가능).'],
+  ['다른 기사', 'Kara · Ser Sonch · Paracelsa · Stoneface · Ser Ubar는 Talent/Heroic Arc 시트는 있으나 Knightbook(Setup)과 Technique 카드가 필요.'],
+];

@@ -1,7 +1,7 @@
 // Generates docs/audit/index.html: every transcribed table/card ↔ how the engine implements it ↔ which test covers it.
 // Run: node tools/audit.mjs   (re-run after every data/engine change)
 import fs from 'fs';
-import { GEAR_RULINGS, GEAR_QUESTIONS } from './gear_rulings.mjs';
+import { GEAR_RULINGS, GEAR_QUESTIONS, KNIGHT_RULINGS, KNIGHT_QUESTIONS } from './gear_rulings.mjs';
 import path from 'path';
 import { parseGearText, KEYWORD_STATUS } from '../src/engine/gearkw.js';
 const rd = p => JSON.parse(fs.readFileSync(p, 'utf8'));
@@ -235,6 +235,8 @@ sec.push(`<section id="campaign"><h2>11. 캠페인 레이어 — Rosegraal 루�
 <tr><td>방어 상시</td><td>Soak X, Poison Resilience X, Tumble, Stalwart, Rocksteady, Braced, ±Speed, +Virtue, +Evasion</td><td>Tumble = Crash 시 d10 6+ 무시 · Stalwart = Knockback 무시 선택</td></tr>
 <tr><td>타이밍 능력</td><td>Second Chance, Lifeline, Reflex 계열(REACT 창), Guard X, Defy 계열, Precise, Deploy X, Bypass, 비용형 Braced/Stalwart</td><td>Mortis/Judicium 다시 뽑기 · 지형 사망 대신 Displace · Evasion 재굴림 전 +X 분배 · Judgement 명중 무시 · BP 버림 더미 공격 · 시작 전 이동 · 미니어처 통과</td></tr>
 <tr><td>방어 활성 (비용)</td><td>Block / Advanced / Superior, Dodge 계열, Reinforce 계열</td><td>Evasion Roll 전에 사용 여부를 묻고 Heat·Exhaust·Discard·Charge 비용 지불. 능력당 라운드 1회</td></tr></table>
+<h3>Renholder — 확인 필요 (${KNIGHT_RULINGS.length})</h3><table><tr><th>항목</th><th>현재 구현 [해석, 확인 필요]</th></tr>${KNIGHT_RULINGS.map(([a, b]) => `<tr><td>${esc(a)}</td><td>${esc(b)}</td></tr>`).join('')}</table>
+<h3>Renholder — 없는 자료 · 미구현 (${KNIGHT_QUESTIONS.length})</h3><table><tr><th>항목</th><th>내용</th></tr>${KNIGHT_QUESTIONS.map(([a, b]) => `<tr><td>${esc(a)}</td><td class="warn">${esc(b)}</td></tr>`).join('')}</table>
 <h3>확인 필요 — 해석 (${GEAR_RULINGS.length})</h3><table><tr><th>카드 / 규칙</th><th>현재 구현 [해석, 확인 필요]</th></tr>${GEAR_RULINGS.map(([a, b]) => `<tr><td>${esc(a)}</td><td>${esc(b)}</td></tr>`).join('')}</table>
 <h3>확인 필요 — 정의·답변이 있어야 구현 가능한 것 (${GEAR_QUESTIONS.length})</h3><table><tr><th>항목</th><th>질문</th></tr>${GEAR_QUESTIONS.map(([a, b]) => `<tr><td>${esc(a)}</td><td class="warn">${esc(b)}</td></tr>`).join('')}</table>
 <p class="small">아직 문장이 남은 카드 ${rows.length}장 중 약 ${blocked}장은 위 질문이나 미구현 몬스터 전용 규칙(Devour · Wolf Down · Stray · VP · Ward Node · Shapeshift 등)에 걸려 있고, 나머지는 카드 한 장짜리 고유 효과로 구현 대기 중입니다.</p>

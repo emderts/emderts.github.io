@@ -1,0 +1,2317 @@
+{
+ "id": "renholder",
+ "name": "Renholder",
+ "_source": "Knightbook 'The Tale of Renholder and the Secrets of the Spirit' (p.3–4 rules & Knight Setup, p.122 First Death Special Event) + Portrait / Talent / Heroic Arc / Technique sprite sheets (owner-supplied 2026-11-16).",
+ "resourceToken": {
+  "id": "magic",
+  "name": "Magic",
+  "keyword": "Magic X: During the second ability window, place X Magic tokens in the Knight Pool.",
+  "rule": "Renholder uses special Magic tokens as a resource to power his spells and abilities. Magic tokens are mainly placed in the Knight Pool, and they can be spent from there. Each Renholder's Talent has a Magic Limit, which denotes how many Magic tokens can be in the Knight Pool at the same time. Magic Limit X: There can't be more than X Magic tokens in the Knight Pool. If multiple elements modify the Magic Limit, choose the highest Magic Limit. Magic tokens placed in other places than the Knight Pool cannot be spent to pay for Magic costs and do not count toward the Magic Limit."
+ },
+ "setup": {
+  "virtues": {
+   "Insight": 1,
+   "Fortitude": 1,
+   "Sagacity": 2
+  },
+  "rapportBoon": {
+   "text": "Start of Clash: Cantrip 1.",
+   "ops": [
+    {
+     "op": "poolToken",
+     "token": "cantrip",
+     "n": 1
+    }
+   ],
+   "note": "[해석, 확인 필요] Rogue's Path에서 Rapport boon을 적용할지 — 현재 미적용 (Fleischritter와 동일하게 처리)."
+  },
+  "explorationCipher": "**13",
+  "portraits": [
+   "Mage Knight"
+  ],
+  "portrait": "mage-knight",
+  "talent": "Mage Knight",
+  "heroicArc": "Mage Knight",
+  "perilArc": "Mage Knight",
+  "techniques": [
+   "Second Chance",
+   "Knight Roll",
+   "Knight Pose",
+   "Lux Step",
+   "Conjurer of Cheap Tricks"
+  ],
+  "techniquesNote": "Knightbook lists 'Clash side // Delve side' pairs (Knight Pose // Knight Prowess, Knight Roll // Prismatic Focus, Second Chance // Purifying Ritual, Lux Step // Light Our Way, Conjurer of Cheap Tricks // Divine the Heavens). Delve sides are not used in Rogue's Path.",
+  "gear": [
+   "Knighves"
+  ],
+  "gearNote": "Knightbook: '1 set of Knighves and the Crude Bow (Merchant gear)'. The Crude Bow card has not been transcribed yet — Renholder starts with Knighves only until it is supplied."
+ },
+ "firstDeath": {
+  "text": "Renholder's First Death Special Event (Knightbook p.122): if the Unknown Saint is not yet unlocked, see 9999 first; otherwise the event proceeds. Mark the First Death box on your Knight Sheet. Gain +1 Sigh of the Graal.",
+  "ops": [
+   {
+    "op": "markFirstDeath"
+   },
+   {
+    "op": "gainSigh",
+    "n": 1
+   }
+  ],
+  "note": "[해석, 확인 필요] 이벤트 결말 문단을 스캔에서 찾지 못해 Fleischritter와 같은 보상(+1 Sigh of the Graal)으로 처리."
+ },
+ "components": {
+  "portraits": 2,
+  "talents": 3,
+  "heroicArcs": 4,
+  "perilArcs": 4,
+  "techniques": 26,
+  "gear": 5,
+  "magicTokens": 5,
+  "placeholderToken": 1
+ },
+ "talents": [
+  {
+   "id": "mage-knight",
+   "name": "Mage Knight",
+   "tier": "starting",
+   "magicLimit": 2,
+   "abilities": [
+    {
+     "name": "Critical Light",
+     "text": "If you roll a Crit Chance during an Attack or Evasion Roll, place 1 Magic [Magic] token in the Knight Pool. Magic Limit 2: There can't be more than 2 Magic [Magic] tokens in the Knight Pool at the same time. If multiple elements modify the Magic Limit, choose the highest Magic Limit.",
+     "ops": [
+      {
+       "op": "criticalLight"
+      }
+     ]
+    },
+    {
+     "name": "Up My Sleeve",
+     "text": "Once per your turn you may spend 1 Magic [Magic] token to Refresh 1 card.",
+     "ops": [
+      {
+       "op": "upMySleeve"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "luxite",
+   "name": "Luxite",
+   "tier": "vassal",
+   "magicLimit": 3,
+   "abilities": [
+    {
+     "name": "Power from Camaraderie",
+     "text": "Once per Knight Round and once per Monster Round, when another Knight uses a Technique or when a Squire uses an ability, you may place 1 Magic [Magic] token in the Knight Pool. Magic Limit 3: There can't be more than 3 Magic [Magic] tokens in the Knight Pool at the same time. If multiple elements modify the Magic Limit, choose the highest Magic Limit.",
+     "ops": [
+      {
+       "op": "powerFromCamaraderie"
+      }
+     ]
+    },
+    {
+     "name": "Aura of Illumination",
+     "text": "Spend 1 Magic [Magic] token to place a Magic [Magic] token on your Knight Board. As long as there is at least 1 Magic [Magic] token on your Knight Board, you, and each Knight in Zone 1 from you, have Auto-fire 1 and \"Crit Chance: Gain +1 [Power].\" Discard the token at the end of your next turn.",
+     "ops": [
+      {
+       "op": "auraOfIllumination"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "tenebrist",
+   "name": "Tenebrist",
+   "tier": "vassal",
+   "magicLimit": 2,
+   "abilities": [
+    {
+     "name": "Power from Pain",
+     "text": "Whenever a Knight loses [Vigor], place 1 Magic [Magic] token in the Knight Pool. Magic Limit 2: There can't be more than 2 Magic [Magic] tokens in the Knight Pool at the same time. If multiple elements modify the Magic Limit, choose the highest Magic Limit.",
+     "ops": [
+      {
+       "op": "powerFromPain"
+      }
+     ]
+    },
+    {
+     "name": "Cloak of Shadows",
+     "text": "Spend 1 Magic [Magic] token to place a Magic [Magic] token on the Clash Board adjacent to you (up to 2 tokens on the Board). Each Knight on that token, or in Zone 1 from at least 1 of those tokens, gains Guard 2 and \"Crit Evade: Gain a temporary positive Evasion [Evasion] token.\"",
+     "ops": [
+      {
+       "op": "cloakOfShadows"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "harmonized-soul",
+   "name": "Harmonized Soul",
+   "tier": "devil",
+   "magicLimit": 4,
+   "abilities": [
+    {
+     "name": "Sympathetic Magic",
+     "text": "When another Knight is hit by an Attack or fails to deal a Wound, place 1 Magic [Magic] token on their Knight Board. At the start of your turn, you may move those tokens either to your Knight Board or into the Knight Pool. Magic Limit 4: There can't be more than 4 Magic [Magic] tokens in the Knight Pool at the same time. If multiple elements modify the Magic Limit, choose the highest Magic Limit.",
+     "ops": [
+      {
+       "op": "sympatheticMagic"
+      }
+     ]
+    },
+    {
+     "name": "Manifestation",
+     "text": "Knights with Magic [Magic] tokens on their Knight Boards may discard all their [Magic] tokens to gain Auto-black X or Soak X until the end of that Round. X is equal to the number of Magic [Magic] tokens discarded this way. They may use this ability as a free action or a [Reaction].",
+     "ops": [
+      {
+       "op": "manifestation"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "luxfire-magus",
+   "name": "Luxfire Magus",
+   "tier": "devil",
+   "magicLimit": 5,
+   "abilities": [
+    {
+     "name": "Ebb and Flow of the Arcane",
+     "text": "Whenever your [Heat] reaches Heat Limit [Heat Limit] or becomes 0, place 1 Magic [Magic] token in the Knight Pool. [JUDICIUM] 2 Magic [Magic] tokens instead. Magic Limit 5: There can't be more than 5 Magic [Magic] tokens in the Knight Pool at the same time. If multiple elements modify the Magic Limit, choose the highest Magic Limit.",
+     "ops": [
+      {
+       "op": "ebbAndFlow"
+      }
+     ]
+    },
+    {
+     "name": "Unholy Furnace",
+     "text": "Once per turn, you may spend 1 Magic [Magic] token to perform Heat Refresh. When you are about to perform Heat Refresh, you may perform Card Refresh instead and vice versa.",
+     "ops": [
+      {
+       "op": "unholyFurnace"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "heroicArcs": [
+  {
+   "name": "Mage Knight",
+   "plus": null,
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Cantrip",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Magic",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Cantrip",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Magic",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Cantrip",
+        "n": 2
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Illusionist",
+   "plus": null,
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Cantrip",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Magic",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Cantrip",
+        "n": 1
+       },
+       {
+        "token": "Fire",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Fire",
+        "n": 1
+       },
+       {
+        "token": "Magic",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Fire",
+        "n": 1
+       },
+       {
+        "token": "Cantrip",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "Magic",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Luxite",
+   "plus": {
+    "text": "Attack Re-roll 1",
+    "ops": [
+     {
+      "token": "AttackReroll",
+      "n": 1
+     }
+    ]
+   },
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Fire",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Fire",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Spell",
+        "n": 1
+       },
+       {
+        "token": "Magic",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "Spell",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Magic",
+        "n": 1
+       },
+       {
+        "token": "Fire",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Fire",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "Heartseeker",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Tenebrist",
+   "plus": null,
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Diversion",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "Magic",
+        "n": 1
+       },
+       {
+        "token": "Cantrip",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Diversion",
+        "n": 1
+       },
+       {
+        "token": "Magic",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "ImprovedDiversion",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "Spell",
+        "n": 1
+       },
+       {
+        "token": "Diversion",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Unknown",
+        "guess": "Hide",
+        "unclear": "L6: single wavy up-arrow icon, not in the token legend"
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": [
+    "Black downward triangle read as Diversion; patterned triangle (L4) as Improved Diversion",
+    "L6 wavy-arrow icon unidentified (not applied)"
+   ]
+  },
+  {
+   "name": "Harmonized Soul",
+   "plus": null,
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Magic",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "Fire",
+        "n": 3
+       }
+      ],
+      [
+       {
+        "token": "Pushback",
+        "n": 2
+       },
+       {
+        "token": "Fire",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Opening",
+        "n": 3
+       },
+       {
+        "token": "Magic",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Magic",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "Black",
+        "n": 1
+       },
+       {
+        "token": "Break",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "PowerReroll",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "Closing",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Reposition",
+        "n": 3
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Spell",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Cantrip",
+        "n": 1
+       },
+       {
+        "token": "Magic",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "Unknown",
+        "guess": "Hide",
+        "unclear": "L7 first option: wavy up-arrow icon"
+       }
+      ],
+      [
+       {
+        "token": "Heartseeker",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 8,
+     "options": [
+      [
+       {
+        "token": "PowerDieBlack",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": [
+    "L5 second option: figure with four outward arrows — read as Reposition",
+    "L7 first option: wavy-arrow icon unidentified (not applied)"
+   ]
+  },
+  {
+   "name": "Luxfire Magus",
+   "plus": {
+    "text": "Attack Re-roll 1",
+    "ops": [
+     {
+      "token": "AttackReroll",
+      "n": 1
+     }
+    ]
+   },
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Spell",
+        "n": 1
+       },
+       {
+        "token": "Magic",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "Cantrip",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Cantrip",
+        "n": 2
+       },
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Magic",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "Spell",
+        "n": 1
+       },
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "Spell",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Cantrip",
+        "n": 1
+       },
+       {
+        "token": "Magic",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "Cantrip",
+        "n": 2
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Theurgist",
+   "plus": null,
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Spell",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "Cantrip",
+        "n": 1
+       },
+       {
+        "token": "Magic",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Cantrip",
+        "n": 2
+       },
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Magic",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "Spell",
+        "n": 1
+       },
+       {
+        "token": "Cantrip",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Spell",
+        "n": 1
+       },
+       {
+        "token": "Magic",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "Tireless",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Hermetic Master",
+   "plus": {
+    "text": "Attack Re-roll 1, [PowerReroll] 1",
+    "ops": [
+     {
+      "token": "AttackReroll",
+      "n": 1
+     },
+     {
+      "token": "PowerReroll",
+      "n": 1
+     }
+    ]
+   },
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Spell",
+        "n": 1
+       },
+       {
+        "token": "Magic",
+        "n": 1
+       },
+       {
+        "token": "Reposition",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "Black",
+        "n": 1
+       },
+       {
+        "token": "Fire",
+        "n": 1
+       },
+       {
+        "token": "Magic",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Sunder",
+        "n": 1
+       },
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "Spell",
+        "n": 2
+       },
+       {
+        "token": "Magic",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "PowerDieBlack",
+        "n": 1
+       },
+       {
+        "token": "Tireless",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Unknown",
+        "guess": "Rouse",
+        "unclear": "L6 second icon: burst/claw splash, unidentified"
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "Spell",
+        "n": 2
+       },
+       {
+        "token": "Magic",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 8,
+     "options": [
+      [
+       {
+        "token": "Power",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": [
+    "L1 third icon: figure with four outward arrows — read as Reposition",
+    "L6 second icon unidentified (not applied)"
+   ]
+  }
+ ],
+ "perilArcsRef": "data/knights/peril_arcs.json → arcs.renholder",
+ "techniques": [
+  {
+   "name": "Second Chance",
+   "unlock": "Start",
+   "cost": [
+    [
+     {
+      "res": "Heat",
+      "n": 1
+     }
+    ],
+    [
+     {
+      "res": "Magic",
+      "n": -1
+     }
+    ]
+   ],
+   "text": "Second Chance.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "Superior Chance."
+    }
+   ],
+   "depletion": "discard",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "secondChance"
+    }
+   ],
+   "timing": "onMortisDraw",
+   "gateOps": {
+    "DEVIL": [
+     {
+      "op": "superiorChance"
+     }
+    ]
+   },
+   "exert": {
+    "token": "Break",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Knight Roll",
+   "unlock": "Start",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "[Reaction] Reflex.",
+   "gates": [
+    {
+     "gate": "KING",
+     "text": "[Reaction] Advanced Reflex."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "reflex",
+     "n": 1
+    }
+   ],
+   "timing": "reaction",
+   "gateOps": {
+    "KING": [
+     {
+      "op": "reflex",
+      "n": 2
+     }
+    ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Knight Pose",
+   "unlock": "Start",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "Stand up.",
+   "gates": [
+    {
+     "gate": "DRAGON",
+     "text": "Stand up, then place 1 Magic [Magic] token in the Knight Pool."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "standUp"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {
+    "DRAGON": [
+     {
+      "op": "standUp"
+     },
+     {
+      "op": "magic",
+      "n": 1
+     }
+    ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Lux Step",
+   "unlock": "Start",
+   "cost": [
+    {
+     "res": "Action",
+     "actions": [
+      "move"
+     ]
+    }
+   ],
+   "text": "Place your miniature on an empty space up to 3 spaces away from you (treat this Technique as performing movement).",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "5 spaces instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "teleport",
+     "n": 3
+    }
+   ],
+   "timing": "free",
+   "gateOps": {
+    "DEVIL": [
+     {
+      "op": "teleport",
+      "n": 5
+     }
+    ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Conjurer of Cheap Tricks",
+   "unlock": "Start",
+   "cost": [
+    [
+     {
+      "res": "Heat",
+      "n": 1
+     }
+    ],
+    [
+     {
+      "res": "Magic",
+      "n": -1
+     }
+    ]
+   ],
+   "text": "Place 1 Cantrip [Cantrip] token in the Knight Pool.",
+   "gates": [
+    {
+     "gate": "KING",
+     "text": "2 tokens instead."
+    },
+    {
+     "gate": "DRAGON",
+     "text": "3 tokens instead."
+    }
+   ],
+   "depletion": "delay",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "poolToken",
+     "token": "cantrip",
+     "n": 1
+    }
+   ],
+   "timing": "free",
+   "gateOps": {
+    "KING": [
+     {
+      "op": "poolToken",
+      "token": "cantrip",
+      "n": 2
+     }
+    ],
+    "DRAGON": [
+     {
+      "op": "poolToken",
+      "token": "cantrip",
+      "n": 3
+     }
+    ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "delay"
+   }
+  },
+  {
+   "name": "Dazzling Light",
+   "unlock": "Investigation 1-2",
+   "cost": [
+    {
+     "res": "Action",
+     "actions": [
+      "combat"
+     ]
+    },
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "Perform an Attack with your Lux Magic! Dice: 1. Precision: +3. Power Die: [black die]*. Bonus Power: +2 [Power]. Deadly. Daze. Diversion. Cantrip 2.",
+   "gates": [
+    {
+     "gate": "KING",
+     "text": "*[white die] instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [
+    "No range printed — treated as a Melee (range 1) attack"
+   ],
+   "ops": [
+    {
+     "op": "spellAttack",
+     "weapon": {
+      "name": "Dazzling Light",
+      "type": "weapon",
+      "hands": 0,
+      "attackDice": 1,
+      "precision": 3,
+      "weaponPower": {
+       "n": 1,
+       "colour": "black"
+      },
+      "bonusPower": {
+       "raw": 2
+      },
+      "text": "Deadly.\nDaze.\nDiversion 1.\nCantrip 2.",
+      "traits": [
+       "Magic"
+      ],
+      "spell": true
+     }
+    }
+   ],
+   "timing": "attack",
+   "gateOps": {
+    "KING": [
+     {
+      "op": "spellAttack",
+      "weapon": {
+       "name": "Dazzling Light",
+       "type": "weapon",
+       "hands": 0,
+       "attackDice": 1,
+       "precision": 3,
+       "weaponPower": {
+        "n": 1,
+        "colour": "white"
+       },
+       "bonusPower": {
+        "raw": 2
+       },
+       "text": "Deadly.\nDaze.\nDiversion 1.\nCantrip 2.",
+       "traits": [
+        "Magic"
+       ],
+       "spell": true
+      }
+     }
+    ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Mirage",
+   "unlock": "Investigation 1-3",
+   "cost": [
+    {
+     "res": "Magic",
+     "n": -1
+    }
+   ],
+   "text": "Guard 2. Pass the Priority Target token to the Knight with the highest [Passion] (if there's any).",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "Guard 3 instead."
+    },
+    {
+     "gate": "DRAGON",
+     "text": "Guard 4 instead."
+    }
+   ],
+   "depletion": "discard",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "guard",
+     "n": 2
+    },
+    {
+     "op": "passPriority"
+    }
+   ],
+   "timing": "onTargeted",
+   "gateOps": {
+    "DEVIL": [
+     {
+      "op": "guard",
+      "n": 3
+     },
+     {
+      "op": "passPriority"
+     }
+    ],
+    "DRAGON": [
+     {
+      "op": "guard",
+      "n": 4
+     },
+     {
+      "op": "passPriority"
+     }
+    ]
+   },
+   "exert": {
+    "token": "Break",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Brain over Brawn",
+   "unlock": "Quest: Illusionist",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "When you attack, if you're on a Rear [Rear] space, gain Deadly. Additionally, if you attack with a Catalyst Weapon, you may spend 1 Magic [Magic] token to ignore this Technique's Rear space requirement.",
+   "gates": [],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "deadlyIfRear"
+    }
+   ],
+   "timing": "beforeAttack",
+   "gateOps": {},
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Inspiring Light",
+   "unlock": "Investigation 2-2",
+   "cost": [
+    [
+     {
+      "res": "Heat",
+      "n": "X"
+     }
+    ],
+    [
+     {
+      "res": "Magic",
+      "n": -2
+     }
+    ]
+   ],
+   "text": "Choose X Knights. Motivate 1 all chosen Knights. If you spend Magic [Magic] tokens to use this Technique, Motivate 1 all Knights other than you instead.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "Motivate 2 instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "inspiringLight",
+     "n": 1
+    }
+   ],
+   "timing": "free",
+   "gateOps": {
+    "DEVIL": [
+     {
+      "op": "inspiringLight",
+      "n": 2
+     }
+    ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Gaze Beyond the Veil",
+   "unlock": "Investigation 2-3",
+   "cost": [
+    {
+     "res": "Magic",
+     "n": -2
+    }
+   ],
+   "text": "Look at the top card of a chosen Mortis deck.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "Each Mortis deck instead."
+    }
+   ],
+   "depletion": "instant",
+   "unclear": [
+    "No Exert icon on this card",
+    "Depletion icon is the lightning card — read as Instant"
+   ],
+   "ops": [
+    {
+     "op": "lookMortis",
+     "all": false
+    }
+   ],
+   "timing": "free",
+   "gateOps": {
+    "DEVIL": [
+     {
+      "op": "lookMortis",
+      "all": true
+     }
+    ]
+   },
+   "exert": null
+  },
+  {
+   "name": "Luxite Purification",
+   "unlock": "Quest: Luxite",
+   "cost": [
+    {
+     "res": "Magic",
+     "n": "X"
+    }
+   ],
+   "text": "Choose X Knights other than you. Each chosen Knight performs a Card Refresh.",
+   "gates": [
+    {
+     "gate": "JUDICIUM",
+     "text": "Each of those Knights may choose to perform a Heat Refresh instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "luxitePurification"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {},
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Burning Barrage",
+   "unlock": "Quest: Luxite",
+   "cost": [
+    {
+     "res": "Action",
+     "actions": [
+      "combat"
+     ]
+    },
+    {
+     "res": "Heat",
+     "n": "X"
+    },
+    {
+     "res": "Magic",
+     "n": -1
+    }
+   ],
+   "text": "Perform an Attack with a stream of fire! Dice: 1. Precision: +2. Power die: [2 red dice]. Bonus Power: +2 [Power]. Unwieldy. Reach 2. Area: All spaces in the same direction as the Target in this Attack's effective range. If you wounded your original Target, Fire X*.",
+   "gates": [
+    {
+     "gate": "DRAGON",
+     "text": "Dice: 2 instead. Loses Unwieldy."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [
+    "Power die icon shows two red dice",
+    "Area (every space in the Target's direction) is not implemented — single Target only"
+   ],
+   "ops": [
+    {
+     "op": "spellAttack",
+     "weapon": {
+      "name": "Burning Barrage",
+      "type": "weapon",
+      "hands": 0,
+      "attackDice": 1,
+      "precision": 2,
+      "weaponPower": {
+       "n": 2,
+       "colour": "red"
+      },
+      "bonusPower": {
+       "raw": 2
+      },
+      "text": "Unwieldy.\nReach 2.",
+      "traits": [
+       "Magic"
+      ],
+      "spell": true
+     },
+     "fireXOnWound": true
+    }
+   ],
+   "timing": "attack",
+   "gateOps": {
+    "DRAGON": [
+     {
+      "op": "spellAttack",
+      "weapon": {
+       "name": "Burning Barrage",
+       "type": "weapon",
+       "hands": 0,
+       "attackDice": 2,
+       "precision": 2,
+       "weaponPower": {
+        "n": 2,
+        "colour": "red"
+       },
+       "bonusPower": {
+        "raw": 2
+       },
+       "text": "Reach 2.",
+       "traits": [
+        "Magic"
+       ],
+       "spell": true
+      },
+      "fireXOnWound": true
+     }
+    ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Dark Augury",
+   "unlock": "Quest: Tenebrist",
+   "cost": [
+    [
+     {
+      "res": "Heat",
+      "n": 2
+     }
+    ],
+    [
+     {
+      "res": "Magic",
+      "n": -1
+     }
+    ]
+   ],
+   "text": "Look at the top or the leftmost unrevealed BP or top AI card.",
+   "gates": [
+    {
+     "gate": "DRAGON",
+     "text": "Additionally you may Suppress the deck of the card you looked at."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "darkAugury",
+     "suppress": false
+    }
+   ],
+   "timing": "free",
+   "gateOps": {
+    "DRAGON": [
+     {
+      "op": "darkAugury",
+      "suppress": true
+     }
+    ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Shadow Manipulation",
+   "unlock": "Quest: Tenebrist",
+   "cost": [
+    {
+     "res": "Vigor",
+     "n": -3
+    }
+   ],
+   "text": "When the Monster is about to draw an AI, it performs Signature instead.",
+   "gates": [],
+   "depletion": "discard",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "signatureInstead"
+    }
+   ],
+   "timing": "onAIDraw",
+   "gateOps": {},
+   "exert": {
+    "token": "Break",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Shadowslip",
+   "unlock": "Investigation 3-2",
+   "cost": [
+    [
+     {
+      "res": "Heat",
+      "n": 1
+     }
+    ],
+    [
+     {
+      "res": "Vigor",
+      "n": -2
+     }
+    ]
+   ],
+   "text": "[Reaction] Advanced Reflex.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "[Reaction] Superior Reflex instead."
+    },
+    {
+     "gate": "DRAGON",
+     "text": "[Reaction] Place your miniature on an empty space up to 4 spaces away from you instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "reflex",
+     "n": 2
+    }
+   ],
+   "timing": "reaction",
+   "gateOps": {
+    "DEVIL": [
+     {
+      "op": "reflex",
+      "n": 3
+     }
+    ],
+    "DRAGON": [
+     {
+      "op": "teleport",
+      "n": 4
+     }
+    ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Infernal Bargain",
+   "unlock": "Investigation 3-3",
+   "cost": [
+    [
+     {
+      "res": "Heat",
+      "n": 2
+     }
+    ],
+    [
+     {
+      "res": "Magic",
+      "n": -2
+     }
+    ]
+   ],
+   "text": "Superior Chance.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "Grant Superior Chance to another Knight instead."
+    },
+    {
+     "gate": "JUDICIUM",
+     "text": "*This card costs +1 [Heat] or -1 [Magic] instead."
+    }
+   ],
+   "depletion": "discard",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "superiorChance"
+    }
+   ],
+   "timing": "onMortisDraw",
+   "gateOps": {
+    "DEVIL": [
+     {
+      "op": "superiorChance",
+      "grant": true
+     }
+    ]
+   },
+   "exert": {
+    "token": "Fire",
+    "n": 1,
+    "depletion": "discard"
+   },
+   "judiciumCost": [
+    [
+     {
+      "res": "Heat",
+      "n": 1
+     }
+    ],
+    [
+     {
+      "res": "Magic",
+      "n": -1
+     }
+    ]
+   ]
+  },
+  {
+   "name": "Placeholder",
+   "unlock": "Quest: Theurgist",
+   "cost": [
+    {
+     "res": "Magic",
+     "n": -1
+    }
+   ],
+   "text": "Place the Placeholder token on your space. If the token is already on the Clash Board, discard it and place your miniature on its space instead. If that space is occupied, Displace Renholder onto the closest empty space.",
+   "gates": [],
+   "depletion": "instant",
+   "unclear": [
+    "No Exert icon on this card"
+   ],
+   "ops": [
+    {
+     "op": "placeholder"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {},
+   "exert": null
+  },
+  {
+   "name": "Soulscorch",
+   "unlock": "Investigation 4-2",
+   "cost": [
+    [
+     {
+      "res": "Magic",
+      "n": -2
+     }
+    ],
+    [
+     {
+      "res": "Vigor",
+      "n": -4
+     }
+    ]
+   ],
+   "text": "When you deal a Wound, place temporary negative AT [AT], To Hit [To Hit], and Precision [Precision] tokens on the Monster Sheet.",
+   "gates": [],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "soulscorch"
+    }
+   ],
+   "timing": "onWound",
+   "gateOps": {},
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Incandescent Aura",
+   "unlock": "Investigation 4-3",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "Until your next turn, whenever a Monster moves through or ends their movement on a space adjacent to you, place a temporary negative AT [AT] token in the Knight Pool (once per movement).",
+   "gates": [],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "incandescentAura"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {},
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Chiaroscuro",
+   "unlock": "Quest: Harmonized Soul",
+   "cost": [
+    {
+     "res": "Action",
+     "actions": [
+      "move"
+     ]
+    },
+    {
+     "res": "Magic",
+     "n": -1
+    }
+   ],
+   "text": "Place your miniature on an empty space up to 7 spaces away from you. (Treat this Technique as performing a movement.)",
+   "gates": [],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "teleport",
+     "n": 7
+    }
+   ],
+   "timing": "free",
+   "gateOps": {},
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Blackfire",
+   "unlock": "Quest: Harmonized Soul",
+   "cost": [
+    {
+     "res": "Action",
+     "actions": [
+      "combat"
+     ]
+    },
+    {
+     "res": "Vigor",
+     "n": -3
+    },
+    {
+     "res": "Magic",
+     "n": -2
+    }
+   ],
+   "text": "Perform an Attack using both Tenebrae and Lux Magic! Dice: 2. Precision: +2. Power die: [black die]. Auto-black 3. Fire 3. Area: Zone 1 around the Target.",
+   "gates": [],
+   "depletion": "cooldown",
+   "unclear": [
+    "Area: Zone 1 around the Target is not implemented — single Target only",
+    "No range printed — treated as a Melee (range 1) attack"
+   ],
+   "ops": [
+    {
+     "op": "spellAttack",
+     "weapon": {
+      "name": "Blackfire",
+      "type": "weapon",
+      "hands": 0,
+      "attackDice": 2,
+      "precision": 2,
+      "weaponPower": {
+       "n": 1,
+       "colour": "black"
+      },
+      "bonusPower": null,
+      "text": "Auto-black 3.\nFire 3.",
+      "traits": [
+       "Magic"
+      ],
+      "spell": true
+     }
+    }
+   ],
+   "timing": "attack",
+   "gateOps": {},
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "The Maelstrom Within",
+   "unlock": "Quest: Luxfire Magus",
+   "cost": [
+    {
+     "res": "Magic",
+     "n": "X"
+    }
+   ],
+   "text": "Place X Spell [Spell] tokens in the Knight Pool. *If there are no Opening [Opening] or Break [Break] tokens in the Knight Pool, this Technique's Depletion becomes [Instant].",
+   "gates": [],
+   "depletion": "cooldown",
+   "unclear": [
+    "Depletion icon is Cooldown with an asterisk"
+   ],
+   "ops": [
+    {
+     "op": "maelstrom"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {},
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Doublestrike Enchantment",
+   "unlock": "Quest: Luxfire Magus",
+   "cost": [
+    {
+     "res": "Magic",
+     "n": -3
+    }
+   ],
+   "text": "Use this Technique only if you have 5+ [Passion]. When you attack, draw an additional BP. After performing the Power Roll, resolve it separately against both BPs' AT [AT], potentially dealing two Wounds! Resolve Responses only for the first BP you've drawn.",
+   "gates": [],
+   "depletion": "discard",
+   "unclear": [
+    "Not implemented: attacks that draw several BP cards",
+    "Exert icon is the dove — read as Hope"
+   ],
+   "ops": null,
+   "timing": "beforeAttack",
+   "gateOps": {},
+   "exert": {
+    "token": "Hope",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Final Flash",
+   "unlock": "Investigation 5-2",
+   "cost": [
+    {
+     "res": "Action",
+     "actions": [
+      "combat"
+     ]
+    },
+    {
+     "res": "Heat",
+     "n": 3
+    },
+    {
+     "res": "Magic",
+     "n": -2
+    }
+   ],
+   "text": "Perform an Attack with the sun itself! Dice: 2. Precision: +5. Power die: [white die]. Each hit: +1 [Power]. Unwieldy. Ranged 5–10. Fire 5. When you deal a Wound, if your Total Power surpassed AT [AT] by 3+, ignore Responses, resolve the rest of the Attack Sequence, then repeat this Technique Attack (once).",
+   "gates": [],
+   "depletion": "discard",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "spellAttack",
+     "weapon": {
+      "name": "Final Flash",
+      "type": "weapon",
+      "hands": 0,
+      "attackDice": 2,
+      "precision": 5,
+      "weaponPower": {
+       "n": 1,
+       "colour": "white"
+      },
+      "bonusPower": null,
+      "text": "Each hit: +1 [Power].\nUnwieldy.\nRanged 5-10.\nFire 5.",
+      "traits": [
+       "Magic"
+      ],
+      "spell": true
+     },
+     "repeatOver": 3
+    }
+   ],
+   "timing": "attack",
+   "gateOps": {},
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Shadows Between Worlds",
+   "unlock": "Investigation 5-3",
+   "cost": [
+    {
+     "res": "Magic",
+     "n": -2
+    }
+   ],
+   "text": "If you have the Priority Target token, pass it to another Knight with the highest [Passion] (if there's any). As long as this card is in either the Delay or Cooldown area, gain Advanced Bypass, +1 Evasion [Evasion], and you cannot become the Target if there's at least 1 other viable Target. You may use this Technique as a free action or as a [Reaction].",
+   "gates": [],
+   "depletion": "cooldown",
+   "unclear": [
+    "Only the free-action use, the Priority Target pass and the +1 Evasion are implemented (not Advanced Bypass / untargetable / Reaction use)"
+   ],
+   "ops": [
+    {
+     "op": "passPriority"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {},
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Power Overwhelming",
+   "unlock": "Quest: Hermetic Master",
+   "cost": [
+    {
+     "res": "Magic",
+     "n": "X"
+    }
+   ],
+   "text": "When you attack, gain +X [Power] and draw X BP cards. Do not reveal BP cards when drawing them during this Attack. After performing the Power Roll, distribute your Total Power between all BPs you've drawn, while they're still face down. Then reveal all drawn BPs and check if you wounded them. Ignore all Responses. After fully resolving the Attack, you die.",
+   "gates": [],
+   "depletion": "discard",
+   "unclear": [
+    "Not implemented: attacks that draw several BP cards",
+    "Exert icon is the dove — read as Hope"
+   ],
+   "ops": null,
+   "timing": "beforeAttack",
+   "gateOps": {},
+   "exert": {
+    "token": "Hope",
+    "n": 1,
+    "depletion": "discard"
+   }
+  }
+ ],
+ "missing": [
+  "Crude Bow (Merchant gear, starting equipment)",
+  "First Death Special Event closing paragraph (reward)"
+ ],
+ "portraits": [
+  {
+   "id": "mage-knight",
+   "name": "Mage Knight",
+   "tier": "starting",
+   "classes": [
+    "Mage Knight"
+   ],
+   "powerDie": "red",
+   "cardRefresh": 1,
+   "heatRefresh": 3,
+   "handLimit": 6,
+   "speed": 4,
+   "baneLimit": 4
+  },
+  {
+   "id": "luxite-tenebrist",
+   "name": "Luxite / Tenebrist",
+   "tier": "vassal",
+   "classes": [
+    "Luxite",
+    "Tenebrist"
+   ],
+   "powerDie": "red",
+   "cardRefresh": 1,
+   "heatRefresh": 4,
+   "handLimit": 7,
+   "speed": 4,
+   "baneLimit": 5
+  },
+  {
+   "id": "harmonized-luxfire",
+   "name": "Harmonized Soul / Luxfire Magus",
+   "tier": "devil",
+   "classes": [
+    "Harmonized Soul",
+    "Luxfire Magus"
+   ],
+   "powerDie": "red",
+   "powerDice": 2,
+   "cardRefresh": 2,
+   "heatRefresh": 6,
+   "handLimit": 8,
+   "speed": 4,
+   "baneLimit": 6
+  }
+ ],
+ "portraitsNote": "Devil tier portrait shows two red dice as the Knight Power die (stored as powerDie red × powerDice 2)."
+}
