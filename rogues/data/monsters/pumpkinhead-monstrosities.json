@@ -1832,19 +1832,19 @@
     ]
    }
   ],
-  "unclear": [
-   "지형·시작 칸은 코덱스 도식에서 읽음 [해석, 확인 필요]"
+  "notes": [
+   "지형·시작 칸은 코덱스 도식에서 읽음 (소유자 확인 2026-11-15)"
   ]
  },
  "rulings": [
   "Two-sided BPs are always face-up: the Sapling-side \"While this BP is revealed\" auras apply while that side is up, \"When revealed\" triggers when the card is flipped to that side during the Clash, ignored at Setup (owner reference sheet PHM v1.1, 2026-11-15)",
   "Fast Regrowth \"flip all Red Sapling tokens to the Green side\": every Red Sapling on the board, not only those in the Zone (reference sheet PHM v1.1)",
   "Sapling AI Escalation: the AI card removed has the Level equal to the Generic tokens on the wounded BP (1 → AI 1 out, AI 2 in; 2 → AI 2 out, AI 3 in; 3 → AI 3 swapped for another AI 3)",
-  "Controlled Burn: a Sapling can only be wounded if a Fire token was in the Knight Pool when the Power Roll was resolved (Fire spent on that attack counts) [해석, 확인 필요]",
-  "Fire Walk with Me: a Pumpkinhead whose shortest path crosses the Campfire burns; when equally short paths exist with and without the Campfire, the players choose [해석, 확인 필요]. Level 2+: the new Sapling gets 2 Generic tokens instead of 1; its AI Escalation uses the tokens then on that BP (reference sheet PHM v1.1)",
-  "Pumpkin Bomb (RANGE ZONE ATTACK, no diagram on the card): the Target and every Knight in Zone 1 around the Target [해석, 확인 필요]",
+  "Controlled Burn: a Sapling can only be wounded if a Fire token was in the Knight Pool when the Power Roll was resolved (Fire spent on that attack counts) (소유자 확인 2026-11-15)",
+  "Fire Walk with Me: a Pumpkinhead whose shortest path crosses the Campfire burns; when equally short paths exist with and without the Campfire, the players choose (소유자 확인 2026-11-15). Level 2+: the new Sapling gets 2 Generic tokens instead of 1; its AI Escalation uses the tokens then on that BP (reference sheet PHM v1.1)",
+  "Pumpkin Bomb (RANGE ZONE ATTACK, no diagram on the card): the Target and every Knight in Zone 1 around the Target (소유자 확인 2026-11-15)",
   "MOVE & RANGE ATTACK 5: moves until within 5 spaces of the Target; Vine Whip PULL 2: the Target is Pulled 2 toward the Pumpkinhead before it moves",
-  "Venomous Quagmire growth: the 2x2 Swamp covers the Pumpkinhead's space and the 3 spaces up / right of it that are free of other Terrain [해석, 확인 필요]; Transforming Seed uses the Vigor the Target lost in this Attack",
+  "Venomous Quagmire growth: the players choose which 2x2 block containing the Pumpkinhead's space gets the Swamp (spaces with other Terrain are skipped) (소유자 확인 2026-11-15); Transforming Seed uses the Vigor the Target lost in this Attack",
   "Floraforge Fury (Principality): Afflict X = Parasitize X is NOT implemented (keyword definition needed); growth move and Transforming Seed (Armor token on Saplings in Zone 3) are implemented",
   "Pumpkin Plague (Level 3): the Knight chooses the Gear card for each Generic token; 1 token per Gear slot (2 for a 2-handed Weapon); death → Heal 1 puts the top Wound-Stack BP back as a Pumpkinhead on the Knight's space, without Fast Regrowth (reference sheet PHM v1.1)",
   "Lumbering = Saplings cannot be moved involuntarily (reference sheet); Accelerated Regrowth also applies to the Setup Saplings; \"Nevermore Spawn\" is not implemented (definition needed); \"Reposition 2\" = the Knight may move up to 2 spaces",
