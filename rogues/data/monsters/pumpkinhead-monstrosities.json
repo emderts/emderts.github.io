@@ -1,0 +1,1853 @@
+{
+ "id": "pumpkinhead-monstrosities",
+ "name": "Pumpkinhead Monstrosities",
+ "kind": "mob",
+ "code": "26A1072",
+ "traitsLine": [
+  "Mob",
+  "Beast",
+  "Plant"
+ ],
+ "_source": "Monster Sheet, AI/BP (both sides)/Kingdom Trait cards, Signature, Routine — owner scans (readings owner-confirmed 2026-11-15); Clash Setup: Sunken Kingdom Codex p.40–41",
+ "footprint": {
+  "size": 1,
+  "shape": "1x1",
+  "rear": "the single cell directly behind (R on the sheet diagram)",
+  "facingOnSheet": "down"
+ },
+ "basicAbilities": [
+  {
+   "name": "Advanced Bypass",
+   "rule": "Moves through miniatures."
+  },
+  {
+   "name": "Nevermore Spawn"
+  }
+ ],
+ "levels": {
+  "1": {
+   "toHit": 6,
+   "wounds": 5,
+   "exhibitionWounds": 1,
+   "activations": [
+    "AI",
+    "AI"
+   ],
+   "traitsAdd": [
+    "Sinister Saplings",
+    "Cursed Overgrowth",
+    "Ecological Cataclysm",
+    "Invasive Species",
+    "Controlled Burn",
+    "Fire Walk with Me"
+   ],
+   "bonuses": {
+    "escalations": 0,
+    "at": 0,
+    "vigorLoss": 0,
+    "evasionDice": 0
+   }
+  },
+  "2": {
+   "toHit": 7,
+   "wounds": 6,
+   "exhibitionWounds": 2,
+   "activations": [
+    "AI",
+    "AI"
+   ],
+   "traitsAdd": [
+    "Spore Spreader"
+   ],
+   "bonuses": {
+    "escalations": 0,
+    "at": 3,
+    "vigorLoss": 1,
+    "evasionDice": 0
+   }
+  },
+  "3": {
+   "toHit": 8,
+   "wounds": 6,
+   "exhibitionWounds": 2,
+   "activations": [
+    "AI",
+    "AI"
+   ],
+   "traitsAdd": [
+    "Pumpkin Plague"
+   ],
+   "bonuses": {
+    "escalations": 0,
+    "at": 5,
+    "vigorLoss": 3,
+    "evasionDice": 0
+   }
+  },
+  "4": {
+   "toHit": 9,
+   "wounds": 6,
+   "exhibitionWounds": 2,
+   "activations": [
+    "AI",
+    "AI"
+   ],
+   "traitsAdd": [
+    "Accelerated Regrowth"
+   ],
+   "bonuses": {
+    "escalations": 0,
+    "at": 6,
+    "vigorLoss": 5,
+    "evasionDice": 0
+   }
+  }
+ },
+ "traits": [
+  {
+   "name": "Sinister Saplings",
+   "level": 1,
+   "text": "Saplings are Mobs with the same To Hit [To Hit] as Pumpkinheads and the Lumbering Basic Ability. When a Sapling is about to be activated, it performs Signature instead of AI.\n\nThe Clash starts with 6 two-sided BP cards on the Mob track. Those BPs do not Escalate. You cannot flip them using abilities. The Seed side represents a Sapling, the other one a Pumpkinhead.\n\nWhen you wound a Sapling, discard its token and place its BP card on the Wound Stack. Then, Escalate the AI deck.\n\nPumpkinhead Monstrosities use special AI Escalation rules: Search the AI deck and AI discard pile for a card with a Level matching the number of Generic tokens on the wounded BP card and remove that AI card from the Clash. Then take a random AI card of one Level higher than the discarded AI card and shuffle it into the AI deck. If there is only one card in the AI deck or you remove a card from the discard pile, shuffle the discard pile into the deck.",
+   "implemented": true
+  },
+  {
+   "name": "Cursed Overgrowth",
+   "level": 1,
+   "text": "When you wound a Pumpkinhead, instead of placing the wounded BP card on the Wound Stack, flip it and place a Generic token on it. Draw the top Fool’s deck card and place the Red Sapling token with the same number as that Pumpkinhead on the designated space. If that space is occupied by another miniature, place the Sapling token adjacent to that space.\n\nWhenever you flip a BP card with Generic tokens on it, move those tokens to the other side.\n\nFast Regrowth: Discard all Green Sapling tokens from the designated Zone and place corresponding Pumpkinhead miniatures on those spaces. Flip corresponding BP cards to the Pumpkinhead side. Resolve additional instructions from the Kingdom Trait card (see Setup). Then, flip all Red Sapling tokens to the Green side.",
+   "implemented": true
+  },
+  {
+   "name": "Ecological Cataclysm",
+   "level": 1,
+   "text": "Every Generic token on a BP card increases its AT [AT] by 1.\nWhen there are 4 Generic tokens on any BP, you lose the Clash.",
+   "implemented": true
+  },
+  {
+   "name": "Invasive Species",
+   "level": 1,
+   "text": "The Pumpkinhead Monstrosities Setup changes depending on the Kingdom. See your Kingdom Book for Setup instructions.",
+   "implemented": true
+  },
+  {
+   "name": "Controlled Burn",
+   "level": 1,
+   "text": "Saplings can’t be Wounded unless there is at least 1 Fire [Fire] token in the Knight Pool.",
+   "implemented": true
+  },
+  {
+   "name": "Fire Walk with Me",
+   "level": 1,
+   "text": "When a Pumpkinhead moves onto a Campfire Terrain tile, it immediately dies (treat it as wounded). If that Pumpkinhead was the Target of an Attack, proceed to Monster Responses. Otherwise, at the end of the current action, flip its BP card and place a Generic token on it. Place a Generic Single Wound on the Wound Stack. Escalate the AI deck. Then remove its miniature from the Board and place a new Red Sapling according to the regular rules.\nLevel 2+: Place 2 Generic tokens on the new Sapling’s BP card.",
+   "implemented": true
+  },
+  {
+   "name": "Spore Spreader",
+   "level": 2,
+   "text": "After resolving Fast Regrowth, all new Pumpkinheads perform Signature (one by one).",
+   "implemented": true
+  },
+  {
+   "name": "Pumpkin Plague",
+   "level": 3,
+   "text": "Each time you deal a Wound to a Pumpkinhead or a Sapling token, place a Generic token on one of your Gear [Gear] cards. Limit 1 token per Gear [Gear] card, 2 tokens per 2-handed Weapon [Gear] card. You cannot place Generic tokens on Upgrade cards.\nIf you would have to place a Generic token on a Gear [Gear] card, and all your Gear [Gear] cards already have the maximum number of Generic tokens, you are overtaken by Pumpkinhead seedlings and become one of them (you die). After you finish resolving your Attack, Heal 1 and place a new Pumpkinhead miniature on your space.\nSquires gain Bane [Bane] tokens instead. When a Squire dies as a result of Bane, Heal 1 and place a new Pumpkinhead miniature on their space.",
+   "implemented": true
+  },
+  {
+   "name": "Accelerated Regrowth",
+   "level": 4,
+   "text": "When you are about to place a Red Sapling token, place it Green side up instead.",
+   "implemented": true
+  },
+  {
+   "name": "Venomous Quagmire",
+   "level": 1,
+   "text": "[Kingdom Trait — Sunken Kingdom] Afflict X: Poison X.\n\nWhen a Pumpkinhead grows from a Sapling, it turns to face the most Knights. Place a 2x2 Swamp Terrain tile on that Pumpkinhead’s space, then it moves 3 spaces toward the closest Knight or until adjacent.\nTransforming Seed: Each Knight adjacent to a Swamp Terrain tile loses -X [Vigor], where X is half the amount of [Vigor] lost by the Target (rounded up).",
+   "implemented": true
+  },
+  {
+   "name": "Floraforge Fury",
+   "level": 1,
+   "text": "[Kingdom Trait — Principality of Stone] Afflict X: Parasitize X.\n\nWhen a Pumpkinhead grows from a Sapling, it turns to face the most Knights, discards all Armor [Armor] tokens and moves X spaces toward the [Priority Target] until adjacent, where X is the number of discarded Armor [Armor] tokens.\nTransforming Seed: Place an Armor [Armor] token on each Sapling in Zone 3.",
+   "implemented": false
+  }
+ ],
+ "cards": {
+  "ai": [
+   {
+    "file": "00.png",
+    "name": "Reaper’s Impalement",
+    "code": "27A1394",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "Closest Knight"
+    ],
+    "move": true,
+    "moveTag": "MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "For each hit lose -2 [Vigor]. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting",
+     "effect:0"
+    ],
+    "afterAttack": "Fast Regrowth in Zone 3. Transforming Seed.",
+    "aiResponse": null,
+    "footer": "PUMPKINHEAD MONSTROSITIES – AI 1",
+    "unclear": [],
+    "text": "REAPER’S IMPALEMENT / ATTACK / Evasion 3 dice, 8+ / TARGETING: • Closest Knight [REACT!] / MOVE & ATTACK / For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Fast Regrowth in Zone 3. Transforming Seed. / PUMPKINHEAD MONSTROSITIES – AI 1",
+    "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line.",
+    "notes": [
+     "판독 확정: code: faint pale print; best reading 27A1394 (digits corroborated by the sheet-order sequence 27A1392–27A1404) — 소유자 확인 2026-11-15"
+    ],
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Closest Knight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "pumpFastRegrowth",
+       "zone": 3
+      },
+      {
+       "op": "pumpTransformingSeed"
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "file": "01.png",
+    "name": "Sickle Swipe",
+    "code": "27A1393",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 9,
+    "preTargeting": null,
+    "targeting": [
+     "Closest Knight"
+    ],
+    "move": true,
+    "moveTag": "MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "For each hit lose -2 [Vigor]. [Peril Check].",
+     "Pushback 1."
+    ],
+    "reactWindows": [
+     "targeting",
+     "effect:1"
+    ],
+    "afterAttack": "Fast Regrowth in Zone 3. Transforming Seed.",
+    "aiResponse": null,
+    "footer": "PUMPKINHEAD MONSTROSITIES – AI 1",
+    "unclear": [],
+    "text": "SICKLE SWIPE / ATTACK / Evasion 2 dice, 9+ / TARGETING: • Closest Knight [REACT!] / MOVE & ATTACK / For each hit lose -2 [Vigor]. [Peril Check]. / Pushback 1. [REACT!] / AFTER ATTACK / Fast Regrowth in Zone 3. Transforming Seed. / PUMPKINHEAD MONSTROSITIES – AI 1",
+    "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line.",
+    "notes": [
+     "판독 확정: code: faint pale print; best reading 27A1393 (digits corroborated by the sheet-order sequence 27A1392–27A1404) — 소유자 확인 2026-11-15"
+    ],
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Closest Knight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "pushback",
+       "n": 1
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "pumpFastRegrowth",
+       "zone": 3
+      },
+      {
+       "op": "pumpTransformingSeed"
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "file": "02.png",
+    "name": "Seed Shot",
+    "code": "27A1392",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 5,
+    "evasionDifficulty": 6,
+    "preTargeting": null,
+    "targeting": [
+     "Furthest Knight"
+    ],
+    "move": true,
+    "moveTag": "MOVE & RANGE ATTACK 5",
+    "gates": [],
+    "effects": [
+     "For each hit lose -2 [Vigor]. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting",
+     "effect:0"
+    ],
+    "afterAttack": "Fast Regrowth in Zone 3. Transforming Seed.",
+    "aiResponse": null,
+    "footer": "PUMPKINHEAD MONSTROSITIES – AI 1",
+    "unclear": [],
+    "text": "SEED SHOT / RANGE ATTACK / Evasion 5 dice, 6+ / TARGETING: • Furthest Knight [REACT!] / MOVE & RANGE ATTACK 5 / For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Fast Regrowth in Zone 3. Transforming Seed. / PUMPKINHEAD MONSTROSITIES – AI 1",
+    "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line.",
+    "notes": [
+     "판독 확정: code: faint pale print; best reading 27A1392 (digits corroborated by the sheet-order sequence 27A1392–27A1404) — 소유자 확인 2026-11-15"
+    ],
+    "typePrinted": "RANGE ATTACK",
+    "ops": {
+     "targeting": [
+      "Furthest Knight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "pumpFastRegrowth",
+       "zone": 3
+      },
+      {
+       "op": "pumpTransformingSeed"
+      }
+     ],
+     "afterFinalAttack": null,
+     "range": 5
+    }
+   },
+   {
+    "file": "03.png",
+    "name": "Plant Rush",
+    "code": "27A1395",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "Furthest Knight in front",
+     "Furthest Knight"
+    ],
+    "move": true,
+    "moveTag": "MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "For each hit lose -2 [Vigor]. [Peril Check].",
+     "Afflict 1."
+    ],
+    "reactWindows": [
+     "targeting",
+     "effect:1"
+    ],
+    "afterAttack": "Fast Regrowth in Zone 3. Transforming Seed.",
+    "aiResponse": null,
+    "footer": "PUMPKINHEAD MONSTROSITIES – AI 1",
+    "unclear": [],
+    "text": "PLANT RUSH / ATTACK / Evasion 3 dice, 8+ / TARGETING: • Furthest Knight in front • Furthest Knight [REACT!] / MOVE & ATTACK / For each hit lose -2 [Vigor]. [Peril Check]. / Afflict 1. [REACT!] / AFTER ATTACK / Fast Regrowth in Zone 3. Transforming Seed. / PUMPKINHEAD MONSTROSITIES – AI 1",
+    "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line.",
+    "notes": [
+     "판독 확정: code: faint pale print; best reading 27A1395 (digits corroborated by the sheet-order sequence 27A1392–27A1404) — 소유자 확인 2026-11-15"
+    ],
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Furthest Knight in front",
+      "Furthest Knight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "pumpAfflict",
+       "n": 1
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "pumpFastRegrowth",
+       "zone": 3
+      },
+      {
+       "op": "pumpTransformingSeed"
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "file": "04.png",
+    "name": "Vine Whip",
+    "code": "27A1396",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 1,
+    "evasionDifficulty": 10,
+    "preTargeting": null,
+    "targeting": [
+     "Closest Knight"
+    ],
+    "move": true,
+    "moveTag": "PULL 2 & MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "For each hit lose -3 [Vigor]. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting",
+     "effect:0"
+    ],
+    "afterAttack": "Fast Regrowth in Zone 3. Transforming Seed.",
+    "aiResponse": null,
+    "footer": "PUMPKINHEAD MONSTROSITIES – AI 1",
+    "unclear": [],
+    "text": "VINE WHIP / ATTACK / Evasion 1 dice, 10+ / TARGETING: • Closest Knight [REACT!] / PULL 2 & MOVE & ATTACK / For each hit lose -3 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Fast Regrowth in Zone 3. Transforming Seed. / PUMPKINHEAD MONSTROSITIES – AI 1",
+    "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line.",
+    "notes": [
+     "판독 확정: code: faint pale print; best reading 27A1396 (digits corroborated by the sheet-order sequence 27A1392–27A1404) — 소유자 확인 2026-11-15"
+    ],
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Closest Knight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 3,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "pumpFastRegrowth",
+       "zone": 3
+      },
+      {
+       "op": "pumpTransformingSeed"
+      }
+     ],
+     "afterFinalAttack": null,
+     "pull": 2
+    }
+   },
+   {
+    "file": "05.png",
+    "name": "Pumpkin Smash",
+    "code": "27A1397",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "Closest Knight"
+    ],
+    "move": true,
+    "moveTag": "MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "One hit, lose -2 [Vigor]. Two hits, lose -3 [Vigor]. Three or more hits, lose -4 [Vigor]. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting",
+     "effect:0"
+    ],
+    "afterAttack": "Fast Regrowth in Zone 3. Transforming Seed.",
+    "aiResponse": null,
+    "footer": "PUMPKINHEAD MONSTROSITIES – AI 1",
+    "unclear": [],
+    "text": "PUMPKIN SMASH / ATTACK / Evasion 3 dice, 8+ / TARGETING: • Closest Knight [REACT!] / MOVE & ATTACK / One hit, lose -2 [Vigor]. Two hits, lose -3 [Vigor]. Three or more hits, lose -4 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Fast Regrowth in Zone 3. Transforming Seed. / PUMPKINHEAD MONSTROSITIES – AI 1",
+    "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line.",
+    "notes": [
+     "판독 확정: code: faint pale print; best reading 27A1397 (digits corroborated by the sheet-order sequence 27A1392–27A1404) — 소유자 확인 2026-11-15"
+    ],
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Closest Knight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "vigorByHitsTable",
+       "table": [
+        2,
+        3,
+        4
+       ],
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "pumpFastRegrowth",
+       "zone": 3
+      },
+      {
+       "op": "pumpTransformingSeed"
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "file": "06.png",
+    "name": "Bullet Seed",
+    "code": "27A1398",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 9,
+    "preTargeting": null,
+    "targeting": [
+     "Furthest Knight"
+    ],
+    "move": true,
+    "moveTag": "MOVE & RANGE ATTACK 5",
+    "gates": [],
+    "effects": [
+     "For each hit lose -2 [Vigor]. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting",
+     "effect:0"
+    ],
+    "afterAttack": "Fast Regrowth in Zone 3. Transforming Seed.",
+    "aiResponse": null,
+    "footer": "PUMPKINHEAD MONSTROSITIES – AI 1",
+    "unclear": [],
+    "text": "BULLET SEED / RANGE ATTACK / Evasion 3 dice, 9+ / TARGETING: • Furthest Knight [REACT!] / MOVE & RANGE ATTACK 5 / For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Fast Regrowth in Zone 3. Transforming Seed. / PUMPKINHEAD MONSTROSITIES – AI 1",
+    "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line.",
+    "notes": [
+     "판독 확정: code: faint pale print; best reading 27A1398 (digits corroborated by the sheet-order sequence 27A1392–27A1404) — 소유자 확인 2026-11-15"
+    ],
+    "typePrinted": "RANGE ATTACK",
+    "ops": {
+     "targeting": [
+      "Furthest Knight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "pumpFastRegrowth",
+       "zone": 3
+      },
+      {
+       "op": "pumpTransformingSeed"
+      }
+     ],
+     "afterFinalAttack": null,
+     "range": 5
+    }
+   },
+   {
+    "file": "07.png",
+    "name": "Leaf Blade",
+    "code": "27A1401",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "Closest Knight"
+    ],
+    "move": true,
+    "moveTag": "MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "For each hit lose -3 [Vigor]. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting",
+     "effect:0"
+    ],
+    "afterAttack": "Fast Regrowth in Zone 3. Transforming Seed.",
+    "aiResponse": null,
+    "footer": "PUMPKINHEAD MONSTROSITIES – AI 2",
+    "unclear": [],
+    "text": "LEAF BLADE / ATTACK / Evasion 2 dice, 8+ / TARGETING: • Closest Knight [REACT!] / MOVE & ATTACK / For each hit lose -3 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Fast Regrowth in Zone 3. Transforming Seed. / PUMPKINHEAD MONSTROSITIES – AI 2",
+    "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line.",
+    "notes": [
+     "판독 확정: code: faint pale print; best reading 27A1401 (digits corroborated by the sheet-order sequence 27A1392–27A1404) — 소유자 확인 2026-11-15",
+     "판독 확정: code last two digits very blurred (looks like 14?1); 27A1401 chosen from the sequence — 소유자 확인 2026-11-15"
+    ],
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Closest Knight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 3,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "pumpFastRegrowth",
+       "zone": 3
+      },
+      {
+       "op": "pumpTransformingSeed"
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "file": "08.png",
+    "name": "Root Rampage",
+    "code": "27A1400",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 7,
+    "preTargeting": null,
+    "targeting": [
+     "Furthest Knight in front",
+     "Furthest Knight"
+    ],
+    "move": true,
+    "moveTag": "MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "For each hit lose -3 [Vigor]. [Peril Check].",
+     "Afflict 2."
+    ],
+    "reactWindows": [
+     "targeting",
+     "effect:1"
+    ],
+    "afterAttack": "Fast Regrowth in Zone 3. Transforming Seed.",
+    "aiResponse": null,
+    "footer": "PUMPKINHEAD MONSTROSITIES – AI 2",
+    "unclear": [],
+    "text": "ROOT RAMPAGE / ATTACK / Evasion 3 dice, 7+ / TARGETING: • Furthest Knight in front • Furthest Knight [REACT!] / MOVE & ATTACK / For each hit lose -3 [Vigor]. [Peril Check]. / Afflict 2. [REACT!] / AFTER ATTACK / Fast Regrowth in Zone 3. Transforming Seed. / PUMPKINHEAD MONSTROSITIES – AI 2",
+    "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line.",
+    "notes": [
+     "판독 확정: code: faint pale print; best reading 27A1400 (digits corroborated by the sheet-order sequence 27A1392–27A1404) — 소유자 확인 2026-11-15",
+     "판독 확정: code last two digits very blurred; 27A1400 chosen from the sequence — 소유자 확인 2026-11-15"
+    ],
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Furthest Knight in front",
+      "Furthest Knight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 3,
+       "perilCheck": true
+      },
+      {
+       "op": "pumpAfflict",
+       "n": 2
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "pumpFastRegrowth",
+       "zone": 3
+      },
+      {
+       "op": "pumpTransformingSeed"
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "file": "09.png",
+    "name": "Bloody Harvest",
+    "code": "27A1399",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "Closest Knight"
+    ],
+    "move": true,
+    "moveTag": "MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "For each hit lose -3 [Vigor]. [Peril Check].",
+     "Pushback 2."
+    ],
+    "reactWindows": [
+     "targeting",
+     "effect:1"
+    ],
+    "afterAttack": "Fast Regrowth in Zone 3. Transforming Seed.",
+    "aiResponse": null,
+    "footer": "PUMPKINHEAD MONSTROSITIES – AI 2",
+    "unclear": [],
+    "text": "BLOODY HARVEST / ATTACK / Evasion 2 dice, 8+ / TARGETING: • Closest Knight [REACT!] / MOVE & ATTACK / For each hit lose -3 [Vigor]. [Peril Check]. / Pushback 2. [REACT!] / AFTER ATTACK / Fast Regrowth in Zone 3. Transforming Seed. / PUMPKINHEAD MONSTROSITIES – AI 2",
+    "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line.",
+    "notes": [
+     "판독 확정: code: faint pale print; best reading 27A1399 (digits corroborated by the sheet-order sequence 27A1392–27A1404) — 소유자 확인 2026-11-15",
+     "판독 확정: code nearly illegible (27A139?); 27A1399 chosen from the sequence — 소유자 확인 2026-11-15"
+    ],
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Closest Knight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 3,
+       "perilCheck": true
+      },
+      {
+       "op": "pushback",
+       "n": 2
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "pumpFastRegrowth",
+       "zone": 3
+      },
+      {
+       "op": "pumpTransformingSeed"
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "file": "10.png",
+    "name": "Knight Pie",
+    "code": "27A1404",
+    "level": 3,
+    "type": "judgement",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "Clash Board"
+    ],
+    "move": false,
+    "moveTag": "JUDGE",
+    "gates": [],
+    "effects": [
+     "Fortitude [Fortitude] / Tenacity [Tenacity].",
+     "For each hit lose -3 [Vigor]. If you would draw a Judicium from this Attack, you die instead. [Peril Check]. Afflict 3."
+    ],
+    "reactWindows": [
+     "targeting",
+     "effect:1"
+    ],
+    "afterAttack": "Fast Regrowth in Zone 3. Transforming Seed.",
+    "aiResponse": null,
+    "footer": "PUMPKINHEAD MONSTROSITIES – AI 3",
+    "unclear": [],
+    "text": "KNIGHT PIE / JUDGEMENT / Evasion 3 dice, 8+ / TARGETING: • Clash Board [REACT!] / JUDGE / Fortitude [Fortitude] / Tenacity [Tenacity]. / For each hit lose -3 [Vigor]. If you would draw a Judicium from this Attack, you die instead. [Peril Check]. Afflict 3. [REACT!] / AFTER ATTACK / Fast Regrowth in Zone 3. Transforming Seed. / PUMPKINHEAD MONSTROSITIES – AI 3",
+    "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line.",
+    "notes": [
+     "판독 확정: code: faint pale print; best reading 27A1404 (digits corroborated by the sheet-order sequence 27A1392–27A1404) — 소유자 확인 2026-11-15",
+     "판독 확정: the JUDGE effect box is one running paragraph: 'Fortitude [Fortitude] / Tenacity [Tenacity]. For each hit lose -3 [Vigor]. If you would draw a Judicium from this Attack, you die instead. [Peril Check]. Afflict 3.' (split here after the virtue line) — 소유자 확인 2026-11-15",
+     "판독 확정: red tag reads 'JUDGE' only (no MOVE) — 소유자 확인 2026-11-15"
+    ],
+    "typePrinted": "JUDGEMENT",
+    "ops": {
+     "targeting": [
+      "Clash Board"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 3,
+       "perilCheck": true
+      },
+      {
+       "op": "pumpAfflict",
+       "n": 3
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "pumpFastRegrowth",
+       "zone": 3
+      },
+      {
+       "op": "pumpTransformingSeed"
+      }
+     ],
+     "afterFinalAttack": null,
+     "judge": [
+      "Fortitude",
+      "Tenacity"
+     ],
+     "judiciumDies": true
+    }
+   },
+   {
+    "file": "11.png",
+    "name": "Pumpkin Bomb",
+    "code": "27A1402",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "Furthest Knight"
+    ],
+    "move": true,
+    "moveTag": "MOVE & RANGE ATTACK 5",
+    "gates": [],
+    "effects": [
+     "For each hit lose -4 [Vigor]. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting",
+     "effect:0"
+    ],
+    "afterAttack": "Fast Regrowth in Zone 3. Transforming Seed.",
+    "aiResponse": null,
+    "footer": "PUMPKINHEAD MONSTROSITIES – AI 3",
+    "unclear": [],
+    "text": "PUMPKIN BOMB / RANGE ZONE ATTACK / Evasion 2 dice, 8+ / TARGETING: • Furthest Knight [REACT!] / MOVE & RANGE ATTACK 5 / For each hit lose -4 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Fast Regrowth in Zone 3. Transforming Seed. / PUMPKINHEAD MONSTROSITIES – AI 3",
+    "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line.",
+    "zoneDiagram": {
+     "grid": [
+      5,
+      5
+     ],
+     "affected": "centre 3x3 block (9 red cells)",
+     "centre": "target glyph on the middle cell (the Target's space)",
+     "note": "printed at top-left of the art, under the type line"
+    },
+    "notes": [
+     "판독 확정: code: faint pale print; best reading 27A1402 (digits corroborated by the sheet-order sequence 27A1392–27A1404) — 소유자 확인 2026-11-15",
+     "판독 확정: code nearly illegible (27A140?); 27A1402 chosen from the sequence — 소유자 확인 2026-11-15",
+     "판독 확정: zone diagram read as a 5x5 grid with the centre 3x3 red and a target glyph on the centre cell — 소유자 확인 2026-11-15"
+    ],
+    "typePrinted": "RANGE ZONE ATTACK",
+    "ops": {
+     "targeting": [
+      "Furthest Knight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 4,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "pumpFastRegrowth",
+       "zone": 3
+      },
+      {
+       "op": "pumpTransformingSeed"
+      }
+     ],
+     "afterFinalAttack": null,
+     "range": 5,
+     "zoneAroundTarget": 1
+    }
+   },
+   {
+    "file": "12.png",
+    "name": "Carve ’Em Up!",
+    "code": "27A1403",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 10,
+    "preTargeting": null,
+    "targeting": [
+     "Closest Knight"
+    ],
+    "move": true,
+    "moveTag": "MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "For each hit lose -2 [Vigor]. [Peril Check].",
+     "Pushback 3."
+    ],
+    "reactWindows": [
+     "targeting",
+     "effect:1"
+    ],
+    "afterAttack": "Fast Regrowth in Zone 3. Transforming Seed.",
+    "aiResponse": null,
+    "footer": "PUMPKINHEAD MONSTROSITIES – AI 3",
+    "unclear": [],
+    "text": "CARVE ’EM UP! / ATTACK / Evasion 3 dice, 10+ / TARGETING: • Closest Knight [REACT!] / MOVE & ATTACK / For each hit lose -2 [Vigor]. [Peril Check]. / Pushback 3. [REACT!] / AFTER ATTACK / Fast Regrowth in Zone 3. Transforming Seed. / PUMPKINHEAD MONSTROSITIES – AI 3",
+    "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line.",
+    "notes": [
+     "판독 확정: code: faint pale print; best reading 27A1403 (digits corroborated by the sheet-order sequence 27A1392–27A1404) — 소유자 확인 2026-11-15"
+    ],
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Closest Knight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "pushback",
+       "n": 3
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "pumpFastRegrowth",
+       "zone": 3
+      },
+      {
+       "op": "pumpTransformingSeed"
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   }
+  ],
+  "bp": [
+   {
+    "file": "13.png",
+    "name": "Samhain Warlord",
+    "code": "28A1769",
+    "level": "X",
+    "at": 3,
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "Gain [Heat] up to your Heat Limit [Heat Limit]. Flip this card to the other side.",
+     "fail": "Knockdown.",
+     "instinct": null,
+     "critical": "Each Knight may discard a Condition card. Flip this card to the other side."
+    },
+    "reactWindows": [],
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "footer": "PUMPKINHEAD MONSTROSITIES – BP X",
+    "twoSided": true,
+    "side": "Pumpkinhead (the other, Seed/Sapling side is not scanned)",
+    "unclear": [],
+    "text": "SAMHAIN WARLORD / OVERCOME 2+ ▸ Power 1 / [AT] 3 / WOUND: Gain [Heat] up to your Heat Limit [Heat Limit]. Flip this card to the other side. / FAIL: Knockdown. / CRITICAL: Each Knight may discard a Condition card. Flip this card to the other side. / PUMPKINHEAD MONSTROSITIES – BP X",
+    "notes": [
+     "OVERCOME 3+ (2+ 아님) — 소유자 정정 2026-11-15",
+     "판독 확정: code: faint pale print; best reading 28A1769 (sheet-order sequence 28A1767–28A1772) — 소유자 확인 2026-11-15",
+     "판독 확정: code last digit illegible (looks like 1766/1769); 28A1769 inferred from sequence — 소유자 확인 2026-11-15"
+    ],
+    "back": {
+     "name": "Eerie Seed",
+     "side": "Sapling",
+     "level": "X",
+     "at": 2,
+     "overcome": null,
+     "responses": {
+      "wound": "Discard this Sapling token.",
+      "fail": "Afflict 1.",
+      "critical": "Discard this Sapling token. Power 1.",
+      "instinct": null
+     },
+     "whileRevealed": "All Saplings gain +1 [AT].",
+     "code": null,
+     "unclear": [],
+     "notes": [
+      "앞뒷면 짝(시트 같은 위치) — 소유자 확인 2026-11-15"
+     ],
+     "ops": {
+      "at": 2,
+      "overcome": null,
+      "wound": [],
+      "fail": [
+       {
+        "op": "pumpAfflict",
+        "n": 1
+       }
+      ],
+      "critical": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ],
+      "aura": {
+       "saplingAT": 1
+      }
+     }
+    },
+    "ops": {
+     "at": 3,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ],
+      "tag": "OVERCOME"
+     },
+     "wound": [
+      {
+       "op": "pumpHeatToLimit"
+      }
+     ],
+     "fail": [
+      {
+       "op": "knockdown"
+      }
+     ],
+     "critical": [
+      {
+       "op": "pumpEachDiscardCondition"
+      }
+     ]
+    }
+   },
+   {
+    "file": "14.png",
+    "name": "Cursed Cucurbit",
+    "code": "28A1768",
+    "level": "X",
+    "at": 2,
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 2,
+     "effect": "Reposition 2"
+    },
+    "responses": {
+     "wound": "Afflict 2. Flip this card to the other side.",
+     "fail": "Pushback 1.",
+     "instinct": null,
+     "critical": "Flip this card to the other side, then you may perform a Bonus Attack!"
+    },
+    "reactWindows": [],
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "footer": "PUMPKINHEAD MONSTROSITIES – BP X",
+    "twoSided": true,
+    "side": "Pumpkinhead (the other, Seed/Sapling side is not scanned)",
+    "unclear": [],
+    "text": "CURSED CUCURBIT / OVERCOME 2+ ▸ Reposition 2 / [AT] 2 / WOUND: Afflict 2. Flip this card to the other side. / FAIL: Pushback 1. / CRITICAL: Flip this card to the other side, then you may perform a Bonus Attack! / PUMPKINHEAD MONSTROSITIES – BP X",
+    "back": {
+     "name": "Cursed Seed",
+     "side": "Sapling",
+     "level": "X",
+     "at": 2,
+     "overcome": null,
+     "responses": {
+      "wound": "Discard this Sapling token.",
+      "fail": "Afflict 1.",
+      "critical": "Discard this Sapling token. Power 1.",
+      "instinct": null
+     },
+     "whileRevealed": "All Pumpkinheads gain +1 [AT].",
+     "code": null,
+     "unclear": [],
+     "notes": [
+      "앞뒷면 짝(시트 같은 위치) — 소유자 확인 2026-11-15"
+     ],
+     "ops": {
+      "at": 2,
+      "overcome": null,
+      "wound": [],
+      "fail": [
+       {
+        "op": "pumpAfflict",
+        "n": 1
+       }
+      ],
+      "critical": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ],
+      "aura": {
+       "pumpkinAT": 1
+      }
+     }
+    },
+    "notes": [
+     "판독 확정: code: faint pale print; best reading 28A1768 (sheet-order sequence 28A1767–28A1772) — 소유자 확인 2026-11-15",
+     "판독 확정: overcome threshold digit is small/blurred inside the tag; best reading 2+ — 소유자 확인 2026-11-15",
+     "판독 확정: code last digit blurred (1768 best) — 소유자 확인 2026-11-15",
+     "판독 확정: 'Bonus Attack!' is printed in bold — 소유자 확인 2026-11-15"
+    ],
+    "ops": {
+     "at": 2,
+     "overcome": {
+      "n": 2,
+      "ops": [
+       {
+        "op": "pumpReposition",
+        "n": 2
+       }
+      ],
+      "tag": "OVERCOME"
+     },
+     "wound": [
+      {
+       "op": "pumpAfflict",
+       "n": 2
+      }
+     ],
+     "fail": [
+      {
+       "op": "pushback",
+       "n": 1
+      }
+     ],
+     "critical": [
+      {
+       "op": "bonusAttack",
+       "who": "self",
+       "optional": true
+      }
+     ]
+    }
+   },
+   {
+    "file": "15.png",
+    "name": "The Harvest Reaper",
+    "code": "28A1767",
+    "level": "X",
+    "at": 2,
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 2,
+     "effect": "Reposition 2"
+    },
+    "responses": {
+     "wound": "Forced Vault. Flip this card to the other side.",
+     "fail": "Pushback 2. Knockdown.",
+     "instinct": null,
+     "critical": "Gain +1 [Passion]. Flip this card to the other side."
+    },
+    "reactWindows": [],
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "footer": "PUMPKINHEAD MONSTROSITIES – BP X",
+    "twoSided": true,
+    "side": "Pumpkinhead (the other, Seed/Sapling side is not scanned)",
+    "unclear": [],
+    "text": "THE HARVEST REAPER / OVERCOME 2+ ▸ Reposition 2 / [AT] 2 / WOUND: Forced Vault. Flip this card to the other side. / FAIL: Pushback 2. Knockdown. / CRITICAL: Gain +1 [Passion]. Flip this card to the other side. / PUMPKINHEAD MONSTROSITIES – BP X",
+    "back": {
+     "name": "Death Seed",
+     "side": "Sapling",
+     "level": "X",
+     "at": 2,
+     "overcome": null,
+     "responses": {
+      "wound": "Discard this Sapling token.",
+      "fail": "Afflict 1.",
+      "critical": "Discard this Sapling token. Power 1.",
+      "instinct": null
+     },
+     "whileRevealed": "All Pumpkinheads gain +1 [AT].",
+     "code": null,
+     "unclear": [],
+     "notes": [
+      "앞뒷면 짝(시트 같은 위치) — 소유자 확인 2026-11-15"
+     ],
+     "ops": {
+      "at": 2,
+      "overcome": null,
+      "wound": [],
+      "fail": [
+       {
+        "op": "pumpAfflict",
+        "n": 1
+       }
+      ],
+      "critical": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ],
+      "aura": {
+       "pumpkinAT": 1
+      }
+     }
+    },
+    "notes": [
+     "판독 확정: code: faint pale print; best reading 28A1767 (sheet-order sequence 28A1767–28A1772) — 소유자 확인 2026-11-15",
+     "판독 확정: overcome threshold digit is small/blurred inside the tag; best reading 2+ — 소유자 확인 2026-11-15",
+     "판독 확정: critical icon after '+1' is a small green square; read as [Passion] — 소유자 확인 2026-11-15"
+    ],
+    "ops": {
+     "at": 2,
+     "overcome": {
+      "n": 2,
+      "ops": [
+       {
+        "op": "pumpReposition",
+        "n": 2
+       }
+      ],
+      "tag": "OVERCOME"
+     },
+     "wound": [
+      {
+       "op": "forcedVault"
+      }
+     ],
+     "fail": [
+      {
+       "op": "pushback",
+       "n": 2
+      },
+      {
+       "op": "knockdown"
+      }
+     ],
+     "critical": [
+      {
+       "op": "gainPassion",
+       "n": 1
+      }
+     ]
+    }
+   },
+   {
+    "file": "16.png",
+    "name": "Squashbrute",
+    "code": "28A1770",
+    "level": "X",
+    "at": 3,
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "Knockdown. Flip this card to the other side.",
+     "fail": "Lose -2 [Vigor].",
+     "instinct": null,
+     "critical": "Leave 2 additional Opening [Opening] and/or Break [Break] tokens. Flip this card to the other side."
+    },
+    "reactWindows": [],
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "footer": "PUMPKINHEAD MONSTROSITIES – BP X",
+    "twoSided": true,
+    "side": "Pumpkinhead (the other, Seed/Sapling side is not scanned)",
+    "criticalFlavor": "I am Brute!",
+    "unclear": [],
+    "text": "SQUASHBRUTE / OVERCOME 3+ ▸ Power 1 / [AT] 3 / WOUND: Knockdown. Flip this card to the other side. / FAIL: Lose -2 [Vigor]. / CRITICAL: I am Brute! — Leave 2 additional Opening [Opening] and/or Break [Break] tokens. Flip this card to the other side. / PUMPKINHEAD MONSTROSITIES – BP X",
+    "back": {
+     "name": "Aggressive Seed",
+     "side": "Sapling",
+     "level": "X",
+     "at": 2,
+     "overcome": null,
+     "responses": {
+      "wound": "Discard this Sapling token.",
+      "fail": "Afflict 1.",
+      "critical": "Discard this Sapling token. Power 1.",
+      "instinct": null
+     },
+     "whileRevealed": "All Saplings gain +1 [AT].",
+     "code": null,
+     "unclear": [],
+     "notes": [
+      "앞뒷면 짝(시트 같은 위치) — 소유자 확인 2026-11-15"
+     ],
+     "ops": {
+      "at": 2,
+      "overcome": null,
+      "wound": [],
+      "fail": [
+       {
+        "op": "pumpAfflict",
+        "n": 1
+       }
+      ],
+      "critical": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ],
+      "aura": {
+       "saplingAT": 1
+      }
+     }
+    },
+    "notes": [
+     "판독 확정: code: faint pale print; best reading 28A1770 (sheet-order sequence 28A1767–28A1772) — 소유자 확인 2026-11-15",
+     "판독 확정: overcome threshold digit is small/blurred inside the tag; best reading 3+ — 소유자 확인 2026-11-15",
+     "판독 확정: overcome digit could be 3+ or 2+ — 소유자 확인 2026-11-15",
+     "판독 확정: CRITICAL box: italic flavour line 'I am Brute!' is printed above the rules text, separated by a thin rule — 소유자 확인 2026-11-15",
+     "판독 확정: no [Peril Check] icon printed after 'Lose -2 [Vigor].' — 소유자 확인 2026-11-15"
+    ],
+    "ops": {
+     "at": 3,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ],
+      "tag": "OVERCOME"
+     },
+     "wound": [
+      {
+       "op": "knockdown"
+      }
+     ],
+     "fail": [
+      {
+       "op": "loseVigor",
+       "n": 2
+      }
+     ],
+     "critical": [
+      {
+       "op": "leaveTokens",
+       "n": 2,
+       "tokens": [
+        "opening",
+        "break"
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "file": "17.png",
+    "name": "Gourd Guardian",
+    "code": "28A1771",
+    "level": "X",
+    "at": 4,
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 4,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "Afflict 2. Lose -2 [Vigor]. Flip this card to the other side.",
+     "fail": "Pushback 3.",
+     "instinct": null,
+     "critical": "Flip this card to the other side and place a Generic token on it, then another Knight may perform a Bonus Attack!"
+    },
+    "reactWindows": [],
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "footer": "PUMPKINHEAD MONSTROSITIES – BP X",
+    "twoSided": true,
+    "side": "Pumpkinhead (the other, Seed/Sapling side is not scanned)",
+    "unclear": [],
+    "text": "GOURD GUARDIAN / OVERCOME 4+ ▸ Power 1 / [AT] 4 / WOUND: Afflict 2. Lose -2 [Vigor]. Flip this card to the other side. / FAIL: Pushback 3. / CRITICAL: Flip this card to the other side and place a Generic token on it, then another Knight may perform a Bonus Attack! / PUMPKINHEAD MONSTROSITIES – BP X",
+    "back": {
+     "name": "Tough Seed",
+     "side": "Sapling",
+     "level": "X",
+     "at": 2,
+     "overcome": null,
+     "responses": {
+      "wound": "Discard this Sapling token.",
+      "fail": "Afflict 1.",
+      "critical": "Discard this Sapling token. Power 1.",
+      "instinct": null
+     },
+     "whenRevealed": "Each Knight adjacent to any Terrain tile suffers Afflict 1.",
+     "code": null,
+     "unclear": [],
+     "notes": [
+      "앞뒷면 짝(시트 같은 위치) — 소유자 확인 2026-11-15"
+     ],
+     "ops": {
+      "at": 2,
+      "overcome": null,
+      "wound": [],
+      "fail": [
+       {
+        "op": "pumpAfflict",
+        "n": 1
+       }
+      ],
+      "critical": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ],
+      "aura": {
+       "whenRevealed": true
+      }
+     }
+    },
+    "notes": [
+     "판독 확정: code: faint pale print; best reading 28A1771 (sheet-order sequence 28A1767–28A1772) — 소유자 확인 2026-11-15",
+     "판독 확정: overcome threshold digit is small/blurred inside the tag; best reading 4+ — 소유자 확인 2026-11-15",
+     "판독 확정: no [Peril Check] icon printed after 'Lose -2 [Vigor].' — 소유자 확인 2026-11-15",
+     "판독 확정: 'Bonus Attack!' is printed in bold — 소유자 확인 2026-11-15"
+    ],
+    "ops": {
+     "at": 4,
+     "overcome": {
+      "n": 4,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ],
+      "tag": "OVERCOME"
+     },
+     "wound": [
+      {
+       "op": "pumpAfflict",
+       "n": 2
+      },
+      {
+       "op": "loseVigor",
+       "n": 2
+      }
+     ],
+     "fail": [
+      {
+       "op": "pushback",
+       "n": 3
+      }
+     ],
+     "critical": [
+      {
+       "op": "pumpExtraToken"
+      },
+      {
+       "op": "bonusAttack",
+       "who": "otherKnight",
+       "optional": true
+      }
+     ]
+    }
+   },
+   {
+    "file": "18.png",
+    "name": "Pumpking",
+    "code": "28A1772",
+    "level": "X",
+    "at": 4,
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 4,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "Each Pumpkinhead moves 2 spaces toward the Pumpking. Flip this card to the other side.",
+     "fail": "Perform AI against the Attacker.",
+     "instinct": null,
+     "critical": "Flip this card to the other side and place a Generic token on it, then you may move up to 2 spaces and perform a Bonus Attack!"
+    },
+    "reactWindows": [],
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "footer": "PUMPKINHEAD MONSTROSITIES – BP X",
+    "twoSided": true,
+    "side": "Pumpkinhead (the other, Seed/Sapling side is not scanned)",
+    "unclear": [],
+    "text": "PUMPKING / OVERCOME 4+ ▸ Power 1 / [AT] 4 / WOUND: Each Pumpkinhead moves 2 spaces toward the Pumpking. Flip this card to the other side. / FAIL: Perform AI against the Attacker. / CRITICAL: Flip this card to the other side and place a Generic token on it, then you may move up to 2 spaces and perform a Bonus Attack! / PUMPKINHEAD MONSTROSITIES – BP X",
+    "back": {
+     "name": "Royal Seed",
+     "side": "Sapling",
+     "level": "X",
+     "at": 2,
+     "overcome": null,
+     "responses": {
+      "wound": "Discard this Sapling token.",
+      "fail": "Afflict 1.",
+      "critical": "Discard this Sapling token. Power 1. After the Clash, see 0552 in the Sunken Kingdom Mysteries section.",
+      "instinct": null
+     },
+     "whenRevealed": "Each Knight adjacent to any Terrain tile suffers Afflict 1.",
+     "code": null,
+     "unclear": [],
+     "notes": [
+      "앞뒷면 짝(시트 같은 위치) — 소유자 확인 2026-11-15"
+     ],
+     "ops": {
+      "at": 2,
+      "overcome": null,
+      "wound": [],
+      "fail": [
+       {
+        "op": "pumpAfflict",
+        "n": 1
+       }
+      ],
+      "critical": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ],
+      "aura": {
+       "whenRevealed": true
+      }
+     }
+    },
+    "notes": [
+     "판독 확정: code: faint pale print; best reading 28A1772 (sheet-order sequence 28A1767–28A1772) — 소유자 확인 2026-11-15",
+     "판독 확정: overcome threshold digit is small/blurred inside the tag; best reading 4+ — 소유자 확인 2026-11-15",
+     "판독 확정: 'Bonus Attack!' is printed in bold — 소유자 확인 2026-11-15"
+    ],
+    "ops": {
+     "at": 4,
+     "overcome": {
+      "n": 4,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ],
+      "tag": "OVERCOME"
+     },
+     "wound": [
+      {
+       "op": "pumpGather",
+       "n": 2
+      }
+     ],
+     "fail": [
+      {
+       "op": "pumpAIAgainstAttacker"
+      }
+     ],
+     "critical": [
+      {
+       "op": "pumpExtraToken"
+      },
+      {
+       "op": "pumpReposition",
+       "n": 2
+      },
+      {
+       "op": "bonusAttack",
+       "who": "self",
+       "optional": true
+      }
+     ]
+    }
+   }
+  ],
+  "signature": {
+   "file": "sig.png",
+   "name": "Spore Cloud",
+   "code": "27A1405",
+   "type": "zone",
+   "evasionDice": 2,
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "Zone 2"
+   ],
+   "move": false,
+   "moveTag": "ATTACK",
+   "gates": [],
+   "effects": [
+    "Afflict 1.",
+    "For each hit lose -2 [Vigor]. [Peril Check]."
+   ],
+   "reactWindows": [
+    "effect:1"
+   ],
+   "afterAttack": "Fast Regrowth in Zone 3. Transforming Seed.",
+   "aiResponse": null,
+   "footer": "PUMPKINHEAD MONSTROSITIES",
+   "unclear": [],
+   "text": "SPORE CLOUD / ZONE SIGNATURE / Evasion 2 dice, 8+ / TARGETING: • Zone 2 / ATTACK / Afflict 1. / For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Fast Regrowth in Zone 3. Transforming Seed. / PUMPKINHEAD MONSTROSITIES",
+   "notes": [
+    "판독 확정: code: illegible in the 367px screenshot (looks like 27A140?); 27A1405 is a guess continuing the AI sequence — 소유자 확인 2026-11-15",
+    "판독 확정: no REACT! marker visible on the targeting rule (only under the effect lines); the right edge of the card is partly cut off by the screenshot, so a targeting REACT! cannot be fully ruled out, though the rule area looks empty — 소유자 확인 2026-11-15",
+    "판독 확정: evasion 2 dice / 8+ and 'Zone 2', 'Afflict 1.', '-2' read from a small tilted screenshot; digits look clear on 4x zoom — 소유자 확인 2026-11-15"
+   ],
+   "typePrinted": "ZONE SIGNATURE",
+   "ops": {
+    "targeting": [
+     "Closest Knight"
+    ],
+    "move": false,
+    "gates": [],
+    "before": [],
+    "effects": [
+     {
+      "op": "pumpAfflict",
+      "n": 1
+     },
+     {
+      "op": "loseVigorPerHit",
+      "n": 2,
+      "perilCheck": true
+     }
+    ],
+    "afterAttack": [
+     {
+      "op": "pumpFastRegrowth",
+      "zone": 3
+     },
+     {
+      "op": "pumpTransformingSeed"
+     }
+    ],
+    "afterFinalAttack": null,
+    "zoneAroundSelf": 2
+   }
+  },
+  "routine": {
+   "file": "19.png",
+   "name": "Photosynthesis",
+   "code": null,
+   "type": "routine",
+   "text": "Fast Regrowth on the entire Clash Board. Place 2 Generic tokens on each BP.",
+   "footer": "PUMPKINHEAD MONSTROSITIES",
+   "unclear": [],
+   "notes": [
+    "판독 확정: no card code visible in the scan (top-right corner blank/faded) — 소유자 확인 2026-11-15",
+    "판독 확정: printed as centred lines: 'Fast Regrowth on the entire / Clash Board. / Place 2 Generic tokens on each BP.' — 소유자 확인 2026-11-15"
+   ],
+   "back": "Spore Cloud (Zone Signature) — the Signature card is printed on the back of the Routine card",
+   "ops": [
+    {
+     "op": "pumpFastRegrowth",
+     "zone": "all"
+    },
+    {
+     "op": "pumpTokensAll",
+     "n": 2
+    }
+   ]
+  }
+ },
+ "pump": {
+  "kingdomTrait": {
+   "sunken": "Venomous Quagmire",
+   "principality": "Floraforge Fury"
+  }
+ },
+ "clashSetup": {
+  "_source": "Sunken Kingdom Codex p.40–41 (Pumpkinhead Monstrosities Clash — Sunken Kingdom diagram)",
+  "steps": [
+   "Standard Preparations (Rulebook p.44)",
+   "Monster Positioning: Take all BP cards and randomly flip 2 of them Sapling side up. Then, place all BP cards in a random order on spaces 1–6 on the Mob track. Put numbered base rings on 4 Pumpkinhead miniatures and 2 Red Sapling tokens with numbers corresponding to the type of BP on the Mob track. Randomly place Pumpkinhead miniatures and Sapling tokens numbered 1–6 on the spaces designated on the diagram. Note the facing direction indicated by the arrows.",
+   "Additional Setup: Depending on the Kingdom, take the Floraforge Fury (Principality of Stone) or Venomous Quagmire (Sunken Kingdom) Trait card. Place unused Sapling tokens and the Fool’s deck near the Monster Sheet. Place a Generic token on each Sapling BP card on the Mob track."
+  ],
+  "requiredTiles": [
+   "1x Campfire",
+   "8x Swamp 1x2",
+   "2x Red Sapling tokens"
+  ],
+  "pumpkinStart": [
+   {
+    "cell": "H5",
+    "facing": "S"
+   },
+   {
+    "cell": "F3",
+    "facing": "E"
+   },
+   {
+    "cell": "E12",
+    "facing": "W"
+   },
+   {
+    "cell": "C10",
+    "facing": "N"
+   }
+  ],
+  "saplingStart": [
+   "I8",
+   "B7"
+  ],
+  "mobStart": [
+   "H5",
+   "F3",
+   "E12",
+   "C10",
+   "I8 (Sapling)",
+   "B7 (Sapling)"
+  ],
+  "knightStart": [
+   "G7",
+   "F9",
+   "E6",
+   "D8"
+  ],
+  "terrain": [
+   {
+    "tile": "campfire",
+    "cells": [
+     "F7",
+     "F8",
+     "E7",
+     "E8"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "cells": [
+     "J5",
+     "J6"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "cells": [
+     "I9",
+     "I10"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "cells": [
+     "H4",
+     "G4"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "cells": [
+     "G12",
+     "F12"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "cells": [
+     "E3",
+     "D3"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "cells": [
+     "D11",
+     "C11"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "cells": [
+     "B5",
+     "B6"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "cells": [
+     "A9",
+     "A10"
+    ]
+   }
+  ],
+  "unclear": [
+   "지형·시작 칸은 코덱스 도식에서 읽음 [해석, 확인 필요]"
+  ]
+ },
+ "rulings": [
+  "Two-sided BPs are always face-up: the Sapling-side \"While this BP is revealed\" auras apply while that side is up, \"When revealed\" triggers when the card is flipped to that side during the Clash [해석, 확인 필요]",
+  "Fast Regrowth \"flip all Red Sapling tokens to the Green side\": every Red Sapling on the board, not only those in the Zone [해석, 확인 필요]",
+  "Sapling AI Escalation: the AI card removed has the Level equal to the Generic tokens on the wounded BP (1 → AI 1 out, AI 2 in; 2 → AI 2 out, AI 3 in; 3 → AI 3 swapped for another AI 3)",
+  "Controlled Burn: a Sapling can only be wounded if a Fire token was in the Knight Pool when the Power Roll was resolved (Fire spent on that attack counts) [해석, 확인 필요]",
+  "Fire Walk with Me: a Pumpkinhead whose shortest path crosses the Campfire burns; when equally short paths exist with and without the Campfire, the players choose [해석, 확인 필요]. Level 2+: the new Sapling gets 2 Generic tokens instead of 1 [해석, 확인 필요]",
+  "Pumpkin Bomb (RANGE ZONE ATTACK, no diagram on the card): the Target and every Knight in Zone 1 around the Target [해석, 확인 필요]",
+  "MOVE & RANGE ATTACK 5: moves until within 5 spaces of the Target; Vine Whip PULL 2: the Target is Pulled 2 toward the Pumpkinhead before it moves",
+  "Venomous Quagmire growth: the 2x2 Swamp covers the Pumpkinhead's space and the 3 spaces up / right of it that are free of other Terrain [해석, 확인 필요]; Transforming Seed uses the Vigor the Target lost in this Attack",
+  "Floraforge Fury (Principality): Afflict X = Parasitize X is NOT implemented (keyword definition needed); growth move and Transforming Seed (Armor token on Saplings in Zone 3) are implemented",
+  "Pumpkin Plague (Level 3): the Knight chooses the Gear card for each Generic token; death → after the Attack, Heal 1 puts the top Wound-Stack BP back as a Pumpkinhead on the Knight's space [해석, 확인 필요]",
+  "Sapling \"Lumbering\" and \"Nevermore Spawn\" Basic Abilities are not implemented (definitions needed); \"Reposition 2\" = the Knight may move up to 2 spaces",
+  "Lose condition: 4 Generic tokens on any BP (Ecological Cataclysm). Routine Photosynthesis: Fast Regrowth on the whole board, then 2 Generic tokens on each BP"
+ ]
+}

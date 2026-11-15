@@ -45,7 +45,7 @@ export const MobMixin = {
   // ---------- auras of revealed BPs ----------
   mobAura(key) { let n = 0; for (const m of this.monster.mobs || []) if (m.revealed && m.card.ops.aura && typeof m.card.ops.aura[key] === 'number') n += m.card.ops.aura[key]; return n; },
   mobAT(mob) {
-    const M = this.monster; let at = mob.card.at + M.bonuses.at + M.modifiers.at + (this.mobArmorDisabled ? 0 : mob.armor) + this.difficultTerrainAT(mob.cells) + (M.hasTrait('Scab Armor') ? mob.blood || 0 : 0) + (this.monsterDef.battleTactics ? this.firstmenAT(mob) : 0) + (mob.isNightmare ? this.wnEndure || 0 : 0);
+    const M = this.monster; let at = mob.card.at + M.bonuses.at + M.modifiers.at + (this.mobArmorDisabled ? 0 : mob.armor) + this.difficultTerrainAT(mob.cells) + (M.hasTrait('Scab Armor') ? mob.blood || 0 : 0) + (this.monsterDef.battleTactics ? this.firstmenAT(mob) : 0) + (mob.isNightmare ? this.wnEndure || 0 : 0) + (mob.isPump ? this.pumpATBonus(mob) : 0);
     for (const o of M.mobs) { if (o === mob || !o.revealed || !o.cells.length || !mob.cells.length) continue; const a = o.card.ops.aura && o.card.ops.aura.atOtherMobsZone; if (a && Math.max(Math.abs(o.cells[0].c - mob.cells[0].c), Math.abs(o.cells[0].r - mob.cells[0].r)) <= a.z) at += a.n; }
     return at;
   },
@@ -57,7 +57,7 @@ export const MobMixin = {
     for (let guard = 0; guard < 40; guard++) {
       const mob = M.mobs.find(m => m.tokens.some(t => t.ready)); if (!mob) break; const tok = mob.tokens.find(t => t.ready);
       M.cur = mob; this.say(`▷ Mob #${mob.n} (${mob.cells[0] ? this.board.label(mob.cells[0]) : '보드 밖'}) 활성화 — ${tok.type === 'AI' ? 'AI' : 'Signature'}`, 'ai');
-      await this.guard(async () => { if (await this.emergeIfOffboard(mob)) { if (tok.type === 'AI') await this.activationAI(); else await this.performSignature(); } });
+      await this.guard(async () => { if (await this.emergeIfOffboard(mob)) { if (tok.type === 'AI' && !(mob.isPump && mob.side === 'sapling')) await this.activationAI(); else { if (mob.isPump) this.say(`Sapling #${mob.n}: AI 대신 Signature`); await this.performSignature(); } } });
       if (M.mobs.includes(mob) && mob.tokens.includes(tok)) this.moveToken(mob.n, tok, true); else tok.ready = false;
       await this.guard(() => this.afterAction()); this.checkEnd();
     }

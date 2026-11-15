@@ -195,9 +195,9 @@ const renderBoard = () => {
       g.append(svg('rect', { x: tx + 1, y: ty + 1, width: CW * 2 - 2, height: CW * 2 - 2, rx: 3, class: 'mon mob', style: 'fill:#e8e2d0;stroke:#8a6d3b' })); g.append(svg('text', { x: tx + CW, y: ty + CW * 1.15, class: 'lbl', style: 'font-size:6px;fill:#3a2a12' }, 'W')); g.append(svg('text', { x: tx + CW, y: ty + CW * 1.7, class: 'pvtxt', style: 'font-size:3px;fill:#3a2a12' }, `${T.trollTokens}/4`)); s.append(g); }
     for (const m of M.mobs) { const c = m.cells[0]; if (!c) continue; const cx = x(c.c) + CW / 2, cy = y(c.r) + CW / 2; const d = DIRS[m.facing]; const act = M.cur === m && (clash.currentAttack || clash.currentKnightAttack);
       const g = svg('g', { class: 'mobg' + (pickable && pickable.has(m.n) ? ' pick' : '') });
-      g.append(svg('rect', { x: x(c.c) + 1, y: y(c.r) + 1, width: CW - 2, height: CW - 2, rx: 2, class: 'mon mob' + (m.revealed ? ' rev' : '') + (act ? ' act' : '') }));
+      g.append(svg('rect', { x: x(c.c) + 1, y: y(c.r) + 1, width: CW - 2, height: CW - 2, rx: 2, class: 'mon mob' + (m.revealed ? ' rev' : '') + (act ? ' act' : ''), style: m.isPump && m.side === 'sapling' ? `fill:${m.red ? '#7a2a22' : '#2f6b2f'};stroke:${m.red ? '#ff8a7a' : '#9be89b'}` : null }));
       g.append(svg('polygon', { points: `${cx + d.c * 4.6},${cy - d.r * 4.6} ${cx - d.r * 2 + d.c * 2.4},${cy - d.c * 2 - d.r * 2.4} ${cx + d.r * 2 + d.c * 2.4},${cy + d.c * 2 - d.r * 2.4}`, fill: '#ffd27a' }));
-      g.append(svg('text', { x: cx, y: cy + 1.6, class: 'lbl' }, String(m.n)));
+      g.append(svg('text', { x: cx, y: cy + 1.6, class: 'lbl' }, String(m.n))); if (m.isPump && m.generic) g.append(svg('text', { x: x(c.c) + 2.4, y: y(c.r) + CW - 1.2, class: 'pvtxt', style: 'fill:#ffd27a;font-size:3px' }, '●' + m.generic));
       if (m.tokens.length) g.append(svg('circle', { cx: x(c.c) + CW - 2, cy: y(c.r) + 2, r: 1.4, fill: m.tokens.some(t => t.ready) ? '#ff5a4a' : '#6b5a4a', stroke: '#000', 'stroke-width': .3 }));
       if (m.armor) g.append(svg('text', { x: x(c.c) + 2.2, y: y(c.r) + 3.4, class: 'pvtxt', style: 'fill:#9fd0ff;font-size:3px' }, '🛡' + m.armor));
       if (clash.bloodOn && m.blood) g.append(svg('text', { x: x(c.c) + 2.4, y: y(c.r) + CW - 1.4, class: 'pvtxt', style: 'fill:#ff6b6b;font-size:3px' }, '●' + m.blood));

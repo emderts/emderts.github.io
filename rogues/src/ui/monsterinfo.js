@@ -47,7 +47,7 @@ export const mountMonsterInfo = (DATA, h, current) => {
   const box = h('div', { class: 'mi-box', style: 'display:none' }, h('div', { class: 'mi-bar' }, h('b', {}, '몬스터 정보'), sel, h('button', { class: 'sm', onclick: () => { box.style.display = 'none'; } }, '닫기')), body);
   sel.addEventListener('change', () => show(sel.value));
   const btn = h('button', { class: 'mi-btn', title: '몬스터 정보 (레벨 · Trait · AI · BP · Setup)', onclick: () => { const open = box.style.display === 'none'; box.style.display = open ? 'flex' : 'none'; if (open) show((current && current()) || sel.value); } }, '👁 몬스터');
-  const st = h('style', {}, `.mi-btn{position:absolute;right:10px;top:8px;z-index:40;padding:5px 9px;border-radius:8px;border:1px solid #8a6d3b;background:#221c17;color:#eadfc8;font-size:13px}
+  const st = h('style', {}, `.mi-btn{display:block;margin:6px 10px 0 auto;padding:5px 9px;border-radius:8px;border:1px solid #8a6d3b;background:#221c17;color:#eadfc8;font-size:13px}
 .mi-box{position:fixed;inset:0;z-index:800;flex-direction:column;background:#17130f;color:#eadfc8}
 .mi-bar{display:flex;gap:8px;align-items:center;padding:8px 10px calc(8px);border-bottom:1px solid #4a3d2c}.mi-bar select{flex:1;min-width:0;padding:5px;background:#221c17;color:#eadfc8;border:1px solid #4a3d2c;border-radius:6px}
 .mi-body{flex:1;overflow:auto;padding:8px 10px calc(16px + env(safe-area-inset-bottom));-webkit-overflow-scrolling:touch}.mi-page{max-width:760px;margin:0 auto}
@@ -58,6 +58,6 @@ export const mountMonsterInfo = (DATA, h, current) => {
 .mi-l{font-size:13px;margin:2px 0;line-height:1.45}.mi-b{font-size:13px;margin:1px 0 1px 6px;line-height:1.45}.mi-tag{display:inline-block;margin:3px 0;padding:1px 6px;border-radius:4px;background:#5a231c;color:#ffd9c9;font-size:12px;font-weight:bold}
 .mi-gate{font-size:12px;color:#ffb37a;margin-left:6px}.mi-react{font-size:11px;color:#7fb3ff;margin-top:3px}.mi-back{margin-top:5px;padding-top:4px;border-top:1px dashed #555}
 .mi-t{width:100%;border-collapse:collapse;font-size:12px;margin:4px 0}.mi-t th,.mi-t td{border:1px solid #3a3024;padding:3px 4px;text-align:left;vertical-align:top}.muted{color:#a8997f}`);
-  document.head.append(st); document.body.append(btn, box);
+  document.head.append(st); document.body.prepend(btn); document.body.append(box);
   return { show: id => { box.style.display = 'flex'; show(id); } };
 };
