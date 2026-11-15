@@ -115,7 +115,7 @@ export class Campaign {
 
   /** Aftermath after a Clash (rulebook p.63 + p.76–77 Rogue's Path). `ask` drives Loot distribution and reward picks. */
   async aftermath(clash) {
-    const cur = this.current; const node = this.node(cur.nodeId); const win = clash.result === 'win';
+    const cur = this.current; const node = this.node(cur.nodeId); const win = clash.result === 'win'; if ((clash.curseLevel || 0) > this.curseLevel) { this.say(`공용 Curse ${this.curseLevel} → ${clash.curseLevel}`); this.curseLevel = clash.curseLevel; }
     const deaths = clash.knights.filter(k => !k.alive).length; const survivors = clash.knights.filter(k => k.alive).length;
     // carry back knight state
     for (const kn of clash.knights) { const ck = this.knights.find(x => x.name === kn.name); ck.bane = Math.max(0, kn.bane - 2); ck.gold = kn.gold; }

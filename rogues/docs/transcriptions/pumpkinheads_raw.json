@@ -162,13 +162,14 @@
    "footprint": "1x1"
   },
   "levelsNote": "Stat boxes: To Hit N+, Wounds (heart), Exhibition Wounds (broken heart), Activations '2 AI' at every level. Level 1 has no blue bonus row; its TRAITS box prints '+Sinister Saplings, Cursed Overgrowth, Ecological Cataclysm, Invasive Species, Controlled Burn, Fire Walk with Me, Kingdom Trait (see Clash Setup)'. Bonus rows (blue): L2 '+3 [AT] +1 [Vigor]', L3 '+5 [AT] +3 [Vigor]', L4 '+6 [AT] +5 [Vigor]'; no starburst (Escalations) or die icons printed, stored as 0.",
-  "unclear": [
-   "sheet code: tiny pale print at top-right of sheet1; best reading 26A1072 (last two digits slightly uncertain)",
-   "Level 1 TRAITS box lists 'Kingdom Trait (see Clash Setup)' as a seventh entry; kept in traitsAdd as printed (it refers to the Kingdom Trait cards in `extra`, not a sheet trait)",
-   "'Lumbering' (Sinister Saplings) is printed in italics; 'Fast Regrowth:' (Cursed Overgrowth), 'When there are 4 Generic tokens on any BP, you lose the Clash.' (Ecological Cataclysm) and 'Level 2+:' (Fire Walk with Me) are printed in bold",
-   "[To Hit] placeholder used for the fist/hammer To Hit icon in Sinister Saplings (not in the brief's icon list)",
-   "Pumpkin Plague: icon after 'Gear' / '2-handed Weapon' read as the bag [Gear] icon; icon after 'Bane' read as the [Bane] circle",
-   "bonuses.escalations and evasionDice are not printed on this sheet (blank cells); recorded as 0"
+  "unclear": [],
+  "notes": [
+   "판독 확정: sheet code: tiny pale print at top-right of sheet1; best reading 26A1072 (last two digits slightly uncertain) — 소유자 확인 2026-11-15",
+   "판독 확정: Level 1 TRAITS box lists 'Kingdom Trait (see Clash Setup)' as a seventh entry; kept in traitsAdd as printed (it refers to the Kingdom Trait cards in `extra`, not a sheet trait) — 소유자 확인 2026-11-15",
+   "판독 확정: 'Lumbering' (Sinister Saplings) is printed in italics; 'Fast Regrowth:' (Cursed Overgrowth), 'When there are 4 Generic tokens on any BP, you lose the Clash.' (Ecological Cataclysm) and 'Level 2+:' (Fire Walk with Me) are printed in bold — 소유자 확인 2026-11-15",
+   "판독 확정: [To Hit] placeholder used for the fist/hammer To Hit icon in Sinister Saplings (not in the brief's icon list) — 소유자 확인 2026-11-15",
+   "판독 확정: Pumpkin Plague: icon after 'Gear' / '2-handed Weapon' read as the bag [Gear] icon; icon after 'Bane' read as the [Bane] circle — 소유자 확인 2026-11-15",
+   "판독 확정: bonuses.escalations and evasionDice are not printed on this sheet (blank cells); recorded as 0 — 소유자 확인 2026-11-15"
   ]
  },
  "ai": [
@@ -197,11 +198,12 @@
    "afterAttack": "Fast Regrowth in Zone 3. Transforming Seed.",
    "aiResponse": null,
    "footer": "PUMPKINHEAD MONSTROSITIES – AI 1",
-   "unclear": [
-    "code: faint pale print; best reading 27A1394 (digits corroborated by the sheet-order sequence 27A1392–27A1404)"
-   ],
+   "unclear": [],
    "text": "REAPER’S IMPALEMENT / ATTACK / Evasion 3 dice, 8+ / TARGETING: • Closest Knight [REACT!] / MOVE & ATTACK / For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Fast Regrowth in Zone 3. Transforming Seed. / PUMPKINHEAD MONSTROSITIES – AI 1",
-   "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line."
+   "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line.",
+   "notes": [
+    "판독 확정: code: faint pale print; best reading 27A1394 (digits corroborated by the sheet-order sequence 27A1392–27A1404) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "01.png",
@@ -229,11 +231,12 @@
    "afterAttack": "Fast Regrowth in Zone 3. Transforming Seed.",
    "aiResponse": null,
    "footer": "PUMPKINHEAD MONSTROSITIES – AI 1",
-   "unclear": [
-    "code: faint pale print; best reading 27A1393 (digits corroborated by the sheet-order sequence 27A1392–27A1404)"
-   ],
+   "unclear": [],
    "text": "SICKLE SWIPE / ATTACK / Evasion 2 dice, 9+ / TARGETING: • Closest Knight [REACT!] / MOVE & ATTACK / For each hit lose -2 [Vigor]. [Peril Check]. / Pushback 1. [REACT!] / AFTER ATTACK / Fast Regrowth in Zone 3. Transforming Seed. / PUMPKINHEAD MONSTROSITIES – AI 1",
-   "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line."
+   "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line.",
+   "notes": [
+    "판독 확정: code: faint pale print; best reading 27A1393 (digits corroborated by the sheet-order sequence 27A1392–27A1404) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "02.png",
@@ -260,11 +263,12 @@
    "afterAttack": "Fast Regrowth in Zone 3. Transforming Seed.",
    "aiResponse": null,
    "footer": "PUMPKINHEAD MONSTROSITIES – AI 1",
-   "unclear": [
-    "code: faint pale print; best reading 27A1392 (digits corroborated by the sheet-order sequence 27A1392–27A1404)"
-   ],
+   "unclear": [],
    "text": "SEED SHOT / RANGE ATTACK / Evasion 5 dice, 6+ / TARGETING: • Furthest Knight [REACT!] / MOVE & RANGE ATTACK 5 / For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Fast Regrowth in Zone 3. Transforming Seed. / PUMPKINHEAD MONSTROSITIES – AI 1",
-   "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line."
+   "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line.",
+   "notes": [
+    "판독 확정: code: faint pale print; best reading 27A1392 (digits corroborated by the sheet-order sequence 27A1392–27A1404) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "03.png",
@@ -293,11 +297,12 @@
    "afterAttack": "Fast Regrowth in Zone 3. Transforming Seed.",
    "aiResponse": null,
    "footer": "PUMPKINHEAD MONSTROSITIES – AI 1",
-   "unclear": [
-    "code: faint pale print; best reading 27A1395 (digits corroborated by the sheet-order sequence 27A1392–27A1404)"
-   ],
+   "unclear": [],
    "text": "PLANT RUSH / ATTACK / Evasion 3 dice, 8+ / TARGETING: • Furthest Knight in front • Furthest Knight [REACT!] / MOVE & ATTACK / For each hit lose -2 [Vigor]. [Peril Check]. / Afflict 1. [REACT!] / AFTER ATTACK / Fast Regrowth in Zone 3. Transforming Seed. / PUMPKINHEAD MONSTROSITIES – AI 1",
-   "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line."
+   "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line.",
+   "notes": [
+    "판독 확정: code: faint pale print; best reading 27A1395 (digits corroborated by the sheet-order sequence 27A1392–27A1404) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "04.png",
@@ -324,11 +329,12 @@
    "afterAttack": "Fast Regrowth in Zone 3. Transforming Seed.",
    "aiResponse": null,
    "footer": "PUMPKINHEAD MONSTROSITIES – AI 1",
-   "unclear": [
-    "code: faint pale print; best reading 27A1396 (digits corroborated by the sheet-order sequence 27A1392–27A1404)"
-   ],
+   "unclear": [],
    "text": "VINE WHIP / ATTACK / Evasion 1 dice, 10+ / TARGETING: • Closest Knight [REACT!] / PULL 2 & MOVE & ATTACK / For each hit lose -3 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Fast Regrowth in Zone 3. Transforming Seed. / PUMPKINHEAD MONSTROSITIES – AI 1",
-   "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line."
+   "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line.",
+   "notes": [
+    "판독 확정: code: faint pale print; best reading 27A1396 (digits corroborated by the sheet-order sequence 27A1392–27A1404) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "05.png",
@@ -355,11 +361,12 @@
    "afterAttack": "Fast Regrowth in Zone 3. Transforming Seed.",
    "aiResponse": null,
    "footer": "PUMPKINHEAD MONSTROSITIES – AI 1",
-   "unclear": [
-    "code: faint pale print; best reading 27A1397 (digits corroborated by the sheet-order sequence 27A1392–27A1404)"
-   ],
+   "unclear": [],
    "text": "PUMPKIN SMASH / ATTACK / Evasion 3 dice, 8+ / TARGETING: • Closest Knight [REACT!] / MOVE & ATTACK / One hit, lose -2 [Vigor]. Two hits, lose -3 [Vigor]. Three or more hits, lose -4 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Fast Regrowth in Zone 3. Transforming Seed. / PUMPKINHEAD MONSTROSITIES – AI 1",
-   "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line."
+   "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line.",
+   "notes": [
+    "판독 확정: code: faint pale print; best reading 27A1397 (digits corroborated by the sheet-order sequence 27A1392–27A1404) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "06.png",
@@ -386,11 +393,12 @@
    "afterAttack": "Fast Regrowth in Zone 3. Transforming Seed.",
    "aiResponse": null,
    "footer": "PUMPKINHEAD MONSTROSITIES – AI 1",
-   "unclear": [
-    "code: faint pale print; best reading 27A1398 (digits corroborated by the sheet-order sequence 27A1392–27A1404)"
-   ],
+   "unclear": [],
    "text": "BULLET SEED / RANGE ATTACK / Evasion 3 dice, 9+ / TARGETING: • Furthest Knight [REACT!] / MOVE & RANGE ATTACK 5 / For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Fast Regrowth in Zone 3. Transforming Seed. / PUMPKINHEAD MONSTROSITIES – AI 1",
-   "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line."
+   "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line.",
+   "notes": [
+    "판독 확정: code: faint pale print; best reading 27A1398 (digits corroborated by the sheet-order sequence 27A1392–27A1404) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "07.png",
@@ -417,12 +425,13 @@
    "afterAttack": "Fast Regrowth in Zone 3. Transforming Seed.",
    "aiResponse": null,
    "footer": "PUMPKINHEAD MONSTROSITIES – AI 2",
-   "unclear": [
-    "code: faint pale print; best reading 27A1401 (digits corroborated by the sheet-order sequence 27A1392–27A1404)",
-    "code last two digits very blurred (looks like 14?1); 27A1401 chosen from the sequence"
-   ],
+   "unclear": [],
    "text": "LEAF BLADE / ATTACK / Evasion 2 dice, 8+ / TARGETING: • Closest Knight [REACT!] / MOVE & ATTACK / For each hit lose -3 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Fast Regrowth in Zone 3. Transforming Seed. / PUMPKINHEAD MONSTROSITIES – AI 2",
-   "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line."
+   "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line.",
+   "notes": [
+    "판독 확정: code: faint pale print; best reading 27A1401 (digits corroborated by the sheet-order sequence 27A1392–27A1404) — 소유자 확인 2026-11-15",
+    "판독 확정: code last two digits very blurred (looks like 14?1); 27A1401 chosen from the sequence — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "08.png",
@@ -451,12 +460,13 @@
    "afterAttack": "Fast Regrowth in Zone 3. Transforming Seed.",
    "aiResponse": null,
    "footer": "PUMPKINHEAD MONSTROSITIES – AI 2",
-   "unclear": [
-    "code: faint pale print; best reading 27A1400 (digits corroborated by the sheet-order sequence 27A1392–27A1404)",
-    "code last two digits very blurred; 27A1400 chosen from the sequence"
-   ],
+   "unclear": [],
    "text": "ROOT RAMPAGE / ATTACK / Evasion 3 dice, 7+ / TARGETING: • Furthest Knight in front • Furthest Knight [REACT!] / MOVE & ATTACK / For each hit lose -3 [Vigor]. [Peril Check]. / Afflict 2. [REACT!] / AFTER ATTACK / Fast Regrowth in Zone 3. Transforming Seed. / PUMPKINHEAD MONSTROSITIES – AI 2",
-   "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line."
+   "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line.",
+   "notes": [
+    "판독 확정: code: faint pale print; best reading 27A1400 (digits corroborated by the sheet-order sequence 27A1392–27A1404) — 소유자 확인 2026-11-15",
+    "판독 확정: code last two digits very blurred; 27A1400 chosen from the sequence — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "09.png",
@@ -484,12 +494,13 @@
    "afterAttack": "Fast Regrowth in Zone 3. Transforming Seed.",
    "aiResponse": null,
    "footer": "PUMPKINHEAD MONSTROSITIES – AI 2",
-   "unclear": [
-    "code: faint pale print; best reading 27A1399 (digits corroborated by the sheet-order sequence 27A1392–27A1404)",
-    "code nearly illegible (27A139?); 27A1399 chosen from the sequence"
-   ],
+   "unclear": [],
    "text": "BLOODY HARVEST / ATTACK / Evasion 2 dice, 8+ / TARGETING: • Closest Knight [REACT!] / MOVE & ATTACK / For each hit lose -3 [Vigor]. [Peril Check]. / Pushback 2. [REACT!] / AFTER ATTACK / Fast Regrowth in Zone 3. Transforming Seed. / PUMPKINHEAD MONSTROSITIES – AI 2",
-   "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line."
+   "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line.",
+   "notes": [
+    "판독 확정: code: faint pale print; best reading 27A1399 (digits corroborated by the sheet-order sequence 27A1392–27A1404) — 소유자 확인 2026-11-15",
+    "판독 확정: code nearly illegible (27A139?); 27A1399 chosen from the sequence — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "10.png",
@@ -517,13 +528,14 @@
    "afterAttack": "Fast Regrowth in Zone 3. Transforming Seed.",
    "aiResponse": null,
    "footer": "PUMPKINHEAD MONSTROSITIES – AI 3",
-   "unclear": [
-    "code: faint pale print; best reading 27A1404 (digits corroborated by the sheet-order sequence 27A1392–27A1404)",
-    "the JUDGE effect box is one running paragraph: 'Fortitude [Fortitude] / Tenacity [Tenacity]. For each hit lose -3 [Vigor]. If you would draw a Judicium from this Attack, you die instead. [Peril Check]. Afflict 3.' (split here after the virtue line)",
-    "red tag reads 'JUDGE' only (no MOVE)"
-   ],
+   "unclear": [],
    "text": "KNIGHT PIE / JUDGEMENT / Evasion 3 dice, 8+ / TARGETING: • Clash Board [REACT!] / JUDGE / Fortitude [Fortitude] / Tenacity [Tenacity]. / For each hit lose -3 [Vigor]. If you would draw a Judicium from this Attack, you die instead. [Peril Check]. Afflict 3. [REACT!] / AFTER ATTACK / Fast Regrowth in Zone 3. Transforming Seed. / PUMPKINHEAD MONSTROSITIES – AI 3",
-   "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line."
+   "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line.",
+   "notes": [
+    "판독 확정: code: faint pale print; best reading 27A1404 (digits corroborated by the sheet-order sequence 27A1392–27A1404) — 소유자 확인 2026-11-15",
+    "판독 확정: the JUDGE effect box is one running paragraph: 'Fortitude [Fortitude] / Tenacity [Tenacity]. For each hit lose -3 [Vigor]. If you would draw a Judicium from this Attack, you die instead. [Peril Check]. Afflict 3.' (split here after the virtue line) — 소유자 확인 2026-11-15",
+    "판독 확정: red tag reads 'JUDGE' only (no MOVE) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "11.png",
@@ -550,11 +562,7 @@
    "afterAttack": "Fast Regrowth in Zone 3. Transforming Seed.",
    "aiResponse": null,
    "footer": "PUMPKINHEAD MONSTROSITIES – AI 3",
-   "unclear": [
-    "code: faint pale print; best reading 27A1402 (digits corroborated by the sheet-order sequence 27A1392–27A1404)",
-    "code nearly illegible (27A140?); 27A1402 chosen from the sequence",
-    "zone diagram read as a 5x5 grid with the centre 3x3 red and a target glyph on the centre cell"
-   ],
+   "unclear": [],
    "text": "PUMPKIN BOMB / RANGE ZONE ATTACK / Evasion 2 dice, 8+ / TARGETING: • Furthest Knight [REACT!] / MOVE & RANGE ATTACK 5 / For each hit lose -4 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Fast Regrowth in Zone 3. Transforming Seed. / PUMPKINHEAD MONSTROSITIES – AI 3",
    "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line.",
    "zoneDiagram": {
@@ -565,7 +573,12 @@
     "affected": "centre 3x3 block (9 red cells)",
     "centre": "target glyph on the middle cell (the Target's space)",
     "note": "printed at top-left of the art, under the type line"
-   }
+   },
+   "notes": [
+    "판독 확정: code: faint pale print; best reading 27A1402 (digits corroborated by the sheet-order sequence 27A1392–27A1404) — 소유자 확인 2026-11-15",
+    "판독 확정: code nearly illegible (27A140?); 27A1402 chosen from the sequence — 소유자 확인 2026-11-15",
+    "판독 확정: zone diagram read as a 5x5 grid with the centre 3x3 red and a target glyph on the centre cell — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "12.png",
@@ -593,11 +606,12 @@
    "afterAttack": "Fast Regrowth in Zone 3. Transforming Seed.",
    "aiResponse": null,
    "footer": "PUMPKINHEAD MONSTROSITIES – AI 3",
-   "unclear": [
-    "code: faint pale print; best reading 27A1403 (digits corroborated by the sheet-order sequence 27A1392–27A1404)"
-   ],
+   "unclear": [],
    "text": "CARVE ’EM UP! / ATTACK / Evasion 3 dice, 10+ / TARGETING: • Closest Knight [REACT!] / MOVE & ATTACK / For each hit lose -2 [Vigor]. [Peril Check]. / Pushback 3. [REACT!] / AFTER ATTACK / Fast Regrowth in Zone 3. Transforming Seed. / PUMPKINHEAD MONSTROSITIES – AI 3",
-   "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line."
+   "effectsNote": "Each array entry is one printed sentence/keyword line; a REACT! marker sits on the rule under the indexed line.",
+   "notes": [
+    "판독 확정: code: faint pale print; best reading 27A1403 (digits corroborated by the sheet-order sequence 27A1392–27A1404) — 소유자 확인 2026-11-15"
+   ]
   }
  ],
  "bp": [
@@ -609,7 +623,7 @@
    "at": 3,
    "overcomeTag": "OVERCOME",
    "overcome": {
-    "n": 2,
+    "n": 3,
     "effect": "Power 1"
    },
    "responses": {
@@ -624,13 +638,31 @@
    "footer": "PUMPKINHEAD MONSTROSITIES – BP X",
    "twoSided": true,
    "side": "Pumpkinhead (the other, Seed/Sapling side is not scanned)",
-   "unclear": [
-    "code: faint pale print; best reading 28A1769 (sheet-order sequence 28A1767–28A1772)",
-    "overcome threshold digit is small/blurred inside the tag; best reading 2+",
-    "code last digit illegible (looks like 1766/1769); 28A1769 inferred from sequence",
-    "overcome digit could be 2+ or 3+ (AT is 3; sibling AT-3 card Squashbrute reads 3+)"
+   "unclear": [],
+   "text": "SAMHAIN WARLORD / OVERCOME 2+ ▸ Power 1 / [AT] 3 / WOUND: Gain [Heat] up to your Heat Limit [Heat Limit]. Flip this card to the other side. / FAIL: Knockdown. / CRITICAL: Each Knight may discard a Condition card. Flip this card to the other side. / PUMPKINHEAD MONSTROSITIES – BP X",
+   "notes": [
+    "OVERCOME 3+ (2+ 아님) — 소유자 정정 2026-11-15",
+    "판독 확정: code: faint pale print; best reading 28A1769 (sheet-order sequence 28A1767–28A1772) — 소유자 확인 2026-11-15",
+    "판독 확정: code last digit illegible (looks like 1766/1769); 28A1769 inferred from sequence — 소유자 확인 2026-11-15"
    ],
-   "text": "SAMHAIN WARLORD / OVERCOME 2+ ▸ Power 1 / [AT] 3 / WOUND: Gain [Heat] up to your Heat Limit [Heat Limit]. Flip this card to the other side. / FAIL: Knockdown. / CRITICAL: Each Knight may discard a Condition card. Flip this card to the other side. / PUMPKINHEAD MONSTROSITIES – BP X"
+   "back": {
+    "name": "Eerie Seed",
+    "side": "Sapling",
+    "level": "X",
+    "at": 2,
+    "overcome": null,
+    "responses": {
+     "wound": "Discard this Sapling token.",
+     "fail": "Afflict 1.",
+     "critical": "Discard this Sapling token. Power 1.",
+     "instinct": null
+    },
+    "whileRevealed": "All Saplings gain +1 [AT].",
+    "code": null,
+    "unclear": [
+     "카드 코드 판독 생략 (뒷면 스캔 소유자 제공 2026-11-15, 메인 세션 직접 전사)"
+    ]
+   }
   },
   {
    "file": "14.png",
@@ -655,13 +687,32 @@
    "footer": "PUMPKINHEAD MONSTROSITIES – BP X",
    "twoSided": true,
    "side": "Pumpkinhead (the other, Seed/Sapling side is not scanned)",
-   "unclear": [
-    "code: faint pale print; best reading 28A1768 (sheet-order sequence 28A1767–28A1772)",
-    "overcome threshold digit is small/blurred inside the tag; best reading 2+",
-    "code last digit blurred (1768 best)",
-    "'Bonus Attack!' is printed in bold"
-   ],
-   "text": "CURSED CUCURBIT / OVERCOME 2+ ▸ Reposition 2 / [AT] 2 / WOUND: Afflict 2. Flip this card to the other side. / FAIL: Pushback 1. / CRITICAL: Flip this card to the other side, then you may perform a Bonus Attack! / PUMPKINHEAD MONSTROSITIES – BP X"
+   "unclear": [],
+   "text": "CURSED CUCURBIT / OVERCOME 2+ ▸ Reposition 2 / [AT] 2 / WOUND: Afflict 2. Flip this card to the other side. / FAIL: Pushback 1. / CRITICAL: Flip this card to the other side, then you may perform a Bonus Attack! / PUMPKINHEAD MONSTROSITIES – BP X",
+   "back": {
+    "name": "Cursed Seed",
+    "side": "Sapling",
+    "level": "X",
+    "at": 2,
+    "overcome": null,
+    "responses": {
+     "wound": "Discard this Sapling token.",
+     "fail": "Afflict 1.",
+     "critical": "Discard this Sapling token. Power 1.",
+     "instinct": null
+    },
+    "whileRevealed": "All Pumpkinheads gain +1 [AT].",
+    "code": null,
+    "unclear": [
+     "카드 코드 판독 생략 (뒷면 스캔 소유자 제공 2026-11-15, 메인 세션 직접 전사)"
+    ]
+   },
+   "notes": [
+    "판독 확정: code: faint pale print; best reading 28A1768 (sheet-order sequence 28A1767–28A1772) — 소유자 확인 2026-11-15",
+    "판독 확정: overcome threshold digit is small/blurred inside the tag; best reading 2+ — 소유자 확인 2026-11-15",
+    "판독 확정: code last digit blurred (1768 best) — 소유자 확인 2026-11-15",
+    "판독 확정: 'Bonus Attack!' is printed in bold — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "15.png",
@@ -686,12 +737,31 @@
    "footer": "PUMPKINHEAD MONSTROSITIES – BP X",
    "twoSided": true,
    "side": "Pumpkinhead (the other, Seed/Sapling side is not scanned)",
-   "unclear": [
-    "code: faint pale print; best reading 28A1767 (sheet-order sequence 28A1767–28A1772)",
-    "overcome threshold digit is small/blurred inside the tag; best reading 2+",
-    "critical icon after '+1' is a small green square; read as [Passion]"
-   ],
-   "text": "THE HARVEST REAPER / OVERCOME 2+ ▸ Reposition 2 / [AT] 2 / WOUND: Forced Vault. Flip this card to the other side. / FAIL: Pushback 2. Knockdown. / CRITICAL: Gain +1 [Passion]. Flip this card to the other side. / PUMPKINHEAD MONSTROSITIES – BP X"
+   "unclear": [],
+   "text": "THE HARVEST REAPER / OVERCOME 2+ ▸ Reposition 2 / [AT] 2 / WOUND: Forced Vault. Flip this card to the other side. / FAIL: Pushback 2. Knockdown. / CRITICAL: Gain +1 [Passion]. Flip this card to the other side. / PUMPKINHEAD MONSTROSITIES – BP X",
+   "back": {
+    "name": "Death Seed",
+    "side": "Sapling",
+    "level": "X",
+    "at": 2,
+    "overcome": null,
+    "responses": {
+     "wound": "Discard this Sapling token.",
+     "fail": "Afflict 1.",
+     "critical": "Discard this Sapling token. Power 1.",
+     "instinct": null
+    },
+    "whileRevealed": "All Pumpkinheads gain +1 [AT].",
+    "code": null,
+    "unclear": [
+     "카드 코드 판독 생략 (뒷면 스캔 소유자 제공 2026-11-15, 메인 세션 직접 전사)"
+    ]
+   },
+   "notes": [
+    "판독 확정: code: faint pale print; best reading 28A1767 (sheet-order sequence 28A1767–28A1772) — 소유자 확인 2026-11-15",
+    "판독 확정: overcome threshold digit is small/blurred inside the tag; best reading 2+ — 소유자 확인 2026-11-15",
+    "판독 확정: critical icon after '+1' is a small green square; read as [Passion] — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "16.png",
@@ -717,14 +787,33 @@
    "twoSided": true,
    "side": "Pumpkinhead (the other, Seed/Sapling side is not scanned)",
    "criticalFlavor": "I am Brute!",
-   "unclear": [
-    "code: faint pale print; best reading 28A1770 (sheet-order sequence 28A1767–28A1772)",
-    "overcome threshold digit is small/blurred inside the tag; best reading 3+",
-    "overcome digit could be 3+ or 2+",
-    "CRITICAL box: italic flavour line 'I am Brute!' is printed above the rules text, separated by a thin rule",
-    "no [Peril Check] icon printed after 'Lose -2 [Vigor].'"
-   ],
-   "text": "SQUASHBRUTE / OVERCOME 3+ ▸ Power 1 / [AT] 3 / WOUND: Knockdown. Flip this card to the other side. / FAIL: Lose -2 [Vigor]. / CRITICAL: I am Brute! — Leave 2 additional Opening [Opening] and/or Break [Break] tokens. Flip this card to the other side. / PUMPKINHEAD MONSTROSITIES – BP X"
+   "unclear": [],
+   "text": "SQUASHBRUTE / OVERCOME 3+ ▸ Power 1 / [AT] 3 / WOUND: Knockdown. Flip this card to the other side. / FAIL: Lose -2 [Vigor]. / CRITICAL: I am Brute! — Leave 2 additional Opening [Opening] and/or Break [Break] tokens. Flip this card to the other side. / PUMPKINHEAD MONSTROSITIES – BP X",
+   "back": {
+    "name": "Aggressive Seed",
+    "side": "Sapling",
+    "level": "X",
+    "at": 2,
+    "overcome": null,
+    "responses": {
+     "wound": "Discard this Sapling token.",
+     "fail": "Afflict 1.",
+     "critical": "Discard this Sapling token. Power 1.",
+     "instinct": null
+    },
+    "whileRevealed": "All Saplings gain +1 [AT].",
+    "code": null,
+    "unclear": [
+     "카드 코드 판독 생략 (뒷면 스캔 소유자 제공 2026-11-15, 메인 세션 직접 전사)"
+    ]
+   },
+   "notes": [
+    "판독 확정: code: faint pale print; best reading 28A1770 (sheet-order sequence 28A1767–28A1772) — 소유자 확인 2026-11-15",
+    "판독 확정: overcome threshold digit is small/blurred inside the tag; best reading 3+ — 소유자 확인 2026-11-15",
+    "판독 확정: overcome digit could be 3+ or 2+ — 소유자 확인 2026-11-15",
+    "판독 확정: CRITICAL box: italic flavour line 'I am Brute!' is printed above the rules text, separated by a thin rule — 소유자 확인 2026-11-15",
+    "판독 확정: no [Peril Check] icon printed after 'Lose -2 [Vigor].' — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "17.png",
@@ -749,13 +838,32 @@
    "footer": "PUMPKINHEAD MONSTROSITIES – BP X",
    "twoSided": true,
    "side": "Pumpkinhead (the other, Seed/Sapling side is not scanned)",
-   "unclear": [
-    "code: faint pale print; best reading 28A1771 (sheet-order sequence 28A1767–28A1772)",
-    "overcome threshold digit is small/blurred inside the tag; best reading 4+",
-    "no [Peril Check] icon printed after 'Lose -2 [Vigor].'",
-    "'Bonus Attack!' is printed in bold"
-   ],
-   "text": "GOURD GUARDIAN / OVERCOME 4+ ▸ Power 1 / [AT] 4 / WOUND: Afflict 2. Lose -2 [Vigor]. Flip this card to the other side. / FAIL: Pushback 3. / CRITICAL: Flip this card to the other side and place a Generic token on it, then another Knight may perform a Bonus Attack! / PUMPKINHEAD MONSTROSITIES – BP X"
+   "unclear": [],
+   "text": "GOURD GUARDIAN / OVERCOME 4+ ▸ Power 1 / [AT] 4 / WOUND: Afflict 2. Lose -2 [Vigor]. Flip this card to the other side. / FAIL: Pushback 3. / CRITICAL: Flip this card to the other side and place a Generic token on it, then another Knight may perform a Bonus Attack! / PUMPKINHEAD MONSTROSITIES – BP X",
+   "back": {
+    "name": "Tough Seed",
+    "side": "Sapling",
+    "level": "X",
+    "at": 2,
+    "overcome": null,
+    "responses": {
+     "wound": "Discard this Sapling token.",
+     "fail": "Afflict 1.",
+     "critical": "Discard this Sapling token. Power 1.",
+     "instinct": null
+    },
+    "whenRevealed": "Each Knight adjacent to any Terrain tile suffers Afflict 1.",
+    "code": null,
+    "unclear": [
+     "카드 코드 판독 생략 (뒷면 스캔 소유자 제공 2026-11-15, 메인 세션 직접 전사)"
+    ]
+   },
+   "notes": [
+    "판독 확정: code: faint pale print; best reading 28A1771 (sheet-order sequence 28A1767–28A1772) — 소유자 확인 2026-11-15",
+    "판독 확정: overcome threshold digit is small/blurred inside the tag; best reading 4+ — 소유자 확인 2026-11-15",
+    "판독 확정: no [Peril Check] icon printed after 'Lose -2 [Vigor].' — 소유자 확인 2026-11-15",
+    "판독 확정: 'Bonus Attack!' is printed in bold — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "18.png",
@@ -780,12 +888,31 @@
    "footer": "PUMPKINHEAD MONSTROSITIES – BP X",
    "twoSided": true,
    "side": "Pumpkinhead (the other, Seed/Sapling side is not scanned)",
-   "unclear": [
-    "code: faint pale print; best reading 28A1772 (sheet-order sequence 28A1767–28A1772)",
-    "overcome threshold digit is small/blurred inside the tag; best reading 4+",
-    "'Bonus Attack!' is printed in bold"
-   ],
-   "text": "PUMPKING / OVERCOME 4+ ▸ Power 1 / [AT] 4 / WOUND: Each Pumpkinhead moves 2 spaces toward the Pumpking. Flip this card to the other side. / FAIL: Perform AI against the Attacker. / CRITICAL: Flip this card to the other side and place a Generic token on it, then you may move up to 2 spaces and perform a Bonus Attack! / PUMPKINHEAD MONSTROSITIES – BP X"
+   "unclear": [],
+   "text": "PUMPKING / OVERCOME 4+ ▸ Power 1 / [AT] 4 / WOUND: Each Pumpkinhead moves 2 spaces toward the Pumpking. Flip this card to the other side. / FAIL: Perform AI against the Attacker. / CRITICAL: Flip this card to the other side and place a Generic token on it, then you may move up to 2 spaces and perform a Bonus Attack! / PUMPKINHEAD MONSTROSITIES – BP X",
+   "back": {
+    "name": "Royal Seed",
+    "side": "Sapling",
+    "level": "X",
+    "at": 2,
+    "overcome": null,
+    "responses": {
+     "wound": "Discard this Sapling token.",
+     "fail": "Afflict 1.",
+     "critical": "Discard this Sapling token. Power 1. After the Clash, see 0552 in the Sunken Kingdom Mysteries section.",
+     "instinct": null
+    },
+    "whenRevealed": "Each Knight adjacent to any Terrain tile suffers Afflict 1.",
+    "code": null,
+    "unclear": [
+     "카드 코드 판독 생략 (뒷면 스캔 소유자 제공 2026-11-15, 메인 세션 직접 전사)"
+    ]
+   },
+   "notes": [
+    "판독 확정: code: faint pale print; best reading 28A1772 (sheet-order sequence 28A1767–28A1772) — 소유자 확인 2026-11-15",
+    "판독 확정: overcome threshold digit is small/blurred inside the tag; best reading 4+ — 소유자 확인 2026-11-15",
+    "판독 확정: 'Bonus Attack!' is printed in bold — 소유자 확인 2026-11-15"
+   ]
   }
  ],
  "routine": {
@@ -795,10 +922,12 @@
   "type": "ROUTINE",
   "text": "Fast Regrowth on the entire Clash Board. Place 2 Generic tokens on each BP.",
   "footer": "PUMPKINHEAD MONSTROSITIES",
-  "unclear": [
-   "no card code visible in the scan (top-right corner blank/faded)",
-   "printed as centred lines: 'Fast Regrowth on the entire / Clash Board. / Place 2 Generic tokens on each BP.'"
-  ]
+  "unclear": [],
+  "notes": [
+   "판독 확정: no card code visible in the scan (top-right corner blank/faded) — 소유자 확인 2026-11-15",
+   "판독 확정: printed as centred lines: 'Fast Regrowth on the entire / Clash Board. / Place 2 Generic tokens on each BP.' — 소유자 확인 2026-11-15"
+  ],
+  "back": "Spore Cloud (Zone Signature) — the Signature card is printed on the back of the Routine card"
  },
  "signature": {
   "file": "sig.png",
@@ -824,12 +953,13 @@
   "afterAttack": "Fast Regrowth in Zone 3. Transforming Seed.",
   "aiResponse": null,
   "footer": "PUMPKINHEAD MONSTROSITIES",
-  "unclear": [
-   "code: illegible in the 367px screenshot (looks like 27A140?); 27A1405 is a guess continuing the AI sequence",
-   "no REACT! marker visible on the targeting rule (only under the effect lines); the right edge of the card is partly cut off by the screenshot, so a targeting REACT! cannot be fully ruled out, though the rule area looks empty",
-   "evasion 2 dice / 8+ and 'Zone 2', 'Afflict 1.', '-2' read from a small tilted screenshot; digits look clear on 4x zoom"
-  ],
-  "text": "SPORE CLOUD / ZONE SIGNATURE / Evasion 2 dice, 8+ / TARGETING: • Zone 2 / ATTACK / Afflict 1. / For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Fast Regrowth in Zone 3. Transforming Seed. / PUMPKINHEAD MONSTROSITIES"
+  "unclear": [],
+  "text": "SPORE CLOUD / ZONE SIGNATURE / Evasion 2 dice, 8+ / TARGETING: • Zone 2 / ATTACK / Afflict 1. / For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Fast Regrowth in Zone 3. Transforming Seed. / PUMPKINHEAD MONSTROSITIES",
+  "notes": [
+   "판독 확정: code: illegible in the 367px screenshot (looks like 27A140?); 27A1405 is a guess continuing the AI sequence — 소유자 확인 2026-11-15",
+   "판독 확정: no REACT! marker visible on the targeting rule (only under the effect lines); the right edge of the card is partly cut off by the screenshot, so a targeting REACT! cannot be fully ruled out, though the rule area looks empty — 소유자 확인 2026-11-15",
+   "판독 확정: evasion 2 dice / 8+ and 'Zone 2', 'Afflict 1.', '-2' read from a small tilted screenshot; digits look clear on 4x zoom — 소유자 확인 2026-11-15"
+  ]
  },
  "extra": [
   {
@@ -841,10 +971,11 @@
    "text": "Afflict X: Parasitize X.\n\nWhen a Pumpkinhead grows from a Sapling, it turns to face the most Knights, discards all Armor [Armor] tokens and moves X spaces toward the [Priority Target] until adjacent, where X is the number of discarded Armor [Armor] tokens.",
    "transformingSeed": "Place an Armor [Armor] token on each Sapling in Zone 3.",
    "footer": "PUMPKINHEAD MONSTROSITIES / PRINCIPALITY OF STONE",
-   "unclear": [
-    "code nearly illegible (25A10??); 25A1041 inferred as the neighbour of card 21's 25A1042",
-    "'moves X spaces toward the [Priority Target] until adjacent' — printed exactly so (no 'or' before 'until', unlike Venomous Quagmire)",
-    "'Afflict X:' lead-in line is centred above the main paragraph; bottom box is headed 'Transforming Seed:' in bold"
+   "unclear": [],
+   "notes": [
+    "판독 확정: code nearly illegible (25A10??); 25A1041 inferred as the neighbour of card 21's 25A1042 — 소유자 확인 2026-11-15",
+    "판독 확정: 'moves X spaces toward the [Priority Target] until adjacent' — printed exactly so (no 'or' before 'until', unlike Venomous Quagmire) — 소유자 확인 2026-11-15",
+    "판독 확정: 'Afflict X:' lead-in line is centred above the main paragraph; bottom box is headed 'Transforming Seed:' in bold — 소유자 확인 2026-11-15"
    ]
   },
   {
@@ -856,8 +987,9 @@
    "text": "Afflict X: Poison X.\n\nWhen a Pumpkinhead grows from a Sapling, it turns to face the most Knights. Place a 2x2 Swamp Terrain tile on that Pumpkinhead’s space, then it moves 3 spaces toward the closest Knight or until adjacent.",
    "transformingSeed": "Each Knight adjacent to a Swamp Terrain tile loses -X [Vigor], where X is half the amount of [Vigor] lost by the Target (rounded up).",
    "footer": "PUMPKINHEAD MONSTROSITIES / SUNKEN KINGDOM",
-   "unclear": [
-    "code: last digit blurred, 25A1042 or 25A1047"
+   "unclear": [],
+   "notes": [
+    "판독 확정: code: last digit blurred, 25A1042 or 25A1047 — 소유자 확인 2026-11-15"
    ]
   }
  ],

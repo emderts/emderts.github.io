@@ -3039,23 +3039,25 @@
     "shape": "1x4"
    }
   ],
-  "unclear": [
-   "지형 칸 위치는 코덱스 도식에서 읽음 — 확인 필요"
+  "unclear": [],
+  "notes": [
+   "지형 칸 위치 — 소유자 확인 2026-11-15"
   ]
  },
  "rulings": [
-  "Ethereal Unity \"removed from the Board\" = a Haunt dies (its BP goes to the Wound Stack) [해석, 확인 필요]",
-  "Ethereal Unity Spawn: three lowest-level BPs from the Escalation decks on the leftmost empty Mob-track spaces; a coordinate held by a Knight or another Haunt → an unoccupied adjacent space (ties: player) [해석, 확인 필요]",
-  "Ethereal Unity \"Assign Activation tokens starting from the left of the Mob track\": all Activation tokens are re-dealt one per Mob from the leftmost, keeping their spent/unspent state [해석, 확인 필요]",
+  "Ethereal Unity \"removed from the Board\" = a Haunt dies (its BP goes to the Wound Stack) (소유자 확인 2026-11-15)",
+  "Ethereal Unity Spawn: three lowest-level BPs from the Escalation decks on the leftmost empty Mob-track spaces; a coordinate held by a Knight or another Haunt → an unoccupied adjacent space (ties: player) (소유자 확인 2026-11-15)",
+  "Ethereal Unity \"Assign Activation tokens starting from the left of the Mob track\": all Activation tokens are re-dealt one per Mob from the leftmost, keeping their spent/unspent state (소유자 확인 2026-11-15)",
   "Ethereal Unity bonuses stack: 1+ token → +1 To Hit, 2 tokens → +1 To Hit and +1 Vigor loss on every Haunt Attack",
-  "Zone Attack with MOVE: the Haunt moves toward the Target until adjacent, turns to face it, then the card diagram (rotated to its facing) gives the Zone; Spectral Step moves it to the marked space afterwards [해석, 확인 필요]",
-  "Judgement effect lines without \"If hit\" (e.g. \"Gain the Dread Condition card\") apply to every judged Knight, hit or not [해석, 확인 필요]",
+  "Zone Attack with MOVE: the Haunt moves toward the Target until adjacent, turns to face it, then the card diagram (rotated to its facing) gives the Zone; Spectral Step moves it to the marked space after the After Attack. When several movement paths are possible the player picks (소유자 확인 2026-11-15)",
+  "Judgement effect lines without \"If hit\" (e.g. \"Gain the Dread Condition card\") apply to every judged Knight, hit or not (소유자 확인 2026-11-15)",
   "Zone Judgement: the Target plus every Knight in Zone 1 (No Mercy: Zone 2) around it are judged",
   "Intangible: Haunts path through Terrain and miniatures (Superior Bypass) and ignore Terrain for Line of Sight; they still cannot end a move on another miniature",
   "Gordon: every Monster Attack made by a Haunt within Zone 2 of revealed Gordon causes an additional -2 Vigor [해석]",
   "Woolf: a Knight within Zone 2 of revealed Woolf can only attack Woolf",
   "Amelie: every Gated Effect on AI cards resolves regardless of Heat",
-  "Peter \"Gain +1 Curse\": the Attacker gains 1 Curse (campaign Curse level) [해석, 확인 필요]",
+  "Peter \"Gain +1 Curse\": Curse is shared — the party Curse level +1 (소유자 확인 2026-11-15)",
+  "Spectral Step onto a Knight: the Knight is knocked back 3 in a direction the player chooses (소유자 확인 2026-11-15)",
   "Percy wound: a 1x2 Swamp tile on the dead Haunt's space plus an adjacent space without Terrain (player picks)",
   "The Unremarkable One Critical \"see 8915\": story reference — logged only"
  ]

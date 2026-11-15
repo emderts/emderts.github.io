@@ -23,7 +23,11 @@ export const HauntsMixin = {
     const ends = [...dist.keys()].map(k => { const [c, r] = k.split(',').map(Number); return { c, r }; }).filter(c => B.adjacent(c, target) && this.cellFree(c, mob));
     if (!ends.length) return 0; const best = Math.min(...ends.map(c => dist.get(B.key(c)))); let cand = ends.filter(c => dist.get(B.key(c)) === best);
     let end = cand.length > 1 ? await this.ask({ type: 'move', text: `Mob #${mob.n} 이동 도착 칸 (Bypass, 동률)`, cells: cand, options: cand.map(c => ({ label: B.label(c), value: c })) }) || cand[0] : cand[0];
-    if (best > max) { const path = []; let c = end; while (c && !cellEq(c, start)) { path.unshift(c); c = prev.get(B.key(c)); } const ok = path.slice(0, max).filter(x => this.cellFree(x, mob)); if (!ok.length) return 0; end = ok[ok.length - 1]; }
+    if (best > max) { // stop part-way: any free space reachable in `max` steps that still lies on a shortest path to the chosen end
+      const de = new Map([[B.key(end), 0]]); let f2 = [end]; while (f2.length) { const nx = []; for (const c of f2) for (const n of B.neighbors(c)) { const k = B.key(n); if (de.has(k) || !pass(n)) continue; de.set(k, de.get(B.key(c)) + 1); nx.push(n); } f2 = nx; }
+      let stop = []; for (let s = max; s > 0 && !stop.length; s--) stop = [...dist.keys()].filter(k => dist.get(k) === s && de.get(k) === best - s).map(k => { const [c, r] = k.split(',').map(Number); return { c, r }; }).filter(c => this.cellFree(c, mob));
+      if (!stop.length) return 0; end = stop.length > 1 ? await this.ask({ type: 'move', text: `Mob #${mob.n} 이동 경로 선택 — 멈출 칸`, cells: stop, options: stop.map(c => ({ label: B.label(c), value: c })) }) || stop[0] : stop[0];
+    }
     const from = B.label(start); this.mobStepTo(mob, end); const steps = dist.get(B.key(end)) || 0; this.say(`Mob #${mob.n} 이동 ${steps}칸 (Bypass${this.intangible ? '·Intangible' : ''}): ${from} → ${B.label(end)}`); return steps;
   },
   /** Appear Behind (p.50): the furthest space adjacent to the Target. */
@@ -47,10 +51,10 @@ export const HauntsMixin = {
     const B = this.board; if (!this.monster.hasTrait('Spectral Step') || !cell || !this.monster.mobs.includes(mob) || !mob.cells.length) return;
     const c = { c: Math.max(1, Math.min(B.cols, cell.c)), r: Math.max(0, Math.min(B.rows - 1, cell.r)) };
     const other = this.mobAt(c); if (other && other !== mob) { this.say(`Spectral Step: ${B.label(c)}에 다른 Haunt — 이동 생략`); return; }
-    const k = this.knightAt(c); const prev = mob.cells[0]; const dv = { c: c.c - prev.c, r: c.r - prev.r }; const dir = Math.abs(dv.c) >= Math.abs(dv.r) ? { c: Math.sign(dv.c) || 1, r: 0 } : { c: 0, r: Math.sign(dv.r) }; B.remove(mob.cells); mob.cells = [c]; B.place({ kind: 'mob', n: mob.n }, [c]); this.say(`Spectral Step: Mob #${mob.n} → ${B.label(c)}`, 'ai');
+    const k = this.knightAt(c); B.remove(mob.cells); mob.cells = [c]; B.place({ kind: 'mob', n: mob.n }, [c]); this.say(`Spectral Step: Mob #${mob.n} → ${B.label(c)}`, 'ai');
     if (k) {
       if (this.monster.hasTrait('No Mercy')) { this.say(`${k.name}: No Mercy — Haunt가 기사 칸으로 이동 → 사망`, 'death'); await this.die(k, 'No Mercy'); return; }
-      this.say(`${k.name}: Spectral Step — Crash + Unavoidable Knockback 3`); await this.crash(k); if (k.alive) await this.pushback(k, 3, { unavoidable: true, dir });
+      this.say(`${k.name}: Spectral Step — Crash + Unavoidable Knockback 3`); await this.crash(k); if (!k.alive) return; const DN = { N: '위', S: '아래', E: '오른쪽', W: '왼쪽' }; const dk = await this.ask({ type: 'pick', knight: k.id, text: `${k.name}: Knockback 3 방향 선택 (Spectral Step)`, options: Object.keys(DIRS).map(d => ({ label: DN[d], value: d })) }) || 'N'; await this.pushback(k, 3, { unavoidable: true, dir: DIRS[dk] });
     }
   },
 
@@ -101,7 +105,7 @@ export const HauntsMixin = {
       case 'escalateLowestAI': { const lv = Math.min(...[...M.ai.cards, ...M.ai.discard].map(c => c.level)); M.escalateAI(lv); return true; }
       case 'delay': if (t && t.alive) { this.say(`${t.name}: Delay`); await this.fx.runKnightOps([{ op: 'delay', n: o.n || 1 }], t, {}); } return true;
       case 'story': this.say(`이야기 참조: ${o.ref} (Clash 후 확인)`, 'warn'); return true;
-      case 'gainCurse': if (k) { k.curse = (k.curse || 0) + o.n; this.say(`${k.name}: Curse +${o.n} → ${k.curse}`); } return true;
+      case 'gainCurse': this.curseLevel = (this.curseLevel || 0) + o.n; this.say(`Curse +${o.n} → 공용 Curse ${this.curseLevel}`, 'warn'); return true;
       case 'flipChosenBP': { if (!await this.yesNo('BP 카드 하나를 뒤집을까요?', true)) return true; const m = await this.pickMob(M.mobs, '뒤집을 BP 카드'); if (m) { m.revealed = !m.revealed; this.say(`Mob #${m.n} BP ${m.revealed ? '앞면' : '뒷면'}으로`); } return true; }
       case 'mobSignatureAgainst': { if (!k || !k.alive) return true; const pool = M.mobs.filter(m => m.cells.length && m !== src); if (!pool.length) return true; const d = m => B.distance(m.cells, [k.pos]); const v = pool.map(d); const want = o.which === 'furthest' ? Math.max(...v) : Math.min(...v); const m = await this.pickMob(pool.filter((x, i) => v[i] === want), `${o.which === 'furthest' ? '가장 먼' : '가장 가까운'} Mob (동률)`); this.say(`Mob #${m.n}이 ${k.name}에게 Signature`, 'ai'); await this.withMob(m, () => this.performSignature({ forceTarget: k })); return true; }
       default: return false;
