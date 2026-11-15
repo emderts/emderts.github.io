@@ -120,7 +120,7 @@ const SPECIAL = [
   [/^Start of your turn: Gain \+(\d+) \[Vigor\] and Bane (\d+)$/, m => ({ op: 'turnVigorBane', v: +m[1], n: +m[2] })],
   [/^Start of your turn: Gain (\d+) Bane \[Bane\] token$/, m => ({ op: 'turnBane', n: +m[1] })],
   [/^When you are about to attack, Bane (\d+)$/, m => ({ op: 'attackBane', n: +m[1] })],
-  [/^Place (?:a|(\d+)) (Fire|Break|Opening|Hope|Black|Closing) \[\w+\] tokens? in the Knight Pool$/, m => ({ op: 'fPoolToken', token: m[2].toLowerCase(), n: +(m[1] || 1), free: true })],
+  [/^Place (?:a|(\d+)) (Fire|Break|Opening|Hope|Black|Closing|Power) \[\w+\] tokens? in the Knight Pool$/, m => ({ op: 'fPoolToken', token: m[2].toLowerCase(), n: +(m[1] || 1), free: true })],
   [/^You may use this ability multiple times per turn$/, () => ({ op: 'note', na: true })],
   [/^When you attack, place a Diversion \[Diversion\] token in the Knight Pool$/, () => ({ op: 'attackDiversion', active: true })],
   [/^Discard a Condition card$/, () => ({ op: 'fDiscardCond', free: true })],
@@ -191,6 +191,66 @@ const SPECIAL = [
   [/^You die immediately$/, () => ({ op: 'gateDie' })],
   [/^Flip a Condition card and gain \+(\d+) \[Vigor\]$/, m => ({ op: 'fFlipCondVigor', n: +m[1], free: true })],
   [/^Bane Limit(?: \[Bane Limit\])? ([+-]\d+)$/, m => ({ op: 'baneLimitMod', n: +m[1] })],
+  [/^You may use your \[Combat action\] as a \[Move action\]$/, () => ({ op: 'combatAsMove' })],
+  [/^Re-roll your Attack Roll \(all dice\)$/, () => ({ op: 'rerollAttackAll', active: true })],
+  [/^Re-roll your Crit die, even if you already re-rolled it during this roll$/, () => ({ op: 'critReroll', active: true })],
+  [/^Change a result of one \[d10\] you just rolled to a chosen result, then Bane (\d+)$/, m => ({ op: 'changeDie', n: +m[1], active: true })],
+  [/^Each Miss: Gain a temporary positive Precision \[Precision\] token$/, () => ({ op: 'eachMissPrecision' })],
+  [/^When you spend the last \[Charge\] from this card, perform a Bonus Attack!?$/, () => ({ op: 'lastChargeBonus' })],
+  [/^When you trigger Overpower, you may perform a Bonus Attack \(once per Round\)$/, () => ({ op: 'overpowerBonus' })],
+  [/^Once per Clash, immediately perform a Bonus Attack, then suffer Knockdown$/, () => ({ op: 'fBonusAttackKD', free: true })],
+  [/^(?:Gain (Armor-piercing|Reach) (\d+), then )(Improved Rush|Rush)$/, m => ({ op: 'fRush', improved: m[3] !== 'Rush', pre: m[1], preN: +m[2], free: true })],
+  [/^(Improved Rush|Rush), then perform Pushback (\d+)$/, m => ({ op: 'fRush', improved: m[1] !== 'Rush', push: +m[2], free: true })],
+  [/^When you perform Rush, immediately Inspire (\d+) and gain Power Re-roll (\d+)$/, m => ({ op: 'rushBonus', inspire: +m[1], powerReroll: +m[2] })],
+  [/^When you perform Rush, gain \+(\d+) Precision \[Precision\] and Reposition (\d+)$/, m => ({ op: 'rushBonus', precision: +m[1], reposition: +m[2] })],
+  [/^When you're about to attack with a Melee Weapon, gain Reach (\d+) for that Attack$/, m => ({ op: 'fTempReach', n: +m[1], free: true })],
+  [/^When you attack with a Ranged Weapon, double its maximum range for this Attack$/, () => ({ op: 'fRangeDouble', free: true })],
+  [/^Ignore Unwieldy on your Weapons until the end of your turn$/, () => ({ op: 'fNoUnwieldy', free: true })],
+  [/^Full Hit: During the second ability window, place a permanent negative AT \[AT\] token on the Monster Sheet$/i, () => ({ op: 'fullHitPermNegAT' })],
+  [/^When you are about to draw a Mortis card, look at the top card of the respective Mortis deck$/, () => ({ op: 'mortisPeek', active: true })],
+  [/^Then, you may shuffle it$/, () => ({ op: 'note', na: true })],
+  [/^When you perform a \[Peril Check\] \(excluding Judicium Draw\), look at the top 2 cards and choose one to resolve instead$/, () => ({ op: 'mortisTwo', active: true })],
+  [/^When you're about to draw a Judicium, you may resolve a You Live! or You Died Judicium instead$/, () => ({ op: 'judiciumChoose' })],
+  [/^The next time you draw a Judicium, resolve the other one$/, () => ({ op: 'note', na: true })],
+  [/^Monarch: (\d+) \[Heat\] \[Exhaust\] When you draw an AI, before resolving it, discard it and draw another AI$/, m => ({ op: 'aiRedraw', heat: +m[1] })],
+  [/^You start each Clash with exactly (\d+) \[Passion\]$/, m => ({ op: 'startPassionExact', n: +m[1] })],
+  [/^When you perform ↑\[Heat\]↓, gain \+(\d+) \[Passion\] for every (\d+) \[Heat\] lost this way$/, m => ({ op: 'heatRefreshPassion', n: +m[1], per: +m[2] })],
+  [/^When you are about to die from a Judicium or an instant death effect, ignore it$/, () => ({ op: 'ignoreDeath', active: true })],
+  [/^Ignore X Armor \[Armor token\] tokens$/, () => ({ op: 'ignoreArmorX' })],
+  [/^Your Heat Limit \[Heat Limit\] becomes (\d+)$/, m => ({ op: 'heatLimitFixed', n: +m[1] })],
+  [/^You cannot lose \[Heat\] in any way$/, () => ({ op: 'noHeatLoss' })],
+  [/^When you end your movement adjacent to a Monster, place a Break \[Break\] token in the Knight Pool$/, () => ({ op: 'moveEndBreak' })],
+  [/^Ignore Devour, Pull, and Drag$/, () => ({ op: 'ignorePullDrag' })],
+  [/^When you're about to suffer Drag X, ignore that Drag$/, () => ({ op: 'ignoreDrag', active: true })],
+  [/^Whenever you remove 1 unspent Fire \[Fire\] token from the Knight Pool, gain 1 \[Charge\]$/, () => ({ op: 'fireRemovedCharge' })],
+  [/^When a Monster attacks, it loses -X \[d10\] \(to a minimum of 1\), where X is the number of Bane \[Bane\] tokens you have$/, () => ({ op: 'attackDiceMinusBane', active: true })],
+  [/^Before an Evasion Roll, gain \+X Evasion \[Evasion\], where X is the number of your Bane \[Bane\] tokens$/, () => ({ op: 'evasionPlusBane', active: true })],
+  [/^Move up to X\* spaces$/, () => ({ op: 'moveAfterEvasion', active: true })],
+  [/^\*X is the amount of Evasion dice you rolled during this Attack$/, () => ({ op: 'note', na: true })],
+  [/^When you're hit, AI and BP Suppress$/, () => ({ op: 'hitSuppress' })],
+  [/^When you become the Target of an Attack, choose one:$/, () => ({ op: 'wilderPlate', active: true })],
+  [/^• (?:Guard 1|\[red Armor die\]|1 Evasion Re-roll)$/, () => ({ op: 'note', na: true })],
+  [/^If you survive, gain \+(\d+) \[Passion\]$/, () => ({ op: 'note', na: true })],
+  [/^When you lose \[Vigor\], gain that many \[Charge\]$/, () => ({ op: 'vigorLossCharge' })],
+  [/^When you're knocked down or ignore Knockdown, spend X \[Charge\] from this card to place X Opening \[Opening\] tokens in the Knight Pool$/, () => ({ op: 'knockdownOpenings' })],
+  [/^When you're about to suffer Knockdown, if the Knight Pool is empty, place (\d+) Opening \[Opening\] and\/or Break \[Break\] tokens in the Knight Pool$/, m => ({ op: 'knockdownPool', n: +m[1] })],
+  [/^During Clash: Spend all \[Charge\] from this card to Fire X, where X is the number of \[Charge\] spent$/, () => ({ op: 'fFireAllCharges', free: true })],
+  [/^Lose up to -(\d+) \[Vigor\] to lose the same amount of \[Heat\] \(minimum 1\)$/, m => ({ op: 'fVigorForHeat', n: +m[1], free: true })],
+  [/^Then, discard up to (\d+) Poison tokens$/, m => ({ op: 'note', na: true, poison: +m[1] })],
+  [/^Discard X Armor \[Armor\] tokens from anywhere$/, () => ({ op: 'fDiscardArmor', n: 0, free: true })],
+  [/^Gain Rocksteady and Stalwart until your next turn$/, () => ({ op: 'fSteady', free: true })],
+  [/^Gain \+1 \[Heat\] to use this card's ability instead of its regular cost$/, () => ({ op: 'altCostHeat' })],
+  [/^This Weapon gains the Flammable Trait and Fire (\d+) until the end of your turn$/, m => ({ op: 'fTempFire', n: +m[1], free: true })],
+  [/^Return a Knight to life on a space adjacent to you and reset their \[Vigor\]$/, () => ({ op: 'fRevive', reset: true, free: true })],
+  [/^When you're about to attack, you may discard X Opening \[Opening\], Break \[Break\], and\/or Fleisch \[Fleisch\] tokens in the Knight Pool to gain Pushback X$/, () => ({ op: 'attackDiscardPush' })],
+  [/^When you are about to attack, you may discard any amount of tokens from the Knight Pool$/, () => ({ op: 'attackDiscardPower' })],
+  [/^If you do, gain \+1 \[Power\] for each token discarded this way$/, () => ({ op: 'note', na: true })],
+  [/^If there are no Opening \[Opening\] or Break \[Break\] tokens in the Knight Pool, Auto-hope (\d+)$/, m => ({ op: 'noTokensAutoHope', n: +m[1] })],
+  [/^During the second ability window, if you deal a Wound, you may discard all Bane \[Bane\] tokens to place the same amount of Openings \[Opening\] and\/or Breaks \[Break\] in the Knight Pool$/, () => ({ op: 'woundBaneToTokens' })],
+  [/^Each hit: \+(\d+) \[Power\], Reposition (\d+), either Closing (\d+) or Opening (\d+)$/, m => ({ op: 'eachHitCombo', power: +m[1], repo: +m[2], closing: +m[3], opening: +m[4] })],
+  [/^Crit Chance: Ignore any additional \[AT\] \(including Armor \[Armor\] tokens\)$/, () => ({ op: 'critBaseAT' })],
+  [/^When you attack, for each Swamp space in your effective range occupied by a Monster, place a Power \[Power\] token in the Knight Pool$/, () => ({ op: 'swampMonsterPower' })],
+  [/^When you exhaust this card, double your Speed \[Speed\] until the end of turn$/, () => ({ op: 'exhaustDoubleSpeed' })],
   [/^Roll Out(?: \(.*\))?$/, () => ({ op: 'rollOut', active: true })],
   [/^Ignore Swamp Terrain tiles$/, () => ({ op: 'ignoreSwamp' })],
   [/^When you're about to suffer involuntary movement, you may reduce it by 1 \(to a minimum of 1\)$/, () => ({ op: 'reduceInvol' })],
@@ -238,6 +298,7 @@ export function parseSentence(s) {
     if ((m = /^(\d+) \[Vigor\]\s+(?=\[|[A-Z])/.exec(r))) { (o.cost = o.cost || {}).vigor = +m[1]; r = r.slice(m[0].length); continue; }
     if ((m = /^\[(VASSAL|KING|DEVIL|DRAGON|POSTGAME)\]\s*/.exec(r))) { o.tier = m[1]; r = r.slice(m[0].length); continue; }
     if ((m = /^\[HEAT (\d+)\+\]\s*/.exec(r))) { o.heatMin = +m[1]; r = r.slice(m[0].length); continue; }
+    if ((m = /^(\d+) \[Bane\]\s+(?=\d|\[|[A-Z])/.exec(r))) { (o.cost = o.cost || {}).bane = +m[1]; r = r.slice(m[0].length); continue; }
     if ((m = /^\[2H\]\s*/.exec(r))) { o.twoHanded = true; r = r.slice(m[0].length); continue; }
     if ((m = /^\[Two-handed(?: icon)?\]:?\s*/i.exec(r))) { o.twoHanded = true; r = r.slice(m[0].length); continue; }
     if ((m = /^\[Reaction\]\s*/.exec(r))) { o.reaction = true; r = r.slice(m[0].length); continue; }
@@ -248,7 +309,7 @@ export function parseSentence(s) {
     if ((m = /^(\d+) \[Charge\]\s*/.exec(r))) { (o.cost = o.cost || {}).charge = +m[1]; r = r.slice(m[0].length); continue; }
     break; }
   const b = body(r); if (!b) { if (/\b(Delve|Deep Fog|Trailmake|Wander|Rotation|Adventure|Ambush|Encounter|Exploration|Shortcuts?|Possessed|Clues?|District|Investigation)\b/.test(text)) return { op: 'nonClash', status: 'na', text }; return { op: 'text', status: 'text', text }; }
-  const k = { ...b, ...o, text }; if (k.atTurnStart && k.op === 'hide') k.op = 'hideStart'; if (k.op === 'soak' && k.cost) { k.op = 'soakPaid'; k.special = true; k.active = true; } if (k.status === 'ok' && (k.cost || k.reaction) && !ACTIVE_OK.has(k.op) && !k.special) k.status = 'pending'; // costed versions of constant keywords need their own timing window
+  const k = { ...b, ...o, text }; if (k.atTurnStart && k.op === 'hide') k.op = 'hideStart'; if (k.op === 'tumble' && (k.cost || k.reaction)) { k.op = 'tumblePaid'; k.special = true; k.active = true; } if (k.op === 'soak' && k.cost) { k.op = 'soakPaid'; k.special = true; k.active = true; } if (k.status === 'ok' && (k.cost || k.reaction) && !ACTIVE_OK.has(k.op) && !k.special) k.status = 'pending'; // costed versions of constant keywords need their own timing window
   return k;
 }
 /** Parse a whole ability text → list of keywords (one per sentence). */
@@ -257,10 +318,12 @@ export function parseGearText(text) { if (!text) return []; const ss = String(te
   const xdef = ss.map(xKind).find(Boolean) || null; const out = []; let lastPrefix = null;
   for (const t of ss) { let m; const wasPrefix = lastPrefix; lastPrefix = null;
     if (xKind(t) && /^\*?X\b/.test(t)) { out.push({ op: 'note', status: 'na', special: true, text: t }); continue; }
+    if ((m = /^((?:\[[^\]]+\]\s*)*)([A-Z][A-Za-z\- ]* \d+) instead, gain ([A-Z][a-z]+)\.?$/.exec(t))) { const p1 = parseSentence(m[1] + m[2] + '.'), p2 = parseSentence(m[1] + m[3] + '.'); if (p1.status === 'ok' && p2.status === 'ok') { p1.instead = true; p1.text = t; p2.text = t; out.push(p1, p2); continue; } }
     if ((m = /^((?:\[[^\]]+\]\s*)*)([A-Z][A-Za-z\- ]*(?: \d+)?(?:(?:, | and |, and )(?:gain )?[A-Z][A-Za-z\- ]*(?: \d+)?)*) instead\.?$/.exec(t))) { const prefix = m[1] || wasPrefix || ''; const ps = m[2].split(/, and |, | and /).map(p => parseSentence(prefix + p.replace(/^gain /, '') + '.')); if (ps.every(p => p.status === 'ok')) { for (const p of ps) { p.instead = true; p.text = t; } out.push(...ps); lastPrefix = prefix; continue; } }
     if ((m = /^((?:\[[^\]]+\]\s*)*[A-Z][A-Za-z\- ]*) \*?X\*?, where X is (the number of Bane \[Bane\] tokens you have|your \[Heat\])\.?$/.exec(t))) { const p = parseSentence(m[1] + ' 0.'); if (typeof p.n === 'number' && p.status !== 'text') { p.status = 'ok'; p.x = /Bane/.test(m[2]) ? 'bane' : 'heat'; p.text = t; out.push(p); continue; } }
+    if (xdef && (m = /^Ranged (\d+)[-–]X\.?$/.exec(t))) { out.push({ op: 'ranged', n: +m[1], m: 'X', x: xdef, status: 'ok', text: t }); continue; }
     if (xdef && (m = /^((?:\[[^\]]+\]\s*)*[A-Z][A-Za-z\- ]*) \*?X\*?\.?$/.exec(t))) { const p = parseSentence(m[1] + ' 0.'); if (typeof p.n === 'number' && p.status !== 'text' && p.op !== 'ranged') { p.status = 'ok'; p.x = xdef; p.text = t; out.push(p); continue; } }
     out.push(parseSentence(t)); }
-  out.forEach((o, i) => { if (o.op === 'fDrawJudicium') { const nx = out[i + 1]; if (nx && /discard all Armor/.test(nx.text)) o.then = 'clearArmor'; else { o.op = 'text'; o.status = 'text'; } } }); return out; }
+  out.forEach((o, i) => { if (o.op === 'fDrawJudicium') { const nx = out[i + 1]; if (nx && /discard all Armor/.test(nx.text)) o.then = 'clearArmor'; else if (nx && /return a chosen Knight to life adjacent to you/.test(nx.text)) { o.then = 'revive'; nx.op = 'note'; nx.status = 'na'; } else { o.op = 'text'; o.status = 'text'; } } if (o.op === 'fVigorForHeat') { const nx = out[i + 1]; if (nx && nx.poison) o.poison = nx.poison; } }); return out; }
 export const isDefensive = op => DEFENSIVE.has(op);
 export const KEYWORD_STATUS = { TOKENS, OK, PENDING, NA };
