@@ -1,6 +1,7 @@
 // Generates docs/audit/index.html: every transcribed table/card ↔ how the engine implements it ↔ which test covers it.
 // Run: node tools/audit.mjs   (re-run after every data/engine change)
 import fs from 'fs';
+import { GEAR_RULINGS, GEAR_QUESTIONS } from './gear_rulings.mjs';
 import path from 'path';
 import { parseGearText, KEYWORD_STATUS } from '../src/engine/gearkw.js';
 const rd = p => JSON.parse(fs.readFileSync(p, 'utf8'));
@@ -219,6 +220,7 @@ sec.push(`<section id="campaign"><h2>11. 캠페인 레이어 — Rosegraal 루�
 { const files = ['gear', 'monster_gear', 'kingdom_sunken', 'kingdom_principality', 'merchant_principality', 'consumables', 'upgrades']; const st = { ok: 0, pending: 0, na: 0, text: 0 }; const pend = {}; const rows = []; let cards = 0, full = 0;
   for (const f of files) { const d = rd(`data/gear/${f}.json`); for (const g of (d.gear || d.consumables || d.upgrades || [])) { const sides = g.side && typeof g.side === 'object' ? [[g.name, g.side], [g.reforgedName, g.reforged]].filter(x => x[1]) : [[g.name, g]]; for (const [name, sd] of sides) { cards++; const ks = g.ops && !g.side ? [] : parseGearText(sd.text); const open = ks.filter(k => k.status === 'pending' || k.status === 'text'); if (!open.length) full++; for (const k of ks) { st[k.status]++; if (k.status === 'pending') { const key = k.op + (k.cost || k.reaction ? ' (비용/Reaction)' : ''); pend[key] = (pend[key] || 0) + 1; } } if (open.length) rows.push(`<tr><td class="small">${f}</td><td><b>${esc(name)}</b></td><td class="small">${open.map(k => `<div>${k.status === 'pending' ? '<span class="warn">[키워드 미구현]</span> ' : ''}${esc(k.text)}</div>`).join('')}</td></tr>`); } } }
   const tot = st.ok + st.pending + st.na + st.text;
+  const BLOCK = /Devour|Wolf Down|Stray|\bVP\b|\[W\]|Stonemason Ward|Shapeshift|\[HUMAN\]|\[APE\]|Zeal|Falsity|Devotion|Devote|Magic \[Magic\]|Parasit|Leash|Unleash|Ammo Reserves|Little Ser|\bHex\b|Incarnat|POSTGAME|Wave Attack|Activation tokens|Monarch|climb test|Rotten Stump|Rubble (?:Terrain )?tile|Ancestral Ritual Mask|slot|Gold \[Gold\]|Divine|Overpower, gain a Crit|Lumbering|Obscuring/; const blocked = rows.filter(r => BLOCK.test(r)).length;
   sec.push(`<section id="gearkw"><h2>Gear 키워드 구현 현황 (룰북 Keyword List pp.80–87)</h2>
 <p class="impl">파서: <code>src/engine/gearkw.js</code> — 카드 문구를 문장 단위로 키워드로 변환 · 엔진: <code>effects.js</code> (kwList / constKw / defenseWindow / weaponRange) · 테스트: <code>test/gearkw.mjs</code></p>
 <p>카드(면) ${cards}개 중 <b>${full}개</b>는 모든 문장이 엔진에서 해결됩니다. 문장 ${tot}개: 구현 <b>${st.ok}</b> · 이 왕국들에서 무효 ${st.na} · 키워드 인식·효과 미구현 <b>${st.pending}</b> · 카드 고유 문장(수동 처리) <b>${st.text}</b>.</p>
@@ -233,6 +235,9 @@ sec.push(`<section id="campaign"><h2>11. 캠페인 레이어 — Rosegraal 루�
 <tr><td>방어 상시</td><td>Soak X, Poison Resilience X, Tumble, Stalwart, Rocksteady, Braced, ±Speed, +Virtue, +Evasion</td><td>Tumble = Crash 시 d10 6+ 무시 · Stalwart = Knockback 무시 선택</td></tr>
 <tr><td>타이밍 능력</td><td>Second Chance, Lifeline, Reflex 계열(REACT 창), Guard X, Defy 계열, Precise, Deploy X, Bypass, 비용형 Braced/Stalwart</td><td>Mortis/Judicium 다시 뽑기 · 지형 사망 대신 Displace · Evasion 재굴림 전 +X 분배 · Judgement 명중 무시 · BP 버림 더미 공격 · 시작 전 이동 · 미니어처 통과</td></tr>
 <tr><td>방어 활성 (비용)</td><td>Block / Advanced / Superior, Dodge 계열, Reinforce 계열</td><td>Evasion Roll 전에 사용 여부를 묻고 Heat·Exhaust·Discard·Charge 비용 지불. 능력당 라운드 1회</td></tr></table>
+<h3>확인 필요 — 해석 (${GEAR_RULINGS.length})</h3><table><tr><th>카드 / 규칙</th><th>현재 구현 [해석, 확인 필요]</th></tr>${GEAR_RULINGS.map(([a, b]) => `<tr><td>${esc(a)}</td><td>${esc(b)}</td></tr>`).join('')}</table>
+<h3>확인 필요 — 정의·답변이 있어야 구현 가능한 것 (${GEAR_QUESTIONS.length})</h3><table><tr><th>항목</th><th>질문</th></tr>${GEAR_QUESTIONS.map(([a, b]) => `<tr><td>${esc(a)}</td><td class="warn">${esc(b)}</td></tr>`).join('')}</table>
+<p class="small">아직 문장이 남은 카드 ${rows.length}장 중 약 ${blocked}장은 위 질문이나 미구현 몬스터 전용 규칙(Devour · Wolf Down · Stray · VP · Ward Node · Shapeshift 등)에 걸려 있고, 나머지는 카드 한 장짜리 고유 효과로 구현 대기 중입니다.</p>
 <h3>인식만 되고 효과가 없는 키워드 (${st.pending})</h3><p>${Object.entries(pend).sort((a, b) => b[1] - a[1]).map(([k, n]) => `${esc(k)} ×${n}`).join(' · ')}</p>
 <details><summary>카드별 미해결 문장 (${rows.length}장)</summary><table><tr><th>파일</th><th>카드</th><th>엔진이 해결하지 않는 문장</th></tr>${rows.join('')}</table></details></section>`); }
 // Monster sections whose transcription + rulings the owner has fully confirmed leave the audit page (they are browsable in the game:
@@ -240,6 +245,7 @@ sec.push(`<section id="campaign"><h2>11. 캠페인 레이어 — Rosegraal 루�
 const FULL = process.argv.includes('--full'); const isMonSec = x => /^<section id="(eggknight|mob-|boss-|raw-|fools)/.test(x); const pending = x => /\[해석, 확인 필요\]/.test(x);
 const done = sec.filter(x => isMonSec(x) && !pending(x) && !FULL).map(x => (x.match(/<h2>(?:\d+b?\.\s*)?([^<—]+)/) || [])[1].trim());
 const out = sec.filter(x => FULL || !isMonSec(x) || pending(x));
+{ const i = out.findIndex(x => /^<section id="gearkw"/.test(x)); if (i > 0) out.unshift(out.splice(i, 1)[0]); } // confirmation-needed Gear rulings first
 if (done.length) out.push(`<section id="mon-done"><h2>몬스터 — 오딧 완료 (${done.length})</h2><p class="impl">소유자 확인이 끝난 몬스터는 이 페이지에서 빼고, 게임 화면 오른쪽 위 <b>👁 몬스터</b> 버튼(몬스터 정보: Sheet · Trait · AI/BP · Signature/Routine · Setup · 규칙 해석)에서 볼 수 있습니다. 전체 표가 필요하면 <code>node tools/audit.mjs --full</code>.</p><ul>${done.map(n => `<li>${esc(n)}</li>`).join('')}</ul></section>`);
 
 const html = `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>KF Rogue's Path — 데이터·규칙 오딧</title>
@@ -247,7 +253,7 @@ const html = `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta n
 table{border-collapse:collapse;width:100%;font-size:13px}td,th{border:1px solid #3a3128;padding:4px 6px;vertical-align:top;text-align:left}th{background:#26211b}code{background:#2a241d;padding:1px 5px;border-radius:4px;color:#f0d9a0}
 .impl{background:#26211b;padding:8px 10px;border-left:3px solid #c9a85a;border-radius:4px}.small{font-size:12px;color:#998b76}.warn{color:#d9a441}details summary{cursor:pointer;color:#c9a85a}table.rw td{min-width:120px}nav a{color:#c9a85a;margin-right:12px}</style></head><body>
 <h1>Kingdoms Forlorn — Rogue's Path: 데이터·규칙 오딧</h1><p class="small">v${meta.version} · 생성 ${new Date().toISOString().slice(0, 16).replace('T', ' ')} UTC · 각 섹션: 전사 데이터 ↔ 엔진 구현 ↔ 테스트. 전사 불확실 항목은 노란색.</p>
-<nav><a href="#monsters">몬스터 표</a><a href="#map">Rosegraal 지도</a><a href="#rewards">Rewards</a><a href="#components">구성물</a><a href="#fleischritter">Fleischritter</a><a href="#gear">Gear</a><a href="#mon-done">몬스터(완료)</a><a href="#gearkw">Gear 키워드</a><a href="#decks">Mortis·Condition·Terrain·Outpost</a><a href="#engine">엔진 대응</a><a href="#shop">상점·용병·Loot</a><a href="#campaign">캠페인</a><a href="#mgear">몬스터 Gear·Consumable·Upgrade</a></nav>
+<nav><a href="#monsters">몬스터 표</a><a href="#map">Rosegraal 지도</a><a href="#rewards">Rewards</a><a href="#components">구성물</a><a href="#fleischritter">Fleischritter</a><a href="#gear">Gear</a><a href="#mon-done">몬스터(완료)</a><a href="#gearkw"><b>Gear — 확인 필요</b></a><a href="#decks">Mortis·Condition·Terrain·Outpost</a><a href="#engine">엔진 대응</a><a href="#shop">상점·용병·Loot</a><a href="#campaign">캠페인</a><a href="#mgear">몬스터 Gear·Consumable·Upgrade</a></nav>
 ${out.join('\n')}
 </body></html>`;
 fs.mkdirSync('docs/audit', { recursive: true }); fs.writeFileSync('docs/audit/index.html', html);

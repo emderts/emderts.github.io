@@ -161,6 +161,36 @@ const SPECIAL = [
   [/^Start of Clash: Draw a Judicium without resolving it(?:, then return it to the deck)?$/, () => ({ op: 'startJudicium' })],
   [/^(?:The next time you would draw a Judicium, resolve (?:that Judicium|this one) instead|If you survive, discard all Armor \[Armor\] tokens from anywhere)$/, () => ({ op: 'note', na: true })],
   [/^Draw a Judicium$/, () => ({ op: 'fDrawJudicium', free: true })],
+  [/^(?:This (?:Weapon|Armor|Armor \[Gear\] card|card)|Your active Weapon) gains the (\w+) Trait$/, m => ({ op: 'gainTrait', trait: m[1] })],
+  [/^This Armor gains the (\w+) Trait and loses the (\w+) Trait$/, m => ({ op: 'gainTrait', trait: m[1], lose: m[2] })],
+  [/^This card cannot be exhausted in any way$/, () => ({ op: 'noExhaust' })],
+  [/^Pass (\d+)$/, m => ({ op: 'pass', n: +m[1] })],
+  [/^Armor Re-roll (\d+)$/, m => ({ op: 'armorReroll', n: +m[1] })],
+  [/^After rolling Armor dice, you may decide to mitigate damage with \[Power\] symbols instead of \[Potential\]$/, () => ({ op: 'armorPowerInstead' })],
+  [/^Each \[Power\] symbol on your Armor dice mitigates \[Vigor\] loss as if it were \[Armor symbol\]$/, () => ({ op: 'armorPowerAlso' })],
+  [/^During an Armor Roll, for each \[Potential\] you roll place a Break \[Break\] token in the Knight Pool$/, () => ({ op: 'armorBreakPerPotential' })],
+  [/^When you perform an Armor Roll, you may place a Break \[Break\] token in the Knight Pool for each \[Power\] symbol you roll on your Armor dice$/, () => ({ op: 'armorBreakPerPower' })],
+  [/^You cannot perform Armor Rolls$/, () => ({ op: 'noArmorRoll' })],
+  [/^After performing an Armor Roll, treat each \[Potential\] you rolled as 2 \[Potential\]$/, () => ({ op: 'armorDoublePotential', active: true })],
+  [/^Ignore Armor \[Armor\] tokens$/, () => ({ op: 'ignoreArmorAll' })],
+  [/^During an Attack ignore up to X Armor \[Armor\] tokens, where X is the number of Bane \[Bane\] tokens you have$/, () => ({ op: 'ignoreArmorBane' })],
+  [/^When you are about to attack, gain \+(\d+) \[Heat\] to ignore (\d+) Armor \[Armor\] token$/, m => ({ op: 'ignoreArmorHeat', h: +m[1], n: +m[2] })],
+  [/^Full hit: \+(\d+) \[Power\]$/i, m => ({ op: 'fullHitRawPower', n: +m[1] })],
+  [/^Reduce suffered Knockback or Pushback by up to (\d+)$/, m => ({ op: 'reduceKnockback', n: +m[1], active: true })],
+  [/^\+(\d+) to Virtue tests$/, m => ({ op: 'virtueAll', n: +m[1] })],
+  [/^When you spend the last \[Charge\] from this card, gain \+(\d+) \[Passion\]$/, m => ({ op: 'lastChargePassion', n: +m[1] })],
+  [/^Ignore Rubble Terrain tiles$/, () => ({ op: 'ignoreRubble' })],
+  [/^Ignore Body Condition cards$/, () => ({ op: 'ignoreCondType', type: 'body' })],
+  [/^You may ignore gaining Mind Condition cards$/, () => ({ op: 'ignoreCondType', type: 'mind', ask: true })],
+  [/^Start of Clash: Parasitize (\d+)$/, m => ({ op: 'startParasitize', n: +m[1] })],
+  [/^Gain \+(\d+) \[Vigor\], raising your Maximum \[Vigor\] if needed$/, m => ({ op: 'fVigorOverMax', n: +m[1], free: true })],
+  [/^Look at a chosen BP$/, () => ({ op: 'fLookAnyBP', free: true })],
+  [/^Choose a direction$/, () => ({ op: 'fTurnMonster', free: true })],
+  [/^Turn one Monster to face the chosen direction$/, () => ({ op: 'note', na: true })],
+  [/^Wound: After resolving the Attack, exchange your \[Passion\] and \[Heat\]$/, () => ({ op: 'woundSwapPH' })],
+  [/^You die immediately$/, () => ({ op: 'gateDie' })],
+  [/^Flip a Condition card and gain \+(\d+) \[Vigor\]$/, m => ({ op: 'fFlipCondVigor', n: +m[1], free: true })],
+  [/^Bane Limit(?: \[Bane Limit\])? ([+-]\d+)$/, m => ({ op: 'baneLimitMod', n: +m[1] })],
   [/^Roll Out(?: \(.*\))?$/, () => ({ op: 'rollOut', active: true })],
   [/^Ignore Swamp Terrain tiles$/, () => ({ op: 'ignoreSwamp' })],
   [/^When you're about to suffer involuntary movement, you may reduce it by 1 \(to a minimum of 1\)$/, () => ({ op: 'reduceInvol' })],
@@ -169,6 +199,7 @@ const SPECIAL = [
 ];
 function body(b) {
   let m;
+  if ((m = /^Gain (Unwieldy|Deadly|Cumbersome|Commit|Tireless)$/.exec(b))) return body(m[1]);
   for (const [re, fn] of SPECIAL) if ((m = re.exec(b))) { const r = fn(m); return { ...r, status: r.na ? 'na' : 'ok', special: true }; }
   if ((m = /^Auto-([a-z]+) (\d+|X)$/i.exec(b))) { const t = TOKENS[m[1][0].toUpperCase() + m[1].slice(1).toLowerCase()]; return t ? { op: 'auto', token: t, n: m[2] === 'X' ? 'X' : +m[2], status: m[2] === 'X' ? 'pending' : 'ok' } : null; }
   if ((m = /^Ranged (\d+)[-–](\d+|X)$/.exec(b))) return { op: 'ranged', n: +m[1], m: m[2] === 'X' ? 'X' : +m[2], status: m[2] === 'X' ? 'pending' : 'ok' };
@@ -195,7 +226,7 @@ export function parseSentence(s) {
   for (let guard = 0; guard < 8; guard++) { let m;
     if ((m = /^\[(MINOR|MAJOR|GRAVE|JUDICIUM)\]\s*/.exec(r))) { o.gate = m[1]; r = r.slice(m[0].length); continue; }
     if ((m = /^\[(PRINCIPALITY OF STONE|SUNKEN KINGDOM)\]\s*/.exec(r))) { o.kingdom = m[1] === 'SUNKEN KINGDOM' ? 'sunken' : 'principality'; r = r.slice(m[0].length); continue; }
-    if ((m = /^\[BANE (\d+)\+\]\s*/.exec(r))) { o.baneMin = +m[1]; r = r.slice(m[0].length); continue; }
+    if ((m = /^\[BANE (\d+)\+\]\s*/i.exec(r))) { o.baneMin = +m[1]; r = r.slice(m[0].length); continue; }
     if ((m = /^\[Move action\]\+\[Combat action\]\s*/i.exec(r))) { (o.cost = o.cost || {}).action = 'both'; r = r.slice(m[0].length); continue; }
     if ((m = /^\[(?:PASSION|P) (\d+)\+\]\s*/.exec(r))) { o.passionMin = +m[1]; r = r.slice(m[0].length); continue; }
     if ((m = /^\[Combat action\]\+\[Move action\]\s*/i.exec(r)) || (m = /^\[Move\+Attack action\]\s*/i.exec(r))) { (o.cost = o.cost || {}).action = 'both'; r = r.slice(m[0].length); continue; }
@@ -206,6 +237,7 @@ export function parseSentence(s) {
     if ((m = /^When you trigger Overcome X in Melee range:\s*/.exec(r))) { o.overcomeMelee = true; r = r.slice(m[0].length); continue; }
     if ((m = /^(\d+) \[Vigor\]\s+(?=\[|[A-Z])/.exec(r))) { (o.cost = o.cost || {}).vigor = +m[1]; r = r.slice(m[0].length); continue; }
     if ((m = /^\[(VASSAL|KING|DEVIL|DRAGON|POSTGAME)\]\s*/.exec(r))) { o.tier = m[1]; r = r.slice(m[0].length); continue; }
+    if ((m = /^\[HEAT (\d+)\+\]\s*/.exec(r))) { o.heatMin = +m[1]; r = r.slice(m[0].length); continue; }
     if ((m = /^\[2H\]\s*/.exec(r))) { o.twoHanded = true; r = r.slice(m[0].length); continue; }
     if ((m = /^\[Two-handed(?: icon)?\]:?\s*/i.exec(r))) { o.twoHanded = true; r = r.slice(m[0].length); continue; }
     if ((m = /^\[Reaction\]\s*/.exec(r))) { o.reaction = true; r = r.slice(m[0].length); continue; }
@@ -220,6 +252,15 @@ export function parseSentence(s) {
   return k;
 }
 /** Parse a whole ability text → list of keywords (one per sentence). */
-export function parseGearText(text) { if (!text) return []; const out = String(text).replace(/(Crit Chance|in Melee range):\n/g, '$1: ').split(/\n|(?<=\.)\s+(?=[\[A-Z+\-\d])/).map(s => s.trim()).filter(Boolean).map(parseSentence); out.forEach((o, i) => { if (o.op === 'fDrawJudicium') { const nx = out[i + 1]; if (nx && /discard all Armor/.test(nx.text)) o.then = 'clearArmor'; else { o.op = 'text'; o.status = 'text'; } } }); return out; }
+const xKind = t => /X\*? is (?:equal to )?(?:the )?(?:number|amount) of (?:your )?Bane/.test(t) ? 'bane' : /X is equal to your \[Passion\]/.test(t) ? 'passion' : /X is equal to your \[Heat\]/.test(t) ? 'heat' : /X is the number of Magic \[Magic\] tokens in the Knight Pool/.test(t) ? 'magic' : /X is the sum of all Evasion/.test(t) ? 'evasionSum' : /X is equal to half your \[Passion\]/.test(t) ? 'halfPassion' : null;
+export function parseGearText(text) { if (!text) return []; const ss = String(text).replace(/(Crit Chance|in Melee range):\n/g, '$1: ').split(/\n|(?<=\.)\s+(?=[\[A-Z+\-\d])/).map(s => s.trim()).filter(Boolean);
+  const xdef = ss.map(xKind).find(Boolean) || null; const out = []; let lastPrefix = null;
+  for (const t of ss) { let m; const wasPrefix = lastPrefix; lastPrefix = null;
+    if (xKind(t) && /^\*?X\b/.test(t)) { out.push({ op: 'note', status: 'na', special: true, text: t }); continue; }
+    if ((m = /^((?:\[[^\]]+\]\s*)*)([A-Z][A-Za-z\- ]*(?: \d+)?(?:(?:, | and |, and )(?:gain )?[A-Z][A-Za-z\- ]*(?: \d+)?)*) instead\.?$/.exec(t))) { const prefix = m[1] || wasPrefix || ''; const ps = m[2].split(/, and |, | and /).map(p => parseSentence(prefix + p.replace(/^gain /, '') + '.')); if (ps.every(p => p.status === 'ok')) { for (const p of ps) { p.instead = true; p.text = t; } out.push(...ps); lastPrefix = prefix; continue; } }
+    if ((m = /^((?:\[[^\]]+\]\s*)*[A-Z][A-Za-z\- ]*) \*?X\*?, where X is (the number of Bane \[Bane\] tokens you have|your \[Heat\])\.?$/.exec(t))) { const p = parseSentence(m[1] + ' 0.'); if (typeof p.n === 'number' && p.status !== 'text') { p.status = 'ok'; p.x = /Bane/.test(m[2]) ? 'bane' : 'heat'; p.text = t; out.push(p); continue; } }
+    if (xdef && (m = /^((?:\[[^\]]+\]\s*)*[A-Z][A-Za-z\- ]*) \*?X\*?\.?$/.exec(t))) { const p = parseSentence(m[1] + ' 0.'); if (typeof p.n === 'number' && p.status !== 'text' && p.op !== 'ranged') { p.status = 'ok'; p.x = xdef; p.text = t; out.push(p); continue; } }
+    out.push(parseSentence(t)); }
+  out.forEach((o, i) => { if (o.op === 'fDrawJudicium') { const nx = out[i + 1]; if (nx && /discard all Armor/.test(nx.text)) o.then = 'clearArmor'; else { o.op = 'text'; o.status = 'text'; } } }); return out; }
 export const isDefensive = op => DEFENSIVE.has(op);
 export const KEYWORD_STATUS = { TOKENS, OK, PENDING, NA };

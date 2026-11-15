@@ -375,7 +375,7 @@ export class Clash {
   async loseVigor(k, n, { source = 'attack', perilCheck = false, armor = true } = {}) {
     if (!k.alive || n <= 0) return 0;
     let loss = n;
-    if (armor && source === 'attack') { const dice = this.fx.armorDice(k); if (dice.red + dice.black + dice.white > 0) { const r = rollArmor(this.rng, dice, this.data.components.dice.faces, this.data.components.dice.armorSymbol); let mit = r.mitigated; if (this.fx.has(k, 'armorRollDoubleSymbols')) mit *= 2; else mit = await this.fx.armorDoubleGear(k, mit, loss); loss = Math.max(0, loss - mit); this.say(`${k.name} Armor Roll ${r.dice.length}d → 경감 ${mit}`, 'dice'); await this.fx.onArmorRoll(k, mit); if (loss === 0) { this.say(`${k.name} 피해 전부 경감 → Peril Check 없음`); return 0; } } }
+    if (armor && source === 'attack' && !this.fx.gearHas(k, 'noArmorRoll')) { const dice = this.fx.armorDice(k); if (dice.red + dice.black + dice.white > 0) { const r = rollArmor(this.rng, dice, this.data.components.dice.faces, this.data.components.dice.armorSymbol); let mit = await this.fx.armorRollGear(k, r); if (this.fx.has(k, 'armorRollDoubleSymbols')) mit *= 2; else mit = await this.fx.armorDoubleGear(k, mit, loss); loss = Math.max(0, loss - mit); this.say(`${k.name} Armor Roll ${r.dice.length}d → 경감 ${mit}`, 'dice'); await this.fx.onArmorRoll(k, mit); if (loss === 0) { this.say(`${k.name} 피해 전부 경감 → Peril Check 없음`); return 0; } } }
     if (source === 'attack' && loss > 0) { const u = await this.fx.gearUse(k, ['soakPaid'], `Monster Attack Vigor -${loss} — Soak 사용?`); if (u) { loss -= u.n; this.say(`${k.name}: Soak ${u.n} (Gear)`, 'tech'); } }
     loss -= this.fx.soak(k); if (loss <= 0) return 0;
     const before = k.vigor; const eff = k.loseVigor(loss); this.say(`${k.name} Vigor -${loss} (${before}→${k.vigor})${eff < 0 ? ' [효과상 ' + eff + ']' : ''}`, 'dmg');
@@ -420,6 +420,7 @@ export class Clash {
 
   // ---------- conditions / movement effects ----------
   async addCondition(k, id, { tokens = 0 } = {}) {
+    { const cd = this.conditionDefs[id]; if (cd && cd.type) for (const g of k.gear) { if (g.discarded || g.exhausted) continue; const o = this.fx.constKw(k, g).find(x => x.op === 'ignoreCondType' && x.type === cd.type); if (o && (!o.ask || await this.yesNo(`${k.name}: ${g.name} — ${id} Condition 무시?`, true))) { this.say(`${k.name}: ${id} Condition 무시 (${g.name})`, 'tech'); return; } } }
     if (id === 'Exposed' && this.flags && this.flags.noExposed) { this.say(`${k.name}: Exposed를 받을 수 없음 (Milky Eyes)`); return; }
     const def = this.conditionDefs[id]; if (!def) { this.say(`[미구현 Condition] ${id}`, 'warn'); return; }
     for (const c of [...k.conditions]) { const cd = this.conditionDefs[c.id]; if (cd && cd.ops && cd.ops.crossGain && cd.flipSide === id) { if (cd.ops.crossGain === 'die') { this.say(`${k.name}: ${c.id} 상태에서 ${id} 획득 → 사망`, 'death'); await this.die(k, `${c.id} + ${id}`); return; } if (cd.ops.crossGain === 'flip') { c.id = cd.flipSide; this.say(`${k.name}: ${cd.name} 상태에서 ${id} 획득 → ${cd.flipSide}`, 'cond'); return; } } }
@@ -435,6 +436,7 @@ export class Clash {
   async pushback(k, n, { unavoidable = false, dir = null } = {}) {
     if (!k.alive || n <= 0 || k.engulfed) return; if (await this.wnColumnGuard(k, '비자발적 이동')) return; if (!unavoidable && !k.braced && !this.fx.gearHas(k, 'braced') && this.fx.gearAbilities(k, ['braced']).length && await this.fx.gearUse(k, ['braced'], `비자발적 이동 ${n}칸 — Braced 사용?`)) k.braced = true;
     if ((k.braced || k.rooted || this.fx.gearHas(k, 'braced')) && !unavoidable) { this.say(`${k.name} Braced: 밀려나지 않음`); return; }
+    if (!unavoidable && n > 0) { const u = await this.fx.gearUse(k, ['reduceKnockback'], `Knockback/Pushback ${n} — 줄이기?`); if (u) { n = Math.max(0, n - u.n); this.say(`${k.name}: 비자발적 이동 → ${n} (Gear)`, 'tech'); if (n <= 0) return; } }
     if (!unavoidable && n > 0 && await this.fx.gearUse(k, ['bracedPaid'], `비자발적 이동 ${n} — Braced 획득?`)) { this.say(`${k.name} Braced (Gear): 밀려나지 않음`); return; }
     if (!unavoidable && n > 0) { const rb = this.fx.gearHas(k, 'reduceInvolBane') ? Math.min(k.bane || 0, n) : 0; if (rb > 0) { const x = await this.ask({ type: 'pick', knight: k.id, text: `${k.name}: 비자발적 이동 ${n} — 줄일 칸 수 (Bane ${k.bane})`, options: Array.from({ length: rb + 1 }, (_, i) => ({ label: `${rb - i}`, value: rb - i })) }); if (x > 0) { n -= x; this.say(`${k.name}: 비자발적 이동 -${x} (Gear)`, 'tech'); if (n <= 0) return; } } }
     n = Math.max(0, n - (unavoidable ? 0 : this.fx.involuntaryReduction(k))); if (n > 1 && this.fx.gearHas(k, 'reduceInvol') && await this.yesNo(`${k.name}: 비자발적 이동 ${n} → ${n - 1}로 줄이기 (Gear)?`, true)) n--;
@@ -454,7 +456,7 @@ export class Clash {
       if (other) await this.displace(other);
     }
     this.say(`${k.name} ${unavoidable ? 'Unavoidable Knockback' : 'Pushback'} ${moved}/${n}칸 → ${B.label(k.pos)}`);
-    await this.swampThrough(k, trail.slice(0, -1).filter(c => B.terrainAt(c) && B.terrainAt(c).id === 'swamp')); if (k.alive && trail.some(c => B.terrainAt(c) && B.terrainAt(c).id === 'rubble')) { this.say(`${k.name}: Rubble 위로 비자발적 이동 → Knockdown`); await this.knockdown(k); } await this.swampSweep();
+    await this.swampThrough(k, trail.slice(0, -1).filter(c => B.terrainAt(c) && B.terrainAt(c).id === 'swamp')); if (k.alive && !this.fx.gearHas(k, 'ignoreRubble') && trail.some(c => B.terrainAt(c) && B.terrainAt(c).id === 'rubble')) { this.say(`${k.name}: Rubble 위로 비자발적 이동 → Knockdown`); await this.knockdown(k); } await this.swampSweep();
   }
   async knockback(k, n, opts = {}) { if (!opts.unavoidable && k.alive && this.fx.gearAbilities(k, ['stalwart']).length && await this.fx.gearUse(k, ['stalwart'], `Knockback ${n} — Stalwart로 무시?`)) { this.say(`${k.name} Stalwart: Knockback 무시`); return; } return this.pushback(k, n, opts); }
   async displace(k) { if (k.engulfed) return; const B = this.board; const free = B.neighbors(k.pos).filter(c => !B.isObstacle(c) && !this.knightAt(c) && !this.monsterOccupies(c)); if (!free.length) { await this.die(k, 'Displace 불가'); return; } const dest = free.length === 1 ? free[0] : await this.ask({ type: 'move', knight: k.id, text: `${k.name} Displace — 칸 선택`, cells: free, options: free.map(c => ({ label: B.label(c), value: c })) }) || free[0]; this.moveKnight(k, dest); this.say(`${k.name} Displace → ${B.label(dest)}`); await this.swampSweep(); }
@@ -562,7 +564,7 @@ export class Clash {
   armorGearDice(k) { let n = 0; for (const g of k.gear) if (!g.discarded && g.type === 'armor' && g.armorDice) for (const col in g.armorDice) n += g.armorDice[col]; return n; }
   /** Swamp: "When you move through this tile, roll a d10, +1 per Armor die on your Armor Gear. If the result is higher than your current Vigor, you die." */
   /** Campfire: moving through / ending on it → -1 Vigor per Metal Gear card, discard all Flammable Gear cards. */
-  async campfireBurn(k) { const metal = k.gear.filter(g => !g.discarded && (g.traits || []).includes('Metal')).length; const fl = k.gear.filter(g => !g.discarded && (g.traits || []).includes('Flammable')); this.say(`${k.name}: Campfire — Metal Gear ${metal}장 → -${metal} Vigor${fl.length ? `, Flammable Gear 버림 (${fl.map(g => g.name).join(', ')})` : ''}`); for (const g of fl) g.discarded = true; if (metal) await this.loseVigor(k, metal, { source: 'effect', armor: false }); }
+  async campfireBurn(k) { const metal = k.gear.filter(g => !g.discarded && this.fx.gearTraits(k, g).includes('Metal')).length; const fl = k.gear.filter(g => !g.discarded && this.fx.gearTraits(k, g).includes('Flammable')); this.say(`${k.name}: Campfire — Metal Gear ${metal}장 → -${metal} Vigor${fl.length ? `, Flammable Gear 버림 (${fl.map(g => g.name).join(', ')})` : ''}`); for (const g of fl) g.discarded = true; if (metal) await this.loseVigor(k, metal, { source: 'effect', armor: false }); }
   async swampThrough(k, cells) { const noSw = this.fx.ignoresSwamp(k); for (const c of cells) { if (!k.alive) return; if (noSw && this.board.terrainAt(c) && this.board.terrainAt(c).id === 'swamp') continue; { const tt = this.board.terrainAt(c); if (tt && tt.id === 'campfire') { await this.campfireBurn(k); continue; } } const d = this.rng.die(10), a = this.armorGearDice(k); const dead = d + a > k.vigor; this.say(`${k.name}: Swamp(${this.board.label(c)}) 통과 — d10 ${d}${a ? ` +${a} (Armor die)` : ''} = ${d + a} vs Vigor ${k.vigor} → ${dead ? '사망' : '통과'}`, dead ? 'death' : 'dice'); if (dead) await this.die(k, 'Swamp'); } }
   /** Swamp: "If you end your movement on this tile (voluntary or not), you die." Checked for every Knight that moved since the last sweep. */
   async swampSweep() { for (const k of this.knights) { if (!k._moved) continue; k._moved = false; if (!k.alive) continue; const t = this.board.terrainAt(k.pos); if (t && t.id === 'campfire') { await this.campfireBurn(k); continue; } if (t && t.id === 'swamp' && this.fx.ignoresSwamp(k)) continue; if (t && t.id === 'swamp') { if (await this.fx.gearUse(k, ['lifeline'], 'Swamp에서 이동 종료 → 사망. Lifeline으로 Displace?')) { await this.displace(k); continue; } this.say(`${k.name}: Swamp(${this.board.label(k.pos)})에서 이동 종료 → 사망`, 'death'); await this.die(k, 'Swamp'); } } }
@@ -662,7 +664,7 @@ export class Clash {
     // Fire: other tokens may be used first, then as many Fire tokens as possible are mandatory (p.19)
     if (potential > 0 && this.poolCount('fire')) { const n = Math.min(potential, this.poolCount('fire')); power += n; potential -= n; this.poolTake('fire', n); this.say(`Fire 토큰 ${n}개 사용 (✦ → ⚔)`); }
     power += this.poolCount('power'); this.poolTake('power', 99);
-    A.totalPower = power; const neg = this.negAT || 0; if (neg) { this.say(`임시 AT -${neg} 토큰 적용 후 버림`, 'tech'); this.negAT = 0; } const at = this.bpAT(bp) - A.armorPiercing - neg; if (this.isWN && this.wnEndure) { this.say(`Endure: 임시 AT +${this.wnEndure} 적용 후 제거`); this.wnEndure = 0; }
+    A.totalPower = power; const ignArm = A.ignoreArmor ? Math.min(A.ignoreArmor, this.fx.attackArmorOn(A, bp)) : 0; if (ignArm) this.say(`Armor 토큰 ${ignArm}개 무시 → AT -${ignArm}`, 'tech'); const neg = this.negAT || 0; if (neg) { this.say(`임시 AT -${neg} 토큰 적용 후 버림`, 'tech'); this.negAT = 0; } const at = this.bpAT(bp) - A.armorPiercing - neg - ignArm; if (this.isWN && this.wnEndure) { this.say(`Endure: 임시 AT +${this.wnEndure} 적용 후 제거`); this.wnEndure = 0; }
     this.flash('power', { title: `${k.name} Power Roll vs AT ${at}`, dice: pr.dice.map(d => ({ colour: d.colour, face: d.face })), raw: pool.raw, sub: `Total Power ${power} → ${power >= at ? (A.critChance ? '★ Critical Wound' : 'Wound!') : 'Fail'}`, cls: power >= at ? 'good' : 'bad' });
     this.say(`Total Power ${power} vs AT ${at}${useB ? ` (Break ${useB})` : ''}${useS ? ` (Sunder ${useS})` : ''}`, 'dice');
     // 6.5 resolve
@@ -687,7 +689,9 @@ export class Clash {
     if (this.isPump) await this.pumpAfterResponses(k, A);
     if (this.monster.slain) { this.checkEnd(); }
     // 9. clear pool
+    await this.fx.passWindow(k, A);
     if (!this.fx.has(k, 'skipClearPool', A)) this.clearPool();
+    if (A.swapPH && k.alive) { const p = k.passion; k.passion = k.heat; k.heat = p; this.say(`${k.name}: Passion ↔ Heat 교환 (Passion ${k.passion}, Heat ${k.heat})`, 'tech'); }
     // 10. second window
     await this.fx.secondWindow(k, A);
     if (k.hidden) { k.hidden = false; this.say(`${k.name}: 공격 후 Hidden 해제`); }
@@ -700,7 +704,7 @@ export class Clash {
   /** Rulebook p.81 Difficult Terrain: "Monsters on Difficult Terrain have -1 [AT]" (icon = AT, owner 2026-11-15). A Monster counts as on it when any occupied space is Difficult Terrain. */
   difficultTerrainAT(cells) { const ign = (this.monsterDef.basicAbilities || []).some(b => /ignore difficult terrain/i.test(b.name)); if (ign || !cells || !cells.length) return 0; return cells.some(c => { const t = this.board.terrainAt(c); return t && t.difficult; }) ? -1 : 0; }
   bpAT(bp) { if (bp && bp.isGuardianBP) return bp.at + this.monster.bonuses.at + this.monster.modifiers.at; if (this.isFen) { const g = this.guardians.find(g => g.cards.includes(bp)); return g ? this.doppAT(g) : this.fenAT(bp); } if (this.monster.isMob) { const m = this.monster.mobs.find(x => x.card === bp); return m ? this.mobAT(m) : bp.at + this.monster.bonuses.at + this.monster.modifiers.at; } return this.monster.atOf(bp, (this.monster.hasTrait('Panzeronion') ? this.armorTokens[bp.level] : 0) + this.difficultTerrainAT(this.monster.cells)); }
-  clearPool() { const fire = this.pool.filter(t => t.token === 'fire'); const keep = [...this.pool.filter(t => t.resource), ...fire.slice(1)]; /* Fire: leave all but one unused Fire token (p.19) */ const n = this.pool.length - keep.length; this.pool = keep; if (n) this.say(`Knight Pool 정리 (-${n})`, 'pool'); }
+  clearPool() { const fire = this.pool.filter(t => t.token === 'fire'); const passed = this.pool.filter(t => t.pass); for (const t of passed) t.pass = false; const keep = [...this.pool.filter(t => t.resource), ...fire.slice(1), ...passed.filter(t => t.token !== 'fire' && !t.resource)]; /* Fire: leave all but one unused Fire token (p.19) */ const n = this.pool.length - keep.length; this.pool = keep; if (n) this.say(`Knight Pool 정리 (-${n})`, 'pool'); }
   /** After any action: Counter trait (Eggknight). */
   async afterAction() { for (const kn of this.knights) kn.reinforce = null; await this.swampSweep(); await this.fenAfterAction(); await this.pumpAfterAction(); if (!this.monster.isMob) await this.trollAfterAction();
     if (this.monster.isMob) await this.mobAfterAction();
