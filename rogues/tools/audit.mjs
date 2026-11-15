@@ -166,6 +166,9 @@ ${cardTables([...M.cards.ai, M.cards.signature], M.cards.bp)}
 <p><b>Routine — ${esc(M.cards.routine.name)}</b>: ${(M.cards.routine.effects || [M.cards.routine.text]).map(esc).join(' ')}</p>
 <h3>해석 · 확인 필요</h3><ul>${(M.rulings || []).map(r => `<li>${esc(r)}</li>`).join('')}</ul></section>`);
 }
+// Fool's deck
+{ const FD = rd('data/decks/fools.json'); sec.push(`<section id="fools"><h2>Fool's Deck (${FD.cards.length})</h2><p class="impl">데이터: <code>data/decks/fools.json</code> · 사용처: Haunts of Utrebant Ethereal Unity 스폰 좌표 (미구현), 룰북 p.67 글자 규칙</p><p>${esc(FD.rules)}</p>
+<table><tr><th>코드</th><th>이름</th><th>글자</th><th>좌표</th></tr>${FD.cards.map(c => `<tr><td class="small">${c.code}</td><td><b>${esc(c.name)}</b></td><td>${c.letter}</td><td>${c.coord || '선택: ' + c.coordChoice.join(' 또는 ')}</td></tr>`).join('')}</table>${(FD.notes || []).map(n => `<p class="small">${esc(n)}</p>`).join('')}</section>`); }
 // 14. Transcribed, not yet implemented
 if (fs.existsSync('docs/transcriptions')) for (const f of fs.readdirSync('docs/transcriptions').filter(f => f.endsWith('_raw.json'))) {
   const Rw = rd('docs/transcriptions/' + f), S = Rw.sheet;

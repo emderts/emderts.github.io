@@ -1,0 +1,120 @@
+{
+ "name": "Fool's Deck",
+ "source": "KF Fool's deck card sheet (owner scan 2026-11-15); rulebook p.67",
+ "rules": "15 cards, letters A–F used by rules that reference them; coordinates used e.g. by Haunts of Utrebant Ethereal Unity spawn. If the deck is empty, immediately shuffle its discard pile into the deck.",
+ "cards": [
+  {
+   "id": "devil",
+   "code": "24A1022",
+   "name": "The Devil",
+   "letter": "A",
+   "coord": "F6"
+  },
+  {
+   "id": "dragon",
+   "code": "24A1023",
+   "name": "The Dragon",
+   "letter": "A",
+   "coord": "E9"
+  },
+  {
+   "id": "tower",
+   "code": "24A1024",
+   "name": "The Tower",
+   "letter": "B",
+   "coord": "E6"
+  },
+  {
+   "id": "saint",
+   "code": "24A1025",
+   "name": "The Saint",
+   "letter": "B",
+   "coord": "F9"
+  },
+  {
+   "id": "comet",
+   "code": "24A1026",
+   "name": "The Comet",
+   "letter": "C",
+   "coord": null,
+   "coordChoice": [
+    "A7",
+    "J8"
+   ],
+   "text": "Choose one: A7 or J8"
+  },
+  {
+   "id": "mage",
+   "code": "24A1027",
+   "name": "The Mage",
+   "letter": "D",
+   "coord": "J2"
+  },
+  {
+   "id": "king",
+   "code": "24A1028",
+   "name": "The King",
+   "letter": "D",
+   "coord": "C11"
+  },
+  {
+   "id": "crone",
+   "code": "24A1029",
+   "name": "The Crone",
+   "letter": "D",
+   "coord": "C4"
+  },
+  {
+   "id": "tenebrae",
+   "code": "24A1030",
+   "name": "Tenebrae",
+   "letter": "E",
+   "coord": "A2"
+  },
+  {
+   "id": "pope",
+   "code": "24A1031",
+   "name": "The Pope",
+   "letter": "E",
+   "coord": "H7"
+  },
+  {
+   "id": "princess",
+   "code": "24A1032",
+   "name": "The Princess",
+   "letter": "E",
+   "coord": "C8"
+  },
+  {
+   "id": "lux",
+   "code": "24A1033",
+   "name": "Lux",
+   "letter": "E",
+   "coord": "J13"
+  },
+  {
+   "id": "judgement",
+   "code": "24A1034",
+   "name": "Judgement",
+   "letter": "F",
+   "coord": "A13"
+  },
+  {
+   "id": "empress",
+   "code": "24A1035",
+   "name": "The Empress",
+   "letter": "F",
+   "coord": "H4"
+  },
+  {
+   "id": "sawed-man",
+   "code": "24A1036",
+   "name": "The Sawed Man",
+   "letter": "F",
+   "coord": "H11"
+  }
+ ],
+ "notes": [
+  "The Comet: 좌표 대신 'CHOOSE ONE: A7 OR J8' — 플레이어 선택으로 처리"
+ ]
+}
