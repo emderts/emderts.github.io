@@ -121,8 +121,17 @@ export const GEAR_QUESTIONS = [
 ];
 // Renholder (added 2026-11-16) — interpretations and missing material.
 export const KNIGHT_RULINGS = [
-  ['Renholder — Heroic Arc 아이콘', '검은 역삼각형 = Diversion, 무늬 있는 역삼각형 = Improved Diversion, 네 방향 화살표가 달린 인물 = Reposition, 손 모양 = Tireless로 판독.'],
-  ['Renholder — 판독 못 한 Heroic Arc 아이콘 (미적용)', 'Tenebrist L6 · Harmonized Soul L7 첫 옵션의 물결 화살표, Hermetic Master L6 두 번째 아이콘. 어떤 토큰인지 알려주시면 적용.'],
+  ['Heroic Arc 아이콘 판독', '"Knight Tokens and Abilities" 표 기준: 검은 역삼각형 = Pass, 무늬 역삼각형 = Greater Pass, 물결 화살표 = Diversion, 터지는 모양 = Improved Diversion, 화살표 셋 = Motivate, 네 방향 화살표 인물 = Reposition. Renholder(Tenebrist·Harmonized Soul·Hermetic Master)도 이 기준으로 고침.'],
+  ['Pass / Greater Pass (Heroic Arc)', 'Pass X: Clear the Knight Pool 때 Opening/Break X개 유지. Greater Pass X: Sunder·Power를 뺀 아무 토큰 X개 유지. Full Miss·Chain Break로 풀을 비울 때는 적용 안 함.'],
+  ['Motivate X', '다른 기사들이 합계 X칸 이동 (기사 선택 → 이동, 이동한 칸 수만큼 차감).'],
+  ['Kara — Ally', 'Knightbook의 Ally(아군 미니어처·보드 위 파티 토큰) 중 현재는 다른 기사만 Ally로 취급. Squire/Princess/Little Ser/Placeholder는 미포함.'],
+  ['Kara — Unconstrained', '"occupied" = 기사·몬스터·Obstacle이 있는 인접 칸. 0칸이면 +2, 정확히 1칸이면 +1 Precision.'],
+  ['Kara — Technique 소진 아이콘', 'zZ = Cooldown, 원형 화살표 = Delay, 번개 = Instant (Fleischritter·Renholder와 같은 기준). Dodge and Weave는 Delay → Cooldown을 지나는 동안 효과.'],
+  ['Kara — Kingsguard Arc L3/L6', '칼에 사선이 그어진 아이콘을 Envenomed 1로 판독 (Fleischjäger L3와 같은 아이콘).'],
+  ['Kara — First Death', 'Fleischritter와 같은 보상(+1 Sigh of the Graal)으로 처리.'],
+  ['Kara — Relentless Momentum', '"To Hit을 2 초과" = (주사위 + Precision) ≥ To Hit + 2 인 주사위가 하나라도 있으면 Sunder 1. miss마다 Hope 1.'],
+  ['Kara — Take a Breather', '전투 행동을 쓴 뒤 이동 행동을 하면 Gear 1장 Unexhaust.'],
+  ['Kara — Keep on Rolling / Cunning Misdirection / You Can Do It!', 'Keep on Rolling은 Crash 때 Tumble로만 사용. 나머지 둘은 공격 전 자유 행동으로 토큰을 풀에 놓음.'],
   ['Renholder — Devil 등급 Portrait', 'Knight Power die 아이콘이 빨간 주사위 2개 → 빨간 Knight Power die 2개로 처리.'],
   ['Magic Limit', '플레이 중인 Talent의 Magic Limit 중 가장 높은 값(+Hermetic Master Peril Arc의 +1)을 적용. 한도를 넘는 Magic 토큰은 놓지 못한다.'],
   ['비용 선택', '"+1 Heat or -1 Magic"처럼 대안이 있으면 둘 다 낼 수 있을 때 플레이어가 고른다. X 비용은 사용할 때 값을 고른다.'],
@@ -150,6 +159,8 @@ export const KNIGHT_RULINGS = [
   ['Renholder — First Death', '이벤트 결말 문단을 스캔에서 찾지 못해 Fleischritter와 같은 보상(+1 Sigh of the Graal)으로 처리.'],
 ];
 export const KNIGHT_QUESTIONS = [
+  ['Kara — 판독 못 한 Heroic Arc 아이콘 (미적용)', 'Steadfast L2·L6 첫 옵션, Knight of the Grand Kingdoms L3의 불꽃+손 모양 아이콘 (숫자 1/1/2). 어떤 토큰인지 알려주시면 적용.'],
+  ['Kara — 미구현', 'We Go Together(대각선 이동), Doing My Own Thing의 Encounter 배치, Knight in Shining Armor, Crusader\'s Strike의 Devote, Bypass/Superior Bypass(Keep on Rolling·Master the Terrain), Avert a Dire Fate의 Acrobatics, Living Weapon의 Full Evade 복귀, Dice with the Devil·Just Like We Practised의 Reaction 사용, Oath of Valor 카드 이동, Fleet of Foot의 방향 제한.'],
   ['Doublestrike Enchantment / Power Overwhelming', 'BP를 여러 장 뽑는 공격이라 미구현 (Exert로만 사용 가능).'],
   ['다른 기사', 'Kara · Ser Sonch · Paracelsa · Stoneface · Ser Ubar는 Talent/Heroic Arc 시트는 있으나 Knightbook(Setup)과 Technique 카드가 필요.'],
 ];

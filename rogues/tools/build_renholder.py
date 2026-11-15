@@ -17,15 +17,14 @@ arcs = [
  arc("Mage Knight", None, [[[T("Cantrip", 1)]], [[PR, T("Magic", 1)]], [[T("Cantrip", 2)]], [[PR, T("Magic", 1)]], [[T("PowerDieRed", 1)]], [[T("Cantrip", 2)]]]),
  arc("Illusionist", None, [[[T("Cantrip", 2)]], [[PR, T("Magic", 1)]], [[T("Cantrip", 1), T("Fire", 1)]], [[PR], [T("Fire", 1), T("Magic", 1)]], [[T("PowerDieRed", 1)]], [[T("Fire", 1), T("Cantrip", 1)]], [[T("Magic", 1)]]]),
  arc("Luxite", AR1, [[[T("Fire", 2)]], [[PR, T("Fire", 1)]], [[PR], [T("Spell", 1), T("Magic", 1)]], [[T("PowerDieRed", 1)]], [[T("Spell", 1)], [T("Magic", 1), T("Fire", 1)]], [[T("Fire", 2)]], [[T("Heartseeker", 1)]]]),
- arc("Tenebrist", None, [[[PR, T("Diversion", 1)]], [[T("Magic", 1), T("Cantrip", 2)]], [[T("Diversion", 1), T("Magic", 1)]], [[T("ImprovedDiversion", 1)], [PR]], [[T("Spell", 1), T("Diversion", 1)]], [[U("Hide", "L6: single wavy up-arrow icon, not in the token legend")]]],
-     ["Black downward triangle read as Diversion; patterned triangle (L4) as Improved Diversion", "L6 wavy-arrow icon unidentified (not applied)"]),
- arc("Harmonized Soul", None, [[[PR, T("Magic", 1)]], [[T("Fire", 3)], [T("Pushback", 2), T("Fire", 1)]], [[T("Opening", 3), T("Magic", 1)], [T("Magic", 2)]], [[T("Black", 1), T("Break", 1)], [T("PowerReroll", 2)]], [[T("Closing", 1)], [T("Reposition", 3)]], [[T("Spell", 1)], [T("Cantrip", 1), T("Magic", 1)]], [[U("Hide", "L7 first option: wavy up-arrow icon")], [T("Heartseeker", 1)]], [[T("PowerDieBlack", 1)]]],
-     ["L5 second option: " + REPO, "L7 first option: wavy-arrow icon unidentified (not applied)"]),
+ arc("Tenebrist", None, [[[PR, T("Pass", 1)]], [[T("Magic", 1), T("Cantrip", 2)]], [[T("Pass", 1), T("Magic", 1)]], [[T("GreaterPass", 1)], [PR]], [[T("Spell", 1), T("Pass", 1)]], [[T("Diversion", 1)]]]),
+ arc("Harmonized Soul", None, [[[PR, T("Magic", 1)]], [[T("Fire", 3)], [T("Pushback", 2), T("Fire", 1)]], [[T("Opening", 3), T("Magic", 1)], [T("Magic", 2)]], [[T("Black", 1), T("Break", 1)], [T("PowerReroll", 2)]], [[T("Closing", 1)], [T("Reposition", 3)]], [[T("Spell", 1)], [T("Cantrip", 1), T("Magic", 1)]], [[T("Diversion", 1)], [T("Heartseeker", 1)]], [[T("PowerDieBlack", 1)]]],
+     []),
  arc("Luxfire Magus", AR1, [[[T("Spell", 1), T("Magic", 1)]], [[T("Cantrip", 2)]], [[T("Cantrip", 2), PR], [T("Magic", 2)]], [[T("Spell", 1), PR], [T("PowerDieRed", 1)]], [[T("Spell", 1)]], [[T("Cantrip", 1), T("Magic", 1)]], [[T("Cantrip", 2)]]]),
  arc("Theurgist", None, [[[T("Spell", 1)]], [[T("Cantrip", 1), T("Magic", 1)]], [[T("Cantrip", 2), PR]], [[T("PowerDieRed", 1)], [T("Magic", 1)]], [[T("Spell", 1), T("Cantrip", 1)]], [[T("Spell", 1), T("Magic", 1)]], [[T("Tireless", 1)]]]),
  arc("Hermetic Master", {"text": "Attack Re-roll 1, [PowerReroll] 1", "ops": [T("AttackReroll", 1), PR]},
-     [[[T("Spell", 1), T("Magic", 1), T("Reposition", 2)]], [[T("Black", 1), T("Fire", 1), T("Magic", 1)]], [[T("Sunder", 1), PR]], [[T("Spell", 2), T("Magic", 1)]], [[T("PowerDieBlack", 1), T("Tireless", 1)]], [[PR, U("Rouse", "L6 second icon: burst/claw splash, unidentified")]], [[T("Spell", 2), T("Magic", 1)]], [[T("Power", 1)]]],
-     ["L1 third icon: " + REPO, "L6 second icon unidentified (not applied)"]),
+     [[[T("Spell", 1), T("Magic", 1), T("Reposition", 2)]], [[T("Black", 1), T("Fire", 1), T("Magic", 1)]], [[T("Sunder", 1), PR]], [[T("Spell", 2), T("Magic", 1)]], [[T("PowerDieBlack", 1), T("Tireless", 1)]], [[PR, T("ImprovedDiversion", 1)]], [[T("Spell", 2), T("Magic", 1)]], [[T("Power", 1)]]],
+     []),
 ]
 ML = lambda n: f"Magic Limit {n}: There can't be more than {n} Magic [Magic] tokens in the Knight Pool at the same time. If multiple elements modify the Magic Limit, choose the highest Magic Limit."
 talents = [

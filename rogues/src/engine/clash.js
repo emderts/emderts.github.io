@@ -16,6 +16,7 @@ import { FenMixin } from './fen.js';
 import { PumpMixin } from './pump.js';
 import { IroncastMixin } from './ironcast.js';
 import { RenholderMixin } from './renholder.js';
+import { KaraMixin, installKara } from './kara.js';
 
 export class ChainBreak extends Error { constructor(msg = 'Chain Break') { super(msg); this.chainBreak = true; } }
 const sum = a => a.reduce((x, y) => x + y, 0);
@@ -116,7 +117,7 @@ export class Clash {
       if (!this._deployed) { this._deployed = true; await this.fx.deployAll(); }
       await this.fenStart();
       if (this._askPriority) { this._askPriority = false; const id = await this.ask({ type: 'pickKnight', text: 'Passion 동률 — 시작 Priority Target 선택', options: this.knights.map(k => ({ label: k.name, value: k.id })) }); this.priorityTarget = this.knights.find(k => k.id === id) || this.knights[0]; this.say(`Priority Target: ${this.priorityTarget.name}`); }
-      while (!this.result) { this.round++; await this.monsterRound(); if (this.result) break; await this.knightRound(); this.firstRound = false; this.renRoundEnd(); }
+      while (!this.result) { this.round++; await this.monsterRound(); if (this.result) break; await this.knightRound(); this.firstRound = false; this.renRoundEnd(); this.karaRoundEnd(); }
     } catch (e) { if (e instanceof GameOver) this.result = e.result; else throw e; }
     this.say(`Clash 종료: ${this.result === 'win' ? '승리' : '패배'}`, 'end');
     return this.result;
@@ -314,7 +315,7 @@ export class Clash {
   async crash(k, opts = {}) { const { charge = false } = opts; if (this.isFen && opts.through && !this.actingGuardian) return this.monster.hasTrait('Inescapable Slime') ? this.fenOoze(k, 'boss') : this.fenPass(k);
     if (charge && this.knockedDown(k) && this.monster.hasTrait('Coup de Grace')) { this.say(`${k.name}: 넘어진 채로 돌진당함 — Coup de Grace: Judicium 대신 사망`, 'death'); await this.die(k, 'Coup de Grace'); return; }
     if (charge && this.knockedDown(k)) { this.say(`${k.name}: 넘어진 채로 돌진당함 → Judicium`); await this.drawJudicium(k); return; }
-    if (this.fx.gearHas(k, 'tumble') || await this.fx.gearUse(k, ['tumblePaid'], 'Crash — Tumble 사용 (d10 6+로 무시)?')) { const d = this.rng.die(10); this.say(`${k.name} Tumble: d10 ${d} → ${d >= 6 ? 'Crash 무시' : '실패'}`, 'dice'); if (d >= 6) return; }
+    if (this.fx.gearHas(k, 'tumble') || await this.fx.gearUse(k, ['tumblePaid'], 'Crash — Tumble 사용 (d10 6+로 무시)?') || await this.karaTumble(k)) { const d = this.rng.die(10); this.say(`${k.name} Tumble: d10 ${d} → ${d >= 6 ? 'Crash 무시' : '실패'}`, 'dice'); if (d >= 6) return; }
     this.say(`${k.name} Crash`); await this.loseVigor(k, 1, { source: 'crash' }); await this.knockdown(k);
   }
   /** Monster ends movement on a Knight: Crash + Unavoidable Knockback (p.51). */
@@ -329,12 +330,12 @@ export class Clash {
     const diffInstead = gatesOn.find(g => g.op === 'difficultyInstead'); if (diffInstead) diff = diffInstead.n;
     if (this.negMonPrecision) { diff = Math.max(2, diff - this.negMonPrecision); this.say(`임시 Precision -${this.negMonPrecision} 토큰: Evasion 난이도 → ${diff}+ (토큰 버림)`, 'tech'); this.negMonPrecision = 0; }
     if (this.monster.hasTrait('Jacked')) { if (this.jackedTokens >= 2) diff += 1; if (this.jackedTokens >= 5) dice += 1; }
-    const dw = await this.fx.defenseWindow(k, { judge: !!ops.judge }); let evaBonus = this.fx.evasionBonus(k) + dw.evasion; let virtue = null;
+    const dw = await this.fx.defenseWindow(k, { judge: !!ops.judge }); this.karaTargeted(k); let evaBonus = this.fx.evasionBonus(k) + dw.evasion + this.karaEvasion(k); let virtue = null;
     let freeER = this.fx.evasionRerolls(k), cloak = 0;
     let extraGuard = 0, wilder = 0;
     if (k.perilArcDef && k.perilArcDef.bonus && /^Guard (\d+)/.test(k.perilArcDef.bonus.text || '')) extraGuard += +/^Guard (\d+)/.exec(k.perilArcDef.bonus.text)[1];
     if (this.cloaked(k)) { extraGuard += 2; this.say(`${k.name}: Cloak of Shadows — Guard 2`, 'tech'); }
-    { const t = k.hand.find(t => t.timing === 'onTargeted' && t.ops && this.fx.canPay(k, this.fx.costOf(k, t))); if (t && await this.yesNo(`${k.name}: ${t.name} 사용? (${this.fx.costLabel(k, t)}) — ${t.text}`, false)) { const pc = await this.fx.chooseCost(k, t); if (pc) { this.fx.pay(k, pc.alt, pc.x); const ops2 = this.fx.activeOps(k, t); for (const o of ops2) { if (o.op === 'guard') extraGuard += o.n; } this.say(`${k.name} 기술 사용: ${t.name} — Guard ${ops2.filter(o => o.op === 'guard').reduce((a, o) => a + o.n, 0)}`, 'tech'); if (ops2.some(o => o.op === 'passPriority')) await this.passPriority(k); this.fx.deplete(k, t); await this.renTechniqueUsed(k); } } }
+    { const t = k.hand.find(t => t.timing === 'onTargeted' && t.ops && this.fx.canPay(k, this.fx.costOf(k, t))); if (t && await this.yesNo(`${k.name}: ${t.name} 사용? (${this.fx.costLabel(k, t)}) — ${t.text}`, false)) { const pc = await this.fx.chooseCost(k, t); if (pc) { this.fx.pay(k, pc.alt, pc.x); const ops2 = this.fx.activeOps(k, t); for (const o of ops2) { if (o.op === 'guard') extraGuard += o.n; if (o.op === 'evasionDifficulty') { diff = (k.peril() === 'Judicium' ? 6 : o.n) + M.modifiers.precision; this.say(`${t.name}: Evasion Roll 난이도 → ${diff}+`, 'tech'); } } this.say(`${k.name} 기술 사용: ${t.name} — Guard ${ops2.filter(o => o.op === 'guard').reduce((a, o) => a + o.n, 0)}`, 'tech'); if (ops2.some(o => o.op === 'passPriority')) await this.passPriority(k); this.fx.deplete(k, t); await this.renTechniqueUsed(k); } } }
     for (const g of k.gear) { if (g.discarded || g.exhausted) continue; if (this.fx.constKw(k, g).some(o => o.op === 'swapERArmor')) { const red = this.fx.armorDice(k).red; if (red !== freeER && await this.yesNo(`${k.name}: ${g.name} — Evasion Re-roll ${freeER} ↔ 빨간 Armor 주사위 ${red} 맞바꾸기?`, false)) { k.reinforce = k.reinforce || { red: 0, black: 0, white: 0 }; k.reinforce.red += freeER - red; this.say(`${g.name}: Evasion Re-roll ${red} · 빨간 Armor 주사위 ${freeER}`, 'tech'); freeER = red; } } }
     for (const g of k.gear) { if (g.discarded || g.exhausted) continue; for (const o of this.fx.constKw(k, g)) { if (o.op === 'targetFleisch') { if (this.fx.chargesOf(g) >= o.c) { g.chargesLeft -= o.c; this.poolAdd('fleisch', o.n, { resource: true }); this.say(`${g.name}: Attack의 대상 — Fleisch ${o.n}, Charge ${g.chargesLeft}`, 'tech'); } else { g.discarded = true; this.say(`${g.name}: Charge 없음 → 카드 버림`, 'tech'); } } else if (o.op === 'chargeReinforce' && this.fx.chargesOf(g) > 0) { const mx = g.chargesLeft; const x = await this.ask({ type: 'pick', knight: k.id, text: `${k.name}: ${g.name} — Charge X로 Reinforce X`, options: Array.from({ length: mx + 1 }, (_, i) => ({ label: `${mx - i}`, value: mx - i })) }); if (x > 0) { g.chargesLeft -= x; k.reinforce = k.reinforce || { red: 0, black: 0, white: 0 }; k.reinforce.red += x; this.say(`${g.name}: Reinforce ${x}`, 'tech'); } } } }
     { const rc = this.fx.gearAbilities(k, ['reinforceCardArmor']).find(x => x.g._armorOn > 0); if (rc && await this.yesNo(`${k.name}: ${rc.g.name} — Advanced Reinforce ${rc.g._armorOn}?`, true)) { this.fx.gearPay(k, rc.g, rc.o); k.reinforce = k.reinforce || { red: 0, black: 0, white: 0 }; k.reinforce.black += rc.g._armorOn; this.say(`${rc.g.name}: Advanced Reinforce ${rc.g._armorOn}`, 'tech'); } }
@@ -541,7 +542,7 @@ export class Clash {
     // Knockdown handling
     const kd = k.conditions.find(c => /^Knockdown/.test(c.id));
     if (kd && kd.id === 'Knockdown (Standing Up)') { this.standUp(k); }
-    k.steady = false; await this.renTurnStart(k);
+    k.steady = false; await this.renTurnStart(k); await this.karaTurnStart(k);
     for (const g of k.gear) { if (g.discarded || g.exhausted) continue; for (const o of this.fx.constKw(k, g)) if (o.op === 'gateDiscardBane' && k.alive) { g.discarded = true; this.say(`${g.name}: ${o.gate} — 카드 버림, Bane ${o.n}`, 'tech'); await this.fx.runKnightOp({ op: 'bane', n: o.n }, k, {}); } } if (!k.alive) return; await this.fx.hideAtStartOfTurn(k);
     for (const g of k.gear) { if (g.discarded || g.exhausted) continue; if (this.fx.constKw(k, g).some(o => o.op === 'turnRevealMortis')) { const tops = Object.keys(this.mortis || {}).filter(t => this.mortis[t] && this.mortis[t].cards && this.mortis[t].cards.length).map(t => `${t}: ${this.mortis[t].cards[0].name}`); this.say(`${g.name}: Mortis 덱 맨 위 — ${tops.join(' · ')}`, 'tech'); } }
     for (const g of k.gear) { if (g.discarded || g.exhausted) continue; for (const o of this.fx.constKw(k, g)) if (o.op === 'turnVigorBane' && k.alive) { k.gainVigor(o.v); this.say(`${g.name}: Start of your turn — Vigor +${o.v} (${k.vigor}), Bane ${o.n}`, 'tech'); await this.fx.runKnightOp({ op: 'bane', n: o.n }, k, {}); } else if (o.op === 'turnLoseVigor' && k.alive) { this.say(`${g.name}: Start of your turn — Vigor -${o.n}`, 'tech'); await this.fx.runKnightOp({ op: 'loseVigor', n: o.n }, k, {}); } }
@@ -559,7 +560,7 @@ export class Clash {
       const choice = opts.length === 1 ? 'end' : await this.ask({ type: 'action', knight: k.id, options: opts });
       if (choice === 'end') done = true;
       else if (choice.startsWith('unex:')) { k.actions[choice.slice(5)] = false; for (const g of k.gear) if (!g.discarded) g.exhausted = false; this.say(`${k.name}: ${choice.slice(5) === 'move' ? '이동' : '전투'} 행동으로 모든 장비 Unexhaust (p.21)`, 'tech'); }
-      else if (choice === 'move') { await this.knightMove(k, this.fx.speed(k)); k.actions.move = false; }
+      else if (choice === 'move') { await this.knightMove(k, this.fx.speed(k)); k.actions.move = false; await this.karaMoveAction(k); }
       else if (choice === 'moveC') { await this.knightMove(k, this.fx.speed(k)); k.actions.combat = false; }
       else if (choice === 'attack') { if (k.actions.combat) k.actions.combat = false; else k.actions.extraCombat--; await this.knightAttack(k); }
       else if (choice.startsWith('tech:')) await this.fx.useTechnique(k, k.hand.find(t => t.name === choice.slice(5)));
@@ -646,7 +647,7 @@ export class Clash {
       const picked = await this.ask({ type: 'dice', knight: k.id, text: `${k.name} Attack ${dice}d vs ${toHit}+ (보너스 +${prec}) — 재굴림 (Attack Re-roll ${freeAR}개 · Closing ${this.poolCount('closing')}개 무료, 이후 Heat +1/개)`, dice: roll.dice.map(d => ({ v: d.v, crit: d.crit, hit: isHit(d), canReroll: !d.rerolled })), max: maxR });
       if (picked && picked.length) { const ar = Math.min(picked.length, freeAR); A.attackRerolls = freeAR - ar; if (ar) this.say(`Attack Re-roll ${ar}개 (무료)`); const free = Math.min(picked.length - ar, this.poolCount('closing')); this.poolTake('closing', free); const paid = picked.length - ar - free; if (paid) await this.fx.payRerolls(k, paid); for (const i of picked) { const d = roll.dice[i]; d.v = this.rng.die(10); d.rerolled = true; } }
     }
-    await this.fx.attackRollGear(k, A, roll, isHit);
+    await this.fx.attackRollGear(k, A, roll, isHit); await this.karaAfterAttackRoll(k, A, roll, isHit, toHit, prec);
     if (A.mob && A.mob.revealed && A.mob.card.ops.aura && A.mob.card.ops.aura.retiarius && A.mob.generic > 0) { A.mob.generic--; prec -= 2; for (const d of roll.dice) { d.v = this.rng.die(10); d.rerolled = true; } this.say(`Retiarius: Generic 토큰 버림 → Attack Roll 다시 (-2 Precision): [${roll.dice.map(d => d.v).join(' ')}]`, 'dice'); }
     if (this.isFen && roll.dice[0].v === 1) { this.say(`${k.name} Crit Miss`); await this.fenCritMiss(k); }
     A.hits = roll.dice.filter(isHit).length; A.critChance = roll.dice[0].v === 10 || (this.fx.has(k, 'deadly') && roll.dice[0].v >= 9);
@@ -661,7 +662,7 @@ export class Clash {
     // 5. determine BP
     if (this.monster.isMob && !this.monster.mobs.includes(A.mob)) { this.say('대상 Mob이 이미 없음'); this.clearPool(); this.currentKnightAttack = null; return; }
     let bp = A.guardian ? this.guardianBP(A.guardian) : this.monster.isMob ? A.mob.card : this.monster.drawBP(); if (this.monster.isMob) await this.revealMob(A.mob); if (!bp) { this.say('BP 덱 비어 있음'); this.currentKnightAttack = null; return; }
-    if (!this.monster.isMob && !A.guardian && !bp.isThickSkin && this.monster.bp.discard.length && await this.fx.gearUse(k, ['precise'], `BP ${bp.name} 대신 버림 더미 맨 위 ${this.monster.bp.discard.at(-1).name}을(를) 공격 (Precise)?`)) { const top = this.monster.bp.discard.pop(); this.monster.bp.cards.push(bp); this.monster.bp.shuffle(); bp = top; this.say(`Precise: 버림 더미의 ${bp.name} 공격, 뽑은 카드는 덱에 섞음`); }
+    if (!this.monster.isMob && !A.guardian && !bp.isThickSkin && this.monster.bp.discard.length && (A.flags.has('precise') ? await this.yesNo(`${k.name}: BP ${bp.name} 대신 버림 더미 맨 위 ${this.monster.bp.discard.at(-1).name}을(를) 공격 (Precise)?`, false) : await this.fx.gearUse(k, ['precise'], `BP ${bp.name} 대신 버림 더미 맨 위 ${this.monster.bp.discard.at(-1).name}을(를) 공격 (Precise)?`))) { const top = this.monster.bp.discard.pop(); this.monster.bp.cards.push(bp); this.monster.bp.shuffle(); bp = top; this.say(`Precise: 버림 더미의 ${bp.name} 공격, 뽑은 카드는 덱에 섞음`); }
     await this.fx.arcAt(k, A, 'bp');
     if (!this.monster.isMob && !A.guardian && this.fx.has(k, 'heartseeker', A)) { const alt = this.monster.drawBP(); if (alt) { const pick = await this.ask({ type: 'heartseeker', options: [bp, alt].map(c => ({ label: `${c.name} (AT ${this.bpAT(c)})`, value: c.name })) }); const chosen = [bp, alt].find(c => c.name === pick); const other = chosen === bp ? alt : bp; this.monster.bp.cards.unshift(other); bp = chosen; } }
     A.bp = bp; this.lastBP = bp; this.say(`BP ${bp.level}: ${bp.name} (AT ${this.bpAT(bp)})`, 'bp'); this.flash('card', { title: `BP ${bp.level}`, name: bp.name, text: `AT ${this.bpAT(bp)}`, cls: 'bp' });
@@ -725,7 +726,7 @@ export class Clash {
     if (this.isPump) await this.pumpAfterResponses(k, A);
     if (this.monster.slain) { this.checkEnd(); }
     // 9. clear pool
-    await this.fx.passWindow(k, A);
+    await this.fx.passWindow(k, A); await this.karaClearPool(k, A);
     if (!this.fx.has(k, 'skipClearPool', A)) this.clearPool();
     if (A.swapPH && k.alive) { const p = k.passion; k.passion = k.heat; k.heat = p; this.say(`${k.name}: Passion ↔ Heat 교환 (Passion ${k.passion}, Heat ${k.heat})`, 'tech'); }
     // 10. second window
@@ -772,4 +773,5 @@ export class Clash {
   }
   async windowOfOpportunity(when, attack, target = null) { const a = attack || this.currentAttack; if (a && a.noReact && when !== 'beforeEffects') { this.say('REACT! 무시 (Blood 게이트)'); return; } await this.fx.reactions(when, attack, target); }
 }
-Object.assign(Clash.prototype, MobMixin, BloodMixin, HauntsMixin, FirstmenMixin, TrollMixin, NightmareMixin, FenMixin, PumpMixin, IroncastMixin, RenholderMixin);
+Object.assign(Clash.prototype, MobMixin, BloodMixin, HauntsMixin, FirstmenMixin, TrollMixin, NightmareMixin, FenMixin, PumpMixin, IroncastMixin, RenholderMixin, KaraMixin);
+installKara(Clash);

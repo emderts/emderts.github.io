@@ -519,7 +519,7 @@
         "n": 1
        },
        {
-        "token": "Diversion",
+        "token": "Pass",
         "n": 1
        }
       ]
@@ -545,7 +545,7 @@
      "options": [
       [
        {
-        "token": "Diversion",
+        "token": "Pass",
         "n": 1
        },
        {
@@ -560,7 +560,7 @@
      "options": [
       [
        {
-        "token": "ImprovedDiversion",
+        "token": "GreaterPass",
         "n": 1
        }
       ],
@@ -581,7 +581,7 @@
         "n": 1
        },
        {
-        "token": "Diversion",
+        "token": "Pass",
         "n": 1
        }
       ]
@@ -592,18 +592,14 @@
      "options": [
       [
        {
-        "token": "Unknown",
-        "guess": "Hide",
-        "unclear": "L6: single wavy up-arrow icon, not in the token legend"
+        "token": "Diversion",
+        "n": 1
        }
       ]
      ]
     }
    ],
-   "unclear": [
-    "Black downward triangle read as Diversion; patterned triangle (L4) as Improved Diversion",
-    "L6 wavy-arrow icon unidentified (not applied)"
-   ]
+   "unclear": []
   },
   {
    "name": "Harmonized Soul",
@@ -730,9 +726,8 @@
      "options": [
       [
        {
-        "token": "Unknown",
-        "guess": "Hide",
-        "unclear": "L7 first option: wavy up-arrow icon"
+        "token": "Diversion",
+        "n": 1
        }
       ],
       [
@@ -755,10 +750,7 @@
      ]
     }
    ],
-   "unclear": [
-    "L5 second option: figure with four outward arrows — read as Reposition",
-    "L7 first option: wavy-arrow icon unidentified (not applied)"
-   ]
+   "unclear": []
   },
   {
    "name": "Luxfire Magus",
@@ -1094,9 +1086,8 @@
         "n": 1
        },
        {
-        "token": "Unknown",
-        "guess": "Rouse",
-        "unclear": "L6 second icon: burst/claw splash, unidentified"
+        "token": "ImprovedDiversion",
+        "n": 1
        }
       ]
      ]
@@ -1128,10 +1119,7 @@
      ]
     }
    ],
-   "unclear": [
-    "L1 third icon: figure with four outward arrows — read as Reposition",
-    "L6 second icon unidentified (not applied)"
-   ]
+   "unclear": []
   }
  ],
  "perilArcsRef": "data/knights/peril_arcs.json → arcs.renholder",
