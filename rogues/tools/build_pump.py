@@ -70,7 +70,7 @@ d = {
   'Venomous Quagmire growth: the players choose which 2x2 block containing the Pumpkinhead\'s space gets the Swamp (spaces with other Terrain are skipped) (소유자 확인 2026-11-15); Transforming Seed uses the Vigor the Target lost in this Attack',
   'Floraforge Fury (Principality): Afflict X = Parasitize X is NOT implemented (keyword definition needed); growth move and Transforming Seed (Armor token on Saplings in Zone 3) are implemented',
   'Pumpkin Plague (Level 3): the Knight chooses the Gear card for each Generic token; 1 token per Gear slot (2 for a 2-handed Weapon); death → Heal 1 puts the top Wound-Stack BP back as a Pumpkinhead on the Knight\'s space, without Fast Regrowth (reference sheet PHM v1.1)',
-  'Lumbering = Saplings cannot be moved involuntarily (reference sheet); Accelerated Regrowth also applies to the Setup Saplings; "Nevermore Spawn" is not implemented (definition needed); "Reposition 2" = the Knight may move up to 2 spaces',
+  'Lumbering = Saplings cannot be moved involuntarily (reference sheet); Accelerated Regrowth also applies to the Setup Saplings; Nevermore Spawn = this Mob never spawns from BP Escalation (rulebook box, owner scan 2026-11-15) — nothing to resolve; Spawn Attacks (rulebook box): an Attack caused by a spawning Trait (Spore Spreader Signature) is an Attack Response, resolved after the current Attack; "Reposition 2" = the Knight may move up to 2 spaces',
   'Lose condition: 4 Generic tokens on any BP (Ecological Cataclysm). Routine Photosynthesis: Fast Regrowth on the whole board, then 2 Generic tokens on each BP',
  ],
 }
