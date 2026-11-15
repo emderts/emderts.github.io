@@ -1,0 +1,2191 @@
+{
+ "id": "winged-nightmare",
+ "name": "Winged Nightmare",
+ "kind": "mob",
+ "code": "26A1074",
+ "traitsLine": [
+  "Mob",
+  "Beast",
+  "Horror"
+ ],
+ "_source": "Monster Sheet, AI/BP/Trait cards, Signature, Routine — owner scans (readings owner-confirmed 2026-11-15); Clash Setup: Sunken Kingdom Codex p.38",
+ "footprint": {
+  "size": 1,
+  "shape": "1x1",
+  "rear": "the single cell directly behind (R on the sheet diagram)",
+  "facingOnSheet": "down"
+ },
+ "basicAbilities": [
+  {
+   "name": "Superior Bypass",
+   "rule": "Moves through Terrain and miniatures (lost while Slithering Tails is revealed)."
+  },
+  {
+   "name": "Immediate Spawn"
+  }
+ ],
+ "levels": {
+  "1": {
+   "toHit": 5,
+   "wounds": 6,
+   "activations": [
+    "AI"
+   ],
+   "traitsAdd": [
+    "Regional Lair",
+    "Unpredictable Nature",
+    "Fight and Flight",
+    "Marble Forest",
+    "Tougher than She Looks"
+   ],
+   "bonuses": {
+    "escalations": 0,
+    "at": 0,
+    "vigorLoss": 0,
+    "evasionDice": 0
+   }
+  },
+  "2": {
+   "toHit": 7,
+   "wounds": 6,
+   "activations": [
+    "AI"
+   ],
+   "traitsAdd": [
+    "Siren’s Spite",
+    "Bloody Defiance"
+   ],
+   "bonuses": {
+    "escalations": 0,
+    "at": 1,
+    "vigorLoss": 1,
+    "evasionDice": 0
+   }
+  },
+  "3": {
+   "toHit": 8,
+   "wounds": 6,
+   "activations": [
+    "AI"
+   ],
+   "traitsAdd": [
+    "Nixie’s Fury"
+   ],
+   "bonuses": {
+    "escalations": 1,
+    "at": 3,
+    "vigorLoss": 2,
+    "evasionDice": 0
+   }
+  },
+  "4": {
+   "toHit": 10,
+   "wounds": 6,
+   "activations": [
+    "AI"
+   ],
+   "traitsAdd": [
+    "Coiling Malice"
+   ],
+   "bonuses": {
+    "escalations": 1,
+    "at": 5,
+    "vigorLoss": 3,
+    "evasionDice": 1
+   }
+  }
+ },
+ "traits": [
+  {
+   "name": "Regional Lair",
+   "level": 1,
+   "text": "The Winged Nightmare’s Lair changes depending on the Kingdom. See your Kingdom Book for Setup instructions.",
+   "implemented": true
+  },
+  {
+   "name": "Unpredictable Nature",
+   "level": 1,
+   "text": "The Winged Nightmare has 1 two-sided BP card. It starts the Clash with the Wide Wings side up. This BP remains in the same place during the Clash, regardless of Wounding or Failing. You cannot flip it using abilities. When you deal a Wound, place a Generic Single Wound card on the Wound Stack instead.\n\nAI Response: Immediately resolve the “AI Response” effect of the top card of the AI discard pile. Triggers during Knight Attacks.\nIf, at any point, the AI discard pile is empty, discard the top AI card.\nEscalate only the AI deck and always do so based on the AI Level of the top card of the AI discard pile.",
+   "implemented": true
+  },
+  {
+   "name": "Fight and Flight",
+   "level": 1,
+   "text": "Flank: The Winged Nightmare moves to an empty space furthest from the center of the Clash Board that is adjacent to the Target or Attacker, prioritizing spaces in a straight line from a Chasm Terrain tile.\n\nFlee X: The Winged Nightmare moves X spaces toward the closest Board Edge. If it already is or becomes adjacent to it, continue the movement along the Board Edge toward the next closest Board Edge.\n\nWhen you resolve an AI Response, if the Attacker is at the Winged Nightmare’s Rear, ignore Flank and Flee X.",
+   "implemented": true
+  },
+  {
+   "name": "Marble Forest",
+   "level": 1,
+   "text": "As a free action, or instead of a Reflex, Knights may climb adjacent Column Terrain tiles. When a Knight is about to suffer Knockdown or involuntary movement while on a Column Terrain tile, they are Displaced and suffer Crash instead.",
+   "implemented": true
+  },
+  {
+   "name": "Tougher than She Looks",
+   "level": 1,
+   "text": "Endure X: The Winged Nightmare gains X temporary positive AT [AT] tokens.",
+   "implemented": true
+  },
+  {
+   "name": "Siren’s Spite",
+   "level": 2,
+   "text": "If the Winged Nightmare moves off a Column Terrain tile, that tile is destroyed.",
+   "implemented": true
+  },
+  {
+   "name": "Bloody Defiance",
+   "level": 2,
+   "text": "The Winged Nightmare cannot die from Wounds. When you deal the final Wound, immediately place the Bloody Defiance BP Trait card on top of the BP card and resolve its Response instead. Until the end of the Clash, Knights attack this BP Trait card instead.\n\nIgnore this Trait during Exhibition Clashes.",
+   "implemented": true
+  },
+  {
+   "name": "Nixie’s Fury",
+   "level": 3,
+   "text": "During the Knight Round, when the second Knight ends their turn, draw and perform an AI card.\n\n! For the purpose of this Trait treat dead Knights as empty turns. In other words, a dead Knight still counts as a Knight for the 2 Knight turn limit.",
+   "implemented": true
+  },
+  {
+   "name": "Coiling Malice",
+   "level": 4,
+   "text": "When the Winged Nightmare moves through a Knight, that Knight suffers Crash.",
+   "implemented": true
+  }
+ ],
+ "cards": {
+  "ai": [
+   {
+    "file": "00.png",
+    "name": "Tail Grab",
+    "code": "27A1421",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "[Priority Target] Priority Target in sight",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "move": true,
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [d10]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "One hit, lose -2 [Vigor].",
+     "Two hits, lose -5 [Vigor] and Choke 3.",
+     "Three or more hits, lose -8 [Vigor] and Choke 3. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting",
+     "effect:2"
+    ],
+    "afterAttack": "Knockback 3.",
+    "aiResponse": "Knockdown. Discard the top AI card.",
+    "aiResponseReactMarker": true,
+    "footer": "WINGED NIGHTMARE – AI 1",
+    "text": "TAIL GRAB / ATTACK / Evasion 2 dice, 8+ / TARGETING: • [Priority Target] Priority Target in sight • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat] 3+ ▸ +1 [d10] / One hit, lose -2 [Vigor]. Two hits, lose -5 [Vigor] and Choke 3. Three or more hits, lose -8 [Vigor] and Choke 3. [Peril Check]. [REACT!] / AFTER ATTACK / Knockback 3. / WINGED NIGHTMARE – AI 1 / AI RESPONSE [REACT!]: Knockdown. Discard the top AI card.",
+    "notes": [
+     "code: tiny faint print; best reading 27A1421 (low-resolution digits, consistent with the 27A1419–27A1434 sequence) (소유자 확인 2026-11-15)"
+    ],
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "[Priority Target] Priority Target in sight",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 3,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "vigorByHitsTable",
+       "table": [
+        2,
+        5,
+        8
+       ],
+       "perilCheck": true,
+       "perilFrom": 3
+      },
+      {
+       "op": "ifHits",
+       "gte": 2,
+       "lt": null,
+       "then": [
+        {
+         "op": "choke",
+         "n": 3
+        }
+       ]
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "knockback",
+       "n": 3
+      }
+     ],
+     "afterFinalAttack": null,
+     "aiResponse": [
+      {
+       "op": "knockdown"
+      },
+      {
+       "op": "wnDiscardTopAI"
+      }
+     ]
+    }
+   },
+   {
+    "file": "01.png",
+    "name": "Alluring Lullaby",
+    "code": "27A1422",
+    "level": 1,
+    "type": "judgement",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "Lowest [Heat] in sight"
+    ],
+    "moveTag": "FLANK & JUDGE",
+    "move": false,
+    "gates": [],
+    "effects": [
+     "Insight [Insight] / Sagacity [Sagacity].",
+     "For each hit lose -2 [Vigor]. [Peril Check].",
+     "Gain the Distracted Condition card.",
+     "Flee 2. Pull 1."
+    ],
+    "reactWindows": [
+     "targeting"
+    ],
+    "aiResponse": "The Winged Nightmare moves to the closest empty Column Terrain tile. Discard the top AI card.",
+    "aiResponseReactMarker": true,
+    "footer": "WINGED NIGHTMARE – AI 1",
+    "text": "ALLURING LULLABY / JUDGEMENT / Evasion 3 dice, 8+ / TARGETING: • Lowest [Heat] in sight [REACT!] / FLANK & JUDGE / Insight [Insight] / Sagacity [Sagacity]. / For each hit lose -2 [Vigor]. [Peril Check]. / Gain the Distracted Condition card. / Flee 2. Pull 1. / WINGED NIGHTMARE – AI 1 / AI RESPONSE [REACT!]: The Winged Nightmare moves to the closest empty Column Terrain tile. Discard the top AI card.",
+    "notes": [
+     "code: tiny faint print; best reading 27A1422 (low-resolution digits, consistent with the 27A1419–27A1434 sequence) (소유자 확인 2026-11-15)",
+     "targeting icon is a small blue square read as [Heat] (\"Lowest [Heat] in sight\"); clearly blue, not the red [Vigor] box (소유자 확인 2026-11-15)",
+     "\"Distracted\" is printed in italics (소유자 확인 2026-11-15)"
+    ],
+    "typePrinted": "JUDGEMENT",
+    "ops": {
+     "targeting": [
+      "Lowest [Heat] in sight"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "condition",
+       "id": "Distracted"
+      },
+      {
+       "op": "wnFlee",
+       "n": 2
+      },
+      {
+       "op": "wnPull",
+       "n": 1
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null,
+     "flank": true,
+     "judge": [
+      "Insight",
+      "Sagacity"
+     ],
+     "aiResponse": [
+      {
+       "op": "wnToColumn"
+      },
+      {
+       "op": "wnDiscardTopAI"
+      }
+     ]
+    }
+   },
+   {
+    "file": "02.png",
+    "name": "Bloodseeker",
+    "code": "27A1423",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 9,
+    "preTargeting": null,
+    "targeting": [
+     "Highest [Vigor] in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "move": true,
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [d10]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "For each hit lose -2 [Vigor]. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting",
+     "effect:0"
+    ],
+    "afterAttack": "The Winged Nightmare moves to the closest empty Column Terrain tile.",
+    "aiResponse": "Flee 3.",
+    "aiResponseReactMarker": true,
+    "footer": "WINGED NIGHTMARE – AI 1",
+    "text": "BLOODSEEKER / ATTACK / Evasion 3 dice, 9+ / TARGETING: • Highest [Vigor] in sight [REACT!] / MOVE & ATTACK [Heat] 3+ ▸ +1 [d10] / For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / The Winged Nightmare moves to the closest empty Column Terrain tile. / WINGED NIGHTMARE – AI 1 / AI RESPONSE [REACT!]: Flee 3.",
+    "notes": [
+     "code: tiny faint print; best reading 27A1423 (low-resolution digits, consistent with the 27A1419–27A1434 sequence) (소유자 확인 2026-11-15)"
+    ],
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Highest [Vigor] in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 3,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "wnToColumn"
+      }
+     ],
+     "afterFinalAttack": null,
+     "aiResponse": [
+      {
+       "op": "wnFlee",
+       "n": 3
+      }
+     ]
+    }
+   },
+   {
+    "file": "03.png",
+    "name": "Slithering Shove",
+    "code": "27A1420",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 4,
+    "evasionDifficulty": 7,
+    "preTargeting": null,
+    "targeting": [
+     "Knight closest to a Chasm in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "move": true,
+    "gates": [],
+    "effects": [
+     "For each hit lose -2 [Vigor]. [Peril Check].",
+     "Pushback X, where X is the number of hits."
+    ],
+    "reactWindows": [
+     "targeting",
+     "effect:0",
+     "effect:1"
+    ],
+    "afterAttack": "Flee 2.",
+    "aiResponse": "Flank. Lose -1 [Vigor].",
+    "aiResponseReactMarker": true,
+    "footer": "WINGED NIGHTMARE – AI 1",
+    "text": "SLITHERING SHOVE / ATTACK / Evasion 4 dice, 7+ / TARGETING: • Knight closest to a Chasm in sight [REACT!] / MOVE & ATTACK / For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / Pushback X, where X is the number of hits. [REACT!] / AFTER ATTACK / Flee 2. / WINGED NIGHTMARE – AI 1 / AI RESPONSE [REACT!]: Flank. Lose -1 [Vigor].",
+    "notes": [
+     "code: tiny faint print; best reading 27A1420, last two digits not legible on their own — chosen to fit the sequence (AI 1 = 27A1419–1423, AI 2 = 27A1424–1428, AI 3 = 27A1429–1433, Signature 27A1434) (소유자 확인 2026-11-15)"
+    ],
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Knight closest to a Chasm in sight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "wnPushbackHits"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "wnFlee",
+       "n": 2
+      }
+     ],
+     "afterFinalAttack": null,
+     "aiResponse": [
+      {
+       "op": "wnFlank"
+      },
+      {
+       "op": "loseVigor",
+       "n": 1
+      }
+     ]
+    }
+   },
+   {
+    "file": "04.png",
+    "name": "Forceful Swoop",
+    "code": "27A1419",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "Closest Knight not in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "move": true,
+    "gates": [],
+    "effects": [
+     "For each hit lose -3 [Vigor]. [Peril Check].",
+     "Flank.",
+     "Pushback 3."
+    ],
+    "reactWindows": [
+     "targeting",
+     "effect:1"
+    ],
+    "aiResponse": "Flank. Knockback 1.",
+    "aiResponseReactMarker": true,
+    "footer": "WINGED NIGHTMARE – AI 1",
+    "text": "FORCEFUL SWOOP / ATTACK / Evasion 2 dice, 8+ / TARGETING: • Closest Knight not in front • Closest Knight in sight [REACT!] / MOVE & ATTACK / For each hit lose -3 [Vigor]. [Peril Check]. Flank. [REACT!] / Pushback 3. / WINGED NIGHTMARE – AI 1 / AI RESPONSE [REACT!]: Flank. Knockback 1.",
+    "notes": [
+     "code: tiny faint print; best reading 27A1419, last two digits not legible on their own — chosen to fit the sequence (AI 1 = 27A1419–1423, AI 2 = 27A1424–1428, AI 3 = 27A1429–1433, Signature 27A1434) (소유자 확인 2026-11-15)",
+     "no AFTER ATTACK header: \"Pushback 3.\" is a separate effect block below the REACT! rule that follows \"Flank.\" (소유자 확인 2026-11-15)"
+    ],
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Closest Knight not in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 3,
+       "perilCheck": true
+      },
+      {
+       "op": "wnFlank"
+      },
+      {
+       "op": "pushback",
+       "n": 3
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null,
+     "aiResponse": [
+      {
+       "op": "wnFlank"
+      },
+      {
+       "op": "knockback",
+       "n": 1
+      }
+     ]
+    }
+   },
+   {
+    "file": "05.png",
+    "name": "Constricting Coils",
+    "code": "27A1426",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "preTargeting": "Endure 1.",
+    "targeting": [
+     "[Priority Target] Priority Target in sight",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "move": true,
+    "gates": [],
+    "effects": [
+     "If this Attack reduces your [Vigor] to 0, you die.",
+     "1 hit, lose -2 [Vigor].",
+     "2 hits, lose -5 [Vigor] and Choke 3.",
+     "3+ hits, lose -8 [Vigor] and Choke 3. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting",
+     "afterAttack"
+    ],
+    "afterAttack": "Flank. Knockback 3.",
+    "aiResponse": "Flee 3.",
+    "aiResponseReactMarker": false,
+    "footer": "WINGED NIGHTMARE – AI 2",
+    "text": "CONSTRICTING COILS / ATTACK / Evasion 3 dice, 8+ / Endure 1. / TARGETING: • [Priority Target] Priority Target in sight • Closest Knight in sight [REACT!] / MOVE & ATTACK / If this Attack reduces your [Vigor] to 0, you die. 1 hit, lose -2 [Vigor]. 2 hits, lose -5 [Vigor] and Choke 3. 3+ hits, lose -8 [Vigor] and Choke 3. [Peril Check]. / AFTER ATTACK / Flank. [REACT!] / Knockback 3. / WINGED NIGHTMARE – AI 2 / AI RESPONSE: Flee 3.",
+    "notes": [
+     "code: tiny faint print; best reading 27A1426 (low-resolution digits, consistent with the 27A1419–27A1434 sequence) (소유자 확인 2026-11-15)",
+     "no REACT! marker after the effect block or on the AI RESPONSE header; the second REACT! sits inside AFTER ATTACK, on the rule between \"Flank.\" and \"Knockback 3.\" (소유자 확인 2026-11-15)"
+    ],
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "[Priority Target] Priority Target in sight",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "vigorByHitsTable",
+       "table": [
+        2,
+        5,
+        8
+       ],
+       "perilCheck": true,
+       "perilFrom": 3,
+       "dieAtZero": true
+      },
+      {
+       "op": "ifHits",
+       "gte": 2,
+       "lt": null,
+       "then": [
+        {
+         "op": "choke",
+         "n": 3
+        }
+       ]
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "wnFlank"
+      },
+      {
+       "op": "wnReact"
+      },
+      {
+       "op": "knockback",
+       "n": 3
+      }
+     ],
+     "afterFinalAttack": null,
+     "pre": [
+      {
+       "op": "wnEndure",
+       "n": 1
+      }
+     ],
+     "aiResponse": [
+      {
+       "op": "wnFlee",
+       "n": 3
+      }
+     ]
+    }
+   },
+   {
+    "file": "06.png",
+    "name": "Misleading Melody",
+    "code": "27A1427",
+    "level": 2,
+    "type": "judgement",
+    "evasionDice": 2,
+    "evasionDifficulty": 10,
+    "preTargeting": "Endure 1.",
+    "targeting": [
+     "Knights in Zone 3",
+     "No Target: Perform Signature"
+    ],
+    "moveTag": "JUDGE",
+    "move": false,
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [d10]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "Bravery [Bravery] /Sagacity [Sagacity].",
+     "Gain the Fear Condition card.",
+     "For each hit lose -2 [Vigor] and move 1 space toward Winged Nightmare, ignoring Difficult Terrain.",
+     "Treat this movement as voluntary. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting",
+     "effect:3"
+    ],
+    "afterFinalAttack": "Flee 3.",
+    "aiResponse": "Lose -2 [Vigor]. [REACT! window] Flank.",
+    "aiResponseReactMarker": false,
+    "footer": "WINGED NIGHTMARE – AI 2",
+    "text": "MISLEADING MELODY / SIMULTANEOUS JUDGEMENT / Evasion 2 dice, 10+ / Endure 1. / TARGETING: • Knights in Zone 3 • No Target: Perform Signature [REACT!] / JUDGE [Heat] 3+ ▸ +1 [d10] / Bravery [Bravery] /Sagacity [Sagacity]. / Gain the Fear Condition card. For each hit lose -2 [Vigor] and move 1 space toward Winged Nightmare, ignoring Difficult Terrain. Treat this movement as voluntary. [Peril Check]. [REACT!] / AFTER FINAL ATTACK / Flee 3. / WINGED NIGHTMARE – AI 2 / AI RESPONSE: Lose -2 [Vigor]. [REACT! window] Flank.",
+    "notes": [
+     "code: tiny faint print; best reading 27A1427 (low-resolution digits, consistent with the 27A1419–27A1434 sequence) (소유자 확인 2026-11-15)",
+     "AI RESPONSE header has no REACT! flag; the beast glyph is printed inline between \"Lose -2 [Vigor].\" and \"Flank.\" (소유자 확인 2026-11-15)",
+     "\"Fear\" is printed in italics; text reads \"toward Winged Nightmare\" (no \"the\") (소유자 확인 2026-11-15)"
+    ],
+    "typePrinted": "SIMULTANEOUS JUDGEMENT",
+    "ops": {
+     "targeting": [
+      "Knights in Zone 3",
+      "No Target: Perform Signature"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 3,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "condition",
+       "id": "Fear"
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "wnTowardNightmare",
+       "n": 1
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "wnFlee",
+       "n": 3
+      }
+     ],
+     "pre": [
+      {
+       "op": "wnEndure",
+       "n": 1
+      }
+     ],
+     "judge": [
+      "Bravery",
+      "Sagacity"
+     ],
+     "aiResponse": [
+      {
+       "op": "loseVigor",
+       "n": 2
+      },
+      {
+       "op": "wnReact"
+      },
+      {
+       "op": "wnFlank"
+      }
+     ]
+    }
+   },
+   {
+    "file": "07.png",
+    "name": "Go for the Eyes",
+    "code": "27A1428",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 9,
+    "preTargeting": "Endure 1.",
+    "targeting": [
+     "Highest [Vigor] in sight"
+    ],
+    "moveTag": "FLANK & ATTACK",
+    "move": false,
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "-3 [Vigor] INSTEAD",
+      "where": "effect:0"
+     }
+    ],
+    "effects": [
+     "For each hit lose -2 [Vigor]. [Heat 3+ ▸ -3 [Vigor] INSTEAD] [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting",
+     "effect:0"
+    ],
+    "afterAttack": "Knockdown. The Winged Nightmare moves to the closest empty Column Terrain tile.",
+    "aiResponse": "Flank. Flee 2.",
+    "aiResponseReactMarker": true,
+    "footer": "WINGED NIGHTMARE – AI 2",
+    "text": "GO FOR THE EYES / ATTACK / Evasion 3 dice, 9+ / Endure 1. / TARGETING: • Highest [Vigor] in sight [REACT!] / FLANK & ATTACK / For each hit lose -2 [Vigor]. [Heat] 3+ ▸ -3 [Vigor] INSTEAD [Peril Check]. [REACT!] / AFTER ATTACK / Knockdown. The Winged Nightmare moves to the closest empty Column Terrain tile. / WINGED NIGHTMARE – AI 2 / AI RESPONSE [REACT!]: Flank. Flee 2.",
+    "notes": [
+     "code: tiny faint print; best reading 27A1428 (low-resolution digits, consistent with the 27A1419–27A1434 sequence) (소유자 확인 2026-11-15)"
+    ],
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Highest [Vigor] in sight"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "op": "vigorPerHitInstead",
+       "stat": "heat",
+       "gte": 3,
+       "n": 3
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "knockdown"
+      },
+      {
+       "op": "wnToColumn"
+      }
+     ],
+     "afterFinalAttack": null,
+     "pre": [
+      {
+       "op": "wnEndure",
+       "n": 1
+      }
+     ],
+     "flank": true,
+     "aiResponse": [
+      {
+       "op": "wnFlank"
+      },
+      {
+       "op": "wnFlee",
+       "n": 2
+      }
+     ]
+    }
+   },
+   {
+    "file": "08.png",
+    "name": "Drag to the Abyss",
+    "code": "27A1425",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 7,
+    "preTargeting": "Endure 1.",
+    "targeting": [
+     "Knight closest to a Chasm in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "move": true,
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [d10]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "For each hit lose -2 [Vigor]. [Peril Check].",
+     "Drag X toward the closest Chasm, where X is the number of hits."
+    ],
+    "reactWindows": [
+     "effect:0"
+    ],
+    "afterAttack": "Flee 3.",
+    "aiResponse": "The Winged Nightmare moves to the closest empty Column Terrain tile. Discard the top AI card.",
+    "aiResponseReactMarker": true,
+    "footer": "WINGED NIGHTMARE – AI 2",
+    "text": "DRAG TO THE ABYSS / ATTACK / Evasion 3 dice, 7+ / Endure 1. / TARGETING: • Knight closest to a Chasm in sight / MOVE & ATTACK [Heat] 3+ ▸ +1 [d10] / For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / Drag X toward the closest Chasm, where X is the number of hits. / AFTER ATTACK / Flee 3. / WINGED NIGHTMARE – AI 2 / AI RESPONSE [REACT!]: The Winged Nightmare moves to the closest empty Column Terrain tile. Discard the top AI card.",
+    "notes": [
+     "code: tiny faint print; best reading 27A1425 (low-resolution digits, consistent with the 27A1419–27A1434 sequence) (소유자 확인 2026-11-15)",
+     "no REACT! marker on the TARGETING block of this card (only after the first effect line and on AI RESPONSE) (소유자 확인 2026-11-15)"
+    ],
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Knight closest to a Chasm in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 3,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "wnDrag"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "wnFlee",
+       "n": 3
+      }
+     ],
+     "afterFinalAttack": null,
+     "pre": [
+      {
+       "op": "wnEndure",
+       "n": 1
+      }
+     ],
+     "aiResponse": [
+      {
+       "op": "wnToColumn"
+      },
+      {
+       "op": "wnDiscardTopAI"
+      }
+     ]
+    }
+   },
+   {
+    "file": "09.png",
+    "name": "Dive Slam",
+    "code": "27A1424",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 9,
+    "preTargeting": "Endure 1.",
+    "targeting": [
+     "Closest Knight not in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "move": true,
+    "gates": [],
+    "effects": [
+     "For each hit lose -2 [Vigor]. [Peril Check].",
+     "Flank.",
+     "Pushback 3. Knockdown."
+    ],
+    "reactWindows": [
+     "targeting",
+     "effect:1"
+    ],
+    "aiResponse": "The Winged Nightmare moves to the furthest empty space adjacent to a Chasm. Discard the top AI card.",
+    "aiResponseReactMarker": true,
+    "footer": "WINGED NIGHTMARE – AI 2",
+    "text": "DIVE SLAM / ATTACK / Evasion 2 dice, 9+ / Endure 1. / TARGETING: • Closest Knight not in front • Closest Knight in sight [REACT!] / MOVE & ATTACK / For each hit lose -2 [Vigor]. [Peril Check]. Flank. [REACT!] / Pushback 3. Knockdown. / WINGED NIGHTMARE – AI 2 / AI RESPONSE [REACT!]: The Winged Nightmare moves to the furthest empty space adjacent to a Chasm. Discard the top AI card.",
+    "notes": [
+     "code: tiny faint print; best reading 27A1424 (low-resolution digits, consistent with the 27A1419–27A1434 sequence) (소유자 확인 2026-11-15)",
+     "no AFTER ATTACK header: \"Pushback 3. Knockdown.\" is a separate effect block below the REACT! rule that follows \"Flank.\" (소유자 확인 2026-11-15)"
+    ],
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Closest Knight not in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "wnFlank"
+      },
+      {
+       "op": "pushback",
+       "n": 3
+      },
+      {
+       "op": "knockdown"
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null,
+     "pre": [
+      {
+       "op": "wnEndure",
+       "n": 1
+      }
+     ],
+     "aiResponse": [
+      {
+       "op": "wnToChasmAdjacent"
+      },
+      {
+       "op": "wnDiscardTopAI"
+      }
+     ]
+    }
+   },
+   {
+    "file": "10.png",
+    "name": "Death Grip",
+    "code": "27A1431",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "preTargeting": "Endure 2.",
+    "targeting": [
+     "[Priority Target] Priority Target in sight",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "move": true,
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [d10]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "1 hit, lose -3 [Vigor].",
+     "2 hits, lose -6 [Vigor], Choke 3.",
+     "3+ hits, you die! [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting",
+     "effect:2"
+    ],
+    "afterAttack": "Flank. Knockback 3.",
+    "aiResponse": "The Winged Nightmare moves to the furthest empty space adjacent to a Chasm. Discard the top AI card.",
+    "aiResponseReactMarker": false,
+    "footer": "WINGED NIGHTMARE – AI 3",
+    "text": "DEATH GRIP / ATTACK / Evasion 3 dice, 8+ / Endure 2. / TARGETING: • [Priority Target] Priority Target in sight • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat] 3+ ▸ +1 [d10] / 1 hit, lose -3 [Vigor]. 2 hits, lose -6 [Vigor], Choke 3. 3+ hits, you die! [Peril Check]. [REACT!] / AFTER ATTACK / Flank. Knockback 3. / WINGED NIGHTMARE – AI 3 / AI RESPONSE: The Winged Nightmare moves to the furthest empty space adjacent to a Chasm. Discard the top AI card.",
+    "notes": [
+     "code: tiny faint print; best reading 27A1431 (low-resolution digits, consistent with the 27A1419–27A1434 sequence) (소유자 확인 2026-11-15)"
+    ],
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "[Priority Target] Priority Target in sight",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 3,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "ifHits",
+       "gte": 3,
+       "lt": null,
+       "then": [
+        {
+         "op": "die"
+        }
+       ]
+      },
+      {
+       "op": "ifHits",
+       "gte": 1,
+       "lt": 3,
+       "then": [
+        {
+         "op": "vigorByHitsTable",
+         "table": [
+          3,
+          6
+         ],
+         "perilCheck": true
+        }
+       ]
+      },
+      {
+       "op": "ifHits",
+       "gte": 2,
+       "lt": 3,
+       "then": [
+        {
+         "op": "choke",
+         "n": 3
+        }
+       ]
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "wnFlank"
+      },
+      {
+       "op": "knockback",
+       "n": 3
+      }
+     ],
+     "afterFinalAttack": null,
+     "pre": [
+      {
+       "op": "wnEndure",
+       "n": 2
+      }
+     ],
+     "aiResponse": [
+      {
+       "op": "wnToChasmAdjacent"
+      },
+      {
+       "op": "wnDiscardTopAI"
+      }
+     ]
+    }
+   },
+   {
+    "file": "11.png",
+    "name": "Aria of Doom",
+    "code": "27A1432",
+    "level": 3,
+    "type": "judgement",
+    "evasionDice": 2,
+    "evasionDifficulty": 10,
+    "preTargeting": "Endure 2.",
+    "targeting": [
+     "Knights in Zone 4",
+     "No Target: Perform Signature"
+    ],
+    "moveTag": "MOVE TO THE CLOSEST CHASM & JUDGE",
+    "move": true,
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [d10]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "Fortitude [Fortitude] / Sagacity [Sagacity].",
+     "Gain the Distracted Condition card.",
+     "For each hit lose -3 [Vigor] and move 2 spaces to the closest Chasm, ignoring Difficult Terrain.",
+     "Treat this movement as voluntary. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting",
+     "effect:3"
+    ],
+    "afterFinalAttack": "Flee 4.",
+    "aiResponse": "Flank. [REACT! window] Knockback 3.",
+    "aiResponseReactMarker": false,
+    "footer": "WINGED NIGHTMARE – AI 3",
+    "text": "ARIA OF DOOM / SIMULTANEOUS JUDGEMENT / Evasion 2 dice, 10+ / Endure 2. / TARGETING: • Knights in Zone 4 • No Target: Perform Signature [REACT!] / MOVE TO THE CLOSEST CHASM & JUDGE [Heat] 3+ ▸ +1 [d10] / Fortitude [Fortitude] / Sagacity [Sagacity]. Gain the Distracted Condition card. For each hit lose -3 [Vigor] and move 2 spaces to the closest Chasm, ignoring Difficult Terrain. Treat this movement as voluntary. [Peril Check]. [REACT!] / AFTER FINAL ATTACK / Flee 4. / WINGED NIGHTMARE – AI 3 / AI RESPONSE: Flank. [REACT! window] Knockback 3.",
+    "notes": [
+     "code: tiny faint print; best reading 27A1432 (low-resolution digits, consistent with the 27A1419–27A1434 sequence) (소유자 확인 2026-11-15)",
+     "Heat gate is split across two lines: \"[Heat] 3+\" arrow at the end of the red tag line, \"+1 [d10]\" tag at the start of the effect text line; recorded as one moveTag gate (소유자 확인 2026-11-15)",
+     "AI RESPONSE header has no REACT! flag; the beast glyph is printed inline between \"Flank.\" and \"Knockback 3.\" (소유자 확인 2026-11-15)",
+     "\"Distracted\" is printed in italics (소유자 확인 2026-11-15)"
+    ],
+    "typePrinted": "SIMULTANEOUS JUDGEMENT",
+    "ops": {
+     "targeting": [
+      "Knights in Zone 4",
+      "No Target: Perform Signature"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 3,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "condition",
+       "id": "Distracted"
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 3,
+       "perilCheck": true
+      },
+      {
+       "op": "wnTowardChasm",
+       "n": 2
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "wnFlee",
+       "n": 4
+      }
+     ],
+     "pre": [
+      {
+       "op": "wnEndure",
+       "n": 2
+      }
+     ],
+     "judge": [
+      "Fortitude",
+      "Sagacity"
+     ],
+     "beforeAttack": [
+      {
+       "op": "wnToChasm"
+      }
+     ],
+     "aiResponse": [
+      {
+       "op": "wnFlank"
+      },
+      {
+       "op": "wnReact"
+      },
+      {
+       "op": "knockback",
+       "n": 3
+      }
+     ]
+    }
+   },
+   {
+    "file": "12.png",
+    "name": "Evisceration",
+    "code": "27A1433",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 0,
+    "evasionDifficulty": 10,
+    "preTargeting": "Endure 2.",
+    "targeting": [
+     "Highest [Vigor] in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "move": true,
+    "gates": [
+     {
+      "stat": "Vigor",
+      "eq": 0,
+      "gte": null,
+      "effect": "KNOCKBACK 3",
+      "where": "afterAttack",
+      "printed": "[Vigor] 0 ▸ KNOCKBACK 3"
+     }
+    ],
+    "effects": [
+     "*X is your current [Vigor] +1 (up to a maximum of 6).",
+     "For each hit lose -1 [Vigor]. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting",
+     "effect:1"
+    ],
+    "afterAttack": "Flank. [Vigor 0 ▸ KNOCKBACK 3] The Winged Nightmare moves to the closest empty Column Terrain tile.",
+    "aiResponse": "Flee 3.",
+    "aiResponseReactMarker": true,
+    "footer": "WINGED NIGHTMARE – AI 3",
+    "text": "EVISCERATION / ATTACK / Evasion X dice, 10+ / Endure 2. / TARGETING: • Highest [Vigor] in sight [REACT!] / MOVE & ATTACK / *X is your current [Vigor] +1 (up to a maximum of 6). For each hit lose -1 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Flank. [Vigor] 0 ▸ KNOCKBACK 3 The Winged Nightmare moves to the closest empty Column Terrain tile. / WINGED NIGHTMARE – AI 3 / AI RESPONSE [REACT!]: Flee 3.",
+    "evasionDiceNote": "X* — *X is your current [Vigor] +1 (up to a maximum of 6)",
+    "notes": [
+     "code: tiny faint print; best reading 27A1433 (low-resolution digits, consistent with the 27A1419–27A1434 sequence) (소유자 확인 2026-11-15)",
+     "evasion dice diamond shows \"X*\" (asterisk refers to the first effect line) (소유자 확인 2026-11-15)",
+     "AFTER ATTACK gate is a RED arrow tag with the Vigor shield and a bare \"0\" (no \"+\"): read as \"[Vigor] 0 ▸ KNOCKBACK 3\" (i.e. at 0 Vigor); stored with eq:0 and gte:null since it is not an N+ gate (소유자 확인 2026-11-15)"
+    ],
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Highest [Vigor] in sight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "wnFlank"
+      },
+      {
+       "op": "wnVigor0Knockback",
+       "n": 3
+      },
+      {
+       "op": "wnToColumn"
+      }
+     ],
+     "afterFinalAttack": null,
+     "pre": [
+      {
+       "op": "wnEndure",
+       "n": 2
+      }
+     ],
+     "diceFromVigor": true,
+     "aiResponse": [
+      {
+       "op": "wnFlee",
+       "n": 3
+      }
+     ]
+    }
+   },
+   {
+    "file": "13.png",
+    "name": "Cast to the Depths",
+    "code": "27A1430",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 4,
+    "evasionDifficulty": 8,
+    "preTargeting": "Endure 2.",
+    "targeting": [
+     "Knight closest to a Chasm in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "move": true,
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [d10]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "For each hit lose -2 [Vigor]. [Peril Check].",
+     "3+ hits, Knockdown.",
+     "Drag X+1 toward the closest Chasm, where X is the number of hits."
+    ],
+    "reactWindows": [],
+    "afterAttack": "Flee 4.",
+    "aiResponse": "The Winged Nightmare moves to the closest empty Column Terrain tile. Discard the top AI card.",
+    "aiResponseReactMarker": false,
+    "footer": "WINGED NIGHTMARE – AI 3",
+    "text": "CAST TO THE DEPTHS / ATTACK / Evasion 4 dice, 8+ / Endure 2. / TARGETING: • Knight closest to a Chasm in sight / MOVE & ATTACK [Heat] 3+ ▸ +1 [d10] / For each hit lose -2 [Vigor]. [Peril Check]. 3+ hits, Knockdown. Drag X+1 toward the closest Chasm, where X is the number of hits. / AFTER ATTACK / Flee 4. / WINGED NIGHTMARE – AI 3 / AI RESPONSE: The Winged Nightmare moves to the closest empty Column Terrain tile. Discard the top AI card.",
+    "notes": [
+     "code: tiny faint print; best reading 27A1430, last two digits not legible on their own — chosen to fit the sequence (AI 1 = 27A1419–1423, AI 2 = 27A1424–1428, AI 3 = 27A1429–1433, Signature 27A1434) (소유자 확인 2026-11-15)",
+     "no REACT! markers anywhere on this card (none on targeting, effects or AI RESPONSE) (소유자 확인 2026-11-15)"
+    ],
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Knight closest to a Chasm in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 3,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "ifHits",
+       "gte": 3,
+       "lt": null,
+       "then": [
+        {
+         "op": "knockdown"
+        }
+       ]
+      },
+      {
+       "op": "wnDrag",
+       "plus": 1
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "wnFlee",
+       "n": 4
+      }
+     ],
+     "afterFinalAttack": null,
+     "pre": [
+      {
+       "op": "wnEndure",
+       "n": 2
+      }
+     ],
+     "aiResponse": [
+      {
+       "op": "wnToColumn"
+      },
+      {
+       "op": "wnDiscardTopAI"
+      }
+     ]
+    }
+   },
+   {
+    "file": "14.png",
+    "name": "Rending Swoop",
+    "code": "27A1429",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 9,
+    "preTargeting": "Endure 2.",
+    "targeting": [
+     "Closest Knight not in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "move": true,
+    "gates": [],
+    "effects": [
+     "For each hit lose -4 [Vigor]. [Peril Check]. Flank.",
+     "Pushback 3 toward the closest Chasm in front."
+    ],
+    "reactWindows": [
+     "effect:0"
+    ],
+    "afterAttack": "Repeat this Attack (once).",
+    "aiResponse": "If not on a Rear space: [REACT! window] Knockback 2, then Flank. If on a Rear space: Discard the top AI card.",
+    "aiResponseReactMarker": false,
+    "footer": "WINGED NIGHTMARE – AI 3",
+    "text": "RENDING SWOOP / SEQUENTIAL ATTACK / Evasion 2 dice, 9+ / Endure 2. / TARGETING: • Closest Knight not in front • Closest Knight in sight / MOVE & ATTACK / For each hit lose -4 [Vigor]. [Peril Check]. Flank. [REACT!] / Pushback 3 toward the closest Chasm in front. / AFTER ATTACK / Repeat this Attack (once). / WINGED NIGHTMARE – AI 3 / AI RESPONSE: If not on a Rear space: [REACT! window] Knockback 2, then Flank. If on a Rear space: Discard the top AI card.",
+    "notes": [
+     "code: tiny faint print; best reading 27A1429, last two digits not legible on their own — chosen to fit the sequence (AI 1 = 27A1419–1423, AI 2 = 27A1424–1428, AI 3 = 27A1429–1433, Signature 27A1434) (소유자 확인 2026-11-15)",
+     "no REACT! on the TARGETING block; the only REACT! flag is on the rule after the first effect line (소유자 확인 2026-11-15)",
+     "AI RESPONSE header has no REACT! flag; the beast glyph is printed inline after \"If not on a Rear space:\" (소유자 확인 2026-11-15)"
+    ],
+    "typePrinted": "SEQUENTIAL ATTACK",
+    "ops": {
+     "targeting": [
+      "Closest Knight not in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 4,
+       "perilCheck": true
+      },
+      {
+       "op": "wnFlank"
+      },
+      {
+       "op": "wnPushToChasm",
+       "n": 3,
+       "front": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "repeatCard"
+      }
+     ],
+     "afterFinalAttack": null,
+     "pre": [
+      {
+       "op": "wnEndure",
+       "n": 2
+      }
+     ],
+     "aiResponse": [
+      {
+       "op": "wnIfRear",
+       "then": [
+        {
+         "op": "wnDiscardTopAI"
+        }
+       ],
+       "else": [
+        {
+         "op": "wnReact"
+        },
+        {
+         "op": "knockback",
+         "n": 2
+        },
+        {
+         "op": "wnFlank"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "bp": [
+   {
+    "file": "wide_wings.png",
+    "name": "Wide Wings",
+    "code": "28A1788",
+    "level": "X",
+    "side": "starting side of the two-sided BP card (other side: Slithering Tails)",
+    "at": 4,
+    "overcomeTag": "OVERPOWER",
+    "overcome": {
+     "n": 3,
+     "effect": "You may immediately perform Pushback 2 or Drag 2"
+    },
+    "responses": {
+     "wound": "Flip this card and Perform Signature against the Attacker.",
+     "fail": "AI Response.",
+     "instinct": null,
+     "critical": "Flip this card and you may perform a Bonus Attack!"
+    },
+    "reactWindows": [],
+    "whenRevealed": null,
+    "whileRevealed": "While this BP is revealed: The Winged Nightmare has +2 [To Hit] unless attacked from a Column Terrain tile.",
+    "footer": "WINGED NIGHTMARE – BP X",
+    "text": "WIDE WINGS / OVERPOWER 3+ ▸ You may immediately perform Pushback 2 or Drag 2 / [AT] 4 / WOUND: Flip this card and Perform Signature against the Attacker. / FAIL: AI Response. / CRITICAL: Flip this card and you may perform a Bonus Attack! / WINGED NIGHTMARE – BP X / While this BP is revealed: The Winged Nightmare has +2 [To Hit] unless attacked from a Column Terrain tile.",
+    "notes": [
+     "code: tiny faint print; best reading 28A1788 (소유자 확인 2026-11-15)",
+     "icon after \"+2\" in the While-revealed box is a small dark glyph that looks like the gauntlet/fist icon used for the To Hit column on the Monster Sheet; transcribed as [To Hit] — identity not certain (소유자 확인 2026-11-15)",
+     "\"Bonus Attack\" is printed in bold; \"Perform\" is capitalised mid-sentence as printed (소유자 확인 2026-11-15)"
+    ],
+    "ops": {
+     "at": 4,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "wnPushOrDrag",
+        "n": 2
+       }
+      ],
+      "tag": "OVERPOWER"
+     },
+     "wound": [
+      {
+       "op": "wnFlip"
+      },
+      {
+       "op": "signatureAgainstAttacker"
+      }
+     ],
+     "fail": [
+      {
+       "op": "wnAIResponse"
+      }
+     ],
+     "critical": [
+      {
+       "op": "wnFlip"
+      },
+      {
+       "op": "bonusAttack",
+       "who": "self",
+       "optional": true
+      }
+     ]
+    }
+   },
+   {
+    "file": "15.png",
+    "name": "Slithering Tails",
+    "code": null,
+    "level": "X",
+    "side": "other side of the two-sided BP card (starting side: Wide Wings)",
+    "at": 3,
+    "overcomeTag": "OVERPOWER",
+    "overcome": {
+     "n": 3,
+     "effect": "You may immediately perform Pushback 2 or Drag 2"
+    },
+    "responses": {
+     "wound": "Gain Pushback X or Drag X for this Attack, where X is the number of Wounds on the Wound Stack.",
+     "fail": null,
+     "instinct": "AI Response.",
+     "critical": "Gain Pushback X or Drag X for this Attack, where X is the number of Wounds on the Wound Stack."
+    },
+    "responseOrderPrinted": [
+     "instinct",
+     "wound",
+     "critical"
+    ],
+    "reactWindows": [],
+    "whenRevealed": null,
+    "whileRevealed": "While this BP is revealed: The Winged Nightmare loses Superior Bypass. At the start of the Monster Round, flip this card.",
+    "footer": "WINGED NIGHTMARE – BP X",
+    "text": "SLITHERING TAILS / OVERPOWER 3+ ▸ You may immediately perform Pushback 2 or Drag 2 / [AT] 3 / INSTINCT: AI Response. / WOUND: Gain Pushback X or Drag X for this Attack, where X is the number of Wounds on the Wound Stack. / CRITICAL: Gain Pushback X or Drag X for this Attack, where X is the number of Wounds on the Wound Stack. / WINGED NIGHTMARE – BP X / While this BP is revealed: The Winged Nightmare loses Superior Bypass. At the start of the Monster Round, flip this card.",
+    "notes": [
+     "no card code visible in the scan (top-right corner blank) — presumably shares 28A1788 with the Wide Wings side (소유자 확인 2026-11-15)",
+     "no FAIL response printed on this side (소유자 확인 2026-11-15)"
+    ],
+    "ops": {
+     "at": 3,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "wnPushOrDrag",
+        "n": 2
+       }
+      ],
+      "tag": "OVERPOWER"
+     },
+     "wound": [
+      {
+       "op": "wnPushOrDrag",
+       "x": "wounds"
+      }
+     ],
+     "instinct": [
+      {
+       "op": "wnAIResponse"
+      }
+     ],
+     "critical": [
+      {
+       "op": "wnPushOrDrag",
+       "x": "wounds"
+      }
+     ]
+    }
+   },
+   {
+    "file": "16.png",
+    "name": "Bloody Defiance",
+    "code": "28A1789",
+    "kind": "bpTrait",
+    "level": "X",
+    "at": 5,
+    "overcomeTag": "OVERPOWER",
+    "overcome": {
+     "n": 4,
+     "effect": "You may immediately perform Pushback 2 or Drag 2"
+    },
+    "responses": {
+     "wound": "AI Response. Discard the top AI card from the AI deck. Gain Pushback X or Drag X for this Attack, where X is the number of Wounds on the Wound Stack.",
+     "fail": "Perform Signature against the Attacker.",
+     "instinct": null,
+     "critical": "The Winged Nightmare dies!"
+    },
+    "reactWindows": [],
+    "whenRevealed": null,
+    "whileRevealed": "While this card is on the Mob Track: If the Winged Nightmare would be involuntarily moved onto a Chasm or is dealt a Wound while on a Chasm, it dies!",
+    "footer": "WINGED NIGHTMARE – BP X",
+    "text": "BLOODY DEFIANCE / OVERPOWER 4+ ▸ You may immediately perform Pushback 2 or Drag 2 / [AT] 5 / WOUND: AI Response. Discard the top AI card from the AI deck. Gain Pushback X or Drag X for this Attack, where X is the number of Wounds on the Wound Stack. / FAIL: Perform Signature against the Attacker. / CRITICAL: The Winged Nightmare dies! / WINGED NIGHTMARE – BP X / While this card is on the Mob Track: If the Winged Nightmare would be involuntarily moved onto a Chasm or is dealt a Wound while on a Chasm, it dies!",
+    "notes": [
+     "code: tiny faint print; best reading 28A1789 (소유자 확인 2026-11-15)",
+     "OVERPOWER threshold read as 4+ (digit small inside the dark tag; the other two BP sides read 3+) (소유자 확인 2026-11-15)"
+    ],
+    "ops": {
+     "at": 5,
+     "overcome": {
+      "n": 4,
+      "ops": [
+       {
+        "op": "wnPushOrDrag",
+        "n": 2
+       }
+      ],
+      "tag": "OVERPOWER"
+     },
+     "wound": [
+      {
+       "op": "wnAIResponse"
+      },
+      {
+       "op": "wnDiscardTopAI"
+      },
+      {
+       "op": "wnPushOrDrag",
+       "x": "wounds"
+      }
+     ],
+     "fail": [
+      {
+       "op": "signatureAgainstAttacker"
+      }
+     ],
+     "critical": [
+      {
+       "op": "wnDie"
+      }
+     ]
+    }
+   }
+  ],
+  "signature": {
+   "file": "tail_slap.png",
+   "name": "Tail Slap",
+   "code": "27A1434",
+   "type": "attack",
+   "evasionDice": 3,
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "Closest Knight in front",
+    "Closest Knight in sight"
+   ],
+   "moveTag": "FLANK & ATTACK",
+   "move": false,
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 4,
+     "effect": "-2 [Vigor] INSTEAD",
+     "where": "effect:0"
+    }
+   ],
+   "effects": [
+    "For each hit lose -1 [Vigor]. [Heat 4+ ▸ -2 [Vigor] INSTEAD] [Peril Check].",
+    "Pushback X toward the closest Chasm, where X is the number of hits."
+   ],
+   "reactWindows": [
+    "effect:0",
+    "effect:1"
+   ],
+   "afterAttack": "The Winged Nightmare moves to the closest empty Column Terrain tile.",
+   "aiResponse": null,
+   "footer": "WINGED NIGHTMARE",
+   "text": "TAIL SLAP / SIGNATURE / Evasion 3 dice, 8+ / TARGETING: • Closest Knight in front • Closest Knight in sight / FLANK & ATTACK / For each hit lose -1 [Vigor]. [Heat] 4+ ▸ -2 [Vigor] INSTEAD [Peril Check]. [REACT!] / Pushback X toward the closest Chasm, where X is the number of hits. [REACT!] / AFTER ATTACK / The Winged Nightmare moves to the closest empty Column Terrain tile. / WINGED NIGHTMARE",
+   "notes": [
+    "code: tiny faint print; best reading 27A1434 (소유자 확인 2026-11-15)",
+    "Heat gate threshold read as 4+ (Go for the Eyes has the same tag shape with 3+); small digit, moderately confident (소유자 확인 2026-11-15)",
+    "no REACT! on the TARGETING block; REACT! flags follow each of the two effect blocks (소유자 확인 2026-11-15)"
+   ],
+   "typePrinted": "SIGNATURE",
+   "ops": {
+    "targeting": [
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "move": false,
+    "gates": [
+     {
+      "op": "vigorPerHitInstead",
+      "stat": "heat",
+      "gte": 4,
+      "n": 2
+     }
+    ],
+    "before": [],
+    "effects": [
+     {
+      "op": "loseVigorPerHit",
+      "n": 1,
+      "perilCheck": true
+     },
+     {
+      "op": "wnPushbackHits",
+      "toChasm": true
+     }
+    ],
+    "afterAttack": [
+     {
+      "op": "wnToColumn"
+     }
+    ],
+    "afterFinalAttack": null,
+    "flank": true
+   }
+  },
+  "routine": {
+   "file": "17.png",
+   "name": "Shriek",
+   "code": null,
+   "type": "routine",
+   "text": "Each Knight gains the Panicked Condition card and moves to the closest Chasm at their full Speed [Speed] value with Bypass. Treat this movement as voluntary.\n\nFlee 3.",
+   "footer": "WINGED NIGHTMARE",
+   "notes": [
+    "no card code visible in the scan (top-right corner blank/faded) (소유자 확인 2026-11-15)",
+    "\"Panicked\" is printed in italics; the glyph after \"Speed\" is the Speed stat icon, written as [Speed] (not in the brief's placeholder list) (소유자 확인 2026-11-15)"
+   ],
+   "ops": [
+    {
+     "op": "wnShriek"
+    },
+    {
+     "op": "wnFlee",
+     "n": 3
+    }
+   ]
+  }
+ },
+ "nightmare": {
+  "wide": {
+   "file": "wide_wings.png",
+   "name": "Wide Wings",
+   "code": "28A1788",
+   "level": "X",
+   "side": "starting side of the two-sided BP card (other side: Slithering Tails)",
+   "at": 4,
+   "overcomeTag": "OVERPOWER",
+   "overcome": {
+    "n": 3,
+    "effect": "You may immediately perform Pushback 2 or Drag 2"
+   },
+   "responses": {
+    "wound": "Flip this card and Perform Signature against the Attacker.",
+    "fail": "AI Response.",
+    "instinct": null,
+    "critical": "Flip this card and you may perform a Bonus Attack!"
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": "While this BP is revealed: The Winged Nightmare has +2 [To Hit] unless attacked from a Column Terrain tile.",
+   "footer": "WINGED NIGHTMARE – BP X",
+   "text": "WIDE WINGS / OVERPOWER 3+ ▸ You may immediately perform Pushback 2 or Drag 2 / [AT] 4 / WOUND: Flip this card and Perform Signature against the Attacker. / FAIL: AI Response. / CRITICAL: Flip this card and you may perform a Bonus Attack! / WINGED NIGHTMARE – BP X / While this BP is revealed: The Winged Nightmare has +2 [To Hit] unless attacked from a Column Terrain tile.",
+   "notes": [
+    "code: tiny faint print; best reading 28A1788 (소유자 확인 2026-11-15)",
+    "icon after \"+2\" in the While-revealed box is a small dark glyph that looks like the gauntlet/fist icon used for the To Hit column on the Monster Sheet; transcribed as [To Hit] — identity not certain (소유자 확인 2026-11-15)",
+    "\"Bonus Attack\" is printed in bold; \"Perform\" is capitalised mid-sentence as printed (소유자 확인 2026-11-15)"
+   ],
+   "ops": {
+    "at": 4,
+    "overcome": {
+     "n": 3,
+     "ops": [
+      {
+       "op": "wnPushOrDrag",
+       "n": 2
+      }
+     ],
+     "tag": "OVERPOWER"
+    },
+    "wound": [
+     {
+      "op": "wnFlip"
+     },
+     {
+      "op": "signatureAgainstAttacker"
+     }
+    ],
+    "fail": [
+     {
+      "op": "wnAIResponse"
+     }
+    ],
+    "critical": [
+     {
+      "op": "wnFlip"
+     },
+     {
+      "op": "bonusAttack",
+      "who": "self",
+      "optional": true
+     }
+    ]
+   }
+  },
+  "tails": {
+   "file": "15.png",
+   "name": "Slithering Tails",
+   "code": null,
+   "level": "X",
+   "side": "other side of the two-sided BP card (starting side: Wide Wings)",
+   "at": 3,
+   "overcomeTag": "OVERPOWER",
+   "overcome": {
+    "n": 3,
+    "effect": "You may immediately perform Pushback 2 or Drag 2"
+   },
+   "responses": {
+    "wound": "Gain Pushback X or Drag X for this Attack, where X is the number of Wounds on the Wound Stack.",
+    "fail": null,
+    "instinct": "AI Response.",
+    "critical": "Gain Pushback X or Drag X for this Attack, where X is the number of Wounds on the Wound Stack."
+   },
+   "responseOrderPrinted": [
+    "instinct",
+    "wound",
+    "critical"
+   ],
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": "While this BP is revealed: The Winged Nightmare loses Superior Bypass. At the start of the Monster Round, flip this card.",
+   "footer": "WINGED NIGHTMARE – BP X",
+   "text": "SLITHERING TAILS / OVERPOWER 3+ ▸ You may immediately perform Pushback 2 or Drag 2 / [AT] 3 / INSTINCT: AI Response. / WOUND: Gain Pushback X or Drag X for this Attack, where X is the number of Wounds on the Wound Stack. / CRITICAL: Gain Pushback X or Drag X for this Attack, where X is the number of Wounds on the Wound Stack. / WINGED NIGHTMARE – BP X / While this BP is revealed: The Winged Nightmare loses Superior Bypass. At the start of the Monster Round, flip this card.",
+   "notes": [
+    "no card code visible in the scan (top-right corner blank) — presumably shares 28A1788 with the Wide Wings side (소유자 확인 2026-11-15)",
+    "no FAIL response printed on this side (소유자 확인 2026-11-15)"
+   ],
+   "ops": {
+    "at": 3,
+    "overcome": {
+     "n": 3,
+     "ops": [
+      {
+       "op": "wnPushOrDrag",
+       "n": 2
+      }
+     ],
+     "tag": "OVERPOWER"
+    },
+    "wound": [
+     {
+      "op": "wnPushOrDrag",
+      "x": "wounds"
+     }
+    ],
+    "instinct": [
+     {
+      "op": "wnAIResponse"
+     }
+    ],
+    "critical": [
+     {
+      "op": "wnPushOrDrag",
+      "x": "wounds"
+     }
+    ]
+   }
+  },
+  "defiance": {
+   "file": "16.png",
+   "name": "Bloody Defiance",
+   "code": "28A1789",
+   "kind": "bpTrait",
+   "level": "X",
+   "at": 5,
+   "overcomeTag": "OVERPOWER",
+   "overcome": {
+    "n": 4,
+    "effect": "You may immediately perform Pushback 2 or Drag 2"
+   },
+   "responses": {
+    "wound": "AI Response. Discard the top AI card from the AI deck. Gain Pushback X or Drag X for this Attack, where X is the number of Wounds on the Wound Stack.",
+    "fail": "Perform Signature against the Attacker.",
+    "instinct": null,
+    "critical": "The Winged Nightmare dies!"
+   },
+   "reactWindows": [],
+   "whenRevealed": null,
+   "whileRevealed": "While this card is on the Mob Track: If the Winged Nightmare would be involuntarily moved onto a Chasm or is dealt a Wound while on a Chasm, it dies!",
+   "footer": "WINGED NIGHTMARE – BP X",
+   "text": "BLOODY DEFIANCE / OVERPOWER 4+ ▸ You may immediately perform Pushback 2 or Drag 2 / [AT] 5 / WOUND: AI Response. Discard the top AI card from the AI deck. Gain Pushback X or Drag X for this Attack, where X is the number of Wounds on the Wound Stack. / FAIL: Perform Signature against the Attacker. / CRITICAL: The Winged Nightmare dies! / WINGED NIGHTMARE – BP X / While this card is on the Mob Track: If the Winged Nightmare would be involuntarily moved onto a Chasm or is dealt a Wound while on a Chasm, it dies!",
+   "notes": [
+    "code: tiny faint print; best reading 28A1789 (소유자 확인 2026-11-15)",
+    "OVERPOWER threshold read as 4+ (digit small inside the dark tag; the other two BP sides read 3+) (소유자 확인 2026-11-15)"
+   ],
+   "ops": {
+    "at": 5,
+    "overcome": {
+     "n": 4,
+     "ops": [
+      {
+       "op": "wnPushOrDrag",
+       "n": 2
+      }
+     ],
+     "tag": "OVERPOWER"
+    },
+    "wound": [
+     {
+      "op": "wnAIResponse"
+     },
+     {
+      "op": "wnDiscardTopAI"
+     },
+     {
+      "op": "wnPushOrDrag",
+      "x": "wounds"
+     }
+    ],
+    "fail": [
+     {
+      "op": "signatureAgainstAttacker"
+     }
+    ],
+    "critical": [
+     {
+      "op": "wnDie"
+     }
+    ]
+   }
+  }
+ },
+ "clashSetup": {
+  "_source": "Sunken Kingdom Codex p.38 (Winged Nightmare Clash — Sunken Kingdom diagram)",
+  "steps": [
+   "Standard Preparations (Rulebook p.44)",
+   "Monster Positioning: Place the Winged Nightmare miniature on the space designated on the diagram. Note the facing direction indicated by the arrow.",
+   "Additional Setup: Place the Wide Wings BP card on space 1 on the Mob track. Level 2+: Place the Bloody Defiance BP Trait card next to the Monster Sheet."
+  ],
+  "requiredTiles": [
+   "15x Column",
+   "4x Rubble L",
+   "4x Rut 1x2",
+   "1x Bottomless Well"
+  ],
+  "monsterCells": [
+   "F8"
+  ],
+  "facing": "S",
+  "knightStart": [
+   "E4",
+   "D5",
+   "C10",
+   "B9"
+  ],
+  "terrain": [
+   {
+    "tile": "bottomless well",
+    "cells": [
+     "F7",
+     "F8",
+     "E7",
+     "E8"
+    ]
+   },
+   {
+    "tile": "column",
+    "cells": [
+     "J9"
+    ]
+   },
+   {
+    "tile": "column",
+    "cells": [
+     "I4"
+    ]
+   },
+   {
+    "tile": "column",
+    "cells": [
+     "H1"
+    ]
+   },
+   {
+    "tile": "column",
+    "cells": [
+     "H6"
+    ]
+   },
+   {
+    "tile": "column",
+    "cells": [
+     "H10"
+    ]
+   },
+   {
+    "tile": "column",
+    "cells": [
+     "F10"
+    ]
+   },
+   {
+    "tile": "column",
+    "cells": [
+     "E2"
+    ]
+   },
+   {
+    "tile": "column",
+    "cells": [
+     "E5"
+    ]
+   },
+   {
+    "tile": "column",
+    "cells": [
+     "E13"
+    ]
+   },
+   {
+    "tile": "column",
+    "cells": [
+     "C6"
+    ]
+   },
+   {
+    "tile": "column",
+    "cells": [
+     "C9"
+    ]
+   },
+   {
+    "tile": "column",
+    "cells": [
+     "C14"
+    ]
+   },
+   {
+    "tile": "column",
+    "cells": [
+     "B3"
+    ]
+   },
+   {
+    "tile": "column",
+    "cells": [
+     "B11"
+    ]
+   },
+   {
+    "tile": "column",
+    "cells": [
+     "A4"
+    ]
+   },
+   {
+    "tile": "rubble",
+    "cells": [
+     "J6",
+     "J7",
+     "J8",
+     "I8"
+    ],
+    "shape": "L"
+   },
+   {
+    "tile": "rubble",
+    "cells": [
+     "G2",
+     "G3",
+     "G4",
+     "F2"
+    ],
+    "shape": "L"
+   },
+   {
+    "tile": "rubble",
+    "cells": [
+     "E11",
+     "E12",
+     "D12",
+     "C12"
+    ],
+    "shape": "L"
+   },
+   {
+    "tile": "rubble",
+    "cells": [
+     "B7",
+     "A7",
+     "A8",
+     "A9"
+    ],
+    "shape": "L"
+   },
+   {
+    "tile": "rut",
+    "cells": [
+     "G7",
+     "G8"
+    ]
+   },
+   {
+    "tile": "rut",
+    "cells": [
+     "D7",
+     "D8"
+    ]
+   },
+   {
+    "tile": "rut",
+    "cells": [
+     "F6",
+     "E6"
+    ]
+   },
+   {
+    "tile": "rut",
+    "cells": [
+     "F9",
+     "E9"
+    ]
+   }
+  ],
+  "unclear": [
+   "지형·시작 칸은 코덱스 도식에서 읽음 [해석, 확인 필요]",
+   "Rut: 기사가 공격 중 이 타일 위면 무기가 Cumbersome, 몬스터가 올라가면 타일을 뒤집음 — 뒷면 미입수라 미구현"
+  ]
+ },
+ "rulings": [
+  "Single-Mob Clash: one 1x1 Mob with the two-sided BP on Mob-track space 1; one AI Activation token (소유자 확인 2026-11-15)",
+  "Endure X: temporary +X AT until the next Power Roll (소유자 확인 2026-11-15)",
+  "Flank priority \"straight line from a Chasm\": spaces where Nightmare–Knight–Chasm are aligned (소유자 확인 2026-11-15)",
+  "AI Response: on Fail (Wide Wings) / Instinct (Slithering Tails) / Wound (Bloody Defiance) resolve the AI Response of the top AI discard; Attacker on the Rear → only Flank / Flee are ignored (소유자 확인 2026-11-15)",
+  "Column tiles: the Nightmare perches on the tile; Knights climb onto it (Marble Forest) and leave by normal movement (소유자 확인 2026-11-15)",
+  "Drag X / Drag toward: rulebook keyword box (소유자 스캔 2026-11-15). Monster \"Drag X toward the closest Chasm\": the Nightmare moves toward and one space past the Chasm (max X), the Knight follows the path — entering the Chasm kills",
+  "Flee X ending on a Knight: Crash, then the Knight is Displaced — the Sheet prints no Unavoidable Knockback value for this Mob [해석, 확인 필요]",
+  "Knight Pushback X / Drag X against the Nightmare (Overpower, Slithering Tails, Bloody Defiance): chosen and resolved immediately; Pushback moves it X spaces directly away (stops at Obstacles / Knights / board edge); with Bloody Defiance out, entering a Chasm this way kills it [해석, 확인 필요]",
+  "Bloody Defiance: the final Wound is placed, then the BP Trait card replaces the BP and ITS Wound (or Critical → dies) response resolves instead [해석, 확인 필요]",
+  "\"moves to the closest empty Column tile\" while already on a Column: moves to another one [해석, 확인 필요]",
+  "\"MOVE TO THE CLOSEST CHASM & JUDGE\" (Aria of Doom): moves onto the closest Chasm space, then judges the Knights in Zone 4 of the new position; Misleading Melody / Aria movement is per hit (1 / 2 spaces per hit), Knights stop adjacent to the Chasm (voluntary movement cannot enter it) [해석, 확인 필요]",
+  "Marble Forest \"instead of a Reflex\" is not implemented (free action only); Rut: 기사가 공격 중 이 타일 위면 무기가 Cumbersome, 몬스터가 올라가면 타일을 뒤집음 — 뒷면 미입수라 미구현"
+ ]
+}

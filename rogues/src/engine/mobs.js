@@ -45,14 +45,14 @@ export const MobMixin = {
   // ---------- auras of revealed BPs ----------
   mobAura(key) { let n = 0; for (const m of this.monster.mobs || []) if (m.revealed && m.card.ops.aura && typeof m.card.ops.aura[key] === 'number') n += m.card.ops.aura[key]; return n; },
   mobAT(mob) {
-    const M = this.monster; let at = mob.card.at + M.bonuses.at + M.modifiers.at + (this.mobArmorDisabled ? 0 : mob.armor) + this.difficultTerrainAT(mob.cells) + (M.hasTrait('Scab Armor') ? mob.blood || 0 : 0) + (this.monsterDef.battleTactics ? this.firstmenAT(mob) : 0);
+    const M = this.monster; let at = mob.card.at + M.bonuses.at + M.modifiers.at + (this.mobArmorDisabled ? 0 : mob.armor) + this.difficultTerrainAT(mob.cells) + (M.hasTrait('Scab Armor') ? mob.blood || 0 : 0) + (this.monsterDef.battleTactics ? this.firstmenAT(mob) : 0) + (mob.isNightmare ? this.wnEndure || 0 : 0);
     for (const o of M.mobs) { if (o === mob || !o.revealed || !o.cells.length || !mob.cells.length) continue; const a = o.card.ops.aura && o.card.ops.aura.atOtherMobsZone; if (a && Math.max(Math.abs(o.cells[0].c - mob.cells[0].c), Math.abs(o.cells[0].r - mob.cells[0].r)) <= a.z) at += a.n; }
     return at;
   },
 
   // ---------- Monster Round (p.47) ----------
   async mobMonsterRound() {
-    const M = this.monster; await this.firstmenStartMR();
+    const M = this.monster; await this.firstmenStartMR(); if (this.isWN) await this.wnStartMR();
     for (const m of M.mobs) for (const t of m.tokens) t.ready = true;
     for (let guard = 0; guard < 40; guard++) {
       const mob = M.mobs.find(m => m.tokens.some(t => t.ready)); if (!mob) break; const tok = mob.tokens.find(t => t.ready);

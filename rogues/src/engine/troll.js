@@ -102,7 +102,7 @@ export const TrollMixin = {
       case 'allMayDiscardExposed': for (const x of this.alive()) if (this.hasCondition(x, 'Exposed') && await this.yesNo(`${x.name}: Exposed 버리기?`, true)) this.removeCondition(x, 'Exposed'); return true;
       case 'allDiscardExposed': for (const x of this.alive()) this.removeCondition(x, 'Exposed'); return true;
       case 'bossHeal': for (let i = 0; i < o.n; i++) { const w = M.woundStack.pop(); if (w) this.say(`Heal: Wound Stack 맨 위 제거 (${M.wounds}/${M.woundsToKill})`, 'ai'); } return true;
-      case 'vigorByHitsTable': if (t && t.alive && ctx.hits) { const n = o.table[Math.min(o.table.length, ctx.hits) - 1] + M.bonuses.vigorLoss; await this.loseVigor(t, n, { source: 'attack', perilCheck: o.perilCheck }); } return true;
+      case 'vigorByHitsTable': if (t && t.alive && ctx.hits) { const n = o.table[Math.min(o.table.length, ctx.hits) - 1] + M.bonuses.vigorLoss; await this.loseVigor(t, n, { source: 'attack', perilCheck: o.perilCheck && (!o.perilFrom || ctx.hits >= o.perilFrom) }); if (o.dieAtZero && t.alive && t.vigor <= 0) { this.say(`${t.name}: 이 공격으로 Vigor 0 → 사망`); await this.die(t, 'Constricting Coils'); } } return true;
       default: return false;
     }
   },

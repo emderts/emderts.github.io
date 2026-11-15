@@ -5,6 +5,7 @@ import { BLOOD_OPS } from './blood.js';
 import { HAUNT_OPS } from './haunts.js';
 import { FIRSTMEN_OPS } from './firstmen.js';
 import { TROLL_OPS } from './troll.js';
+import { NIGHTMARE_OPS } from './nightmare.js';
 import { ChainBreak } from './clash.js';
 
 const TIER_RANK = { MOB: 1, VASSAL: 2, KING: 3, DEVIL: 4, DRAGON: 5 };
@@ -116,6 +117,7 @@ export class Effects {
   async onArmorRoll(k, mitigated) { const rb = k.talent && k.talent.abilities.find(a => a.ops && a.ops.some(o => o.op === 'onArmorRoll')); if (rb && mitigated > 0) { const op = rb.ops.find(o => o.op === 'onArmorRoll'); for (let i = 1; i <= Math.min(5, mitigated); i++) for (const o of op.byMitigated[i] || []) this.c.poolAdd(o.token, o.n, o.token === 'fleisch' ? { resource: true } : {}); } }
 
   async pushMonster(k, n) {
+    if (this.c.isWN) return this.c.wnPushedBy(k, n);
     const M = this.c.monster, B = this.c.board; const m = this.c.monsterCenter(); const dc = m.c - k.pos.c, dr = m.r - k.pos.r; const d = Math.abs(dc) >= Math.abs(dr) ? { c: Math.sign(dc), r: 0 } : { c: 0, r: Math.sign(dr) };
     let moved = 0; for (let i = 0; i < n; i++) { const r = await this.c.monsterStep(d); if (r !== 'ok') break; moved++; }
     this.say(`${k.name} Pushback ${moved}/${n}: 몬스터 → ${M.cells.map(c => B.label(c)).join('/')}`);
@@ -155,8 +157,9 @@ export class Effects {
       this.deplete(k, t, e.depletion);
     }
   }
-  freeActions(k) { const out = [...(this.c.lureOptions ? this.c.lureOptions(k) : [])]; const ch = this.c.hasCondition(k, 'Choked'); if (ch && k.chokeLimit > 0 && (k.actions.move || k.actions.combat)) out.push({ id: 'lowerChoke', label: `행동 소모 → Choke Limit -3 (현재 ${k.chokeLimit})` }); const ex = this.c.hasCondition(k, 'Exposed'); if (ex && (k.actions.move || k.actions.combat)) out.push({ id: 'discardExposed', label: '행동 소모 → Exposed 제거' }); if (k.talent && k.talent.id === 'fleischjager' && this.c.poolCount('fleisch') >= 1 && k.vigor > 1) out.push({ id: 'nurturing', label: 'Nurturing Fleisch (1 Fleisch, X Vigor → 인접 기사 +X)' }); return out; }
+  freeActions(k) { const out = [...(this.c.lureOptions ? this.c.lureOptions(k) : []), ...(this.c.wnFreeActions ? this.c.wnFreeActions(k) : [])]; const ch = this.c.hasCondition(k, 'Choked'); if (ch && k.chokeLimit > 0 && (k.actions.move || k.actions.combat)) out.push({ id: 'lowerChoke', label: `행동 소모 → Choke Limit -3 (현재 ${k.chokeLimit})` }); const ex = this.c.hasCondition(k, 'Exposed'); if (ex && (k.actions.move || k.actions.combat)) out.push({ id: 'discardExposed', label: '행동 소모 → Exposed 제거' }); if (k.talent && k.talent.id === 'fleischjager' && this.c.poolCount('fleisch') >= 1 && k.vigor > 1) out.push({ id: 'nurturing', label: 'Nurturing Fleisch (1 Fleisch, X Vigor → 인접 기사 +X)' }); return out; }
   async doFreeAction(k, id) {
+    if (id.startsWith('climb:')) return this.c.wnClimb(k, id.slice(6));
     if (id.startsWith('lure:')) return this.c.lure(k, id.slice(5));
     const spend = () => { if (k.actions.move) k.actions.move = false; else k.actions.combat = false; };
     if (id === 'lowerChoke') { spend(); k.chokeLimit = Math.max(0, k.chokeLimit - 3); if (k.chokeLimit === 0) this.c.removeCondition(k, 'Choked'); }
@@ -273,13 +276,13 @@ export class Effects {
       case 'additionalSingleWound': M.addSingleWound(); this.say(`추가 Single Wound (${M.wounds}/${M.woundsToKill})`, 'wound'); return;
       case 'disableTrait': M.disabledTraits.add(o.id === 'counter' ? 'Counter' : o.id); this.say(`Trait 비활성: ${o.id}`); return;
       case 'disableZoneAttacks': C.zoneDisabled = true; this.say('Zone 공격 비활성'); return;
-      case 'slayMonster': { while (!M.slain) M.addSingleWound(); this.say('몬스터 즉사!', 'wound'); return; }
+      case 'slayMonster': { M.forceSlain = true; while (!M.slain) M.addSingleWound(); this.say('몬스터 즉사!', 'wound'); return; }
       case 'power': C.poolAdd('power', o.n); return;
       case 'armorTokens': C.armorTokens[o.bp] += o.n; this.say(`BP${o.bp} Armor 토큰 +${o.n}`); return;
       case 'passive': return;
-      default: if (C.trollOp && await C.trollOp(o, ctx)) return; if (C.firstmenOp && await C.firstmenOp(o, ctx)) return; if (C.hauntOp && await C.hauntOp(o, ctx)) return; if (C.bloodOp && await C.bloodOp(o, ctx)) return; if (C.mobOp && await C.mobOp(o, ctx)) return; this.say(`[미구현 monster op] ${o.op}`, 'warn');
+      default: if (C.wnOp && await C.wnOp(o, ctx)) return; if (C.trollOp && await C.trollOp(o, ctx)) return; if (C.firstmenOp && await C.firstmenOp(o, ctx)) return; if (C.hauntOp && await C.hauntOp(o, ctx)) return; if (C.bloodOp && await C.bloodOp(o, ctx)) return; if (C.mobOp && await C.mobOp(o, ctx)) return; this.say(`[미구현 monster op] ${o.op}`, 'warn');
     }
   }
 }
-export const KNOWN_OPS = { monster: ['loseVigorPerHit', 'loseVigor', 'allKnightsLoseVigor', 'knockdown', 'pushback', 'knockback', 'cooldown', 'discard', 'restrain', 'choke', 'condition', 'perHitInOrder', 'gated', 'judicium', 'die', 'trait', 'signature', 'if', 'repeatCard', 'moveToCenter', 'faceMostKnights', 'monsterModifier', 'bonusAttack', 'gainPassion', 'leaveTokens', 'returnAllTechniques', 'resetHeat', 'discardArmorTokens', 'disableMonsterKeywords', 'additionalSingleWound', 'disableTrait', 'disableZoneAttacks', 'slayMonster', 'power', 'armorTokens', 'passive', 'humptyCharge', 'evasionDice', 'vigorPerHitInstead', 'difficultyInstead', 'drawGraveForColumn', 'evasionDicePerAdjacentMob', 'moveGangup', ...MOB_OPS, ...BLOOD_OPS, ...HAUNT_OPS, ...FIRSTMEN_OPS, ...TROLL_OPS],
+export const KNOWN_OPS = { monster: ['loseVigorPerHit', 'loseVigor', 'allKnightsLoseVigor', 'knockdown', 'pushback', 'knockback', 'cooldown', 'discard', 'restrain', 'choke', 'condition', 'perHitInOrder', 'gated', 'judicium', 'die', 'trait', 'signature', 'if', 'repeatCard', 'moveToCenter', 'faceMostKnights', 'monsterModifier', 'bonusAttack', 'gainPassion', 'leaveTokens', 'returnAllTechniques', 'resetHeat', 'discardArmorTokens', 'disableMonsterKeywords', 'additionalSingleWound', 'disableTrait', 'disableZoneAttacks', 'slayMonster', 'power', 'armorTokens', 'passive', 'humptyCharge', 'evasionDice', 'vigorPerHitInstead', 'difficultyInstead', 'drawGraveForColumn', 'evasionDicePerAdjacentMob', 'moveGangup', ...MOB_OPS, ...BLOOD_OPS, ...HAUNT_OPS, ...FIRSTMEN_OPS, ...TROLL_OPS, ...NIGHTMARE_OPS],
   knight: ['loseVigor', 'gainVigor', 'loseHeat', 'gainHeat', 'resetHeat', 'resetHeatAndRaiseLimit', 'gainPassion', 'refresh', 'restrain', 'cooldown', 'discard', 'delay', 'knockdown', 'standUp', 'condition', 'discardCondition', 'discardAllConditions', 'exhaustAllGear', 'unexhaustGear', 'poolChoice', 'bonusAttack', 'move', 'chainBreak', 'die', 'shuffleBack', 'perilCheck', 'judicium', 'addJudicium', 'drawNamed', 'if', 'curseSave', 'bane', 'parasitize', 'poison', 'toxify', 'choice', 'provoke', 'daze', 'reflex', 'rush', 'improvedRush', 'braced', 'rocksteady', 'motivate', 'flipBodyCondition', 'resurrectAdjacent', 'extraCombatAction', 'meatPuppet', 'secondChance', 'superiorChance', 'chooseJudicium', 'reinforce', 'reduceInvoluntary', 'heartseeker', 'addPowerDie', 'ignoreResponses', 'skipClearPool', 'poolPer', 'reach'] };

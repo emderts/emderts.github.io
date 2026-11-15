@@ -36,7 +36,7 @@ export class Monster {
   say(m) { this.log.push(m); return m; }
   hasTrait(name) { return this.traits.has(name) && !this.disabledTraits.has(name); }
   get wounds() { return this.woundStack.reduce((a, w) => a + w.wounds, 0); }
-  get slain() { return this.wounds >= this.woundsToKill; }
+  get slain() { return !!this.forceSlain || (!this.noWoundDeath && this.wounds >= this.woundsToKill); }
   /** Effective AT of a BP card: printed AT + level AT bonus + permanent AT modifiers (+ Panzeronion-style per-level tokens handled by caller hooks). */
   atOf(card, extra = 0) { return card.at + this.bonuses.at + this.modifiers.at + extra; }
 
