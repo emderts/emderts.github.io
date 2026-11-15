@@ -50,7 +50,7 @@ export function parseSentence(s) {
     if ((m = /^\[Discard\]\s*/.exec(r))) { (o.cost = o.cost || {}).discard = true; r = r.slice(m[0].length); continue; }
     if ((m = /^(\d+) \[Charge\]\s*/.exec(r))) { (o.cost = o.cost || {}).charge = +m[1]; r = r.slice(m[0].length); continue; }
     break; }
-  const b = body(r); if (!b) return { op: 'text', status: 'text', text };
+  const b = body(r); if (!b) { if (/\b(Delve|Deep Fog|Trailmake|Wander|Rotation|Adventure|Ambush|Encounter|Exploration|Shortcuts?|Possessed|Clues?|District|Investigation)\b/.test(text)) return { op: 'nonClash', status: 'na', text }; return { op: 'text', status: 'text', text }; }
   const k = { ...b, ...o, text }; if (k.status === 'ok' && (k.cost || k.reaction) && !ACTIVE_OK.has(k.op)) k.status = 'pending'; // costed versions of constant keywords need their own timing window
   return k;
 }
