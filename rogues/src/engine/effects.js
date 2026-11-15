@@ -8,6 +8,7 @@ import { TROLL_OPS } from './troll.js';
 import { NIGHTMARE_OPS } from './nightmare.js';
 import { FEN_OPS } from './fen.js';
 import { PUMP_OPS } from './pump.js';
+import { parseGearText, isDefensive } from './gearkw.js';
 import { ChainBreak } from './clash.js';
 
 const TIER_RANK = { MOB: 1, VASSAL: 2, KING: 3, DEVIL: 4, DRAGON: 5 };
@@ -22,15 +23,44 @@ export class Effects {
   perilGateOk(k, gate) { const order = ['Uninjured', 'Minor', 'Major', 'Grave', 'Judicium']; const i = order.indexOf(gate[0] + gate.slice(1).toLowerCase()); return i >= 1 && order.indexOf(k.peril()) >= i; }
 
   // ---------- knight stat queries ----------
-  evasionBonus(k) { let b = 0; for (const g of k.gear) if (!g.discarded && g.evasion) b += g.evasion; for (const c of k.conditions) { const d = this.c.conditionDefs[c.id]; if (d && d.ops && d.ops.evasion) b += d.ops.evasion; } return b; }
+  // ---------- Gear keywords (Keyword List pp.80–87; parser: gearkw.js) ----------
+  /** Unified keyword list of a Gear card: hand-written ops.keywords (legacy {op:'break',n}) or the parsed ability text (cached on the card). */
+  kwList(g) { if (!g) return []; if (g._kw) return g._kw; const TOK = ['break', 'opening', 'closing', 'hope', 'black', 'sunder', 'fire', 'power', 'cantrip', 'spell', 'rouse', 'diversion', 'improvedDiversion', 'fleisch']; const hand = g.ops && g.ops.keywords; const hasHand = !!(g.ops && (g.ops.gates || g.ops.abilities || (hand && hand.length && !g.ops.parsed)));
+    let list = hasHand ? (hand || []).map(o => TOK.includes(o.op) ? { op: 'token', token: o.op, n: o.n == null ? 1 : o.n, status: 'ok' } : o.op === 'choice' ? { op: 'choice', status: 'ok', options: o.options.map(x => Array.isArray(x) ? x[0] : x) } : { ...o, status: 'ok' }) : parseGearText([g.baseText != null ? g.baseText : g.text, g.upgrade && g.upgrade.text].filter(Boolean).join('\n'));
+    if (hasHand && g.upgrade) list = [...list, ...parseGearText(g.upgrade.text)]; g._kw = list; return list; }
+  kwGateOk(k, g, o) { if (o.gate && !this.perilGateOk(k, o.gate)) return false; if (o.kingdom && o.kingdom !== this.c.kingdom) return false; if (o.twoHanded && k.gear.some(x => x.type === 'weapon' && x !== g && !x.discarded)) return false; return true; }
+  /** Constant (cost-free) keywords of a card that are active for this Knight right now. */
+  constKw(k, g) { return this.kwList(g).filter(o => o.status === 'ok' && !o.cost && !o.reaction && this.kwGateOk(k, g, o)); }
+  /** Sum of a constant keyword over all equipped Gear. Abilities are off while a card is exhausted (p.21); passive stats (`passive`) stay on. */
+  gearSum(k, op, { passive = false } = {}) { let n = 0; for (const g of k.gear) { if (g.discarded || (!passive && g.exhausted)) continue; for (const o of this.constKw(k, g)) if (o.op === op) n += o.n == null ? 1 : o.n; } return n; }
+  gearHas(k, op) { return k.gear.some(g => !g.discarded && !g.exhausted && this.constKw(k, g).some(o => o.op === op)); }
+  /** Weapon range (Reach X / Ranged X–Y; default: adjacent). */
+  weaponRange(k, w) { let r = { min: 1, max: 1 }; for (const o of this.kwList(w)) { if (o.status !== 'ok' || !this.kwGateOk(k, w, o)) continue; if (o.op === 'reach') r = { min: 1, max: Math.max(r.max, o.n) }; if (o.op === 'ranged') r = { min: o.n, max: o.m }; } return r; }
+  inWeaponRange(k, w, cells) { if (k.engulfed) return true; const d = Math.min(...cells.map(c => Math.abs(c.c - k.pos.c) + Math.abs(c.r - k.pos.r))); const r = this.weaponRange(k, w); if (d < r.min || d > r.max) return false; if (this.kwList(w).some(o => o.op === 'unwieldy') && !cells.some(c => c.c === k.pos.c || c.r === k.pos.r)) return false; return true; }
+  usableWeapons(k, bonus = false) { return k.gear.filter(g => g.type === 'weapon' && (!g.exhausted || bonus) && !g.discarded); }
+  gearPay(k, g, o) { const c = o.cost || {}; if (c.heat) k.gainHeat(c.heat, { voluntary: true }); if (c.exhaust) g.exhausted = true; if (c.discard) g.discarded = true; if (c.charge) g.chargesLeft = (g.chargesLeft || 0) - c.charge; (g._usedRound = g._usedRound || {})[o.text] = this.c.round; }
+  gearCanPay(k, g, o) { const c = o.cost || {}; if (g.discarded || g.exhausted) return false; if (c.action) return false; if (c.heat && k.heat + c.heat > k.heatLimit) return false; if (c.charge && (g.chargesLeft || 0) < c.charge) return false; if (g._usedRound && g._usedRound[o.text] === this.c.round) return false; return this.kwGateOk(k, g, o); }
+  /** Active defensive Gear abilities offered before an Evasion Roll: Block / Dodge / Reinforce families. Returns { block, evasion } and sets k.reinforce. */
+  async defenseWindow(k, { judge = false } = {}) {
+    const out = { block: 0, evasion: 0 }; k.reinforce = null; if (this.c.knockedDown(k)) return out; const used = new Set();
+    while (true) {
+      const opts = []; for (const g of k.gear) for (const o of this.kwList(g)) if (o.status === 'ok' && o.cost && isDefensive(o.op) && !used.has(o) && this.gearCanPay(k, g, o) && !(judge && o.op.startsWith('block')) && !(o.op === 'dodge0' && this.evasionBonus(k) + out.evasion > 0)) opts.push({ g, o });
+      if (!opts.length) break; const i = await this.c.ask({ type: 'pick', knight: k.id, text: `${k.name}: Evasion Roll 전 — 사용할 Gear 능력`, options: [...opts.map((x, i) => ({ label: `${x.g.name}: ${x.o.text}`, value: i })), { label: '사용 안 함', value: 'skip' }] }); if (i === 'skip' || i == null) break;
+      const { g, o } = opts[i]; used.add(o); this.gearPay(k, g, o); this.say(`${k.name}: ${g.name} — ${o.text}`, 'tech');
+      if (o.op.startsWith('block')) out.block += o.op === 'block3' ? 3 : o.op === 'block2' ? 2 : 1; else if (o.op.startsWith('dodge')) out.evasion += o.op === 'dodge3' ? 3 : o.op === 'dodge2' ? 2 : 1; else { const col = o.op === 'reinforceBlack' ? 'black' : o.op === 'reinforceWhite' ? 'white' : 'red'; k.reinforce = k.reinforce || { red: 0, black: 0, white: 0 }; k.reinforce[col] += o.n || 1; }
+    }
+    return out;
+  }
+  virtueBonus(k, v) { let n = 0; for (const g of k.gear) if (!g.discarded) for (const o of this.kwList(g)) if (o.op === 'virtue' && o.virtue === v && !o.cost && this.kwGateOk(k, g, o)) n += o.n; return n; }
+  evasionBonus(k) { let b = this.gearSum(k, 'plusEvasion'); for (const g of k.gear) if (!g.discarded && !g.exhausted && g.evasion) b += g.evasion; for (const c of k.conditions) { const d = this.c.conditionDefs[c.id]; if (d && d.ops && d.ops.evasion) b += d.ops.evasion; } return b; }
   precision(k) { let p = 0; for (const c of k.conditions) { const d = this.c.conditionDefs[c.id]; if (d && d.ops && d.ops.precision) p += d.ops.precision; } p += k.modifiers.precision || 0; return p; }
-  speed(k) { return k.speed + (k.modifiers.speed || 0) + (k.tempSpeed || 0); }
-  armorDice(k) { const d = { red: 0, black: 0, white: 0 }; for (const g of k.gear) if (!g.discarded && g.armorDice) for (const col in g.armorDice) d[col] += g.armorDice[col]; if (k.tempArmor) for (const col in k.tempArmor) d[col] += k.tempArmor[col]; return d; }
-  soak(k) { return k.soak || 0; }
+  speed(k) { return Math.max(0, k.speed + (k.modifiers.speed || 0) + (k.tempSpeed || 0) + this.gearSum(k, 'speed', { passive: true })); }
+  armorDice(k) { const d = { red: 0, black: 0, white: 0 }; if (k.reinforce) for (const col in k.reinforce) d[col] += k.reinforce[col]; for (const g of k.gear) if (!g.discarded && !g.exhausted && g.armorDice) for (const col in g.armorDice) d[col] += g.armorDice[col]; if (k.tempArmor) for (const col in k.tempArmor) d[col] += k.tempArmor[col]; return d; }
+  soak(k) { return (k.soak || 0) + this.gearSum(k, 'soak'); }
   blockValue(k) { return k.block || 0; }
   involuntaryReduction(k) { return k.involuntaryReduction || 0; }
-  has(k, flag, A = null) { if (k.flags && k.flags.has(flag)) return true; if (A && A.flags && A.flags.has(flag)) return true; if (flag === 'deadly' && A && this.weaponHas(A.weapon, 'deadly')) return true; return false; }
-  weaponHas(w, kw) { return !!(w.ops && w.ops.keywords && w.ops.keywords.some(o => o.op === kw)); }
+  has(k, flag, A = null) { if (k.flags && k.flags.has(flag)) return true; if ((flag === 'rocksteady' || flag === 'tireless') && this.gearHas(k, flag)) return true; if (A && A.flags && A.flags.has(flag)) return true; if (flag === 'deadly' && A && this.weaponHas(A.weapon, 'deadly')) return true; return false; }
+  weaponHas(w, kw) { return this.kwList(w).some(o => o.op === kw && o.status === 'ok' && !o.cost && !o.gate && !o.twoHanded && !o.kingdom); }
   extraAttackDice(k, w, A) { let n = 0; if (w.name === 'Knighves' && !k.gear.some(g => g.type === 'weapon' && g !== w && !g.discarded)) n += 1; /* two-handed Knighves */ return n + (A.extraAttackDice || 0); }
   enforceHandLimit(k) { const lim = k.handLimit + k.conditions.reduce((a, c) => { const d = this.c.conditionDefs[c.id]; return a + (d && d.ops && d.ops.handLimit ? d.ops.handLimit : 0); }, 0); while (k.hand.length > Math.max(0, lim)) { const card = k.hand.pop(); k.underCondition = k.underCondition || []; k.underCondition.push(card); this.say(`${k.name}: 손패 제한 ${lim} → ${card.name} 보류`); } }
 
@@ -71,6 +101,12 @@ export class Effects {
     A.flags = new Set(); A.arcChoice = {}; A.arcApplied = new Set();
     // Talent: Meat Provisions
     if (k.talent && k.talent.abilities.some(a => a.ops && a.ops.some(o => o.op === 'onAttackDeclare'))) { if (!this.c.poolCount('opening') && !this.c.poolCount('break')) { this.c.poolAdd('opening', 1); this.c.poolAdd('break', 1); this.say('Meat Provisions'); } }
+    // Cantrip / Spell tokens (Keyword List): when declaring an Attack each Cantrip becomes an Opening or a Break; a Spell counts as both
+    for (let n = this.c.poolCount('cantrip'); n > 0; n--) { this.c.poolTake('cantrip', 1); const v = await this.c.ask({ type: 'pick', knight: k.id, text: 'Cantrip 토큰 → Opening 또는 Break', options: [{ label: 'Opening', value: 'opening' }, { label: 'Break', value: 'break' }] }) || 'opening'; this.c.poolAdd(v, 1); }
+    { const sp = this.c.poolCount('spell'); if (sp) { this.c.poolTake('spell', sp); this.c.poolAdd('opening', sp); this.c.poolAdd('break', sp); this.say(`Spell 토큰 ${sp}개 → Opening + Break`); } }
+    // constant weapon keywords that modify this Attack
+    A.kw = [...this.constKw(k, A.weapon), ...k.gear.filter(g => g.type !== 'weapon' && !g.discarded && !g.exhausted).flatMap(g => this.constKw(k, g))]; A.attackRerolls = 0; // active weapon + every other equipped (non-weapon) card
+    for (const o of A.kw) { if (o.op === 'attackReroll') A.attackRerolls += o.n; else if (o.op === 'powerReroll') A.powerRerolls += o.n; else if (o.op === 'plusPower') { A.extraPool.raw += o.n; this.say(`${A.weapon.name}: +${o.n} Power`); } else if (o.op === 'plusPrecision') A.extraPrecision = (A.extraPrecision || 0) + o.n; else if (o.op === 'envenomed') A.envenomed = Math.max(A.envenomed || 0, o.n); else if (o.op === 'armorPiercing') { A.armorPiercing += o.n; this.say(`Armor-piercing ${o.n}`); } }
     await this.arcAt(k, A, 'roll');
     // Courage: Auto-break 1
     if (this.c.hasCondition(k, 'Courage')) this.c.poolAdd('break', 1);
@@ -81,27 +117,37 @@ export class Effects {
     if (k.pendingAttackFlags) { for (const f of k.pendingAttackFlags) A.flags.add(f); if (k.pendingExtraPool) for (const col in k.pendingExtraPool) A.extraPool[col] += k.pendingExtraPool[col]; k.pendingAttackFlags = null; k.pendingExtraPool = null; }
   }
   async firstWindow(k, A) {
-    const first = (await this.arcAt(k, A, 'first')).map((t, i) => ({ ...t, id: i }));
+    for (const o of A.kw || []) if (o.op === 'auto') { this.c.poolAdd(o.token, o.n); this.say(`${A.weapon.name}: Auto-${o.token} ${o.n}`); }
+    const NAME = { pushback: 'Pushback', vault: 'Vault', hug: 'Hug', daze: 'Daze', provoke: 'Provoke', drag: 'Drag', inspire: 'Inspire' }; const wk = []; for (const o of A.kw || []) { if (NAME[o.op]) wk.push({ token: NAME[o.op], n: o.n, gear: true }); if (o.op === 'choice') for (const x of o.options) if (NAME[x.op]) wk.push({ token: NAME[x.op], n: x.n, gear: true, choice: o }); }
+    const first = [...(await this.arcAt(k, A, 'first')), ...wk].map((t, i) => ({ ...t, id: i }));
     const avail = [...first];
     while (avail.length) {
       const pick = await this.c.ask({ type: 'pick', knight: k.id, text: '1차 능력 창 — 사용할 능력과 순서를 선택 (끝내려면 "넘어가기")', options: [...avail.map(t => ({ label: `${t.token}${t.n ? ' ' + t.n : ''}`, value: t.id })), { label: '넘어가기', value: 'skip' }] });
       if (pick === 'skip' || pick == null) break;
-      const t = avail.find(x => x.id === pick); if (!t) break; avail.splice(avail.indexOf(t), 1);
+      const t = avail.find(x => x.id === pick); if (!t) break; avail.splice(avail.indexOf(t), 1); if (t.choice) { A.choiceUsed = A.choiceUsed || new Set(); A.choiceUsed.add(t.choice); for (const x of [...avail]) if (x.choice === t.choice) avail.splice(avail.indexOf(x), 1); }
       if (t.token === 'Pushback') await this.pushMonster(k, t.n);
       else if (t.token === 'Vault') await this.vault(k);
       else if (t.token === 'Hug') await this.hug(k, t.n);
       else if (t.token === 'Provoke') { this.c.priorityTarget = k; this.c.turnToward(k.pos); this.say(`Provoke: ${k.name}이 Priority Target, 몬스터가 바라봄`); }
       else if (t.token === 'Daze') { if (this.c.adjacentToMonster(k)) { const f = this.c.monster.facing; this.c.monster.facing = { N: 'S', S: 'N', E: 'W', W: 'E' }[f]; this.say('Daze: 몬스터가 등을 돌림'); } }
       else if (t.token === 'Reposition') await this.c.knightMove(k, t.n);
+      else if (t.token === 'Drag') await this.dragMonster(k, A, t.n);
+      else if (t.token === 'Inspire') { for (let i = 0; i < (t.n || 1); i++) { const kd = this.c.alive().filter(x => this.c.knockedDown(x)); if (!kd.length) break; const id = kd.length > 1 ? await this.c.ask({ type: 'pickKnight', text: 'Inspire — 일으킬 기사', options: kd.map(x => ({ label: x.name, value: x.id })) }) : kd[0].id; const x = kd.find(y => y.id === id) || kd[0]; this.c.standUp(x); this.say(`Inspire: ${x.name} 일어남`); } }
       else this.say(`[1st window 미구현] ${t.token}`, 'warn');
-      if (!this.c.adjacentToMonster(k)) throw new ChainBreak(`${k.name}: 사거리 이탈`);
+      if (!this.c.inAttackRange(k, A)) throw new ChainBreak(`${k.name}: 사거리 이탈`);
     }
     const ap = A.weapon.ops && A.weapon.ops.gates ? A.weapon.ops.gates.filter(g => g.when === 'GRAVE' && this.perilGateOk(k, 'GRAVE')).flatMap(g => g.ops).filter(o => o.op === 'armorPiercing') : []; for (const o of ap) { A.armorPiercing += o.n; this.say(`Armor-piercing ${o.n}`); }
   }
   async secondWindow(k, A) {
     // Heroic Arc: everything still open is chosen/applied now (golden rule) + weapon keywords (Break X etc.)
     await this.arcAt(k, A, 'second');
-    if (A.weapon.ops && A.weapon.ops.keywords) for (const o of A.weapon.ops.keywords) { if (o.op === 'break') this.c.poolAdd('break', o.n); if (o.op === 'opening') this.c.poolAdd('opening', o.n); }
+    for (const o of A.kw || []) {
+      if (o.op === 'token') { if (o.token === 'fleisch') this.c.poolAdd('fleisch', o.n, { resource: true }); else this.c.poolAdd(o.token, o.n); }
+      else if (o.op === 'overbreak' && A.wounded && (A.overAT || 0) >= 1) { this.c.poolAdd('break', o.n); this.say(`Overbreak ${o.n}`); }
+      else if (o.op === 'cumbersome' && A.wounded) { if (this.has(k, 'tireless', A) && await this.c.yesNo(`${k.name}: Tireless — ${A.weapon.name}의 Cumbersome 무시?`, true)) this.say('Tireless: Cumbersome 무시'); else { A.weapon.exhausted = true; this.say(`Cumbersome: ${A.weapon.name} Exhaust`, 'tech'); } }
+      else if ((o.op === 'reposition' || (o.op === 'choice' && !(A.choiceUsed && A.choiceUsed.has(o)) && o.options.some(x => x.op === 'reposition'))) && k.alive && !k.engulfed) { const n = o.op === 'reposition' ? o.n : o.options.find(x => x.op === 'reposition').n; if (await this.c.yesNo(`${k.name}: Reposition ${n} (최대 ${n}칸 이동)?`, false)) await this.c.knightMove(k, n); }
+      else if (o.op === 'motivate') { let rem = o.n; for (const x of this.c.alive()) { if (x === k || rem <= 0 || x.engulfed || this.c.knockedDown(x)) continue; if (!await this.c.yesNo(`Motivate ${o.n}: ${x.name} 이동 (남은 ${rem}칸)?`, false)) continue; const p0 = x.pos; await this.c.knightMove(x, rem); rem -= Math.abs(x.pos.c - p0.c) + Math.abs(x.pos.r - p0.r); } }
+    }
     // Hangry technique
     if (A.flags && A.flags.has('hangry')) { const n = Math.floor(Math.max(0, A.overAT || 0) / 3); if (n) this.c.poolAdd('power', n); }
     if (A.leaveTokens) { for (const [tok, n] of A.leaveTokens) this.c.poolAdd(tok, n); }
@@ -118,6 +164,9 @@ export class Effects {
   }
   async onArmorRoll(k, mitigated) { const rb = k.talent && k.talent.abilities.find(a => a.ops && a.ops.some(o => o.op === 'onArmorRoll')); if (rb && mitigated > 0) { const op = rb.ops.find(o => o.op === 'onArmorRoll'); for (let i = 1; i <= Math.min(5, mitigated); i++) for (const o of op.byMitigated[i] || []) this.c.poolAdd(o.token, o.n, o.token === 'fleisch' ? { resource: true } : {}); } }
 
+  /** Drag X by a Knight (Keyword box p.81): the Knight moves X spaces directly away, the Monster follows the path. Implemented for Mobs / the Winged Nightmare. */
+  async dragMonster(k, A, n) { const C = this.c; if (C.isWN) return C.wnDraggedBy(k, n); const mob = A && A.mob; if (!C.monster.isMob || !mob || mob.isTroll || !mob.cells.length) { this.say('[미구현] Boss를 대상으로 한 Drag', 'warn'); return; } const B = C.board; const me = mob.cells[0]; if (!B.adjacent(me, k.pos)) return; if (mob.isPump && mob.side === 'sapling') { this.say('Lumbering: Sapling은 비자발적으로 움직일 수 없음'); return; }
+    const d = { c: k.pos.c - me.c, r: k.pos.r - me.r }; const start = k.pos; let m = 0; for (let i = 0; i < n; i++) { const nx = { c: k.pos.c + d.c, r: k.pos.r + d.r }; if (!B.inside(nx) || B.isObstacle(nx) || C.knightAt(nx) || C.monsterOccupies(nx)) break; C.moveKnight(k, nx); m++; } if (!m) return; C.mobStepTo(mob, { c: start.c + d.c * (m - 1), r: start.r + d.r * (m - 1) }); this.say(`${k.name} Drag ${n}: ${m}칸 물러나고 Mob #${mob.n}이(가) 따라옴`); await C.swampSweep(); }
   async pushMonster(k, n) {
     if (this.c.isWN) return this.c.wnPushedBy(k, n); if (this.c.isPump && this.c.monster.cur && this.c.monster.cur.side === 'sapling') { this.say('Lumbering: Sapling은 비자발적으로 움직일 수 없음'); return; }
     const M = this.c.monster, B = this.c.board; const m = this.c.monsterCenter(); const dc = m.c - k.pos.c, dr = m.r - k.pos.r; const d = Math.abs(dc) >= Math.abs(dr) ? { c: Math.sign(dc), r: 0 } : { c: 0, r: Math.sign(dr) };
@@ -168,7 +217,7 @@ export class Effects {
     else if (id === 'discardExposed') { spend(); this.c.removeCondition(k, 'Exposed'); }
     else if (id === 'nurturing') { const adj = this.c.alive().filter(o => o !== k && this.c.board.adjacent(o.pos, k.pos)); if (!adj.length) return; const whoId = await this.c.ask({ type: 'pickKnight', options: adj.map(o => ({ label: o.name, value: o.id })) }); const who = adj.find(o => o.id === whoId) || adj[0]; const x = await this.c.ask({ type: 'number', text: 'X (Vigor 지불)', options: Array.from({ length: k.vigor - 1 }, (_, i) => ({ label: String(i + 1), value: i + 1 })) }); this.c.poolTake('fleisch', 1); k.loseVigor(x); who.gainVigor(x); this.say(`Nurturing Fleisch: ${k.name} -${x} → ${who.name} +${x}`); }
   }
-  async endOfTurn(k) { const p = this.c.hasCondition(k, 'Poisoned'); if (p && p.tokens) { const before = k.vigor; k.vigor = Math.max(1, k.vigor - p.tokens); this.say(`${k.name} Poisoned: Vigor -${before - k.vigor}`); } k.braced = false; }
+  async endOfTurn(k) { const p = this.c.hasCondition(k, 'Poisoned'); const pr = this.gearSum(k, 'poisonResilience'); if (p && p.tokens && pr) this.say(`Poison Resilience ${pr}: Poison 토큰 ${Math.min(pr, p.tokens)}개 무시`); if (p && p.tokens > pr) { const before = k.vigor; k.vigor = Math.max(1, k.vigor - (p.tokens - pr)); this.say(`${k.name} Poisoned: Vigor -${before - k.vigor}`); } k.braced = false; }
   async endOfKnightRound(k) { }
   async reactions(when, attack, target) { /* REACT! window: every knight may react (owner-confirmed). One menu with every available reaction + Pass. */
     if (when !== 'beforeAttack' && when !== 'react') return; const used = new Set();

@@ -1,0 +1,42 @@
+// Gear keywords (Keyword List pp.80–87): text parser, constant weapon keywords, Reach / Ranged range, Cumbersome + Unexhaust, defensive abilities, coverage.
+import fs from 'fs';
+import path from 'path';
+import { Campaign } from '../src/engine/campaign.js';
+import { Clash } from '../src/engine/clash.js';
+import { KNOWN_OPS } from '../src/engine/effects.js';
+import { parseGearText, parseSentence } from '../src/engine/gearkw.js';
+const root = new URL('../data/', import.meta.url);
+const loadData = dir => { const out = {}; for (const ent of fs.readdirSync(dir, { withFileTypes: true })) { const full = path.join(dir, ent.name); if (ent.isDirectory()) out[ent.name] = loadData(full); else if (ent.name.endsWith('.json')) out[ent.name.replace(/\.json$/, '')] = JSON.parse(fs.readFileSync(full, 'utf8')); } return out; };
+const data = loadData(root.pathname);
+let fails = 0; const ok = (c, m) => { if (!c) fails++; console.log((c ? 'PASS ' : 'FAIL ') + m); };
+const autoAsk = clash => async q => {
+  const M = clash.monster; const nearestMobDist = c => Math.min(...M.cells.map(m => Math.abs(m.c - c.c) + Math.abs(m.r - c.r)), 99);
+  switch (q.type) {
+    case 'confirm': return q.default;
+    case 'dice': { const k = q.knight ? clash.knights.find(x => x.id === q.knight) : null; let budget = q.max; if (k && /Evasion|Attack/.test(q.text)) budget = Math.min(budget, Math.max(0, k.heatLimit - k.heat - 1) + clash.poolCount('closing')); return q.dice.map((d, i) => ({ d, i })).filter(x => !x.d.hit && x.d.canReroll).slice(0, budget).map(x => x.i); }
+    case 'number': return q.default ?? q.options.at(-1).value;
+    case 'order': return q.options.map(o => o.value);
+    case 'pick': { if (q.options.some(o => o.value === 'skip')) return 'skip'; return q.options[0].value; }
+    case 'move': { if (!q.knight) return q.cells[0]; const k = clash.knights.find(x => x.id === q.knight); const best = [...q.cells].sort((a, b) => nearestMobDist(a) - nearestMobDist(b))[0]; return nearestMobDist(best) < nearestMobDist(k.pos) ? best : null; }
+    case 'action': { const v = q.options.map(o => o.value); if (v.includes('attack')) return 'attack'; const k = clash.knights.find(x => x.id === q.knight); if (v.includes('move') && !clash.adjacentToMonster(k)) return 'move'; const pose = v.find(x => x.startsWith('tech:Knight Pose')); if (pose && clash.knockedDown(k)) return pose; return 'end'; }
+    default: return q.options ? q.options[0].value : null;
+  }
+};
+const MG = data.gear.monster_gear.gear; const G = n => ({ ...MG.find(g => g.name === n), exhausted: false, discarded: false });
+const mk = (seed, monster = 'eggknight', level = 1) => { const c = new Clash({ data, knights: [0, 1, 2, 3].map(i => ({ def: 'fleischritter', name: 'F' + (i + 1) })), monster, level, kingdom: 'sunken', seed }); c.ask = autoAsk(c); c.setup(); return c; };
+const P = (c, l) => c.board.parse(l);
+{ const k = parseGearText('Reach 2.\nAuto-black 1.\nSpell 2. Armor-piercing 2.\n[JUDICIUM] Reach 3, Spell 3 and Armor-piercing 3 instead.'); ok(k.length === 5 && k[0].op === 'reach' && k[0].n === 2 && k[1].op === 'auto' && k[1].token === 'black' && k[2].op === 'token' && k[2].token === 'spell' && k[3].op === 'armorPiercing' && k[4].status === 'text', 'parser: keywords with numbers, Auto-X, tokens, unparsed sentence kept as text');
+  const a = parseSentence('[MAJOR] [Reaction] 1 [Heat] [Exhaust] Reflex.'); ok(a.gate === 'MAJOR' && a.reaction && a.cost.heat === 1 && a.cost.exhaust && a.op === 'reflex' && a.status === 'pending', 'parser: gate, [Reaction], Heat / Exhaust cost');
+  const b = parseSentence('2 [Heat] [Discard] Block.'); ok(b.op === 'block' && b.cost.heat === 2 && b.cost.discard && b.status === 'ok', 'parser: costed defensive ability (Block)');
+  const r = parseSentence('Ranged 3–5.'); ok(r.op === 'ranged' && r.n === 3 && r.m === 5, 'parser: Ranged X–Y'); const ch = parseSentence('Reposition 2 or Drag 2.'); ok(ch.op === 'choice' && ch.options.length === 2, 'parser: "A or B" choice'); }
+{ const c = mk(1); const k = c.knights[0]; const spear = G('Spear of the Third Sacrament'); k.gear = [spear]; const m = c.monster.cells; const far = { c: Math.min(...m.map(x => x.c)) - 2, r: m[0].r }; c.moveKnight(k, far); ok(c.fx.weaponRange(k, spear).max === 2 && c.canAttack(k), 'Reach 2: the Knight can attack from 2 spaces away');
+  c.moveKnight(k, { c: far.c - 1, r: far.r }); ok(!c.canAttack(k), 'Reach 2: not from 3 spaces away'); }
+{ const c = mk(2); const k = c.knights[0]; const w = G('Geistly Flame'); k.gear = [w]; const m = c.monster.cells; const col = Math.min(...m.map(x => x.c)); c.moveKnight(k, { c: col - 1, r: m[0].r }); ok(!c.canAttack(k), 'Ranged 3–5: cannot attack an adjacent target'); c.moveKnight(k, { c: col - 3, r: m[0].r }); ok(c.canAttack(k), 'Ranged 3–5 + Unwieldy: can attack in a straight line at range 3'); }
+{ const c = mk(3); const k = c.knights[0]; const mace = G('Rust Mace'); k.gear = [mace]; const A = { knight: k, weapon: mace, wounded: true, overAT: 2, extraPool: { raw: 0 }, powerRerolls: 0, armorPiercing: 0 }; await c.fx.beforeAttack(k, A); await c.fx.secondWindow(k, A);
+  const br0 = c.poolCount('break'); await c.fx.secondWindow(k, { ...A, weapon: G('Rust Mace'), wounded: false }); ok(mace.exhausted && c.poolCount('black') === 2 && c.poolCount('break') === br0 && br0 >= 2, 'second window: Black 1 token, Overbreak 2 (Power exceeded the AT), Cumbersome exhausts the weapon after a Wound'); ok(!c.canAttack(k), 'an exhausted weapon cannot be the active weapon'); }
+{ const c = mk(4); const k = c.knights[0]; k.gear = [G('Profane Panoply')]; ok(c.fx.soak(k) === 2 && c.fx.has(k, 'rocksteady'), 'Soak 2 and Rocksteady from Armor'); k.gear[0].exhausted = true; ok(c.fx.soak(k) === 0, 'an exhausted card provides no abilities (p.21)'); }
+{ const c = mk(5); const k = c.knights[0]; const sh = G('Heavy Panzershield'); k.gear = [sh]; c.ask = async q => q.type === 'pick' && /Evasion Roll 전/.test(q.text) ? 0 : (q.options ? q.options[0].value : null); const h0 = k.heat; const dw = await c.fx.defenseWindow(k); ok(dw.block === 1 && sh.discarded && k.heat === h0 + 2, 'active ability "2 Heat, Discard: Block" before the Evasion Roll'); }
+{ const c = mk(6); const k = c.knights[0]; const g = G('Shell Helmet'); k.gear = [g]; c.ask = async q => q.type === 'pick' && /Evasion Roll 전/.test(q.text) ? 0 : (q.options ? q.options[0].value : null); await c.fx.defenseWindow(k); ok(c.fx.armorDice(k).red === 1, 'active ability "1 Heat: Reinforce 1" adds a red Armor die'); const again = await c.fx.defenseWindow(k); ok(c.fx.armorDice(k).red === 0, 'each active ability once per Round'); }
+{ let ok2 = 0, pend = 0, text = 0, cards = 0; for (const f of ['gear', 'monster_gear', 'kingdom_sunken', 'kingdom_principality', 'consumables', 'upgrades']) { const d = data.gear[f]; for (const g of (d.gear || d.consumables || d.upgrades)) { cards++; for (const k of parseGearText(g.text)) { if (k.status === 'ok' || k.status === 'na') ok2++; else if (k.status === 'pending') pend++; else text++; } } } ok(ok2 > 450, `coverage: ${cards} cards — ${ok2} sentences resolved, ${pend} recognised keywords pending, ${text} free-text sentences`); }
+{ let done = 0; for (let s = 1; s <= 4; s++) { const c = mk(6000 + s, 'ironcast-dead'); c.knights[0].gear = [G('Spear of the Third Sacrament'), G('Profane Panoply')]; c.knights[1].gear = [G('Rust Mace'), G('Shell Helmet')]; c.knights[2].gear = [G('Riesenmörder')]; const r = await c.run(); if (['win', 'lose'].includes(r)) done++; } ok(done === 4, 'Clashes with monster Gear (Reach / Cumbersome / re-rolls / abilities) run to the end'); }
+console.log(fails ? `${fails} FAIL` : 'ALL PASS'); process.exit(fails ? 1 : 0);

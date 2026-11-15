@@ -86,6 +86,10 @@ export class Clash {
   alive() { return this.knights.filter(k => k.alive); }
   knightAt(cell) { return this.knights.find(k => k.alive && !k.engulfed && cellEq(k.pos, cell)); }
   distKM(k) { if (this.monster.isMob) return this.mobDist(this.monster.cur, k.pos); return this.board.distance([k.pos], this.monster.cells, c => !this.board.isObstacle(c)); }
+  /** Is the Knight within the active weapon's range of its Attack target (Reach / Ranged / Unwieldy)? */
+  inAttackRange(k, A) { if (k.engulfed) return true; const cells = A.guardian ? A.guardian.cells : A.mob ? A.mob.cells : this.monster.cells; return this.fx.inWeaponRange(k, A.weapon, cells); }
+  /** Everything the Knight can attack with weapon `w` right now: Mobs (Mob Clash) or 'boss' / Guardians (Boss Clash). */
+  attackTargets(k, w) { const out = []; if (this.monster.isMob) { const adj = this.adjacentMobs(k), att = this.attackableMobs(k); const locked = att.length < adj.length; for (const m of [...this.monster.mobs, ...(this.troll ? [this.troll] : [])]) if (m.cells.length && this.fx.inWeaponRange(k, w, m.cells) && (!locked || att.includes(m))) out.push(m); return out; } if (this.fx.inWeaponRange(k, w, this.monster.cells) && (k.engulfed || this.board.hasLoS([k.pos], this.monster.cells))) out.push('boss'); for (const g of this.guardians || []) if (!k.engulfed && this.fx.inWeaponRange(k, w, g.cells)) out.push(g); return out; }
   adjacentToMonster(k) { if (k.engulfed) return !this.actingGuardian; return this.board.footprintsAdjacent([k.pos], this.monster.cells); }
   inBlindspot(k) { if (!(this.monsterDef.basicAbilities || []).some(b => /blindspot/i.test(b.name)) && !(this.monster.cur && this.monster.cur.isTroll)) return false; return rearCells(this.board, this.monster.cells, this.monster.facing).some(c => cellEq(c, k.pos)); }
   inSight(k) { return !this.inBlindspot(k) && this.losTo(k); }
@@ -303,6 +307,7 @@ export class Clash {
   async crash(k, opts = {}) { const { charge = false } = opts; if (this.isFen && opts.through && !this.actingGuardian) return this.monster.hasTrait('Inescapable Slime') ? this.fenOoze(k, 'boss') : this.fenPass(k);
     if (charge && this.knockedDown(k) && this.monster.hasTrait('Coup de Grace')) { this.say(`${k.name}: 넘어진 채로 돌진당함 — Coup de Grace: Judicium 대신 사망`, 'death'); await this.die(k, 'Coup de Grace'); return; }
     if (charge && this.knockedDown(k)) { this.say(`${k.name}: 넘어진 채로 돌진당함 → Judicium`); await this.drawJudicium(k); return; }
+    if (this.fx.gearHas(k, 'tumble')) { const d = this.rng.die(10); this.say(`${k.name} Tumble: d10 ${d} → ${d >= 6 ? 'Crash 무시' : '실패'}`, 'dice'); if (d >= 6) return; }
     this.say(`${k.name} Crash`); await this.loseVigor(k, 1, { source: 'crash' }); await this.knockdown(k);
   }
   /** Monster ends movement on a Knight: Crash + Unavoidable Knockback (p.51). */
@@ -316,8 +321,8 @@ export class Clash {
     let dice = (ops.diceFromDopps ? 1 + this.guardians.length : ops.diceFromVigor ? Math.min(6, k.vigor + 1) : ops.diceFromBlood ? ops.diceFromBlood * this.mobBlood() : card.evasionDice) + M.bonuses.evasionDice + sum(gatesOn.filter(g => g.op === 'evasionDice').map(g => g.n)) + (M.isMob && !(M.cur && M.cur.isTroll) ? this.firstmenDice() : 0) + (this.isWAT && !this.actingGuardian && this.flags.trollMinusDie ? -1 : 0); let diff = card.evasionDifficulty + M.modifiers.precision;
     const diffInstead = gatesOn.find(g => g.op === 'difficultyInstead'); if (diffInstead) diff = diffInstead.n;
     if (this.monster.hasTrait('Jacked')) { if (this.jackedTokens >= 2) diff += 1; if (this.jackedTokens >= 5) dice += 1; }
-    let evaBonus = this.fx.evasionBonus(k); let virtue = null;
-    if (ops.judge) { const opts = ops.judge.map(v => ({ label: `${v} +${(k.virtues || {})[v] || 0}`, value: v })); virtue = opts.length > 1 ? await this.ask({ type: 'pick', knight: k.id, text: `${k.name} Judgement — 시험할 Virtue 선택`, options: opts }) || ops.judge[0] : ops.judge[0]; evaBonus = (k.virtues || {})[virtue] || 0; this.say(`${k.name} Judgement: ${virtue} 시험 (+${evaBonus}, ${dice}d ${diff}+)`); }
+    const dw = await this.fx.defenseWindow(k, { judge: !!ops.judge }); let evaBonus = this.fx.evasionBonus(k) + dw.evasion; let virtue = null;
+    if (ops.judge) { const vOf = v => ((k.virtues || {})[v] || 0) + this.fx.virtueBonus(k, v); const opts = ops.judge.map(v => ({ label: `${v} +${vOf(v)}`, value: v })); virtue = opts.length > 1 ? await this.ask({ type: 'pick', knight: k.id, text: `${k.name} Judgement — 시험할 Virtue 선택`, options: opts }) || ops.judge[0] : ops.judge[0]; evaBonus = vOf(virtue); this.say(`${k.name} Judgement: ${virtue} 시험 (+${evaBonus}, ${dice}d ${diff}+)`); }
     if (ops.diceFromBlood) this.say(`Evasion 주사위 X = ${ops.diceFromBlood} × Blood ${this.mobBlood()} = ${dice}`);
     if (dice <= 0) { this.say(`${k.name}: 주사위 0개 → 명중 없음`); attack.hits[k.id] = 0; return; }
     for (const g of gatesOn.filter(g => g.op === 'evasionDice' && g.stat === 'blood')) this.say(`Blood ${this.mobBlood()} ≥ ${g.gte} → +${g.n} 주사위`);
@@ -337,7 +342,7 @@ export class Clash {
     let hits = roll.dice.filter(d => !d10Success(d.v, evaBonus, diff)).length;
     if (this.hasCondition(k, 'Exposed')) { if (M.hasTrait('Unnerving Presence')) { if (hits < roll.dice.length) { hits++; this.say(`Unnerving Presence: ${k.name}(Exposed) — Evasion 주사위 1개 자동 명중`); } } else { this.removeCondition(k, 'Exposed'); } }
     // Block keyword (not against Judgements, p.52)
-    if (!ops.judge) hits = Math.max(0, hits - this.fx.blockValue(k));
+    if (!ops.judge) hits = Math.max(0, hits - this.fx.blockValue(k) - dw.block);
     this.flash('dice', { title: `${k.name} Evasion ${diff}+ (+${evaBonus})`, dice: roll.dice.map(d => ({ v: d.v, ok: d10Success(d.v, evaBonus, diff), crit: d.crit })), sub: hits ? `명중 ${hits}` : 'Full Evade', cls: hits ? 'bad' : 'good' });
     this.say(`${k.name} Evasion ${dice}d ${diff}+ → [${roll.dice.map(d => d.v + (d.rerolled ? '*' : '')).join(' ')}] 명중 ${hits}${roll.critChance ? ' (Crit Evade)' : ''}${roll.critFail ? ' (Crit Evade Fail)' : ''}`, 'dice');
     attack.hits[k.id] = hits; attack.firstHits = attack.firstHits || {}; if (!(k.id in attack.firstHits)) attack.firstHits[k.id] = hits;
@@ -418,7 +423,7 @@ export class Clash {
   standUp(k) { const c = k.conditions.find(c => /^Knockdown/.test(c.id)); if (c) { k.conditions.splice(k.conditions.indexOf(c), 1); this.say(`${k.name} 일어남`); return true; } return false; }
   /** Involuntary straight-line movement away from the monster (Pushback / Knockback). Obstacles: Crash (+destroy if destructible); edge: slide along (p.56). */
   async pushback(k, n, { unavoidable = false, dir = null } = {}) {
-    if (!k.alive || n <= 0 || k.engulfed) return; if (await this.wnColumnGuard(k, '비자발적 이동')) return; if (k.braced && !unavoidable) { this.say(`${k.name} Braced: 밀려나지 않음`); return; }
+    if (!k.alive || n <= 0 || k.engulfed) return; if (await this.wnColumnGuard(k, '비자발적 이동')) return; if ((k.braced || this.fx.gearHas(k, 'braced')) && !unavoidable) { this.say(`${k.name} Braced: 밀려나지 않음`); return; }
     n = Math.max(0, n - (unavoidable ? 0 : this.fx.involuntaryReduction(k)));
     let d = dir || this.dirFromMonster(k.pos); const B = this.board; let moved = 0; const trail = [];
     for (let i = 0; i < n; i++) {
@@ -438,7 +443,7 @@ export class Clash {
     this.say(`${k.name} ${unavoidable ? 'Unavoidable Knockback' : 'Pushback'} ${moved}/${n}칸 → ${B.label(k.pos)}`);
     await this.swampThrough(k, trail.slice(0, -1).filter(c => B.terrainAt(c) && B.terrainAt(c).id === 'swamp')); if (k.alive && trail.some(c => B.terrainAt(c) && B.terrainAt(c).id === 'rubble')) { this.say(`${k.name}: Rubble 위로 비자발적 이동 → Knockdown`); await this.knockdown(k); } await this.swampSweep();
   }
-  async knockback(k, n, opts = {}) { return this.pushback(k, n, opts); }
+  async knockback(k, n, opts = {}) { if (!opts.unavoidable && k.alive && this.fx.gearHas(k, 'stalwart') && await this.yesNo(`${k.name}: Stalwart — Knockback ${n} 무시?`, true)) { this.say(`${k.name} Stalwart: Knockback 무시`); return; } return this.pushback(k, n, opts); }
   async displace(k) { if (k.engulfed) return; const B = this.board; const free = B.neighbors(k.pos).filter(c => !B.isObstacle(c) && !this.knightAt(c) && !this.monsterOccupies(c)); if (!free.length) { await this.die(k, 'Displace 불가'); return; } const dest = free.length === 1 ? free[0] : await this.ask({ type: 'move', knight: k.id, text: `${k.name} Displace — 칸 선택`, cells: free, options: free.map(c => ({ label: B.label(c), value: c })) }) || free[0]; this.moveKnight(k, dest); this.say(`${k.name} Displace → ${B.label(dest)}`); await this.swampSweep(); }
   moveKnight(k, cell) { k._moved = true; this.board.remove([k.pos]); k.pos = cell; this.board.place({ kind: 'knight', id: k.id }, [cell]); }
 
@@ -503,9 +508,11 @@ export class Clash {
       const opts = [];
       if (!kdNow) { if (k.actions.move) opts.push({ label: `이동 (Speed ${this.fx.speed(k)})`, value: 'move' }); if ((k.actions.combat || k.actions.extraCombat > 0) && this.canAttack(k)) opts.push({ label: '공격', value: 'attack' }); for (const t of this.fx.usableTechniques(k)) opts.push({ label: `기술: ${t.name} (${this.fx.costLabel(k, t)})`, value: 'tech:' + t.name }); for (const a of this.fx.freeActions(k)) opts.push({ label: a.label, value: 'free:' + a.id }); }
       else opts.push(...this.fx.usableTechniques(k).filter(t => t.ops.some(o => o.op === 'standUp')).map(t => ({ label: `기술: ${t.name}`, value: 'tech:' + t.name })));
+      if (!kdNow && k.gear.some(g => g.exhausted && !g.discarded)) { if (k.actions.move) opts.push({ label: `Unexhaust — 이동 행동 사용 (${k.gear.filter(g => g.exhausted && !g.discarded).map(g => g.name).join(', ')})`, value: 'unex:move' }); if (k.actions.combat) opts.push({ label: 'Unexhaust — 전투 행동 사용', value: 'unex:combat' }); }
       opts.push({ label: '턴 종료', value: 'end' });
       const choice = opts.length === 1 ? 'end' : await this.ask({ type: 'action', knight: k.id, options: opts });
       if (choice === 'end') done = true;
+      else if (choice.startsWith('unex:')) { k.actions[choice.slice(5)] = false; for (const g of k.gear) if (!g.discarded) g.exhausted = false; this.say(`${k.name}: ${choice.slice(5) === 'move' ? '이동' : '전투'} 행동으로 모든 장비 Unexhaust (p.21)`, 'tech'); }
       else if (choice === 'move') { await this.knightMove(k, this.fx.speed(k)); k.actions.move = false; }
       else if (choice === 'attack') { if (k.actions.combat) k.actions.combat = false; else k.actions.extraCombat--; await this.knightAttack(k); }
       else if (choice.startsWith('tech:')) await this.fx.useTechnique(k, k.hand.find(t => t.name === choice.slice(5)));
@@ -519,7 +526,7 @@ export class Clash {
     const kd2 = k.conditions.find(c => c.id === 'Knockdown (Falling Down)'); if (kd2) { kd2.id = 'Knockdown (Standing Up)'; this.say(`${k.name}: Knockdown → Standing Up (다음 턴 시작 시 일어남)`); }
     await this.fx.endOfTurn(k);
   }
-  canAttack(k) { if (!this.monster.isMob && this.guardians && this.guardians.some(g => this.board.adjacent(g.cells[0], k.pos)) && k.gear.some(g => g.type === 'weapon' && !g.exhausted && !g.discarded)) return true; if (this.monster.isMob) return this.attackableMobs(k).length > 0 && k.gear.some(g => g.type === 'weapon' && !g.exhausted && !g.discarded); return this.adjacentToMonster(k) && k.gear.some(g => g.type === 'weapon' && !g.exhausted && !g.discarded) && this.board.hasLoS([k.pos], this.monster.cells); }
+  canAttack(k) { return this.fx.usableWeapons(k).some(w => this.attackTargets(k, w).length > 0); }
   reachable(k, speed) {
     const B = this.board; const out = new Map(); const t0 = B.terrainAt(k.pos); const q = [{ cell: k.pos, d: t0 && t0.difficult ? 1 : 0 }]; /* starting a move on Difficult Terrain costs +1 (Q&A, owner reference 2026-11-15) */ const seen = new Set([B.key(k.pos)]);
     while (q.length) { const { cell, d } = q.shift(); if (d >= speed) continue; for (const n of B.neighbors(cell)) { const key = B.key(n); if (seen.has(key)) continue; if (B.isObstacle(n) || this.knightAt(n) || this.monsterOccupies(n)) continue; seen.add(key); const t = B.terrainAt(n); const cost = t && t.difficult ? 2 : 1; if (d + cost > speed) continue; out.set(key, n); q.push({ cell: n, d: d + cost }); } }
@@ -552,13 +559,13 @@ export class Clash {
 
   // ---------- Knight Attack (pp.56–62) ----------
   async knightAttack(k, { bonus = false } = {}) {
-    const weapons = k.gear.filter(g => g.type === 'weapon' && (!g.exhausted || bonus) && !g.discarded);
+    let weapons = this.fx.usableWeapons(k, bonus); { const inR = weapons.filter(w => this.attackTargets(k, w).length); if (inR.length) weapons = inR; }
     if (!weapons.length && k.knighvesReserve && !k.gear.some(g => g.type === 'weapon' && !g.discarded)) { k.gear.push(k.knighvesReserve); weapons.push(k.knighvesReserve); k.knighvesReserve = null; this.say(`${k.name}: 무기를 잃어 Knighves 장착`); }
     if (!weapons.length) { this.say(`${k.name}: 사용 가능한 무기 없음`); return; }
     let w = weapons[0]; if (weapons.length > 1) { const wn = await this.ask({ type: 'weapon', knight: k.id, options: weapons.map(g => ({ label: `${g.name} (⚔${g.attackDice} +${g.precision})`, value: g.name })) }); w = weapons.find(g => g.name === wn) || weapons[0]; }
     if (bonus && w.exhausted) w.exhausted = false;
-    let guardian = null; if (!this.monster.isMob && this.guardians && this.guardians.length) { const adjG = k.engulfed ? [] : this.guardians.filter(g => this.board.adjacent(g.cells[0], k.pos)); const canTroll = this.adjacentToMonster(k); if (adjG.length) { const opts = [...(canTroll ? [{ label: this.monster.name, value: 'T' }] : []), ...adjG.map(g => ({ label: `${this.guardianName(g)} (${this.board.label(g.cells[0])})`, value: 'G' + g.n }))]; const v = opts.length > 1 ? await this.ask({ type: 'pick', text: `${k.name}: 공격 대상`, options: opts }) : opts[0].value; if (v !== 'T') guardian = adjG.find(g => 'G' + g.n === v) || adjG[0]; } }
-    let mobTarget = null; if (this.monster.isMob) { mobTarget = await this.pickMobTarget(k); if (!mobTarget) { this.say(`${k.name}: 인접한 Mob 없음`); return; } this.monster.cur = mobTarget; const hop = this.revealedAura('hoplomachus').find(h => h !== mobTarget && this.inZoneOf(h, mobTarget)); if (hop) { this.say(`Hoplomachus: Zone 2 안의 다른 Monster 공격 → ${k.name} Vigor -2`); await this.loseVigor(k, 2, { source: 'effect', armor: false }); if (!k.alive) return; } }
+    let guardian = null; if (!this.monster.isMob && this.guardians && this.guardians.length) { const tg0 = this.attackTargets(k, w); const adjG = tg0.filter(x => x !== 'boss'); const canTroll = tg0.includes('boss'); if (adjG.length) { const opts = [...(canTroll ? [{ label: this.monster.name, value: 'T' }] : []), ...adjG.map(g => ({ label: `${this.guardianName(g)} (${this.board.label(g.cells[0])})`, value: 'G' + g.n }))]; const v = opts.length > 1 ? await this.ask({ type: 'pick', text: `${k.name}: 공격 대상`, options: opts }) : opts[0].value; if (v !== 'T') guardian = adjG.find(g => 'G' + g.n === v) || adjG[0]; } }
+    let mobTarget = null; if (this.monster.isMob) { mobTarget = await this.pickMob(this.attackTargets(k, w), `${k.name}: 공격할 Mob 선택`); if (!mobTarget) { this.say(`${k.name}: 인접한 Mob 없음`); return; } this.monster.cur = mobTarget; const hop = this.revealedAura('hoplomachus').find(h => h !== mobTarget && this.inZoneOf(h, mobTarget)); if (hop) { this.say(`Hoplomachus: Zone 2 안의 다른 Monster 공격 → ${k.name} Vigor -2`); await this.loseVigor(k, 2, { source: 'effect', armor: false }); if (!k.alive) return; } }
     const A = { knight: k, weapon: w, bonus, mob: mobTarget, guardian, hits: 0, critChance: false, bp: null, totalPower: 0, wounded: false, critical: false, ignoreResponses: false, extraPool: { red: 0, black: 0, white: 0, raw: 0 }, powerRerolls: 0, armorPiercing: 0 };
     this.currentKnightAttack = A; this.say(`${k.name} 공격 선언 — ${w.name}${bonus ? ' (Bonus Attack)' : ''}`, 'atk');
     const kc = this.hasCondition(k, 'Knockdown (Standing Up)'); if (kc) this.standUp(k);
@@ -577,9 +584,9 @@ export class Clash {
     prec = (Number(w.precision) || 0) + this.fx.precision(k) + (A.extraPrecision || 0) + this.poolCount('opening') + this.poolCount('closing') + (this.monster.isMob ? this.mobAura('knightPrecision') : 0) + this.hauntPrecision(k);
     let misses = roll.dice.filter(d => !isHit(d));
     if (misses.length && (k.heat < k.heatLimit || this.poolCount('closing'))) {
-      const maxR = Math.min(misses.length, (k.heatLimit - k.heat) + this.poolCount('closing'));
-      const picked = await this.ask({ type: 'dice', knight: k.id, text: `${k.name} Attack ${dice}d vs ${toHit}+ (보너스 +${prec}) — 재굴림 (Closing ${this.poolCount('closing')}개 무료, 이후 Heat +1/개)`, dice: roll.dice.map(d => ({ v: d.v, crit: d.crit, hit: isHit(d), canReroll: !d.rerolled })), max: maxR });
-      if (picked && picked.length) { const free = Math.min(picked.length, this.poolCount('closing')); this.poolTake('closing', free); const paid = picked.length - free; if (paid) k.gainHeat(paid, { voluntary: true }); for (const i of picked) { const d = roll.dice[i]; d.v = this.rng.die(10); d.rerolled = true; } }
+      const freeAR = A.attackRerolls || 0; const maxR = Math.min(misses.length, (k.heatLimit - k.heat) + this.poolCount('closing') + freeAR);
+      const picked = await this.ask({ type: 'dice', knight: k.id, text: `${k.name} Attack ${dice}d vs ${toHit}+ (보너스 +${prec}) — 재굴림 (Attack Re-roll ${freeAR}개 · Closing ${this.poolCount('closing')}개 무료, 이후 Heat +1/개)`, dice: roll.dice.map(d => ({ v: d.v, crit: d.crit, hit: isHit(d), canReroll: !d.rerolled })), max: maxR });
+      if (picked && picked.length) { const ar = Math.min(picked.length, freeAR); A.attackRerolls = freeAR - ar; if (ar) this.say(`Attack Re-roll ${ar}개 (무료)`); const free = Math.min(picked.length - ar, this.poolCount('closing')); this.poolTake('closing', free); const paid = picked.length - ar - free; if (paid) k.gainHeat(paid, { voluntary: true }); for (const i of picked) { const d = roll.dice[i]; d.v = this.rng.die(10); d.rerolled = true; } }
     }
     if (A.mob && A.mob.revealed && A.mob.card.ops.aura && A.mob.card.ops.aura.retiarius && A.mob.generic > 0) { A.mob.generic--; prec -= 2; for (const d of roll.dice) { d.v = this.rng.die(10); d.rerolled = true; } this.say(`Retiarius: Generic 토큰 버림 → Attack Roll 다시 (-2 Precision): [${roll.dice.map(d => d.v).join(' ')}]`, 'dice'); }
     if (this.isFen && roll.dice[0].v === 1) { this.say(`${k.name} Crit Miss`); await this.fenCritMiss(k); }
@@ -669,7 +676,7 @@ export class Clash {
   bpAT(bp) { if (bp && bp.isGuardianBP) return bp.at + this.monster.bonuses.at + this.monster.modifiers.at; if (this.isFen) { const g = this.guardians.find(g => g.cards.includes(bp)); return g ? this.doppAT(g) : this.fenAT(bp); } if (this.monster.isMob) { const m = this.monster.mobs.find(x => x.card === bp); return m ? this.mobAT(m) : bp.at + this.monster.bonuses.at + this.monster.modifiers.at; } return this.monster.atOf(bp, (this.monster.hasTrait('Panzeronion') ? this.armorTokens[bp.level] : 0) + this.difficultTerrainAT(this.monster.cells)); }
   clearPool() { const fire = this.pool.filter(t => t.token === 'fire'); const keep = [...this.pool.filter(t => t.resource), ...fire.slice(1)]; /* Fire: leave all but one unused Fire token (p.19) */ const n = this.pool.length - keep.length; this.pool = keep; if (n) this.say(`Knight Pool 정리 (-${n})`, 'pool'); }
   /** After any action: Counter trait (Eggknight). */
-  async afterAction() { await this.swampSweep(); await this.fenAfterAction(); await this.pumpAfterAction(); if (!this.monster.isMob) await this.trollAfterAction();
+  async afterAction() { for (const kn of this.knights) kn.reinforce = null; await this.swampSweep(); await this.fenAfterAction(); await this.pumpAfterAction(); if (!this.monster.isMob) await this.trollAfterAction();
     if (this.monster.isMob) await this.mobAfterAction();
     if (this.monster.hasTrait('Counter') && (this.monster.generic.counter || 0) >= 3) { this.monster.generic.counter = 0; this.say('Counter: 토큰 3 → Signature'); await this.performSignature(); }
   }
