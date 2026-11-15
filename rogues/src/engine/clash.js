@@ -323,6 +323,8 @@ export class Clash {
     const diffInstead = gatesOn.find(g => g.op === 'difficultyInstead'); if (diffInstead) diff = diffInstead.n;
     if (this.monster.hasTrait('Jacked')) { if (this.jackedTokens >= 2) diff += 1; if (this.jackedTokens >= 5) dice += 1; }
     const dw = await this.fx.defenseWindow(k, { judge: !!ops.judge }); let evaBonus = this.fx.evasionBonus(k) + dw.evasion; let virtue = null;
+    let freeER = this.fx.evasionRerolls(k), cloak = 0;
+    for (const g of k.gear) { if (g.discarded || g.exhausted) continue; const o = this.fx.constKw(k, g).find(x => x.op === 'targetEvasionChoice'); if (!o) continue; const v = await this.ask({ type: 'pick', knight: k.id, text: `${k.name}: ${g.name} — Monster Attack의 대상`, options: [{ label: `+${o.e} Evasion`, value: 'e' }, { label: `Evasion Re-roll ${o.r}`, value: 'r' }, { label: '사용 안 함', value: 'skip' }] }); if (v === 'e') evaBonus += o.e; else if (v === 'r') freeER += o.r; if (v === 'e' || v === 'r') { const p = this.fx.constKw(k, g).find(x => x.op === 'targetEvasionPenalty'); cloak += p ? p.n : 0; this.say(`${g.name}: ${v === 'e' ? `+${o.e} Evasion` : `Evasion Re-roll ${o.r}`}`, 'tech'); } }
     if (ops.judge) { const vOf = v => ((k.virtues || {})[v] || 0) + this.fx.virtueBonus(k, v); const opts = ops.judge.map(v => ({ label: `${v} +${vOf(v)}`, value: v })); virtue = opts.length > 1 ? await this.ask({ type: 'pick', knight: k.id, text: `${k.name} Judgement — 시험할 Virtue 선택`, options: opts }) || ops.judge[0] : ops.judge[0]; evaBonus = vOf(virtue); this.say(`${k.name} Judgement: ${virtue} 시험 (+${evaBonus}, ${dice}d ${diff}+)`); }
     if (ops.diceFromBlood) this.say(`Evasion 주사위 X = ${ops.diceFromBlood} × Blood ${this.mobBlood()} = ${dice}`);
     if (dice <= 0) { this.say(`${k.name}: 주사위 0개 → 명중 없음`); attack.hits[k.id] = 0; return; }
@@ -332,9 +334,9 @@ export class Clash {
     const evade = async (n, label = '') => {
       const r = rollD10s(this.rng, n);
       if (r.dice.some(d => !d10Success(d.v, evaBonus, diff))) { const gd = await this.fx.gearUse(k, ['guard'], `Evasion [${r.dice.map(d => d.v).join(' ')}] vs ${diff}+ — Guard 사용?`); if (gd) { for (let x = gd.n || 1; x > 0; x--) { const fail = r.dice.map((d, i) => ({ d, i })).filter(z => !d10Success(z.d.v, evaBonus, diff) && z.d.v > 1); if (!fail.length) break; const i = fail.length > 1 ? await this.ask({ type: 'pick', knight: k.id, text: `Guard: +1을 줄 주사위 (남은 ${x})`, options: fail.map(z => ({ label: `주사위 ${z.i + 1}: ${z.d.v}`, value: z.i })) }) : fail[0].i; const d = r.dice[i == null ? fail[0].i : i]; d.v = Math.min(10, d.v + 1); d.rerolled = true; } this.say(`Guard → [${r.dice.map(d => d.v).join(' ')}]`); } }
-      if (r.dice.some(d => !d10Success(d.v, evaBonus, diff)) && k.heat < k.heatLimit) {
-        const picked = await this.ask({ type: 'dice', knight: k.id, text: `${k.name} Evasion ${label}${n}d ${diff}+ (보너스 +${evaBonus}) — Heat 재굴림 (Heat ${k.heat}/${k.heatLimit}, 주사위당 +1)`, dice: r.dice.map(d => ({ v: d.v, crit: d.crit, hit: d10Success(d.v, evaBonus, diff), canReroll: !d.rerolled })), max: k.heatLimit - k.heat });
-        if (picked && picked.length) { k.gainHeat(picked.length, { voluntary: true }); for (const i of picked) { const d = r.dice[i]; d.v = this.rng.die(10); d.rerolled = true; if (d.crit && d.v === 1) this.say('Crit Evade Fail (재굴림)'); } }
+      if (r.dice.some(d => !d10Success(d.v, evaBonus, diff)) && (k.heat < k.heatLimit || freeER > 0)) {
+        const picked = await this.ask({ type: 'dice', knight: k.id, text: `${k.name} Evasion ${label}${n}d ${diff}+ (보너스 +${evaBonus}) — 재굴림 (${freeER ? `무료 Evasion Re-roll ${freeER}, 이후 ` : ''}Heat ${k.heat}/${k.heatLimit}, 주사위당 +1)`, dice: r.dice.map(d => ({ v: d.v, crit: d.crit, hit: d10Success(d.v, evaBonus, diff), canReroll: !d.rerolled })), max: k.heatLimit - k.heat + freeER });
+        if (picked && picked.length) { const fr = Math.min(freeER, picked.length); freeER -= fr; if (fr) this.say(`Evasion Re-roll ${fr}개 (무료)`); if (picked.length - fr) k.gainHeat(picked.length - fr, { voluntary: true }); for (const i of picked) { const d = r.dice[i]; d.v = this.rng.die(10); d.rerolled = true; if (d.crit && d.v === 1) this.say('Crit Evade Fail (재굴림)'); } }
       }
       return r;
     };
@@ -347,6 +349,7 @@ export class Clash {
     if (!ops.judge) hits = Math.max(0, hits - this.fx.blockValue(k) - dw.block); else hits = Math.max(0, hits - this.fx.defyValue(k) - dw.block);
     this.flash('dice', { title: `${k.name} Evasion ${diff}+ (+${evaBonus})`, dice: roll.dice.map(d => ({ v: d.v, ok: d10Success(d.v, evaBonus, diff), crit: d.crit })), sub: hits ? `명중 ${hits}` : 'Full Evade', cls: hits ? 'bad' : 'good' });
     this.say(`${k.name} Evasion ${dice}d ${diff}+ → [${roll.dice.map(d => d.v + (d.rerolled ? '*' : '')).join(' ')}] 명중 ${hits}${roll.critChance ? ' (Crit Evade)' : ''}${roll.critFail ? ' (Crit Evade Fail)' : ''}`, 'dice');
+    if (hits > 0) { if (cloak && k.alive) { this.say(`${k.name}: Full Evade 실패 — Vigor -${cloak} (Gear)`); await this.fx.runKnightOp({ op: 'loseVigor', n: cloak }, k, {}); } for (const g of k.gear) { if (g.discarded || g.exhausted) continue; for (const o of this.fx.constKw(k, g)) if (o.op === 'hitPoolTokens') { this.say(`${g.name}: Monster Attack에 명중당함`, 'tech'); this.poolAdd('opening', o.opening); this.poolAdd('black', o.black); } } }
     attack.hits[k.id] = hits; attack.firstHits = attack.firstHits || {}; if (!(k.id in attack.firstHits)) attack.firstHits[k.id] = hits;
     if (ops.critEvadeFail && roll.critFail) { this.say('Crit Evade Fail'); await this.fx.runMonsterOps(ops.critEvadeFail, { attack, target: k, hits }); }
     if (ops.always) await this.fx.runMonsterOps(ops.always, { attack, target: k, hits, judgement: !!ops.judge }); const v0 = k.vigor;
@@ -395,7 +398,7 @@ export class Clash {
     if (!res || !res.shuffledBack) deck.putBottom(card);
   }
   async drawJudicium(k) {
-    if (!k.alive) return; if (this.currentAttack && this.currentAttack.card.ops.judiciumDies) { this.say(`${k.name}: 이 공격으로 Judicium을 뽑게 됨 → 대신 사망`, 'death'); return this.die(k, this.currentAttack.card.name); } const cards = [...this.judiciumBase, ...this.judiciumExtra]; const card = this.rng.pick(cards);
+    if (!k.alive) return; if (this.currentAttack && this.currentAttack.card.ops.judiciumDies) { this.say(`${k.name}: 이 공격으로 Judicium을 뽑게 됨 → 대신 사망`, 'death'); return this.die(k, this.currentAttack.card.name); } let cards = [...this.judiciumBase, ...this.judiciumExtra]; if (this.judiciumExtra.length && await this.fx.gearUse(k, ['judiciumNoMassive'], `Judicium (${cards.length}장) — Massive Peril 카드 제외?`)) { cards = [...this.judiciumBase]; this.say('Massive Peril Judicium 제외 (이번 뽑기만)', 'tech'); } const opp = await this.fx.gearUse(k, ['judiciumOpposite'], 'Judicium을 뽑기 전 — 반대 결과로 해결?', false); let card = this.rng.pick(cards); if (opp) { const o2 = this.judiciumBase.find(c => !!c.death !== !!card.death); this.say(`Judicium ${card.name} → 반대: ${o2.name}`, 'tech'); card = o2; }
     this.say(`${k.name} Judicium (${cards.length}장): ${card.name}`, 'mortis'); this.flash('card', { title: `${k.name} — Judicium`, name: card.name, text: card.text || '', cls: card.death ? 'bad' : 'good' });
     if (card.death) await this.die(k, card.name); else { k.vigor = Math.max(0, k.vigor); }
   }
@@ -527,6 +530,7 @@ export class Clash {
     // Drowning / Slimed: end of turn without moving
     for (const c of [...k.conditions]) { const def = this.conditionDefs[c.id]; const nm = def && def.ops && def.ops.endTurnNoMove; if (!nm || k.movedThisTurn) continue; if (nm === 'die') { this.say(`${k.name}: ${c.id} — 이동하지 않음 → 사망`, 'death'); await this.die(k, c.id); } else if (nm === 'flip' && def.flipSide) { c.id = def.flipSide; this.say(`${k.name}: ${def.name} — 이동하지 않음 → ${def.flipSide}`, 'cond'); } }
     await this.fx.hideAtEndOfTurn(k);
+    k.moveBoost = 0;
     if (!k.movedThisTurn && k.alive && this.fx.gearHas(k, 'takeRoot') && !k.rooted) { k.rooted = true; this.say(`${k.name}: Take Root — 이동할 때까지 Braced`, 'tech'); }
     k.movedThisTurn = false;
     // end of turn: Knockdown (Falling Down) → flip
@@ -558,7 +562,7 @@ export class Clash {
     if (!target) return;
     // Drowning / Slimed: "When you're about to move voluntarily, roll [X Armor die] and all your Armor dice. For each [Potential] gain +1 Heat."
     for (const c of [...k.conditions]) { const def = this.conditionDefs[c.id]; const vr = def && def.ops && def.ops.voluntaryMoveRoll; if (!vr || typeof vr !== 'object') continue; const dice = this.fx.armorDice(k); dice[vr.extra] = (dice[vr.extra] || 0) + 1; const r = rollArmor(this.rng, dice, this.data.components.dice.faces, this.data.components.dice.armorSymbol); this.say(`${k.name} ${c.id}: Armor ${r.dice.length}d → ✦${r.mitigated} → Heat +${r.mitigated}`, 'cond'); if (r.mitigated) k.gainHeat(r.mitigated); }
-    k.rooted = false; const start = k.pos; const sw = this.swampOnPath(k, target, speed); this.moveKnight(k, target); if (sw.length) await this.swampThrough(k, sw); if (!k.alive) return; this.say(`${k.name} 이동 → ${this.board.label(target)}`); k.movedThisTurn = true; k.tempSpeed = 0; await this.geyserKnight(k, start); if (this.monster.isMob) this.cestusCheck(k); if (k.tempSpeed) k.tempSpeed = 0;
+    k.rooted = false; k.moveBoost = 0; const start = k.pos; const sw = this.swampOnPath(k, target, speed); this.moveKnight(k, target); if (sw.length) await this.swampThrough(k, sw); if (!k.alive) return; this.say(`${k.name} 이동 → ${this.board.label(target)}`); k.movedThisTurn = true; k.tempSpeed = 0; await this.geyserKnight(k, start); if (this.monster.isMob) this.cestusCheck(k); if (k.tempSpeed) k.tempSpeed = 0;
     await this.swampSweep(); if (!k.alive) return;
     for (const c of [...k.conditions]) { const def = this.conditionDefs[c.id]; const on = def && def.ops && def.ops.onVoluntaryMove; if (on === 'flip' && def.flipSide) { c.id = def.flipSide; this.say(`${k.name}: ${def.name} → ${def.flipSide}`, 'cond'); } else if (on === 'discardSpeed') { this.removeCondition(k, c.id); k.tempSpeed = (k.tempSpeed || 0) + 1; this.say(`${k.name}: ${def.name} 제거, 임시 Speed +1`, 'cond'); } }
     const c = this.hasCondition(k, 'Knockdown (Standing Up)'); if (c) this.standUp(k);
