@@ -801,11 +801,13 @@
    "footer": "WHITE APE TROLL – AI 3",
    "unclear": [
     "code: tiny low-resolution print; best reading 27A1293, corroborated by the sheet-order sequence pattern",
-    "targeting-header gate reads 'IGNORE' followed by the black beast/claw REACT glyph (i.e. Heat 3+: ignore the REACT! window on the targeting line) - glyph interpretation",
     "moveTag gate: 'Heat 2+' sits at the end of the red tag row and its effect 'DIFFICULTY 8+ INSTEAD' wraps to the next line"
    ],
    "text": "APE OUT / ZONE ATTACK / Evasion 4 dice, 6+ / TARGETING [Heat 3+ ▸ IGNORE [REACT! window]]: • Closest Knight in sight [REACT!] / LAND ON TOP & ZONE ATTACK 2 [Heat 2+ ▸ DIFFICULTY 8+ INSTEAD] / For each hit lose -2 [Vigor]. [Peril Check]. / Knockdown. / WHITE APE TROLL – AI 3",
-   "moveNote": "tag has no MOVE keyword (printed: LAND ON TOP & ZONE ATTACK 2)"
+   "moveNote": "tag has no MOVE keyword (printed: LAND ON TOP & ZONE ATTACK 2)",
+   "notes": [
+    "\"IGNORE (ALL) [REACT! window]\" 게이트 = 이 공격에는 REACT! 창이 열리지 않음 — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "15.png",

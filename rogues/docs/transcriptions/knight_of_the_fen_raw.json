@@ -369,11 +369,13 @@
    "footer": "KNIGHT OF THE FEN – AI 1",
    "unclear": [
     "code: faint tiny print; best reading 27A1438 (digits blurred, chosen with help of the sheet-order sequence pattern)",
-    "Heat 3+ gate reads \"IGNORE ALL\" followed by a small white glyph; best reading is the REACT! claw glyph (i.e. ignore all React windows) but the glyph is only a few pixels and could be another icon",
     "move tag is \"RANGE ATTACK 6\" with no MOVE (the Doppelganger line does say \"Move & Range Attack 4\")"
    ],
    "text": "MUD IN YOUR EYE / RANGE ATTACK / Evasion 4 dice, 8+ / TARGETING: • Furthest Knight in front, in range • Furthest Knight in sight, in range [REACT!] / RANGE ATTACK 6 [Heat 3+ ▸ IGNORE ALL [REACT! window]] / For each hit lose -1 [Vigor]. [Peril Check]. Two or more hits, gain the Slimed Condition card. Dwell. Crit Evade Fail: Gain the Slimed Condition card. [REACT!] / DOPPELGANGER: Move & Range Attack 4 the closest Knight. For each hit lose -1 [Vigor]. [Peril Check]. / KNIGHT OF THE FEN – AI 1",
-   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line."
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line.",
+   "notes": [
+    "\"IGNORE (ALL) [REACT! window]\" 게이트 = 이 공격에는 REACT! 창이 열리지 않음 — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "04.png",
