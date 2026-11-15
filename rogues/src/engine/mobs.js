@@ -26,7 +26,9 @@ export const MobMixin = {
   },
   addMob(card, cell, facing, n, { revealed = false } = {}) {
     const M = this.monster; const mob = { n, card, revealed, cells: cell ? [cell] : [], facing: facing || 'N', armor: 0, tokens: [], blood: 0, offboard: !cell };
-    M.mobs.push(mob); M.mobs.sort((a, b) => a.n - b.n); if (cell) this.board.place({ kind: 'mob', n }, [cell]); return mob;
+    M.mobs.push(mob); M.mobs.sort((a, b) => a.n - b.n); if (cell) this.board.place({ kind: 'mob', n }, [cell]);
+    if (this.orphanTokens && this.orphanTokens.length) { const t = this.orphanTokens.shift(); mob.tokens.push(t); this.say(`Activation 토큰(${t.type}) → 새 Mob #${n} (Mob track이 비어 있었음)`); }
+    return mob;
   },
   freeSlot() { for (let n = 1; n <= 10; n++) if (!this.monster.mobs.some(m => m.n === n)) return n; return null; },
   mobAt(cell) { return this.monster.isMob ? this.monster.mobs.find(m => cellEq(m.cells[0], cell)) || null : null; },
@@ -67,7 +69,7 @@ export const MobMixin = {
   moveToken(fromN, tok, flip) {
     const M = this.monster; const src = M.mobs.find(m => m.tokens.includes(tok)); if (src) src.tokens.splice(src.tokens.indexOf(tok), 1);
     const self = M.mobs.find(m => m.n === fromN); const order = [...M.mobs.filter(m => m.n > fromN), ...M.mobs.filter(m => m.n < fromN), ...(self ? [self] : [])];
-    const dest = order.find(m => !m.tokens.length) || order[0]; if (!dest) return;
+    const dest = order.find(m => !m.tokens.length) || order[0]; if (!dest) { (this.orphanTokens = this.orphanTokens || []).push(tok); if (flip) tok.ready = false; return; }
     dest.tokens.push(tok); if (flip) tok.ready = false;
   },
 

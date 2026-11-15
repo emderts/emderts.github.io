@@ -1,6 +1,6 @@
 # Builds data/monsters/haunts-of-utrebant.json from the owner-confirmed transcription (docs/transcriptions/haunts_of_utrebant_raw.json)
 # plus hand-written engine ops. Clash Setup comes from the Sunken Kingdom Codex (not yet supplied → clashSetup null → not playable).
-# Usage: python3 tools/build_haunts.py data/monsters/haunts-of-utrebant.json [setup.json]
+# Usage: python3 tools/build_haunts.py data/monsters/haunts-of-utrebant.json docs/transcriptions/haunts_clash_setup.json
 import json, sys, copy
 raw = json.load(open('docs/transcriptions/haunts_of_utrebant_raw.json'))
 S = raw['sheet']

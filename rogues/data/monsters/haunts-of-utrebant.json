@@ -2866,7 +2866,183 @@
    ]
   }
  },
- "clashSetup": null,
+ "clashSetup": {
+  "_source": "Sunken Kingdom Codex p.48–49 (Haunts of Utrebant Clash) — owner PDF 2026-11-15",
+  "requiredTiles": {
+   "swamp 1x2": 8,
+   "swamp 2x2": 4,
+   "ruined wall L": 2,
+   "ruined wall 1x4": 1
+  },
+  "steps": [
+   "Standard Preparations (Rulebook p.44)",
+   "Monster Positioning: Put numbered base rings on all Haunt of Utrebant miniatures. Randomly place Haunt of Utrebant miniatures numbered 1–3 on the spaces designated on the diagram. Note the facing direction indicated by the arrows. Then, place 3 BP 1 cards face down in a random order on spaces 1–3 on the Mob track.",
+   "Additional Setup: Place the Fool's deck near the Monster Sheet. Follow additional Clash Setup instructions introduced by Traits (if any).",
+   "Aftermath Loot: Victorious Search — Clash Scavenge 1 and Scavenge 3; Forlorn Search — Scavenge 3."
+  ],
+  "mobStart": [
+   {
+    "cell": "I7",
+    "facing": "down"
+   },
+   {
+    "cell": "F11",
+    "facing": "left"
+   },
+   {
+    "cell": "B8",
+    "facing": "up"
+   }
+  ],
+  "mobTrack": {
+   "1": 3
+  },
+  "knightStart": [
+   "F7",
+   "F8",
+   "E7",
+   "E8"
+  ],
+  "terrain": [
+   {
+    "tile": "swamp",
+    "cells": [
+     "J5",
+     "J6"
+    ],
+    "shape": "1x2"
+   },
+   {
+    "tile": "swamp",
+    "cells": [
+     "J7",
+     "J8"
+    ],
+    "shape": "1x2"
+   },
+   {
+    "tile": "swamp",
+    "cells": [
+     "I1",
+     "H1"
+    ],
+    "shape": "1x2"
+   },
+   {
+    "tile": "swamp",
+    "cells": [
+     "H14",
+     "G14"
+    ],
+    "shape": "1x2"
+   },
+   {
+    "tile": "swamp",
+    "cells": [
+     "G8",
+     "G9"
+    ],
+    "shape": "1x2"
+   },
+   {
+    "tile": "swamp",
+    "cells": [
+     "E12",
+     "D12"
+    ],
+    "shape": "1x2"
+   },
+   {
+    "tile": "swamp",
+    "cells": [
+     "B1",
+     "B2"
+    ],
+    "shape": "1x2"
+   },
+   {
+    "tile": "swamp",
+    "cells": [
+     "B7",
+     "B8"
+    ],
+    "shape": "1x2"
+   },
+   {
+    "tile": "swamp",
+    "cells": [
+     "H2",
+     "H3",
+     "G2",
+     "G3"
+    ],
+    "shape": "2x2"
+   },
+   {
+    "tile": "swamp",
+    "cells": [
+     "J13",
+     "J14",
+     "I13",
+     "I14"
+    ],
+    "shape": "2x2"
+   },
+   {
+    "tile": "swamp",
+    "cells": [
+     "C11",
+     "C12",
+     "B11",
+     "B12"
+    ],
+    "shape": "2x2"
+   },
+   {
+    "tile": "swamp",
+    "cells": [
+     "B3",
+     "B4",
+     "A3",
+     "A4"
+    ],
+    "shape": "2x2"
+   },
+   {
+    "tile": "ruined wall",
+    "cells": [
+     "H8",
+     "H9",
+     "H10",
+     "G10"
+    ],
+    "shape": "L"
+   },
+   {
+    "tile": "ruined wall",
+    "cells": [
+     "C7",
+     "C8",
+     "C9",
+     "B9"
+    ],
+    "shape": "L"
+   },
+   {
+    "tile": "ruined wall",
+    "cells": [
+     "G5",
+     "F5",
+     "E5",
+     "D5"
+    ],
+    "shape": "1x4"
+   }
+  ],
+  "unclear": [
+   "지형 칸 위치는 코덱스 도식에서 읽음 — 확인 필요"
+  ]
+ },
  "rulings": [
   "Ethereal Unity \"removed from the Board\" = a Haunt dies (its BP goes to the Wound Stack) [해석, 확인 필요]",
   "Ethereal Unity Spawn: three lowest-level BPs from the Escalation decks on the leftmost empty Mob-track spaces; a coordinate held by a Knight or another Haunt → an unoccupied adjacent space (ties: player) [해석, 확인 필요]",

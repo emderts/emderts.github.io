@@ -1,5 +1,5 @@
 // Haunts of Utrebant: diagram Zone Attacks + Spectral Step, Appear Behind, Zone Judgements, Intangible/Bypass, Ethereal Unity (Fool's deck), BP auras.
-// The Sunken Kingdom Codex setup page is not in hand yet → a provisional TEST-ONLY setup is injected here (data clashSetup stays null).
+// Clash Setup: Sunken Kingdom Codex p.48–49.
 import fs from 'fs';
 import path from 'path';
 import { Campaign } from '../src/engine/campaign.js';
@@ -11,7 +11,7 @@ const data = loadData(root.pathname);
 let fails = 0; const ok = (c, m) => { if (!c) fails++; console.log((c ? 'PASS ' : 'FAIL ') + m); };
 const HU = data.monsters['haunts-of-utrebant'];
 const TEST_SETUP = { mobStart: [{ cell: 'G6', facing: 'down' }, { cell: 'G9', facing: 'down' }, { cell: 'D6', facing: 'up' }, { cell: 'D9', facing: 'up' }], mobTrack: { '1': 3, '2': 1 }, knightStart: ['F7', 'F8', 'E7', 'E8'], terrain: [{ tile: 'ruined wall', cells: ['H3', 'H4'] }, { tile: 'column', cells: ['C11'] }] };
-const withSetup = () => ({ ...data, monsters: { ...data.monsters, 'haunts-of-utrebant': { ...HU, clashSetup: TEST_SETUP } } });
+const withSetup = () => data;
 
 const autoAsk = clash => async q => {
   const M = clash.monster; const nearestMobDist = c => Math.min(...M.mobs.filter(m => m.cells.length).map(m => Math.abs(m.cells[0].c - c.c) + Math.abs(m.cells[0].r - c.r)), 99);
@@ -34,15 +34,17 @@ const card = n => [...HU.cards.ai, HU.cards.signature].find(x => x.name === n);
 { const all = [...HU.cards.ai, ...HU.cards.bp, HU.cards.signature, HU.cards.routine]; const ops = []; const walk = x => { if (Array.isArray(x)) x.forEach(walk); else if (x && typeof x === 'object') { if (x.op) ops.push(x.op); Object.values(x).forEach(walk); } }; walk(all.map(c => c.ops));
   const unknown = [...new Set(ops)].filter(o => !KNOWN_OPS.monster.includes(o) && !['evasionDice', 'vigorPerHitInstead'].includes(o));
   ok(HU.cards.ai.length === 18 && HU.cards.bp.length === 9 && unknown.length === 0, `18 AI + 9 BP, every op known ${unknown.join(',')}`);
-  ok(HU.clashSetup === null && !Campaign.prototype.monsterReady.call({ data }, 'haunts-of-utrebant'), 'no Codex setup yet → Haunts not playable in the campaign');
+  ok(HU.clashSetup && Campaign.prototype.monsterReady.call({ data }, 'haunts-of-utrebant'), 'Codex setup present → Haunts playable');
   const cd = card('Cut Down').ops.zoneDiagram; ok(cd.red.length === 4 && JSON.stringify(cd.step) === '[3,0]', 'Cut Down diagram: 4 red cells, Spectral Step 3 ahead'); }
+// setup
+{ const c = mk(9); const M = c.monster; ok(M.mobs.length === 3 && M.mobs.map(m => c.board.label(m.cells[0])).sort().join() === 'B8,F11,I7', 'setup: 3 Haunts (BP1) on I7 / F11 / B8'); ok(c.board.terrainAt(c.board.parse('G10')).id === 'ruined wall' && c.board.terrainAt(c.board.parse('A4')).id === 'swamp', 'terrain: Ruined Walls and Swamps from the Codex diagram'); }
 // diagram rotation + Spectral Step
 { const c = mk(1); const m = c.monster.mobs[0]; c.monster.cur = m; c.mobStepTo(m, c.board.parse('E3')); m.facing = 'E';
   const z = c.diagramCells(card('Cut Down').ops.zoneDiagram); ok(z.cells.map(x => L(c, x)).sort().join() === 'D4,E4,E5,F4' && L(c, z.step) === 'E6', `Cut Down facing right from E3: ${z.cells.map(x => L(c, x)).sort().join()} → step ${L(c, z.step)}`);
   m.facing = 'N'; const z2 = c.diagramCells(card('Overhead Smite').ops.zoneDiagram); ok(L(c, z2.step) === 'I3' && z2.cells.length === 7, `Overhead Smite facing up: 7 red cells, step ${L(c, z2.step)}`);
   const k = c.knights[0]; c.moveKnight(k, c.board.parse('I3')); const v0 = k.vigor; await c.spectralStep(m, z2.step); ok(L(c, m.cells[0]) === 'I3' && L(c, k.pos) !== 'I3' && k.vigor < v0, `Spectral Step onto a Knight: Haunt on I3, Knight crashed + knocked back to ${L(c, k.pos)}`); }
 // No Mercy
-{ const c = mk(2, 4); const m = c.monster.mobs[0]; c.monster.cur = m; m.facing = 'N'; const z = c.diagramCells(card('Overhead Smite').ops.zoneDiagram); ok(z.cells.length === 15, 'No Mercy: Overhead Smite adds the 8 yellow cells');
+{ const c = mk(2, 4); const m = c.monster.mobs[0]; c.monster.cur = m; c.mobStepTo(m, c.board.parse('C6')); m.facing = 'N'; const z = c.diagramCells(card('Overhead Smite').ops.zoneDiagram); ok(z.cells.length === 15, 'No Mercy: Overhead Smite adds the 8 yellow cells');
   const k = c.knights[0]; c.moveKnight(k, z.step.r < 10 ? z.step : k.pos); if (c.board.inside(z.step)) { await c.spectralStep(m, z.step); ok(!k.alive, 'No Mercy: Spectral Step onto a Knight kills it'); } }
 // Appear Behind, Intangible, targeting
 { const c = mk(3); const m = c.monster.mobs[0]; c.monster.cur = m; const k = c.knights[0]; await c.appearBehind(m, k); ok(c.board.adjacent(m.cells[0], k.pos), `Appear Behind: Haunt adjacent to the Target (${L(c, m.cells[0])})`);
@@ -57,11 +59,11 @@ const card = n => [...HU.cards.ai, HU.cards.signature].find(x => x.name === n);
   ok(M.mobs[0].tokens.length >= 1, 'Activation tokens re-dealt from the left of the Mob track'); }
 // Grim Gift (L2), Obscured Vision (L2)
 { const c = mk(5, 2); const M = c.monster; const low0 = Math.min(...M.ai.cards.map(x => x.level)); M.escalateAI(3); ok(true, `Grim Gift: escalation forced onto the lowest AI (${low0})`);
-  const k = c.knights[0]; c.moveKnight(k, c.board.parse('G3')); ok(c.hauntPrecision(k) === -2, 'Obscured Vision: -2 Precision next to a Ruined Wall'); }
+  const k = c.knights[0]; c.moveKnight(k, c.board.parse('F4')); ok(c.hauntPrecision(k) === -2, 'Obscured Vision: -2 Precision next to a Ruined Wall'); }
 // simulations (provisional setup)
 { let wins = 0, losses = 0; const N = 10;
   for (let s = 1; s <= N; s++) { const c = mk(600 + s); const r = await c.run(); if (r === 'win') wins++; else losses++; const bad = c.log.filter(l => /미구현/.test(l.msg)); if (bad.length) ok(false, `seed ${s}: ${bad[0].msg}`); }
-  ok(wins + losses === N, `${N} seeded Haunts Clashes (test setup) finished: ${wins} win / ${losses} lose`);
+  ok(wins + losses === N, `${N} seeded Haunts Clashes finished: ${wins} win / ${losses} lose`);
   for (const lv of [2, 3, 4]) { const c = mk(700 + lv, lv); const r = await c.run(); ok(['win', 'lose'].includes(r) && !c.log.some(l => /미구현/.test(l.msg)), `level ${lv} simulation finished (${r}, ${c.round} rounds)`); } }
 
 console.log(fails ? `${fails} FAIL` : 'ALL PASS'); process.exit(fails ? 1 : 0);

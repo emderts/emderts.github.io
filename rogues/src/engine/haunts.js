@@ -74,7 +74,7 @@ export const HauntsMixin = {
       const m = this.addMob(M.bpPool[lv].draw(), cell, 'S', slot); await this.withMob(m, () => this.faceMostKnights()); spawned.push(m); this.say(`Spawn: Haunt #${slot} (BP${lv}) → ${B.label(cell)}`, 'ai');
     }
     // Assign Activation tokens starting from the left of the Mob track
-    const toks = M.mobs.flatMap(m => m.tokens.splice(0)); M.mobs.forEach((m, i) => { if (toks[i]) m.tokens.push(toks[i]); }); if (toks.length > M.mobs.length) M.mobs[M.mobs.length - 1].tokens.push(...toks.slice(M.mobs.length));
+    const toks = [...M.mobs.flatMap(m => m.tokens.splice(0)), ...(this.orphanTokens || []).splice(0)]; M.mobs.forEach((m, i) => { if (toks[i]) m.tokens.push(toks[i]); }); if (toks.length > M.mobs.length) M.mobs[M.mobs.length - 1].tokens.push(...toks.slice(M.mobs.length));
     this.say(`Activation 토큰 재배치: ${M.mobs.filter(m => m.tokens.length).map(m => `#${m.n}:${m.tokens.map(t => t.type).join('')}`).join(' ')}`);
     if (spawned.length && M.hasTrait('Revenge Served Ghastly Cold') && !(this.round === 1 && this.phase === 'monster')) { const lm = M.mobs[0]; this.say(`Revenge Served Ghastly Cold: 가장 왼쪽 Haunt #${lm.n} Signature`, 'ai'); await this.withMob(lm, () => this.performSignature()); }
   },
