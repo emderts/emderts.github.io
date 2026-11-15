@@ -503,6 +503,7 @@ export class Clash {
     // Knockdown handling
     const kd = k.conditions.find(c => /^Knockdown/.test(c.id));
     if (kd && kd.id === 'Knockdown (Standing Up)') { this.standUp(k); }
+    for (const g of k.gear) { if (g.discarded || g.exhausted) continue; for (const o of this.fx.constKw(k, g)) if (o.op === 'turnBane' && k.alive) { this.say(`${g.name}: Start of your turn — Bane ${o.n}`, 'tech'); await this.fx.runKnightOp({ op: 'bane', n: o.n }, k, {}); } } if (!k.alive) return;
     k.refresh(cards => cards.slice(0, k.cardRefresh)); this.say(`${k.name} Refresh: Heat ${k.heat}, 손패 ${k.hand.length}`);
     k.actions = { move: true, combat: true, extraCombat: 0 }; k.freeUsed = new Set();
     let done = false; if (k.engulfed) { await this.fenEngulfedTurn(k); done = true; }

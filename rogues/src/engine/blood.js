@@ -147,7 +147,7 @@ export const BloodMixin = {
     switch (o.op) {
       case 'suck': if (t) await this.suck(src, t, o.n); return true;
       case 'suckPerHits': { const h = ctx.attack && ctx.attack.firstHits ? ctx.attack.firstHits[t.id] || 0 : ctx.hits || 0; const n = Math.floor(h / o.per) * o.n; if (n) await this.suck(src, t, n); return true; }
-      case 'burrow': await this.burrow(src, o.n); return true;
+      case 'burrow': { const who = t; if (who && who.alive && await this.fx.gearUse(who, ['ignoreBurrow'], `Burrow ${o.n} — 무시?`)) { this.say(`${who.name}: Burrow 무시 (Gear)`, 'tech'); return true; } await this.burrow(src, o.n); return true; }
       case 'burrowRoll': { const r = this.rng.die(10); this.say(`Burrow X: d10 = ${r}`, 'dice'); await this.burrow(src, r); return true; }
       case 'closestWormBurrow': { const origin = src && (src.cells[0] || src.lastCell); const pool = M.mobs.filter(m => m !== src && this.onBoard(m)); if (!pool.length || !origin) return true; const d = m => Math.abs(m.cells[0].c - origin.c) + Math.abs(m.cells[0].r - origin.r); const best = Math.min(...pool.map(d)); const m = await this.pickMob(pool.filter(x => d(x) === best), '가장 가까운 Worm (동률)'); await this.burrow(m, o.n); return true; }
       case 'chooseBurrow': this.burrowChoice = true; this.say('Tunnelling Bloodworm Critical: Clash 끝까지 Burrow X 값을 선택'); return true;

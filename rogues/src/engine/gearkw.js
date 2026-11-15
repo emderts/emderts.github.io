@@ -55,6 +55,10 @@ const SPECIAL = [
   [/^Ignore the Gash and Giant Gash Mortis cards$/, () => ({ op: 'ignoreMortis', names: ['Gash', 'Giant Gash'] })],
   [/^When you're about to suffer Suck, ignore it$/, () => ({ op: 'ignoreSuck', active: true })],
   [/^You may reduce suffered Gangups by (\d+)$/, m => ({ op: 'reduceGangup', n: +m[1] })],
+  [/^\+(\d+) \[Power\]$/, m => ({ op: 'flatPower', n: +m[1] })],
+  [/^Start of your turn: Bane (\d+)$/, m => ({ op: 'turnBane', n: +m[1] })],
+  [/^Ignore Burrow X$/, () => ({ op: 'ignoreBurrow', active: true })],
+  [/^(Improved Rush|Rush)$/, m => ({ op: 'fRush', improved: m[1] !== 'Rush', free: true })],
   [/^Roll Out(?: \(.*\))?$/, () => ({ op: 'rollOut', active: true })],
   [/^Ignore Swamp Terrain tiles$/, () => ({ op: 'ignoreSwamp' })],
   [/^When you're about to suffer involuntary movement, you may reduce it by 1 \(to a minimum of 1\)$/, () => ({ op: 'reduceInvol' })],
@@ -89,6 +93,8 @@ export function parseSentence(s) {
   for (let guard = 0; guard < 8; guard++) { let m;
     if ((m = /^\[(MINOR|MAJOR|GRAVE|JUDICIUM)\]\s*/.exec(r))) { o.gate = m[1]; r = r.slice(m[0].length); continue; }
     if ((m = /^\[(PRINCIPALITY OF STONE|SUNKEN KINGDOM)\]\s*/.exec(r))) { o.kingdom = m[1] === 'SUNKEN KINGDOM' ? 'sunken' : 'principality'; r = r.slice(m[0].length); continue; }
+    if ((m = /^\[BANE (\d+)\+\]\s*/.exec(r))) { o.baneMin = +m[1]; r = r.slice(m[0].length); continue; }
+    if ((m = /^\[Move action\]\+\[Combat action\]\s*/i.exec(r))) { (o.cost = o.cost || {}).action = 'both'; r = r.slice(m[0].length); continue; }
     if ((m = /^\[2H\]\s*/.exec(r))) { o.twoHanded = true; r = r.slice(m[0].length); continue; }
     if ((m = /^\[Two-handed(?: icon)?\]:?\s*/i.exec(r))) { o.twoHanded = true; r = r.slice(m[0].length); continue; }
     if ((m = /^\[Reaction\]\s*/.exec(r))) { o.reaction = true; r = r.slice(m[0].length); continue; }
