@@ -193,7 +193,7 @@ export class Clash {
       // before-attack keywords (Choke etc. apply to targets at resolution; Choke is on the attack line → applied with effects)
       // movement
       if (ops.beforeAttack) await this.fx.runMonsterOps(ops.beforeAttack, { attack, targets: tg.targets, primary: tg.primary });
-      if (this.isWN && tg.wnZone) { attack.targets = tg.targets = this.wnZoneTargets(tg.wnZone); this.say(`Zone ${tg.wnZone}: ${tg.targets.map(t => t.name).join(', ') || '대상 없음'}`); }
+      if (this.isWN && tg.wnZone) { this.say(`Zone ${tg.wnZone} (이동 전 위치 기준): ${tg.targets.map(t => t.name).join(', ')}`); }
       else if (this.isWN && tg.primary) { if (ops.flank) await this.wnFlank(tg.primary); else if (ops.move) await this.wnMoveToward(tg.primary); else this.turnToward(tg.primary.pos); if (!this.alive().includes(tg.primary)) throw new ChainBreak('target died during movement'); }
       else if (tg.primary && this.actingGuardian) { this.turnToward(tg.primary.pos); if (ops.move) await this.guardianMoveToward(tg.primary.pos); this.turnToward(tg.primary.pos); }
       else if (!this.monster.isMob && ops.treeClimb) { await this.bossTreeClimb(); if (tg.primary) this.turnToward(tg.primary.pos); if (this.flags && this.flags.trollNoRange) { this.say('Bulky Biceps: White Ape Troll은 Range Attack 불가 → 공격 없음'); return; } }
@@ -399,7 +399,7 @@ export class Clash {
   async pushback(k, n, { unavoidable = false, dir = null } = {}) {
     if (!k.alive || n <= 0) return; if (await this.wnColumnGuard(k, '비자발적 이동')) return; if (k.braced && !unavoidable) { this.say(`${k.name} Braced: 밀려나지 않음`); return; }
     n = Math.max(0, n - (unavoidable ? 0 : this.fx.involuntaryReduction(k)));
-    let d = dir || this.dirFromMonster(k.pos); const B = this.board; let moved = 0;
+    let d = dir || this.dirFromMonster(k.pos); const B = this.board; let moved = 0; const trail = [];
     for (let i = 0; i < n; i++) {
       let next = { c: k.pos.c + d.c, r: k.pos.r + d.r };
       if (!B.inside(next)) { // slide along edge away from monster
@@ -410,14 +410,15 @@ export class Clash {
       if (t && t.obstacle) { await this.crash(k); if (t.destructible) { B.terrain.delete(B.key(next)); this.say(`${t.id} 파괴`); } else break; if (!k.alive) return; }
       if (t && t.chasm) { this.moveKnight(k, next); await this.die(k, 'Chasm'); return; }
       if (this.monsterOccupies(next)) { await this.crash(k); break; }
-      const other = this.knightAt(next); this.moveKnight(k, next); moved++;
+      const other = this.knightAt(next); this.moveKnight(k, next); moved++; trail.push(next);
       if (other) await this.displace(other);
     }
     this.say(`${k.name} ${unavoidable ? 'Unavoidable Knockback' : 'Pushback'} ${moved}/${n}칸 → ${B.label(k.pos)}`);
+    await this.swampThrough(k, trail.slice(0, -1).filter(c => B.terrainAt(c) && B.terrainAt(c).id === 'swamp')); if (k.alive && trail.some(c => B.terrainAt(c) && B.terrainAt(c).id === 'rubble')) { this.say(`${k.name}: Rubble 위로 비자발적 이동 → Knockdown`); await this.knockdown(k); } await this.swampSweep();
   }
   async knockback(k, n, opts = {}) { return this.pushback(k, n, opts); }
-  async displace(k) { const B = this.board; const free = B.neighbors(k.pos).filter(c => !B.isObstacle(c) && !this.knightAt(c) && !this.monsterOccupies(c)); if (!free.length) { await this.die(k, 'Displace 불가'); return; } const dest = free.length === 1 ? free[0] : await this.ask({ type: 'move', knight: k.id, text: `${k.name} Displace — 칸 선택`, cells: free, options: free.map(c => ({ label: B.label(c), value: c })) }) || free[0]; this.moveKnight(k, dest); this.say(`${k.name} Displace → ${B.label(dest)}`); }
-  moveKnight(k, cell) { this.board.remove([k.pos]); k.pos = cell; this.board.place({ kind: 'knight', id: k.id }, [cell]); }
+  async displace(k) { const B = this.board; const free = B.neighbors(k.pos).filter(c => !B.isObstacle(c) && !this.knightAt(c) && !this.monsterOccupies(c)); if (!free.length) { await this.die(k, 'Displace 불가'); return; } const dest = free.length === 1 ? free[0] : await this.ask({ type: 'move', knight: k.id, text: `${k.name} Displace — 칸 선택`, cells: free, options: free.map(c => ({ label: B.label(c), value: c })) }) || free[0]; this.moveKnight(k, dest); this.say(`${k.name} Displace → ${B.label(dest)}`); await this.swampSweep(); }
+  moveKnight(k, cell) { k._moved = true; this.board.remove([k.pos]); k.pos = cell; this.board.place({ kind: 'knight', id: k.id }, [cell]); }
 
   // ---------- Humpty Charge (Eggknight) ----------
   async humptyCharge(attacker) {
@@ -498,17 +499,29 @@ export class Clash {
   }
   canAttack(k) { if (!this.monster.isMob && this.guardians && this.guardians.some(g => this.board.adjacent(g.cells[0], k.pos)) && k.gear.some(g => g.type === 'weapon' && !g.exhausted && !g.discarded)) return true; if (this.monster.isMob) return this.attackableMobs(k).length > 0 && k.gear.some(g => g.type === 'weapon' && !g.exhausted && !g.discarded); return this.adjacentToMonster(k) && k.gear.some(g => g.type === 'weapon' && !g.exhausted && !g.discarded) && this.board.hasLoS([k.pos], this.monster.cells); }
   reachable(k, speed) {
-    const B = this.board; const out = new Map(); const q = [{ cell: k.pos, d: 0 }]; const seen = new Set([B.key(k.pos)]);
+    const B = this.board; const out = new Map(); const t0 = B.terrainAt(k.pos); const q = [{ cell: k.pos, d: t0 && t0.difficult ? 1 : 0 }]; /* starting a move on Difficult Terrain costs +1 (Q&A, owner reference 2026-11-15) */ const seen = new Set([B.key(k.pos)]);
     while (q.length) { const { cell, d } = q.shift(); if (d >= speed) continue; for (const n of B.neighbors(cell)) { const key = B.key(n); if (seen.has(key)) continue; if (B.isObstacle(n) || this.knightAt(n) || this.monsterOccupies(n)) continue; seen.add(key); const t = B.terrainAt(n); const cost = t && t.difficult ? 2 : 1; if (d + cost > speed) continue; out.set(key, n); q.push({ cell: n, d: d + cost }); } }
-    return [...out.values()];
+    return [...out.values()].filter(c => !(B.terrainAt(c) && B.terrainAt(c).id === 'swamp')); // ending a move on a Swamp kills → never offered as a destination
   }
+  /** Cheapest path to `target` within `speed` that crosses the fewest Swamp spaces; returns the Swamp spaces moved through (destination excluded). */
+  swampOnPath(k, target, speed) {
+    const B = this.board; const key = c => B.key(c); const t0 = B.terrainAt(k.pos); const best = new Map([[key(k.pos), { s: 0, d: t0 && t0.difficult ? 1 : 0, via: [] }]]); let fr = [k.pos];
+    while (fr.length) { const nx = []; for (const cell of fr) { const cur = best.get(key(cell)); for (const n of B.neighbors(cell)) { if (B.isObstacle(n) || this.knightAt(n) || this.monsterOccupies(n)) continue; const t = B.terrainAt(n); const d = cur.d + (t && t.difficult ? 2 : 1); if (d > speed) continue; const sw = t && t.id === 'swamp' && !cellEq(n, target); const s = cur.s + (sw ? 1 : 0); const old = best.get(key(n)); if (old && (old.s < s || (old.s === s && old.d <= d))) continue; best.set(key(n), { s, d, via: sw ? [...cur.via, n] : cur.via }); nx.push(n); } } fr = nx; }
+    const r = best.get(key(target)); return r ? r.via : [];
+  }
+  armorGearDice(k) { let n = 0; for (const g of k.gear) if (!g.discarded && g.type === 'armor' && g.armorDice) for (const col in g.armorDice) n += g.armorDice[col]; return n; }
+  /** Swamp: "When you move through this tile, roll a d10, +1 per Armor die on your Armor Gear. If the result is higher than your current Vigor, you die." */
+  async swampThrough(k, cells) { for (const c of cells) { if (!k.alive) return; const d = this.rng.die(10), a = this.armorGearDice(k); const dead = d + a > k.vigor; this.say(`${k.name}: Swamp(${this.board.label(c)}) 통과 — d10 ${d}${a ? ` +${a} (Armor die)` : ''} = ${d + a} vs Vigor ${k.vigor} → ${dead ? '사망' : '통과'}`, dead ? 'death' : 'dice'); if (dead) await this.die(k, 'Swamp'); } }
+  /** Swamp: "If you end your movement on this tile (voluntary or not), you die." Checked for every Knight that moved since the last sweep. */
+  async swampSweep() { for (const k of this.knights) { if (!k._moved) continue; k._moved = false; if (!k.alive) continue; const t = this.board.terrainAt(k.pos); if (t && t.id === 'swamp') { this.say(`${k.name}: Swamp(${this.board.label(k.pos)})에서 이동 종료 → 사망`, 'death'); await this.die(k, 'Swamp'); } } }
   async knightMove(k, speed) {
     const cells = this.reachable(k, speed); if (!cells.length) { this.say(`${k.name} 이동 불가`); return; }
     const target = await this.ask({ type: 'move', knight: k.id, cells, options: cells.map(c => ({ label: this.board.label(c), value: c })) });
     if (!target) return;
     // Drowning / Slimed: "When you're about to move voluntarily, roll [X Armor die] and all your Armor dice. For each [Potential] gain +1 Heat."
     for (const c of [...k.conditions]) { const def = this.conditionDefs[c.id]; const vr = def && def.ops && def.ops.voluntaryMoveRoll; if (!vr || typeof vr !== 'object') continue; const dice = this.fx.armorDice(k); dice[vr.extra] = (dice[vr.extra] || 0) + 1; const r = rollArmor(this.rng, dice, this.data.components.dice.faces, this.data.components.dice.armorSymbol); this.say(`${k.name} ${c.id}: Armor ${r.dice.length}d → ✦${r.mitigated} → Heat +${r.mitigated}`, 'cond'); if (r.mitigated) k.gainHeat(r.mitigated); }
-    const start = k.pos; this.moveKnight(k, target); this.say(`${k.name} 이동 → ${this.board.label(target)}`); k.movedThisTurn = true; k.tempSpeed = 0; await this.geyserKnight(k, start); if (this.monster.isMob) this.cestusCheck(k); if (k.tempSpeed) k.tempSpeed = 0;
+    const start = k.pos; const sw = this.swampOnPath(k, target, speed); this.moveKnight(k, target); if (sw.length) await this.swampThrough(k, sw); if (!k.alive) return; this.say(`${k.name} 이동 → ${this.board.label(target)}`); k.movedThisTurn = true; k.tempSpeed = 0; await this.geyserKnight(k, start); if (this.monster.isMob) this.cestusCheck(k); if (k.tempSpeed) k.tempSpeed = 0;
+    await this.swampSweep(); if (!k.alive) return;
     for (const c of [...k.conditions]) { const def = this.conditionDefs[c.id]; const on = def && def.ops && def.ops.onVoluntaryMove; if (on === 'flip' && def.flipSide) { c.id = def.flipSide; this.say(`${k.name}: ${def.name} → ${def.flipSide}`, 'cond'); } else if (on === 'discardSpeed') { this.removeCondition(k, c.id); k.tempSpeed = (k.tempSpeed || 0) + 1; this.say(`${k.name}: ${def.name} 제거, 임시 Speed +1`, 'cond'); } }
     const c = this.hasCondition(k, 'Knockdown (Standing Up)'); if (c) this.standUp(k);
   }
@@ -626,7 +639,7 @@ export class Clash {
   bpAT(bp) { if (bp && bp.isGuardianBP) return bp.at; if (this.monster.isMob) { const m = this.monster.mobs.find(x => x.card === bp); return m ? this.mobAT(m) : bp.at + this.monster.bonuses.at + this.monster.modifiers.at; } return this.monster.atOf(bp, (this.monster.hasTrait('Panzeronion') ? this.armorTokens[bp.level] : 0) + this.difficultTerrainAT(this.monster.cells)); }
   clearPool() { const fire = this.pool.filter(t => t.token === 'fire'); const keep = [...this.pool.filter(t => t.resource), ...fire.slice(1)]; /* Fire: leave all but one unused Fire token (p.19) */ const n = this.pool.length - keep.length; this.pool = keep; if (n) this.say(`Knight Pool 정리 (-${n})`, 'pool'); }
   /** After any action: Counter trait (Eggknight). */
-  async afterAction() { if (!this.monster.isMob) await this.trollAfterAction();
+  async afterAction() { await this.swampSweep(); if (!this.monster.isMob) await this.trollAfterAction();
     if (this.monster.isMob) await this.mobAfterAction();
     if (this.monster.hasTrait('Counter') && (this.monster.generic.counter || 0) >= 3) { this.monster.generic.counter = 0; this.say('Counter: 토큰 3 → Signature'); await this.performSignature(); }
   }

@@ -2169,8 +2169,8 @@
     ]
    }
   ],
-  "unclear": [
-   "지형·시작 칸은 코덱스 도식에서 읽음 [해석, 확인 필요]",
+  "notes": [
+   "지형·시작 칸은 코덱스 도식에서 읽음 (소유자 확인 2026-11-15)",
    "Rut: 몬스터가 지나가면 뒤집혀 Swamp가 됨 (구현). 기사가 Rut 위에서 공격하면 무기가 Cumbersome — Cumbersome 키워드가 엔진에 아직 없어 미구현"
   ]
  },
@@ -2181,11 +2181,11 @@
   "AI Response: on Fail (Wide Wings) / Instinct (Slithering Tails) / Wound (Bloody Defiance) resolve the AI Response of the top AI discard; Attacker on the Rear → only Flank / Flee are ignored (소유자 확인 2026-11-15)",
   "Column tiles: the Nightmare perches on the tile; Knights climb onto it (Marble Forest) and leave by normal movement (소유자 확인 2026-11-15)",
   "Drag X / Drag toward: rulebook keyword box (소유자 스캔 2026-11-15). Monster \"Drag X toward the closest Chasm\": the Nightmare moves toward and one space past the Chasm (max X), the Knight follows the path — entering the Chasm kills",
-  "Flee X ending on a Knight: Crash, then the Knight is Displaced — the Sheet prints no Unavoidable Knockback value for this Mob [해석, 확인 필요]",
-  "Knight Pushback X / Drag X against the Nightmare (Overpower, Slithering Tails, Bloody Defiance): chosen and resolved immediately; Pushback moves it X spaces directly away (stops at Obstacles / Knights / board edge); with Bloody Defiance out, entering a Chasm this way kills it [해석, 확인 필요]",
-  "Bloody Defiance: the final Wound is placed, then the BP Trait card replaces the BP and ITS Wound (or Critical → dies) response resolves instead [해석, 확인 필요]",
-  "\"moves to the closest empty Column tile\" while already on a Column: moves to another one [해석, 확인 필요]",
-  "\"MOVE TO THE CLOSEST CHASM & JUDGE\" (Aria of Doom): moves onto the closest Chasm space, then judges the Knights in Zone 4 of the new position; Misleading Melody / Aria movement is per hit (1 / 2 spaces per hit), Knights stop adjacent to the Chasm (voluntary movement cannot enter it) [해석, 확인 필요]",
+  "Flee X ending on a Knight: Crash, then the Knight is Displaced — kept as Crash + Displace (소유자 확인 2026-11-15)",
+  "Knight Pushback X / Drag X against the Nightmare (Overpower, Slithering Tails, Bloody Defiance): chosen and resolved immediately; Pushback moves it X spaces directly away (stops at Obstacles / Knights / board edge); with Bloody Defiance out, entering a Chasm this way kills it (소유자 확인 2026-11-15)",
+  "Bloody Defiance: the final Wound is placed, then the BP Trait card replaces the BP and ITS Wound (or Critical → dies) response resolves instead (소유자 확인 2026-11-15)",
+  "\"moves to the closest empty Column tile\" while already on a Column: she stays where she is (소유자 확인 2026-11-15)",
+  "\"MOVE TO THE CLOSEST CHASM & JUDGE\" (Aria of Doom): moves onto the closest Chasm space, the judged Knights are those in Zone 4 of her ORIGINAL position (targeting comes first); Misleading Melody / Aria movement is per hit (1 / 2 spaces per hit), Knights stop adjacent to the Chasm (voluntary movement cannot enter it) (소유자 확인 2026-11-15)",
   "Owner reference sheet (WN v1.2, 2026-11-15): Superior Bypass lets her end a MOVE on Obstacle terrain (perches on Columns); on the Tail side \"move to the closest empty Column\" = move ADJACENT to it; climbing a Column is once per round per Knight; Flee turns her to face the board edge; pushed / dragged through a Column destroys it; Bloody Defiance keeps Superior Bypass; Overpower resolves before responses",
   "Marble Forest \"instead of a Reflex\" is not implemented (free action only); Rut: 몬스터가 지나가면 뒤집혀 Swamp가 됨 (구현). 기사가 Rut 위에서 공격하면 무기가 Cumbersome — Cumbersome 키워드가 엔진에 아직 없어 미구현"
  ]
