@@ -138,6 +138,14 @@ const SPECIAL = [
   [/^If you do, reset your \[Heat\]$/, () => ({ op: 'note', na: true })],
   [/^When you are hit, discard (\d+) \[Charge\]$/, m => ({ op: 'hitDiscardCharge', n: +m[1] })],
   [/^If you cannot, discard this card instead$/, () => ({ op: 'note', na: true })],
+  [/^Spotlight$/, () => ({ op: 'spotlight' })],
+  [/^(?:When you attack, gain Spotlight for that Attack|Your Weapon gains Spotlight)$/, () => ({ op: 'spotlightPaid', active: true })],
+  [/^\+(\d+) \[d10\]$/, m => ({ op: 'plusAttackDice', n: +m[1] })],
+  [/^Gain \+(\d+) \[d10\]$/, m => ({ op: 'plusAttackDice', n: +m[1] })],
+  [/^Your Weapon gains \+(\d+) \[d10\]$/, m => ({ op: 'weaponPlusDice', n: +m[1] })],
+  [/^For the purpose of gathering your Power Pool, ignore any hits that exceed your Weapon's regular \[d10\] value$/, () => ({ op: 'powerHitCapAll' })],
+  [/^When (?:you perform|performing) ↑\[Heat\]↓, lose additional -(\d+) \[Heat\]$/, m => ({ op: 'heatRefreshExtra', n: +m[1] })],
+  [/^Perform ↑\[Heat\]↓$/, () => ({ op: 'fHeatRefresh', free: true })],
   [/^Roll Out(?: \(.*\))?$/, () => ({ op: 'rollOut', active: true })],
   [/^Ignore Swamp Terrain tiles$/, () => ({ op: 'ignoreSwamp' })],
   [/^When you're about to suffer involuntary movement, you may reduce it by 1 \(to a minimum of 1\)$/, () => ({ op: 'reduceInvol' })],
@@ -182,6 +190,7 @@ export function parseSentence(s) {
     if ((m = /^Start of your turn:\s*(?=\d+ \[Heat\])/.exec(r))) { o.atTurnStart = true; r = r.slice(m[0].length); continue; }
     if ((m = /^When you trigger Overcome X in Melee range:\s*/.exec(r))) { o.overcomeMelee = true; r = r.slice(m[0].length); continue; }
     if ((m = /^(\d+) \[Vigor\]\s+(?=\[|[A-Z])/.exec(r))) { (o.cost = o.cost || {}).vigor = +m[1]; r = r.slice(m[0].length); continue; }
+    if ((m = /^\[(VASSAL|KING|DEVIL|DRAGON|POSTGAME)\]\s*/.exec(r))) { o.tier = m[1]; r = r.slice(m[0].length); continue; }
     if ((m = /^\[2H\]\s*/.exec(r))) { o.twoHanded = true; r = r.slice(m[0].length); continue; }
     if ((m = /^\[Two-handed(?: icon)?\]:?\s*/i.exec(r))) { o.twoHanded = true; r = r.slice(m[0].length); continue; }
     if ((m = /^\[Reaction\]\s*/.exec(r))) { o.reaction = true; r = r.slice(m[0].length); continue; }
