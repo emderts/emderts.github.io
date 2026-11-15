@@ -508,6 +508,10 @@
        "op": "attackVigor",
        "n": 4,
        "perilCheck": true
+      },
+      {
+       "op": "condition",
+       "id": "Fear"
       }
      ],
      "afterAttack": [
@@ -525,13 +529,7 @@
      ],
      "zoneJudge": {
       "z": 1
-     },
-     "always": [
-      {
-       "op": "condition",
-       "id": "Fear"
-      }
-     ]
+     }
     }
    },
    {
@@ -1400,6 +1398,10 @@
      "before": [],
      "effects": [
       {
+       "op": "condition",
+       "id": "Dread"
+      },
+      {
        "op": "attackVigor",
        "n": 3,
        "perilCheck": true
@@ -1416,12 +1418,6 @@
      "afterFinalAttack": null,
      "judge": [
       "Fortitude"
-     ],
-     "always": [
-      {
-       "op": "condition",
-       "id": "Dread"
-      }
      ]
     }
    },
@@ -1487,6 +1483,10 @@
        "op": "attackVigor",
        "n": 6,
        "perilCheck": true
+      },
+      {
+       "op": "condition",
+       "id": "Dread"
       }
      ],
      "afterAttack": [
@@ -1503,12 +1503,6 @@
      "afterFinalAttack": null,
      "judge": [
       "Bravery"
-     ],
-     "always": [
-      {
-       "op": "condition",
-       "id": "Dread"
-      }
      ]
     }
    },
@@ -1558,6 +1552,14 @@
        "op": "attackVigor",
        "n": 8,
        "perilCheck": true
+      },
+      {
+       "op": "choke",
+       "n": 2
+      },
+      {
+       "op": "condition",
+       "id": "Panicked"
       }
      ],
      "afterAttack": [
@@ -1573,16 +1575,6 @@
       "Might",
       "Insight",
       "Sagacity"
-     ],
-     "always": [
-      {
-       "op": "choke",
-       "n": 2
-      },
-      {
-       "op": "condition",
-       "id": "Panicked"
-      }
      ]
     }
    },
@@ -3050,7 +3042,7 @@
   "Ethereal Unity \"Assign Activation tokens starting from the left of the Mob track\": all Activation tokens are re-dealt one per Mob from the leftmost, keeping their spent/unspent state (소유자 확인 2026-11-15)",
   "Ethereal Unity bonuses stack: 1+ token → +1 To Hit, 2 tokens → +1 To Hit and +1 Vigor loss on every Haunt Attack",
   "Zone Attack with MOVE: the Haunt moves toward the Target until adjacent, turns to face it, then the card diagram (rotated to its facing) gives the Zone; Spectral Step moves it to the marked space after the After Attack. When several movement paths are possible the player picks (소유자 확인 2026-11-15)",
-  "Judgement effect lines without \"If hit\" (e.g. \"Gain the Dread Condition card\") apply to every judged Knight, hit or not (소유자 확인 2026-11-15)",
+  "Judgement effect lines without \"If hit\" (e.g. \"Gain the Dread Condition card\") still need a hit: a Full Evade cancels every effect line (소유자 확인 2026-11-15, 이전 해석 정정)",
   "Zone Judgement: the Target plus every Knight in Zone 1 (No Mercy: Zone 2) around it are judged",
   "Intangible: Haunts path through Terrain and miniatures (Superior Bypass) and ignore Terrain for Line of Sight; they still cannot end a move on another miniature",
   "Gordon: every Monster Attack made by a Haunt within Zone 2 of revealed Gordon causes an additional -2 Vigor [해석]",
