@@ -59,6 +59,26 @@ const SPECIAL = [
   [/^Start of your turn: Bane (\d+)$/, m => ({ op: 'turnBane', n: +m[1] })],
   [/^Ignore Burrow X$/, () => ({ op: 'ignoreBurrow', active: true })],
   [/^(Improved Rush|Rush)$/, m => ({ op: 'fRush', improved: m[1] !== 'Rush', free: true })],
+  [/^(?:You must equip this card if you own it|You cannot discard this card in any way|When you die, return this card to the box \(you do not own it anymore\)|X must be \d+ or more|You cannot equip this Upgrade on a Weapon with .*|Use this ability only during a Monster Attack, after an Evasion Roll|You must use this ability before performing the draw)$/, () => ({ op: 'note', na: true })],
+  [/^Start of your turn: Lose -(\d+) \[Vigor\]$/, m => ({ op: 'turnLoseVigor', n: +m[1] })],
+  [/^Gain \+(\d+) Speed \[Speed\] for each Bane \[Bane\] token you have$/, m => ({ op: 'speedPerBane', n: +m[1] })],
+  [/^Gain \+(\d+) Precision \[Precision\] for each Bane \[Bane\] token you have$/, m => ({ op: 'precisionPerBane', n: +m[1] })],
+  [/^If you're (\d+) or more spaces away from the closest Monster, gain \+(\d+) Speed \[Speed\]$/, m => ({ op: 'speedFar', d: +m[1], n: +m[2] })],
+  [/^When you deal a Wound, Bane (\d+)$/, m => ({ op: 'woundBane', n: +m[1] })],
+  [/^Gain \+(\d+) \[Power\] against Dragons$/, m => ({ op: 'powerVsTrait', trait: 'Dragon', n: +m[1] })],
+  [/^Gain \+(\d+) Precision \[Precision\]$/, m => ({ op: 'flatPrecision', n: +m[1] })],
+  [/^Full Miss: Skip the Clear the Knight Pool step of your Attack$/, () => ({ op: 'fullMissKeepPool' })],
+  [/^Lose -(\d+) \[Heat\]$/, m => ({ op: 'fLoseHeat', n: +m[1], free: true })],
+  [/^Place (\d+) Break \[Break\] or \d+ Opening \[Opening\] token in the Knight Pool$/, m => ({ op: 'fPoolBreakOpening', n: +m[1], free: true })],
+  [/^Gain \+(\d+) \[Vigor\] or discard (\d+) Poison token$/, m => ({ op: 'fVigorOrPoison', n: +m[1], p: +m[2], free: true })],
+  [/^Move (\d+) space$/, m => ({ op: 'fMove', n: +m[1], free: true })],
+  [/^Unexhaust (\d+) Weapon \[Gear\] card$/, () => ({ op: 'fUnexhaustWeapon', free: true })],
+  [/^Gain a permanent positive Precision \[Precision\] token$/, () => ({ op: 'fPermPrecision', free: true })],
+  [/^Reset your \[Vigor\]$/, () => ({ op: 'fResetVigor', free: true })],
+  [/^Look at the top BP card of the closest Monster$/, () => ({ op: 'fLookBP', free: true })],
+  [/^Gain (\d+) \[Charge\]$/, m => ({ op: 'fGainCharge', n: +m[1], free: true })],
+  [/^Discard (\d+) Armor \[Armor\] tokens? from anywhere$/, m => ({ op: 'fDiscardArmor', n: +m[1], free: true })],
+  [/^Hide$/, () => ({ op: 'hide', active: true })],
   [/^Roll Out(?: \(.*\))?$/, () => ({ op: 'rollOut', active: true })],
   [/^Ignore Swamp Terrain tiles$/, () => ({ op: 'ignoreSwamp' })],
   [/^When you're about to suffer involuntary movement, you may reduce it by 1 \(to a minimum of 1\)$/, () => ({ op: 'reduceInvol' })],
@@ -67,7 +87,7 @@ const SPECIAL = [
 ];
 function body(b) {
   let m;
-  for (const [re, fn] of SPECIAL) if ((m = re.exec(b))) return { ...fn(m), status: 'ok', special: true };
+  for (const [re, fn] of SPECIAL) if ((m = re.exec(b))) { const r = fn(m); return { ...r, status: r.na ? 'na' : 'ok', special: true }; }
   if ((m = /^Auto-([a-z]+) (\d+|X)$/i.exec(b))) { const t = TOKENS[m[1][0].toUpperCase() + m[1].slice(1).toLowerCase()]; return t ? { op: 'auto', token: t, n: m[2] === 'X' ? 'X' : +m[2], status: m[2] === 'X' ? 'pending' : 'ok' } : null; }
   if ((m = /^Ranged (\d+)[-–](\d+|X)$/.exec(b))) return { op: 'ranged', n: +m[1], m: m[2] === 'X' ? 'X' : +m[2], status: m[2] === 'X' ? 'pending' : 'ok' };
   if ((m = /^\+(\d+) \[Power\]$/.exec(b))) return { op: 'plusPower', n: +m[1], status: 'ok' };
@@ -95,6 +115,9 @@ export function parseSentence(s) {
     if ((m = /^\[(PRINCIPALITY OF STONE|SUNKEN KINGDOM)\]\s*/.exec(r))) { o.kingdom = m[1] === 'SUNKEN KINGDOM' ? 'sunken' : 'principality'; r = r.slice(m[0].length); continue; }
     if ((m = /^\[BANE (\d+)\+\]\s*/.exec(r))) { o.baneMin = +m[1]; r = r.slice(m[0].length); continue; }
     if ((m = /^\[Move action\]\+\[Combat action\]\s*/i.exec(r))) { (o.cost = o.cost || {}).action = 'both'; r = r.slice(m[0].length); continue; }
+    if ((m = /^\[(?:PASSION|P) (\d+)\+\]\s*/.exec(r))) { o.passionMin = +m[1]; r = r.slice(m[0].length); continue; }
+    if ((m = /^\[Combat action\]\+\[Move action\]\s*/i.exec(r)) || (m = /^\[Move\+Attack action\]\s*/i.exec(r))) { (o.cost = o.cost || {}).action = 'both'; r = r.slice(m[0].length); continue; }
+    if ((m = /^\[Move action\] or \[Combat action\]\s*/i.exec(r))) { o.eitherAction = true; r = r.slice(m[0].length); continue; }
     if ((m = /^\[2H\]\s*/.exec(r))) { o.twoHanded = true; r = r.slice(m[0].length); continue; }
     if ((m = /^\[Two-handed(?: icon)?\]:?\s*/i.exec(r))) { o.twoHanded = true; r = r.slice(m[0].length); continue; }
     if ((m = /^\[Reaction\]\s*/.exec(r))) { o.reaction = true; r = r.slice(m[0].length); continue; }

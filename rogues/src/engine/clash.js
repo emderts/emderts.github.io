@@ -448,7 +448,7 @@ export class Clash {
   }
   async knockback(k, n, opts = {}) { if (!opts.unavoidable && k.alive && this.fx.gearAbilities(k, ['stalwart']).length && await this.fx.gearUse(k, ['stalwart'], `Knockback ${n} — Stalwart로 무시?`)) { this.say(`${k.name} Stalwart: Knockback 무시`); return; } return this.pushback(k, n, opts); }
   async displace(k) { if (k.engulfed) return; const B = this.board; const free = B.neighbors(k.pos).filter(c => !B.isObstacle(c) && !this.knightAt(c) && !this.monsterOccupies(c)); if (!free.length) { await this.die(k, 'Displace 불가'); return; } const dest = free.length === 1 ? free[0] : await this.ask({ type: 'move', knight: k.id, text: `${k.name} Displace — 칸 선택`, cells: free, options: free.map(c => ({ label: B.label(c), value: c })) }) || free[0]; this.moveKnight(k, dest); this.say(`${k.name} Displace → ${B.label(dest)}`); await this.swampSweep(); }
-  moveKnight(k, cell) { k._moved = true; this.board.remove([k.pos]); k.pos = cell; this.board.place({ kind: 'knight', id: k.id }, [cell]); }
+  moveKnight(k, cell) { k._moved = true; this.board.remove([k.pos]); k.pos = cell; this.board.place({ kind: 'knight', id: k.id }, [cell]); if (k.hidden && this.monster && this.fx.inFrontOfMonster(k)) { k.hidden = false; this.say(`${k.name}: 몬스터 앞으로 이동 — Hidden 해제`); } }
 
   // ---------- Humpty Charge (Eggknight) ----------
   async humptyCharge(attacker) {
@@ -503,6 +503,7 @@ export class Clash {
     // Knockdown handling
     const kd = k.conditions.find(c => /^Knockdown/.test(c.id));
     if (kd && kd.id === 'Knockdown (Standing Up)') { this.standUp(k); }
+    for (const g of k.gear) { if (g.discarded || g.exhausted) continue; for (const o of this.fx.constKw(k, g)) if (o.op === 'turnLoseVigor' && k.alive) { this.say(`${g.name}: Start of your turn — Vigor -${o.n}`, 'tech'); await this.fx.runKnightOp({ op: 'loseVigor', n: o.n }, k, {}); } }
     for (const g of k.gear) { if (g.discarded || g.exhausted) continue; for (const o of this.fx.constKw(k, g)) if (o.op === 'turnBane' && k.alive) { this.say(`${g.name}: Start of your turn — Bane ${o.n}`, 'tech'); await this.fx.runKnightOp({ op: 'bane', n: o.n }, k, {}); } } if (!k.alive) return;
     k.refresh(cards => cards.slice(0, k.cardRefresh)); this.say(`${k.name} Refresh: Heat ${k.heat}, 손패 ${k.hand.length}`);
     k.actions = { move: true, combat: true, extraCombat: 0 }; k.freeUsed = new Set();
@@ -525,6 +526,7 @@ export class Clash {
     }
     // Drowning / Slimed: end of turn without moving
     for (const c of [...k.conditions]) { const def = this.conditionDefs[c.id]; const nm = def && def.ops && def.ops.endTurnNoMove; if (!nm || k.movedThisTurn) continue; if (nm === 'die') { this.say(`${k.name}: ${c.id} — 이동하지 않음 → 사망`, 'death'); await this.die(k, c.id); } else if (nm === 'flip' && def.flipSide) { c.id = def.flipSide; this.say(`${k.name}: ${def.name} — 이동하지 않음 → ${def.flipSide}`, 'cond'); } }
+    await this.fx.hideAtEndOfTurn(k);
     if (!k.movedThisTurn && k.alive && this.fx.gearHas(k, 'takeRoot') && !k.rooted) { k.rooted = true; this.say(`${k.name}: Take Root — 이동할 때까지 Braced`, 'tech'); }
     k.movedThisTurn = false;
     // end of turn: Knockdown (Falling Down) → flip
@@ -672,6 +674,7 @@ export class Clash {
     if (!this.fx.has(k, 'skipClearPool', A)) this.clearPool();
     // 10. second window
     await this.fx.secondWindow(k, A);
+    if (k.hidden) { k.hidden = false; this.say(`${k.name}: 공격 후 Hidden 해제`); }
     this.currentKnightAttack = null;
     for (const [rops, rIdx] of deferred) { try { await this.runResponseOps(rops, rIdx, { attacker: k, attack: A, target: k }); } catch (e) { if (!e.chainBreak) throw e; this.say(`Chain Break: ${e.message}`, 'warn'); } }
     for (let i = 0; i < k.bonusAttacks; i++) { k.bonusAttacks = 0; await this.knightAttack(k, { bonus: true }); }
