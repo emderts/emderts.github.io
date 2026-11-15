@@ -169,12 +169,13 @@
    "blindspots": "the same two rear cells: each shows 'R / eye icon' (Rear and Blindspot)"
   },
   "levelsNote": "Level bar icons: fist = To Hit, clawed heart = Wounds, broken heart = Exhibition Wounds, AI card = activations ('1 AI' at every level). Blue bonus row: L1 none; L2 '+2 [AT]', '+1 [Vigor]'; L3 '+3 [AT]', '+2 [Vigor]'; L4 '1 [starburst-arrow = Escalations]', '+6 [AT]', '+4 [Vigor]'. No evasion-dice bonus printed at any level. TRAITS boxes: L1 '+Regeneration, Firstmen Guardians, Reinforcements Have Arrived, Vantage Seeker'; L2 '+Strength in Numbers, Avenger of the Tribe'; L3 '+We Are Legion'; L4 '+Unnerving Presence'.",
-  "unclear": [
-   "toHit kept as printed strings with '!' (\"6+!\" etc.), not integers",
-   "Firstmen Guardians: 'pass it the next Mob' is printed without 'to' - kept verbatim",
-   "bold lead-ins on sheet: 'Start of Monster Round', 'Additional Setup', 'Level 1–2', 'Level 3', 'Level 4+', 'End of Monster Round', 'Tree Climb', and the whole final '!' paragraph of Firstmen Guardians",
-   "L4 AT bonus reads clearly as +6 (jump from +3 at L3) - noted because unusual",
-   "no tier numeral seen on the sheet"
+  "unclear": [],
+  "notes": [
+   "판독 확정: toHit kept as printed strings with '!' (\"6+!\" etc.), not integers — 소유자 확인 2026-11-15",
+   "판독 확정: Firstmen Guardians: 'pass it the next Mob' is printed without 'to' - kept verbatim — 소유자 확인 2026-11-15",
+   "판독 확정: bold lead-ins on sheet: 'Start of Monster Round', 'Additional Setup', 'Level 1–2', 'Level 3', 'Level 4+', 'End of Monster Round', 'Tree Climb', and the whole final '!' paragraph of Firstmen Guardians — 소유자 확인 2026-11-15",
+   "판독 확정: L4 AT bonus reads clearly as +6 (jump from +3 at L3) - noted because unusual — 소유자 확인 2026-11-15",
+   "판독 확정: no tier numeral seen on the sheet — 소유자 확인 2026-11-15"
   ]
  },
  "ai": [
@@ -212,12 +213,13 @@
    "afterFinalAttack": null,
    "aiResponse": null,
    "footer": "WHITE APE TROLL – AI 1",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 27A1279, corroborated by the sheet-order sequence pattern",
-    "Heat gate is printed on its own line directly under the red tag (before the first effect line)"
-   ],
+   "unclear": [],
    "text": "ROARING STOMP / ZONE ATTACK / Evasion 4 dice, 6+ / TARGETING: • Closest Knight in sight [REACT!] / PUSHBACK 3 & ZONE ATTACK 1 / [Heat 2+ ▸ DIFFICULTY 8+ INSTEAD] / For each hit lose -1 [Vigor]. [Peril Check]. [REACT!] / Knockdown. / WHITE APE TROLL – AI 1",
-   "moveNote": "tag has no MOVE keyword (printed: PUSHBACK 3 & ZONE ATTACK 1)"
+   "moveNote": "tag has no MOVE keyword (printed: PUSHBACK 3 & ZONE ATTACK 1)",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 27A1279, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15",
+    "판독 확정: Heat gate is printed on its own line directly under the red tag (before the first effect line) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "01.png",
@@ -254,11 +256,12 @@
    "afterFinalAttack": "Pushback 3. [REACT!] Knockback 3 to the side.",
    "aiResponse": null,
    "footer": "WHITE APE TROLL – AI 1",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 27A1280, corroborated by the sheet-order sequence pattern",
-    "Heat gate is printed on its own line directly under the red tag"
-   ],
-   "text": "RAMMING CHARGE / SEQUENTIAL ATTACK / Evasion 4 dice, 7+ / TARGETING: • Furthest Knight in front • Furthest Knight in sight [REACT!] / MOVE & ATTACK ALL KNIGHTS IN PATH / [Heat 3+ ▸ +1 [d10]] / For each hit lose -1 [Vigor]. [Peril Check]. / AFTER ATTACK [REACT!] / Knockback 3 to the side. / AFTER FINAL ATTACK / Pushback 3. [REACT!] / Knockback 3 to the side. / WHITE APE TROLL – AI 1"
+   "unclear": [],
+   "text": "RAMMING CHARGE / SEQUENTIAL ATTACK / Evasion 4 dice, 7+ / TARGETING: • Furthest Knight in front • Furthest Knight in sight [REACT!] / MOVE & ATTACK ALL KNIGHTS IN PATH / [Heat 3+ ▸ +1 [d10]] / For each hit lose -1 [Vigor]. [Peril Check]. / AFTER ATTACK [REACT!] / Knockback 3 to the side. / AFTER FINAL ATTACK / Pushback 3. [REACT!] / Knockback 3 to the side. / WHITE APE TROLL – AI 1",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 27A1280, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15",
+    "판독 확정: Heat gate is printed on its own line directly under the red tag — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "02.png",
@@ -293,11 +296,12 @@
    "afterFinalAttack": null,
    "aiResponse": null,
    "footer": "WHITE APE TROLL – AI 1",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 27A1281, corroborated by the sheet-order sequence pattern"
-   ],
+   "unclear": [],
    "text": "BIG BONK / ATTACK / Evasion 2 dice, 8+ / TARGETING: • Furthest Knight in sight [REACT!] / JUMP & ATTACK [Heat 3+ ▸ KNOCKDOWN] / For each hit lose -2 [Vigor]. [Peril Check]. / Knockback 4. / WHITE APE TROLL – AI 1",
-   "moveNote": "tag has no MOVE keyword (printed: JUMP & ATTACK)"
+   "moveNote": "tag has no MOVE keyword (printed: JUMP & ATTACK)",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 27A1281, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "03.png",
@@ -336,10 +340,11 @@
    "afterFinalAttack": null,
    "aiResponse": null,
    "footer": "WHITE APE TROLL – AI 1",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 27A1278, corroborated by the sheet-order sequence pattern"
-   ],
-   "text": "WILD PUNCH / ATTACK / Evasion 3 dice, 9+ / TARGETING: • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE, PUSHBACK 3 & ATTACK [Heat 3+ ▸ +1 [d10]] / Gain the Exposed Condition card. / For each hit lose -1 [Vigor]. [Peril Check]. / Cooldown. [REACT!] / Knockback 3. / WHITE APE TROLL – AI 1"
+   "unclear": [],
+   "text": "WILD PUNCH / ATTACK / Evasion 3 dice, 9+ / TARGETING: • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE, PUSHBACK 3 & ATTACK [Heat 3+ ▸ +1 [d10]] / Gain the Exposed Condition card. / For each hit lose -1 [Vigor]. [Peril Check]. / Cooldown. [REACT!] / Knockback 3. / WHITE APE TROLL – AI 1",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 27A1278, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "04.png",
@@ -375,12 +380,13 @@
    "afterFinalAttack": null,
    "aiResponse": null,
    "footer": "WHITE APE TROLL – AI 1",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 27A1277, corroborated by the sheet-order sequence pattern",
-    "Heat gate is printed on its own line directly under the red tag"
-   ],
+   "unclear": [],
    "text": "STONE TOSS / RANGE ATTACK / Evasion 3 dice, 9+ / TARGETING: • Furthest Knight in front • Furthest Knight in sight [REACT!] / TREE CLIMB & RANGE ATTACK UNLIMITED / [Heat 3+ ▸ +1 [d10]] / Gain the Exposed Condition card. / For each hit lose -1 [Vigor]. [Peril Check]. / WHITE APE TROLL – AI 1",
-   "moveNote": "tag has no MOVE; TREE CLIMB (Vantage Seeker trait) repositions the monster"
+   "moveNote": "tag has no MOVE; TREE CLIMB (Vantage Seeker trait) repositions the monster",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 27A1277, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15",
+    "판독 확정: Heat gate is printed on its own line directly under the red tag — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "05.png",
@@ -427,10 +433,11 @@
     "monster": "2x2 black block marked with a white chevron pointing right (facing right)",
     "note": "6 red cells directly in front of the monster: a 2x2 block adjacent to its front plus one cell above and one below the nearer column. No yellow cells."
    },
-   "unclear": [
-    "code: tiny low-resolution print; best reading 27A1276, corroborated by the sheet-order sequence pattern"
-   ],
-   "text": "FIERCE SWING / ZONE ATTACK / [zone diagram] / Evasion 2 dice, 7+ / TARGETING: • Closest Knight with the Exposed Condition card • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK / One hit, lose -1 [Vigor]. Two hits, lose -3 [Vigor]. [Peril Check]. [REACT!] / Knockback 4. / WHITE APE TROLL – AI 1"
+   "unclear": [],
+   "text": "FIERCE SWING / ZONE ATTACK / [zone diagram] / Evasion 2 dice, 7+ / TARGETING: • Closest Knight with the Exposed Condition card • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK / One hit, lose -1 [Vigor]. Two hits, lose -3 [Vigor]. [Peril Check]. [REACT!] / Knockback 4. / WHITE APE TROLL – AI 1",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 27A1276, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "06.png",
@@ -466,12 +473,13 @@
    "afterFinalAttack": null,
    "aiResponse": null,
    "footer": "WHITE APE TROLL – AI 2",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 27A1285, corroborated by the sheet-order sequence pattern",
-    "Heat gate is printed on its own line directly under the red tag"
-   ],
+   "unclear": [],
    "text": "GROUND SMASH / ZONE ATTACK / Evasion 3 dice, 6+ / TARGETING: • Closest Knight in sight [REACT!] / PUSHBACK 3 & ZONE ATTACK 1 / [Heat 2+ ▸ DIFFICULTY 8+ INSTEAD] / For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / Knockdown. / WHITE APE TROLL – AI 2",
-   "moveNote": "tag has no MOVE keyword (printed: PUSHBACK 3 & ZONE ATTACK 1)"
+   "moveNote": "tag has no MOVE keyword (printed: PUSHBACK 3 & ZONE ATTACK 1)",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 27A1285, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15",
+    "판독 확정: Heat gate is printed on its own line directly under the red tag — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "07.png",
@@ -509,12 +517,13 @@
    "afterFinalAttack": null,
    "aiResponse": null,
    "footer": "WHITE APE TROLL – AI 2",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 27A1286, corroborated by the sheet-order sequence pattern",
-    "last code digit illegible (looks like 6/8/0); 1286 inferred from sequence",
-    "printed 'Force Vault.' here (Headhunter prints 'Forced Vault.') - kept as printed"
-   ],
-   "text": "SKULL CRUSHER / ATTACK / Evasion 3 dice, 8+ / TARGETING: • Knight in Blindspot • [Priority Target] Priority Target • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat 3+ ▸ +1 [d10]] / Gain the Exposed Condition card. / For each hit lose -2 [Vigor]. [Peril Check]. Choke 3. / Force Vault. Pushback 3. / WHITE APE TROLL – AI 2"
+   "unclear": [],
+   "text": "SKULL CRUSHER / ATTACK / Evasion 3 dice, 8+ / TARGETING: • Knight in Blindspot • [Priority Target] Priority Target • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat 3+ ▸ +1 [d10]] / Gain the Exposed Condition card. / For each hit lose -2 [Vigor]. [Peril Check]. Choke 3. / Force Vault. Pushback 3. / WHITE APE TROLL – AI 2",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 27A1286, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15",
+    "판독 확정: last code digit illegible (looks like 6/8/0); 1286 inferred from sequence — 소유자 확인 2026-11-15",
+    "판독 확정: printed 'Force Vault.' here (Headhunter prints 'Forced Vault.') - kept as printed — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "08.png",
@@ -542,11 +551,12 @@
    "afterFinalAttack": null,
    "aiResponse": null,
    "footer": "WHITE APE TROLL – AI 2",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 27A1287, corroborated by the sheet-order sequence pattern"
-   ],
+   "unclear": [],
    "text": "MONKEY FLIP / ATTACK / Evasion 3 dice, 8+ / TARGETING: • Furthest Knight in sight [REACT!] / JUMP & ATTACK / For each hit lose -2 [Vigor]. [Peril Check]. / Knockdown. Knockback 5. / WHITE APE TROLL – AI 2",
-   "moveNote": "tag has no MOVE keyword (printed: JUMP & ATTACK)"
+   "moveNote": "tag has no MOVE keyword (printed: JUMP & ATTACK)",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 27A1287, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "09.png",
@@ -584,10 +594,11 @@
    "afterFinalAttack": null,
    "aiResponse": null,
    "footer": "WHITE APE TROLL – AI 2",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 27A1284, corroborated by the sheet-order sequence pattern"
-   ],
-   "text": "RAMPAGE STRIKE / ATTACK / Evasion 2 dice, 9+ / TARGETING: • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE, PUSHBACK 3 & ATTACK [Heat 3+ ▸ +1 [d10]] / Gain the Exposed Condition card. / For each hit lose -2 [Vigor]. [Peril Check]. Delay. [REACT!] / Knockback 4. / WHITE APE TROLL – AI 2"
+   "unclear": [],
+   "text": "RAMPAGE STRIKE / ATTACK / Evasion 2 dice, 9+ / TARGETING: • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE, PUSHBACK 3 & ATTACK [Heat 3+ ▸ +1 [d10]] / Gain the Exposed Condition card. / For each hit lose -2 [Vigor]. [Peril Check]. Delay. [REACT!] / Knockback 4. / WHITE APE TROLL – AI 2",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 27A1284, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "10.png",
@@ -624,12 +635,13 @@
    "afterFinalAttack": null,
    "aiResponse": null,
    "footer": "WHITE APE TROLL – AI 2",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 27A1283, corroborated by the sheet-order sequence pattern",
-    "Heat gate is printed on its own line directly under the red tag"
-   ],
+   "unclear": [],
    "text": "ROCK HURL / RANGE ATTACK / Evasion 2 dice, 9+ / TARGETING: • Furthest Knight in front • Furthest Knight in sight [REACT!] / TREE CLIMB & RANGE ATTACK UNLIMITED / [Heat 3+ ▸ +1 [d10]] / Gain the Exposed Condition card. / For each hit lose -2 [Vigor]. [Peril Check]. / Gain the Distracted Condition card. / WHITE APE TROLL – AI 2",
-   "moveNote": "tag has no MOVE; TREE CLIMB (Vantage Seeker trait) repositions the monster"
+   "moveNote": "tag has no MOVE; TREE CLIMB (Vantage Seeker trait) repositions the monster",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 27A1283, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15",
+    "판독 확정: Heat gate is printed on its own line directly under the red tag — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "11.png",
@@ -675,10 +687,11 @@
     "monster": "2x2 black block marked with a white chevron pointing right (facing right)",
     "note": "8 red cells: 2x2 block adjacent to the front, plus two cells above and two below (above/below the monster's front column and the first column in front). No yellow cells."
    },
-   "unclear": [
-    "code: tiny low-resolution print; best reading 27A1282, corroborated by the sheet-order sequence pattern"
-   ],
-   "text": "SAVAGE SWEEP / ZONE ATTACK / [zone diagram] / Evasion 3 dice, 7+ / TARGETING: • Closest Knight with the Exposed Condition card • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK / One hit, lose -1 [Vigor]. Two hits, lose -3 [Vigor]. Three or more hits, lose -5 [Vigor]. [Peril Check]. / Knockback 5. / WHITE APE TROLL – AI 2"
+   "unclear": [],
+   "text": "SAVAGE SWEEP / ZONE ATTACK / [zone diagram] / Evasion 3 dice, 7+ / TARGETING: • Closest Knight with the Exposed Condition card • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK / One hit, lose -1 [Vigor]. Two hits, lose -3 [Vigor]. Three or more hits, lose -5 [Vigor]. [Peril Check]. / Knockback 5. / WHITE APE TROLL – AI 2",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 27A1282, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "12.png",
@@ -714,11 +727,12 @@
    "afterFinalAttack": "Pushback 4. Knockback 4 to the side.",
    "aiResponse": null,
    "footer": "WHITE APE TROLL – AI 3",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 27A1291, corroborated by the sheet-order sequence pattern",
-    "Heat gate is printed on its own line directly under the red tag"
-   ],
-   "text": "UNSTOPPABLE MOMENTUM / SEQUENTIAL ATTACK / Evasion 4 dice, 7+ / TARGETING: • Furthest Knight in front • Furthest Knight in sight [REACT!] / MOVE & ATTACK ALL KNIGHTS IN PATH / [Heat 3+ ▸ +1 [d10]] / For each hit lose -2 [Vigor]. [Peril Check]. / Knockdown. / AFTER ATTACK / Knockback 4 to the side. / AFTER FINAL ATTACK / Pushback 4. Knockback 4 to the side. / WHITE APE TROLL – AI 3"
+   "unclear": [],
+   "text": "UNSTOPPABLE MOMENTUM / SEQUENTIAL ATTACK / Evasion 4 dice, 7+ / TARGETING: • Furthest Knight in front • Furthest Knight in sight [REACT!] / MOVE & ATTACK ALL KNIGHTS IN PATH / [Heat 3+ ▸ +1 [d10]] / For each hit lose -2 [Vigor]. [Peril Check]. / Knockdown. / AFTER ATTACK / Knockback 4 to the side. / AFTER FINAL ATTACK / Pushback 4. Knockback 4 to the side. / WHITE APE TROLL – AI 3",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 27A1291, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15",
+    "판독 확정: Heat gate is printed on its own line directly under the red tag — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "13.png",
@@ -754,11 +768,12 @@
    "afterFinalAttack": null,
    "aiResponse": null,
    "footer": "WHITE APE TROLL – AI 3",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 27A1292, corroborated by the sheet-order sequence pattern",
-    "no [Peril Check] icon printed after the Vigor line"
-   ],
-   "text": "HEADHUNTER / ATTACK / Evasion 2 dice, 8+ / TARGETING: • Knight in Blindspot • [Priority Target] Priority Target • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat 3+ ▸ +1 [d10]] / If the Attack hits, lower your [Vigor] to 0, and draw a Judicium card. / AFTER ATTACK / Gain the Exposed Condition card. Choke 3. Forced Vault. Pushback 3. / WHITE APE TROLL – AI 3"
+   "unclear": [],
+   "text": "HEADHUNTER / ATTACK / Evasion 2 dice, 8+ / TARGETING: • Knight in Blindspot • [Priority Target] Priority Target • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat 3+ ▸ +1 [d10]] / If the Attack hits, lower your [Vigor] to 0, and draw a Judicium card. / AFTER ATTACK / Gain the Exposed Condition card. Choke 3. Forced Vault. Pushback 3. / WHITE APE TROLL – AI 3",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 27A1292, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15",
+    "판독 확정: no [Peril Check] icon printed after the Vigor line — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "14.png",
@@ -799,14 +814,13 @@
    "afterFinalAttack": null,
    "aiResponse": null,
    "footer": "WHITE APE TROLL – AI 3",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 27A1293, corroborated by the sheet-order sequence pattern",
-    "moveTag gate: 'Heat 2+' sits at the end of the red tag row and its effect 'DIFFICULTY 8+ INSTEAD' wraps to the next line"
-   ],
+   "unclear": [],
    "text": "APE OUT / ZONE ATTACK / Evasion 4 dice, 6+ / TARGETING [Heat 3+ ▸ IGNORE [REACT! window]]: • Closest Knight in sight [REACT!] / LAND ON TOP & ZONE ATTACK 2 [Heat 2+ ▸ DIFFICULTY 8+ INSTEAD] / For each hit lose -2 [Vigor]. [Peril Check]. / Knockdown. / WHITE APE TROLL – AI 3",
    "moveNote": "tag has no MOVE keyword (printed: LAND ON TOP & ZONE ATTACK 2)",
    "notes": [
-    "\"IGNORE (ALL) [REACT! window]\" 게이트 = 이 공격에는 REACT! 창이 열리지 않음 — 소유자 확인 2026-11-15"
+    "\"IGNORE (ALL) [REACT! window]\" 게이트 = 이 공격에는 REACT! 창이 열리지 않음 — 소유자 확인 2026-11-15",
+    "판독 확정: code: tiny low-resolution print; best reading 27A1293, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15",
+    "판독 확정: moveTag gate: 'Heat 2+' sits at the end of the red tag row and its effect 'DIFFICULTY 8+ INSTEAD' wraps to the next line — 소유자 확인 2026-11-15"
    ]
   },
   {
@@ -847,10 +861,11 @@
    "afterFinalAttack": null,
    "aiResponse": null,
    "footer": "WHITE APE TROLL – AI 3",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 27A1290, corroborated by the sheet-order sequence pattern"
-   ],
-   "text": "FERAL BLOW / ATTACK / Evasion 3 dice, 9+ / TARGETING: • Closest Squire in front • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE, PUSHBACK 3 & ATTACK [Heat 3+ ▸ +1 [d10]] / Gain the Exposed Condition card. / For each hit lose -2 [Vigor]. [Peril Check]. / Discard. Knockback 5. [REACT!] / Knockdown. / WHITE APE TROLL – AI 3"
+   "unclear": [],
+   "text": "FERAL BLOW / ATTACK / Evasion 3 dice, 9+ / TARGETING: • Closest Squire in front • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE, PUSHBACK 3 & ATTACK [Heat 3+ ▸ +1 [d10]] / Gain the Exposed Condition card. / For each hit lose -2 [Vigor]. [Peril Check]. / Discard. Knockback 5. [REACT!] / Knockdown. / WHITE APE TROLL – AI 3",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 27A1290, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "16.png",
@@ -887,12 +902,13 @@
    "afterFinalAttack": null,
    "aiResponse": null,
    "footer": "WHITE APE TROLL – AI 3",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 27A1289, corroborated by the sheet-order sequence pattern",
-    "Heat gate is printed on its own line directly under the red tag"
-   ],
+   "unclear": [],
    "text": "BOULDER LOB / RANGE ATTACK / Evasion 3 dice, 9+ / TARGETING: • Furthest Knight in front • Furthest Knight in sight [REACT!] / TREE CLIMB & RANGE ATTACK UNLIMITED / [Heat 3+ ▸ +1 [d10]] / Gain the Exposed Condition card. / For each hit lose -2 [Vigor]. [Peril Check]. / Gain the Panicked Condition card. / WHITE APE TROLL – AI 3",
-   "moveNote": "tag has no MOVE; TREE CLIMB (Vantage Seeker trait) repositions the monster"
+   "moveNote": "tag has no MOVE; TREE CLIMB (Vantage Seeker trait) repositions the monster",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 27A1289, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15",
+    "판독 확정: Heat gate is printed on its own line directly under the red tag — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "17.png",
@@ -941,10 +957,11 @@
     "monster": "2x2 black block marked with a white chevron pointing right (facing right)",
     "note": "10 red cells: a 3-wide x 2-high block adjacent to the front, plus two cells above and two below its two nearer columns. Grid printed 7 columns x 6 rows. No yellow cells."
    },
-   "unclear": [
-    "code: tiny low-resolution print; best reading 27A1288, corroborated by the sheet-order sequence pattern"
-   ],
-   "text": "FEROCIOUS SLAM / ZONE ATTACK / [zone diagram] / Evasion 3 dice, 7+ / TARGETING: • Closest Knight with the Exposed Condition card • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK / Gain the Exposed Condition card. / One hit, lose -3 [Vigor]. / Two hits, lose -5 [Vigor]. / Three or more hits, lose -7 [Vigor]. [Peril Check]. / Knockback 6. / WHITE APE TROLL – AI 3"
+   "unclear": [],
+   "text": "FEROCIOUS SLAM / ZONE ATTACK / [zone diagram] / Evasion 3 dice, 7+ / TARGETING: • Closest Knight with the Exposed Condition card • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK / Gain the Exposed Condition card. / One hit, lose -3 [Vigor]. / Two hits, lose -5 [Vigor]. / Three or more hits, lose -7 [Vigor]. [Peril Check]. / Knockback 6. / WHITE APE TROLL – AI 3",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 27A1288, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15"
+   ]
   }
  ],
  "bp": [
@@ -969,13 +986,15 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "WHITE APE TROLL",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 28A1680, corroborated by the sheet-order sequence pattern",
-    "code digits after 28A16 are illegible on this card (look like 80/85/86); 28A1680 is a sequence-based guess, NOT a confident reading",
-    "no level in footer (footer is just 'WHITE APE TROLL') -> level null",
-    "double-sided card: back side transcribed in extra ('Thick Skin (Back)')"
-   ],
-   "text": "THICK SKIN / OVERPOWER 3+ ▸ You may perform a Bonus Attack! / [AT] 4 / WOUND: Place this card next to the BP deck and flip it. / FAIL: Gain the Exposed Condition card. / CRITICAL: Place this card next to the BP deck and flip it. You may perform a Bonus Attack! / WHITE APE TROLL"
+   "unclear": [],
+   "text": "THICK SKIN / OVERPOWER 3+ ▸ You may perform a Bonus Attack! / [AT] 4 / WOUND: Place this card next to the BP deck and flip it. / FAIL: Gain the Exposed Condition card. / CRITICAL: Place this card next to the BP deck and flip it. You may perform a Bonus Attack! / WHITE APE TROLL",
+   "notes": [
+    "OVERPOWER (OVERCOME 아님) — 소유자 확인 2026-11-15",
+    "판독 확정: code: tiny low-resolution print; best reading 28A1680, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15",
+    "판독 확정: code digits after 28A16 are illegible on this card (look like 80/85/86); 28A1680 is a sequence-based guess, NOT a confident reading — 소유자 확인 2026-11-15",
+    "판독 확정: no level in footer (footer is just 'WHITE APE TROLL') -> level null — 소유자 확인 2026-11-15",
+    "판독 확정: double-sided card: back side transcribed in extra ('Thick Skin (Back)') — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "19.png",
@@ -1000,10 +1019,11 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "WHITE APE TROLL – BP 1",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 28A1665, corroborated by the sheet-order sequence pattern"
-   ],
-   "text": "BULKY BICEPS / OVERCOME 3+ ▸ Power 1 / [AT] 4 / WOUND: [REACT!] Pushback 3. / FAIL: Perform Signature against the Attacker. / CRITICAL: White Ape Troll cannot perform Range Attacks. / WHITE APE TROLL – BP 1"
+   "unclear": [],
+   "text": "BULKY BICEPS / OVERCOME 3+ ▸ Power 1 / [AT] 4 / WOUND: [REACT!] Pushback 3. / FAIL: Perform Signature against the Attacker. / CRITICAL: White Ape Troll cannot perform Range Attacks. / WHITE APE TROLL – BP 1",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 28A1665, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "20.png",
@@ -1026,10 +1046,11 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "WHITE APE TROLL – BP 1",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 28A1666, corroborated by the sheet-order sequence pattern"
-   ],
-   "text": "SAGGY GUT / OVERCOME 3+ ▸ Power 1 / [AT] 5 / WOUND: Cooldown. / FAIL: Gain the Exposed Condition card. / CRITICAL: You may perform a Bonus Attack! / WHITE APE TROLL – BP 1"
+   "unclear": [],
+   "text": "SAGGY GUT / OVERCOME 3+ ▸ Power 1 / [AT] 5 / WOUND: Cooldown. / FAIL: Gain the Exposed Condition card. / CRITICAL: You may perform a Bonus Attack! / WHITE APE TROLL – BP 1",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 28A1666, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "21.png",
@@ -1054,10 +1075,11 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "WHITE APE TROLL – BP 1",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 28A1667, corroborated by the sheet-order sequence pattern"
-   ],
-   "text": "FURRY SHOULDER / OVERCOME 3+ ▸ Power 1 / [AT] 5 / WOUND: Gain the Exposed Condition card. All Firstmen Guardians move 5 spaces toward White Ape Troll until adjacent. / FAIL: [REACT!] Knockdown. / CRITICAL: Discard all Mind Condition cards and gain the Courage Condition card. / WHITE APE TROLL – BP 1"
+   "unclear": [],
+   "text": "FURRY SHOULDER / OVERCOME 3+ ▸ Power 1 / [AT] 5 / WOUND: Gain the Exposed Condition card. All Firstmen Guardians move 5 spaces toward White Ape Troll until adjacent. / FAIL: [REACT!] Knockdown. / CRITICAL: Discard all Mind Condition cards and gain the Courage Condition card. / WHITE APE TROLL – BP 1",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 28A1667, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "22.png",
@@ -1080,10 +1102,11 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "WHITE APE TROLL – BP 1",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 28A1662, corroborated by the sheet-order sequence pattern"
-   ],
-   "text": "MISSHAPEN TOES / OVERCOME 2+ ▸ Power 1 / [AT] 3 / WOUND: White Ape Troll moves 2 spaces directly away from the Attacker (without turning). / FAIL: Gain the Exposed Condition card. / CRITICAL: Leave 2 additional Opening [Opening] and/or Break [Break] tokens. / WHITE APE TROLL – BP 1"
+   "unclear": [],
+   "text": "MISSHAPEN TOES / OVERCOME 2+ ▸ Power 1 / [AT] 3 / WOUND: White Ape Troll moves 2 spaces directly away from the Attacker (without turning). / FAIL: Gain the Exposed Condition card. / CRITICAL: Leave 2 additional Opening [Opening] and/or Break [Break] tokens. / WHITE APE TROLL – BP 1",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 28A1662, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "23.png",
@@ -1106,10 +1129,11 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "WHITE APE TROLL – BP 1",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 28A1663, corroborated by the sheet-order sequence pattern"
-   ],
-   "text": "CLENCHED FIST / OVERCOME 2+ ▸ Power 1 / [AT] 3 / WOUND: Perform Signature against the Attacker. / FAIL: Pushback 3. / CRITICAL: Gain +1 [Passion]. White Ape Troll gains 1 permanent negative Precision [Precision] token. / WHITE APE TROLL – BP 1"
+   "unclear": [],
+   "text": "CLENCHED FIST / OVERCOME 2+ ▸ Power 1 / [AT] 3 / WOUND: Perform Signature against the Attacker. / FAIL: Pushback 3. / CRITICAL: Gain +1 [Passion]. White Ape Troll gains 1 permanent negative Precision [Precision] token. / WHITE APE TROLL – BP 1",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 28A1663, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "24.png",
@@ -1134,10 +1158,11 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "WHITE APE TROLL – BP 1",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 28A1664, corroborated by the sheet-order sequence pattern"
-   ],
-   "text": "MASSIVE THIGH / OVERCOME 2+ ▸ Power 1 / [AT] 4 / WOUND: [REACT!] Knockback 4. All Firstmen Guardians move 5 spaces toward White Ape Troll until adjacent. / FAIL: Gain the Exposed Condition card. / CRITICAL: Another Knight may perform a Bonus Attack! / WHITE APE TROLL – BP 1"
+   "unclear": [],
+   "text": "MASSIVE THIGH / OVERCOME 2+ ▸ Power 1 / [AT] 4 / WOUND: [REACT!] Knockback 4. All Firstmen Guardians move 5 spaces toward White Ape Troll until adjacent. / FAIL: Gain the Exposed Condition card. / CRITICAL: Another Knight may perform a Bonus Attack! / WHITE APE TROLL – BP 1",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 28A1664, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "25.png",
@@ -1162,11 +1187,12 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "WHITE APE TROLL – BP 2",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 28A1671, corroborated by the sheet-order sequence pattern",
-    "OVERCOME number blurry; best reading 4+"
-   ],
-   "text": "MUSCULAR CHEST / OVERCOME 4+ ▸ Power 1 / [AT] 6 / WOUND: [REACT!] Pushback 4. / FAIL: Gain the Exposed Condition card. / CRITICAL: You may perform a Bonus Attack with Auto-break 2! / WHITE APE TROLL – BP 2"
+   "unclear": [],
+   "text": "MUSCULAR CHEST / OVERCOME 4+ ▸ Power 1 / [AT] 6 / WOUND: [REACT!] Pushback 4. / FAIL: Gain the Exposed Condition card. / CRITICAL: You may perform a Bonus Attack with Auto-break 2! / WHITE APE TROLL – BP 2",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 28A1671, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15",
+    "판독 확정: OVERCOME number blurry; best reading 4+ — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "26.png",
@@ -1189,11 +1215,12 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "WHITE APE TROLL – BP 2",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 28A1672, corroborated by the sheet-order sequence pattern",
-    "OVERCOME number blurry; best reading 4+"
-   ],
-   "text": "MONSTROUS HEAD / OVERCOME 4+ ▸ Power 1 / [AT] 6 / WOUND: Gain the Exposed Condition card. All Firstmen Guardians move 5 spaces toward White Ape Troll until adjacent. / FAIL: Perform Signature against the Attacker. / CRITICAL: You may perform a Bonus Attack with Auto-break 2! / WHITE APE TROLL – BP 2"
+   "unclear": [],
+   "text": "MONSTROUS HEAD / OVERCOME 4+ ▸ Power 1 / [AT] 6 / WOUND: Gain the Exposed Condition card. All Firstmen Guardians move 5 spaces toward White Ape Troll until adjacent. / FAIL: Perform Signature against the Attacker. / CRITICAL: You may perform a Bonus Attack with Auto-break 2! / WHITE APE TROLL – BP 2",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 28A1672, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15",
+    "판독 확정: OVERCOME number blurry; best reading 4+ — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "27.png",
@@ -1216,11 +1243,12 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "WHITE APE TROLL – BP 2",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 28A1673, corroborated by the sheet-order sequence pattern",
-    "OVERCOME number illegible; best reading 4+ (could be 3+)"
-   ],
-   "text": "ROUND SHIELD TROPHY / OVERCOME 4+ ▸ Power 1 / [AT] 7 / WOUND: Gain the Exposed Condition card. Delay. All Firstmen Guardians move 5 spaces toward White Ape Troll until adjacent. / FAIL: Knockdown. / CRITICAL: Scavenge 2. / WHITE APE TROLL – BP 2"
+   "unclear": [],
+   "text": "ROUND SHIELD TROPHY / OVERCOME 4+ ▸ Power 1 / [AT] 7 / WOUND: Gain the Exposed Condition card. Delay. All Firstmen Guardians move 5 spaces toward White Ape Troll until adjacent. / FAIL: Knockdown. / CRITICAL: Scavenge 2. / WHITE APE TROLL – BP 2",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 28A1673, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15",
+    "판독 확정: OVERCOME number illegible; best reading 4+ (could be 3+) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "28.png",
@@ -1243,12 +1271,13 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "WHITE APE TROLL – BP 2",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 28A1668, corroborated by the sheet-order sequence pattern",
-    "OVERCOME number illegible; best reading 3+ (could be 2+)",
-    "no [Peril Check] icon printed after 'Lose -3 [Vigor].'"
-   ],
-   "text": "HEAVY LOWER JAW / OVERCOME 3+ ▸ Power 1 / [AT] 5 / WOUND: Perform Signature against the Attacker. / FAIL: Lose -3 [Vigor]. / CRITICAL: All Knights may discard the Exposed Condition card. / WHITE APE TROLL – BP 2"
+   "unclear": [],
+   "text": "HEAVY LOWER JAW / OVERCOME 3+ ▸ Power 1 / [AT] 5 / WOUND: Perform Signature against the Attacker. / FAIL: Lose -3 [Vigor]. / CRITICAL: All Knights may discard the Exposed Condition card. / WHITE APE TROLL – BP 2",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 28A1668, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15",
+    "판독 확정: OVERCOME number illegible; best reading 3+ (could be 2+) — 소유자 확인 2026-11-15",
+    "판독 확정: no [Peril Check] icon printed after 'Lose -3 [Vigor].' — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "29.png",
@@ -1271,11 +1300,12 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "WHITE APE TROLL – BP 2",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 28A1669, corroborated by the sheet-order sequence pattern",
-    "OVERCOME number blurry; best reading 3+"
-   ],
-   "text": "STRONG KNEE / OVERCOME 3+ ▸ Power 1 / [AT] 5 / WOUND: White Ape Troll moves 3 spaces directly away from the Attacker (without turning). / FAIL: Gain the Exposed Condition card. Pushback 4. / CRITICAL: Leave 3 additional Opening [Opening] and/or Break [Break] tokens. / WHITE APE TROLL – BP 2"
+   "unclear": [],
+   "text": "STRONG KNEE / OVERCOME 3+ ▸ Power 1 / [AT] 5 / WOUND: White Ape Troll moves 3 spaces directly away from the Attacker (without turning). / FAIL: Gain the Exposed Condition card. Pushback 4. / CRITICAL: Leave 3 additional Opening [Opening] and/or Break [Break] tokens. / WHITE APE TROLL – BP 2",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 28A1669, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15",
+    "판독 확정: OVERCOME number blurry; best reading 3+ — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "30.png",
@@ -1298,11 +1328,12 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "WHITE APE TROLL – BP 2",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 28A1670, corroborated by the sheet-order sequence pattern",
-    "OVERCOME number blurry; best reading 3+"
-   ],
-   "text": "HAIRY BACK / OVERCOME 3+ ▸ Power 1 / [AT] 6 / WOUND: Perform Signature against the Attacker. / FAIL: Knockback 5. / CRITICAL: Deal an additional Single Wound! / WHITE APE TROLL – BP 2"
+   "unclear": [],
+   "text": "HAIRY BACK / OVERCOME 3+ ▸ Power 1 / [AT] 6 / WOUND: Perform Signature against the Attacker. / FAIL: Knockback 5. / CRITICAL: Deal an additional Single Wound! / WHITE APE TROLL – BP 2",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 28A1670, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15",
+    "판독 확정: OVERCOME number blurry; best reading 3+ — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "31.png",
@@ -1327,10 +1358,11 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "WHITE APE TROLL – BP 3",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 28A1677, corroborated by the sheet-order sequence pattern"
-   ],
-   "text": "SPINE COLUMN / OVERCOME 5+ ▸ Power 1 / [AT] 7 / WOUND: Perform Signature against the Attacker. / FAIL: [REACT!] Pushback 5. Knockdown. / CRITICAL: Disable the Regeneration Trait. / WHITE APE TROLL – BP 3"
+   "unclear": [],
+   "text": "SPINE COLUMN / OVERCOME 5+ ▸ Power 1 / [AT] 7 / WOUND: Perform Signature against the Attacker. / FAIL: [REACT!] Pushback 5. Knockdown. / CRITICAL: Disable the Regeneration Trait. / WHITE APE TROLL – BP 3",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 28A1677, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "32.png",
@@ -1353,11 +1385,12 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "WHITE APE TROLL – BP 3",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 28A1678, corroborated by the sheet-order sequence pattern",
-    "card has INSTINCT + CRITICAL only (no WOUND/FAIL)"
-   ],
-   "text": "MONKEY BRAIN / OVERCOME 5+ ▸ Power 1 / [AT] 8 / INSTINCT: Gain the Exposed Condition card. Perform Signature against the Attacker. / CRITICAL: Until the end of Clash, ignore token penalty from the Firstmen Guardians Trait. / WHITE APE TROLL – BP 3"
+   "unclear": [],
+   "text": "MONKEY BRAIN / OVERCOME 5+ ▸ Power 1 / [AT] 8 / INSTINCT: Gain the Exposed Condition card. Perform Signature against the Attacker. / CRITICAL: Until the end of Clash, ignore token penalty from the Firstmen Guardians Trait. / WHITE APE TROLL – BP 3",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 28A1678, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15",
+    "판독 확정: card has INSTINCT + CRITICAL only (no WOUND/FAIL) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "33.png",
@@ -1380,11 +1413,12 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "WHITE APE TROLL – BP 3",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 28A1679, corroborated by the sheet-order sequence pattern",
-    "OVERCOME number illegible in scan; 5+ is a best guess (could be 4+ or 6+)"
-   ],
-   "text": "WILD HEART / OVERCOME 5+ ▸ Power 1 / [AT] 9 / WOUND: Gain the Exposed Condition card. Discard. All Firstmen Guardians move 5 spaces toward White Ape Troll until adjacent. / FAIL: Draw a Judicium. / CRITICAL: The White Ape Troll dies! / WHITE APE TROLL – BP 3"
+   "unclear": [],
+   "text": "WILD HEART / OVERCOME 5+ ▸ Power 1 / [AT] 9 / WOUND: Gain the Exposed Condition card. Discard. All Firstmen Guardians move 5 spaces toward White Ape Troll until adjacent. / FAIL: Draw a Judicium. / CRITICAL: The White Ape Troll dies! / WHITE APE TROLL – BP 3",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 28A1679, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15",
+    "판독 확정: OVERCOME number illegible in scan; 5+ is a best guess (could be 4+ or 6+) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "34.png",
@@ -1407,11 +1441,12 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "WHITE APE TROLL – BP 3",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 28A1674, corroborated by the sheet-order sequence pattern",
-    "OVERCOME number blurry; best reading 3+"
-   ],
-   "text": "MILKY EYES / OVERCOME 3+ ▸ Power 1 / [AT] 6 / WOUND: Perform Signature against the Attacker. / FAIL: Gain the Exposed Condition card. / CRITICAL: All Knights discard the Exposed Condition card. Until the end of Clash, Knights can’t gain the Exposed Condition card. / WHITE APE TROLL – BP 3"
+   "unclear": [],
+   "text": "MILKY EYES / OVERCOME 3+ ▸ Power 1 / [AT] 6 / WOUND: Perform Signature against the Attacker. / FAIL: Gain the Exposed Condition card. / CRITICAL: All Knights discard the Exposed Condition card. Until the end of Clash, Knights can’t gain the Exposed Condition card. / WHITE APE TROLL – BP 3",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 28A1674, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15",
+    "판독 확정: OVERCOME number blurry; best reading 3+ — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "35.png",
@@ -1434,13 +1469,14 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "WHITE APE TROLL – BP 3",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 28A1675, corroborated by the sheet-order sequence pattern",
-    "OVERCOME number blurry (looks like '1' or '4'); best reading 4+",
-    "card has INSTINCT + CRITICAL only (no WOUND/FAIL)",
-    "no [Peril Check] icon printed after 'Lose -3 [Vigor].'"
-   ],
-   "text": "EXPOSED ARMPIT / OVERCOME 4+ ▸ Power 1 / [AT] 6 / INSTINCT: Lose -3 [Vigor]. Gain the Exposed Condition card. Knockback 6. All Firstmen Guardians move 5 spaces toward White Ape Troll until adjacent. / CRITICAL: White Ape Troll’s Attacks have -1 [d10]. / WHITE APE TROLL – BP 3"
+   "unclear": [],
+   "text": "EXPOSED ARMPIT / OVERCOME 4+ ▸ Power 1 / [AT] 6 / INSTINCT: Lose -3 [Vigor]. Gain the Exposed Condition card. Knockback 6. All Firstmen Guardians move 5 spaces toward White Ape Troll until adjacent. / CRITICAL: White Ape Troll’s Attacks have -1 [d10]. / WHITE APE TROLL – BP 3",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 28A1675, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15",
+    "판독 확정: OVERCOME number blurry (looks like '1' or '4'); best reading 4+ — 소유자 확인 2026-11-15",
+    "판독 확정: card has INSTINCT + CRITICAL only (no WOUND/FAIL) — 소유자 확인 2026-11-15",
+    "판독 확정: no [Peril Check] icon printed after 'Lose -3 [Vigor].' — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "36.png",
@@ -1463,11 +1499,12 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "WHITE APE TROLL – BP 3",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 28A1676, corroborated by the sheet-order sequence pattern",
-    "OVERCOME number blurry; best reading 4+"
-   ],
-   "text": "COVERED GROIN / OVERCOME 4+ ▸ Power 1 / [AT] 7 / WOUND: White Ape Troll moves 4 spaces directly away from the Attacker (without turning). / FAIL: Pushback 5. / CRITICAL: You may perform a Bonus Attack with +1 [Power]! / WHITE APE TROLL – BP 3"
+   "unclear": [],
+   "text": "COVERED GROIN / OVERCOME 4+ ▸ Power 1 / [AT] 7 / WOUND: White Ape Troll moves 4 spaces directly away from the Attacker (without turning). / FAIL: Pushback 5. / CRITICAL: You may perform a Bonus Attack with +1 [Power]! / WHITE APE TROLL – BP 3",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 28A1676, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15",
+    "판독 확정: OVERCOME number blurry; best reading 4+ — 소유자 확인 2026-11-15"
+   ]
   }
  ],
  "routine": {
@@ -1477,8 +1514,9 @@
   "type": "ROUTINE",
   "text": "White Ape Troll moves to the center of the Clash Board. Heal 1. Escalate 1.",
   "footer": "WHITE APE TROLL",
-  "unclear": [
-   "no card code visible in the scan"
+  "unclear": [],
+  "notes": [
+   "판독 확정: no card code visible in the scan — 소유자 확인 2026-11-15"
   ]
  },
  "signature": {
@@ -1516,10 +1554,11 @@
   "afterFinalAttack": null,
   "aiResponse": null,
   "footer": "WHITE APE TROLL",
-  "unclear": [
-   "code: tiny low-resolution print; best reading 27A1294, corroborated by the sheet-order sequence pattern"
-  ],
-  "text": "HAFT SHOVE / SIGNATURE / Evasion 3 dice, 9+ / TARGETING: • Closest Knight not in front, in sight • Furthest Knight in sight [REACT!] / MOVE, PUSHBACK 3 & ATTACK [Heat 3+ ▸ +1 [d10]] / Gain the Exposed Condition card. / For each hit lose -1 [Vigor]. [Peril Check]. [REACT!] / Knockback 3 to the side. / WHITE APE TROLL"
+  "unclear": [],
+  "text": "HAFT SHOVE / SIGNATURE / Evasion 3 dice, 9+ / TARGETING: • Closest Knight not in front, in sight • Furthest Knight in sight [REACT!] / MOVE, PUSHBACK 3 & ATTACK [Heat 3+ ▸ +1 [d10]] / Gain the Exposed Condition card. / For each hit lose -1 [Vigor]. [Peril Check]. [REACT!] / Knockback 3 to the side. / WHITE APE TROLL",
+  "notes": [
+   "판독 확정: code: tiny low-resolution print; best reading 27A1294, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15"
+  ]
  },
  "extra": [
   {
@@ -1546,13 +1585,14 @@
     "Advanced Bypass"
    ],
    "footer": "WHITE APE TROLL",
-   "unclear": [
-    "code: tiny faint print; best reading 28A1682",
-    "no OVERCOME/OVERPOWER tag printed on this card",
-    "'End of Monster Round:' is bold; bottom box sits below the footer on a darker band",
-    "critical text hyphenated across lines as 'additio-nal' -> 'additional'"
-   ],
-   "text": "FIRSTMAN GUARDIAN / [AT] 4 / WOUND: The Firstman Guardian dies. You may perform a Bonus Attack (perform once per round, per Knight). / FAIL: Gain the Exposed Condition card. / CRITICAL: The Firstman Guardian dies. You may perform a Bonus Attack! Leave 2 additional Opening [Opening] and/or Break [Break] tokens. / WHITE APE TROLL / 7+ [To Hit]. Advanced Bypass. / End of Monster Round: Move all Firstmen Guardians adjacent to the White Ape Troll, starting from the lowest number."
+   "unclear": [],
+   "text": "FIRSTMAN GUARDIAN / [AT] 4 / WOUND: The Firstman Guardian dies. You may perform a Bonus Attack (perform once per round, per Knight). / FAIL: Gain the Exposed Condition card. / CRITICAL: The Firstman Guardian dies. You may perform a Bonus Attack! Leave 2 additional Opening [Opening] and/or Break [Break] tokens. / WHITE APE TROLL / 7+ [To Hit]. Advanced Bypass. / End of Monster Round: Move all Firstmen Guardians adjacent to the White Ape Troll, starting from the lowest number.",
+   "notes": [
+    "판독 확정: code: tiny faint print; best reading 28A1682 — 소유자 확인 2026-11-15",
+    "판독 확정: no OVERCOME/OVERPOWER tag printed on this card — 소유자 확인 2026-11-15",
+    "판독 확정: 'End of Monster Round:' is bold; bottom box sits below the footer on a darker band — 소유자 확인 2026-11-15",
+    "판독 확정: critical text hyphenated across lines as 'additio-nal' -> 'additional' — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "39.png",
@@ -1581,12 +1621,13 @@
    "afterFinalAttack": null,
    "aiResponse": null,
    "footer": "WHITE APE TROLL",
-   "unclear": [
-    "code: tiny low-resolution print; best reading 27A1296, corroborated by the sheet-order sequence pattern",
-    "no level in footer"
-   ],
+   "unclear": [],
    "text": "COORDINATED ATTACK / TRAIT ATTACK / Evasion 3 dice, 9+ / TARGETING: • Closest Knight without the Exposed Condition card • Closest Knight in sight [REACT!] / MOVE & ATTACK / Gain the Exposed Condition card. / For each hit lose -1 [Vigor]. [Peril Check]. / WHITE APE TROLL",
-   "kind": "traitAttack"
+   "kind": "traitAttack",
+   "notes": [
+    "판독 확정: code: tiny low-resolution print; best reading 27A1296, corroborated by the sheet-order sequence pattern — 소유자 확인 2026-11-15",
+    "판독 확정: no level in footer — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "thick_skin_back.png",
@@ -1596,10 +1637,11 @@
    "code": null,
    "text": "Start of Monster Round: Place the Thick Skin BP on the top of the BP deck, unless it’s already there. If the Thick Skin BP card is wounded, place it next to the BP deck, and do not Escalate. If the Thick Skin BP card is on top of the BP deck and any effect would let you interact with the BP Deck, ignore that interaction.",
    "footer": "WHITE APE TROLL",
-   "unclear": [
-    "no code, AT box or response boxes on this side",
-    "'Start of Monster Round:' is bold; 'Thick Skin' italic",
-    "wording differs slightly from the sheet's Regeneration trait (card: 'Thick Skin BP on the top', 'If the ... is wounded', 'BP Deck'; sheet: 'Thick Skin BP card on the top', 'When the ... is wounded', 'BP deck') - both kept as printed"
+   "unclear": [],
+   "notes": [
+    "판독 확정: no code, AT box or response boxes on this side — 소유자 확인 2026-11-15",
+    "판독 확정: 'Start of Monster Round:' is bold; 'Thick Skin' italic — 소유자 확인 2026-11-15",
+    "판독 확정: wording differs slightly from the sheet's Regeneration trait (card: 'Thick Skin BP on the top', 'If the ... is wounded', 'BP Deck'; sheet: 'Thick Skin BP card on the top', 'When the ... is wounded', 'BP deck') - both kept as printed — 소유자 확인 2026-11-15"
    ]
   }
  ],

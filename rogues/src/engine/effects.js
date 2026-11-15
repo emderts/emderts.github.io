@@ -70,6 +70,8 @@ export class Effects {
     await this.arcAt(k, A, 'roll');
     // Courage: Auto-break 1
     if (this.c.hasCondition(k, 'Courage')) this.c.poolAdd('break', 1);
+    // Auto-break X granted to a Bonus Attack (e.g. Muscular Chest / Monstrous Head Critical): X Break tokens in the Knight Pool
+    if (A.bonus && k.bonusAutoBreak) { this.c.poolAdd('break', k.bonusAutoBreak); this.say(`Auto-break ${k.bonusAutoBreak}: Break 토큰 ${k.bonusAutoBreak}개`); k.bonusAutoBreak = 0; }
     // pre-attack techniques (Prized Morsel, Butcher's Twine) are used as free actions before attacking; flags set there
     if (k.pendingAttackFlags) { for (const f of k.pendingAttackFlags) A.flags.add(f); if (k.pendingExtraPool) for (const col in k.pendingExtraPool) A.extraPool[col] += k.pendingExtraPool[col]; k.pendingAttackFlags = null; k.pendingExtraPool = null; }
   }
@@ -259,7 +261,7 @@ export class Effects {
       case 'moveToCenter': { const B = C.board; const center = { c: 7, r: 4 }; const d = { c: Math.sign(center.c - C.monsterCenter().c + 0.5), r: Math.sign(center.r - C.monsterCenter().r + 0.5) }; let guard = 0; while (guard++ < 20 && !(C.monster.cells.some(c => c.c === 7 && c.r === 4))) { const dc = 7 - C.monster.cells[0].c, dr = 4 - C.monster.cells[0].r; if (!dc && !dr) break; const step = Math.abs(dc) >= Math.abs(dr) ? { c: Math.sign(dc), r: 0 } : { c: 0, r: Math.sign(dr) }; if (await C.monsterStep(step) !== 'ok') break; } await C.displaceKnightsUnderMonster(); this.say('몬스터가 보드 중앙으로 이동'); return; }
       case 'faceMostKnights': C.faceMostKnights(); return;
       case 'monsterModifier': M.modifiers[o.stat] += o.n; this.say(`몬스터 ${o.stat} ${o.n > 0 ? '+' : ''}${o.n} (영구)`); return;
-      case 'bonusAttack': { const who = o.who === 'otherKnight' ? C.alive().filter(k => k !== ctx.attacker && C.canAttack(k)) : [ctx.attacker]; if (!who.length) return; let k = who[0]; if (who.length > 1) { const kid = await C.ask({ type: 'pickKnight', options: who.map(x => ({ label: x.name, value: x.id })) }); k = who.find(x => x.id === kid) || who[0]; } if (o.optional && !await C.yesNo(`${k.name} Bonus Attack?`, true)) return; k.bonusAttacks++; return; }
+      case 'bonusAttack': { const who = o.who === 'otherKnight' ? C.alive().filter(k => k !== ctx.attacker && C.canAttack(k)) : [ctx.attacker]; if (!who.length) return; let k = who[0]; if (who.length > 1) { const kid = await C.ask({ type: 'pickKnight', options: who.map(x => ({ label: x.name, value: x.id })) }); k = who.find(x => x.id === kid) || who[0]; } if (o.optional && !await C.yesNo(`${k.name} Bonus Attack${o.autoBreak ? ` (Auto-break ${o.autoBreak})` : ''}?`, true)) return; k.bonusAttacks++; if (o.autoBreak) { k.bonusAutoBreak = (k.bonusAutoBreak || 0) + o.autoBreak; } return; }
       case 'gainPassion': t.gainPassion(o.n); return;
       case 'leaveTokens': { ctx.attack.leaveTokens = ctx.attack.leaveTokens || []; for (let i = 0; i < o.n; i++) { const tok = await C.ask({ type: 'pick', text: '남길 토큰', options: o.tokens.map(x => ({ label: x, value: x })) }); ctx.attack.leaveTokens.push([tok, 1]); } return; }
       case 'returnAllTechniques': t.hand.push(...t.cooldown, ...t.delay, ...t.discard); t.cooldown = []; t.delay = []; t.discard = []; this.say(`${t.name} 모든 기술 회수`); return;

@@ -56,6 +56,10 @@ const card = n => [...FW.cards.ai, FW.cards.signature].find(x => x.name === n);
 // auras
 { const c = mk(12); const a = c.monster.mobs.find(m => L(c, m.cells[0]) === 'G5'), b = c.monster.mobs.find(m => L(c, m.cells[0]) === 'G6'); a.card = FW.cards.bp.find(x => x.name === 'Legionary'); a.revealed = true; ok(c.firstmenAT(b) === 1 && c.firstmenAT(a) === 1, 'Legionary: every Monster in Zone 2 has +1 AT');
   a.card = FW.cards.bp.find(x => x.name === 'Principes'); ok(c.firstmenToHit(b) === 1, 'Principes: +1 To Hit in Zone 2'); a.card = FW.cards.bp.find(x => x.name === 'Murmillo'); a.generic = 0; ok(c.firstmenAT(a) === -2, 'Murmillo without Generic token: -2 AT'); }
+// Rampage Strike: Pushback 3 before the Evasion Roll; Auto-break on the Muscular Chest Critical bonus attack
+{ const c = mk(14); await c.longHowl(); const order = []; const pb = c.pushback.bind(c); c.pushback = async (k, n, o) => { order.push('pushback' + n); return pb(k, n, o); }; const ev = c.attackOneTarget.bind(c); c.attackOneTarget = async (...a) => { order.push('evasion'); return ev(...a); };
+  try { await c.trollActivate(); } catch (e) {} ok(order.indexOf('pushback3') >= 0 && order.indexOf('pushback3') < order.indexOf('evasion'), `Rampage Strike: Pushback 3 before the Evasion Roll (${order.slice(0, 3).join(' → ')})`);
+  const k = c.knights[0]; await c.fx.runMonsterOp({ op: 'bonusAttack', who: 'self', autoBreak: 2 }, { attacker: k }); ok(k.bonusAttacks === 1 && k.bonusAutoBreak === 2, 'Muscular Chest Critical: Bonus Attack carries Auto-break 2'); }
 // simulations
 { let wins = 0, losses = 0, troll = 0; const N = 10;
   for (let s = 1; s <= N; s++) { const c = mk(800 + s); const r = await c.run(); if (r === 'win') wins++; else losses++; if (c.log.some(l => /Long Howl!/.test(l.msg))) troll++; const bad = c.log.filter(l => /미구현/.test(l.msg)); if (bad.length) ok(false, `seed ${s}: ${bad[0].msg}`); }

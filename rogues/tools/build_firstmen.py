@@ -107,7 +107,7 @@ for x in raw['extra']:
 # White Ape Troll pieces (Long Howl)
 rs = next(c for c in wat['ai'] if c['name'] == 'Rampage Strike'); mc = next(c for c in wat['bp'] if c['name'] == 'Muscular Chest')
 troll = {
- 'ai': ai(rs, dict(gates=[HD, {'op': 'pushback', 'stat': 'always', 'n': 3}], effects=[EXP, V(2), {'op': 'delay'}, {'op': 'knockback', 'n': 4}])),
+ 'ai': ai(rs, dict(gates=[HD], prePushback=3, effects=[EXP, V(2), {'op': 'delay'}, {'op': 'knockback', 'n': 4}])),
  'bp': bp({**mc, 'overcome': mc['overcome']}, dict(wound=[{'op': 'pushback', 'n': 4}], fail=[EXP], critical=[{'op': 'bonusAttack', 'who': 'self', 'optional': True, 'autoBreak': 2}])),
 }
 
@@ -134,17 +134,17 @@ d = {
    {'tile': 'swamp', 'cells': ['J1', 'J2']}, {'tile': 'swamp', 'cells': ['J3', 'J4']}, {'tile': 'swamp', 'cells': ['I1', 'H1']}, {'tile': 'swamp', 'cells': ['J12', 'J13']}, {'tile': 'swamp', 'cells': ['J14', 'I14']},
    {'tile': 'swamp', 'cells': ['A1', 'A2']}, {'tile': 'swamp', 'cells': ['A3', 'A4']}, {'tile': 'swamp', 'cells': ['D13', 'C13']}, {'tile': 'swamp', 'cells': ['B13', 'B14', 'A13', 'A14'], 'shape': '2x2'},
    {'tile': 'rubble', 'cells': ['I2', 'I3', 'H2', 'H3'], 'shape': '2x2'}, {'tile': 'rubble', 'cells': ['B5', 'B6', 'A5', 'A6'], 'shape': '2x2'}, {'tile': 'rubble', 'cells': ['I12', 'I13', 'H13', 'G13'], 'shape': 'L'}],
-  'unclear': ['지형 칸 위치는 코덱스 도식에서 읽음 — 확인 필요']},
+  'unclear': [], 'notes': ['지형 칸 위치 — 소유자 확인 2026-11-15']},
  'rulings': [
-  'Tactic A/B lines resolve in card order on a hit, using the drawn Battle Tactics card with X = the printed number; on BP Fail responses they target the Attacker [해석, 확인 필요]',
+  'Tactic A/B lines resolve in card order on a hit, using the drawn Battle Tactics card with X = the printed number; on BP Fail responses they target the Attacker (소유자 확인 2026-11-15)',
   'Tactics Target = the Battle Tactics card\'s targeting line (Closest non-Engaged / Closest Lone / Closest Grouped Knight)',
-  'Predator Tactics "Lone Knights additionally lose -2 Vigor" applies to every Firstmen Attack that causes Vigor loss to a Lone Knight [해석, 확인 필요]',
+  'Predator Tactics "Lone Knights additionally lose -2 Vigor" applies to every Firstmen Attack that causes Vigor loss to a Lone Knight (소유자 확인 2026-11-15)',
   'Mangrove Deployment: the new Warrior (BP one level higher, leftmost empty track space) waits on the Mangrove tile — off the Clash Board — until the End of the Knight Round, then moves adjacent to that tile onto the free space closest to any Knight (lowest number first)',
   'RANGE ATTACK UNLIMITED: no movement; any Knight in sight can be targeted',
   'LAND ON TOP: the Warrior moves onto the Target\'s space, the Target is Displaced to a front space; the Zone is the card diagram around the Warrior',
-  'Iron Rain "every Mob adjacent to the Attacker": Mobs adjacent to the attacking Warrior [해석, 확인 필요]',
-  'Long Howl: the White Ape Troll (2x2) Spawns on the centre (F7/F8/E7/E8, Displacing miniatures), faces the most Knights, uses the Firstmen To Hit/AT/Vigor bonuses, activates after the Warriors each Monster Round with Rampage Strike; Knights attacking it always hit Muscular Chest; wounding it Escalates the Firstmen AI deck, adds a Generic token and a Single Wound to the Wound Stack; 4 tokens → it flees',
-  'Rampage Strike "MOVE, PUSHBACK 3 & ATTACK": Pushback 3 on a hit, before the effects [해석, 확인 필요]',
+  'Iron Rain "every Mob adjacent to the Attacker": Mobs adjacent to the attacking Warrior (소유자 확인 2026-11-15)',
+  'Long Howl (소유자 확인 2026-11-15: wounding the Troll escalates the lowest AI): the White Ape Troll (2x2) Spawns on the centre (F7/F8/E7/E8, Displacing miniatures), faces the most Knights, uses the Firstmen To Hit/AT/Vigor bonuses, activates after the Warriors each Monster Round with Rampage Strike; Knights attacking it always hit Muscular Chest; wounding it Escalates the Firstmen AI deck, adds a Generic token and a Single Wound to the Wound Stack; 4 tokens → it flees',
+  'Rampage Strike "MOVE, PUSHBACK 3 & ATTACK": after moving, Pushback 3 before the Evasion Roll; the attack then resolves against that Target (소유자 확인 2026-11-15)',
   '"When X attacks, add its Instinct Response to the After Attack": the revealed BP3 Warrior\'s own Instinct Response is resolved against its Target after its attacks',
  ],
 }

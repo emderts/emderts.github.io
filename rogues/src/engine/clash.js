@@ -198,7 +198,8 @@ export class Clash {
       attack.targets = targets;
       if (!targets.length) { this.say('Zone 공격: 대상 없음(Zone은 수행된 것으로 간주)'); }
       // out of reach check for melee
-      if (tg.primary && card.type !== 'zone' && !ops.judge && !ops.range && !this.adjacentToMonster(tg.primary)) { this.say(`${tg.primary.name} Out of Reach → After Attack만 처리`); attack.targets = []; }
+      if (tg.primary && ops.prePushback && this.alive().includes(tg.primary)) { this.say(`Pushback ${ops.prePushback} (공격 전)`); await this.pushback(tg.primary, ops.prePushback); }
+      if (tg.primary && card.type !== 'zone' && !ops.judge && !ops.range && !ops.prePushback && !this.adjacentToMonster(tg.primary)) { this.say(`${tg.primary.name} Out of Reach → After Attack만 처리`); attack.targets = []; }
       if (attack.targets.length > 1) { const order = await this.ask({ type: 'order', text: 'Evasion Roll 순서 (여러 대상)', options: attack.targets.map(t => ({ label: t.name, value: t.id })) }); if (Array.isArray(order)) attack.targets = order.map(id => attack.targets.find(t => t.id === id)).filter(Boolean); }
       for (const t of attack.targets) { if (!t.alive) continue; try { await this.attackOneTarget(attack, t); } catch (e) { if (e.chainBreak && (card.type === 'zone' || attack.targets.length > 1)) { this.say(`Chain Break (${t.name}) — 다른 대상은 계속`); continue; } throw e; } }
       if (stepTo) attack.stepTo = stepTo;
