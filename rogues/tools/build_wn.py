@@ -51,7 +51,7 @@ def bp(c, spec):
 missing = [c['name'] for c in raw['ai'] if c['name'] not in AI] + [c['name'] for c in raw['bp'] if c['name'] not in BP]; assert not missing, missing
 bps = {c['name']: bp(c, BP[c['name']]) for c in raw['bp']}
 levels = {l: {'toHit': v['toHit'], 'wounds': v['wounds'], 'activations': ['AI'], 'traitsAdd': v['traitsAdd'], 'bonuses': v['bonuses']} for l, v in S['levels'].items()}
-RUT_NOTE = 'Rut: 기사가 공격 중 이 타일 위면 무기가 Cumbersome, 몬스터가 올라가면 타일을 뒤집음 — 뒷면 미입수라 미구현'
+RUT_NOTE = 'Rut: 몬스터가 지나가면 뒤집혀 Swamp가 됨 (구현). 기사가 Rut 위에서 공격하면 무기가 Cumbersome — Cumbersome 키워드가 엔진에 아직 없어 미구현'
 d = {
  'id': 'winged-nightmare', 'name': 'Winged Nightmare', 'kind': 'mob', 'code': S.get('code'), 'traitsLine': S.get('traitsLine'),
  '_source': 'Monster Sheet, AI/BP/Trait cards, Signature, Routine — owner scans (readings owner-confirmed 2026-11-15); Clash Setup: Sunken Kingdom Codex p.38',
@@ -84,6 +84,7 @@ d = {
   'Bloody Defiance: the final Wound is placed, then the BP Trait card replaces the BP and ITS Wound (or Critical → dies) response resolves instead [해석, 확인 필요]',
   '"moves to the closest empty Column tile" while already on a Column: moves to another one [해석, 확인 필요]',
   '"MOVE TO THE CLOSEST CHASM & JUDGE" (Aria of Doom): moves onto the closest Chasm space, then judges the Knights in Zone 4 of the new position; Misleading Melody / Aria movement is per hit (1 / 2 spaces per hit), Knights stop adjacent to the Chasm (voluntary movement cannot enter it) [해석, 확인 필요]',
+  'Owner reference sheet (WN v1.2, 2026-11-15): Superior Bypass lets her end a MOVE on Obstacle terrain (perches on Columns); on the Tail side "move to the closest empty Column" = move ADJACENT to it; climbing a Column is once per round per Knight; Flee turns her to face the board edge; pushed / dragged through a Column destroys it; Bloody Defiance keeps Superior Bypass; Overpower resolves before responses',
   'Marble Forest "instead of a Reflex" is not implemented (free action only); ' + RUT_NOTE,
  ],
 }
