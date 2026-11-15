@@ -1,0 +1,2886 @@
+{
+ "id": "haunts-of-utrebant",
+ "name": "Haunts of Utrebant",
+ "kind": "mob",
+ "code": "26A1065",
+ "traitsLine": [
+  "Mob",
+  "Undead",
+  "Ancient"
+ ],
+ "_source": "Monster Sheet (2 pages), AI/BP/Routine card sheet, Signature card — owner scans 2026-11-15 (readings owner-confirmed). Clash Setup: Sunken Kingdom Codex (pending)",
+ "footprint": {
+  "size": 1,
+  "shape": "1x1",
+  "rear": "the single cell directly behind (R on the sheet diagram)",
+  "facingOnSheet": "down"
+ },
+ "basicAbilities": [
+  {
+   "name": "Superior Bypass",
+   "rule": "Rulebook p.80: may move through other miniatures and enter/end on Obstacle spaces; cannot end voluntary movement on another miniature."
+  },
+  {
+   "name": "Interval Spawn",
+   "rule": "Owner 2026-11-15: spawns at the interval its Trait sets — Ethereal Unity (3 tokens → 3 Haunts at Fool's deck coordinates)."
+  }
+ ],
+ "levels": {
+  "1": {
+   "toHit": 6,
+   "wounds": 7,
+   "exhibitionWounds": 1,
+   "activations": [
+    "AI",
+    "S"
+   ],
+   "activationsText": "1 AI 1 S",
+   "traitsAdd": [
+    "Intangible",
+    "Ethereal Unity",
+    "Spectral Step"
+   ],
+   "bonuses": {
+    "escalations": 0,
+    "at": 0,
+    "vigorLoss": 0
+   }
+  },
+  "2": {
+   "toHit": 8,
+   "wounds": 8,
+   "exhibitionWounds": 2,
+   "activations": [
+    "AI",
+    "S"
+   ],
+   "activationsText": "1 AI 1 S",
+   "traitsAdd": [
+    "Obscured Vision",
+    "The Grim Gift"
+   ],
+   "bonuses": {
+    "escalations": 0,
+    "at": 2,
+    "vigorLoss": 0
+   }
+  },
+  "3": {
+   "toHit": 9,
+   "wounds": 8,
+   "exhibitionWounds": 2,
+   "activations": [
+    "AI",
+    "AI"
+   ],
+   "activationsText": "2 AI",
+   "traitsAdd": [
+    "Revenge Served Ghastly Cold"
+   ],
+   "bonuses": {
+    "escalations": 0,
+    "at": 3,
+    "vigorLoss": 1
+   }
+  },
+  "4": {
+   "toHit": 10,
+   "wounds": 9,
+   "exhibitionWounds": 2,
+   "activations": [
+    "AI",
+    "AI"
+   ],
+   "activationsText": "2 AI",
+   "traitsAdd": [
+    "No Mercy"
+   ],
+   "bonuses": {
+    "escalations": 0,
+    "at": 5,
+    "vigorLoss": 2
+   }
+  }
+ },
+ "traits": [
+  {
+   "id": "intangible",
+   "name": "Intangible",
+   "level": 1,
+   "text": "Haunts of Utrebant ignore Terrain tiles for the purposes of both voluntary and involuntary movement, and Line of Sight.",
+   "implemented": true
+  },
+  {
+   "id": "ethereal-unity",
+   "name": "Ethereal Unity",
+   "level": 1,
+   "text": "! If any effect during the Delve instructed you to Escalate the BP deck, ignore that effect.\n\nEach time a Haunt of Utrebant is removed from the Board, place a Generic token on this Trait. After you finish resolving the current action, if there are 3 or more tokens on this Trait, discard all tokens and Spawn three new Haunts of Utrebant. Draw three cards from the top of the Fool’s deck, and place new Haunts on the Board according to coordinates on the cards. If a Haunt were to Spawn on a space occupied by a Knight, instead place it on an unoccupied adjacent space. Assign Activation tokens starting from the left of the Mob track.\n\nFor every token on the Ethereal Unity Trait, all Haunts of Utrebant currently on the Clash Board gain the following bonuses:\n1 token: +1 To Hit [To Hit].\n2 tokens: All Attacks cause an additional -1 [Vigor] loss.\nThe effects of this Trait can stack.",
+   "implemented": true
+  },
+  {
+   "id": "spectral-step",
+   "name": "Spectral Step",
+   "level": 1,
+   "text": "Certain Zone Attacks include specially designated spaces on their diagrams. After performing a Zone Attack, the attacking Haunt will appear on that space.\n\nIf a Haunt were to appear on a space occupied by a Knight as a result of this Trait, that Knight suffers Unavoidable Knockback 3 and Crash. If a Haunt were to appear beyond a Board Edge, it appears adjacent to that Board Edge instead.",
+   "implemented": true
+  },
+  {
+   "id": "obscured-vision",
+   "name": "Obscured Vision",
+   "level": 2,
+   "text": "All Knights lose -2 Precision [Precision] when adjacent to a Ruined Wall Terrain tile.",
+   "implemented": true
+  },
+  {
+   "id": "grim-gift",
+   "name": "The Grim Gift",
+   "level": 2,
+   "text": "During AI Escalation, always Escalate the lowest AI card from the AI deck or discard pile (prioritize the deck). This Trait takes precedence over regular Escalation rules.",
+   "implemented": true
+  },
+  {
+   "id": "revenge",
+   "name": "Revenge Served Ghastly Cold",
+   "level": 3,
+   "text": "When you Spawn new Haunts of Utrebant, the leftmost Haunt performs Signature. Ignore during the first Monster Round.",
+   "implemented": true
+  },
+  {
+   "id": "no-mercy",
+   "name": "No Mercy",
+   "level": 4,
+   "text": "Zone sizes of all Zone Judgments change from 1 to 2, and diagrams of all Zone Attacks increase in size as indicated by the yellow colored spaces on the diagram. If a Haunt of Utrebant moves onto a space occupied by a Knight at the end of a Zone Attack, that Knight dies!",
+   "implemented": true
+  }
+ ],
+ "cards": {
+  "ai": [
+   {
+    "file": "00.png",
+    "name": "Fleeting Visitation",
+    "code": "27A1239",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 7,
+    "preTargeting": null,
+    "targeting": [
+     "Furthest Knight in sight"
+    ],
+    "moveTag": "APPEAR BEHIND & ATTACK",
+    "move": false,
+    "gates": [],
+    "effects": [
+     "For each hit lose -2 [Vigor]. [Peril Check]."
+    ],
+    "reactWindows": [],
+    "afterAttack": "Move 3 spaces directly away from the Target.",
+    "afterFinalAttack": null,
+    "aiResponse": null,
+    "footer": "HAUNTS OF UTREBANT – AI 1",
+    "unclear": [],
+    "text": "FLEETING VISITATION / ATTACK / Evasion 3 dice, 7+ / TARGETING: • Furthest Knight in sight / APPEAR BEHIND & ATTACK / For each hit lose -2 [Vigor]. [Peril Check]. / AFTER ATTACK / Move 3 spaces directly away from the Target. / HAUNTS OF UTREBANT – AI 1",
+    "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT].",
+    "notes": [
+     "판독 확정: code: tiny faint print; best reading 27A1239 (last digit reads 8 or 9; 03.png reads 27A1238, so 9 chosen from the AI-1 run 27A1236–27A1241) — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: no REACT! markers printed on this card — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)"
+    ],
+    "ops": {
+     "targeting": [
+      "Furthest Knight in sight"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "moveAway",
+       "n": 3
+      }
+     ],
+     "afterFinalAttack": null,
+     "appearBehind": true
+    }
+   },
+   {
+    "file": "01.png",
+    "name": "Poltergeist Pirouette",
+    "code": "27A1240",
+    "level": 1,
+    "type": "zone",
+    "evasionDice": 2,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "Closest Grouped Knight",
+     "Closest Knight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "move": true,
+    "gates": [],
+    "effects": [
+     "For each hit lose -3 [Vigor]. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting",
+     "effect:0"
+    ],
+    "afterAttack": "Knockback 3.",
+    "afterFinalAttack": null,
+    "aiResponse": null,
+    "footer": "HAUNTS OF UTREBANT – AI 1",
+    "zoneDiagram": {
+     "grid": [
+      7,
+      7
+     ],
+     "gridNote": "[columns, rows]",
+     "rows": [
+      "...Y...",
+      "..YRY..",
+      ".YRRRY.",
+      "YRR^RRY",
+      ".YRRRY.",
+      "..YRY..",
+      "...Y..."
+     ],
+     "legend": "Rows top-to-bottom as printed, one char per cell: R red, Y yellow, . empty (tan), ^ > single-chevron black marker (the Haunt, pointing in that direction), ⇑ » double-chevron black marker pointing up / right (the specially designated space of the Spectral Step trait, where the Haunt appears after the attack).",
+     "red": 12,
+     "yellow": 12,
+     "note": "7x7 grid; Haunt (single chevron, facing up) at centre; red = 12 cells within distance 2 (diamond); yellow = 12-cell ring at distance 3. Bottom rows partly overlapped by the art (whip) but all cells visible. No double-chevron marker on this card."
+    },
+    "unclear": [],
+    "text": "POLTERGEIST PIROUETTE / ZONE ATTACK / Evasion 2 dice, 8+ / ZONE DIAGRAM (see zoneDiagram) / TARGETING: • Closest Grouped Knight • Closest Knight [REACT!] / MOVE & ATTACK / For each hit lose -3 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Knockback 3. / HAUNTS OF UTREBANT – AI 1",
+    "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT].",
+    "notes": [
+     "판독 확정: code: tiny faint print; best reading 27A1240 — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)"
+    ],
+    "ops": {
+     "targeting": [
+      "Closest Grouped Knight",
+      "Closest Knight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 3,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "knockback",
+       "n": 3
+      }
+     ],
+     "afterFinalAttack": null,
+     "zoneDiagram": {
+      "red": [
+       [
+        2,
+        0
+       ],
+       [
+        1,
+        -1
+       ],
+       [
+        1,
+        0
+       ],
+       [
+        1,
+        1
+       ],
+       [
+        0,
+        -2
+       ],
+       [
+        0,
+        -1
+       ],
+       [
+        0,
+        1
+       ],
+       [
+        0,
+        2
+       ],
+       [
+        -1,
+        -1
+       ],
+       [
+        -1,
+        0
+       ],
+       [
+        -1,
+        1
+       ],
+       [
+        -2,
+        0
+       ]
+      ],
+      "yellow": [
+       [
+        3,
+        0
+       ],
+       [
+        2,
+        -1
+       ],
+       [
+        2,
+        1
+       ],
+       [
+        1,
+        -2
+       ],
+       [
+        1,
+        2
+       ],
+       [
+        0,
+        -3
+       ],
+       [
+        0,
+        3
+       ],
+       [
+        -1,
+        -2
+       ],
+       [
+        -1,
+        2
+       ],
+       [
+        -2,
+        -1
+       ],
+       [
+        -2,
+        1
+       ],
+       [
+        -3,
+        0
+       ]
+      ],
+      "step": null
+     }
+    }
+   },
+   {
+    "file": "02.png",
+    "name": "Phantom Pain",
+    "code": "27A1241",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "move": true,
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [d10]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "Choke 1. For each hit lose -2 [Vigor]. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting"
+    ],
+    "afterAttack": "Knockdown.",
+    "afterFinalAttack": null,
+    "aiResponse": null,
+    "footer": "HAUNTS OF UTREBANT – AI 1",
+    "unclear": [],
+    "text": "PHANTOM PAIN / ATTACK / Evasion 2 dice, 8+ / TARGETING: • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat 3+ ▸ +1 [d10]] / Choke 1. For each hit lose -2 [Vigor]. [Peril Check]. / AFTER ATTACK / Knockdown. / HAUNTS OF UTREBANT – AI 1",
+    "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT].",
+    "notes": [
+     "판독 확정: code: tiny faint print; best reading 27A1241 — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)"
+    ],
+    "ops": {
+     "targeting": [
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 3,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "choke",
+       "n": 1
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "knockdown"
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "file": "03.png",
+    "name": "Piercing Gaze",
+    "code": "27A1238",
+    "level": 1,
+    "type": "judgement",
+    "evasionDice": 2,
+    "evasionDifficulty": 9,
+    "preTargeting": null,
+    "targeting": [
+     "[Priority Target] Priority Target and Zone 1 around them"
+    ],
+    "moveTag": "JUDGE",
+    "move": false,
+    "gates": [],
+    "effects": [
+     "Bravery [Bravery] / Insight [Insight].",
+     "If hit, lose -4 [Vigor]. [Peril Check].",
+     "Gain the Fear Condition card."
+    ],
+    "reactWindows": [
+     "targeting"
+    ],
+    "afterAttack": "Cooldown. Restrain.",
+    "afterFinalAttack": null,
+    "aiResponse": null,
+    "footer": "HAUNTS OF UTREBANT – AI 1",
+    "unclear": [],
+    "text": "PIERCING GAZE / ZONE JUDGEMENT / Evasion 2 dice, 9+ / TARGETING: • [Priority Target] Priority Target and Zone 1 around them [REACT!] / JUDGE / Bravery [Bravery] / Insight [Insight]. / If hit, lose -4 [Vigor]. [Peril Check]. / Gain the Fear Condition card. / AFTER ATTACK / Cooldown. Restrain. / HAUNTS OF UTREBANT – AI 1",
+    "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT].",
+    "notes": [
+     "판독 확정: code: tiny faint print; best reading 27A1238 — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: 'Fear' is printed in italics — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)"
+    ],
+    "ops": {
+     "targeting": [
+      "[Priority Target] Priority Target and Zone 1 around them"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "attackVigor",
+       "n": 4,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "cooldown"
+      },
+      {
+       "op": "restrain"
+      }
+     ],
+     "afterFinalAttack": null,
+     "judge": [
+      "Bravery",
+      "Insight"
+     ],
+     "zoneJudge": {
+      "z": 1
+     },
+     "always": [
+      {
+       "op": "condition",
+       "id": "Fear"
+      }
+     ]
+    }
+   },
+   {
+    "file": "04.png",
+    "name": "Cut Down",
+    "code": "27A1237",
+    "level": 1,
+    "type": "zone",
+    "evasionDice": 3,
+    "evasionDifficulty": 6,
+    "preTargeting": null,
+    "targeting": [
+     "[Priority Target] Priority Target",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "move": true,
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "-3 [Vigor] INSTEAD",
+      "where": "effect:1"
+     }
+    ],
+    "effects": [
+     "For each hit lose -2 [Vigor].",
+     "[Heat 3+ ▸ -3 [Vigor] INSTEAD] [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting"
+    ],
+    "afterAttack": "Cooldown.",
+    "afterFinalAttack": null,
+    "aiResponse": null,
+    "footer": "HAUNTS OF UTREBANT – AI 1",
+    "zoneDiagram": {
+     "grid": [
+      6,
+      5
+     ],
+     "gridNote": "[columns, rows]",
+     "rows": [
+      "..Y...",
+      "..RY..",
+      ".>RR».",
+      "..RY..",
+      "..Y..."
+     ],
+     "legend": "Rows top-to-bottom as printed, one char per cell: R red, Y yellow, . empty (tan), ^ > single-chevron black marker (the Haunt, pointing in that direction), ⇑ » double-chevron black marker pointing up / right (the specially designated space of the Spectral Step trait, where the Haunt appears after the attack).",
+     "red": 4,
+     "yellow": 4,
+     "note": "6 columns x 5 rows. Haunt (single chevron pointing right) at row 3, col 2; double chevron pointing right at row 3, col 5 (Spectral Step destination). Red: (r2,c3) (r3,c3) (r3,c4) (r4,c3). Yellow: (r1,c3) (r2,c4) (r4,c4) (r5,c3)."
+    },
+    "unclear": [],
+    "text": "CUT DOWN / ZONE ATTACK / Evasion 3 dice, 6+ / ZONE DIAGRAM (see zoneDiagram) / TARGETING: • [Priority Target] Priority Target • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK / For each hit lose -2 [Vigor]. / [Heat 3+ ▸ -3 [Vigor] INSTEAD] [Peril Check]. / AFTER ATTACK / Cooldown. / HAUNTS OF UTREBANT – AI 1",
+    "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT].",
+    "notes": [
+     "판독 확정: code: tiny faint print; best reading 27A1237 — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: Heat gate tag text is small: read '-3 [Vigor] INSTEAD'; the [Peril Check] oval is printed after the gate tag, followed by a full stop — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "겹화살표 = Spectral Step으로 공격한 Haunt가 나타나는 칸 — 소유자 확인 2026-11-15"
+    ],
+    "ops": {
+     "targeting": [
+      "[Priority Target] Priority Target",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "op": "vigorPerHitInstead",
+       "stat": "heat",
+       "gte": 3,
+       "n": 3
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "cooldown"
+      }
+     ],
+     "afterFinalAttack": null,
+     "zoneDiagram": {
+      "red": [
+       [
+        1,
+        -1
+       ],
+       [
+        1,
+        0
+       ],
+       [
+        2,
+        0
+       ],
+       [
+        1,
+        1
+       ]
+      ],
+      "yellow": [
+       [
+        1,
+        -2
+       ],
+       [
+        2,
+        -1
+       ],
+       [
+        2,
+        1
+       ],
+       [
+        1,
+        2
+       ]
+      ],
+      "step": [
+       3,
+       0
+      ]
+     }
+    }
+   },
+   {
+    "file": "05.png",
+    "name": "Polearm Thrust",
+    "code": "27A1236",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 7,
+    "preTargeting": null,
+    "targeting": [
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "move": true,
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [d10]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "For each hit lose -2 [Vigor]. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting",
+     "effect:0"
+    ],
+    "afterAttack": "Knockback 3.",
+    "afterFinalAttack": null,
+    "aiResponse": null,
+    "footer": "HAUNTS OF UTREBANT – AI 1",
+    "unclear": [],
+    "text": "POLEARM THRUST / ATTACK / Evasion 2 dice, 7+ / TARGETING: • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat 3+ ▸ +1 [d10]] / For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Knockback 3. / HAUNTS OF UTREBANT – AI 1",
+    "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT].",
+    "notes": [
+     "판독 확정: code: tiny faint print; best reading 27A1236 (last digit 6 or 9; 6 chosen from the run) — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: Heat gate sign: the '+' is blurred and could be read as '-1'; '+1 [d10]' given to match every other Heat gate of this monster — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)"
+    ],
+    "ops": {
+     "targeting": [
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 3,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "knockback",
+       "n": 3
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "file": "06.png",
+    "name": "Blast from the Beyond",
+    "code": "27A1245",
+    "level": 2,
+    "type": "zone",
+    "evasionDice": 3,
+    "evasionDifficulty": 7,
+    "preTargeting": null,
+    "targeting": [
+     "Closest Grouped Knight",
+     "Closest Knight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "move": true,
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 4,
+      "effect": "+1 [d10]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "For each hit lose -2 [Vigor]. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting",
+     "effect:0"
+    ],
+    "afterAttack": "Knockback 3. Knockdown.",
+    "afterFinalAttack": null,
+    "aiResponse": null,
+    "footer": "HAUNTS OF UTREBANT – AI 2",
+    "zoneDiagram": {
+     "grid": [
+      9,
+      9
+     ],
+     "gridNote": "[columns, rows]",
+     "rows": [
+      "....Y....",
+      "...YYY...",
+      "..YYRYY..",
+      ".YYRRRYY.",
+      "YYRR^RRYY",
+      ".YYRRRYY.",
+      "..YYRYY..",
+      "...YYY...",
+      "....Y...."
+     ],
+     "legend": "Rows top-to-bottom as printed, one char per cell: R red, Y yellow, . empty (tan), ^ > single-chevron black marker (the Haunt, pointing in that direction), ⇑ » double-chevron black marker pointing up / right (the specially designated space of the Spectral Step trait, where the Haunt appears after the attack).",
+     "red": 12,
+     "yellow": 28,
+     "note": "9x9 grid; Haunt (single chevron, up) at centre; red = 12 cells within distance 2 (diamond); yellow = the 28 cells at distance 3–4 (diamond of radius 4). No double-chevron marker."
+    },
+    "unclear": [],
+    "text": "BLAST FROM THE BEYOND / ZONE ATTACK / Evasion 3 dice, 7+ / ZONE DIAGRAM (see zoneDiagram) / TARGETING: • Closest Grouped Knight • Closest Knight [REACT!] / MOVE & ATTACK [Heat 4+ ▸ +1 [d10]] / For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Knockback 3. Knockdown. / HAUNTS OF UTREBANT – AI 2",
+    "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT].",
+    "notes": [
+     "판독 확정: code: tiny faint print; best reading 27A1245 (last digit 3 or 5; 09.png reads 27A1243 more clearly, so 5 chosen) — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: zone diagram: cell row 5/col 8 (and the right edge of rows 5–9) is partly covered by the art; read as yellow by symmetry — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: Heat gate threshold reads 4+ (small print) — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)"
+    ],
+    "ops": {
+     "targeting": [
+      "Closest Grouped Knight",
+      "Closest Knight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 4,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "knockback",
+       "n": 3
+      },
+      {
+       "op": "knockdown"
+      }
+     ],
+     "afterFinalAttack": null,
+     "zoneDiagram": {
+      "red": [
+       [
+        2,
+        0
+       ],
+       [
+        1,
+        -1
+       ],
+       [
+        1,
+        0
+       ],
+       [
+        1,
+        1
+       ],
+       [
+        0,
+        -2
+       ],
+       [
+        0,
+        -1
+       ],
+       [
+        0,
+        1
+       ],
+       [
+        0,
+        2
+       ],
+       [
+        -1,
+        -1
+       ],
+       [
+        -1,
+        0
+       ],
+       [
+        -1,
+        1
+       ],
+       [
+        -2,
+        0
+       ]
+      ],
+      "yellow": [
+       [
+        4,
+        0
+       ],
+       [
+        3,
+        -1
+       ],
+       [
+        3,
+        0
+       ],
+       [
+        3,
+        1
+       ],
+       [
+        2,
+        -2
+       ],
+       [
+        2,
+        -1
+       ],
+       [
+        2,
+        1
+       ],
+       [
+        2,
+        2
+       ],
+       [
+        1,
+        -3
+       ],
+       [
+        1,
+        -2
+       ],
+       [
+        1,
+        2
+       ],
+       [
+        1,
+        3
+       ],
+       [
+        0,
+        -4
+       ],
+       [
+        0,
+        -3
+       ],
+       [
+        0,
+        3
+       ],
+       [
+        0,
+        4
+       ],
+       [
+        -1,
+        -3
+       ],
+       [
+        -1,
+        -2
+       ],
+       [
+        -1,
+        2
+       ],
+       [
+        -1,
+        3
+       ],
+       [
+        -2,
+        -2
+       ],
+       [
+        -2,
+        -1
+       ],
+       [
+        -2,
+        1
+       ],
+       [
+        -2,
+        2
+       ],
+       [
+        -3,
+        -1
+       ],
+       [
+        -3,
+        0
+       ],
+       [
+        -3,
+        1
+       ],
+       [
+        -4,
+        0
+       ]
+      ],
+      "step": null
+     }
+    }
+   },
+   {
+    "file": "07.png",
+    "name": "Childish Kick",
+    "code": "27A1246",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 9,
+    "preTargeting": null,
+    "targeting": [
+     "[Priority Target] Priority Target",
+     "Furthest Knight in sight"
+    ],
+    "moveTag": "APPEAR BEHIND & ATTACK",
+    "move": false,
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 4,
+      "effect": "+1 [d10]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "One hit, lose -3 [Vigor], two or more hits, lose -5 [Vigor]. [Peril Check]."
+    ],
+    "reactWindows": [
+     "effect:0"
+    ],
+    "afterAttack": "Knockback 3.",
+    "afterFinalAttack": null,
+    "aiResponse": null,
+    "footer": "HAUNTS OF UTREBANT – AI 2",
+    "unclear": [],
+    "text": "CHILDISH KICK / ATTACK / Evasion 2 dice, 9+ / TARGETING: • [Priority Target] Priority Target • Furthest Knight in sight / APPEAR BEHIND & ATTACK [Heat 4+ ▸ +1 [d10]] / One hit, lose -3 [Vigor], two or more hits, lose -5 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Knockback 3. / HAUNTS OF UTREBANT – AI 2",
+    "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT].",
+    "notes": [
+     "판독 확정: code: tiny faint print; best reading 27A1246 (last two digits very blurred; 46 chosen as the only unused code in the AI-2 run 27A1242–27A1247) — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: Heat gate threshold reads 4+ (small print) — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: no REACT! marker on the targeting line — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)"
+    ],
+    "ops": {
+     "targeting": [
+      "[Priority Target] Priority Target",
+      "Furthest Knight in sight"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 4,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "vigorByHits",
+       "one": 3,
+       "more": 5,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "knockback",
+       "n": 3
+      }
+     ],
+     "afterFinalAttack": null,
+     "appearBehind": true
+    }
+   },
+   {
+    "file": "08.png",
+    "name": "Blood-Curdling Whispers",
+    "code": "27A1247",
+    "level": 2,
+    "type": "judgement",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "Furthest Knight and Zone 1 around them"
+    ],
+    "moveTag": "JUDGE",
+    "move": false,
+    "gates": [],
+    "effects": [
+     "Bravery [Bravery].",
+     "If hit, gain the Fear Condition card, and lose -4 [Vigor]. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting"
+    ],
+    "afterAttack": "Cooldown. Cooldown.",
+    "afterFinalAttack": null,
+    "aiResponse": null,
+    "footer": "HAUNTS OF UTREBANT – AI 2",
+    "unclear": [],
+    "text": "BLOOD-CURDLING WHISPERS / ZONE JUDGEMENT / Evasion 3 dice, 8+ / TARGETING: • Furthest Knight and Zone 1 around them [REACT!] / JUDGE / Bravery [Bravery]. / If hit, gain the Fear Condition card, and lose -4 [Vigor]. [Peril Check]. / AFTER ATTACK / Cooldown. Cooldown. / HAUNTS OF UTREBANT – AI 2",
+    "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT].",
+    "notes": [
+     "판독 확정: code: tiny faint print; best reading 27A1247 — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: 'Fear' is printed in italics — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: AFTER ATTACK really prints 'Cooldown.' twice — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)"
+    ],
+    "ops": {
+     "targeting": [
+      "Furthest Knight and Zone 1 around them"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "condition",
+       "id": "Fear"
+      },
+      {
+       "op": "attackVigor",
+       "n": 4,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "cooldown"
+      },
+      {
+       "op": "cooldown"
+      }
+     ],
+     "afterFinalAttack": null,
+     "judge": [
+      "Bravery"
+     ],
+     "zoneJudge": {
+      "z": 1
+     }
+    }
+   },
+   {
+    "file": "09.png",
+    "name": "Overhead Smite",
+    "code": "27A1243",
+    "level": 2,
+    "type": "zone",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "[Priority Target] Priority Target",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "move": true,
+    "gates": [],
+    "effects": [
+     "For each hit lose -2 [Vigor]. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting"
+    ],
+    "afterAttack": "Delay.",
+    "afterFinalAttack": null,
+    "aiResponse": null,
+    "footer": "HAUNTS OF UTREBANT – AI 2",
+    "zoneDiagram": {
+     "grid": [
+      7,
+      5
+     ],
+     "gridNote": "[columns, rows]",
+     "rows": [
+      "...⇑...",
+      "..YRY..",
+      ".YRRRY.",
+      "YYRRRYY",
+      "...^..."
+     ],
+     "legend": "Rows top-to-bottom as printed, one char per cell: R red, Y yellow, . empty (tan), ^ > single-chevron black marker (the Haunt, pointing in that direction), ⇑ » double-chevron black marker pointing up / right (the specially designated space of the Spectral Step trait, where the Haunt appears after the attack).",
+     "red": 7,
+     "yellow": 8,
+     "note": "7 columns x 5 rows. Haunt (single chevron, up) at bottom row centre (r5,c4); double chevron (up) at top row centre (r1,c4). Red: r2 c4; r3 c3–5; r4 c3–5 (7 cells). Yellow: r2 c3,c5; r3 c2,c6; r4 c1,c2,c6,c7 (8 cells)."
+    },
+    "unclear": [],
+    "text": "OVERHEAD SMITE / ZONE ATTACK / Evasion 3 dice, 8+ / ZONE DIAGRAM (see zoneDiagram) / TARGETING: • [Priority Target] Priority Target • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK / For each hit lose -2 [Vigor]. [Peril Check]. / AFTER ATTACK / Delay. / HAUNTS OF UTREBANT – AI 2",
+    "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT].",
+    "notes": [
+     "판독 확정: code: tiny faint print; best reading 27A1243 — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "겹화살표 = Spectral Step으로 공격한 Haunt가 나타나는 칸 — 소유자 확인 2026-11-15"
+    ],
+    "ops": {
+     "targeting": [
+      "[Priority Target] Priority Target",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "delay"
+      }
+     ],
+     "afterFinalAttack": null,
+     "zoneDiagram": {
+      "red": [
+       [
+        3,
+        0
+       ],
+       [
+        2,
+        -1
+       ],
+       [
+        2,
+        0
+       ],
+       [
+        2,
+        1
+       ],
+       [
+        1,
+        -1
+       ],
+       [
+        1,
+        0
+       ],
+       [
+        1,
+        1
+       ]
+      ],
+      "yellow": [
+       [
+        3,
+        -1
+       ],
+       [
+        3,
+        1
+       ],
+       [
+        2,
+        -2
+       ],
+       [
+        2,
+        2
+       ],
+       [
+        1,
+        -3
+       ],
+       [
+        1,
+        -2
+       ],
+       [
+        1,
+        2
+       ],
+       [
+        1,
+        3
+       ]
+      ],
+      "step": [
+       4,
+       0
+      ]
+     }
+    }
+   },
+   {
+    "file": "10.png",
+    "name": "Terrorize",
+    "code": "27A1244",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "[Priority Target] Priority Target",
+     "Closest Knight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "move": true,
+    "gates": [],
+    "effects": [
+     "Choke 2.",
+     "For each hit lose -2 [Vigor]. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting",
+     "effect:1"
+    ],
+    "afterAttack": "Knockback 4.",
+    "afterFinalAttack": null,
+    "aiResponse": null,
+    "footer": "HAUNTS OF UTREBANT – AI 2",
+    "unclear": [],
+    "text": "TERRORIZE / ATTACK / Evasion 3 dice, 8+ / TARGETING: • [Priority Target] Priority Target • Closest Knight [REACT!] / MOVE & ATTACK / Choke 2. / For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Knockback 4. / HAUNTS OF UTREBANT – AI 2",
+    "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT].",
+    "notes": [
+     "판독 확정: code: tiny faint print; best reading 27A1244 — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)"
+    ],
+    "ops": {
+     "targeting": [
+      "[Priority Target] Priority Target",
+      "Closest Knight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "choke",
+       "n": 2
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "knockback",
+       "n": 4
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "file": "11.png",
+    "name": "Hysterical Screech",
+    "code": "27A1242",
+    "level": 2,
+    "type": "judgement",
+    "evasionDice": 2,
+    "evasionDifficulty": 9,
+    "preTargeting": null,
+    "targeting": [
+     "Closest Knight in front",
+     "Closest Knight"
+    ],
+    "moveTag": "JUDGE",
+    "move": false,
+    "gates": [],
+    "effects": [
+     "Fortitude [Fortitude].",
+     "Gain the Dread Condition card.",
+     "If hit, lose -3 [Vigor]. [Peril Check]."
+    ],
+    "reactWindows": [],
+    "afterAttack": "Restrain. Forced Vault.",
+    "afterFinalAttack": null,
+    "aiResponse": null,
+    "footer": "HAUNTS OF UTREBANT – AI 2",
+    "unclear": [],
+    "text": "HYSTERICAL SCREECH / JUDGEMENT / Evasion 2 dice, 9+ / TARGETING: • Closest Knight in front • Closest Knight / JUDGE / Fortitude [Fortitude]. / Gain the Dread Condition card. / If hit, lose -3 [Vigor]. [Peril Check]. / AFTER ATTACK / Restrain. Forced Vault. / HAUNTS OF UTREBANT – AI 2",
+    "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT].",
+    "notes": [
+     "판독 확정: code: tiny faint print; best reading 27A1242 — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: 'Dread' is printed in italics — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: no REACT! markers printed on this card — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)"
+    ],
+    "ops": {
+     "targeting": [
+      "Closest Knight in front",
+      "Closest Knight"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "attackVigor",
+       "n": 3,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "restrain"
+      },
+      {
+       "op": "forcedVault"
+      }
+     ],
+     "afterFinalAttack": null,
+     "judge": [
+      "Fortitude"
+     ],
+     "always": [
+      {
+       "op": "condition",
+       "id": "Dread"
+      }
+     ]
+    }
+   },
+   {
+    "file": "12.png",
+    "name": "A Wraith’s Lament",
+    "code": "27A1251",
+    "level": 3,
+    "type": "judgement",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "Closest Knight with a Condition card",
+     "Closest Knight"
+    ],
+    "moveTag": "JUDGE",
+    "move": false,
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 4,
+      "effect": "+1 [d10]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "Bravery [Bravery].",
+     "If hit, lose -6 [Vigor]. [Peril Check].",
+     "Gain the Dread Condition card."
+    ],
+    "reactWindows": [],
+    "afterAttack": "Cooldown. Restrain. Forced Vault.",
+    "afterFinalAttack": null,
+    "aiResponse": null,
+    "footer": "HAUNTS OF UTREBANT – AI 3",
+    "unclear": [],
+    "text": "A WRAITH’S LAMENT / JUDGEMENT / Evasion 3 dice, 8+ / TARGETING: • Closest Knight with a Condition card • Closest Knight / JUDGE [Heat 4+ ▸ +1 [d10]] / Bravery [Bravery]. / If hit, lose -6 [Vigor]. [Peril Check]. / Gain the Dread Condition card. / AFTER ATTACK / Cooldown. Restrain. Forced Vault. / HAUNTS OF UTREBANT – AI 3",
+    "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT].",
+    "notes": [
+     "판독 확정: code: tiny faint print; best reading 27A1251 — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: Heat gate threshold reads 4+ (small print) — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: 'Dread' is printed in italics — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: no REACT! markers printed on this card — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)"
+    ],
+    "ops": {
+     "targeting": [
+      "Closest Knight with a Condition card",
+      "Closest Knight"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 4,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "attackVigor",
+       "n": 6,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "cooldown"
+      },
+      {
+       "op": "restrain"
+      },
+      {
+       "op": "forcedVault"
+      }
+     ],
+     "afterFinalAttack": null,
+     "judge": [
+      "Bravery"
+     ],
+     "always": [
+      {
+       "op": "condition",
+       "id": "Dread"
+      }
+     ]
+    }
+   },
+   {
+    "file": "13.png",
+    "name": "Addled by Fear",
+    "code": "27A1252",
+    "level": 3,
+    "type": "judgement",
+    "evasionDice": 1,
+    "evasionDifficulty": 10,
+    "preTargeting": null,
+    "targeting": [
+     "Furthest Knight in front",
+     "Furthest Knight"
+    ],
+    "moveTag": "JUDGE",
+    "move": false,
+    "gates": [],
+    "effects": [
+     "Chosen Virtue. If hit, lose -8 [Vigor]. [Peril Check].",
+     "Choke 2. Gain the Panicked Condition card."
+    ],
+    "reactWindows": [],
+    "afterAttack": "Delay.",
+    "afterFinalAttack": null,
+    "aiResponse": null,
+    "footer": "HAUNTS OF UTREBANT – AI 3",
+    "unclear": [],
+    "text": "ADDLED BY FEAR / JUDGEMENT / Evasion 1 dice, 10+ / TARGETING: • Furthest Knight in front • Furthest Knight / JUDGE / Chosen Virtue. If hit, lose -8 [Vigor]. [Peril Check]. / Choke 2. Gain the Panicked Condition card. / AFTER ATTACK / Delay. / HAUNTS OF UTREBANT – AI 3",
+    "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT].",
+    "notes": [
+     "판독 확정: code: tiny faint print; best reading 27A1252 — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: 'Panicked' is printed in italics — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: no REACT! markers printed on this card — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)"
+    ],
+    "ops": {
+     "targeting": [
+      "Furthest Knight in front",
+      "Furthest Knight"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "attackVigor",
+       "n": 8,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "delay"
+      }
+     ],
+     "afterFinalAttack": null,
+     "judge": [
+      "Bravery",
+      "Tenacity",
+      "Fortitude",
+      "Might",
+      "Insight",
+      "Sagacity"
+     ],
+     "always": [
+      {
+       "op": "choke",
+       "n": 2
+      },
+      {
+       "op": "condition",
+       "id": "Panicked"
+      }
+     ]
+    }
+   },
+   {
+    "file": "14.png",
+    "name": "The Ghastly Truth",
+    "code": "27A1253",
+    "level": 3,
+    "type": "judgement",
+    "evasionDice": 5,
+    "evasionDifficulty": 7,
+    "preTargeting": null,
+    "targeting": [
+     "Zone 1 around every Terrain tile on the Board"
+    ],
+    "moveTag": "JUDGE",
+    "move": false,
+    "gates": [],
+    "effects": [
+     "Bravery [Bravery] / Insight [Insight].",
+     "If hit, gain the Dread Condition card and lose -7 [Vigor]. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting"
+    ],
+    "afterAttack": "Delay. Discard.",
+    "afterFinalAttack": null,
+    "aiResponse": null,
+    "footer": "HAUNTS OF UTREBANT – AI 3",
+    "unclear": [],
+    "text": "THE GHASTLY TRUTH / ZONE JUDGEMENT / Evasion 5 dice, 7+ / TARGETING: • Zone 1 around every Terrain tile on the Board [REACT!] / JUDGE / Bravery [Bravery] / Insight [Insight]. / If hit, gain the Dread Condition card and lose -7 [Vigor]. [Peril Check]. / AFTER ATTACK / Delay. Discard. / HAUNTS OF UTREBANT – AI 3",
+    "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT].",
+    "notes": [
+     "판독 확정: code: tiny faint print; best reading 27A1253 — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: 'Dread' is printed in italics — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)"
+    ],
+    "ops": {
+     "targeting": [
+      "Zone 1 around every Terrain tile on the Board"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "condition",
+       "id": "Dread"
+      },
+      {
+       "op": "attackVigor",
+       "n": 7,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "delay"
+      },
+      {
+       "op": "discard"
+      }
+     ],
+     "afterFinalAttack": null,
+     "judge": [
+      "Bravery",
+      "Insight"
+     ],
+     "zoneAroundTile": {
+      "tile": "*",
+      "z": 1
+     }
+    }
+   },
+   {
+    "file": "15.png",
+    "name": "Spectral Strike",
+    "code": "27A1250",
+    "level": 3,
+    "type": "zone",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "Zone"
+    ],
+    "moveTag": "ATTACK",
+    "move": false,
+    "gates": [],
+    "effects": [
+     "For each hit lose -3 [Vigor]. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting"
+    ],
+    "afterAttack": "Knockback 4.",
+    "afterFinalAttack": null,
+    "aiResponse": null,
+    "footer": "HAUNTS OF UTREBANT – AI 3",
+    "zoneDiagram": {
+     "grid": [
+      11,
+      11
+     ],
+     "gridNote": "[columns, rows]",
+     "rows": [
+      ".....Y.....",
+      "....YYY....",
+      "...YYRYY...",
+      "..YYRRRYY..",
+      ".YYRRRRRYY.",
+      "YYRRR^RRRYY",
+      ".YYRRRRRYY.",
+      "..YYRRRYY..",
+      "...YYRYY...",
+      "....YYY....",
+      ".....Y....."
+     ],
+     "legend": "Rows top-to-bottom as printed, one char per cell: R red, Y yellow, . empty (tan), ^ > single-chevron black marker (the Haunt, pointing in that direction), ⇑ » double-chevron black marker pointing up / right (the specially designated space of the Spectral Step trait, where the Haunt appears after the attack).",
+     "red": 24,
+     "yellow": 36,
+     "note": "11x11 grid; Haunt (single chevron, up) at centre; red = 24 cells within distance 3 (diamond); yellow = the 36 cells at distance 4–5 (diamond of radius 5). No double-chevron marker; red tag is plain 'ATTACK' (no move)."
+    },
+    "unclear": [],
+    "text": "SPECTRAL STRIKE / ZONE ATTACK / Evasion 3 dice, 8+ / ZONE DIAGRAM (see zoneDiagram) / TARGETING: • Zone [REACT!] / ATTACK / For each hit lose -3 [Vigor]. [Peril Check]. / AFTER ATTACK / Knockback 4. / HAUNTS OF UTREBANT – AI 3",
+    "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT].",
+    "notes": [
+     "판독 확정: code: tiny faint print; best reading 27A1250 (last two digits blurred: 50 / 90) — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: zone diagram: lower-right cells (rows 8–11, cols 8–11) are partly covered by the art; yellow cells there read by symmetry (r8c9, r9c8) — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)"
+    ],
+    "ops": {
+     "targeting": [
+      "Zone"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 3,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "knockback",
+       "n": 4
+      }
+     ],
+     "afterFinalAttack": null,
+     "zoneDiagram": {
+      "red": [
+       [
+        3,
+        0
+       ],
+       [
+        2,
+        -1
+       ],
+       [
+        2,
+        0
+       ],
+       [
+        2,
+        1
+       ],
+       [
+        1,
+        -2
+       ],
+       [
+        1,
+        -1
+       ],
+       [
+        1,
+        0
+       ],
+       [
+        1,
+        1
+       ],
+       [
+        1,
+        2
+       ],
+       [
+        0,
+        -3
+       ],
+       [
+        0,
+        -2
+       ],
+       [
+        0,
+        -1
+       ],
+       [
+        0,
+        1
+       ],
+       [
+        0,
+        2
+       ],
+       [
+        0,
+        3
+       ],
+       [
+        -1,
+        -2
+       ],
+       [
+        -1,
+        -1
+       ],
+       [
+        -1,
+        0
+       ],
+       [
+        -1,
+        1
+       ],
+       [
+        -1,
+        2
+       ],
+       [
+        -2,
+        -1
+       ],
+       [
+        -2,
+        0
+       ],
+       [
+        -2,
+        1
+       ],
+       [
+        -3,
+        0
+       ]
+      ],
+      "yellow": [
+       [
+        5,
+        0
+       ],
+       [
+        4,
+        -1
+       ],
+       [
+        4,
+        0
+       ],
+       [
+        4,
+        1
+       ],
+       [
+        3,
+        -2
+       ],
+       [
+        3,
+        -1
+       ],
+       [
+        3,
+        1
+       ],
+       [
+        3,
+        2
+       ],
+       [
+        2,
+        -3
+       ],
+       [
+        2,
+        -2
+       ],
+       [
+        2,
+        2
+       ],
+       [
+        2,
+        3
+       ],
+       [
+        1,
+        -4
+       ],
+       [
+        1,
+        -3
+       ],
+       [
+        1,
+        3
+       ],
+       [
+        1,
+        4
+       ],
+       [
+        0,
+        -5
+       ],
+       [
+        0,
+        -4
+       ],
+       [
+        0,
+        4
+       ],
+       [
+        0,
+        5
+       ],
+       [
+        -1,
+        -4
+       ],
+       [
+        -1,
+        -3
+       ],
+       [
+        -1,
+        3
+       ],
+       [
+        -1,
+        4
+       ],
+       [
+        -2,
+        -3
+       ],
+       [
+        -2,
+        -2
+       ],
+       [
+        -2,
+        2
+       ],
+       [
+        -2,
+        3
+       ],
+       [
+        -3,
+        -2
+       ],
+       [
+        -3,
+        -1
+       ],
+       [
+        -3,
+        1
+       ],
+       [
+        -3,
+        2
+       ],
+       [
+        -4,
+        -1
+       ],
+       [
+        -4,
+        0
+       ],
+       [
+        -4,
+        1
+       ],
+       [
+        -5,
+        0
+       ]
+      ],
+      "step": null
+     }
+    }
+   },
+   {
+    "file": "16.png",
+    "name": "Touch of Death",
+    "code": "27A1249",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 5,
+    "evasionDifficulty": 7,
+    "preTargeting": null,
+    "targeting": [
+     "Furthest Knight in front",
+     "Furthest Knight"
+    ],
+    "moveTag": "APPEAR BEHIND & ATTACK",
+    "move": false,
+    "gates": [],
+    "effects": [
+     "Choke 3.",
+     "For each hit lose -2 [Vigor]. [Peril Check]."
+    ],
+    "reactWindows": [
+     "effect:1"
+    ],
+    "afterAttack": "Knockback 3. Knockdown.",
+    "afterFinalAttack": null,
+    "aiResponse": null,
+    "footer": "HAUNTS OF UTREBANT – AI 3",
+    "unclear": [],
+    "text": "TOUCH OF DEATH / ATTACK / Evasion 5 dice, 7+ / TARGETING: • Furthest Knight in front • Furthest Knight / APPEAR BEHIND & ATTACK / Choke 3. / For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Knockback 3. Knockdown. / HAUNTS OF UTREBANT – AI 3",
+    "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT].",
+    "notes": [
+     "판독 확정: code: tiny faint print; best reading 27A1249 (digits almost illegible; 49 chosen as the only unused code in the AI-3 run 27A1248–27A1253) — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: no REACT! marker on the targeting line — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)"
+    ],
+    "ops": {
+     "targeting": [
+      "Furthest Knight in front",
+      "Furthest Knight"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "choke",
+       "n": 3
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "knockback",
+       "n": 3
+      },
+      {
+       "op": "knockdown"
+      }
+     ],
+     "afterFinalAttack": null,
+     "appearBehind": true
+    }
+   },
+   {
+    "file": "17.png",
+    "name": "Phantom Fissure",
+    "code": "27A1248",
+    "level": 3,
+    "type": "zone",
+    "evasionDice": 3,
+    "evasionDifficulty": 9,
+    "preTargeting": null,
+    "targeting": [
+     "[Priority Target] Priority Target",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "move": true,
+    "gates": [],
+    "effects": [
+     "For each hit lose -4 [Vigor]. [Peril Check]."
+    ],
+    "reactWindows": [
+     "targeting"
+    ],
+    "afterAttack": "Discard. Forced Vault.",
+    "afterFinalAttack": null,
+    "aiResponse": null,
+    "footer": "HAUNTS OF UTREBANT – AI 3",
+    "zoneDiagram": {
+     "grid": [
+      9,
+      6
+     ],
+     "gridNote": "[columns, rows]",
+     "rows": [
+      "....Y....",
+      "...Y⇑Y...",
+      "..YYRYY..",
+      ".YYRRRYY.",
+      "YYRRRRRYY",
+      "....^...."
+     ],
+     "legend": "Rows top-to-bottom as printed, one char per cell: R red, Y yellow, . empty (tan), ^ > single-chevron black marker (the Haunt, pointing in that direction), ⇑ » double-chevron black marker pointing up / right (the specially designated space of the Spectral Step trait, where the Haunt appears after the attack).",
+     "red": 9,
+     "yellow": 15,
+     "note": "9 columns x 6 rows. Haunt (single chevron, up) at bottom row centre (r6,c5); double chevron (up) at r2,c5. Red triangle: r3 c5; r4 c4–6; r5 c3–7 (9 cells). Yellow: r1 c5; r2 c4,c6; r3 c3,c4,c6,c7; r4 c2,c3,c7,c8; r5 c1,c2,c8,c9 (15 cells)."
+    },
+    "unclear": [],
+    "text": "PHANTOM FISSURE / ZONE ATTACK / Evasion 3 dice, 9+ / ZONE DIAGRAM (see zoneDiagram) / TARGETING: • [Priority Target] Priority Target • Closest Knight in front • Closest Knight in sight [REACT!] / MOVE & ATTACK / For each hit lose -4 [Vigor]. [Peril Check]. / AFTER ATTACK / Discard. Forced Vault. / HAUNTS OF UTREBANT – AI 3",
+    "effectsNote": "Each array entry is one printed sentence/keyword line; 'effect:i' = REACT! marker on the rule under effects[i]. Gate tags are written inline as [Stat N+ ▸ EFFECT].",
+    "notes": [
+     "판독 확정: code: tiny faint print; best reading 27A1248 (last digit blurred) — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: zone diagram: the r5,c9 yellow cell and bottom-right corner are partly covered by the art — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "겹화살표 = Spectral Step으로 공격한 Haunt가 나타나는 칸 — 소유자 확인 2026-11-15"
+    ],
+    "ops": {
+     "targeting": [
+      "[Priority Target] Priority Target",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 4,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "discard"
+      },
+      {
+       "op": "forcedVault"
+      }
+     ],
+     "afterFinalAttack": null,
+     "zoneDiagram": {
+      "red": [
+       [
+        3,
+        0
+       ],
+       [
+        2,
+        -1
+       ],
+       [
+        2,
+        0
+       ],
+       [
+        2,
+        1
+       ],
+       [
+        1,
+        -2
+       ],
+       [
+        1,
+        -1
+       ],
+       [
+        1,
+        0
+       ],
+       [
+        1,
+        1
+       ],
+       [
+        1,
+        2
+       ]
+      ],
+      "yellow": [
+       [
+        5,
+        0
+       ],
+       [
+        4,
+        -1
+       ],
+       [
+        4,
+        1
+       ],
+       [
+        3,
+        -2
+       ],
+       [
+        3,
+        -1
+       ],
+       [
+        3,
+        1
+       ],
+       [
+        3,
+        2
+       ],
+       [
+        2,
+        -3
+       ],
+       [
+        2,
+        -2
+       ],
+       [
+        2,
+        2
+       ],
+       [
+        2,
+        3
+       ],
+       [
+        1,
+        -4
+       ],
+       [
+        1,
+        -3
+       ],
+       [
+        1,
+        3
+       ],
+       [
+        1,
+        4
+       ]
+      ],
+      "step": [
+       4,
+       0
+      ]
+     }
+    }
+   }
+  ],
+  "bp": [
+   {
+    "file": "18.png",
+    "name": "Executed Prisoner",
+    "code": "28A1635",
+    "level": 1,
+    "at": 3,
+    "overcomeTag": null,
+    "overcome": null,
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Knockback 3.",
+     "critical": "Gain a permanent positive Precision [Precision] token."
+    },
+    "gates": [],
+    "reactWindows": [],
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "footer": "HAUNTS OF UTREBANT – BP 1",
+    "unclear": [],
+    "responseOrder": [
+     "INSTINCT",
+     "CRITICAL"
+    ],
+    "text": "EXECUTED PRISONER / [AT] 3 / INSTINCT: Knockback 3. / CRITICAL: Gain a permanent positive Precision [Precision] token. / HAUNTS OF UTREBANT – BP 1",
+    "notes": [
+     "판독 확정: code: tiny faint print; best reading 28A1635 — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: no OVERCOME tag printed — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)"
+    ],
+    "ops": {
+     "at": 3,
+     "overcome": null,
+     "instinct": [
+      {
+       "op": "knockback",
+       "n": 3
+      }
+     ],
+     "critical": [
+      {
+       "op": "permanentPrecision",
+       "n": 1
+      }
+     ]
+    }
+   },
+   {
+    "file": "19.png",
+    "name": "Unknown Soldier",
+    "code": "28A1636",
+    "level": 1,
+    "at": 3,
+    "overcomeTag": null,
+    "overcome": null,
+    "responses": {
+     "wound": "Choke 1.",
+     "fail": null,
+     "instinct": null,
+     "critical": "Gain a permanent positive Precision [Precision] token."
+    },
+    "gates": [],
+    "reactWindows": [],
+    "whenRevealed": null,
+    "whileRevealed": "All Mobs gain +2 to Knockback.",
+    "footer": "HAUNTS OF UTREBANT – BP 1",
+    "unclear": [],
+    "responseOrder": [
+     "WOUND",
+     "CRITICAL"
+    ],
+    "text": "UNKNOWN SOLDIER / [AT] 3 / WOUND: Choke 1. / CRITICAL: Gain a permanent positive Precision [Precision] token. / HAUNTS OF UTREBANT – BP 1 / While this BP is revealed: All Mobs gain +2 to Knockback.",
+    "notes": [
+     "판독 확정: code: tiny faint print; best reading 28A1636 (last digit 6 or 8) — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: no OVERCOME tag printed — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)"
+    ],
+    "ops": {
+     "at": 3,
+     "overcome": null,
+     "wound": [
+      {
+       "op": "choke",
+       "n": 1
+      }
+     ],
+     "critical": [
+      {
+       "op": "permanentPrecision",
+       "n": 1
+      }
+     ],
+     "aura": {
+      "knockbackBonus": 2
+     }
+    }
+   },
+   {
+    "file": "20.png",
+    "name": "Man Denied Burial",
+    "code": "28A1637",
+    "level": 1,
+    "at": 4,
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 2,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "Gain the Fear Condition card.",
+     "fail": "Knockback 3.",
+     "instinct": null,
+     "critical": "Another Knight may move up to 3 spaces and perform a Bonus Attack!"
+    },
+    "gates": [],
+    "reactWindows": [],
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "footer": "HAUNTS OF UTREBANT – BP 1",
+    "unclear": [],
+    "responseOrder": [
+     "WOUND",
+     "FAIL",
+     "CRITICAL"
+    ],
+    "text": "MAN DENIED BURIAL / OVERCOME 2+ ▸ Power 1 / [AT] 4 / WOUND: Gain the Fear Condition card. / FAIL: Knockback 3. / CRITICAL: Another Knight may move up to 3 spaces and perform a Bonus Attack! / HAUNTS OF UTREBANT – BP 1",
+    "notes": [
+     "판독 확정: code: tiny faint print; best reading 28A1637 — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: overcome threshold small pale print; reads 2+ — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: 'Fear' italic; 'Bonus Attack' bold — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)"
+    ],
+    "ops": {
+     "at": 4,
+     "overcome": {
+      "n": 2,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "condition",
+       "id": "Fear"
+      }
+     ],
+     "fail": [
+      {
+       "op": "knockback",
+       "n": 3
+      }
+     ],
+     "critical": [
+      {
+       "op": "moveAndBonusAttack",
+       "n": 3,
+       "upTo": true,
+       "who": "other"
+      }
+     ]
+    }
+   },
+   {
+    "file": "21.png",
+    "name": "Percy, Doomed by the Tide",
+    "code": "28A1638",
+    "level": 2,
+    "at": 4,
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "Place a 1x2 Swamp Terrain tile under this Mob, prioritizing spaces without Terrain tiles.",
+     "fail": null,
+     "instinct": "Gain the Slimed Condition card.",
+     "critical": "Gain the Courage Condition card!"
+    },
+    "gates": [],
+    "reactWindows": [],
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "footer": "HAUNTS OF UTREBANT – BP 2",
+    "unclear": [],
+    "responseOrder": [
+     "INSTINCT",
+     "WOUND",
+     "CRITICAL"
+    ],
+    "text": "PERCY, DOOMED BY THE TIDE / OVERCOME 3+ ▸ Power 1 / [AT] 4 / INSTINCT: Gain the Slimed Condition card. / WOUND: Place a 1x2 Swamp Terrain tile under this Mob, prioritizing spaces without Terrain tiles. / CRITICAL: Gain the Courage Condition card! / HAUNTS OF UTREBANT – BP 2",
+    "notes": [
+     "판독 확정: code: tiny faint print; best reading 28A1638 (last digit 8 or 9) — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: overcome threshold small pale print; reads 3+ — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: 'Slimed' and 'Courage' italic; INSTINCT is printed above WOUND — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)"
+    ],
+    "ops": {
+     "at": 4,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "placeSwampUnderMob"
+      }
+     ],
+     "instinct": [
+      {
+       "op": "condition",
+       "id": "Slimed"
+      }
+     ],
+     "critical": [
+      {
+       "op": "condition",
+       "id": "Courage"
+      }
+     ]
+    }
+   },
+   {
+    "file": "22.png",
+    "name": "The Unremarkable One",
+    "code": "28A1639",
+    "level": 2,
+    "at": 5,
+    "overcomeTag": null,
+    "overcome": null,
+    "responses": {
+     "wound": "Escalate the lowest AI.",
+     "fail": null,
+     "instinct": null,
+     "critical": "You may move up to 3 spaces and perform a Bonus Attack! Immediately see 8915."
+    },
+    "gates": [],
+    "reactWindows": [],
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "footer": "HAUNTS OF UTREBANT – BP 2",
+    "unclear": [],
+    "responseOrder": [
+     "WOUND",
+     "CRITICAL"
+    ],
+    "text": "THE UNREMARKABLE ONE / [AT] 5 / WOUND: Escalate the lowest AI. / CRITICAL: You may move up to 3 spaces and perform a Bonus Attack! Immediately see 8915. / HAUNTS OF UTREBANT – BP 2",
+    "notes": [
+     "판독 확정: code: tiny faint print; best reading 28A1639 (last digit nearly illegible; 9 from sequence) — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: no OVERCOME tag printed — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: 'Bonus Attack' bold; story reference number reads 8915 — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)"
+    ],
+    "ops": {
+     "at": 5,
+     "overcome": null,
+     "wound": [
+      {
+       "op": "escalateLowestAI"
+      }
+     ],
+     "critical": [
+      {
+       "op": "moveAndBonusAttack",
+       "n": 3,
+       "upTo": true
+      },
+      {
+       "op": "story",
+       "ref": "8915"
+      }
+     ]
+    }
+   },
+   {
+    "file": "23.png",
+    "name": "Gordon, Adored by Many",
+    "code": "28A1640",
+    "level": 2,
+    "at": 5,
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 5,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Forced Vault.",
+     "critical": "You may move up to 3 spaces and perform a Bonus Attack!"
+    },
+    "gates": [],
+    "reactWindows": [],
+    "whenRevealed": null,
+    "whileRevealed": "All Monster Attacks in Zone 2 from this Mob additionally cause -2 [Vigor] loss.",
+    "footer": "HAUNTS OF UTREBANT – BP 2",
+    "unclear": [],
+    "responseOrder": [
+     "INSTINCT",
+     "CRITICAL"
+    ],
+    "text": "GORDON, ADORED BY MANY / OVERCOME 5+ ▸ Power 1 / [AT] 5 / INSTINCT: Forced Vault. / CRITICAL: You may move up to 3 spaces and perform a Bonus Attack! / HAUNTS OF UTREBANT – BP 2 / While this BP is revealed: All Monster Attacks in Zone 2 from this Mob additionally cause -2 [Vigor] loss.",
+    "notes": [
+     "판독 확정: code: tiny faint print; best reading 28A1640 — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: overcome threshold small pale print; reads 5+ (could be 3+) — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)"
+    ],
+    "ops": {
+     "at": 5,
+     "overcome": {
+      "n": 5,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "instinct": [
+      {
+       "op": "forcedVault"
+      }
+     ],
+     "critical": [
+      {
+       "op": "moveAndBonusAttack",
+       "n": 3,
+       "upTo": true
+      }
+     ],
+     "aura": {
+      "zone2Vigor": 2
+     }
+    }
+   },
+   {
+    "file": "24.png",
+    "name": "Amelie, Peacefully Asleep",
+    "code": "28A1641",
+    "level": 3,
+    "at": 7,
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 4,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "Lose -2 [Vigor].",
+     "fail": "Forced Vault.",
+     "instinct": null,
+     "critical": "Another Knight may move up to 3 spaces and perform a Bonus Attack!"
+    },
+    "gates": [],
+    "reactWindows": [],
+    "whenRevealed": null,
+    "whileRevealed": "Resolve all Gated Effects on AI cards.",
+    "footer": "HAUNTS OF UTREBANT – BP 3",
+    "unclear": [],
+    "responseOrder": [
+     "WOUND",
+     "FAIL",
+     "CRITICAL"
+    ],
+    "text": "AMELIE, PEACEFULLY ASLEEP / OVERCOME 4+ ▸ Power 1 / [AT] 7 / WOUND: Lose -2 [Vigor]. / FAIL: Forced Vault. / CRITICAL: Another Knight may move up to 3 spaces and perform a Bonus Attack! / HAUNTS OF UTREBANT – BP 3 / While this BP is revealed: Resolve all Gated Effects on AI cards.",
+    "notes": [
+     "판독 확정: code: tiny faint print; best reading 28A1641 — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: overcome threshold digit is the least legible of the set: best reading 4+ (could be 1+) — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)"
+    ],
+    "ops": {
+     "at": 7,
+     "overcome": {
+      "n": 4,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "loseVigor",
+       "n": 2
+      }
+     ],
+     "fail": [
+      {
+       "op": "forcedVault"
+      }
+     ],
+     "critical": [
+      {
+       "op": "moveAndBonusAttack",
+       "n": 3,
+       "upTo": true,
+       "who": "other"
+      }
+     ],
+     "aura": {
+      "allGates": true
+     }
+    }
+   },
+   {
+    "file": "25.png",
+    "name": "Peter, Gone Too Young",
+    "code": "28A1642",
+    "level": 3,
+    "at": 6,
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 5,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": "Knockback 5.",
+     "fail": "Choke 2.",
+     "instinct": null,
+     "critical": "You may flip a chosen BP card."
+    },
+    "gates": [],
+    "reactWindows": [],
+    "whenRevealed": "Gain +1 Curse [Curse].",
+    "whileRevealed": null,
+    "footer": "HAUNTS OF UTREBANT – BP 3",
+    "unclear": [],
+    "responseOrder": [
+     "WOUND",
+     "FAIL",
+     "CRITICAL"
+    ],
+    "text": "When you reveal this BP: Gain +1 Curse [Curse]. / PETER, GONE TOO YOUNG / OVERCOME 5+ ▸ Power 1 / [AT] 6 / WOUND: Knockback 5. / FAIL: Choke 2. / CRITICAL: You may flip a chosen BP card. / HAUNTS OF UTREBANT – BP 3",
+    "notes": [
+     "판독 확정: code: tiny faint print; best reading 28A1642 (very faint; 42 fits the sequence) — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: overcome threshold small pale print; reads 5+ — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: icon after 'Curse' is a small dark knot/skull-like glyph, transcribed as [Curse] — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)"
+    ],
+    "ops": {
+     "at": 6,
+     "overcome": {
+      "n": 5,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "knockback",
+       "n": 5
+      }
+     ],
+     "fail": [
+      {
+       "op": "choke",
+       "n": 2
+      }
+     ],
+     "critical": [
+      {
+       "op": "flipChosenBP"
+      }
+     ],
+     "whenRevealed": [
+      {
+       "op": "gainCurse",
+       "n": 1
+      }
+     ]
+    }
+   },
+   {
+    "file": "26.png",
+    "name": "Woolf, the Unyielding",
+    "code": "28A1643",
+    "level": 3,
+    "at": 7,
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 5,
+     "effect": "Power 1"
+    },
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "The furthest Mob performs Signature against the Attacker.",
+     "critical": "Gain the Courage Condition card!"
+    },
+    "gates": [],
+    "reactWindows": [],
+    "whenRevealed": null,
+    "whileRevealed": "In Zone 2 from this Mob, you cannot attack other Mobs.",
+    "footer": "HAUNTS OF UTREBANT – BP 3",
+    "unclear": [],
+    "responseOrder": [
+     "INSTINCT",
+     "CRITICAL"
+    ],
+    "text": "WOOLF, THE UNYIELDING / OVERCOME 5+ ▸ Power 1 / [AT] 7 / INSTINCT: The furthest Mob performs Signature against the Attacker. / CRITICAL: Gain the Courage Condition card! / HAUNTS OF UTREBANT – BP 3 / While this BP is revealed: In Zone 2 from this Mob, you cannot attack other Mobs.",
+    "notes": [
+     "판독 확정: code: tiny faint print; best reading 28A1643 — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: overcome threshold small pale print; reads 5+ — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+     "판독 확정: 'Courage' italic — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)"
+    ],
+    "ops": {
+     "at": 7,
+     "overcome": {
+      "n": 5,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "instinct": [
+      {
+       "op": "mobSignatureAgainst",
+       "which": "furthest"
+      }
+     ],
+     "critical": [
+      {
+       "op": "condition",
+       "id": "Courage"
+      }
+     ],
+     "aura": {
+      "woolfLock": 2
+     }
+    }
+   }
+  ],
+  "signature": {
+   "file": "sig.png",
+   "name": "Ice in Your Veins",
+   "code": "27A1254",
+   "type": "attack",
+   "evasionDice": 3,
+   "evasionDifficulty": 9,
+   "preTargeting": null,
+   "targeting": [
+    "Closest Knight in sight"
+   ],
+   "moveTag": "MOVE & ATTACK",
+   "move": true,
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "+1 [d10]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "For each hit lose -1 [Vigor]. [Peril Check]."
+   ],
+   "reactWindows": [
+    "targeting",
+    "effect:0"
+   ],
+   "afterAttack": "Forced Vault. Move 4 spaces directly away from the Target.",
+   "afterFinalAttack": null,
+   "aiResponse": null,
+   "footer": "HAUNTS OF UTREBANT",
+   "unclear": [],
+   "text": "ICE IN YOUR VEINS / SIGNATURE / Evasion 3 dice, 9+ / TARGETING: • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat 3+ ▸ +1 [d10]] / For each hit lose -1 [Vigor]. [Peril Check]. [REACT!] / AFTER ATTACK / Forced Vault. Move 4 spaces directly away from the Target. / HAUNTS OF UTREBANT",
+   "notes": [
+    "판독 확정: code: illegible in the 389px screenshot; best reading 27A1254 (continues the AI sequence 27A1236–27A1253) — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+    "판독 확정: card read from a small tilted screenshot: evasion 3 dice / 9+, Heat gate '3+ ▸ +1 [d10]' and vigor loss '-1' are best readings of small print — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)"
+   ],
+   "ops": {
+    "targeting": [
+     "Closest Knight in sight"
+    ],
+    "move": true,
+    "gates": [
+     {
+      "op": "evasionDice",
+      "stat": "heat",
+      "gte": 3,
+      "n": 1
+     }
+    ],
+    "before": [],
+    "effects": [
+     {
+      "op": "loseVigorPerHit",
+      "n": 1,
+      "perilCheck": true
+     }
+    ],
+    "afterAttack": [
+     {
+      "op": "forcedVault"
+     },
+     {
+      "op": "moveAway",
+      "n": 4
+     }
+    ],
+    "afterFinalAttack": null
+   }
+  },
+  "routine": {
+   "file": "27.png",
+   "name": "Tide of Terror",
+   "code": null,
+   "type": "routine",
+   "text": "Each Knight gains the Drowning Condition card.",
+   "footer": "HAUNTS OF UTREBANT",
+   "unclear": [],
+   "notes": [
+    "판독 확정: no card code visible in the scan — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)",
+    "판독 확정: 'Drowning' is printed in italics — 소유자 확인 2026-11-15 (오딧 판독 전체 확인)"
+   ],
+   "ops": [
+    {
+     "op": "condition",
+     "id": "Drowning",
+     "all": true
+    }
+   ]
+  }
+ },
+ "clashSetup": null,
+ "rulings": [
+  "Ethereal Unity \"removed from the Board\" = a Haunt dies (its BP goes to the Wound Stack) [해석, 확인 필요]",
+  "Ethereal Unity Spawn: three lowest-level BPs from the Escalation decks on the leftmost empty Mob-track spaces; a coordinate held by a Knight or another Haunt → an unoccupied adjacent space (ties: player) [해석, 확인 필요]",
+  "Ethereal Unity \"Assign Activation tokens starting from the left of the Mob track\": all Activation tokens are re-dealt one per Mob from the leftmost, keeping their spent/unspent state [해석, 확인 필요]",
+  "Ethereal Unity bonuses stack: 1+ token → +1 To Hit, 2 tokens → +1 To Hit and +1 Vigor loss on every Haunt Attack",
+  "Zone Attack with MOVE: the Haunt moves toward the Target until adjacent, turns to face it, then the card diagram (rotated to its facing) gives the Zone; Spectral Step moves it to the marked space afterwards [해석, 확인 필요]",
+  "Judgement effect lines without \"If hit\" (e.g. \"Gain the Dread Condition card\") apply to every judged Knight, hit or not [해석, 확인 필요]",
+  "Zone Judgement: the Target plus every Knight in Zone 1 (No Mercy: Zone 2) around it are judged",
+  "Intangible: Haunts path through Terrain and miniatures (Superior Bypass) and ignore Terrain for Line of Sight; they still cannot end a move on another miniature",
+  "Gordon: every Monster Attack made by a Haunt within Zone 2 of revealed Gordon causes an additional -2 Vigor [해석]",
+  "Woolf: a Knight within Zone 2 of revealed Woolf can only attack Woolf",
+  "Amelie: every Gated Effect on AI cards resolves regardless of Heat",
+  "Peter \"Gain +1 Curse\": the Attacker gains 1 Curse (campaign Curse level) [해석, 확인 필요]",
+  "Percy wound: a 1x2 Swamp tile on the dead Haunt's space plus an adjacent space without Terrain (player picks)",
+  "The Unremarkable One Critical \"see 8915\": story reference — logged only"
+ ]
+}

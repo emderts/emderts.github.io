@@ -25,7 +25,7 @@ const loadSaved = () => { try { const s = localStorage.getItem(SAVE_KEY); return
 
 // ---------- home ----------
 const renderHome = () => {
-  const mons = Object.values(DATA.monsters); const saved = loadSaved();
+  const mons = Object.values(DATA.monsters).filter(m => m.clashSetup || /[?&]dev/.test(location.search)); const saved = loadSaved();
   app.replaceChildren(
     h('h1', {}, "Kingdoms Forlorn — Rogue's Path"),
     h('p', { class: 'sub' }, `웹 싱글플레이 · v${DATA.meta.version} · 빌드 ${DATA.meta.builtAt.slice(0, 16).replace('T', ' ')} UTC`),
@@ -87,7 +87,7 @@ const renderMapSvg = () => {
   }
   return s;
 };
-const monsterOptions = n => camp.tables.levels[String(n.level)][n.kingdom].map(r => ({ ...r, name: camp.tables.monsterNames[r.monster], ok: (!camp.owned || camp.owned.includes(r.monster)) && !!DATA.monsters[r.monster] }));
+const monsterOptions = n => camp.tables.levels[String(n.level)][n.kingdom].map(r => ({ ...r, name: camp.tables.monsterNames[r.monster], ok: (!camp.owned || camp.owned.includes(r.monster)) && camp.monsterReady(r.monster) }));
 let mapScroll = null;
 const renderMap = () => {
   const n = selNode ? camp.node(selNode) : null; const playable = n && camp.nodePlayable(n);

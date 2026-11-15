@@ -60,8 +60,10 @@ export class Campaign {
   availableNodes() { const s = new Set(); for (const c of this.crossed) for (const n of this.neighbors(c)) if (!this.crossed.includes(n)) s.add(n); return [...s].map(id => this.node(id)); }
   tierOf(level) { return TIER[level]; }
   /** A node is playable when its table contains at least one Monster that is owned AND has data in this build. */
-  nodePlayable(n) { const rows = this.tables.levels[String(n.level)][n.kingdom]; return rows.some(r => (!this.owned || this.owned.includes(r.monster)) && this.data.monsters[r.monster]); }
-  playableMonsters() { return this.owned ? this.owned.filter(m => this.data.monsters[m]) : Object.keys(this.data.monsters); }
+  /** A monster is playable once its data and Clash Setup exist (transcribed monsters without a Codex setup page stay locked). */
+  monsterReady(id) { const m = this.data.monsters[id]; return !!(m && m.clashSetup); }
+  nodePlayable(n) { const rows = this.tables.levels[String(n.level)][n.kingdom]; return rows.some(r => (!this.owned || this.owned.includes(r.monster)) && this.monsterReady(r.monster)); }
+  playableMonsters() { return (this.owned || Object.keys(this.data.monsters)).filter(m => this.monsterReady(m)); }
   get won() { return this.map.nodes.every(n => this.crossed.includes(n.id)); }
   get lost() { return this.knights.every(k => k.dead) && this.resurrections <= 0; }
 

@@ -54,6 +54,7 @@ export class Monster {
   }
   /** AI Escalation for a wounded BP of `level`: remove a matching AI card, shuffle in one a level higher (p.60). */
   escalateAI(level) {
+    if (this.hasTrait && this.hasTrait('The Grim Gift')) { const pool = this.ai.cards.length ? this.ai.cards : this.ai.discard; if (pool.length) { const low = Math.min(...pool.map(c => c.level)); if (low !== level) this.say(`The Grim Gift: AI ${low}를 Escalate (원래 ${level})`); level = low; } }
     const target = Math.min(3, level + 1);
     const removed = this._removeLevel(this.ai, level, true);
     const src = this.aiEsc[target] || this.aiEsc[3];

@@ -156,13 +156,14 @@ export const MobMixin = {
   },
   killMob(mob) {
     const M = this.monster; mob.lastCell = mob.cells[0]; this.board.remove(mob.cells); M.mobs = M.mobs.filter(x => x !== mob);
-    const w = mob.card.level === 3 ? 2 : 1; M.woundStack.push({ card: mob.card, wounds: w, mob }); M.escalateAI(mob.card.level); this.queueMobDeath(mob);
+    const w = mob.card.level === 3 ? 2 : 1; M.woundStack.push({ card: mob.card, wounds: w, mob }); M.escalateAI(mob.card.level); this.queueMobDeath(mob); this.etherealOnDeath();
     for (const tok of [...mob.tokens]) this.moveToken(mob.n, tok, false); mob.tokens = []; mob.cells = []; mob.dead = true;
     if (M.hasTrait('Necrofusion')) { this.necro += w; this.say(`Necrofusion 토큰 ${this.necro}/3`); }
     this.say(`Mob #${mob.n} ${mob.card.name} 처치${w === 2 ? ' (Double Wound)' : ''}`, 'wound'); return w;
   },
   async mobAfterAction() {
     if (this.bloodOn || this.monster.hasTrait('Subterranean Menace')) await this.bloodAfterAction();
+    if (this.monster.hasTrait('Ethereal Unity')) await this.etherealSpawn();
     if (this.monster.hasTrait('Necrofusion') && this.necro >= 3 && !this._spawning) { this.necro = 0; this._spawning = true; try { this.say('Necrofusion: 토큰 3 → Spawn + Signature', 'ai'); const mob = await this.spawnMob(); if (mob) await this.withMob(mob, () => this.performSignature()); } finally { this._spawning = false; } this.checkEnd(); }
   },
   /** Escalate the lowest (unrevealed) Mob: BP → a random BP one level higher in its place, and AI Escalation (p.62). */
@@ -178,7 +179,7 @@ export const MobMixin = {
     if (mob.card.ops.whenRevealed) { this.say(`When revealed — ${mob.card.name}`); await this.withMob(mob, () => this.fx.runMonsterOps(mob.card.ops.whenRevealed, { source: mob, targets: this.alive() })); }
   },
   async pickMob(list, text) { if (!list.length) return null; if (list.length === 1) return list[0]; const n = await this.ask({ type: 'pick', kind: 'mob', text, options: list.map(m => ({ label: this.mobLabel(m), value: m.n })) }); return list.find(m => m.n === n) || list[0]; },
-  async pickMobTarget(k) { return this.pickMob(this.adjacentMobs(k), `${k.name}: 공격할 Mob 선택`); },
+  async pickMobTarget(k) { return this.pickMob(this.attackableMobs ? this.attackableMobs(k) : this.adjacentMobs(k), `${k.name}: 공격할 Mob 선택`); },
   async mobDrawAI(which, ctx) {
     const M = this.monster; let mob = null; const src = ctx.source;
     if (which === 'this') mob = src && M.mobs.includes(src) ? src : null;
