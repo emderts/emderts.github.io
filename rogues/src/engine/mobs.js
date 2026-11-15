@@ -113,7 +113,7 @@ export const MobMixin = {
   /** Gangup X (p.81 box). */
   async gangup(mob, k, x) {
     const M = this.monster, B = this.board; if (!mob || !mob.cells.length || !M.mobs.includes(mob) || !k || !k.alive) return;
-    x += this.mobAura('gangupBonus'); this.say(`Gangup ${x}: Mob #${mob.n} → ${k.name}`, 'ai');
+    x += this.mobAura('gangupBonus'); if (x > 0 && this.fx.gearHas(k, 'reduceGangup') && await this.yesNo(`${k.name}: Gangup ${x} → ${x - 1}로 줄이기 (Gear)?`, true)) x -= 1; this.say(`Gangup ${x}: Mob #${mob.n} → ${k.name}`, 'ai');
     const moved = await this.mobMoveToward(mob, k.pos, x); const rem = x - moved;
     const others = M.mobs.filter(m => m !== mob && m.cells.length);
     if (others.some(m => B.adjacent(m.cells[0], k.pos))) { this.say(`${k.name}: 이미 다른 Mob과 인접 → Knockdown`); await this.knockdown(k); }

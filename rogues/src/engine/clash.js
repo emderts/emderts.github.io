@@ -388,7 +388,7 @@ export class Clash {
   async drawMortis(k, tier, { named = null } = {}) {
     const deck = this.mortis[tier]; let card = named ? deck.cards.find(c => c.name === named) : deck.draw(); if (named && card) deck.cards.splice(deck.cards.indexOf(card), 1);
     if (!card) { this.say(`${tier} Mortis 덱 비어 있음`); return; }
-    this.say(`${k.name} ${tier} Mortis: ${card.name} — ${card.text}`, 'mortis'); this.flash('card', { title: `${k.name} — ${tier} Mortis`, name: card.name, text: card.text, cls: 'bad' });
+    this.say(`${k.name} ${tier} Mortis: ${card.name} — ${card.text}`, 'mortis'); { const ig = k.gear.find(g => !g.discarded && !g.exhausted && this.fx.constKw(k, g).some(o => o.op === 'ignoreMortis' && o.names.includes(card.name))); if (ig) { this.say(`${k.name}: ${ig.name} — ${card.name} 무시`, 'tech'); deck.discard && deck.discard.push(card); return; } } this.flash('card', { title: `${k.name} — ${tier} Mortis`, name: card.name, text: card.text, cls: 'bad' });
     // Second Chance window
     const sc = await this.fx.secondChance(k, card, tier); if (sc) { deck.putBottom(card); card = deck.draw(); this.say(`Second Chance → 다시 뽑음: ${card.name} — ${card.text}`, 'mortis'); }
     const res = await this.fx.runMortis(card, k, tier);
@@ -421,13 +421,13 @@ export class Clash {
     if (/^Distracted|^Panicked/.test(id)) this.fx.enforceHandLimit(k);
   }
   removeCondition(k, id) { const i = k.conditions.findIndex(c => c.id === id); if (i >= 0) { k.conditions.splice(i, 1); this.say(`${k.name}: ${id} 제거`); return true; } return false; }
-  async knockdown(k) { if (!k.alive) return; if (await this.wnColumnGuard(k, 'Knockdown')) return; if (k.braced || this.fx.has(k, 'rocksteady')) { this.say(`${k.name} Knockdown 무시`); return; } if (this.knockedDown(k)) return; await this.addCondition(k, 'Knockdown (Falling Down)'); }
+  async knockdown(k) { if (!k.alive) return; if (await this.wnColumnGuard(k, 'Knockdown')) return; if (!this.knockedDown(k) && !k.engulfed && !this._rollOut && (this.monster.isMob ? this.adjacentMobs(k).length : this.adjacentToMonster(k)) && await this.fx.gearUse(k, ['rollOut'], 'Knockdown — Roll Out (대신 Knockback 4)?')) { this._rollOut = true; try { await this.knockback(k, 4); } finally { this._rollOut = false; } return; } if (k.braced || this.fx.has(k, 'rocksteady')) { this.say(`${k.name} Knockdown 무시`); return; } if (this.knockedDown(k)) return; await this.addCondition(k, 'Knockdown (Falling Down)'); }
   standUp(k) { const c = k.conditions.find(c => /^Knockdown/.test(c.id)); if (c) { k.conditions.splice(k.conditions.indexOf(c), 1); this.say(`${k.name} 일어남`); return true; } return false; }
   /** Involuntary straight-line movement away from the monster (Pushback / Knockback). Obstacles: Crash (+destroy if destructible); edge: slide along (p.56). */
   async pushback(k, n, { unavoidable = false, dir = null } = {}) {
     if (!k.alive || n <= 0 || k.engulfed) return; if (await this.wnColumnGuard(k, '비자발적 이동')) return; if (!unavoidable && !k.braced && !this.fx.gearHas(k, 'braced') && this.fx.gearAbilities(k, ['braced']).length && await this.fx.gearUse(k, ['braced'], `비자발적 이동 ${n}칸 — Braced 사용?`)) k.braced = true;
-    if ((k.braced || this.fx.gearHas(k, 'braced')) && !unavoidable) { this.say(`${k.name} Braced: 밀려나지 않음`); return; }
-    n = Math.max(0, n - (unavoidable ? 0 : this.fx.involuntaryReduction(k)));
+    if ((k.braced || k.rooted || this.fx.gearHas(k, 'braced')) && !unavoidable) { this.say(`${k.name} Braced: 밀려나지 않음`); return; }
+    n = Math.max(0, n - (unavoidable ? 0 : this.fx.involuntaryReduction(k))); if (n > 1 && this.fx.gearHas(k, 'reduceInvol') && await this.yesNo(`${k.name}: 비자발적 이동 ${n} → ${n - 1}로 줄이기 (Gear)?`, true)) n--;
     let d = dir || this.dirFromMonster(k.pos); const B = this.board; let moved = 0; const trail = [];
     for (let i = 0; i < n; i++) {
       let next = { c: k.pos.c + d.c, r: k.pos.r + d.r };
@@ -524,6 +524,7 @@ export class Clash {
     }
     // Drowning / Slimed: end of turn without moving
     for (const c of [...k.conditions]) { const def = this.conditionDefs[c.id]; const nm = def && def.ops && def.ops.endTurnNoMove; if (!nm || k.movedThisTurn) continue; if (nm === 'die') { this.say(`${k.name}: ${c.id} — 이동하지 않음 → 사망`, 'death'); await this.die(k, c.id); } else if (nm === 'flip' && def.flipSide) { c.id = def.flipSide; this.say(`${k.name}: ${def.name} — 이동하지 않음 → ${def.flipSide}`, 'cond'); } }
+    if (!k.movedThisTurn && k.alive && this.fx.gearHas(k, 'takeRoot') && !k.rooted) { k.rooted = true; this.say(`${k.name}: Take Root — 이동할 때까지 Braced`, 'tech'); }
     k.movedThisTurn = false;
     // end of turn: Knockdown (Falling Down) → flip
     const kd2 = k.conditions.find(c => c.id === 'Knockdown (Falling Down)'); if (kd2) { kd2.id = 'Knockdown (Standing Up)'; this.say(`${k.name}: Knockdown → Standing Up (다음 턴 시작 시 일어남)`); }
@@ -545,16 +546,16 @@ export class Clash {
   /** Swamp: "When you move through this tile, roll a d10, +1 per Armor die on your Armor Gear. If the result is higher than your current Vigor, you die." */
   /** Campfire: moving through / ending on it → -1 Vigor per Metal Gear card, discard all Flammable Gear cards. */
   async campfireBurn(k) { const metal = k.gear.filter(g => !g.discarded && (g.traits || []).includes('Metal')).length; const fl = k.gear.filter(g => !g.discarded && (g.traits || []).includes('Flammable')); this.say(`${k.name}: Campfire — Metal Gear ${metal}장 → -${metal} Vigor${fl.length ? `, Flammable Gear 버림 (${fl.map(g => g.name).join(', ')})` : ''}`); for (const g of fl) g.discarded = true; if (metal) await this.loseVigor(k, metal, { source: 'effect', armor: false }); }
-  async swampThrough(k, cells) { for (const c of cells) { if (!k.alive) return; { const tt = this.board.terrainAt(c); if (tt && tt.id === 'campfire') { await this.campfireBurn(k); continue; } } const d = this.rng.die(10), a = this.armorGearDice(k); const dead = d + a > k.vigor; this.say(`${k.name}: Swamp(${this.board.label(c)}) 통과 — d10 ${d}${a ? ` +${a} (Armor die)` : ''} = ${d + a} vs Vigor ${k.vigor} → ${dead ? '사망' : '통과'}`, dead ? 'death' : 'dice'); if (dead) await this.die(k, 'Swamp'); } }
+  async swampThrough(k, cells) { const noSw = this.fx.gearHas(k, 'ignoreSwamp'); for (const c of cells) { if (!k.alive) return; if (noSw && this.board.terrainAt(c) && this.board.terrainAt(c).id === 'swamp') continue; { const tt = this.board.terrainAt(c); if (tt && tt.id === 'campfire') { await this.campfireBurn(k); continue; } } const d = this.rng.die(10), a = this.armorGearDice(k); const dead = d + a > k.vigor; this.say(`${k.name}: Swamp(${this.board.label(c)}) 통과 — d10 ${d}${a ? ` +${a} (Armor die)` : ''} = ${d + a} vs Vigor ${k.vigor} → ${dead ? '사망' : '통과'}`, dead ? 'death' : 'dice'); if (dead) await this.die(k, 'Swamp'); } }
   /** Swamp: "If you end your movement on this tile (voluntary or not), you die." Checked for every Knight that moved since the last sweep. */
-  async swampSweep() { for (const k of this.knights) { if (!k._moved) continue; k._moved = false; if (!k.alive) continue; const t = this.board.terrainAt(k.pos); if (t && t.id === 'campfire') { await this.campfireBurn(k); continue; } if (t && t.id === 'swamp') { if (await this.fx.gearUse(k, ['lifeline'], 'Swamp에서 이동 종료 → 사망. Lifeline으로 Displace?')) { await this.displace(k); continue; } this.say(`${k.name}: Swamp(${this.board.label(k.pos)})에서 이동 종료 → 사망`, 'death'); await this.die(k, 'Swamp'); } } }
+  async swampSweep() { for (const k of this.knights) { if (!k._moved) continue; k._moved = false; if (!k.alive) continue; const t = this.board.terrainAt(k.pos); if (t && t.id === 'campfire') { await this.campfireBurn(k); continue; } if (t && t.id === 'swamp' && this.fx.gearHas(k, 'ignoreSwamp')) continue; if (t && t.id === 'swamp') { if (await this.fx.gearUse(k, ['lifeline'], 'Swamp에서 이동 종료 → 사망. Lifeline으로 Displace?')) { await this.displace(k); continue; } this.say(`${k.name}: Swamp(${this.board.label(k.pos)})에서 이동 종료 → 사망`, 'death'); await this.die(k, 'Swamp'); } } }
   async knightMove(k, speed) {
     const cells = this.reachable(k, speed); if (!cells.length) { this.say(`${k.name} 이동 불가`); return; }
     const target = await this.ask({ type: 'move', knight: k.id, cells, options: cells.map(c => ({ label: this.board.label(c), value: c })) });
     if (!target) return;
     // Drowning / Slimed: "When you're about to move voluntarily, roll [X Armor die] and all your Armor dice. For each [Potential] gain +1 Heat."
     for (const c of [...k.conditions]) { const def = this.conditionDefs[c.id]; const vr = def && def.ops && def.ops.voluntaryMoveRoll; if (!vr || typeof vr !== 'object') continue; const dice = this.fx.armorDice(k); dice[vr.extra] = (dice[vr.extra] || 0) + 1; const r = rollArmor(this.rng, dice, this.data.components.dice.faces, this.data.components.dice.armorSymbol); this.say(`${k.name} ${c.id}: Armor ${r.dice.length}d → ✦${r.mitigated} → Heat +${r.mitigated}`, 'cond'); if (r.mitigated) k.gainHeat(r.mitigated); }
-    const start = k.pos; const sw = this.swampOnPath(k, target, speed); this.moveKnight(k, target); if (sw.length) await this.swampThrough(k, sw); if (!k.alive) return; this.say(`${k.name} 이동 → ${this.board.label(target)}`); k.movedThisTurn = true; k.tempSpeed = 0; await this.geyserKnight(k, start); if (this.monster.isMob) this.cestusCheck(k); if (k.tempSpeed) k.tempSpeed = 0;
+    k.rooted = false; const start = k.pos; const sw = this.swampOnPath(k, target, speed); this.moveKnight(k, target); if (sw.length) await this.swampThrough(k, sw); if (!k.alive) return; this.say(`${k.name} 이동 → ${this.board.label(target)}`); k.movedThisTurn = true; k.tempSpeed = 0; await this.geyserKnight(k, start); if (this.monster.isMob) this.cestusCheck(k); if (k.tempSpeed) k.tempSpeed = 0;
     await this.swampSweep(); if (!k.alive) return;
     for (const c of [...k.conditions]) { const def = this.conditionDefs[c.id]; const on = def && def.ops && def.ops.onVoluntaryMove; if (on === 'flip' && def.flipSide) { c.id = def.flipSide; this.say(`${k.name}: ${def.name} → ${def.flipSide}`, 'cond'); } else if (on === 'discardSpeed') { this.removeCondition(k, c.id); k.tempSpeed = (k.tempSpeed || 0) + 1; this.say(`${k.name}: ${def.name} 제거, 임시 Speed +1`, 'cond'); } }
     const c = this.hasCondition(k, 'Knockdown (Standing Up)'); if (c) this.standUp(k);
@@ -573,7 +574,7 @@ export class Clash {
     this.currentKnightAttack = A; this.say(`${k.name} 공격 선언 — ${w.name}${bonus ? ' (Bonus Attack)' : ''}`, 'atk');
     const kc = this.hasCondition(k, 'Knockdown (Standing Up)'); if (kc) this.standUp(k);
     // Commit
-    if (this.fx.weaponHas(w, 'commit')) { k.gainHeat(1); this.say(`Commit: Heat +1 (${k.heat})`); }
+    if (this.fx.weaponHas(w, 'commit') && !this.fx.constKw(k, w).some(o => o.op === 'losesCommit')) { k.gainHeat(1); this.say(`Commit: Heat +1 (${k.heat})`); }
     // 2. Passion + priority target
     k.gainPassion(1); if (!this.priorityTarget || k.passion > this.priorityTarget.passion) { this.priorityTarget = k; }
     await this.fx.beforeAttack(k, A);
@@ -596,9 +597,10 @@ export class Clash {
     A.hits = roll.dice.filter(isHit).length; A.critChance = roll.dice[0].v === 10 || (this.fx.has(k, 'deadly') && roll.dice[0].v >= 9);
     this.flash('dice', { title: `${k.name} Attack Roll ${toHit}+ (+${prec})`, dice: roll.dice.map(d => ({ v: d.v, ok: isHit(d), crit: d.crit })), sub: `명중 ${A.hits}/${dice}${A.critChance ? ' ★Crit Chance' : ''}`, cls: A.hits ? 'good' : 'bad' });
     this.say(`${k.name} Attack Roll ${dice}d vs ${toHit}+ (+${prec}) → [${roll.dice.map(d => d.v + (d.rerolled ? '*' : '')).join(' ')}] 명중 ${A.hits}/${dice}${A.critChance ? ' ★Crit Chance' : ''}`, 'dice');
-    if (A.hits === 0) { this.say(`${k.name} Full Miss`); await this.fx.onFullMiss(k, A); this.clearPool(); await this.fx.secondWindow(k, A); this.currentKnightAttack = null; return; }
+    if (A.hits === 0) { this.say(`${k.name} Full Miss`); await this.fx.onFullMiss(k, A); if (!A.keepPool) this.clearPool(); await this.fx.secondWindow(k, A); this.currentKnightAttack = null; return; }
     if (A.hits === dice) await this.fx.onFullHit(k, A);
     // 4. first ability window (a Chain Break here ends the attack: clear pool + second window, p.54)
+    await this.fx.afterHits(k, A, roll.dice.length);
     try { await this.fx.firstWindow(k, A); } catch (e) { if (!e.chainBreak) throw e; this.say(`Chain Break: ${e.message}`, 'warn'); this.clearPool(); await this.fx.secondWindow(k, A); this.currentKnightAttack = null; return; }
     // 5. determine BP
     if (this.monster.isMob && !this.monster.mobs.includes(A.mob)) { this.say('대상 Mob이 이미 없음'); this.clearPool(); this.currentKnightAttack = null; return; }

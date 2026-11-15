@@ -38,6 +38,7 @@ export const BloodMixin = {
   /** Suck X (It Sucks!): move X Blood from the Target / Attacker onto this Worm's BP. Revealed BPs may raise every Suck value. */
   async suck(m, k, n) {
     const M = this.monster; if (!M.hasTrait('It Sucks!')) { this.say('Suck: It Sucks! 비활성'); return; } if (!m || !k || !k.alive) return;
+    if (await this.fx.gearUse(k, ['ignoreSuck'], `Suck ${n} — 무시?`)) { this.say(`${k.name}: Suck 무시 (Gear)`, 'tech'); return; }
     n += this.bloodAura('suckBonus'); const got = await this.knightLoseBlood(k, n, { discard: false, why: `Suck ${n}` }); this.mobAddBlood(m, got, 'Suck');
   },
 
