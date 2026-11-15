@@ -102,7 +102,7 @@ export const MobMixin = {
       const opts = this.mobStepOptions(mob, target); if (!opts.length) break;
       let d = opts[0];
       if (opts.length > 1) { const alt = lastAxis ? opts.find(x => axis(x) !== lastAxis) : null; if (alt) d = alt; else if (ask) { const i = await this.ask({ type: 'pick', preview: 'path', text: `Mob #${mob.n} 이동 시작 방향 (지그재그) — 옵션을 눌러 경로 미리보기 후 확정`, options: opts.map((x, i) => ({ path: this.simulateMobPath(mob, target, x, max - steps), label: this.dirName(x), value: i })) }); d = opts[i] || opts[0]; } }
-      lastAxis = axis(d); this.mobStepTo(mob, { c: mob.cells[0].c + d.c, r: mob.cells[0].r + d.r }); steps++;
+      lastAxis = axis(d); this.mobStepTo(mob, { c: mob.cells[0].c + d.c, r: mob.cells[0].r + d.r }); steps++; if (await this.fx.monsterMoved(mob.cells, mob)) break;
     }
     mob.facing = faceToward(mob.cells, target, mob.facing);
     if (steps) this.say(`Mob #${mob.n} 이동 ${steps}칸: ${from} → ${B.label(mob.cells[0])}`);

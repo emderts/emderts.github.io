@@ -292,6 +292,30 @@ const SPECIAL = [
   [/^Place your Knight on a space in effective range of this Weapon$/, () => ({ op: 'fTeleportRange', free: true })],
   [/^Remove a (Swamp|Rubble)(?: Terrain)? tile in your effective range and place it on this card.*$/, m => ({ op: 'fTakeTerrain', tile: m[1].toLowerCase(), free: true })],
   [/^Place all (?:Swamps|Rubble tiles) from this card (on spaces in your effective range|anywhere on the Board)$/, m => ({ op: 'fPlaceTerrain', anywhere: /anywhere/.test(m[1]), free: true })],
+  [/^Motivate (\d+) each Knight other than you$/, m => ({ op: 'motivateEach', n: +m[1] })],
+  [/^Each hit: Closing (\d+), Fire (\d+), Inspire (\d+), Motivate (\d+)$/, m => ({ op: 'eachHitCFIM', closing: +m[1], fire: +m[2], inspire: +m[3], motivate: +m[4] })],
+  [/^Inspire (\d+) and Motivate (\d+) a Knight in effective range of this Weapon$/, m => ({ op: 'fInspireMotivate', inspire: +m[1], n: +m[2], free: true })],
+  [/^Spend X \[Charge\] to Motivate X$/, () => ({ op: 'fMotivateX', free: true })],
+  [/^Reposition (\d+) toward another Knight$/, m => ({ op: 'repositionToward', n: +m[1] })],
+  [/^Motivate (\d+) toward you$/, m => ({ op: 'motivateToward', n: +m[1] })],
+  [/^When a Monster moves adjacent to you, immediately stop that movement$/, () => ({ op: 'stopMove', active: true, notInAI: true })],
+  [/^When a moving Monster becomes adjacent to you, it immediately stops$/, () => ({ op: 'stopMove', active: true })],
+  [/^(?:You cannot use this ability during an AI or (?:a )?Signature|This may cause a Chain Break)$/, () => ({ op: 'note', na: true })],
+  [/^Place this card adjacent to you on 2 spaces on the Clash Board$/, () => ({ op: 'fPlaceTrap', free: true })],
+  [/^When a Monster moves onto this card's spaces, regain this Gear \[Gear\] card, then roll a \[d10\]$/, () => ({ op: 'note', na: true, trap: 'caltrops' })],
+  [/^On 6\+, stop the Monster's movement and place (\d+) Fire \[Fire\] tokens in the Knight Pool$/, m => ({ op: 'note', na: true })],
+  [/^When a Monster enters any of this card's spaces, remove this card from the Board, and place (\d+) temporary negative AT \[AT\] tokens in the Knight Pool$/, m => ({ op: 'note', na: true, trap: 'bait', n: +m[1] })],
+  [/^You may discard this Upgrade to discard a Mind Condition card$/, () => ({ op: 'fUpgradeMind', free: true })],
+  [/^Additionally, you may gain \+(\d+) \[Heat\] to use this effect on an adjacent Knight instead$/, () => ({ op: 'note', na: true })],
+  [/^During the second ability window, you may discard this Upgrade from your Weapon to gain Envenomed (\d+)$/, m => ({ op: 'upgradeEnvenomed', n: +m[1] })],
+  [/^During the Power Roll step, you may discard this Upgrade to gain \+(\d+) \[Power\]$/, m => ({ op: 'upgradePower', n: +m[1], active: true })],
+  [/^Move all \[Charge\] from this Weapon onto any of your other Gear \[Gear\] cards$/, () => ({ op: 'fMoveCharges', free: true })],
+  [/^Draw a Mortis without resolving it$/, () => ({ op: 'fDrawMortisAhead', free: true })],
+  [/^The next time you would perform a \[Peril Check\], resolve that card instead$/, () => ({ op: 'note', na: true })],
+  [/^Start of your turn: Reveal the top card of each Mortis deck$/, () => ({ op: 'turnRevealMortis' })],
+  [/^When you're about to draw a Judicium, resolve a chosen Mortis revealed by this card instead$/, () => ({ op: 'judiciumToMortis', active: true })],
+  [/^When you become the Target of a Monster Attack, you may change all your \[Evasion Re-roll\] into \[red Armor die\] and vice versa$/, () => ({ op: 'swapERArmor' })],
+  [/^You may exhaust another Gear \[Gear\] card with the Cloth Trait to gain a temporary positive Evasion \[Evasion\] token$/, () => ({ op: 'fClothEvasion', free: true })],
   [/^Roll Out(?: \(.*\))?$/, () => ({ op: 'rollOut', active: true })],
   [/^Ignore Swamp Terrain tiles$/, () => ({ op: 'ignoreSwamp' })],
   [/^When you're about to suffer involuntary movement, you may reduce it by 1 \(to a minimum of 1\)$/, () => ({ op: 'reduceInvol' })],
@@ -340,6 +364,7 @@ export function parseSentence(s) {
     if ((m = /^\[(VASSAL|KING|DEVIL|DRAGON|POSTGAME)\]\s*/.exec(r))) { o.tier = m[1]; r = r.slice(m[0].length); continue; }
     if ((m = /^\[HEAT (\d+)\+\]\s*/.exec(r))) { o.heatMin = +m[1]; r = r.slice(m[0].length); continue; }
     if ((m = /^(\d+) \[Bane\]\s+(?=\d|\[|[A-Z])/.exec(r))) { (o.cost = o.cost || {}).bane = +m[1]; r = r.slice(m[0].length); continue; }
+    if ((m = /^\[Upgrade: ([^\]]+)\]\s*/.exec(r))) { o.upgrade = m[1]; r = r.slice(m[0].length); continue; }
     if ((m = /^\[2H\]\s*/.exec(r))) { o.twoHanded = true; r = r.slice(m[0].length); continue; }
     if ((m = /^\[Two-handed(?: icon)?\]:?\s*/i.exec(r))) { o.twoHanded = true; r = r.slice(m[0].length); continue; }
     if ((m = /^\[Reaction\]\s*/.exec(r))) { o.reaction = true; r = r.slice(m[0].length); continue; }
@@ -366,6 +391,7 @@ export function parseGearText(text) { if (!text) return []; const ss = String(te
     if (xdef && (m = /^((?:\[[^\]]+\]\s*)*[A-Z][A-Za-z\- ]*) \*?X\*?\.?$/.exec(t))) { const p = parseSentence(m[1] + ' 0.'); if (typeof p.n === 'number' && p.status !== 'text' && p.op !== 'ranged') { p.status = 'ok'; p.x = xdef; p.text = t; out.push(p); continue; } }
     if ((m = /^(.*\S )Block or Defy\.?$/.exec(t)) && /\[Heat\]|\[Exhaust\]|\[Discard\]|\[Charge\]/.test(m[1])) { const p1 = parseSentence(m[1] + 'Block.'), p2 = parseSentence(m[1] + 'Defy.'); if (p1.status === 'ok' && p2.status === 'ok') { p1.text = t; p2.text = t; out.push(p1, p2); continue; } }
     out.push(parseSentence(t)); }
-  out.forEach((o, i) => { if (o.op === 'fDrawJudicium') { const nx = out[i + 1]; if (nx && /discard all Armor/.test(nx.text)) o.then = 'clearArmor'; else if (nx && /return a chosen Knight to life adjacent to you/.test(nx.text)) { o.then = 'revive'; nx.op = 'note'; nx.status = 'na'; } else { o.op = 'text'; o.status = 'text'; } } if (o.op === 'fVigorForHeat') { const nx = out[i + 1]; if (nx && nx.poison) o.poison = nx.poison; } if (o.op === 'fFlipOtherCond') { const nx = out[i + 1]; if (nx && nx.vigor) o.vigor = nx.vigor; } if (o.op === 'fInspire' && !o.cost) { o.op = 'inspire'; delete o.free; } if (o.op === 'fPlaceTerrain') o.tile = /Rubble/.test(o.text) ? 'rubble' : 'swamp'; }); return out; }
+  { let up = null; for (const o of out) { if (o.upgrade) up = o.upgrade; else if (up) o.upgrade = up; } }
+  out.forEach((o, i) => { if (o.op === 'fDrawJudicium') { const nx = out[i + 1]; if (nx && /discard all Armor/.test(nx.text)) o.then = 'clearArmor'; else if (nx && /return a chosen Knight to life adjacent to you/.test(nx.text)) { o.then = 'revive'; nx.op = 'note'; nx.status = 'na'; } else { o.op = 'text'; o.status = 'text'; } } if (o.op === 'fVigorForHeat') { const nx = out[i + 1]; if (nx && nx.poison) o.poison = nx.poison; } if (o.op === 'fPlaceTrap') { const nx = out.slice(i + 1).find(x => x.trap); if (nx) { o.trap = nx.trap; o.trapN = nx.n; } } if (o.op === 'fFlipOtherCond') { const nx = out[i + 1]; if (nx && nx.vigor) o.vigor = nx.vigor; } if (o.op === 'fInspire' && !o.cost) { o.op = 'inspire'; delete o.free; } if (o.op === 'fPlaceTerrain') o.tile = /Rubble/.test(o.text) ? 'rubble' : 'swamp'; }); return out; }
 export const isDefensive = op => DEFENSIVE.has(op);
 export const KEYWORD_STATUS = { TOKENS, OK, PENDING, NA };
