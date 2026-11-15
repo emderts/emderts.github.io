@@ -180,7 +180,7 @@ if (fs.existsSync('docs/transcriptions')) for (const f of fs.readdirSync('docs/t
 <h3>Traits</h3><table><tr><th>Lv</th><th>Trait</th><th>텍스트</th></tr>${S.traits.map(t => `<tr><td>${t.level}</td><td><b>${esc(t.name)}</b></td><td>${esc(t.text)}${unc(t.unclear ? [].concat(t.unclear) : [])}</td></tr>`).join('')}</table>
 ${cardTables([...Rw.ai, Rw.signature], Rw.bp)}
 <p><b>Routine — ${esc(Rw.routine.name)}</b>: ${esc(Rw.routine.text || one(Rw.routine.effects))}</p>
-${(Rw.extra || []).map(x => `<p><b>${esc(x.name)}</b> (${esc(x.kind || '')}${x.kingdom ? ' · ' + esc(x.kingdom) : ''}): ${esc(x.text || '')} ${x.transformingSeed ? '<br>Transforming Seed: ' + esc(x.transformingSeed) : ''}${unc(x.unclear)}</p>`).join('')}</section>`);
+${(Rw.extra || []).map(x => `<p><b>${esc(x.name)}</b> (${esc(x.kind || '')}${x.kingdom ? ' · ' + esc(x.kingdom) : ''}): ${esc(x.text || '')} ${x.bottomBox ? '<br><b>하단 박스:</b> ' + esc(x.bottomBox) : ''}${x.whileRevealed ? '<br><b>While:</b> ' + esc(x.whileRevealed) : ''}${x.tacticA ? '<br>Tactic A: ' + esc(x.tacticA) + ' · Tactic B: ' + esc(x.tacticB || '') : ''}${x.endOfMonsterRound ? '<br>End of Monster Round: ' + esc(x.endOfMonsterRound) : ''}${(x.notes || []).map(n => '<br><span class="small">✔ ' + esc(n) + '</span>').join('')}${x.transformingSeed ? '<br>Transforming Seed: ' + esc(x.transformingSeed) : ''}${unc(x.unclear)}</p>`).join('')}</section>`);
 }
 sec.push(`<section id="campaign"><h2>11. 캠페인 레이어 — Rosegraal 루프 ↔ 구현 대응</h2>
 <p class="impl">소스: <code>src/engine/campaign.js</code> · UI: <code>src/ui/main.js</code>(home/map/encounter/clash/aftermath/outpost) · 테스트: <code>test/campaign.mjs</code>(6시드 × 최대 6라운드 시뮬레이션, 저장/복원, 로드아웃 규칙, Sigh 재전투), <code>test/ui.mjs</code>(지도 → 노드 → 출정 → Clash → Aftermath → 지도 → 저장 확인)</p>

@@ -175,11 +175,12 @@
    "blindspots": "none shown (R only, no eye icon)"
   },
   "levelsNote": "Stat columns: fist = To Hit (N+), heart with slashes = Wounds, broken heart = Exhibition Wounds, AI card = Activations ('1 AI' at every level, no Signature activation printed). Bonus row (blue): starburst-with-arrow N = Escalations, +N ribcage = AT bonus, +N V = Vigor Loss bonus; the fourth blue cell is empty at every level (no evasion-dice bonus). Level 1 has no bonus row. Level 1 TRAITS box prints '+One with the Swamp, We Are Many, Doppelknight, Ooze Trap, Doppelganger, Spread Thin, Kingdom Trait (see Clash Setup)'.",
-  "unclear": [
-   "sheet code: tiny pale print at top-right of sheet1; best reading 26A1075 (last digit could be 3)",
-   "Ooze Trap: the lead-in reads \"Level 2–3:\" (not 2–4) - printed so; note level 4 disables Ooze Trap via Inescapable Slime",
-   "bold lead-ins: Dwell:, Start of Clash:, Additional Setup:, Level 2–3:, Crit Miss:, For every Weapon:, Whenever Armor is placed:, For every Support:; the final Doppelknight sentence (\"If at any point ... lose the Clash!\") and the word \"both\" in Concentrated Strength are bold; Doppelganger/Engulfed/Slimed/Living Wasteheap/Spread Thin/Ooze Trap names inside text are italic",
-   "We Are Many: comma after \"Wound\" before the parenthesis is printed so"
+  "unclear": [],
+  "notes": [
+   "판독 확정: sheet code: tiny pale print at top-right of sheet1; best reading 26A1075 (last digit could be 3) — 소유자 확인 2026-11-15",
+   "판독 확정: Ooze Trap: the lead-in reads \"Level 2–3:\" (not 2–4) - printed so; note level 4 disables Ooze Trap via Inescapable Slime — 소유자 확인 2026-11-15",
+   "판독 확정: bold lead-ins: Dwell:, Start of Clash:, Additional Setup:, Level 2–3:, Crit Miss:, For every Weapon:, Whenever Armor is placed:, For every Support:; the final Doppelknight sentence (\"If at any point ... lose the Clash!\") and the word \"both\" in Concentrated Strength are bold; Doppelganger/Engulfed/Slimed/Living Wasteheap/Spread Thin/Ooze Trap names inside text are italic — 소유자 확인 2026-11-15",
+   "판독 확정: We Are Many: comma after \"Wound\" before the parenthesis is printed so — 소유자 확인 2026-11-15"
   ]
  },
  "ai": [
@@ -219,11 +220,12 @@
    "aiResponse": null,
    "doppelganger": "Move & Attack the closest Knight. For each hit lose -1 [Vigor]. [Peril Check].",
    "footer": "KNIGHT OF THE FEN – AI 1",
-   "unclear": [
-    "code: faint tiny print; best reading 27A1439 (digits blurred, chosen with help of the sheet-order sequence pattern)"
-   ],
+   "unclear": [],
    "text": "ENCROACHING SLIME / ATTACK / Evasion 3 dice, 10+ / TARGETING: • Closest Knight in front • [Priority Target] Priority Target • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat 3+ ▸ DIFFICULTY 11+ INSTEAD] / For each hit lose -1 [Vigor] and Poison 1. [Peril Check]. Three or more hits, become Engulfed. [REACT!] / DOPPELGANGER: Move & Attack the closest Knight. For each hit lose -1 [Vigor]. [Peril Check]. / KNIGHT OF THE FEN – AI 1",
-   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line."
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line.",
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 27A1439 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "01.png",
@@ -260,9 +262,7 @@
    "aiResponse": null,
    "doppelganger": "Move & Attack the furthest Knight. For each hit gain +1 [Heat].",
    "footer": "KNIGHT OF THE FEN – AI 1",
-   "unclear": [
-    "code: faint tiny print; best reading 27A1440 (digits blurred, chosen with help of the sheet-order sequence pattern)"
-   ],
+   "unclear": [],
    "text": "UNCERTAIN FOOTING / ZONE ATTACK / Evasion 2 dice, 8+ / TARGETING: • [Priority Target] Priority Target • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat 3+ ▸ +1 [d10]] / One hit, gain the Slimed Condition card. Two or more hits, gain the Drowning Condition card instead. [REACT!] / DOPPELGANGER: Move & Attack the furthest Knight. For each hit gain +1 [Heat]. / KNIGHT OF THE FEN – AI 1",
    "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line.",
    "zoneDiagram": {
@@ -285,7 +285,10 @@
     "redCells": 20,
     "yellowCells": 0,
     "note": "triangle/cone opening to the right of the monster: columns 3, 4, 5, 6 hold 2, 4, 6, 8 red cells; last (7th) column empty"
-   }
+   },
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 27A1440 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "02.png",
@@ -323,12 +326,13 @@
    "aiResponse": null,
    "doppelganger": "Move & Attack the closest Knight. For each hit lose -1 [Vigor]. [Peril Check]. Swarm 2.",
    "footer": "KNIGHT OF THE FEN – AI 1",
-   "unclear": [
-    "code: faint tiny print; best reading 27A1441 (digits blurred, chosen with help of the sheet-order sequence pattern)",
-    "Heat gate threshold read as 4+ (other cards print 3+); the digit is small but looks like a 4"
-   ],
+   "unclear": [],
    "text": "SHORTSWORD JAB / ATTACK / Evasion 3 dice, 8+ / TARGETING: • Highest [Heat] • Furthest Knight in front [REACT!] / MOVE & ATTACK [Heat 4+ ▸ +1 [d10]] / One hit, lose -3 [Vigor]. Two hits, lose -5 [Vigor]. Three or more hits, lose -5 [Vigor] and Knockdown. [Peril Check]. [REACT!] / DOPPELGANGER: Move & Attack the closest Knight. For each hit lose -1 [Vigor]. [Peril Check]. Swarm 2. / KNIGHT OF THE FEN – AI 1",
-   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line."
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line.",
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 27A1441 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15",
+    "판독 확정: Heat gate threshold read as 4+ (other cards print 3+); the digit is small but looks like a 4 — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "03.png",
@@ -367,14 +371,13 @@
    "aiResponse": null,
    "doppelganger": "Move & Range Attack 4 the closest Knight. For each hit lose -1 [Vigor]. [Peril Check].",
    "footer": "KNIGHT OF THE FEN – AI 1",
-   "unclear": [
-    "code: faint tiny print; best reading 27A1438 (digits blurred, chosen with help of the sheet-order sequence pattern)",
-    "move tag is \"RANGE ATTACK 6\" with no MOVE (the Doppelganger line does say \"Move & Range Attack 4\")"
-   ],
+   "unclear": [],
    "text": "MUD IN YOUR EYE / RANGE ATTACK / Evasion 4 dice, 8+ / TARGETING: • Furthest Knight in front, in range • Furthest Knight in sight, in range [REACT!] / RANGE ATTACK 6 [Heat 3+ ▸ IGNORE ALL [REACT! window]] / For each hit lose -1 [Vigor]. [Peril Check]. Two or more hits, gain the Slimed Condition card. Dwell. Crit Evade Fail: Gain the Slimed Condition card. [REACT!] / DOPPELGANGER: Move & Range Attack 4 the closest Knight. For each hit lose -1 [Vigor]. [Peril Check]. / KNIGHT OF THE FEN – AI 1",
    "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line.",
    "notes": [
-    "\"IGNORE (ALL) [REACT! window]\" 게이트 = 이 공격에는 REACT! 창이 열리지 않음 — 소유자 확인 2026-11-15"
+    "\"IGNORE (ALL) [REACT! window]\" 게이트 = 이 공격에는 REACT! 창이 열리지 않음 — 소유자 확인 2026-11-15",
+    "판독 확정: code: faint tiny print; best reading 27A1438 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15",
+    "판독 확정: move tag is \"RANGE ATTACK 6\" with no MOVE (the Doppelganger line does say \"Move & Range Attack 4\") — 소유자 확인 2026-11-15"
    ]
   },
   {
@@ -406,11 +409,12 @@
    "aiResponse": null,
    "doppelganger": "Move & Attack the furthest Knight. If hit, lose -3 [Vigor]. [Peril Check].",
    "footer": "KNIGHT OF THE FEN – AI 1",
-   "unclear": [
-    "code: faint tiny print; best reading 27A1437 (digits blurred, chosen with help of the sheet-order sequence pattern)"
-   ],
+   "unclear": [],
    "text": "RETALIATORY THRUST / RANGE ATTACK / Evasion 2 dice, 9+ / TARGETING: • Last Knight to wound • [Priority Target] Priority Target • Closest Knight in sight [REACT!] / MOVE & RANGE ATTACK 2 / If hit, lose -5 [Vigor]. [Peril Check]. Dwell. [REACT!] / DOPPELGANGER: Move & Attack the furthest Knight. If hit, lose -3 [Vigor]. [Peril Check]. / KNIGHT OF THE FEN – AI 1",
-   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line."
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line.",
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 27A1437 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "05.png",
@@ -448,12 +452,13 @@
    "aiResponse": null,
    "doppelganger": "Move & Attack the closest Knight. For each hit lose -1 [Vigor]. [Peril Check].",
    "footer": "KNIGHT OF THE FEN – AI 1",
-   "unclear": [
-    "code: faint tiny print; best reading 27A1436 (digits blurred, chosen with help of the sheet-order sequence pattern)",
-    "Heat gate threshold read as 2+ (small digit)"
-   ],
+   "unclear": [],
    "text": "SLIMY STAB / ATTACK / Evasion 3 dice, 9+ / TARGETING: • Furthest Knight in front • [Priority Target] Priority Target • Furthest Knight in sight [REACT!] / MOVE & ATTACK [Heat 2+ ▸ +1 [d10]] / For each hit lose -2 [Vigor]. [Peril Check]. 3+ hits, gain the Slimed Condition card. [REACT!] / DOPPELGANGER: Move & Attack the closest Knight. For each hit lose -1 [Vigor]. [Peril Check]. / KNIGHT OF THE FEN – AI 1",
-   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line."
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line.",
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 27A1436 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15",
+    "판독 확정: Heat gate threshold read as 2+ (small digit) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "06.png",
@@ -492,11 +497,7 @@
    "aiResponse": null,
    "doppelganger": "Move & Attack the furthest Knight. For each hit lose -1 [Vigor] and gain +1 [Heat]. [Peril Check]",
    "footer": "KNIGHT OF THE FEN – AI 2",
-   "unclear": [
-    "code: faint tiny print; best reading 27A1445 (digits blurred, chosen with help of the sheet-order sequence pattern)",
-    "Doppelganger text ends with the Peril Check icon on its own line and no visible final period",
-    "zone diagram: lower-right grid cells are covered by the illustration (assumed empty)"
-   ],
+   "unclear": [],
    "text": "STIFLING SLUDGE / ZONE ATTACK / Evasion 3 dice, 10+ / TARGETING: • [Priority Target] Priority Target • Closest Knight in sight • Closest Knight in front [REACT!] / MOVE & ATTACK [Heat 3+ ▸ +1 [d10]] / For each hit lose -1 [Vigor]. One hit, gain the Slimed Condition card. Two or more hits, gain the Drowning Condition card instead. [Peril Check]. [REACT!] / DOPPELGANGER: Move & Attack the furthest Knight. For each hit lose -1 [Vigor] and gain +1 [Heat]. [Peril Check] / KNIGHT OF THE FEN – AI 2",
    "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line.",
    "zoneDiagram": {
@@ -519,7 +520,12 @@
     "redCells": 30,
     "yellowCells": 0,
     "note": "inverted triangle in front of the monster (2,4,6,8,10 cells wide going away); top row empty; lower-right cells partly hidden by the art"
-   }
+   },
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 27A1445 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15",
+    "판독 확정: Doppelganger text ends with the Peril Check icon on its own line and no visible final period — 소유자 확인 2026-11-15",
+    "판독 확정: zone diagram: lower-right grid cells are covered by the illustration (assumed empty) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "07.png",
@@ -559,13 +565,14 @@
    "aiResponse": null,
    "doppelganger": "Repeat this Attack against another Target (once).",
    "footer": "KNIGHT OF THE FEN – AI 2",
-   "unclear": [
-    "code: faint tiny print; best reading 27A1446 (digits blurred, chosen with help of the sheet-order sequence pattern)",
-    "Heat gate tag wraps onto a second blue tag line (\"GAIN THE SLIMED\" / \"CONDITION CARD\")",
-    "no REACT! marker on the Doppelganger header line (only after Targeting)"
-   ],
+   "unclear": [],
    "text": "TORNADO OF BLADES / ATTACK / Evasion 3 dice, 9+ / TARGETING: • Furthest Knight in front • Furthest Knight in sight • [Priority Target] Priority Target [REACT!] / MOVE & ATTACK [Heat 3+ ▸ GAIN THE SLIMED CONDITION CARD] / If hit, roll two additional [d10]. One hit, lose -3 [Vigor]. Two hits, lose -5 [Vigor]. Three or more hits, lose -7 [Vigor] and Knockdown. Five hits, lose -7 [Vigor] and become Engulfed. [Peril Check]. / DOPPELGANGER: Repeat this Attack against another Target (once). / KNIGHT OF THE FEN – AI 2",
-   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line."
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line.",
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 27A1446 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15",
+    "판독 확정: Heat gate tag wraps onto a second blue tag line (\"GAIN THE SLIMED\" / \"CONDITION CARD\") — 소유자 확인 2026-11-15",
+    "판독 확정: no REACT! marker on the Doppelganger header line (only after Targeting) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "08.png",
@@ -594,12 +601,13 @@
    "aiResponse": null,
    "doppelganger": "Move & Attack the last target. For each hit lose -1 [Vigor]. [Peril Check]. Swarm 1.",
    "footer": "KNIGHT OF THE FEN – AI 2",
-   "unclear": [
-    "code: faint tiny print; best reading 27A1447 (digits blurred, chosen with help of the sheet-order sequence pattern)",
-    "no REACT! marker on the Doppelganger header line (only after Targeting)"
-   ],
+   "unclear": [],
    "text": "TANDEM STRIKE / ATTACK / Evasion 3 dice, 8+ / TARGETING: • Knight with the Slimed Condition card • [Priority Target] Priority Target • Closest Knight in front [REACT!] / MOVE & ATTACK / For each hit lose -1 [Vigor]. [Peril Check]. / DOPPELGANGER: Move & Attack the last target. For each hit lose -1 [Vigor]. [Peril Check]. Swarm 1. / KNIGHT OF THE FEN – AI 2",
-   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line."
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line.",
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 27A1447 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15",
+    "판독 확정: no REACT! marker on the Doppelganger header line (only after Targeting) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "09.png",
@@ -639,11 +647,12 @@
    "aiResponse": null,
    "doppelganger": "Move & Attack the furthest Knight. For each hit lose -1 [Vigor]. [Peril Check].",
    "footer": "KNIGHT OF THE FEN – AI 2",
-   "unclear": [
-    "code: faint tiny print; best reading 27A1444 (digits blurred, chosen with help of the sheet-order sequence pattern)"
-   ],
+   "unclear": [],
    "text": "SURGING SLIME / ATTACK / Evasion 4 dice, 10+ / TARGETING: • Knight with the Slimed Condition card • Closest Knight in sight • [Priority Target] Priority Target [REACT!] / MOVE & ATTACK [Heat 3+ ▸ DIFFICULTY 11+ INSTEAD] / If hit, roll an additional [d10]. For each hit lose -2 [Vigor]. Two or more hits, gain the Slimed Condition card. [Peril Check]. Dwell. [REACT!] / DOPPELGANGER: Move & Attack the furthest Knight. For each hit lose -1 [Vigor]. [Peril Check]. / KNIGHT OF THE FEN – AI 2",
-   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line."
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line.",
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 27A1444 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "10.png",
@@ -673,12 +682,13 @@
    "aiResponse": null,
    "doppelganger": "Move & Attack the furthest Knight. For each hit lose -1 [Vigor]. [Peril Check]. Swarm 2.",
    "footer": "KNIGHT OF THE FEN – AI 2",
-   "unclear": [
-    "code: faint tiny print; best reading 27A1443 (digits blurred, chosen with help of the sheet-order sequence pattern)",
-    "the first REACT! marker is printed slightly lower than usual, on the MOVE & ATTACK tag line (still read as the post-Targeting window)"
-   ],
+   "unclear": [],
    "text": "BLADE BARRAGE / SEQUENTIAL ATTACK / Evasion 6 dice, 9+ / TARGETING: • Two closest Knights in front • Two closest Knights in sight [REACT!] / MOVE & ATTACK / If hit, roll two additional [d10]. For each hit lose -1 [Vigor]. [Peril Check]. [REACT!] / DOPPELGANGER: Move & Attack the furthest Knight. For each hit lose -1 [Vigor]. [Peril Check]. Swarm 2. / KNIGHT OF THE FEN – AI 2",
-   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line."
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line.",
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 27A1443 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15",
+    "판독 확정: the first REACT! marker is printed slightly lower than usual, on the MOVE & ATTACK tag line (still read as the post-Targeting window) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "11.png",
@@ -717,11 +727,12 @@
    "aiResponse": null,
    "doppelganger": "Move & Attack the closest Knight. For each hit lose -1 [Vigor]. [Peril Check]. Swarm 2.",
    "footer": "KNIGHT OF THE FEN – AI 2",
-   "unclear": [
-    "code: faint tiny print; best reading 27A1442 (digits blurred, chosen with help of the sheet-order sequence pattern)"
-   ],
+   "unclear": [],
    "text": "FROM EVERY ANGLE / ATTACK / Evasion 4 dice, 10+ / TARGETING: • Closest Knight in front • [Priority Target] Priority Target • Closest Knight in sight [REACT!] / MOVE & ATTACK [Heat 3+ ▸ +1 [d10]] / If hit, roll an additional [d10]. For each hit lose -2 [Vigor]. Two or more hits, gain the Slimed Condition card. [Peril Check]. [REACT!] / DOPPELGANGER: Move & Attack the closest Knight. For each hit lose -1 [Vigor]. [Peril Check]. Swarm 2. / KNIGHT OF THE FEN – AI 2",
-   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line."
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line.",
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 27A1442 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "12.png",
@@ -761,11 +772,7 @@
    "aiResponse": null,
    "doppelganger": "Move & Attack the Knight closest to a Swamp Terrain tile. For each hit lose -2 [Vigor] and gain +1 [Heat]. [Peril Check]. Swarm 2.",
    "footer": "KNIGHT OF THE FEN – AI 3",
-   "unclear": [
-    "code: faint tiny print; best reading 27A1451 (digits blurred, chosen with help of the sheet-order sequence pattern)",
-    "Heat gate threshold read as 5+ (small digit)",
-    "zone diagram: lower-right grid cells are covered by the illustration (assumed empty)"
-   ],
+   "unclear": [],
    "text": "DROWNING SORROWS / ZONE ATTACK / Evasion 4 dice, 10+ / TARGETING: • [Priority Target] Priority Target • Closest Knight in sight • Closest Knight in front [REACT!] / MOVE & ATTACK [Heat 5+ ▸ +1 [d10]] / For each hit lose -2 [Vigor]. One hit, gain the Slimed Condition card. Two hits, gain the Drowning Condition card instead. Three or more hits, you die. [Peril Check]. [REACT!] / DOPPELGANGER: Move & Attack the Knight closest to a Swamp Terrain tile. For each hit lose -2 [Vigor] and gain +1 [Heat]. [Peril Check]. Swarm 2. / KNIGHT OF THE FEN – AI 3",
    "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line.",
    "zoneDiagram": {
@@ -788,7 +795,12 @@
     "redCells": 42,
     "yellowCells": 0,
     "note": "inverted triangle in front of the monster (2,4,6,8,10,12 cells wide going away); lower-right cells partly hidden by the art"
-   }
+   },
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 27A1451 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15",
+    "판독 확정: Heat gate threshold read as 5+ (small digit) — 소유자 확인 2026-11-15",
+    "판독 확정: zone diagram: lower-right grid cells are covered by the illustration (assumed empty) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "13.png",
@@ -817,13 +829,14 @@
    "aiResponse": null,
    "doppelganger": "Move & Attack the closest Knight. For each hit lose -2 [Vigor]. [Peril Check]. Gain the Slimed Condition card.",
    "footer": "KNIGHT OF THE FEN – AI 3",
-   "unclear": [
-    "code: faint tiny print; best reading 27A1452 (digits blurred, chosen with help of the sheet-order sequence pattern)",
-    "no REACT! marker after Targeting (only on the Doppelganger header line)",
-    "no zone diagram printed; Targeting is \"Zone 4\""
-   ],
+   "unclear": [],
    "text": "THE THOUSAND ARMS / ZONE ATTACK / Evasion 3 dice, 10+ / TARGETING: • Zone 4 / ATTACK / For each hit roll an additional [d10] (once). For each hit lose -3 [Vigor]. Three hits, gain the Fear Condition card. [Peril Check]. [REACT!] / DOPPELGANGER: Move & Attack the closest Knight. For each hit lose -2 [Vigor]. [Peril Check]. Gain the Slimed Condition card. / KNIGHT OF THE FEN – AI 3",
-   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line."
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line.",
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 27A1452 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15",
+    "판독 확정: no REACT! marker after Targeting (only on the Doppelganger header line) — 소유자 확인 2026-11-15",
+    "판독 확정: no zone diagram printed; Targeting is \"Zone 4\" — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "14.png",
@@ -853,11 +866,12 @@
    "aiResponse": null,
    "doppelganger": "Move & Attack the last target. For each hit lose -2 [Vigor]. [Peril Check]. Swarm 2.",
    "footer": "KNIGHT OF THE FEN – AI 3",
-   "unclear": [
-    "code: faint tiny print; best reading 27A1453 (digits blurred, chosen with help of the sheet-order sequence pattern)"
-   ],
+   "unclear": [],
    "text": "ALL AS ONE / ATTACK / Evasion 3 dice, 9+ / TARGETING: • Knight with the Slimed Condition card • [Priority Target] Priority Target • Closest Knight in sight [REACT!] / MOVE & ATTACK / For each hit lose -3 [Vigor]. [Peril Check]. [REACT!] / DOPPELGANGER: Move & Attack the last target. For each hit lose -2 [Vigor]. [Peril Check]. Swarm 2. / KNIGHT OF THE FEN – AI 3",
-   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line."
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line.",
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 27A1453 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "15.png",
@@ -897,11 +911,12 @@
    "aiResponse": null,
    "doppelganger": "Move & Attack the furthest Knight in front. For each hit lose -2 [Vigor]. [Peril Check].",
    "footer": "KNIGHT OF THE FEN – AI 3",
-   "unclear": [
-    "code: faint tiny print; best reading 27A1450 (digits blurred, chosen with help of the sheet-order sequence pattern)"
-   ],
+   "unclear": [],
    "text": "ONE WITH THE SLIME / ATTACK / Evasion 4 dice, 10+ / TARGETING: • Knight with the Slimed Condition card • Highest [Heat] • [Priority Target] Priority Target [REACT!] / MOVE & ATTACK [Heat 3+ ▸ DIFFICULTY 11+ INSTEAD] / For each hit lose -2 [Vigor]. [Peril Check]. Poison 2. If hit, become Engulfed. Dwell. [REACT!] / DOPPELGANGER: Move & Attack the furthest Knight in front. For each hit lose -2 [Vigor]. [Peril Check]. / KNIGHT OF THE FEN – AI 3",
-   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line."
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line.",
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 27A1450 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "16.png",
@@ -933,12 +948,13 @@
    "aiResponse": null,
    "doppelganger": "Move & Attack the furthest Knight. For each hit lose -2 [Vigor]. [Peril Check].",
    "footer": "KNIGHT OF THE FEN – AI 3",
-   "unclear": [
-    "code: faint tiny print; best reading 27A1449 (digits blurred, chosen with help of the sheet-order sequence pattern)",
-    "move tag is printed as two red tags: \"MOVE & ATTACK ALL KNIGHTS IN PATH\" then (second line) \"THEN ATTACK ZONE 2\""
-   ],
+   "unclear": [],
    "text": "FINAL CUT / SEQUENTIAL ZONE ATTACK / Evasion 3 dice, 11+ / TARGETING: • Furthest Knight in sight • [Priority Target] Priority Target [REACT!] / MOVE & ATTACK ALL KNIGHTS IN PATH THEN ATTACK ZONE 2 / If hit, roll two additional [d10]. One hit, lose -5 [Vigor]. Two hits, lose -7 [Vigor]. Three hits, lose -7 [Vigor] and Knockdown. [Peril Check]. [REACT!] / DOPPELGANGER: Move & Attack the furthest Knight. For each hit lose -2 [Vigor]. [Peril Check]. / KNIGHT OF THE FEN – AI 3",
-   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line."
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line.",
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 27A1449 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15",
+    "판독 확정: move tag is printed as two red tags: \"MOVE & ATTACK ALL KNIGHTS IN PATH\" then (second line) \"THEN ATTACK ZONE 2\" — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "17.png",
@@ -970,11 +986,12 @@
    "aiResponse": null,
    "doppelganger": "Move & Attack the furthest Knight in sight. For each hit lose -2 [Vigor]. [Peril Check]. Swarm 2.",
    "footer": "KNIGHT OF THE FEN – AI 3",
-   "unclear": [
-    "code: faint tiny print; best reading 27A1448 (digits blurred, chosen with help of the sheet-order sequence pattern)"
-   ],
+   "unclear": [],
    "text": "FOREST OF THE FALLEN / ATTACK / Evasion 4 dice, 11+ / TARGETING: • Closest Knight in front • [Priority Target] Priority Target • Closest Knight in sight [REACT!] / MOVE & ATTACK / If hit, roll two additional [d10]. For each hit lose -2 [Vigor]. Two or more hits, gain the Slimed Condition card. [Peril Check]. [REACT!] / DOPPELGANGER: Move & Attack the furthest Knight in sight. For each hit lose -2 [Vigor]. [Peril Check]. Swarm 2. / KNIGHT OF THE FEN – AI 3",
-   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line."
+   "effectsNote": "Each array entry is one printed sentence; 'effect:i' = the REACT! marker printed on the rule after the effect block (on the DOPPELGANGER header line), indexed to the last effect line. Heat gate tags are printed on the move-tag line.",
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 27A1448 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15"
+   ]
   }
  ],
  "bp": [
@@ -999,11 +1016,12 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "KNIGHT OF THE FEN – BP 1",
-   "unclear": [
-    "code: faint tiny print; best reading 28A1793 (digits blurred, chosen with help of the sheet-order sequence pattern)",
-    "OVERCOME threshold is tiny pale print on a grey tag; best reading 3+"
-   ],
-   "text": "CRUSTY HELM / OVERCOME 3+ ▸ Sunder 1 / [AT] 5 / WOUND: Place a 2x2 Swamp Terrain tile under Knight of the Fen. / FAIL: Gain the Exposed Condition card. / CRITICAL: You may perform a Bonus Attack! / KNIGHT OF THE FEN – BP 1"
+   "unclear": [],
+   "text": "CRUSTY HELM / OVERCOME 3+ ▸ Sunder 1 / [AT] 5 / WOUND: Place a 2x2 Swamp Terrain tile under Knight of the Fen. / FAIL: Gain the Exposed Condition card. / CRITICAL: You may perform a Bonus Attack! / KNIGHT OF THE FEN – BP 1",
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 28A1793 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15",
+    "판독 확정: OVERCOME threshold is tiny pale print on a grey tag; best reading 3+ — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "19.png",
@@ -1026,11 +1044,12 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "KNIGHT OF THE FEN – BP 1",
-   "unclear": [
-    "code: faint tiny print; best reading 28A1794 (digits blurred, chosen with help of the sheet-order sequence pattern)",
-    "OVERCOME threshold is tiny pale print on a grey tag; best reading 2+"
-   ],
-   "text": "INCORPORATED CARCASS / OVERCOME 2+ ▸ Power 1 / [AT] 3 / WOUND: Gain the Slimed Condition card. / FAIL: Become Engulfed. / CRITICAL: Gain the Courage Condition card. You may perform a Bonus Attack! / KNIGHT OF THE FEN – BP 1"
+   "unclear": [],
+   "text": "INCORPORATED CARCASS / OVERCOME 2+ ▸ Power 1 / [AT] 3 / WOUND: Gain the Slimed Condition card. / FAIL: Become Engulfed. / CRITICAL: Gain the Courage Condition card. You may perform a Bonus Attack! / KNIGHT OF THE FEN – BP 1",
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 28A1794 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15",
+    "판독 확정: OVERCOME threshold is tiny pale print on a grey tag; best reading 2+ — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "20.png",
@@ -1053,11 +1072,12 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "KNIGHT OF THE FEN – BP 1",
-   "unclear": [
-    "code: faint tiny print; best reading 28A1795 (digits blurred, chosen with help of the sheet-order sequence pattern)",
-    "OVERCOME threshold is tiny pale print on a grey tag; best reading 3+ (could be 2+)"
-   ],
-   "text": "SLUDGE-BLOATED ROPE / OVERCOME 3+ ▸ Power 1 / [AT] 4 / WOUND: Gain the Slimed Condition card. / FAIL: Knockdown. / CRITICAL: Unexhaust all your Weapons or lose up to -3 [Heat]. / KNIGHT OF THE FEN – BP 1"
+   "unclear": [],
+   "text": "SLUDGE-BLOATED ROPE / OVERCOME 3+ ▸ Power 1 / [AT] 4 / WOUND: Gain the Slimed Condition card. / FAIL: Knockdown. / CRITICAL: Unexhaust all your Weapons or lose up to -3 [Heat]. / KNIGHT OF THE FEN – BP 1",
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 28A1795 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15",
+    "판독 확정: OVERCOME threshold is tiny pale print on a grey tag; best reading 3+ (could be 2+) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "21.png",
@@ -1067,7 +1087,7 @@
    "at": 4,
    "overcomeTag": "OVERCOME",
    "overcome": {
-    "n": 2,
+    "n": 3,
     "effect": "Power 1 or discard 1 Armor [Armor] token"
    },
    "responses": {
@@ -1080,11 +1100,12 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "KNIGHT OF THE FEN – BP 1",
-   "unclear": [
-    "code: faint tiny print; best reading 28A1792 (digits blurred, chosen with help of the sheet-order sequence pattern)",
-    "OVERCOME threshold is tiny pale print on a grey tag; best reading 2+ (could be 3+; digit very faint)"
-   ],
-   "text": "RUSTY KNEEPAD / OVERCOME 2+ ▸ Power 1 or discard 1 Armor [Armor] token / [AT] 4 / WOUND: Pushback 3. / FAIL: Gain the Exposed Condition card. / CRITICAL: You may reset your [Heat]! / KNIGHT OF THE FEN – BP 1"
+   "unclear": [],
+   "text": "RUSTY KNEEPAD / OVERCOME 3+ ▸ Power 1 or discard 1 Armor [Armor] token / [AT] 4 / WOUND: Pushback 3. / FAIL: Gain the Exposed Condition card. / CRITICAL: You may reset your [Heat]! / KNIGHT OF THE FEN – BP 1",
+   "notes": [
+    "OVERCOME 3+ (2+ 아님) — 소유자 정정 2026-11-15",
+    "판독 확정: code: faint tiny print; best reading 28A1792 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "22.png",
@@ -1107,11 +1128,12 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "KNIGHT OF THE FEN – BP 1",
-   "unclear": [
-    "code: faint tiny print; best reading 28A1791 (digits blurred, chosen with help of the sheet-order sequence pattern)",
-    "OVERCOME threshold is tiny pale print on a grey tag; best reading 2+"
-   ],
-   "text": "CORRODED PAULDRON / OVERCOME 2+ ▸ Power 1 or discard 1 Armor [Armor] token / [AT] 4 / WOUND: Knight of the Fen moves adjacent to the furthest Knight. / FAIL: Gain the Exposed Condition card. / CRITICAL: Another Knight may perform a Bonus Attack! / KNIGHT OF THE FEN – BP 1"
+   "unclear": [],
+   "text": "CORRODED PAULDRON / OVERCOME 2+ ▸ Power 1 or discard 1 Armor [Armor] token / [AT] 4 / WOUND: Knight of the Fen moves adjacent to the furthest Knight. / FAIL: Gain the Exposed Condition card. / CRITICAL: Another Knight may perform a Bonus Attack! / KNIGHT OF THE FEN – BP 1",
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 28A1791 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15",
+    "판독 확정: OVERCOME threshold is tiny pale print on a grey tag; best reading 2+ — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "23.png",
@@ -1134,12 +1156,13 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "KNIGHT OF THE FEN – BP 1",
-   "unclear": [
-    "code: faint tiny print; best reading 28A1790 (digits blurred, chosen with help of the sheet-order sequence pattern)",
-    "OVERCOME threshold is tiny pale print on a grey tag; best reading 2+",
-    "WOUND text says \"closest Swamp\" (no \"Terrain tile\"), unlike the Instinct wording on other cards - printed so"
-   ],
-   "text": "SLIME HAND / OVERCOME 2+ ▸ Power 1 / [AT] 3 / WOUND: Spawn a new Doppelknight on the closest Swamp without a Doppelknight on it. / FAIL: Knockback 4. / CRITICAL: You may move up to 3 spaces and perform a Bonus Attack! / KNIGHT OF THE FEN – BP 1"
+   "unclear": [],
+   "text": "SLIME HAND / OVERCOME 2+ ▸ Power 1 / [AT] 3 / WOUND: Spawn a new Doppelknight on the closest Swamp without a Doppelknight on it. / FAIL: Knockback 4. / CRITICAL: You may move up to 3 spaces and perform a Bonus Attack! / KNIGHT OF THE FEN – BP 1",
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 28A1790 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15",
+    "판독 확정: OVERCOME threshold is tiny pale print on a grey tag; best reading 2+ — 소유자 확인 2026-11-15",
+    "판독 확정: WOUND text says \"closest Swamp\" (no \"Terrain tile\"), unlike the Instinct wording on other cards - printed so — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "24.png",
@@ -1162,11 +1185,12 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "KNIGHT OF THE FEN – BP 2",
-   "unclear": [
-    "code: faint tiny print; best reading 28A1798 (digits blurred, chosen with help of the sheet-order sequence pattern)",
-    "OVERCOME threshold is tiny pale print on a grey tag; best reading 3+ (digit very faint)"
-   ],
-   "text": "CLUSTER OF ROTTING EYES / OVERCOME 3+ ▸ Power 1 / [AT] 5 / WOUND: Knight of the Fen moves to the closest Swamp Terrain tile. / FAIL: Perform AI. / CRITICAL: Until the end of Clash, Knight of the Fen has -1 AT [AT] when attacked from a Rear space. / KNIGHT OF THE FEN – BP 2"
+   "unclear": [],
+   "text": "CLUSTER OF ROTTING EYES / OVERCOME 3+ ▸ Power 1 / [AT] 5 / WOUND: Knight of the Fen moves to the closest Swamp Terrain tile. / FAIL: Perform AI. / CRITICAL: Until the end of Clash, Knight of the Fen has -1 AT [AT] when attacked from a Rear space. / KNIGHT OF THE FEN – BP 2",
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 28A1798 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15",
+    "판독 확정: OVERCOME threshold is tiny pale print on a grey tag; best reading 3+ (digit very faint) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "25.png",
@@ -1189,10 +1213,11 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "KNIGHT OF THE FEN – BP 2",
-   "unclear": [
-    "code: faint tiny print; best reading 28A1799 (digits blurred, chosen with help of the sheet-order sequence pattern)"
-   ],
-   "text": "DECAYING BRAIN COLLECTION / OVERCOME 4+ ▸ Power 1 / [AT] 6 / INSTINCT: Spawn a new Doppelknight on the closest Swamp Terrain tile without a Doppelknight on it. / CRITICAL: Ignore the next Signature. / KNIGHT OF THE FEN – BP 2"
+   "unclear": [],
+   "text": "DECAYING BRAIN COLLECTION / OVERCOME 4+ ▸ Power 1 / [AT] 6 / INSTINCT: Spawn a new Doppelknight on the closest Swamp Terrain tile without a Doppelknight on it. / CRITICAL: Ignore the next Signature. / KNIGHT OF THE FEN – BP 2",
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 28A1799 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "26.png",
@@ -1215,10 +1240,11 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "KNIGHT OF THE FEN – BP 2",
-   "unclear": [
-    "code: faint tiny print; best reading 28A1800 (digits blurred, chosen with help of the sheet-order sequence pattern)"
-   ],
-   "text": "DISCARDED ARSENAL / OVERCOME 4+ ▸ Sunder 1 or discard 1 Armor [Armor] token / [AT] 6 / INSTINCT: Spawn a new Doppelknight on the closest Swamp Terrain tile without a Doppelknight on it. / CRITICAL: Another Knight may perform a Bonus Attack! / KNIGHT OF THE FEN – BP 2"
+   "unclear": [],
+   "text": "DISCARDED ARSENAL / OVERCOME 4+ ▸ Sunder 1 or discard 1 Armor [Armor] token / [AT] 6 / INSTINCT: Spawn a new Doppelknight on the closest Swamp Terrain tile without a Doppelknight on it. / CRITICAL: Another Knight may perform a Bonus Attack! / KNIGHT OF THE FEN – BP 2",
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 28A1800 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "27.png",
@@ -1241,11 +1267,12 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "KNIGHT OF THE FEN – BP 2",
-   "unclear": [
-    "code: faint tiny print; best reading 28A1797 (digits blurred, chosen with help of the sheet-order sequence pattern)",
-    "OVERCOME threshold is tiny pale print on a grey tag; best reading 3+"
-   ],
-   "text": "MUCK GAMBESON / OVERCOME 3+ ▸ Sunder 1 / [AT] 5 / INSTINCT: Spawn a new Doppelknight on the closest Swamp Terrain tile without a Doppelknight on it. / CRITICAL: Discard all Condition cards. / KNIGHT OF THE FEN – BP 2"
+   "unclear": [],
+   "text": "MUCK GAMBESON / OVERCOME 3+ ▸ Sunder 1 / [AT] 5 / INSTINCT: Spawn a new Doppelknight on the closest Swamp Terrain tile without a Doppelknight on it. / CRITICAL: Discard all Condition cards. / KNIGHT OF THE FEN – BP 2",
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 28A1797 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15",
+    "판독 확정: OVERCOME threshold is tiny pale print on a grey tag; best reading 3+ — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "28.png",
@@ -1268,10 +1295,11 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "KNIGHT OF THE FEN – BP 2",
-   "unclear": [
-    "code: faint tiny print; best reading 28A1796 (digits blurred, chosen with help of the sheet-order sequence pattern)"
-   ],
-   "text": "OOZE-CHOKED ARMOR / OVERCOME 5+ ▸ Power 1 or discard 1 Armor [Armor] token / [AT] 7 / WOUND: Gain the Slimed Condition card. / FAIL: Knockback 5. / CRITICAL: You may discard all Condition cards. / KNIGHT OF THE FEN – BP 2"
+   "unclear": [],
+   "text": "OOZE-CHOKED ARMOR / OVERCOME 5+ ▸ Power 1 or discard 1 Armor [Armor] token / [AT] 7 / WOUND: Gain the Slimed Condition card. / FAIL: Knockback 5. / CRITICAL: You may discard all Condition cards. / KNIGHT OF THE FEN – BP 2",
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 28A1796 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "29.png",
@@ -1296,11 +1324,12 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "KNIGHT OF THE FEN – BP 2",
-   "unclear": [
-    "code: faint tiny print; best reading 28A1801 (digits blurred, chosen with help of the sheet-order sequence pattern)",
-    "OVERCOME threshold is tiny pale print on a grey tag; best reading 3+"
-   ],
-   "text": "SHAMBLING GRAVEYARD / OVERCOME 3+ ▸ Power 1 / [AT] 5 / WOUND: Gain the Slimed Condition card. Poison 1. / FAIL: Become Engulfed. [REACT!] / CRITICAL: You may reset your [Heat] and perform a Bonus Attack! / KNIGHT OF THE FEN – BP 2"
+   "unclear": [],
+   "text": "SHAMBLING GRAVEYARD / OVERCOME 3+ ▸ Power 1 / [AT] 5 / WOUND: Gain the Slimed Condition card. Poison 1. / FAIL: Become Engulfed. [REACT!] / CRITICAL: You may reset your [Heat] and perform a Bonus Attack! / KNIGHT OF THE FEN – BP 2",
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 28A1801 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15",
+    "판독 확정: OVERCOME threshold is tiny pale print on a grey tag; best reading 3+ — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "30.png",
@@ -1323,11 +1352,12 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "KNIGHT OF THE FEN – BP 3",
-   "unclear": [
-    "code: faint tiny print; best reading 28A1805 (digits blurred, chosen with help of the sheet-order sequence pattern)",
-    "OVERCOME threshold is tiny pale print on a grey tag; best reading 5+"
-   ],
-   "text": "DOPPELKNIGHT BUDS / OVERCOME 5+ ▸ Power 1 or discard 2 Armor [Armor] tokens / [AT] 7 / INSTINCT: Spawn a new Doppelknight on the closest Swamp Terrain tile without a Doppelknight on it. / CRITICAL: Disable the Doppelknight Trait! / KNIGHT OF THE FEN – BP 3"
+   "unclear": [],
+   "text": "DOPPELKNIGHT BUDS / OVERCOME 5+ ▸ Power 1 or discard 2 Armor [Armor] tokens / [AT] 7 / INSTINCT: Spawn a new Doppelknight on the closest Swamp Terrain tile without a Doppelknight on it. / CRITICAL: Disable the Doppelknight Trait! / KNIGHT OF THE FEN – BP 3",
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 28A1805 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15",
+    "판독 확정: OVERCOME threshold is tiny pale print on a grey tag; best reading 5+ — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "31.png",
@@ -1350,11 +1380,12 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "KNIGHT OF THE FEN – BP 3",
-   "unclear": [
-    "code: faint tiny print; best reading 28A1806 (digits blurred, chosen with help of the sheet-order sequence pattern)",
-    "OVERCOME threshold is tiny pale print on a grey tag; best reading 5+"
-   ],
-   "text": "PRIMEVAL SLIME / OVERCOME 5+ ▸ Power 1 / [AT] 9 / INSTINCT: Gain the Drowning Condition card. / CRITICAL: You may move up to 3 spaces and perform a Bonus Attack! / KNIGHT OF THE FEN – BP 3"
+   "unclear": [],
+   "text": "PRIMEVAL SLIME / OVERCOME 5+ ▸ Power 1 / [AT] 9 / INSTINCT: Gain the Drowning Condition card. / CRITICAL: You may move up to 3 spaces and perform a Bonus Attack! / KNIGHT OF THE FEN – BP 3",
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 28A1806 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15",
+    "판독 확정: OVERCOME threshold is tiny pale print on a grey tag; best reading 5+ — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "32.png",
@@ -1377,10 +1408,11 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "KNIGHT OF THE FEN – BP 3",
-   "unclear": [
-    "code: faint tiny print; best reading 28A1807 (digits blurred, chosen with help of the sheet-order sequence pattern)"
-   ],
-   "text": "SLIMESOUL / OVERPOWER 3+ ▸ Sunder 1 or discard 2 Armor [Armor] tokens / [AT] 9 / INSTINCT: Spawn a new Doppelknight on the closest Swamp Terrain tile without a Doppelknight on it. Perform AI. / CRITICAL: Knight of the Fen dies! / KNIGHT OF THE FEN – BP 3"
+   "unclear": [],
+   "text": "SLIMESOUL / OVERPOWER 3+ ▸ Sunder 1 or discard 2 Armor [Armor] tokens / [AT] 9 / INSTINCT: Spawn a new Doppelknight on the closest Swamp Terrain tile without a Doppelknight on it. Perform AI. / CRITICAL: Knight of the Fen dies! / KNIGHT OF THE FEN – BP 3",
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 28A1807 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "33.png",
@@ -1405,10 +1437,11 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "KNIGHT OF THE FEN – BP 3",
-   "unclear": [
-    "code: faint tiny print; best reading 28A1802 (digits blurred, chosen with help of the sheet-order sequence pattern)"
-   ],
-   "text": "GUNK MAW / OVERCOME 5+ ▸ Sunder 1 / [AT] 8 / WOUND: Choke 3. / FAIL: Become Engulfed. [REACT!] / CRITICAL: One Engulfed Knight can escape! / KNIGHT OF THE FEN – BP 3"
+   "unclear": [],
+   "text": "GUNK MAW / OVERCOME 5+ ▸ Sunder 1 / [AT] 8 / WOUND: Choke 3. / FAIL: Become Engulfed. [REACT!] / CRITICAL: One Engulfed Knight can escape! / KNIGHT OF THE FEN – BP 3",
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 28A1802 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "34.png",
@@ -1433,11 +1466,12 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "KNIGHT OF THE FEN – BP 3",
-   "unclear": [
-    "code: faint tiny print; best reading 28A1803 (digits blurred, chosen with help of the sheet-order sequence pattern)",
-    "OVERCOME threshold is tiny pale print on a grey tag; best reading 5+"
-   ],
-   "text": "SWALLOWED SIEGE ENGINE / OVERCOME 5+ ▸ Power 1 or discard 2 Armor [Armor] tokens / [AT] 8 / WOUND: Gain the Slimed Condition card. / FAIL: Become Engulfed. [REACT!] / CRITICAL: You may reset your [Heat] and perform a Bonus Attack! / KNIGHT OF THE FEN – BP 3"
+   "unclear": [],
+   "text": "SWALLOWED SIEGE ENGINE / OVERCOME 5+ ▸ Power 1 or discard 2 Armor [Armor] tokens / [AT] 8 / WOUND: Gain the Slimed Condition card. / FAIL: Become Engulfed. [REACT!] / CRITICAL: You may reset your [Heat] and perform a Bonus Attack! / KNIGHT OF THE FEN – BP 3",
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 28A1803 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15",
+    "판독 확정: OVERCOME threshold is tiny pale print on a grey tag; best reading 5+ — 소유자 확인 2026-11-15"
+   ]
   },
   {
    "file": "35.png",
@@ -1460,11 +1494,12 @@
    "whenRevealed": null,
    "whileRevealed": null,
    "footer": "KNIGHT OF THE FEN – BP 3",
-   "unclear": [
-    "code: faint tiny print; best reading 28A1804 (digits blurred, chosen with help of the sheet-order sequence pattern)",
-    "OVERCOME threshold is tiny pale print on a grey tag; best reading 5+"
-   ],
-   "text": "TRINKET OF A LOST LIGHTFOOT / OVERCOME 5+ ▸ Power 1 / [AT] 8 / INSTINCT: Knight of the Fen moves to the closest Swamp Terrain tile. / CRITICAL: Disable the Doppelganger Trait! / KNIGHT OF THE FEN – BP 3"
+   "unclear": [],
+   "text": "TRINKET OF A LOST LIGHTFOOT / OVERCOME 5+ ▸ Power 1 / [AT] 8 / INSTINCT: Knight of the Fen moves to the closest Swamp Terrain tile. / CRITICAL: Disable the Doppelganger Trait! / KNIGHT OF THE FEN – BP 3",
+   "notes": [
+    "판독 확정: code: faint tiny print; best reading 28A1804 (digits blurred, chosen with help of the sheet-order sequence pattern) — 소유자 확인 2026-11-15",
+    "판독 확정: OVERCOME threshold is tiny pale print on a grey tag; best reading 5+ — 소유자 확인 2026-11-15"
+   ]
   }
  ],
  "routine": {
@@ -1474,9 +1509,10 @@
   "type": "ROUTINE",
   "text": "Spawn two new Doppelknights and perform AI for each Doppelknight on the Clash Board.",
   "footer": "KNIGHT OF THE FEN",
-  "unclear": [
-   "no card code visible in the scan (top-right corner blank/faded)",
-   "name is printed \"DOPPLERGENESIS\" (Doppler-, not Doppel-)"
+  "unclear": [],
+  "notes": [
+   "판독 확정: no card code visible in the scan (top-right corner blank/faded) — 소유자 확인 2026-11-15",
+   "판독 확정: name is printed \"DOPPLERGENESIS\" (Doppler-, not Doppel-) — 소유자 확인 2026-11-15"
   ]
  },
  "signature": {
@@ -1507,12 +1543,13 @@
   "aiResponse": null,
   "doppelganger": "Move & Attack the furthest Knight. For each hit lose -1 [Vigor]. [Peril Check].",
   "footer": "KNIGHT OF THE FEN",
-  "unclear": [
-   "code: illegible in the 311px screenshot (reads roughly 27A14?4/27A1451); 27A1454 chosen as the next number after the AI sequence 27A1436-27A1453",
-   "card read from a small tilted screenshot; evasion die shows \"X\" with a small asterisk (\"X*\"), difficulty 8+",
-   "vigor-loss digits (-2 main, -1 Doppelganger) are small; best readings"
-  ],
-  "text": "ALL-OUT STRIKE / SIGNATURE / Evasion X* dice, 8+ / TARGETING: • Closest Knight in front • [Priority Target] Priority Target • Closest Knight in sight [REACT!] / MOVE & ATTACK / *X is 1 plus the number of Doppelknights on the Clash Board. For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / DOPPELGANGER: Move & Attack the furthest Knight. For each hit lose -1 [Vigor]. [Peril Check]. / KNIGHT OF THE FEN"
+  "unclear": [],
+  "text": "ALL-OUT STRIKE / SIGNATURE / Evasion X* dice, 8+ / TARGETING: • Closest Knight in front • [Priority Target] Priority Target • Closest Knight in sight [REACT!] / MOVE & ATTACK / *X is 1 plus the number of Doppelknights on the Clash Board. For each hit lose -2 [Vigor]. [Peril Check]. [REACT!] / DOPPELGANGER: Move & Attack the furthest Knight. For each hit lose -1 [Vigor]. [Peril Check]. / KNIGHT OF THE FEN",
+  "notes": [
+   "판독 확정: code: illegible in the 311px screenshot (reads roughly 27A14?4/27A1451); 27A1454 chosen as the next number after the AI sequence 27A1436-27A1453 — 소유자 확인 2026-11-15",
+   "판독 확정: card read from a small tilted screenshot; evasion die shows \"X\" with a small asterisk (\"X*\"), difficulty 8+ — 소유자 확인 2026-11-15",
+   "판독 확정: vigor-loss digits (-2 main, -1 Doppelganger) are small; best readings — 소유자 확인 2026-11-15"
+  ]
  },
  "extra": [
   {
@@ -1523,8 +1560,9 @@
    "code": "25A1048",
    "text": "Each time a Doppelknight moves through or ends its movement on a Swamp Terrain tile, it gains an Armor [Armor] token.",
    "footer": "KNIGHT OF THE FEN / PRINCIPALITY OF STONE",
-   "unclear": [
-    "code: very faint; best reading 25A1048 (last two digits uncertain)"
+   "unclear": [],
+   "notes": [
+    "판독 확정: code: very faint; best reading 25A1048 (last two digits uncertain) — 소유자 확인 2026-11-15"
    ]
   },
   {
@@ -1532,23 +1570,25 @@
    "name": "Engulfed",
    "kind": "trait",
    "code": "25A1043",
-   "text": "When you become Engulfed, place your miniature on this card and gain the Slimed Condition card. During your turn, you can either try to Sabotage or attack. You can use only Melee Weapons while Engulfed.\n\n[Wound icon] When you deal a Wound, additionally to normal Responses, you become free (Displace).\n\n[action icon] or 3 [Heat] Sabotage: Test Fortitude [Fortitude] or Might [Might] (10+). If you succeed, immediately AI Suppress or discard all Armor [Armor] tokens.",
+   "text": "When you become Engulfed, place your miniature on this card and gain the Slimed Condition card. During your turn, you can either try to Sabotage or attack. You can use only Melee Weapons while Engulfed.\n\n[Wound icon] When you deal a Wound, additionally to normal Responses, you become free (Displace).\n\n[Combat action] or 3 [Heat] Sabotage: Test Fortitude [Fortitude] or Might [Might] (10+). If you succeed, immediately AI Suppress or discard all Armor [Armor] tokens.",
    "woundLine": "[Wound icon] When you deal a Wound, additionally to normal Responses, you become free (Displace).",
    "sabotage": {
-    "cost": "[action icon] or 3 [Heat]",
+    "cost": "[Combat action] or 3 [Heat]",
     "name": "Sabotage",
     "test": "Fortitude [Fortitude] or Might [Might]",
     "difficulty": "10+",
-    "text": "[action icon] or 3 [Heat] Sabotage: Test Fortitude [Fortitude] or Might [Might] (10+). If you succeed, immediately AI Suppress or discard all Armor [Armor] tokens."
+    "text": "[Combat action] or 3 [Heat] Sabotage: Test Fortitude [Fortitude] or Might [Might] (10+). If you succeed, immediately AI Suppress or discard all Armor [Armor] tokens."
    },
    "endOfYourTurn": "If you started your turn Engulfed, Poison 2.",
    "bottomBox": "End of your turn: If you started your turn Engulfed, Poison 2.",
    "footer": "KNIGHT OF THE FEN",
-   "unclear": [
-    "code: best reading 25A1043 (last two digits uncertain, could be 1049)",
-    "icon before \"When you deal a Wound\": small black heart-shaped glyph with a pale mark inside (looks like the Wounds heart from the Monster Sheet); written as [Wound icon]",
-    "icon before \"or 3 [Heat] Sabotage:\": small black square with a white glyph (an action-cost icon; possibly the [Weapon]/attack-action glyph) - not identifiable at this resolution; written as [action icon]",
-    "\"Sabotage:\" and \"End of your turn:\" are bold lead-ins; \"Slimed\" is italic"
+   "unclear": [],
+   "notes": [
+    "Sabotage 비용 아이콘 = 전투 행동 [Combat action] (또는 Heat 3) — 소유자 정정 2026-11-15",
+    "End of your turn: 턴 시작 시 Engulfed였다면 Poison 2 — 카드 하단 박스, 전사에 포함 (구현은 Knight of the Fen 구현 때)",
+    "판독 확정: code: best reading 25A1043 (last two digits uncertain, could be 1049) — 소유자 확인 2026-11-15",
+    "판독 확정: icon before \"When you deal a Wound\": small black heart-shaped glyph with a pale mark inside (looks like the Wounds heart from the Monster Sheet); written as [Wound icon] — 소유자 확인 2026-11-15",
+    "판독 확정: \"Sabotage:\" and \"End of your turn:\" are bold lead-ins; \"Slimed\" is italic — 소유자 확인 2026-11-15"
    ]
   },
   {
@@ -1559,8 +1599,9 @@
    "code": "25A1047",
    "text": "When you Spawn a Doppelknight, the closest Knight gains the Exposed Condition card.",
    "footer": "KNIGHT OF THE FEN / SUNKEN KINGDOM",
-   "unclear": [
-    "code: very faint; best reading 25A1047 (last two digits uncertain)"
+   "unclear": [],
+   "notes": [
+    "판독 확정: code: very faint; best reading 25A1047 (last two digits uncertain) — 소유자 확인 2026-11-15"
    ]
   }
  ],

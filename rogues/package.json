@@ -1,7 +1,7 @@
 {
   "name": "kf-rogues",
   "type": "module",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "description": "Kingdoms Forlorn — Rogue's Path (web single-player)",
   "private": true,
   "scripts": {
