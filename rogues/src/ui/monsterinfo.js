@@ -47,7 +47,7 @@ export const mountMonsterInfo = (DATA, h, current) => {
   const box = h('div', { class: 'mi-box', style: 'display:none' }, h('div', { class: 'mi-bar' }, h('b', {}, '몬스터 정보'), sel, h('button', { class: 'sm', onclick: () => { box.style.display = 'none'; } }, '닫기')), body);
   sel.addEventListener('change', () => show(sel.value));
   const btn = h('button', { class: 'mi-btn', title: '몬스터 정보 (레벨 · Trait · AI · BP · Setup)', onclick: () => { const open = box.style.display === 'none'; box.style.display = open ? 'flex' : 'none'; if (open) show((current && current()) || sel.value); } }, '👁 몬스터');
-  const st = h('style', {}, `.mi-btn{position:fixed;right:10px;top:8px;z-index:40;padding:5px 9px;border-radius:8px;border:1px solid #8a6d3b;background:#221c17;color:#eadfc8;font-size:13px}
+  const st = h('style', {}, `.mi-btn{position:absolute;right:10px;top:8px;z-index:40;padding:5px 9px;border-radius:8px;border:1px solid #8a6d3b;background:#221c17;color:#eadfc8;font-size:13px}
 .mi-box{position:fixed;inset:0;z-index:800;flex-direction:column;background:#17130f;color:#eadfc8}
 .mi-bar{display:flex;gap:8px;align-items:center;padding:8px 10px calc(8px);border-bottom:1px solid #4a3d2c}.mi-bar select{flex:1;min-width:0;padding:5px;background:#221c17;color:#eadfc8;border:1px solid #4a3d2c;border-radius:6px}
 .mi-body{flex:1;overflow:auto;padding:8px 10px calc(16px + env(safe-area-inset-bottom));-webkit-overflow-scrolling:touch}.mi-page{max-width:760px;margin:0 auto}
