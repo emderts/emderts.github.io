@@ -45,4 +45,5 @@ const L = (c, cell) => c.board.label(cell);
   for (let s = 1; s <= N; s++) { const c = mk(1000 + s); const r = await c.run(); if (r === 'win') wins++; else losses++; const bad = c.log.filter(l => /미구현/.test(l.msg)); if (bad.length) ok(false, `seed ${s}: ${bad[0].msg}`); }
   ok(wins + losses === N, `${N} seeded White Ape Troll Clashes finished: ${wins} win / ${losses} lose`);
   for (const lv of [2, 3, 4]) { const c = mk(1100 + lv, lv); const r = await c.run(); ok(['win', 'lose'].includes(r) && !c.log.some(l => /미구현/.test(l.msg)), `level ${lv} simulation finished (${r}, ${c.round} rounds)`); } }
+{ let done = 0; for (let sd = 1; sd <= 6; sd++) { const c = mk(4000 + sd); const die0 = c.die.bind(c); let n = 0; c.die = async (k, why) => { if (n++ % 2 === 0) { const e = new Error('Incarnation (test)'); e.chainBreak = true; throw e; } return die0(k, why); }; const r = await c.run(); if (['win', 'lose'].includes(r)) done++; } ok(done === 6, 'a Chain Break thrown from any death (Incarnation) never stalls the Clash loop'); }
 console.log(fails ? `${fails} FAIL` : 'ALL PASS'); process.exit(fails ? 1 : 0);

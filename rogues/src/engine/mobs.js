@@ -52,16 +52,16 @@ export const MobMixin = {
 
   // ---------- Monster Round (p.47) ----------
   async mobMonsterRound() {
-    const M = this.monster; await this.firstmenStartMR(); if (this.isWN) await this.wnStartMR();
+    const M = this.monster; await this.guard(() => this.firstmenStartMR()); if (this.isWN) await this.wnStartMR();
     for (const m of M.mobs) for (const t of m.tokens) t.ready = true;
     for (let guard = 0; guard < 40; guard++) {
       const mob = M.mobs.find(m => m.tokens.some(t => t.ready)); if (!mob) break; const tok = mob.tokens.find(t => t.ready);
       M.cur = mob; this.say(`▷ Mob #${mob.n} (${mob.cells[0] ? this.board.label(mob.cells[0]) : '보드 밖'}) 활성화 — ${tok.type === 'AI' ? 'AI' : 'Signature'}`, 'ai');
-      if (await this.emergeIfOffboard(mob)) { if (tok.type === 'AI') await this.activationAI(); else await this.performSignature(); }
+      await this.guard(async () => { if (await this.emergeIfOffboard(mob)) { if (tok.type === 'AI') await this.activationAI(); else await this.performSignature(); } });
       if (M.mobs.includes(mob) && mob.tokens.includes(tok)) this.moveToken(mob.n, tok, true); else tok.ready = false;
-      await this.afterAction(); this.checkEnd();
+      await this.guard(() => this.afterAction()); this.checkEnd();
     }
-    await this.firstmenEndMR();
+    await this.guard(() => this.firstmenEndMR());
     // "While this BP is revealed: At the end of the Monster Round, …"
     for (const mob of [...M.mobs]) { const a = mob.revealed && mob.card.ops.aura && mob.card.ops.aura.endOfMonsterRound; if (!a || !M.mobs.includes(mob)) continue; this.say(`Monster Round 종료 — ${mob.card.name} (#${mob.n})`); await this.withMob(mob, () => this.fx.runMonsterOps(a, { source: mob, targets: this.alive() })); }
     this.checkEnd();

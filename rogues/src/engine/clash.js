@@ -111,6 +111,8 @@ export class Clash {
     this.say(`Clash 종료: ${this.result === 'win' ? '승리' : '패배'}`, 'end');
     return this.result;
   }
+  /** Runs one engine step; a Chain Break that escapes it (e.g. a death → Incarnation outside an attack) ends only that step instead of the whole Clash loop. */
+  async guard(fn) { try { return await fn(); } catch (e) { if (!e || !e.chainBreak) throw e; this.say(`Chain Break: ${e.message}`, 'warn'); this.currentAttack = null; this.currentKnightAttack = null; } }
   checkEnd() {
     if (this.monster.slain) { this.result = 'win'; throw new GameOver('win'); }
     if (!this.alive().length) { this.result = 'lose'; throw new GameOver('lose'); }
@@ -118,9 +120,9 @@ export class Clash {
 
   // ---------- Monster Round ----------
   async monsterRound() {
-    this.phase = 'monster'; this.say(`— 라운드 ${this.round}: Monster Round —`, 'phase'); if (this.monster.isMob) return this.mobMonsterRound(); this.monster.readyActivations(); await this.trollStartMR(); await this.trollAfterAction(); this.checkEnd();
-    for (const act of this.monster.activations) { if (!act.ready) continue; act.ready = false; if (act.type === 'AI') await this.activationAI(); else await this.performSignature(); await this.afterAction(); this.checkEnd(); }
-    await this.trollEndMR(); this.checkEnd();
+    this.phase = 'monster'; this.say(`— 라운드 ${this.round}: Monster Round —`, 'phase'); if (this.monster.isMob) return this.mobMonsterRound(); this.monster.readyActivations(); await this.guard(async () => { await this.trollStartMR(); await this.trollAfterAction(); }); this.checkEnd();
+    for (const act of this.monster.activations) { if (!act.ready) continue; act.ready = false; await this.guard(async () => { if (act.type === 'AI') await this.activationAI(); else await this.performSignature(); }); await this.guard(() => this.afterAction()); this.checkEnd(); }
+    await this.guard(() => this.trollEndMR()); this.checkEnd();
   }
   async activationAI() {
     const card = this.monster.drawAI(); if (!card) { this.say('AI 덱 없음'); return; }
@@ -264,7 +266,7 @@ export class Clash {
     return out;
   }
   async monsterMoveToward(target) {
-    const B = this.board; let steps = 0; let lastAxis = null;
+    const B = this.board; let steps = 0; let lastAxis = null; this._moveCrashed = new Set();
     while (!this.board.footprintsAdjacent(this.monster.cells, [target.pos]) && steps < 30) {
       const m = this.monsterCenter(); const dc = target.pos.c - m.c, dr = target.pos.r - m.r;
       const opts = []; if (Math.abs(dc) > 0.5) opts.push({ c: Math.sign(dc), r: 0 }); if (Math.abs(dr) > 0.5) opts.push({ c: 0, r: Math.sign(dr) });
@@ -277,8 +279,12 @@ export class Clash {
       lastAxis = d.c ? 'c' : 'r';
       await this.monsterStep(d); steps++;
     }
-    if (steps) this.say(`몬스터 이동 ${steps}칸 → ${this.monster.cells.map(c => B.label(c)).join('/')}`); await this.fenAfterMove();
+    if (steps) this.say(`몬스터 이동 ${steps}칸 → ${this.monster.cells.map(c => B.label(c)).join('/')}`); await this.fenAfterMove(); await this.endMoveOnKnights();
   }
+  /** Rulebook p.51: a Knight on a space the Boss ends its (normal) movement on suffers Crash and Unavoidable Knockback X (소유자 확인 2026-11-15).
+   *  A Knight already crashed while the Boss moved onto it during this move is not crashed twice. */
+  async endMoveOnKnights() { const ab = (this.monsterDef.basicAbilities || []).find(b => b.name === 'Unavoidable Knockback'); const done = this._moveCrashed || new Set(); this._moveCrashed = null; if (this.isFen || !ab || !ab.value || (this.monster.isMob && !(this.monster.cur && this.monster.cur.isTroll))) return;
+    for (const k of this.alive()) if (this.monster.cells.some(c => cellEq(c, k.pos))) { this.say(`${k.name}: 몬스터가 이 칸에서 이동 종료 → Crash + Unavoidable Knockback ${ab.value}`); if (!done.has(k)) await this.crash(k); if (k.alive) await this.knockback(k, ab.value, { unavoidable: true }); } }
   /** One step of boss movement; returns false if blocked by board edge. */
   async monsterStep(d, { charge = false } = {}) {
     const B = this.board; const nc = this.monster.cells.map(x => ({ c: x.c + d.c, r: x.r + d.r }));
@@ -286,7 +292,7 @@ export class Clash {
     const newCells = nc.filter(x => !this.monster.cells.some(mc => cellEq(mc, x)));
     for (const x of newCells) { const t = B.terrainAt(x); if (t && t.obstacle) { if (charge && !this.monster.hasTrait('Just a Scratch')) return 'obstacle'; if (t.destructible) { B.terrain.delete(B.key(x)); this.say(`지형 ${t.id} 파괴 (${B.label(x)})`); } else return 'obstacle'; } }
     B.remove(this.monster.cells); this.monster.cells = nc; B.place({ kind: 'monster', id: this.monster.id }, nc);
-    for (const x of newCells) { const k = this.knightAt(x); if (k) { try { await this.crash(k, { charge, through: true }); } catch (e) { if (!e.chainBreak) throw e; this.say(`Chain Break 중 돌진 계속 (${e.message})`, 'warn'); } } }
+    for (const x of newCells) { const k = this.knightAt(x); if (k) { try { if (this._moveCrashed) this._moveCrashed.add(k); await this.crash(k, { charge, through: true }); } catch (e) { if (!e.chainBreak) throw e; this.say(`Chain Break 중 돌진 계속 (${e.message})`, 'warn'); } } }
     return 'ok';
   }
   /** Crash (p.80): -1 Vigor + Knockdown. Charge over knocked-down Knight → Judicium instead (Humpty Charge). */
@@ -474,10 +480,10 @@ export class Clash {
     while (true) {
       const avail = this.alive().filter(k => !acted.has(k.id)); if (!avail.length) break;
       let k = avail[0]; if (avail.length > 1) { const id = await this.ask({ type: 'pickKnight', options: avail.map(x => ({ label: x.name, value: x.id })) }); k = this.knights.find(x => x.id === id) || avail[0]; }
-      acted.add(k.id); await this.knightTurn(k); this.checkEnd(); if (this.isWN) await this.wnNixie(acted.size + empty());
+      acted.add(k.id); await this.guard(() => this.knightTurn(k)); this.checkEnd(); if (this.isWN) await this.guard(() => this.wnNixie(acted.size + empty()));
     }
-    for (const k of this.alive()) await this.fx.endOfKnightRound(k);
-    if (this.monster.isMob) { for (const k of this.knights) k.cestusLock = null; await this.firstmenEndKnightRound(); }
+    for (const k of this.alive()) await this.guard(() => this.fx.endOfKnightRound(k));
+    if (this.monster.isMob) { for (const k of this.knights) k.cestusLock = null; await this.guard(() => this.firstmenEndKnightRound()); }
   }
   async knightTurn(k) {
     this.say(`▶ ${k.name} 턴 (V${k.vigor} H${k.heat}/${k.heatLimit} P${k.passion})`, 'turn'); k.turnsTaken++; k.cestusLock = null; if (this.monster.isMob) this.cestusCheck(k);

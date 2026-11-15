@@ -95,13 +95,13 @@ export const FenMixin = {
   fenSync() { if (!this.isFen) return; for (const k of this.knights) if (k.engulfed) k.pos = { ...this.monster.cells[0] }; },
   async fenAfterMove() { if (!this.isFen || this.actingGuardian) return; const passed = [...(this._fenPassed || [])]; this._fenPassed = null; for (const k of passed) if (k.alive && !k.engulfed && !this.monster.cells.some(c => cellEq(c, k.pos))) await this.fenOoze(k, 'boss'); for (const k of this.fenKnights()) if (this.monster.cells.some(c => cellEq(c, k.pos))) { this.say(`Knight of the Fen이 ${k.name} 위에서 이동 종료`); await this.fenEngulf(k); } this.fenSync(); },
   async fenEngulfedTurn(k) {
-    const M = this.monster; let combat = true;
+    const M = this.monster; let combat = true, sab = false;
     while (k.alive && k.engulfed) {
       const hasW = k.gear.some(g => g.type === 'weapon' && !g.exhausted && !g.discarded); const opts = [];
-      if (combat && hasW) opts.push({ label: '공격 (Engulfed — Knight of the Fen, Melee만)', value: 'attack' }); if (combat) opts.push({ label: 'Sabotage (Combat action)', value: 'sabC' }); if (k.heat + 3 <= k.heatLimit) opts.push({ label: `Sabotage (Heat +3, 현재 ${k.heat}/${k.heatLimit})`, value: 'sabH' }); opts.push({ label: '턴 종료', value: 'end' });
+      if (combat && hasW) opts.push({ label: '공격 (Engulfed — Knight of the Fen, Melee만)', value: 'attack' }); if (combat && !sab) opts.push({ label: 'Sabotage (Combat action)', value: 'sabC' }); if (!sab && k.heat + 3 <= k.heatLimit) opts.push({ label: `Sabotage (Heat +3, 현재 ${k.heat}/${k.heatLimit})`, value: 'sabH' }); opts.push({ label: '턴 종료', value: 'end' });
       const v = await this.ask({ type: 'action', knight: k.id, text: `${k.name} — Engulfed`, options: opts }); if (v === 'end' || !v) break;
       if (v === 'attack') { combat = false; k.actions.combat = false; await this.knightAttack(k); this.checkEnd(); continue; }
-      if (v === 'sabC') { combat = false; k.actions.combat = false; } else k.gainHeat(3, { voluntary: true });
+      sab = true; if (v === 'sabC') { combat = false; k.actions.combat = false; } else k.gainHeat(3, { voluntary: true });
       const vs = ['Fortitude', 'Might']; const vt = await this.ask({ type: 'pick', knight: k.id, text: `${k.name} Sabotage — Test (10+) Virtue`, options: vs.map(x => ({ label: `${x} +${(k.virtues || {})[x] || 0}`, value: x })) }) || vs[0]; const d = this.rng.die(10); const b = (k.virtues || {})[vt] || 0; const okk = d10Success(d, b, 10);
       this.say(`${k.name} Sabotage: Test ${vt} d10 ${d} +${b} vs 10+ → ${okk ? '성공' : '실패'}`, 'dice');
       if (okk) { const c = await this.ask({ type: 'pick', knight: k.id, text: 'Sabotage 성공 — 효과 선택', options: [{ label: 'AI Suppress (AI 버림 더미를 덱에 섞음)', value: 'ai' }, { label: `Armor 토큰 모두 버림 (현재 ${this.fenArmor})`, value: 'armor' }] }); if (c === 'armor') { this.fenArmor = 0; this.say('Sabotage: Armor 토큰 모두 버림'); } else { M.ai.cards.push(...M.ai.discard); M.ai.discard = []; M.ai.shuffle(); this.say('Sabotage: AI Suppress'); } }
