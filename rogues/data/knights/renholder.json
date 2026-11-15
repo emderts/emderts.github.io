@@ -42,9 +42,10 @@
   ],
   "techniquesNote": "Knightbook lists 'Clash side // Delve side' pairs (Knight Pose // Knight Prowess, Knight Roll // Prismatic Focus, Second Chance // Purifying Ritual, Lux Step // Light Our Way, Conjurer of Cheap Tricks // Divine the Heavens). Delve sides are not used in Rogue's Path.",
   "gear": [
-   "Knighves"
+   "Knighves",
+   "Crude Bow"
   ],
-  "gearNote": "Knightbook: '1 set of Knighves and the Crude Bow (Merchant gear)'. The Crude Bow card has not been transcribed yet — Renholder starts with Knighves only until it is supplied."
+  "gearNote": "Knightbook: '1 set of Knighves and the Crude Bow (Merchant gear)'. Crude Bow = Principality Merchant gear (data/gear/merchant_principality.json); two-handed, so the Knighves stay in reserve while it is equipped (소유자 확인 2026-11-16: 시작 장비의 Merchant 표기는 상점 Gear)."
  },
  "firstDeath": {
   "text": "Renholder's First Death Special Event (Knightbook p.122): if the Unknown Saint is not yet unlocked, see 9999 first; otherwise the event proceeds. Mark the First Death box on your Knight Sheet. Gain +1 Sigh of the Graal.",
@@ -2263,7 +2264,6 @@
   }
  ],
  "missing": [
-  "Crude Bow (Merchant gear, starting equipment)",
   "First Death Special Event closing paragraph (reward)"
  ],
  "portraits": [

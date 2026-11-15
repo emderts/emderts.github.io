@@ -41,6 +41,8 @@ export class Clash {
   say(msg, kind = 'info') { this.log.push({ msg, kind, round: this.round }); if (this.listeners.log) this.listeners.log(msg, kind); return msg; }
 
   // ---------- setup ----------
+  /** Gear card by name: knight / generic gear first, then Merchant gear (front side) — starting equipment can be Merchant gear (e.g. Crude Bow). */
+  gearByName(n) { const G = this.data.gear; const g = G.gear.gear.find(x => x.name === n); if (g) return g; for (const key of Object.keys(G)) { if (!/^merchant/.test(key)) continue; const m = (G[key].gear || []).find(x => x.name === n); if (m) { const { side, reforged, ...rest } = m; return { ...rest, ...(side || {}), merchant: true }; } } return undefined; /* other Gear (monster / kingdom) is attached by the Campaign after construction */ }
   _mkKnight(k, i) {
     const def = this.data.knights[k.def]; const portrait = def.portraits.find(p => p.id === (k.portrait || def.setup.portrait));
     const perilArc = this.data.knights.peril_arcs.arcs[k.def].find(a => a.name === (k.perilArc || def.setup.perilArc));
@@ -49,7 +51,7 @@ export class Clash {
     kn.def = def; kn.knightId = k.def; kn.perilArcDef = perilArc; kn.portraitDef = portrait;
     kn.heroicArc = def.heroicArcs.find(a => a.name === (k.heroicArc || def.setup.heroicArc)); kn.talent = def.talents.find(t => t.name === (k.talent || def.setup.talent));
     kn.hand = (k.techniques || def.setup.techniques).map(n => ({ ...def.techniques.find(t => t.name === n) }));
-    kn.gear = (k.gear || def.setup.gear).map(n => ({ ...this.data.gear.gear.gear.find(g => g.name === n), exhausted: false, discarded: false }));
+    kn.gear = (k.gear || def.setup.gear).map(n => ({ ...this.gearByName(n), exhausted: false, discarded: false }));
     { const otherHands = kn.gear.filter(g => g.type === 'weapon' && g.name !== 'Knighves').reduce((a, g) => a + (g.hands || 1), 0); if (otherHands >= 2) { const kv = kn.gear.find(g => g.name === 'Knighves'); if (kv) { kn.gear = kn.gear.filter(g => g !== kv); kn.knighvesReserve = kv; } } } // Knighves only in a free hand slot (p.20)
     kn.virtues = { ...def.setup.virtues }; kn.tier = k.tier || 1; kn.pos = null; kn.conditions = []; kn.chokeLimit = 0; kn.braced = false; kn.usedArcLevels = new Set(); kn.bonusAttacks = 0; kn.heroicUsed = {};
     kn.gold = k.gold ?? 0; kn.sigh = k.sigh ?? 0; kn.fleischBoard = 0; kn.firstDeath = k.firstDeath || false; kn.turnsTaken = 0; kn.powerDice = portrait.powerDice || 1; this.renSetup(kn);

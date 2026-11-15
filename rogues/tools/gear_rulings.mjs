@@ -150,7 +150,6 @@ export const KNIGHT_RULINGS = [
   ['Renholder — First Death', '이벤트 결말 문단을 스캔에서 찾지 못해 Fleischritter와 같은 보상(+1 Sigh of the Graal)으로 처리.'],
 ];
 export const KNIGHT_QUESTIONS = [
-  ['Crude Bow', 'Renholder 시작 장비(Merchant Gear)인데 카드가 아직 없음 — 지금은 Knighves만 들고 시작.'],
   ['Doublestrike Enchantment / Power Overwhelming', 'BP를 여러 장 뽑는 공격이라 미구현 (Exert로만 사용 가능).'],
   ['다른 기사', 'Kara · Ser Sonch · Paracelsa · Stoneface · Ser Ubar는 Talent/Heroic Arc 시트는 있으나 Knightbook(Setup)과 Technique 카드가 필요.'],
 ];
