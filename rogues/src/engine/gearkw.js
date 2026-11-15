@@ -251,6 +251,47 @@ const SPECIAL = [
   [/^Crit Chance: Ignore any additional \[AT\] \(including Armor \[Armor\] tokens\)$/, () => ({ op: 'critBaseAT' })],
   [/^When you attack, for each Swamp space in your effective range occupied by a Monster, place a Power \[Power\] token in the Knight Pool$/, () => ({ op: 'swampMonsterPower' })],
   [/^When you exhaust this card, double your Speed \[Speed\] until the end of turn$/, () => ({ op: 'exhaustDoubleSpeed' })],
+  [/^Inspire (\d+)$/, m => ({ op: 'fInspire', n: +m[1], free: true, needsCost: true })],
+  [/^Change up to (\d+) Knight tokens in the Knight Pool into Hope \[Hope\] tokens$/, m => ({ op: 'fTokensToHope', n: +m[1], free: true })],
+  [/^If there are (\d+) or more Hope \[Hope\] tokens in the Knight Pool, each Knight gains \+(\d+) Precision \[Precision\]$/, m => ({ op: 'hopePrecision', need: +m[1], n: +m[2] })],
+  [/^Reveal the top card of a chosen Mortis deck$/, () => ({ op: 'fRevealMortis', free: true })],
+  [/^When you attack with this Weapon, you may gain \+(\d+) \[Heat\] to gain \+(\d+) \[Power\]$/, m => ({ op: 'attackHeatPower', h: +m[1], n: +m[2] })],
+  [/^All Knights in Zone (\d+) gain Power Re-roll (\d+)$/, m => ({ op: 'zonePowerReroll', zone: +m[1], n: +m[2] })],
+  [/^During the second ability window, place a Power \[Power\] token in the Knight Pool for each \[AT\] you exceeded during this Attack's Power Roll \(up to (\d+)\)$/, m => ({ op: 'overATPower', max: +m[1] })],
+  [/^You may pay with \[Vigor\] to re-roll (?:your )?dice instead of \[Heat\]$/, () => ({ op: 'vigorReroll' })],
+  [/^When moving through a Swamp Terrain tile, you may re-roll the \[d10\] rolled on the Swamp effect \(once\)$/, () => ({ op: 'swampReroll' })],
+  [/^Destroy an adjacent [Dd]estructible (?:Obstacle )?Terrain tile$/, () => ({ op: 'fDestroyTerrain', free: true })],
+  [/^Ignore Lumbering$/, () => ({ op: 'ignoreLumbering' })],
+  [/^If you're using \[2 hands\] Weapons, they lose Cumbersome, Unwieldy, and Commit$/, () => ({ op: 'twoHandLose' })],
+  [/^\*?When you resolve a negative Mortis card, this card gains (\d+) \[Charge\]$/, m => ({ op: 'mortisCharge', n: +m[1] })],
+  [/^You may spend X \[Charge\] to gain Reinforce X$/, () => ({ op: 'chargeReinforce' })],
+  [/^When you deal a Wound, move 1 Armor \[Armor\] token from the Monster to this card$/, () => ({ op: 'woundTakeArmor' })],
+  [/^Advanced Reinforce \*X$/, () => ({ op: 'reinforceCardArmor', active: true })],
+  [/^\*X is equal to the number of \[Armor\] on this card$/, () => ({ op: 'note', na: true })],
+  [/^When you become the Target of an Attack, place (\d+) Fleisch \[Fleisch token\] token in the Knight Pool and spend (\d+) \[Charge\]$/, m => ({ op: 'targetFleisch', n: +m[1], c: +m[2] })],
+  [/^If you cannot spend the \[Charge\], discard this card instead$/, () => ({ op: 'note', na: true })],
+  [/^Start of Clash: Gain the \[Priority Target\] Priority Target token$/, () => ({ op: 'startPriority' })],
+  [/^While you have this card, you cannot lose that token$/, () => ({ op: 'keepPriority' })],
+  [/^Full Evade: Look at the top AI and BP cards of the closest Monster$/, () => ({ op: 'fullEvadeLook' })],
+  [/^Full Evade: A Monster that attacked you moves X spaces directly away from you, where X is the amount of dice you evaded$/, () => ({ op: 'fullEvadePush' })],
+  [/^Ignore Wound Responses$/, () => ({ op: 'ignoreWoundResp' })],
+  [/^Your Crit die misses only on a Crit Miss$/, () => ({ op: 'critOnlyMiss' })],
+  [/^At the end of the second ability window, double all tokens in the Knight Pool$/, () => ({ op: 'doublePool' })],
+  [/^Immediately resolve an additional turn$/, () => ({ op: 'fExtraTurn', free: true })],
+  [/^At the end of that turn, you die$/, () => ({ op: 'note', na: true })],
+  [/^Flip a Condition card of a Knight in effective range of this Weapon$/, () => ({ op: 'fFlipOtherCond', free: true })],
+  [/^That Knight gains \+(\d+) \[Vigor\]$/, m => ({ op: 'note', na: true, vigor: +m[1] })],
+  [/^When you're about to attack, change up to (\d+) Break \[Break\] tokens in the Knight Pool into Black \[Black\] tokens and\/or Opening \[Opening\] tokens into Closing \[Closing\] tokens.*$/, m => ({ op: 'poolUpgrade', n: +m[1], active: true })],
+  [/^When you deal a Wound, you may take a Condition card from the closest Knight$/, () => ({ op: 'woundTakeCondition' })],
+  [/^When you attack, for each space occupied by a Monster in your effective range other than the space you're attacking, place a Black \[Black\] token in the Knight Pool \(up to (\d+)\)$/, m => ({ op: 'rangeBlack', max: +m[1] })],
+  [/^Ignore up to -(\d+) Speed \[Speed\] penalty$/, m => ({ op: 'ignoreSpeedPenalty', n: +m[1] })],
+  [/^Monsters on Swamp Terrain tiles gain -(\d+) \[To Hit\]$/, m => ({ op: 'swampToHit', n: +m[1] })],
+  [/^If you're on a Swamp Terrain tile, you drown \(die\)$/, () => ({ op: 'note', na: true })],
+  [/^Party Trick: (\d+) \[Heat\] You may place 1 card from your hand into the Cooldown area to Refresh (\d+)$/, m => ({ op: 'fPartyTrick', heat: +m[1], n: +m[2], free: true })],
+  [/^Hand Limit \+(\d+)$/, m => ({ op: 'handLimitPlus', n: +m[1] })],
+  [/^Place your Knight on a space in effective range of this Weapon$/, () => ({ op: 'fTeleportRange', free: true })],
+  [/^Remove a (Swamp|Rubble)(?: Terrain)? tile in your effective range and place it on this card.*$/, m => ({ op: 'fTakeTerrain', tile: m[1].toLowerCase(), free: true })],
+  [/^Place all (?:Swamps|Rubble tiles) from this card (on spaces in your effective range|anywhere on the Board)$/, m => ({ op: 'fPlaceTerrain', anywhere: /anywhere/.test(m[1]), free: true })],
   [/^Roll Out(?: \(.*\))?$/, () => ({ op: 'rollOut', active: true })],
   [/^Ignore Swamp Terrain tiles$/, () => ({ op: 'ignoreSwamp' })],
   [/^When you're about to suffer involuntary movement, you may reduce it by 1 \(to a minimum of 1\)$/, () => ({ op: 'reduceInvol' })],
@@ -314,16 +355,17 @@ export function parseSentence(s) {
 }
 /** Parse a whole ability text → list of keywords (one per sentence). */
 const xKind = t => /X\*? is (?:equal to )?(?:the )?(?:number|amount) of (?:your )?Bane/.test(t) ? 'bane' : /X is equal to your \[Passion\]/.test(t) ? 'passion' : /X is equal to your \[Heat\]/.test(t) ? 'heat' : /X is the number of Magic \[Magic\] tokens in the Knight Pool/.test(t) ? 'magic' : /X is the sum of all Evasion/.test(t) ? 'evasionSum' : /X is equal to half your \[Passion\]/.test(t) ? 'halfPassion' : null;
-export function parseGearText(text) { if (!text) return []; const ss = String(text).replace(/(Crit Chance|in Melee range):\n/g, '$1: ').split(/\n|(?<=\.)\s+(?=[\[A-Z+\-\d])/).map(s => s.trim()).filter(Boolean);
+export function parseGearText(text) { if (!text) return []; const ss = String(text).replace(/(Crit Chance|in Melee range):\n/g, '$1: ').replace(/(\d)\.(?=[A-Z][a-z])/g, '$1. ').split(/\n|(?<=\.)\s+(?=[\[A-Z+\-\d])/).map(s => s.trim()).filter(Boolean);
   const xdef = ss.map(xKind).find(Boolean) || null; const out = []; let lastPrefix = null;
   for (const t of ss) { let m; const wasPrefix = lastPrefix; lastPrefix = null;
     if (xKind(t) && /^\*?X\b/.test(t)) { out.push({ op: 'note', status: 'na', special: true, text: t }); continue; }
     if ((m = /^((?:\[[^\]]+\]\s*)*)([A-Z][A-Za-z\- ]* \d+) instead, gain ([A-Z][a-z]+)\.?$/.exec(t))) { const p1 = parseSentence(m[1] + m[2] + '.'), p2 = parseSentence(m[1] + m[3] + '.'); if (p1.status === 'ok' && p2.status === 'ok') { p1.instead = true; p1.text = t; p2.text = t; out.push(p1, p2); continue; } }
     if ((m = /^((?:\[[^\]]+\]\s*)*)([A-Z][A-Za-z\- ]*(?: \d+)?(?:(?:, | and |, and )(?:gain )?[A-Z][A-Za-z\- ]*(?: \d+)?)*) instead\.?$/.exec(t))) { const prefix = m[1] || wasPrefix || ''; const ps = m[2].split(/, and |, | and /).map(p => parseSentence(prefix + p.replace(/^gain /, '') + '.')); if (ps.every(p => p.status === 'ok')) { for (const p of ps) { p.instead = true; p.text = t; } out.push(...ps); lastPrefix = prefix; continue; } }
-    if ((m = /^((?:\[[^\]]+\]\s*)*[A-Z][A-Za-z\- ]*) \*?X\*?, where X is (the number of Bane \[Bane\] tokens you have|your \[Heat\])\.?$/.exec(t))) { const p = parseSentence(m[1] + ' 0.'); if (typeof p.n === 'number' && p.status !== 'text') { p.status = 'ok'; p.x = /Bane/.test(m[2]) ? 'bane' : 'heat'; p.text = t; out.push(p); continue; } }
+    if ((m = /^((?:\[[^\]]+\]\s*)*[A-Z][A-Za-z\- ]*) \*?X\*?, where X is (the (?:number|amount) of Bane \[Bane\] tokens you have|your \[Heat\])\.?$/.exec(t))) { const p = parseSentence(m[1] + ' 0.'); if (typeof p.n === 'number' && p.status !== 'text') { p.status = 'ok'; p.x = /Bane/.test(m[2]) ? 'bane' : 'heat'; p.text = t; out.push(p); continue; } }
     if (xdef && (m = /^Ranged (\d+)[-–]X\.?$/.exec(t))) { out.push({ op: 'ranged', n: +m[1], m: 'X', x: xdef, status: 'ok', text: t }); continue; }
     if (xdef && (m = /^((?:\[[^\]]+\]\s*)*[A-Z][A-Za-z\- ]*) \*?X\*?\.?$/.exec(t))) { const p = parseSentence(m[1] + ' 0.'); if (typeof p.n === 'number' && p.status !== 'text' && p.op !== 'ranged') { p.status = 'ok'; p.x = xdef; p.text = t; out.push(p); continue; } }
+    if ((m = /^(.*\S )Block or Defy\.?$/.exec(t)) && /\[Heat\]|\[Exhaust\]|\[Discard\]|\[Charge\]/.test(m[1])) { const p1 = parseSentence(m[1] + 'Block.'), p2 = parseSentence(m[1] + 'Defy.'); if (p1.status === 'ok' && p2.status === 'ok') { p1.text = t; p2.text = t; out.push(p1, p2); continue; } }
     out.push(parseSentence(t)); }
-  out.forEach((o, i) => { if (o.op === 'fDrawJudicium') { const nx = out[i + 1]; if (nx && /discard all Armor/.test(nx.text)) o.then = 'clearArmor'; else if (nx && /return a chosen Knight to life adjacent to you/.test(nx.text)) { o.then = 'revive'; nx.op = 'note'; nx.status = 'na'; } else { o.op = 'text'; o.status = 'text'; } } if (o.op === 'fVigorForHeat') { const nx = out[i + 1]; if (nx && nx.poison) o.poison = nx.poison; } }); return out; }
+  out.forEach((o, i) => { if (o.op === 'fDrawJudicium') { const nx = out[i + 1]; if (nx && /discard all Armor/.test(nx.text)) o.then = 'clearArmor'; else if (nx && /return a chosen Knight to life adjacent to you/.test(nx.text)) { o.then = 'revive'; nx.op = 'note'; nx.status = 'na'; } else { o.op = 'text'; o.status = 'text'; } } if (o.op === 'fVigorForHeat') { const nx = out[i + 1]; if (nx && nx.poison) o.poison = nx.poison; } if (o.op === 'fFlipOtherCond') { const nx = out[i + 1]; if (nx && nx.vigor) o.vigor = nx.vigor; } if (o.op === 'fInspire' && !o.cost) { o.op = 'inspire'; delete o.free; } if (o.op === 'fPlaceTerrain') o.tile = /Rubble/.test(o.text) ? 'rubble' : 'swamp'; }); return out; }
 export const isDefensive = op => DEFENSIVE.has(op);
 export const KEYWORD_STATUS = { TOKENS, OK, PENDING, NA };
