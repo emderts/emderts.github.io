@@ -44,6 +44,7 @@ const renderHome = () => {
       h('div', { class: 'row' },
         h('label', {}, '몬스터 ', h('select', { id: 'mon' }, mons.map(m => h('option', { value: m.id }, m.name)))),
         h('label', {}, '레벨 ', h('select', { id: 'lv' }, [1, 2, 3, 4].map(l => h('option', { value: l }, `Lv ${l}`)))),
+        h('label', {}, '노드 레벨 ', h('select', { id: 'nlv' }, [1, 2, 3, 4, 5].map(l => h('option', { value: l }, `${l} · ${['Mob', 'Vassal', 'King', 'Devil', 'Dragon'][l - 1]}`)))),
         h('label', {}, '시드 ', h('input', { id: 'seed', type: 'number', placeholder: '무작위', style: 'width:110px', value: seedInput })),
         h('button', { onclick: startTestClash }, 'Clash 시작'),
       ),
@@ -54,7 +55,7 @@ const renderHome = () => {
 const newCampaign = () => { if (loadSaved() && !confirm('저장된 캠페인을 덮어씁니다. 계속할까요?')) return; camp = new Campaign(DATA, { seed: Math.floor(Math.random() * 1e9), knights: [0, 1, 2, 3].map(i => ({ def: 'fleischritter' })), ask: askViaSheet, ownedMonsters: null }); save(); screen = 'map'; render(); };
 const startTestClash = () => {
   const seed = +$('#seed').value || Math.floor(Math.random() * 1e9); seedInput = String(seed);
-  clash = new Clash({ data: DATA, knights: [0, 1, 2, 3].map(i => ({ def: 'fleischritter', name: 'Fleischritter ' + (i + 1) })), monster: $('#mon').value, level: +$('#lv').value, kingdom: 'principality', seed, listeners: { log: () => scheduleRender(), flash: onFlash } });
+  clash = new Clash({ data: DATA, knights: [0, 1, 2, 3].map(i => ({ def: 'fleischritter', name: 'Fleischritter ' + (i + 1) })), monster: $('#mon').value, level: +$('#lv').value, nodeLevel: +($('#nlv') ? $('#nlv').value : $('#lv').value), kingdom: 'principality', seed, listeners: { log: () => scheduleRender(), flash: onFlash } });
   clash.ask = askViaSheet; clash.setup(); screen = 'clash'; tab = 'log'; render();
   clash.run().then(() => { pending = null; render(); });
 };

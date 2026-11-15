@@ -146,6 +146,21 @@ const SPECIAL = [
   [/^For the purpose of gathering your Power Pool, ignore any hits that exceed your Weapon's regular \[d10\] value$/, () => ({ op: 'powerHitCapAll' })],
   [/^When (?:you perform|performing) ↑\[Heat\]↓, lose additional -(\d+) \[Heat\]$/, m => ({ op: 'heatRefreshExtra', n: +m[1] })],
   [/^Perform ↑\[Heat\]↓$/, () => ({ op: 'fHeatRefresh', free: true })],
+  [/^When you attack, lose -(\d+) \[Heat\]$/, m => ({ op: 'attackLoseHeat', n: +m[1] })],
+  [/^You do not benefit from Opening \[Opening\] tokens$/, () => ({ op: 'noOpening' })],
+  [/^\+(\d+) Speed$/, m => ({ op: 'speed', n: +m[1] })],
+  [/^Lose -X \[Heat\], where X is the Level of the top BP card$/, () => ({ op: 'fLoseHeatBP', free: true })],
+  [/^Immediately gain \+(\d+) \[Passion\] \(once per Clash\)$/, m => ({ op: 'gatePassion', n: +m[1] })],
+  [/^Reduce involuntary movement by up to X, where X is the amount of Bane \[Bane\] tokens you have$/, () => ({ op: 'reduceInvolBane' })],
+  [/^End of your turn: If this card has no \[Charge\], lose -(\d+) \[Vigor\]$/, m => ({ op: 'endTurnNoCharge', n: +m[1] })],
+  [/^(?:When you move, ignore Swamp Terrain tiles for this movement|When you're about to move, ignore a Swamp Terrain tile during that movement|During movement, ignore all Terrain tiles)$/, () => ({ op: 'fSwampFree', free: true })],
+  [/^When you are about to be moved involuntarily, gain Braced$/, () => ({ op: 'bracedPaid', active: true })],
+  [/^When your Attack hits, gain a Crit Chance$/, () => ({ op: 'hitCritChance', active: true })],
+  [/^When you Wound, move a chosen Monster up to X spaces away, where X is the Level of the wounded BP$/, () => ({ op: 'woundPushLevel' })],
+  [/^During your Power Roll, if you fail to meet the \[AT\], place up to (\d+) Fire \[Fire\] tokens in the Knight Pool$/, m => ({ op: 'failFire', n: +m[1] })],
+  [/^Start of Clash: Draw a Judicium without resolving it(?:, then return it to the deck)?$/, () => ({ op: 'startJudicium' })],
+  [/^(?:The next time you would draw a Judicium, resolve (?:that Judicium|this one) instead|If you survive, discard all Armor \[Armor\] tokens from anywhere)$/, () => ({ op: 'note', na: true })],
+  [/^Draw a Judicium$/, () => ({ op: 'fDrawJudicium', free: true })],
   [/^Roll Out(?: \(.*\))?$/, () => ({ op: 'rollOut', active: true })],
   [/^Ignore Swamp Terrain tiles$/, () => ({ op: 'ignoreSwamp' })],
   [/^When you're about to suffer involuntary movement, you may reduce it by 1 \(to a minimum of 1\)$/, () => ({ op: 'reduceInvol' })],
@@ -205,6 +220,6 @@ export function parseSentence(s) {
   return k;
 }
 /** Parse a whole ability text → list of keywords (one per sentence). */
-export function parseGearText(text) { if (!text) return []; return String(text).replace(/(Crit Chance|in Melee range):\n/g, '$1: ').split(/\n|(?<=\.)\s+(?=[\[A-Z+\-\d])/).map(s => s.trim()).filter(Boolean).map(parseSentence); }
+export function parseGearText(text) { if (!text) return []; const out = String(text).replace(/(Crit Chance|in Melee range):\n/g, '$1: ').split(/\n|(?<=\.)\s+(?=[\[A-Z+\-\d])/).map(s => s.trim()).filter(Boolean).map(parseSentence); out.forEach((o, i) => { if (o.op === 'fDrawJudicium') { const nx = out[i + 1]; if (nx && /discard all Armor/.test(nx.text)) o.then = 'clearArmor'; else { o.op = 'text'; o.status = 'text'; } } }); return out; }
 export const isDefensive = op => DEFENSIVE.has(op);
 export const KEYWORD_STATUS = { TOKENS, OK, PENDING, NA };
