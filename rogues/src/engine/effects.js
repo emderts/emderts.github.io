@@ -1,6 +1,7 @@
 // Effects: interprets data `ops` for Monster cards/traits, Mortis, Conditions, Techniques, Gear, Heroic Arcs, Talents.
 // Every op name used by data must exist in MONSTER_OPS / MORTIS_OPS / KNIGHT_OPS; test/ops.mjs checks that.
 import { MOB_OPS } from './mobs.js';
+import { BLOOD_OPS } from './blood.js';
 import { ChainBreak } from './clash.js';
 
 const TIER_RANK = { MOB: 1, VASSAL: 2, KING: 3, DEVIL: 4, DRAGON: 5 };
@@ -148,8 +149,9 @@ export class Effects {
       this.deplete(k, t, e.depletion);
     }
   }
-  freeActions(k) { const out = []; const ch = this.c.hasCondition(k, 'Choked'); if (ch && k.chokeLimit > 0 && (k.actions.move || k.actions.combat)) out.push({ id: 'lowerChoke', label: `행동 소모 → Choke Limit -3 (현재 ${k.chokeLimit})` }); const ex = this.c.hasCondition(k, 'Exposed'); if (ex && (k.actions.move || k.actions.combat)) out.push({ id: 'discardExposed', label: '행동 소모 → Exposed 제거' }); if (k.talent && k.talent.id === 'fleischjager' && this.c.poolCount('fleisch') >= 1 && k.vigor > 1) out.push({ id: 'nurturing', label: 'Nurturing Fleisch (1 Fleisch, X Vigor → 인접 기사 +X)' }); return out; }
+  freeActions(k) { const out = [...(this.c.lureOptions ? this.c.lureOptions(k) : [])]; const ch = this.c.hasCondition(k, 'Choked'); if (ch && k.chokeLimit > 0 && (k.actions.move || k.actions.combat)) out.push({ id: 'lowerChoke', label: `행동 소모 → Choke Limit -3 (현재 ${k.chokeLimit})` }); const ex = this.c.hasCondition(k, 'Exposed'); if (ex && (k.actions.move || k.actions.combat)) out.push({ id: 'discardExposed', label: '행동 소모 → Exposed 제거' }); if (k.talent && k.talent.id === 'fleischjager' && this.c.poolCount('fleisch') >= 1 && k.vigor > 1) out.push({ id: 'nurturing', label: 'Nurturing Fleisch (1 Fleisch, X Vigor → 인접 기사 +X)' }); return out; }
   async doFreeAction(k, id) {
+    if (id.startsWith('lure:')) return this.c.lure(k, id.slice(5));
     const spend = () => { if (k.actions.move) k.actions.move = false; else k.actions.combat = false; };
     if (id === 'lowerChoke') { spend(); k.chokeLimit = Math.max(0, k.chokeLimit - 3); if (k.chokeLimit === 0) this.c.removeCondition(k, 'Choked'); }
     else if (id === 'discardExposed') { spend(); this.c.removeCondition(k, 'Exposed'); }
@@ -231,8 +233,9 @@ export class Effects {
   async runMonsterOps(ops, ctx) { for (const o of ops || []) await this.runMonsterOp(o, ctx); }
   async runMonsterOp(o, ctx) {
     const C = this.c; const t = ctx.target || ctx.attacker || ctx.primary; const M = C.monster;
+    if (!t && ['loseVigorPerHit', 'loseVigor', 'knockdown', 'pushback', 'knockback', 'cooldown', 'discard', 'restrain', 'choke', 'condition', 'judicium', 'die', 'gainPassion', 'resetHeat', 'returnAllTechniques'].includes(o.op)) return;
     switch (o.op) {
-      case 'loseVigorPerHit': { const per = ctx.vigorPerHitOverride ?? o.n; const total = per * ctx.hits + M.bonuses.vigorLoss + (M.hasTrait('Jacked') && C.jackedTokens >= 9 ? 3 : 0) + (M.bonuses.vigorLossPerHit || 0) * ctx.hits + (M.isMob ? C.mobAura('mobAttackVigor') : 0); return C.loseVigor(t, total, { source: 'attack', perilCheck: o.perilCheck }); }
+      case 'loseVigorPerHit': { const per = ctx.vigorPerHitOverride ?? (o.nFrom === 'blood' ? C.mobBlood((ctx.attack && ctx.attack.mob) || M.cur) : o.n); const total = per * ctx.hits + M.bonuses.vigorLoss + (M.hasTrait('Jacked') && C.jackedTokens >= 9 ? 3 : 0) + (M.bonuses.vigorLossPerHit || 0) * ctx.hits + (M.isMob ? C.mobAura('mobAttackVigor') : 0); return C.loseVigor(t, total, { source: 'attack', perilCheck: o.perilCheck, ...(ctx.judgement ? { armor: false } : {}) }); }
       case 'loseVigor': return C.loseVigor(t, o.n, { source: 'response', armor: false });
       case 'allKnightsLoseVigor': { for (const k of C.alive()) await C.loseVigor(k, o.n, { source: 'routine', armor: false }); return; }
       case 'knockdown': if (C.monsterDisabled && C.monsterDisabled.has('knockdown')) return; if (ctx.attack && ctx.attack.card && !C.adjacentToMonster(t) && ctx.attacker) return; return C.knockdown(t);
@@ -244,13 +247,13 @@ export class Effects {
       case 'choke': { const c = C.hasCondition(t, 'Choked'); if (c) { t.chokeLimit += o.n; } else { await C.addCondition(t, 'Choked'); t.chokeLimit = o.n - 1; } if (t.heat <= t.chokeLimit) { t.heat = Math.min(t.heatLimit, t.chokeLimit + 1); } this.say(`${t.name} Choke Limit ${t.chokeLimit}`); return; }
       case 'condition': return C.addCondition(t, o.id);
       case 'perHitInOrder': { for (let i = 0; i < ctx.hits && i < o.effects.length; i++) await this.runMonsterOp(o.effects[i], ctx); return; }
-      case 'gated': { if (t.heat >= o.gate.gte) await this.runMonsterOps(o.then, ctx); return; }
+      case 'gated': { if (o.stat) { const src = ctx.source || (ctx.attack && ctx.attack.mob) || M.cur; const v = o.stat === 'blood' ? C.mobBlood(src) : o.stat === 'heat' ? (t ? t.heat : 0) : 0; const on = v >= o.gte; if (on) this.say(`${o.stat === 'blood' ? 'Blood' : 'Heat'} ${v} ≥ ${o.gte} → 게이트 효과`); return this.runMonsterOps(on ? o.then : (o.else || []), ctx); } if (t.heat >= o.gate.gte) await this.runMonsterOps(o.then, ctx); return; }
       case 'judicium': return C.drawJudicium(t);
       case 'die': return C.die(t, 'AI effect');
       case 'trait': { if (o.id === 'humpty-charge') { if (!M.hasTrait('Humpty Charge')) return; return C.humptyCharge(ctx.attacker || ctx.primary || null); } this.say(`[미구현 trait op] ${o.id}`, 'warn'); return; }
       case 'signature': return C.performSignature();
       case 'if': { const cond = o.cond === 'vigorLost' ? !!(ctx.attack && ctx.attack.vigorLost) : o.cond === 'attackerOnFrontSpace' ? C.frontCells().some(c => c.c === t.pos.c && c.r === t.pos.r) : false; return this.runMonsterOps(cond ? o.then : (o.else || []), ctx); }
-      case 'repeatCard': { if (ctx.repeated) return; this.say(`${ctx.repeatCard.name} 반복`); await C.resolveMonsterAttack({ ...ctx.repeatCard, ops: { ...ctx.repeatCard.ops, afterFinalAttack: null } }, { repeated: true }); return; }
+      case 'repeatCard': { if (!ctx.repeatCard && ctx.attack) { ctx.attack.repeatAfter = ctx.attack.repeatAfter || 'once'; return; } if (ctx.repeated) return; this.say(`${ctx.repeatCard.name} 반복`); await C.resolveMonsterAttack({ ...ctx.repeatCard, ops: { ...ctx.repeatCard.ops, afterFinalAttack: null } }, { repeated: true }); return; }
       case 'moveToCenter': { const B = C.board; const center = { c: 7, r: 4 }; const d = { c: Math.sign(center.c - C.monsterCenter().c + 0.5), r: Math.sign(center.r - C.monsterCenter().r + 0.5) }; let guard = 0; while (guard++ < 20 && !(C.monster.cells.some(c => c.c === 7 && c.r === 4))) { const dc = 7 - C.monster.cells[0].c, dr = 4 - C.monster.cells[0].r; if (!dc && !dr) break; const step = Math.abs(dc) >= Math.abs(dr) ? { c: Math.sign(dc), r: 0 } : { c: 0, r: Math.sign(dr) }; if (await C.monsterStep(step) !== 'ok') break; } await C.displaceKnightsUnderMonster(); this.say('몬스터가 보드 중앙으로 이동'); return; }
       case 'faceMostKnights': C.faceMostKnights(); return;
       case 'monsterModifier': M.modifiers[o.stat] += o.n; this.say(`몬스터 ${o.stat} ${o.n > 0 ? '+' : ''}${o.n} (영구)`); return;
@@ -268,9 +271,9 @@ export class Effects {
       case 'power': C.poolAdd('power', o.n); return;
       case 'armorTokens': C.armorTokens[o.bp] += o.n; this.say(`BP${o.bp} Armor 토큰 +${o.n}`); return;
       case 'passive': return;
-      default: if (C.mobOp && await C.mobOp(o, ctx)) return; this.say(`[미구현 monster op] ${o.op}`, 'warn');
+      default: if (C.bloodOp && await C.bloodOp(o, ctx)) return; if (C.mobOp && await C.mobOp(o, ctx)) return; this.say(`[미구현 monster op] ${o.op}`, 'warn');
     }
   }
 }
-export const KNOWN_OPS = { monster: ['loseVigorPerHit', 'loseVigor', 'allKnightsLoseVigor', 'knockdown', 'pushback', 'knockback', 'cooldown', 'discard', 'restrain', 'choke', 'condition', 'perHitInOrder', 'gated', 'judicium', 'die', 'trait', 'signature', 'if', 'repeatCard', 'moveToCenter', 'faceMostKnights', 'monsterModifier', 'bonusAttack', 'gainPassion', 'leaveTokens', 'returnAllTechniques', 'resetHeat', 'discardArmorTokens', 'disableMonsterKeywords', 'additionalSingleWound', 'disableTrait', 'disableZoneAttacks', 'slayMonster', 'power', 'armorTokens', 'passive', 'humptyCharge', 'evasionDice', 'vigorPerHitInstead', 'difficultyInstead', 'drawGraveForColumn', 'evasionDicePerAdjacentMob', 'moveGangup', ...MOB_OPS],
+export const KNOWN_OPS = { monster: ['loseVigorPerHit', 'loseVigor', 'allKnightsLoseVigor', 'knockdown', 'pushback', 'knockback', 'cooldown', 'discard', 'restrain', 'choke', 'condition', 'perHitInOrder', 'gated', 'judicium', 'die', 'trait', 'signature', 'if', 'repeatCard', 'moveToCenter', 'faceMostKnights', 'monsterModifier', 'bonusAttack', 'gainPassion', 'leaveTokens', 'returnAllTechniques', 'resetHeat', 'discardArmorTokens', 'disableMonsterKeywords', 'additionalSingleWound', 'disableTrait', 'disableZoneAttacks', 'slayMonster', 'power', 'armorTokens', 'passive', 'humptyCharge', 'evasionDice', 'vigorPerHitInstead', 'difficultyInstead', 'drawGraveForColumn', 'evasionDicePerAdjacentMob', 'moveGangup', ...MOB_OPS, ...BLOOD_OPS],
   knight: ['loseVigor', 'gainVigor', 'loseHeat', 'gainHeat', 'resetHeat', 'resetHeatAndRaiseLimit', 'gainPassion', 'refresh', 'restrain', 'cooldown', 'discard', 'delay', 'knockdown', 'standUp', 'condition', 'discardCondition', 'discardAllConditions', 'exhaustAllGear', 'unexhaustGear', 'poolChoice', 'bonusAttack', 'move', 'chainBreak', 'die', 'shuffleBack', 'perilCheck', 'judicium', 'addJudicium', 'drawNamed', 'if', 'curseSave', 'bane', 'parasitize', 'poison', 'toxify', 'choice', 'provoke', 'daze', 'reflex', 'rush', 'improvedRush', 'braced', 'rocksteady', 'motivate', 'flipBodyCondition', 'resurrectAdjacent', 'extraCombatAction', 'meatPuppet', 'secondChance', 'superiorChance', 'chooseJudicium', 'reinforce', 'reduceInvoluntary', 'heartseeker', 'addPowerDie', 'ignoreResponses', 'skipClearPool', 'poolPer', 'reach'] };

@@ -25,25 +25,26 @@ export const MobMixin = {
     for (let i = 0; i < (M.bonuses.escalations || 0); i++) { this.say('시작 Escalation'); this.escalateLowestMob({ unrevealedOnly: false }); }
   },
   addMob(card, cell, facing, n, { revealed = false } = {}) {
-    const M = this.monster; const mob = { n, card, revealed, cells: [cell], facing: facing || 'N', armor: 0, tokens: [] };
-    M.mobs.push(mob); M.mobs.sort((a, b) => a.n - b.n); this.board.place({ kind: 'mob', n }, [cell]); return mob;
+    const M = this.monster; const mob = { n, card, revealed, cells: cell ? [cell] : [], facing: facing || 'N', armor: 0, tokens: [], blood: 0, offboard: !cell };
+    M.mobs.push(mob); M.mobs.sort((a, b) => a.n - b.n); if (cell) this.board.place({ kind: 'mob', n }, [cell]); return mob;
   },
   freeSlot() { for (let n = 1; n <= 10; n++) if (!this.monster.mobs.some(m => m.n === n)) return n; return null; },
   mobAt(cell) { return this.monster.isMob ? this.monster.mobs.find(m => cellEq(m.cells[0], cell)) || null : null; },
   monsterOccupies(cell) { return this.monster.isMob ? !!this.mobAt(cell) : this.monster.cells.some(m => cellEq(m, cell)); },
-  adjacentMobs(k) { return this.monster.mobs.filter(m => this.board.adjacent(m.cells[0], k.pos)); },
+  adjacentMobs(k) { return this.monster.mobs.filter(m => m.cells.length && this.board.adjacent(m.cells[0], k.pos)); },
   engaged(k) { return this.monster.isMob ? this.adjacentMobs(k).length > 0 : this.adjacentToMonster(k); },
-  mobLabel(m) { return `#${m.n} ${this.board.label(m.cells[0] || m.lastCell)}${m.revealed ? ' ' + m.card.name : ` (BP${m.card.level}?)`}`; },
+  mobLabel(m) { return `#${m.n} ${m.cells[0] ? this.board.label(m.cells[0]) : '보드 밖'}${m.revealed ? ' ' + m.card.name : ` (BP${m.card.level}?)`}`; },
   async withMob(mob, fn) { const M = this.monster; const prev = M.cur; M.cur = mob; try { return await fn(); } finally { M.cur = prev; } },
-  cellFree(c, ignore = null) { const B = this.board; if (!B.inside(c) || B.isObstacle(c) || this.knightAt(c)) return false; const m = this.mobAt(c); return !m || m === ignore; },
+  /** Monsters may enter Chasm spaces (Chasm only restricts Knights, p.80); Obstacles and occupied spaces block. */
+  cellFree(c, ignore = null) { const B = this.board; const t = B.terrainAt(c); if (!B.inside(c) || (t && t.obstacle) || this.knightAt(c)) return false; const m = this.mobAt(c); return !m || m === ignore; },
   /** Distance for Mob targeting / movement: shortest path excluding occupied and Obstacle spaces (p.50). */
   mobDist(mob, cell) { if (!mob || !mob.cells.length) return Infinity; return this.board.distance(mob.cells, [cell], c => this.cellFree(c, mob)); },
 
   // ---------- auras of revealed BPs ----------
   mobAura(key) { let n = 0; for (const m of this.monster.mobs || []) if (m.revealed && m.card.ops.aura && typeof m.card.ops.aura[key] === 'number') n += m.card.ops.aura[key]; return n; },
   mobAT(mob) {
-    const M = this.monster; let at = mob.card.at + M.bonuses.at + M.modifiers.at + (this.mobArmorDisabled ? 0 : mob.armor) + this.difficultTerrainAT(mob.cells);
-    for (const o of M.mobs) { if (o === mob || !o.revealed) continue; const a = o.card.ops.aura && o.card.ops.aura.atOtherMobsZone; if (a && Math.max(Math.abs(o.cells[0].c - mob.cells[0].c), Math.abs(o.cells[0].r - mob.cells[0].r)) <= a.z) at += a.n; }
+    const M = this.monster; let at = mob.card.at + M.bonuses.at + M.modifiers.at + (this.mobArmorDisabled ? 0 : mob.armor) + this.difficultTerrainAT(mob.cells) + (M.hasTrait('Scab Armor') ? mob.blood || 0 : 0);
+    for (const o of M.mobs) { if (o === mob || !o.revealed || !o.cells.length || !mob.cells.length) continue; const a = o.card.ops.aura && o.card.ops.aura.atOtherMobsZone; if (a && Math.max(Math.abs(o.cells[0].c - mob.cells[0].c), Math.abs(o.cells[0].r - mob.cells[0].r)) <= a.z) at += a.n; }
     return at;
   },
 
@@ -53,8 +54,8 @@ export const MobMixin = {
     for (const m of M.mobs) for (const t of m.tokens) t.ready = true;
     for (let guard = 0; guard < 40; guard++) {
       const mob = M.mobs.find(m => m.tokens.some(t => t.ready)); if (!mob) break; const tok = mob.tokens.find(t => t.ready);
-      M.cur = mob; this.say(`▷ Mob #${mob.n} (${this.board.label(mob.cells[0])}) 활성화 — ${tok.type === 'AI' ? 'AI' : 'Signature'}`, 'ai');
-      if (tok.type === 'AI') await this.activationAI(); else await this.performSignature();
+      M.cur = mob; this.say(`▷ Mob #${mob.n} (${mob.cells[0] ? this.board.label(mob.cells[0]) : '보드 밖'}) 활성화 — ${tok.type === 'AI' ? 'AI' : 'Signature'}`, 'ai');
+      if (await this.emergeIfOffboard(mob)) { if (tok.type === 'AI') await this.activationAI(); else await this.performSignature(); }
       if (M.mobs.includes(mob) && mob.tokens.includes(tok)) this.moveToken(mob.n, tok, true); else tok.ready = false;
       await this.afterAction(); this.checkEnd();
     }
@@ -90,7 +91,7 @@ export const MobMixin = {
   mobStepTo(mob, cell) { const B = this.board; B.remove(mob.cells); mob.cells = [cell]; B.place({ kind: 'mob', n: mob.n }, [cell]); },
   /** Mob movement toward a cell until adjacent (or `max` spaces): shortest path around occupied and Obstacle spaces, zigzag on ties (p.50). */
   async mobMoveToward(mob, target, max = Infinity, { ask = true } = {}) {
-    const B = this.board; let steps = 0, lastAxis = null; const from = B.label(mob.cells[0]);
+    const B = this.board; let steps = 0, lastAxis = null; const from = B.label(mob.cells[0]); const start = mob.cells[0];
     mob.facing = faceToward(mob.cells, target, mob.facing);
     while (steps < max && steps < 60 && !B.adjacent(mob.cells[0], target)) {
       const opts = this.mobStepOptions(mob, target); if (!opts.length) break;
@@ -100,6 +101,7 @@ export const MobMixin = {
     }
     mob.facing = faceToward(mob.cells, target, mob.facing);
     if (steps) this.say(`Mob #${mob.n} 이동 ${steps}칸: ${from} → ${B.label(mob.cells[0])}`);
+    if (steps) await this.geyserMob(mob, start);
     return steps;
   },
 
@@ -109,7 +111,7 @@ export const MobMixin = {
     const M = this.monster, B = this.board; if (!mob || !mob.cells.length || !M.mobs.includes(mob) || !k || !k.alive) return;
     x += this.mobAura('gangupBonus'); this.say(`Gangup ${x}: Mob #${mob.n} → ${k.name}`, 'ai');
     const moved = await this.mobMoveToward(mob, k.pos, x); const rem = x - moved;
-    const others = M.mobs.filter(m => m !== mob);
+    const others = M.mobs.filter(m => m !== mob && m.cells.length);
     if (others.some(m => B.adjacent(m.cells[0], k.pos))) { this.say(`${k.name}: 이미 다른 Mob과 인접 → Knockdown`); await this.knockdown(k); }
     else if (rem > 0 && others.length && !(k.braced)) {
       const n = Math.max(0, rem - this.fx.involuntaryReduction(k));
@@ -126,7 +128,7 @@ export const MobMixin = {
     if (k.alive && M.mobs.includes(mob)) await this.mobMoveToward(mob, k.pos, Infinity, { ask: false });
   },
   /** Swarm X (p.87): the attacked Knight loses -X Vigor for each other adjacent Monster. */
-  async swarm(mob, k, x) { const n = this.monster.mobs.filter(m => m !== mob && this.board.adjacent(m.cells[0], k.pos)).length; this.say(`Swarm ${x}: 인접한 다른 Mob ${n}`); if (n) await this.loseVigor(k, x * n, { source: 'effect', armor: false }); },
+  async swarm(mob, k, x) { const n = this.monster.mobs.filter(m => m !== mob && m.cells.length && this.board.adjacent(m.cells[0], k.pos)).length; this.say(`Swarm ${x}: 인접한 다른 Mob ${n}`); if (n) await this.loseVigor(k, x * n, { source: 'effect', armor: false }); },
   /** Heal 1 (Mob Clash, p.82): top BP of the Wound Stack returns to the leftmost empty space of the Mob track, adjacent to the source. */
   async healMob(source) {
     const M = this.monster, B = this.board; const i = M.woundStack.length - 1; if (i < 0 || !M.woundStack[i].card) { this.say('Heal: Wound Stack에 BP 없음'); return null; }
@@ -154,12 +156,13 @@ export const MobMixin = {
   },
   killMob(mob) {
     const M = this.monster; mob.lastCell = mob.cells[0]; this.board.remove(mob.cells); M.mobs = M.mobs.filter(x => x !== mob);
-    const w = mob.card.level === 3 ? 2 : 1; M.woundStack.push({ card: mob.card, wounds: w }); M.escalateAI(mob.card.level);
+    const w = mob.card.level === 3 ? 2 : 1; M.woundStack.push({ card: mob.card, wounds: w, mob }); M.escalateAI(mob.card.level); this.queueMobDeath(mob);
     for (const tok of [...mob.tokens]) this.moveToken(mob.n, tok, false); mob.tokens = []; mob.cells = []; mob.dead = true;
     if (M.hasTrait('Necrofusion')) { this.necro += w; this.say(`Necrofusion 토큰 ${this.necro}/3`); }
     this.say(`Mob #${mob.n} ${mob.card.name} 처치${w === 2 ? ' (Double Wound)' : ''}`, 'wound'); return w;
   },
   async mobAfterAction() {
+    if (this.bloodOn || this.monster.hasTrait('Subterranean Menace')) await this.bloodAfterAction();
     if (this.monster.hasTrait('Necrofusion') && this.necro >= 3 && !this._spawning) { this.necro = 0; this._spawning = true; try { this.say('Necrofusion: 토큰 3 → Spawn + Signature', 'ai'); const mob = await this.spawnMob(); if (mob) await this.withMob(mob, () => this.performSignature()); } finally { this._spawning = false; } this.checkEnd(); }
   },
   /** Escalate the lowest (unrevealed) Mob: BP → a random BP one level higher in its place, and AI Escalation (p.62). */
@@ -180,9 +183,9 @@ export const MobMixin = {
     const M = this.monster; let mob = null; const src = ctx.source;
     if (which === 'this') mob = src && M.mobs.includes(src) ? src : null;
     else if (which === 'new') mob = ctx.newMob || null;
-    else { const k = ctx.attacker || ctx.target; const list = M.mobs.filter(m => m !== src || M.mobs.length === 1); if (!list.length || !k) return; const ds = list.map(m => this.mobDist(m, k.pos)); const fin = ds.filter(d => d < Infinity); const pool = fin.length ? list.filter((m, i) => ds[i] < Infinity) : list; const dd = pool.map(m => this.mobDist(m, k.pos)); const best = which === 'furthest' ? Math.max(...dd) : Math.min(...dd); mob = await this.pickMob(pool.filter((m, i) => dd[i] === best), `Draw AI — ${k.name}에게서 ${which === 'furthest' ? '가장 먼' : '가장 가까운'} Mob (동률)`); }
+    else { const k = ctx.attacker || ctx.target; const list = M.mobs.filter(m => (m !== src || M.mobs.length === 1)); if (!list.length || !k) return; const ds = list.map(m => this.mobDist(m, k.pos)); const fin = ds.filter(d => d < Infinity); const pool = fin.length ? list.filter((m, i) => ds[i] < Infinity) : list; const dd = pool.map(m => this.mobDist(m, k.pos)); const best = which === 'furthest' ? Math.max(...dd) : Math.min(...dd); mob = await this.pickMob(pool.filter((m, i) => dd[i] === best), `Draw AI — ${k.name}에게서 ${which === 'furthest' ? '가장 먼' : '가장 가까운'} Mob (동률)`); }
     if (!mob) { this.say('Draw AI: 대상 Mob 없음'); return; }
-    this.say(`Draw AI for Mob #${mob.n}`, 'ai'); await this.withMob(mob, () => this.activationAI()); await this.mobAfterAction();
+    this.say(`Draw AI for Mob #${mob.n}`, 'ai'); if (!(await this.emergeIfOffboard(mob))) return; await this.withMob(mob, () => this.activationAI()); await this.mobAfterAction();
   },
 
   /** Mob-specific monster ops; returns true when handled. */
@@ -209,7 +212,7 @@ export const MobMixin = {
         let list = [];
         if (o.to === 'this') list = live(src) ? [src] : [];
         else if (o.to === 'otherMobsInZone') { const z = live(src) ? B.zone(src.cells, o.z) : []; list = M.mobs.filter(m => m !== src && z.some(x => cellEq(x, m.cells[0]))); }
-        else if (o.to === 'closest') { const k = ctx.attacker || t; const origin = (src && (src.cells[0] || src.lastCell)) || (k && k.pos); const pool = M.mobs.filter(m => m !== src); if (pool.length && origin) { const d = m => Math.abs(m.cells[0].c - origin.c) + Math.abs(m.cells[0].r - origin.r); const best = Math.min(...pool.map(d)); const m = await this.pickMob(pool.filter(x => d(x) === best), 'Armor 토큰을 받을 가장 가까운 Mob (동률)'); list = m ? [m] : []; } }
+        else if (o.to === 'closest') { const k = ctx.attacker || t; const origin = (src && (src.cells[0] || src.lastCell)) || (k && k.pos); const pool = M.mobs.filter(m => m !== src && m.cells.length); if (pool.length && origin) { const d = m => Math.abs(m.cells[0].c - origin.c) + Math.abs(m.cells[0].r - origin.r); const best = Math.min(...pool.map(d)); const m = await this.pickMob(pool.filter(x => d(x) === best), 'Armor 토큰을 받을 가장 가까운 Mob (동률)'); list = m ? [m] : []; } }
         for (const m of list) { if (o.ifNone && m.armor > 0) continue; m.armor += o.n || 1; this.say(`Mob #${m.n} Armor 토큰 +${o.n || 1} (${m.armor})`); }
         return true;
       }
