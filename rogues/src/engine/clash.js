@@ -20,6 +20,7 @@ import { KaraMixin, installKara } from './kara.js';
 import { ParacelsaMixin, installParacelsa } from './paracelsa.js';
 import { SonchMixin, installSonch } from './sonch.js';
 import { UbarMixin, installUbar } from './ubar.js';
+import { StonefaceMixin } from './stoneface.js';
 
 export class ChainBreak extends Error { constructor(msg = 'Chain Break') { super(msg); this.chainBreak = true; } }
 const sum = a => a.reduce((x, y) => x + y, 0);
@@ -333,7 +334,7 @@ export class Clash {
     const diffInstead = gatesOn.find(g => g.op === 'difficultyInstead'); if (diffInstead) diff = diffInstead.n;
     if (this.negMonPrecision) { diff = Math.max(2, diff - this.negMonPrecision); this.say(`임시 Precision -${this.negMonPrecision} 토큰: Evasion 난이도 → ${diff}+ (토큰 버림)`, 'tech'); this.negMonPrecision = 0; }
     if (this.monster.hasTrait('Jacked')) { if (this.jackedTokens >= 2) diff += 1; if (this.jackedTokens >= 5) dice += 1; }
-    const dw = await this.fx.defenseWindow(k, { judge: !!ops.judge }); dw.block += await this.paraDefense(k); dw.evasion += k._defEvasion || 0; this.karaTargeted(k); let evaBonus = this.fx.evasionBonus(k) + dw.evasion + this.karaEvasion(k); let virtue = null;
+    const dw = await this.fx.defenseWindow(k, { judge: !!ops.judge }); dw.block += await this.paraDefense(k); dw.evasion += k._defEvasion || 0; await this.stoneDefense(k); this.karaTargeted(k); let evaBonus = this.fx.evasionBonus(k) + dw.evasion + this.karaEvasion(k); let virtue = null;
     let freeER = this.fx.evasionRerolls(k) + this.lsBoon(k, 'evasionReroll'), cloak = 0;
     let extraGuard = this.lsBoon(k, 'guard') + (k._defGuard || 0), wilder = 0;
     if (k.perilArcDef && k.perilArcDef.bonus && /^Guard (\d+)/.test(k.perilArcDef.bonus.text || '')) extraGuard += +/^Guard (\d+)/.exec(k.perilArcDef.bonus.text)[1];
@@ -400,7 +401,7 @@ export class Clash {
   async loseVigor(k, n, { source = 'attack', perilCheck = false, armor = true } = {}) {
     if (!k.alive || n <= 0) return 0;
     let loss = n;
-    if (armor && source === 'attack' && !this.fx.gearHas(k, 'noArmorRoll')) { const dice = this.fx.armorDice(k); if (dice.red + dice.black + dice.white > 0) { const r = rollArmor(this.rng, dice, this.data.components.dice.faces, this.data.components.dice.armorSymbol); let mit = await this.fx.armorRollGear(k, r); if (this.fx.has(k, 'armorRollDoubleSymbols')) mit *= 2; else mit = await this.fx.armorDoubleGear(k, mit, loss); loss = Math.max(0, loss - mit); this.say(`${k.name} Armor Roll ${r.dice.length}d → 경감 ${mit}`, 'dice'); await this.fx.onArmorRoll(k, mit); if (loss === 0) { this.say(`${k.name} 피해 전부 경감 → Peril Check 없음`); return 0; } } }
+    if (armor && source === 'attack' && !this.fx.gearHas(k, 'noArmorRoll')) { const dice = this.fx.armorDice(k); if (dice.red + dice.black + dice.white > 0) { const r = rollArmor(this.rng, dice, this.data.components.dice.faces, this.data.components.dice.armorSymbol); let mit = await this.fx.armorRollGear(k, r); if (this.fx.has(k, 'armorRollDoubleSymbols')) mit *= 2; else mit = await this.fx.armorDoubleGear(k, mit, loss); { const l0 = loss; loss = Math.max(0, loss - mit); k._mitigated = l0 - loss; } this.say(`${k.name} Armor Roll ${r.dice.length}d → 경감 ${mit}`, 'dice'); await this.fx.onArmorRoll(k, mit); if (loss === 0) { this.say(`${k.name} 피해 전부 경감 → Peril Check 없음`); return 0; } } }
     if (source === 'attack' && loss > 0) { const u = await this.fx.gearUse(k, ['soakPaid'], `Monster Attack Vigor -${loss} — Soak 사용?`); if (u) { loss -= u.n; this.say(`${k.name}: Soak ${u.n} (Gear)`, 'tech'); } }
     loss -= this.fx.soak(k); if (loss <= 0) return 0;
     const before = k.vigor; const eff = k.loseVigor(loss); this.say(`${k.name} Vigor -${loss} (${before}→${k.vigor})${eff < 0 ? ' [효과상 ' + eff + ']' : ''}`, 'dmg');
@@ -563,7 +564,7 @@ export class Clash {
       const choice = opts.length === 1 ? 'end' : await this.ask({ type: 'action', knight: k.id, options: opts });
       if (choice === 'end') done = true;
       else if (choice.startsWith('unex:')) { k.actions[choice.slice(5)] = false; for (const g of k.gear) if (!g.discarded) g.exhausted = false; this.say(`${k.name}: ${choice.slice(5) === 'move' ? '이동' : '전투'} 행동으로 모든 장비 Unexhaust (p.21)`, 'tech'); }
-      else if (choice === 'move') { await this.knightMove(k, this.fx.speed(k)); k.actions.move = false; await this.karaMoveAction(k); }
+      else if (choice === 'move') { await this.stoneMoveAction(k); await this.knightMove(k, this.fx.speed(k)); k.actions.move = false; await this.karaMoveAction(k); }
       else if (choice === 'moveC') { await this.knightMove(k, this.fx.speed(k)); k.actions.combat = false; }
       else if (choice === 'attack') { if (k.actions.combat) k.actions.combat = false; else k.actions.extraCombat--; await this.knightAttack(k); }
       else if (choice.startsWith('tech:')) await this.fx.useTechnique(k, k.hand.find(t => t.name === choice.slice(5)));
@@ -656,7 +657,7 @@ export class Clash {
     A.hits = roll.dice.filter(isHit).length; A.critChance = roll.dice[0].v === 10 || (this.fx.has(k, 'deadly') && roll.dice[0].v >= 9);
     this.flash('dice', { title: `${k.name} Attack Roll ${toHit}+ (+${prec})`, dice: roll.dice.map(d => ({ v: d.v, ok: isHit(d), crit: d.crit })), sub: `명중 ${A.hits}/${dice}${A.critChance ? ' ★Crit Chance' : ''}`, cls: A.hits ? 'good' : 'bad' });
     this.say(`${k.name} Attack Roll ${dice}d vs ${toHit}+ (+${prec}) → [${roll.dice.map(d => d.v + (d.rerolled ? '*' : '')).join(' ')}] 명중 ${A.hits}/${dice}${A.critChance ? ' ★Crit Chance' : ''}`, 'dice');
-    if (A.hits === 0) { this.say(`${k.name} Full Miss`); await this.fx.onFullMiss(k, A); if (!A.keepPool) this.clearPool(); await this.paraFullMiss(k, A); await this.fx.secondWindow(k, A); this.currentKnightAttack = null; return; }
+    if (A.hits === 0) { this.say(`${k.name} Full Miss`); await this.stoneFullMiss(k, A); await this.fx.onFullMiss(k, A); if (!A.keepPool) this.clearPool(); await this.paraFullMiss(k, A); await this.fx.secondWindow(k, A); this.currentKnightAttack = null; return; }
     if (A.hits === dice) await this.fx.onFullHit(k, A);
     // 4. first ability window (a Chain Break here ends the attack: clear pool + second window, p.54)
     await this.fx.afterHits(k, A, roll.dice.length);
@@ -776,7 +777,7 @@ export class Clash {
   }
   async windowOfOpportunity(when, attack, target = null) { const a = attack || this.currentAttack; if (a && a.noReact && when !== 'beforeEffects') { this.say('REACT! 무시 (Blood 게이트)'); return; } await this.fx.reactions(when, attack, target); }
 }
-Object.assign(Clash.prototype, MobMixin, BloodMixin, HauntsMixin, FirstmenMixin, TrollMixin, NightmareMixin, FenMixin, PumpMixin, IroncastMixin, RenholderMixin, KaraMixin, ParacelsaMixin, SonchMixin, UbarMixin);
+Object.assign(Clash.prototype, MobMixin, BloodMixin, HauntsMixin, FirstmenMixin, TrollMixin, NightmareMixin, FenMixin, PumpMixin, IroncastMixin, RenholderMixin, KaraMixin, ParacelsaMixin, SonchMixin, UbarMixin, StonefaceMixin);
 installKara(Clash);
 installParacelsa(Clash);
 installSonch(Clash);

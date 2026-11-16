@@ -1,0 +1,2496 @@
+{
+ "id": "stoneface",
+ "name": "Stoneface",
+ "resourceToken": "Generic",
+ "_source": "Knightbook 'A Knight's Tale: Stoneface' (p.3–4 rules & Knight Setup) + Portrait / Talent / Heroic Arc / Technique sprite sheets (owner-supplied 2026-11-16).",
+ "specialRules": {
+  "leash": "Whenever you mitigate [Vigor] loss by 1 or more, Leash X, where X is the amount of mitigated [Vigor] loss. Leash X: Place X Generic tokens on your Knight Board. Note: You must resolve this keyword when prompted unless stated otherwise. Unleash X: If you have X or more Generic tokens currently on your Knight Board, you may discard all of them to pay the Unleash cost."
+ },
+ "setup": {
+  "virtues": {
+   "Fortitude": 1,
+   "Might": 1,
+   "Tenacity": 2
+  },
+  "rapportBoon": {
+   "text": "During Rest: Discard 1 Bane token.",
+   "note": "Rogue's Path에서 미적용."
+  },
+  "explorationCipher": "**54",
+  "portraits": [
+   "Knight of Stone"
+  ],
+  "portrait": "knight-of-stone",
+  "talent": "Knight of Stone",
+  "heroicArc": "Knight of Stone",
+  "perilArc": "Knight of Stone",
+  "techniques": [
+   "Knight Pose",
+   "Second Chance",
+   "Knight Stand",
+   "Granite Guardian",
+   "Gather No Moss"
+  ],
+  "gear": [
+   "Knighves",
+   "Ragged Hauberk"
+  ],
+  "gearNote": "Knightbook: '1 set of Knighves and 1 chosen Mob tier Merchant [gear]'. [해석, 확인 필요] 선택 UI가 없어 Ragged Hauberk(방어구)로 고정.",
+  "backSides": "Knight Pose // Knight Prowess, Second Chance // Just Trying to Help, Knight Stand // Finding My Way, Granite Guardian // Subtle Encouragement, Gather No Moss // The First Pebbles — back sides are not in the supplied sheets."
+ },
+ "firstDeath": {
+  "text": "Stoneface's First Death Special Event: Mark the First Death box on your Knight Sheet. Gain +1 Sigh of the Graal.",
+  "ops": [
+   {
+    "op": "markFirstDeath"
+   },
+   {
+    "op": "gainSigh",
+    "n": 1
+   }
+  ],
+  "note": "[해석, 확인 필요] Fleischritter와 같은 보상으로 처리."
+ },
+ "components": {
+  "portraits": 2,
+  "talents": 3,
+  "heroicArcs": 4,
+  "perilArcs": 4,
+  "techniques": 26,
+  "gear": 5
+ },
+ "talents": [
+  {
+   "id": "knight-of-stone",
+   "name": "Knight of Stone",
+   "tier": "starting",
+   "abilities": [
+    {
+     "name": "Shell of Stone",
+     "text": "When you are about to perform an Armor Roll, you may exhaust your Armor to Reinforce 1 (you still benefit from its Armor dice).",
+     "ops": [
+      {
+       "op": "shellOfStone"
+      }
+     ]
+    },
+    {
+     "name": "Rockslide",
+     "text": "When you deal a Wound, Unleash 6 to Pushback 2 toward a chosen space.",
+     "ops": [
+      {
+       "op": "rockslide",
+       "unleash": 6,
+       "n": 2
+      }
+     ]
+    },
+    {
+     "name": "Accursed Strength",
+     "text": "Ignore up to -1 [Speed] penalty from any 1 equipped Gear [Gear] card.",
+     "ops": [
+      {
+       "op": "accursedStrength"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "obedient-son",
+   "name": "Obedient Son",
+   "tier": "vassal",
+   "abilities": [
+    {
+     "name": "Rolling Stone",
+     "text": "[Combat action + Move action] Unleash 5: Rush. If another Knight becomes adjacent to you during that Rush, you may Drag them for the rest of the movement (only one Knight).",
+     "ops": [
+      {
+       "op": "rollingStone",
+       "unleash": 5
+      }
+     ],
+     "unclear": [
+      "Dragging another Knight is not implemented"
+     ]
+    },
+    {
+     "name": "Sticks and Stones",
+     "text": "Spears and Polearms gain \"When you attack with this Weapon, Leash 2.\"",
+     "ops": [
+      {
+       "op": "sticksAndStones",
+       "n": 2
+      }
+     ]
+    },
+    {
+     "name": "Accursed Strength",
+     "text": "Ignore up to -1 [Speed] penalty from any 1 equipped Gear [Gear] card.",
+     "ops": [
+      {
+       "op": "accursedStrength"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "rebellious-child",
+   "name": "Rebellious Child",
+   "tier": "vassal",
+   "abilities": [
+    {
+     "name": "Martial Monolith",
+     "text": "When you are about to perform a Melee/Reach Attack you may: Provoke, Pull 1, and/or gain Tireless. Then, Leash 1 for each resolved effect.",
+     "ops": [
+      {
+       "op": "martialMonolith"
+      }
+     ]
+    },
+    {
+     "name": "Juggernaut",
+     "text": "During the first or second ability window, Unleash 7 to move up to 3 spaces toward the Target. If you become adjacent to it, move it to any other space adjacent to you.",
+     "ops": [],
+     "note": "미구현."
+    },
+    {
+     "name": "Accursed Strength",
+     "text": "Ignore up to -1 [Speed] penalty from any 1 equipped Gear [Gear] card.",
+     "ops": [
+      {
+       "op": "accursedStrength"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "no-strings-on-me",
+   "name": "No Strings on Me",
+   "tier": "devil",
+   "abilities": [
+    {
+     "name": "Tremortrial Throw",
+     "text": "1 [Bane]: Choose an adjacent Knight or Mob, move them up to X spaces away from you in a straight line, and Leash X, where X is the number of Bane [Bane] tokens you have.",
+     "ops": [
+      {
+       "op": "tremortrialThrow",
+       "bane": 1
+      }
+     ],
+     "unclear": [
+      "Only Knights can be thrown; the straight line is not enforced"
+     ]
+    },
+    {
+     "name": "Built Different",
+     "text": "You may use [two-hand] Melee/Reach Weapons as if they were [one-hand], provided that one of your Weapons has the Shield Trait.",
+     "ops": [],
+     "note": "미구현 (장비 슬롯)."
+    },
+    {
+     "name": "Undying Hope",
+     "text": "During either ability window, Unleash 9 to turn all Break [Break] tokens into Hope [Hope] tokens.",
+     "ops": [
+      {
+       "op": "undyingHope",
+       "unleash": 9
+      }
+     ]
+    },
+    {
+     "name": "Accursed Strength",
+     "text": "Ignore up to -1 [Speed] penalty from any 1 equipped Gear [Gear] card.",
+     "ops": [
+      {
+       "op": "accursedStrength"
+      }
+     ]
+    },
+    {
+     "name": "Stonewall",
+     "text": "For the purpose of Wave Attacks, other Knights treat you as an Obstacle.",
+     "ops": [],
+     "note": "미구현 (Wave Attack)."
+    }
+   ]
+  },
+  {
+   "id": "mangiarovina",
+   "name": "Mangiarovina",
+   "tier": "devil",
+   "abilities": [
+    {
+     "name": "Transmute Pain to Power",
+     "text": "[Combat action + Move action] 1 [Bane]: Pull X a Monster in sight and perform a Melee/Reach Attack if possible. If you deal a Wound, Leash X. X is your missing [Vigor].",
+     "ops": [
+      {
+       "op": "transmutePain",
+       "bane": 1
+      }
+     ],
+     "unclear": [
+      "The Pull of the Monster is not implemented (attack only when already in range)"
+     ]
+    },
+    {
+     "name": "Stone Sentinel",
+     "text": "When a Monster is about to perform an After Attack, Unleash 11 to immediately perform a Bonus Attack!",
+     "ops": [],
+     "note": "미구현."
+    },
+    {
+     "name": "Accursed Strength",
+     "text": "Ignore up to -1 [Speed] penalty from any 1 equipped Gear [Gear] card.",
+     "ops": [
+      {
+       "op": "accursedStrength"
+      }
+     ]
+    },
+    {
+     "name": "Stonewall",
+     "text": "For the purpose of Wave Attacks, other Knights treat you as an Obstacle.",
+     "ops": [],
+     "note": "미구현 (Wave Attack)."
+    }
+   ]
+  }
+ ],
+ "heroicArcs": [
+  {
+   "name": "Knight of Stone",
+   "plus": null,
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Break",
+        "n": 1
+       },
+       {
+        "token": "Pushback",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Break",
+        "n": 1
+       },
+       {
+        "token": "Pushback",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Break",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Provoke",
+        "n": 1
+       },
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Obedient Son",
+   "plus": null,
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Break",
+        "n": 2
+       },
+       {
+        "token": "Pushback",
+        "n": 2
+       }
+      ],
+      [
+       {
+        "token": "Break",
+        "n": 2
+       },
+       {
+        "token": "Pull",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Opening",
+        "n": 1
+       },
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "Break",
+        "n": 1
+       },
+       {
+        "token": "Reposition",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Black",
+        "n": 1
+       },
+       {
+        "token": "Pushback",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Black",
+        "n": 1
+       },
+       {
+        "token": "Pull",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "Hope",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Rebellious Child",
+   "plus": null,
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Opening",
+        "n": 1
+       },
+       {
+        "token": "Pushback",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Opening",
+        "n": 1
+       },
+       {
+        "token": "Pull",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Fire",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Fire",
+        "n": 1
+       },
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "Opening",
+        "n": 1
+       },
+       {
+        "token": "Pushback",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Opening",
+        "n": 1
+       },
+       {
+        "token": "Pull",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Rouse",
+        "n": 1
+       },
+       {
+        "token": "Black",
+        "n": 1
+       },
+       {
+        "token": "Knockback",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "Fire",
+        "n": 1
+       },
+       {
+        "token": "Reposition",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Good, Strong Hands",
+   "plus": null,
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Black",
+        "n": 1
+       },
+       {
+        "token": "Pushback",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Break",
+        "n": 1
+       },
+       {
+        "token": "Pull",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Black",
+        "n": 1
+       },
+       {
+        "token": "Provoke",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Pushback",
+        "n": 1
+       },
+       {
+        "token": "Black",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Break",
+        "n": 1
+       },
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "Reposition",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Black",
+        "n": 1
+       },
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "Pushback",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Pull",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Marble Marionette",
+   "plus": {
+    "text": "Auto-black 1",
+    "ops": [
+     {
+      "token": "AutoBlack",
+      "n": 1
+     }
+    ]
+   },
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Fire",
+        "n": 1
+       },
+       {
+        "token": "Pushback",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Black",
+        "n": 1
+       },
+       {
+        "token": "Pull",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "Closing",
+        "n": 1
+       },
+       {
+        "token": "Fire",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Sunder",
+        "n": 1
+       },
+       {
+        "token": "Pushback",
+        "n": 2
+       }
+      ],
+      [
+       {
+        "token": "Sunder",
+        "n": 1
+       },
+       {
+        "token": "Pull",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "Closing",
+        "n": 1
+       },
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Sunder",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "BPSuppress",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Knockback",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 8,
+     "options": [
+      [
+       {
+        "token": "PlusPower",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Mangiarovina",
+   "plus": null,
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Fire",
+        "n": 2
+       },
+       {
+        "token": "Pushback",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Fire",
+        "n": 2
+       },
+       {
+        "token": "Pull",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "Break",
+        "n": 1
+       },
+       {
+        "token": "Opening",
+        "n": 1
+       },
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Sunder",
+        "n": 1
+       },
+       {
+        "token": "Knockback",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "Hope",
+        "n": 1
+       },
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "Pushback",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "Pull",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Rouse",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Provoke",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Knockback",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "Sunder",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Opening",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 8,
+     "options": [
+      [
+       {
+        "token": "Hope",
+        "n": 1
+       },
+       {
+        "token": "Pushback",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Hope",
+        "n": 1
+       },
+       {
+        "token": "Pull",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Tableau Vivant",
+   "plus": {
+    "text": "Auto-break 1, [PowerReroll] 1",
+    "ops": [
+     {
+      "token": "AutoBreak",
+      "n": 1
+     },
+     {
+      "token": "PowerReroll",
+      "n": 1
+     }
+    ]
+   },
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Hope",
+        "n": 1
+       },
+       {
+        "token": "Pull",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Hope",
+        "n": 1
+       },
+       {
+        "token": "Pushback",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "Closing",
+        "n": 2
+       },
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Tireless",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Sunder",
+        "n": 1
+       },
+       {
+        "token": "Pull",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Sunder",
+        "n": 1
+       },
+       {
+        "token": "Pushback",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerDieBlack",
+        "n": 1
+       },
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "Hope",
+        "n": 2
+       },
+       {
+        "token": "Pull",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Hope",
+        "n": 2
+       },
+       {
+        "token": "Pushback",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "BPSuppress",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "AISuppress",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "Sunder",
+        "n": 1
+       },
+       {
+        "token": "Deadly",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 8,
+     "options": [
+      [
+       {
+        "token": "Power",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "No Strings on Me",
+   "plus": {
+    "text": "[PowerReroll] 1",
+    "ops": [
+     {
+      "token": "PowerReroll",
+      "n": 1
+     }
+    ]
+   },
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Closing",
+        "n": 1
+       },
+       {
+        "token": "Pushback",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Break",
+        "n": 2
+       },
+       {
+        "token": "Pull",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "Hope",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Sunder",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Break",
+        "n": 1
+       },
+       {
+        "token": "Closing",
+        "n": 1
+       },
+       {
+        "token": "Pull",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "Opening",
+        "n": 1
+       },
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Hope",
+        "n": 1
+       },
+       {
+        "token": "Knockback",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "Hope",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Sunder",
+        "n": 1
+       },
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "BPSuppress",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Pushback",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Pull",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 8,
+     "options": [
+      [
+       {
+        "token": "Hope",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Sunder",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": []
+  }
+ ],
+ "perilArcsRef": "data/knights/peril_arcs.json → arcs.stoneface",
+ "techniques": [
+  {
+   "name": "Knight Stand",
+   "unlock": "Start",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "When you're about to suffer involuntary movement, Unleash 7 to gain Braced. OR When you suffer involuntary movement, reduce it by up to 3.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "Up to 4 instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [
+    "Not implemented (Exert only)"
+   ],
+   "ops": null,
+   "timing": "onInvoluntaryMove",
+   "gateOps": {},
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Second Chance",
+   "unlock": "Start",
+   "cost": [
+    [
+     {
+      "res": "Bane",
+      "n": 1
+     }
+    ],
+    [
+     {
+      "res": "Unleash",
+      "n": 3
+     }
+    ]
+   ],
+   "text": "Second Chance.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "Superior Chance."
+    }
+   ],
+   "depletion": "discard",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "secondChance"
+    }
+   ],
+   "timing": "onMortisDraw",
+   "gateOps": {
+    "DEVIL": [
+     {
+      "op": "superiorChance"
+     }
+    ]
+   },
+   "exert": {
+    "token": "Break",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Knight Pose",
+   "unlock": "Start",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "Stand up. You may Unleash 7 to [Refresh] this Technique instead (of its Depletion).",
+   "gates": [
+    {
+     "gate": "KING",
+     "text": "Rocksteady."
+    },
+    {
+     "gate": "DRAGON",
+     "text": "Stand up, then gain Braced until the end of this turn."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "standUp"
+    },
+    {
+     "op": "unleashKeep",
+     "n": 7
+    }
+   ],
+   "timing": "free",
+   "gateOps": {
+    "KING": [
+     {
+      "op": "standUp"
+     },
+     {
+      "op": "rocksteady"
+     },
+     {
+      "op": "unleashKeep",
+      "n": 7
+     }
+    ],
+    "DRAGON": [
+     {
+      "op": "standUp"
+     },
+     {
+      "op": "braced"
+     },
+     {
+      "op": "unleashKeep",
+      "n": 7
+     }
+    ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Granite Guardian",
+   "unlock": "Start",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "Guard 2 and Leash 1.",
+   "gates": [
+    {
+     "gate": "KING",
+     "text": "Guard 2 and Leash 2 instead."
+    },
+    {
+     "gate": "DRAGON",
+     "text": "Guard 3 and Leash 2 instead."
+    }
+   ],
+   "depletion": "delay",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "techGuard",
+     "n": 2
+    },
+    {
+     "op": "leash",
+     "n": 1
+    }
+   ],
+   "timing": "onDefense",
+   "gateOps": {
+    "KING": [
+     {
+      "op": "techGuard",
+      "n": 2
+     },
+     {
+      "op": "leash",
+      "n": 2
+     }
+    ],
+    "DRAGON": [
+     {
+      "op": "techGuard",
+      "n": 3
+     },
+     {
+      "op": "leash",
+      "n": 2
+     }
+    ]
+   },
+   "exert": {
+    "token": "Opening",
+    "n": 1,
+    "depletion": "delay"
+   }
+  },
+  {
+   "name": "Gather No Moss",
+   "unlock": "Start",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "When another Knight performs a [Move action], if that Knight is or becomes adjacent to you, they gain +1 Speed [Speed] and Jump for that movement. Then, Leash 1.",
+   "gates": [
+    {
+     "gate": "KING",
+     "text": "Advanced Jump instead."
+    },
+    {
+     "gate": "DRAGON",
+     "text": "+2 Speed [Speed] instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [
+    "Offered when the moving Knight starts adjacent; Jump is not implemented"
+   ],
+   "ops": [
+    {
+     "op": "gatherNoMoss",
+     "n": 1
+    }
+   ],
+   "timing": "onOtherMove",
+   "gateOps": {
+    "DRAGON": [
+     {
+      "op": "gatherNoMoss",
+      "n": 2
+     }
+    ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Unshakeable",
+   "unlock": "Investigation 1-2",
+   "cost": [
+    [
+     {
+      "res": "Heat",
+      "n": 2
+     }
+    ],
+    [
+     {
+      "res": "Unleash",
+      "n": 3
+     }
+    ]
+   ],
+   "text": "Ignore a Condition card until the start of your next turn.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "Discard a Condition card instead."
+    }
+   ],
+   "depletion": "discard",
+   "unclear": [
+    "Not implemented (Exert only)"
+   ],
+   "ops": null,
+   "timing": "free",
+   "gateOps": {},
+   "exert": {
+    "token": "Break",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Get Clear!",
+   "unlock": "Investigation 1-3",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "[Reaction] Knockback an adjacent Knight 2 spaces in any direction. Additionally, you may Unleash 3 to Knockback any adjacent miniature instead.",
+   "gates": [
+    {
+     "gate": "KING",
+     "text": "3 spaces instead."
+    },
+    {
+     "gate": "DEVIL",
+     "text": "4 spaces instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [
+    "The adjacent Knight moves up to N spaces (chosen destination); the Unleash 3 variant is not implemented"
+   ],
+   "ops": [
+    {
+     "op": "getClear",
+     "n": 2
+    }
+   ],
+   "timing": "reaction",
+   "gateOps": {
+    "KING": [
+     {
+      "op": "getClear",
+      "n": 3
+     }
+    ],
+    "DEVIL": [
+     {
+      "op": "getClear",
+      "n": 4
+     }
+    ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Impossible to Ignore",
+   "unlock": "Quest: Good, Strong Hands",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "Gain +1 [Passion] and the Priority Target token, then turn all Monsters in sight to face you. Then, Leash 2.",
+   "gates": [
+    {
+     "gate": "DRAGON",
+     "text": "+2 [Passion] instead."
+    }
+   ],
+   "depletion": "discard",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "gainPassion",
+     "n": 1
+    },
+    {
+     "op": "provoke"
+    },
+    {
+     "op": "leash",
+     "n": 2
+    }
+   ],
+   "timing": "free",
+   "gateOps": {
+    "DRAGON": [
+     {
+      "op": "gainPassion",
+      "n": 2
+     },
+     {
+      "op": "provoke"
+     },
+     {
+      "op": "leash",
+      "n": 2
+     }
+    ]
+   },
+   "exert": {
+    "token": "Break",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Danger Zone",
+   "unlock": "Investigation 2-2",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "During the second ability window, Leash 2 and gain Knockback 3.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "Leash 3 and gain Knockback 4 instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [
+    "Knockback is resolved like Pushback of the Monster in the second ability window"
+   ],
+   "ops": [
+    {
+     "op": "dangerZone",
+     "leash": 2,
+     "n": 3
+    }
+   ],
+   "timing": "beforeAttack",
+   "gateOps": {
+    "DEVIL": [
+     {
+      "op": "dangerZone",
+      "leash": 3,
+      "n": 4
+     }
+    ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Hard Headed",
+   "unlock": "Investigation 2-3",
+   "cost": [
+    {
+     "res": "Unleash",
+     "n": 2
+    }
+   ],
+   "text": "Advanced Reinforce 2.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "Advanced Reinforce 3 instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "techReinforce",
+     "colour": "black",
+     "n": 2
+    }
+   ],
+   "timing": "onDefense",
+   "gateOps": {
+    "DEVIL": [
+     {
+      "op": "techReinforce",
+      "colour": "black",
+      "n": 3
+     }
+    ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Scrape Clean",
+   "unlock": "Quest: Obedient Son",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    },
+    {
+     "res": "Unleash",
+     "n": 3
+    }
+   ],
+   "text": "Discard up to 3 Condition tokens.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "Additionally discard up to 3 Bane [Bane] tokens."
+    }
+   ],
+   "depletion": "discard",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "scrapeClean",
+     "n": 3
+    }
+   ],
+   "timing": "free",
+   "gateOps": {
+    "DEVIL": [
+     {
+      "op": "scrapeClean",
+      "n": 3,
+      "bane": 3
+     }
+    ]
+   },
+   "exert": {
+    "token": "Break",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Hammerthrow Momentum",
+   "unlock": "Quest: Obedient Son",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "When you are about to attack, gain Reposition 2.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "Reposition 3 instead."
+    },
+    {
+     "gate": "DRAGON",
+     "text": "This Technique's Depletion becomes [Refresh]."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [
+    "The Reposition is resolved when the Technique is used (before the Attack)"
+   ],
+   "ops": [
+    {
+     "op": "repositionNow",
+     "n": 2
+    }
+   ],
+   "timing": "beforeAttack",
+   "gateOps": {
+    "DEVIL": [
+     {
+      "op": "repositionNow",
+      "n": 3
+     }
+    ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Eshin Ishitsugi Technique",
+   "unlock": "Quest: Rebellious Child",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 3
+    },
+    {
+     "res": "Bane",
+     "n": 1
+    }
+   ],
+   "text": "Gain +5 [Vigor].",
+   "gates": [
+    {
+     "gate": "DRAGON",
+     "text": "+8 [Vigor] instead."
+    }
+   ],
+   "depletion": "discard",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "gainVigor",
+     "n": 5
+    }
+   ],
+   "timing": "free",
+   "gateOps": {
+    "DRAGON": [
+     {
+      "op": "gainVigor",
+      "n": 8
+     }
+    ]
+   },
+   "exert": {
+    "token": "Black",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Avalanche Hammerstrike",
+   "unlock": "Quest: Rebellious Child",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    },
+    {
+     "res": "Bane",
+     "n": 1
+    }
+   ],
+   "text": "When you are about to attack, gain Attack Re-roll 1, Power Re-roll 1, and Auto-break 1. Additionally, you may Unleash 6 to gain Attack Re-roll 2, Power Re-roll 2, and Auto-hope 1 instead.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "Unleash 6 to gain Attack Re-roll 3, Power Re-roll 3, and Auto-hope 2 instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [
+    "No Exert icon on this card"
+   ],
+   "ops": [
+    {
+     "op": "avalanche",
+     "n": 2,
+     "hope": 1
+    }
+   ],
+   "timing": "beforeAttack",
+   "gateOps": {
+    "DEVIL": [
+     {
+      "op": "avalanche",
+      "n": 3,
+      "hope": 2
+     }
+    ]
+   },
+   "exert": null
+  },
+  {
+   "name": "Unstoppable Force",
+   "unlock": "Investigation 3-2",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "After you fully miss an Attack, skip the Clear the Knight Pool step. Then, Leash 2.",
+   "gates": [
+    {
+     "gate": "DRAGON",
+     "text": "Additionally, place a Power [Power] token in the Knight Pool."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "unstoppable"
+    }
+   ],
+   "timing": "onFullMissKeep",
+   "gateOps": {
+    "DRAGON": [
+     {
+      "op": "unstoppable",
+      "power": 1
+     }
+    ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Take the Hit",
+   "unlock": "Investigation 3-3",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "When another Knight is about to become the Target of an AI card, if you are adjacent to the attacking Monster, become the Target instead. Then, Leash 2. (You cannot re-roll Evasion dice during this Attack.)",
+   "gates": [
+    {
+     "gate": "DRAGON",
+     "text": "Leash 3 instead."
+    }
+   ],
+   "depletion": "discard",
+   "unclear": [
+    "Not implemented (Exert only)"
+   ],
+   "ops": null,
+   "timing": "onOtherTargeted",
+   "gateOps": {},
+   "exert": {
+    "token": "Break",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Go Beyond!",
+   "unlock": "Quest: Marble Marionette",
+   "cost": [
+    [
+     {
+      "res": "Bane",
+      "n": 1
+     }
+    ],
+    [
+     {
+      "res": "Unleash",
+      "n": 6
+     }
+    ]
+   ],
+   "text": "You must declare using this Technique before you perform the Power Roll. Ignore Fail Responses during this Attack. Additionally, if you deal a Wound and trigger the Overcome or Overpower effect, deal a Critical Wound.",
+   "gates": [],
+   "depletion": "discard",
+   "unclear": [
+    "All Responses are ignored; the Critical Wound part is not implemented"
+   ],
+   "ops": [
+    {
+     "op": "ignoreResponses"
+    }
+   ],
+   "timing": "beforePowerRoll",
+   "gateOps": {},
+   "exert": {
+    "token": "Black",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Solid Outside, Human Inside",
+   "unlock": "Investigation 4-2",
+   "cost": [
+    {
+     "res": "Unleash",
+     "n": 9
+    }
+   ],
+   "text": "When you are about to attack, gain Heartseeker and Provoke. OR When you become the Target of an Attack, gain Superior Reinforce 1.",
+   "gates": [],
+   "depletion": "cooldown",
+   "unclear": [
+    "Only the attack option is implemented"
+   ],
+   "ops": [
+    {
+     "op": "heartseeker"
+    },
+    {
+     "op": "provokeNow"
+    }
+   ],
+   "timing": "beforeAttack",
+   "gateOps": {},
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Unassailable",
+   "unlock": "Investigation 4-3",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "When you become the Target of an Attack, gain Braced and Soak 3 for this Attack.",
+   "gates": [],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "braced"
+    },
+    {
+     "op": "techSoak",
+     "n": 3
+    }
+   ],
+   "timing": "onDefense",
+   "gateOps": {},
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "I'll Be Your Rock",
+   "unlock": "Quest: No Strings on Me",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "When another Knight in Zone 3 from you is about to die from moving onto a Terrain tile, ignore that death and place them adjacent to you. Then, Leash 3. OR [Reaction] Pull 2 another Knight in Zone 3. Then, Leash 3.",
+   "gates": [],
+   "depletion": "discard",
+   "unclear": [
+    "Only the Reaction option is implemented"
+   ],
+   "ops": [
+    {
+     "op": "rockPull",
+     "zone": 3,
+     "n": 2,
+     "leash": 3
+    }
+   ],
+   "timing": "reaction",
+   "gateOps": {},
+   "exert": {
+    "token": "Hope",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Skipping Stone",
+   "unlock": "Quest: No Strings on Me",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    },
+    {
+     "res": "Unleash",
+     "n": 6
+    }
+   ],
+   "text": "[Reaction] Advanced Reflex.",
+   "gates": [],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "reflex",
+     "n": 2
+    }
+   ],
+   "timing": "reaction",
+   "gateOps": {},
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Rock, Meet Hard Place",
+   "unlock": "Quest: Mangiarovina",
+   "cost": [
+    {
+     "res": "Action",
+     "actions": [
+      "move"
+     ]
+    },
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "Perform a [Move action] with +2 Speed [Speed]. You may treat any amount of spaces of this [Move action] as Pushback. If a Monster would be moved onto an Obstacle during this movement, place a temporary negative AT token in the Knight Pool (once per Clash).",
+   "gates": [],
+   "depletion": "cooldown",
+   "unclear": [
+    "Only the Move action with +2 Speed is implemented"
+   ],
+   "ops": [
+    {
+     "op": "moveBoosted",
+     "n": 2
+    }
+   ],
+   "timing": "free",
+   "gateOps": {},
+   "exert": {
+    "token": "Closing",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Memories of Who I Was",
+   "unlock": "Quest: Mangiarovina",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    },
+    {
+     "res": "Bane",
+     "n": 1
+    }
+   ],
+   "text": "Discard a Mind Condition card and/or gain +5 [Vigor].",
+   "gates": [],
+   "depletion": "discard",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "mindOverBody",
+     "type": "mind"
+    },
+    {
+     "op": "gainVigor",
+     "n": 5
+    }
+   ],
+   "timing": "free",
+   "gateOps": {},
+   "exert": {
+    "token": "Hope",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Vita Ex Mortis",
+   "unlock": "Investigation 5-2",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 3
+    },
+    {
+     "res": "Unleash",
+     "n": 9
+    }
+   ],
+   "text": "If you would die as a result of a Judicium draw, ignore that death. OR If you would gain Bane [Bane] tokens above your Bane Limit, ignore that gain.",
+   "gates": [],
+   "depletion": "discard",
+   "unclear": [
+    "Not implemented (Exert only)"
+   ],
+   "ops": null,
+   "timing": "onDeath",
+   "gateOps": {},
+   "exert": {
+    "token": "Hope",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Split the Heavens",
+   "unlock": "Investigation 5-3",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "Leash 2. Until the end of this turn, you may Exhaust your Armor [Gear] card to gain +2 Speed [Speed], Spotlight, and Auto-hope 1. Until the end of this turn, when you deal a Wound, you may discard a Condition card.",
+   "gates": [],
+   "depletion": "cooldown",
+   "unclear": [
+    "The Armor exhaust is offered when the Technique is used; the Wound → discard a Condition part is not implemented"
+   ],
+   "ops": [
+    {
+     "op": "leash",
+     "n": 2
+    },
+    {
+     "op": "splitHeavens"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {},
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "My Turn",
+   "unlock": "Quest: Tableau Vivant",
+   "cost": [],
+   "text": "After you resolve a [Judicium draw] during an AI, Chain Break. Then, reveal the top BP card. If the attacking Monster is a Mob, reveal its BP card instead (ignore Ultrainstinct Responses). Additionally you may Unleash X, where X is this BP's AT, to wound that BP. Treat this as dealing a Wound, but not as performing an Attack (resolve Responses, place a card on the Wound Stack, and Escalate).",
+   "gates": [],
+   "depletion": "discard",
+   "unclear": [
+    "Not implemented (Exert only)"
+   ],
+   "ops": null,
+   "timing": "onJudiciumAI",
+   "gateOps": {},
+   "exert": {
+    "token": "Sunder",
+    "n": 1,
+    "depletion": "discard"
+   }
+  }
+ ],
+ "missing": [],
+ "portraits": [
+  {
+   "id": "knight-of-stone",
+   "name": "Knight of Stone",
+   "tier": "starting",
+   "classes": [
+    "Knight of Stone"
+   ],
+   "powerDie": "red",
+   "cardRefresh": 1,
+   "heatRefresh": 2,
+   "handLimit": 4,
+   "speed": 3,
+   "baneLimit": 5
+  },
+  {
+   "id": "obedient-rebellious",
+   "name": "Obedient Son / Rebellious Child",
+   "tier": "vassal",
+   "classes": [
+    "Obedient Son",
+    "Rebellious Child"
+   ],
+   "powerDie": "red",
+   "cardRefresh": 1,
+   "heatRefresh": 3,
+   "handLimit": 5,
+   "speed": 3,
+   "baneLimit": 6
+  },
+  {
+   "id": "nostrings-mangiarovina",
+   "name": "No Strings on Me / Mangiarovina",
+   "tier": "devil",
+   "classes": [
+    "No Strings on Me",
+    "Mangiarovina"
+   ],
+   "powerDie": "black",
+   "cardRefresh": 2,
+   "heatRefresh": 4,
+   "handLimit": 6,
+   "speed": 4,
+   "baneLimit": 7
+  }
+ ]
+}
