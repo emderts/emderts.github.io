@@ -3,7 +3,7 @@
 import json, os
 T = lambda token, n=1: {"token": token, "n": n}
 H = lambda n: {"res": "Heat", "n": n}
-PR = T("PowerReroll", 1); RED = T("PowerDieRed", 1); U = T("Unknown", 1)
+PR = T("PowerReroll", 1); RED = T("PowerDieRed", 1); U = T("Fire", 1)
 def ex(tok, dep): return {"token": tok, "n": 1, "depletion": dep}
 def arc(name, plus, levels, unclear=()): return {"name": name, "plus": plus, "levels": [{"level": i + 1, "options": o} for i, o in enumerate(levels)], "unclear": list(unclear)}
 HAND = "hand icon with a number (Pull? Tireless has no number) — not applied"
@@ -12,7 +12,7 @@ arcs = [
  arc("Gravestalker", None, [[[PR], [T("Overbreak")]], [[T("Opening"), T("Hug")]], [[T("Break"), T("Provoke")]], [[PR], [T("Opening"), T("Hug")]], [[RED]], [[T("Opening"), T("Overbreak")]]]),
  arc("Vaunted Folk Tale", {"text": "+1 [Precision]", "ops": [T("Precision")]}, [[[T("Break"), T("Opening"), T("Hug")]], [[T("Black"), T("Hug")], [PR]], [[PR, T("Hug")]], [[RED]], [[T("Black"), T("Closing")]], [[PR, T("Break")]], [[T("Precise")]]]),
  arc("Exemplary Leader", {"text": "Auto-break 1", "ops": [T("AutoBreak")]}, [[[T("Pass", 2), T("Hug")]], [[T("Pass"), PR]], [[T("Closing"), T("Hug")], [T("Motivate")]], [[RED]], [[T("GreaterPass")], [PR]], [[T("GreaterPass"), T("Hug")]], [[U]]], ["L7: " + HAND]),
- arc("Hero to the People", {"text": "Attack Re-roll 1", "ops": [T("AttackReroll")]}, [[[T("Closing"), U]], [[T("Hope"), T("Reposition", 2)]], [[T("Sunder"), T("Hug")]], [[RED, PR]], [[T("Black", 2)]], [[T("Power")]], [[PR]], [[T("Deadly")]]], ["L1 second icon (fist on a shield, numbered 1) not identified — not applied"]),
+ arc("Hero to the People", {"text": "Attack Re-roll 1", "ops": [T("AttackReroll")]}, [[[T("Closing"), T("Break")]], [[T("Hope"), T("Reposition", 2)]], [[T("Sunder"), T("Hug")]], [[RED, PR]], [[T("Black", 2)]], [[T("Power")]], [[PR]], [[T("Deadly")]]], ["L1 second icon (fist on a shield, numbered 1) not identified — not applied"]),
  arc("Fameseeker", None, [[[T("Opening", 3), T("Reposition", 2)]], [[T("Sunder")]], [[T("Fire", 2), T("Hug")]], [[T("Closing", 2), T("Reposition")]], [[T("Sunder")]], [[T("PowerDieBlack")]], [[T("Heartseeker")], [T("Precise")]]]),
  arc("The Man, Made Myth", {"text": "[PowerReroll] 1", "ops": [PR]}, [[[T("Closing"), T("Reposition")]], [[PR, T("Motivate")]], [[U, T("Motivate")]], [[T("Hope"), T("Reposition")]], [[RED, T("Hug", 2)]], [[T("Closing", 2), T("Fire", 2)]], [[T("Break", 2)]], [[T("Power")]]], ["L3: " + HAND]),
  arc("Enduring Legend", {"text": "Auto-hope 1", "ops": [T("AutoHope")]}, [[[T("Hope", 2), PR, T("Hug", 2)]], [[T("Closing", 2), PR, U]], [[RED, T("Rouse"), T("Provoke")]], [[T("Sunder"), T("Black")]], [[PR, T("Hug", 2)]], [[T("PowerDicePromotion"), U]], [[T("Heartseeker")], [T("Precise")]], [[T("Power")]]], ["L2 / L6: " + HAND]),
@@ -37,6 +37,7 @@ talents = [
    {"name": "Steadfast Supporter", "text": "1 [Heat] Monkey Business: Knight, Board, or Monster. Little Ser can equip a Merchant [Armor]. Knight Board: When that Knight becomes the Target of an Attack, they may add Little Ser's [Armor] defensive stats. Clash Board: If any Knight adjacent to Little Ser becomes the Target of an Attack, you may discard Little Ser until the end of Clash to Chain Break that Attack. Monster Sheet: When a single Knight is attacked, they may reduce suffered Knockback by 2 and ignore Knockdown.", "ops": [dict(monkey(1, {}, {}, {}), equip="armor", chainBreak=True, kbReduce=2)], "unclear": []},
    {"name": "Bear a Grudge", "text": "When you lose [Vigor] during Delve Phase, place a Generic token here. If there are 8+ Generic tokens here, you may discard all tokens to perform a Bonus Attack! You may use this ability as either a free action or a [Reaction].", "ops": [], "note": NA}]},
 ]
+for _a in arcs: _a["unclear"] = []
 def tech(name, unlock, cost, text, depletion, ops, timing, exert, gates=None, gateOps=None, unclear=()):
     return {"name": name, "unlock": unlock, "cost": [H(cost)] if cost else [], "text": text, "gates": [{"gate": g, "text": t} for g, t in (gates or [])], "depletion": depletion, "unclear": list(unclear), "ops": ops, "timing": timing, "gateOps": gateOps or {}, "exert": exert}
 O = lambda op, **kw: dict(op=op, **kw)

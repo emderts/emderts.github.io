@@ -660,16 +660,14 @@
      "options": [
       [
        {
-        "token": "Unknown",
+        "token": "Fire",
         "n": 1
        }
       ]
      ]
     }
    ],
-   "unclear": [
-    "L7: hand icon with a number (Pull? Tireless has no number) — not applied"
-   ]
+   "unclear": []
   },
   {
    "name": "Hero to the People",
@@ -692,7 +690,7 @@
         "n": 1
        },
        {
-        "token": "Unknown",
+        "token": "Break",
         "n": 1
        }
       ]
@@ -788,9 +786,7 @@
      ]
     }
    ],
-   "unclear": [
-    "L1 second icon (fist on a shield, numbered 1) not identified — not applied"
-   ]
+   "unclear": []
   },
   {
    "name": "Fameseeker",
@@ -941,7 +937,7 @@
      "options": [
       [
        {
-        "token": "Unknown",
+        "token": "Fire",
         "n": 1
        },
        {
@@ -1019,9 +1015,7 @@
      ]
     }
    ],
-   "unclear": [
-    "L3: hand icon with a number (Pull? Tireless has no number) — not applied"
-   ]
+   "unclear": []
   },
   {
    "name": "Enduring Legend",
@@ -1067,7 +1061,7 @@
         "n": 1
        },
        {
-        "token": "Unknown",
+        "token": "Fire",
         "n": 1
        }
       ]
@@ -1131,7 +1125,7 @@
         "n": 1
        },
        {
-        "token": "Unknown",
+        "token": "Fire",
         "n": 1
        }
       ]
@@ -1166,9 +1160,7 @@
      ]
     }
    ],
-   "unclear": [
-    "L2 / L6: hand icon with a number (Pull? Tireless has no number) — not applied"
-   ]
+   "unclear": []
   }
  ],
  "perilArcsRef": "data/knights/peril_arcs.json → arcs.ser-sonch",
