@@ -1973,9 +1973,13 @@
    "gates": [],
    "depletion": "discard",
    "unclear": [
-    "Not implemented (Exert only)"
+    "Requires an Armor card; offered at the start of the Clash"
    ],
-   "ops": null,
+   "ops": [
+    {
+     "op": "timed"
+    }
+   ],
    "timing": "startOfClash",
    "gateOps": {},
    "exert": {

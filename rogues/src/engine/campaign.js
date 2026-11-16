@@ -26,11 +26,13 @@ export class Campaign {
     const def = this.data.knights[k.def];
     return { id: `${k.def}-${i}`, def: k.def, name: k.name || def.name + (i ? ' ' + (i + 1) : ''), gold: 10, sigh: 0, bane: 0, firstDeath: false, alive: true, dead: false,
       virtues: { ...def.setup.virtues }, unlocked: { techniques: [...def.setup.techniques], heroicArcs: [def.setup.heroicArc], perilArcs: [def.setup.perilArc], talents: [def.setup.talent], portraits: [def.setup.portrait] },
-      loadout: { portrait: def.setup.portrait, heroicArc: def.setup.heroicArc, perilArc: def.setup.perilArc, talent: def.setup.talent, techniques: [...def.setup.techniques], gear: this._normalizeGear([...def.setup.gear]) },
-      armory: [...def.setup.gear], claimed: [], rapport: {}, devotion: 0, saint: null };
+      loadout: { portrait: def.setup.portrait, heroicArc: def.setup.heroicArc, perilArc: def.setup.perilArc, talent: def.setup.talent, techniques: [...def.setup.techniques], gear: this._normalizeGear(this._startGear(def, k)) },
+      armory: this._startGear(def, k), claimed: [], rapport: {}, devotion: 0, saint: null };
   }
   _mercDeck() { return this.data.decks.mercenaries.mercenaries.filter(m => m.level === 1 || m.class === 'Ruin Stalker').map(m => ({ class: m.class, level: m.level, cost: m.cost, side: 'A', kingdom: m.kingdom })); }
   knightDef(k) { return this.data.knights[k.def]; }
+  /** Starting Gear; Knights with a 'chosen Mob tier Merchant gear' (Ser Ubar, Stoneface) take k.startGear (default from the data). */
+  _startGear(def, k) { const ch = def.setup.gearChoice; if (!ch) return [...def.setup.gear]; const pick = k && ch.options.includes(k.startGear) ? k.startGear : ch.default; return ['Knighves', pick]; }
   _normalizeGear(names) { const hands = names.filter(n => n !== 'Knighves').map(n => this.gearDef(n)).filter(g => g && g.type === 'weapon').reduce((a, g) => a + (g.hands || 1), 0); return hands >= 2 ? names.filter(n => n !== 'Knighves') : names; }
   handLimit(k) { const p = this.knightDef(k).portraits.find(p => p.id === k.loadout.portrait); return p ? p.handLimit : 4; }
   gearDef(name) { const G = this.data.gear; return G.gear.gear.find(g => g.name === name) || (G.monster_gear ? this._withKw(G.monster_gear.gear.find(g => g.name === name)) : null) || this._withKw(this.kingdomGearList().find(g => g.name === name)) || this._consumableAsGear(name) || this._merchantAsGear(name); }

@@ -21,6 +21,7 @@ import { ParacelsaMixin, installParacelsa } from './paracelsa.js';
 import { SonchMixin, installSonch } from './sonch.js';
 import { UbarMixin, installUbar } from './ubar.js';
 import { StonefaceMixin } from './stoneface.js';
+import { ExtrasMixin, installExtras } from './extras.js';
 
 export class ChainBreak extends Error { constructor(msg = 'Chain Break') { super(msg); this.chainBreak = true; } }
 const sum = a => a.reduce((x, y) => x + y, 0);
@@ -347,14 +348,14 @@ export class Clash {
     if (k.bane > 0 && await this.fx.gearUse(k, ['evasionPlusBane'], `Evasion Roll 전 — +${k.bane} Evasion?`)) { evaBonus += k.bane; this.say(`${k.name}: Evasion +${k.bane} (Gear)`, 'tech'); }
     { const wp = this.fx.gearAbilities(k, ['wilderPlate'])[0]; if (wp) { const v = await this.ask({ type: 'pick', knight: k.id, text: `${k.name}: ${wp.g.name} — Attack의 대상 (1 Charge)`, options: [{ label: '사용 안 함', value: 'skip' }, { label: 'Guard 1', value: 'guard' }, { label: '빨간 Armor 주사위 1', value: 'armor' }, { label: 'Evasion Re-roll 1', value: 'er' }] }); if (v && v !== 'skip') { this.fx.gearPay(k, wp.g, wp.o); if (v === 'guard') extraGuard = 1; else if (v === 'er') freeER += 1; else { k.reinforce = k.reinforce || {}; k.reinforce.red = (k.reinforce.red || 0) + 1; } const m = /If you survive, gain \+(\d+) \[Passion\]/.exec(wp.g.text || ''); wilder = m ? +m[1] : 0; this.say(`${wp.g.name}: ${v === 'guard' ? 'Guard 1' : v === 'er' ? 'Evasion Re-roll 1' : '빨간 Armor 주사위 +1'}`, 'tech'); } } }
     for (const g of k.gear) { if (g.discarded || g.exhausted) continue; const o = this.fx.constKw(k, g).find(x => x.op === 'targetEvasionChoice'); if (!o) continue; const v = await this.ask({ type: 'pick', knight: k.id, text: `${k.name}: ${g.name} — Monster Attack의 대상`, options: [{ label: `+${o.e} Evasion`, value: 'e' }, { label: `Evasion Re-roll ${o.r}`, value: 'r' }, { label: '사용 안 함', value: 'skip' }] }); if (v === 'e') evaBonus += o.e; else if (v === 'r') freeER += o.r; if (v === 'e' || v === 'r') { const p = this.fx.constKw(k, g).find(x => x.op === 'targetEvasionPenalty'); cloak += p ? p.n : 0; this.say(`${g.name}: ${v === 'e' ? `+${o.e} Evasion` : `Evasion Re-roll ${o.r}`}`, 'tech'); } }
-    if (ops.judge) { const vOf = v => ((k.virtues || {})[v] || 0) + this.fx.virtueBonus(k, v); const opts = ops.judge.map(v => ({ label: `${v} +${vOf(v)}`, value: v })); virtue = opts.length > 1 ? await this.ask({ type: 'pick', knight: k.id, text: `${k.name} Judgement — 시험할 Virtue 선택`, options: opts }) || ops.judge[0] : ops.judge[0]; evaBonus = vOf(virtue); this.say(`${k.name} Judgement: ${virtue} 시험 (+${evaBonus}, ${dice}d ${diff}+)`); }
+    if (ops.judge) { const vOf = v => ((k.virtues || {})[v] || 0) + this.fx.virtueBonus(k, v); const opts = ops.judge.map(v => ({ label: `${v} +${vOf(v)}`, value: v })); virtue = opts.length > 1 ? await this.ask({ type: 'pick', knight: k.id, text: `${k.name} Judgement — 시험할 Virtue 선택`, options: opts }) || ops.judge[0] : ops.judge[0]; evaBonus = vOf(virtue) + (k._adrenaline ? 2 : 0); this.say(`${k.name} Judgement: ${virtue} 시험 (+${evaBonus}, ${dice}d ${diff}+)`); }
     if (ops.diceFromBlood) this.say(`Evasion 주사위 X = ${ops.diceFromBlood} × Blood ${this.mobBlood()} = ${dice}`);
     if (dice <= 0) { this.say(`${k.name}: 주사위 0개 → 명중 없음`); attack.hits[k.id] = 0; return; }
     for (const g of gatesOn.filter(g => g.op === 'evasionDice' && g.stat === 'blood')) this.say(`Blood ${this.mobBlood()} ≥ ${g.gte} → +${g.n} 주사위`);
     if (M.isMob) for (const g of gatesOn.filter(g => g.op === 'evasionDicePerAdjacentMob')) dice += g.n * M.mobs.filter(m => m !== M.cur && m.cells.length && this.board.adjacent(m.cells[0], k.pos)).length;
     // roll + Heat re-rolls: ask which dice to re-roll (cost +1 Heat each) — offered only if some die would fail
     const evade = async (n, label = '') => {
-      const r = rollD10s(this.rng, n);
+      const r = rollD10s(this.rng, n + (k._eyeStorm ? 1 : 0)); if (k._eyeStorm && r.dice.length > 1) { let wi = 0; r.dice.forEach((d, i) => { if (d.v < r.dice[wi].v) wi = i; }); const dr = r.dice.splice(wi, 1)[0]; this.say(`Eye of the Storm: 주사위 1개 추가, 가장 낮은 ${dr.v} 무시`, 'tech'); }
       if (r.dice.some(d => !d10Success(d.v, evaBonus, diff))) { let gd = await this.fx.gearUse(k, ['guard'], `Evasion [${r.dice.map(d => d.v).join(' ')}] vs ${diff}+ — Guard 사용?`); if (!gd && extraGuard && await this.yesNo(`${k.name}: Evasion [${r.dice.map(d => d.v).join(' ')}] vs ${diff}+ — Guard ${extraGuard} 사용?`, true)) { gd = { n: extraGuard }; extraGuard = 0; } if (gd) { for (let x = gd.n || 1; x > 0; x--) { const fail = r.dice.map((d, i) => ({ d, i })).filter(z => !d10Success(z.d.v, evaBonus, diff) && z.d.v > 1); if (!fail.length) break; const i = fail.length > 1 ? await this.ask({ type: 'pick', knight: k.id, text: `Guard: +1을 줄 주사위 (남은 ${x})`, options: fail.map(z => ({ label: `주사위 ${z.i + 1}: ${z.d.v}`, value: z.i })) }) : fail[0].i; const d = r.dice[i == null ? fail[0].i : i]; d.v = Math.min(10, d.v + 1); d.rerolled = true; } this.say(`Guard → [${r.dice.map(d => d.v).join(' ')}]`); } }
       if (r.dice.some(d => !d10Success(d.v, evaBonus, diff)) && (k.heat < k.heatLimit || freeER > 0 || (this.fx.gearHas(k, 'vigorReroll') && k.vigor > 1))) {
         const picked = await this.ask({ type: 'dice', knight: k.id, text: `${k.name} Evasion ${label}${n}d ${diff}+ (보너스 +${evaBonus}) — 재굴림 (${freeER ? `무료 Evasion Re-roll ${freeER}, 이후 ` : ''}Heat ${k.heat}/${k.heatLimit}, 주사위당 +1)`, dice: r.dice.map(d => ({ v: d.v, crit: d.crit, hit: d10Success(d.v, evaBonus, diff), canReroll: !d.rerolled })), max: k.heatLimit - k.heat + freeER + (this.fx.gearHas(k, 'vigorReroll') ? Math.max(0, k.vigor - 1) : 0) });
@@ -546,7 +547,7 @@ export class Clash {
     // Knockdown handling
     const kd = k.conditions.find(c => /^Knockdown/.test(c.id));
     if (kd && kd.id === 'Knockdown (Standing Up)') { this.standUp(k); }
-    k.steady = false; await this.renTurnStart(k); await this.karaTurnStart(k); await this.paraTurnStart(k); await this.ubarTurnStart(k);
+    k.steady = false; await this.renTurnStart(k); await this.karaTurnStart(k); await this.paraTurnStart(k); this.extrasTurnStart(k); await this.ubarTurnStart(k);
     for (const g of k.gear) { if (g.discarded || g.exhausted) continue; for (const o of this.fx.constKw(k, g)) if (o.op === 'gateDiscardBane' && k.alive) { g.discarded = true; this.say(`${g.name}: ${o.gate} — 카드 버림, Bane ${o.n}`, 'tech'); await this.fx.runKnightOp({ op: 'bane', n: o.n }, k, {}); } } if (!k.alive) return; await this.fx.hideAtStartOfTurn(k);
     for (const g of k.gear) { if (g.discarded || g.exhausted) continue; if (this.fx.constKw(k, g).some(o => o.op === 'turnRevealMortis')) { const tops = Object.keys(this.mortis || {}).filter(t => this.mortis[t] && this.mortis[t].cards && this.mortis[t].cards.length).map(t => `${t}: ${this.mortis[t].cards[0].name}`); this.say(`${g.name}: Mortis 덱 맨 위 — ${tops.join(' · ')}`, 'tech'); } }
     for (const g of k.gear) { if (g.discarded || g.exhausted) continue; for (const o of this.fx.constKw(k, g)) if (o.op === 'turnVigorBane' && k.alive) { k.gainVigor(o.v); this.say(`${g.name}: Start of your turn — Vigor +${o.v} (${k.vigor}), Bane ${o.n}`, 'tech'); await this.fx.runKnightOp({ op: 'bane', n: o.n }, k, {}); } else if (o.op === 'turnLoseVigor' && k.alive) { this.say(`${g.name}: Start of your turn — Vigor -${o.n}`, 'tech'); await this.fx.runKnightOp({ op: 'loseVigor', n: o.n }, k, {}); } }
@@ -665,7 +666,7 @@ export class Clash {
     try { await this.fx.firstWindow(k, A); } catch (e) { if (!e.chainBreak) throw e; this.say(`Chain Break: ${e.message}`, 'warn'); this.clearPool(); await this.fx.secondWindow(k, A); this.currentKnightAttack = null; return; }
     // 5. determine BP
     if (this.monster.isMob && !this.monster.mobs.includes(A.mob)) { this.say('대상 Mob이 이미 없음'); this.clearPool(); this.currentKnightAttack = null; return; }
-    let bp = A.guardian ? this.guardianBP(A.guardian) : this.monster.isMob ? A.mob.card : this.monster.drawBP(); if (this.monster.isMob) await this.revealMob(A.mob); if (!bp) { this.say('BP 덱 비어 있음'); this.currentKnightAttack = null; return; }
+    let bp = A.guardian ? this.guardianBP(A.guardian) : this.monster.isMob ? A.mob.card : await this.extrasDrawBP(k); if (this.monster.isMob) await this.revealMob(A.mob); if (!bp) { this.say('BP 덱 비어 있음'); this.currentKnightAttack = null; return; }
     if (!this.monster.isMob && !A.guardian && !bp.isThickSkin && this.monster.bp.discard.length && (A.flags.has('precise') ? await this.yesNo(`${k.name}: BP ${bp.name} 대신 버림 더미 맨 위 ${this.monster.bp.discard.at(-1).name}을(를) 공격 (Precise)?`, false) : await this.fx.gearUse(k, ['precise'], `BP ${bp.name} 대신 버림 더미 맨 위 ${this.monster.bp.discard.at(-1).name}을(를) 공격 (Precise)?`))) { const top = this.monster.bp.discard.pop(); this.monster.bp.cards.push(bp); this.monster.bp.shuffle(); bp = top; this.say(`Precise: 버림 더미의 ${bp.name} 공격, 뽑은 카드는 덱에 섞음`); }
     await this.fx.arcAt(k, A, 'bp');
     if (!this.monster.isMob && !A.guardian && this.fx.has(k, 'heartseeker', A)) { const alt = this.monster.drawBP(); if (alt) { const pick = await this.ask({ type: 'heartseeker', options: [bp, alt].map(c => ({ label: `${c.name} (AT ${this.bpAT(c)})`, value: c.name })) }); const chosen = [bp, alt].find(c => c.name === pick); const other = chosen === bp ? alt : bp; this.monster.bp.cards.unshift(other); bp = chosen; } }
@@ -777,8 +778,9 @@ export class Clash {
   }
   async windowOfOpportunity(when, attack, target = null) { const a = attack || this.currentAttack; if (a && a.noReact && when !== 'beforeEffects') { this.say('REACT! 무시 (Blood 게이트)'); return; } await this.fx.reactions(when, attack, target); }
 }
-Object.assign(Clash.prototype, MobMixin, BloodMixin, HauntsMixin, FirstmenMixin, TrollMixin, NightmareMixin, FenMixin, PumpMixin, IroncastMixin, RenholderMixin, KaraMixin, ParacelsaMixin, SonchMixin, UbarMixin, StonefaceMixin);
+Object.assign(Clash.prototype, MobMixin, BloodMixin, HauntsMixin, FirstmenMixin, TrollMixin, NightmareMixin, FenMixin, PumpMixin, IroncastMixin, RenholderMixin, KaraMixin, ParacelsaMixin, SonchMixin, UbarMixin, StonefaceMixin, ExtrasMixin);
 installKara(Clash);
 installParacelsa(Clash);
 installSonch(Clash);
 installUbar(Clash);
+installExtras(Clash);

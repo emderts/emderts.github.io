@@ -10,7 +10,11 @@ export const KaraMixin = {
   karaPrecision(k) { if (!talentHas(k, 'unconstrained') || !k.pos) return 0; const n = this.board.neighbors(k.pos).filter(c => this.karaOccupied(c)).length; return n === 0 ? 2 : n === 1 ? 1 : 0; },
   /** I Work Alone: Lone Knight +1 Evasion ([JUDICIUM] +2). Master the Terrain is not tracked (Obstacles cannot be entered). */
   karaEvasion(k) { if (!talentHas(k, 'iWorkAlone') || !this.isLone(k)) return 0; return k.peril() === 'Judicium' ? 2 : 1; },
-  karaDeploy(k) { let n = 0; if (k.talent) for (const a of k.talent.abilities) for (const o of a.ops || []) if (o.op === 'talentDeploy') n += o.n; return n; },
+  /** Knight in Shining Armor: Start of Clash — Deploy 1, the card goes under the Armor; Soak 2 while that Armor is unexhausted. */
+  async karaStartOfClash(k) { const t = k.hand.find(x => x.name === 'Knight in Shining Armor' && x.ops); const armor = k.gear.find(g => g.type === 'armor' && !g.discarded); if (!t || !armor || k._shining) return; if (!await this.yesNo(`${k.name}: Knight in Shining Armor — Start of Clash: Deploy 1, ${armor.name} 아래에 놓기 (Soak 2)?`, true)) return; k.hand.splice(k.hand.indexOf(t), 1); k._shining = { t, armor }; this.say(`${k.name}: Knight in Shining Armor — ${armor.name} 아래에 놓음 (Unexhaust 동안 Soak 2)`, 'tech'); },
+  karaSoak(k) { const s = k._shining; return s && !s.armor.exhausted && !s.armor.discarded ? 2 : 0; },
+  karaShiningCheck() { for (const k of this.alive()) { const s = k._shining; if (!s || !this.alive().some(x => x !== k && this.board.adjacent(x.pos, k.pos))) continue; k._shining = null; k.discard.push(s.t); s.armor.exhausted = true; k.gainPassion(1); this.say(`${k.name}: Ally가 인접 — Knight in Shining Armor 버림, ${s.armor.name} Exhaust, Passion +1 (${k.passion})`, 'tech'); } },
+  karaDeploy(k) { let n = k._shining ? 1 : 0; if (k.talent) for (const a of k.talent.abilities) for (const o of a.ops || []) if (o.op === 'talentDeploy') n += o.n; return n; },
   karaRoundEnd() { for (const k of this.knights) k._flowUsed = false; },
   async karaUse(k, t, text) { if (!t || !this.fx.canPay(k, this.fx.costOf(k, t))) return null; if (!await this.yesNo(`${k.name}: ${t.name} 사용? (${this.fx.costLabel(k, t) || '비용 없음'}) — ${text || t.text}`, false)) return null; const pc = await this.fx.chooseCost(k, t); if (!pc) return null; this.fx.pay(k, pc.alt, pc.x); this.say(`${k.name} 기술 사용: ${t.name}`, 'tech'); const ops = this.fx.activeOps(k, t); this.fx.deplete(k, t); await this.renTechniqueUsed(k); return ops; },
   /** Start of turn — Peek at the Devil's Hand. */
@@ -86,7 +90,7 @@ export const KaraMixin = {
 export const KARA_OPS = new Set(['turnSpeed', 'rushBoost', 'rushBoostEnd', 'hideNow', 'bpBottomOrFlip', 'unexhaustWeapon', 'motivateTotal', 'avertFate', 'moveAction', 'practised', 'knowThyself', 'tumble', 'keepHalfPool', 'rebuke', 'oathOfValor', 'evasionDifficulty', 'livingWeapon']);
 /** Wrap core methods with Kara's hooks (Ally movement, surviving Grave Mortis / Judicium). */
 export function installKara(Clash) {
-  const km = Clash.prototype.knightMove; Clash.prototype.knightMove = async function (k, s) { const p = k.pos; const r = await km.call(this, k, s); if (k.alive && k.pos && p && (k.pos.c !== p.c || k.pos.r !== p.r)) await this.karaAllyMoved(k); return r; };
+  const km = Clash.prototype.knightMove; Clash.prototype.knightMove = async function (k, s) { const p = k.pos; const r = await km.call(this, k, s); if (k.alive && k.pos && p && (k.pos.c !== p.c || k.pos.r !== p.r)) { this.karaShiningCheck(); await this.karaAllyMoved(k); } return r; };
   const dm = Clash.prototype.drawMortis; Clash.prototype.drawMortis = async function (k, tier, opt) { const r = await dm.call(this, k, tier, opt); if (tier === 'Grave' && !this._inJud) await this.karaSurvived(k); return r; };
   const dj = Clash.prototype.drawJudicium; Clash.prototype.drawJudicium = async function (k) { this._inJud = true; let r; try { r = await dj.call(this, k); } finally { this._inJud = false; } await this.karaSurvived(k); return r; };
 }

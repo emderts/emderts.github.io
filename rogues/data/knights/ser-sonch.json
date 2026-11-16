@@ -2180,9 +2180,13 @@
    "gates": [],
    "depletion": "cooldown",
    "unclear": [
-    "Not implemented (Exert only)"
+    "Offered at its timing"
    ],
-   "ops": null,
+   "ops": [
+    {
+     "op": "timed"
+    }
+   ],
    "timing": "onBPDraw",
    "gateOps": {},
    "exert": {
@@ -2268,9 +2272,13 @@
    "gates": [],
    "depletion": "discard",
    "unclear": [
-    "Not implemented (Exert only)"
+    "Offered at its timing"
    ],
-   "ops": null,
+   "ops": [
+    {
+     "op": "timed"
+    }
+   ],
    "timing": "onAITarget",
    "gateOps": {},
    "exert": {

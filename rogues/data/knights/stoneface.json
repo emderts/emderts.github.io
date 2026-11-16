@@ -35,7 +35,21 @@
    "Knighves",
    "Ragged Hauberk"
   ],
-  "gearNote": "Knightbook: '1 set of Knighves and 1 chosen Mob tier Merchant [gear]'. [해석, 확인 필요] 선택 UI가 없어 Ragged Hauberk(방어구)로 고정.",
+  "gearChoice": {
+   "text": "1 chosen Mob tier Merchant gear",
+   "default": "Ragged Hauberk",
+   "options": [
+    "Militia Morgenstern",
+    "Broken Sword",
+    "Chipped Axe",
+    "Shoddy Pitchfork",
+    "Crude Bow",
+    "Rusted Shield",
+    "Weathered Leather Armor",
+    "Ragged Hauberk"
+   ]
+  },
+  "gearNote": "Knightbook: '1 set of Knighves and 1 chosen Mob tier Merchant [gear]'. 시작 화면에서 선택 (기본 Ragged Hauberk).",
   "backSides": "Knight Pose // Knight Prowess, Second Chance // Just Trying to Help, Knight Stand // Finding My Way, Granite Guardian // Subtle Encouragement, Gather No Moss // The First Pebbles — back sides are not in the supplied sheets."
  },
  "firstDeath": {
@@ -1444,9 +1458,13 @@
    ],
    "depletion": "cooldown",
    "unclear": [
-    "Not implemented (Exert only)"
+    "Offered at its timing; parts not modelled are listed on the audit page"
    ],
-   "ops": null,
+   "ops": [
+    {
+     "op": "timed"
+    }
+   ],
    "timing": "onInvoluntaryMove",
    "gateOps": {},
    "exert": {
@@ -1696,11 +1714,22 @@
    ],
    "depletion": "discard",
    "unclear": [
-    "Not implemented (Exert only)"
+    "The ignored Condition card is set aside and returns at the start of the next turn"
    ],
-   "ops": null,
+   "ops": [
+    {
+     "op": "unshakeable"
+    }
+   ],
    "timing": "free",
-   "gateOps": {},
+   "gateOps": {
+    "DEVIL": [
+     {
+      "op": "unshakeable",
+      "discard": true
+     }
+    ]
+   },
    "exert": {
     "token": "Break",
     "n": 1,
@@ -2126,9 +2155,13 @@
    ],
    "depletion": "discard",
    "unclear": [
-    "Not implemented (Exert only)"
+    "Offered at its timing; parts not modelled are listed on the audit page"
    ],
-   "ops": null,
+   "ops": [
+    {
+     "op": "timed"
+    }
+   ],
    "timing": "onOtherTargeted",
    "gateOps": {},
    "exert": {
@@ -2383,9 +2416,13 @@
    "gates": [],
    "depletion": "discard",
    "unclear": [
-    "Not implemented (Exert only)"
+    "Offered at its timing; parts not modelled are listed on the audit page"
    ],
-   "ops": null,
+   "ops": [
+    {
+     "op": "timed"
+    }
+   ],
    "timing": "onDeath",
    "gateOps": {},
    "exert": {
@@ -2434,9 +2471,13 @@
    "gates": [],
    "depletion": "discard",
    "unclear": [
-    "Not implemented (Exert only)"
+    "Offered at its timing; parts not modelled are listed on the audit page"
    ],
-   "ops": null,
+   "ops": [
+    {
+     "op": "timed"
+    }
+   ],
    "timing": "onJudiciumAI",
    "gateOps": {},
    "exert": {

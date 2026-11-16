@@ -43,7 +43,8 @@ const renderHome = () => {
       h('h2', {}, 'Clash 단독 테스트'),
       h('div', { class: 'row' },
         h('label', {}, '몬스터 ', h('select', { id: 'mon' }, mons.map(m => h('option', { value: m.id }, m.name)))),
-        h('label', {}, '기사 ', ...[0, 1, 2, 3].map(i => h('select', { id: 'kn' + i }, Object.keys(DATA.knights).filter(id => DATA.knights[id].setup).map(id => h('option', { value: id }, DATA.knights[id].name))))),
+        h('label', {}, '기사 ', ...[0, 1, 2, 3].map(i => h('select', { id: 'kn' + i, onchange: syncGearChoice }, Object.keys(DATA.knights).filter(id => DATA.knights[id].setup).map(id => h('option', { value: id }, DATA.knights[id].name))))),
+        h('div', { id: 'kgrow', class: 'small' }, ...[0, 1, 2, 3].map(i => h('label', { id: 'kgl' + i, style: 'display:none;margin-right:8px' }, `기사 ${i + 1} 시작 장비 `, h('select', { id: 'kg' + i })))),
         h('label', {}, '레벨 ', h('select', { id: 'lv' }, [1, 2, 3, 4].map(l => h('option', { value: l }, `Lv ${l}`)))),
         h('label', {}, '노드 레벨 ', h('select', { id: 'nlv' }, [1, 2, 3, 4, 5].map(l => h('option', { value: l }, `${l} · ${['Mob', 'Vassal', 'King', 'Devil', 'Dragon'][l - 1]}`)))),
         h('label', {}, '시드 ', h('input', { id: 'seed', type: 'number', placeholder: '무작위', style: 'width:110px', value: seedInput })),
@@ -53,11 +54,13 @@ const renderHome = () => {
     h('p', { class: 'small muted' }, h('a', { href: '../' }, '← ATO Mnestis Theatre')),
   );
 };
+const syncGearChoice = () => { for (let i = 0; i < 4; i++) { const el = $('#kn' + i), lab = $('#kgl' + i), sel = $('#kg' + i); if (!el || !lab || !sel) continue; const ch = DATA.knights[el.value] && DATA.knights[el.value].setup.gearChoice; if (!ch) { lab.style.display = 'none'; sel.dataset.kn = ''; continue; } lab.style.display = ''; if (sel.dataset.kn !== el.value) { sel.dataset.kn = el.value; sel.innerHTML = ''; for (const n of ch.options) { const o = document.createElement('option'); o.value = n; o.textContent = n; if (n === ch.default) o.selected = true; sel.appendChild(o); } } } };
+const startGearOf = i => { const el = $('#kn' + i), sel = $('#kg' + i); const ch = el && DATA.knights[el.value] && DATA.knights[el.value].setup.gearChoice; return ch ? (sel && ch.options.includes(sel.value) ? sel.value : ch.default) : null; };
 const partyDefs = () => [0, 1, 2, 3].map(i => { const el = $('#kn' + i); return el && DATA.knights[el.value] ? el.value : 'fleischritter'; });
-const newCampaign = () => { if (loadSaved() && !confirm('저장된 캠페인을 덮어씁니다. 계속할까요?')) return; camp = new Campaign(DATA, { seed: Math.floor(Math.random() * 1e9), knights: partyDefs().map(def => ({ def })), ask: askViaSheet, ownedMonsters: null }); save(); screen = 'map'; render(); };
+const newCampaign = () => { if (loadSaved() && !confirm('저장된 캠페인을 덮어씁니다. 계속할까요?')) return; camp = new Campaign(DATA, { seed: Math.floor(Math.random() * 1e9), knights: partyDefs().map((def, i) => ({ def, startGear: startGearOf(i) })), ask: askViaSheet, ownedMonsters: null }); save(); screen = 'map'; render(); };
 const startTestClash = () => {
   const seed = +$('#seed').value || Math.floor(Math.random() * 1e9); seedInput = String(seed);
-  clash = new Clash({ data: DATA, knights: partyDefs().map((def, i, all) => ({ def, name: DATA.knights[def].name + (all.filter(x => x === def).length > 1 ? ' ' + (all.slice(0, i + 1).filter(x => x === def).length) : '') })), monster: $('#mon').value, level: +$('#lv').value, nodeLevel: +($('#nlv') ? $('#nlv').value : $('#lv').value), kingdom: 'principality', seed, listeners: { log: () => scheduleRender(), flash: onFlash } });
+  clash = new Clash({ data: DATA, knights: partyDefs().map((def, i, all) => ({ def, ...(startGearOf(i) ? { gear: ['Knighves', startGearOf(i)] } : {}), name: DATA.knights[def].name + (all.filter(x => x === def).length > 1 ? ' ' + (all.slice(0, i + 1).filter(x => x === def).length) : '') })), monster: $('#mon').value, level: +$('#lv').value, nodeLevel: +($('#nlv') ? $('#nlv').value : $('#lv').value), kingdom: 'principality', seed, listeners: { log: () => scheduleRender(), flash: onFlash } });
   clash.ask = askViaSheet; clash.setup(); screen = 'clash'; tab = 'log'; render();
   clash.run().then(() => { pending = null; render(); });
 };
@@ -339,7 +342,7 @@ const renderClash = () => {
   const lp = document.getElementById('lpane'); if (lp) lp.scrollTop = !was.lpane || was.lpane.bottom ? lp.scrollHeight : was.lpane.top; // log sticks to the bottom unless the reader scrolled up
   for (const id of ['mpane', 'kpane']) { const e = document.getElementById(id); if (e && was[id]) e.scrollTop = was[id].top; }
 };
-const render = () => {
+const render = () => { setTimeout(syncGearChoice, 0);
   if (!(screen === 'clash' && clash)) document.body.classList.remove('wide');
   if (screen === 'clash' && clash) return renderClash();
   if (camp && screen === 'map') { renderMap(); if (pending) app.append(sheet()); return; }

@@ -1725,10 +1725,14 @@
    "gates": [],
    "depletion": "cooldown",
    "unclear": [
-    "Not implemented (Exert only)"
+    "Used as a free action: this turn the next Exhaust (as a cost) of a Ranged Weapon is ignored; the Zeal option is not implemented"
    ],
-   "ops": null,
-   "timing": "onExhaust",
+   "ops": [
+    {
+     "op": "armedWithTruth"
+    }
+   ],
+   "timing": "free",
    "gateOps": {},
    "exert": {
     "token": "PowerReroll",
@@ -2063,9 +2067,13 @@
    "gates": [],
    "depletion": "discard",
    "unclear": [
-    "Not implemented (Exert only)"
+    "Offered after a Judicium draw during a Monster Attack"
    ],
-   "ops": null,
+   "ops": [
+    {
+     "op": "timed"
+    }
+   ],
    "timing": "onJudicium",
    "gateOps": {},
    "exert": {
@@ -2148,9 +2156,13 @@
    "gates": [],
    "depletion": "discard",
    "unclear": [
-    "Not implemented (Exert only) — which deaths count as Instant Death effects?"
+    "Instant Death = a death caused directly by a Monster Attack / Response (not by a Judicium or Mortis draw)"
    ],
-   "ops": null,
+   "ops": [
+    {
+     "op": "timed"
+    }
+   ],
    "timing": "onInstantDeath",
    "gateOps": {},
    "exert": {
@@ -2189,15 +2201,30 @@
   {
    "name": "Power of the Pious",
    "unlock": "Quest: Apostate",
-   "cost": [],
-   "text": "Power die: [icon]. Bonus Power: +[icon]. Reach X. Daze. Gain the following stacking bonuses depending on X: 1+: Break 3. 2+: Deadly. 3+: +[Power Re-roll]. 4+: Attack Re-roll 1. 5+: Hope 2. 6+: +2 [Power].",
+   "cost": [
+    {
+     "res": "Action",
+     "actions": [
+      "combat"
+     ]
+    },
+    {
+     "res": "Zeal",
+     "n": -1
+    }
+   ],
+   "text": "Perform an Attack with the sword of smiting! Dice: 1. Precision: +2. Power die: [3 red]. Bonus Power: +[2 black]. Reach X. Daze. Gain the following stacking bonuses depending on X: 1+: Break 3. 2+: Deadly. 3+: +[Power Re-roll]. 4+: Attack Re-roll 1. 5+: Hope 2. 6+: +2 [Power].",
    "gates": [],
    "depletion": "discard",
    "unclear": [
-    "Not implemented (Exert only) — the cost / definition of X and the Power die icons are not legible"
+    "Cost: [Combat action] -X [Zeal] — 1 Zeal is paid as the cost and the rest of X is chosen when used; Hope 2 is placed in the Knight Pool before the Attack"
    ],
-   "ops": null,
-   "timing": "attack",
+   "ops": [
+    {
+     "op": "piousAttack"
+    }
+   ],
+   "timing": "free",
    "gateOps": {},
    "exert": {
     "token": "Zeal",

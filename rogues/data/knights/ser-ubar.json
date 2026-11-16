@@ -36,7 +36,21 @@
    "Knighves",
    "Militia Morgenstern"
   ],
-  "gearNote": "Knightbook: '1 set of Knighves and 1 chosen Mob tier Merchant [gear]'. [해석, 확인 필요] 선택 UI가 없어 Militia Morgenstern으로 고정.",
+  "gearChoice": {
+   "text": "1 chosen Mob tier Merchant gear",
+   "default": "Militia Morgenstern",
+   "options": [
+    "Militia Morgenstern",
+    "Broken Sword",
+    "Chipped Axe",
+    "Shoddy Pitchfork",
+    "Crude Bow",
+    "Rusted Shield",
+    "Weathered Leather Armor",
+    "Ragged Hauberk"
+   ]
+  },
+  "gearNote": "Knightbook: '1 set of Knighves and 1 chosen Mob tier Merchant [gear]'. 시작 화면에서 선택 (기본 Militia Morgenstern).",
   "backSides": "Knight Pose // Knight Prowess, Knight Roll // Gorilla Tactics, Second Chance // Wild Foraging, Stand Aside // Thick Skin, Put 'em Up // Mighty Breath — back sides are not in the supplied sheets."
  },
  "firstDeath": {
@@ -2114,9 +2128,13 @@
    ],
    "depletion": "cooldown",
    "unclear": [
-    "Not implemented (Exert only)"
+    "Offered when Ser Ubar becomes the Target of a Monster Attack"
    ],
-   "ops": null,
+   "ops": [
+    {
+     "op": "timed"
+    }
+   ],
    "timing": "onEvasion",
    "gateOps": {},
    "formOps": {},
@@ -2144,9 +2162,13 @@
    ],
    "depletion": "cooldown",
    "unclear": [
-    "Not implemented (Exert only)"
+    "Offered when Ser Ubar becomes the Target of a Monster Attack"
    ],
-   "ops": null,
+   "ops": [
+    {
+     "op": "timed"
+    }
+   ],
    "timing": "onVirtueTest",
    "gateOps": {},
    "formOps": {},
