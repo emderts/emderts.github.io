@@ -124,7 +124,7 @@ export const KNIGHT_RULINGS = [
   ['[수정] Mirage', 'Evasion Roll 뒤, Guard를 쓰는 시점(재굴림 직전)에 사용 여부를 결정.'],
   ['[수정] Superior Chance', 'Mortis뿐 아니라 Judicium 카드도 무시하고 같은 덱에서 다시 뽑음. 다시 뽑을 때 "You died horribly"는 제외, 두 번째 뽑기는 무시 불가.'],
   ['[수정] Brain over Brawn', '자기 턴이 아니어도 공격할 때 사용 여부를 결정.'],
-  ['[수정] Unholy Furnace', 'Magic 1 → Heat Refresh에도 "Heat Refresh 대신 Card Refresh" 바꾸기를 물음. 장비·다른 효과의 Heat Refresh에는 아직 미구현.'],
+  ['[수정] Unholy Furnace', '턴 시작뿐 아니라 Magic 1 → Heat Refresh, 장비의 Heat Refresh에도 "대신 Card Refresh" 바꾸기를 물음.'],
   ['[수정] Harmonized Soul Peril Arc 보너스', '"[아이콘] 1" = Evasion Re-roll 1 (소유자 확인 2026-11-16).'],
   ['Shadows Between Worlds', '구현: 프리 액션, Priority Target 넘기기, Delay/Cooldown에 있는 동안 Evasion +1과 Advanced Bypass. 미구현: "다른 대상이 있으면 대상이 되지 않음", Reaction 사용.'],
   ['[수정] Juggernaut', '1차·2차 창 모두 제안. 대상과 인접하면 대상을 다른 인접 칸으로 옮김 — 현재 Mob(1칸 대상)만 지원, 보스 몬스터 옮기기는 미구현.'],
