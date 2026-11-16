@@ -1462,13 +1462,16 @@
     }
    ],
    "depletion": "cooldown",
-   "unclear": [
-    "Armor Re-roll 1 is not implemented"
-   ],
+   "unclear": [],
    "ops": [
     {
      "op": "techBlock",
      "n": 1
+    },
+    {
+     "op": "techArmorReroll",
+     "n": 1,
+     "ls": true
     }
    ],
    "timing": "onDefense",
@@ -1477,6 +1480,11 @@
      {
       "op": "techBlock",
       "n": 2
+     },
+     {
+      "op": "techArmorReroll",
+      "n": 1,
+      "ls": true
      }
     ]
    },
@@ -1736,9 +1744,7 @@
     }
    ],
    "depletion": "cooldown",
-   "unclear": [
-    "DRAGON Soulseeker is not implemented (Heartseeker is used)"
-   ],
+   "unclear": [],
    "ops": [
     {
      "op": "carrot",
@@ -1751,6 +1757,13 @@
      {
       "op": "carrot",
       "token": "improvedDiversion"
+     }
+    ],
+    "DRAGON": [
+     {
+      "op": "carrot",
+      "token": "improvedDiversion",
+      "soul": true
      }
     ]
    },

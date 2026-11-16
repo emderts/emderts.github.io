@@ -1665,7 +1665,7 @@
    ],
    "depletion": "cooldown",
    "unclear": [
-    "Offered when the moving Knight starts adjacent; Jump is not implemented"
+    "Offered when the moving Knight starts adjacent"
    ],
    "ops": [
     {

@@ -92,7 +92,7 @@ export const KaraMixin = {
 export const KARA_OPS = new Set(['turnSpeed', 'rushBoost', 'rushBoostEnd', 'hideNow', 'bpBottomOrFlip', 'unexhaustWeapon', 'motivateTotal', 'avertFate', 'moveAction', 'practised', 'knowThyself', 'tumble', 'keepHalfPool', 'rebuke', 'oathOfValor', 'evasionDifficulty', 'livingWeapon']);
 /** Wrap core methods with Kara's hooks (Ally movement, surviving Grave Mortis / Judicium). */
 export function installKara(Clash) {
-  const km = Clash.prototype.knightMove; Clash.prototype.knightMove = async function (k, s) { const p = k.pos; const r = await km.call(this, k, s); if (k.alive && k.pos && p && (k.pos.c !== p.c || k.pos.r !== p.r)) { this.karaShiningCheck(); await this.karaAllyMoved(k); } return r; };
+  const km = Clash.prototype.knightMove; Clash.prototype.knightMove = async function (k, s) { const p = k.pos; const r = await km.call(this, k, s); k._jump = 0; if (k.alive && k.pos && p && (k.pos.c !== p.c || k.pos.r !== p.r)) { this.karaShiningCheck(); await this.karaAllyMoved(k); } return r; };
   const dm = Clash.prototype.drawMortis; Clash.prototype.drawMortis = async function (k, tier, opt) { const r = await dm.call(this, k, tier, opt); if (tier === 'Grave' && !this._inJud) await this.karaSurvived(k); return r; };
   const dj = Clash.prototype.drawJudicium; Clash.prototype.drawJudicium = async function (k) { this._inJud = true; let r; try { r = await dj.call(this, k); } finally { this._inJud = false; } await this.karaSurvived(k); return r; };
 }

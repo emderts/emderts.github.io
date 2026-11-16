@@ -65,7 +65,8 @@ export const UbarMixin = {
       case 'coldOpen': if (!this.pool.some(t => !t.resource)) { this.poolAdd('opening', 1); this.poolAdd('break', 1); this.say(`${k.name}: Cold Open — Opening + Break`, 'tech'); } else this.say(`${k.name}: Knight Pool이 비어 있지 않음 — 토큰 없음`); return true;
       case 'monkeySee': { const M = this.monster; if (o.deck === 'bp' && M.isMob) { const m = (M.mobs || []).find(x => !x.revealed); if (m) { this.say(`Monkey See: 공개 안 된 BP — ${m.card.name}`, 'tech'); this.flash('card', { title: '공개 안 된 BP', name: m.card.name, text: m.card.text || '', cls: 'good' }); } return true; } const d = M[o.deck]; const top = d && d.cards && d.cards[0]; if (!top) return true; this.say(`Monkey See: ${o.deck.toUpperCase()} 덱 맨 위 — ${top.name}`, 'tech'); this.flash('card', { title: `${o.deck.toUpperCase()} 덱 맨 위`, name: top.name, text: top.text || '', cls: o.deck === 'ai' ? 'bad' : 'good' }); if (await this.yesNo(`${k.name}: ${top.name}을(를) 덱 맨 아래로?`, false)) { d.cards.push(d.cards.shift()); this.say(`${top.name} → 덱 맨 아래`, 'tech'); } return true; }
       case 'exploitFlaw': { let v = 'deadly'; if (o.precise) v = await this.ask({ type: 'pick', knight: k.id, text: `${k.name}: Exploit Flaw`, options: [{ label: 'Deadly', value: 'deadly' }, { label: 'Precise', value: 'precise' }] }) || 'deadly'; flags().add(v); this.say(`${k.name}: ${v === 'deadly' ? 'Deadly' : 'Precise'}`, 'tech'); return true; }
-      case 'jump': this.say('[Jump 미구현]', 'warn'); return true;
+      case 'jump': k._jump = o.n || 1; this.say(`${k.name}: ${k._jump > 1 ? 'Advanced Jump' : 'Jump'} — 다음 이동에서 Terrain 칸 ${k._jump}개(Obstacle 포함) 무시`, 'tech'); return true;
+      case 'fieryEyes': { const f = (k.pendingAttackFlags = k.pendingAttackFlags || new Set()); if (!this.monster.isMob && await this.yesNo(`${k.name}: Fiery Eyes, Golden Pupils — 이 카드를 버리고 Heartseeker 대신 Soulseeker?`, false)) { f.add('soulseeker'); if (ctx.technique) ctx.technique._depletion = 'discard'; this.say(`${k.name}: Soulseeker`, 'tech'); } else f.add('heartseeker'); return true; }
       case 'overRouse': U().overRouse = { need: o.need, n: o.n }; return true;
       case 'heartRelentless': { if (k.form === 'ape' && await this.yesNo(`${k.name}: The Heart Relentless (Ape) — 대신 Vigor +3?`, false)) { k.gainVigor(3); this.say(`${k.name}: Vigor +3 (${k.vigor})`, 'tech'); return true; } const body = k.conditions.filter(c => this.conditionDefs[c.id] && this.conditionDefs[c.id].type === 'body' && (o.discard || this.conditionDefs[c.id].flipSide)); if (!body.length) { this.say(`${k.name}: 대상 Body Condition 없음`); return true; } const i = body.length > 1 ? await this.ask({ type: 'pick', knight: k.id, text: `Body Condition ${o.discard ? '버리기' : '뒤집기'}`, options: body.map((c, i) => ({ label: c.id, value: i })) }) : 0; const c = body[i] || body[0]; if (o.discard) this.removeCondition(k, c.id); else { c.id = this.conditionDefs[c.id].flipSide; this.say(`${k.name}: Condition 뒤집음 → ${c.id}`, 'tech'); } return true; }
       case 'warcry': { const opts = [{ label: `Inspire ${o.inspire}`, value: 'i' }]; if (k.form !== 'ape') opts.push({ label: `Motivate ${o.motivate}`, value: 'm' }); const v = opts.length > 1 ? await this.ask({ type: 'pick', knight: k.id, text: `${k.name}: Warcry`, options: opts }) : 'i'; if (v === 'm') await this.karaMotivate(k, o.motivate); else await this.sonchInspire(o.inspire); return true; }
@@ -77,13 +78,13 @@ export const UbarMixin = {
       case 'skullCrack': U().autoHit = 1; return true;
       case 'feralAggression': pool().raw += 2; flags(); if (o.token) this.poolAdd('power', o.token); this.say(`${k.name}: +2 Power${o.token ? ` · Power 토큰 ${o.token}` : ''}`, 'tech'); return true;
       case 'gainMoveAction': k.actions.move = true; this.say(`${k.name}: Move action 획득`, 'tech'); return true;
-      case 'techDodge': case 'techGuard': case 'techReinforce': case 'innerTurmoil': return true;
+      case 'techDodge': case 'techGuard': case 'techReinforce': case 'techArmorReroll': case 'innerTurmoil': return true;
     }
     return false;
   },
 };
-export const UBAR_OPS = new Set(['bypassMove', 'coldOpen', 'monkeySee', 'exploitFlaw', 'jump', 'overRouse', 'heartRelentless', 'warcry', 'bpSuppressNow', 'unexhaustUpTo', 'canopySwing', 'mindOverBody', 'fistFirstmen', 'skullCrack', 'feralAggression', 'gainMoveAction', 'techDodge', 'techGuard', 'techReinforce', 'innerTurmoil']);
-export const UBAR_PRE = new Set(['exploitFlaw', 'overRouse', 'bpSuppressNow', 'fistFirstmen', 'skullCrack', 'feralAggression']);
+export const UBAR_OPS = new Set(['bypassMove', 'coldOpen', 'monkeySee', 'exploitFlaw', 'jump', 'overRouse', 'heartRelentless', 'warcry', 'bpSuppressNow', 'unexhaustUpTo', 'canopySwing', 'mindOverBody', 'fistFirstmen', 'skullCrack', 'feralAggression', 'gainMoveAction', 'techDodge', 'techGuard', 'techReinforce', 'techArmorReroll', 'fieryEyes', 'innerTurmoil']);
+export const UBAR_PRE = new Set(['fieryEyes', 'exploitFlaw', 'overRouse', 'bpSuppressNow', 'fistFirstmen', 'skullCrack', 'feralAggression']);
 export function installUbar(Clash) {
   const ai = Clash.prototype.activationAI; Clash.prototype.activationAI = async function (...a) { await this.ubarAIDraw(); if (this.result) return; return ai.apply(this, a); };
 }
