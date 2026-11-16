@@ -177,11 +177,12 @@
        "cost": 1,
        "knight": {},
        "monster": {},
-       "board": {}
+       "board": {},
+       "equip": "weapon1"
       }
      ],
      "unclear": [
-      "Little Ser's Weapon is not implemented (only the placement)"
+      "Clash Board: treating Little Ser as Ser Sonch's miniature when attacking is not implemented"
      ]
     },
     {
@@ -206,11 +207,14 @@
        "cost": 1,
        "knight": {},
        "monster": {},
-       "board": {}
+       "board": {},
+       "equip": "armor",
+       "chainBreak": true,
+       "kbReduce": 2
       }
      ],
      "unclear": [
-      "Little Ser's Armor, the Chain Break and the Knockback reduction are not implemented (only the placement)"
+      "Monster Sheet: ignoring Knockdown is not implemented"
      ]
     },
     {

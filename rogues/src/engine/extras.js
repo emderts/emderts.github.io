@@ -49,6 +49,7 @@ export function installExtras(Clash) {
   const aot = P.attackOneTarget; P.attackOneTarget = async function (attack, k) {
     // Take the Hit: another Knight adjacent to the attacking Monster becomes the Target instead
     for (const x of this.alive()) { const t = inHand(x, 'Take the Hit'); if (!t || x === k || attack.targets.includes(x) || !(this.monster.isMob ? this.adjacentMobs(x).length : this.adjacentToMonster(x))) continue; if (await this.paraUse(x, t, `${k.name} 대신 대상이 됨`)) { this.say(`${x.name}: Take the Hit — ${k.name} 대신 대상`, 'tech'); this.leash(x, this.fx.tierOk(x, 'DRAGON') ? 3 : 2, 'Take the Hit'); k = x; k._noER = true; break; } }
+    { const cfg = this.lsCfg(); const o = this.lsOwner(); if (cfg && cfg.chainBreak && this.lsCell() && this.board.adjacent(this.lsCell(), k.pos) && await this.yesNo(`${o.name}: Steadfast Supporter — Little Ser를 Clash 끝까지 버리고 ${k.name}에 대한 이 공격을 Chain Break?`, false)) { this.lsSet('gone'); this.say('Little Ser 버림 (Clash 끝까지) — Chain Break', 'tech'); throw new ChainBreak('Steadfast Supporter'); } }
     // Call an Undertaker!: gain Knockdown (Standing Up) and skip the Attack
     { const t = inHand(k, 'Call an Undertaker!'); if (t && !this.knockedDown(k) && await this.paraUse(k, t)) { await this.addCondition(k, 'Knockdown (Standing Up)'); this.say(`${k.name}: Call an Undertaker! — 이 공격을 건너뜀`, 'tech'); return; } }
     { const t = inHand(k, 'Eye of the Storm'); if (t && await this.paraUse(k, t)) { k._eyeStorm = true; if (k.form === 'human') { k.braced = true; this.say(`${k.name}: Braced`, 'tech'); } } }
@@ -56,6 +57,7 @@ export function installExtras(Clash) {
     try { return await aot.call(this, attack, k); } finally { k._eyeStorm = false; k._adrenaline = false; k._preBlock = 0; k._noER = false; }
   };
   const pb = P.pushback; P.pushback = async function (k, n, opt = {}) {
+    { const cfg = this.lsCfg(); const at = this.currentAttack; if (cfg && cfg.kbReduce && this.lsOnMonster() && at && (at.targets || []).length === 1 && n > 0 && await this.yesNo(`${k.name}: Steadfast Supporter (Little Ser — Monster Sheet) — Knockback ${n} → ${Math.max(0, n - cfg.kbReduce)}?`, true)) { n = Math.max(0, n - cfg.kbReduce); this.say(`${k.name}: Knockback -${cfg.kbReduce}`, 'tech'); if (!n) return; } }
     const t = k.alive && n > 0 && !k.braced ? inHand(k, 'Knight Stand') : null;
     if (t && await this.paraUse(k, t, `비자발적 이동 ${n}칸`)) { const red = this.fx.tierOk(k, 'DEVIL') ? 4 : 3; let v = 'reduce'; if (this.canUnleash(k, 7)) v = await this.ask({ type: 'pick', knight: k.id, text: `${k.name}: Knight Stand`, options: [{ label: 'Unleash 7 → Braced', value: 'braced' }, { label: `이동을 최대 ${red}칸 줄임`, value: 'reduce' }] }) || 'reduce'; if (v === 'braced') { this.unleash(k, 7); this.say(`${k.name} Braced: 밀려나지 않음`, 'tech'); return; } n = Math.max(0, n - red); this.say(`${k.name}: Knight Stand — 비자발적 이동 → ${n}칸`, 'tech'); if (!n) return; }
     return pb.call(this, k, n, opt);

@@ -363,7 +363,7 @@ export class Clash {
       }
       return r;
     };
-    const roll = await evade(dice); if (roll.dice.length && roll.dice[0].v === 10) { this.renCrit(k, 'Evasion'); await this.paraCritDrain(); if (this.cloaked(k)) { k.tempEvasion = (k.tempEvasion || 0) + 1; this.say(`${k.name}: Cloak of Shadows — Crit Evade → 임시 Evasion +1 토큰`, 'tech'); } } if (k.tempEvasion) { this.say(`${k.name}: 임시 Evasion 토큰 ${k.tempEvasion}개 사용 후 버림`, 'tech'); k.tempEvasion = 0; }
+    const roll = await evade(dice); if (roll.dice.length && !d10Success(roll.dice[0].v, evaBonus, diff)) this.paraCritEvadeFail(k); if (roll.dice.length && roll.dice[0].v === 10) { this.renCrit(k, 'Evasion'); await this.paraCritDrain(); if (this.cloaked(k)) { k.tempEvasion = (k.tempEvasion || 0) + 1; this.say(`${k.name}: Cloak of Shadows — Crit Evade → 임시 Evasion +1 토큰`, 'tech'); } } if (k.tempEvasion) { this.say(`${k.name}: 임시 Evasion 토큰 ${k.tempEvasion}개 사용 후 버림`, 'tech'); k.tempEvasion = 0; }
     // "For every N hits, roll an additional die (resolve once)" / "If hit, roll N additional dice"
     if (ops.extraDice) { const f = roll.dice.filter(d => !d10Success(d.v, evaBonus, diff)).length; const extra = ops.extraDice.perHits ? Math.floor(f / ops.extraDice.perHits) : (f > 0 ? ops.extraDice.ifHit : 0); if (extra > 0) { this.say(`명중 ${f} → 추가 주사위 ${extra}개`); const r2 = await evade(extra, '추가 '); for (const d of r2.dice) { d.crit = false; roll.dice.push(d); } dice += extra; } }
     let hits = roll.dice.filter(d => !d10Success(d.v, evaBonus, diff)).length;
@@ -547,7 +547,7 @@ export class Clash {
     // Knockdown handling
     const kd = k.conditions.find(c => /^Knockdown/.test(c.id));
     if (kd && kd.id === 'Knockdown (Standing Up)') { this.standUp(k); }
-    k.steady = false; await this.renTurnStart(k); await this.karaTurnStart(k); await this.paraTurnStart(k); this.extrasTurnStart(k); await this.ubarTurnStart(k);
+    k.steady = false; await this.renTurnStart(k); await this.karaTurnStart(k); await this.paraTurnStart(k); this.extrasTurnStart(k); await this.sonchTurnStart(k); await this.ubarTurnStart(k);
     for (const g of k.gear) { if (g.discarded || g.exhausted) continue; for (const o of this.fx.constKw(k, g)) if (o.op === 'gateDiscardBane' && k.alive) { g.discarded = true; this.say(`${g.name}: ${o.gate} — 카드 버림, Bane ${o.n}`, 'tech'); await this.fx.runKnightOp({ op: 'bane', n: o.n }, k, {}); } } if (!k.alive) return; await this.fx.hideAtStartOfTurn(k);
     for (const g of k.gear) { if (g.discarded || g.exhausted) continue; if (this.fx.constKw(k, g).some(o => o.op === 'turnRevealMortis')) { const tops = Object.keys(this.mortis || {}).filter(t => this.mortis[t] && this.mortis[t].cards && this.mortis[t].cards.length).map(t => `${t}: ${this.mortis[t].cards[0].name}`); this.say(`${g.name}: Mortis 덱 맨 위 — ${tops.join(' · ')}`, 'tech'); } }
     for (const g of k.gear) { if (g.discarded || g.exhausted) continue; for (const o of this.fx.constKw(k, g)) if (o.op === 'turnVigorBane' && k.alive) { k.gainVigor(o.v); this.say(`${g.name}: Start of your turn — Vigor +${o.v} (${k.vigor}), Bane ${o.n}`, 'tech'); await this.fx.runKnightOp({ op: 'bane', n: o.n }, k, {}); } else if (o.op === 'turnLoseVigor' && k.alive) { this.say(`${g.name}: Start of your turn — Vigor -${o.n}`, 'tech'); await this.fx.runKnightOp({ op: 'loseVigor', n: o.n }, k, {}); } }
