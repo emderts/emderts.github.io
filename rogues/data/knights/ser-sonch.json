@@ -1789,7 +1789,7 @@
    ],
    "depletion": "cooldown",
    "unclear": [
-    "Used as a free action; the Rouse token is placed in the Knight Pool"
+    "Used as a free action; the Rouse token sits on that Knight's Board and applies to that Knight's next Attack"
    ],
    "ops": [
     {
