@@ -106,7 +106,6 @@ export const GEAR_RULINGS = [
   ['Dragonrazor', '"climb test 자동 성공" — 현재 구현의 Climb은 테스트 없이 성공하므로 효과 없음으로 처리.'],
 ];
 export const GEAR_QUESTIONS = [
-  ['Zeal 토큰', '"Knight Board에 놓는다"까지만 룰북에 있음. 용도/효과? (Falsity, Blade of the First Sacrament, Imperial Templar\'s Kite Shield가 대기)'],
   ['Chainbreaker [MAJOR]', '"Overpower 발동 시 Crit Chance 획득" — Overpower는 Power Roll 뒤에 판정되는데 Crit Chance를 언제 쓰는가?'],
   ['Mantle of the Faithful', '비용 표기가 숫자 없이 "[Heat]"로만 전사되어 있음 — Heat 몇인지 확인 필요.'],
   ['Toadscale', '카드에 "*X is the number of dice you were hit with"만 있고 X를 쓰는 키워드가 전사에 없음 — 원문 확인 필요.'],
@@ -124,6 +123,19 @@ export const KNIGHT_RULINGS = [
   ['Heroic Arc 아이콘 판독', '"Knight Tokens and Abilities" 표 기준: 검은 역삼각형 = Pass, 무늬 역삼각형 = Greater Pass, 물결 화살표 = Diversion, 터지는 모양 = Improved Diversion, 화살표 셋 = Motivate, 네 방향 화살표 인물 = Reposition. Renholder(Tenebrist·Harmonized Soul·Hermetic Master)도 이 기준으로 고침.'],
   ['Pass / Greater Pass (Heroic Arc)', 'Pass X: Clear the Knight Pool 때 Opening/Break X개 유지. Greater Pass X: Sunder·Power를 뺀 아무 토큰 X개 유지. Full Miss·Chain Break로 풀을 비울 때는 적용 안 함.'],
   ['Motivate X', '다른 기사들이 합계 X칸 이동 (기사 선택 → 이동, 이동한 칸 수만큼 차감).'],
+  ['Paracelsa — Zeal 사용', 'Zeal 1 사용 = Knight Board의 토큰을 Knight Pool로 옮기거나, Pool의 Zeal 토큰을 버림 (둘 다 있으면 어디서 먼저 쓸지 선택). Pool의 Zeal은 자원 토큰이라 풀 정리 때 남음. Threshold를 넘는 Zeal은 Pool로.'],
+  ['Paracelsa — Technique 비용 아이콘', '톱 모양 = Zeal, 빨간 V = Vigor. "A or B"는 둘 중 선택, Flee From Evil은 Heat 2 + Zeal 1 둘 다.'],
+  ['Paracelsa — Talent 혜택 아이콘', 'Quester 1 / Inquisitor 2의 "[방패+칼] 1" = Break 1 (2차 창에서 Break 토큰), Quester 3 / Inquisitor 10의 "[주사위] 1" = Power Re-roll 1로 판독.'],
+  ['Paracelsa — Falsity', 'Attack Roll 재굴림 뒤 Crit die를 Heat 없이 1회 재굴림 가능. 이미 명중인 Crit die를 재굴리면 Zeal 1. (Heroic Arc + 장비 [MAJOR] Falsity)'],
+  ['Paracelsa — 죽기 직전 Talent', '일어나서 최대 3칸 이동 후 Bonus Attack. Wound 판정은 그 공격으로 Wound를 줬는지. Talent 버림 = 그 Clash 동안 Talent 능력 없음.'],
+  ['Paracelsa — Zone 2 (The Fire of Zeal)', 'Paracelsa로부터 가로·세로·대각 2칸 이내의 다른 기사 수만큼 Fire.'],
+  ['Paracelsa — Spotlight (Arc/Technique)', 'Priority Target일 때 빨간 Power die +1 (Divine Target은 미구현).'],
+  ['Paracelsa — Overbreak X (Arc)', 'Wound를 주고 Total Power가 AT를 1 이상 넘으면 2차 창에서 Break X.'],
+  ['Paracelsa — Evade the Devil\'s Snare', '"임시 음수 Precision 토큰"을 몬스터의 다음 Evasion Roll 난이도 -1 토큰으로 처리.'],
+  ['Paracelsa — Scion of the Light', '"Spotlight. OR 1차 창에서 Zeal 2 추가로 빨간 Power die"를 Spotlight + (선택) Zeal 2로 빨간 die +1로 처리.'],
+  ['Paracelsa — Rewarded for my Trials', 'Peril이 없으면(Uninjured) Zeal 0.'],
+  ['Paracelsa — The Fire of my Faith', 'X = BP 덱 맨 위 카드 Level (최소 1). Mob 상대는 공격 대상이 아직 정해지지 않아 X = 1로 처리.'],
+  ['Paracelsa — First Death', 'Fleischritter와 같은 보상(+1 Sigh of the Graal)으로 처리.'],
   ['Kara — Ally', 'Knightbook의 Ally(아군 미니어처·보드 위 파티 토큰) 중 현재는 다른 기사만 Ally로 취급. Squire/Princess/Little Ser/Placeholder는 미포함.'],
   ['Kara — Unconstrained', '"occupied" = 기사·몬스터·Obstacle이 있는 인접 칸. 0칸이면 +2, 정확히 1칸이면 +1 Precision.'],
   ['Kara — Technique 소진 아이콘', 'zZ = Cooldown, 원형 화살표 = Delay, 번개 = Instant (Fleischritter·Renholder와 같은 기준). Dodge and Weave는 Delay → Cooldown을 지나는 동안 효과.'],
@@ -159,6 +171,10 @@ export const KNIGHT_RULINGS = [
   ['Renholder — First Death', '이벤트 결말 문단을 스캔에서 찾지 못해 Fleischritter와 같은 보상(+1 Sigh of the Graal)으로 처리.'],
 ];
 export const KNIGHT_QUESTIONS = [
+  ['Technique 카드 뒷면 (전 기사 공통?)', '구성품이 "26 Double-sided Technique cards"이고 Paracelsa Knightbook은 시작 카드를 "Knight Pose // Knight Prowess, Knight Roll // Blessed Insight, Persecuted for Righteousness // Through Heaven\'s Eyes, Zealous Charge // Sustain me Through my Trials, In Failure, Find Perseverance // I Shall Fear No Evil"로 적음. 뒷면 시트가 없어 앞면만 구현 — 뒷면은 언제 쓰는 건지, 자료가 있는지?'],
+  ['Paracelsa — 판독 못 한 Talent 혜택 (미적용)', 'Fireheart Zealot 4·6·7번, Inquisitor 9번("-1 [아이콘]")·11번 아이콘. 시트 해상도로는 판독 불가. Inquisitor 12번 Incarnate는 미구현.'],
+  ['Paracelsa — 미구현 Technique', 'Armed with Truth(Exhaust 무시), Become a Stumbling Block(Judicium 후 Chain Break), Through the Fires of Anatiocha(Instant Death 무시 — 어떤 죽음이 Instant Death인지?), Power of the Pious(무기형 Technique, 아이콘 판독 불가), Second Chance의 Disemboweled 무시, Divine Intervention의 덱 공개. 모두 Exert로는 사용 가능.'],
+  ['Paracelsa — 장비의 Zeal', 'Imperial Templar\'s Kite Shield "Crit Evade Fail: Zeal 1", Blade of the First Sacrament의 무기 교체/Zeal 1은 아직 미구현 (Falsity 키워드만 연결).'],
   ['Kara — 판독 못 한 Heroic Arc 아이콘 (미적용)', 'Steadfast L2·L6 첫 옵션, Knight of the Grand Kingdoms L3의 불꽃+손 모양 아이콘 (숫자 1/1/2). 어떤 토큰인지 알려주시면 적용.'],
   ['Kara — 미구현', 'We Go Together(대각선 이동), Doing My Own Thing의 Encounter 배치, Knight in Shining Armor, Crusader\'s Strike의 Devote, Bypass/Superior Bypass(Keep on Rolling·Master the Terrain), Avert a Dire Fate의 Acrobatics, Living Weapon의 Full Evade 복귀, Dice with the Devil·Just Like We Practised의 Reaction 사용, Oath of Valor 카드 이동, Fleet of Foot의 방향 제한.'],
   ['Doublestrike Enchantment / Power Overwhelming', 'BP를 여러 장 뽑는 공격이라 미구현 (Exert로만 사용 가능).'],

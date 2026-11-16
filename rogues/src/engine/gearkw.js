@@ -82,6 +82,7 @@ const SPECIAL = [
   [/^Full hit: You may trigger Overcome or Overpower$/i, () => ({ op: 'fullHitOvercome' })],
   [/^When you trigger Overpower, lose -(\d+) \[Heat\] and ignore Cumbersome$/, m => ({ op: 'overpowerBoon', n: +m[1] })],
   [/^Sacrifice$/, () => ({ op: 'sacrifice' })],
+  [/^Falsity$/, () => ({ op: 'falsity' })],
   [/^Your other Weapons gain Sacrifice$/, () => ({ op: 'othersSacrifice' })],
   [/^When you are about to attack, you may change up to (\d+) (?:Opening \[Opening\] tokens in the Knight Pool into Break \[Break\]|Break \[Break\] tokens in the Knight Pool into Opening \[Opening\]) tokens and vice versa$/, m => ({ op: 'poolSwap', n: +m[1], active: true })],
   [/^When you attack, you may lose -(\d+) \[Vigor\] to gain Auto-break (\d+)$/, m => ({ op: 'vigorAutoBreak', v: +m[1], n: +m[2] })],

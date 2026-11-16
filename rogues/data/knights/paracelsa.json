@@ -1,0 +1,2345 @@
+{
+ "id": "paracelsa",
+ "name": "Paracelsa",
+ "resourceToken": "Zeal",
+ "_source": "Knightbook 'A Knight's Tale: Paracelsa' (p.3–4 rules & Knight Setup) + Portrait / Talent / Heroic Arc / Technique sprite sheets (owner-supplied 2026-11-16).",
+ "specialRules": {
+  "zeal": "Paracelsa uses special Zeal tokens as a resource. When an effect instructs you to spend a Zeal token, move 1 Zeal token from your Knight Board into the Knight Pool or discard 1 Zeal token from the Knight Pool. Zeal X: During the second ability window, place X Zeal tokens on your Knight Board. Zeal Threshold X: If gaining Zeal tokens would cause you to exceed your Zeal Threshold, gain Zeal tokens up to your Zeal Threshold and place the rest of the tokens in the Knight Pool. Falsity: During the Attack Roll step, you may re-roll your Crit die without gaining [Heat]. If you re-roll a Crit die that's already a hit, immediately gain 1 Zeal token."
+ },
+ "setup": {
+  "virtues": {
+   "Bravery": 1,
+   "Insight": 1,
+   "Tenacity": 2
+  },
+  "rapportBoon": {
+   "text": "Crit Chance: Auto-break 1.",
+   "note": "Rogue's Path에서 미적용."
+  },
+  "explorationCipher": "**07",
+  "portraits": [
+   "Quester"
+  ],
+  "portrait": "quester",
+  "talent": "Quester",
+  "heroicArc": "Quester",
+  "perilArc": "Quester",
+  "techniques": [
+   "Knight Pose",
+   "Knight Roll",
+   "Persecuted for Righteousness",
+   "Zealous Charge",
+   "In Failure, Find Perseverance"
+  ],
+  "gear": [
+   "Knighves",
+   "Militia Morgenstern"
+  ],
+  "backSides": "Knightbook lists the starting cards as 'Knight Pose // Knight Prowess, Knight Roll // Blessed Insight, Persecuted for Righteousness // Through Heaven's Eyes, Zealous Charge // Sustain me Through my Trials, In Failure, Find Perseverance // I Shall Fear No Evil' — the back sides are not in the supplied sheets."
+ },
+ "firstDeath": {
+  "text": "Paracelsa's First Death Special Event: Mark the First Death box on your Knight Sheet. Gain +1 Sigh of the Graal.",
+  "ops": [
+   {
+    "op": "markFirstDeath"
+   },
+   {
+    "op": "gainSigh",
+    "n": 1
+   }
+  ],
+  "note": "[해석, 확인 필요] Fleischritter와 같은 보상으로 처리."
+ },
+ "components": {
+  "portraits": 2,
+  "talents": 3,
+  "heroicArcs": 4,
+  "perilArcs": 4,
+  "techniques": 26,
+  "gear": 5,
+  "zealTokens": 6
+ },
+ "talents": [
+  {
+   "id": "quester",
+   "name": "Quester",
+   "tier": "starting",
+   "abilities": [
+    {
+     "name": "Unwavering Faith",
+     "text": "Crit Miss: Zeal 1. When you resolve a [Judicium draw] or another Knight draws a Judicium, Zeal 1. You gain the following stacking benefits depending on the number of Zeal [Zeal] tokens on your Knight Board: 1: [Break] 1. 2: Attack Re-roll 1. 3: [Power Re-roll] 1. Zeal Threshold: 3.",
+     "ops": [
+      {
+       "op": "zeal",
+       "critMiss": 1,
+       "onJudicium": 1,
+       "threshold": 3,
+       "benefits": [
+        {
+         "at": 1,
+         "kind": "break",
+         "n": 1
+        },
+        {
+         "at": 2,
+         "kind": "attackReroll",
+         "n": 1
+        },
+        {
+         "at": 3,
+         "kind": "powerReroll",
+         "n": 1
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Martyr's Zeal",
+     "text": "When you are about to die, if you have 3+ Zeal [Zeal] tokens, immediately stand up, move up to 3 spaces and perform a Bonus Attack! (You still die afterwards.)",
+     "ops": [
+      {
+       "op": "dieStand",
+       "need": 3,
+       "survive": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "truthseeker",
+   "name": "Truthseeker",
+   "tier": "vassal",
+   "abilities": [
+    {
+     "name": "Dedicated Disciple",
+     "text": "Start of your turn: Zeal 2. As long as you have 3+ Zeal [Zeal] tokens on your Knight Board, gain Auto-hope 1. When you deal a Wound, if you have 6+ Zeal [Zeal] tokens, [Discard] this Talent card (you lose it until the end of Clash), immediately Reposition 3 and perform a Bonus Attack!",
+     "ops": [
+      {
+       "op": "turnZeal",
+       "n": 2
+      },
+      {
+       "op": "zealAutoHope",
+       "need": 3,
+       "n": 1
+      },
+      {
+       "op": "woundDiscardBonus",
+       "need": 6
+      }
+     ]
+    },
+    {
+     "name": "Undying Devotion",
+     "text": "When you are about to die, if you have 3+ Zeal [Zeal] tokens, immediately stand up, move up to 3 spaces and perform a Bonus Attack! If you deal a Wound, you survive and [Discard] this Talent card (you lose it until the end of Clash). Otherwise, you die.",
+     "ops": [
+      {
+       "op": "dieStand",
+       "need": 3,
+       "survive": true,
+       "discardTalent": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fireheart-zealot",
+   "name": "Fireheart Zealot",
+   "tier": "vassal",
+   "abilities": [
+    {
+     "name": "Fervent Acolyte",
+     "text": "One or more Misses: Zeal 1. When you resolve a [Judicium draw] or another Knight draws a Judicium, Zeal 1. You gain the following stacking benefits depending on the number of Zeal [Zeal] tokens on your Knight Board: 1: Auto-break 1. 2: +1 [Speed]. 3: Attack Re-roll 1. 4: [icon]. 5: Sacrifice. 6: [icon]. 7: [icon]. Zeal Threshold: 7.",
+     "ops": [
+      {
+       "op": "zeal",
+       "onMiss": 1,
+       "onJudicium": 1,
+       "threshold": 7,
+       "benefits": [
+        {
+         "at": 1,
+         "kind": "autoBreak",
+         "n": 1
+        },
+        {
+         "at": 2,
+         "kind": "speed",
+         "n": 1
+        },
+        {
+         "at": 3,
+         "kind": "attackReroll",
+         "n": 1
+        },
+        {
+         "at": 5,
+         "kind": "sacrifice",
+         "n": 1
+        }
+       ]
+      }
+     ],
+     "unclear": [
+      "Benefits 4, 6 and 7 are single icons that cannot be read at the sheet's resolution — not applied"
+     ]
+    },
+    {
+     "name": "Preacher's Pyre",
+     "text": "When you spend Zeal [Zeal] tokens from your Knight Board, place a Fire [Fire] token in the Knight Pool.",
+     "ops": [
+      {
+       "op": "preachersPyre"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "inquisitor",
+   "name": "Inquisitor",
+   "tier": "devil",
+   "abilities": [
+    {
+     "name": "Consecrated Champion",
+     "text": "One or more Misses: Zeal 2. When you resolve a [Judicium draw] or another Knight draws a Judicium, Zeal 2. You gain the following stacking benefits depending on the number of Zeal [Zeal] tokens on your Knight Board: 1: +1 [Power]. 2: [Break] 1. 3: Tumble. 4: +1 [Speed]. 5: +1 [Precision]. 6: Attack Re-roll 1. 7: Auto-break 1. 8: Deadly. 9: -1 [icon]. 10: [Power Re-roll] 1. 11: [icon]. 12: Immediately Incarnate! (Once per Clash). Zeal Threshold: 12.",
+     "ops": [
+      {
+       "op": "zeal",
+       "onMiss": 2,
+       "onJudicium": 2,
+       "threshold": 12,
+       "benefits": [
+        {
+         "at": 1,
+         "kind": "power",
+         "n": 1
+        },
+        {
+         "at": 2,
+         "kind": "break",
+         "n": 1
+        },
+        {
+         "at": 3,
+         "kind": "tumble",
+         "n": 1
+        },
+        {
+         "at": 4,
+         "kind": "speed",
+         "n": 1
+        },
+        {
+         "at": 5,
+         "kind": "precision",
+         "n": 1
+        },
+        {
+         "at": 6,
+         "kind": "attackReroll",
+         "n": 1
+        },
+        {
+         "at": 7,
+         "kind": "autoBreak",
+         "n": 1
+        },
+        {
+         "at": 8,
+         "kind": "deadly",
+         "n": 1
+        },
+        {
+         "at": 10,
+         "kind": "powerReroll",
+         "n": 1
+        }
+       ]
+      }
+     ],
+     "unclear": [
+      "Benefits 9 ('-1 [icon]') and 11 (icon) cannot be read; 12 (Incarnate) is not implemented"
+     ]
+    },
+    {
+     "name": "The Fire of Zeal",
+     "text": "Start of your turn: Place a Fire [Fire] token in the Knight Pool for every other Knight in Zone 2.",
+     "ops": [
+      {
+       "op": "fireOfZeal",
+       "zone": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "apostate",
+   "name": "Apostate",
+   "tier": "devil",
+   "abilities": [
+    {
+     "name": "Uncompromising Believer",
+     "text": "One or more misses: Zeal 3. When you deal a Wound, choose one: Zeal 3 and Reposition 1. / Zeal 2 and gain +2 [Vigor]. / Zeal 1 and lose -3 [Heat]. When another Knight dies, immediately perform a Bonus Attack!",
+     "ops": [
+      {
+       "op": "zeal",
+       "onMiss": 3,
+       "benefits": []
+      },
+      {
+       "op": "woundChoice"
+      },
+      {
+       "op": "bonusOnKnightDeath"
+      }
+     ]
+    },
+    {
+     "name": "My Faith is My Rock",
+     "text": "When you are about to die for the first time, during a Clash if you have 6+ Zeal [Zeal] tokens, immediately stand up, move up to 3 spaces and perform a Bonus Attack! If you deal a Wound, you survive. Otherwise, you die.",
+     "ops": [
+      {
+       "op": "dieStand",
+       "need": 6,
+       "survive": true,
+       "firstOnly": true
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "heroicArcs": [
+  {
+   "name": "Quester",
+   "plus": null,
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Break",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Break",
+        "n": 1
+       },
+       {
+        "token": "Reposition",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "Break",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Zeal",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "Hug",
+        "n": 1
+       },
+       {
+        "token": "Break",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Zeal",
+        "n": 1
+       },
+       {
+        "token": "Rouse",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Faithful",
+   "plus": null,
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Overbreak",
+        "n": 1
+       },
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Fire",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Fire",
+        "n": 1
+       },
+       {
+        "token": "Reposition",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "Break",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Zeal",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "Opening",
+        "n": 1
+       },
+       {
+        "token": "Hug",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Rouse",
+        "n": 1
+       },
+       {
+        "token": "Fire",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Truthseeker",
+   "plus": {
+    "text": "Falsity",
+    "ops": [
+     {
+      "token": "Falsity",
+      "n": 1
+     }
+    ]
+   },
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Fire",
+        "n": 1
+       },
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Fire",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Opening",
+        "n": 1
+       },
+       {
+        "token": "Zeal",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "Reposition",
+        "n": 1
+       },
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Fire",
+        "n": 1
+       },
+       {
+        "token": "Zeal",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Hope",
+        "n": 1
+       },
+       {
+        "token": "Reposition",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "Deadly",
+        "n": 1
+       },
+       {
+        "token": "Fire",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Fireheart Zealot",
+   "plus": null,
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Black",
+        "n": 1
+       },
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Black",
+        "n": 1
+       },
+       {
+        "token": "Zeal",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "Reposition",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Hope",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Zeal",
+        "n": 1
+       },
+       {
+        "token": "GreaterPass",
+        "n": 1
+       },
+       {
+        "token": "Black",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "Spotlight",
+        "n": 1
+       },
+       {
+        "token": "Break",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Questioner",
+   "plus": {
+    "text": "Falsity",
+    "ops": [
+     {
+      "token": "Falsity",
+      "n": 1
+     }
+    ]
+   },
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Fire",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "Reposition",
+        "n": 1
+       },
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Closing",
+        "n": 1
+       },
+       {
+        "token": "Pass",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "Zeal",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "Zeal",
+        "n": 1
+       },
+       {
+        "token": "Fire",
+        "n": 2
+       },
+       {
+        "token": "Reposition",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Hope",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "Deadly",
+        "n": 1
+       },
+       {
+        "token": "GreaterPass",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Inquisitor",
+   "plus": {
+    "text": "Auto-fire 1",
+    "ops": [
+     {
+      "token": "AutoFire",
+      "n": 1
+     }
+    ]
+   },
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Fire",
+        "n": 1
+       },
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Reposition",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Hope",
+        "n": 1
+       },
+       {
+        "token": "Zeal",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Closing",
+        "n": 1
+       },
+       {
+        "token": "Fire",
+        "n": 2
+       }
+      ],
+      [
+       {
+        "token": "Opening",
+        "n": 2
+       },
+       {
+        "token": "Black",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "Fire",
+        "n": 1
+       },
+       {
+        "token": "Zeal",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Tireless",
+        "n": 1
+       },
+       {
+        "token": "Reposition",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Hope",
+        "n": 1
+       },
+       {
+        "token": "GreaterPass",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "Deadly",
+        "n": 1
+       },
+       {
+        "token": "Break",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 8,
+     "options": [
+      [
+       {
+        "token": "Provoke",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Apostate",
+   "plus": {
+    "text": "Falsity",
+    "ops": [
+     {
+      "token": "Falsity",
+      "n": 1
+     }
+    ]
+   },
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Black",
+        "n": 1
+       },
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "Break",
+        "n": 2
+       },
+       {
+        "token": "Zeal",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Closing",
+        "n": 1
+       },
+       {
+        "token": "Break",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "Zeal",
+        "n": 1
+       },
+       {
+        "token": "Black",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "Black",
+        "n": 1
+       },
+       {
+        "token": "Pass",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Zeal",
+        "n": 1
+       },
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "Spotlight",
+        "n": 1
+       },
+       {
+        "token": "GreaterPass",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 8,
+     "options": [
+      [
+       {
+        "token": "Hope",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Reverent",
+   "plus": {
+    "text": "Falsity, +1 [Power]",
+    "ops": [
+     {
+      "token": "Falsity",
+      "n": 1
+     },
+     {
+      "token": "PlusPower",
+      "n": 1
+     }
+    ]
+   },
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Fire",
+        "n": 2
+       },
+       {
+        "token": "Zeal",
+        "n": 1
+       },
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "Hope",
+        "n": 1
+       },
+       {
+        "token": "Closing",
+        "n": 1
+       },
+       {
+        "token": "Reposition",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Closing",
+        "n": 1
+       },
+       {
+        "token": "Zeal",
+        "n": 1
+       },
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "Hope",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "Sunder",
+        "n": 1
+       },
+       {
+        "token": "Zeal",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Daze",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Provoke",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "Hope",
+        "n": 2
+       },
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 8,
+     "options": [
+      [
+       {
+        "token": "Power",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": []
+  }
+ ],
+ "perilArcsRef": "data/knights/peril_arcs.json → arcs.paracelsa",
+ "techniques": [
+  {
+   "name": "Persecuted for Righteousness",
+   "unlock": "Start",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "When you deal a Wound, Zeal 1 and gain the Priority Target token. Then, if you have 3+ Zeal [Zeal] tokens on your Knight Board, gain +3 [Vigor].",
+   "gates": [
+    {
+     "gate": "KING",
+     "text": "This Technique's Depletion becomes [Cooldown]."
+    }
+   ],
+   "depletion": "discard",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "persecuted"
+    }
+   ],
+   "timing": "onDealWound",
+   "gateOps": {
+    "KING": [
+     {
+      "op": "persecuted",
+      "depletion": "cooldown"
+     }
+    ]
+   },
+   "exert": {
+    "token": "Break",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Knight Roll",
+   "unlock": "Start",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "[Reaction] Reflex.",
+   "gates": [
+    {
+     "gate": "KING",
+     "text": "[Reaction] Advanced Reflex."
+    },
+    {
+     "gate": "DEVIL",
+     "text": "[Reaction] Superior Reflex."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "reflex",
+     "n": 1
+    }
+   ],
+   "timing": "reaction",
+   "gateOps": {
+    "KING": [
+     {
+      "op": "reflex",
+      "n": 2
+     }
+    ],
+    "DEVIL": [
+     {
+      "op": "reflex",
+      "n": 3
+     }
+    ]
+   },
+   "exert": {
+    "token": "Opening",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Knight Pose",
+   "unlock": "Start",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "Stand up.",
+   "gates": [
+    {
+     "gate": "KING",
+     "text": "Stand up, then move up to 1 space."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "standUp"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {
+    "KING": [
+     {
+      "op": "standUp"
+     },
+     {
+      "op": "move",
+      "n": 1,
+      "optional": true
+     }
+    ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Zealous Charge",
+   "unlock": "Start",
+   "cost": [
+    [
+     {
+      "res": "Action",
+      "actions": [
+       "combat",
+       "move"
+      ]
+     },
+     {
+      "res": "Heat",
+      "n": 1
+     }
+    ],
+    [
+     {
+      "res": "Action",
+      "actions": [
+       "combat",
+       "move"
+      ]
+     },
+     {
+      "res": "Zeal",
+      "n": -1
+     }
+    ]
+   ],
+   "text": "Rush. If you have 3+ Zeal [Zeal] tokens on your Knight Board, Rush has Auto-fire 1 instead of Auto-break 1.",
+   "gates": [
+    {
+     "gate": "KING",
+     "text": "Improved Rush. If you have 3+ Zeal [Zeal] tokens on your Knight Board, Rush has Auto-fire 2 instead of Auto-break 1."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "zealRush",
+     "fire": 1
+    },
+    {
+     "op": "rush"
+    }
+   ],
+   "timing": "complicated",
+   "gateOps": {
+    "KING": [
+     {
+      "op": "zealRush",
+      "fire": 2
+     },
+     {
+      "op": "improvedRush"
+     }
+    ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "In Failure, Find Perseverance",
+   "unlock": "Start",
+   "cost": [
+    [
+     {
+      "res": "Zeal",
+      "n": -1
+     }
+    ],
+    [
+     {
+      "res": "Vigor",
+      "n": -1
+     }
+    ]
+   ],
+   "text": "Full Miss: After clearing the Knight Pool place 1 Opening [Opening] and 1 Break [Break] token in the Knight Pool.",
+   "gates": [
+    {
+     "gate": "KING",
+     "text": "2 Closing [Closing] and 2 Fire [Fire] tokens instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "fullMissTokens",
+     "tokens": {
+      "opening": 1,
+      "break": 1
+     }
+    }
+   ],
+   "timing": "onFullMiss",
+   "gateOps": {
+    "KING": [
+     {
+      "op": "fullMissTokens",
+      "tokens": {
+       "closing": 2,
+       "fire": 2
+      }
+     }
+    ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Righteous Hand of God",
+   "unlock": "Investigation 1-2",
+   "cost": [],
+   "text": "When you're about to attack, immediately Zeal 1 and gain +X Precision [Precision], where X is the number of Zeal [Zeal] tokens on your Knight Board. You do not benefit from Opening [Opening] tokens during this Attack.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "Additionally, if you have 3+ Zeal [Zeal] tokens on your Knight Board, gain +2 [Power]."
+    }
+   ],
+   "depletion": "discard",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "righteousHand"
+    }
+   ],
+   "timing": "beforeAttack",
+   "gateOps": {
+    "DEVIL": [
+     {
+      "op": "righteousHand",
+      "power": 2
+     }
+    ]
+   },
+   "exert": {
+    "token": "Break",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Evade the Devil's Snare",
+   "unlock": "Investigation 1-3",
+   "cost": [
+    [
+     {
+      "res": "Heat",
+      "n": 1
+     }
+    ],
+    [
+     {
+      "res": "Zeal",
+      "n": -1
+     }
+    ]
+   ],
+   "text": "When a Monster adjacent to you is about to perform Signature, place a temporary negative Precision [Precision] token in the Knight Pool.",
+   "gates": [
+    {
+     "gate": "DRAGON",
+     "text": "2 tokens instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [
+    "Handled as temporary Precision -1 tokens for the Monster (lower the next Evasion Roll difficulty)"
+   ],
+   "ops": [
+    {
+     "op": "negPrecision",
+     "n": 1
+    }
+   ],
+   "timing": "onSignature",
+   "gateOps": {
+    "DRAGON": [
+     {
+      "op": "negPrecision",
+      "n": 2
+     }
+    ]
+   },
+   "exert": {
+    "token": "Opening",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "The Fire of my Faith",
+   "unlock": "Quest: Faithful",
+   "cost": [],
+   "text": "When you are about to attack, discard X Knight tokens from the Knight Pool to gain Deadly, where X is the Level of the top card of the BP deck (minimum 1). If fighting against Mobs, X is the Level of the attacked BP card instead. If you discarded a Black [Black] or Hope [Hope] token, immediately Zeal 1.",
+   "gates": [],
+   "depletion": "cooldown",
+   "unclear": [
+    "Against Mobs the attacked BP card is not known yet when the Technique is used — X is taken as 1"
+   ],
+   "ops": [
+    {
+     "op": "fireOfFaith"
+    }
+   ],
+   "timing": "beforeAttack",
+   "gateOps": {},
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Armed with Truth",
+   "unlock": "Investigation 2-2",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "When you are about to exhaust (voluntarily or not) a Ranged Weapon [Gear] card, ignore it. Additionally, you may spend a Zeal [Zeal] token to ignore an Exhaust of any Gear [Gear] card instead.",
+   "gates": [],
+   "depletion": "cooldown",
+   "unclear": [
+    "Not implemented (Exert only)"
+   ],
+   "ops": null,
+   "timing": "onExhaust",
+   "gateOps": {},
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Flee From Evil",
+   "unlock": "Investigation 2-3",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    },
+    {
+     "res": "Zeal",
+     "n": -1
+    }
+   ],
+   "text": "If you failed to deal a Wound, immediately move up to 1 space away from the Target.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "Up to 2 spaces instead."
+    },
+    {
+     "gate": "DRAGON",
+     "text": "Up to 3 spaces instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [
+    "'away from the Target' is not enforced"
+   ],
+   "ops": [
+    {
+     "op": "flee",
+     "n": 1
+    }
+   ],
+   "timing": "onNoWound",
+   "gateOps": {
+    "DEVIL": [
+     {
+      "op": "flee",
+      "n": 2
+     }
+    ],
+    "DRAGON": [
+     {
+      "op": "flee",
+      "n": 3
+     }
+    ]
+   },
+   "exert": {
+    "token": "Opening",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Theocratic Warfare",
+   "unlock": "Quest: Truthseeker",
+   "cost": [],
+   "text": "-3 [Zeal]: Attack Re-roll 2. OR [Discard] Flip a Mind Condition card.",
+   "gates": [],
+   "depletion": "instant",
+   "unclear": [
+    "No Exert icon on this card",
+    "Attack Re-roll 2 applies to the next Attack this turn"
+   ],
+   "ops": [
+    {
+     "op": "theocratic"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {},
+   "exert": null
+  },
+  {
+   "name": "Ours is the Hope",
+   "unlock": "Quest: Truthseeker",
+   "cost": [
+    {
+     "res": "Zeal",
+     "n": -2
+    }
+   ],
+   "text": "Defy. OR During the second ability window, gain Hope 1.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "Advanced Defy instead. Hope 2 instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [
+    "Free action: Hope tokens in the Pool. Defy: offered when Paracelsa is the Target of a Monster Attack (hits reduced like Block)"
+   ],
+   "ops": [
+    {
+     "op": "oursHope",
+     "n": 1,
+     "defy": 1
+    }
+   ],
+   "timing": "free",
+   "gateOps": {
+    "DEVIL": [
+     {
+      "op": "oursHope",
+      "n": 2,
+      "defy": 2
+     }
+    ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Rewarded for my Trials",
+   "unlock": "Quest: Fireheart Zealot",
+   "cost": [],
+   "text": "As a free action, immediately resolve Zeal X depending on your current Peril Level: [MINOR] Zeal 1. [MAJOR] Zeal 2. [GRAVE] Zeal 3. [JUDICIUM] Zeal 4.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "Additionally, gain [Vigor] equal to the number of Zeal [Zeal] tokens you gained."
+    }
+   ],
+   "depletion": "discard",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "rewarded"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {
+    "DEVIL": [
+     {
+      "op": "rewarded",
+      "vigor": true
+     }
+    ]
+   },
+   "exert": {
+    "token": "Fire",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Second Chance",
+   "unlock": "Quest: Fireheart Zealot",
+   "cost": [
+    [
+     {
+      "res": "Heat",
+      "n": 3
+     }
+    ],
+    [
+     {
+      "res": "Zeal",
+      "n": -3
+     }
+    ]
+   ],
+   "text": "Second Chance. OR If you have 3+ Zeal [Zeal] tokens, ignore the Disemboweled Mortis card.",
+   "gates": [
+    {
+     "gate": "DRAGON",
+     "text": "Superior Chance."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [
+    "The 'ignore the Disemboweled Mortis card' option is not implemented"
+   ],
+   "ops": [
+    {
+     "op": "secondChance"
+    }
+   ],
+   "timing": "onMortisDraw",
+   "gateOps": {
+    "DRAGON": [
+     {
+      "op": "superiorChance"
+     }
+    ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Scion of the Light",
+   "unlock": "Investigation 3-2",
+   "cost": [
+    {
+     "res": "Zeal",
+     "n": -2
+    }
+   ],
+   "text": "Spotlight. OR During the first ability window, spend 2 additional Zeal [Zeal] tokens to add [red Power die] to your Power Pool.",
+   "gates": [],
+   "depletion": "discard",
+   "unclear": [
+    "Read as: Spotlight for this Attack, and you may spend 2 more Zeal for +1 red Power die"
+   ],
+   "ops": [
+    {
+     "op": "scion"
+    }
+   ],
+   "timing": "beforeAttack",
+   "gateOps": {},
+   "exert": {
+    "token": "Opening",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Shield of Faith",
+   "unlock": "Investigation 3-3",
+   "cost": [
+    [
+     {
+      "res": "Vigor",
+      "n": -3
+     }
+    ],
+    [
+     {
+      "res": "Zeal",
+      "n": -3
+     }
+    ]
+   ],
+   "text": "Advanced Block.",
+   "gates": [],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "techBlock",
+     "n": 2
+    }
+   ],
+   "timing": "onDefense",
+   "gateOps": {},
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Blinding Faith",
+   "unlock": "Quest: Questioner",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "Ignore Attack Responses. Then, during the second ability window, gain Hope 1 and Daze.",
+   "gates": [
+    {
+     "gate": "DRAGON",
+     "text": "Hope 3 instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "ignoreResponses"
+    },
+    {
+     "op": "secondHopeDaze",
+     "n": 1
+    }
+   ],
+   "timing": "beforeAttack",
+   "gateOps": {
+    "DRAGON": [
+     {
+      "op": "ignoreResponses"
+     },
+     {
+      "op": "secondHopeDaze",
+      "n": 3
+     }
+    ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Become a Stumbling Block",
+   "unlock": "Investigation 4-2",
+   "cost": [
+    [
+     {
+      "res": "Vigor",
+      "n": -3
+     }
+    ],
+    [
+     {
+      "res": "Zeal",
+      "n": -2
+     }
+    ]
+   ],
+   "text": "After you perform a [Judicium draw], Chain Break.",
+   "gates": [],
+   "depletion": "discard",
+   "unclear": [
+    "Not implemented (Exert only)"
+   ],
+   "ops": null,
+   "timing": "onJudicium",
+   "gateOps": {},
+   "exert": {
+    "token": "Hope",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Spare Not The Rod",
+   "unlock": "Investigation 4-3",
+   "cost": [
+    {
+     "res": "Vigor",
+     "n": -1
+    }
+   ],
+   "text": "When you gain a Crit Chance, gain Zeal 1 and Auto-hope 1.",
+   "gates": [],
+   "depletion": "instant",
+   "unclear": [
+    "No Exert icon on this card"
+   ],
+   "ops": [
+    {
+     "op": "spareRod"
+    }
+   ],
+   "timing": "onCritChance",
+   "gateOps": {},
+   "exert": null
+  },
+  {
+   "name": "The Just Blade of Kain",
+   "unlock": "Quest: Inquisitor",
+   "cost": [
+    [
+     {
+      "res": "Heat",
+      "n": 2
+     }
+    ],
+    [
+     {
+      "res": "Zeal",
+      "n": -2
+     }
+    ]
+   ],
+   "text": "When you are about to attack, gain Spotlight and Heartseeker.",
+   "gates": [],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "heartseeker"
+    },
+    {
+     "op": "spotlightNow"
+    }
+   ],
+   "timing": "beforeAttack",
+   "gateOps": {},
+   "exert": {
+    "token": "Closing",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Through the Fires of Anatiocha",
+   "unlock": "Quest: Inquisitor",
+   "cost": [
+    {
+     "res": "Zeal",
+     "n": -4
+    }
+   ],
+   "text": "When you are about to die from an Instant Death effect, ignore that death and Displace.",
+   "gates": [],
+   "depletion": "discard",
+   "unclear": [
+    "Not implemented (Exert only) — which deaths count as Instant Death effects?"
+   ],
+   "ops": null,
+   "timing": "onInstantDeath",
+   "gateOps": {},
+   "exert": {
+    "token": "Hope",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Inquisitor's Pursuit",
+   "unlock": "Quest: Apostate",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "After a Monster performs its movement, immediately move up to 3 spaces toward that Monster. If you have 3+ Zeal [Zeal] tokens, you may move up to your Speed [Speed] value instead.",
+   "gates": [],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "pursuit",
+     "n": 3
+    }
+   ],
+   "timing": "onMonsterMoved",
+   "gateOps": {},
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Power of the Pious",
+   "unlock": "Quest: Apostate",
+   "cost": [],
+   "text": "Power die: [icon]. Bonus Power: +[icon]. Reach X. Daze. Gain the following stacking bonuses depending on X: 1+: Break 3. 2+: Deadly. 3+: +[Power Re-roll]. 4+: Attack Re-roll 1. 5+: Hope 2. 6+: +2 [Power].",
+   "gates": [],
+   "depletion": "discard",
+   "unclear": [
+    "Not implemented (Exert only) — the cost / definition of X and the Power die icons are not legible"
+   ],
+   "ops": null,
+   "timing": "attack",
+   "gateOps": {},
+   "exert": {
+    "token": "Zeal",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Nothing Shall Stay My Hand",
+   "unlock": "Investigation 5-2",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "Use this Technique when you are about to perform a Power Roll. Ignore all Responses during this Attack.",
+   "gates": [],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "ignoreResponses"
+    }
+   ],
+   "timing": "beforePowerRoll",
+   "gateOps": {},
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Not Your Time",
+   "unlock": "Investigation 5-3",
+   "cost": [
+    {
+     "res": "Zeal",
+     "n": -3
+    }
+   ],
+   "text": "Bring another Knight back to life and place them adjacent to Paracelsa with 0 [Vigor]. That Knight discards all Condition cards they have.",
+   "gates": [],
+   "depletion": "discard",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "notYourTime"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {},
+   "exert": {
+    "token": "Hope",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Divine Intervention",
+   "unlock": "Quest: Reverent",
+   "cost": [
+    [
+     {
+      "res": "Vigor",
+      "n": -3
+     }
+    ],
+    [
+     {
+      "res": "Zeal",
+      "n": -3
+     }
+    ]
+   ],
+   "text": "Choose the AI or BP deck. Suppress, then flip the chosen deck face up (the bottom card becomes the top card of its deck). The cards flipped this way remain face up, even when shuffled or removed during Escalation. New cards are added to the deck face down.",
+   "gates": [],
+   "depletion": "discard",
+   "unclear": [
+    "Only the Suppress is implemented; the face-up deck is not"
+   ],
+   "ops": [
+    {
+     "op": "divineIntervention"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {},
+   "exert": {
+    "token": "Hope",
+    "n": 1,
+    "depletion": "discard"
+   }
+  }
+ ],
+ "missing": [],
+ "portraits": [
+  {
+   "id": "quester",
+   "name": "Quester",
+   "tier": "starting",
+   "classes": [
+    "Quester"
+   ],
+   "powerDie": "red",
+   "cardRefresh": 1,
+   "heatRefresh": 2,
+   "handLimit": 4,
+   "speed": 4,
+   "baneLimit": 4
+  },
+  {
+   "id": "truthseeker-fireheart",
+   "name": "Truthseeker / Fireheart Zealot",
+   "tier": "vassal",
+   "classes": [
+    "Truthseeker",
+    "Fireheart Zealot"
+   ],
+   "powerDie": "red",
+   "cardRefresh": 1,
+   "heatRefresh": 3,
+   "handLimit": 5,
+   "speed": 4,
+   "baneLimit": 5
+  },
+  {
+   "id": "inquisitor-apostate",
+   "name": "Inquisitor / Apostate",
+   "tier": "devil",
+   "classes": [
+    "Inquisitor",
+    "Apostate"
+   ],
+   "powerDie": "red",
+   "powerDice": 2,
+   "cardRefresh": 2,
+   "heatRefresh": 4,
+   "handLimit": 6,
+   "speed": 5,
+   "baneLimit": 6
+  }
+ ]
+}
