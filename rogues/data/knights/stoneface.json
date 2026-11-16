@@ -166,8 +166,16 @@
     {
      "name": "Juggernaut",
      "text": "During the first or second ability window, Unleash 7 to move up to 3 spaces toward the Target. If you become adjacent to it, move it to any other space adjacent to you.",
-     "ops": [],
-     "note": "미구현."
+     "ops": [
+      {
+       "op": "juggernaut",
+       "unleash": 7,
+       "n": 3
+      }
+     ],
+     "unclear": [
+      "Offered in the second ability window when not adjacent to the Target; moving the Target is not implemented"
+     ]
     },
     {
      "name": "Accursed Strength",
@@ -252,8 +260,12 @@
     {
      "name": "Stone Sentinel",
      "text": "When a Monster is about to perform an After Attack, Unleash 11 to immediately perform a Bonus Attack!",
-     "ops": [],
-     "note": "미구현."
+     "ops": [
+      {
+       "op": "stoneSentinel",
+       "unleash": 11
+      }
+     ]
     },
     {
      "name": "Accursed Strength",

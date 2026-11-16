@@ -33,7 +33,6 @@ export const UbarMixin = {
   async ubarTurnStart(k) {
     if (!isUbar(k)) return;
     if (!k._formAsked) { k._formAsked = true; const v = await this.ask({ type: 'pick', knight: k.id, text: `${k.name}: 이 Clash를 시작하는 형태`, options: [{ label: 'Human', value: 'human' }, { label: 'Ape', value: 'ape' }] }); k.form = v === 'ape' ? 'ape' : 'human'; this.say(`${k.name}: ${k.form === 'ape' ? 'Ape' : 'Human'} 형태로 시작`, 'tech'); }
-    k._bypassMove = false;
     if (tops(k, 'shiftersGrace').length) { const d = this.rng.die(10); const r = d + (k.bane || 0); this.say(`${k.name} Shifter's Grace: d10 ${d}${k.bane ? ` + Bane ${k.bane}` : ''} = ${r} vs Heat ${k.heat}`, 'dice'); if (r <= k.heat) await this.shapeshift(k, "Shifter's Grace"); }
     for (const o of tops(k, 'beastMode')) if (k.heat + o.cost <= k.heatLimit && await this.yesNo(`${k.name}: Beast Mode — Heat +${o.cost}로 Shapeshift? (현재 ${k.form === 'ape' ? 'Ape' : 'Human'})`, false)) { k.gainHeat(o.cost, { voluntary: true }); await this.shapeshift(k, 'Beast Mode'); }
     if (tops(k, 'heartsThunder').length && await this.yesNo(`${k.name}: Heart's Thunder — Generic 토큰 1개 놓기? (현재 ${k.generic}, Heat가 그 수와 같아지면 Shapeshift + Heat 리셋)`, false)) { k.generic++; this.say(`${k.name}: Generic 토큰 ${k.generic}`, 'tech'); }
@@ -61,7 +60,7 @@ export const UbarMixin = {
   async ubarOp(o, k, ctx) {
     const U = () => (k.pendingUbar = k.pendingUbar || {}); const flags = () => (k.pendingAttackFlags = k.pendingAttackFlags || new Set()); const pool = () => (k.pendingExtraPool = k.pendingExtraPool || { red: 0, black: 0, white: 0, raw: 0 });
     switch (o.op) {
-      case 'bypassMove': k._bypassMove = true; this.say(`${k.name}: 이번 턴 다른 기사를 지나 이동 가능`, 'tech'); return true;
+      case 'bypassMove': k._bypass = o.lvl || 1; this.say(`${k.name}: 다음 이동에 ${k._bypass >= 2 ? 'Advanced Bypass' : 'Bypass'}`, 'tech'); return true;
       case 'coldOpen': if (!this.pool.some(t => !t.resource)) { this.poolAdd('opening', 1); this.poolAdd('break', 1); this.say(`${k.name}: Cold Open — Opening + Break`, 'tech'); } else this.say(`${k.name}: Knight Pool이 비어 있지 않음 — 토큰 없음`); return true;
       case 'monkeySee': { const M = this.monster; if (o.deck === 'bp' && M.isMob) { const m = (M.mobs || []).find(x => !x.revealed); if (m) { this.say(`Monkey See: 공개 안 된 BP — ${m.card.name}`, 'tech'); this.flash('card', { title: '공개 안 된 BP', name: m.card.name, text: m.card.text || '', cls: 'good' }); } return true; } const d = M[o.deck]; const top = d && d.cards && d.cards[0]; if (!top) return true; this.say(`Monkey See: ${o.deck.toUpperCase()} 덱 맨 위 — ${top.name}`, 'tech'); this.flash('card', { title: `${o.deck.toUpperCase()} 덱 맨 위`, name: top.name, text: top.text || '', cls: o.deck === 'ai' ? 'bad' : 'good' }); if (await this.yesNo(`${k.name}: ${top.name}을(를) 덱 맨 아래로?`, false)) { d.cards.push(d.cards.shift()); this.say(`${top.name} → 덱 맨 아래`, 'tech'); } return true; }
       case 'exploitFlaw': { let v = 'deadly'; if (o.precise) v = await this.ask({ type: 'pick', knight: k.id, text: `${k.name}: Exploit Flaw`, options: [{ label: 'Deadly', value: 'deadly' }, { label: 'Precise', value: 'precise' }] }) || 'deadly'; flags().add(v); this.say(`${k.name}: ${v === 'deadly' ? 'Deadly' : 'Precise'}`, 'tech'); return true; }

@@ -1386,15 +1386,29 @@
    ],
    "depletion": "delay",
    "unclear": [
-    "Used as a free action before moving: until the end of the turn you may move through occupied spaces (the Difficult Terrain cost / Advanced Bypass are not modelled); APE +1 Speed lasts until the end of the turn"
+    "Used as a free action before moving; applies to the next movement. Below KING the Difficult-Terrain cost of passing a Knight is not charged; APE +1 Speed lasts until the end of the turn"
    ],
    "ops": [
     {
-     "op": "bypassMove"
+     "op": "bypassMove",
+     "lvl": 1
     }
    ],
    "timing": "free",
-   "gateOps": {},
+   "gateOps": {
+    "KING": [
+     {
+      "op": "bypassMove",
+      "lvl": 1
+     }
+    ],
+    "DRAGON": [
+     {
+      "op": "bypassMove",
+      "lvl": 2
+     }
+    ]
+   },
    "formOps": {
     "APE": {
      "add": [

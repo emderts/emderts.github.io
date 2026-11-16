@@ -31,14 +31,14 @@ talents = [
    {"name": "Sticks and Stones", "text": "Spears and Polearms gain \"When you attack with this Weapon, Leash 2.\"", "ops": [{"op": "sticksAndStones", "n": 2}]}, ACC]},
  {"id": "rebellious-child", "name": "Rebellious Child", "tier": "vassal", "abilities": [
    {"name": "Martial Monolith", "text": "When you are about to perform a Melee/Reach Attack you may: Provoke, Pull 1, and/or gain Tireless. Then, Leash 1 for each resolved effect.", "ops": [{"op": "martialMonolith"}]},
-   {"name": "Juggernaut", "text": "During the first or second ability window, Unleash 7 to move up to 3 spaces toward the Target. If you become adjacent to it, move it to any other space adjacent to you.", "ops": [], "note": "미구현."}, ACC]},
+   {"name": "Juggernaut", "text": "During the first or second ability window, Unleash 7 to move up to 3 spaces toward the Target. If you become adjacent to it, move it to any other space adjacent to you.", "ops": [{"op": "juggernaut", "unleash": 7, "n": 3}], "unclear": ["Offered in the second ability window when not adjacent to the Target; moving the Target is not implemented"]}, ACC]},
  {"id": "no-strings-on-me", "name": "No Strings on Me", "tier": "devil", "abilities": [
    {"name": "Tremortrial Throw", "text": "1 [Bane]: Choose an adjacent Knight or Mob, move them up to X spaces away from you in a straight line, and Leash X, where X is the number of Bane [Bane] tokens you have.", "ops": [{"op": "tremortrialThrow", "bane": 1}], "unclear": ["Only Knights can be thrown; the straight line is not enforced"]},
    {"name": "Built Different", "text": "You may use [two-hand] Melee/Reach Weapons as if they were [one-hand], provided that one of your Weapons has the Shield Trait.", "ops": [], "note": "미구현 (장비 슬롯)."},
    {"name": "Undying Hope", "text": "During either ability window, Unleash 9 to turn all Break [Break] tokens into Hope [Hope] tokens.", "ops": [{"op": "undyingHope", "unleash": 9}]}, ACC, WALL]},
  {"id": "mangiarovina", "name": "Mangiarovina", "tier": "devil", "abilities": [
    {"name": "Transmute Pain to Power", "text": "[Combat action + Move action] 1 [Bane]: Pull X a Monster in sight and perform a Melee/Reach Attack if possible. If you deal a Wound, Leash X. X is your missing [Vigor].", "ops": [{"op": "transmutePain", "bane": 1}], "unclear": ["The Pull of the Monster is not implemented (attack only when already in range)"]},
-   {"name": "Stone Sentinel", "text": "When a Monster is about to perform an After Attack, Unleash 11 to immediately perform a Bonus Attack!", "ops": [], "note": "미구현."}, ACC, WALL]},
+   {"name": "Stone Sentinel", "text": "When a Monster is about to perform an After Attack, Unleash 11 to immediately perform a Bonus Attack!", "ops": [{"op": "stoneSentinel", "unleash": 11}]}, ACC, WALL]},
 ]
 def tech(name, unlock, cost, text, depletion, ops, timing, exert, gates=None, gateOps=None, unclear=()):
     return {"name": name, "unlock": unlock, "cost": cost, "text": text, "gates": [{"gate": g, "text": t} for g, t in (gates or [])], "depletion": depletion, "unclear": list(unclear), "ops": ops, "timing": timing, "gateOps": gateOps or {}, "exert": exert}

@@ -148,7 +148,6 @@ export const KNIGHT_RULINGS = [
   ['Ser Ubar — Shifter\'s Grace', '턴 시작(Heat Refresh 전)에 d10 + Bane 수 ≤ 현재 Heat면 Shapeshift.'],
   ['Ser Ubar — Heat 조건 Shapeshift (Rising Ape 3/5/8, Heart\'s Thunder)', 'Heat 변화는 기록해 두었다가 Ser Ubar 턴의 다음 행동 경계(행동 직후·턴 시작)에 처리. 자기 턴 밖의 Heat 변화는 다음 턴 시작에 처리.'],
   ['Ser Ubar — 몬스터가 사거리를 벗어남 (You\'re in Here With Me / Constantly Evolving)', '기사 턴이 아닐 때 몬스터가 움직인 뒤 Ser Ubar가 공격 불가 상태면 최대 2칸 다가가기를 제안.'],
-  ['Ser Ubar — Stand Aside', '자유 행동으로 사용, 턴 끝까지 다른 기사를 지나 이동 가능 (Difficult Terrain 비용/Advanced Bypass 구분 없음).'],
   ['Ser Ubar — Skull Crack', 'Attack Roll 뒤 빗나간 주사위(가능하면 Crit die 제외) 1개를 자동 명중으로 처리.'],
   ['Ser Ubar — Simian Sprint 비용', '비용 아이콘을 Combat action으로 판독 (Combat action → Move action 획득).'],
   ['Ser Ubar — Lesser Dodge (Put \'em Up)', '다른 Evasion 보너스가 없을 때만 +1 Evasion (장비의 Lesser Dodge와 같은 처리).'],
@@ -185,6 +184,8 @@ export const KNIGHT_RULINGS = [
   ['Jump / Advanced Jump', '다음 이동 한 번 동안 Terrain 칸 1개(Advanced: 2개)를 무시 — Obstacle을 지나갈 수 있고(그 위에서 끝낼 수는 없음) Difficult Terrain 추가 비용 없음. 넘어져 있으면 사용 불가. "한 타일의 인접한 2칸" 제한은 따지지 않음.'],
   ['Soulseeker', 'BP를 뽑을 때 2장을 더 뽑아 3장 중 공격할 카드를 고르고 나머지는 덱에 섞음. (Carrot and Stick DRAGON, Fiery Eyes DRAGON — 카드를 버리고 사용)'],
   ['Armor Re-roll X (Technique)', 'Armor Roll에서 주사위 X개까지 재굴림 (장비의 Armor Re-roll과 같은 처리). Bulwark는 Little Ser가 Ser Sonch의 Knight Board에 있을 때만.'],
+  ['Bypass / Advanced Bypass / Superior Bypass', 'Bypass: 다른 기사를 지나 이동. Advanced: 몬스터도 지나감. Superior: Obstacle에 들어가 멈출 수 있고 Difficult Terrain 비용 없음. 점유된 칸에서 멈출 수는 없음. 적용: Stand Aside(KING Bypass, DRAGON Advanced; 그 아래 등급은 Bypass로 처리하고 Difficult Terrain 비용은 미부과), Keep on Rolling(Move action 전에 제안), Master the Terrain(Superior, Obstacle 위에 있고 카드가 버려져 있으면 +1 Evasion).'],
+  ['Stoneface — Juggernaut / Stone Sentinel', 'Juggernaut: 2차 창에서 대상과 인접하지 않을 때 Unleash 7로 대상 쪽 최대 3칸 이동 (대상 옮기기는 미구현). Stone Sentinel: 몬스터가 After Attack을 수행하기 직전 Unleash 11로 Bonus Attack.'],
   ['Kara — Ally', 'Knightbook의 Ally(아군 미니어처·보드 위 파티 토큰) 중 현재는 다른 기사만 Ally로 취급. Squire/Princess/Little Ser/Placeholder는 미포함.'],
   ['Kara — Unconstrained', '"occupied" = 기사·몬스터·Obstacle이 있는 인접 칸. 0칸이면 +2, 정확히 1칸이면 +1 Precision.'],
   ['Kara — Technique 소진 아이콘', 'zZ = Cooldown, 원형 화살표 = Delay, 번개 = Instant (Fleischritter·Renholder와 같은 기준). Dodge and Weave는 Delay → Cooldown을 지나는 동안 효과.'],
@@ -220,13 +221,13 @@ export const KNIGHT_RULINGS = [
   ['Renholder — First Death', '이벤트 결말 문단을 스캔에서 찾지 못해 Fleischritter와 같은 보상(+1 Sigh of the Graal)으로 처리.'],
 ];
 export const KNIGHT_QUESTIONS = [
-  ['Stoneface — 미구현', 'Talent: Juggernaut, Stone Sentinel, Built Different, Stonewall, Rolling Stone의 Drag, Transmute Pain to Power의 Pull. Technique 일부 효과: Go Beyond!의 Critical Wound, I\'ll Be Your Rock의 Terrain 사망 무시, Rock Meet Hard Place의 Pushback, Split the Heavens의 Condition 버리기.'],
+  ['Stoneface — 미구현', 'Talent: Built Different, Stonewall, Juggernaut의 대상 이동, Rolling Stone의 Drag, Transmute Pain to Power의 Pull. Technique 일부 효과: Go Beyond!의 Critical Wound, I\'ll Be Your Rock의 Terrain 사망 무시, Rock Meet Hard Place의 Pushback, Split the Heavens의 Condition 버리기.'],
   ['Ser Ubar — 미구현', 'Primate Strength(슬롯), Knights Together Strong의 "VP 위", You\'re in Here With Me APE(비자발 이동 -2), Knight Roll APE(넘어진 채 사용), Knuckle Charge APE(Difficult Terrain 무시), Untouchable HUMAN, Inner Turmoil HUMAN의 Vault.'],
   ['숫자가 붙은 "손" 아이콘 (Heroic Arc, 미적용)', 'Kara(Steadfast L2·L6, Knight of the Grand Kingdoms L3), Ser Sonch(Exemplary Leader L7, The Man Made Myth L3, Enduring Legend L2·L6)에 나오는 손 모양 + 숫자 아이콘. 토큰 표의 Tireless(숫자 없음)인지 Pull X인지? Hero to the People L1의 "방패 위 주먹 1"도 미판독.'],
   ['Ser Sonch — 미구현', 'Little Ser의 장비(Exemplary Leader 소모품, Hero to the People 무기, Fameseeker 방어구·Chain Break·Knockback 감소), Exploration/Encounter/Delve 전용 능력, Tag Team 무기 교환, Time to Shine DRAGON.'],
   ['Paracelsa — 판독 못 한 Talent 혜택 (미적용)', 'Fireheart Zealot 4·6·7번, Inquisitor 9번("-1 [아이콘]")·11번 아이콘. 시트 해상도로는 판독 불가. Inquisitor 12번 Incarnate는 미구현.'],
   ['Paracelsa — 장비의 Zeal', 'Imperial Templar\'s Kite Shield "Crit Evade Fail: Zeal 1", Blade of the First Sacrament의 무기 교체/Zeal 1은 아직 미구현 (Falsity 키워드만 연결).'],
   ['Kara — 판독 못 한 Heroic Arc 아이콘 (미적용)', 'Steadfast L2·L6 첫 옵션, Knight of the Grand Kingdoms L3의 불꽃+손 모양 아이콘 (숫자 1/1/2). 어떤 토큰인지 알려주시면 적용.'],
-  ['Kara — 미구현', 'Doing My Own Thing의 Encounter 배치, Crusader\'s Strike의 Devote, Bypass/Superior Bypass(Keep on Rolling·Master the Terrain), Avert a Dire Fate의 Acrobatics, Living Weapon의 Full Evade 복귀, Dice with the Devil·Just Like We Practised의 Reaction 사용, Oath of Valor 카드 이동, Fleet of Foot의 방향 제한.'],
+  ['Kara — 미구현', 'Doing My Own Thing의 Encounter 배치, Crusader\'s Strike의 Devote, Avert a Dire Fate의 Acrobatics, Living Weapon의 Full Evade 복귀, Dice with the Devil·Just Like We Practised의 Reaction 사용, Oath of Valor 카드 이동, Fleet of Foot의 방향 제한.'],
   ['다른 기사', 'Kara · Ser Sonch · Paracelsa · Stoneface · Ser Ubar는 Talent/Heroic Arc 시트는 있으나 Knightbook(Setup)과 Technique 카드가 필요.'],
 ];

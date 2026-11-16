@@ -1555,7 +1555,7 @@
    ],
    "depletion": "delay",
    "unclear": [
-    "Only the Tumble half is implemented (used when about to suffer Crash); Bypass / Superior Bypass movement is not"
+    "Tumble: offered when about to suffer Crash. Bypass (DEVIL: Superior Bypass): offered before a Move action"
    ],
    "ops": [
     {
@@ -1922,7 +1922,7 @@
    "gates": [],
    "depletion": "discard",
    "unclear": [
-    "Superior Bypass (moving through / onto Obstacles) is not implemented — performs a normal move"
+    "Superior Bypass for this Move action"
    ],
    "ops": [
     {

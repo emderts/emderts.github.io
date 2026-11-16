@@ -258,7 +258,7 @@ export class Clash {
       // Repeat this Attack (Sequential, once) / If you die, repeat this Attack — re-resolved without its After Final Attack
       if (attack.repeatAfter && (ctx.repeats || 0) < (attack.repeatAfter === 'chain' ? 4 : 1)) { this.say(`${card.name} 반복`); this.currentAttack = null; await this.resolveMonsterAttack({ ...card, ops: { ...card.ops, afterAttack: null, afterFinalAttack: null } }, { ...ctx, repeats: (ctx.repeats || 0) + 1 }); this.currentAttack = attack; }
       // after attack
-      if (ops.afterAttack) { this.say('After Attack'); if (!tg.primary && attack.targets.length > 1) { for (const t of attack.targets.filter(x => x.alive)) await this.fx.runMonsterOps(ops.afterAttack, { attack, targets: attack.targets, target: t, primary: t }); } else await this.fx.runMonsterOps(ops.afterAttack, { attack, targets: attack.targets, primary: tg.primary || attack.targets[0] }); }
+      if (ops.afterAttack) { await this.stoneAfterAttack(); if (this.result) return; this.say('After Attack'); if (!tg.primary && attack.targets.length > 1) { for (const t of attack.targets.filter(x => x.alive)) await this.fx.runMonsterOps(ops.afterAttack, { attack, targets: attack.targets, target: t, primary: t }); } else await this.fx.runMonsterOps(ops.afterAttack, { attack, targets: attack.targets, primary: tg.primary || attack.targets[0] }); }
       await this.firstmenAfterAttack(attack);
       if (attack.stepTo && attack.mob) await this.spectralStep(attack.mob, attack.stepTo);
       let afa = ops.afterFinalAttack; if (!afa && card.type === 'zone' && this.monster.hasTrait('Egged On')) afa = [{ op: 'trait', id: 'humpty-charge' }];
@@ -565,7 +565,7 @@ export class Clash {
       const choice = opts.length === 1 ? 'end' : await this.ask({ type: 'action', knight: k.id, options: opts });
       if (choice === 'end') done = true;
       else if (choice.startsWith('unex:')) { k.actions[choice.slice(5)] = false; for (const g of k.gear) if (!g.discarded) g.exhausted = false; this.say(`${k.name}: ${choice.slice(5) === 'move' ? '이동' : '전투'} 행동으로 모든 장비 Unexhaust (p.21)`, 'tech'); }
-      else if (choice === 'move') { await this.stoneMoveAction(k); await this.knightMove(k, this.fx.speed(k)); k.actions.move = false; await this.karaMoveAction(k); }
+      else if (choice === 'move') { await this.karaPreMove(k); await this.stoneMoveAction(k); await this.knightMove(k, this.fx.speed(k)); k.actions.move = false; await this.karaMoveAction(k); }
       else if (choice === 'moveC') { await this.knightMove(k, this.fx.speed(k)); k.actions.combat = false; }
       else if (choice === 'attack') { if (k.actions.combat) k.actions.combat = false; else k.actions.extraCombat--; await this.knightAttack(k); }
       else if (choice.startsWith('tech:')) await this.fx.useTechnique(k, k.hand.find(t => t.name === choice.slice(5)));
@@ -589,9 +589,9 @@ export class Clash {
   }
   canAttack(k) { return this.fx.usableWeapons(k).some(w => this.attackTargets(k, w).length > 0); }
   reachable(k, speed) {
-    const byp = this.fx.gearHas(k, 'bypass') || !!k._bypassMove; const diag = this.karaDiag(k); const B = this.board; const out = new Map(); const t0 = B.terrainAt(k.pos); const q = [{ cell: k.pos, d: t0 && t0.difficult ? 1 : 0 }]; /* starting a move on Difficult Terrain costs +1 (Q&A, owner reference 2026-11-15) */ const seen = new Set([B.key(k.pos)]);
+    const bl = Math.max(this.fx.gearHas(k, 'bypass') ? 2 : 0, k._bypass || 0); const byp = bl > 0; /* Bypass 1: through Knights · Advanced 2: through any miniature · Superior 3: also enter / end on Obstacles, ignore Difficult Terrain */ const diag = this.karaDiag(k); const B = this.board; const out = new Map(); const t0 = B.terrainAt(k.pos); const q = [{ cell: k.pos, d: t0 && t0.difficult ? 1 : 0 }]; /* starting a move on Difficult Terrain costs +1 (Q&A, owner reference 2026-11-15) */ const seen = new Set([B.key(k.pos)]);
     const jmax = this.knockedDown(k) ? 0 : (k._jump || 0); q[0].j = 0; seen.clear(); seen.add(B.key(k.pos) + ':0'); // Jump: ignore 1 space (Advanced Jump: up to 2) of a Terrain tile, including an Obstacle
-    while (q.length) { const { cell, d, j } = q.shift(); if (d >= speed) continue; for (const n of (diag ? B.zone([cell], 1).filter(z => !(z.c === cell.c && z.r === cell.r)) : B.neighbors(cell))) { const key = B.key(n); const obst = B.isObstacle(n); if (obst && j >= jmax) continue; const occ = this.knightAt(n) || this.monsterOccupies(n); if (occ && !byp) continue; const t = B.terrainAt(n); const steps = obst ? [[1, j + 1]] : t && t.difficult ? (j < jmax ? [[2, j], [1, j + 1]] : [[2, j]]) : [[1, j]]; for (const [cost, nj] of steps) { const sk = key + ':' + nj; if (seen.has(sk) || d + cost > speed) continue; seen.add(sk); if (!occ && !obst) out.set(key, n); q.push({ cell: n, d: d + cost, j: nj }); } } }
+    while (q.length) { const { cell, d, j } = q.shift(); if (d >= speed) continue; for (const n of (diag ? B.zone([cell], 1).filter(z => !(z.c === cell.c && z.r === cell.r)) : B.neighbors(cell))) { const key = B.key(n); const obst = B.isObstacle(n); if (obst && bl < 3 && j >= jmax) continue; const occK = this.knightAt(n), occM = this.monsterOccupies(n); const occ = occK || occM; if ((occK && bl < 1) || (occM && bl < 2)) continue; const t = B.terrainAt(n); const steps = obst ? (bl >= 3 ? [[1, j]] : [[1, j + 1]]) : t && t.difficult ? (bl >= 3 ? [[1, j]] : j < jmax ? [[2, j], [1, j + 1]] : [[2, j]]) : [[1, j]]; for (const [cost, nj] of steps) { const sk = key + ':' + nj; if (seen.has(sk) || d + cost > speed) continue; seen.add(sk); if (!occ && (!obst || bl >= 3)) out.set(key, n); q.push({ cell: n, d: d + cost, j: nj }); } } }
     return [...out.values()].filter(c => !(B.terrainAt(c) && B.terrainAt(c).id === 'swamp')); // ending a move on a Swamp kills → never offered as a destination
   }
   /** Cheapest path to `target` within `speed` that crosses the fewest Swamp spaces; returns the Swamp spaces moved through (destination excluded). */
