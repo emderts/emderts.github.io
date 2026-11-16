@@ -120,6 +120,19 @@ export const GEAR_QUESTIONS = [
 ];
 // Renholder (added 2026-11-16) — interpretations and missing material.
 export const KNIGHT_RULINGS = [
+  ['[수정] Area 공격 (Burning Barrage, Blackfire)', 'Power Roll을 Area 칸의 다른 Mob에게도 각각의 AT로 판정(Response는 원래 대상만). Burning Barrage: 대상 방향 직선의 사거리 내 칸, Blackfire: 대상 주변 Zone 1. Troll·Nightmare·Pumpkinhead Mob은 아직 Area 판정 미구현.'],
+  ['[수정] Mirage', 'Evasion Roll 뒤, Guard를 쓰는 시점(재굴림 직전)에 사용 여부를 결정.'],
+  ['[수정] Superior Chance', 'Mortis뿐 아니라 Judicium 카드도 무시하고 같은 덱에서 다시 뽑음. 다시 뽑을 때 "You died horribly"는 제외, 두 번째 뽑기는 무시 불가.'],
+  ['[수정] Brain over Brawn', '자기 턴이 아니어도 공격할 때 사용 여부를 결정.'],
+  ['[수정] Unholy Furnace', 'Magic 1 → Heat Refresh에도 "Heat Refresh 대신 Card Refresh" 바꾸기를 물음. 장비·다른 효과의 Heat Refresh에는 아직 미구현.'],
+  ['[수정] Harmonized Soul Peril Arc 보너스', '"[아이콘] 1" = Evasion Re-roll 1 (소유자 확인 2026-11-16).'],
+  ['Shadows Between Worlds', '구현: 프리 액션, Priority Target 넘기기, Delay/Cooldown에 있는 동안 Evasion +1과 Advanced Bypass. 미구현: "다른 대상이 있으면 대상이 되지 않음", Reaction 사용.'],
+  ['[수정] Juggernaut', '1차·2차 창 모두 제안. 대상과 인접하면 대상을 다른 인접 칸으로 옮김 — 현재 Mob(1칸 대상)만 지원, 보스 몬스터 옮기기는 미구현.'],
+  ['Power from Camaraderie', '다른 기사가 Technique를 쓸 때 Knight Round당 1회 · Monster Round당 1회. Squire는 미구현.'],
+  ['Sympathetic Magic / Manifestation', '다른 기사가 명중당하거나 Wound에 실패하면 그 기사 보드에 Magic 1. Manifestation은 본인 턴 프리 액션으로만(Reaction 사용 미구현), 효과는 그 라운드 끝까지.'],
+];
+/** Rulings the owner has reviewed (Kara, Paracelsa, Ser Sonch — 소유자 확인 2026-11-16). Kept for the record; not shown on the audit page. */
+export const KNIGHT_CONFIRMED = [
   ['[수정] Ser Ubar — Heat 조건 Shapeshift', 'Heat가 바뀐 직후 처리: Technique 사용·재굴림 지불·Exert 직후, 능력 창 시작, 행동/공격 종료 시점마다 즉시 확인.'],
   ['[수정] Skull Crack', '공격 선언 시점에 사용 → Attack Roll 전에 Attack die 1개를 따로 두고 자동 명중 1로 계산.'],
   ['[수정] Become a Stumbling Block / My Turn', 'Judicium이 아니라 Peril check 뒤에 제안 (몬스터 공격 중). My Turn: Chain Break, BP 맨 위 공개, Unleash X(X = AT)로 Wound — Wound/Instinct Response 해결, Wound Stack, Escalate.'],
@@ -129,7 +142,6 @@ export const KNIGHT_RULINGS = [
   ['[수정] Eye of the Storm', '무시할 Evasion 주사위를 직접 선택.'],
   ['[수정] Shell of Stone', 'Armor Roll 직전에 결정.'],
   ['[수정] Tremortrial Throw / Get Clear!', 'Throw: Stoneface 반대 방향 직선으로 최대 X칸(칸 수 선택). Get Clear!: 고른 방향으로 Knockback N (Knockback 규칙 그대로).'],
-  ['[수정] Juggernaut', '1차·2차 창 모두 제안. 대상과 인접하면 대상을 다른 인접 칸으로 옮김 — 현재 Mob(1칸 대상)만 지원, 보스 몬스터 옮기기는 미구현.'],
   ['[수정] Primate Strength', '"다른 무기와 함께일 때만" 조건 삭제 — Talent가 있으면 장착한 양손 무기는 Human 형태에서 Commit.'],
   ['[수정] Doublestrike Enchantment', 'BP를 뽑는 시점에 2장을 뽑아 둘 다 공개, Power Roll을 둘 다에 적용, Response는 첫 BP만.'],
   ['[수정] Advanced Jump', '무시하는 2칸은 같은 Terrain 타일의 서로 인접한 칸이어야 함.'],
@@ -144,21 +156,15 @@ export const KNIGHT_RULINGS = [
   ['Incandescent Aura', '다음 본인 턴 시작까지, 몬스터가 일반 이동으로 인접 칸에 들어올 때 이동당 한 번 임시 AT -1 토큰.'],
   ['Infernal Bargain', 'Second Chance와 같은 처리(뽑은 Mortis를 무시하고 다시 뽑기). DEVIL이면 다른 기사의 Mortis에도 쓸 수 있다. JUDICIUM이면 비용이 +1 Heat 또는 -1 Magic.'],
   ['Placeholder', '토큰이 없으면 본인 칸에 놓고, 이미 있으면 토큰을 버리고 그 칸으로 이동(막혀 있으면 가장 가까운 빈 칸).'],
-  ['Shadows Between Worlds', '프리 액션 사용, Priority Target 넘기기, Delay/Cooldown에 있는 동안 Evasion +1만 구현. Advanced Bypass · 대상 제외 · Reaction 사용은 미구현.'],
   ['Brain over Brawn', '사용해 두면 다음 공격에 적용: Rear 칸이면 Deadly, 아니면 Catalyst Weapon일 때 Magic 1로 조건 무시.'],
   ['Critical Light', 'Attack Roll의 Crit Chance, 또는 Evasion Roll에서 Crit die(첫 주사위)가 10일 때 Magic 1.'],
-  ['Power from Camaraderie', '다른 기사가 Technique를 쓸 때 Knight Round당 1회 · Monster Round당 1회. Squire는 미구현.'],
   ['Aura of Illumination', '켜진 동안 본인과 Zone 1의 기사가 공격할 때 Fire 1, Crit Chance면 +1 Power. 다음 본인 턴 종료에 토큰을 버린다.'],
   ['Cloak of Shadows', '보드에 놓인 Magic 토큰은 Clash가 끝날 때까지 남는다. 그 칸이나 Zone 1의 기사는 공격받을 때 Guard 2, Crit die가 10이면 임시 Evasion +1 토큰.'],
-  ['Sympathetic Magic / Manifestation', '다른 기사가 명중당하거나 Wound에 실패하면 그 기사 보드에 Magic 1. Manifestation은 본인 턴 프리 액션으로만(Reaction 사용 미구현), 효과는 그 라운드 끝까지.'],
   ['Ebb and Flow of the Arcane', 'Heat가 다른 값에서 0이 되거나 Heat Limit에 닿을 때마다 Magic 1 (JUDICIUM이면 2).'],
   ['Unholy Furnace', '턴당 1회 Magic 1로 Heat Refresh. 턴 시작 Refresh 때 Card Refresh ↔ Heat Refresh 맞바꾸기를 묻는다.'],
   ['Peril Arc 보너스', 'Tenebrist "Guard 1"과 Hermetic Master "+1 Magic Limit"만 적용. Harmonized Soul의 "[아이콘] 1"은 판독 불확실로 미적용.'],
   ['Renholder — Rapport boon', '"Start of Clash: Cantrip 1" — Rogue\'s Path에서 적용할지 미정이라 현재 미적용.'],
   ['Renholder — First Death', '이벤트 결말 문단을 스캔에서 찾지 못해 Fleischritter와 같은 보상(+1 Sigh of the Graal)으로 처리.'],
-];
-/** Rulings the owner has reviewed (Kara, Paracelsa, Ser Sonch — 소유자 확인 2026-11-16). Kept for the record; not shown on the audit page. */
-export const KNIGHT_CONFIRMED = [
   ['Instant Death (Through the Fires of Anatiocha)', '룰북 p.64: Judicium/Mortis를 뽑지 않고 즉사시키는 Monster Attack·Response 효과. 구현: 몬스터 공격 진행 중, Judicium·Mortis 해결 중이 아닌 죽음에 제안.'],
   ['Call an Undertaker!', '몬스터 공격의 대상이 될 때 Knockdown (Standing Up)을 얻고 그 공격(자기 몫)을 건너뜀.'],
   ['Know Thine Enemy', '공격에서 BP를 뽑을 때 Level을 골라 그 Level의 첫 카드를 뽑음 (Mob·Guardian 제외).'],

@@ -1348,7 +1348,7 @@
      }
     },
     "bonus": {
-     "text": "[icon] 1",
+     "text": "Evasion Re-roll 1",
      "unclear": "Bonus is an icon followed by '1'; icon is a black die with a circular arrow around it (re-roll symbol), so likely 'Re-roll 1'.",
      "guess": "주사위+순환화살표 = Power Re-roll 1로 추정"
     }

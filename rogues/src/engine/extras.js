@@ -24,10 +24,22 @@ export const ExtrasMixin = {
   },
   /** Resolve the additional BPs after the first one: wound when the Power reaches the AT (no Responses). */
   async multiBPResolve(k, A) {
-    if (!this.multiBPActive(A)) return; const list = A.extraBPs || [];
+    await this.areaResolve(k, A); if (!this.multiBPActive(A)) return; const list = A.extraBPs || [];
     for (const e of list) if (e.power == null) e.power = A.totalPower;
     for (const e of list) { const at = this.bpAT(e.bp) - (A.armorPiercing || 0); this.say(`추가 BP ${e.bp.level}: ${e.bp.name} (AT ${at}) — Power ${e.power}`, 'bp'); if (this.monster.slain) { this.monster.discardBP(e.bp); continue; } if (e.power >= at) { const dealt = this.monster.wound(e.bp, { critical: false }); this.onTrollWound(dealt); this.monster.generic.counter = (this.monster.generic.counter || 0) + dealt; this.say(`Wound! — Wound Stack ${this.monster.wounds}/${this.monster.woundsToKill}`, 'wound'); const w0 = A.wounded; A.wounded = true; await this.fx.onWound(k, A); A.wounded = w0 || true; this.priorityLast = k; } else { this.say('Fail to wound'); this.monster.discardBP(e.bp); } }
     A.extraBPs = null; A.double = false;
+  },
+  /** Techniques decided when the Knight attacks (timing 'onAttack'): Brain over Brawn. */
+  async attackTechs(k, A) { for (const t of k.hand.filter(x => x.timing === 'onAttack' && x.ops)) { const ops = await this.paraUse(k, t); if (ops && ops.some(o => o.op === 'deadlyIfRear')) k.pendingDeadlyRear = true; } },
+  /** Unholy Furnace: about to perform a Heat Refresh → may perform a Card Refresh instead (and vice versa). Returns the kind actually performed. */
+  async refreshSwap(k, kind) { if (!this.talentHas(k, 'unholyFurnace')) return kind; const other = kind === 'heat' ? 'card' : 'heat'; return await this.yesNo(`${k.name}: Unholy Furnace — ${kind === 'heat' ? 'Heat' : 'Card'} Refresh 대신 ${other === 'heat' ? 'Heat' : 'Card'} Refresh?`, false) ? other : kind; },
+  async doRefresh(k, kind, why) { const v = await this.refreshSwap(k, kind); if (v === 'heat') { const h0 = k.heat; k.heat = Math.max(0, k.heat - k.heatRefresh); this.say(`${k.name}: ${why} — Heat Refresh ${h0} → ${k.heat}`, 'tech'); } else { k.refresh(() => []); this.say(`${k.name}: ${why} — Card Refresh`, 'tech'); } return v; },
+  /** Area (Knight Attack): resolve the Power Roll also against every other Monster on the Area's spaces (no Responses). */
+  async areaResolve(k, A) {
+    const area = A.weapon && A.weapon.area; if (!area || !this.monster.isMob || !A.mob) return; const B = this.board; const tc = A.mob.cells; let cells = [];
+    if (area === 'zone1') cells = B.zone(tc, 1); else { const d = { c: Math.sign(tc[0].c - k.pos.c), r: Math.sign(tc[0].r - k.pos.r) }; const rng = Math.max(1, this.fx.weaponRange ? this.fx.weaponRange(k, A.weapon) : 2); for (let i = 1; i <= rng; i++) cells.push({ c: k.pos.c + d.c * i, r: k.pos.r + d.r * i }); }
+    const others = (this.monster.mobs || []).filter(m => m !== A.mob && m.cells.some(c => cells.some(z => z.c === c.c && z.r === c.r)));
+    for (const m of others) { if (!this.monster.mobs.includes(m)) continue; if (m.isTroll || m.isNightmare || m.isPump) { this.say(`Area: ${this.mobLabel(m)} — 이 Mob 유형은 Area 판정 미구현`, 'warn'); continue; } m.revealed = true; const at = this.bpAT(m.card) - (A.armorPiercing || 0); this.say(`Area: ${this.mobLabel(m)} — ${m.card.name} (AT ${at}) vs Total Power ${A.totalPower}`, 'bp'); if (A.totalPower >= at) { this.say(`Area: ${this.mobLabel(m)} Wound!`, 'wound'); this.killMob(m); } else this.say('Area: Fail to wound'); }
   },
   /** Techniques used during an ability window of the Knight's own Attack (timing 'firstWindow' / 'secondWindow'), and window Talents. */
   async windowTechs(k, A, which) {
@@ -78,6 +90,8 @@ export function installExtras(Clash) {
   const dm = P.drawMortis; P.drawMortis = async function (...a) { this._inMortis = (this._inMortis || 0) + 1; try { return await dm.apply(this, a); } finally { this._inMortis--; } };
   const die = P.die; P.die = async function (k, reason) {
     if (!k.alive) return;
+    if (this._inJud && this._judRedraw && /died horribly/i.test(reason || '') && this._judRedraw < 6) { this._judRedraw++; this.say('Superior Chance: "You died horribly"는 이 뽑기에서 제외 — 다시 뽑음', 'tech'); return this.drawJudicium(k); }
+    if (this._inJud && !this._judRedraw) { const t = k.hand.find(x => x.timing === 'onMortisDraw' && x.ops && this.fx.activeOps(k, x).some(o => o.op === 'superiorChance')); if (t && await this.paraUse(k, t, `Superior Chance — Judicium(${reason})을 무시하고 다시 뽑기 (두 번째는 무시 불가)`)) { this._judRedraw = 1; try { return await this.drawJudicium(k); } finally { this._judRedraw = 0; } } }
     if (this._inJud) { const t = inHand(k, 'Vita Ex Mortis'); if (t && await this.paraUse(k, t, `Judicium으로 인한 죽음 무시 (${reason})`)) { this.say(`${k.name}: Vita Ex Mortis — 죽음 무시`, 'tech'); return; } }
     else if (!this._inMortis && this.currentAttack) { const t = inHand(k, 'Through the Fires of Anatiocha'); const cells = t ? this.board.neighbors(k.pos).filter(c => !this.knightAt(c) && !this.board.isObstacle(c) && !this.monsterOccupies(c)) : []; if (t && cells.length && await this.paraUse(k, t, `Instant Death 무시 후 Displace (${reason})`)) { const to = await this.ask({ type: 'move', knight: k.id, text: `${k.name}: Displace — 인접한 빈 칸`, cells, options: cells.map(c => ({ label: this.board.label(c), value: c })) }) || cells[0]; this.moveKnight(k, to); this.say(`${k.name}: Through the Fires of Anatiocha — 죽음 무시, ${this.board.label(to)}로 Displace`, 'tech'); return; } }
     return die.call(this, k, reason);

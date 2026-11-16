@@ -59,9 +59,9 @@ techniques = [
  tech("Dazzling Light", "Investigation 1-2", [ACT("combat"), H(2)], "Perform an Attack with your Lux Magic! Dice: 1. Precision: +3. Power Die: [black die]*. Bonus Power: +2 [Power]. Deadly. Daze. Diversion. Cantrip 2.", "cooldown",
       [{"op": "spellAttack", "weapon": spell(1, 3, "black", "Deadly.\nDaze.\nDiversion 1.\nCantrip 2.", 2)}], "attack", ex("PowerReroll", "cooldown"), [G("KING", "*[white die] instead.")],
       {"KING": [{"op": "spellAttack", "weapon": spell(1, 3, "white", "Deadly.\nDaze.\nDiversion 1.\nCantrip 2.", 2)}]}, ["No range printed — treated as a Melee (range 1) attack"]),
- tech("Mirage", "Investigation 1-3", [M(1)], "Guard 2. Pass the Priority Target token to the Knight with the highest [Passion] (if there's any).", "discard", [{"op": "guard", "n": 2}, {"op": "passPriority"}], "onTargeted", ex("Break", "discard"),
+ tech("Mirage", "Investigation 1-3", [M(1)], "Guard 2. Pass the Priority Target token to the Knight with the highest [Passion] (if there's any).", "discard", [{"op": "guard", "n": 2}, {"op": "passPriority"}], "onGuard", ex("Break", "discard"),
       [G("DEVIL", "Guard 3 instead."), G("DRAGON", "Guard 4 instead.")], {"DEVIL": [{"op": "guard", "n": 3}, {"op": "passPriority"}], "DRAGON": [{"op": "guard", "n": 4}, {"op": "passPriority"}]}),
- tech("Brain over Brawn", "Quest: Illusionist", [H(1)], "When you attack, if you're on a Rear [Rear] space, gain Deadly. Additionally, if you attack with a Catalyst Weapon, you may spend 1 Magic [Magic] token to ignore this Technique's Rear space requirement.", "cooldown", [{"op": "deadlyIfRear"}], "beforeAttack", ex("PowerReroll", "cooldown")),
+ tech("Brain over Brawn", "Quest: Illusionist", [H(1)], "When you attack, if you're on a Rear [Rear] space, gain Deadly. Additionally, if you attack with a Catalyst Weapon, you may spend 1 Magic [Magic] token to ignore this Technique's Rear space requirement.", "cooldown", [{"op": "deadlyIfRear"}], "onAttack", ex("PowerReroll", "cooldown")),
  tech("Inspiring Light", "Investigation 2-2", ALT(H("X"), M(2)), "Choose X Knights. Motivate 1 all chosen Knights. If you spend Magic [Magic] tokens to use this Technique, Motivate 1 all Knights other than you instead.", "cooldown", [{"op": "inspiringLight", "n": 1}], "free", ex("PowerReroll", "cooldown"), [G("DEVIL", "Motivate 2 instead.")], {"DEVIL": [{"op": "inspiringLight", "n": 2}]}),
  tech("Gaze Beyond the Veil", "Investigation 2-3", [M(2)], "Look at the top card of a chosen Mortis deck.", "instant", [{"op": "lookMortis", "all": False}], "free", None, [G("DEVIL", "Each Mortis deck instead.")], {"DEVIL": [{"op": "lookMortis", "all": True}]}, ["No Exert icon on this card", "Depletion icon is the lightning card — read as Instant"]),
  tech("Luxite Purification", "Quest: Luxite", [M("X")], "Choose X Knights other than you. Each chosen Knight performs a Card Refresh.", "cooldown", [{"op": "luxitePurification"}], "free", ex("PowerReroll", "cooldown"), [G("JUDICIUM", "Each of those Knights may choose to perform a Heat Refresh instead.")]),
@@ -110,5 +110,8 @@ data = {
  "portraitsNote": "Devil tier portrait shows two red dice as the Knight Power die (stored as powerDie red × powerDice 2).",
 }
 out = os.path.join(os.path.dirname(__file__), '..', 'data', 'knights', 'renholder.json')
+for _t in data["techniques"]:
+    if _t["name"] == "Burning Barrage": _t["ops"][0]["weapon"]["area"] = "line"
+    if _t["name"] == "Blackfire": _t["ops"][0]["weapon"]["area"] = "zone1"
 json.dump(data, open(out, 'w'), ensure_ascii=False, indent=1)
 print('wrote', os.path.normpath(out), len(techniques), 'techniques', len(arcs), 'arcs')

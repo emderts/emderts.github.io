@@ -1464,7 +1464,7 @@
      "op": "passPriority"
     }
    ],
-   "timing": "onTargeted",
+   "timing": "onGuard",
    "gateOps": {
     "DEVIL": [
      {
@@ -1509,7 +1509,7 @@
      "op": "deadlyIfRear"
     }
    ],
-   "timing": "beforeAttack",
+   "timing": "onAttack",
    "gateOps": {},
    "exert": {
     "token": "PowerReroll",
@@ -1684,7 +1684,8 @@
       "traits": [
        "Magic"
       ],
-      "spell": true
+      "spell": true,
+      "area": "line"
      },
      "fireXOnWound": true
     }
@@ -2078,7 +2079,8 @@
       "traits": [
        "Magic"
       ],
-      "spell": true
+      "spell": true,
+      "area": "zone1"
      }
     }
    ],
