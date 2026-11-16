@@ -18,6 +18,7 @@ import { IroncastMixin } from './ironcast.js';
 import { RenholderMixin } from './renholder.js';
 import { KaraMixin, installKara } from './kara.js';
 import { ParacelsaMixin, installParacelsa } from './paracelsa.js';
+import { SonchMixin, installSonch } from './sonch.js';
 
 export class ChainBreak extends Error { constructor(msg = 'Chain Break') { super(msg); this.chainBreak = true; } }
 const sum = a => a.reduce((x, y) => x + y, 0);
@@ -332,8 +333,8 @@ export class Clash {
     if (this.negMonPrecision) { diff = Math.max(2, diff - this.negMonPrecision); this.say(`임시 Precision -${this.negMonPrecision} 토큰: Evasion 난이도 → ${diff}+ (토큰 버림)`, 'tech'); this.negMonPrecision = 0; }
     if (this.monster.hasTrait('Jacked')) { if (this.jackedTokens >= 2) diff += 1; if (this.jackedTokens >= 5) dice += 1; }
     const dw = await this.fx.defenseWindow(k, { judge: !!ops.judge }); dw.block += await this.paraDefense(k); this.karaTargeted(k); let evaBonus = this.fx.evasionBonus(k) + dw.evasion + this.karaEvasion(k); let virtue = null;
-    let freeER = this.fx.evasionRerolls(k), cloak = 0;
-    let extraGuard = 0, wilder = 0;
+    let freeER = this.fx.evasionRerolls(k) + this.lsBoon(k, 'evasionReroll'), cloak = 0;
+    let extraGuard = this.lsBoon(k, 'guard'), wilder = 0;
     if (k.perilArcDef && k.perilArcDef.bonus && /^Guard (\d+)/.test(k.perilArcDef.bonus.text || '')) extraGuard += +/^Guard (\d+)/.exec(k.perilArcDef.bonus.text)[1];
     if (this.cloaked(k)) { extraGuard += 2; this.say(`${k.name}: Cloak of Shadows — Guard 2`, 'tech'); }
     { const t = k.hand.find(t => t.timing === 'onTargeted' && t.ops && this.fx.canPay(k, this.fx.costOf(k, t))); if (t && await this.yesNo(`${k.name}: ${t.name} 사용? (${this.fx.costLabel(k, t)}) — ${t.text}`, false)) { const pc = await this.fx.chooseCost(k, t); if (pc) { this.fx.pay(k, pc.alt, pc.x); const ops2 = this.fx.activeOps(k, t); for (const o of ops2) { if (o.op === 'guard') extraGuard += o.n; if (o.op === 'evasionDifficulty') { diff = (k.peril() === 'Judicium' ? 6 : o.n) + M.modifiers.precision; this.say(`${t.name}: Evasion Roll 난이도 → ${diff}+`, 'tech'); } } this.say(`${k.name} 기술 사용: ${t.name} — Guard ${ops2.filter(o => o.op === 'guard').reduce((a, o) => a + o.n, 0)}`, 'tech'); if (ops2.some(o => o.op === 'passPriority')) await this.passPriority(k); this.fx.deplete(k, t); await this.renTechniqueUsed(k); } } }
@@ -774,6 +775,7 @@ export class Clash {
   }
   async windowOfOpportunity(when, attack, target = null) { const a = attack || this.currentAttack; if (a && a.noReact && when !== 'beforeEffects') { this.say('REACT! 무시 (Blood 게이트)'); return; } await this.fx.reactions(when, attack, target); }
 }
-Object.assign(Clash.prototype, MobMixin, BloodMixin, HauntsMixin, FirstmenMixin, TrollMixin, NightmareMixin, FenMixin, PumpMixin, IroncastMixin, RenholderMixin, KaraMixin, ParacelsaMixin);
+Object.assign(Clash.prototype, MobMixin, BloodMixin, HauntsMixin, FirstmenMixin, TrollMixin, NightmareMixin, FenMixin, PumpMixin, IroncastMixin, RenholderMixin, KaraMixin, ParacelsaMixin, SonchMixin);
 installKara(Clash);
 installParacelsa(Clash);
+installSonch(Clash);

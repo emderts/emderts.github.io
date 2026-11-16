@@ -1,0 +1,2330 @@
+{
+ "id": "ser-sonch",
+ "name": "Ser Sonch",
+ "resourceToken": null,
+ "_source": "Knightbook 'A Knight's Tale: Ser Sonch' (p.3–4 rules & Knight Setup) + Portrait / Talent / Heroic Arc / Technique sprite sheets (owner-supplied 2026-11-16).",
+ "specialRules": {
+  "littleSer": "Little Ser is represented by a token and can be placed, with the Monkey Business keyword, on a Knight Board, the Monster Sheet, the Clash Board (or the Exploration deck). At the start of each Expedition, place Little Ser on Ser Sonch's Knight Board. On the Clash Board it does not occupy spaces. If you stop using the game element Little Ser is on (e.g. the Knight that Little Ser was on dies) place Little Ser on Ser Sonch's Board (even if it was Ser Sonch who died). Monkey Business: X - Place Little Ser on X. If Monkey Business has no cost, you may use it at the beginning of your turn."
+ },
+ "setup": {
+  "virtues": {
+   "Insight": 1,
+   "Sagacity": 1,
+   "Bravery": 2
+  },
+  "rapportBoon": {
+   "text": "During Rest: Lose -1 [icon].",
+   "note": "Rogue's Path에서 미적용."
+  },
+  "explorationCipher": "**37",
+  "portraits": [
+   "Tracker Knight"
+  ],
+  "portrait": "tracker-knight",
+  "talent": "Tracker Knight",
+  "heroicArc": "Tracker Knight",
+  "perilArc": "Tracker Knight",
+  "techniques": [
+   "Knight Pose",
+   "Knight Roll",
+   "Second Chance",
+   "Get 'em, Boy!",
+   "Moving the Pieces into Place"
+  ],
+  "gear": [
+   "Knighves",
+   "Broken Sword"
+  ],
+  "backSides": "Knight Pose // Knight Prowess, Knight Roll // Risk Assessment, Second Chance // Sonch's Little Helper, Get 'em, Boy! // I Have A Cunning Plan!, Moving the Pieces into Place // If in Doubt, Follow Your Nose! — back sides are not in the supplied sheets."
+ },
+ "firstDeath": {
+  "text": "Ser Sonch's First Death Special Event: Mark the First Death box on your Knight Sheet. Gain +1 Sigh of the Graal.",
+  "ops": [
+   {
+    "op": "markFirstDeath"
+   },
+   {
+    "op": "gainSigh",
+    "n": 1
+   }
+  ],
+  "note": "[해석, 확인 필요] Fleischritter와 같은 보상으로 처리."
+ },
+ "components": {
+  "portraits": 2,
+  "talents": 3,
+  "heroicArcs": 4,
+  "perilArcs": 4,
+  "techniques": 26,
+  "gear": 5,
+  "littleSerToken": 1
+ },
+ "talents": [
+  {
+   "id": "tracker-knight",
+   "name": "Tracker Knight",
+   "tier": "starting",
+   "abilities": [
+    {
+     "name": "Worthy Little Brother",
+     "text": "1 [Heat] Monkey Business: Knight, Monster, or Board. Knight Board: That Knight gains Attack Re-roll 1. Monster Sheet: All Knights gain Evasion Re-roll 1. Clash Board: All adjacent Knights gain +1 Precision [Precision].",
+     "ops": [
+      {
+       "op": "monkey",
+       "cost": 1,
+       "knight": {
+        "attackReroll": 1
+       },
+       "monster": {
+        "evasionReroll": 1
+       },
+       "board": {
+        "precision": 1
+       }
+      }
+     ]
+    },
+    {
+     "name": "Tracker Sense",
+     "text": "1 [Heat] Monkey Business: Exploration. On the Exploration deck: When you're about to draw an Exploration card, draw 2 instead, choose the card to resolve, then place the other card on the bottom of the Exploration deck.",
+     "ops": [],
+     "note": "Rogue's Path에서 미적용 (Exploration / Encounter / Delve 전용)."
+    }
+   ]
+  },
+  {
+   "id": "vaunted-folk-tale",
+   "name": "Vaunted Folk Tale",
+   "tier": "vassal",
+   "abilities": [
+    {
+     "name": "Motivational Squeaker",
+     "text": "1 [Heat] Monkey Business: Knight, Monster, or Board. Knight Board: That Knight gains Attack Re-roll 1 and Power Re-roll 1. Monster Sheet: All Knights gain Evasion Re-roll 1, and Ser Sonch may look at the top or leftmost unrevealed BP as a free action. Clash Board: All adjacent Knights gain +1 Precision [Precision] and may look at the top or leftmost unrevealed BP as a free action.",
+     "ops": [
+      {
+       "op": "monkey",
+       "cost": 1,
+       "knight": {
+        "attackReroll": 1,
+        "powerReroll": 1
+       },
+       "monster": {
+        "evasionReroll": 1,
+        "lookBP": true
+       },
+       "board": {
+        "precision": 1,
+        "lookBP": true
+       }
+      }
+     ]
+    },
+    {
+     "name": "This Takes Me Back...",
+     "text": "Monkey Business: Monster. On the Monster card: When you perform the Help action during an Encounter, you may gain +1 [Passion].",
+     "ops": [],
+     "note": "Rogue's Path에서 미적용 (Exploration / Encounter / Delve 전용)."
+    }
+   ]
+  },
+  {
+   "id": "exemplary-leader",
+   "name": "Exemplary Leader",
+   "tier": "vassal",
+   "abilities": [
+    {
+     "name": "Emotional Support Monkey",
+     "text": "2 [Heat] Monkey Business: Knight, Monster, or Board. Little Ser can be equipped with any Consumable [Gear]. Knight Board: That Knight gains Attack Re-roll 1 and can use Little Ser's [Gear] card. Monster Sheet: All Knights gain Evasion Re-roll 1 and Guard 1. Clash Board: All adjacent Knights gain +1 Precision [Precision] and can use Little Ser's [Gear] card.",
+     "ops": [
+      {
+       "op": "monkey",
+       "cost": 2,
+       "knight": {
+        "attackReroll": 1
+       },
+       "monster": {
+        "evasionReroll": 1,
+        "guard": 1
+       },
+       "board": {
+        "precision": 1
+       }
+      }
+     ],
+     "unclear": [
+      "Little Ser's Consumable is not implemented"
+     ]
+    },
+    {
+     "name": "Seasoned Strategist",
+     "text": "You may re-roll each die (once) during the Knight Positioning step of an Encounter.",
+     "ops": [],
+     "note": "Rogue's Path에서 미적용 (Exploration / Encounter / Delve 전용)."
+    }
+   ]
+  },
+  {
+   "id": "hero-to-the-people",
+   "name": "Hero to the People",
+   "tier": "devil",
+   "abilities": [
+    {
+     "name": "Feral Fighter",
+     "text": "1 [Heat] Monkey Business: Knight, Monster, or Board. Little Ser can equip a [one-hand] Merchant Weapon. Knight Board: That Knight may use Little Ser's Weapon. Monster Sheet: When you attack a Monster with Little Ser on it, you may add the Bonus Power from Little Ser's Weapon. Clash Board: Ser Sonch may treat Little Ser as his miniature when attacking. If he does, use Little Ser's Weapon.",
+     "ops": [
+      {
+       "op": "monkey",
+       "cost": 1,
+       "knight": {},
+       "monster": {},
+       "board": {}
+      }
+     ],
+     "unclear": [
+      "Little Ser's Weapon is not implemented (only the placement)"
+     ]
+    },
+    {
+     "name": "The Stories Are True",
+     "text": "Monkey Business: Monster. On the Monster card: During Encounters, when you perform the Attack action or the Help action, place a Generic token on this Talent. You may discard 2 Generic tokens to perform an additional Attack or Help action. You may discard 6 Generic tokens to perform a Bonus Attack!",
+     "ops": [],
+     "note": "Rogue's Path에서 미적용 (Exploration / Encounter / Delve 전용)."
+    }
+   ]
+  },
+  {
+   "id": "fameseeker",
+   "name": "Fameseeker",
+   "tier": "devil",
+   "abilities": [
+    {
+     "name": "Steadfast Supporter",
+     "text": "1 [Heat] Monkey Business: Knight, Board, or Monster. Little Ser can equip a Merchant [Armor]. Knight Board: When that Knight becomes the Target of an Attack, they may add Little Ser's [Armor] defensive stats. Clash Board: If any Knight adjacent to Little Ser becomes the Target of an Attack, you may discard Little Ser until the end of Clash to Chain Break that Attack. Monster Sheet: When a single Knight is attacked, they may reduce suffered Knockback by 2 and ignore Knockdown.",
+     "ops": [
+      {
+       "op": "monkey",
+       "cost": 1,
+       "knight": {},
+       "monster": {},
+       "board": {}
+      }
+     ],
+     "unclear": [
+      "Little Ser's Armor, the Chain Break and the Knockback reduction are not implemented (only the placement)"
+     ]
+    },
+    {
+     "name": "Bear a Grudge",
+     "text": "When you lose [Vigor] during Delve Phase, place a Generic token here. If there are 8+ Generic tokens here, you may discard all tokens to perform a Bonus Attack! You may use this ability as either a free action or a [Reaction].",
+     "ops": [],
+     "note": "Rogue's Path에서 미적용 (Exploration / Encounter / Delve 전용)."
+    }
+   ]
+  }
+ ],
+ "heroicArcs": [
+  {
+   "name": "Tracker Knight",
+   "plus": null,
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Break",
+        "n": 1
+       },
+       {
+        "token": "Hug",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Opening",
+        "n": 1
+       },
+       {
+        "token": "Hug",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Break",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Hug",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Break",
+        "n": 1
+       },
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Gravestalker",
+   "plus": null,
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Overbreak",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "Opening",
+        "n": 1
+       },
+       {
+        "token": "Hug",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Break",
+        "n": 1
+       },
+       {
+        "token": "Provoke",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Opening",
+        "n": 1
+       },
+       {
+        "token": "Hug",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Opening",
+        "n": 1
+       },
+       {
+        "token": "Overbreak",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Vaunted Folk Tale",
+   "plus": {
+    "text": "+1 [Precision]",
+    "ops": [
+     {
+      "token": "Precision",
+      "n": 1
+     }
+    ]
+   },
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Break",
+        "n": 1
+       },
+       {
+        "token": "Opening",
+        "n": 1
+       },
+       {
+        "token": "Hug",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "Black",
+        "n": 1
+       },
+       {
+        "token": "Hug",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Hug",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "Black",
+        "n": 1
+       },
+       {
+        "token": "Closing",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Break",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "Precise",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Exemplary Leader",
+   "plus": {
+    "text": "Auto-break 1",
+    "ops": [
+     {
+      "token": "AutoBreak",
+      "n": 1
+     }
+    ]
+   },
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Pass",
+        "n": 2
+       },
+       {
+        "token": "Hug",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "Pass",
+        "n": 1
+       },
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Closing",
+        "n": 1
+       },
+       {
+        "token": "Hug",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Motivate",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "GreaterPass",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "GreaterPass",
+        "n": 1
+       },
+       {
+        "token": "Hug",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "Unknown",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": [
+    "L7: hand icon with a number (Pull? Tireless has no number) — not applied"
+   ]
+  },
+  {
+   "name": "Hero to the People",
+   "plus": {
+    "text": "Attack Re-roll 1",
+    "ops": [
+     {
+      "token": "AttackReroll",
+      "n": 1
+     }
+    ]
+   },
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Closing",
+        "n": 1
+       },
+       {
+        "token": "Unknown",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "Hope",
+        "n": 1
+       },
+       {
+        "token": "Reposition",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Sunder",
+        "n": 1
+       },
+       {
+        "token": "Hug",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "Black",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Power",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 8,
+     "options": [
+      [
+       {
+        "token": "Deadly",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": [
+    "L1 second icon (fist on a shield, numbered 1) not identified — not applied"
+   ]
+  },
+  {
+   "name": "Fameseeker",
+   "plus": null,
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Opening",
+        "n": 3
+       },
+       {
+        "token": "Reposition",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "Sunder",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Fire",
+        "n": 2
+       },
+       {
+        "token": "Hug",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "Closing",
+        "n": 2
+       },
+       {
+        "token": "Reposition",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "Sunder",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "PowerDieBlack",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "Heartseeker",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Precise",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "The Man, Made Myth",
+   "plus": {
+    "text": "[PowerReroll] 1",
+    "ops": [
+     {
+      "token": "PowerReroll",
+      "n": 1
+     }
+    ]
+   },
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Closing",
+        "n": 1
+       },
+       {
+        "token": "Reposition",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Motivate",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Unknown",
+        "n": 1
+       },
+       {
+        "token": "Motivate",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "Hope",
+        "n": 1
+       },
+       {
+        "token": "Reposition",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "Hug",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Closing",
+        "n": 2
+       },
+       {
+        "token": "Fire",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "Break",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 8,
+     "options": [
+      [
+       {
+        "token": "Power",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": [
+    "L3: hand icon with a number (Pull? Tireless has no number) — not applied"
+   ]
+  },
+  {
+   "name": "Enduring Legend",
+   "plus": {
+    "text": "Auto-hope 1",
+    "ops": [
+     {
+      "token": "AutoHope",
+      "n": 1
+     }
+    ]
+   },
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Hope",
+        "n": 2
+       },
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Hug",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "Closing",
+        "n": 2
+       },
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Unknown",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "Rouse",
+        "n": 1
+       },
+       {
+        "token": "Provoke",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "Sunder",
+        "n": 1
+       },
+       {
+        "token": "Black",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Hug",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "PowerDicePromotion",
+        "n": 1
+       },
+       {
+        "token": "Unknown",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "Heartseeker",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Precise",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 8,
+     "options": [
+      [
+       {
+        "token": "Power",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": [
+    "L2 / L6: hand icon with a number (Pull? Tireless has no number) — not applied"
+   ]
+  }
+ ],
+ "perilArcsRef": "data/knights/peril_arcs.json → arcs.ser-sonch",
+ "techniques": [
+  {
+   "name": "Second Chance",
+   "unlock": "Start",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "Second Chance.",
+   "gates": [
+    {
+     "gate": "KING",
+     "text": "Superior Chance."
+    }
+   ],
+   "depletion": "discard",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "secondChance"
+    }
+   ],
+   "timing": "onMortisDraw",
+   "gateOps": {
+    "KING": [
+     {
+      "op": "superiorChance"
+     }
+    ]
+   },
+   "exert": {
+    "token": "Break",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Knight Roll",
+   "unlock": "Start",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "[Reaction] Reflex.",
+   "gates": [
+    {
+     "gate": "KING",
+     "text": "[Reaction] Advanced Reflex."
+    },
+    {
+     "gate": "DRAGON",
+     "text": "[Reaction] Superior Reflex."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "reflex",
+     "n": 1
+    }
+   ],
+   "timing": "reaction",
+   "gateOps": {
+    "KING": [
+     {
+      "op": "reflex",
+      "n": 2
+     }
+    ],
+    "DRAGON": [
+     {
+      "op": "reflex",
+      "n": 3
+     }
+    ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Knight Pose",
+   "unlock": "Start",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "Stand up.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "Stand up, then immediately Inspire 1."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "standUp"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {
+    "DEVIL": [
+     {
+      "op": "standUp"
+     },
+     {
+      "op": "inspire",
+      "n": 1
+     }
+    ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Get 'em, Boy!",
+   "unlock": "Start",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "Place 1 Opening [Opening] or Break [Break] token in the Knight Pool.",
+   "gates": [
+    {
+     "gate": "VASSAL",
+     "text": "2 Opening [Opening] and/or Break [Break] tokens instead."
+    },
+    {
+     "gate": "KING",
+     "text": "2 Closing [Closing] and/or Fire [Fire] tokens instead."
+    },
+    {
+     "gate": "DEVIL",
+     "text": "3 Closing [Closing] and/or Fire [Fire] tokens instead."
+    },
+    {
+     "gate": "DRAGON",
+     "text": "3 Closing [Closing] and/or Hope [Hope] tokens instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "tokenSplit",
+     "n": 1,
+     "tokens": [
+      "opening",
+      "break"
+     ]
+    }
+   ],
+   "timing": "free",
+   "gateOps": {
+    "VASSAL": [
+     {
+      "op": "tokenSplit",
+      "n": 2,
+      "tokens": [
+       "opening",
+       "break"
+      ]
+     }
+    ],
+    "KING": [
+     {
+      "op": "tokenSplit",
+      "n": 2,
+      "tokens": [
+       "closing",
+       "fire"
+      ]
+     }
+    ],
+    "DEVIL": [
+     {
+      "op": "tokenSplit",
+      "n": 3,
+      "tokens": [
+       "closing",
+       "fire"
+      ]
+     }
+    ],
+    "DRAGON": [
+     {
+      "op": "tokenSplit",
+      "n": 3,
+      "tokens": [
+       "closing",
+       "hope"
+      ]
+     }
+    ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Moving the Pieces into Place",
+   "unlock": "Start",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "Motivate 1. Place the Little Ser token on any: Knight Board, Monster Sheet, space adjacent to Ser Sonch, or up to 3 spaces away from its current space.",
+   "gates": [
+    {
+     "gate": "KING",
+     "text": "Motivate 2 instead."
+    },
+    {
+     "gate": "DRAGON",
+     "text": "Motivate 3 instead."
+    }
+   ],
+   "depletion": "delay",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "motivateTotal",
+     "n": 1
+    },
+    {
+     "op": "placeLS"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {
+    "KING": [
+     {
+      "op": "motivateTotal",
+      "n": 2
+     },
+     {
+      "op": "placeLS"
+     }
+    ],
+    "DRAGON": [
+     {
+      "op": "motivateTotal",
+      "n": 3
+     },
+     {
+      "op": "placeLS"
+     }
+    ]
+   },
+   "exert": {
+    "token": "Opening",
+    "n": 1,
+    "depletion": "delay"
+   }
+  },
+  {
+   "name": "Bulwark",
+   "unlock": "Investigation 1-2",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "Block. If the Little Ser token is on your Knight Board, additionally gain Armor Re-roll 1.",
+   "gates": [
+    {
+     "gate": "DRAGON",
+     "text": "Gain Advanced Block instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [
+    "Armor Re-roll 1 is not implemented"
+   ],
+   "ops": [
+    {
+     "op": "techBlock",
+     "n": 1
+    }
+   ],
+   "timing": "onDefense",
+   "gateOps": {
+    "DRAGON": [
+     {
+      "op": "techBlock",
+      "n": 2
+     }
+    ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Corrente di Battaglia Style",
+   "unlock": "Investigation 1-3",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "When you're about to attack, gain +1 Precision [Precision].",
+   "gates": [
+    {
+     "gate": "KING",
+     "text": "+2 [Precision] instead."
+    },
+    {
+     "gate": "DEVIL",
+     "text": "+3 [Precision] instead."
+    }
+   ],
+   "depletion": "delay",
+   "unclear": [
+    "No Exert icon on this card"
+   ],
+   "ops": [
+    {
+     "op": "precisionNow",
+     "n": 1
+    }
+   ],
+   "timing": "beforeAttack",
+   "gateOps": {
+    "KING": [
+     {
+      "op": "precisionNow",
+      "n": 2
+     }
+    ],
+    "DEVIL": [
+     {
+      "op": "precisionNow",
+      "n": 3
+     }
+    ]
+   },
+   "exert": null
+  },
+  {
+   "name": "Quick, Find Me a Weak Spot!",
+   "unlock": "Quest: Gravestalker",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "Place the top BP card on the bottom of the BP deck. If fighting against Mobs, flip a chosen revealed BP face down instead.",
+   "gates": [],
+   "depletion": "discard",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "bpBottomOrFlip"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {},
+   "exert": {
+    "token": "Break",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Veteran's Orders",
+   "unlock": "Investigation 2-2",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "Motivate 2. Place the Little Ser token on any: Knight Board, Monster Sheet, space adjacent to Ser Sonch, or up to 3 spaces away from its current space.",
+   "gates": [
+    {
+     "gate": "KING",
+     "text": "Motivate 3 instead."
+    },
+    {
+     "gate": "DRAGON",
+     "text": "Motivate 4 instead."
+    }
+   ],
+   "depletion": "delay",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "motivateTotal",
+     "n": 2
+    },
+    {
+     "op": "placeLS"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {
+    "KING": [
+     {
+      "op": "motivateTotal",
+      "n": 3
+     },
+     {
+      "op": "placeLS"
+     }
+    ],
+    "DRAGON": [
+     {
+      "op": "motivateTotal",
+      "n": 4
+     },
+     {
+      "op": "placeLS"
+     }
+    ]
+   },
+   "exert": {
+    "token": "Opening",
+    "n": 1,
+    "depletion": "delay"
+   }
+  },
+  {
+   "name": "Simian Squire",
+   "unlock": "Investigation 2-3",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "Unexhaust 1 Gear [Gear] card. If the Little Ser token is on another Knight's Knight Board, that Knight may also resolve this card's effect.",
+   "gates": [
+    {
+     "gate": "KING",
+     "text": "Unexhaust all Gear [Gear] cards instead."
+    },
+    {
+     "gate": "DRAGON",
+     "text": "Additionally, Refresh all cards in your Delay area."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "simianSquire"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {
+    "KING": [
+     {
+      "op": "simianSquire",
+      "all": true
+     }
+    ],
+    "DRAGON": [
+     {
+      "op": "simianSquire",
+      "all": true,
+      "refresh": true
+     }
+    ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Veteran's Insight",
+   "unlock": "Quest: Vaunted Folk Tale",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "When you are about to attack, you must declare whether you will deal a Wound or not. If you were right, gain Power 1. If not, gain Break 1.",
+   "gates": [
+    {
+     "gate": "KING",
+     "text": "Power 2 instead."
+    },
+    {
+     "gate": "DRAGON",
+     "text": "Power 3 instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "vetInsight",
+     "n": 1
+    }
+   ],
+   "timing": "beforeAttack",
+   "gateOps": {
+    "KING": [
+     {
+      "op": "vetInsight",
+      "n": 2
+     }
+    ],
+    "DRAGON": [
+     {
+      "op": "vetInsight",
+      "n": 3
+     }
+    ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Carrot and Stick",
+   "unlock": "Quest: Vaunted Folk Tale",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "When you are about to attack, place 1 Diversion [Diversion] token in the Knight Pool. If the Little Ser token is on the Monster Sheet, additionally gain Heartseeker.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "1 Improved Diversion [Improved Diversion] token instead."
+    },
+    {
+     "gate": "DRAGON",
+     "text": "Soulseeker instead (of Heartseeker)."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [
+    "DRAGON Soulseeker is not implemented (Heartseeker is used)"
+   ],
+   "ops": [
+    {
+     "op": "carrot",
+     "token": "diversion"
+    }
+   ],
+   "timing": "beforeAttack",
+   "gateOps": {
+    "DEVIL": [
+     {
+      "op": "carrot",
+      "token": "improvedDiversion"
+     }
+    ]
+   },
+   "exert": {
+    "token": "Break",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "One for All",
+   "unlock": "Quest: Exemplary Leader",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "Inspire 1. AND/OR During the first ability window, if the Little Ser token is on another Knight's Board, place a Rouse [Rouse] token on that Knight Board.",
+   "gates": [
+    {
+     "gate": "KING",
+     "text": "Inspire 2 instead."
+    },
+    {
+     "gate": "DRAGON",
+     "text": "Inspire All instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [
+    "Used as a free action; the Rouse token is placed in the Knight Pool"
+   ],
+   "ops": [
+    {
+     "op": "inspire",
+     "n": 1
+    },
+    {
+     "op": "rouseIfLS"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {
+    "KING": [
+     {
+      "op": "inspire",
+      "n": 2
+     },
+     {
+      "op": "rouseIfLS"
+     }
+    ],
+    "DRAGON": [
+     {
+      "op": "inspire",
+      "n": 99
+     },
+     {
+      "op": "rouseIfLS"
+     }
+    ]
+   },
+   "exert": {
+    "token": "Break",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Friend in Need",
+   "unlock": "Quest: Exemplary Leader",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "You may place the Little Ser token on any space on the Clash Board. All Knights adjacent to the Little Ser token lose -2 [Heat].",
+   "gates": [
+    {
+     "gate": "KING",
+     "text": "-3 [Heat] instead."
+    },
+    {
+     "gate": "DRAGON",
+     "text": "-4 [Heat] instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "placeLSAny"
+    },
+    {
+     "op": "lsHeat",
+     "n": 2
+    }
+   ],
+   "timing": "free",
+   "gateOps": {
+    "KING": [
+     {
+      "op": "placeLSAny"
+     },
+     {
+      "op": "lsHeat",
+      "n": 3
+     }
+    ],
+    "DRAGON": [
+     {
+      "op": "placeLSAny"
+     },
+     {
+      "op": "lsHeat",
+      "n": 4
+     }
+    ]
+   },
+   "exert": {
+    "token": "Opening",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Leader's Instinct",
+   "unlock": "Investigation 3-2",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "[Reaction] Immediately Motivate 1. If the Little Ser token is on the affected Knight's Board, Motivate 2 instead.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "Respectively, 2 and 3 instead."
+    },
+    {
+     "gate": "DRAGON",
+     "text": "Respectively, 3 and 4 instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "leaderMotivate",
+     "n": 1,
+     "ls": 2
+    }
+   ],
+   "timing": "reaction",
+   "gateOps": {
+    "DEVIL": [
+     {
+      "op": "leaderMotivate",
+      "n": 2,
+      "ls": 3
+     }
+    ],
+    "DRAGON": [
+     {
+      "op": "leaderMotivate",
+      "n": 3,
+      "ls": 4
+     }
+    ]
+   },
+   "exert": {
+    "token": "Opening",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Time to Shine",
+   "unlock": "Investigation 3-3",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "When you are about to attack, gain Provoke. If the Little Ser token is on your Knight Board, additionally gain Spotlight.",
+   "gates": [
+    {
+     "gate": "DRAGON",
+     "text": "Gain +[red Power die] instead of Spotlight, if you have both [Priority Target] and [Divine Target] tokens."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [
+    "DRAGON gate (Divine Target) is not implemented"
+   ],
+   "ops": [
+    {
+     "op": "timeToShine"
+    }
+   ],
+   "timing": "beforeAttack",
+   "gateOps": {},
+   "exert": {
+    "token": "Break",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Double Roll",
+   "unlock": "Quest: The Man, Made Myth",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "[Reaction] Advanced Reflex. Place the Little Ser token on any: Knight Board, Monster Sheet, space adjacent to Ser Sonch, or up to 3 spaces away from its current space.",
+   "gates": [],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "reflex",
+     "n": 2
+    },
+    {
+     "op": "placeLS"
+    }
+   ],
+   "timing": "reaction",
+   "gateOps": {},
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Lead by Example",
+   "unlock": "Investigation 4-2",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "Stand up, then immediately Inspire 1 and Motivate 1.",
+   "gates": [
+    {
+     "gate": "DRAGON",
+     "text": "Motivate 4 instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "standUp"
+    },
+    {
+     "op": "inspire",
+     "n": 1
+    },
+    {
+     "op": "motivateTotal",
+     "n": 1
+    }
+   ],
+   "timing": "free",
+   "gateOps": {
+    "DRAGON": [
+     {
+      "op": "standUp"
+     },
+     {
+      "op": "inspire",
+      "n": 1
+     },
+     {
+      "op": "motivateTotal",
+      "n": 4
+     }
+    ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Chaos Monkey",
+   "unlock": "Investigation 4-3",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "Place 6 Opening [Opening] and/or Break [Break] tokens in the Knight Pool. If the Little Ser token is on the Monster Sheet, you may place 4 Opening [Opening] and/or Break [Break] tokens, and 2 Black [Black] tokens in the Knight Pool instead.",
+   "gates": [],
+   "depletion": "discard",
+   "unclear": [
+    "No Exert icon on this card"
+   ],
+   "ops": [
+    {
+     "op": "chaosMonkey"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {},
+   "exert": null
+  },
+  {
+   "name": "Tag Team",
+   "unlock": "Quest: Hero to the People",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "Swap the Little Ser token with another Knight miniature on the Clash Board in Range 3. Additionally, you may swap their [hand] Weapons.",
+   "gates": [
+    {
+     "gate": "DRAGON",
+     "text": "Range 5 instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [
+    "The Weapon swap is not implemented"
+   ],
+   "ops": [
+    {
+     "op": "tagTeam",
+     "n": 3
+    }
+   ],
+   "timing": "free",
+   "gateOps": {
+    "DRAGON": [
+     {
+      "op": "tagTeam",
+      "n": 5
+     }
+    ]
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Friend Indeed",
+   "unlock": "Quest: Hero to the People",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "You may place the Little Ser token on any space on the Clash Board. All Knights adjacent to the Little Ser token may reset their [Heat].",
+   "gates": [],
+   "depletion": "discard",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "placeLSAny"
+    },
+    {
+     "op": "lsHeat",
+     "reset": true
+    }
+   ],
+   "timing": "free",
+   "gateOps": {},
+   "exert": {
+    "token": "Hope",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Knowing Is Half the Battle",
+   "unlock": "Quest: Fameseeker",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "When you are about to draw an AI card, look at the top 2 cards of the AI deck, then place one card back on top and the other card on the bottom of the AI deck. If the Little Ser token is on the Monster Sheet, discard the other card instead.",
+   "gates": [],
+   "depletion": "discard",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "aiPeek"
+    }
+   ],
+   "timing": "onAIPeek",
+   "gateOps": {},
+   "exert": {
+    "token": "Hope",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Know Thine Enemy",
+   "unlock": "Quest: Fameseeker",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "When you are about to draw a BP during your Attack, draw the first BP of a chosen Level from the BP deck. If the Little Ser token is on the Monster Sheet, place 1 Power [Power] token in the Knight Pool.",
+   "gates": [],
+   "depletion": "cooldown",
+   "unclear": [
+    "Not implemented (Exert only)"
+   ],
+   "ops": null,
+   "timing": "onBPDraw",
+   "gateOps": {},
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Bastion",
+   "unlock": "Investigation 5-2",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "Superior Block, then gain +1 [Passion]. If the Little Ser token is on the Monster Sheet, additionally gain Rocksteady until your next turn.",
+   "gates": [],
+   "depletion": "discard",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "techBlock",
+     "n": 3
+    },
+    {
+     "op": "gainPassion",
+     "n": 1
+    },
+    {
+     "op": "rocksteadyIfLS"
+    }
+   ],
+   "timing": "onDefense",
+   "gateOps": {},
+   "exert": {
+    "token": "Hope",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Fleur de Bataille Style",
+   "unlock": "Investigation 5-3",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 3
+    }
+   ],
+   "text": "When you are about to perform a Power Roll, add [black Power die] to your Power Pool. If the Little Ser token is on another Knight's Board, additionally place a Rouse [Rouse] token on that Knight Board.",
+   "gates": [],
+   "depletion": "discard",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "addPowerDie",
+     "colour": "black"
+    },
+    {
+     "op": "rouseIfLS"
+    }
+   ],
+   "timing": "beforePowerRoll",
+   "gateOps": {},
+   "exert": {
+    "token": "Closing",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Call an Undertaker!",
+   "unlock": "Quest: Enduring Legend",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 3
+    }
+   ],
+   "text": "When you become the Target of an AI card, gain the Knockdown (standing up) Condition card and skip the Attack.",
+   "gates": [],
+   "depletion": "discard",
+   "unclear": [
+    "Not implemented (Exert only)"
+   ],
+   "ops": null,
+   "timing": "onAITarget",
+   "gateOps": {},
+   "exert": {
+    "token": "Hope",
+    "n": 1,
+    "depletion": "discard"
+   }
+  }
+ ],
+ "missing": [],
+ "portraits": [
+  {
+   "id": "tracker-knight",
+   "name": "Tracker Knight",
+   "tier": "starting",
+   "classes": [
+    "Tracker Knight"
+   ],
+   "powerDie": "red",
+   "cardRefresh": 1,
+   "heatRefresh": 3,
+   "handLimit": 5,
+   "speed": 3,
+   "baneLimit": 4
+  },
+  {
+   "id": "vaunted-exemplary",
+   "name": "Vaunted Folk Tale / Exemplary Leader",
+   "tier": "vassal",
+   "classes": [
+    "Vaunted Folk Tale",
+    "Exemplary Leader"
+   ],
+   "powerDie": "red",
+   "cardRefresh": 1,
+   "heatRefresh": 4,
+   "handLimit": 6,
+   "speed": 4,
+   "baneLimit": 5
+  },
+  {
+   "id": "hero-fameseeker",
+   "name": "Hero to the People / Fameseeker",
+   "tier": "devil",
+   "classes": [
+    "Hero to the People",
+    "Fameseeker"
+   ],
+   "powerDie": "black",
+   "cardRefresh": 2,
+   "heatRefresh": 5,
+   "handLimit": 7,
+   "speed": 4,
+   "baneLimit": 6
+  }
+ ]
+}

@@ -56,7 +56,7 @@ export const ParacelsaMixin = {
   async paraAfterAttack(k) { const A = this.lastAttack; if (!A || A.knight !== k || A.wounded || !k.alive || this.knockedDown(k)) return; const ops = await this.paraUse(k, techAt(k, 'onNoWound')); const o = ops && ops.find(x => x.op === 'flee'); if (o) await this.knightMove(k, o.n); },
   /** Target of a Monster Attack: Shield of Faith (Advanced Block), Ours is the Hope (Defy). Returns extra blocked hits. */
   async paraDefense(k) {
-    let b = 0; const sh = await this.paraUse(k, techAt(k, 'onDefense')); if (sh) for (const o of sh) if (o.op === 'techBlock') { b += o.n; this.say(`${k.name}: Advanced Block`, 'tech'); }
+    let b = 0; const sh = await this.paraUse(k, techAt(k, 'onDefense')); if (sh) { for (const o of sh) if (o.op === 'techBlock') { b += o.n; this.say(`${k.name}: ${['', 'Block', 'Advanced Block', 'Superior Block'][o.n] || 'Block'}`, 'tech'); } await this.fx.runKnightOps(sh.filter(o => o.op !== 'techBlock'), k, {}); }
     const oh = k.hand.find(t => t.ops && t.ops.some(o => o.op === 'oursHope')); const ops = oh && await this.paraUse(k, oh, 'Defy'); if (ops) { const o = ops.find(x => x.op === 'oursHope'); b += o.defy; this.say(`${k.name}: ${o.defy > 1 ? 'Advanced ' : ''}Defy`, 'tech'); }
     return b;
   },

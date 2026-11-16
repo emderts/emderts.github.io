@@ -136,6 +136,13 @@ export const KNIGHT_RULINGS = [
   ['Paracelsa — Rewarded for my Trials', 'Peril이 없으면(Uninjured) Zeal 0.'],
   ['Paracelsa — The Fire of my Faith', 'X = BP 덱 맨 위 카드 Level (최소 1). Mob 상대는 공격 대상이 아직 정해지지 않아 X = 1로 처리.'],
   ['Paracelsa — First Death', 'Fleischritter와 같은 보상(+1 Sigh of the Graal)으로 처리.'],
+  ['Ser Sonch — Monkey Business', 'Talent의 Monkey Business(Heat 비용)는 Ser Sonch 턴의 자유 행동으로 사용. Little Ser를 Knight Board / Monster Sheet / Clash Board 칸에 놓음. Clash Board에서는 칸을 차지하지 않음.'],
+  ['Ser Sonch — Little Ser 혜택', 'Knight Board: 그 기사의 공격에 Attack Re-roll(+Power Re-roll). Monster Sheet: 모든 기사 Evasion Re-roll(+Guard). Clash Board: Little Ser와 인접(또는 같은 칸)한 기사 +1 Precision. Ser Sonch가 죽으면 혜택 없음.'],
+  ['Ser Sonch — Technique의 "Rouse 토큰을 그 Knight Board에"', 'Knight Pool에 Rouse 토큰을 놓는 것으로 처리.'],
+  ['Ser Sonch — Tag Team', 'Little Ser가 Clash Board에 있을 때, 그 칸에서 Range 3(5) 안의 기사(Ser Sonch 포함)와 자리 교환.'],
+  ['Ser Sonch — "Little Ser와 인접한 기사" (Friend in Need / Friend Indeed)', '같은 칸에 있는 기사는 인접으로 치지 않음.'],
+  ['Ser Sonch — Devil Portrait', 'Knight Power die 아이콘이 검은 주사위 1개 → 검은 Knight Power die.'],
+  ['Ser Sonch — First Death', 'Fleischritter와 같은 보상(+1 Sigh of the Graal)으로 처리.'],
   ['Kara — Ally', 'Knightbook의 Ally(아군 미니어처·보드 위 파티 토큰) 중 현재는 다른 기사만 Ally로 취급. Squire/Princess/Little Ser/Placeholder는 미포함.'],
   ['Kara — Unconstrained', '"occupied" = 기사·몬스터·Obstacle이 있는 인접 칸. 0칸이면 +2, 정확히 1칸이면 +1 Precision.'],
   ['Kara — Technique 소진 아이콘', 'zZ = Cooldown, 원형 화살표 = Delay, 번개 = Instant (Fleischritter·Renholder와 같은 기준). Dodge and Weave는 Delay → Cooldown을 지나는 동안 효과.'],
@@ -171,6 +178,8 @@ export const KNIGHT_RULINGS = [
   ['Renholder — First Death', '이벤트 결말 문단을 스캔에서 찾지 못해 Fleischritter와 같은 보상(+1 Sigh of the Graal)으로 처리.'],
 ];
 export const KNIGHT_QUESTIONS = [
+  ['숫자가 붙은 "손" 아이콘 (Heroic Arc, 미적용)', 'Kara(Steadfast L2·L6, Knight of the Grand Kingdoms L3), Ser Sonch(Exemplary Leader L7, The Man Made Myth L3, Enduring Legend L2·L6)에 나오는 손 모양 + 숫자 아이콘. 토큰 표의 Tireless(숫자 없음)인지 Pull X인지? Hero to the People L1의 "방패 위 주먹 1"도 미판독.'],
+  ['Ser Sonch — 미구현', 'Little Ser의 장비(Exemplary Leader 소모품, Hero to the People 무기, Fameseeker 방어구·Chain Break·Knockback 감소), Exploration/Encounter/Delve 전용 능력, Know Thine Enemy, Call an Undertaker!, Bulwark의 Armor Re-roll, Tag Team 무기 교환, Carrot and Stick의 Soulseeker, Time to Shine DRAGON.'],
   ['Technique 카드 뒷면 (전 기사 공통?)', '구성품이 "26 Double-sided Technique cards"이고 Paracelsa Knightbook은 시작 카드를 "Knight Pose // Knight Prowess, Knight Roll // Blessed Insight, Persecuted for Righteousness // Through Heaven\'s Eyes, Zealous Charge // Sustain me Through my Trials, In Failure, Find Perseverance // I Shall Fear No Evil"로 적음. 뒷면 시트가 없어 앞면만 구현 — 뒷면은 언제 쓰는 건지, 자료가 있는지?'],
   ['Paracelsa — 판독 못 한 Talent 혜택 (미적용)', 'Fireheart Zealot 4·6·7번, Inquisitor 9번("-1 [아이콘]")·11번 아이콘. 시트 해상도로는 판독 불가. Inquisitor 12번 Incarnate는 미구현.'],
   ['Paracelsa — 미구현 Technique', 'Armed with Truth(Exhaust 무시), Become a Stumbling Block(Judicium 후 Chain Break), Through the Fires of Anatiocha(Instant Death 무시 — 어떤 죽음이 Instant Death인지?), Power of the Pious(무기형 Technique, 아이콘 판독 불가), Second Chance의 Disemboweled 무시, Divine Intervention의 덱 공개. 모두 Exert로는 사용 가능.'],
