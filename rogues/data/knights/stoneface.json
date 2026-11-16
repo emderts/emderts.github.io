@@ -174,7 +174,7 @@
       }
      ],
      "unclear": [
-      "Offered in the second ability window when not adjacent to the Target; moving the Target is not implemented"
+      "Moving the Target is implemented for Mobs (single-space Targets)"
      ]
     },
     {
@@ -203,7 +203,7 @@
       }
      ],
      "unclear": [
-      "Only Knights can be thrown; the straight line is not enforced"
+      "Only Knights can be thrown"
      ]
     },
     {
@@ -413,7 +413,7 @@
         "n": 2
        },
        {
-        "token": "Pull",
+        "token": "Drag",
         "n": 2
        }
       ]
@@ -498,7 +498,7 @@
         "n": 1
        },
        {
-        "token": "Pull",
+        "token": "Drag",
         "n": 1
        }
       ]
@@ -541,7 +541,7 @@
         "n": 1
        },
        {
-        "token": "Pull",
+        "token": "Drag",
         "n": 1
        }
       ]
@@ -596,7 +596,7 @@
         "n": 1
        },
        {
-        "token": "Pull",
+        "token": "Drag",
         "n": 1
        }
       ]
@@ -677,7 +677,7 @@
         "n": 1
        },
        {
-        "token": "Pull",
+        "token": "Drag",
         "n": 1
        }
       ]
@@ -785,7 +785,7 @@
       ],
       [
        {
-        "token": "Pull",
+        "token": "Drag",
         "n": 1
        }
       ]
@@ -825,7 +825,7 @@
         "n": 1
        },
        {
-        "token": "Pull",
+        "token": "Drag",
         "n": 1
        }
       ]
@@ -865,7 +865,7 @@
         "n": 1
        },
        {
-        "token": "Pull",
+        "token": "Drag",
         "n": 2
        }
       ]
@@ -962,7 +962,7 @@
         "n": 2
        },
        {
-        "token": "Pull",
+        "token": "Drag",
         "n": 1
        }
       ]
@@ -1036,7 +1036,7 @@
         "n": 1
        },
        {
-        "token": "Pull",
+        "token": "Drag",
         "n": 1
        }
       ]
@@ -1101,7 +1101,7 @@
         "n": 1
        },
        {
-        "token": "Pull",
+        "token": "Drag",
         "n": 1
        }
       ]
@@ -1135,7 +1135,7 @@
         "n": 1
        },
        {
-        "token": "Pull",
+        "token": "Drag",
         "n": 1
        }
       ],
@@ -1179,7 +1179,7 @@
         "n": 1
        },
        {
-        "token": "Pull",
+        "token": "Drag",
         "n": 1
        }
       ],
@@ -1219,7 +1219,7 @@
         "n": 2
        },
        {
-        "token": "Pull",
+        "token": "Drag",
         "n": 1
        }
       ],
@@ -1312,7 +1312,7 @@
         "n": 2
        },
        {
-        "token": "Pull",
+        "token": "Drag",
         "n": 1
        }
       ]
@@ -1348,7 +1348,7 @@
         "n": 1
        },
        {
-        "token": "Pull",
+        "token": "Drag",
         "n": 1
        }
       ]
@@ -1426,7 +1426,7 @@
       ],
       [
        {
-        "token": "Pull",
+        "token": "Drag",
         "n": 1
        }
       ]
@@ -1679,9 +1679,7 @@
     }
    ],
    "depletion": "cooldown",
-   "unclear": [
-    "Offered when the moving Knight starts adjacent"
-   ],
+   "unclear": [],
    "ops": [
     {
      "op": "gatherNoMoss",
@@ -1773,7 +1771,7 @@
    ],
    "depletion": "cooldown",
    "unclear": [
-    "The adjacent Knight moves up to N spaces (chosen destination); the Unleash 3 variant is not implemented"
+    "The Unleash 3 variant (any adjacent miniature) is not implemented"
    ],
    "ops": [
     {
@@ -1872,9 +1870,7 @@
     }
    ],
    "depletion": "cooldown",
-   "unclear": [
-    "Knockback is resolved like Pushback of the Monster in the second ability window"
-   ],
+   "unclear": [],
    "ops": [
     {
      "op": "dangerZone",
@@ -2482,7 +2478,7 @@
    "name": "My Turn",
    "unlock": "Quest: Tableau Vivant",
    "cost": [],
-   "text": "After you resolve a [Judicium draw] during an AI, Chain Break. Then, reveal the top BP card. If the attacking Monster is a Mob, reveal its BP card instead (ignore Ultrainstinct Responses). Additionally you may Unleash X, where X is this BP's AT, to wound that BP. Treat this as dealing a Wound, but not as performing an Attack (resolve Responses, place a card on the Wound Stack, and Escalate).",
+   "text": "After you resolve a [Peril check] during an AI, Chain Break. Then, reveal the top BP card. If the attacking Monster is a Mob, reveal its BP card instead (ignore Ultrainstinct Responses). Additionally you may Unleash X, where X is this BP's AT, to wound that BP. Treat this as dealing a Wound, but not as performing an Attack (resolve Responses, place a card on the Wound Stack, and Escalate).",
    "gates": [],
    "depletion": "discard",
    "unclear": [

@@ -2131,7 +2131,7 @@
    "gates": [],
    "depletion": "discard",
    "unclear": [
-    "Not against Mobs / Guardians; the second BP is drawn after the first is resolved and only checks Total Power vs its AT",
+    "Not against Mobs / Guardians; both BPs are drawn at the BP step; Responses only for the first",
     "Exert icon is the dove — read as Hope"
    ],
    "ops": [

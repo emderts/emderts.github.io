@@ -25,17 +25,19 @@ export const ExtrasMixin = {
   /** Resolve the additional BPs after the first one: wound when the Power reaches the AT (no Responses). */
   async multiBPResolve(k, A) {
     if (!this.multiBPActive(A)) return; const list = A.extraBPs || [];
-    if (A.double && !this.monster.slain) { const c = this.monster.drawBP(); if (c) list.push({ bp: c, power: A.totalPower }); }
+    for (const e of list) if (e.power == null) e.power = A.totalPower;
     for (const e of list) { const at = this.bpAT(e.bp) - (A.armorPiercing || 0); this.say(`추가 BP ${e.bp.level}: ${e.bp.name} (AT ${at}) — Power ${e.power}`, 'bp'); if (this.monster.slain) { this.monster.discardBP(e.bp); continue; } if (e.power >= at) { const dealt = this.monster.wound(e.bp, { critical: false }); this.onTrollWound(dealt); this.monster.generic.counter = (this.monster.generic.counter || 0) + dealt; this.say(`Wound! — Wound Stack ${this.monster.wounds}/${this.monster.woundsToKill}`, 'wound'); const w0 = A.wounded; A.wounded = true; await this.fx.onWound(k, A); A.wounded = w0 || true; this.priorityLast = k; } else { this.say('Fail to wound'); this.monster.discardBP(e.bp); } }
     A.extraBPs = null; A.double = false;
   },
   /** Techniques used during an ability window of the Knight's own Attack (timing 'firstWindow' / 'secondWindow'), and window Talents. */
   async windowTechs(k, A, which) {
+    await this.ubarDrainAll();
     for (const t of k.hand.filter(x => x.ops && (x.timing === which || x.window === which))) { const ops = await this.paraUse(k, t, `${which === 'firstWindow' ? '1차' : '2차'} 창 — ${t.text}`); if (!ops) continue; for (const o of ops) { if (o.op === 'heartseeker') A.flags.add('heartseeker'); else await this.fx.runKnightOp(o, k, { technique: t, window: which, A }); } if (k.pendingAttackFlags) { for (const f of k.pendingAttackFlags) A.flags.add(f); k.pendingAttackFlags = null; } if (k.pendingExtraPool) { for (const c in k.pendingExtraPool) A.extraPool[c] = (A.extraPool[c] || 0) + k.pendingExtraPool[c]; k.pendingExtraPool = null; } }
     await this.stoneWindow(k, A, which);
   },
   /** Armed with Truth: when a Gear card has just been exhausted (voluntarily or not) — ignore it (Ranged Weapon), or spend 1 Zeal for any Gear card. */
   async armedDrain() {
+    await this.ubarDrainAll();
     for (const k of this.alive()) { const t = inHand(k, 'Armed with Truth'); const fresh = k.gear.filter(g => g.exhausted && !g.discarded && !g._seenEx);
       if (t) for (const g of fresh) { if (!k.hand.includes(t)) break; const ranged = g.type === 'weapon' && /Ranged/.test(g.text || ''); if (!ranged && this.zealAvail(k) < 1) continue; if (!this.fx.canPay(k, this.fx.costOf(k, t))) break; if (!await this.paraUse(k, t, `${g.name}의 Exhaust 무시${ranged ? '' : ' (Zeal 1 추가)'}`)) continue; if (!ranged) { await this.paraChooseSource(k, 1); this.spendZeal(k, 1); } g.exhausted = false; this.say(`${k.name}: Armed with Truth — ${g.name} Exhaust 무시`, 'tech'); }
       for (const g of k.gear) g._seenEx = !!g.exhausted; }
@@ -81,10 +83,10 @@ export function installExtras(Clash) {
     return die.call(this, k, reason);
   };
   const ka = P.knightAttack; P.knightAttack = async function (k, opts) { const r = await ka.call(this, k, opts); await this.armedDrain(); const A = this.lastAttack; if (A && A.knight === k && A.dieAfter && k.alive) { A.dieAfter = false; this.say(`${k.name}: Power Overwhelming — 공격을 마치고 사망`, 'death'); await this.die(k, 'Power Overwhelming'); } return r; };
-  const dj = P.drawJudicium; P.drawJudicium = async function (k) {
-    const r = await dj.call(this, k); if (!k.alive || !this.currentAttack) return r;
-    { const t = inHand(k, 'My Turn'); if (t && await this.paraUse(k, t, 'Judicium 뒤 Chain Break + BP 맨 위 공개')) { const top = !this.monster.isMob && this.monster.bp.cards[0]; if (top) { this.say(`My Turn: BP 덱 맨 위 공개 — ${top.name} (AT ${this.bpAT ? this.bpAT(top) : top.at})`, 'tech'); this.flash('card', { title: 'BP 덱 맨 위', name: top.name, text: top.text || '', cls: 'good' }); const at = this.bpAT ? this.bpAT(top) : top.at; if (!top.isThickSkin && this.canUnleash(k, at) && await this.yesNo(`${k.name}: My Turn — Unleash ${at}로 ${top.name}에 Wound?`, true)) { this.unleash(k, at); this.monster.bp.cards.shift(); const dealt = this.monster.wound(top, { critical: false }); this.onTrollWound(dealt); this.monster.generic.counter = (this.monster.generic.counter || 0) + dealt; this.say(`My Turn: Wound! — Wound Stack ${this.monster.wounds}/${this.monster.woundsToKill}`, 'wound'); this.ubarWound(k); this.priorityLast = k; this.checkEnd(); } } throw new ChainBreak('My Turn'); } }
-    { const t = inHand(k, 'Become a Stumbling Block'); if (t && await this.paraUse(k, t, 'Judicium 뒤 Chain Break')) throw new ChainBreak('Become a Stumbling Block'); }
+  const pc = P.perilCheck; P.perilCheck = async function (k) {
+    const r = await pc.call(this, k); if (!k.alive || !this.currentAttack) return r;
+    { const t = inHand(k, 'My Turn'); if (t && await this.paraUse(k, t, 'Peril check 뒤 Chain Break + BP 공개')) { const top = !this.monster.isMob && this.monster.bp.cards[0]; if (top) { const at = this.bpAT(top); this.say(`My Turn: BP 덱 맨 위 공개 — ${top.name} (AT ${at})`, 'tech'); this.flash('card', { title: 'BP 덱 맨 위', name: top.name, text: top.text || '', cls: 'good' }); if (!top.isThickSkin && this.canUnleash(k, at) && await this.yesNo(`${k.name}: My Turn — Unleash ${at}로 ${top.name}에 Wound? (Response 해결, Wound Stack, Escalate)`, true)) { this.unleash(k, at); this.monster.bp.cards.shift(); const A0 = { knight: k, bp: top, wounded: true, critical: false, flags: new Set(), kw: [], extraPool: { raw: 0 } }; for (const [kind, rops] of [['Wound', top.ops && top.ops.wound], ['Instinct', top.ops && top.ops.instinct]]) { if (!rops || !rops.length) continue; this.say(`${kind} Response`); try { await this.runResponseOps(rops, this.bpReactIndices(top, kind), { attacker: k, attack: A0, target: k }); } catch (e) { if (!e.chainBreak) throw e; this.say(`Chain Break: ${e.message}`, 'warn'); } } const dealt = this.monster.wound(top, { critical: false }); this.onTrollWound(dealt); this.monster.generic.counter = (this.monster.generic.counter || 0) + dealt; this.say(`My Turn: Wound! — Wound Stack ${this.monster.wounds}/${this.monster.woundsToKill}`, 'wound'); this.ubarWound(k); this.priorityLast = k; this.checkEnd(); } } throw new ChainBreak('My Turn'); } }
+    { const t = inHand(k, 'Become a Stumbling Block'); if (t && await this.paraUse(k, t, 'Peril check 뒤 Chain Break')) throw new ChainBreak('Become a Stumbling Block'); }
     return r;
   };
 }

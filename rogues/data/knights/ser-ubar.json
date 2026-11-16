@@ -2267,9 +2267,7 @@
     }
    ],
    "depletion": "cooldown",
-   "unclear": [
-    "Handled after the Attack Roll: one missed (non-Crit) die becomes a hit"
-   ],
+   "unclear": [],
    "ops": [
     {
      "op": "skullCrack"

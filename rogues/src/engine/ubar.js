@@ -7,7 +7,7 @@ export const UbarMixin = {
   isUbar,
   ubarSetup(k) {
     if (!isUbar(k)) return; k.form = k.form || 'human'; k.generic = 0; k._heatQ = [];
-    if (tops(k, 'primateStrength').length) { const ws = k.gear.filter(g => g.type === 'weapon' && g.name !== 'Knighves'); const two = ws.find(g => (g.hands || 1) >= 2); if (two && ws.length > 1) two._primate = true; } // Primate Strength: a two-hand Weapon in a one-hand slot has Commit in Human form
+    if (tops(k, 'primateStrength').length) { const ws = k.gear.filter(g => g.type === 'weapon' && g.name !== 'Knighves'); const two = ws.find(g => (g.hands || 1) >= 2); if (two) two._primate = true; } // Primate Strength: a two-hand Weapon in a one-hand slot has Commit in Human form
     let h = k.heat; const desc = Object.getOwnPropertyDescriptor(k, 'heat'); if (!desc || !desc.get) Object.defineProperty(k, 'heat', { enumerable: true, configurable: true, get: () => h, set(v) { const b = h; h = v; if (v !== b && !k._draining) k._heatQ.push(v); } });
   },
   /** Which side of the Monster a Knight stands on (quadrant by the larger axis). */
@@ -31,8 +31,10 @@ export const UbarMixin = {
       }
     } finally { k._draining = false; k._heatQ.length = 0; }
   },
+  async ubarDrainAll() { for (const k of this.knights) if (k.alive && k._heatQ && k._heatQ.length) await this.ubarDrain(k); },
   async ubarTurnStart(k) {
     if (!isUbar(k)) return;
+    if (!this.fx._ubarWrap) { this.fx._ubarWrap = true; for (const fn of ['useTechnique', 'payRerolls', 'exertWindow']) { const f0 = this.fx[fn]; if (typeof f0 !== 'function') continue; this.fx[fn] = async (...a) => { const r = await f0.apply(this.fx, a); await this.ubarDrainAll(); return r; }; } }
     if (!k._formAsked) { k._formAsked = true; const v = await this.ask({ type: 'pick', knight: k.id, text: `${k.name}: 이 Clash를 시작하는 형태`, options: [{ label: 'Human', value: 'human' }, { label: 'Ape', value: 'ape' }] }); k.form = v === 'ape' ? 'ape' : 'human'; this.say(`${k.name}: ${k.form === 'ape' ? 'Ape' : 'Human'} 형태로 시작`, 'tech'); }
     if (tops(k, 'shiftersGrace').length) { const d = this.rng.die(10); const r = d + (k.bane || 0); this.say(`${k.name} Shifter's Grace: d10 ${d}${k.bane ? ` + Bane ${k.bane}` : ''} = ${r} vs Heat ${k.heat}`, 'dice'); if (r <= k.heat) await this.shapeshift(k, "Shifter's Grace"); }
     for (const o of tops(k, 'beastMode')) if (k.heat + o.cost <= k.heatLimit && await this.yesNo(`${k.name}: Beast Mode — Heat +${o.cost}로 Shapeshift? (현재 ${k.form === 'ape' ? 'Ape' : 'Human'})`, false)) { k.gainHeat(o.cost, { voluntary: true }); await this.shapeshift(k, 'Beast Mode'); }
@@ -51,7 +53,7 @@ export const UbarMixin = {
   },
   ubarSuppress(which, why) { const d = this.monster[which]; if (d && d.cards) { d.cards.push(...d.discard); d.discard = []; d.shuffle(); this.say(`${why} — ${which.toUpperCase()} Suppress`, 'tech'); } },
   /** Skull Crack: one missed non-Crit die becomes an automatic hit. */
-  ubarAfterAttackRoll(k, A, roll, isHit) { const u = A.ubar; if (!u || !u.autoHit) return; const d = roll.dice.find((x, i) => i > 0 && !isHit(x)) || roll.dice.find(x => !isHit(x)); if (d) { d.v = 10; d.rerolled = true; this.say('Skull Crack: 빗나간 주사위 1개 → 자동 명중', 'tech'); } u.autoHit = 0; },
+  ubarAfterAttackRoll() {},
   ubarWound(k) { this._lastWounder = k; },
   async ubarSecondWindow(k, A) { const u = A.ubar; if (u && u.overRouse && A.wounded && (A.overAT || 0) >= u.overRouse.need) { this.poolAdd('rouse', u.overRouse.n); this.say(`Overpower ${u.overRouse.need}+: Rouse ${u.overRouse.n}`, 'tech'); } },
   /** After a Monster moved outside the Knight's turn: move up to 2 spaces toward it when it left weapon range. */

@@ -330,7 +330,7 @@ export class Effects {
       if (t.gear && t.src) await this.runMove(k, A, t);
       else if (t.token === 'Pushback') await this.pushMonster(k, t.n);
       else if (t.token === 'Pull') await this.pullMonster(k, A, t.n);
-      else if (t.token === 'Knockback') await this.pushMonster(k, t.n, A);
+      else if (t.token === 'Knockback') await this.c.knockbackMonster(k, t.n, A);
       else if (t.token === 'Vault') await this.vault(k);
       else if (t.token === 'Hug') await this.hug(k, t.n);
       else if (t.token === 'Provoke') { this.c.priorityTarget = k; this.c.turnToward(k.pos); this.say(`Provoke: ${k.name}이 Priority Target, 몬스터가 바라봄`); }

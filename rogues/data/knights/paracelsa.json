@@ -2062,11 +2062,11 @@
      }
     ]
    ],
-   "text": "After you perform a [Judicium draw], Chain Break.",
+   "text": "After you perform a [Peril check], Chain Break.",
    "gates": [],
    "depletion": "discard",
    "unclear": [
-    "Offered after a Judicium draw during a Monster Attack"
+    "Offered after a Peril check during a Monster Attack"
    ],
    "ops": [
     {
