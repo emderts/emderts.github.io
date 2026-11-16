@@ -15,6 +15,8 @@ export const KaraMixin = {
   karaSoak(k) { const s = k._shining; return s && !s.armor.exhausted && !s.armor.discarded ? 2 : 0; },
   karaShiningCheck() { for (const k of this.alive()) { const s = k._shining; if (!s || !this.alive().some(x => x !== k && this.board.adjacent(x.pos, k.pos))) continue; k._shining = null; k.discard.push(s.t); s.armor.exhausted = true; k.gainPassion(1); this.say(`${k.name}: Ally가 인접 — Knight in Shining Armor 버림, ${s.armor.name} Exhaust, Passion +1 (${k.passion})`, 'tech'); } },
   karaDeploy(k) { let n = k._shining ? 1 : 0; if (k.talent) for (const a of k.talent.abilities) for (const o of a.ops || []) if (o.op === 'talentDeploy') n += o.n; return n; },
+  /** We Go Together: Kara may move diagonally; during her turn so may her Allies. */
+  karaDiag(k) { if (talentHas(k, 'weGoTogether')) return true; const t = this._turnKnight; return !!(this.phase === 'knight' && t && t !== k && t.alive && talentHas(t, 'weGoTogether')); },
   karaRoundEnd() { for (const k of this.knights) k._flowUsed = false; },
   async karaUse(k, t, text) { if (!t || !this.fx.canPay(k, this.fx.costOf(k, t))) return null; if (!await this.yesNo(`${k.name}: ${t.name} 사용? (${this.fx.costLabel(k, t) || '비용 없음'}) — ${text || t.text}`, false)) return null; const pc = await this.fx.chooseCost(k, t); if (!pc) return null; this.fx.pay(k, pc.alt, pc.x); this.say(`${k.name} 기술 사용: ${t.name}`, 'tech'); const ops = this.fx.activeOps(k, t); this.fx.deplete(k, t); await this.renTechniqueUsed(k); return ops; },
   /** Start of turn — Peek at the Devil's Hand. */

@@ -2131,17 +2131,22 @@
    "gates": [],
    "depletion": "discard",
    "unclear": [
-    "Not implemented: attacks that draw several BP cards",
+    "Not against Mobs / Guardians; the second BP is drawn after the first is resolved and only checks Total Power vs its AT",
     "Exert icon is the dove — read as Hope"
    ],
-   "ops": null,
+   "ops": [
+    {
+     "op": "doublestrike"
+    }
+   ],
    "timing": "beforeAttack",
    "gateOps": {},
    "exert": {
     "token": "Hope",
     "n": 1,
     "depletion": "discard"
-   }
+   },
+   "minPassion": 5
   },
   {
    "name": "Final Flash",
@@ -2238,10 +2243,14 @@
    "gates": [],
    "depletion": "discard",
    "unclear": [
-    "Not implemented: attacks that draw several BP cards",
+    "Not against Mobs / Guardians",
     "Exert icon is the dove — read as Hope"
    ],
-   "ops": null,
+   "ops": [
+    {
+     "op": "overwhelm"
+    }
+   ],
    "timing": "beforeAttack",
    "gateOps": {},
    "exert": {
