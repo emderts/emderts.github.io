@@ -1789,7 +1789,7 @@
    ],
    "depletion": "cooldown",
    "unclear": [
-    "Used as a free action; the Rouse token sits on that Knight's Board and applies to that Knight's next Attack"
+    "Free action: Inspire only. First ability window of his Attack: Inspire and/or the Rouse token"
    ],
    "ops": [
     {
@@ -1797,7 +1797,8 @@
      "n": 1
     },
     {
-     "op": "rouseIfLS"
+     "op": "rouseIfLS",
+     "windowOnly": true
     }
    ],
    "timing": "free",
@@ -1808,7 +1809,8 @@
       "n": 2
      },
      {
-      "op": "rouseIfLS"
+      "op": "rouseIfLS",
+      "windowOnly": true
      }
     ],
     "DRAGON": [
@@ -1817,7 +1819,8 @@
       "n": 99
      },
      {
-      "op": "rouseIfLS"
+      "op": "rouseIfLS",
+      "windowOnly": true
      }
     ]
    },
@@ -1825,7 +1828,8 @@
     "token": "Break",
     "n": 1,
     "depletion": "cooldown"
-   }
+   },
+   "window": "firstWindow"
   },
   {
    "name": "Friend in Need",

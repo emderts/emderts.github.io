@@ -318,7 +318,7 @@ export class Effects {
     // pre-attack techniques (Prized Morsel, Butcher's Twine) are used as free actions before attacking; flags set there
     if (k.pendingAttackFlags) { for (const f of k.pendingAttackFlags) A.flags.add(f); if (k.pendingExtraPool) for (const col in k.pendingExtraPool) A.extraPool[col] += k.pendingExtraPool[col]; k.pendingAttackFlags = null; k.pendingExtraPool = null; }
   }
-  async firstWindow(k, A) {
+  async firstWindow(k, A) { await this.c.windowTechs(k, A, 'firstWindow');
     for (const o of A.kw || []) if (o.op === 'auto') { this.c.poolAdd(o.token, o.n); this.say(`${A.weapon.name}: Auto-${o.token} ${o.n}`); }
     const wk = this.gearMoves(A); for (const o of A.kw || []) if (o.op === 'provoke' || o.op === 'inspire') wk.push({ token: o.op === 'provoke' ? 'Provoke' : 'Inspire', n: o.n, gear: true });
     const first = [...(await this.arcAt(k, A, 'first')), ...wk].map((t, i) => ({ ...t, id: i }));
@@ -343,7 +343,7 @@ export class Effects {
     }
     const ap = A.weapon.ops && A.weapon.ops.gates ? A.weapon.ops.gates.filter(g => g.when === 'GRAVE' && this.perilGateOk(k, 'GRAVE')).flatMap(g => g.ops).filter(o => o.op === 'armorPiercing') : []; for (const o of ap) A.apCount = (A.apCount || 0) + o.n;
   }
-  async secondWindow(k, A) {
+  async secondWindow(k, A) { await this.c.windowTechs(k, A, 'secondWindow');
     // Heroic Arc: everything still open is chosen/applied now (golden rule) + weapon keywords (Break X etc.)
     await this.arcAt(k, A, 'second'); await this.c.paraSecondWindow(k, A); await this.c.sonchSecondWindow(k, A); await this.c.ubarSecondWindow(k, A); await this.c.stoneSecondWindow(k, A);
     await this.armorPierce(k, A);

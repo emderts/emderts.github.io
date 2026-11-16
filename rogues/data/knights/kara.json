@@ -1551,7 +1551,7 @@
    ],
    "depletion": "delay",
    "unclear": [
-    "Tumble: offered when about to suffer Crash. Bypass (DEVIL: Superior Bypass): offered before a Move action"
+    "Tumble: offered when about to suffer Crash. Bypass (DEVIL: Superior Bypass): offered when Kara is about to move and Bypass would open more spaces"
    ],
    "ops": [
     {
@@ -1657,9 +1657,7 @@
     }
    ],
    "depletion": "cooldown",
-   "unclear": [
-    "Used as a free action before attacking (the token is in the Pool for the Attack)"
-   ],
+   "unclear": [],
    "ops": [
     {
      "op": "poolToken",
@@ -1667,7 +1665,7 @@
      "n": 1
     }
    ],
-   "timing": "free",
+   "timing": "firstWindow",
    "gateOps": {
     "DRAGON": [
      {
@@ -1739,9 +1737,7 @@
     }
    ],
    "depletion": "cooldown",
-   "unclear": [
-    "Used as a free action (Rouse token placed in the Pool)"
-   ],
+   "unclear": [],
    "ops": [
     {
      "op": "poolToken",
@@ -1749,7 +1745,7 @@
      "n": 1
     }
    ],
-   "timing": "free",
+   "timing": "secondWindow",
    "gateOps": {
     "DRAGON": [
      {

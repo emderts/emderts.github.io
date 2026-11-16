@@ -1941,7 +1941,7 @@
      "op": "heartseeker"
     }
    ],
-   "timing": "beforeAttack",
+   "timing": "firstWindow",
    "gateOps": {
     "DRAGON": [
      {
@@ -2128,7 +2128,7 @@
      "op": "fistFirstmen"
     }
    ],
-   "timing": "beforeAttack",
+   "timing": "firstWindow",
    "gateOps": {},
    "formOps": {
     "APE": {

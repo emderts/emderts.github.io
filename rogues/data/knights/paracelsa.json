@@ -1725,14 +1725,14 @@
    "gates": [],
    "depletion": "cooldown",
    "unclear": [
-    "Used as a free action: this turn the next Exhaust (as a cost) of a Ranged Weapon is ignored; with 1 Zeal it applies to any Gear card instead"
+    "Offered right after a Gear card is exhausted (checked after each action / Attack): the Exhaust is undone"
    ],
    "ops": [
     {
-     "op": "armedWithTruth"
+     "op": "timed"
     }
    ],
-   "timing": "free",
+   "timing": "onExhaust",
    "gateOps": {},
    "exert": {
     "token": "PowerReroll",
@@ -1833,7 +1833,7 @@
    ],
    "depletion": "cooldown",
    "unclear": [
-    "Free action: Hope tokens in the Pool. Defy: offered when Paracelsa is the Target of a Monster Attack (hits reduced like Block)"
+    "Hope: second ability window of her Attack. Defy: when Paracelsa is the Target of a Monster Attack"
    ],
    "ops": [
     {
@@ -1842,7 +1842,7 @@
      "defy": 1
     }
    ],
-   "timing": "free",
+   "timing": "secondWindow",
    "gateOps": {
     "DEVIL": [
      {

@@ -16,7 +16,6 @@ export const StonefaceMixin = {
   stoneFreeActions(k) {
     const out = []; if (!isStone(k) || !k.actions) return out;
     for (const o of tops(k, 'rollingStone')) if (this.canUnleash(k, o.unleash) && k.actions.move && k.actions.combat && !this.knockedDown(k)) out.push({ id: 'stone:rush', label: `Rolling Stone — Unleash ${o.unleash}: Rush (전투+이동 행동)` });
-    for (const o of tops(k, 'undyingHope')) if (this.canUnleash(k, o.unleash) && this.poolCount('break')) out.push({ id: 'stone:hope', label: `Undying Hope — Unleash ${o.unleash}: Break 토큰 ${this.poolCount('break')}개 → Hope` });
     for (const o of tops(k, 'tremortrialThrow')) if (k.bane + o.bane <= k.baneLimit && this.alive().some(x => x !== k && this.board.adjacent(x.pos, k.pos))) out.push({ id: 'stone:throw', label: `Tremortrial Throw — Bane +${o.bane}: 인접 기사를 X칸 이동, Leash X (X = Bane 수)` });
     for (const o of tops(k, 'transmutePain')) if (k.bane + o.bane <= k.baneLimit && k.actions.move && k.actions.combat && this.canAttack(k)) out.push({ id: 'stone:pain', label: `Transmute Pain to Power — Bane +${o.bane}: 공격, Wound 시 Leash ${k.maxVigor - k.vigor} (전투+이동 행동)` });
     return out;
@@ -27,6 +26,8 @@ export const StonefaceMixin = {
     else if (id === 'stone:throw') { const o = tops(k, 'tremortrialThrow')[0]; const adj = this.alive().filter(x => x !== k && this.board.adjacent(x.pos, k.pos)); const xid = adj.length > 1 ? await this.ask({ type: 'pickKnight', text: 'Tremortrial Throw — 던질 기사', options: adj.map(x => ({ label: x.name, value: x.id })) }) : adj[0].id; const x = adj.find(y => y.id === xid) || adj[0]; k.gainBane(o.bane); this.say(`${k.name} Bane +${o.bane} (${k.bane}/${k.baneLimit})`, 'tech'); const X = k.bane; await this.knightMove(x, X); this.leash(k, X, 'Tremortrial Throw'); }
     else if (id === 'stone:pain') { const o = tops(k, 'transmutePain')[0]; k.gainBane(o.bane); this.say(`${k.name} Bane +${o.bane} (${k.bane}/${k.baneLimit})`, 'tech'); k.actions.move = false; k.actions.combat = false; const X = k.maxVigor - k.vigor; await this.knightAttack(k); if (this.lastAttack && this.lastAttack.knight === k && this.lastAttack.wounded) this.leash(k, X, 'Transmute Pain to Power'); }
   },
+  /** Undying Hope: during either ability window, Unleash 9 to turn all Break tokens into Hope tokens. */
+  async stoneWindow(k, A, which) { for (const o of tops(k, 'undyingHope')) { const n = this.poolCount('break'); if (n && this.canUnleash(k, o.unleash) && await this.yesNo(`${k.name}: Undying Hope (${which === 'firstWindow' ? '1차' : '2차'} 창) — Unleash ${o.unleash}로 Break ${n}개를 Hope로?`, false)) { this.unleash(k, o.unleash); this.poolTake('break', n); this.poolAdd('hope', n); this.say(`Undying Hope: Break ${n} → Hope ${n}`, 'tech'); } } },
   /** Another Knight performs a Move action while adjacent: Gather No Moss. */
   async stoneMoveAction(mover) { for (const k of this.alive()) { const t = techAt(k, 'onOtherMove'); if (k === mover || !t || !this.board.adjacent(k.pos, mover.pos)) continue; const ops = await this.paraUse(k, t, `${mover.name}의 Move action에 +Speed`); const o = ops && ops.find(x => x.op === 'gatherNoMoss'); if (o) { mover.moveBoost = (mover.moveBoost || 0) + o.n; mover._jump = this.fx.tierOk(k, 'KING') ? 2 : 1; this.say(`${mover.name}: 이 이동 Speed +${o.n}`, 'tech'); this.leash(k, 1, 'Gather No Moss'); } } },
   async stoneBeforeAttack(k, A) {
