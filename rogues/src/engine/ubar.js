@@ -7,6 +7,7 @@ export const UbarMixin = {
   isUbar,
   ubarSetup(k) {
     if (!isUbar(k)) return; k.form = k.form || 'human'; k.generic = 0; k._heatQ = [];
+    if (tops(k, 'primateStrength').length) { const ws = k.gear.filter(g => g.type === 'weapon' && g.name !== 'Knighves'); const two = ws.find(g => (g.hands || 1) >= 2); if (two && ws.length > 1) two._primate = true; } // Primate Strength: a two-hand Weapon in a one-hand slot has Commit in Human form
     let h = k.heat; const desc = Object.getOwnPropertyDescriptor(k, 'heat'); if (!desc || !desc.get) Object.defineProperty(k, 'heat', { enumerable: true, configurable: true, get: () => h, set(v) { const b = h; h = v; if (v !== b && !k._draining) k._heatQ.push(v); } });
   },
   /** Which side of the Monster a Knight stands on (quadrant by the larger axis). */

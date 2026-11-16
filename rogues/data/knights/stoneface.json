@@ -209,8 +209,11 @@
     {
      "name": "Built Different",
      "text": "You may use [two-hand] Melee/Reach Weapons as if they were [one-hand], provided that one of your Weapons has the Shield Trait.",
-     "ops": [],
-     "note": "미구현 (장비 슬롯)."
+     "ops": [
+      {
+       "op": "builtDifferent"
+      }
+     ]
     },
     {
      "name": "Undying Hope",

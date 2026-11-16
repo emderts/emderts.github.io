@@ -191,6 +191,7 @@ export const KNIGHT_RULINGS = [
   ['Ser Sonch — Feral Fighter (Clash Board)', '자유 행동(전투 행동 소모): Ser Sonch를 Little Ser 칸으로 옮겨 Little Ser의 무기로 공격한 뒤 원래 칸으로 되돌림. 공격 중 Response는 Little Ser 칸의 Ser Sonch에게 적용.'],
   ['Ser Sonch — Steadfast Supporter (Monster Sheet)', '기사 한 명만 대상인 공격에서 Knockback -2, Knockdown 무시를 각각 제안.'],
   ['Kara — Reaction으로도 쓰는 Technique', 'Dice with the Devil, Just Like We Practised는 자유 행동과 Reaction 창 양쪽에서 사용 가능.'],
+  ['장비 슬롯 Talent (Primate Strength / Built Different)', '캠페인 장착 검사에 반영. Primate Strength: 양손 무기 1개가 손 슬롯 1칸만 차지 (다른 무기와 함께 장착했을 때 Human 형태에서 그 무기는 Commit). Built Different: 장착한 무기 중 Shield Trait이 있으면 양손 Melee/Reach 무기(Ranged 제외)가 손 슬롯 1칸. Talent를 바꾼 뒤의 재검사는 다음 장착 변경 때.'],
   ['Kara — Ally', 'Knightbook의 Ally(아군 미니어처·보드 위 파티 토큰) 중 현재는 다른 기사만 Ally로 취급. Squire/Princess/Little Ser/Placeholder는 미포함.'],
   ['Kara — Unconstrained', '"occupied" = 기사·몬스터·Obstacle이 있는 인접 칸. 0칸이면 +2, 정확히 1칸이면 +1 Precision.'],
   ['Kara — Technique 소진 아이콘', 'zZ = Cooldown, 원형 화살표 = Delay, 번개 = Instant (Fleischritter·Renholder와 같은 기준). Dodge and Weave는 Delay → Cooldown을 지나는 동안 효과.'],
@@ -226,8 +227,8 @@ export const KNIGHT_RULINGS = [
   ['Renholder — First Death', '이벤트 결말 문단을 스캔에서 찾지 못해 Fleischritter와 같은 보상(+1 Sigh of the Graal)으로 처리.'],
 ];
 export const KNIGHT_QUESTIONS = [
-  ['Stoneface — 미구현', 'Talent: Built Different, Stonewall, Juggernaut의 대상 이동, Rolling Stone의 Drag, Transmute Pain to Power의 Pull. Technique 일부 효과: Go Beyond!의 Critical Wound, I\'ll Be Your Rock의 Terrain 사망 무시, Rock Meet Hard Place의 Pushback, Split the Heavens의 Condition 버리기.'],
-  ['Ser Ubar — 미구현', 'Primate Strength(슬롯), Knights Together Strong의 "VP 위", You\'re in Here With Me APE(비자발 이동 -2), Knight Roll APE(넘어진 채 사용), Knuckle Charge APE(Difficult Terrain 무시), Untouchable HUMAN, Inner Turmoil HUMAN의 Vault.'],
+  ['Stoneface — 미구현', 'Talent: Stonewall(Wave Attack 없음), Juggernaut의 대상 이동, Rolling Stone의 Drag, Transmute Pain to Power의 Pull. Technique 일부 효과: Go Beyond!의 Critical Wound, I\'ll Be Your Rock의 Terrain 사망 무시, Rock Meet Hard Place의 Pushback, Split the Heavens의 Condition 버리기.'],
+  ['Ser Ubar — 미구현', 'Knights Together Strong의 "VP 위", You\'re in Here With Me APE(비자발 이동 -2), Knight Roll APE(넘어진 채 사용), Knuckle Charge APE(Difficult Terrain 무시), Untouchable HUMAN, Inner Turmoil HUMAN의 Vault.'],
   ['숫자가 붙은 "손" 아이콘 (Heroic Arc, 미적용)', 'Kara(Steadfast L2·L6, Knight of the Grand Kingdoms L3), Ser Sonch(Exemplary Leader L7, The Man Made Myth L3, Enduring Legend L2·L6)에 나오는 손 모양 + 숫자 아이콘. 토큰 표의 Tireless(숫자 없음)인지 Pull X인지? Hero to the People L1의 "방패 위 주먹 1"도 미판독.'],
   ['Ser Sonch — 미구현', 'Exemplary Leader의 Little Ser 소모품, Exploration/Encounter/Delve 전용 능력, Tag Team 무기 교환, Time to Shine DRAGON.'],
   ['Paracelsa — 판독 못 한 Talent 혜택 (미적용)', 'Fireheart Zealot 4·6·7번, Inquisitor 9번("-1 [아이콘]")·11번 아이콘. 시트 해상도로는 판독 불가. Inquisitor 12번 Incarnate는 미구현.'],

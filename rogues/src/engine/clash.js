@@ -633,7 +633,7 @@ export class Clash {
     this.currentKnightAttack = A; this.say(`${k.name} 공격 선언 — ${w.name}${bonus ? ' (Bonus Attack)' : ''}`, 'atk');
     const kc = this.hasCondition(k, 'Knockdown (Standing Up)'); if (kc) this.standUp(k);
     // Commit
-    if (this.fx.weaponHas(w, 'commit') && !this.fx.constKw(k, w).some(o => o.op === 'losesCommit') && !(w.hands === 2 && k.gear.some(x => x !== w && !x.discarded && !x.exhausted && this.fx.kwList(x).some(o => o.op === 'twoHandLose')))) { k.gainHeat(1); this.say(`Commit: Heat +1 (${k.heat})`); }
+    if ((this.fx.weaponHas(w, 'commit') || (w._primate && k.form === 'human')) && !this.fx.constKw(k, w).some(o => o.op === 'losesCommit') && !(w.hands === 2 && k.gear.some(x => x !== w && !x.discarded && !x.exhausted && this.fx.kwList(x).some(o => o.op === 'twoHandLose')))) { k.gainHeat(1); this.say(`Commit: Heat +1 (${k.heat})`); }
     // 2. Passion + priority target
     k.gainPassion(1); if ((!this.priorityTarget || k.passion > this.priorityTarget.passion) && !(this.priorityTarget && this.priorityTarget.alive && this.fx.gearHas(this.priorityTarget, 'keepPriority'))) { this.priorityTarget = k; }
     await this.fx.beforeAttack(k, A);

@@ -36,7 +36,7 @@ talents = [
  {"id": "beast-tamer", "name": "Beast Tamer", "tier": "devil", "abilities": [
    {"name": "Constantly Evolving", "text": "When you are about to use a Technique that has a Gated Effect of the shape you are not in, you may immediately Shapeshift. After a Monster leaves the effective range of your Melee/Reach Weapon outside of your turn, you may move up to 2 spaces toward it.", "ops": [{"op": "constantlyEvolving"}, {"op": "chaseMonster", "n": 2}]},
    {"name": "Best of Both Worlds", "text": "[HUMAN] When you attack a Monster while not adjacent, gain Diversion. [APE] When you attack a Monster while adjacent, gain BP Suppress.", "ops": [{"op": "bestOfBoth"}]},
-   {"name": "Primate Strength", "text": "You may equip one [two-hand] Weapon to a [one-hand] slot, but it has Commit while you are in Human form.", "ops": [], "note": "미구현 (장비 슬롯)."}]},
+   {"name": "Primate Strength", "text": "You may equip one [two-hand] Weapon to a [one-hand] slot, but it has Commit while you are in Human form.", "ops": [{"op": "primateStrength"}]}]},
 ]
 def tech(name, unlock, cost, text, depletion, ops, timing, exert, gates=None, gateOps=None, form=None, unclear=()):
     return {"name": name, "unlock": unlock, "cost": cost, "text": text, "gates": [{"gate": g, "text": t} for g, t in (gates or [])], "depletion": depletion, "unclear": list(unclear), "ops": ops, "timing": timing, "gateOps": gateOps or {}, "formOps": form or {}, "exert": exert}

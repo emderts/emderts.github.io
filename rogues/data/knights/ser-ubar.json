@@ -240,8 +240,11 @@
     {
      "name": "Primate Strength",
      "text": "You may equip one [two-hand] Weapon to a [one-hand] slot, but it has Commit while you are in Human form.",
-     "ops": [],
-     "note": "미구현 (장비 슬롯)."
+     "ops": [
+      {
+       "op": "primateStrength"
+      }
+     ]
     }
    ]
   }
