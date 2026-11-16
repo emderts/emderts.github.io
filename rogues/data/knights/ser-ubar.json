@@ -1,0 +1,2400 @@
+{
+ "id": "ser-ubar",
+ "name": "Ser Ubar",
+ "resourceToken": null,
+ "_source": "Knightbook 'A Knight's Tale: Ser Ubar' (p.3–4 rules & Knight Setup) + Portrait / Talent / Heroic Arc / Technique sprite sheets (owner-supplied 2026-11-16).",
+ "specialRules": {
+  "forms": "Ser Ubar can use both of his forms - Human and Ape. Effects preceded with 'Human:' or 'Ape:' trigger only when you're in the corresponding form. At the Start of an Expedition and during Rest, you may choose which form to use. You start the Clash depending on the form you were in during the Delve. Shapeshift: Swap your current form.",
+  "note": "[해석, 확인 필요] Rogue's Path: Clash의 첫 턴 시작에 형태를 선택."
+ },
+ "setup": {
+  "virtues": {
+   "Tenacity": 1,
+   "Sagacity": 1,
+   "Might": 2
+  },
+  "rapportBoon": {
+   "text": "Start of Delve: Raise your Heat Limit by 1.",
+   "note": "Rogue's Path에서 미적용."
+  },
+  "explorationCipher": "**44",
+  "portraits": [
+   "Ape Knight"
+  ],
+  "portrait": "ape-knight",
+  "talent": "Ape Knight",
+  "heroicArc": "Ape Knight",
+  "perilArc": "Ape Knight",
+  "techniques": [
+   "Knight Pose",
+   "Knight Roll",
+   "Second Chance",
+   "Stand Aside",
+   "Put 'em Up"
+  ],
+  "gear": [
+   "Knighves",
+   "Militia Morgenstern"
+  ],
+  "gearNote": "Knightbook: '1 set of Knighves and 1 chosen Mob tier Merchant [gear]'. [해석, 확인 필요] 선택 UI가 없어 Militia Morgenstern으로 고정.",
+  "backSides": "Knight Pose // Knight Prowess, Knight Roll // Gorilla Tactics, Second Chance // Wild Foraging, Stand Aside // Thick Skin, Put 'em Up // Mighty Breath — back sides are not in the supplied sheets."
+ },
+ "firstDeath": {
+  "text": "Ser Ubar's First Death Special Event: Mark the First Death box on your Knight Sheet. Gain +1 Sigh of the Graal.",
+  "ops": [
+   {
+    "op": "markFirstDeath"
+   },
+   {
+    "op": "gainSigh",
+    "n": 1
+   }
+  ],
+  "note": "[해석, 확인 필요] Fleischritter와 같은 보상으로 처리."
+ },
+ "components": {
+  "portraits": 2,
+  "talents": 3,
+  "heroicArcs": 4,
+  "perilArcs": 4,
+  "techniques": 26,
+  "gear": 5
+ },
+ "talents": [
+  {
+   "id": "ape-knight",
+   "name": "Ape Knight",
+   "tier": "starting",
+   "abilities": [
+    {
+     "name": "Shifter's Grace",
+     "text": "When you are about to perform Heat Refresh, roll a [d10] and add +1 to the result for every Bane [Bane] token you have. If the result is equal to or lower than your current [Heat], Shapeshift. When you Shapeshift, you may move 1 space.",
+     "ops": [
+      {
+       "op": "shiftersGrace"
+      },
+      {
+       "op": "shiftMove",
+       "n": 1
+      }
+     ]
+    },
+    {
+     "name": "Troop Tactics",
+     "text": "When you are about to attack, if the last Knight who dealt a Wound (other than you) is not on the same side of the Monster as you, gain Auto-break 1.",
+     "ops": [
+      {
+       "op": "troopTactics"
+      }
+     ],
+     "note": "'Same side of the Monster' = the same quadrant (front/back/left/right by the larger axis) around the Monster."
+    }
+   ]
+  },
+  {
+   "id": "primal-warrior",
+   "name": "Primal Warrior",
+   "tier": "vassal",
+   "abilities": [
+    {
+     "name": "Heart's Thunder",
+     "text": "After your Heat Refresh, you may place a Generic token on your Knight Board. When your [Heat] becomes equal to the number of Generic tokens you have (minimum 1), Shapeshift and reset your [Heat], then discard all Generic tokens.",
+     "ops": [
+      {
+       "op": "heartsThunder"
+      }
+     ]
+    },
+    {
+     "name": "Part of the Tribe",
+     "text": "When another Knight is about to attack, if they are not on the same side of the Monster as you, you may place X Generic tokens on your Knight Board to move up to X spaces (maximum of 3).",
+     "ops": [
+      {
+       "op": "partOfTribe",
+       "max": 3
+      }
+     ],
+     "note": "'Same side of the Monster' = the same quadrant (front/back/left/right by the larger axis) around the Monster."
+    }
+   ]
+  },
+  {
+   "id": "simian-strategist",
+   "name": "Simian Strategist",
+   "tier": "vassal",
+   "abilities": [
+    {
+     "name": "Beast Mode",
+     "text": "At the start of your turn, you may gain +1 [Heat] to Shapeshift. When you Shapeshift, you may move 1 space. If you are adjacent to another Knight, you may swap places instead.",
+     "ops": [
+      {
+       "op": "beastMode",
+       "cost": 1
+      },
+      {
+       "op": "shiftMove",
+       "n": 1,
+       "swap": true
+      }
+     ]
+    },
+    {
+     "name": "You're in Here With Me",
+     "text": "[HUMAN] After a Monster leaves the effective range of your Melee/Reach Weapon outside of your turn, you may move up to 2 spaces toward it. [APE] 1 [Heat] Reduce involuntary movement by 2.",
+     "ops": [
+      {
+       "op": "chaseMonster",
+       "n": 2,
+       "form": "human"
+      }
+     ],
+     "unclear": [
+      "APE: 'Reduce involuntary movement by 2' is not implemented"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "rising-ape",
+   "name": "Rising Ape",
+   "tier": "devil",
+   "abilities": [
+    {
+     "name": "Master of the Battlefield",
+     "text": "After your [Heat] becomes exactly 3, 5, or 8, immediately Shapeshift. Then, you may resolve the corresponding effect: [Heat] 3: Move 1 space. [Heat] 5: You and/or another Knight moves 1 space. [Heat] 8: You and/or another Knight moves up to 2 spaces.",
+     "ops": [
+      {
+       "op": "heatShift",
+       "at": {
+        "3": {
+         "self": 1
+        },
+        "5": {
+         "self": 1,
+         "other": 1
+        },
+        "8": {
+         "self": 2,
+         "other": 2
+        }
+       }
+      }
+     ]
+    },
+    {
+     "name": "Knights Together Strong",
+     "text": "When you are about to attack, if you are on the VP, or if the last Knight who dealt a Wound (other than you) is not on the same side of the Monster as you, you may gain +2 [Precision] and Auto-hope 1.",
+     "ops": [
+      {
+       "op": "knightsTogether"
+      }
+     ],
+     "note": "'Same side of the Monster' = the same quadrant (front/back/left/right by the larger axis) around the Monster.",
+     "unclear": [
+      "'on the VP' is not implemented"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "beast-tamer",
+   "name": "Beast Tamer",
+   "tier": "devil",
+   "abilities": [
+    {
+     "name": "Constantly Evolving",
+     "text": "When you are about to use a Technique that has a Gated Effect of the shape you are not in, you may immediately Shapeshift. After a Monster leaves the effective range of your Melee/Reach Weapon outside of your turn, you may move up to 2 spaces toward it.",
+     "ops": [
+      {
+       "op": "constantlyEvolving"
+      },
+      {
+       "op": "chaseMonster",
+       "n": 2
+      }
+     ]
+    },
+    {
+     "name": "Best of Both Worlds",
+     "text": "[HUMAN] When you attack a Monster while not adjacent, gain Diversion. [APE] When you attack a Monster while adjacent, gain BP Suppress.",
+     "ops": [
+      {
+       "op": "bestOfBoth"
+      }
+     ]
+    },
+    {
+     "name": "Primate Strength",
+     "text": "You may equip one [two-hand] Weapon to a [one-hand] slot, but it has Commit while you are in Human form.",
+     "ops": [],
+     "note": "미구현 (장비 슬롯)."
+    }
+   ]
+  }
+ ],
+ "heroicArcs": [
+  {
+   "name": "Ape Knight",
+   "plus": null,
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Break",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Reposition",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Reposition",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "Break",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Break",
+        "n": 1
+       },
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Ape Militant",
+   "plus": null,
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Break",
+        "n": 1
+       },
+       {
+        "token": "Closing",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "Reposition",
+        "n": 1
+       },
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Envenomed",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "Closing",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "Envenomed",
+        "n": 1
+       },
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Spotlight",
+        "n": 1
+       },
+       {
+        "token": "Tireless",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "Rouse",
+        "n": 1
+       },
+       {
+        "token": "Reposition",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 8,
+     "options": [
+      [
+       {
+        "token": "PlusPower",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": [
+    "downward dagger icon read as Envenomed (same reading as Fleischjäger L3 / Kara Kingsguard)"
+   ]
+  },
+  {
+   "name": "Primal Warrior",
+   "plus": {
+    "text": "[PowerReroll] 1",
+    "ops": [
+     {
+      "token": "PowerReroll",
+      "n": 1
+     }
+    ]
+   },
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Break",
+        "n": 1
+       },
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Opening",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "Black",
+        "n": 1
+       },
+       {
+        "token": "Reposition",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Closing",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "Provoke",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "Opening",
+        "n": 1
+       },
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Closing",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "Spotlight",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Simian Strategist",
+   "plus": {
+    "text": "Auto-break 1",
+    "ops": [
+     {
+      "token": "AutoBreak",
+      "n": 1
+     }
+    ]
+   },
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Fire",
+        "n": 1
+       },
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Opening",
+        "n": 1
+       },
+       {
+        "token": "Fire",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "Overbreak",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Rouse",
+        "n": 1
+       },
+       {
+        "token": "Overbreak",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "Envenomed",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": [
+    "downward dagger icon read as Envenomed (same reading as Fleischjäger L3 / Kara Kingsguard)"
+   ]
+  },
+  {
+   "name": "Simianthrope",
+   "plus": {
+    "text": "[PowerReroll] 1",
+    "ops": [
+     {
+      "token": "PowerReroll",
+      "n": 1
+     }
+    ]
+   },
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Break",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "Opening",
+        "n": 1
+       },
+       {
+        "token": "Reposition",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Black",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Reposition",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Pushback",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "Black",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Black",
+        "n": 1
+       },
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Rising Ape",
+   "plus": {
+    "text": "[PowerReroll] 1",
+    "ops": [
+     {
+      "token": "PowerReroll",
+      "n": 1
+     }
+    ]
+   },
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Envenomed",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Opening",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "Tireless",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Hope",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Hope",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "Envenomed",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "Break",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "Reposition",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Hope",
+        "n": 1
+       },
+       {
+        "token": "Opening",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "Closing",
+        "n": 1
+       },
+       {
+        "token": "AISuppress",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 8,
+     "options": [
+      [
+       {
+        "token": "PowerDicePromotion",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": [
+    "downward dagger icon read as Envenomed (same reading as Fleischjäger L3 / Kara Kingsguard)"
+   ]
+  },
+  {
+   "name": "Beast Tamer",
+   "plus": null,
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Closing",
+        "n": 1
+       },
+       {
+        "token": "Black",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       },
+       {
+        "token": "Black",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "Sunder",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "Reposition",
+        "n": 1
+       },
+       {
+        "token": "Closing",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "Sunder",
+        "n": 1
+       },
+       {
+        "token": "Black",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "Break",
+        "n": 3
+       }
+      ]
+     ]
+    },
+    {
+     "level": 8,
+     "options": [
+      [
+       {
+        "token": "PowerDicePromotion",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": []
+  },
+  {
+   "name": "Champion of Utrebant",
+   "plus": {
+    "text": "Auto-black 1, +1 [Precision]",
+    "ops": [
+     {
+      "token": "AutoBlack",
+      "n": 1
+     },
+     {
+      "token": "Precision",
+      "n": 1
+     }
+    ]
+   },
+   "levels": [
+    {
+     "level": 1,
+     "options": [
+      [
+       {
+        "token": "Envenomed",
+        "n": 1
+       },
+       {
+        "token": "Closing",
+        "n": 1
+       },
+       {
+        "token": "Pushback",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 2,
+     "options": [
+      [
+       {
+        "token": "Envenomed",
+        "n": 1
+       },
+       {
+        "token": "Closing",
+        "n": 1
+       },
+       {
+        "token": "Rouse",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 3,
+     "options": [
+      [
+       {
+        "token": "PowerDieRed",
+        "n": 1
+       },
+       {
+        "token": "Tireless",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 4,
+     "options": [
+      [
+       {
+        "token": "Sunder",
+        "n": 1
+       },
+       {
+        "token": "PowerReroll",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 5,
+     "options": [
+      [
+       {
+        "token": "PowerDicePromotion",
+        "n": 1
+       },
+       {
+        "token": "Reposition",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 6,
+     "options": [
+      [
+       {
+        "token": "BPSuppress",
+        "n": 1
+       },
+       {
+        "token": "Envenomed",
+        "n": 1
+       }
+      ]
+     ]
+    },
+    {
+     "level": 7,
+     "options": [
+      [
+       {
+        "token": "Sunder",
+        "n": 1
+       },
+       {
+        "token": "Pushback",
+        "n": 2
+       }
+      ]
+     ]
+    },
+    {
+     "level": 8,
+     "options": [
+      [
+       {
+        "token": "Power",
+        "n": 1
+       }
+      ]
+     ]
+    }
+   ],
+   "unclear": [
+    "downward dagger icon read as Envenomed (same reading as Fleischjäger L3 / Kara Kingsguard)"
+   ]
+  }
+ ],
+ "perilArcsRef": "data/knights/peril_arcs.json → arcs.ser-ubar",
+ "techniques": [
+  {
+   "name": "Second Chance",
+   "unlock": "Start",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "Second Chance.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "Superior Chance."
+    }
+   ],
+   "depletion": "discard",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "secondChance"
+    }
+   ],
+   "timing": "onMortisDraw",
+   "gateOps": {
+    "DEVIL": [
+     {
+      "op": "superiorChance"
+     }
+    ]
+   },
+   "formOps": {},
+   "exert": {
+    "token": "Break",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Knight Roll",
+   "unlock": "Start",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "[Reaction] Reflex.",
+   "gates": [
+    {
+     "gate": "KING",
+     "text": "[Reaction] Advanced Reflex."
+    },
+    {
+     "gate": "DEVIL",
+     "text": "[Reaction] Superior Reflex."
+    },
+    {
+     "gate": "APE",
+     "text": "Additionally, you may use this Technique while knocked down."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [
+    "APE: use while knocked down is not implemented"
+   ],
+   "ops": [
+    {
+     "op": "reflex",
+     "n": 1
+    }
+   ],
+   "timing": "reaction",
+   "gateOps": {
+    "KING": [
+     {
+      "op": "reflex",
+      "n": 2
+     }
+    ],
+    "DEVIL": [
+     {
+      "op": "reflex",
+      "n": 3
+     }
+    ]
+   },
+   "formOps": {},
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Knight Pose",
+   "unlock": "Start",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "[HUMAN] Stand up, then move up to 1 space. [APE] Stand up.",
+   "gates": [
+    {
+     "gate": "HUMAN",
+     "text": "Stand up, then move up to 1 space."
+    },
+    {
+     "gate": "APE",
+     "text": "Stand up."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "standUp"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {},
+   "formOps": {
+    "HUMAN": {
+     "add": [
+      {
+       "op": "move",
+       "n": 1,
+       "optional": true
+      }
+     ]
+    }
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Stand Aside",
+   "unlock": "Start",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "When performing a [Move action], you can move through other Knights as if they were a Difficult Terrain.",
+   "gates": [
+    {
+     "gate": "KING",
+     "text": "Gain Bypass instead."
+    },
+    {
+     "gate": "DRAGON",
+     "text": "Gain Advanced Bypass instead."
+    },
+    {
+     "gate": "APE",
+     "text": "Additionally, gain +1 Speed [Speed] for this movement."
+    }
+   ],
+   "depletion": "delay",
+   "unclear": [
+    "Used as a free action before moving: until the end of the turn you may move through occupied spaces (the Difficult Terrain cost / Advanced Bypass are not modelled); APE +1 Speed lasts until the end of the turn"
+   ],
+   "ops": [
+    {
+     "op": "bypassMove"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {},
+   "formOps": {
+    "APE": {
+     "add": [
+      {
+       "op": "turnSpeed",
+       "n": 1
+      }
+     ]
+    }
+   },
+   "exert": {
+    "token": "Opening",
+    "n": 1,
+    "depletion": "delay"
+   }
+  },
+  {
+   "name": "Put 'em Up",
+   "unlock": "Start",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "Lesser Dodge.",
+   "gates": [
+    {
+     "gate": "KING",
+     "text": "Dodge."
+    },
+    {
+     "gate": "DEVIL",
+     "text": "Advanced Dodge."
+    },
+    {
+     "gate": "HUMAN",
+     "text": "Additionally, Guard 1."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "techDodge",
+     "n": 1,
+     "lesser": true
+    }
+   ],
+   "timing": "onDefense",
+   "gateOps": {
+    "KING": [
+     {
+      "op": "techDodge",
+      "n": 1
+     }
+    ],
+    "DEVIL": [
+     {
+      "op": "techDodge",
+      "n": 2
+     }
+    ]
+   },
+   "formOps": {
+    "HUMAN": {
+     "add": [
+      {
+       "op": "techGuard",
+       "n": 1
+      }
+     ]
+    }
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Cold Open",
+   "unlock": "Investigation 1-2",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "If the Knight Pool is empty, place an Opening [Opening] and a Break [Break] token in the Knight Pool.",
+   "gates": [
+    {
+     "gate": "HUMAN",
+     "text": "Additionally, gain Provoke."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "coldOpen"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {},
+   "formOps": {
+    "HUMAN": {
+     "add": [
+      {
+       "op": "provoke"
+      }
+     ]
+    }
+   },
+   "exert": {
+    "token": "Opening",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Knuckle Charge",
+   "unlock": "Investigation 1-3",
+   "cost": [
+    {
+     "res": "Action",
+     "actions": [
+      "combat",
+      "move"
+     ]
+    },
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "Rush.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "Additionally, gain Auto-black 1 for this Rush."
+    },
+    {
+     "gate": "APE",
+     "text": "Additionally, you may ignore Difficult Terrain tiles during this Rush."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [
+    "APE: ignoring Difficult Terrain is not implemented"
+   ],
+   "ops": [
+    {
+     "op": "rush"
+    }
+   ],
+   "timing": "complicated",
+   "gateOps": {
+    "DEVIL": [
+     {
+      "op": "poolToken",
+      "token": "black",
+      "n": 1
+     },
+     {
+      "op": "rush"
+     }
+    ]
+   },
+   "formOps": {},
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Monkey See",
+   "unlock": "Quest: Simianthrope",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "Look at the top card of the AI deck, you may place it on the bottom of its deck.",
+   "gates": [
+    {
+     "gate": "HUMAN",
+     "text": "BP deck instead. If fighting against Mobs, look at the leftmost unrevealed BP on the Mob track."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "monkeySee",
+     "deck": "ai"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {},
+   "formOps": {
+    "HUMAN": {
+     "instead": [
+      {
+       "op": "monkeySee",
+       "deck": "bp"
+      }
+     ]
+    }
+   },
+   "exert": {
+    "token": "Opening",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Exploit Flaw",
+   "unlock": "Investigation 2-2",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "When you are about to attack, gain Deadly.",
+   "gates": [
+    {
+     "gate": "HUMAN",
+     "text": "You may gain Precise instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "exploitFlaw"
+    }
+   ],
+   "timing": "beforeAttack",
+   "gateOps": {},
+   "formOps": {
+    "HUMAN": {
+     "instead": [
+      {
+       "op": "exploitFlaw",
+       "precise": true
+      }
+     ]
+    }
+   },
+   "exert": {
+    "token": "Opening",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Primal Leap",
+   "unlock": "Investigation 2-3",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "Jump.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "Advanced Jump."
+    },
+    {
+     "gate": "APE",
+     "text": "Additionally, gain +1 Speed [Speed] until the end of your turn."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [
+    "Jump / Advanced Jump are not implemented (only the APE Speed bonus)"
+   ],
+   "ops": [
+    {
+     "op": "jump"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {},
+   "formOps": {
+    "APE": {
+     "add": [
+      {
+       "op": "turnSpeed",
+       "n": 1
+      }
+     ]
+    }
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Force of Nature",
+   "unlock": "Quest: Primal Warrior",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "Use this Technique when you are about to attack. Ignore Wound Responses during this Attack.",
+   "gates": [
+    {
+     "gate": "HUMAN",
+     "text": "Additionally, gain \"Overpower 3+: Rouse 1.\""
+    }
+   ],
+   "depletion": "discard",
+   "unclear": [
+    "All Responses of the Attack are ignored (the engine does not separate Wound Responses)"
+   ],
+   "ops": [
+    {
+     "op": "ignoreResponses"
+    }
+   ],
+   "timing": "beforeAttack",
+   "gateOps": {},
+   "formOps": {
+    "HUMAN": {
+     "add": [
+      {
+       "op": "overRouse",
+       "need": 3,
+       "n": 1
+      }
+     ]
+    }
+   },
+   "exert": {
+    "token": "Break",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "The Heart Relentless",
+   "unlock": "Quest: Primal Warrior",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "Flip a Body Condition card.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "Discard it instead."
+    },
+    {
+     "gate": "APE",
+     "text": "You may gain +3 [Vigor] instead."
+    }
+   ],
+   "depletion": "discard",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "heartRelentless"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {
+    "DEVIL": [
+     {
+      "op": "heartRelentless",
+      "discard": true
+     }
+    ]
+   },
+   "formOps": {},
+   "exert": {
+    "token": "Break",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Warcry",
+   "unlock": "Quest: Simian Strategist",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "Inspire 1. OR Motivate 2.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "Inspire 2 instead. Motivate 3 instead."
+    },
+    {
+     "gate": "APE",
+     "text": "You can only Inspire."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "warcry",
+     "inspire": 1,
+     "motivate": 2
+    }
+   ],
+   "timing": "free",
+   "gateOps": {
+    "DEVIL": [
+     {
+      "op": "warcry",
+      "inspire": 2,
+      "motivate": 3
+     }
+    ]
+   },
+   "formOps": {},
+   "exert": {
+    "token": "Opening",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Great Ape Flex",
+   "unlock": "Quest: Simian Strategist",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "Reinforce 2.",
+   "gates": [
+    {
+     "gate": "DEVIL",
+     "text": "Reinforce 3 instead."
+    },
+    {
+     "gate": "APE",
+     "text": "Additionally, gain Armor Re-roll 2."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [
+    "APE: Armor Re-roll 2 is not implemented"
+   ],
+   "ops": [
+    {
+     "op": "techReinforce",
+     "colour": "red",
+     "n": 2
+    }
+   ],
+   "timing": "onDefense",
+   "gateOps": {
+    "DEVIL": [
+     {
+      "op": "techReinforce",
+      "colour": "red",
+      "n": 3
+     }
+    ]
+   },
+   "formOps": {},
+   "exert": {
+    "token": "Break",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Fiery Eyes, Golden Pupils",
+   "unlock": "Investigation 3-2",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "During the first ability window, gain Heartseeker.",
+   "gates": [
+    {
+     "gate": "DRAGON",
+     "text": "You may [Discard] this card to gain Soulseeker instead."
+    },
+    {
+     "gate": "HUMAN",
+     "text": "Additionally, you may immediately perform BP Suppress."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [
+    "DRAGON Soulseeker is not implemented"
+   ],
+   "ops": [
+    {
+     "op": "heartseeker"
+    }
+   ],
+   "timing": "beforeAttack",
+   "gateOps": {},
+   "formOps": {
+    "HUMAN": {
+     "add": [
+      {
+       "op": "bpSuppressNow"
+      }
+     ]
+    }
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Bestial Stamina",
+   "unlock": "Investigation 3-3",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 3
+    }
+   ],
+   "text": "Unexhaust 1 Gear [Gear] card.",
+   "gates": [
+    {
+     "gate": "DRAGON",
+     "text": "Unexhaust up to 2 Gear [Gear] cards instead."
+    },
+    {
+     "gate": "APE",
+     "text": "Additionally gain +2 [Vigor]."
+    }
+   ],
+   "depletion": "delay",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "unexhaustUpTo",
+     "n": 1
+    }
+   ],
+   "timing": "free",
+   "gateOps": {
+    "DRAGON": [
+     {
+      "op": "unexhaustUpTo",
+      "n": 2
+     }
+    ]
+   },
+   "formOps": {
+    "APE": {
+     "add": [
+      {
+       "op": "gainVigor",
+       "n": 2
+      }
+     ]
+    }
+   },
+   "exert": {
+    "token": "Opening",
+    "n": 1,
+    "depletion": "delay"
+   }
+  },
+  {
+   "name": "Canopy Swing",
+   "unlock": "Quest: Ape Militant",
+   "cost": [
+    {
+     "res": "Action",
+     "actions": [
+      "move"
+     ]
+    },
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "Place your miniature on an empty space up to 4 spaces away from you (treat this Technique as performing a movement).",
+   "gates": [
+    {
+     "gate": "DRAGON",
+     "text": "5 spaces instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "canopySwing",
+     "n": 4
+    }
+   ],
+   "timing": "free",
+   "gateOps": {
+    "DRAGON": [
+     {
+      "op": "canopySwing",
+      "n": 5
+     }
+    ]
+   },
+   "formOps": {},
+   "exert": {
+    "token": "Opening",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Mind over Body",
+   "unlock": "Investigation 4-2",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 3
+    }
+   ],
+   "text": "Stand up and/or discard a Mind Condition card.",
+   "gates": [
+    {
+     "gate": "APE",
+     "text": "Body Condition card instead."
+    }
+   ],
+   "depletion": "discard",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "mindOverBody",
+     "type": "mind"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {},
+   "formOps": {
+    "APE": {
+     "instead": [
+      {
+       "op": "mindOverBody",
+       "type": "body"
+      }
+     ]
+    }
+   },
+   "exert": {
+    "token": "Hope",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Fist of the Firstmen",
+   "unlock": "Investigation 4-3",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "During the first ability window, gain Auto-hope 1 and +1 [Power].",
+   "gates": [
+    {
+     "gate": "APE",
+     "text": "Additionally gain Daze and +1 [Power]."
+    }
+   ],
+   "depletion": "discard",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "fistFirstmen"
+    }
+   ],
+   "timing": "beforeAttack",
+   "gateOps": {},
+   "formOps": {
+    "APE": {
+     "instead": [
+      {
+       "op": "fistFirstmen",
+       "ape": true
+      }
+     ]
+    }
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Eye of the Storm",
+   "unlock": "Quest: Rising Ape",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "When you are about to perform an Evasion Roll, roll an additional [die] and ignore the result of 1 Evasion die.",
+   "gates": [
+    {
+     "gate": "HUMAN",
+     "text": "Additionally gain Braced until the end of this Attack (including After Attack)."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [
+    "Not implemented (Exert only)"
+   ],
+   "ops": null,
+   "timing": "onEvasion",
+   "gateOps": {},
+   "formOps": {},
+   "exert": {
+    "token": "Break",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Adrenaline Rush",
+   "unlock": "Quest: Rising Ape",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "When you are about to perform a Virtue Test, add +2 to each result.",
+   "gates": [
+    {
+     "gate": "APE",
+     "text": "Advanced Defy instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [
+    "Not implemented (Exert only)"
+   ],
+   "ops": null,
+   "timing": "onVirtueTest",
+   "gateOps": {},
+   "formOps": {},
+   "exert": {
+    "token": "Closing",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Untouchable",
+   "unlock": "Quest: Beast Tamer",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "Advanced Reinforce 2.",
+   "gates": [
+    {
+     "gate": "HUMAN",
+     "text": "As long as this card is Delayed, gain: \"[Reaction] [Discard] Superior Reflex.\""
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [
+    "HUMAN: the Delayed-card Reaction is not implemented"
+   ],
+   "ops": [
+    {
+     "op": "techReinforce",
+     "colour": "black",
+     "n": 2
+    }
+   ],
+   "timing": "onDefense",
+   "gateOps": {},
+   "formOps": {},
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Skull Crack",
+   "unlock": "Quest: Beast Tamer",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 2
+    }
+   ],
+   "text": "When you are about to attack, set aside 1 [Attack die] and treat it as an automatic hit.",
+   "gates": [
+    {
+     "gate": "APE",
+     "text": "Additionally ignore Wound Responses during this Attack."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [
+    "Handled after the Attack Roll: one missed (non-Crit) die becomes a hit"
+   ],
+   "ops": [
+    {
+     "op": "skullCrack"
+    }
+   ],
+   "timing": "beforeAttack",
+   "gateOps": {},
+   "formOps": {
+    "APE": {
+     "add": [
+      {
+       "op": "ignoreResponses"
+      }
+     ]
+    }
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Feral Aggression",
+   "unlock": "Investigation 5-2",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 1
+    }
+   ],
+   "text": "When you attack, gain +2 [Power].",
+   "gates": [
+    {
+     "gate": "APE",
+     "text": "Additionally gain Power 1."
+    }
+   ],
+   "depletion": "discard",
+   "unclear": [],
+   "ops": [
+    {
+     "op": "feralAggression"
+    }
+   ],
+   "timing": "beforeAttack",
+   "gateOps": {},
+   "formOps": {
+    "APE": {
+     "instead": [
+      {
+       "op": "feralAggression",
+       "token": 1
+      }
+     ]
+    }
+   },
+   "exert": {
+    "token": "Closing",
+    "n": 1,
+    "depletion": "discard"
+   }
+  },
+  {
+   "name": "Simian Sprint",
+   "unlock": "Investigation 5-3",
+   "cost": [
+    {
+     "res": "Action",
+     "actions": [
+      "combat"
+     ]
+    }
+   ],
+   "text": "Gain a [Move action].",
+   "gates": [
+    {
+     "gate": "HUMAN",
+     "text": "Improved Rush instead."
+    }
+   ],
+   "depletion": "cooldown",
+   "unclear": [
+    "Cost icon read as a [Combat action]"
+   ],
+   "ops": [
+    {
+     "op": "gainMoveAction"
+    }
+   ],
+   "timing": "free",
+   "gateOps": {},
+   "formOps": {
+    "HUMAN": {
+     "instead": [
+      {
+       "op": "improvedRush"
+      }
+     ]
+    }
+   },
+   "exert": {
+    "token": "PowerReroll",
+    "n": 1,
+    "depletion": "cooldown"
+   }
+  },
+  {
+   "name": "Inner Turmoil",
+   "unlock": "Quest: Champion of Utrebant",
+   "cost": [
+    {
+     "res": "Heat",
+     "n": 3
+    }
+   ],
+   "text": "When you are about to draw an AI: [HUMAN] Immediately Vault and/or perform a [Move action]. [APE] Immediately perform a Bonus Attack! (Ignore Attack Responses. You still draw an AI after the Attack.)",
+   "gates": [],
+   "depletion": "discard",
+   "unclear": [
+    "HUMAN: the Vault is not implemented (Move action only)"
+   ],
+   "ops": [
+    {
+     "op": "innerTurmoil"
+    }
+   ],
+   "timing": "onAIForm",
+   "gateOps": {},
+   "formOps": {},
+   "exert": {
+    "token": "Sunder",
+    "n": 1,
+    "depletion": "discard"
+   }
+  }
+ ],
+ "missing": [],
+ "portraits": [
+  {
+   "id": "ape-knight",
+   "name": "Ape Knight",
+   "tier": "starting",
+   "classes": [
+    "Ape Knight"
+   ],
+   "powerDie": "red",
+   "cardRefresh": 1,
+   "heatRefresh": 3,
+   "handLimit": 4,
+   "speed": 4,
+   "baneLimit": 4
+  },
+  {
+   "id": "primal-simian",
+   "name": "Primal Warrior / Simian Strategist",
+   "tier": "vassal",
+   "classes": [
+    "Primal Warrior",
+    "Simian Strategist"
+   ],
+   "powerDie": "red",
+   "cardRefresh": 1,
+   "heatRefresh": 3,
+   "handLimit": 5,
+   "speed": 5,
+   "baneLimit": 5
+  },
+  {
+   "id": "rising-beast",
+   "name": "Rising Ape / Beast Tamer",
+   "tier": "devil",
+   "classes": [
+    "Rising Ape",
+    "Beast Tamer"
+   ],
+   "powerDie": "red",
+   "powerDice": 2,
+   "cardRefresh": 2,
+   "heatRefresh": 5,
+   "handLimit": 6,
+   "speed": 6,
+   "baneLimit": 6
+  }
+ ]
+}

@@ -19,6 +19,7 @@ import { RenholderMixin } from './renholder.js';
 import { KaraMixin, installKara } from './kara.js';
 import { ParacelsaMixin, installParacelsa } from './paracelsa.js';
 import { SonchMixin, installSonch } from './sonch.js';
+import { UbarMixin, installUbar } from './ubar.js';
 
 export class ChainBreak extends Error { constructor(msg = 'Chain Break') { super(msg); this.chainBreak = true; } }
 const sum = a => a.reduce((x, y) => x + y, 0);
@@ -57,7 +58,7 @@ export class Clash {
     kn.gear = (k.gear || def.setup.gear).map(n => ({ ...this.gearByName(n), exhausted: false, discarded: false }));
     { const otherHands = kn.gear.filter(g => g.type === 'weapon' && g.name !== 'Knighves').reduce((a, g) => a + (g.hands || 1), 0); if (otherHands >= 2) { const kv = kn.gear.find(g => g.name === 'Knighves'); if (kv) { kn.gear = kn.gear.filter(g => g !== kv); kn.knighvesReserve = kv; } } } // Knighves only in a free hand slot (p.20)
     kn.virtues = { ...def.setup.virtues }; kn.tier = k.tier || 1; kn.pos = null; kn.conditions = []; kn.chokeLimit = 0; kn.braced = false; kn.usedArcLevels = new Set(); kn.bonusAttacks = 0; kn.heroicUsed = {};
-    kn.gold = k.gold ?? 0; kn.sigh = k.sigh ?? 0; kn.fleischBoard = 0; kn.firstDeath = k.firstDeath || false; kn.turnsTaken = 0; kn.powerDice = portrait.powerDice || 1; this.renSetup(kn);
+    kn.gold = k.gold ?? 0; kn.sigh = k.sigh ?? 0; kn.fleischBoard = 0; kn.firstDeath = k.firstDeath || false; kn.turnsTaken = 0; kn.powerDice = portrait.powerDice || 1; this.renSetup(kn); this.ubarSetup(kn);
     return kn;
     function cfg0(i) { return i ? ' ' + (i + 1) : ''; }
   }
@@ -332,9 +333,9 @@ export class Clash {
     const diffInstead = gatesOn.find(g => g.op === 'difficultyInstead'); if (diffInstead) diff = diffInstead.n;
     if (this.negMonPrecision) { diff = Math.max(2, diff - this.negMonPrecision); this.say(`임시 Precision -${this.negMonPrecision} 토큰: Evasion 난이도 → ${diff}+ (토큰 버림)`, 'tech'); this.negMonPrecision = 0; }
     if (this.monster.hasTrait('Jacked')) { if (this.jackedTokens >= 2) diff += 1; if (this.jackedTokens >= 5) dice += 1; }
-    const dw = await this.fx.defenseWindow(k, { judge: !!ops.judge }); dw.block += await this.paraDefense(k); this.karaTargeted(k); let evaBonus = this.fx.evasionBonus(k) + dw.evasion + this.karaEvasion(k); let virtue = null;
+    const dw = await this.fx.defenseWindow(k, { judge: !!ops.judge }); dw.block += await this.paraDefense(k); dw.evasion += k._defEvasion || 0; this.karaTargeted(k); let evaBonus = this.fx.evasionBonus(k) + dw.evasion + this.karaEvasion(k); let virtue = null;
     let freeER = this.fx.evasionRerolls(k) + this.lsBoon(k, 'evasionReroll'), cloak = 0;
-    let extraGuard = this.lsBoon(k, 'guard'), wilder = 0;
+    let extraGuard = this.lsBoon(k, 'guard') + (k._defGuard || 0), wilder = 0;
     if (k.perilArcDef && k.perilArcDef.bonus && /^Guard (\d+)/.test(k.perilArcDef.bonus.text || '')) extraGuard += +/^Guard (\d+)/.exec(k.perilArcDef.bonus.text)[1];
     if (this.cloaked(k)) { extraGuard += 2; this.say(`${k.name}: Cloak of Shadows — Guard 2`, 'tech'); }
     { const t = k.hand.find(t => t.timing === 'onTargeted' && t.ops && this.fx.canPay(k, this.fx.costOf(k, t))); if (t && await this.yesNo(`${k.name}: ${t.name} 사용? (${this.fx.costLabel(k, t)}) — ${t.text}`, false)) { const pc = await this.fx.chooseCost(k, t); if (pc) { this.fx.pay(k, pc.alt, pc.x); const ops2 = this.fx.activeOps(k, t); for (const o of ops2) { if (o.op === 'guard') extraGuard += o.n; if (o.op === 'evasionDifficulty') { diff = (k.peril() === 'Judicium' ? 6 : o.n) + M.modifiers.precision; this.say(`${t.name}: Evasion Roll 난이도 → ${diff}+`, 'tech'); } } this.say(`${k.name} 기술 사용: ${t.name} — Guard ${ops2.filter(o => o.op === 'guard').reduce((a, o) => a + o.n, 0)}`, 'tech'); if (ops2.some(o => o.op === 'passPriority')) await this.passPriority(k); this.fx.deplete(k, t); await this.renTechniqueUsed(k); } } }
@@ -544,7 +545,7 @@ export class Clash {
     // Knockdown handling
     const kd = k.conditions.find(c => /^Knockdown/.test(c.id));
     if (kd && kd.id === 'Knockdown (Standing Up)') { this.standUp(k); }
-    k.steady = false; await this.renTurnStart(k); await this.karaTurnStart(k); await this.paraTurnStart(k);
+    k.steady = false; await this.renTurnStart(k); await this.karaTurnStart(k); await this.paraTurnStart(k); await this.ubarTurnStart(k);
     for (const g of k.gear) { if (g.discarded || g.exhausted) continue; for (const o of this.fx.constKw(k, g)) if (o.op === 'gateDiscardBane' && k.alive) { g.discarded = true; this.say(`${g.name}: ${o.gate} — 카드 버림, Bane ${o.n}`, 'tech'); await this.fx.runKnightOp({ op: 'bane', n: o.n }, k, {}); } } if (!k.alive) return; await this.fx.hideAtStartOfTurn(k);
     for (const g of k.gear) { if (g.discarded || g.exhausted) continue; if (this.fx.constKw(k, g).some(o => o.op === 'turnRevealMortis')) { const tops = Object.keys(this.mortis || {}).filter(t => this.mortis[t] && this.mortis[t].cards && this.mortis[t].cards.length).map(t => `${t}: ${this.mortis[t].cards[0].name}`); this.say(`${g.name}: Mortis 덱 맨 위 — ${tops.join(' · ')}`, 'tech'); } }
     for (const g of k.gear) { if (g.discarded || g.exhausted) continue; for (const o of this.fx.constKw(k, g)) if (o.op === 'turnVigorBane' && k.alive) { k.gainVigor(o.v); this.say(`${g.name}: Start of your turn — Vigor +${o.v} (${k.vigor}), Bane ${o.n}`, 'tech'); await this.fx.runKnightOp({ op: 'bane', n: o.n }, k, {}); } else if (o.op === 'turnLoseVigor' && k.alive) { this.say(`${g.name}: Start of your turn — Vigor -${o.n}`, 'tech'); await this.fx.runKnightOp({ op: 'loseVigor', n: o.n }, k, {}); } }
@@ -567,7 +568,7 @@ export class Clash {
       else if (choice === 'attack') { if (k.actions.combat) k.actions.combat = false; else k.actions.extraCombat--; await this.knightAttack(k); }
       else if (choice.startsWith('tech:')) await this.fx.useTechnique(k, k.hand.find(t => t.name === choice.slice(5)));
       else if (choice.startsWith('free:')) await this.fx.doFreeAction(k, choice.slice(5));
-      this.checkEnd();
+      this.checkEnd(); await this.ubarDrain(k);
     }
     // Drowning / Slimed: end of turn without moving
     for (const c of [...k.conditions]) { const def = this.conditionDefs[c.id]; const nm = def && def.ops && def.ops.endTurnNoMove; if (!nm || k.movedThisTurn) continue; if (nm === 'die') { this.say(`${k.name}: ${c.id} — 이동하지 않음 → 사망`, 'death'); await this.die(k, c.id); } else if (nm === 'flip' && def.flipSide) { c.id = def.flipSide; this.say(`${k.name}: ${def.name} — 이동하지 않음 → ${def.flipSide}`, 'cond'); } }
@@ -586,7 +587,7 @@ export class Clash {
   }
   canAttack(k) { return this.fx.usableWeapons(k).some(w => this.attackTargets(k, w).length > 0); }
   reachable(k, speed) {
-    const byp = this.fx.gearHas(k, 'bypass'); const B = this.board; const out = new Map(); const t0 = B.terrainAt(k.pos); const q = [{ cell: k.pos, d: t0 && t0.difficult ? 1 : 0 }]; /* starting a move on Difficult Terrain costs +1 (Q&A, owner reference 2026-11-15) */ const seen = new Set([B.key(k.pos)]);
+    const byp = this.fx.gearHas(k, 'bypass') || !!k._bypassMove; const B = this.board; const out = new Map(); const t0 = B.terrainAt(k.pos); const q = [{ cell: k.pos, d: t0 && t0.difficult ? 1 : 0 }]; /* starting a move on Difficult Terrain costs +1 (Q&A, owner reference 2026-11-15) */ const seen = new Set([B.key(k.pos)]);
     while (q.length) { const { cell, d } = q.shift(); if (d >= speed) continue; for (const n of B.neighbors(cell)) { const key = B.key(n); if (seen.has(key)) continue; if (B.isObstacle(n)) continue; const occ = this.knightAt(n) || this.monsterOccupies(n); if (occ && !byp) continue; seen.add(key); const t = B.terrainAt(n); const cost = t && t.difficult ? 2 : 1; if (d + cost > speed) continue; if (!occ) out.set(key, n); q.push({ cell: n, d: d + cost }); } }
     return [...out.values()].filter(c => !(B.terrainAt(c) && B.terrainAt(c).id === 'swamp')); // ending a move on a Swamp kills → never offered as a destination
   }
@@ -649,7 +650,7 @@ export class Clash {
       const picked = await this.ask({ type: 'dice', knight: k.id, text: `${k.name} Attack ${dice}d vs ${toHit}+ (보너스 +${prec}) — 재굴림 (Attack Re-roll ${freeAR}개 · Closing ${this.poolCount('closing')}개 무료, 이후 Heat +1/개)`, dice: roll.dice.map(d => ({ v: d.v, crit: d.crit, hit: isHit(d), canReroll: !d.rerolled })), max: maxR });
       if (picked && picked.length) { const ar = Math.min(picked.length, freeAR); A.attackRerolls = freeAR - ar; if (ar) this.say(`Attack Re-roll ${ar}개 (무료)`); const free = Math.min(picked.length - ar, this.poolCount('closing')); this.poolTake('closing', free); const paid = picked.length - ar - free; if (paid) await this.fx.payRerolls(k, paid); for (const i of picked) { const d = roll.dice[i]; d.v = this.rng.die(10); d.rerolled = true; } }
     }
-    await this.fx.attackRollGear(k, A, roll, isHit); await this.paraAfterAttackRoll(k, A, roll, isHit); await this.karaAfterAttackRoll(k, A, roll, isHit, toHit, prec);
+    await this.fx.attackRollGear(k, A, roll, isHit); await this.paraAfterAttackRoll(k, A, roll, isHit); this.ubarAfterAttackRoll(k, A, roll, isHit); await this.karaAfterAttackRoll(k, A, roll, isHit, toHit, prec);
     if (A.mob && A.mob.revealed && A.mob.card.ops.aura && A.mob.card.ops.aura.retiarius && A.mob.generic > 0) { A.mob.generic--; prec -= 2; for (const d of roll.dice) { d.v = this.rng.die(10); d.rerolled = true; } this.say(`Retiarius: Generic 토큰 버림 → Attack Roll 다시 (-2 Precision): [${roll.dice.map(d => d.v).join(' ')}]`, 'dice'); }
     if (this.isFen && roll.dice[0].v === 1) { this.say(`${k.name} Crit Miss`); await this.fenCritMiss(k); }
     A.hits = roll.dice.filter(isHit).length; A.critChance = roll.dice[0].v === 10 || (this.fx.has(k, 'deadly') && roll.dice[0].v >= 9);
@@ -775,7 +776,8 @@ export class Clash {
   }
   async windowOfOpportunity(when, attack, target = null) { const a = attack || this.currentAttack; if (a && a.noReact && when !== 'beforeEffects') { this.say('REACT! 무시 (Blood 게이트)'); return; } await this.fx.reactions(when, attack, target); }
 }
-Object.assign(Clash.prototype, MobMixin, BloodMixin, HauntsMixin, FirstmenMixin, TrollMixin, NightmareMixin, FenMixin, PumpMixin, IroncastMixin, RenholderMixin, KaraMixin, ParacelsaMixin, SonchMixin);
+Object.assign(Clash.prototype, MobMixin, BloodMixin, HauntsMixin, FirstmenMixin, TrollMixin, NightmareMixin, FenMixin, PumpMixin, IroncastMixin, RenholderMixin, KaraMixin, ParacelsaMixin, SonchMixin, UbarMixin);
 installKara(Clash);
 installParacelsa(Clash);
 installSonch(Clash);
+installUbar(Clash);
