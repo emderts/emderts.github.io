@@ -1,0 +1,620 @@
+{
+ "_source": "Expansion Codex (owner PDF TTSF, 2026-11-17) p.50–61",
+ "knighteater": {
+  "page": "50–51",
+  "requiredTiles": [
+   "16x Column"
+  ],
+  "steps": [
+   "Standard Preparations (Rulebook p.44)",
+   "Monster Positioning: Place the Knighteater miniature on the space designated on the diagram. To determine facing direction, look at the bottom card from the Minor Mortis deck. If the arrow in the lower left corner points ↑ or ↓, Knighteater is facing ↓. If the arrow points ← or →, Knighteater is facing ←.",
+   "Additional Setup: Depending on the Kingdom, take the Iron Confines (Principality of Stone) or Adaptable (Sunken Kingdom) Trait card. Follow additional Clash Setup instructions introduced by Traits (if any)."
+  ],
+  "monsterCells": [
+   "G7",
+   "G8",
+   "H7",
+   "H8"
+  ],
+  "knightStart": [
+   "H3",
+   "F4",
+   "D6",
+   "C8"
+  ],
+  "terrain": [
+   {
+    "tile": "column",
+    "cells": [
+     "A3",
+     "A6",
+     "B11",
+     "C1",
+     "C3",
+     "C13",
+     "D9",
+     "E5",
+     "E14",
+     "F1",
+     "G9",
+     "G12",
+     "I4",
+     "I7",
+     "I14",
+     "J11"
+    ]
+   }
+  ],
+  "aftermath": {
+   "victoriousSearch": "Clash Scavenge 1 and Scavenge 3",
+   "forlornSearch": "Scavenge 3"
+  }
+ },
+ "panzergeists": {
+  "page": "54–55",
+  "requiredTiles": [
+   "8x Column",
+   "4x Rubble L",
+   "1x Rubble O"
+  ],
+  "steps": [
+   "Standard Preparations (Rulebook p.44)",
+   "Monster Positioning: Put numbered base rings on all Panzergeist miniatures. Randomly place Panzergeist miniatures numbered 1–10 on the spaces designated on the diagram. Note the facing direction indicated by the arrows. Important: Some Panzergeists are placed on Column Terrain tiles. Then, place all (10) BP cards face down in a random order on spaces 1–10 on the Mob track.",
+   "Additional Setup: Place 10 Armor tokens on the Board on spaces designated on the diagram. Follow additional Clash Setup instructions introduced by Traits (if any)."
+  ],
+  "mobStart": [
+   [
+    "I3",
+    "S"
+   ],
+   [
+    "I8",
+    "S"
+   ],
+   [
+    "I10",
+    "S"
+   ],
+   [
+    "G3",
+    "E"
+   ],
+   [
+    "G12",
+    "W"
+   ],
+   [
+    "D3",
+    "E"
+   ],
+   [
+    "D12",
+    "W"
+   ],
+   [
+    "B5",
+    "N"
+   ],
+   [
+    "B9",
+    "N"
+   ],
+   [
+    "A7",
+    "N"
+   ]
+  ],
+  "armorTokens": [
+   "H3",
+   "H8",
+   "H12",
+   "F3",
+   "F6",
+   "E9",
+   "E12",
+   "C3",
+   "B7",
+   "B12"
+  ],
+  "knightStart": [
+   "G8",
+   "F5",
+   "E10",
+   "C7"
+  ],
+  "terrain": [
+   {
+    "tile": "column",
+    "cells": [
+     "G7",
+     "F10",
+     "E5",
+     "D7",
+     "G3",
+     "B5",
+     "B9"
+    ]
+   },
+   {
+    "tile": "rubble",
+    "shape": "L",
+    "cells": [
+     "H4",
+     "H5",
+     "H6",
+     "G4"
+    ]
+   },
+   {
+    "tile": "rubble",
+    "shape": "L",
+    "cells": [
+     "H9",
+     "H10",
+     "H11",
+     "G11"
+    ]
+   },
+   {
+    "tile": "rubble",
+    "shape": "L",
+    "cells": [
+     "C4",
+     "C5",
+     "C6",
+     "D4"
+    ]
+   },
+   {
+    "tile": "rubble",
+    "shape": "L",
+    "cells": [
+     "C9",
+     "C10",
+     "C11",
+     "D11"
+    ]
+   },
+   {
+    "tile": "rubble",
+    "shape": "O",
+    "cells": [
+     "F7",
+     "F8",
+     "E7",
+     "E8"
+    ]
+   }
+  ],
+  "unclear": [
+   "Column 8개 중 7개만 식별(G7,F10,E5,D7 + Panzergeist 밑 G3,B5,B9) — 8번째 위치 확인 필요"
+  ]
+ },
+ "stonemason-knight": {
+  "page": "56–57",
+  "requiredTiles": [
+   "11x Column",
+   "3x Rubble O"
+  ],
+  "steps": [
+   "Standard Preparations (Rulebook p.44)",
+   "Monster Positioning: Place the Stonemason Knight miniature on the space designated on the diagram. Note the facing direction indicated by the arrow.",
+   "Additional Setup: Follow additional Clash Setup instructions introduced by Traits (if any)."
+  ],
+  "monsterCells": [
+   "G7",
+   "G8",
+   "H7",
+   "H8"
+  ],
+  "facing": "S",
+  "knightStart": [
+   "F5",
+   "E6",
+   "E9",
+   "F10"
+  ],
+  "terrain": [
+   {
+    "tile": "column",
+    "cells": [
+     "J11",
+     "I8",
+     "H3",
+     "H12",
+     "F3",
+     "F13",
+     "D3",
+     "C11",
+     "B2",
+     "B6",
+     "B9"
+    ]
+   },
+   {
+    "tile": "rubble",
+    "shape": "O",
+    "cells": [
+     "I4",
+     "I5",
+     "H4",
+     "H5"
+    ]
+   },
+   {
+    "tile": "rubble",
+    "shape": "O",
+    "cells": [
+     "E12",
+     "E13",
+     "D12",
+     "D13"
+    ]
+   },
+   {
+    "tile": "rubble",
+    "shape": "O",
+    "cells": [
+     "C4",
+     "C5",
+     "B4",
+     "B5"
+    ]
+   }
+  ],
+  "aftermath": {
+   "victoriousSearch": "Clash Scavenge 1 and Scavenge 3",
+   "forlornSearch": "Scavenge 3"
+  }
+ },
+ "bog-witch": {
+  "page": "60",
+  "requiredTiles": [
+   "4x Swamp O",
+   "2x Rotten Stump"
+  ],
+  "steps": [
+   "Standard Preparations (Rulebook p.44)",
+   "Monster Positioning: Place the Bog Witch miniature on the space designated on the diagram. Note the facing direction indicated by the arrow.",
+   "Additional Setup: Place the Mud Wisp marker near the Monster Sheet. Follow additional Clash Setup instructions introduced by Traits (if any)."
+  ],
+  "monsterCells": [
+   "D7",
+   "D8",
+   "C7",
+   "C8"
+  ],
+  "facing": "N",
+  "knightStart": [
+   "G7",
+   "G8",
+   "F6",
+   "F9"
+  ],
+  "terrain": [
+   {
+    "tile": "swamp",
+    "shape": "O",
+    "cells": [
+     "J8",
+     "J9",
+     "I8",
+     "I9"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "shape": "O",
+    "cells": [
+     "H3",
+     "H4",
+     "G3",
+     "G4"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "shape": "O",
+    "cells": [
+     "E11",
+     "E12",
+     "D11",
+     "D12"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "shape": "O",
+    "cells": [
+     "B7",
+     "B8",
+     "A7",
+     "A8"
+    ]
+   },
+   {
+    "tile": "rotten stump",
+    "cells": [
+     "H12",
+     "H13",
+     "G12",
+     "G13"
+    ]
+   },
+   {
+    "tile": "rotten stump",
+    "cells": [
+     "D2",
+     "D3",
+     "C2",
+     "C3"
+    ]
+   }
+  ],
+  "aftermath": {
+   "victoriousSearch": "Clash Scavenge 1 and Scavenge 3",
+   "forlornSearch": "Scavenge 3"
+  }
+ },
+ "first-men-lictor-hunters": {
+  "page": "58",
+  "requiredTiles": [
+   "10x Swamp I",
+   "3x Great Mangrove"
+  ],
+  "notes": [
+   "Note that some miniatures and tokens are placed on Terrain tiles!",
+   "This Clash uses numbered Terrain tiles—we advise placing the numbered Generic tokens on these Terrain tiles according to the diagram as a reminder."
+  ],
+  "steps": [
+   "Standard Preparations (Rulebook p.44)",
+   "Monster Positioning: Place 8 BP 1 and 2 BP 2 cards face down in a random order on spaces 1–10 on the Mob track. Put randomly chosen numbered base rings on 4 Firstman Lictor Hunter miniatures. Then, place those numbered Firstman Lictor Hunters miniatures on the spaces designated on the diagram and all other Firstman Lictor Hunter miniatures on spaces designated as Decoys (marked with the letter D) on the diagram. Note the facing direction indicated by the arrows.",
+   "Additional Setup: Follow additional Clash Setup instructions introduced by Traits (if any). Set aside all Battle Tactics cards not used in this Clash."
+  ],
+  "mobStart": [
+   [
+    "I11",
+    "S"
+   ],
+   [
+    "F12",
+    "W"
+   ],
+   [
+    "E5",
+    "N"
+   ],
+   [
+    "C9",
+    "N"
+   ]
+  ],
+  "decoyStart": [
+   [
+    "I5",
+    "S"
+   ],
+   [
+    "I10",
+    "S"
+   ],
+   [
+    "G5",
+    "E"
+   ],
+   [
+    "F2",
+    "E"
+   ],
+   [
+    "D6",
+    "E"
+   ],
+   [
+    "B5",
+    "N"
+   ]
+  ],
+  "knightStart": [
+   "G8",
+   "G10",
+   "E8",
+   "E10"
+  ],
+  "terrain": [
+   {
+    "tile": "swamp",
+    "shape": "I",
+    "cells": [
+     "J5",
+     "I5"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "shape": "I",
+    "cells": [
+     "I10",
+     "I11"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "shape": "I",
+    "cells": [
+     "G5",
+     "G6"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "shape": "I",
+    "cells": [
+     "F1",
+     "F2"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "shape": "I",
+    "cells": [
+     "G9",
+     "F9"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "shape": "I",
+    "cells": [
+     "F12",
+     "E12"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "shape": "I",
+    "cells": [
+     "E5",
+     "E6"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "shape": "I",
+    "cells": [
+     "D5",
+     "D6"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "shape": "I",
+    "cells": [
+     "C9",
+     "C10"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "shape": "I",
+    "cells": [
+     "B4",
+     "B5"
+    ]
+   },
+   {
+    "tile": "great mangrove",
+    "n": 1,
+    "cells": [
+     "I2",
+     "I3",
+     "H2",
+     "H3"
+    ]
+   },
+   {
+    "tile": "great mangrove",
+    "n": 2,
+    "cells": [
+     "J13",
+     "J14",
+     "I13",
+     "I14"
+    ]
+   },
+   {
+    "tile": "great mangrove",
+    "n": 3,
+    "cells": [
+     "C12",
+     "C13",
+     "B12",
+     "B13"
+    ]
+   }
+  ],
+  "unclear": [
+   "Decoy 표시(D)는 흰 탭이 붙은 마커 6개로 읽음: I5, I10, G5, F2, D6, B5 — 확인 필요"
+  ],
+  "aftermath": {
+   "victoriousSearch": "Clash Scavenge 1 and Scavenge 3",
+   "forlornSearch": "Scavenge 3"
+  }
+ },
+ "ratwolves": {
+  "page": "Sunken Kingdom / Principality of Stone Codex p.36–37 (same diagram in both)",
+  "requiredTiles": [
+   "8x Column",
+   "1x Rubble 2x2",
+   "1x Rubble L"
+  ],
+  "steps": [
+   "Standard Preparations (Rulebook p.44)",
+   "Monster Positioning: Put numbered base rings on all Ratwolf miniatures. Randomly place Ratwolf miniatures numbered 1–4 on the spaces designated on the diagram. Note the facing direction indicated by the arrows. Then, place 4 BP 1 cards face down in a random order on spaces 1–4 on the Mob track.",
+   "Additional Setup: Depending on the Kingdom, take the Parasite Bed (Principality of Stone) or Bile and Poison (Sunken Kingdom) Trait card. Follow additional Clash Setup instructions introduced by Traits (if any)."
+  ],
+  "mobStart": [
+   [
+    "I6",
+    "S"
+   ],
+   [
+    "F10",
+    "W"
+   ],
+   [
+    "E4",
+    "E"
+   ],
+   [
+    "C10",
+    "N"
+   ]
+  ],
+  "knightStart": [
+   "G8",
+   "F7",
+   "E8",
+   "D7"
+  ],
+  "terrain": [
+   {
+    "tile": "column",
+    "cells": [
+     "I4",
+     "I11",
+     "H2",
+     "H13",
+     "C5",
+     "C11",
+     "B2",
+     "B13"
+    ]
+   },
+   {
+    "tile": "rubble",
+    "shape": "2x2",
+    "cells": [
+     "D3",
+     "D4",
+     "C3",
+     "C4"
+    ]
+   },
+   {
+    "tile": "rubble",
+    "shape": "L",
+    "cells": [
+     "G11",
+     "F11",
+     "E11",
+     "E10"
+    ]
+   }
+  ],
+  "aftermath": {
+   "victoriousSearch": "Clash Scavenge 1 and Scavenge 3",
+   "forlornSearch": "Scavenge 3"
+  }
+ }
+}

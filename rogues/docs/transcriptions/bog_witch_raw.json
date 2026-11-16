@@ -1,0 +1,1379 @@
+{
+ "sheet": {
+  "name": "Bog Witch",
+  "code": "26B1079",
+  "traitsLine": [
+   "Vassal",
+   "Spellcaster",
+   "Ancient"
+  ],
+  "footprint": "2x2; two cells behind = Rear + Blindspot (R/eye); Weakspot (W) = the cell left and the cell right of the front row",
+  "basicAbilities": [
+   "Unavoidable Knockback 4",
+   "Blindspot",
+   "Weakspots",
+   "Ignore Difficult Terrain"
+  ],
+  "levels": {
+   "1": {
+    "toHit": "5+",
+    "wounds": 8,
+    "exhibitionWounds": 2,
+    "activations": [
+     "AI"
+    ],
+    "traitsAdd": [
+     "One with the Bog",
+     "Hex Weaver",
+     "Talisman Hunt",
+     "Wispers of the Bog"
+    ],
+    "bonuses": {
+     "escalations": 0,
+     "at": 0,
+     "vigorLoss": 0,
+     "evasionDice": 0
+    }
+   },
+   "2": {
+    "toHit": "6+",
+    "wounds": 10,
+    "exhibitionWounds": 4,
+    "activations": [
+     "AI"
+    ],
+    "traitsAdd": [
+     "Misfortune’s Mistress"
+    ],
+    "bonuses": {
+     "escalations": 0,
+     "at": 1,
+     "vigorLoss": 0,
+     "evasionDice": 0
+    }
+   },
+   "3": {
+    "toHit": "7+",
+    "wounds": 10,
+    "exhibitionWounds": 4,
+    "activations": [
+     "AI"
+    ],
+    "traitsAdd": [
+     "Cookie Crumbs"
+    ],
+    "bonuses": {
+     "escalations": 1,
+     "at": 3,
+     "vigorLoss": 4,
+     "evasionDice": 0
+    }
+   },
+   "4": {
+    "toHit": "10+",
+    "wounds": 10,
+    "exhibitionWounds": 4,
+    "activations": [
+     "AI"
+    ],
+    "traitsAdd": [
+     "The Crone of the Bog"
+    ],
+    "bonuses": {
+     "escalations": 2,
+     "at": 5,
+     "vigorLoss": 2,
+     "evasionDice": 0
+    }
+   }
+  },
+  "traits": [
+   {
+    "name": "One with the Bog",
+    "level": 1,
+    "text": "Additional Setup: Place a Bog Witch Encounter Monster token on the leftmost space of the Bog track.\nBog Move: When Bog Witch performs a Bog Move, she performs an action corresponding to the token’s location on the track. Then, move the token clockwise to the next space.\nTarget: The Target of Bog Move is always the Target of the Attack (in case of multiple Targets, the first that is being resolved) or the Attacker.\n\nSwamp: Place a 2x2 Swamp Terrain tile under the Bog Witch, then place the Bog Witch fully on the Swamp Terrain tile furthest from the Target.\nMud Wisp: Place the Mud Wisp marker on W space. Then the Bog Witch moves 4 spaces directly away from the Target without turning.\nRotten Stump: Place a Rotten Stump Terrain tile under the Bog Witch, then remove her from the Clash Board. The Bog Witch still performs Attacks when outside the Clash Board.",
+    "track": [
+     "Swamp",
+     "Mud Wisp",
+     "Rotten Stump"
+    ]
+   },
+   {
+    "name": "Hex Weaver",
+    "level": 1,
+    "text": "After resolving the AI card that targeted you, place it on your Knight Board. As long as you have an AI card on your Knight Board, you are Hexed—refer to the Hex effect on the AI. You can only have one Hex at a time. If you would gain a Hex while already Hexed, return the same or lower Level Hex AI to the AI discard pile. When you die, return your Hex AI to the AI discard pile.\n\nParty Hex: Some Hexes take effect on all Knights. If an AI with a Party Hex hits at least one Knight, place it on the Bog Witch Sheet after you resolve it. It takes effect until the end of the Clash. There can be only one Party Hex on the Bog Witch Sheet, if you would place another one, return the first Hex to the AI discard pile."
+   },
+   {
+    "name": "Talisman Hunt",
+    "level": 1,
+    "text": "When you attack from a Weakspot W space, before drawing a BP card you may take any other BP card from the deck and, without revealing its face side, place it on top of the BP deck.\n\nYou may not choose a card from the discard pile, and you must keep all other cards in their existing order in the deck."
+   },
+   {
+    "name": "Wispers of the Bog",
+    "level": 1,
+    "text": "Zone 2 around the Mud Wisp marker is the Wisper Zone. If you’re in the Wisper Zone, you cannot voluntarily move outside the Zone. If you move onto a Mud Wisp marker, immediately stop the movement, [React] place the Bog Witch on the Mud Wisp occupying the most Knight spaces and facing the most Knights, then discard the marker.\n\nStray X: Move X spaces directly to the Mud Wisp marker moving around any occupied spaces. If there is no Mud Wisp on the Clash Board, move to the closest Terrain tile instead. Treat this as voluntary movement."
+   },
+   {
+    "name": "Misfortune’s Mistress",
+    "level": 2,
+    "text": "You can have multiple Hexes on you. The Bog Witch can have multiple Party Hexes on her Sheet. Do not return Hex cards to the AI discard pile when gaining a new Hex or when a Hexed Knight dies. If there are no AI cards in the AI deck, all Knights die. You lose the Clash!"
+   },
+   {
+    "name": "Cookie Crumbs",
+    "level": 3,
+    "text": "Each time the Bog Witch gains a Wound (a Double Wound is treated as 2 Wounds), place a Generic token on this Trait. Depending on the number of Generic tokens on this Trait at the end of the Monster Round the Bog Witch:\n3–5: Performs Signature.\n6–8: Performs an AI instead.\n9+: Performs Signature, then performs an AI."
+   },
+   {
+    "name": "The Crone of the Bog",
+    "level": 4,
+    "text": "End of Monster Round: If the Bog Witch is not on the Clash Board, a random Knight gains the Hex of the top AI card as if it was just performed against them."
+   }
+  ],
+  "unclear": [
+   "Level 3 Vigor 보너스: 시트 인쇄는 +4, 참고 시트(v1.3)는 \"Q&A: +1이 맞음\" — 어느 쪽을 쓸지 확인 필요"
+  ],
+  "notes": [
+   "Clash Setup 다이어그램 미수령",
+   "Zone 다이어그램은 구현 시 확대 판독",
+   "Hex: AI 카드 하단에 Hex 유형/이름/효과",
+   "Clash Setup (60): 기사 G7, G8, F6, F9 · 몬스터 D7, D8, C7, C8 (N)",
+   "지형 swamp O: J8, J9, I8, I9",
+   "지형 swamp O: H3, H4, G3, G4",
+   "지형 swamp O: E11, E12, D11, D12",
+   "지형 swamp O: B7, B8, A7, A8",
+   "지형 rotten stump: H12, H13, G12, G13",
+   "지형 rotten stump: D2, D3, C2, C3"
+  ]
+ },
+ "ai": [
+  {
+   "name": "Fiendish Cackle",
+   "level": 1,
+   "type": "JUDGEMENT",
+   "evasionDice": 2,
+   "evasionDifficulty": 10,
+   "preTargeting": null,
+   "targeting": [
+    "Knight without a Hex card",
+    "Highest [H]"
+   ],
+   "moveTag": "BOG MOVE & JUDGE",
+   "gates": [],
+   "effects": [
+    "Bravery / Insight.",
+    "For each hit gain +1 [H] and lose -3 [V]. [Peril]."
+   ],
+   "afterTag": null,
+   "after": null,
+   "unclear": [],
+   "hex": {
+    "type": "Omen Hex",
+    "name": "As Quag Prophesied",
+    "text": "When you draw a positive Mortis card (excluding Judicium), redraw it (once). Hexed Squires cannot redraw Mettle cards when evading.",
+    "party": false
+   },
+   "reactWindows": [],
+   "afterAttack": null
+  },
+  {
+   "name": "Broom Sweep",
+   "level": 1,
+   "type": "RANGE ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": 10,
+   "preTargeting": null,
+   "targeting": [
+    "Knight without a Hex card",
+    "Highest [H]"
+   ],
+   "moveTag": "BOG MOVE & RANGE ATTACK UNLIMITED",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "STRAY 4 INSTEAD",
+     "where": "effect:0"
+    }
+   ],
+   "effects": [
+    "For each hit lose -2 [V] and Poison 1. [Peril]. Stray 2."
+   ],
+   "afterTag": null,
+   "after": null,
+   "unclear": [
+    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+   ],
+   "hex": {
+    "type": "Eternal Pain Hex",
+    "name": "Mire Sores",
+    "text": "When you gain this Hex, place a Generic token here. Start of your turn: Place a Generic token here, then lose -X [V], where X is the number of Generic tokens here.",
+    "party": false
+   },
+   "reactWindows": [],
+   "afterAttack": null
+  },
+  {
+   "name": "Mire of the Cursed",
+   "level": 1,
+   "type": "RANGE ZONE ATTACK",
+   "evasionDice": 5,
+   "evasionDifficulty": 9,
+   "preTargeting": null,
+   "targeting": [
+    "Highest [H]"
+   ],
+   "moveTag": "BOG MOVE & RANGE ATTACK UNLIMITED",
+   "gates": [],
+   "effects": [
+    "Poison 2.",
+    "For each hit lose -1 [V]. [Peril]."
+   ],
+   "afterTag": null,
+   "after": null,
+   "unclear": [
+    "Zone 다이어그램 판독 필요"
+   ],
+   "hex": {
+    "type": "Master’s Hex",
+    "name": "Damned to the Mire",
+    "text": "Start of your turn: Test Insight (6+). Fail: [React] Stray 3. Squires automatically Fail.",
+    "party": false
+   },
+   "reactWindows": [],
+   "afterAttack": null
+  },
+  {
+   "name": "Ancestors’ Memories",
+   "level": 1,
+   "type": "JUDGEMENT",
+   "evasionDice": 2,
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "Knight without a Hex card",
+    "Highest [H]"
+   ],
+   "moveTag": "BOG MOVE & JUDGE",
+   "gates": [
+    {
+     "stat": "King",
+     "effect": "DIFFICULTY 11+ INSTEAD",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "Fortitude / Might.",
+    "1 hit, lose -4 [V]. 2+ hits, lose -6 [V] and Stray 3."
+   ],
+   "afterTag": null,
+   "after": null,
+   "unclear": [],
+   "hex": {
+    "type": "Mortal Fault Hex",
+    "name": "Slough Sickness",
+    "text": "Poison Limit -1. Start of your turn: Poison 1.",
+    "party": false
+   },
+   "reactWindows": [],
+   "afterAttack": null
+  },
+  {
+   "name": "Manifest Hex",
+   "level": 1,
+   "type": "RANGE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "Knight without a Hex card",
+    "Highest [H]"
+   ],
+   "moveTag": "BOG MOVE & RANGE ATTACK UNLIMITED",
+   "gates": [],
+   "effects": [
+    "Knockback 3.",
+    "For each hit lose -2 [V]. [Peril]."
+   ],
+   "afterTag": null,
+   "after": null,
+   "unclear": [],
+   "hex": {
+    "type": "Bad Luck Hex",
+    "name": "Swamp-jinxed",
+    "text": "You cannot re-roll your Crit die. Hexed Squires cannot re-draw Mettle cards when attacking.",
+    "party": false
+   },
+   "reactWindows": [],
+   "afterAttack": null
+  },
+  {
+   "name": "Vile Soup Spill",
+   "level": 1,
+   "type": "RANGE ZONE ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 7,
+   "preTargeting": null,
+   "targeting": [
+    "Highest [H]"
+   ],
+   "moveTag": "BOG MOVE & RANGE ATTACK UNLIMITED",
+   "gates": [],
+   "effects": [
+    "Gain the Slimed Condition card.",
+    "Poison 1. For each hit lose -2 [V]. [Peril]."
+   ],
+   "afterTag": null,
+   "after": null,
+   "unclear": [
+    "Zone 다이어그램 판독 필요"
+   ],
+   "hex": {
+    "type": "Tongue-Tied Hex",
+    "name": "Morass Residue",
+    "text": "You cannot use keywords and abilities that target other Knights.",
+    "party": false
+   },
+   "reactWindows": [],
+   "afterAttack": null
+  },
+  {
+   "name": "Witchfire Stove",
+   "level": 2,
+   "type": "ZONE JUDGEMENT",
+   "evasionDice": 5,
+   "evasionDifficulty": 7,
+   "preTargeting": null,
+   "targeting": [
+    "Highest [H]"
+   ],
+   "moveTag": "BOG MOVE & JUDGE",
+   "gates": [
+    {
+     "stat": "King",
+     "effect": "DIFFICULTY 10+ INSTEAD",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "Bravery / Insight.",
+    "For each hit gain +1 [H].",
+    "Gain the Slimed Condition card.",
+    "For each hit lose -2 [V]. [Peril]."
+   ],
+   "afterTag": null,
+   "after": null,
+   "unclear": [
+    "Zone 다이어그램 판독 필요"
+   ],
+   "hex": {
+    "type": "Mortal Fault Hex",
+    "name": "Quag Fever",
+    "text": "Start of your turn: You may lower your Heat Limit [H] by X. Poison 3-X (to a minimum of 0).",
+    "party": false
+   },
+   "reactWindows": [],
+   "afterAttack": null
+  },
+  {
+   "name": "Spice Up",
+   "level": 2,
+   "type": "RANGE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 7,
+   "preTargeting": null,
+   "targeting": [
+    "Knight without a Hex card",
+    "Highest [H]"
+   ],
+   "moveTag": "BOG MOVE & RANGE ATTACK UNLIMITED",
+   "gates": [],
+   "effects": [
+    "Toxify X, where X is the Bog Witch Level. For each hit lose -3 [V]. [Peril]."
+   ],
+   "afterTag": null,
+   "after": null,
+   "unclear": [],
+   "hex": {
+    "type": "Omen Hex",
+    "name": "Fen’s Feast",
+    "text": "When you gain this Hex, place X Generic tokens on it, where X is the number of other Knights alive. Start of your turn: Discard 1 Generic token from this card. If you cannot discard a token, you die.",
+    "party": false
+   },
+   "reactWindows": [],
+   "afterAttack": null
+  },
+  {
+   "name": "Elixir Fling",
+   "level": 2,
+   "type": "RANGE ZONE ATTACK",
+   "evasionDice": 5,
+   "evasionDifficulty": 6,
+   "preTargeting": null,
+   "targeting": [
+    "Highest [H]"
+   ],
+   "moveTag": "BOG MOVE & RANGE ATTACK UNLIMITED",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 4,
+     "effect": "GAIN THE DROWNING CONDITION CARD INSTEAD",
+     "where": "effect:1"
+    }
+   ],
+   "effects": [
+    "Poison 3.",
+    "Gain the Slimed Condition card.",
+    "For each hit lose -2 [V]. [Peril]."
+   ],
+   "afterTag": null,
+   "after": null,
+   "unclear": [
+    "Zone 다이어그램 판독 필요",
+    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+   ],
+   "hex": {
+    "type": "Tongue-Tied Hex",
+    "name": "Marsh Fumes",
+    "text": "You cannot place tokens from your Heroic Arc in the Knight Pool.",
+    "party": false
+   },
+   "reactWindows": [],
+   "afterAttack": null
+  },
+  {
+   "name": "Hex of the First",
+   "level": 2,
+   "type": "JUDGEMENT",
+   "evasionDice": 3,
+   "evasionDifficulty": 7,
+   "preTargeting": null,
+   "targeting": [
+    "Knight without a Hex card",
+    "Highest [H]"
+   ],
+   "moveTag": "BOG MOVE & BOG MOVE & BOG MOVE & JUDGE",
+   "gates": [
+    {
+     "stat": "King",
+     "effect": "DIFFICULTY 10+ INSTEAD",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "Fortitude / Might. For each hit lose -3 [V]. [Peril]. Gain the Slimed Condition card."
+   ],
+   "afterTag": null,
+   "after": null,
+   "unclear": [],
+   "hex": {
+    "type": "Master’s Hex",
+    "name": "Beast of the Swamp",
+    "text": "Start of your turn: Roll a [d10]: 1–3: Gain a permanent negative Precision token. 4–6: Gain a permanent negative Speed token. 7–9: Gain a permanent negative Evasion token. 10: Ignore 1 [Potential?] during your Attack.",
+    "party": false
+   },
+   "reactWindows": [],
+   "afterAttack": null
+  },
+  {
+   "name": "Wisped",
+   "level": 2,
+   "type": "RANGE ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "Knight without a Hex card",
+    "Highest [H]"
+   ],
+   "moveTag": "BOG MOVE & RANGE ATTACK UNLIMITED",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 2,
+     "effect": "+1 [die]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "For each hit lose -2 [V] and Stray 1.",
+    "[Peril]."
+   ],
+   "afterTag": null,
+   "after": null,
+   "unclear": [
+    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+   ],
+   "hex": {
+    "type": "Bad Luck Hex",
+    "name": "Quagmire of Misfortune",
+    "text": "You cannot gain a Crit Chance.",
+    "party": false
+   },
+   "reactWindows": [],
+   "afterAttack": null
+  },
+  {
+   "name": "Birds of Carrion",
+   "level": 2,
+   "type": "ZONE ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "Carrion Zone"
+   ],
+   "moveTag": "BOG MOVE & ATTACK",
+   "gates": [],
+   "effects": [
+    "For each hit lose -2 [V]. [Peril].",
+    "Poison 2."
+   ],
+   "afterTag": null,
+   "after": null,
+   "unclear": [
+    "Carrion Zone 다이어그램(∞ 표시, 보드 가장자리?) 판독 필요"
+   ],
+   "hex": {
+    "type": "Eternal Pain Party Hex",
+    "name": "Slough Contagion",
+    "text": "At the end of the Bog Witch Round place a Generic token here, then each Knight draws a Mortis card from a Mortis deck depending on the number of tokens on this card. 1: Minor. 2: Major. 3+: Grave.",
+    "party": true
+   },
+   "reactWindows": [],
+   "afterAttack": null
+  },
+  {
+   "name": "Child Eater",
+   "level": 3,
+   "type": "JUDGEMENT",
+   "evasionDice": 2,
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "Knight without a Hex card",
+    "Highest [H]"
+   ],
+   "moveTag": "BOG MOVE & JUDGE",
+   "gates": [
+    {
+     "stat": "King",
+     "effect": "DIFFICULTY 12+ INSTEAD",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "Doomed.",
+    "Bravery / Insight.",
+    "If hit, lose -11 [V]. [Peril]. 2+ hits gain the Panicked Condition card. Stray 4."
+   ],
+   "afterTag": null,
+   "after": null,
+   "unclear": [],
+   "hex": {
+    "type": "Master’s Hex",
+    "name": "Burden of the Fen",
+    "text": "Treat all spaces in Zone 1 around you as Swamp Terrain tiles.",
+    "party": false
+   },
+   "reactWindows": [],
+   "afterAttack": null
+  },
+  {
+   "name": "Anthropophagy",
+   "level": 3,
+   "type": "RANGE ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": 11,
+   "preTargeting": null,
+   "targeting": [
+    "Knight with the Poisoned or Toxified Condition card",
+    "Highest [H]"
+   ],
+   "moveTag": "RANGE ATTACK UNLIMITED",
+   "gates": [
+    {
+     "stat": "Vigor",
+     "gte": 4,
+     "effect": "DOOMED",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "Place the Target adjacent to the Bog Witch. If hit, Toxify 4.",
+    "2+ hits, you die."
+   ],
+   "afterTag": null,
+   "after": null,
+   "unclear": [
+    "게이트 \"[V] 4+ ▸ DOOMED\" 숫자 확인 필요"
+   ],
+   "hex": {
+    "type": "Eternal Pain Hex",
+    "name": "Morass Malady",
+    "text": "Skip the Refresh step during your turn.",
+    "party": false
+   },
+   "reactWindows": [],
+   "afterAttack": null
+  },
+  {
+   "name": "Mudcurse",
+   "level": 3,
+   "type": "SIMULTANEOUS RANGE ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": 10,
+   "preTargeting": null,
+   "targeting": [
+    "All Knights"
+   ],
+   "moveTag": "RANGE ATTACK UNLIMITED",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 2,
+     "effect": "+1 [die]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "Doomed.",
+    "Gain the Drowning Condition card.",
+    "Reset your [H]! to your Maximum [V] threshold. Stray 6."
+   ],
+   "afterTag": null,
+   "after": null,
+   "unclear": [
+    "Heat 게이트 숫자 작은 글씨 — 확인 필요",
+    "\"Reset your [H]! to your Maximum [V] threshold\" 문구 확인 필요"
+   ],
+   "hex": {
+    "type": "Tongue-Tied Party Hex",
+    "name": "Mouthful of Bog",
+    "text": "You cannot talk.",
+    "party": true
+   },
+   "reactWindows": [],
+   "afterAttack": null
+  },
+  {
+   "name": "Sins of the Ancestors",
+   "level": 3,
+   "type": "JUDGEMENT",
+   "evasionDice": 2,
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "Knight with a Hex card",
+    "Highest [V]",
+    "Highest [H]"
+   ],
+   "moveTag": "BOG MOVE & JUDGE",
+   "gates": [
+    {
+     "stat": "King",
+     "effect": "DIFFICULTY 12+ INSTEAD",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "Fortitude / Might.",
+    "If hit, lose -11 [V]. [Peril].",
+    "Gain the Drowning Condition card."
+   ],
+   "afterTag": null,
+   "after": null,
+   "unclear": [],
+   "hex": {
+    "type": "Omen Hex",
+    "name": "The Marsh Will Claim You",
+    "text": "When you are about to resolve a Judicium Draw, search the Judicium deck for the You died! Judicium card instead. Ignore this effect when re-drawing a Judicium.",
+    "party": false
+   },
+   "reactWindows": [],
+   "afterAttack": null
+  },
+  {
+   "name": "Diableric Expulsion",
+   "level": 3,
+   "type": "RANGE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "Knight without a Hex card",
+    "Highest [H]"
+   ],
+   "moveTag": "BOG MOVE & RANGE ATTACK UNLIMITED",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "DIFFICULTY 10+ INSTEAD",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "For each hit lose -3 [V].",
+    "Knockback 5. [Peril]."
+   ],
+   "afterTag": null,
+   "after": null,
+   "unclear": [
+    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+   ],
+   "hex": {
+    "type": "Bad Luck Hex",
+    "name": "Bog Cursed",
+    "text": "Do not roll your Crit Die, automatically treat its result as a ‘1’ instead. Squires treat Crit Chance as Crit Miss.",
+    "party": false
+   },
+   "reactWindows": [],
+   "afterAttack": null
+  },
+  {
+   "name": "The Bog Cometh Alive",
+   "level": 3,
+   "type": "ZONE ATTACK",
+   "evasionDice": 6,
+   "evasionDifficulty": 7,
+   "preTargeting": null,
+   "targeting": [
+    "Zone 2 around every Terrain tile on the Clash Board"
+   ],
+   "moveTag": "BOG MOVE & ATTACK",
+   "gates": [],
+   "effects": [
+    "For each hit lose -2 [V]. [Peril].",
+    "Place a 2x2 Swamp Terrain tile in the middle of the Board or adjacent to another Terrain tile in the middle of the Board."
+   ],
+   "afterTag": null,
+   "after": null,
+   "unclear": [],
+   "hex": {
+    "type": "Mortal Fault Party Hex",
+    "name": "Deforming Quagmire",
+    "text": "Ignore the effects of positive Mortis cards. Squires cannot draw from the Mettle deck when evading and are automatically hit with all dice.",
+    "party": true
+   },
+   "reactWindows": [],
+   "afterAttack": null
+  }
+ ],
+ "bp": [
+  {
+   "name": "A Bundle of Elixirs",
+   "level": 1,
+   "at": 4,
+   "overcome": {
+    "n": 2,
+    "effect": "Power 1"
+   },
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "responses": {
+    "wound": "Gain the Slimed Condition card.",
+    "fail": "Poison 2.",
+    "instinct": null,
+    "critical": "One Knight may discard a Condition card."
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Giant Leeches",
+   "level": 1,
+   "at": 5,
+   "overcome": {
+    "n": 3,
+    "effect": "Power 1"
+   },
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "responses": {
+    "wound": null,
+    "fail": null,
+    "instinct": "Poison 2. Gain +2 [H].",
+    "critical": "One Knight may discard a Poisoned X or Toxified X Condition card."
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Flayed Skull Amulets",
+   "level": 1,
+   "at": 6,
+   "overcome": {
+    "n": 3,
+    "effect": "Power 1"
+   },
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "responses": {
+    "wound": "You may discard a Hex you have.",
+    "fail": "Bog Move. Stray 2.",
+    "instinct": null,
+    "critical": "You may discard a Hex you have. Disable the effects of Mortal Fault Hexes."
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Idolatrous Athame",
+   "level": 1,
+   "at": 4,
+   "overcome": {
+    "n": 2,
+    "effect": "Power 1"
+   },
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "responses": {
+    "wound": "You may discard a Hex you have.",
+    "fail": "Stray 3.",
+    "instinct": null,
+    "critical": "You may discard a Hex you have. Disable the effects of Eternal Pain Hexes."
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Warped Lifeless Hand",
+   "level": 1,
+   "at": 5,
+   "overcome": {
+    "n": 2,
+    "effect": "Power 1"
+   },
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "responses": {
+    "wound": "Pushback 3. Bog Move. You may discard a Hex you have.",
+    "fail": "Gain +2 [H].",
+    "instinct": null,
+    "critical": "You may discard a Hex you have. Gain the [Priority Target] Priority Target token. You may perform a Bonus Attack!"
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Putrid Roots",
+   "level": 1,
+   "at": 6,
+   "overcome": {
+    "n": 3,
+    "effect": "Power 1"
+   },
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "responses": {
+    "wound": "Bog Move. Stray 2.",
+    "fail": "Poison 3.",
+    "instinct": null,
+    "critical": "Clash Scavenge 2."
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Witch’s Poppet",
+   "level": 2,
+   "at": 5,
+   "overcome": {
+    "n": 4,
+    "effect": "Power 1"
+   },
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "responses": {
+    "wound": "You may discard a Hex you have.",
+    "fail": "Stray 4.",
+    "instinct": null,
+    "critical": "You may discard a Hex you have. Disable the effects of Master’s Hexes."
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Rotten Stump",
+   "level": 2,
+   "at": 7,
+   "overcome": {
+    "n": 5,
+    "effect": "Power 1"
+   },
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "responses": {
+    "wound": "Gain the Slimed Condition card.",
+    "fail": "Toxify 2. Bog Move.",
+    "instinct": null,
+    "critical": "Scavenge 3."
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Bedeviled Nithing Staff",
+   "level": 2,
+   "at": 6,
+   "overcome": {
+    "n": 3,
+    "effect": "Power 1"
+   },
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "responses": {
+    "wound": "You may discard a Hex you have.",
+    "fail": "Gain +2 [H]. Stray 3.",
+    "instinct": null,
+    "critical": "You may discard a Hex you have. Disable Party Hexes."
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Bog-Devoured Carcass",
+   "level": 2,
+   "at": 6,
+   "overcome": {
+    "n": 4,
+    "effect": "Power 1"
+   },
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "responses": {
+    "wound": "Pushback 3. Bog Move.",
+    "fail": "Poison 3.",
+    "instinct": null,
+    "critical": "Place the Bog Witch anywhere on the Board."
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Feathered Serpent Talisman",
+   "level": 2,
+   "at": 7,
+   "overcome": {
+    "n": 5,
+    "effect": "Power 1"
+   },
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "responses": {
+    "wound": "You may discard a Hex you have or a Party Hex.",
+    "fail": "Lose -3 [V], lower your [H]! by 2 and lose -1 [P].",
+    "instinct": null,
+    "critical": "You may discard a Hex you have or a Party Hex. Disable the effects of Bad Luck Hexes."
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요",
+    "Fail \"lower your [H]! by 2\" — Heat Limit을 뜻하는지 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Dead Eyes",
+   "level": 2,
+   "at": 5,
+   "overcome": {
+    "n": 3,
+    "effect": "Power 1"
+   },
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "responses": {
+    "wound": "Stray 3.",
+    "fail": "Poison 2. Bog Move.",
+    "instinct": null,
+    "critical": "Deal an additional Single Wound!"
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Dried Meat Amulet",
+   "level": 3,
+   "at": 8,
+   "overcome": {
+    "n": 6,
+    "effect": "Power 1"
+   },
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "responses": {
+    "wound": "One Knight may discard a Hex they have. Stray 5.",
+    "fail": "Pushback 5. Bog Move.",
+    "instinct": null,
+    "critical": "One Knight may discard a Hex they have. Disable the effects of Tongue-tied Hexes. After the Clash, if Fleischritter is in the party, see 2636."
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "A Long Lost Child",
+   "level": 3,
+   "at": 10,
+   "overcome": {
+    "n": 7,
+    "effect": "Power 1"
+   },
+   "note": "You may voluntarily end this Attack before performing a Power Roll. If you do, clear the Knight Pool.",
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "responses": {
+    "wound": "Exhaust your active Weapon [Gear] card. Gain +4 [H].",
+    "fail": "Gain the Panicked Condition card. Lower your [H]! Limit to 1.",
+    "instinct": null,
+    "critical": "Gain the [Priority Target] Priority Target token. You may perform a Bonus Attack! Immediately see 6371."
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Taproot of Malice",
+   "level": 3,
+   "at": 8,
+   "overcome": {
+    "n": 6,
+    "effect": "Power 1"
+   },
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "responses": {
+    "wound": "Discard all Hexes from all Knights.",
+    "fail": "Toxify 3. Gain +4 [H]. Stray 5.",
+    "instinct": null,
+    "critical": "The Bog Witch dies!"
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Still Heart",
+   "level": 3,
+   "at": 9,
+   "overcome": {
+    "n": 5,
+    "effect": "Power 1"
+   },
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "responses": {
+    "wound": null,
+    "fail": "Toxify 4. Gain +2 [H].",
+    "instinct": null,
+    "critical": "Gain the [Priority Target] Priority Target token. You may perform a Bonus Attack!"
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Rotten Guts",
+   "level": 3,
+   "at": 7,
+   "overcome": {
+    "n": 4,
+    "effect": "Power 1"
+   },
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "responses": {
+    "wound": null,
+    "fail": null,
+    "instinct": "Toxify 3. Bog Move.",
+    "critical": "Disable the One With The Bog trait."
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Talisman of the Ancients",
+   "level": 3,
+   "at": 8,
+   "overcome": {
+    "n": 6,
+    "effect": "Power 1"
+   },
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "responses": {
+    "wound": "You may discard a Hex you have or a Party Hex. Stray 3.",
+    "fail": "Gain the Drowning Condition card. Bog Move.",
+    "instinct": null,
+    "critical": "You may discard a Hex you have or a Party Hex. Disable the effects of Omen Hexes."
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  }
+ ],
+ "routine": {
+  "name": "Call of the Bog",
+  "text": "All Knights gain the Drowning Condition card and Toxify 4."
+ },
+ "signature": {
+  "name": "Curseword: Drown",
+  "level": null,
+  "type": "RANGE SIGNATURE",
+  "evasionDice": 3,
+  "evasionDifficulty": 9,
+  "preTargeting": null,
+  "targeting": [
+   "Lowest [H]"
+  ],
+  "moveTag": "RANGE ATTACK UNLIMITED",
+  "gates": [
+   {
+    "stat": "Heat",
+    "gte": 3,
+    "effect": "+1 [die]",
+    "where": "moveTag"
+   }
+  ],
+  "effects": [
+   "For each hit lose -2 [V] and gain +1 [H].",
+   "[Peril]. Gain the Slimed Condition card. 3+ hits, gain the Drowning Condition card instead."
+  ],
+  "afterTag": null,
+  "after": null,
+  "unclear": []
+ },
+ "_notes": [
+  "Clash Setup 다이어그램 미수령",
+  "Zone 다이어그램은 구현 시 확대 판독",
+  "Hex: AI 카드 하단에 Hex 유형/이름/효과"
+ ],
+ "extra": [
+  {
+   "name": "As Quag Prophesied",
+   "kind": "Omen Hex — AI: Fiendish Cackle",
+   "text": "When you draw a positive Mortis card (excluding Judicium), redraw it (once). Hexed Squires cannot redraw Mettle cards when evading."
+  },
+  {
+   "name": "Mire Sores",
+   "kind": "Eternal Pain Hex — AI: Broom Sweep",
+   "text": "When you gain this Hex, place a Generic token here. Start of your turn: Place a Generic token here, then lose -X [V], where X is the number of Generic tokens here."
+  },
+  {
+   "name": "Damned to the Mire",
+   "kind": "Master’s Hex — AI: Mire of the Cursed",
+   "text": "Start of your turn: Test Insight (6+). Fail: [React] Stray 3. Squires automatically Fail."
+  },
+  {
+   "name": "Slough Sickness",
+   "kind": "Mortal Fault Hex — AI: Ancestors’ Memories",
+   "text": "Poison Limit -1. Start of your turn: Poison 1."
+  },
+  {
+   "name": "Swamp-jinxed",
+   "kind": "Bad Luck Hex — AI: Manifest Hex",
+   "text": "You cannot re-roll your Crit die. Hexed Squires cannot re-draw Mettle cards when attacking."
+  },
+  {
+   "name": "Morass Residue",
+   "kind": "Tongue-Tied Hex — AI: Vile Soup Spill",
+   "text": "You cannot use keywords and abilities that target other Knights."
+  },
+  {
+   "name": "Quag Fever",
+   "kind": "Mortal Fault Hex — AI: Witchfire Stove",
+   "text": "Start of your turn: You may lower your Heat Limit [H] by X. Poison 3-X (to a minimum of 0)."
+  },
+  {
+   "name": "Fen’s Feast",
+   "kind": "Omen Hex — AI: Spice Up",
+   "text": "When you gain this Hex, place X Generic tokens on it, where X is the number of other Knights alive. Start of your turn: Discard 1 Generic token from this card. If you cannot discard a token, you die."
+  },
+  {
+   "name": "Marsh Fumes",
+   "kind": "Tongue-Tied Hex — AI: Elixir Fling",
+   "text": "You cannot place tokens from your Heroic Arc in the Knight Pool."
+  },
+  {
+   "name": "Beast of the Swamp",
+   "kind": "Master’s Hex — AI: Hex of the First",
+   "text": "Start of your turn: Roll a [d10]: 1–3: Gain a permanent negative Precision token. 4–6: Gain a permanent negative Speed token. 7–9: Gain a permanent negative Evasion token. 10: Ignore 1 [Potential?] during your Attack."
+  },
+  {
+   "name": "Quagmire of Misfortune",
+   "kind": "Bad Luck Hex — AI: Wisped",
+   "text": "You cannot gain a Crit Chance."
+  },
+  {
+   "name": "Slough Contagion",
+   "kind": "Eternal Pain Party Hex — AI: Birds of Carrion",
+   "text": "At the end of the Bog Witch Round place a Generic token here, then each Knight draws a Mortis card from a Mortis deck depending on the number of tokens on this card. 1: Minor. 2: Major. 3+: Grave."
+  },
+  {
+   "name": "Burden of the Fen",
+   "kind": "Master’s Hex — AI: Child Eater",
+   "text": "Treat all spaces in Zone 1 around you as Swamp Terrain tiles."
+  },
+  {
+   "name": "Morass Malady",
+   "kind": "Eternal Pain Hex — AI: Anthropophagy",
+   "text": "Skip the Refresh step during your turn."
+  },
+  {
+   "name": "Mouthful of Bog",
+   "kind": "Tongue-Tied Party Hex — AI: Mudcurse",
+   "text": "You cannot talk."
+  },
+  {
+   "name": "The Marsh Will Claim You",
+   "kind": "Omen Hex — AI: Sins of the Ancestors",
+   "text": "When you are about to resolve a Judicium Draw, search the Judicium deck for the You died! Judicium card instead. Ignore this effect when re-drawing a Judicium."
+  },
+  {
+   "name": "Bog Cursed",
+   "kind": "Bad Luck Hex — AI: Diableric Expulsion",
+   "text": "Do not roll your Crit Die, automatically treat its result as a ‘1’ instead. Squires treat Crit Chance as Crit Miss."
+  },
+  {
+   "name": "Deforming Quagmire",
+   "kind": "Mortal Fault Party Hex — AI: The Bog Cometh Alive",
+   "text": "Ignore the effects of positive Mortis cards. Squires cannot draw from the Mettle deck when evading and are automatically hit with all dice."
+  }
+ ],
+ "clashSetup": {
+  "page": "60",
+  "requiredTiles": [
+   "4x Swamp O",
+   "2x Rotten Stump"
+  ],
+  "steps": [
+   "Standard Preparations (Rulebook p.44)",
+   "Monster Positioning: Place the Bog Witch miniature on the space designated on the diagram. Note the facing direction indicated by the arrow.",
+   "Additional Setup: Place the Mud Wisp marker near the Monster Sheet. Follow additional Clash Setup instructions introduced by Traits (if any)."
+  ],
+  "monsterCells": [
+   "D7",
+   "D8",
+   "C7",
+   "C8"
+  ],
+  "facing": "N",
+  "knightStart": [
+   "G7",
+   "G8",
+   "F6",
+   "F9"
+  ],
+  "terrain": [
+   {
+    "tile": "swamp",
+    "shape": "O",
+    "cells": [
+     "J8",
+     "J9",
+     "I8",
+     "I9"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "shape": "O",
+    "cells": [
+     "H3",
+     "H4",
+     "G3",
+     "G4"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "shape": "O",
+    "cells": [
+     "E11",
+     "E12",
+     "D11",
+     "D12"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "shape": "O",
+    "cells": [
+     "B7",
+     "B8",
+     "A7",
+     "A8"
+    ]
+   },
+   {
+    "tile": "rotten stump",
+    "cells": [
+     "H12",
+     "H13",
+     "G12",
+     "G13"
+    ]
+   },
+   {
+    "tile": "rotten stump",
+    "cells": [
+     "D2",
+     "D3",
+     "C2",
+     "C3"
+    ]
+   }
+  ],
+  "aftermath": {
+   "victoriousSearch": "Clash Scavenge 1 and Scavenge 3",
+   "forlornSearch": "Scavenge 3"
+  }
+ }
+}

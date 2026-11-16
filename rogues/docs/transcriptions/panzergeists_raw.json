@@ -1,0 +1,747 @@
+{
+ "sheet": {
+  "name": "Panzergeists",
+  "code": "26B1076",
+  "traitsLine": [
+   "Mob",
+   "Undead",
+   "Knight"
+  ],
+  "footprint": "1x1, rear = the cell behind (R)",
+  "basicAbilities": [
+   "Superior Bypass",
+   "Nevermore Spawn"
+  ],
+  "levels": {
+   "1": {
+    "toHit": "6+!",
+    "wounds": 7,
+    "exhibitionWounds": 1,
+    "activations": [
+     "AI",
+     "S"
+    ],
+    "traitsAdd": [
+     "Suit Up!",
+     "Ceaseless Hunger",
+     "All Things Die"
+    ],
+    "bonuses": {
+     "escalations": 0,
+     "at": 0,
+     "vigorLoss": 0,
+     "evasionDice": 0
+    }
+   },
+   "2": {
+    "toHit": "7+!",
+    "wounds": 8,
+    "exhibitionWounds": 2,
+    "activations": [
+     "AI",
+     "S"
+    ],
+    "traitsAdd": [
+     "Panzer Cascade",
+     "Muffled Potential"
+    ],
+    "bonuses": {
+     "escalations": 0,
+     "at": 2,
+     "vigorLoss": 0,
+     "evasionDice": 0
+    }
+   },
+   "3": {
+    "toHit": "9+!",
+    "wounds": 8,
+    "exhibitionWounds": 2,
+    "activations": [
+     "AI",
+     "S"
+    ],
+    "traitsAdd": [
+     "Soul of the Metal",
+     "Armored Contagion"
+    ],
+    "bonuses": {
+     "escalations": 0,
+     "at": 3,
+     "vigorLoss": 1,
+     "evasionDice": 0
+    }
+   },
+   "4": {
+    "toHit": "10+!",
+    "wounds": 8,
+    "exhibitionWounds": 2,
+    "activations": [
+     "AI",
+     "S"
+    ],
+    "traitsAdd": [
+     "No Rest for Any"
+    ],
+    "bonuses": {
+     "escalations": 1,
+     "at": 4,
+     "vigorLoss": 3,
+     "evasionDice": 0
+    }
+   }
+  },
+  "traits": [
+   {
+    "name": "Suit Up!",
+    "level": 1,
+    "text": "Additional Setup: Place 10 Armor [Armor] tokens on the Clash Board as indicated in Clash Setup. Whenever a Panzergeist moves onto or through a space with an Armor [Armor] token on it, place it on that Mob’s BP. When you deal a Wound to a Panzergeist with Armor [Armor] tokens, place all those tokens on the space it occupied."
+   },
+   {
+    "name": "Ceaseless Hunger",
+    "level": 1,
+    "text": "When your Maximum [V] becomes 0 or lower, do not draw a Judicium. Instead, immediately place the closest Mob on your Knight Board and end your turn—you are Possessed. As long as you’re Possessed, treat your miniature as that Mob’s miniature. You cannot attack, use abilities, or move voluntarily, and you skip your turns. When you die, place the Mob that Possessed you on the space you occupied. When that Mob is wounded, remove it from your Knight Board and reset your Maximum [V]—you’re no longer Possessed. If all Knights are Possessed at any point, you immediately lose the Clash.\n\nRecover X: Raise your Maximum [V] by X until the end of the Clash, then gain +X [V].\n\nEnd of Clash: If you’re still Possessed, die and permanently lower your Maximum [V] by 1 (note this on your Knight Sheet)."
+   },
+   {
+    "name": "All Things Die",
+    "level": 1,
+    "text": "! Panzergeists without any Armor [Armor] tokens gain +4 [To Hit] when attacked with a Weapon [Gear] card without the Rust, Ethereal, or Holy Trait.\nRust: Place a Bane [Bane] token on each Gear [Gear] card with the Metal Trait equipped on your Knight. Gear [Gear] cards with Bane [Bane] tokens on them gain the Rust Trait and lose the Metal Trait. Those Bane [Bane] tokens still count toward your Bane Limit."
+   },
+   {
+    "name": "Panzer Cascade",
+    "level": 2,
+    "text": "! Panzergeist Attacks gain +1 [die] for each Armor [Armor] token on the attacking Mob.\n\nDuring Escalation, if there are no more AI cards in the Escalation decks, instead place an Armor [Armor] token on the Mob with the lowest BP Level."
+   },
+   {
+    "name": "Muffled Potential",
+    "level": 2,
+    "text": "Ignore 1 [Potential] on each Power die you roll when attacking with a Weapon [Gear] card with the Rust Trait."
+   },
+   {
+    "name": "Soul of the Metal",
+    "level": 3,
+    "text": "End of each Activation: Move this Mob onto the closest Armor [Armor] token."
+   },
+   {
+    "name": "Armored Contagion",
+    "level": 3,
+    "text": "All Gear [Gear] cards without the Ethereal, Holy, or Rust Trait gain the Metal Trait."
+   },
+   {
+    "name": "No Rest for Any",
+    "level": 4,
+    "text": "End of Knight Round: The Knight with the [Priority Target] Priority Target token lowers their Maximum [V] by 6.\n\nStart of your turn: If Possessed, the Mob on your Knight Board performs Signature (you still skip your turn)."
+   }
+  ],
+  "unclear": [
+   "Muffled Potential: 시트는 \"Rust Trait가 있는 무기로 공격할 때 Potential 1 무시\", 참고 시트(v1.1)는 \"Rust 없이 공격하면\" — 서로 반대. 시트 원문대로 전사함.",
+   "Column 8개 중 7개만 식별(G7,F10,E5,D7 + Panzergeist 밑 G3,B5,B9) — 8번째 위치 확인 필요"
+  ],
+  "notes": [
+   "BP 카드에 Overcome/Overpower 줄 없음",
+   "Signature 카드, Clash Setup 다이어그램 미수령",
+   "Clash Setup (54–55): 기사 G8, F5, E10, C7 · Mob I3S, I8S, I10S, G3E, G12W, D3E, D12W, B5N, B9N, A7N · Armor 토큰 H3, H8, H12, F3, F6, E9, E12, C3, B7, B12",
+   "지형 column: G7, F10, E5, D7, G3, B5, B9",
+   "지형 rubble L: H4, H5, H6, G4",
+   "지형 rubble L: H9, H10, H11, G11",
+   "지형 rubble L: C4, C5, C6, D4",
+   "지형 rubble L: C9, C10, C11, D11",
+   "지형 rubble O: F7, F8, E7, E8"
+  ]
+ },
+ "ai": [
+  {
+   "name": "Flesh to Rust",
+   "level": 1,
+   "type": "ATTACK",
+   "evasionDice": "4!",
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "Lowest [V] in front",
+    "Lowest [V]"
+   ],
+   "moveTag": "MOVE BEHIND & ATTACK",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "-2 [V] INSTEAD",
+     "where": "effect:0"
+    }
+   ],
+   "effects": [
+    "For each hit lose -1 [V].",
+    "[Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Rust. Lower your Maximum [V] by 3.",
+   "unclear": [],
+   "reactWindows": [],
+   "afterAttack": "AFTER ATTACK: Rust. Lower your Maximum [V] by 3."
+  },
+  {
+   "name": "Tarnishing Touch",
+   "level": 1,
+   "type": "ATTACK",
+   "evasionDice": "4!",
+   "evasionDifficulty": 9,
+   "preTargeting": null,
+   "targeting": [
+    "Furthest Knight in front",
+    "Furthest Knight"
+   ],
+   "moveTag": "MOVE BEHIND & ATTACK",
+   "gates": [],
+   "effects": [
+    "For each hit lose -1 [V]. [Peril].",
+    "Rust."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Exhaust your Armor [Gear] card.",
+   "unclear": [],
+   "reactWindows": [],
+   "afterAttack": "AFTER ATTACK: Exhaust your Armor [Gear] card."
+  },
+  {
+   "name": "Phantasmal Backstab",
+   "level": 1,
+   "type": "ATTACK",
+   "evasionDice": "2!",
+   "evasionDifficulty": 9,
+   "preTargeting": null,
+   "targeting": [
+    "Furthest Knight in front",
+    "Furthest Knight"
+   ],
+   "moveTag": "MOVE BEHIND & ATTACK",
+   "gates": [],
+   "effects": [
+    "For each hit lose -2 [V]. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "This Panzergeist moves up to 3 spaces toward the closest Armor [Armor] token.",
+   "unclear": [],
+   "reactWindows": [],
+   "afterAttack": "AFTER ATTACK: This Panzergeist moves up to 3 spaces toward the closest Armor [Armor] token."
+  },
+  {
+   "name": "Chill the Spine",
+   "level": 1,
+   "type": "ATTACK",
+   "evasionDice": "1!",
+   "evasionDifficulty": 9,
+   "preTargeting": null,
+   "targeting": [
+    "Not Possessed [Priority Target] Priority Target",
+    "No Target: Perform Signature"
+   ],
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "IGNORE [React] PRECEDING MOVE & ATTACK",
+     "where": "targeting"
+    }
+   ],
+   "effects": [
+    "For each hit lose -6 [V]. [Peril].",
+    "Knockdown."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Lower your Maximum [V] by 3.",
+   "unclear": [],
+   "reactWindows": [],
+   "afterAttack": "AFTER ATTACK: Lower your Maximum [V] by 3."
+  },
+  {
+   "name": "Geist Slam",
+   "level": 2,
+   "type": "ATTACK",
+   "evasionDice": "1!",
+   "evasionDifficulty": 11,
+   "preTargeting": null,
+   "targeting": [
+    "Lowest [V] in front",
+    "Lowest [V]"
+   ],
+   "moveTag": "MOVE BEHIND & ATTACK",
+   "gates": [],
+   "effects": [
+    "For each hit lose -7 [V]. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Knockdown.",
+   "unclear": [],
+   "reactWindows": [],
+   "afterAttack": "AFTER ATTACK: Knockdown."
+  },
+  {
+   "name": "Bewitching Brush",
+   "level": 2,
+   "type": "ATTACK",
+   "evasionDice": "3!",
+   "evasionDifficulty": 6,
+   "preTargeting": null,
+   "targeting": [
+    "Furthest Knight in front",
+    "Furthest Knight"
+   ],
+   "moveTag": "MOVE BEHIND & ATTACK",
+   "gates": [],
+   "effects": [
+    "For each hit lose -3 [V]. [Peril].",
+    "Rust."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "This Panzergeist moves up to 5 spaces toward the closest Armor [Armor] token.",
+   "unclear": [],
+   "reactWindows": [],
+   "afterAttack": "AFTER ATTACK: This Panzergeist moves up to 5 spaces toward the closest Armor [Armor] token."
+  },
+  {
+   "name": "Corroding Grasp",
+   "level": 2,
+   "type": "ATTACK",
+   "evasionDice": "2!",
+   "evasionDifficulty": 7,
+   "preTargeting": null,
+   "targeting": [
+    "Furthest Knight in front",
+    "Furthest Knight"
+   ],
+   "moveTag": "MOVE BEHIND & ATTACK",
+   "gates": [],
+   "effects": [
+    "For each hit lose -4 [V]. [Peril].",
+    "Rust."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Discard your Armor [Gear] card.",
+   "unclear": [],
+   "reactWindows": [],
+   "afterAttack": "AFTER ATTACK: Discard your Armor [Gear] card."
+  },
+  {
+   "name": "Spectral Shriek",
+   "level": 2,
+   "type": "ATTACK",
+   "evasionDice": "1!",
+   "evasionDifficulty": 9,
+   "preTargeting": null,
+   "targeting": [
+    "Furthest Knight in front",
+    "Furthest Knight"
+   ],
+   "moveTag": "MOVE BEHIND & ATTACK",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "IGNORE [React] PRECEDING AFTER ATTACK",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "For each hit lose -9 [V]. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Knockdown.",
+   "unclear": [],
+   "reactWindows": [],
+   "afterAttack": "AFTER ATTACK: Knockdown."
+  },
+  {
+   "name": "Lifescourge",
+   "level": 3,
+   "type": "ATTACK",
+   "evasionDice": "5!",
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "Highest [V] in front",
+    "Highest [V]"
+   ],
+   "moveTag": "MOVE BEHIND & ATTACK",
+   "gates": [],
+   "effects": [
+    "For each hit lose -2 [V] and suffer Rust. [Peril].",
+    "Knockdown."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "If you died, repeat this Attack against another Knight. If you survived, lower your Maximum [V] by X, where X is the number of your Bane [Bane] tokens.",
+   "unclear": [],
+   "reactWindows": [],
+   "afterAttack": "AFTER ATTACK: If you died, repeat this Attack against another Knight. If you survived, lower your Maximum [V] by X, where X is the number of your Bane [Bane] tokens."
+  },
+  {
+   "name": "Rend the Spirit",
+   "level": 3,
+   "type": "ATTACK",
+   "evasionDice": "2!",
+   "evasionDifficulty": 11,
+   "preTargeting": null,
+   "targeting": [
+    "Not Possessed [Priority Target] Priority Target",
+    "No Target: Perform Signature"
+   ],
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 2,
+     "effect": "+1 [die]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "For each hit lose -4 [V] and Bane 2. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "If you died, place all Armor [Armor] tokens from the Clash Board on this Mob. If you survived, lower your Maximum [V] to 0.",
+   "unclear": [],
+   "reactWindows": [],
+   "afterAttack": "AFTER ATTACK: If you died, place all Armor [Armor] tokens from the Clash Board on this Mob. If you survived, lower your Maximum [V] to 0."
+  }
+ ],
+ "bp": [
+  {
+   "name": "Ghostly Gaoler",
+   "level": 1,
+   "at": 2,
+   "overcome": null,
+   "note": null,
+   "whenRevealed": "Lower your Maximum [V] by 1 for each Wound on the Wound Stack.",
+   "whileRevealed": null,
+   "responses": {
+    "wound": null,
+    "fail": "Rust.",
+    "instinct": null,
+    "critical": "Recover 3 or discard up to 2 Bane [Bane] tokens."
+   },
+   "unclear": [],
+   "reactWindows": []
+  },
+  {
+   "name": "Damned Wiseman",
+   "level": 1,
+   "at": 4,
+   "overcome": null,
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "responses": {
+    "wound": "Knockdown.",
+    "fail": "Lower your Maximum [V] by 3. Move this Panzergeist 3 spaces directly away from the Attacker.",
+    "instinct": null,
+    "critical": "Another Knight may move up to 3 spaces and perform a Bonus Attack!"
+   },
+   "unclear": [],
+   "reactWindows": []
+  },
+  {
+   "name": "Spirit Guard",
+   "level": 1,
+   "at": 3,
+   "overcome": null,
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "responses": {
+    "wound": null,
+    "fail": null,
+    "instinct": "Rust. Knockdown.",
+    "critical": "Recover 3. Another Knight may immediately stand up."
+   },
+   "unclear": [],
+   "reactWindows": []
+  },
+  {
+   "name": "Ethereal Servant",
+   "level": 1,
+   "at": 2,
+   "overcome": null,
+   "note": null,
+   "whenRevealed": "Lower your Maximum [V] by 1 for each Wound on the Wound Stack.",
+   "whileRevealed": null,
+   "responses": {
+    "wound": null,
+    "fail": "Move this Panzergeist 3 spaces directly away from the Attacker.",
+    "instinct": null,
+    "critical": "Recover 3."
+   },
+   "unclear": [],
+   "reactWindows": []
+  },
+  {
+   "name": "Phantasmal Clerk",
+   "level": 1,
+   "at": 3,
+   "overcome": null,
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "responses": {
+    "wound": "The closest Panzergeist moves 3 spaces toward the closest Armor [Armor] token.",
+    "fail": "Lower your Maximum [V] by 3.",
+    "instinct": null,
+    "critical": "Another Knight may move up to 3 spaces and perform a Bonus Attack!"
+   },
+   "unclear": [],
+   "reactWindows": []
+  },
+  {
+   "name": "Bastian, the Spook Cook",
+   "level": 2,
+   "at": 5,
+   "overcome": null,
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": "All Panzergeist Attacks gain +1 [die].",
+   "responses": {
+    "wound": "The closest Panzergeist moves 5 spaces toward the closest Armor [Armor] token.",
+    "fail": "All adjacent Knights suffer Knockdown.",
+    "instinct": null,
+    "critical": "Recover 5."
+   },
+   "unclear": [],
+   "reactWindows": []
+  },
+  {
+   "name": "Gisela, the Adviser Apparition",
+   "level": 2,
+   "at": 3,
+   "overcome": null,
+   "note": null,
+   "whenRevealed": "Lower your Maximum [V] by 1 for each Wound on the Wound Stack.",
+   "whileRevealed": null,
+   "responses": {
+    "wound": "Rust. The closest Panzergeist moves 5 spaces toward the closest Armor [Armor] token.",
+    "fail": "Rust. Lower your Maximum [V] by 5.",
+    "instinct": null,
+    "critical": "Another Knight may move up to 3 spaces and perform a Bonus Attack!"
+   },
+   "unclear": [],
+   "reactWindows": []
+  },
+  {
+   "name": "Ulrich, the Phantom Captain",
+   "level": 2,
+   "at": 4,
+   "overcome": null,
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": "All other Panzergeists gain +1 [AT].",
+   "responses": {
+    "wound": "Knockdown.",
+    "fail": "Move this Panzergeist 5 spaces directly away from the Attacker.",
+    "instinct": null,
+    "critical": "Recover 5. Discard up to 2 Armor [Armor] tokens from the Clash Board. After the Clash, see 1150."
+   },
+   "unclear": [],
+   "reactWindows": []
+  },
+  {
+   "name": "Stephen, the Revenant Knight",
+   "level": 3,
+   "at": 7,
+   "overcome": null,
+   "note": "If there are four or more BP 1 cards on the Mob track, you cannot Wound this BP.",
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "responses": {
+    "wound": "Rust. All other Panzergeists move onto the closest Armor [Armor] token.",
+    "fail": "All Knights adjacent to any Panzergeist suffer Knockdown. All knocked down Knights suffer Rust.",
+    "instinct": null,
+    "critical": "You win the Clash!"
+   },
+   "unclear": [],
+   "reactWindows": []
+  },
+  {
+   "name": "Ingrid, the Banshee Noble",
+   "level": 3,
+   "at": 6,
+   "overcome": null,
+   "note": null,
+   "whenRevealed": "If there is at least one BP 2 card on the Mob track, all Knights other than the Attacker lower their Maximum [V] by 3.",
+   "whileRevealed": null,
+   "responses": {
+    "wound": "Rust.",
+    "fail": "Rust. Lower your Maximum [V] to 0.",
+    "instinct": null,
+    "critical": "Recover 5. Disable the Ceaseless Hunger Trait."
+   },
+   "unclear": [],
+   "reactWindows": []
+  }
+ ],
+ "routine": {
+  "name": "Panzer Awakening",
+  "text": "All Knights lower their Maximum [V] by X, where X is 5 + the amount of Armor [Armor] tokens on the Clash Board. Move all Panzergeists onto the closest space with an Armor [Armor] token."
+ },
+ "signature": {
+  "name": "Ghostly Miasma",
+  "level": null,
+  "type": "SIGNATURE",
+  "evasionDice": "4!",
+  "evasionDifficulty": 11,
+  "preTargeting": null,
+  "targeting": [
+   "Closest Knight in sight"
+  ],
+  "moveTag": "MOVE & ATTACK",
+  "gates": [],
+  "effects": [
+   "For each hit lose -4 [V]. [Peril]."
+  ],
+  "afterTag": "AFTER ATTACK",
+  "after": "Lower your Maximum [V] by 3.",
+  "unclear": []
+ },
+ "_notes": [
+  "BP 카드에 Overcome/Overpower 줄 없음",
+  "Clash Setup 다이어그램 미수령"
+ ],
+ "extra": [],
+ "clashSetup": {
+  "page": "54–55",
+  "requiredTiles": [
+   "8x Column",
+   "4x Rubble L",
+   "1x Rubble O"
+  ],
+  "steps": [
+   "Standard Preparations (Rulebook p.44)",
+   "Monster Positioning: Put numbered base rings on all Panzergeist miniatures. Randomly place Panzergeist miniatures numbered 1–10 on the spaces designated on the diagram. Note the facing direction indicated by the arrows. Important: Some Panzergeists are placed on Column Terrain tiles. Then, place all (10) BP cards face down in a random order on spaces 1–10 on the Mob track.",
+   "Additional Setup: Place 10 Armor tokens on the Board on spaces designated on the diagram. Follow additional Clash Setup instructions introduced by Traits (if any)."
+  ],
+  "mobStart": [
+   [
+    "I3",
+    "S"
+   ],
+   [
+    "I8",
+    "S"
+   ],
+   [
+    "I10",
+    "S"
+   ],
+   [
+    "G3",
+    "E"
+   ],
+   [
+    "G12",
+    "W"
+   ],
+   [
+    "D3",
+    "E"
+   ],
+   [
+    "D12",
+    "W"
+   ],
+   [
+    "B5",
+    "N"
+   ],
+   [
+    "B9",
+    "N"
+   ],
+   [
+    "A7",
+    "N"
+   ]
+  ],
+  "armorTokens": [
+   "H3",
+   "H8",
+   "H12",
+   "F3",
+   "F6",
+   "E9",
+   "E12",
+   "C3",
+   "B7",
+   "B12"
+  ],
+  "knightStart": [
+   "G8",
+   "F5",
+   "E10",
+   "C7"
+  ],
+  "terrain": [
+   {
+    "tile": "column",
+    "cells": [
+     "G7",
+     "F10",
+     "E5",
+     "D7",
+     "G3",
+     "B5",
+     "B9"
+    ]
+   },
+   {
+    "tile": "rubble",
+    "shape": "L",
+    "cells": [
+     "H4",
+     "H5",
+     "H6",
+     "G4"
+    ]
+   },
+   {
+    "tile": "rubble",
+    "shape": "L",
+    "cells": [
+     "H9",
+     "H10",
+     "H11",
+     "G11"
+    ]
+   },
+   {
+    "tile": "rubble",
+    "shape": "L",
+    "cells": [
+     "C4",
+     "C5",
+     "C6",
+     "D4"
+    ]
+   },
+   {
+    "tile": "rubble",
+    "shape": "L",
+    "cells": [
+     "C9",
+     "C10",
+     "C11",
+     "D11"
+    ]
+   },
+   {
+    "tile": "rubble",
+    "shape": "O",
+    "cells": [
+     "F7",
+     "F8",
+     "E7",
+     "E8"
+    ]
+   }
+  ],
+  "unclear": [
+   "Column 8개 중 7개만 식별(G7,F10,E5,D7 + Panzergeist 밑 G3,B5,B9) — 8번째 위치 확인 필요"
+  ]
+ }
+}

@@ -1,0 +1,1429 @@
+{
+ "sheet": {
+  "name": "Firstmen Lictor Hunters",
+  "code": "26B1078",
+  "traitsLine": [
+   "Mob",
+   "Ape",
+   "Hunter"
+  ],
+  "footprint": "1x1, rear = the cell behind (R)",
+  "basicAbilities": [
+   "Advanced Bypass",
+   "Ignore Difficult Terrain",
+   "Immediate Spawn"
+  ],
+  "levels": {
+   "1": {
+    "toHit": "6+",
+    "wounds": 7,
+    "exhibitionWounds": 1,
+    "activations": [
+     "AI",
+     "S"
+    ],
+    "traitsAdd": [
+     "Battle Tactics",
+     "Mangrove Deployment",
+     "Taunt & Decoy",
+     "Seek & Destroy"
+    ],
+    "bonuses": {
+     "escalations": 0,
+     "at": 0,
+     "vigorLoss": 0,
+     "evasionDice": 0
+    }
+   },
+   "2": {
+    "toHit": "7+",
+    "wounds": 8,
+    "exhibitionWounds": 2,
+    "activations": [
+     "AI",
+     "S"
+    ],
+    "traitsAdd": [
+     "It’s a Trap!"
+    ],
+    "bonuses": {
+     "escalations": 0,
+     "at": 1,
+     "vigorLoss": 0,
+     "evasionDice": 0
+    }
+   },
+   "3": {
+    "toHit": "9+",
+    "wounds": 8,
+    "exhibitionWounds": 2,
+    "activations": [
+     "AI",
+     "S"
+    ],
+    "traitsAdd": [
+     "Advanced Tactics"
+    ],
+    "bonuses": {
+     "escalations": 1,
+     "at": 3,
+     "vigorLoss": 1,
+     "evasionDice": 0
+    }
+   },
+   "4": {
+    "toHit": "10+",
+    "wounds": 9,
+    "exhibitionWounds": 2,
+    "activations": [
+     "AI",
+     "S"
+    ],
+    "traitsAdd": [
+     "Combat Flexibility"
+    ],
+    "bonuses": {
+     "escalations": 2,
+     "at": 5,
+     "vigorLoss": 3,
+     "evasionDice": 0
+    }
+   }
+  },
+  "traits": [
+   {
+    "name": "Battle Tactics",
+    "level": 1,
+    "text": "Additional Setup: Draw one Basic Battle Tactics card.\n\nTactics X: Resolve the effect corresponding to Tactic A or Tactic B on the drawn Battle Tactics card."
+   },
+   {
+    "name": "Mangrove Deployment",
+    "level": 1,
+    "text": "When you kill a Lictor Hunter, immediately Spawn a new one on a Great Mangrove Terrain tile, starting with number 1 (see Clash Diagram), then going clockwise.\n\nTreat all Lictor Hunters on Great Mangrove Terrain tiles as if they weren’t on the Clash Board. They cannot Decoy, and cannot be attacked, activated, or affected in any way until they leave those tiles.\n\nEnd of Knight Round: Each Lictor Hunter on a Great Mangrove Terrain tile performs Dwell, starting from the lowest numbered Mob.\n\nDwell: Move the Monster miniature to the closest unoccupied space on a Swamp Terrain tile."
+   },
+   {
+    "name": "Taunt & Decoy",
+    "level": 1,
+    "text": "Decoy: Take the miniature of the attacked or attacking Lictor Hunter, detach its base ring from it, and return that miniature to its previous space—it becomes a Decoy. Place the base ring on the respective BP card on the Mob track—it becomes the Decoying Monster. If that BP is revealed, flip it. Then, place a Generic token on this Trait. If that Lictor Hunter is already Decoying, ignore this keyword.\n\nWhen a Decoying Lictor Hunter activates, treat all Knights as adjacent and in sight during its Attack.\n\nFor every Generic token placed on this Trait, all Lictor Hunters gain the following stacking effects:\n1 token: All Monster Attacks cause an additional -1 [V] loss.\n2 tokens: All Monster Attacks have +1 [die].\n3 tokens: All Monster Attacks gain “After Attack: Gain the Exposed Condition card.”\n4 tokens: After resolving the current action, activate the next Lictor Hunter and add another AI Activation token on the leftmost BP without an Activation token on it."
+   },
+   {
+    "name": "Seek & Destroy",
+    "level": 1,
+    "text": "Treat all Decoys as Lictor Hunters with the Lumbering Basic Ability. Decoys on Swamp Terrain tiles have -1 [AT] and +2 [To Hit]. When you attack a Decoy, it loses -1 [To Hit] for every Fire token in the Knight Pool.\n\nIf a Decoy is hit, after the first ability window, reveal the leftmost unrevealed BP on the Mob track with a Decoying Monster on it, and resolve the Power Roll against the Decoying Monster. Additionally to normal Monster Responses, resolve the following first: attach the miniature to the base ring (it is no longer a Decoy), and, if you failed to wound, place it on the Board as if you were Spawning a new Lictor Hunter. If all BP cards with Decoying Mobs on them were already revealed, immediately perform Routine."
+   },
+   {
+    "name": "It’s a Trap!",
+    "level": 2,
+    "text": "BP cards of all Decoying Mobs gain “INSTINCT: All Knights in Zone 1 lose -1 [V]. Place X Fire tokens in the Knight Pool, where X is the number of Knights that lost [V].”"
+   },
+   {
+    "name": "Advanced Tactics",
+    "level": 3,
+    "text": "Replace the Basic Battle Tactics cards with Advanced Tactics cards."
+   },
+   {
+    "name": "Combat Flexibility",
+    "level": 4,
+    "text": "If you kill a non-Decoying Mob, after you finish your Attack, the next non-Decoying Mob on the Mob track performs Signature against you."
+   }
+  ],
+  "notes": [
+   "Clash Setup 다이어그램 미수령",
+   "Evocati·Peregrini·Auxiliari·Frumentari·Speculatore는 각 2장",
+   "Clash Setup (58): 기사 G8, G10, E8, E10 · Mob I11S, F12W, E5N, C9N · Decoy I5S, I10S, G5E, F2E, D6E, B5N",
+   "지형 swamp I: J5, I5",
+   "지형 swamp I: I10, I11",
+   "지형 swamp I: G5, G6",
+   "지형 swamp I: F1, F2",
+   "지형 swamp I: G9, F9",
+   "지형 swamp I: F12, E12",
+   "지형 swamp I: E5, E6",
+   "지형 swamp I: D5, D6",
+   "지형 swamp I: C9, C10",
+   "지형 swamp I: B4, B5",
+   "지형 great mangrove #1: I2, I3, H2, H3",
+   "지형 great mangrove #2: J13, J14, I13, I14",
+   "지형 great mangrove #3: C12, C13, B12, B13"
+  ],
+  "unclear": [
+   "Decoy 표시(D)는 흰 탭이 붙은 마커 6개로 읽음: I5, I10, G5, F2, D6, B5 — 확인 필요"
+  ]
+ },
+ "ai": [
+  {
+   "name": "Gruesome Display",
+   "level": 1,
+   "type": "JUDGEMENT",
+   "evasionDice": 2,
+   "evasionDifficulty": 11,
+   "preTargeting": null,
+   "targeting": [
+    "Lone Knight",
+    "[Priority Target] Priority Target",
+    "Closest Knight in sight"
+   ],
+   "moveTag": "JUDGE",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 4,
+     "effect": "LOSE -1 [P]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "Bravery / Sagacity.",
+    "One hit, gain the Distracted Condition card. Two hits, gain the Panicked Condition card. For each hit lose -1 [V]. Tactic A. [Peril]."
+   ],
+   "afterTag": null,
+   "after": null,
+   "unclear": [
+    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": [],
+   "afterAttack": null
+  },
+  {
+   "name": "Dastardly Distraction",
+   "level": 1,
+   "type": "ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "Highest [V]",
+    "Closest Knight in sight"
+   ],
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "TACTIC A",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "For each hit lose -1 [V]. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "The next non-Decoying Mob performs Decoy.",
+   "unclear": [
+    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": [],
+   "afterAttack": "AFTER ATTACK: The next non-Decoying Mob performs Decoy."
+  },
+  {
+   "name": "Jungle Trickery",
+   "level": 1,
+   "type": "RANGE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "[Priority Target] Priority Target",
+    "Engaged Knight in range",
+    "Closest Knight in range"
+   ],
+   "moveTag": "RANGE ATTACK 8",
+   "gates": [],
+   "effects": [
+    "Gain the Distracted Condition card.",
+    "For each hit lose -2 [V].",
+    "Tactic B. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "The next non-Decoying Mob performs Dwell.",
+   "unclear": [],
+   "reactWindows": [],
+   "afterAttack": "AFTER ATTACK: The next non-Decoying Mob performs Dwell."
+  },
+  {
+   "name": "Surprise Attack",
+   "level": 1,
+   "type": "ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "Highest [V]",
+    "[Priority Target] Priority Target",
+    "Closest Knight in sight"
+   ],
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 2,
+     "effect": "+1 [die]",
+     "where": "moveTag"
+    },
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "TACTIC B",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "For each hit lose -1 [V].",
+    "Tactic A. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Knockdown.",
+   "unclear": [
+    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": [],
+   "afterAttack": "AFTER ATTACK: Knockdown."
+  },
+  {
+   "name": "Fungal Poison-Tipped Dart",
+   "level": 1,
+   "type": "RANGE ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "Tactics Target",
+    "Furthest Knight in range",
+    "Furthest Knight in sight"
+   ],
+   "moveTag": "RANGE ATTACK 6",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "+1 [die]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "Poison 1. For each hit lose -1 [V].",
+    "Tactic B. [Peril]."
+   ],
+   "afterTag": null,
+   "after": null,
+   "unclear": [
+    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": [],
+   "afterAttack": null
+  },
+  {
+   "name": "Hit & Run",
+   "level": 1,
+   "type": "ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 9,
+   "preTargeting": null,
+   "targeting": [
+    "Tactics Target",
+    "[Priority Target] Priority Target",
+    "Closest Knight in sight"
+   ],
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 2,
+     "effect": "TACTIC B",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "For each hit lose -1 [V].",
+    "Tactic A. [Peril]. Poison 1."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "The next non-Decoying Mob performs Dwell.",
+   "unclear": [
+    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": [],
+   "afterAttack": "AFTER ATTACK: The next non-Decoying Mob performs Dwell."
+  },
+  {
+   "name": "Mud Pit Trap",
+   "level": 2,
+   "type": "JUDGEMENT",
+   "evasionDice": 2,
+   "evasionDifficulty": 11,
+   "preTargeting": null,
+   "targeting": [
+    "Lone Knight",
+    "[Priority Target] Priority Target",
+    "Tactics Target"
+   ],
+   "moveTag": "JUDGE",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "+1 [die]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "Fortitude / Insight.",
+    "If the Attack hits, lose -2 [V]. One hit, gain the Slimed Condition card. Two or more hits, gain the Drowning Condition card. Tactic A. [Peril]."
+   ],
+   "afterTag": null,
+   "after": null,
+   "unclear": [
+    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": [],
+   "afterAttack": null
+  },
+  {
+   "name": "Toxic Gas",
+   "level": 2,
+   "type": "ZONE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "Zone 2",
+    "No Knight in Zone: This Mob performs Signature"
+   ],
+   "moveTag": "ATTACK",
+   "gates": [],
+   "effects": [
+    "For each hit lose -2 [V] and Poison 1. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Tactic B.",
+   "unclear": [],
+   "reactWindows": [],
+   "afterAttack": "AFTER ATTACK: Tactic B."
+  },
+  {
+   "name": "Gorilla Charge",
+   "level": 2,
+   "type": "ATTACK",
+   "evasionDice": 5,
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "Tactics Target",
+    "Closest Knight in front",
+    "Closest Knight in sight"
+   ],
+   "moveTag": "MOVE & ATTACK",
+   "gates": [],
+   "effects": [
+    "For each hit lose -1 [V].",
+    "Tactic A. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Knockdown.",
+   "unclear": [],
+   "reactWindows": [],
+   "afterAttack": "AFTER ATTACK: Knockdown."
+  },
+  {
+   "name": "Coup de Grâce",
+   "level": 2,
+   "type": "ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 10,
+   "preTargeting": null,
+   "targeting": [
+    "Lowest [V] in front",
+    "Lowest [V] in sight"
+   ],
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 2,
+     "effect": "TACTIC A",
+     "where": "moveTag"
+    },
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "+1 [die]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "For each hit lose -2 [V]. Poison 1.",
+    "Tactic B. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "The next non-Decoying Mob performs Dwell.",
+   "unclear": [
+    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": [],
+   "afterAttack": "AFTER ATTACK: The next non-Decoying Mob performs Dwell."
+  },
+  {
+   "name": "Treefrog Poison-Tipped Dart",
+   "level": 2,
+   "type": "RANGE ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 9,
+   "preTargeting": null,
+   "targeting": [
+    "Knight with the Poisoned Condition card in range",
+    "Engaged Knight in range",
+    "Tactics Target",
+    "Furthest Knight in range, in sight"
+   ],
+   "moveTag": "RANGE ATTACK 6",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 2,
+     "effect": "TACTIC A",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "For each hit lose -1 [V] and Poison 1.",
+    "Tactic B. [Peril]."
+   ],
+   "afterTag": null,
+   "after": null,
+   "unclear": [
+    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": [],
+   "afterAttack": null
+  },
+  {
+   "name": "Below the Belt",
+   "level": 2,
+   "type": "ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 10,
+   "preTargeting": null,
+   "targeting": [
+    "Tactics Target",
+    "Last Knight to wound",
+    "Closest Knight in sight"
+   ],
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "DIFFICULTY 11+ INSTEAD",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "For each hit lose -2 [V]. One hit, gain the Distracted Condition card. Two or more hits, gain the Panicked Condition card. Tactic B. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Knockdown.",
+   "unclear": [
+    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": [],
+   "afterAttack": "AFTER ATTACK: Knockdown."
+  },
+  {
+   "name": "Thorn Snare",
+   "level": 3,
+   "type": "RANGE ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "Tactics Target",
+    "Closest Knight in range",
+    "Closest Knight in sight"
+   ],
+   "moveTag": "RANGE ATTACK 7",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 2,
+     "effect": "TACTIC A",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "Knockdown. For each hit lose -5 [V] and gain a temporary negative Speed token. Tactic B. [Peril]."
+   ],
+   "afterTag": null,
+   "after": null,
+   "unclear": [
+    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": [],
+   "afterAttack": null
+  },
+  {
+   "name": "Savage Display",
+   "level": 3,
+   "type": "JUDGEMENT",
+   "evasionDice": 3,
+   "evasionDifficulty": 11,
+   "preTargeting": null,
+   "targeting": [
+    "Tactics Target",
+    "Lone Knight",
+    "[Priority Target] Priority Target",
+    "Closest Knight in sight"
+   ],
+   "moveTag": "JUDGE",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 2,
+     "effect": "LOSE -1 [P]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "Bravery / Sagacity.",
+    "For each hit lose -3 [V]. One hit, gain the Fear Condition card and +2 [H]. Two or more hits, gain the Dread Condition card. Tactic A. [Peril]."
+   ],
+   "afterTag": null,
+   "after": null,
+   "unclear": [
+    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": [],
+   "afterAttack": null
+  },
+  {
+   "name": "Brutal Backstab",
+   "level": 3,
+   "type": "ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 9,
+   "preTargeting": null,
+   "targeting": [
+    "Lone Knight in front",
+    "[Priority Target] Priority Target",
+    "Tactics Target"
+   ],
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "TACTIC A",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "If the Attack hits, roll +2 additional [die]. For each hit lose -2 [V]. Gain the Exposed Condition card. Tactic B. [Peril]."
+   ],
+   "afterTag": null,
+   "after": null,
+   "unclear": [
+    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": [],
+   "afterAttack": null
+  },
+  {
+   "name": "Toxic Smokescreen",
+   "level": 3,
+   "type": "ZONE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 10,
+   "preTargeting": null,
+   "targeting": [
+    "Zone 3",
+    "No Knight in Zone: This Mob performs Signature"
+   ],
+   "moveTag": "ATTACK",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "+2 [die]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "For each hit lose -2 [V] and Poison 1. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Tactic A. The next non-Decoying Mob performs Dwell.",
+   "unclear": [
+    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": [],
+   "afterAttack": "AFTER ATTACK: Tactic A. The next non-Decoying Mob performs Dwell."
+  },
+  {
+   "name": "Death from Above",
+   "level": 3,
+   "type": "SIMULTANEOUS ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 9,
+   "preTargeting": null,
+   "targeting": [
+    "Clash Board"
+   ],
+   "moveTag": "ATTACK",
+   "gates": [],
+   "effects": [
+    "One hit, lose -3 [V]. Two hits, lose -5 [V]. Three or more hits, lose -5 [V] and gain the Slimed Condition card. Tactic B. [Peril]."
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "Knockdown.",
+   "unclear": [],
+   "reactWindows": [],
+   "afterAttack": "AFTER FINAL ATTACK: Knockdown."
+  },
+  {
+   "name": "Fighting Dirty",
+   "level": 3,
+   "type": "ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 10,
+   "preTargeting": null,
+   "targeting": [
+    "Engaged Knight",
+    "Last Knight to wound",
+    "Closest Knight"
+   ],
+   "moveTag": "MOVE & ATTACK",
+   "gates": [],
+   "effects": [
+    "For each hit lose -2 [V]. Knockdown. Two hits, gain the Slimed Condition card. Three or more hits, gain the Drowning Condition card. Tactic A. [Peril]. The next non-Decoying Mob performs Decoy."
+   ],
+   "afterTag": null,
+   "after": null,
+   "unclear": [],
+   "reactWindows": [],
+   "afterAttack": null
+  }
+ ],
+ "bp": [
+  {
+   "name": "Delator",
+   "level": 1,
+   "at": 4,
+   "overcome": {
+    "n": 2,
+    "effect": "Fire 1"
+   },
+   "note": null,
+   "whenRevealed": "Look at the rightmost unrevealed BP on the Mob track.",
+   "whileRevealed": null,
+   "responses": {
+    "wound": "Reveal the rightmost unrevealed BP.",
+    "fail": "Decoy.",
+    "instinct": null,
+    "critical": "You may perform a Bonus Attack!"
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Evocati",
+   "level": 1,
+   "at": 4,
+   "overcome": {
+    "n": 3,
+    "effect": "Power 1"
+   },
+   "note": null,
+   "whenRevealed": "Escalate the lowest unrevealed BP on the Mob track.",
+   "whileRevealed": null,
+   "responses": {
+    "wound": "Gain the Exposed Condition card.",
+    "fail": "Place a Generic token on the Taunt & Decoy Trait.",
+    "instinct": null,
+    "critical": "Another Knight may perform a Bonus Attack!"
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Evocati",
+   "level": 1,
+   "at": 4,
+   "overcome": {
+    "n": 3,
+    "effect": "Power 1"
+   },
+   "note": null,
+   "whenRevealed": "Escalate the lowest unrevealed BP on the Mob track.",
+   "whileRevealed": null,
+   "responses": {
+    "wound": "Gain the Exposed Condition card.",
+    "fail": "Place a Generic token on the Taunt & Decoy Trait.",
+    "instinct": null,
+    "critical": "Another Knight may perform a Bonus Attack!"
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Censor",
+   "level": 1,
+   "at": 3,
+   "overcome": {
+    "n": 2,
+    "effect": "Fire 1"
+   },
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": "Disable Responses that flip BP cards face down.",
+   "responses": {
+    "wound": "Flip the leftmost revealed BP face down.",
+    "fail": "[Peril].",
+    "instinct": null,
+    "critical": "You may flip a chosen BP card face down."
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Peregrini",
+   "level": 1,
+   "at": 2,
+   "overcome": {
+    "n": 3,
+    "effect": "Fire 2"
+   },
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "responses": {
+    "wound": "Lose -1 [H].",
+    "fail": "Tactic B. [Peril].",
+    "instinct": null,
+    "critical": "Reset your [H]."
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Peregrini",
+   "level": 1,
+   "at": 2,
+   "overcome": {
+    "n": 3,
+    "effect": "Fire 2"
+   },
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "responses": {
+    "wound": "Lose -1 [H].",
+    "fail": "Tactic B. [Peril].",
+    "instinct": null,
+    "critical": "Reset your [H]."
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Auxiliari",
+   "level": 1,
+   "at": 3,
+   "overcome": {
+    "n": 3,
+    "effect": "Fire 1"
+   },
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "responses": {
+    "wound": "Reveal the leftmost unrevealed BP.",
+    "fail": "Escalate the lowest unrevealed BP. Decoy.",
+    "instinct": null,
+    "critical": "Look at a chosen BP card."
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Auxiliari",
+   "level": 1,
+   "at": 3,
+   "overcome": {
+    "n": 3,
+    "effect": "Fire 1"
+   },
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": null,
+   "responses": {
+    "wound": "Reveal the leftmost unrevealed BP.",
+    "fail": "Escalate the lowest unrevealed BP. Decoy.",
+    "instinct": null,
+    "critical": "Look at a chosen BP card."
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Frumentari",
+   "level": 2,
+   "at": 5,
+   "overcome": {
+    "n": 3,
+    "effect": "Fire 1"
+   },
+   "note": null,
+   "whenRevealed": "Flip the rightmost revealed BP card face down.",
+   "whileRevealed": null,
+   "responses": {
+    "wound": "Flip the rightmost revealed BP card face down.",
+    "fail": "Escalate the lowest unrevealed BP.",
+    "instinct": null,
+    "critical": "You may flip a chosen BP card face down."
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Frumentari",
+   "level": 2,
+   "at": 5,
+   "overcome": {
+    "n": 3,
+    "effect": "Fire 1"
+   },
+   "note": null,
+   "whenRevealed": "Flip the rightmost revealed BP card face down.",
+   "whileRevealed": null,
+   "responses": {
+    "wound": "Flip the rightmost revealed BP card face down.",
+    "fail": "Escalate the lowest unrevealed BP.",
+    "instinct": null,
+    "critical": "You may flip a chosen BP card face down."
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Exploratore",
+   "level": 2,
+   "at": 6,
+   "overcome": {
+    "n": 4,
+    "effect": "Power 1"
+   },
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": "All Monster Attacks additionally cause -1 [V] loss.",
+   "responses": {
+    "wound": "The furthest Mob performs Signature against the Attacker.",
+    "fail": "Place a Generic token on the Taunt & Decoy Trait.",
+    "instinct": null,
+    "critical": "You may move up to 3 spaces and perform a Bonus Attack! After the Clash, see 3584."
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Speculatore",
+   "level": 2,
+   "at": 4,
+   "overcome": {
+    "n": 3,
+    "effect": "Opening 1"
+   },
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": "All Monsters have +1 [To Hit].",
+   "responses": {
+    "wound": "Escalate the lowest AI.",
+    "fail": "[Peril]. Tactic A.",
+    "instinct": null,
+    "critical": "For each Decoy, choose one Decoying Mob and attach its miniature to a base ring. That mob is no longer a Decoy."
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Speculatore",
+   "level": 2,
+   "at": 4,
+   "overcome": {
+    "n": 3,
+    "effect": "Opening 1"
+   },
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": "All Monsters have +1 [To Hit].",
+   "responses": {
+    "wound": "Escalate the lowest AI.",
+    "fail": "[Peril]. Tactic A.",
+    "instinct": null,
+    "critical": "For each Decoy, choose one Decoying Mob and attach its miniature to a base ring. That mob is no longer a Decoy."
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Arcani",
+   "level": 2,
+   "at": 4,
+   "overcome": {
+    "n": 3,
+    "effect": "Fire 1"
+   },
+   "note": null,
+   "whenRevealed": "Reveal the rightmost unrevealed BP on the Mob track.",
+   "whileRevealed": null,
+   "responses": {
+    "wound": "The next non-Decoying Mob performs Decoy.",
+    "fail": "Perform Signature against the Attacker.",
+    "instinct": null,
+    "critical": "You may discard all your Condition cards."
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Umbra",
+   "level": 3,
+   "at": 6,
+   "overcome": {
+    "n": 4,
+    "effect": "Power 1"
+   },
+   "note": null,
+   "whenRevealed": "The next non-Decoying Monster performs Decoy.",
+   "whileRevealed": null,
+   "responses": {
+    "wound": null,
+    "fail": null,
+    "instinct": "Perform Signature against the Attacker. Place a Generic token on the Taunt & Decoy Trait.",
+    "critical": "For two chosen Decoys, choose two Decoying Mobs and attach their miniatures to base rings. They are no longer Decoys."
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Invictus",
+   "level": 3,
+   "at": 8,
+   "overcome": {
+    "n": 5,
+    "effect": "Opening 1 and Break 1"
+   },
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": "Disable the Mangrove Deployment Trait.",
+   "responses": {
+    "wound": null,
+    "fail": null,
+    "instinct": "Draw AI 3 for another closest Mob from the AI deck or discard pile (prioritize the deck). Place a Generic token on the Taunt & Decoy Trait.",
+    "critical": "The Lictor Hunters flee in fear. You win!"
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Invictus Ultimae",
+   "level": 3,
+   "at": 9,
+   "overcome": {
+    "n": 5,
+    "effect": "Opening 1 and Break 1"
+   },
+   "note": null,
+   "whenRevealed": "Immediately resolve AI 3 against the last Knight to wound.",
+   "whileRevealed": null,
+   "responses": {
+    "wound": "You win the Clash!",
+    "fail": "Draw AI 3 for another closest Mob from the AI deck or discard pile (prioritize the deck). Place a Generic token on the Taunt & Decoy Trait.",
+    "instinct": null,
+    "critical": "The Lictor Hunters flee in fear. You win!"
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  },
+  {
+   "name": "Stilicho",
+   "level": 3,
+   "at": 7,
+   "overcome": {
+    "n": 4,
+    "effect": "Fire 2"
+   },
+   "note": null,
+   "whenRevealed": null,
+   "whileRevealed": "Stilicho has -1 [AT] when adjacent to any other Monster.",
+   "responses": {
+    "wound": null,
+    "fail": null,
+    "instinct": "Activate 1.",
+    "critical": "You may move up to your [Speed] and perform a Bonus Attack!"
+   },
+   "unclear": [
+    "Overcome 숫자 작은 글씨 — 확인 필요"
+   ],
+   "reactWindows": []
+  }
+ ],
+ "tactics": [
+  {
+   "name": "Ground Support Tactics",
+   "kind": "basic",
+   "tacticsTarget": "Last Knight to wound in range",
+   "tacticA": "Gain the Exposed Condition card.",
+   "tacticB": "Decoy.",
+   "endOfMonsterRound": "Starting from the lowest number, move the activated Monsters 2 spaces toward the closest Engaged Knight until adjacent.",
+   "whenDrawn": null
+  },
+  {
+   "name": "Guerrilla Tactics",
+   "kind": "basic",
+   "tacticsTarget": "Lone Knight in range",
+   "tacticA": "Gain the Slimed Condition card.",
+   "tacticB": "Decoy.",
+   "endOfMonsterRound": "Starting from the lowest number, move the activated Monsters 2 spaces toward the closest Great Mangrove Terrain tile.",
+   "whenDrawn": null
+  },
+  {
+   "name": "Ambush Tactics",
+   "kind": "basic",
+   "tacticsTarget": "Highest [V] in range",
+   "tacticA": "Decoy.",
+   "tacticB": "Gain the Distracted Condition card.",
+   "endOfMonsterRound": "Starting from the lowest number, move the activated Monsters 2 spaces toward the closest Swamp Terrain tile.",
+   "whenDrawn": null
+  },
+  {
+   "name": "Advanced Toxin Tactics",
+   "kind": "advanced",
+   "tacticsTarget": "Closest Knight with the Poisoned or Toxified Condition card in range",
+   "tacticA": "Poison 1.",
+   "tacticB": "Poison 2.",
+   "endOfMonsterRound": "Starting from the lowest number, move the activated Monsters 2 spaces directly away from most Knights.",
+   "whenDrawn": null
+  },
+  {
+   "name": "Advanced Ambush Tactics",
+   "kind": "advanced",
+   "tacticsTarget": "Highest [V] in range",
+   "tacticA": "Gain the Panicked Condition card.",
+   "tacticB": "Decoy.",
+   "endOfMonsterRound": "Starting from the lowest number, move the activated Monsters 2 spaces toward the closest Swamp Terrain tile.",
+   "whenDrawn": "When you draw this card, Escalate 1."
+  },
+  {
+   "name": "Advanced Shock & Awe Tactics",
+   "kind": "advanced",
+   "tacticsTarget": "Last Knight to wound in range",
+   "tacticA": "Gain the Fear Condition card.",
+   "tacticB": "Gain the Exposed Condition card.",
+   "endOfMonsterRound": "Starting from the lowest number, move the activated Monsters 2 spaces directly away from most Knights.",
+   "whenDrawn": null
+  }
+ ],
+ "routine": {
+  "name": "They’re in the Trees!",
+  "text": "Each Knight loses -5 [V], gains the Panicked Condition card and suffers Knockdown."
+ },
+ "signature": {
+  "name": "Suppressing Fire",
+  "level": null,
+  "type": "RANGE SIGNATURE",
+  "evasionDice": 2,
+  "evasionDifficulty": 8,
+  "preTargeting": null,
+  "targeting": [
+   "Tactics Target",
+   "[Priority Target] Priority Target"
+  ],
+  "moveTag": "RANGE ATTACK UNLIMITED",
+  "gates": [
+   {
+    "stat": "Heat",
+    "gte": 3,
+    "effect": "TACTIC A",
+    "where": "moveTag"
+   }
+  ],
+  "effects": [
+   "For each hit lose -1 [V]. Poison 1. [Peril].",
+   "The next non-Decoying Mob performs Decoy."
+  ],
+  "afterTag": null,
+  "after": null,
+  "unclear": []
+ },
+ "_notes": [
+  "Clash Setup 다이어그램 미수령",
+  "Evocati·Peregrini·Auxiliari·Frumentari·Speculatore는 각 2장"
+ ],
+ "extra": [
+  {
+   "name": "Ground Support Tactics",
+   "kind": "Basic Battle Tactics",
+   "text": "Tactics Target: Last Knight to wound in range",
+   "tacticA": "Gain the Exposed Condition card.",
+   "tacticB": "Decoy.",
+   "endOfMonsterRound": "Starting from the lowest number, move the activated Monsters 2 spaces toward the closest Engaged Knight until adjacent."
+  },
+  {
+   "name": "Guerrilla Tactics",
+   "kind": "Basic Battle Tactics",
+   "text": "Tactics Target: Lone Knight in range",
+   "tacticA": "Gain the Slimed Condition card.",
+   "tacticB": "Decoy.",
+   "endOfMonsterRound": "Starting from the lowest number, move the activated Monsters 2 spaces toward the closest Great Mangrove Terrain tile."
+  },
+  {
+   "name": "Ambush Tactics",
+   "kind": "Basic Battle Tactics",
+   "text": "Tactics Target: Highest [V] in range",
+   "tacticA": "Decoy.",
+   "tacticB": "Gain the Distracted Condition card.",
+   "endOfMonsterRound": "Starting from the lowest number, move the activated Monsters 2 spaces toward the closest Swamp Terrain tile."
+  },
+  {
+   "name": "Advanced Toxin Tactics",
+   "kind": "Advanced Battle Tactics",
+   "text": "Tactics Target: Closest Knight with the Poisoned or Toxified Condition card in range",
+   "tacticA": "Poison 1.",
+   "tacticB": "Poison 2.",
+   "endOfMonsterRound": "Starting from the lowest number, move the activated Monsters 2 spaces directly away from most Knights."
+  },
+  {
+   "name": "Advanced Ambush Tactics",
+   "kind": "Advanced Battle Tactics",
+   "text": "Tactics Target: Highest [V] in range · When you draw this card, Escalate 1.",
+   "tacticA": "Gain the Panicked Condition card.",
+   "tacticB": "Decoy.",
+   "endOfMonsterRound": "Starting from the lowest number, move the activated Monsters 2 spaces toward the closest Swamp Terrain tile."
+  },
+  {
+   "name": "Advanced Shock & Awe Tactics",
+   "kind": "Advanced Battle Tactics",
+   "text": "Tactics Target: Last Knight to wound in range",
+   "tacticA": "Gain the Fear Condition card.",
+   "tacticB": "Gain the Exposed Condition card.",
+   "endOfMonsterRound": "Starting from the lowest number, move the activated Monsters 2 spaces directly away from most Knights."
+  }
+ ],
+ "clashSetup": {
+  "page": "58",
+  "requiredTiles": [
+   "10x Swamp I",
+   "3x Great Mangrove"
+  ],
+  "notes": [
+   "Note that some miniatures and tokens are placed on Terrain tiles!",
+   "This Clash uses numbered Terrain tiles—we advise placing the numbered Generic tokens on these Terrain tiles according to the diagram as a reminder."
+  ],
+  "steps": [
+   "Standard Preparations (Rulebook p.44)",
+   "Monster Positioning: Place 8 BP 1 and 2 BP 2 cards face down in a random order on spaces 1–10 on the Mob track. Put randomly chosen numbered base rings on 4 Firstman Lictor Hunter miniatures. Then, place those numbered Firstman Lictor Hunters miniatures on the spaces designated on the diagram and all other Firstman Lictor Hunter miniatures on spaces designated as Decoys (marked with the letter D) on the diagram. Note the facing direction indicated by the arrows.",
+   "Additional Setup: Follow additional Clash Setup instructions introduced by Traits (if any). Set aside all Battle Tactics cards not used in this Clash."
+  ],
+  "mobStart": [
+   [
+    "I11",
+    "S"
+   ],
+   [
+    "F12",
+    "W"
+   ],
+   [
+    "E5",
+    "N"
+   ],
+   [
+    "C9",
+    "N"
+   ]
+  ],
+  "decoyStart": [
+   [
+    "I5",
+    "S"
+   ],
+   [
+    "I10",
+    "S"
+   ],
+   [
+    "G5",
+    "E"
+   ],
+   [
+    "F2",
+    "E"
+   ],
+   [
+    "D6",
+    "E"
+   ],
+   [
+    "B5",
+    "N"
+   ]
+  ],
+  "knightStart": [
+   "G8",
+   "G10",
+   "E8",
+   "E10"
+  ],
+  "terrain": [
+   {
+    "tile": "swamp",
+    "shape": "I",
+    "cells": [
+     "J5",
+     "I5"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "shape": "I",
+    "cells": [
+     "I10",
+     "I11"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "shape": "I",
+    "cells": [
+     "G5",
+     "G6"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "shape": "I",
+    "cells": [
+     "F1",
+     "F2"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "shape": "I",
+    "cells": [
+     "G9",
+     "F9"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "shape": "I",
+    "cells": [
+     "F12",
+     "E12"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "shape": "I",
+    "cells": [
+     "E5",
+     "E6"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "shape": "I",
+    "cells": [
+     "D5",
+     "D6"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "shape": "I",
+    "cells": [
+     "C9",
+     "C10"
+    ]
+   },
+   {
+    "tile": "swamp",
+    "shape": "I",
+    "cells": [
+     "B4",
+     "B5"
+    ]
+   },
+   {
+    "tile": "great mangrove",
+    "n": 1,
+    "cells": [
+     "I2",
+     "I3",
+     "H2",
+     "H3"
+    ]
+   },
+   {
+    "tile": "great mangrove",
+    "n": 2,
+    "cells": [
+     "J13",
+     "J14",
+     "I13",
+     "I14"
+    ]
+   },
+   {
+    "tile": "great mangrove",
+    "n": 3,
+    "cells": [
+     "C12",
+     "C13",
+     "B12",
+     "B13"
+    ]
+   }
+  ],
+  "unclear": [
+   "Decoy 표시(D)는 흰 탭이 붙은 마커 6개로 읽음: I5, I10, G5, F2, D6, B5 — 확인 필요"
+  ],
+  "aftermath": {
+   "victoriousSearch": "Clash Scavenge 1 and Scavenge 3",
+   "forlornSearch": "Scavenge 3"
+  }
+ }
+}

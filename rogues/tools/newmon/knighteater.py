@@ -1,0 +1,70 @@
+from common import *
+MA = 'MOVE & ATTACK'; AB = 'APPEAR BEHIND & ATTACK'; AF = 'AFTER FINAL ATTACK'
+H = lambda n, t, w='moveTag': [dict(stat='Heat', gte=n, effect=t, where=w)]
+GU = ['Heat 게이트 숫자 작은 글씨 — 확인 필요']
+sheet = dict(name='Knighteater', code='26B1080', traitsLine=['Vassal', 'Knight', 'Hunter', 'Hunger'], footprint='2x2, the two cells behind are Rear + Blindspot', basicAbilities=['Unavoidable Knockback 4', 'Blindspot'],
+ levels={1: L('5+', 8, 2, ['AI'], ['Starved Slaughterman', 'Frenzied Hunger', 'Meatbait', 'Measured Movement', 'Kingdom Trait (see Clash Setup)']), 2: L('6+', 10, 4, ['AI'], ['Brute', 'Glutton'], esc=1, at=2, vig=1),
+         3: L('7+', 10, 4, ['AI'], ['Living Up to the Name'], esc=1, at=4, vig=2), 4: L('8+', 10, 4, ['AI'], ['Feral Guard'], esc=2, at=6, vig=3)},
+ traits=[
+  dict(name='Starved Slaughterman', level=1, text='Additional Setup: At the start of the Clash each Knight may perform [Peril] to place 1 Fleisch token in the Knight Pool. If you draw a positive Mortis card, ignore its effects. If you draw a negative Mortis card, resolve it. Squires ignore this Additional Setup.\n\nWolf Down X: Discard X Fleisch tokens from the Knight Pool, then:\n• If not Berserk, and you discarded less than X, the Knighteater immediately becomes Berserk.\n• If not Berserk, and you discarded exactly X, Knighteater gains 1 Armor [Armor] token and remains not Berserk.\n• If Berserk, and you discarded exactly X, the Knighteater stops being Berserk and gains 1 Armor [Armor] token.\n• If Berserk, and you discarded less than X, a random adjacent Knight loses -X [V] and Knighteater remains Berserk.'),
+  dict(name='Frenzied Hunger', level=1, text='When the Knighteater becomes Berserk, place the [Priority Target] Priority Target token on its Sheet (Knights cannot gain the [Priority Target] token as long as it is on Knighteater’s Sheet).\nWhile Berserk, all Knighteater Attacks, if two or more Knights are equally viable Targets of the Attack, become Sequential Attacks, and the Knighteater attacks all Targets starting from the closest.\nWhen the Knighteater stops being Berserk, the Knight with the highest [P] gains the [Priority Target] token. If it stops being Berserk during an Attack, Chain Break that Attack.'),
+  dict(name='Meatbait', level=1, text='When you attack, you may attack with -2 Precision to place X Fleisch tokens in the Knight Pool, where X is the Knighteater’s Level.'),
+  dict(name='Measured Movement', level=1, text='The Knighteater does not destroy Terrain tiles when moving through them. When the Knighteater ends its movement on a Column Terrain tile, do not destroy it, move it to an adjacent space instead.'),
+  dict(name='Brute', level=2, text='Each time the Knighteater gains a Wound (a Double Wound is treated as 2 Wounds) or gains an Armor [Armor] token, place a Generic token on this Trait. If there are 3 or more Generic tokens on this Trait, finish resolving the current action, discard all Generic tokens from this Trait and all Armor [Armor] tokens, then perform Signature.'),
+  dict(name='Glutton', level=2, text='All BP cards without Ultrainstinct Responses gain: ULTRAINSTINCT [React]: Wolf Down X, where X is the Knighteater’s Level (as denoted on the BP cards).'),
+  dict(name='Living Up to the Name', level=3, text='During Wolf Down X, if the Knighteater is Berserk and you discarded less than X, ignore the [V] loss, and a random adjacent Knight is devoured (dies) instead. Then, the Knighteater stops being Berserk.'),
+  dict(name='Feral Guard', level=4, text='The Knighteater cannot be wounded if it is Berserk.')],
+ kingdomTraits=[dict(name='Iron Confines', kingdom='Principality of Stone', text='Start of Monster Round: If the Knighteater is not Berserk, it gains 1 Armor [Armor] token.\n\nWhen the Knighteater stops being Berserk, it gains 1 Armor [Armor] token.'),
+                dict(name='Adaptable', kingdom='Sunken Kingdom', text='When the Knighteater ends its movement, if it moved through or onto a Terrain tile, place a 1x2 Swamp Terrain tile in its Blindspot spaces.')])
+LP = ['Lowest Peril Threshold', 'Closest Squire']; HP = ['Highest Peril Threshold', 'Closest Squire']; KF = ['Knight in front', 'Knight in sight']
+CENTER = 'moves to the center of the Clash Board and turns to face the most Knights.'
+ai = [
+ A('Tongue Twister', 1, 'ATTACK', 6, 6, LP, AB, ['For each hit lose -1 [V], Wolf Down 1 and Drag 1. [Peril].']),
+ A('Terrorizing Presence', 1, 'JUDGEMENT', 2, 11, ['Highest Peril Threshold'], 'APPEAR BEHIND & JUDGE', ['Bravery / Fortitude.', 'For each hit lose -2 [V]. [Peril].', 'Gain the Fear Condition card.'], 'Wolf Down 1.', AF, gates=H(3, '+1 [die]'), pre='Wolf Down 1.', unclear=GU),
+ A('Armor Cracker', 1, 'ATTACK', 2, 9, ['Furthest Knight in front', 'Furthest Knight in sight'], MA, ['Penetrate. For each hit lose -3 [V].', '[Peril].'], 'Exhaust your Armor [Gear] card.', AF, gates=H(3, '+1 [die]'), pre='Wolf Down 2.', unclear=GU),
+ A('Fencer’s Thrust', 1, 'ATTACK', 3, 8, ['Closest Knight in front', 'Closest Knight in sight'], MA, ['One hit, lose -2 [V]. Two hits, lose -5 [V].', 'Three or more hits, lose -7 [V]. [Peril].'], 'Knighteater gains an Armor [Armor] token.', AF, gates=H(4, 'PENETRATE'), unclear=GU),
+ A('Lung Vorspeisen', 1, 'ATTACK', 2, 8, ['Closest Knight not in front', 'Closest Knight in sight'], AB, ['For each hit lose -3 [V]. [Peril].', 'Gain the Fear Condition card.', 'Drag 2.'], 'Wolf Down 2.', AF, gates=H(3, '+1 [die]'), unclear=GU),
+ A('Scraps Disposal', 1, 'ATTACK', 4, 9, ['Lowest Peril Threshold'], MA, ['For each hit lose -1 [V].', '[Peril].', 'Exhaust your Weapon [Gear] card.', 'Forced Vault.'], 'Knighteater moves 2 spaces directly away from the Target.', AF, gates=H(3, '-2 [V] INSTEAD', 'effect:0'), pre='Wolf Down 2.', unclear=GU),
+ A('Ritterspieße', 2, 'ATTACK', 3, 7, HP, MA, ['For each hit lose -3 [V]. [Peril]. Exhaust your Armor [Gear] card. Forced Vault.', 'If this Vault would cause Crash, [Peril] instead.'], 'Wolf Down 3.', AF),
+ A('Debilitating Crush', 2, 'ATTACK', 2, 8, ['Knight with a [two-handed?] Weapon', 'Highest Peril Threshold'], MA, ['Penetrate. For each hit lose -4 [V].', '[Peril]. Gain the Dread Condition card.'], 'Exhaust your Weapon [Gear] card.', AF, gates=H(3, '+1 [die]') + H(2, 'WOLF DOWN 1', 'after'), pre='Wolf Down 2.', unclear=GU + ['Targeting 첫 줄 "Knight with a [아이콘] Weapon" — 아이콘 종류 확인 필요']),
+ A('Can Opener', 2, 'ATTACK', 3, 7, ['Knight in front', 'Furthest Knight in sight'], AB, ['Penetrate. For each hit lose -3 [V]. [Peril].', 'Forced Vault.'], 'Discard your Armor [Gear] card. You may [Peril] to Exhaust your Armor [Gear] card instead.', AF, gates=H(3, '+1 [die]'), pre='Wolf Down 2.', unclear=GU),
+ A('Lamb to Slaughter', 2, 'ATTACK', 3, 7, ['Knight not in front', 'Closest Knight in sight'], AB, ['For each hit lose -3 [V]. [Peril].', 'Gain the Fear Condition card.', 'Drag 3.'], 'Wolf Down 2. Wolf Down 1.', AF, gates=H(3, 'PENETRATE'), unclear=GU),
+ A('Playing with Your Food', 2, 'ATTACK', 2, 8, ['Highest [P]'], MA, ['Place the Knighteater on a space on the other side of and adjacent to the Target (if possible).', 'For each hit lose -4 [V].', '[Peril].', 'Forced Vault. Knockback 3.'], 'Exhaust all your exhaustable Gear [Gear] cards.', AF, gates=H(2, '-5 [V] INSTEAD', 'effect:1'), unclear=GU),
+ A('Hit and Run', 2, 'ATTACK', 4, 6, ['Knight in front', 'Closest Knight in sight'], AB, ['One hit, lose -3 [V]. Two hits, lose -7 [V]. Three hits, lose -10 [V]. Four or more hits, lower your [V] to 0 and you are devoured (die). [Peril].'], 'Knighteater ' + CENTER, AF, pre='Wolf Down 3.'),
+ A('Offal Harvest', 3, 'ATTACK', 2, 8, ['Knight not in front', 'Knight in sight'], AB, ['Penetrate. For each hit lose -5 [V]. [Peril].', 'If you would draw a Judicium from this Attack, you are devoured (die) instead. Gain the Fear Condition card.'], 'Wolf Down 2.', AF, gates=H(5, '+1 [die]'), pre='Wolf Down 3.', unclear=GU),
+ A('Knight Smash!', 3, 'ATTACK', 6, 7, ['Lowest [P]'], MA, ['Drag 2. For each hit lose -2 [V] and Forced Vault. [Peril]. Knockback 5 in a random direction.']),
+ A('Blood-Drenched Butchery', 3, 'ATTACK', 3, 7, KF, MA, ['Penetrate. For each hit lose -4 [V]. [Peril].', 'Gain the Dread Condition card.', 'Forced Vault.'], 'Exhaust your Armor [Gear] card. Wolf Down 2.', AF, gates=H(3, 'DIFFICULTY 10+ INSTEAD'), pre='Wolf Down 2.', unclear=GU),
+ A('Knight Opener', 3, 'ATTACK', 3, 7, KF, MA, ['Discard your Armor [Gear] card. One hit, lose -5 [V]. Two hits, lose -11 [V]. Three or more hits, lower your [V] to 0 and you are devoured (die). [Peril].'], 'Each Knight that has LoS to Knighteater or the Target gains the Dread Condition card.', AF, pre='Wolf Down 3.'),
+ A('Dine and Dash', 3, 'ATTACK', 5, 8, HP, AB, ['For each hit lose -2 [V] and Wolf Down 2. [Peril].'], 'The Knighteater ' + CENTER, AF, gates=H(1, '+1 [die]'), unclear=GU),
+ A('Personal Vendetta', 3, 'ATTACK', 2, 8, ['Fleischritter', 'Highest Peril Threshold'], AB, ['If hit, lower your [V] to 0, you are devoured (die). If you survive, gain the Dread Condition card.'], 'Discard your Weapon [Gear] card. Wolf Down X, where X is the number of Fleisch tokens in the Knight Pool.', AF, gates=H(3, '+1 [die]'), unclear=GU),
+]
+WDX = 'LEVEL 2+ ▸ Wolf Down X, where X is Knighteater’s level.'
+def K(name, level, at, oc, ultra=None, **kw):
+    b = B(name, level, at, None, **kw); b['overcome'] = dict(tag=oc[0], n=oc[1], effect=oc[2]); b['responses']['ultrainstinct'] = ultra; b['unclear'] = ['Overcome/Overpower 숫자 작은 글씨 — 확인 필요']; return b
+OC1 = lambda n: ('OVERCOME', n, 'Discard 1 Armor [Armor] token'); OC2 = lambda n: ('OVERCOME', n, 'Discard 2 Armor [Armor] tokens'); OP = lambda n, f: ('OVERPOWER', n, f'Fleisch {f}')
+AWAY = lambda n: f'The Knighteater moves {n} space{"s" if n > 1 else ""} directly away from the Attacker, stopping before any Obstacles (without turning).'
+PTBA = 'Gain the [Priority Target] Priority Target token. You may perform a Bonus Attack!'; F2 = 'You may immediately place up to 2 Fleisch tokens in the Knight Pool.'
+VOL = 'You may voluntarily end this Attack before performing a Power Roll. If you do, remove all tokens from the Knight Pool.'
+FWD = 'Knighteater moves 3 spaces directly forward and turns to face the Attacker.'
+bp = [
+ K('Trophy Knight', 1, 4, OP(2, 2), WDX, wound='Drag 2. Forced Vault.', fail='Discard 1 Armor [Armor] token.', critical=F2),
+ K('Rusting Breastplate', 1, 5, OC1(3), WDX, wound='Fleisch 1. ' + FWD, critical=PTBA),
+ K('Emergency Snack', 1, 5, OC1(3), WDX, wound='Gain the Fear Condition card. Fleisch 1. Forced Vault.', critical=F2),
+ K('Tattered Garments', 1, 4, OC1(2), AWAY(1), fail='Wolf Down 2.', critical=PTBA),
+ K('Tight Tassets', 1, 3, OP(2, 1), WDX, wound=FWD, fail='Wolf Down 2. Discard 1 Armor [Armor] token.', critical=PTBA),
+ K('Tarnished Sabatons', 1, 3, OC1(2), AWAY(1), fail='Wolf Down 2.', critical='All Knights gain Tumble until the end of Clash.'),
+ K('Gruesome Display', 2, 5, OP(2, 1), WDX, wound='Forced Vault. If this Vault would cause Crash, [Peril] instead. Gain the Fear Condition card.', critical=F2),
+ K('Riddled Plackart', 2, 6, OC2(4), 'Pushback 2, stopping before any Obstacles.', fail='Wolf Down 2. Discard 1 Armor [Armor] token.', critical='Scavenge 2.'),
+ K('Grim Visage', 2, 6, OP(1, 1), AWAY(1), wound='Fleisch 1. Gain the Dread Condition card.', fail='Wolf Down 2. Gain the Fear Condition card. Discard 2 Armor [Armor] tokens.', critical='Discard all Fear and Dread Condition cards from all Knights. Disable gaining those Condition cards.'),
+ K('Spiky Pauldron', 2, 5, OC1(3), WDX, instinct='The Knighteater moves 3 spaces directly away from the Attacker (without turning). Fleisch 1.', critical=PTBA),
+ K('Cannibal’s Mouthpiece', 2, 3, OP(2, 2), WDX, note=VOL, wound='Fleisch 1. Drag 2.', fail='Wolf Down 2. Discard 2 Armor [Armor] tokens. The Knighteater moves adjacent to you, and you are devoured (die).', critical='All Instant Death effects become Judicium Draws.'),
+ K('Rickety Knees', 2, 4, OC1(3), AWAY(2), instinct='Wolf Down 1. Drag 2.', critical='All Ultrainstinct Responses become Instinct Responses.'),
+ K('Famished Maw', 3, 7, OP(1, 1), 'Pushback 3, stopping before any Obstacles.', wound='Gain the Dread Condition card. Forced Vault.', fail='Wolf Down 4. Discard 2 Armor [Armor] tokens.', critical='Disable the Wolf Down X keyword.'),
+ K('Overtuned Ear Canal', 3, 7, OC2(4), AWAY(3), wound='The Knighteater moves 5 spaces in a random direction.', fail='The Knighteater moves to the center of the Clash Board and turns to face the Attacker.', critical='Disable Ultrainstinct Responses.'),
+ K('Monstrous Stomach', 3, 6, OC1(5), WDX, note=VOL, wound='Wolf Down 3. Wolf Down 2. Wolf Down 1.', fail='Wolf Down 4. Discard 1 Armor [Armor] token. The Knighteater moves adjacent to you, and you are devoured (die).', critical='The Knighteater stops being Berserk. You may immediately place up to 4 Fleisch tokens in the Knight Pool.'),
+ K('Intestinal Panzerparasite', 3, 7, OP(2, 2), WDX, wound='Parasitize 2. Fleisch 1.', fail='Wolf Down 2. Discard 2 Armor [Armor] tokens.', critical='Disable Armor [Armor] tokens.'),
+ K('Knightcrackers', 3, 6, OP(2, 2), 'Pushback 3, stopping before any Obstacles.', instinct='Wolf Down 2. Discard 2 Armor [Armor] tokens. Forced Vault. If this Vault would cause Crash, [Peril] instead.', critical='Scavenge 2.'),
+ K('Ravenous Heart', 3, 8, OC2(4), AWAY(2), wound='Gain the Dread Condition card. Fleisch 1. The Knighteater moves 4 spaces directly away from the Attacker (without turning).', fail='All Knights adjacent to the Knighteater gain the Fear Condition card.', critical='The Knighteater dies!'),
+]
+write('knighteater', dict(sheet=sheet, ai=ai, bp=bp, routine=dict(name='The Devouring', text='Discard all Fleisch tokens from the Knight Pool. Knighteater moves to the closest Knight, then all adjacent Knights are devoured (die).'), signature=None,
+ _notes=['Signature 카드, Clash Setup 다이어그램 미수령', '여러 AI 카드에 Targeting 앞 "Wolf Down N" 줄(React 창 포함)이 있음 — pre 필드', 'Parasitize 키워드 정의 필요']))
