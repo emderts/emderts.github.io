@@ -5,7 +5,7 @@ const inHand = (k, name) => k && k.hand ? k.hand.find(t => t.name === name && t.
 
 export const ExtrasMixin = {
   /** Start of turn: Unshakeable's ignored Condition cards come back; Armed with Truth expires. */
-  extrasTurnStart(k) { this._turnKnight = k; if (k._shelved && k._shelved.length) { for (const c of k._shelved) { k.conditions.push(c); this.say(`${k.name}: ${c.id} 다시 적용 (Unshakeable 종료)`, 'cond'); } k._shelved = []; } k._keepRanged = false; },
+  extrasTurnStart(k) { this._turnKnight = k; if (k._shelved && k._shelved.length) { for (const c of k._shelved) { k.conditions.push(c); this.say(`${k.name}: ${c.id} 다시 적용 (Unshakeable 종료)`, 'cond'); } k._shelved = []; } k._keepRanged = false; k._keepAny = false; },
   /** Know Thine Enemy: draw the first BP of a chosen Level. */
   async extrasDrawBP(k) {
     const d = this.monster.bp; const t = inHand(k, 'Know Thine Enemy'); const lv = t ? [...new Set(d.cards.map(c => c.level))].sort() : [];
@@ -33,7 +33,7 @@ export const ExtrasMixin = {
     switch (o.op) {
       case 'timed': case 'doublestrike': case 'overwhelm': return true;
       case 'unshakeable': { if (!k.conditions.length) { this.say(`${k.name}: Condition 카드 없음`); return true; } const i = k.conditions.length > 1 ? await this.ask({ type: 'pick', knight: k.id, text: `${k.name}: Unshakeable — ${o.discard ? '버릴' : '다음 턴 시작까지 무시할'} Condition`, options: k.conditions.map((c, i) => ({ label: c.id, value: i })) }) : 0; const c = k.conditions.splice(i || 0, 1)[0]; if (o.discard) this.say(`${k.name}: ${c.id} 버림`, 'tech'); else { (k._shelved = k._shelved || []).push(c); this.say(`${k.name}: ${c.id} — 다음 턴 시작까지 무시`, 'tech'); } return true; }
-      case 'armedWithTruth': k._keepRanged = true; this.say(`${k.name}: 이번 턴 Ranged 무기의 다음 Exhaust 무시`, 'tech'); return true;
+      case 'armedWithTruth': { let any = false; if (this.zealAvail(k) >= 1) { const v = await this.ask({ type: 'pick', knight: k.id, text: `${k.name}: Armed with Truth`, options: [{ label: 'Ranged 무기의 다음 Exhaust 무시', value: 'r' }, { label: 'Zeal 1 사용 → 아무 Gear의 다음 Exhaust 무시', value: 'a' }] }); if (v === 'a') { await this.paraChooseSource(k, 1); this.spendZeal(k, 1); any = true; } } if (any) k._keepAny = true; else k._keepRanged = true; this.say(`${k.name}: 이번 턴 ${any ? 'Gear' : 'Ranged 무기'}의 다음 Exhaust 무시`, 'tech'); return true; }
       case 'piousAttack': { const mx = this.zealAvail(k); const extra = mx > 0 ? await this.ask({ type: 'pick', knight: k.id, text: `${k.name}: Power of the Pious — X (Zeal, 1개는 이미 지불)`, options: Array.from({ length: mx + 1 }, (_, i) => ({ label: `X = ${mx + 1 - i}`, value: mx - i })) }) : 0; const ex = typeof extra === 'number' ? extra : 0; if (ex > 0) { await this.paraChooseSource(k, ex); this.spendZeal(k, ex); } const X = 1 + ex;
         const w = { name: 'Sword of Smiting', type: 'weapon', hands: 0, attackDice: 1, precision: 2, weaponPower: { n: 3, colour: 'red', dice: ['red', 'red', 'red'] }, bonusPower: { dice: ['black', 'black'] }, text: `Reach ${X}. Daze.${X >= 1 ? ' Break 3.' : ''}${X >= 2 ? ' Deadly.' : ''}`, traits: [], exhausted: false, discarded: false };
         if (!this.attackTargets(k, w).length) { this.say('Sword of Smiting: 사거리 안에 대상 없음'); return true; }
@@ -62,6 +62,7 @@ export function installExtras(Clash) {
     if (t && await this.paraUse(k, t, `비자발적 이동 ${n}칸`)) { const red = this.fx.tierOk(k, 'DEVIL') ? 4 : 3; let v = 'reduce'; if (this.canUnleash(k, 7)) v = await this.ask({ type: 'pick', knight: k.id, text: `${k.name}: Knight Stand`, options: [{ label: 'Unleash 7 → Braced', value: 'braced' }, { label: `이동을 최대 ${red}칸 줄임`, value: 'reduce' }] }) || 'reduce'; if (v === 'braced') { this.unleash(k, 7); this.say(`${k.name} Braced: 밀려나지 않음`, 'tech'); return; } n = Math.max(0, n - red); this.say(`${k.name}: Knight Stand — 비자발적 이동 → ${n}칸`, 'tech'); if (!n) return; }
     return pb.call(this, k, n, opt);
   };
+  const kd = P.knockdown; P.knockdown = async function (k, ...a) { const cfg = this.lsCfg(); const at = this.currentAttack; if (k.alive && cfg && cfg.kbReduce && this.lsOnMonster() && at && (at.targets || []).length === 1 && await this.yesNo(`${k.name}: Steadfast Supporter (Little Ser — Monster Sheet) — Knockdown 무시?`, true)) { this.say(`${k.name}: Knockdown 무시`, 'tech'); return; } return kd.call(this, k, ...a); };
   const dm = P.drawMortis; P.drawMortis = async function (...a) { this._inMortis = (this._inMortis || 0) + 1; try { return await dm.apply(this, a); } finally { this._inMortis--; } };
   const die = P.die; P.die = async function (k, reason) {
     if (!k.alive) return;

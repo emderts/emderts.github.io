@@ -182,7 +182,7 @@
       }
      ],
      "unclear": [
-      "Clash Board: treating Little Ser as Ser Sonch's miniature when attacking is not implemented"
+      "Clash Board: offered as a free action — Ser Sonch attacks from Little Ser's space with Little Ser's Weapon, then returns to his own space"
      ]
     },
     {
@@ -213,9 +213,7 @@
        "kbReduce": 2
       }
      ],
-     "unclear": [
-      "Monster Sheet: ignoring Knockdown is not implemented"
-     ]
+     "unclear": []
     },
     {
      "name": "Bear a Grudge",

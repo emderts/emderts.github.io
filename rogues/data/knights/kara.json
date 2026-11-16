@@ -1949,9 +1949,7 @@
    "text": "Immediately perform a [Judicium draw]. You may use this Technique as a free action or as a [Reaction].",
    "gates": [],
    "depletion": "discard",
-   "unclear": [
-    "Reaction use is not implemented (free action only)"
-   ],
+   "unclear": [],
    "ops": [
     {
      "op": "judicium"
@@ -1963,7 +1961,8 @@
     "token": "Fire",
     "n": 1,
     "depletion": "discard"
-   }
+   },
+   "alsoReaction": true
   },
   {
    "name": "Knight in Shining Armor",
@@ -2024,7 +2023,7 @@
    "gates": [],
    "depletion": "delay",
    "unclear": [
-    "Reaction use and non-Knight Allies are not implemented"
+    "Non-Knight Allies are not implemented"
    ],
    "ops": [
     {
@@ -2037,7 +2036,8 @@
     "token": "Closing",
     "n": 1,
     "depletion": "delay"
-   }
+   },
+   "alsoReaction": true
   },
   {
    "name": "Can't Catch Me!",

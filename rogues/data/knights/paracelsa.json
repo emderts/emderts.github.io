@@ -1725,7 +1725,7 @@
    "gates": [],
    "depletion": "cooldown",
    "unclear": [
-    "Used as a free action: this turn the next Exhaust (as a cost) of a Ranged Weapon is ignored; the Zeal option is not implemented"
+    "Used as a free action: this turn the next Exhaust (as a cost) of a Ranged Weapon is ignored; with 1 Zeal it applies to any Gear card instead"
    ],
    "ops": [
     {
