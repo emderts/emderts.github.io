@@ -14,4 +14,4 @@ sheet = dict(name='Bog Witch', code='26B1079', traitsLine=['Vassal', 'Spellcaste
   dict(name='Cookie Crumbs', level=3, text='Each time the Bog Witch gains a Wound (a Double Wound is treated as 2 Wounds), place a Generic token on this Trait. Depending on the number of Generic tokens on this Trait at the end of the Monster Round the Bog Witch:\n3–5: Performs Signature.\n6–8: Performs an AI instead.\n9+: Performs Signature, then performs an AI.'),
   dict(name='The Crone of the Bog', level=4, text='End of Monster Round: If the Bog Witch is not on the Clash Board, a random Knight gains the Hex of the top AI card as if it was just performed against them.')],
  unclear=['Level 3 Vigor 보너스: 시트 인쇄는 +4, 참고 시트(v1.3)는 "Q&A: +1이 맞음" — 어느 쪽을 쓸지 확인 필요'])
-write('bog_witch', dict(sheet=sheet, ai=AI, bp=BP, routine=ROUTINE, signature=None, _notes=['Clash Setup 다이어그램 미수령', 'Zone 다이어그램은 구현 시 확대 판독', 'Hex: AI 카드 하단에 Hex 유형/이름/효과']))
+write('bog_witch', dict(sheet=sheet, ai=AI, bp=BP, routine=ROUTINE, signature=None, _notes=['Clash Setup 다이어그램 미수령', 'Hex: AI 카드 하단에 Hex 유형/이름/효과']))

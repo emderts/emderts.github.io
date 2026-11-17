@@ -3,7 +3,7 @@ CF = ['Closest Knight in front', 'Closest Knight in sight']; CN = ['Closest Knig
 MA = 'MOVE & ATTACK'; EX = '[Peril]. Exhaust 1 Gear [Gear] card with the Metal Trait.'
 G = lambda t: [dict(stat='Heat', gte=3, effect=t, where='effect')]
 T35 = ['One hit, lose -3 [V].', 'Two or more hits, lose -5 [V].']; SIG = 'Perform Signature against the Attacker.'; RUB = 'Place a 2x2 Rubble Terrain tile under the Attacker.'
-ZU = ['Zone 다이어그램(붉은 칸) 판독 필요']; GU = ['Heat 3+ 리본의 숫자(-2/-3 [V]) 작은 글씨 — 확인 필요']
+ZU = ['@ZONE']; GU = ['Heat 3+ 리본의 숫자(-2/-3 [V]) 작은 글씨 — 확인 필요']
 sheet = dict(name='Stonemason Knight', code='26B1077', traitsLine=['Vassal', 'Knight', 'Construct', 'Stone'], footprint='2x2, rear = the two cells behind (R R), four Ward Nodes (one per side)', basicAbilities=['Unavoidable Knockback 5', 'Ignore Difficult Terrain'],
  levels={1: L('6+', 8, 2, ['AI'], ['Lodestone Armor', 'Architect of Destruction', 'Ruin']), 2: L('7+', 10, 4, ['AI'], ['Uneven Footing', 'Buried Alive'], at=1, vig=2),
          3: L('8+', 10, 4, ['AI'], ['Magnetite Reinforcement', 'Impervious Armor'], esc=1, at=2, vig=3), 4: L('10+', 10, 4, ['AI'], ['Unwavering Devotion', 'Ferrospikes'], esc=1, at=3, vig=6)},
@@ -59,5 +59,9 @@ bp = [
  B('Sliver of Faith', 3, 7, P(4), fail='Bane 2.', instinct=SIG, critical='Devote.', unclear=OU),
  B('Magnetite Core', 3, 9, P(5), instinct=DIS, critical='The Stonemason Knight dies! See 5442.', unclear=OU),
 ]
+ZD = {'Backhand Swat': '정면에 붙은 2칸 [▶▶■ / ▶▶■]', 'Flattening Swipe': '정면 2x2 + 그 안쪽 열의 위·아래 대각 2칸씩 = 8칸 [·■■· / ▶▶■■ / ▶▶■■ / ·■■·]', 'Hammer Launch': '정면 2줄 x 4칸 = 8칸 [▶▶■■■■ / ▶▶■■■■]',
+      'Stone Smite': '정면 2칸 + 그 바깥 대각 2칸 = 4칸 [···■ / ▶▶■· / ▶▶■· / ···■]', 'Toppling Sweep': 'Stonemason 주변 마름모 20칸 [가로 2·4·6·6·4·2칸, 가운데 2x2가 Stonemason]', 'Mass Driver': '정면 2줄이 보드 끝까지 [▶▶■■■■…]',
+      'Force Discharge': 'Stonemason 주변 큰 마름모 36칸 [가로 2·4·6·8·8·6·4·2칸, 가운데 2x2가 Stonemason]'}
+for c in ai: c['unclear'] = ['Zone (카드 도식에서 읽음, ▶=Stonemason 정면 방향): ' + ZD[c['name']] + '. 구현됨 — 판독 확인만 필요' if u == '@ZONE' else u for u in c['unclear']]
 write('stonemason_knight', dict(sheet=sheet, ai=ai, bp=bp, routine=dict(name='Magnetopress', text='Each Knight exhausts 1 Gear [Gear] card with the Metal Trait and gains 1 Bane [Bane] token.'), signature=None,
  _notes=['Signature 카드, Clash Setup 다이어그램 미수령', 'Zone Attack 다이어그램은 구현 시 확대 판독']))
