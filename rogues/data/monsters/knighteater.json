@@ -1,0 +1,2963 @@
+{
+ "id": "knighteater",
+ "name": "Knighteater",
+ "kind": "boss",
+ "code": "26B1080",
+ "traitsLine": [
+  "Vassal",
+  "Knight",
+  "Hunter",
+  "Hunger"
+ ],
+ "_source": "Monster Sheet (2 pages), AI/BP/Routine/Kingdom Trait card sheet, Signature card — owner scans 2026-11-17; reference sheet Knighteater; Clash Setup: expansion Codex p.50–51",
+ "footprint": {
+  "size": 4,
+  "shape": "2x2",
+  "rear": "the 2 cells directly behind the footprint",
+  "blindspots": "both rear cells",
+  "facingOnSheet": "down"
+ },
+ "basicAbilities": [
+  {
+   "name": "Unavoidable Knockback 4"
+  },
+  {
+   "name": "Blindspot"
+  }
+ ],
+ "levels": {
+  "1": {
+   "toHit": 5,
+   "wounds": 8,
+   "exhibitionWounds": 2,
+   "activations": [
+    "AI"
+   ],
+   "activationsText": "1 AI",
+   "traitsAdd": [
+    "Starved Slaughterman",
+    "Frenzied Hunger",
+    "Meatbait",
+    "Measured Movement"
+   ],
+   "bonuses": {
+    "escalations": 0,
+    "at": 0,
+    "vigorLoss": 0,
+    "evasionDice": 0
+   }
+  },
+  "2": {
+   "toHit": 6,
+   "wounds": 10,
+   "exhibitionWounds": 4,
+   "activations": [
+    "AI"
+   ],
+   "activationsText": "1 AI",
+   "traitsAdd": [
+    "Brute",
+    "Glutton"
+   ],
+   "bonuses": {
+    "escalations": 1,
+    "at": 2,
+    "vigorLoss": 1,
+    "evasionDice": 0
+   }
+  },
+  "3": {
+   "toHit": 7,
+   "wounds": 10,
+   "exhibitionWounds": 4,
+   "activations": [
+    "AI"
+   ],
+   "activationsText": "1 AI",
+   "traitsAdd": [
+    "Living Up to the Name"
+   ],
+   "bonuses": {
+    "escalations": 1,
+    "at": 4,
+    "vigorLoss": 2,
+    "evasionDice": 0
+   }
+  },
+  "4": {
+   "toHit": 8,
+   "wounds": 10,
+   "exhibitionWounds": 4,
+   "activations": [
+    "AI"
+   ],
+   "activationsText": "1 AI",
+   "traitsAdd": [
+    "Feral Guard"
+   ],
+   "bonuses": {
+    "escalations": 2,
+    "at": 6,
+    "vigorLoss": 3,
+    "evasionDice": 0
+   }
+  }
+ },
+ "traits": [
+  {
+   "name": "Starved Slaughterman",
+   "level": 1,
+   "text": "Additional Setup: At the start of the Clash each Knight may perform [Peril] to place 1 Fleisch token in the Knight Pool. If you draw a positive Mortis card, ignore its effects. If you draw a negative Mortis card, resolve it. Squires ignore this Additional Setup.\n\nWolf Down X: Discard X Fleisch tokens from the Knight Pool, then:\n• If not Berserk, and you discarded less than X, the Knighteater immediately becomes Berserk.\n• If not Berserk, and you discarded exactly X, Knighteater gains 1 Armor [Armor] token and remains not Berserk.\n• If Berserk, and you discarded exactly X, the Knighteater stops being Berserk and gains 1 Armor [Armor] token.\n• If Berserk, and you discarded less than X, a random adjacent Knight loses -X [V] and Knighteater remains Berserk.",
+   "implemented": true
+  },
+  {
+   "name": "Frenzied Hunger",
+   "level": 1,
+   "text": "When the Knighteater becomes Berserk, place the [Priority Target] Priority Target token on its Sheet (Knights cannot gain the [Priority Target] token as long as it is on Knighteater’s Sheet).\nWhile Berserk, all Knighteater Attacks, if two or more Knights are equally viable Targets of the Attack, become Sequential Attacks, and the Knighteater attacks all Targets starting from the closest.\nWhen the Knighteater stops being Berserk, the Knight with the highest [P] gains the [Priority Target] token. If it stops being Berserk during an Attack, Chain Break that Attack.",
+   "implemented": true
+  },
+  {
+   "name": "Meatbait",
+   "level": 1,
+   "text": "When you attack, you may attack with -2 Precision to place X Fleisch tokens in the Knight Pool, where X is the Knighteater’s Level.",
+   "implemented": true
+  },
+  {
+   "name": "Measured Movement",
+   "level": 1,
+   "text": "The Knighteater does not destroy Terrain tiles when moving through them. When the Knighteater ends its movement on a Column Terrain tile, do not destroy it, move it to an adjacent space instead.",
+   "implemented": true
+  },
+  {
+   "name": "Brute",
+   "level": 2,
+   "text": "Each time the Knighteater gains a Wound (a Double Wound is treated as 2 Wounds) or gains an Armor [Armor] token, place a Generic token on this Trait. If there are 3 or more Generic tokens on this Trait, finish resolving the current action, discard all Generic tokens from this Trait and all Armor [Armor] tokens, then perform Signature.",
+   "implemented": true
+  },
+  {
+   "name": "Glutton",
+   "level": 2,
+   "text": "All BP cards without Ultrainstinct Responses gain: ULTRAINSTINCT [React]: Wolf Down X, where X is the Knighteater’s Level (as denoted on the BP cards).",
+   "implemented": true
+  },
+  {
+   "name": "Living Up to the Name",
+   "level": 3,
+   "text": "During Wolf Down X, if the Knighteater is Berserk and you discarded less than X, ignore the [V] loss, and a random adjacent Knight is devoured (dies) instead. Then, the Knighteater stops being Berserk.",
+   "implemented": true
+  },
+  {
+   "name": "Feral Guard",
+   "level": 4,
+   "text": "The Knighteater cannot be wounded if it is Berserk.",
+   "implemented": true
+  },
+  {
+   "name": "Iron Confines",
+   "level": 1,
+   "text": "[Kingdom Trait — Principality of Stone] Start of Monster Round: If the Knighteater is not Berserk, it gains 1 Armor [Armor] token.\n\nWhen the Knighteater stops being Berserk, it gains 1 Armor [Armor] token.",
+   "implemented": true
+  },
+  {
+   "name": "Adaptable",
+   "level": 1,
+   "text": "[Kingdom Trait — Sunken Kingdom] When the Knighteater ends its movement, if it moved through or onto a Terrain tile, place a 1x2 Swamp Terrain tile in its Blindspot spaces.",
+   "implemented": true
+  }
+ ],
+ "cards": {
+  "ai": [
+   {
+    "name": "Tongue Twister",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 6,
+    "evasionDifficulty": 6,
+    "preTargeting": null,
+    "targeting": [
+     "Lowest Peril Threshold",
+     "Closest Squire"
+    ],
+    "moveTag": "APPEAR BEHIND & ATTACK",
+    "gates": [],
+    "effects": [
+     "For each hit lose -1 [V], Wolf Down 1 and Drag 1. [Peril]."
+    ],
+    "afterTag": null,
+    "after": null,
+    "unclear": [],
+    "reactWindows": [],
+    "afterAttack": null,
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Lowest Peril Threshold",
+      "Closest Squire"
+     ],
+     "move": false,
+     "keAppear": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "keOnHit",
+       "then": [
+        {
+         "op": "loseVigorPerHit",
+         "n": 1,
+         "perilCheck": true
+        },
+        {
+         "op": "kePerHit",
+         "then": [
+          {
+           "op": "keWolf",
+           "n": 1
+          },
+          {
+           "op": "keDrag",
+           "n": 1
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Terrorizing Presence",
+    "level": 1,
+    "type": "judgement",
+    "evasionDice": 2,
+    "evasionDifficulty": 11,
+    "preTargeting": "Wolf Down 1.",
+    "targeting": [
+     "Highest Peril Threshold"
+    ],
+    "moveTag": "APPEAR BEHIND & JUDGE",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [die]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "Bravery / Fortitude.",
+     "For each hit lose -2 [V]. [Peril].",
+     "Gain the Fear Condition card."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Wolf Down 1.",
+    "unclear": [
+     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": "AFTER FINAL ATTACK: Wolf Down 1.",
+    "typePrinted": "JUDGEMENT",
+    "ops": {
+     "targeting": [
+      "Highest Peril Threshold"
+     ],
+     "move": false,
+     "keAppear": true,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 3,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "keOnHit",
+       "then": [
+        {
+         "op": "loseVigorPerHit",
+         "n": 2,
+         "perilCheck": true
+        },
+        {
+         "op": "keCondition",
+         "id": "Fear"
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "keWolf",
+       "n": 1
+      }
+     ],
+     "judge": [
+      "Bravery",
+      "Fortitude"
+     ],
+     "pre": [
+      {
+       "op": "keWolf",
+       "n": 1
+      }
+     ]
+    }
+   },
+   {
+    "name": "Armor Cracker",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 9,
+    "preTargeting": "Wolf Down 2.",
+    "targeting": [
+     "Furthest Knight in front",
+     "Furthest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [die]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "Penetrate. For each hit lose -3 [V].",
+     "[Peril]."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Exhaust your Armor [Gear] card.",
+    "unclear": [
+     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": "AFTER FINAL ATTACK: Exhaust your Armor [Gear] card.",
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Furthest Knight in front",
+      "Furthest Knight in sight"
+     ],
+     "move": true,
+     "keAppear": false,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 3,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "keOnHit",
+       "then": [
+        {
+         "op": "keNote",
+         "text": "Penetrate — 키워드 정의 미확인, 미구현"
+        },
+        {
+         "op": "loseVigorPerHit",
+         "n": 3,
+         "perilCheck": true
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "keGear",
+       "mode": "exhaust",
+       "type": "armor"
+      }
+     ],
+     "pre": [
+      {
+       "op": "keWolf",
+       "n": 2
+      }
+     ]
+    }
+   },
+   {
+    "name": "Fencer’s Thrust",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 4,
+      "effect": "PENETRATE",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "One hit, lose -2 [V]. Two hits, lose -5 [V].",
+     "Three or more hits, lose -7 [V]. [Peril]."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Knighteater gains an Armor [Armor] token.",
+    "unclear": [
+     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": "AFTER FINAL ATTACK: Knighteater gains an Armor [Armor] token.",
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "keAppear": false,
+     "gates": [
+      {
+       "op": "keNoteGate",
+       "stat": "heat",
+       "gte": 4
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "keOnHit",
+       "then": [
+        {
+         "op": "keHits",
+         "table": [
+          2,
+          5,
+          7
+         ]
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "keArmor",
+       "n": 1
+      }
+     ]
+    }
+   },
+   {
+    "name": "Lung Vorspeisen",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "Closest Knight not in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "APPEAR BEHIND & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [die]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "For each hit lose -3 [V]. [Peril].",
+     "Gain the Fear Condition card.",
+     "Drag 2."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Wolf Down 2.",
+    "unclear": [
+     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": "AFTER FINAL ATTACK: Wolf Down 2.",
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Closest Knight not in front",
+      "Closest Knight in sight"
+     ],
+     "move": false,
+     "keAppear": true,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 3,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "keOnHit",
+       "then": [
+        {
+         "op": "loseVigorPerHit",
+         "n": 3,
+         "perilCheck": true
+        },
+        {
+         "op": "keCondition",
+         "id": "Fear"
+        },
+        {
+         "op": "keDrag",
+         "n": 2
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "keWolf",
+       "n": 2
+      }
+     ]
+    }
+   },
+   {
+    "name": "Scraps Disposal",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 4,
+    "evasionDifficulty": 9,
+    "preTargeting": "Wolf Down 2.",
+    "targeting": [
+     "Lowest Peril Threshold"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "-2 [V] INSTEAD",
+      "where": "effect:0"
+     }
+    ],
+    "effects": [
+     "For each hit lose -1 [V].",
+     "[Peril].",
+     "Exhaust your Weapon [Gear] card.",
+     "Forced Vault."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Knighteater moves 2 spaces directly away from the Target.",
+    "unclear": [
+     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": "AFTER FINAL ATTACK: Knighteater moves 2 spaces directly away from the Target.",
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Lowest Peril Threshold"
+     ],
+     "move": true,
+     "keAppear": false,
+     "gates": [
+      {
+       "op": "vigorPerHitInstead",
+       "stat": "heat",
+       "gte": 3,
+       "n": 2
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "keOnHit",
+       "then": [
+        {
+         "op": "loseVigorPerHit",
+         "n": 1,
+         "perilCheck": true
+        },
+        {
+         "op": "keGear",
+         "mode": "exhaust",
+         "type": "weapon"
+        },
+        {
+         "op": "keVault"
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "keAway",
+       "n": 2,
+       "from": "target"
+      }
+     ],
+     "pre": [
+      {
+       "op": "keWolf",
+       "n": 2
+      }
+     ]
+    }
+   },
+   {
+    "name": "Ritterspieße",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 7,
+    "preTargeting": null,
+    "targeting": [
+     "Highest Peril Threshold",
+     "Closest Squire"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "For each hit lose -3 [V]. [Peril]. Exhaust your Armor [Gear] card. Forced Vault.",
+     "If this Vault would cause Crash, [Peril] instead."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Wolf Down 3.",
+    "unclear": [],
+    "reactWindows": [],
+    "afterAttack": "AFTER FINAL ATTACK: Wolf Down 3.",
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Highest Peril Threshold",
+      "Closest Squire"
+     ],
+     "move": true,
+     "keAppear": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "keOnHit",
+       "then": [
+        {
+         "op": "loseVigorPerHit",
+         "n": 3,
+         "perilCheck": true
+        },
+        {
+         "op": "keGear",
+         "mode": "exhaust",
+         "type": "armor"
+        },
+        {
+         "op": "keVault",
+         "crashToPeril": true
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "keWolf",
+       "n": 3
+      }
+     ]
+    }
+   },
+   {
+    "name": "Debilitating Crush",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 8,
+    "preTargeting": "Wolf Down 2.",
+    "targeting": [
+     "Knight with a [two-handed?] Weapon",
+     "Highest Peril Threshold"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [die]",
+      "where": "moveTag"
+     },
+     {
+      "stat": "Heat",
+      "gte": 2,
+      "effect": "WOLF DOWN 1",
+      "where": "after"
+     }
+    ],
+    "effects": [
+     "Penetrate. For each hit lose -4 [V].",
+     "[Peril]. Gain the Dread Condition card."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Exhaust your Weapon [Gear] card.",
+    "unclear": [
+     "Heat 게이트 숫자 작은 글씨 — 확인 필요",
+     "Targeting 첫 줄 \"Knight with a [아이콘] Weapon\" — 아이콘 종류 확인 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": "AFTER FINAL ATTACK: Exhaust your Weapon [Gear] card.",
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Highest Peril Threshold"
+     ],
+     "move": true,
+     "keAppear": false,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 3,
+       "n": 1
+      },
+      {
+       "op": "keAfterWolf",
+       "stat": "heat",
+       "gte": 2,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "keOnHit",
+       "then": [
+        {
+         "op": "keNote",
+         "text": "Penetrate — 키워드 정의 미확인, 미구현"
+        },
+        {
+         "op": "loseVigorPerHit",
+         "n": 4,
+         "perilCheck": true
+        },
+        {
+         "op": "keCondition",
+         "id": "Dread"
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "keGear",
+       "mode": "exhaust",
+       "type": "weapon"
+      },
+      {
+       "op": "keGatedWolf"
+      }
+     ],
+     "pre": [
+      {
+       "op": "keWolf",
+       "n": 2
+      }
+     ]
+    }
+   },
+   {
+    "name": "Can Opener",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 7,
+    "preTargeting": "Wolf Down 2.",
+    "targeting": [
+     "Knight in front",
+     "Furthest Knight in sight"
+    ],
+    "moveTag": "APPEAR BEHIND & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [die]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "Penetrate. For each hit lose -3 [V]. [Peril].",
+     "Forced Vault."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Discard your Armor [Gear] card. You may [Peril] to Exhaust your Armor [Gear] card instead.",
+    "unclear": [
+     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": "AFTER FINAL ATTACK: Discard your Armor [Gear] card. You may [Peril] to Exhaust your Armor [Gear] card instead.",
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Knight in front",
+      "Furthest Knight in sight"
+     ],
+     "move": false,
+     "keAppear": true,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 3,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "keOnHit",
+       "then": [
+        {
+         "op": "keNote",
+         "text": "Penetrate — 키워드 정의 미확인, 미구현"
+        },
+        {
+         "op": "loseVigorPerHit",
+         "n": 3,
+         "perilCheck": true
+        },
+        {
+         "op": "keVault"
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "keGear",
+       "mode": "discard",
+       "type": "armor",
+       "perilToExhaust": true
+      }
+     ],
+     "pre": [
+      {
+       "op": "keWolf",
+       "n": 2
+      }
+     ]
+    }
+   },
+   {
+    "name": "Lamb to Slaughter",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 7,
+    "preTargeting": null,
+    "targeting": [
+     "Knight not in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "APPEAR BEHIND & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "PENETRATE",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "For each hit lose -3 [V]. [Peril].",
+     "Gain the Fear Condition card.",
+     "Drag 3."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Wolf Down 2. Wolf Down 1.",
+    "unclear": [
+     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": "AFTER FINAL ATTACK: Wolf Down 2. Wolf Down 1.",
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Knight not in front",
+      "Closest Knight in sight"
+     ],
+     "move": false,
+     "keAppear": true,
+     "gates": [
+      {
+       "op": "keNoteGate",
+       "stat": "heat",
+       "gte": 3
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "keOnHit",
+       "then": [
+        {
+         "op": "loseVigorPerHit",
+         "n": 3,
+         "perilCheck": true
+        },
+        {
+         "op": "keCondition",
+         "id": "Fear"
+        },
+        {
+         "op": "keDrag",
+         "n": 3
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "keWolf",
+       "n": 2
+      },
+      {
+       "op": "keWolf",
+       "n": 1
+      }
+     ]
+    }
+   },
+   {
+    "name": "Playing with Your Food",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "Highest [P]"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 2,
+      "effect": "-5 [V] INSTEAD",
+      "where": "effect:1"
+     }
+    ],
+    "effects": [
+     "Place the Knighteater on a space on the other side of and adjacent to the Target (if possible).",
+     "For each hit lose -4 [V].",
+     "[Peril].",
+     "Forced Vault. Knockback 3."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Exhaust all your exhaustable Gear [Gear] cards.",
+    "unclear": [
+     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": "AFTER FINAL ATTACK: Exhaust all your exhaustable Gear [Gear] cards.",
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Highest [Passion]"
+     ],
+     "move": true,
+     "keAppear": false,
+     "gates": [
+      {
+       "op": "vigorPerHitInstead",
+       "stat": "heat",
+       "gte": 2,
+       "n": 5
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "keOnHit",
+       "then": [
+        {
+         "op": "loseVigorPerHit",
+         "n": 4,
+         "perilCheck": true
+        },
+        {
+         "op": "keVault"
+        },
+        {
+         "op": "knockback",
+         "n": 3
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "keGear",
+       "mode": "exhaust",
+       "type": "all"
+      }
+     ],
+     "beforeAttack": [
+      {
+       "op": "keOtherSide"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Hit and Run",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 4,
+    "evasionDifficulty": 6,
+    "preTargeting": "Wolf Down 3.",
+    "targeting": [
+     "Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "APPEAR BEHIND & ATTACK",
+    "gates": [],
+    "effects": [
+     "One hit, lose -3 [V]. Two hits, lose -7 [V]. Three hits, lose -10 [V]. Four or more hits, lower your [V] to 0 and you are devoured (die). [Peril]."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Knighteater moves to the center of the Clash Board and turns to face the most Knights.",
+    "unclear": [],
+    "reactWindows": [],
+    "afterAttack": "AFTER FINAL ATTACK: Knighteater moves to the center of the Clash Board and turns to face the most Knights.",
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": false,
+     "keAppear": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "keOnHit",
+       "then": [
+        {
+         "op": "keHits",
+         "table": [
+          3,
+          7,
+          10,
+          "devour"
+         ]
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "moveToCenter"
+      },
+      {
+       "op": "faceMostKnights"
+      },
+      {
+       "op": "keSettle"
+      }
+     ],
+     "pre": [
+      {
+       "op": "keWolf",
+       "n": 3
+      }
+     ]
+    }
+   },
+   {
+    "name": "Offal Harvest",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 8,
+    "preTargeting": "Wolf Down 3.",
+    "targeting": [
+     "Knight not in front",
+     "Knight in sight"
+    ],
+    "moveTag": "APPEAR BEHIND & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 5,
+      "effect": "+1 [die]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "Penetrate. For each hit lose -5 [V]. [Peril].",
+     "If you would draw a Judicium from this Attack, you are devoured (die) instead. Gain the Fear Condition card."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Wolf Down 2.",
+    "unclear": [
+     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": "AFTER FINAL ATTACK: Wolf Down 2.",
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Knight not in front",
+      "Knight in sight"
+     ],
+     "move": false,
+     "keAppear": true,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 5,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "keOnHit",
+       "then": [
+        {
+         "op": "keNote",
+         "text": "Penetrate — 키워드 정의 미확인, 미구현"
+        },
+        {
+         "op": "keJudDevour"
+        },
+        {
+         "op": "loseVigorPerHit",
+         "n": 5,
+         "perilCheck": true
+        },
+        {
+         "op": "keCondition",
+         "id": "Fear"
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "keWolf",
+       "n": 2
+      }
+     ],
+     "pre": [
+      {
+       "op": "keWolf",
+       "n": 3
+      }
+     ]
+    }
+   },
+   {
+    "name": "Knight Smash!",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 6,
+    "evasionDifficulty": 7,
+    "preTargeting": null,
+    "targeting": [
+     "Lowest [P]"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "Drag 2. For each hit lose -2 [V] and Forced Vault. [Peril]. Knockback 5 in a random direction."
+    ],
+    "afterTag": null,
+    "after": null,
+    "unclear": [],
+    "reactWindows": [],
+    "afterAttack": null,
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Lowest [Passion]"
+     ],
+     "move": true,
+     "keAppear": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "keOnHit",
+       "then": [
+        {
+         "op": "keDrag",
+         "n": 2
+        },
+        {
+         "op": "loseVigorPerHit",
+         "n": 2,
+         "perilCheck": true
+        },
+        {
+         "op": "kePerHit",
+         "then": [
+          {
+           "op": "keVault"
+          }
+         ]
+        },
+        {
+         "op": "keKnockbackRandom",
+         "n": 5
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Blood-Drenched Butchery",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 7,
+    "preTargeting": "Wolf Down 2.",
+    "targeting": [
+     "Knight in front",
+     "Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "DIFFICULTY 10+ INSTEAD",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "Penetrate. For each hit lose -4 [V]. [Peril].",
+     "Gain the Dread Condition card.",
+     "Forced Vault."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Exhaust your Armor [Gear] card. Wolf Down 2.",
+    "unclear": [
+     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": "AFTER FINAL ATTACK: Exhaust your Armor [Gear] card. Wolf Down 2.",
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Knight in front",
+      "Knight in sight"
+     ],
+     "move": true,
+     "keAppear": false,
+     "gates": [
+      {
+       "op": "difficultyInstead",
+       "stat": "heat",
+       "gte": 3,
+       "n": 10
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "keOnHit",
+       "then": [
+        {
+         "op": "keNote",
+         "text": "Penetrate — 키워드 정의 미확인, 미구현"
+        },
+        {
+         "op": "loseVigorPerHit",
+         "n": 4,
+         "perilCheck": true
+        },
+        {
+         "op": "keCondition",
+         "id": "Dread"
+        },
+        {
+         "op": "keVault"
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "keGear",
+       "mode": "exhaust",
+       "type": "armor"
+      },
+      {
+       "op": "keWolf",
+       "n": 2
+      }
+     ],
+     "pre": [
+      {
+       "op": "keWolf",
+       "n": 2
+      }
+     ]
+    }
+   },
+   {
+    "name": "Knight Opener",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 7,
+    "preTargeting": "Wolf Down 3.",
+    "targeting": [
+     "Knight in front",
+     "Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "Discard your Armor [Gear] card. One hit, lose -5 [V]. Two hits, lose -11 [V]. Three or more hits, lower your [V] to 0 and you are devoured (die). [Peril]."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Each Knight that has LoS to Knighteater or the Target gains the Dread Condition card.",
+    "unclear": [],
+    "reactWindows": [],
+    "afterAttack": "AFTER FINAL ATTACK: Each Knight that has LoS to Knighteater or the Target gains the Dread Condition card.",
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Knight in front",
+      "Knight in sight"
+     ],
+     "move": true,
+     "keAppear": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "keGear",
+       "mode": "discard",
+       "type": "armor"
+      },
+      {
+       "op": "keOnHit",
+       "then": [
+        {
+         "op": "keHits",
+         "table": [
+          5,
+          11,
+          "devour"
+         ]
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "keDreadLoS"
+      }
+     ],
+     "pre": [
+      {
+       "op": "keWolf",
+       "n": 3
+      }
+     ]
+    }
+   },
+   {
+    "name": "Dine and Dash",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 5,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "Highest Peril Threshold",
+     "Closest Squire"
+    ],
+    "moveTag": "APPEAR BEHIND & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 1,
+      "effect": "+1 [die]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "For each hit lose -2 [V] and Wolf Down 2. [Peril]."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "The Knighteater moves to the center of the Clash Board and turns to face the most Knights.",
+    "unclear": [
+     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": "AFTER FINAL ATTACK: The Knighteater moves to the center of the Clash Board and turns to face the most Knights.",
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Highest Peril Threshold",
+      "Closest Squire"
+     ],
+     "move": false,
+     "keAppear": true,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 1,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "keOnHit",
+       "then": [
+        {
+         "op": "loseVigorPerHit",
+         "n": 2,
+         "perilCheck": true
+        },
+        {
+         "op": "kePerHit",
+         "then": [
+          {
+           "op": "keWolf",
+           "n": 2
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "moveToCenter"
+      },
+      {
+       "op": "faceMostKnights"
+      },
+      {
+       "op": "keSettle"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Personal Vendetta",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "Fleischritter",
+     "Highest Peril Threshold"
+    ],
+    "moveTag": "APPEAR BEHIND & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [die]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "If hit, lower your [V] to 0, you are devoured (die). If you survive, gain the Dread Condition card."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Discard your Weapon [Gear] card. Wolf Down X, where X is the number of Fleisch tokens in the Knight Pool.",
+    "unclear": [
+     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": "AFTER FINAL ATTACK: Discard your Weapon [Gear] card. Wolf Down X, where X is the number of Fleisch tokens in the Knight Pool.",
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Fleischritter",
+      "Highest Peril Threshold"
+     ],
+     "move": false,
+     "keAppear": true,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 3,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "keOnHit",
+       "then": [
+        {
+         "op": "keDevourOnHit"
+        }
+       ]
+      },
+      {
+       "op": "keIfSurvived",
+       "then": [
+        {
+         "op": "keCondition",
+         "id": "Dread"
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "keGear",
+       "mode": "discard",
+       "type": "weapon"
+      },
+      {
+       "op": "keWolf",
+       "n": "fleisch"
+      }
+     ]
+    }
+   }
+  ],
+  "bp": [
+   {
+    "name": "Trophy Knight",
+    "level": 1,
+    "at": 4,
+    "overcome": {
+     "tag": "OVERPOWER",
+     "n": 2,
+     "effect": "Fleisch 2"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": "Drag 2. Forced Vault.",
+     "fail": "Discard 1 Armor [Armor] token.",
+     "instinct": null,
+     "critical": "You may immediately place up to 2 Fleisch tokens in the Knight Pool.",
+     "ultrainstinct": "LEVEL 2+ ▸ Wolf Down X, where X is Knighteater’s level."
+    },
+    "unclear": [
+     "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "overcomeTag": "OVERPOWER",
+    "ops": {
+     "at": 4,
+     "overcome": {
+      "n": 2,
+      "ops": [
+       {
+        "op": "keFleisch",
+        "n": 2
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "keDrag",
+       "n": 2
+      },
+      {
+       "op": "keVault"
+      }
+     ],
+     "fail": [
+      {
+       "op": "keArmor",
+       "n": -1
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "keFleischUpTo",
+       "n": 2
+      }
+     ],
+     "ultra": [
+      {
+       "op": "keWolf",
+       "n": "level",
+       "minLevel": 2
+      }
+     ],
+     "mayEnd": null
+    }
+   },
+   {
+    "name": "Rusting Breastplate",
+    "level": 1,
+    "at": 5,
+    "overcome": {
+     "tag": "OVERCOME",
+     "n": 3,
+     "effect": "Discard 1 Armor [Armor] token"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": "Fleisch 1. Knighteater moves 3 spaces directly forward and turns to face the Attacker.",
+     "fail": null,
+     "instinct": null,
+     "critical": "Gain the [Priority Target] Priority Target token. You may perform a Bonus Attack!",
+     "ultrainstinct": "LEVEL 2+ ▸ Wolf Down X, where X is Knighteater’s level."
+    },
+    "unclear": [
+     "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "overcomeTag": "OVERCOME",
+    "ops": {
+     "at": 5,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "keArmor",
+        "n": -1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "keFleisch",
+       "n": 1
+      },
+      {
+       "op": "keForward",
+       "n": 3
+      }
+     ],
+     "fail": null,
+     "instinct": null,
+     "critical": [
+      {
+       "op": "kePriority"
+      },
+      {
+       "op": "bonusAttack",
+       "who": "self",
+       "optional": true
+      }
+     ],
+     "ultra": [
+      {
+       "op": "keWolf",
+       "n": "level",
+       "minLevel": 2
+      }
+     ],
+     "mayEnd": null
+    }
+   },
+   {
+    "name": "Emergency Snack",
+    "level": 1,
+    "at": 5,
+    "overcome": {
+     "tag": "OVERCOME",
+     "n": 3,
+     "effect": "Discard 1 Armor [Armor] token"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": "Gain the Fear Condition card. Fleisch 1. Forced Vault.",
+     "fail": null,
+     "instinct": null,
+     "critical": "You may immediately place up to 2 Fleisch tokens in the Knight Pool.",
+     "ultrainstinct": "LEVEL 2+ ▸ Wolf Down X, where X is Knighteater’s level."
+    },
+    "unclear": [
+     "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "overcomeTag": "OVERCOME",
+    "ops": {
+     "at": 5,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "keArmor",
+        "n": -1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "keCondition",
+       "id": "Fear"
+      },
+      {
+       "op": "keFleisch",
+       "n": 1
+      },
+      {
+       "op": "keVault"
+      }
+     ],
+     "fail": null,
+     "instinct": null,
+     "critical": [
+      {
+       "op": "keFleischUpTo",
+       "n": 2
+      }
+     ],
+     "ultra": [
+      {
+       "op": "keWolf",
+       "n": "level",
+       "minLevel": 2
+      }
+     ],
+     "mayEnd": null
+    }
+   },
+   {
+    "name": "Tattered Garments",
+    "level": 1,
+    "at": 4,
+    "overcome": {
+     "tag": "OVERCOME",
+     "n": 2,
+     "effect": "Discard 1 Armor [Armor] token"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": null,
+     "fail": "Wolf Down 2.",
+     "instinct": null,
+     "critical": "Gain the [Priority Target] Priority Target token. You may perform a Bonus Attack!",
+     "ultrainstinct": "The Knighteater moves 1 space directly away from the Attacker, stopping before any Obstacles (without turning)."
+    },
+    "unclear": [
+     "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "overcomeTag": "OVERCOME",
+    "ops": {
+     "at": 4,
+     "overcome": {
+      "n": 2,
+      "ops": [
+       {
+        "op": "keArmor",
+        "n": -1
+       }
+      ]
+     },
+     "wound": null,
+     "fail": [
+      {
+       "op": "keWolf",
+       "n": 2
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "kePriority"
+      },
+      {
+       "op": "bonusAttack",
+       "who": "self",
+       "optional": true
+      }
+     ],
+     "ultra": [
+      {
+       "op": "keAway",
+       "n": 1,
+       "from": "attacker",
+       "stop": true
+      }
+     ],
+     "mayEnd": null
+    }
+   },
+   {
+    "name": "Tight Tassets",
+    "level": 1,
+    "at": 3,
+    "overcome": {
+     "tag": "OVERPOWER",
+     "n": 2,
+     "effect": "Fleisch 1"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": "Knighteater moves 3 spaces directly forward and turns to face the Attacker.",
+     "fail": "Wolf Down 2. Discard 1 Armor [Armor] token.",
+     "instinct": null,
+     "critical": "Gain the [Priority Target] Priority Target token. You may perform a Bonus Attack!",
+     "ultrainstinct": "LEVEL 2+ ▸ Wolf Down X, where X is Knighteater’s level."
+    },
+    "unclear": [
+     "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "overcomeTag": "OVERPOWER",
+    "ops": {
+     "at": 3,
+     "overcome": {
+      "n": 2,
+      "ops": [
+       {
+        "op": "keFleisch",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "keForward",
+       "n": 3
+      }
+     ],
+     "fail": [
+      {
+       "op": "keWolf",
+       "n": 2
+      },
+      {
+       "op": "keArmor",
+       "n": -1
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "kePriority"
+      },
+      {
+       "op": "bonusAttack",
+       "who": "self",
+       "optional": true
+      }
+     ],
+     "ultra": [
+      {
+       "op": "keWolf",
+       "n": "level",
+       "minLevel": 2
+      }
+     ],
+     "mayEnd": null
+    }
+   },
+   {
+    "name": "Tarnished Sabatons",
+    "level": 1,
+    "at": 3,
+    "overcome": {
+     "tag": "OVERCOME",
+     "n": 2,
+     "effect": "Discard 1 Armor [Armor] token"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": null,
+     "fail": "Wolf Down 2.",
+     "instinct": null,
+     "critical": "All Knights gain Tumble until the end of Clash.",
+     "ultrainstinct": "The Knighteater moves 1 space directly away from the Attacker, stopping before any Obstacles (without turning)."
+    },
+    "unclear": [
+     "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "overcomeTag": "OVERCOME",
+    "ops": {
+     "at": 3,
+     "overcome": {
+      "n": 2,
+      "ops": [
+       {
+        "op": "keArmor",
+        "n": -1
+       }
+      ]
+     },
+     "wound": null,
+     "fail": [
+      {
+       "op": "keWolf",
+       "n": 2
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "keFlag",
+       "id": "tumble"
+      }
+     ],
+     "ultra": [
+      {
+       "op": "keAway",
+       "n": 1,
+       "from": "attacker",
+       "stop": true
+      }
+     ],
+     "mayEnd": null
+    }
+   },
+   {
+    "name": "Gruesome Display",
+    "level": 2,
+    "at": 5,
+    "overcome": {
+     "tag": "OVERPOWER",
+     "n": 2,
+     "effect": "Fleisch 1"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": "Forced Vault. If this Vault would cause Crash, [Peril] instead. Gain the Fear Condition card.",
+     "fail": null,
+     "instinct": null,
+     "critical": "You may immediately place up to 2 Fleisch tokens in the Knight Pool.",
+     "ultrainstinct": "LEVEL 2+ ▸ Wolf Down X, where X is Knighteater’s level."
+    },
+    "unclear": [
+     "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "overcomeTag": "OVERPOWER",
+    "ops": {
+     "at": 5,
+     "overcome": {
+      "n": 2,
+      "ops": [
+       {
+        "op": "keFleisch",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "keVault",
+       "crashToPeril": true
+      },
+      {
+       "op": "keCondition",
+       "id": "Fear"
+      }
+     ],
+     "fail": null,
+     "instinct": null,
+     "critical": [
+      {
+       "op": "keFleischUpTo",
+       "n": 2
+      }
+     ],
+     "ultra": [
+      {
+       "op": "keWolf",
+       "n": "level",
+       "minLevel": 2
+      }
+     ],
+     "mayEnd": null
+    }
+   },
+   {
+    "name": "Riddled Plackart",
+    "level": 2,
+    "at": 6,
+    "overcome": {
+     "tag": "OVERCOME",
+     "n": 4,
+     "effect": "Discard 2 Armor [Armor] tokens"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": null,
+     "fail": "Wolf Down 2. Discard 1 Armor [Armor] token.",
+     "instinct": null,
+     "critical": "Scavenge 2.",
+     "ultrainstinct": "Pushback 2, stopping before any Obstacles."
+    },
+    "unclear": [
+     "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "overcomeTag": "OVERCOME",
+    "ops": {
+     "at": 6,
+     "overcome": {
+      "n": 4,
+      "ops": [
+       {
+        "op": "keArmor",
+        "n": -2
+       }
+      ]
+     },
+     "wound": null,
+     "fail": [
+      {
+       "op": "keWolf",
+       "n": 2
+      },
+      {
+       "op": "keArmor",
+       "n": -1
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "scavenge",
+       "n": 2
+      }
+     ],
+     "ultra": [
+      {
+       "op": "kePushback",
+       "n": 2
+      }
+     ],
+     "mayEnd": null
+    }
+   },
+   {
+    "name": "Grim Visage",
+    "level": 2,
+    "at": 6,
+    "overcome": {
+     "tag": "OVERPOWER",
+     "n": 1,
+     "effect": "Fleisch 1"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": "Fleisch 1. Gain the Dread Condition card.",
+     "fail": "Wolf Down 2. Gain the Fear Condition card. Discard 2 Armor [Armor] tokens.",
+     "instinct": null,
+     "critical": "Discard all Fear and Dread Condition cards from all Knights. Disable gaining those Condition cards.",
+     "ultrainstinct": "The Knighteater moves 1 space directly away from the Attacker, stopping before any Obstacles (without turning)."
+    },
+    "unclear": [
+     "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "overcomeTag": "OVERPOWER",
+    "ops": {
+     "at": 6,
+     "overcome": {
+      "n": 1,
+      "ops": [
+       {
+        "op": "keFleisch",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "keFleisch",
+       "n": 1
+      },
+      {
+       "op": "keCondition",
+       "id": "Dread"
+      }
+     ],
+     "fail": [
+      {
+       "op": "keWolf",
+       "n": 2
+      },
+      {
+       "op": "keCondition",
+       "id": "Fear"
+      },
+      {
+       "op": "keArmor",
+       "n": -2
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "keFlag",
+       "id": "noFear"
+      }
+     ],
+     "ultra": [
+      {
+       "op": "keAway",
+       "n": 1,
+       "from": "attacker",
+       "stop": true
+      }
+     ],
+     "mayEnd": null
+    }
+   },
+   {
+    "name": "Spiky Pauldron",
+    "level": 2,
+    "at": 5,
+    "overcome": {
+     "tag": "OVERCOME",
+     "n": 3,
+     "effect": "Discard 1 Armor [Armor] token"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "The Knighteater moves 3 spaces directly away from the Attacker (without turning). Fleisch 1.",
+     "critical": "Gain the [Priority Target] Priority Target token. You may perform a Bonus Attack!",
+     "ultrainstinct": "LEVEL 2+ ▸ Wolf Down X, where X is Knighteater’s level."
+    },
+    "unclear": [
+     "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "overcomeTag": "OVERCOME",
+    "ops": {
+     "at": 5,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "keArmor",
+        "n": -1
+       }
+      ]
+     },
+     "wound": null,
+     "fail": null,
+     "instinct": [
+      {
+       "op": "keAway",
+       "n": 3,
+       "from": "attacker",
+       "stop": false
+      },
+      {
+       "op": "keFleisch",
+       "n": 1
+      }
+     ],
+     "critical": [
+      {
+       "op": "kePriority"
+      },
+      {
+       "op": "bonusAttack",
+       "who": "self",
+       "optional": true
+      }
+     ],
+     "ultra": [
+      {
+       "op": "keWolf",
+       "n": "level",
+       "minLevel": 2
+      }
+     ],
+     "mayEnd": null
+    }
+   },
+   {
+    "name": "Cannibal’s Mouthpiece",
+    "level": 2,
+    "at": 3,
+    "overcome": {
+     "tag": "OVERPOWER",
+     "n": 2,
+     "effect": "Fleisch 2"
+    },
+    "note": "You may voluntarily end this Attack before performing a Power Roll. If you do, remove all tokens from the Knight Pool.",
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": "Fleisch 1. Drag 2.",
+     "fail": "Wolf Down 2. Discard 2 Armor [Armor] tokens. The Knighteater moves adjacent to you, and you are devoured (die).",
+     "instinct": null,
+     "critical": "All Instant Death effects become Judicium Draws.",
+     "ultrainstinct": "LEVEL 2+ ▸ Wolf Down X, where X is Knighteater’s level."
+    },
+    "unclear": [
+     "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "overcomeTag": "OVERPOWER",
+    "ops": {
+     "at": 3,
+     "overcome": {
+      "n": 2,
+      "ops": [
+       {
+        "op": "keFleisch",
+        "n": 2
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "keFleisch",
+       "n": 1
+      },
+      {
+       "op": "keDrag",
+       "n": 2
+      }
+     ],
+     "fail": [
+      {
+       "op": "keWolf",
+       "n": 2
+      },
+      {
+       "op": "keArmor",
+       "n": -2
+      },
+      {
+       "op": "keAdjacentDevour"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "keFlag",
+       "id": "noDeath"
+      }
+     ],
+     "ultra": [
+      {
+       "op": "keWolf",
+       "n": "level",
+       "minLevel": 2
+      }
+     ],
+     "mayEnd": true
+    }
+   },
+   {
+    "name": "Rickety Knees",
+    "level": 2,
+    "at": 4,
+    "overcome": {
+     "tag": "OVERCOME",
+     "n": 3,
+     "effect": "Discard 1 Armor [Armor] token"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Wolf Down 1. Drag 2.",
+     "critical": "All Ultrainstinct Responses become Instinct Responses.",
+     "ultrainstinct": "The Knighteater moves 2 spaces directly away from the Attacker, stopping before any Obstacles (without turning)."
+    },
+    "unclear": [
+     "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "overcomeTag": "OVERCOME",
+    "ops": {
+     "at": 4,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "keArmor",
+        "n": -1
+       }
+      ]
+     },
+     "wound": null,
+     "fail": null,
+     "instinct": [
+      {
+       "op": "keWolf",
+       "n": 1
+      },
+      {
+       "op": "keDrag",
+       "n": 2
+      }
+     ],
+     "critical": [
+      {
+       "op": "keFlag",
+       "id": "ultraToInstinct"
+      }
+     ],
+     "ultra": [
+      {
+       "op": "keAway",
+       "n": 2,
+       "from": "attacker",
+       "stop": true
+      }
+     ],
+     "mayEnd": null
+    }
+   },
+   {
+    "name": "Famished Maw",
+    "level": 3,
+    "at": 7,
+    "overcome": {
+     "tag": "OVERPOWER",
+     "n": 1,
+     "effect": "Fleisch 1"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": "Gain the Dread Condition card. Forced Vault.",
+     "fail": "Wolf Down 4. Discard 2 Armor [Armor] tokens.",
+     "instinct": null,
+     "critical": "Disable the Wolf Down X keyword.",
+     "ultrainstinct": "Pushback 3, stopping before any Obstacles."
+    },
+    "unclear": [
+     "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "overcomeTag": "OVERPOWER",
+    "ops": {
+     "at": 7,
+     "overcome": {
+      "n": 1,
+      "ops": [
+       {
+        "op": "keFleisch",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "keCondition",
+       "id": "Dread"
+      },
+      {
+       "op": "keVault"
+      }
+     ],
+     "fail": [
+      {
+       "op": "keWolf",
+       "n": 4
+      },
+      {
+       "op": "keArmor",
+       "n": -2
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "keFlag",
+       "id": "noWolf"
+      }
+     ],
+     "ultra": [
+      {
+       "op": "kePushback",
+       "n": 3
+      }
+     ],
+     "mayEnd": null
+    }
+   },
+   {
+    "name": "Overtuned Ear Canal",
+    "level": 3,
+    "at": 7,
+    "overcome": {
+     "tag": "OVERCOME",
+     "n": 4,
+     "effect": "Discard 2 Armor [Armor] tokens"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": "The Knighteater moves 5 spaces in a random direction.",
+     "fail": "The Knighteater moves to the center of the Clash Board and turns to face the Attacker.",
+     "instinct": null,
+     "critical": "Disable Ultrainstinct Responses.",
+     "ultrainstinct": "The Knighteater moves 3 spaces directly away from the Attacker, stopping before any Obstacles (without turning)."
+    },
+    "unclear": [
+     "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "overcomeTag": "OVERCOME",
+    "ops": {
+     "at": 7,
+     "overcome": {
+      "n": 4,
+      "ops": [
+       {
+        "op": "keArmor",
+        "n": -2
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "keRandomMove",
+       "n": 5
+      }
+     ],
+     "fail": [
+      {
+       "op": "moveToCenter"
+      },
+      {
+       "op": "keFaceAttacker"
+      },
+      {
+       "op": "keSettle"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "keFlag",
+       "id": "noUltra"
+      }
+     ],
+     "ultra": [
+      {
+       "op": "keAway",
+       "n": 3,
+       "from": "attacker",
+       "stop": true
+      }
+     ],
+     "mayEnd": null
+    }
+   },
+   {
+    "name": "Monstrous Stomach",
+    "level": 3,
+    "at": 6,
+    "overcome": {
+     "tag": "OVERCOME",
+     "n": 5,
+     "effect": "Discard 1 Armor [Armor] token"
+    },
+    "note": "You may voluntarily end this Attack before performing a Power Roll. If you do, remove all tokens from the Knight Pool.",
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": "Wolf Down 3. Wolf Down 2. Wolf Down 1.",
+     "fail": "Wolf Down 4. Discard 1 Armor [Armor] token. The Knighteater moves adjacent to you, and you are devoured (die).",
+     "instinct": null,
+     "critical": "The Knighteater stops being Berserk. You may immediately place up to 4 Fleisch tokens in the Knight Pool.",
+     "ultrainstinct": "LEVEL 2+ ▸ Wolf Down X, where X is Knighteater’s level."
+    },
+    "unclear": [
+     "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "overcomeTag": "OVERCOME",
+    "ops": {
+     "at": 6,
+     "overcome": {
+      "n": 5,
+      "ops": [
+       {
+        "op": "keArmor",
+        "n": -1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "keWolf",
+       "n": 3
+      },
+      {
+       "op": "keWolf",
+       "n": 2
+      },
+      {
+       "op": "keWolf",
+       "n": 1
+      }
+     ],
+     "fail": [
+      {
+       "op": "keWolf",
+       "n": 4
+      },
+      {
+       "op": "keArmor",
+       "n": -1
+      },
+      {
+       "op": "keAdjacentDevour"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "keCalm"
+      },
+      {
+       "op": "keFleischUpTo",
+       "n": 4
+      }
+     ],
+     "ultra": [
+      {
+       "op": "keWolf",
+       "n": "level",
+       "minLevel": 2
+      }
+     ],
+     "mayEnd": true
+    }
+   },
+   {
+    "name": "Intestinal Panzerparasite",
+    "level": 3,
+    "at": 7,
+    "overcome": {
+     "tag": "OVERPOWER",
+     "n": 2,
+     "effect": "Fleisch 2"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": "Parasitize 2. Fleisch 1.",
+     "fail": "Wolf Down 2. Discard 2 Armor [Armor] tokens.",
+     "instinct": null,
+     "critical": "Disable Armor [Armor] tokens.",
+     "ultrainstinct": "LEVEL 2+ ▸ Wolf Down X, where X is Knighteater’s level."
+    },
+    "unclear": [
+     "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "overcomeTag": "OVERPOWER",
+    "ops": {
+     "at": 7,
+     "overcome": {
+      "n": 2,
+      "ops": [
+       {
+        "op": "keFleisch",
+        "n": 2
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "parasitize",
+       "n": 2
+      },
+      {
+       "op": "keFleisch",
+       "n": 1
+      }
+     ],
+     "fail": [
+      {
+       "op": "keWolf",
+       "n": 2
+      },
+      {
+       "op": "keArmor",
+       "n": -2
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "keFlag",
+       "id": "noArmor"
+      }
+     ],
+     "ultra": [
+      {
+       "op": "keWolf",
+       "n": "level",
+       "minLevel": 2
+      }
+     ],
+     "mayEnd": null
+    }
+   },
+   {
+    "name": "Knightcrackers",
+    "level": 3,
+    "at": 6,
+    "overcome": {
+     "tag": "OVERPOWER",
+     "n": 2,
+     "effect": "Fleisch 2"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Wolf Down 2. Discard 2 Armor [Armor] tokens. Forced Vault. If this Vault would cause Crash, [Peril] instead.",
+     "critical": "Scavenge 2.",
+     "ultrainstinct": "Pushback 3, stopping before any Obstacles."
+    },
+    "unclear": [
+     "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "overcomeTag": "OVERPOWER",
+    "ops": {
+     "at": 6,
+     "overcome": {
+      "n": 2,
+      "ops": [
+       {
+        "op": "keFleisch",
+        "n": 2
+       }
+      ]
+     },
+     "wound": null,
+     "fail": null,
+     "instinct": [
+      {
+       "op": "keWolf",
+       "n": 2
+      },
+      {
+       "op": "keArmor",
+       "n": -2
+      },
+      {
+       "op": "keVault",
+       "crashToPeril": true
+      }
+     ],
+     "critical": [
+      {
+       "op": "scavenge",
+       "n": 2
+      }
+     ],
+     "ultra": [
+      {
+       "op": "kePushback",
+       "n": 3
+      }
+     ],
+     "mayEnd": null
+    }
+   },
+   {
+    "name": "Ravenous Heart",
+    "level": 3,
+    "at": 8,
+    "overcome": {
+     "tag": "OVERCOME",
+     "n": 4,
+     "effect": "Discard 2 Armor [Armor] tokens"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": "Gain the Dread Condition card. Fleisch 1. The Knighteater moves 4 spaces directly away from the Attacker (without turning).",
+     "fail": "All Knights adjacent to the Knighteater gain the Fear Condition card.",
+     "instinct": null,
+     "critical": "The Knighteater dies!",
+     "ultrainstinct": "The Knighteater moves 2 spaces directly away from the Attacker, stopping before any Obstacles (without turning)."
+    },
+    "unclear": [
+     "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "overcomeTag": "OVERCOME",
+    "ops": {
+     "at": 8,
+     "overcome": {
+      "n": 4,
+      "ops": [
+       {
+        "op": "keArmor",
+        "n": -2
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "keCondition",
+       "id": "Dread"
+      },
+      {
+       "op": "keFleisch",
+       "n": 1
+      },
+      {
+       "op": "keAway",
+       "n": 4,
+       "from": "attacker",
+       "stop": false
+      }
+     ],
+     "fail": [
+      {
+       "op": "keAdjacentFear"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "slayMonster"
+      }
+     ],
+     "ultra": [
+      {
+       "op": "keAway",
+       "n": 2,
+       "from": "attacker",
+       "stop": true
+      }
+     ],
+     "mayEnd": null
+    }
+   }
+  ],
+  "signature": {
+   "name": "A Succulent Meal",
+   "level": null,
+   "type": "attack",
+   "evasionDice": 3,
+   "evasionDifficulty": 8,
+   "preTargeting": null,
+   "targeting": [
+    "Highest [P]"
+   ],
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "PENETRATE",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "For each hit lose -1 [V]. [Peril]. Three or more hits, gain the Fear Condition card."
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "Wolf Down 2.",
+   "unclear": [],
+   "typePrinted": "SIGNATURE",
+   "ops": {
+    "targeting": [
+     "Highest [Passion]"
+    ],
+    "move": true,
+    "keAppear": false,
+    "gates": [
+     {
+      "op": "keNoteGate",
+      "stat": "heat",
+      "gte": 3
+     }
+    ],
+    "before": [],
+    "effects": [
+     {
+      "op": "keOnHit",
+      "then": [
+       {
+        "op": "loseVigorPerHit",
+        "n": 1,
+        "perilCheck": true
+       },
+       {
+        "op": "keIfHits",
+        "gte": 3,
+        "then": [
+         {
+          "op": "keCondition",
+          "id": "Fear"
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "afterAttack": null,
+    "afterFinalAttack": [
+     {
+      "op": "keWolf",
+      "n": 2
+     }
+    ]
+   }
+  },
+  "routine": {
+   "name": "The Devouring",
+   "text": "Discard all Fleisch tokens from the Knight Pool. Knighteater moves to the closest Knight, then all adjacent Knights are devoured (die).",
+   "type": "routine",
+   "ops": [
+    {
+     "op": "keRoutine"
+    }
+   ]
+  }
+ },
+ "ke": {
+  "kingdomTrait": {
+   "sunken": "Adaptable",
+   "principality": "Iron Confines"
+  }
+ },
+ "clashSetup": {
+  "_source": "Expansion Codex p.50–51 (Knighteater Clash)",
+  "steps": [
+   "Standard Preparations (Rulebook p.44)",
+   "Monster Positioning: Place the Knighteater miniature on the space designated on the diagram. To determine facing direction, look at the bottom card from the Minor Mortis deck. If the arrow in the lower left corner points ↑ or ↓, Knighteater is facing ↓. If the arrow points ← or →, Knighteater is facing ←.",
+   "Additional Setup: Depending on the Kingdom, take the Iron Confines (Principality of Stone) or Adaptable (Sunken Kingdom) Trait card. Follow additional Clash Setup instructions introduced by Traits (if any)."
+  ],
+  "requiredTiles": [
+   "16x Column"
+  ],
+  "monsterCells": [
+   "G7",
+   "G8",
+   "H7",
+   "H8"
+  ],
+  "monsterFacing": "bottom Minor Mortis arrow: ↑/↓ → facing ↓, ←/→ → facing ←",
+  "knightStart": [
+   "H3",
+   "F4",
+   "D6",
+   "C8"
+  ],
+  "terrain": [
+   {
+    "tile": "column",
+    "cells": [
+     "A3",
+     "A6",
+     "B11",
+     "C1",
+     "C3",
+     "C13",
+     "D9",
+     "E5",
+     "E14",
+     "F1",
+     "G9",
+     "G12",
+     "I4",
+     "I7",
+     "I14",
+     "J11"
+    ]
+   }
+  ],
+  "notes": [
+   "지형·시작 칸은 코덱스 도식에서 읽음 [해석, 확인 필요]"
+  ]
+ },
+ "rulings": [
+  "Armor 토큰: 개수만큼 모든 BP의 AT +1로 처리 (BP Level 구분 없음) [해석, 확인 필요]",
+  "Ultrainstinct: BP를 정한 직후, Power Roll 전에 처리 (Rulebook p.58). Crit Chance면 무시 (Eggknight와 같은 처리)",
+  "Frenzied Hunger: Berserk 동안 Priority Target 토큰은 Knighteater Sheet에 있고 기사는 얻을 수 없음. Targeting 동률이면 동률인 기사 전원을 가까운 순서로 이동·공격(Sequential). Berserk가 공격 중에 풀리면 그 공격은 Chain Break",
+  "Starved Slaughterman Additional Setup: 각 기사가 Peril check를 할지 선택 — 하면 Fleisch 토큰 1개. 긍정 Mortis 카드는 효과 무시",
+  "Meatbait: 공격 선언 시 선택 — Precision -2로 공격하고 Fleisch 토큰을 Knighteater Level만큼 Knight Pool에",
+  "Measured Movement: 이동 중 지나간 Column은 그대로 두고, 이동을 마쳤을 때 밑에 있는 Column은 인접한 빈 칸으로 옮김",
+  "Appear Behind (Rulebook): 대상에 인접한 위치 중 현재 위치에서 가장 먼 곳에 놓고 대상을 향함",
+  "Forced Vault (Rulebook): 인접한 기사를 Knighteater 반대편 인접 칸으로 옮김(비자발 이동). 보드 밖/파괴 불가 Obstacle이면 사망. \"If this Vault would cause Crash, [Peril] instead\": 도착 칸이 Obstacle/다른 미니어처면 Peril check로 대체 [해석, 확인 필요]",
+  "Drag X: Knighteater가 대상 반대쪽으로 X칸 이동하고 대상이 같은 방향으로 따라옴 (인접해야 시작)",
+  "Lowest / Highest Peril Threshold: Uninjured < Minor < Major < Grave < Judicium 순 [해석, 확인 필요]",
+  "\"Closest Squire\" Targeting 줄: Squire 미구현이라 건너뜀",
+  "Debilitating Crush Targeting 첫 줄 \"Knight with a [아이콘] Weapon\": 아이콘 미확인 — 건너뜀 (미구현)",
+  "Penetrate (Armor Cracker, Debilitating Crush, Can Opener, Offal Harvest, Blood-Drenched Butchery, Heat 게이트 3장): 키워드 정의 미확인 — 미구현",
+  "devoured (die): 즉사. Cannibal’s Mouthpiece Critical 이후에는 Judicium Draw로 대체",
+  "\"You may voluntarily end this Attack before performing a Power Roll\" (Cannibal’s Mouthpiece, Monstrous Stomach): Ultrainstinct 뒤에 물음. 끝내면 Knight Pool을 비우고 Response 없이 BP는 버림 [해석, 확인 필요]"
+ ]
+}
