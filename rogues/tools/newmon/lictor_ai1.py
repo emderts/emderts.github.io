@@ -1,6 +1,6 @@
 from common import *
 H = lambda n, t, w='moveTag': dict(stat='Heat', gte=n, effect=t, where=w)
-GU = ['Heat 게이트 숫자 작은 글씨 — 확인 필요']; MA = 'MOVE & ATTACK'; DEC = 'The next non-Decoying Mob performs Decoy.'; DW = 'The next non-Decoying Mob performs Dwell.'
+GU = []; MA = 'MOVE & ATTACK'; DEC = 'The next non-Decoying Mob performs Decoy.'; DW = 'The next non-Decoying Mob performs Dwell.'
 PT = '[Priority Target] Priority Target'
 AI1 = [
  A('Gruesome Display', 1, 'JUDGEMENT', 2, 11, ['Lone Knight', PT, 'Closest Knight in sight'], 'JUDGE', ['Bravery / Sagacity.', 'One hit, gain the Distracted Condition card. Two hits, gain the Panicked Condition card. For each hit lose -1 [V]. Tactic A. [Peril].'], gates=[H(4, 'LOSE -1 [P]')], unclear=GU),

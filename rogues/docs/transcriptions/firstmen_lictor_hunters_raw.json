@@ -177,9 +177,7 @@
    ],
    "afterTag": null,
    "after": null,
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "targeting"
    ],
@@ -215,9 +213,7 @@
    ],
    "afterTag": "AFTER ATTACK",
    "after": "The next non-Decoying Mob performs Decoy.",
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "targeting",
     "After Attack 앞"
@@ -295,9 +291,7 @@
    ],
    "afterTag": "AFTER ATTACK",
    "after": "Knockdown.",
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "targeting",
     "After Attack 앞"
@@ -336,9 +330,7 @@
    ],
    "afterTag": null,
    "after": null,
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "targeting"
    ],
@@ -376,9 +368,7 @@
    ],
    "afterTag": "AFTER ATTACK",
    "after": "The next non-Decoying Mob performs Dwell.",
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "targeting",
     "After Attack 앞"
@@ -417,9 +407,7 @@
    ],
    "afterTag": null,
    "after": null,
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "targeting"
    ],
@@ -524,9 +512,7 @@
    ],
    "afterTag": "AFTER ATTACK",
    "after": "The next non-Decoying Mob performs Dwell.",
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "targeting",
     "After Attack 앞"
@@ -566,9 +552,7 @@
    ],
    "afterTag": null,
    "after": null,
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "targeting"
    ],
@@ -605,9 +589,7 @@
    ],
    "afterTag": "AFTER ATTACK",
    "after": "Knockdown.",
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "targeting",
     "After Attack 앞"
@@ -645,9 +627,7 @@
    ],
    "afterTag": null,
    "after": null,
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "targeting"
    ],
@@ -686,9 +666,7 @@
    ],
    "afterTag": null,
    "after": null,
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "targeting"
    ],
@@ -725,9 +703,7 @@
    ],
    "afterTag": null,
    "after": null,
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "targeting"
    ],
@@ -763,9 +739,7 @@
    ],
    "afterTag": "AFTER ATTACK",
    "after": "Tactic A. The next non-Decoying Mob performs Dwell.",
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "targeting",
     "After Attack 앞"
@@ -855,9 +829,7 @@
     "instinct": null,
     "critical": "You may perform a Bonus Attack!"
    },
-   "unclear": [
-    "Overcome 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": []
   },
   {
@@ -877,9 +849,7 @@
     "instinct": null,
     "critical": "Another Knight may perform a Bonus Attack!"
    },
-   "unclear": [
-    "Overcome 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": []
   },
   {
@@ -899,9 +869,7 @@
     "instinct": null,
     "critical": "Another Knight may perform a Bonus Attack!"
    },
-   "unclear": [
-    "Overcome 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": []
   },
   {
@@ -921,9 +889,7 @@
     "instinct": null,
     "critical": "You may flip a chosen BP card face down."
    },
-   "unclear": [
-    "Overcome 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": []
   },
   {
@@ -943,9 +909,7 @@
     "instinct": null,
     "critical": "Reset your [H]."
    },
-   "unclear": [
-    "Overcome 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": []
   },
   {
@@ -965,9 +929,7 @@
     "instinct": null,
     "critical": "Reset your [H]."
    },
-   "unclear": [
-    "Overcome 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": []
   },
   {
@@ -987,9 +949,7 @@
     "instinct": null,
     "critical": "Look at a chosen BP card."
    },
-   "unclear": [
-    "Overcome 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": []
   },
   {
@@ -1009,9 +969,7 @@
     "instinct": null,
     "critical": "Look at a chosen BP card."
    },
-   "unclear": [
-    "Overcome 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": []
   },
   {
@@ -1031,9 +989,7 @@
     "instinct": null,
     "critical": "You may flip a chosen BP card face down."
    },
-   "unclear": [
-    "Overcome 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": []
   },
   {
@@ -1053,9 +1009,7 @@
     "instinct": null,
     "critical": "You may flip a chosen BP card face down."
    },
-   "unclear": [
-    "Overcome 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": []
   },
   {
@@ -1075,9 +1029,7 @@
     "instinct": null,
     "critical": "You may move up to 3 spaces and perform a Bonus Attack! After the Clash, see 3584."
    },
-   "unclear": [
-    "Overcome 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": []
   },
   {
@@ -1085,7 +1037,7 @@
    "level": 2,
    "at": 4,
    "overcome": {
-    "n": 3,
+    "n": 4,
     "effect": "Opening 1"
    },
    "note": null,
@@ -1097,9 +1049,7 @@
     "instinct": null,
     "critical": "For each Decoy, choose one Decoying Mob and attach its miniature to a base ring. That mob is no longer a Decoy."
    },
-   "unclear": [
-    "Overcome 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": []
   },
   {
@@ -1107,7 +1057,7 @@
    "level": 2,
    "at": 4,
    "overcome": {
-    "n": 3,
+    "n": 4,
     "effect": "Opening 1"
    },
    "note": null,
@@ -1119,9 +1069,7 @@
     "instinct": null,
     "critical": "For each Decoy, choose one Decoying Mob and attach its miniature to a base ring. That mob is no longer a Decoy."
    },
-   "unclear": [
-    "Overcome 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": []
   },
   {
@@ -1141,9 +1089,7 @@
     "instinct": null,
     "critical": "You may discard all your Condition cards."
    },
-   "unclear": [
-    "Overcome 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": []
   },
   {
@@ -1163,9 +1109,7 @@
     "instinct": "Perform Signature against the Attacker. Place a Generic token on the Taunt & Decoy Trait.",
     "critical": "For two chosen Decoys, choose two Decoying Mobs and attach their miniatures to base rings. They are no longer Decoys."
    },
-   "unclear": [
-    "Overcome 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": []
   },
   {
@@ -1185,9 +1129,7 @@
     "instinct": "Draw AI 3 for another closest Mob from the AI deck or discard pile (prioritize the deck). Place a Generic token on the Taunt & Decoy Trait.",
     "critical": "The Lictor Hunters flee in fear. You win!"
    },
-   "unclear": [
-    "Overcome 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": []
   },
   {
@@ -1207,9 +1149,7 @@
     "instinct": null,
     "critical": "The Lictor Hunters flee in fear. You win!"
    },
-   "unclear": [
-    "Overcome 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": []
   },
   {
@@ -1229,9 +1169,7 @@
     "instinct": "Activate 1.",
     "critical": "You may move up to your [Speed] and perform a Bonus Attack!"
    },
-   "unclear": [
-    "Overcome 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": []
   }
  ],

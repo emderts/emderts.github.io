@@ -10,7 +10,7 @@ export const LictorMixin = {
     const cells = this.rng.shuffle ? this.rng.shuffle(M.mobs.map(m => m.cells[0])) : M.mobs.map(m => m.cells[0]).sort(() => this.rng.die(2) - 1.5); for (const m of M.mobs) B.remove(m.cells); M.mobs.forEach((m, i) => { m.cells = [cells[i]]; B.place({ kind: 'mob', id: 'mob' + m.n }, m.cells); });
     const dec = D.lh.decoyStart.map(l => B.parse(l)); for (const m of M.mobs) if (dec.some(c => cellEq(c, m.cells[0]))) m.decoying = true;
     this.say(`Lictor Hunters: #${M.mobs.filter(m => !m.decoying).map(m => m.n).join(', #')} · Decoy 위치: ${M.mobs.filter(m => m.decoying).map(m => B.label(m.cells[0])).join(', ')}`);
-    if (M.hasTrait('Advanced Tactics')) { this.tactics = this.rng.pick(Object.values(D.lh.advancedTactics)); this.say(`Advanced Tactics: ${this.tactics.name} — Tactics Target: ${this.tactics.ops.target}`, 'ai'); if (this.tactics.ops.escalateOnDraw) { this.say(`${this.tactics.name}: Escalate 1`); this.escalateLowestMob({ unrevealedOnly: true }); } }
+    if (M.hasTrait('Advanced Tactics')) { this.tactics = this.rng.pick(Object.values(D.lh.advancedTactics)); this.say(`Advanced Tactics: ${this.tactics.name} — Tactics Target: ${this.tactics.ops.target}`, 'ai'); if (this.tactics.ops.escalateOnDraw) { this.say(`${this.tactics.name}: Escalate 1`); this.escalateLowestMob({ unrevealedOnly: false }); } }
     const cur = () => M.cur && M.cur.decoying && (C.currentAttack || C._lhAct);
     const adj = this.adjacentToMonster.bind(this); this.adjacentToMonster = k => cur() ? true : adj(k);
     const ins = this.inSight.bind(this); this.inSight = k => cur() ? true : ins(k);

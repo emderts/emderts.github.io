@@ -40,4 +40,5 @@ const P = (c, l) => c.board.parse(l), L = (c, x) => c.board.label(x);
   await c.firstmenEndKnightRound(); ok(!nm.mangrove && nm.cells.length === 1, 'End of Knight Round: Lictor Hunters on Great Mangroves perform Dwell'); }
 { let done = 0, win = 0; for (let seed = 1; seed <= 12; seed++) for (const lv of [1, 2, 3, 4]) { if ((seed + lv) % 3) continue; const c = mk(seed * 19 + lv, lv); try { const r = await c.run(); done++; if (r === 'win') win++; const bad = c.log.filter(l => /미구현 targeting/.test(l.msg)); if (bad.length) { console.log('WARN', bad[0].msg); fails++; } } catch (e) { console.log('ERR', seed, lv, e.stack.split('\n').slice(0, 5).join(' | ')); fails++; } }
   ok(done === 16, `simulations finished: ${done} (wins ${win})`); }
+{ const sp = LH.cards.bp.find(x => x.name === 'Speculatore'); ok(sp.ops.overcome.n === 4, 'Speculatore Overcome 4+ (owner)'); }
 console.log(fails ? `FAIL (${fails})` : 'ALL PASS (lictor hunters)'); process.exit(fails ? 1 : 0);

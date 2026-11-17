@@ -180,9 +180,7 @@
     ],
     "afterTag": null,
     "after": null,
-    "unclear": [
-     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "targeting"
     ],
@@ -287,9 +285,7 @@
     ],
     "afterTag": "AFTER ATTACK",
     "after": "The next non-Decoying Mob performs Decoy.",
-    "unclear": [
-     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "targeting",
      "After Attack 앞"
@@ -459,9 +455,7 @@
     ],
     "afterTag": "AFTER ATTACK",
     "after": "Knockdown.",
-    "unclear": [
-     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "targeting",
      "After Attack 앞"
@@ -558,9 +552,7 @@
     ],
     "afterTag": null,
     "after": null,
-    "unclear": [
-     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "targeting"
     ],
@@ -641,9 +633,7 @@
     ],
     "afterTag": "AFTER ATTACK",
     "after": "The next non-Decoying Mob performs Dwell.",
-    "unclear": [
-     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "targeting",
      "After Attack 앞"
@@ -739,9 +729,7 @@
     ],
     "afterTag": null,
     "after": null,
-    "unclear": [
-     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "targeting"
     ],
@@ -992,9 +980,7 @@
     ],
     "afterTag": "AFTER ATTACK",
     "after": "The next non-Decoying Mob performs Dwell.",
-    "unclear": [
-     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "targeting",
      "After Attack 앞"
@@ -1096,9 +1082,7 @@
     ],
     "afterTag": null,
     "after": null,
-    "unclear": [
-     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "targeting"
     ],
@@ -1190,9 +1174,7 @@
     ],
     "afterTag": "AFTER ATTACK",
     "after": "Knockdown.",
-    "unclear": [
-     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "targeting",
      "After Attack 앞"
@@ -1298,9 +1280,7 @@
     ],
     "afterTag": null,
     "after": null,
-    "unclear": [
-     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "targeting"
     ],
@@ -1396,9 +1376,7 @@
     ],
     "afterTag": null,
     "after": null,
-    "unclear": [
-     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "targeting"
     ],
@@ -1509,9 +1487,7 @@
     ],
     "afterTag": null,
     "after": null,
-    "unclear": [
-     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "targeting"
     ],
@@ -1598,9 +1574,7 @@
     ],
     "afterTag": "AFTER ATTACK",
     "after": "Tactic A. The next non-Decoying Mob performs Dwell.",
-    "unclear": [
-     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "targeting",
      "After Attack 앞"
@@ -1857,9 +1831,7 @@
      "instinct": null,
      "critical": "You may perform a Bonus Attack!"
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 4,
@@ -1917,9 +1889,7 @@
      "instinct": null,
      "critical": "Another Knight may perform a Bonus Attack!"
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 4,
@@ -1974,9 +1944,7 @@
      "instinct": null,
      "critical": "Another Knight may perform a Bonus Attack!"
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 4,
@@ -2031,9 +1999,7 @@
      "instinct": null,
      "critical": "You may flip a chosen BP card face down."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 3,
@@ -2085,9 +2051,7 @@
      "instinct": null,
      "critical": "Reset your [H]."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 2,
@@ -2141,9 +2105,7 @@
      "instinct": null,
      "critical": "Reset your [H]."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 2,
@@ -2197,9 +2159,7 @@
      "instinct": null,
      "critical": "Look at a chosen BP card."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 3,
@@ -2252,9 +2212,7 @@
      "instinct": null,
      "critical": "Look at a chosen BP card."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 3,
@@ -2307,9 +2265,7 @@
      "instinct": null,
      "critical": "You may flip a chosen BP card face down."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 5,
@@ -2364,9 +2320,7 @@
      "instinct": null,
      "critical": "You may flip a chosen BP card face down."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 5,
@@ -2421,9 +2375,7 @@
      "instinct": null,
      "critical": "You may move up to 3 spaces and perform a Bonus Attack! After the Clash, see 3584."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 6,
@@ -2464,7 +2416,7 @@
     "level": 2,
     "at": 4,
     "overcome": {
-     "n": 3,
+     "n": 4,
      "effect": "Opening 1"
     },
     "note": null,
@@ -2476,14 +2428,12 @@
      "instinct": null,
      "critical": "For each Decoy, choose one Decoying Mob and attach its miniature to a base ring. That mob is no longer a Decoy."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 4,
      "overcome": {
-      "n": 3,
+      "n": 4,
       "ops": [
        {
         "op": "poolToken",
@@ -2523,7 +2473,7 @@
     "level": 2,
     "at": 4,
     "overcome": {
-     "n": 3,
+     "n": 4,
      "effect": "Opening 1"
     },
     "note": null,
@@ -2535,14 +2485,12 @@
      "instinct": null,
      "critical": "For each Decoy, choose one Decoying Mob and attach its miniature to a base ring. That mob is no longer a Decoy."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 4,
      "overcome": {
-      "n": 3,
+      "n": 4,
       "ops": [
        {
         "op": "poolToken",
@@ -2594,9 +2542,7 @@
      "instinct": null,
      "critical": "You may discard all your Condition cards."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 4,
@@ -2651,9 +2597,7 @@
      "instinct": "Perform Signature against the Attacker. Place a Generic token on the Taunt & Decoy Trait.",
      "critical": "For two chosen Decoys, choose two Decoying Mobs and attach their miniatures to base rings. They are no longer Decoys."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 6,
@@ -2705,9 +2649,7 @@
      "instinct": "Draw AI 3 for another closest Mob from the AI deck or discard pile (prioritize the deck). Place a Generic token on the Taunt & Decoy Trait.",
      "critical": "The Lictor Hunters flee in fear. You win!"
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 8,
@@ -2763,9 +2705,7 @@
      "instinct": null,
      "critical": "The Lictor Hunters flee in fear. You win!"
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 9,
@@ -2828,9 +2768,7 @@
      "instinct": "Activate 1.",
      "critical": "You may move up to your [Speed] and perform a Bonus Attack!"
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 7,
@@ -3318,22 +3256,22 @@
    "Decoy 표시(D)는 흰 탭이 붙은 마커 6개로 읽음: I5, I10, G5, F2, D6, B5 — 확인 필요"
   ],
   "notes": [
-   "지형·시작 칸·Decoy 위치는 코덱스 도식에서 읽음 [해석, 확인 필요]"
+   "지형·시작 칸·Decoy 위치는 코덱스 도식에서 읽음 (소유자 확인 2026-11-17)"
   ]
  },
  "rulings": [
   "Decoy 모델: Decoy 미니어처는 어느 BP와도 묶이지 않으므로, Decoy를 명중시키면 Mob track에서 가장 왼쪽의 비공개 Decoying BP를 공개해 그 칸의 Decoy와 짝지어 Power Roll을 해결. Response 전에 base ring을 붙이고(더 이상 Decoy 아님), 부상 실패면 새 Lictor Hunter를 Spawn하듯 Great Mangrove로 이동. Decoying BP가 모두 공개되어 있으면 즉시 Routine",
   "Decoy 키워드: 그 Lictor Hunter가 Decoy가 됨(미니어처는 그 자리에 남음, BP는 뒷면으로). Taunt & Decoy에 Generic 토큰 +1. 이미 Decoying이거나 Great Mangrove 위면 무시",
-  "Taunt & Decoy 토큰(누적): 1개 모든 Monster Attack Vigor 손실 +1 / 2개 +1 주사위 / 3개 After Attack: Exposed / 4개가 되는 순간 현재 행동 해결 뒤 다음 Lictor Hunter 활성화 + 가장 왼쪽의 토큰 없는 BP에 AI Activation 토큰 추가 (5개째부터는 추가 발동 없음) [해석, 확인 필요]",
+  "Taunt & Decoy 토큰(누적): 1개 모든 Monster Attack Vigor 손실 +1 / 2개 +1 주사위 / 3개 After Attack: Exposed / 4개가 되는 순간 현재 행동 해결 뒤 다음 Lictor Hunter 활성화 + 가장 왼쪽의 토큰 없는 BP에 AI Activation 토큰 추가 (5개째부터는 추가 발동 없음) (소유자 확인 2026-11-17)",
   "Decoying Lictor Hunter가 활성화되면 그 공격 동안 모든 기사를 인접·시야 내로 취급하고 이동하지 않음",
   "Seek & Destroy: Decoy는 Lumbering(이동하지 않음). Swamp 위 Decoy는 AT -1, To Hit +2. Decoy를 공격할 때 Knight Pool의 Fire 토큰 1개당 To Hit -1",
   "Mangrove Deployment: 죽으면 한 Level 높은 BP(없으면 BP 3)로 새 Lictor Hunter가 Great Mangrove #1부터 시계 방향으로 대기. Knight Round 종료 시 번호 순으로 Dwell(가장 가까운 빈 Swamp 칸으로 이동)",
   "It’s a Trap!: Decoy를 공격했을 때 Instinct로 처리 — 그 Decoy 주변 Zone 1의 모든 기사 Vigor -1, 잃은 기사 수만큼 Fire 토큰",
-  "Battle Tactics의 \"in range\": Tactics Target 줄에서는 사거리 조건을 적용하지 않음 [해석, 확인 필요]",
+  "Battle Tactics의 \"in range\": Tactics Target 문구에 in range가 있으면 그 공격의 Range 안에 있는 기사만 Tactics Target (소유자 확인 2026-11-17). Range가 없는 공격은 사거리 조건 없이 적용 [해석, 확인 필요]",
   "End of Monster Round(Battle Tactics): 이번 Monster Round에 활성화된 Monster만 2칸 이동 (Decoying은 이동하지 않음)",
-  "Censor \"While revealed: Disable Responses that flip BP cards face down\": 이 덱의 \"flip … face down\" Response(Censor·Frumentari)에만 적용, Critical의 \"You may flip a chosen BP\"는 그대로 [해석, 확인 필요]",
+  "Censor \"While revealed: Disable Responses that flip BP cards face down\": \"flip … face down\" Response(Censor·Frumentari)와 Critical의 \"You may flip a chosen BP\"에 모두 적용 — Critical로는 뒷면 BP를 앞면으로만 뒤집을 수 있음 (소유자 확인 2026-11-17)",
   "Stilicho \"-1 AT when adjacent to any other Monster\", Speculatore \"All Monsters have +1 To Hit\", Exploratore \"+1 Vigor loss\": 공개된 동안 적용",
   "Combat Flexibility: Decoying이 아닌 Mob을 죽이면 그 공격의 Response 뒤에 Mob track의 다음 non-Decoying Mob이 공격자에게 Signature",
-  "Advanced Ambush Tactics \"When you draw this card, Escalate 1\": 가장 낮은 비공개 BP를 Escalate [해석, 확인 필요]"
+  "Advanced Ambush Tactics \"When you draw this card, Escalate 1\": Tactics는 Clash 시작에만 뽑으므로 시작 Escalation과 같게 처리 (소유자 확인 2026-11-17)"
  ]
 }

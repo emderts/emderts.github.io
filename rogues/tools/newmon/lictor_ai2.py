@@ -5,7 +5,7 @@ AI2 = [
  A('Death from Above', 3, 'SIMULTANEOUS ATTACK', 3, 9, ['Clash Board'], 'ATTACK', ['One hit, lose -3 [V]. Two hits, lose -5 [V]. Three or more hits, lose -5 [V] and gain the Slimed Condition card. Tactic B. [Peril].'], 'Knockdown.', 'AFTER FINAL ATTACK'),
  A('Fighting Dirty', 3, 'ATTACK', 3, 10, ['Engaged Knight', 'Last Knight to wound', 'Closest Knight'], 'MOVE & ATTACK', ['For each hit lose -2 [V]. Knockdown. Two hits, gain the Slimed Condition card. Three or more hits, gain the Drowning Condition card. Tactic A. [Peril]. The next non-Decoying Mob performs Decoy.']),
 ]
-OU = ['Overcome 숫자 작은 글씨 — 확인 필요']
+OU = []
 EV = dict(whenRevealed='Escalate the lowest unrevealed BP on the Mob track.', wound='Gain the Exposed Condition card.', fail='Place a Generic token on the Taunt & Decoy Trait.', critical='Another Knight may perform a Bonus Attack!', unclear=OU)
 PE = dict(wound='Lose -1 [H].', fail='Tactic B. [Peril].', critical='Reset your [H].', unclear=OU)
 AU = dict(wound='Reveal the leftmost unrevealed BP.', fail='Escalate the lowest unrevealed BP. Decoy.', critical='Look at a chosen BP card.', unclear=OU)
@@ -18,5 +18,5 @@ BP1 = [
  B('Auxiliari', 1, 3, (3, 'Fire 1'), **AU), B('Auxiliari', 1, 3, (3, 'Fire 1'), **AU),
  B('Frumentari', 2, 5, (3, 'Fire 1'), **FR), B('Frumentari', 2, 5, (3, 'Fire 1'), **FR),
  B('Exploratore', 2, 6, (4, 'Power 1'), wound='The furthest Mob performs Signature against the Attacker.', fail='Place a Generic token on the Taunt & Decoy Trait.', critical='You may move up to 3 spaces and perform a Bonus Attack! After the Clash, see 3584.', whileRevealed='All Monster Attacks additionally cause -1 [V] loss.', unclear=OU),
- B('Speculatore', 2, 4, (3, 'Opening 1'), wound='Escalate the lowest AI.', fail='[Peril]. Tactic A.', critical='For each Decoy, choose one Decoying Mob and attach its miniature to a base ring. That mob is no longer a Decoy.', whileRevealed='All Monsters have +1 [To Hit].', unclear=OU),
+ B('Speculatore', 2, 4, (4, 'Opening 1'), wound='Escalate the lowest AI.', fail='[Peril]. Tactic A.', critical='For each Decoy, choose one Decoying Mob and attach its miniature to a base ring. That mob is no longer a Decoy.', whileRevealed='All Monsters have +1 [To Hit].', unclear=OU),
 ]

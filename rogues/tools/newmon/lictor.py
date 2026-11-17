@@ -2,7 +2,7 @@ from common import *
 from lictor_sheet import SHEET
 from lictor_ai1 import AI1
 from lictor_ai2 import AI2, BP1, OU
-SPEC = B('Speculatore', 2, 4, (3, 'Opening 1'), wound='Escalate the lowest AI.', fail='[Peril]. Tactic A.', critical='For each Decoy, choose one Decoying Mob and attach its miniature to a base ring. That mob is no longer a Decoy.', whileRevealed='All Monsters have +1 [To Hit].', unclear=OU)
+SPEC = B('Speculatore', 2, 4, (4, 'Opening 1'), wound='Escalate the lowest AI.', fail='[Peril]. Tactic A.', critical='For each Decoy, choose one Decoying Mob and attach its miniature to a base ring. That mob is no longer a Decoy.', whileRevealed='All Monsters have +1 [To Hit].', unclear=OU)
 DRAW3 = 'Draw AI 3 for another closest Mob from the AI deck or discard pile (prioritize the deck). Place a Generic token on the Taunt & Decoy Trait.'
 BP2 = [SPEC,
  B('Arcani', 2, 4, (3, 'Fire 1'), whenRevealed='Reveal the rightmost unrevealed BP on the Mob track.', wound='The next non-Decoying Mob performs Decoy.', fail='Perform Signature against the Attacker.', critical='You may discard all your Condition cards.', unclear=OU),
