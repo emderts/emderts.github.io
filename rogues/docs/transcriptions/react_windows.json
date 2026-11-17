@@ -282,12 +282,14 @@
    "Terrorizing Presence": {
     "targeting": false,
     "mid": null,
-    "beforeAfter": true
+    "beforeAfter": true,
+    "pre": true
    },
    "Armor Cracker": {
     "targeting": false,
     "mid": null,
-    "beforeAfter": true
+    "beforeAfter": true,
+    "pre": true
    },
    "Fencer’s Thrust": {
     "targeting": true,
@@ -302,7 +304,8 @@
    "Scraps Disposal": {
     "targeting": false,
     "mid": null,
-    "beforeAfter": true
+    "beforeAfter": true,
+    "pre": true
    },
    "Ritterspieße": {
     "targeting": true,
@@ -312,12 +315,14 @@
    "Debilitating Crush": {
     "targeting": false,
     "mid": null,
-    "beforeAfter": true
+    "beforeAfter": true,
+    "pre": true
    },
    "Can Opener": {
     "targeting": false,
     "mid": null,
-    "beforeAfter": true
+    "beforeAfter": true,
+    "pre": true
    },
    "Lamb to Slaughter": {
     "targeting": true,
@@ -332,12 +337,14 @@
    "Hit and Run": {
     "targeting": false,
     "mid": null,
-    "beforeAfter": true
+    "beforeAfter": true,
+    "pre": true
    },
    "Offal Harvest": {
     "targeting": false,
     "mid": null,
-    "beforeAfter": true
+    "beforeAfter": true,
+    "pre": true
    },
    "Knight Smash!": {
     "targeting": true,
@@ -347,12 +354,14 @@
    "Blood-Drenched Butchery": {
     "targeting": false,
     "mid": null,
-    "beforeAfter": true
+    "beforeAfter": true,
+    "pre": true
    },
    "Knight Opener": {
     "targeting": false,
     "mid": null,
-    "beforeAfter": true
+    "beforeAfter": true,
+    "pre": true
    },
    "Dine and Dash": {
     "targeting": true,

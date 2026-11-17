@@ -198,6 +198,7 @@ export class Clash {
       else if (L.includes('with a hex card')) cand = alive.filter(k => (k.hexes || []).length);
       else if (L.includes('poisoned or toxified')) cand = alive.filter(k => this.hasCondition(k, 'Poisoned') || this.hasCondition(k, 'Toxified'));
       else if (L.startsWith('lowest [heat]') && !L.includes('in sight')) cand = minBy(alive, k => k.heat);
+      else if (L.includes('two-handed weapon')) cand = closest(alive.filter(k => k.gear.some(g => g.type === 'weapon' && !g.discarded && g.hands === 2)));
       else if (L.includes('peril threshold')) { const R = { Uninjured: 0, Minor: 1, Major: 2, Grave: 3, Judicium: 4 }; const pv = k => R[k.peril()] ?? 0; cand = minBy(alive, k => L.includes('lowest') ? pv(k) : -pv(k)); }
       else if (L.includes('closest squire')) cand = [];
       else if (L.includes('fleischritter')) cand = closest(alive.filter(k => k.def && k.def.id === 'fleischritter'));
@@ -236,8 +237,9 @@ export class Clash {
 
   /** Monster Attack (p.47–54): targeting → movement → evasion per target → consequences → after attack. */
   async resolveMonsterAttack(card, ctx = {}) {
-    const ops = card.ops; let tg = ctx.forceTarget && ctx.forceTarget.alive ? { targets: [ctx.forceTarget], primary: ctx.forceTarget, line: 'Signature 대상 지정' } : await this.resolveTargeting(card);
+    const ops = card.ops; if (ops.preReact && ops.pre) { this.say('REACT! (Targeting 앞)'); await this.windowOfOpportunity('react', null, null, 'pre'); }
     if (ops.pre) await this.fx.runMonsterOps(ops.pre, {});
+    let tg = ctx.forceTarget && ctx.forceTarget.alive ? { targets: [ctx.forceTarget], primary: ctx.forceTarget, line: 'Signature 대상 지정' } : await this.resolveTargeting(card);
     if (tg && tg.signatureInstead) { this.say('No Target → Signature'); return this.performSignature(); }
     if (!tg) { this.say(`유효 대상 없음 → Routine`); await this.performRoutine(); return; }
     this.say(`Targeting: ${tg.line}${tg.primary ? ' → ' + tg.primary.name : ''}`);

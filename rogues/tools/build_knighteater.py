@@ -20,7 +20,7 @@ AI = {
  'Lung Vorspeisen': dict(gates=[HD(3)], effects=ON(V(3), COND('Fear'), DRAG(2)), afterFinalAttack=[WD(2)]),
  'Scraps Disposal': dict(pre=[WD(2)], gates=[HV(3, 2)], effects=ON(V(1), GEAR('exhaust', 'weapon'), FV), afterFinalAttack=[{'op': 'keAway', 'n': 2, 'from': 'target'}]),
  'Ritterspieße': dict(targeting=HP, effects=ON(V(3), GEAR('exhaust', 'armor'), FVP), afterFinalAttack=[WD(3)]),
- 'Debilitating Crush': dict(targeting=['Highest Peril Threshold'], pre=[WD(2)], gates=[HD(3), {'op': 'keAfterWolf', 'stat': 'heat', 'gte': 2, 'n': 1}], effects=ON(PEN, V(4), COND('Dread')), afterFinalAttack=[GEAR('exhaust', 'weapon'), {'op': 'keGatedWolf'}]),
+ 'Debilitating Crush': dict(targeting=['Knight with a Two-handed Weapon', 'Highest Peril Threshold'], pre=[WD(2)], gates=[HD(3), {'op': 'keAfterWolf', 'stat': 'heat', 'gte': 2, 'n': 1}], effects=ON(PEN, V(4), COND('Dread')), afterFinalAttack=[GEAR('exhaust', 'weapon'), {'op': 'keGatedWolf'}]),
  'Can Opener': dict(pre=[WD(2)], gates=[HD(3)], effects=ON(PEN, V(3), FV), afterFinalAttack=[{'op': 'keGear', 'mode': 'discard', 'type': 'armor', 'perilToExhaust': True}]),
  'Lamb to Slaughter': dict(gates=[{'op': 'keNoteGate', 'stat': 'heat', 'gte': 3}], effects=ON(V(3), COND('Fear'), DRAG(3)), afterFinalAttack=[WD(2), WD(1)]),
  'Playing with Your Food': dict(targeting=['Highest [Passion]'], gates=[HV(2, 5)], beforeAttack=[{'op': 'keOtherSide'}], effects=ON(V(4), FV, {'op': 'knockback', 'n': 3}), afterFinalAttack=[GEAR('exhaust', 'all')]),
@@ -29,7 +29,7 @@ AI = {
  'Knight Smash!': dict(targeting=['Lowest [Passion]'], effects=ON(DRAG(2), V(2), {'op': 'kePerHit', 'then': [FV]}, {'op': 'keKnockbackRandom', 'n': 5})),
  'Blood-Drenched Butchery': dict(pre=[WD(2)], gates=[{'op': 'difficultyInstead', 'stat': 'heat', 'gte': 3, 'n': 10}], effects=ON(PEN, V(4), COND('Dread'), FV), afterFinalAttack=[GEAR('exhaust', 'armor'), WD(2)]),
  'Knight Opener': dict(pre=[WD(3)], effects=[GEAR('discard', 'armor')] + ON(HT(5, 11, 'devour')), afterFinalAttack=[{'op': 'keDreadLoS'}]),
- 'Dine and Dash': dict(targeting=HP, gates=[HD(1)], effects=ON(V(2), {'op': 'kePerHit', 'then': [WD(2)]}), afterFinalAttack=CENTER),
+ 'Dine and Dash': dict(targeting=HP, gates=[HD(4)], effects=ON(V(2), {'op': 'kePerHit', 'then': [WD(2)]}), afterFinalAttack=CENTER),
  'Personal Vendetta': dict(targeting=['Fleischritter', 'Highest Peril Threshold'], gates=[HD(3)], effects=ON({'op': 'keDevourOnHit'}) + [{'op': 'keIfSurvived', 'then': [COND('Dread')]}], afterFinalAttack=[GEAR('discard', 'weapon'), {'op': 'keWolf', 'n': 'fleisch'}]),
 }
 SIG = dict(targeting=['Highest [Passion]'], gates=[{'op': 'keNoteGate', 'stat': 'heat', 'gte': 3}], effects=ON(V(1), {'op': 'keIfHits', 'gte': 3, 'then': [COND('Fear')]}), afterFinalAttack=[WD(2)])
@@ -93,7 +93,8 @@ d = {
   'Drag X: Knighteater가 대상 반대쪽으로 X칸 이동하고 대상이 같은 방향으로 따라옴 (인접해야 시작)',
   'Lowest / Highest Peril Threshold: Uninjured < Minor < Major < Grave < Judicium 순 [해석, 확인 필요]',
   '"Closest Squire" Targeting 줄: Squire 미구현이라 건너뜀',
-  'Debilitating Crush Targeting 첫 줄 "Knight with a [아이콘] Weapon": 아이콘 미확인 — 건너뜀 (미구현)',
+  'Debilitating Crush Targeting 첫 줄: "Knight with a [Two-handed] Weapon" (소유자 확인 2026-11-17) — Two-handed 무기를 든 기사 중 가장 가까운 기사',
+  '카드 맨 위 "Wolf Down X"(9장): 그 앞에 REACT! 창, Wolf Down은 Targeting보다 먼저 해결 (소유자 확인 2026-11-17)',
   'Penetrate (Armor Cracker, Debilitating Crush, Can Opener, Offal Harvest, Blood-Drenched Butchery, Heat 게이트 3장): 키워드 정의 미확인 — 미구현',
   'devoured (die): 즉사. Cannibal’s Mouthpiece Critical 이후에는 Judicium Draw로 대체',
   '"You may voluntarily end this Attack before performing a Power Roll" (Cannibal’s Mouthpiece, Monstrous Stomach): Ultrainstinct 뒤에 물음. 끝내면 Knight Pool을 비우고 Response 없이 BP는 버림 [해석, 확인 필요]',

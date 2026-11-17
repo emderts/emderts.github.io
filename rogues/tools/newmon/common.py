@@ -21,7 +21,7 @@ def write(id_, data):
         if c.get('pre'): c['preTargeting'] = c['pre']
         if c.get('hex'): h = c['hex']; ex.append(dict(name=h['name'], kind=h['type'] + ' — AI: ' + c['name'], text=h['text']))
     RW = json.load(open(os.path.join(os.path.dirname(out), 'react_windows.json'))).get(id_, {})
-    disp = (lambda w: [] if not w else (['targeting'] if w['targeting'] else []) + (["효과 사이: '" + w['mid']['after'] + "' 뒤"] if w.get('mid') else []) + (['After Attack 앞'] if w['beforeAfter'] else []))
+    disp = (lambda w: [] if not w else (['Wolf Down(Targeting 앞) 앞'] if w.get('pre') else []) + (['targeting'] if w['targeting'] else []) + (["효과 사이: '" + w['mid']['after'] + "' 뒤"] if w.get('mid') else []) + (['After Attack 앞'] if w['beforeAfter'] else []))
     for c in data['ai']: c['reactSpec'] = RW.get('ai', {}).get(c['name']); c['reactWindows'] = disp(c['reactSpec'])
     for c in data['bp']: c['reactWindows'] = RW.get('bp', {}).get(c['name'], [])
     S['notes'] = list(data.get('_notes', []))
@@ -36,6 +36,7 @@ def apply_react(card):
     """Insert reactWindow ops into a built AI card from its reactSpec (mid-effect and before-After windows)."""
     w = card.get('reactSpec'); ops = card['ops']; card['reactExact'] = True
     if not w: return card
+    if w.get('pre'): ops['preReact'] = True
     if w.get('mid'):
         eff = ops['effects']; inner = eff[0]['then'] if eff and eff[0].get('op', '').endswith('OnHit') and 'then' in eff[0] else eff
         inner.insert(min(w['mid']['index'], len(inner)), {'op': 'reactWindow', 'at': 'mid'})

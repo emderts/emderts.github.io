@@ -211,13 +211,15 @@
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
    "reactWindows": [
+    "Wolf Down(Targeting 앞) 앞",
     "After Attack 앞"
    ],
    "afterAttack": "AFTER FINAL ATTACK: Wolf Down 1.",
    "reactSpec": {
     "targeting": false,
     "mid": null,
-    "beforeAfter": true
+    "beforeAfter": true,
+    "pre": true
    }
   },
   {
@@ -250,13 +252,15 @@
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
    "reactWindows": [
+    "Wolf Down(Targeting 앞) 앞",
     "After Attack 앞"
    ],
    "afterAttack": "AFTER FINAL ATTACK: Exhaust your Armor [Gear] card.",
    "reactSpec": {
     "targeting": false,
     "mid": null,
-    "beforeAfter": true
+    "beforeAfter": true,
+    "pre": true
    }
   },
   {
@@ -371,13 +375,15 @@
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
    "reactWindows": [
+    "Wolf Down(Targeting 앞) 앞",
     "After Attack 앞"
    ],
    "afterAttack": "AFTER FINAL ATTACK: Knighteater moves 2 spaces directly away from the Target.",
    "reactSpec": {
     "targeting": false,
     "mid": null,
-    "beforeAfter": true
+    "beforeAfter": true,
+    "pre": true
    }
   },
   {
@@ -419,7 +425,7 @@
    "evasionDifficulty": 8,
    "preTargeting": "Wolf Down 2.",
    "targeting": [
-    "Knight with a [two-handed?] Weapon",
+    "Knight with a [Two-handed] Weapon",
     "Highest Peril Threshold"
    ],
    "moveTag": "MOVE & ATTACK",
@@ -444,17 +450,18 @@
    "afterTag": "AFTER FINAL ATTACK",
    "after": "Exhaust your Weapon [Gear] card.",
    "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요",
-    "Targeting 첫 줄 \"Knight with a [아이콘] Weapon\" — 아이콘 종류 확인 필요"
+    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
    "reactWindows": [
+    "Wolf Down(Targeting 앞) 앞",
     "After Attack 앞"
    ],
    "afterAttack": "AFTER FINAL ATTACK: Exhaust your Weapon [Gear] card.",
    "reactSpec": {
     "targeting": false,
     "mid": null,
-    "beforeAfter": true
+    "beforeAfter": true,
+    "pre": true
    }
   },
   {
@@ -487,13 +494,15 @@
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
    "reactWindows": [
+    "Wolf Down(Targeting 앞) 앞",
     "After Attack 앞"
    ],
    "afterAttack": "AFTER FINAL ATTACK: Discard your Armor [Gear] card. You may [Peril] to Exhaust your Armor [Gear] card instead.",
    "reactSpec": {
     "targeting": false,
     "mid": null,
-    "beforeAfter": true
+    "beforeAfter": true,
+    "pre": true
    }
   },
   {
@@ -598,13 +607,15 @@
    "after": "Knighteater moves to the center of the Clash Board and turns to face the most Knights.",
    "unclear": [],
    "reactWindows": [
+    "Wolf Down(Targeting 앞) 앞",
     "After Attack 앞"
    ],
    "afterAttack": "AFTER FINAL ATTACK: Knighteater moves to the center of the Clash Board and turns to face the most Knights.",
    "reactSpec": {
     "targeting": false,
     "mid": null,
-    "beforeAfter": true
+    "beforeAfter": true,
+    "pre": true
    }
   },
   {
@@ -637,13 +648,15 @@
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
    "reactWindows": [
+    "Wolf Down(Targeting 앞) 앞",
     "After Attack 앞"
    ],
    "afterAttack": "AFTER FINAL ATTACK: Wolf Down 2.",
    "reactSpec": {
     "targeting": false,
     "mid": null,
-    "beforeAfter": true
+    "beforeAfter": true,
+    "pre": true
    }
   },
   {
@@ -705,13 +718,15 @@
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
    "reactWindows": [
+    "Wolf Down(Targeting 앞) 앞",
     "After Attack 앞"
    ],
    "afterAttack": "AFTER FINAL ATTACK: Exhaust your Armor [Gear] card. Wolf Down 2.",
    "reactSpec": {
     "targeting": false,
     "mid": null,
-    "beforeAfter": true
+    "beforeAfter": true,
+    "pre": true
    }
   },
   {
@@ -734,13 +749,15 @@
    "after": "Each Knight that has LoS to Knighteater or the Target gains the Dread Condition card.",
    "unclear": [],
    "reactWindows": [
+    "Wolf Down(Targeting 앞) 앞",
     "After Attack 앞"
    ],
    "afterAttack": "AFTER FINAL ATTACK: Each Knight that has LoS to Knighteater or the Target gains the Dread Condition card.",
    "reactSpec": {
     "targeting": false,
     "mid": null,
-    "beforeAfter": true
+    "beforeAfter": true,
+    "pre": true
    }
   },
   {
@@ -758,7 +775,7 @@
    "gates": [
     {
      "stat": "Heat",
-     "gte": 1,
+     "gte": 4,
      "effect": "+1 [die]",
      "where": "moveTag"
     }
@@ -768,9 +785,7 @@
    ],
    "afterTag": "AFTER FINAL ATTACK",
    "after": "The Knighteater moves to the center of the Clash Board and turns to face the most Knights.",
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "targeting",
     "After Attack 앞"
