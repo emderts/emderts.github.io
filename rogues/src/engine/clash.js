@@ -20,6 +20,7 @@ import { MasonMixin } from './stonemason.js';
 import { EaterMixin } from './knighteater.js';
 import { LictorMixin } from './lictor.js';
 import { WitchMixin } from './bogwitch.js';
+import { applyReactPlan } from './reactplan.js';
 import { IroncastMixin } from './ironcast.js';
 import { RenholderMixin } from './renholder.js';
 import { KaraMixin, installKara } from './kara.js';
@@ -43,7 +44,7 @@ export class Clash {
     this.kingdom = cfg.kingdom || 'principality'; this.round = 0; this.result = null; this.listeners = cfg.listeners || {};
     this.board = new Board(this.data.components.board);
     this.pool = []; // Knight Pool tokens: {token, temp}
-    this.monsterDef = this.data.monsters[cfg.monster]; this.monster = new Monster(this.monsterDef, cfg.level, this.rng); this.nodeLevel = cfg.nodeLevel || cfg.level || 1; /* Rogue's Path: tier gates ([VASSAL] etc.) follow the node level */
+    this.monsterDef = this.data.monsters[cfg.monster]; applyReactPlan(this.monsterDef); this.monster = new Monster(this.monsterDef, cfg.level, this.rng); this.nodeLevel = cfg.nodeLevel || cfg.level || 1; /* Rogue's Path: tier gates ([VASSAL] etc.) follow the node level */
     this.knights = cfg.knights.map((k, i) => this._mkKnight(k, i));
     this.fx = new Effects(this);
     this._setupDecks();
