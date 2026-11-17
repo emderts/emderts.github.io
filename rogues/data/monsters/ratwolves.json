@@ -202,7 +202,10 @@
     "unclear": [
      "Heat 게이트 숫자 작은 글씨 — 확인 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting",
+     "효과 구간 (줄 위치 미확인)"
+    ],
     "afterAttack": "AFTER ATTACK: Knockdown.",
     "typePrinted": "ATTACK",
     "ops": {
@@ -258,7 +261,10 @@
     "afterTag": "AFTER ATTACK",
     "after": "Drag 3.",
     "unclear": [],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting",
+     "효과 구간 (줄 위치 미확인)"
+    ],
     "afterAttack": "AFTER ATTACK: Drag 3.",
     "typePrinted": "ATTACK",
     "ops": {
@@ -320,7 +326,10 @@
     "unclear": [
      "Heat 게이트 숫자 작은 글씨 — 확인 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting",
+     "효과 구간 (줄 위치 미확인)"
+    ],
     "afterAttack": "AFTER ATTACK: Drag 5.",
     "typePrinted": "ATTACK",
     "ops": {
@@ -385,7 +394,9 @@
     "unclear": [
      "Heat 게이트 숫자 작은 글씨 — 확인 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting"
+    ],
     "afterAttack": "AFTER ATTACK: Drag 2.",
     "typePrinted": "ATTACK",
     "ops": {
@@ -448,7 +459,10 @@
     "afterTag": "AFTER ATTACK",
     "after": "Drag 3.",
     "unclear": [],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting",
+     "효과 구간 (줄 위치 미확인)"
+    ],
     "afterAttack": "AFTER ATTACK: Drag 3.",
     "typePrinted": "ATTACK",
     "ops": {
@@ -514,7 +528,10 @@
     "unclear": [
      "Heat 게이트 숫자 작은 글씨 — 확인 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting",
+     "효과 구간 (줄 위치 미확인)"
+    ],
     "afterAttack": "AFTER ATTACK: Knockback 3.",
     "typePrinted": "JUDGEMENT",
     "ops": {
@@ -615,7 +632,10 @@
     "unclear": [
      "Heat 게이트 숫자 작은 글씨 — 확인 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting",
+     "효과 구간 (줄 위치 미확인)"
+    ],
     "afterAttack": "AFTER ATTACK: Drag 6.",
     "typePrinted": "ATTACK",
     "ops": {
@@ -688,7 +708,10 @@
     "unclear": [
      "Heat 게이트 숫자 작은 글씨 — 확인 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting",
+     "효과 구간 (줄 위치 미확인)"
+    ],
     "afterAttack": "AFTER ATTACK: Drag 2.",
     "typePrinted": "ATTACK",
     "ops": {
@@ -767,7 +790,10 @@
     "unclear": [
      "\"gain +1 [아이콘]\" — Escalation 아이콘으로 읽음, 확인 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting",
+     "효과 구간 (줄 위치 미확인)"
+    ],
     "afterAttack": "AFTER ATTACK: Activate 1.",
     "typePrinted": "ATTACK",
     "ops": {
@@ -833,7 +859,10 @@
     "unclear": [
      "Heat 게이트 숫자 작은 글씨 — 확인 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting",
+     "효과 구간 (줄 위치 미확인)"
+    ],
     "afterAttack": "AFTER ATTACK: Pushback 5.",
     "typePrinted": "ATTACK",
     "ops": {

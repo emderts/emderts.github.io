@@ -52,7 +52,7 @@ export const EaterMixin = {
   keFeral(A) { if (this.monster.hasTrait('Feral Guard') && this.ke.berserk) { this.say('Feral Guard: Berserk 상태 — 부상시킬 수 없음', 'bp'); return true; } return false; },
   /** Ultrainstinct (after the BP is determined, before the Power Roll). Returns true when the Knight voluntarily ends the Attack. */
   async keUltra(k, A, bp) {
-    const S = this.ke, ops = bp.ops; S.w0 = this.monster.wounds; if (ops.ultra && !S.flags.noUltra && !S.flags.ultraToInstinct && !A.critChance) { this.say('Ultrainstinct', 'bp'); try { await this.fx.runMonsterOps(ops.ultra, { attacker: k, attack: A }); } catch (e) { if (!e.chainBreak) throw e; } }
+    const S = this.ke, ops = bp.ops; S.w0 = this.monster.wounds; if (ops.ultra && !S.flags.noUltra && !S.flags.ultraToInstinct && !A.critChance) { this.say('Ultrainstinct', 'bp'); if ((bp.reactWindows || []).includes('ultrainstinct')) { this.say('REACT! (Ultrainstinct)'); await this.windowOfOpportunity('react', null); } try { await this.fx.runMonsterOps(ops.ultra, { attacker: k, attack: A }); } catch (e) { if (!e.chainBreak) throw e; } }
     if (ops.mayEnd && k.alive && await this.yesNo(`${k.name}: ${bp.name} — Power Roll 전에 이 공격을 자발적으로 끝내기? (Knight Pool의 모든 토큰 제거)`, false)) { this.pool = []; this.say(`${k.name}: 공격을 끝냄 — Knight Pool 비움`, 'tech'); return true; }
     return false;
   },

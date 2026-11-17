@@ -180,7 +180,9 @@
    "unclear": [
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting"
+   ],
    "afterAttack": null
   },
   {
@@ -211,7 +213,10 @@
    "unclear": [
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting",
+    "효과 구간 (줄 위치 미확인)"
+   ],
    "afterAttack": "AFTER ATTACK: The next non-Decoying Mob performs Decoy."
   },
   {
@@ -236,7 +241,10 @@
    "afterTag": "AFTER ATTACK",
    "after": "The next non-Decoying Mob performs Dwell.",
    "unclear": [],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting",
+    "효과 구간 (줄 위치 미확인)"
+   ],
    "afterAttack": "AFTER ATTACK: The next non-Decoying Mob performs Dwell."
   },
   {
@@ -275,7 +283,10 @@
    "unclear": [
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting",
+    "효과 구간 (줄 위치 미확인)"
+   ],
    "afterAttack": "AFTER ATTACK: Knockdown."
   },
   {
@@ -308,7 +319,9 @@
    "unclear": [
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting"
+   ],
    "afterAttack": null
   },
   {
@@ -341,7 +354,10 @@
    "unclear": [
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting",
+    "효과 구간 (줄 위치 미확인)"
+   ],
    "afterAttack": "AFTER ATTACK: The next non-Decoying Mob performs Dwell."
   },
   {
@@ -374,7 +390,9 @@
    "unclear": [
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting"
+   ],
    "afterAttack": null
   },
   {
@@ -396,7 +414,10 @@
    "afterTag": "AFTER ATTACK",
    "after": "Tactic B.",
    "unclear": [],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting",
+    "효과 구간 (줄 위치 미확인)"
+   ],
    "afterAttack": "AFTER ATTACK: Tactic B."
   },
   {
@@ -420,7 +441,10 @@
    "afterTag": "AFTER ATTACK",
    "after": "Knockdown.",
    "unclear": [],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting",
+    "효과 구간 (줄 위치 미확인)"
+   ],
    "afterAttack": "AFTER ATTACK: Knockdown."
   },
   {
@@ -458,7 +482,10 @@
    "unclear": [
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting",
+    "효과 구간 (줄 위치 미확인)"
+   ],
    "afterAttack": "AFTER ATTACK: The next non-Decoying Mob performs Dwell."
   },
   {
@@ -492,7 +519,9 @@
    "unclear": [
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting"
+   ],
    "afterAttack": null
   },
   {
@@ -524,7 +553,10 @@
    "unclear": [
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting",
+    "효과 구간 (줄 위치 미확인)"
+   ],
    "afterAttack": "AFTER ATTACK: Knockdown."
   },
   {
@@ -556,7 +588,9 @@
    "unclear": [
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting"
+   ],
    "afterAttack": null
   },
   {
@@ -590,7 +624,9 @@
    "unclear": [
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting"
+   ],
    "afterAttack": null
   },
   {
@@ -622,7 +658,9 @@
    "unclear": [
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting"
+   ],
    "afterAttack": null
   },
   {
@@ -653,7 +691,10 @@
    "unclear": [
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting",
+    "효과 구간 (줄 위치 미확인)"
+   ],
    "afterAttack": "AFTER ATTACK: Tactic A. The next non-Decoying Mob performs Dwell."
   },
   {
@@ -674,7 +715,10 @@
    "afterTag": "AFTER FINAL ATTACK",
    "after": "Knockdown.",
    "unclear": [],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting",
+    "효과 구간 (줄 위치 미확인)"
+   ],
    "afterAttack": "AFTER FINAL ATTACK: Knockdown."
   },
   {
@@ -697,7 +741,9 @@
    "afterTag": null,
    "after": null,
    "unclear": [],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting"
+   ],
    "afterAttack": null
   }
  ],

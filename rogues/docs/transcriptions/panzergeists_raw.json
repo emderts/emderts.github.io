@@ -176,7 +176,10 @@
    "afterTag": "AFTER ATTACK",
    "after": "Rust. Lower your Maximum [V] by 3.",
    "unclear": [],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting",
+    "효과 구간 (줄 위치 미확인)"
+   ],
    "afterAttack": "AFTER ATTACK: Rust. Lower your Maximum [V] by 3."
   },
   {
@@ -199,7 +202,10 @@
    "afterTag": "AFTER ATTACK",
    "after": "Exhaust your Armor [Gear] card.",
    "unclear": [],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting",
+    "효과 구간 (줄 위치 미확인)"
+   ],
    "afterAttack": "AFTER ATTACK: Exhaust your Armor [Gear] card."
   },
   {
@@ -251,7 +257,11 @@
    "afterTag": "AFTER ATTACK",
    "after": "Lower your Maximum [V] by 3.",
    "unclear": [],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting",
+    "효과 구간 (줄 위치 미확인)",
+    "효과 구간 (줄 위치 미확인)"
+   ],
    "afterAttack": "AFTER ATTACK: Lower your Maximum [V] by 3."
   },
   {
@@ -273,7 +283,9 @@
    "afterTag": "AFTER ATTACK",
    "after": "Knockdown.",
    "unclear": [],
-   "reactWindows": [],
+   "reactWindows": [
+    "효과 구간 (줄 위치 미확인)"
+   ],
    "afterAttack": "AFTER ATTACK: Knockdown."
   },
   {
@@ -296,7 +308,10 @@
    "afterTag": "AFTER ATTACK",
    "after": "This Panzergeist moves up to 5 spaces toward the closest Armor [Armor] token.",
    "unclear": [],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting",
+    "효과 구간 (줄 위치 미확인)"
+   ],
    "afterAttack": "AFTER ATTACK: This Panzergeist moves up to 5 spaces toward the closest Armor [Armor] token."
   },
   {
@@ -319,7 +334,10 @@
    "afterTag": "AFTER ATTACK",
    "after": "Discard your Armor [Gear] card.",
    "unclear": [],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting",
+    "효과 구간 (줄 위치 미확인)"
+   ],
    "afterAttack": "AFTER ATTACK: Discard your Armor [Gear] card."
   },
   {
@@ -348,7 +366,10 @@
    "afterTag": "AFTER ATTACK",
    "after": "Knockdown.",
    "unclear": [],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting",
+    "효과 구간 (줄 위치 미확인)"
+   ],
    "afterAttack": "AFTER ATTACK: Knockdown."
   },
   {
@@ -371,7 +392,11 @@
    "afterTag": "AFTER ATTACK",
    "after": "If you died, repeat this Attack against another Knight. If you survived, lower your Maximum [V] by X, where X is the number of your Bane [Bane] tokens.",
    "unclear": [],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting",
+    "효과 구간 (줄 위치 미확인)",
+    "효과 구간 (줄 위치 미확인)"
+   ],
    "afterAttack": "AFTER ATTACK: If you died, repeat this Attack against another Knight. If you survived, lower your Maximum [V] by X, where X is the number of your Bane [Bane] tokens."
   },
   {
@@ -437,7 +462,9 @@
     "critical": "Another Knight may move up to 3 spaces and perform a Bonus Attack!"
    },
    "unclear": [],
-   "reactWindows": []
+   "reactWindows": [
+    "wound"
+   ]
   },
   {
    "name": "Spirit Guard",
@@ -454,7 +481,9 @@
     "critical": "Recover 3. Another Knight may immediately stand up."
    },
    "unclear": [],
-   "reactWindows": []
+   "reactWindows": [
+    "instinct:after 'Rust.'"
+   ]
   },
   {
    "name": "Ethereal Servant",
@@ -505,7 +534,9 @@
     "critical": "Recover 5."
    },
    "unclear": [],
-   "reactWindows": []
+   "reactWindows": [
+    "fail"
+   ]
   },
   {
    "name": "Gisela, the Adviser Apparition",
@@ -556,7 +587,9 @@
     "critical": "You win the Clash!"
    },
    "unclear": [],
-   "reactWindows": []
+   "reactWindows": [
+    "fail"
+   ]
   },
   {
    "name": "Ingrid, the Banshee Noble",

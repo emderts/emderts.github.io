@@ -183,7 +183,9 @@
     "unclear": [
      "Heat 게이트 숫자 작은 글씨 — 확인 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting"
+    ],
     "afterAttack": null,
     "typePrinted": "JUDGEMENT",
     "ops": {
@@ -282,7 +284,10 @@
     "unclear": [
      "Heat 게이트 숫자 작은 글씨 — 확인 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting",
+     "효과 구간 (줄 위치 미확인)"
+    ],
     "afterAttack": "AFTER ATTACK: The next non-Decoying Mob performs Decoy.",
     "typePrinted": "ATTACK",
     "ops": {
@@ -349,7 +354,10 @@
     "afterTag": "AFTER ATTACK",
     "after": "The next non-Decoying Mob performs Dwell.",
     "unclear": [],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting",
+     "효과 구간 (줄 위치 미확인)"
+    ],
     "afterAttack": "AFTER ATTACK: The next non-Decoying Mob performs Dwell.",
     "typePrinted": "RANGE ATTACK",
     "ops": {
@@ -428,7 +436,10 @@
     "unclear": [
      "Heat 게이트 숫자 작은 글씨 — 확인 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting",
+     "효과 구간 (줄 위치 미확인)"
+    ],
     "afterAttack": "AFTER ATTACK: Knockdown.",
     "typePrinted": "ATTACK",
     "ops": {
@@ -514,7 +525,9 @@
     "unclear": [
      "Heat 게이트 숫자 작은 글씨 — 확인 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting"
+    ],
     "afterAttack": null,
     "typePrinted": "RANGE ATTACK",
     "ops": {
@@ -589,7 +602,10 @@
     "unclear": [
      "Heat 게이트 숫자 작은 글씨 — 확인 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting",
+     "효과 구간 (줄 위치 미확인)"
+    ],
     "afterAttack": "AFTER ATTACK: The next non-Decoying Mob performs Dwell.",
     "typePrinted": "ATTACK",
     "ops": {
@@ -674,7 +690,9 @@
     "unclear": [
      "Heat 게이트 숫자 작은 글씨 — 확인 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting"
+    ],
     "afterAttack": null,
     "typePrinted": "JUDGEMENT",
     "ops": {
@@ -758,7 +776,10 @@
     "afterTag": "AFTER ATTACK",
     "after": "Tactic B.",
     "unclear": [],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting",
+     "효과 구간 (줄 위치 미확인)"
+    ],
     "afterAttack": "AFTER ATTACK: Tactic B.",
     "typePrinted": "ZONE ATTACK",
     "ops": {
@@ -821,7 +842,10 @@
     "afterTag": "AFTER ATTACK",
     "after": "Knockdown.",
     "unclear": [],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting",
+     "효과 구간 (줄 위치 미확인)"
+    ],
     "afterAttack": "AFTER ATTACK: Knockdown.",
     "typePrinted": "ATTACK",
     "ops": {
@@ -893,7 +917,10 @@
     "unclear": [
      "Heat 게이트 숫자 작은 글씨 — 확인 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting",
+     "효과 구간 (줄 위치 미확인)"
+    ],
     "afterAttack": "AFTER ATTACK: The next non-Decoying Mob performs Dwell.",
     "typePrinted": "ATTACK",
     "ops": {
@@ -984,7 +1011,9 @@
     "unclear": [
      "Heat 게이트 숫자 작은 글씨 — 확인 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting"
+    ],
     "afterAttack": null,
     "typePrinted": "RANGE ATTACK",
     "ops": {
@@ -1070,7 +1099,10 @@
     "unclear": [
      "Heat 게이트 숫자 작은 글씨 — 확인 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting",
+     "효과 구간 (줄 위치 미확인)"
+    ],
     "afterAttack": "AFTER ATTACK: Knockdown.",
     "typePrinted": "ATTACK",
     "ops": {
@@ -1165,7 +1197,9 @@
     "unclear": [
      "Heat 게이트 숫자 작은 글씨 — 확인 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting"
+    ],
     "afterAttack": null,
     "typePrinted": "RANGE ATTACK",
     "ops": {
@@ -1255,7 +1289,9 @@
     "unclear": [
      "Heat 게이트 숫자 작은 글씨 — 확인 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting"
+    ],
     "afterAttack": null,
     "typePrinted": "JUDGEMENT",
     "ops": {
@@ -1360,7 +1396,9 @@
     "unclear": [
      "Heat 게이트 숫자 작은 글씨 — 확인 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting"
+    ],
     "afterAttack": null,
     "typePrinted": "ATTACK",
     "ops": {
@@ -1441,7 +1479,10 @@
     "unclear": [
      "Heat 게이트 숫자 작은 글씨 — 확인 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting",
+     "효과 구간 (줄 위치 미확인)"
+    ],
     "afterAttack": "AFTER ATTACK: Tactic A. The next non-Decoying Mob performs Dwell.",
     "typePrinted": "ZONE ATTACK",
     "ops": {
@@ -1513,7 +1554,10 @@
     "afterTag": "AFTER FINAL ATTACK",
     "after": "Knockdown.",
     "unclear": [],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting",
+     "효과 구간 (줄 위치 미확인)"
+    ],
     "afterAttack": "AFTER FINAL ATTACK: Knockdown.",
     "typePrinted": "SIMULTANEOUS ATTACK",
     "ops": {
@@ -1582,7 +1626,9 @@
     "afterTag": null,
     "after": null,
     "unclear": [],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting"
+    ],
     "afterAttack": null,
     "typePrinted": "ATTACK",
     "ops": {

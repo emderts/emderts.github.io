@@ -20,7 +20,9 @@ def write(id_, data):
         c.setdefault('reactWindows', []); c.setdefault('afterAttack', ((c.get('afterTag') or '') + ': ' + c['after']) if c.get('after') else None)
         if c.get('pre'): c['preTargeting'] = c['pre']
         if c.get('hex'): h = c['hex']; ex.append(dict(name=h['name'], kind=h['type'] + ' — AI: ' + c['name'], text=h['text']))
-    for c in data['bp']: c.setdefault('reactWindows', [])
+    RW = json.load(open(os.path.join(os.path.dirname(out), 'react_windows.json'))).get(id_, {})
+    for c in data['ai']: c['reactWindows'] = RW.get('ai', {}).get(c['name'], [])
+    for c in data['bp']: c['reactWindows'] = RW.get('bp', {}).get(c['name'], [])
     S['notes'] = list(data.get('_notes', []))
     cs = json.load(open(os.path.join(os.path.dirname(out), 'ttsf_clash_setups.json'))).get({'panzergeists': 'panzergeists', 'stonemason_knight': 'stonemason-knight', 'knighteater': 'knighteater', 'firstmen_lictor_hunters': 'first-men-lictor-hunters', 'bog_witch': 'bog-witch', 'ratwolves': 'ratwolves'}[id_])
     if cs:

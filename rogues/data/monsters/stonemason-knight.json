@@ -183,7 +183,10 @@
     "afterTag": null,
     "after": null,
     "unclear": [],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting",
+     "효과 구간 (줄 위치 미확인)"
+    ],
     "afterAttack": null,
     "typePrinted": "ATTACK",
     "ops": {
@@ -248,7 +251,10 @@
     "unclear": [
      "Heat 3+ 리본의 숫자(-2/-3 [V]) 작은 글씨 — 확인 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting",
+     "After Attack 구간"
+    ],
     "afterAttack": "AFTER ATTACK: Ruin.",
     "typePrinted": "ATTACK",
     "ops": {
@@ -325,7 +331,11 @@
     "unclear": [
      "Heat 3+ 리본의 숫자(-2/-3 [V]) 작은 글씨 — 확인 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting",
+     "효과 구간 (줄 위치 미확인)",
+     "After Attack 구간"
+    ],
     "afterAttack": "AFTER ATTACK: Ruin.",
     "typePrinted": "ATTACK",
     "ops": {
@@ -398,7 +408,10 @@
     "unclear": [
      "Zone 다이어그램(붉은 칸) 판독 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting",
+     "After Attack 구간"
+    ],
     "afterAttack": "AFTER FINAL ATTACK: Ruin.",
     "typePrinted": "ZONE ATTACK",
     "ops": {
@@ -470,7 +483,9 @@
     "afterTag": null,
     "after": null,
     "unclear": [],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting"
+    ],
     "afterAttack": null,
     "typePrinted": "RANGE ATTACK",
     "ops": {
@@ -537,7 +552,9 @@
     "unclear": [
      "Zone 다이어그램(붉은 칸) 판독 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting"
+    ],
     "afterAttack": null,
     "typePrinted": "ZONE ATTACK",
     "ops": {
@@ -637,7 +654,9 @@
     "unclear": [
      "Zone 다이어그램(붉은 칸) 판독 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting"
+    ],
     "afterAttack": "AFTER FINAL ATTACK: Ruin.",
     "typePrinted": "ZONE ATTACK",
     "ops": {
@@ -747,7 +766,10 @@
     "unclear": [
      "Zone 다이어그램(붉은 칸) 판독 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting",
+     "After Attack 구간"
+    ],
     "afterAttack": "AFTER FINAL ATTACK: Ruin.",
     "typePrinted": "ZONE ATTACK",
     "ops": {
@@ -831,7 +853,9 @@
     "afterTag": null,
     "after": null,
     "unclear": [],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting"
+    ],
     "afterAttack": null,
     "typePrinted": "SEQUENTIAL ATTACK",
     "ops": {
@@ -898,7 +922,10 @@
      "Zone 다이어그램(붉은 칸) 판독 필요",
      "Heat 3+ 리본의 숫자(-2/-3 [V]) 작은 글씨 — 확인 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting",
+     "효과 구간 (줄 위치 미확인)"
+    ],
     "afterAttack": null,
     "typePrinted": "ZONE ATTACK",
     "ops": {
@@ -1059,7 +1086,9 @@
     "unclear": [
      "Heat 3+ 리본의 숫자(-2/-3 [V]) 작은 글씨 — 확인 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting"
+    ],
     "afterAttack": "AFTER ATTACK: Ruin.",
     "typePrinted": "ATTACK",
     "ops": {
@@ -1140,7 +1169,10 @@
     "unclear": [
      "Heat 3+ 리본의 숫자(-2/-3 [V]) 작은 글씨 — 확인 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting",
+     "After Attack 구간"
+    ],
     "afterAttack": "AFTER ATTACK: Ruin.",
     "typePrinted": "ATTACK",
     "ops": {
@@ -1206,7 +1238,9 @@
     "unclear": [
      "Zone 다이어그램(붉은 칸) 판독 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting"
+    ],
     "afterAttack": "AFTER FINAL ATTACK: Ruin.",
     "typePrinted": "ZONE ATTACK",
     "ops": {
@@ -1387,7 +1421,9 @@
     "unclear": [
      "Heat 3+ 리본의 숫자(-2/-3 [V]) 작은 글씨 — 확인 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting"
+    ],
     "afterAttack": "AFTER ATTACK: Place a 2x2 Rubble Terrain tile under the Target.",
     "typePrinted": "SIMULTANEOUS ATTACK",
     "ops": {
@@ -1452,7 +1488,9 @@
     "afterTag": "AFTER ATTACK",
     "after": "Ruin.",
     "unclear": [],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting"
+    ],
     "afterAttack": "AFTER ATTACK: Ruin.",
     "typePrinted": "SEQUENTIAL ATTACK",
     "ops": {
@@ -1517,7 +1555,9 @@
     "afterTag": null,
     "after": null,
     "unclear": [],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting"
+    ],
     "afterAttack": null,
     "typePrinted": "ATTACK",
     "ops": {
@@ -1583,7 +1623,9 @@
      "Zone 다이어그램(붉은 칸) 판독 필요",
      "Heat 3+ 리본의 숫자(-2/-3 [V]) 작은 글씨 — 확인 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting"
+    ],
     "afterAttack": null,
     "typePrinted": "ZONE ATTACK",
     "ops": {
@@ -1808,7 +1850,10 @@
     "afterTag": "AFTER ATTACK",
     "after": "Ruin.",
     "unclear": [],
-    "reactWindows": [],
+    "reactWindows": [
+     "targeting",
+     "효과 구간 (줄 위치 미확인)"
+    ],
     "afterAttack": "AFTER ATTACK: Ruin.",
     "typePrinted": "ATTACK",
     "ops": {
@@ -2041,7 +2086,9 @@
     "unclear": [
      "Overcome 숫자 작은 글씨 — 확인 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "wound"
+    ],
     "ops": {
      "at": 5,
      "overcome": {
@@ -2094,7 +2141,9 @@
     "unclear": [
      "Overcome 숫자 작은 글씨 — 확인 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "wound"
+    ],
     "ops": {
      "at": 4,
      "overcome": {
@@ -2442,7 +2491,9 @@
     "unclear": [
      "Overcome 숫자 작은 글씨 — 확인 필요"
     ],
-    "reactWindows": [],
+    "reactWindows": [
+     "fail"
+    ],
     "ops": {
      "at": 6,
      "overcome": {

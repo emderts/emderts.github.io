@@ -171,7 +171,9 @@
    "afterTag": null,
    "after": null,
    "unclear": [],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting"
+   ],
    "afterAttack": null
   },
   {
@@ -203,7 +205,9 @@
    "unclear": [
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": [],
+   "reactWindows": [
+    "창 2개 (위치 확인 필요)"
+   ],
    "afterAttack": "AFTER FINAL ATTACK: Wolf Down 1."
   },
   {
@@ -235,7 +239,9 @@
    "unclear": [
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": [],
+   "reactWindows": [
+    "창 2개 (위치 확인 필요)"
+   ],
    "afterAttack": "AFTER FINAL ATTACK: Exhaust your Armor [Gear] card."
   },
   {
@@ -267,7 +273,10 @@
    "unclear": [
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting",
+    "효과 구간 (줄 위치 미확인)"
+   ],
    "afterAttack": "AFTER FINAL ATTACK: Knighteater gains an Armor [Armor] token."
   },
   {
@@ -300,7 +309,10 @@
    "unclear": [
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting",
+    "효과 구간 (줄 위치 미확인)"
+   ],
    "afterAttack": "AFTER FINAL ATTACK: Wolf Down 2."
   },
   {
@@ -333,7 +345,9 @@
    "unclear": [
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": [],
+   "reactWindows": [
+    "창 2개 (위치 확인 필요)"
+   ],
    "afterAttack": "AFTER FINAL ATTACK: Knighteater moves 2 spaces directly away from the Target."
   },
   {
@@ -356,7 +370,10 @@
    "afterTag": "AFTER FINAL ATTACK",
    "after": "Wolf Down 3.",
    "unclear": [],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting",
+    "효과 구간 (줄 위치 미확인)"
+   ],
    "afterAttack": "AFTER FINAL ATTACK: Wolf Down 3."
   },
   {
@@ -395,7 +412,9 @@
     "Heat 게이트 숫자 작은 글씨 — 확인 필요",
     "Targeting 첫 줄 \"Knight with a [아이콘] Weapon\" — 아이콘 종류 확인 필요"
    ],
-   "reactWindows": [],
+   "reactWindows": [
+    "창 2개 (위치 확인 필요)"
+   ],
    "afterAttack": "AFTER FINAL ATTACK: Exhaust your Weapon [Gear] card."
   },
   {
@@ -427,7 +446,9 @@
    "unclear": [
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": [],
+   "reactWindows": [
+    "창 2개 (위치 확인 필요)"
+   ],
    "afterAttack": "AFTER FINAL ATTACK: Discard your Armor [Gear] card. You may [Peril] to Exhaust your Armor [Gear] card instead."
   },
   {
@@ -460,7 +481,10 @@
    "unclear": [
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting",
+    "효과 구간 (줄 위치 미확인)"
+   ],
    "afterAttack": "AFTER FINAL ATTACK: Wolf Down 2. Wolf Down 1."
   },
   {
@@ -493,7 +517,10 @@
    "unclear": [
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting",
+    "효과 구간 (줄 위치 미확인)"
+   ],
    "afterAttack": "AFTER FINAL ATTACK: Exhaust all your exhaustable Gear [Gear] cards."
   },
   {
@@ -515,7 +542,9 @@
    "afterTag": "AFTER FINAL ATTACK",
    "after": "Knighteater moves to the center of the Clash Board and turns to face the most Knights.",
    "unclear": [],
-   "reactWindows": [],
+   "reactWindows": [
+    "창 2개 (위치 확인 필요)"
+   ],
    "afterAttack": "AFTER FINAL ATTACK: Knighteater moves to the center of the Clash Board and turns to face the most Knights."
   },
   {
@@ -547,7 +576,9 @@
    "unclear": [
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": [],
+   "reactWindows": [
+    "창 2개 (위치 확인 필요)"
+   ],
    "afterAttack": "AFTER FINAL ATTACK: Wolf Down 2."
   },
   {
@@ -568,7 +599,9 @@
    "afterTag": null,
    "after": null,
    "unclear": [],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting"
+   ],
    "afterAttack": null
   },
   {
@@ -601,7 +634,9 @@
    "unclear": [
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": [],
+   "reactWindows": [
+    "창 2개 (위치 확인 필요)"
+   ],
    "afterAttack": "AFTER FINAL ATTACK: Exhaust your Armor [Gear] card. Wolf Down 2."
   },
   {
@@ -623,7 +658,9 @@
    "afterTag": "AFTER FINAL ATTACK",
    "after": "Each Knight that has LoS to Knighteater or the Target gains the Dread Condition card.",
    "unclear": [],
-   "reactWindows": [],
+   "reactWindows": [
+    "창 2개 (위치 확인 필요)"
+   ],
    "afterAttack": "AFTER FINAL ATTACK: Each Knight that has LoS to Knighteater or the Target gains the Dread Condition card."
   },
   {
@@ -654,7 +691,10 @@
    "unclear": [
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": [],
+   "reactWindows": [
+    "targeting",
+    "효과 구간 (줄 위치 미확인)"
+   ],
    "afterAttack": "AFTER FINAL ATTACK: The Knighteater moves to the center of the Clash Board and turns to face the most Knights."
   },
   {
@@ -712,7 +752,9 @@
    "unclear": [
     "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": []
+   "reactWindows": [
+    "ultrainstinct"
+   ]
   },
   {
    "name": "Rusting Breastplate",
@@ -736,7 +778,10 @@
    "unclear": [
     "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": []
+   "reactWindows": [
+    "ultrainstinct",
+    "wound:after 'Fleisch 1.'"
+   ]
   },
   {
    "name": "Emergency Snack",
@@ -760,7 +805,9 @@
    "unclear": [
     "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": []
+   "reactWindows": [
+    "ultrainstinct"
+   ]
   },
   {
    "name": "Tattered Garments",
@@ -808,7 +855,10 @@
    "unclear": [
     "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": []
+   "reactWindows": [
+    "ultrainstinct",
+    "wound"
+   ]
   },
   {
    "name": "Tarnished Sabatons",
@@ -856,7 +906,9 @@
    "unclear": [
     "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": []
+   "reactWindows": [
+    "ultrainstinct"
+   ]
   },
   {
    "name": "Riddled Plackart",
@@ -928,7 +980,10 @@
    "unclear": [
     "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": []
+   "reactWindows": [
+    "ultrainstinct",
+    "instinct"
+   ]
   },
   {
    "name": "Cannibal’s Mouthpiece",
@@ -952,7 +1007,9 @@
    "unclear": [
     "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": []
+   "reactWindows": [
+    "ultrainstinct"
+   ]
   },
   {
    "name": "Rickety Knees",
@@ -1024,7 +1081,9 @@
    "unclear": [
     "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": []
+   "reactWindows": [
+    "wound"
+   ]
   },
   {
    "name": "Monstrous Stomach",
@@ -1048,7 +1107,9 @@
    "unclear": [
     "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
    ],
-   "reactWindows": []
+   "reactWindows": [
+    "ultrainstinct"
+   ]
   },
   {
    "name": "Intestinal Panzerparasite",
