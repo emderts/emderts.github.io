@@ -1078,7 +1078,7 @@
   {
    "name": "Geistly Flame",
    "code": "13B0784",
-   "monster": "panzergeist",
+   "monster": "panzergeists",
    "traits": [
     "Catalyst",
     "Flame",
@@ -1118,7 +1118,7 @@
   {
    "name": "Holy Hammer",
    "code": "13B0785",
-   "monster": "panzergeist",
+   "monster": "panzergeists",
    "traits": [
     "Hammer",
     "Stone",
@@ -1150,7 +1150,7 @@
   {
    "name": "Ghost Bitten Shield",
    "code": "13B0787",
-   "monster": "panzergeist",
+   "monster": "panzergeists",
    "traits": [
     "Shield",
     "Iron",
@@ -1182,7 +1182,7 @@
   {
    "name": "Shrouded Armor",
    "code": "13B0786",
-   "monster": "panzergeist",
+   "monster": "panzergeists",
    "traits": [
     "Armor",
     "Steel",
@@ -1209,7 +1209,7 @@
   {
    "name": "Ghostly Blade",
    "code": "13B0789",
-   "monster": "panzergeist",
+   "monster": "panzergeists",
    "traits": [
     "Sword",
     "Ethereal",
@@ -1253,7 +1253,7 @@
   {
    "name": "Haunted Bread",
    "code": "13B0788",
-   "monster": "panzergeist",
+   "monster": "panzergeists",
    "traits": [
     "Food",
     "Ethereal"
@@ -1277,7 +1277,7 @@
   {
    "name": "Geistling",
    "code": "13B0790",
-   "monster": "panzergeist",
+   "monster": "panzergeists",
    "traits": [
     "Armor",
     "Iron",
@@ -1310,7 +1310,7 @@
   {
    "name": "Ghost Catalyst",
    "code": "13B0791",
-   "monster": "panzergeist",
+   "monster": "panzergeists",
    "traits": [
     "Catalyst",
     "Ethereal",
@@ -1901,7 +1901,7 @@
   {
    "name": "Mud Underarmor",
    "code": "13A0659",
-   "monster": "knights-of-fen",
+   "monster": "knight-of-the-fen",
    "traits": [
     "Armor",
     "Wood",
@@ -1930,7 +1930,7 @@
   {
    "name": "Possessive Mudling",
    "code": "13A0660",
-   "monster": "knights-of-fen",
+   "monster": "knight-of-the-fen",
    "traits": [
     "Sword",
     "Armor",
@@ -1975,7 +1975,7 @@
   {
    "name": "Prisoner's Chainball",
    "code": "13A0661",
-   "monster": "knights-of-fen",
+   "monster": "knight-of-the-fen",
    "traits": [
     "Club",
     "Chain",
@@ -2015,7 +2015,7 @@
   {
    "name": "Slime Helmet",
    "code": "13A0662",
-   "monster": "knights-of-fen",
+   "monster": "knight-of-the-fen",
    "traits": [
     "Helm",
     "Mud"
@@ -2049,7 +2049,7 @@
   {
    "name": "Forgotten Sword",
    "code": "13A0663",
-   "monster": "knights-of-fen",
+   "monster": "knight-of-the-fen",
    "traits": [
     "Sword",
     "Metal",
@@ -2092,7 +2092,7 @@
   {
    "name": "Muck Coating",
    "code": "13A0664",
-   "monster": "knights-of-fen",
+   "monster": "knight-of-the-fen",
    "traits": [
     "Slime"
    ],
@@ -2120,7 +2120,7 @@
   {
    "name": "Handheld Ballista",
    "code": "13A0665",
-   "monster": "knights-of-fen",
+   "monster": "knight-of-the-fen",
    "traits": [
     "Crossbow",
     "Boltthrower",
@@ -2163,7 +2163,7 @@
   {
    "name": "Living Sludge Armor",
    "code": "13A0666",
-   "monster": "knights-of-fen",
+   "monster": "knight-of-the-fen",
    "traits": [
     "Armor",
     "Metal",
@@ -2477,7 +2477,7 @@
   {
    "name": "Harvest Sicklesword",
    "code": "13A0651",
-   "monster": "pumpkinheads",
+   "monster": "pumpkinhead-monstrosities",
    "traits": [
     "Sickle",
     "Metal"
@@ -2512,7 +2512,7 @@
   {
    "name": "Carving Knife",
    "code": "13A0652",
-   "monster": "pumpkinheads",
+   "monster": "pumpkinhead-monstrosities",
    "traits": [
     "Knife",
     "Metal",
@@ -2542,7 +2542,7 @@
   {
    "name": "Sickle Scissors",
    "code": "13A0653",
-   "monster": "pumpkinheads",
+   "monster": "pumpkinhead-monstrosities",
    "traits": [
     "Scissors",
     "Metal",
@@ -2581,7 +2581,7 @@
   {
    "name": "Accursed Seeds",
    "code": "13A0654",
-   "monster": "pumpkinheads",
+   "monster": "pumpkinhead-monstrosities",
    "traits": [
     "Plant",
     "Alive",
@@ -2611,7 +2611,7 @@
   {
    "name": "Jack-O'-Lantern",
    "code": "13A0655",
-   "monster": "pumpkinheads",
+   "monster": "pumpkinhead-monstrosities",
    "traits": [
     "Armor",
     "Plant",
@@ -2636,7 +2636,7 @@
   {
    "name": "Living Polypores",
    "code": "13A0656",
-   "monster": "pumpkinheads",
+   "monster": "pumpkinhead-monstrosities",
    "traits": [
     "Plant",
     "Alive"
@@ -2665,7 +2665,7 @@
   {
    "name": "Flaming Sword",
    "code": "13A0657",
-   "monster": "pumpkinheads",
+   "monster": "pumpkinhead-monstrosities",
    "traits": [
     "Sword",
     "Metal",
@@ -2700,7 +2700,7 @@
   {
    "name": "Root Stockade",
    "code": "13A0658",
-   "monster": "pumpkinheads",
+   "monster": "pumpkinhead-monstrosities",
    "traits": [
     "Armor",
     "Wood",

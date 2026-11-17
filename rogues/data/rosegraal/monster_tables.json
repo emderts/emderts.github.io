@@ -5,10 +5,10 @@
     "1": {
       "principality": [
         { "roll": [1, 2], "monster": "ironcast-dead", "level": 1 },
-        { "roll": [3], "monster": "panzergeist", "level": 1, "optional": true },
+        { "roll": [3], "monster": "panzergeists", "level": 1, "optional": true },
         { "roll": [4, 5], "monster": "eggknight", "level": 1 },
         { "roll": [6], "monster": "paleblood-worms", "level": 1 },
-        { "roll": [7], "monster": "pumpkinheads", "level": 1 },
+        { "roll": [7], "monster": "pumpkinhead-monstrosities", "level": 1 },
         { "roll": [8], "monster": "stonemason-knight", "level": 1, "optional": true },
         { "roll": [9], "monster": "winged-nightmare", "level": 1 },
         { "roll": [10], "monster": "knighteater", "level": 1, "optional": true }
@@ -19,7 +19,7 @@
         { "roll": [4, 5], "monster": "white-ape-troll", "level": 1 },
         { "roll": [6], "monster": "haunts-of-utrebant", "level": 1 },
         { "roll": [7], "monster": "paleblood-worms", "level": 1 },
-        { "roll": [8], "monster": "knights-of-fen", "level": 1 },
+        { "roll": [8], "monster": "knight-of-the-fen", "level": 1 },
         { "roll": [9], "monster": "ratwolves", "level": 2 },
         { "roll": [10], "monster": "bog-witch", "level": 1, "optional": true }
       ]
@@ -27,7 +27,7 @@
     "2": {
       "principality": [
         { "roll": [1, 2], "monster": "ironcast-dead", "level": 2 },
-        { "roll": [3], "monster": "panzergeist", "level": 2, "optional": true },
+        { "roll": [3], "monster": "panzergeists", "level": 2, "optional": true },
         { "roll": [4], "monster": "winged-nightmare", "level": 2 },
         { "roll": [5], "monster": "paleblood-worms", "level": 2 },
         { "roll": [6], "monster": "eggknight", "level": 2 },
@@ -40,11 +40,11 @@
         { "roll": [1, 2], "monster": "first-men-warriors", "level": 2 },
         { "roll": [3], "monster": "first-men-lictor-hunters", "level": 2, "optional": true },
         { "roll": [4], "monster": "winged-nightmare", "level": 2 },
-        { "roll": [5], "monster": "pumpkinheads", "level": 2 },
+        { "roll": [5], "monster": "pumpkinhead-monstrosities", "level": 2 },
         { "roll": [6], "monster": "white-ape-troll", "level": 2 },
         { "roll": [7], "monster": "white-ape-troll", "level": 2 },
         { "roll": [8], "monster": "haunts-of-utrebant", "level": 2 },
-        { "roll": [9], "monster": "knights-of-fen", "level": 2 },
+        { "roll": [9], "monster": "knight-of-the-fen", "level": 2 },
         { "roll": [10], "monster": "bog-witch", "level": 2, "optional": true }
       ]
     },
@@ -54,7 +54,7 @@
         { "roll": [2], "monster": "ratwolves", "level": 4 },
         { "roll": [3, 4], "monster": "eggknight", "level": 3 },
         { "roll": [5, 6], "monster": "puppet-king-edelhardt", "level": 1 },
-        { "roll": [7], "monster": "panzergeist", "level": 3, "optional": true },
+        { "roll": [7], "monster": "panzergeists", "level": 3, "optional": true },
         { "roll": [8], "monster": "winged-nightmare", "level": 3 },
         { "roll": [9, 10], "monster": "stonemason-knight", "level": 3, "optional": true }
       ],
@@ -64,14 +64,14 @@
         { "roll": [3, 4], "monster": "white-ape-troll", "level": 3 },
         { "roll": [5, 6], "monster": "king-laid-low", "level": 1 },
         { "roll": [7], "monster": "first-men-lictor-hunters", "level": 3, "optional": true },
-        { "roll": [8], "monster": "pumpkinheads", "level": 3 },
-        { "roll": [9, 10], "monster": "knights-of-fen", "level": 3 }
+        { "roll": [8], "monster": "pumpkinhead-monstrosities", "level": 3 },
+        { "roll": [9, 10], "monster": "knight-of-the-fen", "level": 3 }
       ]
     },
     "4": {
       "principality": [
-        { "roll": [1], "monster": "panzergeist", "level": 4, "optional": true },
-        { "roll": [2], "monster": "pumpkinheads", "level": 4 },
+        { "roll": [1], "monster": "panzergeists", "level": 4, "optional": true },
+        { "roll": [2], "monster": "pumpkinhead-monstrosities", "level": 4 },
         { "roll": [3, 4], "monster": "eggknight", "level": 4 },
         { "roll": [5, 6], "monster": "puppet-king-edelhardt", "level": 3 },
         { "roll": [7, 8], "monster": "devil-of-the-smelted-fears", "level": 1 },
@@ -91,7 +91,7 @@
     "5": {
       "principality": [
         { "roll": [1], "monster": "stonemason-knight", "level": 4, "optional": true },
-        { "roll": [2], "monster": "knights-of-fen", "level": 4 },
+        { "roll": [2], "monster": "knight-of-the-fen", "level": 4 },
         { "roll": [3, 4], "monster": "puppet-king-edelhardt", "level": 4 },
         { "roll": [5, 6, 7], "monster": "devil-of-the-smelted-fears", "level": 3 },
         { "roll": [8, 9], "monster": "panzerdragon-veldr", "level": 1 },
@@ -108,10 +108,10 @@
     }
   },
   "monsterNames": {
-    "ironcast-dead": "Ironcast Dead", "panzergeist": "Panzergeist", "eggknight": "Eggknight", "paleblood-worms": "Paleblood Worms",
-    "pumpkinheads": "Pumpkinheads", "stonemason-knight": "Stonemason Knight", "winged-nightmare": "Winged Nightmare", "knighteater": "Knighteater",
+    "ironcast-dead": "Ironcast Dead", "panzergeists": "Panzergeist", "eggknight": "Eggknight", "paleblood-worms": "Paleblood Worms",
+    "pumpkinhead-monstrosities": "Pumpkinheads", "stonemason-knight": "Stonemason Knight", "winged-nightmare": "Winged Nightmare", "knighteater": "Knighteater",
     "first-men-warriors": "First Men Warriors", "first-men-lictor-hunters": "First Men Lictor Hunters", "white-ape-troll": "White Ape Troll",
-    "haunts-of-utrebant": "Haunts of Utrebant", "knights-of-fen": "Knights of Fen", "ratwolves": "Ratwolves", "bog-witch": "Bog Witch",
+    "haunts-of-utrebant": "Haunts of Utrebant", "knight-of-the-fen": "Knights of Fen", "ratwolves": "Ratwolves", "bog-witch": "Bog Witch",
     "puppet-king-edelhardt": "Puppet King Edelhardt", "king-laid-low": "King Laid Low", "devil-of-the-smelted-fears": "Devil of the Smelted Fears",
     "devil-of-the-ancient-dusk": "Devil of the Ancient Dusk", "panzerdragon-veldr": "Panzerdragon Veldr", "toadragon": "Toadragon",
     "young-devour-dragon": "Young Devour Dragon"

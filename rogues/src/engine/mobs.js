@@ -59,6 +59,7 @@ export const MobMixin = {
       await this.guard(() => this.icdBeforeActivation()); if (!M.mobs.includes(mob) || !mob.tokens.includes(tok)) continue;
       M.cur = mob; this.say(`▷ Mob #${mob.n} (${mob.cells[0] ? this.board.label(mob.cells[0]) : '보드 밖'}) 활성화 — ${tok.type === 'AI' ? 'AI' : 'Signature'}`, 'ai');
       await this.guard(async () => { if (await this.emergeIfOffboard(mob)) { if (tok.type === 'AI' && !(mob.isPump && mob.side === 'sapling')) await this.activationAI(); else { if (mob.isPump) this.say(`Sapling #${mob.n}: AI 대신 Signature`); await this.performSignature(); } } });
+      if (this.isPz) await this.guard(() => this.pzEndActivation(mob));
       if (M.mobs.includes(mob) && mob.tokens.includes(tok)) this.moveToken(mob.n, tok, true); else tok.ready = false;
       await this.guard(() => this.afterAction()); this.checkEnd();
     }
