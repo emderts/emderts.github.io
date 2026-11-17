@@ -49,7 +49,7 @@ export class Knight {
   gainBane(n = 1) { if (this.bane + n > this.baneLimit) { this.bane = this.baneLimit; this.die('Bane Limit exceeded'); return; } this.bane += n; }
   die(reason = '') { this.alive = false; this.say(`${this.name} dies${reason ? ' (' + reason + ')' : ''}`); if (!this.firstDeath) this.firstDeath = true; }
   /** Refresh step (p.55): Heat -HeatRefresh, Cooldown → hand ×CardRefresh, Delay → Cooldown. */
-  refresh(choose = cards => cards.slice(0, this.cardRefresh)) {
+  refresh(choose = cards => cards.slice(0, this.cardRefresh)) { if (this._noRefresh) return;
     this.heat = Math.max(0, this.heat - this.heatRefresh);
     const back = choose(this.cooldown).slice(0, this.cardRefresh);
     for (const c of back) { this.cooldown.splice(this.cooldown.indexOf(c), 1); this.hand.push(c); }

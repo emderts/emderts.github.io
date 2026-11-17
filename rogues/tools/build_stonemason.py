@@ -4,7 +4,8 @@ import json, sys, copy
 raw = json.load(open('docs/transcriptions/stonemason_knight_raw.json')); S = raw['sheet']; CS = raw['clashSetup']
 def bzone(rows):
     blk = [(x, y) for y, r in enumerate(rows) for x, ch in enumerate(r) if ch in '^>v<']; xs = [x for x, _ in blk]; ys = [y for _, y in blk]
-    return {'red': [(x - max(xs), y - min(ys)) for y, r in enumerate(rows) for x, ch in enumerate(r) if ch == 'R'], 'yellow': [], 'step': None, 'block': True}
+    f = rows[blk[0][1]][blk[0][0]]; rel = (lambda x, y: (min(ys) - y, x - min(xs))) if f == '^' else (lambda x, y: (x - max(xs), y - min(ys)))
+    return {'red': [rel(x, y) for y, r in enumerate(rows) for x, ch in enumerate(r) if ch == 'R'], 'yellow': [], 'step': None, 'block': True}
 V = lambda n: {'op': 'loseVigorPerHit', 'n': n, 'perilCheck': True}; HT = lambda *t: {'op': 'smHits', 'table': list(t), 'perilCheck': True}
 BANE = lambda n: {'op': 'smBane', 'n': n}; KB = lambda n: {'op': 'knockback', 'n': n}; PB = lambda n: {'op': 'pushback', 'n': n}; KD = {'op': 'knockdown'}
 EX1 = {'op': 'smMetal', 'mode': 'exhaust', 'n': 1}; EXA = {'op': 'smMetal', 'mode': 'exhaust', 'n': 'all'}; DI1 = {'op': 'smMetal', 'mode': 'discard', 'n': 1}
@@ -12,7 +13,8 @@ RUIN = {'op': 'smRuin'}; PEN = {'op': 'smNote', 'text': 'Penetrate — 키워드
 ON = lambda *ops: [{'op': 'smOnHit', 'then': list(ops)}]
 G3 = lambda n: [{'op': 'smThree', 'stat': 'heat', 'gte': 3, 'n': n}]
 CF = ['Closest Knight in front', 'Closest Knight in sight']; CN = ['Closest Knight not in front', 'Closest Knight in sight']
-Z = {'Backhand Swat': ['>>R', '>>R'], 'Flattening Swipe': ['.RR.', '>>RR', '>>RR', '.RR.'], 'Hammer Launch': ['>>RRRR', '>>RRRR'], 'Stone Smite': ['...R', '>>R.', '>>R.', '...R'], 'Mass Driver': ['>>' + 'R' * 13, '>>' + 'R' * 13]}
+Z = {'Backhand Swat': ['>>R', '>>R'], 'Flattening Swipe': ['.RR.', '>>RR', '>>RR', '.RR.'], 'Hammer Launch': ['>>RRRR', '>>RRRR'], 'Stone Smite': ['...R', '>>R.', '>>R.', '...R'], 'Mass Driver': ['>>' + 'R' * 13, '>>' + 'R' * 13],
+     'Toppling Sweep': ['..RR..', '.RRRR.', 'RR^^RR', 'RR^^RR', '.RRRR.', '..RR..'], 'Force Discharge': ['...RR...', '..RRRR..', '.RRRRRR.', 'RRR^^RRR', 'RRR^^RRR', '.RRRRRR.', '..RRRR..', '...RR...']}
 AI = {
  'Kick!': dict(effects=ON(BANE(1), V(2), KB(4))),
  'Demolishing Blow': dict(gates=G3(2), effects=ON(HT(3, 5), EX1), afterAttack=[RUIN]),
@@ -23,14 +25,14 @@ AI = {
  'Hammer Launch': dict(type='zone', move=False, smLateral=True, gates=[{'op': 'smDiscardInstead', 'stat': 'heat', 'gte': 3}], effects=ON(PEN, HT(4), EX1), afterFinalAttack=[RUIN]),
  'Stone Smite': dict(type='zone', effects=ON(BANE(1), V(3), KB(4)), afterFinalAttack=[RUIN]),
  'Wrecking Ball': dict(pathAttack=True, effects=ON(BANE(1), V(2), {'op': 'knockbackSide', 'n': 4})),
- 'Toppling Sweep': dict(type='zone', targeting=['Zone 2'], move=False, gates=G3(2), effects=ON(HT(3, 5), EX1, KD)),
+ 'Toppling Sweep': dict(type='zone', targeting=['Zone'], move=False, gates=G3(2), effects=ON(HT(3, 5), EX1, KD)),
  'Anvil Fall': dict(gates=G3(2), effects=ON(HT(3, 5), EX1, PB(3)), afterAttack=[RUIN]),
  'Bulldozing Stomp': dict(gates=G3(3), effects=ON(BANE(1), HT(4, 6)), afterAttack=[RUIN]),
  'Mass Driver': dict(type='zone', move=False, smLateral=True, effects=ON(PEN, HT(5), {'op': 'knockbackSide', 'n': 3}), afterFinalAttack=[RUIN]),
  'Reduce to Ruins': dict(targeting=['All Knights'], move=False, gates=G3(3), effects=ON(BANE(2), HT(3, 6)), afterAttack=[{'op': 'smRubbleUnder', 'who': 'target'}]),
  'March of Devastation': dict(targeting=['Closest Knight'], effects=ON(BANE(1), V(2), DI1), afterAttack=[RUIN], afterFinalAttack=[{'op': 'smMarch'}]),
  'Mason Grasp': dict(effects=ON(BANE(2), V(3), {'op': 'choke', 'n': 3})),
- 'Force Discharge': dict(type='zone', targeting=['Zone 3'], move=False, gates=G3(2), effects=ON(HT(4, 7), EXA, {'op': 'smPull', 'n': 2})),
+ 'Force Discharge': dict(type='zone', targeting=['Zone'], move=False, gates=G3(2), effects=ON(HT(4, 7), EXA, {'op': 'smPull', 'n': 2})),
  'Pulverize': dict(gates=G3('die'), effects=ON(HT(7, 9), EXA, KD), afterAttack=[RUIN]),
 }
 SIG = dict(gates=[{'op': 'evasionDice', 'stat': 'heat', 'gte': 3, 'n': 1}], effects=ON(V(2), KB(4)), afterAttack=[RUIN])
@@ -72,14 +74,14 @@ d = {
  'id': 'stonemason-knight', 'name': 'Stonemason Knight', 'kind': 'boss', 'code': S['code'], 'traitsLine': S['traitsLine'],
  '_source': 'Monster Sheet (2 pages), AI/BP/Routine card sheet, Signature card — owner scans 2026-11-17; reference sheet Stonemason Knight; Clash Setup: expansion Codex p.56–57',
  'footprint': {'size': 4, 'shape': '2x2', 'rear': 'the 2 cells directly behind the footprint', 'facingOnSheet': 'down', 'wardNodes': 'one per side'},
- 'basicAbilities': [{'name': 'Unavoidable Knockback 5'}, {'name': 'Ignore Difficult Terrain'}],
+ 'basicAbilities': [{'name': 'Unavoidable Knockback', 'value': 5}, {'name': 'Ignore Difficult Terrain'}],
  'levels': levels, 'traits': [{**t, 'implemented': True} for t in S['traits']],
  'cards': {'ai': [ai(c, AI[c['name']]) for c in raw['ai']], 'bp': [bp(c) for c in raw['bp']], 'signature': ai(raw['signature'], SIG),
            'routine': {**raw['routine'], 'type': 'routine', 'ops': [{'op': 'smRoutine'}]}},
  'sm': True,
  'clashSetup': {'_source': 'Expansion Codex p.56–57 (Stonemason Knight Clash)', 'steps': CS['steps'], 'requiredTiles': CS['requiredTiles'], 'monsterCells': CS['monsterCells'], 'facing': 'S',
   'knightStart': CS['knightStart'], 'terrain': CS['terrain'], 'notes': ['지형·시작 칸은 코덱스 도식에서 읽음 [해석, 확인 필요]']},
- 'zoneNote': 'Zone 도식(카드에서 읽음): Backhand Swat = 정면 2칸; Flattening Swipe = 정면 2x2 + 양 옆 대각 2칸씩; Hammer Launch = 정면 2줄 x 4칸; Stone Smite = 정면 2칸 + 그 바깥 대각 2칸; Mass Driver = 정면 2줄 끝까지; Toppling Sweep = Zone 2; Force Discharge = Zone 3 [해석, 확인 필요]',
+ 'zoneNote': 'Zone 도식(카드에서 읽음): Backhand Swat = 정면 2칸; Flattening Swipe = 정면 2x2 + 양 옆 대각 2칸씩; Hammer Launch = 정면 2줄 x 4칸; Stone Smite = 정면 2칸 + 그 바깥 대각 2칸; Mass Driver = 정면 2줄 끝까지; Toppling Sweep = 주변 마름모(가로 2·4·6·6·4·2칸); Force Discharge = 더 큰 마름모(2·4·6·8·8·6·4·2칸) [해석, 확인 필요]',
  'rulings': [
   'Lodestone Armor: 기사가 공격을 시작한 위치 기준으로 면(앞/뒤/좌/우)을 정함. 대각선 위치는 앞/뒤 우선 [해석, 확인 필요]. 그 면에 Armor 토큰이 있으면 AT +1, 없으면 공격을 모두 해결한 뒤 그 면 Ward Node에 토큰 1개. 네 번째 Node에 놓게 되면 대신 모든 Node에서 1개씩 버리고 Zone 2의 기사들 Knockback 2, 이번 Round 끝까지 토큰 획득 불가',
   'Heat 3+ "THREE OR MORE HITS, LOSE -N [V]": 3회 이상 명중 시 추가로 -N (예: 1회 -3 / 2회+ -5 / 게이트·3회+ → -5 -2) [해석, 확인 필요]',

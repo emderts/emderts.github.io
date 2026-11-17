@@ -210,13 +210,14 @@ const renderBoard = () => {
       if (pickable && pickable.has(m.n)) { g.style.pointerEvents = 'auto'; g.style.cursor = 'pointer'; g.addEventListener('click', () => answer(m.n)); }
       s.append(g);
     }
-  } else {
+  } else if (M.cells.length) {
   const mc = M.cells; const minC = Math.min(...mc.map(c => c.c)), maxC = Math.max(...mc.map(c => c.c)), minR = Math.min(...mc.map(c => c.r)), maxR = Math.max(...mc.map(c => c.r));
   s.append(svg('rect', { x: x(minC) + 1, y: y(maxR) + 1, width: (maxC - minC + 1) * CW - 2, height: (maxR - minR + 1) * CW - 2, rx: 2, class: 'mon' }));
   const cx = x(minC) + (maxC - minC + 1) * CW / 2, cy = y(maxR) + (maxR - minR + 1) * CW / 2; const d = DIRS[M.facing];
   s.append(svg('polygon', { points: `${cx + d.c * 7},${cy - d.r * 7} ${cx - d.r * 3 + d.c * 2},${cy - d.c * 3 - d.r * 2} ${cx + d.r * 3 + d.c * 2},${cy + d.c * 3 - d.r * 2}`, fill: '#ffd27a' }));
   s.append(svg('text', { x: cx, y: cy + 1.8, class: 'lbl' }, M.name[0]));
   }
+  if (clash.isBw && clash.bw.wisp) { const w = clash.bw.wisp; s.append(svg('text', { x: x(w.c) + CW / 2, y: y(w.r) + CW / 2 + 1.6, class: 'lbl', style: 'fill:#9fffd0;font-size:4.5px;text-anchor:middle' }, '✺')); }
   for (const k of clash.knights) { if (!k.pos || !k.alive || k.engulfed || k.possessed) continue; const dead = !k.alive, kd = clash.knockedDown(k); s.append(svg('circle', { cx: x(k.pos.c) + CW / 2, cy: y(k.pos.r) + CW / 2, r: CW * .4, class: 'kn' + (dead ? ' dead' : '') + (kd ? ' kd' : '') })); s.append(svg('text', { x: x(k.pos.c) + CW / 2, y: y(k.pos.r) + CW * .68, class: 'lbl' }, k.name.replace(/\D/g, '') || k.name[0])); }
   return s;
 };
@@ -287,6 +288,8 @@ const monsterPane = () => { const M = clash.monster; const curAI = clash.current
   M.isMob && M.hasTrait('Necrofusion') ? h('div', { class: 'small' }, `Necrofusion 토큰 ${clash.necro}/3`) : null,
   clash.bloodOn ? h('div', { class: 'small' }, `🩸 기사 Blood: ${clash.knights.filter(k => k.alive).map(k => `${k.name} ${k.blood}`).join(' · ')}${M.hasTrait('Red Soil') ? ` · Red Soil ${clash.redSoil}` : ''}${clash.burrowChoice ? ' · Burrow X 선택 가능' : ''}`) : null,
   h('div', { class: 'small row', style: 'margin:4px 0' }, `AI 덱 ${M.ai.size}`, pileBtn('AI 버림', M.ai.discard, aiView), M.isMob ? `BP 풀 L1 ${M.bpPool[1].size} / L2 ${M.bpPool[2].size} / L3 ${M.bpPool[3].size}` : `BP 덱 ${M.bp.size}`, M.isMob ? null : pileBtn('BP 버림', M.bp.discard, bpView), h('span', { class: 'muted' }, `Esc AI2 ${M.aiEsc[2].size} AI3 ${M.aiEsc[3].size} · BP2 ${M.bpEsc[2].size} BP3 ${M.bpEsc[3].size}`)),
+  clash.isBw ? h('div', { class: 'small' }, `Bog track: ${clash.monsterDef.bw.track.map((t, i) => i === clash.bw.track ? '▶' + t : t).join(' → ')}${clash.bw.off ? ' · Witch 보드 밖' : ''}${clash.bw.wisp ? ' · Mud Wisp ' + clash.board.label(clash.bw.wisp) : ''}${M.hasTrait('Cookie Crumbs') ? ' · Crumbs ' + clash.bw.crumbs : ''}`) : null,
+  clash.isBw ? h('div', { class: 'small' }, `Hex: ${clash.knights.filter(k => (k.hexes || []).length).map(k => `${k.name} — ${k.hexes.map(x => x.ops.hex.name + (x._tok ? `(${x._tok})` : '')).join(', ')}`).join(' · ') || '없음'}${clash.bw.party.length ? ' · Party: ' + clash.bw.party.map(x => x.ops.hex.name).join(', ') : ''}`) : null,
   clash.isLh ? h('div', { class: 'small' }, `Taunt & Decoy 토큰 ${clash.lh.tokens} · Decoy ${M.mobs.filter(m => m.decoying).length}${clash.tactics ? ' · ' + clash.tactics.name : ''}`) : null,
   clash.isKe ? h('div', { class: 'small' }, `${clash.ke.berserk ? '🔥 BERSERK (Priority Target 토큰 보유)' : 'Berserk 아님'} · 🛡 Armor 토큰 ${clash.ke.armor}${M.hasTrait('Brute') ? ` · Brute ${clash.ke.brute}/3` : ''} · Fleisch ${clash.poolCount('fleisch')}`) : null,
   clash.isSm ? h('div', { class: 'small' }, `🛡 Ward Node (Armor 토큰): ${clash.smNodeText()}${clash.sm.locked || clash.sm.lockKR ? ' · 획득 불가' : ''}`) : null,

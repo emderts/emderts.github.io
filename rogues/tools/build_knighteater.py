@@ -71,7 +71,7 @@ d = {
  'id': 'knighteater', 'name': 'Knighteater', 'kind': 'boss', 'code': S['code'], 'traitsLine': S['traitsLine'],
  '_source': 'Monster Sheet (2 pages), AI/BP/Routine/Kingdom Trait card sheet, Signature card — owner scans 2026-11-17; reference sheet Knighteater; Clash Setup: expansion Codex p.50–51',
  'footprint': {'size': 4, 'shape': '2x2', 'rear': 'the 2 cells directly behind the footprint', 'blindspots': 'both rear cells', 'facingOnSheet': 'down'},
- 'basicAbilities': [{'name': 'Unavoidable Knockback 4'}, {'name': 'Blindspot'}],
+ 'basicAbilities': [{'name': 'Unavoidable Knockback', 'value': 4}, {'name': 'Blindspot'}],
  'levels': levels, 'traits': [{**t, 'implemented': True} for t in S['traits']] + [{'name': n, 'level': 1, 'text': f"[Kingdom Trait — {KT[n]['kingdom']}] " + KT[n]['text'], 'implemented': True} for n in ('Iron Confines', 'Adaptable')],
  'cards': {'ai': [ai(c, AI[c['name']]) for c in raw['ai']], 'bp': [bp(c) for c in raw['bp']], 'signature': ai(raw['signature'], SIG),
            'routine': {**raw['routine'], 'type': 'routine', 'ops': [{'op': 'keRoutine'}]}},

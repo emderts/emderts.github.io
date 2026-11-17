@@ -19,7 +19,8 @@
  },
  "basicAbilities": [
   {
-   "name": "Unavoidable Knockback 4"
+   "name": "Unavoidable Knockback",
+   "value": 4
   },
   {
    "name": "Blindspot"
