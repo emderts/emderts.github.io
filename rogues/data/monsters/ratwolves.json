@@ -1,0 +1,1470 @@
+{
+ "id": "ratwolves",
+ "name": "Ratwolves",
+ "kind": "mob",
+ "code": "26A1073",
+ "traitsLine": [
+  "Mob",
+  "Beast",
+  "Hunter"
+ ],
+ "_source": "Monster Sheet (2 pages), AI/BP/Routine/Kingdom Trait card sheet, Signature card — owner scans 2026-11-17; reference sheet Ratwolves v1.2; Clash Setup: Sunken Kingdom / Principality of Stone Codex p.36–37",
+ "footprint": {
+  "size": 1,
+  "shape": "1x1",
+  "rear": "the cell directly behind (R on the sheet diagram)",
+  "facingOnSheet": "down"
+ },
+ "basicAbilities": [
+  {
+   "name": "Immediate Spawn",
+   "rule": "Strength of the Pack: a killed Ratwolf is replaced (BP one Level higher) adjacent to a random Knight and performs Signature."
+  }
+ ],
+ "levels": {
+  "1": {
+   "toHit": 6,
+   "wounds": 4,
+   "exhibitionWounds": 1,
+   "activations": [
+    "AI",
+    "AI"
+   ],
+   "activationsText": "2 AI",
+   "traitsAdd": [
+    "Strength of the Pack",
+    "Rising Pressure",
+    "Go for the Weakest Link"
+   ],
+   "bonuses": {
+    "escalations": 0,
+    "at": 0,
+    "vigorLoss": 0,
+    "evasionDice": 0
+   }
+  },
+  "2": {
+   "toHit": 6,
+   "wounds": 5,
+   "exhibitionWounds": 2,
+   "activations": [
+    "AI",
+    "AI"
+   ],
+   "activationsText": "2 AI",
+   "traitsAdd": [
+    "Relentless Pull",
+    "Into the Chittering Shadows"
+   ],
+   "bonuses": {
+    "escalations": 0,
+    "at": 1,
+    "vigorLoss": 1,
+    "evasionDice": 0
+   }
+  },
+  "3": {
+   "toHit": 7,
+   "wounds": 5,
+   "exhibitionWounds": 2,
+   "activations": [
+    "AI",
+    "AI"
+   ],
+   "activationsText": "2 AI",
+   "traitsAdd": [
+    "Kinderfänger",
+    "Adaptability"
+   ],
+   "bonuses": {
+    "escalations": 1,
+    "at": 2,
+    "vigorLoss": 2,
+    "evasionDice": 0
+   }
+  },
+  "4": {
+   "toHit": 8,
+   "wounds": 5,
+   "exhibitionWounds": 2,
+   "activations": [
+    "AI",
+    "AI"
+   ],
+   "activationsText": "2 AI",
+   "traitsAdd": [
+    "Ravening Ratswarm",
+    "Rat King"
+   ],
+   "bonuses": {
+    "escalations": 1,
+    "at": 3,
+    "vigorLoss": 2,
+    "evasionDice": 1
+   }
+  }
+ },
+ "traits": [
+  {
+   "name": "Strength of the Pack",
+   "level": 1,
+   "text": "A Ratwolf’s Toughness value, shown directly above the AT value, indicates how many times it can survive a Knight Attack that would otherwise be deadly. When you are about to wound a BP card, if the number of Generic tokens on it is equal to its Toughness value, you simply deal a Wound and the Ratwolf dies. Otherwise, instead of dealing a Wound, place a Generic token on this BP card and leave it revealed on the Mob track, then resolve Responses as if you dealt a Wound.\n\nWhen a Ratwolf dies, finish resolving the current action, then Spawn a new Ratwolf with a BP of one Level higher. If there are no valid BP cards, Spawn a Ratwolf of the same BP Level or lower (prioritizing higher Levels). New Ratwolves Spawn adjacent to a random Knight, on a space closest to the Board Edge and without an Obstacle. If that space is occupied by another miniature, Displace it. Then, the spawned Ratwolf performs Signature.",
+   "implemented": true
+  },
+  {
+   "name": "Rising Pressure",
+   "level": 1,
+   "text": "When a Knight gains Condition tokens, they gain that much [H].",
+   "implemented": true
+  },
+  {
+   "name": "Go for the Weakest Link",
+   "level": 1,
+   "text": "After resolving all other Attack Consequences:\n• If you are knocked down, Afflict 1.\n• If you are a Lone Knight, Afflict 1.",
+   "implemented": true
+  },
+  {
+   "name": "Relentless Pull",
+   "level": 2,
+   "text": "Increase each Drag performed by Ratwolves by 1 for every Condition token on the Target.",
+   "implemented": true
+  },
+  {
+   "name": "Into the Chittering Shadows",
+   "level": 2,
+   "text": "Ratwolves always perform Drag toward the closest short Board Edge.",
+   "implemented": true
+  },
+  {
+   "name": "Kinderfänger",
+   "level": 3,
+   "text": "At the end of a Drag performed by a Ratwolf, if you are a Lone Knight, suffer Knockdown.",
+   "implemented": true
+  },
+  {
+   "name": "Adaptability",
+   "level": 3,
+   "text": "This Trait changes depending on the Kingdom. Refer to the Kingdom Trait.",
+   "implemented": true
+  },
+  {
+   "name": "Ravening Ratswarm",
+   "level": 4,
+   "text": "During a Drag performed by a Ratwolf, if it would cause that Ratwolf to move past a short Board Edge, the Target dies. Place the Ratwolf adjacent to a random Knight on a space closest to a short Board Edge and without an Obstacle. If that space is occupied by another miniature, Displace it.",
+   "implemented": true
+  },
+  {
+   "name": "Rat King",
+   "level": 4,
+   "text": "Knights cannot discard Condition cards with Condition tokens, or discard any tokens from those cards, unless adjacent to another Knight.",
+   "implemented": true
+  },
+  {
+   "name": "Parasite Bed",
+   "level": 1,
+   "text": "[Kingdom Trait — Principality of Stone] Afflict X: Parasitize X.\n\nAdaptability (Level 3+): After you perform a [Peril], suffer a penalty based on the number of Condition tokens you have:\n2–3: Cooldown.\n4+: Delay.",
+   "implemented": true
+  },
+  {
+   "name": "Bile and Poison",
+   "level": 1,
+   "text": "[Kingdom Trait — Sunken Kingdom] Afflict X: Poison X.\n\nAdaptability (Level 3+): During an Armor Roll, ignore X rolled [Armor symbol], where X is the number of your Condition tokens.",
+   "implemented": true
+  }
+ ],
+ "cards": {
+  "ai": [
+   {
+    "name": "Toppling Charge",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 4,
+      "effect": "-2 [V] INSTEAD",
+      "where": "effect:0"
+     }
+    ],
+    "effects": [
+     "For each hit lose -1 [V]. [Peril]."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Knockdown.",
+    "unclear": [
+     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": "AFTER ATTACK: Knockdown.",
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "op": "vigorPerHitInstead",
+       "stat": "heat",
+       "gte": 4,
+       "n": 2
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      },
+      {
+       "op": "ratWeakest"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "knockdown"
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Tearing Bite",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 9,
+    "preTargeting": null,
+    "targeting": [
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "For each hit lose -1 [V]. [Peril].",
+     "Afflict 1."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Drag 3.",
+    "unclear": [],
+    "reactWindows": [],
+    "afterAttack": "AFTER ATTACK: Drag 3.",
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      },
+      {
+       "op": "ratAfflict",
+       "n": 1
+      },
+      {
+       "op": "ratWeakest"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "ratDrag",
+       "n": 3
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Furious Pull",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [die]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "For each hit lose -1 [V]. [Peril]."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Drag 5.",
+    "unclear": [
+     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": "AFTER ATTACK: Drag 5.",
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 3,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      },
+      {
+       "op": "ratWeakest"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "ratDrag",
+       "n": 5
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Fanged Snap",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 4,
+    "evasionDifficulty": 7,
+    "preTargeting": null,
+    "targeting": [
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "AFFLICT 1",
+      "where": "effect"
+     }
+    ],
+    "effects": [
+     "For each hit lose -1 [V]. [Peril]."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Drag 2.",
+    "unclear": [
+     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": "AFTER ATTACK: Drag 2.",
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "op": "noop",
+       "stat": "heat",
+       "gte": 3,
+       "alsoOps": [
+        {
+         "op": "ratAfflict",
+         "n": 1
+        }
+       ]
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      },
+      {
+       "op": "ratWeakest"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "ratDrag",
+       "n": 2
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Pestilent Bite",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "Closest knocked down Knight",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "For each hit lose -2 [V]. [Peril].",
+     "Afflict 1."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Drag 3.",
+    "unclear": [],
+    "reactWindows": [],
+    "afterAttack": "AFTER ATTACK: Drag 3.",
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Closest knocked down Knight",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "ratAfflict",
+       "n": 1
+      },
+      {
+       "op": "ratWeakest"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "ratDrag",
+       "n": 3
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Dire Howl",
+    "level": 2,
+    "type": "judgement",
+    "evasionDice": 3,
+    "evasionDifficulty": 9,
+    "preTargeting": null,
+    "targeting": [
+     "Closest Lone Knight",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "JUDGE",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 4,
+      "effect": "ESCALATE THE LOWEST UNREVEALED BP",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "Bravery.",
+     "One or two hits, gain the Fear Condition card. Three or more hits, gain the Dread Condition card.",
+     "If no other Knight in Zone 2, Knockdown."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Knockback 3.",
+    "unclear": [
+     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": "AFTER ATTACK: Knockback 3.",
+    "typePrinted": "JUDGEMENT",
+    "ops": {
+     "targeting": [
+      "Closest Lone Knight",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "op": "noop",
+       "stat": "heat",
+       "gte": 4,
+       "alsoOps": [
+        {
+         "op": "escalateLowestUnrevealed"
+        }
+       ]
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "ratIfHits",
+       "gte": 1,
+       "lt": 3,
+       "then": [
+        {
+         "op": "condition",
+         "id": "Fear"
+        }
+       ]
+      },
+      {
+       "op": "ratIfHits",
+       "gte": 3,
+       "lt": null,
+       "then": [
+        {
+         "op": "condition",
+         "id": "Dread"
+        }
+       ]
+      },
+      {
+       "op": "ratIfAlone",
+       "z": 2,
+       "then": [
+        {
+         "op": "knockdown"
+        }
+       ]
+      },
+      {
+       "op": "ratWeakest"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "knockback",
+       "n": 3
+      }
+     ],
+     "afterFinalAttack": null,
+     "judge": [
+      "Bravery"
+     ]
+    }
+   },
+   {
+    "name": "Isolating Pull",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "Closest knocked down Knight",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "+1 [die]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "For each hit lose -1 [V]. [Peril].",
+     "Afflict 1."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Drag 6.",
+    "unclear": [
+     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": "AFTER ATTACK: Drag 6.",
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Closest knocked down Knight",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "heat",
+       "gte": 3,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      },
+      {
+       "op": "ratAfflict",
+       "n": 1
+      },
+      {
+       "op": "ratWeakest"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "ratDrag",
+       "n": 6
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Verminous Gnawing",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "Closest Lone Knight",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "AFFLICT 1",
+      "where": "effect"
+     }
+    ],
+    "effects": [
+     "For each hit lose -2 [V]. [Peril].",
+     "Swarm 1.",
+     "Knockdown."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Drag 2.",
+    "unclear": [
+     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": "AFTER ATTACK: Drag 2.",
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Closest Lone Knight",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "op": "noop",
+       "stat": "heat",
+       "gte": 3,
+       "alsoOps": [
+        {
+         "op": "ratAfflict",
+         "n": 1
+        }
+       ]
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "swarm",
+       "n": 1
+      },
+      {
+       "op": "knockdown"
+      },
+      {
+       "op": "ratWeakest"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "ratDrag",
+       "n": 2
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Cursed Bite",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "Closest Lone Knight",
+     "[Priority Target] Priority Target in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "ConditionTokens",
+      "gte": 3,
+      "effect": "+1 [die]",
+      "where": "moveTag"
+     }
+    ],
+    "effects": [
+     "For each hit lose -2 [V]. [Peril].",
+     "If a Knight dies from this Attack, gain +1 [Escalation]."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Activate 1.",
+    "unclear": [
+     "\"gain +1 [아이콘]\" — Escalation 아이콘으로 읽음, 확인 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": "AFTER ATTACK: Activate 1.",
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Closest Lone Knight",
+      "[Priority Target] Priority Target in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "op": "evasionDice",
+       "stat": "condTokens",
+       "gte": 3,
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "ratWeakest"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "activate",
+       "n": 1
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Ratswarm",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 4,
+    "evasionDifficulty": 7,
+    "preTargeting": null,
+    "targeting": [
+     "[Priority Target] Priority Target in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 4,
+      "effect": "-2 [V] INSTEAD",
+      "where": "effect:0"
+     }
+    ],
+    "effects": [
+     "For each hit lose -1 [V] and Afflict 1.",
+     "For every 2 hits roll 1 additional [die] (resolve once). [Peril].",
+     "If no other Knight in Zone 1, Knockdown."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Pushback 5.",
+    "unclear": [
+     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": "AFTER ATTACK: Pushback 5.",
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "[Priority Target] Priority Target in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "op": "vigorPerHitInstead",
+       "stat": "heat",
+       "gte": 4,
+       "n": 2
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 1,
+       "perilCheck": true
+      },
+      {
+       "op": "ratAfflictPerHit",
+       "n": 1
+      },
+      {
+       "op": "ratIfAlone",
+       "z": 1,
+       "then": [
+        {
+         "op": "knockdown"
+        }
+       ]
+      },
+      {
+       "op": "ratWeakest"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "pushback",
+       "n": 5
+      }
+     ],
+     "afterFinalAttack": null,
+     "extraDice": {
+      "perHits": 2
+     }
+    }
+   }
+  ],
+  "bp": [
+   {
+    "name": "Famished Ratwolf",
+    "level": 1,
+    "at": 2,
+    "overcome": null,
+    "note": "Pitiful vermin.",
+    "whenRevealed": null,
+    "whileRevealed": "All other Ratwolves gain “Instinct: Poison 1.”",
+    "responses": {
+     "wound": null,
+     "fail": "Escalate AI 1.",
+     "instinct": null,
+     "critical": null
+    },
+    "unclear": [],
+    "toughness": 1,
+    "reactWindows": [],
+    "ops": {
+     "at": 2,
+     "overcome": null,
+     "fail": [
+      {
+       "op": "escalateAI"
+      }
+     ],
+     "aura": {
+      "ratInstinctPoison": 1
+     }
+    }
+   },
+   {
+    "name": "Famished Ratwolf",
+    "level": 1,
+    "at": 2,
+    "overcome": null,
+    "note": "Pitiful vermin.",
+    "whenRevealed": null,
+    "whileRevealed": "All other Ratwolves gain “Instinct: Poison 1.”",
+    "responses": {
+     "wound": null,
+     "fail": "Escalate AI 1.",
+     "instinct": null,
+     "critical": null
+    },
+    "unclear": [],
+    "toughness": 1,
+    "reactWindows": [],
+    "ops": {
+     "at": 2,
+     "overcome": null,
+     "fail": [
+      {
+       "op": "escalateAI"
+      }
+     ],
+     "aura": {
+      "ratInstinctPoison": 1
+     }
+    }
+   },
+   {
+    "name": "Ratwolf",
+    "level": 1,
+    "at": 3,
+    "overcome": null,
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": "Reveal the rightmost unrevealed Mob BP on the Mob track.",
+     "fail": "Perform Signature against the Attacker.",
+     "instinct": null,
+     "critical": "Look at a chosen BP card."
+    },
+    "unclear": [],
+    "toughness": 1,
+    "reactWindows": [],
+    "ops": {
+     "at": 3,
+     "overcome": null,
+     "wound": [
+      {
+       "op": "revealBP",
+       "side": "rightmost"
+      }
+     ],
+     "fail": [
+      {
+       "op": "ratSignature"
+      }
+     ],
+     "critical": [
+      {
+       "op": "lookBP"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Ratwolf",
+    "level": 1,
+    "at": 3,
+    "overcome": null,
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": "Reveal the leftmost unrevealed Mob BP on the Mob track.",
+     "fail": "Perform Signature against the Attacker.",
+     "instinct": null,
+     "critical": "Look at a chosen BP card."
+    },
+    "unclear": [],
+    "toughness": 1,
+    "reactWindows": [],
+    "ops": {
+     "at": 3,
+     "overcome": null,
+     "wound": [
+      {
+       "op": "revealBP",
+       "side": "leftmost"
+      }
+     ],
+     "fail": [
+      {
+       "op": "ratSignature"
+      }
+     ],
+     "critical": [
+      {
+       "op": "lookBP"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Stalking Ratwolf",
+    "level": 2,
+    "at": 4,
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": "Always trigger [H] effects.",
+    "responses": {
+     "wound": "Gain the [Priority Target] Priority Target token.",
+     "fail": null,
+     "instinct": "Draw AI for the furthest Mob.",
+     "critical": "Another Knight may perform a Bonus Attack!"
+    },
+    "unclear": [
+     "Overcome 숫자 확인 필요"
+    ],
+    "toughness": 1,
+    "reactWindows": [],
+    "ops": {
+     "at": 4,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ],
+      "tag": "OVERCOME"
+     },
+     "wound": [
+      {
+       "op": "ratPriority"
+      }
+     ],
+     "instinct": [
+      {
+       "op": "drawAIFor",
+       "which": "furthest"
+      }
+     ],
+     "critical": [
+      {
+       "op": "bonusAttack",
+       "who": "otherKnight",
+       "optional": true
+      }
+     ],
+     "aura": {
+      "allGates": true
+     }
+    }
+   },
+   {
+    "name": "Giant Ratwolf",
+    "level": 2,
+    "at": 5,
+    "overcome": null,
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": "All Ratwolves gain +1 [AT].",
+    "responses": {
+     "wound": "Move one Activation token to the next unassigned Mob.",
+     "fail": "Perform Signature against the Attacker.",
+     "instinct": null,
+     "critical": "You may flip a chosen BP card face down."
+    },
+    "unclear": [],
+    "toughness": 2,
+    "reactWindows": [],
+    "ops": {
+     "at": 5,
+     "overcome": null,
+     "wound": [
+      {
+       "op": "ratMoveToken"
+      }
+     ],
+     "fail": [
+      {
+       "op": "ratSignature"
+      }
+     ],
+     "critical": [
+      {
+       "op": "flipBPDown"
+      }
+     ],
+     "aura": {
+      "atAll": 1
+     }
+    }
+   },
+   {
+    "name": "Plague-Ridden Ratwolf",
+    "level": 2,
+    "at": 3,
+    "overcome": null,
+    "note": null,
+    "whenRevealed": "This Ratwolf and every other Ratwolf in Zone 2 gain an Armor [Armor] token.",
+    "whileRevealed": null,
+    "responses": {
+     "wound": null,
+     "fail": "Perform Signature against the Attacker.",
+     "instinct": "Parasitize 1.",
+     "critical": "Place a temporary negative Precision token in the Knight Pool."
+    },
+    "unclear": [],
+    "toughness": 1,
+    "reactWindows": [],
+    "ops": {
+     "at": 3,
+     "overcome": null,
+     "fail": [
+      {
+       "op": "ratSignature"
+      }
+     ],
+     "instinct": [
+      {
+       "op": "parasitize",
+       "n": 1
+      }
+     ],
+     "critical": [
+      {
+       "op": "ratNote",
+       "text": "Plague-Ridden Ratwolf Critical: 임시 음수 Precision 토큰 — 미구현"
+      }
+     ],
+     "whenRevealed": [
+      {
+       "op": "armorToken",
+       "to": "this"
+      },
+      {
+       "op": "armorToken",
+       "to": "otherMobsInZone",
+       "z": 2
+      }
+     ]
+    }
+   },
+   {
+    "name": "Leader of the Pack",
+    "level": 3,
+    "at": 7,
+    "overcome": {
+     "n": 5,
+     "effect": "Power 1"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": "When Leader of the Pack dies: You win!",
+    "responses": {
+     "wound": "Draw AI for the furthest Mob.",
+     "fail": "Drag 3.",
+     "instinct": null,
+     "critical": "Gain the Courage Condition card. Reset your [H]."
+    },
+    "unclear": [
+     "Overcome 숫자 확인 필요"
+    ],
+    "toughness": 1,
+    "reactWindows": [],
+    "ops": {
+     "at": 7,
+     "overcome": {
+      "n": 5,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ],
+      "tag": "OVERCOME"
+     },
+     "wound": [
+      {
+       "op": "drawAIFor",
+       "which": "furthest"
+      }
+     ],
+     "fail": [
+      {
+       "op": "ratDrag",
+       "n": 3
+      }
+     ],
+     "critical": [
+      {
+       "op": "condition",
+       "id": "Courage"
+      },
+      {
+       "op": "resetHeat"
+      }
+     ],
+     "winOnDeath": true
+    }
+   },
+   {
+    "name": "Alpha Ratwolf",
+    "level": 3,
+    "at": 5,
+    "overcome": {
+     "n": 4,
+     "effect": "Power 1"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": "Increase [V] loss caused by each Monster Attack by 1. When Alpha Ratwolf dies: You win!",
+    "responses": {
+     "wound": "Activate 1.",
+     "fail": "Escalate AI.",
+     "instinct": null,
+     "critical": "You may perform a Bonus Attack!"
+    },
+    "unclear": [
+     "Overcome 숫자 확인 필요"
+    ],
+    "toughness": 1,
+    "reactWindows": [],
+    "ops": {
+     "at": 5,
+     "overcome": {
+      "n": 4,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ],
+      "tag": "OVERCOME"
+     },
+     "wound": [
+      {
+       "op": "activate",
+       "n": 1
+      }
+     ],
+     "fail": [
+      {
+       "op": "escalateAI"
+      }
+     ],
+     "critical": [
+      {
+       "op": "bonusAttack",
+       "who": "self",
+       "optional": true
+      }
+     ],
+     "aura": {
+      "mobAttackVigor": 1
+     },
+     "winOnDeath": true
+    }
+   }
+  ],
+  "signature": {
+   "name": "Split the Herd",
+   "level": null,
+   "type": "attack",
+   "evasionDice": 2,
+   "evasionDifficulty": 9,
+   "preTargeting": null,
+   "targeting": [
+    "Closest Lone Knight",
+    "Closest Knight in front",
+    "Closest Knight in sight"
+   ],
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "ConditionTokens",
+     "gte": 3,
+     "effect": "KNOCKDOWN",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "For each hit lose -1 [V]. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Drag 2.",
+   "unclear": [],
+   "typePrinted": "SIGNATURE",
+   "ops": {
+    "targeting": [
+     "Closest Lone Knight",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "move": true,
+    "gates": [
+     {
+      "op": "noop",
+      "stat": "condTokens",
+      "gte": 3,
+      "alsoOps": [
+       {
+        "op": "knockdown"
+       }
+      ]
+     }
+    ],
+    "before": [],
+    "effects": [
+     {
+      "op": "loseVigorPerHit",
+      "n": 1,
+      "perilCheck": true
+     },
+     {
+      "op": "ratWeakest"
+     }
+    ],
+    "afterAttack": [
+     {
+      "op": "ratDrag",
+      "n": 2
+     }
+    ],
+    "afterFinalAttack": null
+   }
+  },
+  "routine": {
+   "name": "Chittering Pack",
+   "text": "Each Knight gains the Fear Condition card and suffers Poison 2.",
+   "type": "routine",
+   "ops": [
+    {
+     "op": "condition",
+     "id": "Fear",
+     "all": true
+    },
+    {
+     "op": "ratPoisonAll",
+     "n": 2
+    }
+   ]
+  }
+ },
+ "rat": {
+  "kingdomTrait": {
+   "sunken": "Bile and Poison",
+   "principality": "Parasite Bed"
+  }
+ },
+ "clashSetup": {
+  "_source": "Sunken Kingdom / Principality of Stone Codex p.36–37 (same diagram in both)",
+  "steps": [
+   "Standard Preparations (Rulebook p.44)",
+   "Monster Positioning: Put numbered base rings on all Ratwolf miniatures. Randomly place Ratwolf miniatures numbered 1–4 on the spaces designated on the diagram. Note the facing direction indicated by the arrows. Then, place 4 BP 1 cards face down in a random order on spaces 1–4 on the Mob track.",
+   "Additional Setup: Depending on the Kingdom, take the Parasite Bed (Principality of Stone) or Bile and Poison (Sunken Kingdom) Trait card. Follow additional Clash Setup instructions introduced by Traits (if any)."
+  ],
+  "requiredTiles": [
+   "8x Column",
+   "1x Rubble 2x2",
+   "1x Rubble L"
+  ],
+  "mobStart": [
+   {
+    "cell": "I6",
+    "facing": "down"
+   },
+   {
+    "cell": "F10",
+    "facing": "left"
+   },
+   {
+    "cell": "E4",
+    "facing": "right"
+   },
+   {
+    "cell": "C10",
+    "facing": "up"
+   }
+  ],
+  "mobTrack": {
+   "1": 4
+  },
+  "knightStart": [
+   "G8",
+   "F7",
+   "E8",
+   "D7"
+  ],
+  "terrain": [
+   {
+    "tile": "column",
+    "cells": [
+     "I4",
+     "I11",
+     "H2",
+     "H13",
+     "C5",
+     "C11",
+     "B2",
+     "B13"
+    ]
+   },
+   {
+    "tile": "rubble",
+    "shape": "2x2",
+    "cells": [
+     "D3",
+     "D4",
+     "C3",
+     "C4"
+    ]
+   },
+   {
+    "tile": "rubble",
+    "shape": "L",
+    "cells": [
+     "G11",
+     "F11",
+     "E11",
+     "E10"
+    ]
+   }
+  ],
+  "notes": [
+   "지형·시작 칸은 코덱스 도식에서 읽음 [해석, 확인 필요]"
+  ]
+ },
+ "rulings": [
+  "Strength of the Pack: 처음 부상은 BP 위에 Generic 토큰(Toughness까지), 토큰 수 = Toughness일 때 부상하면 죽음. 토큰만 놓을 때는 Wound·Escalation 없음, Response는 Wound로 처리, 장비·Arc의 \"부상 시\" 효과는 발동하지 않음 (참고 시트 v1.2)",
+  "Immediate Spawn: 죽은 Ratwolf의 Mob track 칸에 한 Level 높은 BP(없으면 같은 Level 이하 중 높은 것), 무작위 기사에 인접한 칸 중 Board Edge에 가장 가까운(Obstacle 없는) 칸, 점유 시 Displace, 이후 Signature(일반 Targeting)",
+  "Lone Knight = 3칸 이내에 다른 기사 없음 (참고 시트 v1.2)",
+  "Rising Pressure: Condition 토큰을 얻은 만큼 Heat (Poison/Toxify/Parasitize 토큰)",
+  "Go for the Weakest Link: 명중이 있었을 때만(Full Evade면 생략), 다른 Attack Consequence 뒤에 처리 (참고 시트)",
+  "Drag: 인접해야 시작; Ratwolf가 기사 반대쪽으로 이동하고 기사가 따라옴. Obstacle·미니어처에 막히면 멈춤. Board Edge에 닿으면 가장 가까운 짧은 변 쪽으로 가장자리를 따라 이동 (참고 시트). Lv2+ Into the Chittering Shadows: 처음부터 가장 가까운 짧은 변(1열/14열) 방향. 끌려가는 기사가 그 방향에 서 있으면 Ratwolf가 자리를 바꿔 지나간 뒤 계속 끌고 감. Lv4 Ravening Ratswarm: 짧은 변을 넘어가게 되면 대상 사망 [해석, 확인 필요]",
+  "\"If no other Knight in Zone N, Knockdown\" (Dire Howl, Ratswarm): 대상 기사 주변 Zone N에 다른 기사가 없을 때로 처리 [해석, 확인 필요]",
+  "Famished Ratwolf \"All other Ratwolves gain Instinct: Poison 1\": 공개된 Famished Ratwolf 한 장당, 다른 Ratwolf를 공격한 기사가 (Critical이 아니면) Poison 1",
+  "Cursed Bite \"If a Knight dies from this Attack, gain +1 [아이콘]\": 아이콘 미확인 — 미구현",
+  "Plague-Ridden Ratwolf Critical \"temporary negative Precision token in the Knight Pool\": 미구현"
+ ]
+}

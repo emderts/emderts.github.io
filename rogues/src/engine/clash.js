@@ -14,6 +14,7 @@ import { TrollMixin } from './troll.js';
 import { NightmareMixin } from './nightmare.js';
 import { FenMixin } from './fen.js';
 import { PumpMixin } from './pump.js';
+import { RatMixin } from './ratwolves.js';
 import { IroncastMixin } from './ironcast.js';
 import { RenholderMixin } from './renholder.js';
 import { KaraMixin, installKara } from './kara.js';
@@ -75,7 +76,7 @@ export class Clash {
     // terrain
     for (const t of cs.terrain) { const tdef = this.data.terrain.terrain.find(x => x.name.toLowerCase() === t.tile); t.cells.forEach((lab, i) => B.terrain.set(B.key(B.parse(lab)), { num: t.numbers ? t.numbers[i] : t.num, id: t.tile, obstacle: tdef.keywords.includes('Obstacle'), obscuring: tdef.keywords.includes('Obscuring'), destructible: tdef.keywords.includes('Destructible'), chasm: tdef.keywords.includes('Chasm'), difficult: tdef.keywords.includes('Difficult Terrain') })); }
     // monster
-    if (this.monster.isMob) { this.hauntsSetup(); if (this.monsterDef.nightmare) this.nightmareSetup(cs); else if (this.monsterDef.pump) this.pumpSetup(cs); else this.setupMobs(cs); this.bloodSetup(); this.firstmenSetup(); } else {
+    if (this.monster.isMob) { this.hauntsSetup(); if (this.monsterDef.nightmare) this.nightmareSetup(cs); else if (this.monsterDef.pump) this.pumpSetup(cs); else this.setupMobs(cs); if (this.monsterDef.rat) this.ratSetup(); this.bloodSetup(); this.firstmenSetup(); } else {
     this.monster.cells = cs.monsterCells.map(l => B.parse(l)); B.place({ kind: 'monster', id: this.monster.id }, this.monster.cells);
     if (cs.facing) { this.monster.facing = cs.facing; this.say(`${this.monster.name} 배치 ${cs.monsterCells.join('/')} · 방향 ${cs.facing}`); } else { const bottom = this.mortis.Minor.cards.at(-1); const arrowDir = { up: 'N', down: 'S', left: 'W', right: 'E' }[bottom.marker.arrow]; this.monster.facing = arrowDir; this.say(`Eggknight 배치 ${cs.monsterCells.join('/')} · 방향 ${arrowDir} (Minor Mortis 바닥: ${bottom.name})`); }
     this.trollSetup(cs); this.fenSetup(); }
@@ -184,6 +185,7 @@ export class Clash {
       else if (L.includes('closest to a chasm')) cand = minBy(alive.filter(k => this.inSight(k)), chasmD);
       else if (L.includes('closest knight not in front')) cand = closest(alive.filter(k => !inFront(B, this.monster.cells, this.monster.facing, k.pos) && (!L.includes('in sight') || this.inSight(k))));
       else if (L.includes('priority target')) cand = alive.filter(k => k === this.priorityTarget && (!L.includes('in sight') || this.inSight(k)));
+      else if (L.includes('closest knocked down knight')) cand = closest(alive.filter(k => this.knockedDown(k)));
       else if (L.includes('closest lone knight')) cand = closest(alive.filter(k => this.isLone(k)));
       else if (L.includes('knight in blindspot')) cand = alive.filter(k => this.inBlindspot(k));
       else if (L.includes('closest engaged knight in sight')) cand = closest(alive.filter(k => this.engaged(k) && this.inSight(k)));
@@ -330,7 +332,7 @@ export class Clash {
   async attackOneTarget(attack, k) {
     const card = attack.card, ops = card.ops; const M = this.monster;
     // gates
-    const allG = this.allGatesOn(); const gatesOn = ops.gates.filter(g => allG || g.stat === 'always' ? true : g.stat === 'heat' ? k.heat >= g.gte : g.stat === 'blood' ? this.mobBlood() >= g.gte : false);
+    const allG = this.allGatesOn(); const gatesOn = ops.gates.filter(g => allG || g.stat === 'always' ? true : g.stat === 'heat' ? k.heat >= g.gte : g.stat === 'blood' ? this.mobBlood() >= g.gte : g.stat === 'condTokens' ? this.condTokens(k) >= g.gte : false);
     let dice = (ops.diceFromDopps ? 1 + this.guardians.length : ops.diceFromVigor ? Math.min(6, k.vigor + 1) : ops.diceFromBlood ? ops.diceFromBlood * this.mobBlood() : card.evasionDice) + M.bonuses.evasionDice + sum(gatesOn.filter(g => g.op === 'evasionDice').map(g => g.n)) + (M.isMob && !(M.cur && M.cur.isTroll) ? this.firstmenDice() : 0) + (this.isWAT && !this.actingGuardian && this.flags.trollMinusDie ? -1 : 0); let diff = card.evasionDifficulty + M.modifiers.precision;
     const diffInstead = gatesOn.find(g => g.op === 'difficultyInstead'); if (diffInstead) diff = diffInstead.n;
     if (this.negMonPrecision) { diff = Math.max(2, diff - this.negMonPrecision); this.say(`임시 Precision -${this.negMonPrecision} 토큰: Evasion 난이도 → ${diff}+ (토큰 버림)`, 'tech'); this.negMonPrecision = 0; }
@@ -726,7 +728,7 @@ export class Clash {
     const ignore = A.ignoreResponses || (this.poolCount('improvedDiversion') && !A.critical) || (this.poolCount('diversion') && !A.wounded && !A.critical);
     const deferred = [];
     // 8. wounds & escalation (before responses that move the monster? Rulebook: responses step 7 then wounds step 8; responses that are Monster Attacks happen after)
-    if (A.wounded) { const dealt = A.guardian ? (A.guardian.isDopp ? await this.doppWound(A) : 0) : bp.isThickSkin ? (this.thickSkinAside = true, this.say('Thick Skin 부상: BP 덱 옆에 두고 뒤집음 — Wound·Escalation 없음', 'bp'), this.onTrollWound(1), 0) : this.monster.isMob ? (A.mob.isTroll ? this.trollWound() : A.mob.isNightmare ? this.nightmareWound(A) : A.mob.isPump ? this.pumpWound(A) : this.killMob(A.mob)) : this.monster.wound(bp, { critical: A.critical }); if (!this.monster.isMob && !A.guardian && !bp.isThickSkin) this.onTrollWound(dealt); if (this.isFen && (!A.guardian || A.guardian.isDopp)) { this.wamTokens += dealt; this.wamKnight = k; if (this.monster.hasTrait('We Are Many')) this.say(`We Are Many 토큰 ${this.wamTokens}/4`); } this.monster.generic.counter = (this.monster.generic.counter || 0) + dealt; this.say(`Wound Stack ${this.monster.wounds}/${this.monster.woundsToKill}`, 'wound'); await this.fx.onWound(k, A); this.priorityLast = k; }
+    if (A.wounded) { const dealt = A.guardian ? (A.guardian.isDopp ? await this.doppWound(A) : 0) : bp.isThickSkin ? (this.thickSkinAside = true, this.say('Thick Skin 부상: BP 덱 옆에 두고 뒤집음 — Wound·Escalation 없음', 'bp'), this.onTrollWound(1), 0) : this.monster.isMob ? (A.mob.isTroll ? this.trollWound() : A.mob.isNightmare ? this.nightmareWound(A) : A.mob.isPump ? this.pumpWound(A) : this.isRat ? this.ratWound(A) : this.killMob(A.mob)) : this.monster.wound(bp, { critical: A.critical }); if (!this.monster.isMob && !A.guardian && !bp.isThickSkin) this.onTrollWound(dealt); if (this.isFen && (!A.guardian || A.guardian.isDopp)) { this.wamTokens += dealt; this.wamKnight = k; if (this.monster.hasTrait('We Are Many')) this.say(`We Are Many 토큰 ${this.wamTokens}/4`); } this.monster.generic.counter = (this.monster.generic.counter || 0) + dealt; this.say(`Wound Stack ${this.monster.wounds}/${this.monster.woundsToKill}`, 'wound'); if (!A.ratToken) await this.fx.onWound(k, A); this.priorityLast = k; }
     else if (!this.monster.isMob && !A.guardian && bp.isThickSkin) { this.monster.bp.putTop(bp); this.say('Thick Skin: Wound 실패 → BP 덱 맨 위에 그대로'); }
     else if (!this.monster.isMob && !A.guardian) this.monster.discardBP(bp);
     if (A.wnDefianceNow) { const o2 = this.wn.card.ops; resp.length = 0; resp.push(A.critical ? ['Critical', o2.critical] : ['Wound', o2.wound]); }
@@ -735,6 +737,7 @@ export class Clash {
     if (this.monster.isMob) { await this.resolveMobDeaths(); await this.firstmenDeaths(); }
     if (k.engulfed && A.wounded && k.alive) await this.fenFree(k, 'Wound');
     if (this.isPump) await this.pumpAfterResponses(k, A);
+    if (this.isRat) await this.ratAfterResponses(k, A);
     if (this.monster.slain) { this.checkEnd(); }
     // 9. clear pool
     await this.fx.passWindow(k, A); await this.karaClearPool(k, A);
@@ -784,7 +787,7 @@ export class Clash {
   }
   async windowOfOpportunity(when, attack, target = null) { const a = attack || this.currentAttack; if (a && a.noReact && when !== 'beforeEffects') { this.say('REACT! 무시 (Blood 게이트)'); return; } await this.fx.reactions(when, attack, target); }
 }
-Object.assign(Clash.prototype, MobMixin, BloodMixin, HauntsMixin, FirstmenMixin, TrollMixin, NightmareMixin, FenMixin, PumpMixin, IroncastMixin, RenholderMixin, KaraMixin, ParacelsaMixin, SonchMixin, UbarMixin, StonefaceMixin, ExtrasMixin);
+Object.assign(Clash.prototype, MobMixin, BloodMixin, HauntsMixin, FirstmenMixin, TrollMixin, NightmareMixin, FenMixin, PumpMixin, RatMixin, IroncastMixin, RenholderMixin, KaraMixin, ParacelsaMixin, SonchMixin, UbarMixin, StonefaceMixin, ExtrasMixin);
 installKara(Clash);
 installParacelsa(Clash);
 installSonch(Clash);

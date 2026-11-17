@@ -45,7 +45,7 @@ export const MobMixin = {
   // ---------- auras of revealed BPs ----------
   mobAura(key) { let n = 0; for (const m of this.monster.mobs || []) if (m.revealed && m.card.ops.aura && typeof m.card.ops.aura[key] === 'number') n += m.card.ops.aura[key]; return n; },
   mobAT(mob) {
-    const M = this.monster; let at = mob.card.at + M.bonuses.at + M.modifiers.at + (this.mobArmorDisabled ? 0 : mob.armor) + this.difficultTerrainAT(mob.cells) + (M.hasTrait('Scab Armor') ? mob.blood || 0 : 0) + (this.monsterDef.battleTactics ? this.firstmenAT(mob) : 0) + (mob.isNightmare ? this.wnEndure || 0 : 0) + (mob.isPump ? this.pumpATBonus(mob) : 0);
+    const M = this.monster; let at = mob.card.at + M.bonuses.at + M.modifiers.at + (this.mobArmorDisabled ? 0 : mob.armor) + this.difficultTerrainAT(mob.cells) + (M.hasTrait('Scab Armor') ? mob.blood || 0 : 0) + (this.monsterDef.battleTactics ? this.firstmenAT(mob) : 0) + (mob.isNightmare ? this.wnEndure || 0 : 0) + (mob.isPump ? this.pumpATBonus(mob) : 0) + this.mobAura('atAll');
     for (const o of M.mobs) { if (o === mob || !o.revealed || !o.cells.length || !mob.cells.length) continue; const a = o.card.ops.aura && o.card.ops.aura.atOtherMobsZone; if (a && Math.max(Math.abs(o.cells[0].c - mob.cells[0].c), Math.abs(o.cells[0].r - mob.cells[0].r)) <= a.z) at += a.n; }
     return at;
   },
@@ -168,6 +168,7 @@ export const MobMixin = {
   },
   async mobAfterAction() {
     if (this.bloodOn || this.monster.hasTrait('Subterranean Menace')) await this.bloodAfterAction();
+    if (this.isRat) await this.ratDeaths();
     if (this.monster.hasTrait('Ethereal Unity')) await this.etherealSpawn();
     if (this.monsterDef.battleTactics) { await this.firstmenDeaths(); if (this.retributionPending) { this.retributionPending = false; this.say('Retribution: 4번째 BP가 Wound Stack에 — Long Howl + White Ape Troll 활성화', 'ai'); await this.longHowl(); await this.trollActivate(); } }
     if (this.monster.hasTrait('Necrofusion') && this.necro >= 3 && !this._spawning) { this.necro = 0; this._spawning = true; try { this.say('Necrofusion: 토큰 3 → Spawn + Signature', 'ai'); const mob = await this.spawnMob(); if (mob) await this.withMob(mob, () => this.performSignature()); } finally { this._spawning = false; } this.checkEnd(); }
