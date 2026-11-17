@@ -1393,9 +1393,7 @@
     ],
     "afterTag": null,
     "after": null,
-    "unclear": [
-     "게이트 \"[V] 4+ ▸ DOOMED\" 숫자 확인 필요"
-    ],
+    "unclear": [],
     "hex": {
      "type": "Eternal Pain Hex",
      "name": "Morass Malady",
@@ -1419,7 +1417,13 @@
      ],
      "move": false,
      "range": "unlimited",
-     "gates": [],
+     "gates": [
+      {
+       "op": "bwDoomed",
+       "stat": "vigor",
+       "gte": 4
+      }
+     ],
      "before": [],
      "beforeAttack": [
       {
@@ -1486,8 +1490,7 @@
     "afterTag": null,
     "after": null,
     "unclear": [
-     "Heat 게이트 숫자 작은 글씨 — 확인 필요",
-     "\"Reset your [H]! to your Maximum [V] threshold\" 문구 확인 필요"
+     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
     ],
     "hex": {
      "type": "Tongue-Tied Party Hex",
@@ -1530,8 +1533,7 @@
          "id": "Drowning"
         },
         {
-         "op": "bwNote",
-         "text": "Mudcurse: \"Reset your [H]! to your Maximum [V] threshold\" — 문구 미확인, 미구현"
+         "op": "bwHeatReset"
         },
         {
          "op": "bwStray",
@@ -3133,8 +3135,9 @@
   "Hex \"Burden of the Fen\": 그 기사 주변 Zone 1의 모든 칸을 (지형이 있어도) Swamp로 취급 (소유자 확인 2026-11-17)",
   "Cookie Crumbs: Monster Round 종료 시 토큰 3–5 Signature / 6–8 AI / 9+ Signature 후 AI",
   "A Long Lost Child \"voluntarily end this Attack\": Power Roll 전에 물음",
-  "Anthropophagy 게이트 \"[V] 4+ ▸ DOOMED\": 판독 불확실 — 미구현",
-  "Mudcurse \"Reset your [H]! to your Maximum [V] threshold\": 문구 미확인 — 미구현",
-  "Hex \"Morass Residue\"(다른 기사를 대상으로 하는 키워드·능력 사용 불가), \"Mouthful of Bog\"(You cannot talk): 엔진에서 강제하지 않음 — 미구현"
+  "Anthropophagy 게이트 \"[V] 4+ ▸ DOOMED\": 대상 Vigor 4 이상이면 이 공격은 Doomed (소유자 확인 2026-11-17: 문구 맞음)",
+  "Mudcurse \"Reset your [H]! to your Maximum [V] threshold\": 문구 맞음(소유자 확인 2026-11-17). 엔진: Heat를 Maximum Vigor(Uninjured) threshold의 Heat Limit 값으로 맞춤 [해석, 확인 필요]",
+  "Hex \"Morass Residue\": Inspire·Motivate·Bonus Attack(다른 기사)·부활·Nurturing·Puppeteer·Rock Pull·Inspiring Light 등 다른 기사를 고르는 키워드·능력을 막음 (소유자 확인 2026-11-17: 문구 맞음). \"Mouthful of Bog\"(You cannot talk): 싱글플레이라 강제 불가 — 효과 없음 (소유자 확인 2026-11-17)",
+  "Beast of the Swamp의 영구 토큰은 이번 Clash 동안만 적용 (소유자 확인 2026-11-17)"
  ]
 }

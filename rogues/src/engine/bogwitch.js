@@ -36,6 +36,8 @@ export const WitchMixin = {
   },
   // ---------- Hexes ----------
   bwHexOn(h) { const x = h.ops.hex; return !this.bw.disabled.has(x.type.replace(/ Party Hex| Hex/g, '')) && !(x.party && this.bw.disabled.has('Party')); },
+  /** Morass Residue: "You cannot use keywords and abilities that target other Knights." x = null → any other Knight. */
+  bwMayTarget(k, x) { if (!this.isBw || !k || x === k || !this.bwHexed(k, 'Morass Residue')) return true; if (!this._mrSaid || this._mrSaid !== this.round + ':' + k.id) { this._mrSaid = this.round + ':' + k.id; this.say(`${k.name}: Morass Residue — 다른 기사를 대상으로 하는 키워드·능력 사용 불가`, 'bp'); } return false; },
   bwHexed(k, name) { return !!(this.isBw && k && ((k.hexes || []).some(h => h.ops.hex.name === name && this.bwHexOn(h)) || this.bwParty(name))); },
   bwParty(name) { return this.isBw && this.bw.party.some(h => h.ops.hex.name === name && this.bwHexOn(h)); },
   bwTake(card) { const M = this.monster; for (const pile of [M.ai.discard, M.ai.cards]) { const i = pile.indexOf(card); if (i >= 0) pile.splice(i, 1); } },
@@ -144,9 +146,10 @@ export const WitchMixin = {
       case 'bwHeatLimitTo': if (k && k.alive) { k.heatLimitBonus = (k.heatLimitBonus || 0) - Math.max(0, k.heatLimit - o.n); if (k.heat > k.heatLimit) k.heat = k.heatLimit; this.say(`${k.name}: Heat Limit → ${k.heatLimit}`, 'dmg'); } return true;
       case 'bwExhaustWeapon': { if (!k || !k.alive) return true; const w = (ctx.attack && ctx.attack.weapon && k.gear.includes(ctx.attack.weapon)) ? ctx.attack.weapon : k.gear.find(g => g.type === 'weapon' && !g.discarded && !g.exhausted); if (w) { w.exhausted = true; this.say(`${k.name}: ${w.name} 소진`, 'dmg'); } return true; }
       case 'bwRoutine': for (const x of this.alive()) { await this.addCondition(x, 'Drowning'); await this.fx.runKnightOp({ op: 'toxify', n: 4 }, x, {}); } return true;
+      case 'bwHeatReset': if (t && t.alive) { t.heat = t.uninjuredHeatLimit; this.say(`${t.name}: Heat → ${t.heat} (Maximum Vigor threshold)`, 'dmg'); } return true;
       case 'bwNote': this.say(o.text, 'warn'); return true;
       default: return false;
     }
   },
 };
-export const BW_OPS = ['bwOnHit', 'bwPerHit', 'bwIfHits', 'bwTable', 'bwPoison', 'bwToxify', 'bwHeat', 'bwStray', 'bwSlimed', 'bwDie', 'bwBogMove', 'bwSquare', 'bwCarrion', 'bwPullAdjacent', 'bwSwampMiddle', 'bwDiscardHex', 'bwDiscardAllHexes', 'bwDisable', 'bwDiscardCondition', 'bwPriority', 'bwPlaceAnywhere', 'bwLose', 'bwHeatLimitTo', 'bwExhaustWeapon', 'bwRoutine', 'bwNote', 'bwKing', 'bwStray4', 'bwDrownInstead'];
+export const BW_OPS = ['bwOnHit', 'bwPerHit', 'bwIfHits', 'bwTable', 'bwPoison', 'bwToxify', 'bwHeat', 'bwStray', 'bwSlimed', 'bwDie', 'bwBogMove', 'bwSquare', 'bwCarrion', 'bwPullAdjacent', 'bwSwampMiddle', 'bwDiscardHex', 'bwDiscardAllHexes', 'bwDisable', 'bwDiscardCondition', 'bwPriority', 'bwPlaceAnywhere', 'bwLose', 'bwHeatLimitTo', 'bwExhaustWeapon', 'bwRoutine', 'bwNote', 'bwHeatReset', 'bwDoomed', 'bwKing', 'bwStray4', 'bwDrownInstead'];

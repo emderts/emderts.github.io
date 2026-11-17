@@ -695,9 +695,7 @@
    ],
    "afterTag": null,
    "after": null,
-   "unclear": [
-    "게이트 \"[V] 4+ ▸ DOOMED\" 숫자 확인 필요"
-   ],
+   "unclear": [],
    "hex": {
     "type": "Eternal Pain Hex",
     "name": "Morass Malady",
@@ -741,8 +739,7 @@
    "afterTag": null,
    "after": null,
    "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요",
-    "\"Reset your [H]! to your Maximum [V] threshold\" 문구 확인 필요"
+    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
    "hex": {
     "type": "Tongue-Tied Party Hex",
