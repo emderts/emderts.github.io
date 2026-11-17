@@ -1,6 +1,8 @@
 # Builds data/monsters/ratwolves.json (Mob Clash) from docs/transcriptions/ratwolves_raw.json (owner scans 2026-11-17) + hand-written ops
 # + Clash Setup (Sunken Kingdom / Principality of Stone Codex p.36–37). Usage: python3 tools/build_ratwolves.py data/monsters/ratwolves.json
-import json, sys, copy
+import json, sys, copy, os
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'newmon'))
+from common import apply_react
 raw = json.load(open('docs/transcriptions/ratwolves_raw.json')); S = raw['sheet']; CS = raw['clashSetup']
 V = lambda n, peril=True: {'op': 'loseVigorPerHit', 'n': n, 'perilCheck': peril}
 AFF = lambda n: {'op': 'ratAfflict', 'n': n}; DRAG = lambda n: {'op': 'ratDrag', 'n': n}; KD = {'op': 'knockdown'}; COND = lambda i: {'op': 'condition', 'id': i}
@@ -36,7 +38,7 @@ WL = {'op': 'ratWeakest'}
 def ai(c, spec):
     c = copy.deepcopy(c); spec = dict(spec); tag = c.get('moveTag') or ''
     ops = {'targeting': c['targeting'], 'move': tag.startswith('MOVE'), 'gates': spec.pop('gates', []), 'before': [], 'effects': spec.pop('effects') + [WL], 'afterAttack': spec.pop('afterAttack', None), 'afterFinalAttack': None}
-    ops.update(spec); c['typePrinted'] = c['type']; c['type'] = TYPE[c['type']]; c['ops'] = ops; return c
+    ops.update(spec); c['typePrinted'] = c['type']; c['type'] = TYPE[c['type']]; c['ops'] = ops; return apply_react(c)
 def bp(c):
     c = copy.deepcopy(c); key = c['name']
     if key == 'Ratwolf': key = ('Ratwolf', 'rightmost' if 'rightmost' in c['responses']['wound'] else 'leftmost')

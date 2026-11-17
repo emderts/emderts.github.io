@@ -169,9 +169,17 @@
    "unclear": [],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "효과 사이: '[Peril].' 뒤"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": {
+     "index": 2,
+     "after": "[Peril]."
+    },
+    "beforeAfter": false
+   }
   },
   {
    "name": "Demolishing Blow",
@@ -205,9 +213,14 @@
    ],
    "reactWindows": [
     "targeting",
-    "After Attack 구간"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER ATTACK: Ruin."
+   "afterAttack": "AFTER ATTACK: Ruin.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Hammer Rise",
@@ -242,10 +255,18 @@
    ],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)",
-    "After Attack 구간"
+    "효과 사이: 'Exhaust 1 Gear card with the Metal Trait.' 뒤",
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER ATTACK: Ruin."
+   "afterAttack": "AFTER ATTACK: Ruin.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": {
+     "index": 2,
+     "after": "Exhaust 1 Gear card with the Metal Trait."
+    },
+    "beforeAfter": true
+   }
   },
   {
    "name": "Backhand Swat",
@@ -272,9 +293,14 @@
    ],
    "reactWindows": [
     "targeting",
-    "After Attack 구간"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER FINAL ATTACK: Ruin."
+   "afterAttack": "AFTER FINAL ATTACK: Ruin.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Hammer Throw",
@@ -300,7 +326,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Flattening Swipe",
@@ -328,7 +359,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Hammer Launch",
@@ -361,7 +397,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": "AFTER FINAL ATTACK: Ruin."
+   "afterAttack": "AFTER FINAL ATTACK: Ruin.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Stone Smite",
@@ -388,9 +429,14 @@
    ],
    "reactWindows": [
     "targeting",
-    "After Attack 구간"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER FINAL ATTACK: Ruin."
+   "afterAttack": "AFTER FINAL ATTACK: Ruin.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Wrecking Ball",
@@ -416,7 +462,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Toppling Sweep",
@@ -451,9 +502,17 @@
    ],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "효과 사이: 'Exhaust 1 Gear card with the Metal Trait.' 뒤"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": {
+     "index": 2,
+     "after": "Exhaust 1 Gear card with the Metal Trait."
+    },
+    "beforeAfter": false
+   }
   },
   {
    "name": "Anvil Fall",
@@ -488,7 +547,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": "AFTER ATTACK: Ruin."
+   "afterAttack": "AFTER ATTACK: Ruin.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Bulldozing Stomp",
@@ -523,9 +587,14 @@
    ],
    "reactWindows": [
     "targeting",
-    "After Attack 구간"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER ATTACK: Ruin."
+   "afterAttack": "AFTER ATTACK: Ruin.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Mass Driver",
@@ -551,7 +620,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": "AFTER FINAL ATTACK: Ruin."
+   "afterAttack": "AFTER FINAL ATTACK: Ruin.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Reduce to Ruins",
@@ -585,7 +659,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": "AFTER ATTACK: Place a 2x2 Rubble Terrain tile under the Target."
+   "afterAttack": "AFTER ATTACK: Place a 2x2 Rubble Terrain tile under the Target.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "March of Devastation",
@@ -610,7 +689,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": "AFTER ATTACK: Ruin."
+   "afterAttack": "AFTER ATTACK: Ruin.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Mason Grasp",
@@ -637,7 +721,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Force Discharge",
@@ -672,7 +761,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Pulverize",
@@ -705,9 +799,17 @@
    "unclear": [],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "효과 사이: 'Exhaust all Gear cards with the Metal Trait.' 뒤"
    ],
-   "afterAttack": "AFTER ATTACK: Ruin."
+   "afterAttack": "AFTER ATTACK: Ruin.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": {
+     "index": 2,
+     "after": "Exhaust all Gear cards with the Metal Trait."
+    },
+    "beforeAfter": false
+   }
   }
  ],
  "bp": [
@@ -1144,7 +1246,20 @@
   ],
   "afterTag": "AFTER ATTACK",
   "after": "Ruin.",
-  "unclear": []
+  "unclear": [],
+  "reactSpec": {
+   "targeting": true,
+   "mid": {
+    "index": 1,
+    "after": "[Peril]."
+   },
+   "beforeAfter": true
+  },
+  "reactWindows": [
+   "targeting",
+   "효과 사이: '[Peril].' 뒤",
+   "After Attack 앞"
+  ]
  },
  "_notes": [
   "Clash Setup 다이어그램 미수령",

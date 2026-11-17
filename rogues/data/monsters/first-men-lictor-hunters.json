@@ -187,6 +187,11 @@
      "targeting"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "JUDGEMENT",
     "ops": {
      "targeting": [
@@ -254,7 +259,8 @@
       "Bravery",
       "Sagacity"
      ]
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Dastardly Distraction",
@@ -286,9 +292,14 @@
     ],
     "reactWindows": [
      "targeting",
-     "효과 구간 (줄 위치 미확인)"
+     "After Attack 앞"
     ],
     "afterAttack": "AFTER ATTACK: The next non-Decoying Mob performs Decoy.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": true
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -325,12 +336,17 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "lhNext",
        "do": "decoy"
       }
      ],
      "afterFinalAttack": null
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Jungle Trickery",
@@ -356,9 +372,14 @@
     "unclear": [],
     "reactWindows": [
      "targeting",
-     "효과 구간 (줄 위치 미확인)"
+     "After Attack 앞"
     ],
     "afterAttack": "AFTER ATTACK: The next non-Decoying Mob performs Dwell.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": true
+    },
     "typePrinted": "RANGE ATTACK",
     "ops": {
      "targeting": [
@@ -392,13 +413,18 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "lhNext",
        "do": "dwell"
       }
      ],
      "afterFinalAttack": null,
      "range": 8
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Surprise Attack",
@@ -438,9 +464,14 @@
     ],
     "reactWindows": [
      "targeting",
-     "효과 구간 (줄 위치 미확인)"
+     "After Attack 앞"
     ],
     "afterAttack": "AFTER ATTACK: Knockdown.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": true
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -489,11 +520,16 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "knockdown"
       }
      ],
      "afterFinalAttack": null
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Fungal Poison-Tipped Dart",
@@ -529,6 +565,11 @@
      "targeting"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "RANGE ATTACK",
     "ops": {
      "targeting": [
@@ -570,7 +611,8 @@
      "afterAttack": null,
      "afterFinalAttack": null,
      "range": 6
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Hit & Run",
@@ -604,9 +646,14 @@
     ],
     "reactWindows": [
      "targeting",
-     "효과 구간 (줄 위치 미확인)"
+     "After Attack 앞"
     ],
     "afterAttack": "AFTER ATTACK: The next non-Decoying Mob performs Dwell.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": true
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -653,12 +700,17 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "lhNext",
        "do": "dwell"
       }
      ],
      "afterFinalAttack": null
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Mud Pit Trap",
@@ -694,6 +746,11 @@
      "targeting"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "JUDGEMENT",
     "ops": {
      "targeting": [
@@ -755,7 +812,8 @@
       "Fortitude",
       "Insight"
      ]
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Toxic Gas",
@@ -778,9 +836,14 @@
     "unclear": [],
     "reactWindows": [
      "targeting",
-     "효과 구간 (줄 위치 미확인)"
+     "After Attack 앞"
     ],
     "afterAttack": "AFTER ATTACK: Tactic B.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": true
+    },
     "typePrinted": "ZONE ATTACK",
     "ops": {
      "targeting": [
@@ -813,13 +876,18 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "tactic",
        "which": "B",
        "n": 0
       }
      ],
      "afterFinalAttack": null
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Gorilla Charge",
@@ -844,9 +912,14 @@
     "unclear": [],
     "reactWindows": [
      "targeting",
-     "효과 구간 (줄 위치 미확인)"
+     "After Attack 앞"
     ],
     "afterAttack": "AFTER ATTACK: Knockdown.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": true
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -876,11 +949,16 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "knockdown"
       }
      ],
      "afterFinalAttack": null
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Coup de Grâce",
@@ -919,9 +997,14 @@
     ],
     "reactWindows": [
      "targeting",
-     "효과 구간 (줄 위치 미확인)"
+     "After Attack 앞"
     ],
     "afterAttack": "AFTER ATTACK: The next non-Decoying Mob performs Dwell.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": true
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -973,12 +1056,17 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "lhNext",
        "do": "dwell"
       }
      ],
      "afterFinalAttack": null
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Treefrog Poison-Tipped Dart",
@@ -1015,6 +1103,11 @@
      "targeting"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "RANGE ATTACK",
     "ops": {
      "targeting": [
@@ -1068,7 +1161,8 @@
      "afterAttack": null,
      "afterFinalAttack": null,
      "range": 6
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Below the Belt",
@@ -1101,9 +1195,14 @@
     ],
     "reactWindows": [
      "targeting",
-     "효과 구간 (줄 위치 미확인)"
+     "After Attack 앞"
     ],
     "afterAttack": "AFTER ATTACK: Knockdown.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": true
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -1162,11 +1261,16 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "knockdown"
       }
      ],
      "afterFinalAttack": null
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Thorn Snare",
@@ -1201,6 +1305,11 @@
      "targeting"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "RANGE ATTACK",
     "ops": {
      "targeting": [
@@ -1256,7 +1365,8 @@
      "afterAttack": null,
      "afterFinalAttack": null,
      "range": 7
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Savage Display",
@@ -1293,6 +1403,11 @@
      "targeting"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "JUDGEMENT",
     "ops": {
      "targeting": [
@@ -1365,7 +1480,8 @@
       "Bravery",
       "Sagacity"
      ]
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Brutal Backstab",
@@ -1400,6 +1516,11 @@
      "targeting"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -1449,7 +1570,8 @@
      "extraDice": {
       "ifHit": 2
      }
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Toxic Smokescreen",
@@ -1481,9 +1603,14 @@
     ],
     "reactWindows": [
      "targeting",
-     "효과 구간 (줄 위치 미확인)"
+     "After Attack 앞"
     ],
     "afterAttack": "AFTER ATTACK: Tactic A. The next non-Decoying Mob performs Dwell.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": true
+    },
     "typePrinted": "ZONE ATTACK",
     "ops": {
      "targeting": [
@@ -1523,6 +1650,10 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "tactic",
        "which": "A",
        "n": 0
@@ -1534,7 +1665,8 @@
        "do": "dwell"
       }
      ]
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Death from Above",
@@ -1556,9 +1688,14 @@
     "unclear": [],
     "reactWindows": [
      "targeting",
-     "효과 구간 (줄 위치 미확인)"
+     "After Attack 앞"
     ],
     "afterAttack": "AFTER FINAL ATTACK: Knockdown.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": true
+    },
     "typePrinted": "SIMULTANEOUS ATTACK",
     "ops": {
      "targeting": [
@@ -1600,11 +1737,16 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "knockdown"
       }
      ],
      "afterFinalAttack": null
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Fighting Dirty",
@@ -1630,6 +1772,11 @@
      "targeting"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -1688,7 +1835,8 @@
      ],
      "afterAttack": null,
      "afterFinalAttack": null
-    }
+    },
+    "reactExact": true
    }
   ],
   "bp": [
@@ -2740,6 +2888,14 @@
    "afterTag": null,
    "after": null,
    "unclear": [],
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "reactWindows": [
+    "targeting"
+   ],
    "typePrinted": "RANGE SIGNATURE",
    "ops": {
     "targeting": [
@@ -2785,7 +2941,8 @@
     "afterAttack": null,
     "afterFinalAttack": null,
     "range": "unlimited"
-   }
+   },
+   "reactExact": true
   },
   "routine": {
    "name": "They’re in the Trees!",

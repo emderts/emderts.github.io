@@ -178,9 +178,14 @@
    "unclear": [],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER ATTACK: Rust. Lower your Maximum [V] by 3."
+   "afterAttack": "AFTER ATTACK: Rust. Lower your Maximum [V] by 3.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Tarnishing Touch",
@@ -204,9 +209,14 @@
    "unclear": [],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER ATTACK: Exhaust your Armor [Gear] card."
+   "afterAttack": "AFTER ATTACK: Exhaust your Armor [Gear] card.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Phantasmal Backstab",
@@ -228,7 +238,12 @@
    "after": "This Panzergeist moves up to 3 spaces toward the closest Armor [Armor] token.",
    "unclear": [],
    "reactWindows": [],
-   "afterAttack": "AFTER ATTACK: This Panzergeist moves up to 3 spaces toward the closest Armor [Armor] token."
+   "afterAttack": "AFTER ATTACK: This Panzergeist moves up to 3 spaces toward the closest Armor [Armor] token.",
+   "reactSpec": {
+    "targeting": false,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Chill the Spine",
@@ -259,10 +274,18 @@
    "unclear": [],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)",
-    "효과 구간 (줄 위치 미확인)"
+    "효과 사이: 'For each hit lose -6 [V]. [Peril].' 뒤",
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER ATTACK: Lower your Maximum [V] by 3."
+   "afterAttack": "AFTER ATTACK: Lower your Maximum [V] by 3.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": {
+     "index": 1,
+     "after": "For each hit lose -6 [V]. [Peril]."
+    },
+    "beforeAfter": true
+   }
   },
   {
    "name": "Geist Slam",
@@ -284,9 +307,14 @@
    "after": "Knockdown.",
    "unclear": [],
    "reactWindows": [
-    "효과 구간 (줄 위치 미확인)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER ATTACK: Knockdown."
+   "afterAttack": "AFTER ATTACK: Knockdown.",
+   "reactSpec": {
+    "targeting": false,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Bewitching Brush",
@@ -310,9 +338,14 @@
    "unclear": [],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER ATTACK: This Panzergeist moves up to 5 spaces toward the closest Armor [Armor] token."
+   "afterAttack": "AFTER ATTACK: This Panzergeist moves up to 5 spaces toward the closest Armor [Armor] token.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Corroding Grasp",
@@ -336,9 +369,14 @@
    "unclear": [],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER ATTACK: Discard your Armor [Gear] card."
+   "afterAttack": "AFTER ATTACK: Discard your Armor [Gear] card.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Spectral Shriek",
@@ -368,9 +406,14 @@
    "unclear": [],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER ATTACK: Knockdown."
+   "afterAttack": "AFTER ATTACK: Knockdown.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Lifescourge",
@@ -394,10 +437,18 @@
    "unclear": [],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)",
-    "효과 구간 (줄 위치 미확인)"
+    "효과 사이: '[Peril].' 뒤",
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER ATTACK: If you died, repeat this Attack against another Knight. If you survived, lower your Maximum [V] by X, where X is the number of your Bane [Bane] tokens."
+   "afterAttack": "AFTER ATTACK: If you died, repeat this Attack against another Knight. If you survived, lower your Maximum [V] by X, where X is the number of your Bane [Bane] tokens.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": {
+     "index": 2,
+     "after": "[Peril]."
+    },
+    "beforeAfter": true
+   }
   },
   {
    "name": "Rend the Spirit",
@@ -426,7 +477,12 @@
    "after": "If you died, place all Armor [Armor] tokens from the Clash Board on this Mob. If you survived, lower your Maximum [V] to 0.",
    "unclear": [],
    "reactWindows": [],
-   "afterAttack": "AFTER ATTACK: If you died, place all Armor [Armor] tokens from the Clash Board on this Mob. If you survived, lower your Maximum [V] to 0."
+   "afterAttack": "AFTER ATTACK: If you died, place all Armor [Armor] tokens from the Clash Board on this Mob. If you survived, lower your Maximum [V] to 0.",
+   "reactSpec": {
+    "targeting": false,
+    "mid": null,
+    "beforeAfter": false
+   }
   }
  ],
  "bp": [
@@ -630,7 +686,16 @@
   ],
   "afterTag": "AFTER ATTACK",
   "after": "Lower your Maximum [V] by 3.",
-  "unclear": []
+  "unclear": [],
+  "reactSpec": {
+   "targeting": true,
+   "mid": null,
+   "beforeAfter": true
+  },
+  "reactWindows": [
+   "targeting",
+   "After Attack 앞"
+  ]
  },
  "_notes": [
   "BP 카드에 Overcome/Overpower 줄 없음",

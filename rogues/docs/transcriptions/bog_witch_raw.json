@@ -175,7 +175,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Broom Sweep",
@@ -214,7 +219,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Mire of the Cursed",
@@ -246,7 +256,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Ancestors’ Memories",
@@ -283,7 +298,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Manifest Hex",
@@ -314,7 +334,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Vile Soup Spill",
@@ -346,7 +371,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Witchfire Stove",
@@ -386,7 +416,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Spice Up",
@@ -416,7 +451,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Elixir Fling",
@@ -457,7 +497,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Hex of the First",
@@ -493,7 +538,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Wisped",
@@ -533,7 +583,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Birds of Carrion",
@@ -565,7 +620,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Child Eater",
@@ -603,7 +663,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Anthropophagy",
@@ -643,7 +708,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Mudcurse",
@@ -684,7 +754,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Sins of the Ancestors",
@@ -723,7 +798,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Diableric Expulsion",
@@ -763,7 +843,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "The Bog Cometh Alive",
@@ -792,9 +877,17 @@
    },
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "효과 사이: 'For each hit lose -2 [V]. [Peril].' 뒤"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": {
+     "index": 1,
+     "after": "For each hit lose -2 [V]. [Peril]."
+    },
+    "beforeAfter": false
+   }
   }
  ],
  "bp": [
@@ -1245,7 +1338,15 @@
   ],
   "afterTag": null,
   "after": null,
-  "unclear": []
+  "unclear": [],
+  "reactSpec": {
+   "targeting": true,
+   "mid": null,
+   "beforeAfter": false
+  },
+  "reactWindows": [
+   "targeting"
+  ]
  },
  "_notes": [
   "Clash Setup 다이어그램 미수령",

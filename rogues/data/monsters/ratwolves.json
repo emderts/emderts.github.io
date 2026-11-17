@@ -204,9 +204,14 @@
     ],
     "reactWindows": [
      "targeting",
-     "효과 구간 (줄 위치 미확인)"
+     "After Attack 앞"
     ],
     "afterAttack": "AFTER ATTACK: Knockdown.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": true
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -235,11 +240,16 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "knockdown"
       }
      ],
      "afterFinalAttack": null
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Tearing Bite",
@@ -263,9 +273,14 @@
     "unclear": [],
     "reactWindows": [
      "targeting",
-     "효과 구간 (줄 위치 미확인)"
+     "After Attack 앞"
     ],
     "afterAttack": "AFTER ATTACK: Drag 3.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": true
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -291,12 +306,17 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "ratDrag",
        "n": 3
       }
      ],
      "afterFinalAttack": null
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Furious Pull",
@@ -328,9 +348,14 @@
     ],
     "reactWindows": [
      "targeting",
-     "효과 구간 (줄 위치 미확인)"
+     "After Attack 앞"
     ],
     "afterAttack": "AFTER ATTACK: Drag 5.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": true
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -359,12 +384,17 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "ratDrag",
        "n": 5
       }
      ],
      "afterFinalAttack": null
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Fanged Snap",
@@ -398,6 +428,11 @@
      "targeting"
     ],
     "afterAttack": "AFTER ATTACK: Drag 2.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -436,7 +471,8 @@
       }
      ],
      "afterFinalAttack": null
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Pestilent Bite",
@@ -461,9 +497,14 @@
     "unclear": [],
     "reactWindows": [
      "targeting",
-     "효과 구간 (줄 위치 미확인)"
+     "After Attack 앞"
     ],
     "afterAttack": "AFTER ATTACK: Drag 3.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": true
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -490,12 +531,17 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "ratDrag",
        "n": 3
       }
      ],
      "afterFinalAttack": null
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Dire Howl",
@@ -530,9 +576,17 @@
     ],
     "reactWindows": [
      "targeting",
-     "효과 구간 (줄 위치 미확인)"
+     "효과 사이: 'Condition card.' 뒤"
     ],
     "afterAttack": "AFTER ATTACK: Knockback 3.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": {
+      "index": 2,
+      "after": "Condition card."
+     },
+     "beforeAfter": false
+    },
     "typePrinted": "JUDGEMENT",
     "ops": {
      "targeting": [
@@ -578,6 +632,10 @@
        ]
       },
       {
+       "op": "reactWindow",
+       "at": "mid"
+      },
+      {
        "op": "ratIfAlone",
        "z": 2,
        "then": [
@@ -600,7 +658,8 @@
      "judge": [
       "Bravery"
      ]
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Isolating Pull",
@@ -634,9 +693,14 @@
     ],
     "reactWindows": [
      "targeting",
-     "효과 구간 (줄 위치 미확인)"
+     "After Attack 앞"
     ],
     "afterAttack": "AFTER ATTACK: Drag 6.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": true
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -670,12 +734,17 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "ratDrag",
        "n": 6
       }
      ],
      "afterFinalAttack": null
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Verminous Gnawing",
@@ -710,9 +779,17 @@
     ],
     "reactWindows": [
      "targeting",
-     "효과 구간 (줄 위치 미확인)"
+     "효과 사이: 'Swarm 1.' 뒤"
     ],
     "afterAttack": "AFTER ATTACK: Drag 2.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": {
+      "index": 2,
+      "after": "Swarm 1."
+     },
+     "beforeAfter": false
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -746,6 +823,10 @@
        "n": 1
       },
       {
+       "op": "reactWindow",
+       "at": "mid"
+      },
+      {
        "op": "knockdown"
       },
       {
@@ -759,7 +840,8 @@
       }
      ],
      "afterFinalAttack": null
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Cursed Bite",
@@ -792,9 +874,14 @@
     ],
     "reactWindows": [
      "targeting",
-     "효과 구간 (줄 위치 미확인)"
+     "After Attack 앞"
     ],
     "afterAttack": "AFTER ATTACK: Activate 1.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": true
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -823,12 +910,17 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "activate",
        "n": 1
       }
      ],
      "afterFinalAttack": null
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Ratswarm",
@@ -861,9 +953,17 @@
     ],
     "reactWindows": [
      "targeting",
-     "효과 구간 (줄 위치 미확인)"
+     "효과 사이: '(resolve once). [Peril].' 뒤"
     ],
     "afterAttack": "AFTER ATTACK: Pushback 5.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": {
+      "index": 2,
+      "after": "(resolve once). [Peril]."
+     },
+     "beforeAfter": false
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -890,6 +990,10 @@
        "n": 1
       },
       {
+       "op": "reactWindow",
+       "at": "mid"
+      },
+      {
        "op": "ratIfAlone",
        "z": 1,
        "then": [
@@ -912,7 +1016,8 @@
      "extraDice": {
       "perHits": 2
      }
-    }
+    },
+    "reactExact": true
    }
   ],
   "bp": [
@@ -1343,6 +1448,15 @@
    "afterTag": "AFTER ATTACK",
    "after": "Drag 2.",
    "unclear": [],
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "reactWindows": [
+    "targeting",
+    "After Attack 앞"
+   ],
    "typePrinted": "SIGNATURE",
    "ops": {
     "targeting": [
@@ -1376,12 +1490,17 @@
     ],
     "afterAttack": [
      {
+      "op": "reactWindow",
+      "at": "after"
+     },
+     {
       "op": "ratDrag",
       "n": 2
      }
     ],
     "afterFinalAttack": null
-   }
+   },
+   "reactExact": true
   },
   "routine": {
    "name": "Chittering Pack",

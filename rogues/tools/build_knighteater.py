@@ -1,6 +1,9 @@
 # Builds data/monsters/knighteater.json (Vassal Clash) from docs/transcriptions/knighteater_raw.json (owner scans 2026-11-17) + hand-written ops
 # + Clash Setup (expansion Codex p.50–51). Usage: python3 tools/build_knighteater.py data/monsters/knighteater.json
-import json, sys, copy, re
+import json, sys, copy, os
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'newmon'))
+from common import apply_react
+import re
 raw = json.load(open('docs/transcriptions/knighteater_raw.json')); S = raw['sheet']; CS = raw['clashSetup']
 V = lambda n: {'op': 'loseVigorPerHit', 'n': n, 'perilCheck': True}
 WD = lambda n: {'op': 'keWolf', 'n': n}; ON = lambda *ops: [{'op': 'keOnHit', 'then': list(ops)}]; COND = lambda i: {'op': 'keCondition', 'id': i}
@@ -57,7 +60,7 @@ def ai(c, spec):
     c = copy.deepcopy(c); spec = dict(spec); tag = c.get('moveTag') or ''
     tgt = spec.pop('targeting', [t.replace('[P]', '[Passion]') for t in c['targeting']])
     ops = {'targeting': tgt, 'move': tag.startswith('MOVE'), 'keAppear': tag.startswith('APPEAR BEHIND'), 'gates': spec.pop('gates', []), 'before': spec.pop('before', []), 'effects': spec.pop('effects'), 'afterAttack': None, 'afterFinalAttack': spec.pop('afterFinalAttack', None)}
-    c['typePrinted'] = c['type']; c['type'] = spec.pop('type', 'attack'); ops.update(spec); c['ops'] = ops; return c
+    c['typePrinted'] = c['type']; c['type'] = spec.pop('type', 'attack'); ops.update(spec); c['ops'] = ops; return apply_react(c)
 def bp(c):
     c = copy.deepcopy(c); spec = BP[c['name']]; oc = c['overcome']; m = re.search(r'(\d)', oc['effect'])
     ops = {'at': c['at'], 'overcome': {'n': oc['n'], 'ops': [FL(int(m.group(1)))] if oc['tag'] == 'OVERPOWER' else [DA(int(m.group(1)))]}}

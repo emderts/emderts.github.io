@@ -1,6 +1,9 @@
 # Builds data/monsters/first-men-lictor-hunters.json (Mob Clash) from docs/transcriptions/firstmen_lictor_hunters_raw.json (owner scans 2026-11-17)
 # + hand-written ops + Clash Setup (expansion Codex p.58). Usage: python3 tools/build_lictor.py data/monsters/first-men-lictor-hunters.json
-import json, sys, copy, re
+import json, sys, copy, os
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'newmon'))
+from common import apply_react
+import re
 raw = json.load(open('docs/transcriptions/firstmen_lictor_hunters_raw.json')); S = raw['sheet']; CS = raw['clashSetup']
 V = lambda n: {'op': 'loseVigorPerHit', 'n': n, 'perilCheck': True}; ON = lambda *ops: [{'op': 'lhOnHit', 'then': list(ops)}]
 T = lambda w: {'op': 'tactic', 'which': w, 'n': 0}; COND = lambda i: {'op': 'condition', 'id': i}; POIS = lambda n: {'op': 'lhPoison', 'n': n}; KD = {'op': 'knockdown'}
@@ -54,7 +57,7 @@ BP = {
 def ai(c, spec):
     c = copy.deepcopy(c); spec = dict(spec); tag = c.get('moveTag') or ''
     ops = {'targeting': spec.pop('targeting'), 'move': tag.startswith('MOVE'), 'gates': spec.pop('gates', []), 'before': [], 'effects': spec.pop('effects'), 'afterAttack': spec.pop('afterAttack', None), 'afterFinalAttack': spec.pop('afterFinalAttack', None)}
-    c['typePrinted'] = c['type']; c['type'] = spec.pop('type', 'attack'); ops.update(spec); c['ops'] = ops; return c
+    c['typePrinted'] = c['type']; c['type'] = spec.pop('type', 'attack'); ops.update(spec); c['ops'] = ops; return apply_react(c)
 def bp(c):
     c = copy.deepcopy(c); spec = BP[c['name']]; oc = c['overcome']; ops = {'at': c['at'], 'overcome': {'n': oc['n'], 'ops': pool(oc['effect'])} if oc else None}
     for k in ('wound', 'fail', 'instinct', 'critical', 'whenRevealed', 'aura'):

@@ -192,9 +192,14 @@
    ],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER ATTACK: Knockdown."
+   "afterAttack": "AFTER ATTACK: Knockdown.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Tearing Bite",
@@ -218,9 +223,14 @@
    "unclear": [],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER ATTACK: Drag 3."
+   "afterAttack": "AFTER ATTACK: Drag 3.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Furious Pull",
@@ -252,9 +262,14 @@
    ],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER ATTACK: Drag 5."
+   "afterAttack": "AFTER ATTACK: Drag 5.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Fanged Snap",
@@ -287,7 +302,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": "AFTER ATTACK: Drag 2."
+   "afterAttack": "AFTER ATTACK: Drag 2.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Pestilent Bite",
@@ -312,9 +332,14 @@
    "unclear": [],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER ATTACK: Drag 3."
+   "afterAttack": "AFTER ATTACK: Drag 3.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Dire Howl",
@@ -349,9 +374,17 @@
    ],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "효과 사이: 'Condition card.' 뒤"
    ],
-   "afterAttack": "AFTER ATTACK: Knockback 3."
+   "afterAttack": "AFTER ATTACK: Knockback 3.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": {
+     "index": 2,
+     "after": "Condition card."
+    },
+    "beforeAfter": false
+   }
   },
   {
    "name": "Isolating Pull",
@@ -385,9 +418,14 @@
    ],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER ATTACK: Drag 6."
+   "afterAttack": "AFTER ATTACK: Drag 6.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Verminous Gnawing",
@@ -422,9 +460,17 @@
    ],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "효과 사이: 'Swarm 1.' 뒤"
    ],
-   "afterAttack": "AFTER ATTACK: Drag 2."
+   "afterAttack": "AFTER ATTACK: Drag 2.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": {
+     "index": 2,
+     "after": "Swarm 1."
+    },
+    "beforeAfter": false
+   }
   },
   {
    "name": "Cursed Bite",
@@ -457,9 +503,14 @@
    ],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER ATTACK: Activate 1."
+   "afterAttack": "AFTER ATTACK: Activate 1.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Ratswarm",
@@ -492,9 +543,17 @@
    ],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "효과 사이: '(resolve once). [Peril].' 뒤"
    ],
-   "afterAttack": "AFTER ATTACK: Pushback 5."
+   "afterAttack": "AFTER ATTACK: Pushback 5.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": {
+     "index": 2,
+     "after": "(resolve once). [Peril]."
+    },
+    "beforeAfter": false
+   }
   }
  ],
  "bp": [
@@ -706,7 +765,16 @@
   ],
   "afterTag": "AFTER ATTACK",
   "after": "Drag 2.",
-  "unclear": []
+  "unclear": [],
+  "reactSpec": {
+   "targeting": true,
+   "mid": null,
+   "beforeAfter": true
+  },
+  "reactWindows": [
+   "targeting",
+   "After Attack 앞"
+  ]
  },
  "_notes": [
   "AI 10장, BP 9장",

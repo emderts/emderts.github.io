@@ -183,7 +183,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Dastardly Distraction",
@@ -215,9 +220,14 @@
    ],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER ATTACK: The next non-Decoying Mob performs Decoy."
+   "afterAttack": "AFTER ATTACK: The next non-Decoying Mob performs Decoy.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Jungle Trickery",
@@ -243,9 +253,14 @@
    "unclear": [],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER ATTACK: The next non-Decoying Mob performs Dwell."
+   "afterAttack": "AFTER ATTACK: The next non-Decoying Mob performs Dwell.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Surprise Attack",
@@ -285,9 +300,14 @@
    ],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER ATTACK: Knockdown."
+   "afterAttack": "AFTER ATTACK: Knockdown.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Fungal Poison-Tipped Dart",
@@ -322,7 +342,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Hit & Run",
@@ -356,9 +381,14 @@
    ],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER ATTACK: The next non-Decoying Mob performs Dwell."
+   "afterAttack": "AFTER ATTACK: The next non-Decoying Mob performs Dwell.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Mud Pit Trap",
@@ -393,7 +423,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Toxic Gas",
@@ -416,9 +451,14 @@
    "unclear": [],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER ATTACK: Tactic B."
+   "afterAttack": "AFTER ATTACK: Tactic B.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Gorilla Charge",
@@ -443,9 +483,14 @@
    "unclear": [],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER ATTACK: Knockdown."
+   "afterAttack": "AFTER ATTACK: Knockdown.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Coup de Grâce",
@@ -484,9 +529,14 @@
    ],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER ATTACK: The next non-Decoying Mob performs Dwell."
+   "afterAttack": "AFTER ATTACK: The next non-Decoying Mob performs Dwell.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Treefrog Poison-Tipped Dart",
@@ -522,7 +572,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Below the Belt",
@@ -555,9 +610,14 @@
    ],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER ATTACK: Knockdown."
+   "afterAttack": "AFTER ATTACK: Knockdown.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Thorn Snare",
@@ -591,7 +651,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Savage Display",
@@ -627,7 +692,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Brutal Backstab",
@@ -661,7 +731,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Toxic Smokescreen",
@@ -693,9 +768,14 @@
    ],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER ATTACK: Tactic A. The next non-Decoying Mob performs Dwell."
+   "afterAttack": "AFTER ATTACK: Tactic A. The next non-Decoying Mob performs Dwell.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Death from Above",
@@ -717,9 +797,14 @@
    "unclear": [],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER FINAL ATTACK: Knockdown."
+   "afterAttack": "AFTER FINAL ATTACK: Knockdown.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Fighting Dirty",
@@ -744,7 +829,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   }
  ],
  "bp": [
@@ -1231,7 +1321,15 @@
   ],
   "afterTag": null,
   "after": null,
-  "unclear": []
+  "unclear": [],
+  "reactSpec": {
+   "targeting": true,
+   "mid": null,
+   "beforeAfter": false
+  },
+  "reactWindows": [
+   "targeting"
+  ]
  },
  "_notes": [
   "Clash Setup 다이어그램 미수령",

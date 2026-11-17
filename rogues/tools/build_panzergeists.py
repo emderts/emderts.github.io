@@ -1,20 +1,22 @@
 # Builds data/monsters/panzergeists.json (Mob Clash) from docs/transcriptions/panzergeists_raw.json (owner scans 2026-11-17) + hand-written ops
 # + Clash Setup (expansion Codex p.54–55). Usage: python3 tools/build_panzergeists.py data/monsters/panzergeists.json
-import json, sys, copy
+import json, sys, copy, os
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'newmon'))
+from common import apply_react
 raw = json.load(open('docs/transcriptions/panzergeists_raw.json')); S = raw['sheet']; CS = raw['clashSetup']
 V = lambda n: {'op': 'loseVigorPerHit', 'n': n, 'perilCheck': True}
 RUST = {'op': 'pzRust', 'onHit': True}; LOW = lambda n: {'op': 'pzLower', 'n': n}; KD = {'op': 'knockdown'}; KDH = {'op': 'pzKnockdown', 'onHit': True}
 TOK = lambda n: {'op': 'pzToToken', 'n': n, 'who': 'this'}; HV = lambda g, n: {'op': 'vigorPerHitInstead', 'stat': 'heat', 'gte': g, 'n': n}
-IR = lambda g: {'op': 'ignoreReact', 'stat': 'heat', 'gte': g}
+IR = lambda g, which: {'op': 'ignoreReact', 'stat': 'heat', 'gte': g, 'which': which}
 AI = {
  'Flesh to Rust': dict(gates=[HV(3, 2)], effects=[V(1)], afterAttack=[{'op': 'pzRust'}, LOW(3)]),
  'Tarnishing Touch': dict(effects=[V(1), RUST], afterAttack=[{'op': 'pzArmorGear', 'mode': 'exhaust'}]),
  'Phantasmal Backstab': dict(effects=[V(2)], afterAttack=[TOK(3)]),
- 'Chill the Spine': dict(gates=[IR(3)], effects=[V(6), KDH], afterAttack=[LOW(3)]),
+ 'Chill the Spine': dict(gates=[IR(3, 'targeting')], effects=[V(6), KDH], afterAttack=[LOW(3)]),
  'Geist Slam': dict(effects=[V(7)], afterAttack=[KD]),
  'Bewitching Brush': dict(effects=[V(3), RUST], afterAttack=[TOK(5)]),
  'Corroding Grasp': dict(effects=[V(4), RUST], afterAttack=[{'op': 'pzArmorGear', 'mode': 'discard'}]),
- 'Spectral Shriek': dict(gates=[IR(3)], effects=[V(9)], afterAttack=[KD]),
+ 'Spectral Shriek': dict(gates=[IR(3, 'after')], effects=[V(9)], afterAttack=[KD]),
  'Lifescourge': dict(effects=[V(2), {'op': 'pzRust', 'perHit': True, 'onHit': True}, KDH], afterAttack=[{'op': 'pzIfDied', 'then': [{'op': 'pzRepeat'}], 'else': [{'op': 'pzLower', 'n': 'bane'}]}]),
  'Rend the Spirit': dict(gates=[{'op': 'evasionDice', 'stat': 'heat', 'gte': 2, 'n': 1}], effects=[V(4), {'op': 'pzBanePerHit', 'n': 2}], afterAttack=[{'op': 'pzIfDied', 'then': [{'op': 'pzAllTokensToThis'}], 'else': [{'op': 'pzLower', 'n': 'all'}]}]),
 }
@@ -37,7 +39,7 @@ BP = {
 def ai(c, spec):
     c = copy.deepcopy(c); spec = dict(spec); tag = c.get('moveTag') or ''
     ops = {'targeting': [t.replace('[V]', '[Vigor]').replace('Not Possessed ', '') for t in c['targeting']], 'move': tag.startswith('MOVE'), 'appearBehind': 'BEHIND' in tag, 'gates': spec.pop('gates', []), 'before': [], 'effects': spec.pop('effects'), 'afterAttack': spec.pop('afterAttack', None), 'afterFinalAttack': None, 'pzDice': True}
-    c['typePrinted'] = c['type']; c['type'] = 'attack'; c['evasionDice'] = int(str(c['evasionDice']).rstrip('!')); c['ops'] = ops; return c
+    c['typePrinted'] = c['type']; c['type'] = 'attack'; c['evasionDice'] = int(str(c['evasionDice']).rstrip('!')); c['ops'] = ops; return apply_react(c)
 def bp(c):
     c = copy.deepcopy(c); spec = BP[c['name']]; ops = {'at': c['at'], 'overcome': None}
     for k in ('wound', 'fail', 'instinct', 'critical', 'whenRevealed', 'aura', 'cannotWound'):

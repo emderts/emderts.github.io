@@ -186,6 +186,11 @@
      "targeting"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "JUDGEMENT",
     "ops": {
      "targeting": [
@@ -234,7 +239,8 @@
       "text": "When you draw a positive Mortis card (excluding Judicium), redraw it (once). Hexed Squires cannot redraw Mettle cards when evading.",
       "party": false
      }
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Broom Sweep",
@@ -275,6 +281,11 @@
      "targeting"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "RANGE ATTACK",
     "ops": {
      "targeting": [
@@ -330,7 +341,8 @@
       "text": "When you gain this Hex, place a Generic token here. Start of your turn: Place a Generic token here, then lose -X [V], where X is the number of Generic tokens here.",
       "party": false
      }
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Mire of the Cursed",
@@ -364,6 +376,11 @@
      "targeting"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "RANGE ZONE ATTACK",
     "ops": {
      "targeting": [
@@ -405,7 +422,8 @@
       "text": "Start of your turn: Test Insight (6+). Fail: [React] Stray 3. Squires automatically Fail.",
       "party": false
      }
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Ancestors’ Memories",
@@ -444,6 +462,11 @@
      "targeting"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "JUDGEMENT",
     "ops": {
      "targeting": [
@@ -502,7 +525,8 @@
       "text": "Poison Limit -1. Start of your turn: Poison 1.",
       "party": false
      }
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Manifest Hex",
@@ -535,6 +559,11 @@
      "targeting"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "RANGE ATTACK",
     "ops": {
      "targeting": [
@@ -574,7 +603,8 @@
       "text": "You cannot re-roll your Crit die. Hexed Squires cannot re-draw Mettle cards when attacking.",
       "party": false
      }
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Vile Soup Spill",
@@ -608,6 +638,11 @@
      "targeting"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "RANGE ZONE ATTACK",
     "ops": {
      "targeting": [
@@ -653,7 +688,8 @@
       "text": "You cannot use keywords and abilities that target other Knights.",
       "party": false
      }
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Witchfire Stove",
@@ -695,6 +731,11 @@
      "targeting"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "ZONE JUDGEMENT",
     "ops": {
      "targeting": [
@@ -755,7 +796,8 @@
       "text": "Start of your turn: You may lower your Heat Limit [H] by X. Poison 3-X (to a minimum of 0).",
       "party": false
      }
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Spice Up",
@@ -787,6 +829,11 @@
      "targeting"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "RANGE ATTACK",
     "ops": {
      "targeting": [
@@ -826,7 +873,8 @@
       "text": "When you gain this Hex, place X Generic tokens on it, where X is the number of other Knights alive. Start of your turn: Discard 1 Generic token from this card. If you cannot discard a token, you die.",
       "party": false
      }
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Elixir Fling",
@@ -869,6 +917,11 @@
      "targeting"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "RANGE ZONE ATTACK",
     "ops": {
      "targeting": [
@@ -919,7 +972,8 @@
       "text": "You cannot place tokens from your Heroic Arc in the Knight Pool.",
       "party": false
      }
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Hex of the First",
@@ -957,6 +1011,11 @@
      "targeting"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "JUDGEMENT",
     "ops": {
      "targeting": [
@@ -1012,7 +1071,8 @@
       "text": "Start of your turn: Roll a [d10]: 1–3: Gain a permanent negative Precision token. 4–6: Gain a permanent negative Speed token. 7–9: Gain a permanent negative Evasion token. 10: Ignore 1 [Potential?] during your Attack.",
       "party": false
      }
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Wisped",
@@ -1054,6 +1114,11 @@
      "targeting"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "RANGE ATTACK",
     "ops": {
      "targeting": [
@@ -1105,7 +1170,8 @@
       "text": "You cannot gain a Crit Chance.",
       "party": false
      }
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Birds of Carrion",
@@ -1139,6 +1205,11 @@
      "targeting"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "ZONE ATTACK",
     "ops": {
      "targeting": [
@@ -1180,7 +1251,8 @@
       "text": "At the end of the Bog Witch Round place a Generic token here, then each Knight draws a Mortis card from a Mortis deck depending on the number of tokens on this card. 1: Minor. 2: Major. 3+: Grave.",
       "party": true
      }
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Child Eater",
@@ -1220,6 +1292,11 @@
      "targeting"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "JUDGEMENT",
     "ops": {
      "targeting": [
@@ -1282,7 +1359,8 @@
       "text": "Treat all spaces in Zone 1 around you as Swamp Terrain tiles.",
       "party": false
      }
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Anthropophagy",
@@ -1324,6 +1402,11 @@
      "targeting"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "RANGE ATTACK",
     "ops": {
      "targeting": [
@@ -1368,7 +1451,8 @@
       "text": "Skip the Refresh step during your turn.",
       "party": false
      }
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Mudcurse",
@@ -1411,6 +1495,11 @@
      "targeting"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "SIMULTANEOUS RANGE ATTACK",
     "ops": {
      "targeting": [
@@ -1456,7 +1545,8 @@
       "text": "You cannot talk.",
       "party": true
      }
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Sins of the Ancestors",
@@ -1497,6 +1587,11 @@
      "targeting"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "JUDGEMENT",
     "ops": {
      "targeting": [
@@ -1548,7 +1643,8 @@
       "text": "When you are about to resolve a Judicium Draw, search the Judicium deck for the You died! Judicium card instead. Ignore this effect when re-drawing a Judicium.",
       "party": false
      }
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Diableric Expulsion",
@@ -1590,6 +1686,11 @@
      "targeting"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "RANGE ATTACK",
     "ops": {
      "targeting": [
@@ -1636,7 +1737,8 @@
       "text": "Do not roll your Crit Die, automatically treat its result as a ‘1’ instead. Squires treat Crit Chance as Crit Miss.",
       "party": false
      }
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "The Bog Cometh Alive",
@@ -1666,9 +1768,17 @@
     },
     "reactWindows": [
      "targeting",
-     "효과 구간 (줄 위치 미확인)"
+     "효과 사이: 'For each hit lose -2 [V]. [Peril].' 뒤"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": {
+      "index": 1,
+      "after": "For each hit lose -2 [V]. [Peril]."
+     },
+     "beforeAfter": false
+    },
     "typePrinted": "ZONE ATTACK",
     "ops": {
      "targeting": [
@@ -1691,6 +1801,10 @@
          "op": "loseVigorPerHit",
          "n": 2,
          "perilCheck": true
+        },
+        {
+         "op": "reactWindow",
+         "at": "mid"
         }
        ]
       }
@@ -1711,7 +1825,8 @@
       "text": "Ignore the effects of positive Mortis cards. Squires cannot draw from the Mettle deck when evading and are automatically hit with all dice.",
       "party": true
      }
-    }
+    },
+    "reactExact": true
    }
   ],
   "bp": [
@@ -2822,6 +2937,14 @@
    "afterTag": null,
    "after": null,
    "unclear": [],
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "reactWindows": [
+    "targeting"
+   ],
    "typePrinted": "RANGE SIGNATURE",
    "ops": {
     "targeting": [
@@ -2884,7 +3007,8 @@
     ],
     "afterAttack": null,
     "afterFinalAttack": null
-   }
+   },
+   "reactExact": true
   },
   "routine": {
    "name": "Call of the Bog",

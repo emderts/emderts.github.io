@@ -1,6 +1,8 @@
 # Builds data/monsters/stonemason-knight.json (Vassal Clash) from docs/transcriptions/stonemason_knight_raw.json (owner scans 2026-11-17)
 # + hand-written ops + Clash Setup (expansion Codex p.56–57). Usage: python3 tools/build_stonemason.py data/monsters/stonemason-knight.json
-import json, sys, copy
+import json, sys, copy, os
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'newmon'))
+from common import apply_react
 raw = json.load(open('docs/transcriptions/stonemason_knight_raw.json')); S = raw['sheet']; CS = raw['clashSetup']
 def bzone(rows):
     blk = [(x, y) for y, r in enumerate(rows) for x, ch in enumerate(r) if ch in '^>v<']; xs = [x for x, _ in blk]; ys = [y for _, y in blk]
@@ -63,7 +65,7 @@ def ai(c, spec):
     ops = {'targeting': spec.pop('targeting', c['targeting']), 'move': spec.pop('move', tag.startswith('MOVE')), 'gates': spec.pop('gates', []), 'before': [], 'effects': spec.pop('effects'), 'afterAttack': spec.pop('afterAttack', None), 'afterFinalAttack': spec.pop('afterFinalAttack', None)}
     c['typePrinted'] = c['type']; c['type'] = spec.pop('type', 'attack'); ops.update(spec)
     if c['name'] in Z: ops['zoneDiagram'] = bzone(Z[c['name']])
-    c['ops'] = ops; return c
+    c['ops'] = ops; return apply_react(c)
 def bp(c):
     c = copy.deepcopy(c); spec = BP[c['name']]; oc = c['overcome']; ops = {'at': c['at'], 'overcome': {'n': oc['n'], 'ops': [{'op': 'power', 'n': 1}]} if oc else None}
     for k in ('wound', 'fail', 'instinct', 'critical'): ops[k] = spec.get(k)

@@ -185,9 +185,17 @@
     "unclear": [],
     "reactWindows": [
      "targeting",
-     "효과 구간 (줄 위치 미확인)"
+     "효과 사이: '[Peril].' 뒤"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": {
+      "index": 2,
+      "after": "[Peril]."
+     },
+     "beforeAfter": false
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -211,6 +219,10 @@
          "perilCheck": true
         },
         {
+         "op": "reactWindow",
+         "at": "mid"
+        },
+        {
          "op": "knockback",
          "n": 4
         }
@@ -219,7 +231,8 @@
      ],
      "afterAttack": null,
      "afterFinalAttack": null
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Demolishing Blow",
@@ -253,9 +266,14 @@
     ],
     "reactWindows": [
      "targeting",
-     "After Attack 구간"
+     "After Attack 앞"
     ],
     "afterAttack": "AFTER ATTACK: Ruin.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": true
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -294,11 +312,16 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "smRuin"
       }
      ],
      "afterFinalAttack": null
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Hammer Rise",
@@ -333,10 +356,18 @@
     ],
     "reactWindows": [
      "targeting",
-     "효과 구간 (줄 위치 미확인)",
-     "After Attack 구간"
+     "효과 사이: 'Exhaust 1 Gear card with the Metal Trait.' 뒤",
+     "After Attack 앞"
     ],
     "afterAttack": "AFTER ATTACK: Ruin.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": {
+      "index": 2,
+      "after": "Exhaust 1 Gear card with the Metal Trait."
+     },
+     "beforeAfter": true
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -371,6 +402,10 @@
          "n": 1
         },
         {
+         "op": "reactWindow",
+         "at": "mid"
+        },
+        {
          "op": "pushback",
          "n": 2
         }
@@ -379,11 +414,16 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "smRuin"
       }
      ],
      "afterFinalAttack": null
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Backhand Swat",
@@ -410,9 +450,14 @@
     ],
     "reactWindows": [
      "targeting",
-     "After Attack 구간"
+     "After Attack 앞"
     ],
     "afterAttack": "AFTER FINAL ATTACK: Ruin.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": true
+    },
     "typePrinted": "ZONE ATTACK",
     "ops": {
      "targeting": [
@@ -442,6 +487,10 @@
      "afterAttack": null,
      "afterFinalAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "smRuin"
       }
      ],
@@ -460,7 +509,8 @@
       "step": null,
       "block": true
      }
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Hammer Throw",
@@ -487,6 +537,11 @@
      "targeting"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "RANGE ATTACK",
     "ops": {
      "targeting": [
@@ -527,7 +582,8 @@
      "afterAttack": null,
      "afterFinalAttack": null,
      "range": 7
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Flattening Swipe",
@@ -556,6 +612,11 @@
      "targeting"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "ZONE ATTACK",
     "ops": {
      "targeting": [
@@ -624,7 +685,8 @@
       "step": null,
       "block": true
      }
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Hammer Launch",
@@ -658,6 +720,11 @@
      "targeting"
     ],
     "afterAttack": "AFTER FINAL ATTACK: Ruin.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "ZONE ATTACK",
     "ops": {
      "targeting": [
@@ -741,7 +808,8 @@
       "step": null,
       "block": true
      }
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Stone Smite",
@@ -768,9 +836,14 @@
     ],
     "reactWindows": [
      "targeting",
-     "After Attack 구간"
+     "After Attack 앞"
     ],
     "afterAttack": "AFTER FINAL ATTACK: Ruin.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": true
+    },
     "typePrinted": "ZONE ATTACK",
     "ops": {
      "targeting": [
@@ -804,6 +877,10 @@
      "afterAttack": null,
      "afterFinalAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "smRuin"
       }
      ],
@@ -830,7 +907,8 @@
       "step": null,
       "block": true
      }
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Wrecking Ball",
@@ -857,6 +935,11 @@
      "targeting"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "SEQUENTIAL ATTACK",
     "ops": {
      "targeting": [
@@ -889,7 +972,8 @@
      "afterAttack": null,
      "afterFinalAttack": null,
      "pathAttack": true
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Toppling Sweep",
@@ -924,9 +1008,17 @@
     ],
     "reactWindows": [
      "targeting",
-     "효과 구간 (줄 위치 미확인)"
+     "효과 사이: 'Exhaust 1 Gear card with the Metal Trait.' 뒤"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": {
+      "index": 2,
+      "after": "Exhaust 1 Gear card with the Metal Trait."
+     },
+     "beforeAfter": false
+    },
     "typePrinted": "ZONE ATTACK",
     "ops": {
      "targeting": [
@@ -958,6 +1050,10 @@
          "op": "smMetal",
          "mode": "exhaust",
          "n": 1
+        },
+        {
+         "op": "reactWindow",
+         "at": "mid"
         },
         {
          "op": "knockdown"
@@ -1054,7 +1150,8 @@
       "step": null,
       "block": true
      }
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Anvil Fall",
@@ -1090,6 +1187,11 @@
      "targeting"
     ],
     "afterAttack": "AFTER ATTACK: Ruin.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -1136,7 +1238,8 @@
       }
      ],
      "afterFinalAttack": null
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Bulldozing Stomp",
@@ -1171,9 +1274,14 @@
     ],
     "reactWindows": [
      "targeting",
-     "After Attack 구간"
+     "After Attack 앞"
     ],
     "afterAttack": "AFTER ATTACK: Ruin.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": true
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -1211,11 +1319,16 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "smRuin"
       }
      ],
      "afterFinalAttack": null
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Mass Driver",
@@ -1242,6 +1355,11 @@
      "targeting"
     ],
     "afterAttack": "AFTER FINAL ATTACK: Ruin.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "ZONE ATTACK",
     "ops": {
      "targeting": [
@@ -1390,7 +1508,8 @@
       "step": null,
       "block": true
      }
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Reduce to Ruins",
@@ -1425,6 +1544,11 @@
      "targeting"
     ],
     "afterAttack": "AFTER ATTACK: Place a 2x2 Rubble Terrain tile under the Target.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "SIMULTANEOUS ATTACK",
     "ops": {
      "targeting": [
@@ -1466,7 +1590,8 @@
       }
      ],
      "afterFinalAttack": null
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "March of Devastation",
@@ -1492,6 +1617,11 @@
      "targeting"
     ],
     "afterAttack": "AFTER ATTACK: Ruin.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "SEQUENTIAL ATTACK",
     "ops": {
      "targeting": [
@@ -1531,7 +1661,8 @@
        "op": "smMarch"
       }
      ]
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Mason Grasp",
@@ -1559,6 +1690,11 @@
      "targeting"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -1591,7 +1727,8 @@
      ],
      "afterAttack": null,
      "afterFinalAttack": null
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Force Discharge",
@@ -1627,6 +1764,11 @@
      "targeting"
     ],
     "afterAttack": null,
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "ZONE ATTACK",
     "ops": {
      "targeting": [
@@ -1819,7 +1961,8 @@
       "step": null,
       "block": true
      }
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Pulverize",
@@ -1852,9 +1995,17 @@
     "unclear": [],
     "reactWindows": [
      "targeting",
-     "효과 구간 (줄 위치 미확인)"
+     "효과 사이: 'Exhaust all Gear cards with the Metal Trait.' 뒤"
     ],
     "afterAttack": "AFTER ATTACK: Ruin.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": {
+      "index": 2,
+      "after": "Exhaust all Gear cards with the Metal Trait."
+     },
+     "beforeAfter": false
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -1889,6 +2040,10 @@
          "n": "all"
         },
         {
+         "op": "reactWindow",
+         "at": "mid"
+        },
+        {
          "op": "knockdown"
         }
        ]
@@ -1900,7 +2055,8 @@
       }
      ],
      "afterFinalAttack": null
-    }
+    },
+    "reactExact": true
    }
   ],
   "bp": [
@@ -2925,6 +3081,19 @@
    "afterTag": "AFTER ATTACK",
    "after": "Ruin.",
    "unclear": [],
+   "reactSpec": {
+    "targeting": true,
+    "mid": {
+     "index": 1,
+     "after": "[Peril]."
+    },
+    "beforeAfter": true
+   },
+   "reactWindows": [
+    "targeting",
+    "효과 사이: '[Peril].' 뒤",
+    "After Attack 앞"
+   ],
    "typePrinted": "SIGNATURE",
    "ops": {
     "targeting": [
@@ -2951,6 +3120,10 @@
         "perilCheck": true
        },
        {
+        "op": "reactWindow",
+        "at": "mid"
+       },
+       {
         "op": "knockback",
         "n": 4
        }
@@ -2959,11 +3132,16 @@
     ],
     "afterAttack": [
      {
+      "op": "reactWindow",
+      "at": "after"
+     },
+     {
       "op": "smRuin"
      }
     ],
     "afterFinalAttack": null
-   }
+   },
+   "reactExact": true
   },
   "routine": {
    "name": "Magnetopress",

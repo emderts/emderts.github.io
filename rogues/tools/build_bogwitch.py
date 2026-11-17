@@ -1,6 +1,8 @@
 # Builds data/monsters/bog-witch.json (Vassal Clash) from docs/transcriptions/bog_witch_raw.json (owner scans 2026-11-17) + hand-written ops
 # + Clash Setup (expansion Codex p.60). Usage: python3 tools/build_bogwitch.py data/monsters/bog-witch.json
-import json, sys, copy
+import json, sys, copy, os
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'newmon'))
+from common import apply_react
 raw = json.load(open('docs/transcriptions/bog_witch_raw.json')); S = raw['sheet']; CS = raw['clashSetup']
 V = lambda n: {'op': 'loseVigorPerHit', 'n': n, 'perilCheck': True}; ON = lambda *ops: [{'op': 'bwOnHit', 'then': list(ops)}]; PH = lambda *ops: {'op': 'bwPerHit', 'then': list(ops)}
 POIS = lambda n: {'op': 'bwPoison', 'n': n}; TOX = lambda n: {'op': 'bwToxify', 'n': n}; COND = lambda i: {'op': 'condition', 'id': i}; STRAY = lambda n: {'op': 'bwStray', 'n': n}; HEAT = lambda n: {'op': 'bwHeat', 'n': n}
@@ -55,7 +57,7 @@ def ai(c, spec, sig=False):
     ops = {'targeting': spec.pop('targeting'), 'move': False, 'range': 'unlimited', 'gates': spec.pop('gates', []), 'before': [], 'beforeAttack': before or None, 'effects': spec.pop('effects'), 'afterAttack': None, 'afterFinalAttack': spec.pop('afterFinalAttack', None)}
     c['typePrinted'] = c['type']; c['type'] = spec.pop('type', 'judgement' if spec.get('judge') else 'attack'); ops.update(spec)
     if c.get('hex'): ops['hex'] = c['hex']; c['effects'] = list(c['effects']) + [f"[{c['hex']['type']}] {c['hex']['name']}: {c['hex']['text']}"]
-    c['ops'] = ops; return c
+    c['ops'] = ops; return apply_react(c)
 def bp(c):
     c = copy.deepcopy(c); spec = BP[c['name']]; oc = c['overcome']; ops = {'at': c['at'], 'overcome': {'n': oc['n'], 'ops': [{'op': 'power', 'n': 1}]} if oc else None}
     for k in ('wound', 'fail', 'instinct', 'critical', 'mayEnd'): ops[k] = spec.get(k)

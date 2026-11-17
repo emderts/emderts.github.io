@@ -1,85 +1,136 @@
 {
  "ratwolves": {
   "ai": {
-   "Toppling Charge": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Tearing Bite": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Furious Pull": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Fanged Snap": [
-    "targeting"
-   ],
-   "Pestilent Bite": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Dire Howl": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Isolating Pull": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Verminous Gnawing": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Cursed Bite": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Ratswarm": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ]
+   "Toppling Charge": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Tearing Bite": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Furious Pull": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Fanged Snap": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Pestilent Bite": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Dire Howl": {
+    "targeting": true,
+    "mid": {
+     "index": 2,
+     "after": "Condition card."
+    },
+    "beforeAfter": false
+   },
+   "Isolating Pull": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Verminous Gnawing": {
+    "targeting": true,
+    "mid": {
+     "index": 2,
+     "after": "Swarm 1."
+    },
+    "beforeAfter": false
+   },
+   "Cursed Bite": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Ratswarm": {
+    "targeting": true,
+    "mid": {
+     "index": 2,
+     "after": "(resolve once). [Peril]."
+    },
+    "beforeAfter": false
+   },
+   "@signature": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   "bp": {}
  },
  "panzergeists": {
   "ai": {
-   "Flesh to Rust": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Tarnishing Touch": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Phantasmal Backstab": [],
-   "Chill the Spine": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Geist Slam": [
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Bewitching Brush": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Corroding Grasp": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Spectral Shriek": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Lifescourge": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Rend the Spirit": []
+   "Flesh to Rust": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Tarnishing Touch": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Phantasmal Backstab": {
+    "targeting": false,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Chill the Spine": {
+    "targeting": true,
+    "mid": {
+     "index": 1,
+     "after": "For each hit lose -6 [V]. [Peril]."
+    },
+    "beforeAfter": true
+   },
+   "Geist Slam": {
+    "targeting": false,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Bewitching Brush": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Corroding Grasp": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Spectral Shriek": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Lifescourge": {
+    "targeting": true,
+    "mid": {
+     "index": 2,
+     "after": "[Peril]."
+    },
+    "beforeAfter": true
+   },
+   "Rend the Spirit": {
+    "targeting": false,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "@signature": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   "bp": {
    "Damned Wiseman": [
@@ -98,69 +149,116 @@
  },
  "stonemason_knight": {
   "ai": {
-   "Kick!": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Demolishing Blow": [
-    "targeting",
-    "After Attack 구간"
-   ],
-   "Hammer Rise": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)",
-    "After Attack 구간"
-   ],
-   "Backhand Swat": [
-    "targeting",
-    "After Attack 구간"
-   ],
-   "Hammer Throw": [
-    "targeting"
-   ],
-   "Flattening Swipe": [
-    "targeting"
-   ],
-   "Hammer Launch": [
-    "targeting"
-   ],
-   "Stone Smite": [
-    "targeting",
-    "After Attack 구간"
-   ],
-   "Wrecking Ball": [
-    "targeting"
-   ],
-   "Toppling Sweep": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Anvil Fall": [
-    "targeting"
-   ],
-   "Bulldozing Stomp": [
-    "targeting",
-    "After Attack 구간"
-   ],
-   "Mass Driver": [
-    "targeting"
-   ],
-   "Reduce to Ruins": [
-    "targeting"
-   ],
-   "March of Devastation": [
-    "targeting"
-   ],
-   "Mason Grasp": [
-    "targeting"
-   ],
-   "Force Discharge": [
-    "targeting"
-   ],
-   "Pulverize": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ]
+   "Kick!": {
+    "targeting": true,
+    "mid": {
+     "index": 2,
+     "after": "[Peril]."
+    },
+    "beforeAfter": false
+   },
+   "Demolishing Blow": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Hammer Rise": {
+    "targeting": true,
+    "mid": {
+     "index": 2,
+     "after": "Exhaust 1 Gear card with the Metal Trait."
+    },
+    "beforeAfter": true
+   },
+   "Backhand Swat": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Hammer Throw": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Flattening Swipe": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Hammer Launch": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Stone Smite": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Wrecking Ball": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Toppling Sweep": {
+    "targeting": true,
+    "mid": {
+     "index": 2,
+     "after": "Exhaust 1 Gear card with the Metal Trait."
+    },
+    "beforeAfter": false
+   },
+   "Anvil Fall": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Bulldozing Stomp": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Mass Driver": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Reduce to Ruins": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "March of Devastation": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Mason Grasp": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Force Discharge": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Pulverize": {
+    "targeting": true,
+    "mid": {
+     "index": 2,
+     "after": "Exhaust all Gear cards with the Metal Trait."
+    },
+    "beforeAfter": false
+   },
+   "@signature": {
+    "targeting": true,
+    "mid": {
+     "index": 1,
+     "after": "[Peril]."
+    },
+    "beforeAfter": true
+   }
   },
   "bp": {
    "Vambraces of the Builders": [
@@ -176,64 +274,101 @@
  },
  "knighteater": {
   "ai": {
-   "Tongue Twister": [
-    "targeting"
-   ],
-   "Terrorizing Presence": [
-    "창 2개 (위치 확인 필요)"
-   ],
-   "Armor Cracker": [
-    "창 2개 (위치 확인 필요)"
-   ],
-   "Fencer’s Thrust": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Lung Vorspeisen": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Scraps Disposal": [
-    "창 2개 (위치 확인 필요)"
-   ],
-   "Ritterspieße": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Debilitating Crush": [
-    "창 2개 (위치 확인 필요)"
-   ],
-   "Can Opener": [
-    "창 2개 (위치 확인 필요)"
-   ],
-   "Lamb to Slaughter": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Playing with Your Food": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Hit and Run": [
-    "창 2개 (위치 확인 필요)"
-   ],
-   "Offal Harvest": [
-    "창 2개 (위치 확인 필요)"
-   ],
-   "Knight Smash!": [
-    "targeting"
-   ],
-   "Blood-Drenched Butchery": [
-    "창 2개 (위치 확인 필요)"
-   ],
-   "Knight Opener": [
-    "창 2개 (위치 확인 필요)"
-   ],
-   "Dine and Dash": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Personal Vendetta": []
+   "Tongue Twister": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Terrorizing Presence": {
+    "targeting": false,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Armor Cracker": {
+    "targeting": false,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Fencer’s Thrust": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Lung Vorspeisen": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Scraps Disposal": {
+    "targeting": false,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Ritterspieße": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Debilitating Crush": {
+    "targeting": false,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Can Opener": {
+    "targeting": false,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Lamb to Slaughter": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Playing with Your Food": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Hit and Run": {
+    "targeting": false,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Offal Harvest": {
+    "targeting": false,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Knight Smash!": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Blood-Drenched Butchery": {
+    "targeting": false,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Knight Opener": {
+    "targeting": false,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Dine and Dash": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Personal Vendetta": {
+    "targeting": false,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "@signature": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   "bp": {
    "Trophy Knight": [
@@ -270,130 +405,204 @@
  },
  "firstmen_lictor_hunters": {
   "ai": {
-   "Gruesome Display": [
-    "targeting"
-   ],
-   "Dastardly Distraction": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Jungle Trickery": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Surprise Attack": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Fungal Poison-Tipped Dart": [
-    "targeting"
-   ],
-   "Hit & Run": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Mud Pit Trap": [
-    "targeting"
-   ],
-   "Toxic Gas": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Gorilla Charge": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Coup de Grâce": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Treefrog Poison-Tipped Dart": [
-    "targeting"
-   ],
-   "Below the Belt": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Thorn Snare": [
-    "targeting"
-   ],
-   "Savage Display": [
-    "targeting"
-   ],
-   "Brutal Backstab": [
-    "targeting"
-   ],
-   "Toxic Smokescreen": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Death from Above": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ],
-   "Fighting Dirty": [
-    "targeting"
-   ]
+   "Gruesome Display": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Dastardly Distraction": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Jungle Trickery": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Surprise Attack": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Fungal Poison-Tipped Dart": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Hit & Run": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Mud Pit Trap": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Toxic Gas": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Gorilla Charge": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Coup de Grâce": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Treefrog Poison-Tipped Dart": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Below the Belt": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Thorn Snare": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Savage Display": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Brutal Backstab": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Toxic Smokescreen": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Death from Above": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "Fighting Dirty": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "@signature": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   "bp": {}
  },
  "bog_witch": {
   "ai": {
-   "Fiendish Cackle": [
-    "targeting"
-   ],
-   "Broom Sweep": [
-    "targeting"
-   ],
-   "Mire of the Cursed": [
-    "targeting"
-   ],
-   "Ancestors’ Memories": [
-    "targeting"
-   ],
-   "Manifest Hex": [
-    "targeting"
-   ],
-   "Vile Soup Spill": [
-    "targeting"
-   ],
-   "Witchfire Stove": [
-    "targeting"
-   ],
-   "Spice Up": [
-    "targeting"
-   ],
-   "Elixir Fling": [
-    "targeting"
-   ],
-   "Hex of the First": [
-    "targeting"
-   ],
-   "Wisped": [
-    "targeting"
-   ],
-   "Birds of Carrion": [
-    "targeting"
-   ],
-   "Child Eater": [
-    "targeting"
-   ],
-   "Anthropophagy": [
-    "targeting"
-   ],
-   "Mudcurse": [
-    "targeting"
-   ],
-   "Sins of the Ancestors": [
-    "targeting"
-   ],
-   "Diableric Expulsion": [
-    "targeting"
-   ],
-   "The Bog Cometh Alive": [
-    "targeting",
-    "효과 구간 (줄 위치 미확인)"
-   ]
+   "Fiendish Cackle": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Broom Sweep": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Mire of the Cursed": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Ancestors’ Memories": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Manifest Hex": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Vile Soup Spill": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Witchfire Stove": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Spice Up": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Elixir Fling": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Hex of the First": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Wisped": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Birds of Carrion": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Child Eater": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Anthropophagy": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Mudcurse": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Sins of the Ancestors": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "Diableric Expulsion": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   },
+   "The Bog Cometh Alive": {
+    "targeting": true,
+    "mid": {
+     "index": 1,
+     "after": "For each hit lose -2 [V]. [Peril]."
+    },
+    "beforeAfter": false
+   },
+   "@signature": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   "bp": {
    "Flayed Skull Amulets": [
@@ -428,5 +637,5 @@
    ]
   }
  },
- "_source": "REACT! 태그(카드 오른쪽 가장자리의 파란 상자)를 스캔에서 색으로 검출. BP는 검출된 카드를 눈으로 확인해 위치 기록, AI는 구간만 분류"
+ "_source": "REACT! 태그(카드 오른쪽 가장자리의 파란 상자): 스캔에서 색으로 검출한 뒤, \"Targeting 뒤\"만 있는 카드를 뺀 모든 AI 카드·Signature·BP를 확대해 눈으로 위치를 기록 (2026-11-17). targeting = Targeting 뒤, mid = 효과 문장 사이, beforeAfter = 효과와 After (Final) Attack 사이"
 }

@@ -174,7 +174,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Terrorizing Presence",
@@ -206,9 +211,14 @@
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
    "reactWindows": [
-    "창 2개 (위치 확인 필요)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER FINAL ATTACK: Wolf Down 1."
+   "afterAttack": "AFTER FINAL ATTACK: Wolf Down 1.",
+   "reactSpec": {
+    "targeting": false,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Armor Cracker",
@@ -240,9 +250,14 @@
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
    "reactWindows": [
-    "창 2개 (위치 확인 필요)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER FINAL ATTACK: Exhaust your Armor [Gear] card."
+   "afterAttack": "AFTER FINAL ATTACK: Exhaust your Armor [Gear] card.",
+   "reactSpec": {
+    "targeting": false,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Fencer’s Thrust",
@@ -275,9 +290,14 @@
    ],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER FINAL ATTACK: Knighteater gains an Armor [Armor] token."
+   "afterAttack": "AFTER FINAL ATTACK: Knighteater gains an Armor [Armor] token.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Lung Vorspeisen",
@@ -311,9 +331,14 @@
    ],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER FINAL ATTACK: Wolf Down 2."
+   "afterAttack": "AFTER FINAL ATTACK: Wolf Down 2.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Scraps Disposal",
@@ -346,9 +371,14 @@
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
    "reactWindows": [
-    "창 2개 (위치 확인 필요)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER FINAL ATTACK: Knighteater moves 2 spaces directly away from the Target."
+   "afterAttack": "AFTER FINAL ATTACK: Knighteater moves 2 spaces directly away from the Target.",
+   "reactSpec": {
+    "targeting": false,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Ritterspieße",
@@ -372,9 +402,14 @@
    "unclear": [],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER FINAL ATTACK: Wolf Down 3."
+   "afterAttack": "AFTER FINAL ATTACK: Wolf Down 3.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Debilitating Crush",
@@ -413,9 +448,14 @@
     "Targeting 첫 줄 \"Knight with a [아이콘] Weapon\" — 아이콘 종류 확인 필요"
    ],
    "reactWindows": [
-    "창 2개 (위치 확인 필요)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER FINAL ATTACK: Exhaust your Weapon [Gear] card."
+   "afterAttack": "AFTER FINAL ATTACK: Exhaust your Weapon [Gear] card.",
+   "reactSpec": {
+    "targeting": false,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Can Opener",
@@ -447,9 +487,14 @@
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
    "reactWindows": [
-    "창 2개 (위치 확인 필요)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER FINAL ATTACK: Discard your Armor [Gear] card. You may [Peril] to Exhaust your Armor [Gear] card instead."
+   "afterAttack": "AFTER FINAL ATTACK: Discard your Armor [Gear] card. You may [Peril] to Exhaust your Armor [Gear] card instead.",
+   "reactSpec": {
+    "targeting": false,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Lamb to Slaughter",
@@ -483,9 +528,14 @@
    ],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER FINAL ATTACK: Wolf Down 2. Wolf Down 1."
+   "afterAttack": "AFTER FINAL ATTACK: Wolf Down 2. Wolf Down 1.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Playing with Your Food",
@@ -519,9 +569,14 @@
    ],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER FINAL ATTACK: Exhaust all your exhaustable Gear [Gear] cards."
+   "afterAttack": "AFTER FINAL ATTACK: Exhaust all your exhaustable Gear [Gear] cards.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Hit and Run",
@@ -543,9 +598,14 @@
    "after": "Knighteater moves to the center of the Clash Board and turns to face the most Knights.",
    "unclear": [],
    "reactWindows": [
-    "창 2개 (위치 확인 필요)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER FINAL ATTACK: Knighteater moves to the center of the Clash Board and turns to face the most Knights."
+   "afterAttack": "AFTER FINAL ATTACK: Knighteater moves to the center of the Clash Board and turns to face the most Knights.",
+   "reactSpec": {
+    "targeting": false,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Offal Harvest",
@@ -577,9 +637,14 @@
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
    "reactWindows": [
-    "창 2개 (위치 확인 필요)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER FINAL ATTACK: Wolf Down 2."
+   "afterAttack": "AFTER FINAL ATTACK: Wolf Down 2.",
+   "reactSpec": {
+    "targeting": false,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Knight Smash!",
@@ -602,7 +667,12 @@
    "reactWindows": [
     "targeting"
    ],
-   "afterAttack": null
+   "afterAttack": null,
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": false
+   }
   },
   {
    "name": "Blood-Drenched Butchery",
@@ -635,9 +705,14 @@
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
    "reactWindows": [
-    "창 2개 (위치 확인 필요)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER FINAL ATTACK: Exhaust your Armor [Gear] card. Wolf Down 2."
+   "afterAttack": "AFTER FINAL ATTACK: Exhaust your Armor [Gear] card. Wolf Down 2.",
+   "reactSpec": {
+    "targeting": false,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Knight Opener",
@@ -659,9 +734,14 @@
    "after": "Each Knight that has LoS to Knighteater or the Target gains the Dread Condition card.",
    "unclear": [],
    "reactWindows": [
-    "창 2개 (위치 확인 필요)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER FINAL ATTACK: Each Knight that has LoS to Knighteater or the Target gains the Dread Condition card."
+   "afterAttack": "AFTER FINAL ATTACK: Each Knight that has LoS to Knighteater or the Target gains the Dread Condition card.",
+   "reactSpec": {
+    "targeting": false,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Dine and Dash",
@@ -693,9 +773,14 @@
    ],
    "reactWindows": [
     "targeting",
-    "효과 구간 (줄 위치 미확인)"
+    "After Attack 앞"
    ],
-   "afterAttack": "AFTER FINAL ATTACK: The Knighteater moves to the center of the Clash Board and turns to face the most Knights."
+   "afterAttack": "AFTER FINAL ATTACK: The Knighteater moves to the center of the Clash Board and turns to face the most Knights.",
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   }
   },
   {
    "name": "Personal Vendetta",
@@ -726,7 +811,12 @@
     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
    ],
    "reactWindows": [],
-   "afterAttack": "AFTER FINAL ATTACK: Discard your Weapon [Gear] card. Wolf Down X, where X is the number of Fleisch tokens in the Knight Pool."
+   "afterAttack": "AFTER FINAL ATTACK: Discard your Weapon [Gear] card. Wolf Down X, where X is the number of Fleisch tokens in the Knight Pool.",
+   "reactSpec": {
+    "targeting": false,
+    "mid": null,
+    "beforeAfter": false
+   }
   }
  ],
  "bp": [
@@ -1212,7 +1302,16 @@
   ],
   "afterTag": "AFTER FINAL ATTACK",
   "after": "Wolf Down 2.",
-  "unclear": []
+  "unclear": [],
+  "reactSpec": {
+   "targeting": true,
+   "mid": null,
+   "beforeAfter": true
+  },
+  "reactWindows": [
+   "targeting",
+   "After Attack 앞"
+  ]
  },
  "_notes": [
   "Clash Setup 다이어그램 미수령",

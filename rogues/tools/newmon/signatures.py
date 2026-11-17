@@ -14,4 +14,4 @@ if __name__ == '__main__':
     for k, s in SIG.items():
         f = os.path.join(d, k + '_raw.json')
         if not os.path.exists(f): print('skip', k); continue
-        r = json.load(open(f)); r['signature'] = s; r['_notes'] = [n.replace('Signature 카드, ', '') for n in r.get('_notes', [])]; json.dump(r, open(f, 'w'), ensure_ascii=False, indent=1); print('sig', k)
+        r = json.load(open(f)); r['signature'] = s; rw = json.load(open(os.path.join(d, 'react_windows.json'))).get(k, {}).get('ai', {}).get('@signature'); s['reactSpec'] = rw; s['reactWindows'] = (lambda w: [] if not w else (['targeting'] if w['targeting'] else []) + (["효과 사이: '" + w['mid']['after'] + "' 뒤"] if w.get('mid') else []) + (['After Attack 앞'] if w['beforeAfter'] else []))(rw); r['_notes'] = [n.replace('Signature 카드, ', '') for n in r.get('_notes', [])]; json.dump(r, open(f, 'w'), ensure_ascii=False, indent=1); print('sig', k)

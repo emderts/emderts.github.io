@@ -242,7 +242,7 @@ export class Clash {
     this.say(`Targeting: ${tg.line}${tg.primary ? ' → ' + tg.primary.name : ''}`);
     const attack = { card, ctx, targets: tg.targets, primary: tg.primary, zone: tg.zone, vigorLost: false, vigorLostTotal: 0, hits: {}, firstHits: {}, mob: this.monster.isMob ? this.monster.cur : null, judge: ops.judge || null };
     const bloodGate = op => (ops.gates || []).find(g => g.op === op && g.stat === 'blood' && this.mobBlood() >= g.gte); if (bloodGate('ignoreReact')) { attack.noReact = true; this.say(`Blood ${this.mobBlood()} → 이 공격은 REACT! 무시`); }
-    { const hg = (ops.gates || []).find(g => g.op === 'ignoreReact' && g.stat === 'heat'); if (hg && tg.primary && tg.primary.heat >= hg.gte) { attack.noReact = true; this.say(`Heat ${tg.primary.heat} ≥ ${hg.gte} → 이 공격은 REACT! 무시`); } } if (!this.actingGuardian) this.lastAttackPrimary = tg.primary || tg.targets[0] || this.lastAttackPrimary;
+    { const hg = (ops.gates || []).find(g => g.op === 'ignoreReact' && g.stat === 'heat'); if (hg && tg.primary && tg.primary.heat >= hg.gte) { attack.noReact = hg.which || true; this.say(`Heat ${tg.primary.heat} ≥ ${hg.gte} → ${hg.which === 'targeting' ? 'Targeting 뒤 REACT! 무시' : hg.which === 'after' ? 'After Attack 앞 REACT! 무시' : '이 공격은 REACT! 무시'}`); } } if (!this.actingGuardian) this.lastAttackPrimary = tg.primary || tg.targets[0] || this.lastAttackPrimary;
     this.currentAttack = attack;
     try {
       // before-attack keywords (Choke etc. apply to targets at resolution; Choke is on the attack line → applied with effects)
@@ -264,7 +264,7 @@ export class Clash {
       else if (tg.primary && !tg.zone && this.monster.isMob && this.monster.cur && this.monster.cur.isTroll) { this.turnToward(tg.primary.pos); if (ops.move) { await this.monsterMoveToward(tg.primary); for (const c of this.monster.cur.cells) { const o = this.monster.mobs.find(m => m.cells.length && cellEq(m.cells[0], c)); if (o) await this.displaceMob(o, c); } this.board.place({ kind: 'mob', n: 'W' }, this.monster.cur.cells); } }
       else if (tg.primary && !tg.zone) { this.turnToward(tg.primary.pos); if (ops.move) { if (this.monster.isMob && this.bypassMobs) await this.bypassMoveToward(this.monster.cur, tg.primary.pos); else if (this.monster.isMob) await this.mobMoveToward(this.monster.cur, tg.primary.pos); else await this.monsterMoveToward(tg.primary); } if (ops.moveGangup && this.monster.isMob) await this.gangup(this.monster.cur, tg.primary, ops.moveGangup); if (this.monster.isMob) for (const g of ops.gates.filter(g => g.op === 'moveGangup' && tg.primary.heat >= g.gte)) await this.gangup(this.monster.cur, tg.primary, g.n); if (ops.moveOps) await this.fx.runMonsterOps(ops.moveOps, { attack, target: tg.primary, primary: tg.primary }); if (!this.alive().includes(tg.primary)) throw new ChainBreak('target died during movement'); }
       // windows of opportunity: REACT! before attack
-      await this.windowOfOpportunity('beforeAttack', attack);
+      if (this.cardHasTargetingReact(card)) await this.windowOfOpportunity('beforeAttack', attack, null, 'targeting'); else this.say('(이 카드는 Targeting 뒤 REACT! 창 없음)');
       // zone targets recomputed after movement
       let targets = attack.targets;
       let stepTo = null;
@@ -815,7 +815,9 @@ export class Clash {
     if (!rIdx || !rIdx.length) return this.fx.runMonsterOps(rops, ctx);
     let from = 0; for (const i of [...rIdx, rops.length]) { if (i > from) await this.fx.runMonsterOps(rops.slice(from, i), ctx); if (i < rops.length) { this.say('REACT! (BP 응답)'); await this.windowOfOpportunity('react', ctx.attack); } from = i; }
   }
-  async windowOfOpportunity(when, attack, target = null) { const a = attack || this.currentAttack; if (a && a.noReact && when !== 'beforeEffects') { this.say('REACT! 무시 (Blood 게이트)'); return; } await this.fx.reactions(when, attack, target); }
+  /** AI card REACT! after Targeting: true when the card records one. Cards whose other windows the engine cannot place yet (no reactWindow op) keep the single window here. */
+  cardHasTargetingReact(card) { const w = card.reactWindows ?? card.react; if (w == null) return true; const l = [].concat(w).map(String); if (l.some(x => /^(after )?targeting$/i.test(x))) return true; if (!l.length) return false; return !JSON.stringify(card.ops || {}).includes('"reactWindow"') && !card.reactExact; }
+  async windowOfOpportunity(when, attack, target = null, at = null) { const a = attack || this.currentAttack; if (a && a.noReact && when !== 'beforeEffects' && (a.noReact === true || a.noReact === at)) { this.say('REACT! 무시 (게이트)'); return; } await this.fx.reactions(when, attack, target); }
 }
 Object.assign(Clash.prototype, MobMixin, BloodMixin, HauntsMixin, FirstmenMixin, TrollMixin, NightmareMixin, FenMixin, PumpMixin, RatMixin, PanzerMixin, MasonMixin, EaterMixin, LictorMixin, WitchMixin, IroncastMixin, RenholderMixin, KaraMixin, ParacelsaMixin, SonchMixin, UbarMixin, StonefaceMixin, ExtrasMixin);
 installKara(Clash);

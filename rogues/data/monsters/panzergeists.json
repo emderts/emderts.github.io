@@ -188,9 +188,14 @@
     "unclear": [],
     "reactWindows": [
      "targeting",
-     "효과 구간 (줄 위치 미확인)"
+     "After Attack 앞"
     ],
     "afterAttack": "AFTER ATTACK: Rust. Lower your Maximum [V] by 3.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": true
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -217,6 +222,10 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "pzRust"
       },
       {
@@ -226,7 +235,8 @@
      ],
      "afterFinalAttack": null,
      "pzDice": true
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Tarnishing Touch",
@@ -250,9 +260,14 @@
     "unclear": [],
     "reactWindows": [
      "targeting",
-     "효과 구간 (줄 위치 미확인)"
+     "After Attack 앞"
     ],
     "afterAttack": "AFTER ATTACK: Exhaust your Armor [Gear] card.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": true
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -276,13 +291,18 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "pzArmorGear",
        "mode": "exhaust"
       }
      ],
      "afterFinalAttack": null,
      "pzDice": true
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Phantasmal Backstab",
@@ -305,6 +325,11 @@
     "unclear": [],
     "reactWindows": [],
     "afterAttack": "AFTER ATTACK: This Panzergeist moves up to 3 spaces toward the closest Armor [Armor] token.",
+    "reactSpec": {
+     "targeting": false,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -331,7 +356,8 @@
      ],
      "afterFinalAttack": null,
      "pzDice": true
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Chill the Spine",
@@ -362,10 +388,18 @@
     "unclear": [],
     "reactWindows": [
      "targeting",
-     "효과 구간 (줄 위치 미확인)",
-     "효과 구간 (줄 위치 미확인)"
+     "효과 사이: 'For each hit lose -6 [V]. [Peril].' 뒤",
+     "After Attack 앞"
     ],
     "afterAttack": "AFTER ATTACK: Lower your Maximum [V] by 3.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": {
+      "index": 1,
+      "after": "For each hit lose -6 [V]. [Peril]."
+     },
+     "beforeAfter": true
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -378,7 +412,8 @@
       {
        "op": "ignoreReact",
        "stat": "heat",
-       "gte": 3
+       "gte": 3,
+       "which": "targeting"
       }
      ],
      "before": [],
@@ -389,11 +424,19 @@
        "perilCheck": true
       },
       {
+       "op": "reactWindow",
+       "at": "mid"
+      },
+      {
        "op": "pzKnockdown",
        "onHit": true
       }
      ],
      "afterAttack": [
+      {
+       "op": "reactWindow",
+       "at": "after"
+      },
       {
        "op": "pzLower",
        "n": 3
@@ -401,7 +444,8 @@
      ],
      "afterFinalAttack": null,
      "pzDice": true
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Geist Slam",
@@ -423,9 +467,14 @@
     "after": "Knockdown.",
     "unclear": [],
     "reactWindows": [
-     "효과 구간 (줄 위치 미확인)"
+     "After Attack 앞"
     ],
     "afterAttack": "AFTER ATTACK: Knockdown.",
+    "reactSpec": {
+     "targeting": false,
+     "mid": null,
+     "beforeAfter": true
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -445,12 +494,17 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "knockdown"
       }
      ],
      "afterFinalAttack": null,
      "pzDice": true
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Bewitching Brush",
@@ -474,9 +528,14 @@
     "unclear": [],
     "reactWindows": [
      "targeting",
-     "효과 구간 (줄 위치 미확인)"
+     "After Attack 앞"
     ],
     "afterAttack": "AFTER ATTACK: This Panzergeist moves up to 5 spaces toward the closest Armor [Armor] token.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": true
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -500,6 +559,10 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "pzToToken",
        "n": 5,
        "who": "this"
@@ -507,7 +570,8 @@
      ],
      "afterFinalAttack": null,
      "pzDice": true
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Corroding Grasp",
@@ -531,9 +595,14 @@
     "unclear": [],
     "reactWindows": [
      "targeting",
-     "효과 구간 (줄 위치 미확인)"
+     "After Attack 앞"
     ],
     "afterAttack": "AFTER ATTACK: Discard your Armor [Gear] card.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": true
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -557,13 +626,18 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "pzArmorGear",
        "mode": "discard"
       }
      ],
      "afterFinalAttack": null,
      "pzDice": true
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Spectral Shriek",
@@ -593,9 +667,14 @@
     "unclear": [],
     "reactWindows": [
      "targeting",
-     "효과 구간 (줄 위치 미확인)"
+     "After Attack 앞"
     ],
     "afterAttack": "AFTER ATTACK: Knockdown.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": null,
+     "beforeAfter": true
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -608,7 +687,8 @@
       {
        "op": "ignoreReact",
        "stat": "heat",
-       "gte": 3
+       "gte": 3,
+       "which": "after"
       }
      ],
      "before": [],
@@ -621,12 +701,17 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "knockdown"
       }
      ],
      "afterFinalAttack": null,
      "pzDice": true
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Lifescourge",
@@ -650,10 +735,18 @@
     "unclear": [],
     "reactWindows": [
      "targeting",
-     "효과 구간 (줄 위치 미확인)",
-     "효과 구간 (줄 위치 미확인)"
+     "효과 사이: '[Peril].' 뒤",
+     "After Attack 앞"
     ],
     "afterAttack": "AFTER ATTACK: If you died, repeat this Attack against another Knight. If you survived, lower your Maximum [V] by X, where X is the number of your Bane [Bane] tokens.",
+    "reactSpec": {
+     "targeting": true,
+     "mid": {
+      "index": 2,
+      "after": "[Peril]."
+     },
+     "beforeAfter": true
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -676,11 +769,19 @@
        "onHit": true
       },
       {
+       "op": "reactWindow",
+       "at": "mid"
+      },
+      {
        "op": "pzKnockdown",
        "onHit": true
       }
      ],
      "afterAttack": [
+      {
+       "op": "reactWindow",
+       "at": "after"
+      },
       {
        "op": "pzIfDied",
        "then": [
@@ -698,7 +799,8 @@
      ],
      "afterFinalAttack": null,
      "pzDice": true
-    }
+    },
+    "reactExact": true
    },
    {
     "name": "Rend the Spirit",
@@ -728,6 +830,11 @@
     "unclear": [],
     "reactWindows": [],
     "afterAttack": "AFTER ATTACK: If you died, place all Armor [Armor] tokens from the Clash Board on this Mob. If you survived, lower your Maximum [V] to 0.",
+    "reactSpec": {
+     "targeting": false,
+     "mid": null,
+     "beforeAfter": false
+    },
     "typePrinted": "ATTACK",
     "ops": {
      "targeting": [
@@ -774,7 +881,8 @@
      ],
      "afterFinalAttack": null,
      "pzDice": true
-    }
+    },
+    "reactExact": true
    }
   ],
   "bp": [
@@ -1248,6 +1356,15 @@
    "afterTag": "AFTER ATTACK",
    "after": "Lower your Maximum [V] by 3.",
    "unclear": [],
+   "reactSpec": {
+    "targeting": true,
+    "mid": null,
+    "beforeAfter": true
+   },
+   "reactWindows": [
+    "targeting",
+    "After Attack 앞"
+   ],
    "typePrinted": "SIGNATURE",
    "ops": {
     "targeting": [
@@ -1266,13 +1383,18 @@
     ],
     "afterAttack": [
      {
+      "op": "reactWindow",
+      "at": "after"
+     },
+     {
       "op": "pzLower",
       "n": 3
      }
     ],
     "afterFinalAttack": null,
     "pzDice": true
-   }
+   },
+   "reactExact": true
   },
   "routine": {
    "name": "Panzer Awakening",
