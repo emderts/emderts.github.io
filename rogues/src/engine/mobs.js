@@ -170,6 +170,7 @@ export const MobMixin = {
   async mobAfterAction() {
     if (this.bloodOn || this.monster.hasTrait('Subterranean Menace')) await this.bloodAfterAction();
     if (this.isRat) await this.ratDeaths();
+    if (this.isLh) await this.lhAfterAction();
     if (this.monster.hasTrait('Ethereal Unity')) await this.etherealSpawn();
     if (this.monsterDef.battleTactics) { await this.firstmenDeaths(); if (this.retributionPending) { this.retributionPending = false; this.say('Retribution: 4번째 BP가 Wound Stack에 — Long Howl + White Ape Troll 활성화', 'ai'); await this.longHowl(); await this.trollActivate(); } }
     if (this.monster.hasTrait('Necrofusion') && this.necro >= 3 && !this._spawning) { this.necro = 0; this._spawning = true; try { this.say('Necrofusion: 토큰 3 → Spawn + Signature', 'ai'); const mob = await this.spawnMob(); if (mob) await this.withMob(mob, () => this.performSignature()); } finally { this._spawning = false; } this.checkEnd(); }
