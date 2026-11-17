@@ -1,0 +1,2780 @@
+{
+ "id": "stonemason-knight",
+ "name": "Stonemason Knight",
+ "kind": "boss",
+ "code": "26B1077",
+ "traitsLine": [
+  "Vassal",
+  "Knight",
+  "Construct",
+  "Stone"
+ ],
+ "_source": "Monster Sheet (2 pages), AI/BP/Routine card sheet, Signature card — owner scans 2026-11-17; reference sheet Stonemason Knight; Clash Setup: expansion Codex p.56–57",
+ "footprint": {
+  "size": 4,
+  "shape": "2x2",
+  "rear": "the 2 cells directly behind the footprint",
+  "facingOnSheet": "down",
+  "wardNodes": "one per side"
+ },
+ "basicAbilities": [
+  {
+   "name": "Unavoidable Knockback 5"
+  },
+  {
+   "name": "Ignore Difficult Terrain"
+  }
+ ],
+ "levels": {
+  "1": {
+   "toHit": 6,
+   "wounds": 8,
+   "exhibitionWounds": 2,
+   "activations": [
+    "AI"
+   ],
+   "activationsText": "1 AI",
+   "traitsAdd": [
+    "Lodestone Armor",
+    "Architect of Destruction",
+    "Ruin"
+   ],
+   "bonuses": {
+    "escalations": 0,
+    "at": 0,
+    "vigorLoss": 0,
+    "evasionDice": 0
+   }
+  },
+  "2": {
+   "toHit": 7,
+   "wounds": 10,
+   "exhibitionWounds": 4,
+   "activations": [
+    "AI"
+   ],
+   "activationsText": "1 AI",
+   "traitsAdd": [
+    "Uneven Footing",
+    "Buried Alive"
+   ],
+   "bonuses": {
+    "escalations": 0,
+    "at": 1,
+    "vigorLoss": 2,
+    "evasionDice": 0
+   }
+  },
+  "3": {
+   "toHit": 8,
+   "wounds": 10,
+   "exhibitionWounds": 4,
+   "activations": [
+    "AI"
+   ],
+   "activationsText": "1 AI",
+   "traitsAdd": [
+    "Magnetite Reinforcement",
+    "Impervious Armor"
+   ],
+   "bonuses": {
+    "escalations": 1,
+    "at": 2,
+    "vigorLoss": 3,
+    "evasionDice": 0
+   }
+  },
+  "4": {
+   "toHit": 10,
+   "wounds": 10,
+   "exhibitionWounds": 4,
+   "activations": [
+    "AI"
+   ],
+   "activationsText": "1 AI",
+   "traitsAdd": [
+    "Unwavering Devotion",
+    "Ferrospikes"
+   ],
+   "bonuses": {
+    "escalations": 1,
+    "at": 3,
+    "vigorLoss": 6,
+    "evasionDice": 0
+   }
+  }
+ },
+ "traits": [
+  {
+   "name": "Lodestone Armor",
+   "level": 1,
+   "text": "When a Knight attacks the Stonemason from a side without an Armor [Armor] token, after fully resolving that Attack, place an Armor [Armor] token on the matching Ward Node. The Stonemason gains +1 [AT] if attacked from the side with an Armor [Armor] token on it. If you would place an Armor [Armor] token on the fourth Ward Node, instead discard one Armor [Armor] token from all Ward Nodes, and each Knight in Zone 2 suffers Knockback 2. The Stonemason Knight cannot gain any more Armor [Armor] tokens until the end of this Round.",
+   "implemented": true
+  },
+  {
+   "name": "Architect of Destruction",
+   "level": 1,
+   "text": "When the Stonemason is instructed to place a Rubble Terrain tile under a Knight, place it as close to the Stonemason as possible. Rubble Terrain tiles cannot be placed under the Stonemason (partially or fully). If you would place a Rubble Terrain tile on other Rubble Terrain tiles, remove them from the Clash Board, then place them adjacent to the newly placed Rubble Terrain tile via as many edges as possible.",
+   "implemented": true
+  },
+  {
+   "name": "Ruin",
+   "level": 1,
+   "text": "Ruin: Place a 2x2 Rubble Terrain tile in front of and adjacent to the Stonemason.",
+   "implemented": true
+  },
+  {
+   "name": "Uneven Footing",
+   "level": 2,
+   "text": "After you discard Armor [Armor] tokens via the Lodestone Armor Trait, finish resolving the current action and perform Signature.",
+   "implemented": true
+  },
+  {
+   "name": "Buried Alive",
+   "level": 2,
+   "text": "If a Rubble Terrain tile would be placed on a Knight already standing on a Rubble Terrain tile, that Knight draws a Judicium.",
+   "implemented": true
+  },
+  {
+   "name": "Magnetite Reinforcement",
+   "level": 3,
+   "text": "End of Monster Round: The Stonemason gains two Armor [Armor] tokens on the Ward Node matching the side of the Monster facing most Knights.",
+   "implemented": true
+  },
+  {
+   "name": "Impervious Armor",
+   "level": 3,
+   "text": "The Stonemason cannot be dealt a Wound from a side matching a Ward Node with two or more Armor [Armor] tokens.",
+   "implemented": true
+  },
+  {
+   "name": "Unwavering Devotion",
+   "level": 4,
+   "text": "The Lodestone Armor Trait also places Armor [Armor] tokens on sides with one Armor [Armor] token.",
+   "implemented": true
+  },
+  {
+   "name": "Ferrospikes",
+   "level": 4,
+   "text": "When a Knight moves through or ends their movement on a Rubble Terrain tile, they lose -1 [V].",
+   "implemented": true
+  }
+ ],
+ "cards": {
+  "ai": [
+   {
+    "name": "Kick!",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 10,
+    "preTargeting": null,
+    "targeting": [
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "Bane 1. For each hit lose -2 [V]. [Peril].",
+     "Knockback 4."
+    ],
+    "afterTag": null,
+    "after": null,
+    "unclear": [],
+    "reactWindows": [],
+    "afterAttack": null,
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "smOnHit",
+       "then": [
+        {
+         "op": "smBane",
+         "n": 1
+        },
+        {
+         "op": "loseVigorPerHit",
+         "n": 2,
+         "perilCheck": true
+        },
+        {
+         "op": "knockback",
+         "n": 4
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Demolishing Blow",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "Closest Knight not in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "THREE OR MORE HITS, LOSE -2 [V]",
+      "where": "effect"
+     }
+    ],
+    "effects": [
+     "One hit, lose -3 [V].",
+     "Two or more hits, lose -5 [V].",
+     "[Peril]. Exhaust 1 Gear [Gear] card with the Metal Trait."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Ruin.",
+    "unclear": [
+     "Heat 3+ 리본의 숫자(-2/-3 [V]) 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": "AFTER ATTACK: Ruin.",
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Closest Knight not in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "op": "smThree",
+       "stat": "heat",
+       "gte": 3,
+       "n": 2
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "smOnHit",
+       "then": [
+        {
+         "op": "smHits",
+         "table": [
+          3,
+          5
+         ],
+         "perilCheck": true
+        },
+        {
+         "op": "smMetal",
+         "mode": "exhaust",
+         "n": 1
+        }
+       ]
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "smRuin"
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Hammer Rise",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "THREE OR MORE HITS, LOSE -2 [V]",
+      "where": "effect"
+     }
+    ],
+    "effects": [
+     "One hit, lose -3 [V].",
+     "Two or more hits, lose -5 [V].",
+     "[Peril]. Exhaust 1 Gear [Gear] card with the Metal Trait.",
+     "Pushback 2."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Ruin.",
+    "unclear": [
+     "Heat 3+ 리본의 숫자(-2/-3 [V]) 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": "AFTER ATTACK: Ruin.",
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "op": "smThree",
+       "stat": "heat",
+       "gte": 3,
+       "n": 2
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "smOnHit",
+       "then": [
+        {
+         "op": "smHits",
+         "table": [
+          3,
+          5
+         ],
+         "perilCheck": true
+        },
+        {
+         "op": "smMetal",
+         "mode": "exhaust",
+         "n": 1
+        },
+        {
+         "op": "pushback",
+         "n": 2
+        }
+       ]
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "smRuin"
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Backhand Swat",
+    "level": 1,
+    "type": "zone",
+    "evasionDice": 2,
+    "evasionDifficulty": 9,
+    "preTargeting": null,
+    "targeting": [
+     "Knight in Rear",
+     "Closest Knight not in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "Bane 1.",
+     "For each hit lose -2 [V]. [Peril]."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Ruin.",
+    "unclear": [
+     "Zone 다이어그램(붉은 칸) 판독 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": "AFTER FINAL ATTACK: Ruin.",
+    "typePrinted": "ZONE ATTACK",
+    "ops": {
+     "targeting": [
+      "Knight in Rear",
+      "Closest Knight not in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "smOnHit",
+       "then": [
+        {
+         "op": "smBane",
+         "n": 1
+        },
+        {
+         "op": "loseVigorPerHit",
+         "n": 2,
+         "perilCheck": true
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "smRuin"
+      }
+     ],
+     "zoneDiagram": {
+      "red": [
+       [
+        1,
+        0
+       ],
+       [
+        1,
+        1
+       ]
+      ],
+      "yellow": [],
+      "step": null,
+      "block": true
+     }
+    }
+   },
+   {
+    "name": "Hammer Throw",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 9,
+    "preTargeting": null,
+    "targeting": [
+     "Furthest Knight in front, in range",
+     "Furthest Knight in sight, in range",
+     "Furthest Knight in sight"
+    ],
+    "moveTag": "RANGE ATTACK 7",
+    "gates": [],
+    "effects": [
+     "Penetrate. If hit, lose -3 [V]. [Peril].",
+     "Exhaust 1 Gear [Gear] card with the Metal Trait. Pull 3."
+    ],
+    "afterTag": null,
+    "after": null,
+    "unclear": [],
+    "reactWindows": [],
+    "afterAttack": null,
+    "typePrinted": "RANGE ATTACK",
+    "ops": {
+     "targeting": [
+      "Furthest Knight in front, in range",
+      "Furthest Knight in sight, in range",
+      "Furthest Knight in sight"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "smOnHit",
+       "then": [
+        {
+         "op": "smNote",
+         "text": "Penetrate — 키워드 정의 미확인, 미구현"
+        },
+        {
+         "op": "smHits",
+         "table": [
+          3
+         ],
+         "perilCheck": true
+        },
+        {
+         "op": "smMetal",
+         "mode": "exhaust",
+         "n": 1
+        },
+        {
+         "op": "smPull",
+         "n": 3
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null,
+     "range": 7
+    }
+   },
+   {
+    "name": "Flattening Swipe",
+    "level": 1,
+    "type": "zone",
+    "evasionDice": 5,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "[Priority Target] Priority Target",
+     "Closest Knight not in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "For each hit lose -1 [V]. [Peril].",
+     "Exhaust 1 Gear [Gear] card with the Metal Trait."
+    ],
+    "afterTag": null,
+    "after": null,
+    "unclear": [
+     "Zone 다이어그램(붉은 칸) 판독 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": null,
+    "typePrinted": "ZONE ATTACK",
+    "ops": {
+     "targeting": [
+      "[Priority Target] Priority Target",
+      "Closest Knight not in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "smOnHit",
+       "then": [
+        {
+         "op": "loseVigorPerHit",
+         "n": 1,
+         "perilCheck": true
+        },
+        {
+         "op": "smMetal",
+         "mode": "exhaust",
+         "n": 1
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null,
+     "zoneDiagram": {
+      "red": [
+       [
+        0,
+        -1
+       ],
+       [
+        1,
+        -1
+       ],
+       [
+        1,
+        0
+       ],
+       [
+        2,
+        0
+       ],
+       [
+        1,
+        1
+       ],
+       [
+        2,
+        1
+       ],
+       [
+        0,
+        2
+       ],
+       [
+        1,
+        2
+       ]
+      ],
+      "yellow": [],
+      "step": null,
+      "block": true
+     }
+    }
+   },
+   {
+    "name": "Hammer Launch",
+    "level": 2,
+    "type": "zone",
+    "evasionDice": 2,
+    "evasionDifficulty": 9,
+    "preTargeting": null,
+    "targeting": [
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE LATERAL & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "DISCARD INSTEAD",
+      "where": "effect"
+     }
+    ],
+    "effects": [
+     "Penetrate. If hit, lose -4 [V].",
+     "Exhaust 1 Gear [Gear] card with the Metal Trait."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Ruin.",
+    "unclear": [
+     "Zone 다이어그램(붉은 칸) 판독 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": "AFTER FINAL ATTACK: Ruin.",
+    "typePrinted": "ZONE ATTACK",
+    "ops": {
+     "targeting": [
+      "Closest Knight in sight"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "op": "smDiscardInstead",
+       "stat": "heat",
+       "gte": 3
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "smOnHit",
+       "then": [
+        {
+         "op": "smNote",
+         "text": "Penetrate — 키워드 정의 미확인, 미구현"
+        },
+        {
+         "op": "smHits",
+         "table": [
+          4
+         ],
+         "perilCheck": true
+        },
+        {
+         "op": "smMetal",
+         "mode": "exhaust",
+         "n": 1
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "smRuin"
+      }
+     ],
+     "smLateral": true,
+     "zoneDiagram": {
+      "red": [
+       [
+        1,
+        0
+       ],
+       [
+        2,
+        0
+       ],
+       [
+        3,
+        0
+       ],
+       [
+        4,
+        0
+       ],
+       [
+        1,
+        1
+       ],
+       [
+        2,
+        1
+       ],
+       [
+        3,
+        1
+       ],
+       [
+        4,
+        1
+       ]
+      ],
+      "yellow": [],
+      "step": null,
+      "block": true
+     }
+    }
+   },
+   {
+    "name": "Stone Smite",
+    "level": 2,
+    "type": "zone",
+    "evasionDice": 2,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "[Priority Target] Priority Target",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "Bane 1. For each hit lose -3 [V]. [Peril].",
+     "Knockback 4."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Ruin.",
+    "unclear": [
+     "Zone 다이어그램(붉은 칸) 판독 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": "AFTER FINAL ATTACK: Ruin.",
+    "typePrinted": "ZONE ATTACK",
+    "ops": {
+     "targeting": [
+      "[Priority Target] Priority Target",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "smOnHit",
+       "then": [
+        {
+         "op": "smBane",
+         "n": 1
+        },
+        {
+         "op": "loseVigorPerHit",
+         "n": 3,
+         "perilCheck": true
+        },
+        {
+         "op": "knockback",
+         "n": 4
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "smRuin"
+      }
+     ],
+     "zoneDiagram": {
+      "red": [
+       [
+        2,
+        -1
+       ],
+       [
+        1,
+        0
+       ],
+       [
+        1,
+        1
+       ],
+       [
+        2,
+        2
+       ]
+      ],
+      "yellow": [],
+      "step": null,
+      "block": true
+     }
+    }
+   },
+   {
+    "name": "Wrecking Ball",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "Furthest Knight in front",
+     "Furthest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK ALL KNIGHTS IN PATH",
+    "gates": [],
+    "effects": [
+     "Bane 1.",
+     "For each hit lose -2 [V]. [Peril].",
+     "Knockback 4 to the side."
+    ],
+    "afterTag": null,
+    "after": null,
+    "unclear": [],
+    "reactWindows": [],
+    "afterAttack": null,
+    "typePrinted": "SEQUENTIAL ATTACK",
+    "ops": {
+     "targeting": [
+      "Furthest Knight in front",
+      "Furthest Knight in sight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "smOnHit",
+       "then": [
+        {
+         "op": "smBane",
+         "n": 1
+        },
+        {
+         "op": "loseVigorPerHit",
+         "n": 2,
+         "perilCheck": true
+        },
+        {
+         "op": "knockbackSide",
+         "n": 4
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null,
+     "pathAttack": true
+    }
+   },
+   {
+    "name": "Toppling Sweep",
+    "level": 2,
+    "type": "zone",
+    "evasionDice": 3,
+    "evasionDifficulty": 7,
+    "preTargeting": null,
+    "targeting": [
+     "Zone"
+    ],
+    "moveTag": "ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "THREE OR MORE HITS, LOSE -2 [V]",
+      "where": "effect"
+     }
+    ],
+    "effects": [
+     "One hit, lose -3 [V].",
+     "Two or more hits, lose -5 [V].",
+     "[Peril]. Exhaust 1 Gear [Gear] card with the Metal Trait.",
+     "Knockdown."
+    ],
+    "afterTag": null,
+    "after": null,
+    "unclear": [
+     "Zone 다이어그램(붉은 칸) 판독 필요",
+     "Heat 3+ 리본의 숫자(-2/-3 [V]) 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": null,
+    "typePrinted": "ZONE ATTACK",
+    "ops": {
+     "targeting": [
+      "Zone 2"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "op": "smThree",
+       "stat": "heat",
+       "gte": 3,
+       "n": 2
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "smOnHit",
+       "then": [
+        {
+         "op": "smHits",
+         "table": [
+          3,
+          5
+         ],
+         "perilCheck": true
+        },
+        {
+         "op": "smMetal",
+         "mode": "exhaust",
+         "n": 1
+        },
+        {
+         "op": "knockdown"
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Anvil Fall",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 9,
+    "preTargeting": null,
+    "targeting": [
+     "Closest Knight not in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "THREE OR MORE HITS, LOSE -2 [V]",
+      "where": "effect"
+     }
+    ],
+    "effects": [
+     "One hit, lose -3 [V].",
+     "Two or more hits, lose -5 [V].",
+     "[Peril]. Exhaust 1 Gear [Gear] card with the Metal Trait. Pushback 3."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Ruin.",
+    "unclear": [
+     "Heat 3+ 리본의 숫자(-2/-3 [V]) 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": "AFTER ATTACK: Ruin.",
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Closest Knight not in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "op": "smThree",
+       "stat": "heat",
+       "gte": 3,
+       "n": 2
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "smOnHit",
+       "then": [
+        {
+         "op": "smHits",
+         "table": [
+          3,
+          5
+         ],
+         "perilCheck": true
+        },
+        {
+         "op": "smMetal",
+         "mode": "exhaust",
+         "n": 1
+        },
+        {
+         "op": "pushback",
+         "n": 3
+        }
+       ]
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "smRuin"
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Bulldozing Stomp",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "THREE OR MORE HITS, LOSE -3 [V]",
+      "where": "effect"
+     }
+    ],
+    "effects": [
+     "Bane 1.",
+     "One hit, lose -4 [V].",
+     "Two or more hits, lose -6 [V].",
+     "[Peril]."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Ruin.",
+    "unclear": [
+     "Heat 3+ 리본의 숫자(-2/-3 [V]) 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": "AFTER ATTACK: Ruin.",
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "op": "smThree",
+       "stat": "heat",
+       "gte": 3,
+       "n": 3
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "smOnHit",
+       "then": [
+        {
+         "op": "smBane",
+         "n": 1
+        },
+        {
+         "op": "smHits",
+         "table": [
+          4,
+          6
+         ],
+         "perilCheck": true
+        }
+       ]
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "smRuin"
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Mass Driver",
+    "level": 3,
+    "type": "zone",
+    "evasionDice": 2,
+    "evasionDifficulty": 10,
+    "preTargeting": null,
+    "targeting": [
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE LATERAL & ATTACK",
+    "gates": [],
+    "effects": [
+     "Penetrate. If hit, lose -5 [V]. [Peril].",
+     "Knockback 3 to the side."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Ruin.",
+    "unclear": [
+     "Zone 다이어그램(붉은 칸) 판독 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": "AFTER FINAL ATTACK: Ruin.",
+    "typePrinted": "ZONE ATTACK",
+    "ops": {
+     "targeting": [
+      "Closest Knight in sight"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "smOnHit",
+       "then": [
+        {
+         "op": "smNote",
+         "text": "Penetrate — 키워드 정의 미확인, 미구현"
+        },
+        {
+         "op": "smHits",
+         "table": [
+          5
+         ],
+         "perilCheck": true
+        },
+        {
+         "op": "knockbackSide",
+         "n": 3
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "smRuin"
+      }
+     ],
+     "smLateral": true,
+     "zoneDiagram": {
+      "red": [
+       [
+        1,
+        0
+       ],
+       [
+        2,
+        0
+       ],
+       [
+        3,
+        0
+       ],
+       [
+        4,
+        0
+       ],
+       [
+        5,
+        0
+       ],
+       [
+        6,
+        0
+       ],
+       [
+        7,
+        0
+       ],
+       [
+        8,
+        0
+       ],
+       [
+        9,
+        0
+       ],
+       [
+        10,
+        0
+       ],
+       [
+        11,
+        0
+       ],
+       [
+        12,
+        0
+       ],
+       [
+        13,
+        0
+       ],
+       [
+        1,
+        1
+       ],
+       [
+        2,
+        1
+       ],
+       [
+        3,
+        1
+       ],
+       [
+        4,
+        1
+       ],
+       [
+        5,
+        1
+       ],
+       [
+        6,
+        1
+       ],
+       [
+        7,
+        1
+       ],
+       [
+        8,
+        1
+       ],
+       [
+        9,
+        1
+       ],
+       [
+        10,
+        1
+       ],
+       [
+        11,
+        1
+       ],
+       [
+        12,
+        1
+       ],
+       [
+        13,
+        1
+       ]
+      ],
+      "yellow": [],
+      "step": null,
+      "block": true
+     }
+    }
+   },
+   {
+    "name": "Reduce to Ruins",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "All Knights"
+    ],
+    "moveTag": "ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "THREE OR MORE HITS, LOSE -3 [V]",
+      "where": "effect"
+     }
+    ],
+    "effects": [
+     "Bane 2. One hit, lose -3 [V].",
+     "Two or more hits, lose -6 [V].",
+     "[Peril]."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Place a 2x2 Rubble Terrain tile under the Target.",
+    "unclear": [
+     "Heat 3+ 리본의 숫자(-2/-3 [V]) 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": "AFTER ATTACK: Place a 2x2 Rubble Terrain tile under the Target.",
+    "typePrinted": "SIMULTANEOUS ATTACK",
+    "ops": {
+     "targeting": [
+      "All Knights"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "op": "smThree",
+       "stat": "heat",
+       "gte": 3,
+       "n": 3
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "smOnHit",
+       "then": [
+        {
+         "op": "smBane",
+         "n": 2
+        },
+        {
+         "op": "smHits",
+         "table": [
+          3,
+          6
+         ],
+         "perilCheck": true
+        }
+       ]
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "smRubbleUnder",
+       "who": "target"
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "March of Devastation",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 4,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "All Knights, starting from the closest"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "Bane 1.",
+     "For each hit lose -2 [V]. [Peril].",
+     "Discard 1 Gear [Gear] card with the Metal Trait."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Ruin.",
+    "unclear": [],
+    "reactWindows": [],
+    "afterAttack": "AFTER ATTACK: Ruin.",
+    "typePrinted": "SEQUENTIAL ATTACK",
+    "ops": {
+     "targeting": [
+      "Closest Knight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "smOnHit",
+       "then": [
+        {
+         "op": "smBane",
+         "n": 1
+        },
+        {
+         "op": "loseVigorPerHit",
+         "n": 2,
+         "perilCheck": true
+        },
+        {
+         "op": "smMetal",
+         "mode": "discard",
+         "n": 1
+        }
+       ]
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "smRuin"
+      }
+     ],
+     "afterFinalAttack": [
+      {
+       "op": "smMarch"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Mason Grasp",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 9,
+    "preTargeting": null,
+    "targeting": [
+     "[Priority Target] Priority Target",
+     "Closest Knight not in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [],
+    "effects": [
+     "Bane 2.",
+     "For each hit lose -3 [V]. [Peril].",
+     "Choke 3."
+    ],
+    "afterTag": null,
+    "after": null,
+    "unclear": [],
+    "reactWindows": [],
+    "afterAttack": null,
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "[Priority Target] Priority Target",
+      "Closest Knight not in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "smOnHit",
+       "then": [
+        {
+         "op": "smBane",
+         "n": 2
+        },
+        {
+         "op": "loseVigorPerHit",
+         "n": 3,
+         "perilCheck": true
+        },
+        {
+         "op": "choke",
+         "n": 3
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Force Discharge",
+    "level": 3,
+    "type": "zone",
+    "evasionDice": 3,
+    "evasionDifficulty": 7,
+    "preTargeting": null,
+    "targeting": [
+     "Zone"
+    ],
+    "moveTag": "ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "THREE OR MORE HITS, LOSE -2 [V]",
+      "where": "effect"
+     }
+    ],
+    "effects": [
+     "One hit, lose -4 [V].",
+     "Two or more hits, lose -7 [V].",
+     "[Peril]. Exhaust all Gear [Gear] cards with the Metal Trait. Pull 2."
+    ],
+    "afterTag": null,
+    "after": null,
+    "unclear": [
+     "Zone 다이어그램(붉은 칸) 판독 필요",
+     "Heat 3+ 리본의 숫자(-2/-3 [V]) 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "afterAttack": null,
+    "typePrinted": "ZONE ATTACK",
+    "ops": {
+     "targeting": [
+      "Zone 3"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "op": "smThree",
+       "stat": "heat",
+       "gte": 3,
+       "n": 2
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "smOnHit",
+       "then": [
+        {
+         "op": "smHits",
+         "table": [
+          4,
+          7
+         ],
+         "perilCheck": true
+        },
+        {
+         "op": "smMetal",
+         "mode": "exhaust",
+         "n": "all"
+        },
+        {
+         "op": "smPull",
+         "n": 2
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Pulverize",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "preTargeting": null,
+    "targeting": [
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "moveTag": "MOVE & ATTACK",
+    "gates": [
+     {
+      "stat": "Heat",
+      "gte": 3,
+      "effect": "THREE OR MORE HITS, YOU DIE",
+      "where": "effect"
+     }
+    ],
+    "effects": [
+     "One hit, lose -7 [V].",
+     "Two or more hits, lose -9 [V].",
+     "[Peril]. Exhaust all Gear [Gear] cards with the Metal Trait.",
+     "Knockdown."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Ruin.",
+    "unclear": [],
+    "reactWindows": [],
+    "afterAttack": "AFTER ATTACK: Ruin.",
+    "typePrinted": "ATTACK",
+    "ops": {
+     "targeting": [
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "op": "smThree",
+       "stat": "heat",
+       "gte": 3,
+       "n": "die"
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "smOnHit",
+       "then": [
+        {
+         "op": "smHits",
+         "table": [
+          7,
+          9
+         ],
+         "perilCheck": true
+        },
+        {
+         "op": "smMetal",
+         "mode": "exhaust",
+         "n": "all"
+        },
+        {
+         "op": "knockdown"
+        }
+       ]
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "smRuin"
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   }
+  ],
+  "bp": [
+   {
+    "name": "Stone Greaves",
+    "level": 1,
+    "at": 5,
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": "Place a 2x2 Rubble Terrain tile under the Attacker.",
+     "fail": "Perform Signature against the Attacker.",
+     "instinct": null,
+     "critical": "Unexhaust 1 Gear [Gear] card with the Metal Trait. The Stonemason Knight gains a permanent negative To Hit [To Hit] token."
+    },
+    "unclear": [
+     "Overcome 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "ops": {
+     "at": 5,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "smRubbleUnder",
+       "who": "attacker"
+      }
+     ],
+     "fail": [
+      {
+       "op": "signatureAgainstAttacker"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "smMetal",
+       "mode": "unexhaust",
+       "n": 1
+      },
+      {
+       "op": "monsterModifier",
+       "stat": "toHit",
+       "n": -1
+      }
+     ]
+    }
+   },
+   {
+    "name": "Sturdy Backplate",
+    "level": 1,
+    "at": 6,
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Exhaust 1 Gear [Gear] card with the Metal Trait.",
+     "critical": "Another Knight may immediately Hug 1 and perform a Bonus Attack!"
+    },
+    "unclear": [
+     "Overcome 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "ops": {
+     "at": 6,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": null,
+     "fail": null,
+     "instinct": [
+      {
+       "op": "smMetal",
+       "mode": "exhaust",
+       "n": 1
+      }
+     ],
+     "critical": [
+      {
+       "op": "smMoveBonus",
+       "who": "other",
+       "n": 1
+      }
+     ]
+    }
+   },
+   {
+    "name": "Hollow Plackart",
+    "level": 1,
+    "at": 6,
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": "Knockback 4.",
+     "fail": "Perform Signature against the Attacker.",
+     "instinct": null,
+     "critical": "Do not place an Armor [Armor] token after this Attack. You may discard 1 Armor [Armor] token from a chosen Ward Node."
+    },
+    "unclear": [
+     "Overcome 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "ops": {
+     "at": 6,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "knockback",
+       "n": 4
+      }
+     ],
+     "fail": [
+      {
+       "op": "signatureAgainstAttacker"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "smNoToken"
+      },
+      {
+       "op": "smDiscardNode"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Vambraces of the Builders",
+    "level": 1,
+    "at": 5,
+    "overcome": {
+     "n": 2,
+     "effect": "Power 1"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": "Knockdown.",
+     "fail": "Bane 1.",
+     "instinct": null,
+     "critical": "You may perform a Bonus Attack!"
+    },
+    "unclear": [
+     "Overcome 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "ops": {
+     "at": 5,
+     "overcome": {
+      "n": 2,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "knockdown"
+      }
+     ],
+     "fail": [
+      {
+       "op": "smBane",
+       "n": 1
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "bonusAttack",
+       "who": "self",
+       "optional": true
+      }
+     ]
+    }
+   },
+   {
+    "name": "Layered Tassets",
+    "level": 1,
+    "at": 4,
+    "overcome": {
+     "n": 2,
+     "effect": "Power 1"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": "Knockback 4.",
+     "fail": "Place a 2x2 Rubble Terrain tile under the Attacker.",
+     "instinct": null,
+     "critical": "Gain +1 [P]. Leave 2 additional Opening and/or Break tokens in the Knight Pool."
+    },
+    "unclear": [
+     "Overcome 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "ops": {
+     "at": 4,
+     "overcome": {
+      "n": 2,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "knockback",
+       "n": 4
+      }
+     ],
+     "fail": [
+      {
+       "op": "smRubbleUnder",
+       "who": "attacker"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "gainPassion",
+       "n": 1
+      },
+      {
+       "op": "leaveTokens",
+       "n": 2,
+       "tokens": [
+        "opening",
+        "break"
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "name": "Waist Gap",
+    "level": 1,
+    "at": 4,
+    "overcome": {
+     "n": 2,
+     "effect": "Power 1"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": "Exhaust 1 Gear [Gear] card with the Metal Trait.",
+     "fail": "Bane 1.",
+     "instinct": null,
+     "critical": "Unexhaust 1 Gear [Gear] card with the Metal Trait. Reset [H]."
+    },
+    "unclear": [
+     "Overcome 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "ops": {
+     "at": 4,
+     "overcome": {
+      "n": 2,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "smMetal",
+       "mode": "exhaust",
+       "n": 1
+      }
+     ],
+     "fail": [
+      {
+       "op": "smBane",
+       "n": 1
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "smMetal",
+       "mode": "unexhaust",
+       "n": 1
+      },
+      {
+       "op": "resetHeat"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Ornate Visor",
+    "level": 2,
+    "at": 7,
+    "overcome": {
+     "n": 4,
+     "effect": "Power 1"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": "Bane 1.",
+     "fail": "Perform Signature against the Attacker.",
+     "instinct": null,
+     "critical": "The Stonemason Knight gains a permanent negative Precision token."
+    },
+    "unclear": [
+     "Overcome 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "ops": {
+     "at": 7,
+     "overcome": {
+      "n": 4,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "smBane",
+       "n": 1
+      }
+     ],
+     "fail": [
+      {
+       "op": "signatureAgainstAttacker"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "smNote",
+       "text": "Ornate Visor Critical: Stonemason Knight 영구 음수 Precision 토큰 — 효과 미확인, 미구현"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Gauntlets of Ruin",
+    "level": 2,
+    "at": 8,
+    "overcome": {
+     "n": 4,
+     "effect": "Power 1"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": "Perform Signature against the Attacker.",
+     "fail": "Place a 2x2 Rubble Terrain tile under the Attacker.",
+     "instinct": null,
+     "critical": "Reposition 2. You may perform a Bonus Attack!"
+    },
+    "unclear": [
+     "Overcome 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "ops": {
+     "at": 8,
+     "overcome": {
+      "n": 4,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "signatureAgainstAttacker"
+      }
+     ],
+     "fail": [
+      {
+       "op": "smRubbleUnder",
+       "who": "attacker"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "smMoveBonus",
+       "who": "self",
+       "n": 2
+      }
+     ]
+    }
+   },
+   {
+    "name": "Lodestone Chestplate",
+    "level": 2,
+    "at": 8,
+    "overcome": {
+     "n": 4,
+     "effect": "Power 1"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": "Exhaust 1 Gear [Gear] card with the Metal Trait. Gain +1 [H].",
+     "fail": "Discard 1 Gear [Gear] card with the Metal Trait. Gain +2 [H].",
+     "instinct": null,
+     "critical": "Discard all Armor [Armor] tokens from Ward Nodes. Until the end of Knight Round, the Stonemason Knight cannot gain any Armor [Armor] tokens."
+    },
+    "unclear": [
+     "Overcome 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "ops": {
+     "at": 8,
+     "overcome": {
+      "n": 4,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "smMetal",
+       "mode": "exhaust",
+       "n": 1
+      },
+      {
+       "op": "smHeat",
+       "n": 1
+      }
+     ],
+     "fail": [
+      {
+       "op": "smMetal",
+       "mode": "discard",
+       "n": 1
+      },
+      {
+       "op": "smHeat",
+       "n": 2
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "smClearNodes",
+       "lock": "knightRound"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Carved Pauldrons",
+    "level": 2,
+    "at": 7,
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": "Exhaust 1 Gear [Gear] card with the Metal Trait. Gain +1 [H].",
+     "fail": "Bane 1. Knockback 5.",
+     "instinct": null,
+     "critical": "Deal an additional Single Wound!"
+    },
+    "unclear": [
+     "Overcome 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "ops": {
+     "at": 7,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "smMetal",
+       "mode": "exhaust",
+       "n": 1
+      },
+      {
+       "op": "smHeat",
+       "n": 1
+      }
+     ],
+     "fail": [
+      {
+       "op": "smBane",
+       "n": 1
+      },
+      {
+       "op": "knockback",
+       "n": 5
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "additionalSingleWound"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Heavy Chain",
+    "level": 2,
+    "at": 6,
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": "Perform Signature against the Attacker.",
+     "fail": "All Knights in Zone 1 suffer Knockdown.",
+     "instinct": null,
+     "critical": "Until the end of Clash, you may ignore Gear [Gear] exhaust effects on AI cards."
+    },
+    "unclear": [
+     "Overcome 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "ops": {
+     "at": 6,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "signatureAgainstAttacker"
+      }
+     ],
+     "fail": [
+      {
+       "op": "smZoneKnockdown",
+       "z": 1
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "smFlag",
+       "id": "noGearExhaust"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Flexible Joints",
+    "level": 2,
+    "at": 6,
+    "overcome": {
+     "n": 3,
+     "effect": "Power 1"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": "Bane 1. Knockback 4.",
+     "fail": "Place a 2x2 Rubble Terrain tile under the Attacker.",
+     "instinct": null,
+     "critical": "Reposition 2. You may perform a Bonus Attack!"
+    },
+    "unclear": [
+     "Overcome 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "ops": {
+     "at": 6,
+     "overcome": {
+      "n": 3,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "smBane",
+       "n": 1
+      },
+      {
+       "op": "knockback",
+       "n": 4
+      }
+     ],
+     "fail": [
+      {
+       "op": "smRubbleUnder",
+       "who": "attacker"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "smMoveBonus",
+       "who": "self",
+       "n": 2
+      }
+     ]
+    }
+   },
+   {
+    "name": "Ruinous Engine",
+    "level": 3,
+    "at": 8,
+    "overcome": {
+     "n": 4,
+     "effect": "Power 1"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Place a 2x2 Rubble Terrain tile on each side of and adjacent to Stonemason Knight.",
+     "critical": "Until the end of Clash ignore the Ruin Trait and any Rubble Terrain tile placement."
+    },
+    "unclear": [
+     "Overcome 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "ops": {
+     "at": 8,
+     "overcome": {
+      "n": 4,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": null,
+     "fail": null,
+     "instinct": [
+      {
+       "op": "smRubbleSides"
+      }
+     ],
+     "critical": [
+      {
+       "op": "smFlag",
+       "id": "noRubble"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Ferrofluid Veins",
+    "level": 3,
+    "at": 8,
+    "overcome": {
+     "n": 5,
+     "effect": "Power 1"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": "Perform Signature against the Attacker.",
+     "fail": "Discard 1 Gear [Gear] card with the Metal Trait. Gain +2 [H].",
+     "instinct": null,
+     "critical": "Until the end of Clash you may ignore Armor [Armor] tokens on Ward Nodes when performing an Attack."
+    },
+    "unclear": [
+     "Overcome 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "ops": {
+     "at": 8,
+     "overcome": {
+      "n": 5,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "signatureAgainstAttacker"
+      }
+     ],
+     "fail": [
+      {
+       "op": "smMetal",
+       "mode": "discard",
+       "n": 1
+      },
+      {
+       "op": "smHeat",
+       "n": 2
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "smFlag",
+       "id": "ignoreNodes"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Splinter of Corrupted Purpose",
+    "level": 3,
+    "at": 9,
+    "overcome": {
+     "n": 5,
+     "effect": "Power 1"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Bane 2.",
+     "critical": "Disable the Stonemason’s Bane X keyword."
+    },
+    "unclear": [
+     "Overcome 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "ops": {
+     "at": 9,
+     "overcome": {
+      "n": 5,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": null,
+     "fail": null,
+     "instinct": [
+      {
+       "op": "smBane",
+       "n": 2
+      }
+     ],
+     "critical": [
+      {
+       "op": "smFlag",
+       "id": "noBane"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Circlet of Andermainz",
+    "level": 3,
+    "at": 7,
+    "overcome": {
+     "n": 4,
+     "effect": "Power 1"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": "Knockdown. Knockback 6.",
+     "fail": "Perform Signature against the Attacker.",
+     "instinct": null,
+     "critical": "Until the end of Clash, all Knights may ignore Gated Effects. You may perform a Bonus Attack, ignoring the Lodestone Armor Trait!"
+    },
+    "unclear": [
+     "Overcome 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "ops": {
+     "at": 7,
+     "overcome": {
+      "n": 4,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "knockdown"
+      },
+      {
+       "op": "knockback",
+       "n": 6
+      }
+     ],
+     "fail": [
+      {
+       "op": "signatureAgainstAttacker"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "smFlag",
+       "id": "noGates"
+      },
+      {
+       "op": "smBonusNoLodestone"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Sliver of Faith",
+    "level": 3,
+    "at": 7,
+    "overcome": {
+     "n": 4,
+     "effect": "Power 1"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": null,
+     "fail": "Bane 2.",
+     "instinct": "Perform Signature against the Attacker.",
+     "critical": "Devote."
+    },
+    "unclear": [
+     "Overcome 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "ops": {
+     "at": 7,
+     "overcome": {
+      "n": 4,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": null,
+     "fail": [
+      {
+       "op": "smBane",
+       "n": 2
+      }
+     ],
+     "instinct": [
+      {
+       "op": "signatureAgainstAttacker"
+      }
+     ],
+     "critical": [
+      {
+       "op": "smNote",
+       "text": "Sliver of Faith Critical: Devote — 미구현"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Magnetite Core",
+    "level": 3,
+    "at": 9,
+    "overcome": {
+     "n": 5,
+     "effect": "Power 1"
+    },
+    "note": null,
+    "whenRevealed": null,
+    "whileRevealed": null,
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Discard 1 Gear [Gear] card with the Metal Trait. Gain +2 [H].",
+     "critical": "The Stonemason Knight dies! See 5442."
+    },
+    "unclear": [
+     "Overcome 숫자 작은 글씨 — 확인 필요"
+    ],
+    "reactWindows": [],
+    "ops": {
+     "at": 9,
+     "overcome": {
+      "n": 5,
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "wound": null,
+     "fail": null,
+     "instinct": [
+      {
+       "op": "smMetal",
+       "mode": "discard",
+       "n": 1
+      },
+      {
+       "op": "smHeat",
+       "n": 2
+      }
+     ],
+     "critical": [
+      {
+       "op": "slayMonster"
+      }
+     ]
+    }
+   }
+  ],
+  "signature": {
+   "name": "Tear Down",
+   "level": null,
+   "type": "attack",
+   "evasionDice": 2,
+   "evasionDifficulty": 9,
+   "preTargeting": null,
+   "targeting": [
+    "Closest Knight not in front",
+    "Closest Knight in sight"
+   ],
+   "moveTag": "MOVE & ATTACK",
+   "gates": [
+    {
+     "stat": "Heat",
+     "gte": 3,
+     "effect": "+1 [die]",
+     "where": "moveTag"
+    }
+   ],
+   "effects": [
+    "For each hit lose -2 [V]. [Peril].",
+    "Knockback 4."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Ruin.",
+   "unclear": [],
+   "typePrinted": "SIGNATURE",
+   "ops": {
+    "targeting": [
+     "Closest Knight not in front",
+     "Closest Knight in sight"
+    ],
+    "move": true,
+    "gates": [
+     {
+      "op": "evasionDice",
+      "stat": "heat",
+      "gte": 3,
+      "n": 1
+     }
+    ],
+    "before": [],
+    "effects": [
+     {
+      "op": "smOnHit",
+      "then": [
+       {
+        "op": "loseVigorPerHit",
+        "n": 2,
+        "perilCheck": true
+       },
+       {
+        "op": "knockback",
+        "n": 4
+       }
+      ]
+     }
+    ],
+    "afterAttack": [
+     {
+      "op": "smRuin"
+     }
+    ],
+    "afterFinalAttack": null
+   }
+  },
+  "routine": {
+   "name": "Magnetopress",
+   "text": "Each Knight exhausts 1 Gear [Gear] card with the Metal Trait and gains 1 Bane [Bane] token.",
+   "type": "routine",
+   "ops": [
+    {
+     "op": "smRoutine"
+    }
+   ]
+  }
+ },
+ "sm": true,
+ "clashSetup": {
+  "_source": "Expansion Codex p.56–57 (Stonemason Knight Clash)",
+  "steps": [
+   "Standard Preparations (Rulebook p.44)",
+   "Monster Positioning: Place the Stonemason Knight miniature on the space designated on the diagram. Note the facing direction indicated by the arrow.",
+   "Additional Setup: Follow additional Clash Setup instructions introduced by Traits (if any)."
+  ],
+  "requiredTiles": [
+   "11x Column",
+   "3x Rubble O"
+  ],
+  "monsterCells": [
+   "G7",
+   "G8",
+   "H7",
+   "H8"
+  ],
+  "facing": "S",
+  "knightStart": [
+   "F5",
+   "E6",
+   "E9",
+   "F10"
+  ],
+  "terrain": [
+   {
+    "tile": "column",
+    "cells": [
+     "J11",
+     "I8",
+     "H3",
+     "H12",
+     "F3",
+     "F13",
+     "D3",
+     "C11",
+     "B2",
+     "B6",
+     "B9"
+    ]
+   },
+   {
+    "tile": "rubble",
+    "shape": "O",
+    "cells": [
+     "I4",
+     "I5",
+     "H4",
+     "H5"
+    ]
+   },
+   {
+    "tile": "rubble",
+    "shape": "O",
+    "cells": [
+     "E12",
+     "E13",
+     "D12",
+     "D13"
+    ]
+   },
+   {
+    "tile": "rubble",
+    "shape": "O",
+    "cells": [
+     "C4",
+     "C5",
+     "B4",
+     "B5"
+    ]
+   }
+  ],
+  "notes": [
+   "지형·시작 칸은 코덱스 도식에서 읽음 [해석, 확인 필요]"
+  ]
+ },
+ "zoneNote": "Zone 도식(카드에서 읽음): Backhand Swat = 정면 2칸; Flattening Swipe = 정면 2x2 + 양 옆 대각 2칸씩; Hammer Launch = 정면 2줄 x 4칸; Stone Smite = 정면 2칸 + 그 바깥 대각 2칸; Mass Driver = 정면 2줄 끝까지; Toppling Sweep = Zone 2; Force Discharge = Zone 3 [해석, 확인 필요]",
+ "rulings": [
+  "Zone 도식(카드에서 읽음): Backhand Swat = 정면 2칸; Flattening Swipe = 정면 2x2 + 양 옆 대각 2칸씩; Hammer Launch = 정면 2줄 x 4칸; Stone Smite = 정면 2칸 + 그 바깥 대각 2칸; Mass Driver = 정면 2줄 끝까지; Toppling Sweep = Zone 2; Force Discharge = Zone 3 [해석, 확인 필요]",
+  "Lodestone Armor: 기사가 공격을 시작한 위치 기준으로 면(앞/뒤/좌/우)을 정함. 대각선 위치는 앞/뒤 우선 [해석, 확인 필요]. 그 면에 Armor 토큰이 있으면 AT +1, 없으면 공격을 모두 해결한 뒤 그 면 Ward Node에 토큰 1개. 네 번째 Node에 놓게 되면 대신 모든 Node에서 1개씩 버리고 Zone 2의 기사들 Knockback 2, 이번 Round 끝까지 토큰 획득 불가",
+  "Heat 3+ \"THREE OR MORE HITS, LOSE -N [V]\": 3회 이상 명중 시 추가로 -N (예: 1회 -3 / 2회+ -5 / 게이트·3회+ → -5 -2) [해석, 확인 필요]",
+  "Ruin: Stonemason 정면에 인접한 2x2. 보드 밖이면 놓지 않음. Rubble을 기사 밑에 놓을 때: 그 기사 칸을 포함하는 2x2 중 Stonemason에 가장 가까운 위치(Stonemason과 겹치지 않게). 기존 Rubble 타일과 겹치면 그 타일을 치우고 새 타일에 가장 많은 변으로 인접하게 다시 놓음(동률이면 선택) (Architect of Destruction)",
+  "Move Lateral (Hammer Launch, Mass Driver): 가로 또는 세로 직선으로 최단 이동해 대상이 Zone 안에 들어오는 칸으로 이동 (Rulebook)",
+  "March of Devastation: 가장 가까운 기사부터 한 명씩 Move & Attack",
+  "Penetrate: 키워드 정의 미확인 — 미구현",
+  "Ornate Visor Critical(영구 음수 Precision 토큰), Sliver of Faith Critical(Devote): 미구현",
+  "Hug 1 / Reposition 2 + Bonus Attack: 해당 기사가 최대 1/2칸 이동 후 Bonus Attack으로 처리 [해석, 확인 필요]",
+  "Ferrospikes: Rubble 칸으로 이동해 들어갈 때마다 Vigor -1 [해석, 확인 필요]",
+  "Magnetite Reinforcement: 기사가 가장 많이 있는 면의 Node에 토큰 2개 (동률이면 선택)"
+ ]
+}
