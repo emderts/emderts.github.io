@@ -51,6 +51,7 @@ export const NightmareMixin = {
    *  a Knight on the destination suffers Crash and is Displaced. */
   async wnMoveTo(cell, why, path = null, { involuntary = false } = {}) {
     const M = this.monster, B = this.board, mob = this.wn; const from = mob.cells[0]; if (!cell || cellEq(from, cell)) return false;
+    if (this.slowToken && !involuntary) { this.slowToken = false; this.say('임시 Speed 토큰: 이번 이동은 3칸에서 멈춤 (토큰 버림)', 'tech'); if (path && path.length > 3) { path = path.slice(0, 3); cell = path[2]; } }
     if (path && M.hasTrait('Coiling Malice')) for (const c of path.slice(0, -1)) { const k = this.knightAt(c); if (k) { this.say(`Coiling Malice: ${k.name}을(를) 지나감`); await this.crash(k); } }
     if (involuntary) { const tc = B.terrainAt(cell); if (tc && tc.id === 'column') { B.terrain.delete(B.key(cell)); this.say(`Column ${B.label(cell)} 파괴 (Winged Nightmare가 비자발적으로 통과)`); } }
     const on = this.knightAt(cell); if (on) { this.say(`${on.name}: Winged Nightmare가 이 칸에서 이동 종료 → Crash + Displace`); await this.crash(on); if (on.alive) await this.displace(on); }

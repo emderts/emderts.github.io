@@ -11,14 +11,14 @@ export const MasonMixin = {
     const M = this.monster, B = this.board, C = this, fx = this.fx; this.isSm = true;
     this.sm = { nodes: { front: 0, right: 0, rear: 0, left: 0 }, locked: false, lockKR: false, tiles: [], flags: {}, side: null, pendingSig: false, noToken: false };
     for (const t of cs.terrain) if (t.tile === 'rubble') this.sm.tiles.push(t.cells.map(l => B.parse(l)));
-    const at = this.bpAT.bind(this); this.bpAT = bp => at(bp) + (C.sm.side && !C.sm.flags.ignoreNodes && C.sm.nodes[C.sm.side] > 0 ? 1 : 0);
+    const at = this.bpAT.bind(this); this.bpAT = bp => at(bp) + (C.sm.side && !C.sm.flags.ignoreNodes && C.smSideTokens() > 0 ? 1 : 0);
     const ka = this.knightAttack.bind(this); this.knightAttack = async (k, opts) => {
       if (C.sm.side || !k.alive) return ka(k, opts); let side = C.smSide(k.pos); const so = C.smSideOptions(k.pos); if (so.length > 1) side = await C.ask({ type: 'pick', knight: k.id, text: `${k.name}: 대각선 위치 — 어느 면에서 공격? (Lodestone Armor)`, options: so.map(s => ({ label: `${SIDE_KO[s]}${C.sm.nodes[s] > 0 ? ' (Armor 토큰 있음: AT +1)' : ''}`, value: s })) }) || side; C.sm.side = side; C.sm.noToken = !!(opts && opts.smNoLodestone); if (C.sm.nodes[side] > 0 && !C.sm.flags.ignoreNodes) C.say(`Lodestone Armor: ${SIDE_KO[side]} 면 Armor 토큰 → AT +1`, 'bp');
       try { return await ka(k, opts); } finally { const skip = C.sm.noToken; C.sm.side = null; C.sm.noToken = false; if (!skip && !C.result && !M.slain) await C.guard(() => C.smLodestone(side)); if (C.sm.pendingSig && !C.result && !M.slain) { C.sm.pendingSig = false; C.say('Uneven Footing: Signature', 'bp'); await C.guard(() => C.performSignature()); } }
     };
     const mr = this.monsterRound.bind(this); this.monsterRound = async () => { C.sm.locked = false; await mr(); if (!C.result && M.hasTrait('Magnetite Reinforcement')) await C.guard(() => C.smMagnetite()); };
     const kr = this.knightRound.bind(this); this.knightRound = async () => { await kr(); C.sm.lockKR = false; };
-    const mk = this.moveKnight.bind(this); this.moveKnight = (k, cell) => { mk(k, cell); if (M.hasTrait('Ferrospikes') && C.smRubbleAt(cell)) k._ferro = (k._ferro || 0) + 1; };
+    const mk = this.moveKnight.bind(this); this.moveKnight = (k, cell) => { mk(k, cell); if (M.hasTrait('Ferrospikes') && C.smRubbleAt(cell) && !k._terrainFreeNow) k._ferro = (k._ferro || 0) + 1; };
     for (const fn of ['knightMove', 'knockback', 'pushback']) { const orig = this[fn].bind(this); this[fn] = async (...a) => { const r = await orig(...a); await C.smFerro(); return r; }; }
   },
   /** Ferrospikes: Vigor loss for the Rubble spaces a Knight entered since the last check. */
@@ -45,7 +45,9 @@ export const MasonMixin = {
     const side = best.length > 1 ? await this.ask({ type: 'pick', text: 'Magnetite Reinforcement: 기사가 가장 많은 면 (동률)', options: best.map(s => ({ label: `${SIDE_KO[s]} (${cnt[s]}명)`, value: s })) }) || best[0] : best[0];
     this.sm.nodes[side] += 2; this.say(`Magnetite Reinforcement: ${SIDE_KO[side]} 면 Ward Node +2 (${this.smNodeText()})`, 'bp');
   },
-  smImpervious(A) { if (!this.monster.hasTrait('Impervious Armor') || this.sm.flags.ignoreNodes || !this.sm.side) return false; if (this.sm.nodes[this.sm.side] >= 2) { this.say(`Impervious Armor: ${SIDE_KO[this.sm.side]} 면 Armor 토큰 ${this.sm.nodes[this.sm.side]}개 → 부상시킬 수 없음`, 'bp'); return true; } return false; },
+  /** Armor tokens on the attacked side, minus the ones the Attack ignores (they are treated as not being there). */
+  smSideTokens() { const n = this.sm.side ? this.sm.nodes[this.sm.side] || 0 : 0; const ig = (this.lastAttack && this.lastAttack.ignoreArmor) || 0; return Math.max(0, n - ig); },
+  smImpervious(A) { if (!this.monster.hasTrait('Impervious Armor') || this.sm.flags.ignoreNodes || !this.sm.side) return false; if (this.smSideTokens() >= 2) { this.say(`Impervious Armor: ${SIDE_KO[this.sm.side]} 면 Armor 토큰 ${this.sm.nodes[this.sm.side]}개 → 부상시킬 수 없음`, 'bp'); return true; } return false; },
   // ---------- Rubble ----------
   smRubbleAt(c) { const t = this.board.terrainAt(c); return !!(t && t.id === 'rubble'); },
   smTileCells(o) { return [o, { c: o.c + 1, r: o.r }, { c: o.c, r: o.r + 1 }, { c: o.c + 1, r: o.r + 1 }]; },

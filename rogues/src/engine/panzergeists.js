@@ -38,6 +38,7 @@ export const PanzerMixin = {
   pzClosestPiles(from) { const ps = this.pzPiles(); if (!ps.length) return []; const m = Math.min(...ps.map(p => man(p.cell, from))); return ps.filter(p => man(p.cell, from) === m); },
   /** Move a Geist up to `max` spaces toward / onto the closest Armor token (Superior Bypass). */
   async pzToToken(mob, max = 99) {
+    if (mob && mob.slowToken) { mob.slowToken = false; max = Math.min(max, 3); this.say(`임시 Speed 토큰: Mob #${mob.n}의 이번 이동은 3칸에서 멈춤 (토큰 버림)`, 'tech'); }
     const B = this.board, M = this.monster; if (!mob || !M.mobs.includes(mob) || !mob.cells.length) return; const from = mob.cells[0]; if (this.icdPiles().has(B.key(from))) { this.icdPickup(mob, from); return; }
     const cand = this.pzClosestPiles(from); if (!cand.length) { this.say(`Mob #${mob.n}: 보드에 Armor 토큰 없음`); return; }
     let p = cand[0]; if (cand.length > 1) { const c = await this.ask({ type: 'move', text: `Mob #${mob.n}: 가장 가까운 Armor 토큰 (동률)`, cells: cand.map(x => x.cell), options: cand.map(x => ({ label: B.label(x.cell), value: x.cell })) }); p = cand.find(x => cellEq(x.cell, c)) || cand[0]; }
@@ -54,7 +55,7 @@ export const PanzerMixin = {
     for (const g of k.gear) if (g.rustBane && !g.discarded) n += 0;
     if (!n) { this.say(`${k.name}: Rust — Metal Gear 없음`); return; } this.say(`${k.name}: Rust — Metal Gear ${n}장에 Bane 토큰 (Rust 획득, Metal 상실)`, 'bp'); await this.fx.runKnightOp({ op: 'bane', n }, k, {});
   },
-  pzToHit(k, A) { const mob = A && A.mob; if (!mob || mob.armor > 0 || !this.monster.hasTrait('All Things Die') || !A.weapon) return 0; const t = this.fx.gearTraits(k, A.weapon); if (t.some(x => ['Rust', 'Ethereal', 'Holy'].includes(x))) return 0; this.say(`All Things Die: Armor 토큰 없는 Geist, ${A.weapon.name}에 Rust/Ethereal/Holy 없음 → To Hit +4`, 'bp'); return 4; },
+  pzToHit(k, A) { const mob = A && A.mob; if (!mob || Math.max(0, (mob.armor || 0) - ((A && A.ignoreArmor) || 0)) > 0 || !this.monster.hasTrait('All Things Die') || !A.weapon) return 0; const t = this.fx.gearTraits(k, A.weapon); if (t.some(x => ['Rust', 'Ethereal', 'Holy'].includes(x))) return 0; this.say(`All Things Die: Armor 토큰 없는 Geist, ${A.weapon.name}에 Rust/Ethereal/Holy 없음 → To Hit +4`, 'bp'); return 4; },
   pzDice(mob) { let n = 0; if (this.monster.hasTrait('Panzer Cascade') && mob) n += mob.armor || 0; n += this.mobAura('pzDie'); return n; },
   pzPotential(k, A, dice, potential) { if (!this.monster.hasTrait('Muffled Potential') || !A.weapon || !this.fx.gearTraits(k, A.weapon).includes('Rust')) return potential; const x = dice.filter(d => (d.face.T || 0) > 0).length; if (x) this.say(`Muffled Potential: Rust 무기 — Power die ${x}개에서 Potential 1씩 무시`, 'bp'); return Math.max(0, potential - x); },
   pzCannotWound(A) { const cw = A.bp && A.bp.ops && A.bp.ops.cannotWound; if (!cw) return false; const n = this.monster.mobs.filter(m => m.card.level === 1).length; if (n >= cw.bp1OnTrack) { this.say(`${A.bp.name}: Mob track에 BP 1 카드 ${n}장 (4장 이상) → 부상시킬 수 없음`, 'bp'); return true; } return false; },

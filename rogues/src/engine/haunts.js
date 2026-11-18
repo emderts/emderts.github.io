@@ -16,6 +16,7 @@ export const HauntsMixin = {
   // ---------- movement (Superior Bypass + Intangible) ----------
   /** Path through miniatures (and Terrain if Intangible); the end space must be free. Returns the steps taken. */
   async bypassMoveToward(mob, target, max = Infinity) {
+    if (mob && mob.slowToken) { mob.slowToken = false; max = Math.min(max, 3); this.say(`임시 Speed 토큰: Mob #${mob.n}의 이번 이동은 3칸에서 멈춤 (토큰 버림)`, 'tech'); }
     const B = this.board; const start = mob.cells[0]; const pass = c => B.inside(c) && (this.intangible || !(B.terrainAt(c) && B.terrainAt(c).obstacle));
     const dist = new Map([[B.key(start), 0]]); const prev = new Map(); let fr = [start];
     while (fr.length) { const nx = []; for (const c of fr) for (const n of B.neighbors(c)) { const k = B.key(n); if (dist.has(k) || !pass(n)) continue; dist.set(k, dist.get(B.key(c)) + 1); prev.set(k, c); nx.push(n); } fr = nx; }
