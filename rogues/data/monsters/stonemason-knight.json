@@ -261,9 +261,7 @@
     ],
     "afterTag": "AFTER ATTACK",
     "after": "Ruin.",
-    "unclear": [
-     "Heat 3+ 리본의 숫자(-2/-3 [V]) 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "targeting",
      "After Attack 앞"
@@ -351,9 +349,7 @@
     ],
     "afterTag": "AFTER ATTACK",
     "after": "Ruin.",
-    "unclear": [
-     "Heat 3+ 리본의 숫자(-2/-3 [V]) 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "targeting",
      "효과 사이: 'Exhaust 1 Gear card with the Metal Trait.' 뒤",
@@ -893,7 +889,15 @@
         0
        ],
        [
+        2,
+        0
+       ],
+       [
         1,
+        1
+       ],
+       [
+        2,
         1
        ],
        [
@@ -1001,8 +1005,7 @@
     "afterTag": null,
     "after": null,
     "unclear": [
-     "Zone (카드 도식에서 읽음, ▶=Stonemason 정면 방향): Stonemason 주변 마름모 20칸 [가로 2·4·6·6·4·2칸, 가운데 2x2가 Stonemason]. 구현됨 — 판독 확인만 필요",
-     "Heat 3+ 리본의 숫자(-2/-3 [V]) 작은 글씨 — 확인 필요"
+     "Zone (카드 도식에서 읽음, ▶=Stonemason 정면 방향): Stonemason 주변 마름모 20칸 [가로 2·4·6·6·4·2칸, 가운데 2x2가 Stonemason]. 구현됨 — 판독 확인만 필요"
     ],
     "reactWindows": [
      "targeting",
@@ -1178,9 +1181,7 @@
     ],
     "afterTag": "AFTER ATTACK",
     "after": "Ruin.",
-    "unclear": [
-     "Heat 3+ 리본의 숫자(-2/-3 [V]) 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "targeting"
     ],
@@ -1267,9 +1268,7 @@
     ],
     "afterTag": "AFTER ATTACK",
     "after": "Ruin.",
-    "unclear": [
-     "Heat 3+ 리본의 숫자(-2/-3 [V]) 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "targeting",
      "After Attack 앞"
@@ -1429,26 +1428,6 @@
         0
        ],
        [
-        9,
-        0
-       ],
-       [
-        10,
-        0
-       ],
-       [
-        11,
-        0
-       ],
-       [
-        12,
-        0
-       ],
-       [
-        13,
-        0
-       ],
-       [
         1,
         1
        ],
@@ -1478,26 +1457,6 @@
        ],
        [
         8,
-        1
-       ],
-       [
-        9,
-        1
-       ],
-       [
-        10,
-        1
-       ],
-       [
-        11,
-        1
-       ],
-       [
-        12,
-        1
-       ],
-       [
-        13,
         1
        ]
       ],
@@ -1534,9 +1493,7 @@
     ],
     "afterTag": "AFTER ATTACK",
     "after": "Place a 2x2 Rubble Terrain tile under the Target.",
-    "unclear": [
-     "Heat 3+ 리본의 숫자(-2/-3 [V]) 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "targeting"
     ],
@@ -1754,8 +1711,7 @@
     "afterTag": null,
     "after": null,
     "unclear": [
-     "Zone (카드 도식에서 읽음, ▶=Stonemason 정면 방향): Stonemason 주변 큰 마름모 36칸 [가로 2·4·6·8·8·6·4·2칸, 가운데 2x2가 Stonemason]. 구현됨 — 판독 확인만 필요",
-     "Heat 3+ 리본의 숫자(-2/-3 [V]) 작은 글씨 — 확인 필요"
+     "Zone (카드 도식에서 읽음, ▶=Stonemason 정면 방향): Stonemason 주변 큰 마름모 36칸 [가로 2·4·6·8·8·6·4·2칸, 가운데 2x2가 Stonemason]. 구현됨 — 판독 확인만 필요"
     ],
     "reactWindows": [
      "targeting"
@@ -2074,9 +2030,7 @@
      "instinct": null,
      "critical": "Unexhaust 1 Gear [Gear] card with the Metal Trait. The Stonemason Knight gains a permanent negative To Hit [To Hit] token."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 5,
@@ -2132,9 +2086,7 @@
      "instinct": "Exhaust 1 Gear [Gear] card with the Metal Trait.",
      "critical": "Another Knight may immediately Hug 1 and perform a Bonus Attack!"
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 6,
@@ -2160,7 +2112,8 @@
       {
        "op": "smMoveBonus",
        "who": "other",
-       "n": 1
+       "n": 1,
+       "hug": true
       }
      ]
     }
@@ -2182,9 +2135,7 @@
      "instinct": null,
      "critical": "Do not place an Armor [Armor] token after this Attack. You may discard 1 Armor [Armor] token from a chosen Ward Node."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 6,
@@ -2236,9 +2187,7 @@
      "instinct": null,
      "critical": "You may perform a Bonus Attack!"
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "wound"
     ],
@@ -2291,9 +2240,7 @@
      "instinct": null,
      "critical": "Gain +1 [P]. Leave 2 additional Opening and/or Break tokens in the Knight Pool."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "wound"
     ],
@@ -2354,9 +2301,7 @@
      "instinct": null,
      "critical": "Unexhaust 1 Gear [Gear] card with the Metal Trait. Reset [H]."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 4,
@@ -2412,9 +2357,7 @@
      "instinct": null,
      "critical": "The Stonemason Knight gains a permanent negative Precision token."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 7,
@@ -2441,8 +2384,8 @@
      "instinct": null,
      "critical": [
       {
-       "op": "smNote",
-       "text": "Ornate Visor Critical: Stonemason Knight 영구 음수 Precision 토큰 — 효과 미확인, 미구현"
+       "op": "monsterNegPrecision",
+       "permanent": true
       }
      ]
     }
@@ -2464,9 +2407,7 @@
      "instinct": null,
      "critical": "Reposition 2. You may perform a Bonus Attack!"
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 8,
@@ -2517,9 +2458,7 @@
      "instinct": null,
      "critical": "Discard all Armor [Armor] tokens from Ward Nodes. Until the end of Knight Round, the Stonemason Knight cannot gain any Armor [Armor] tokens."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 8,
@@ -2580,9 +2519,7 @@
      "instinct": null,
      "critical": "Deal an additional Single Wound!"
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 7,
@@ -2641,9 +2578,7 @@
      "instinct": null,
      "critical": "Until the end of Clash, you may ignore Gear [Gear] exhaust effects on AI cards."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "fail"
     ],
@@ -2695,9 +2630,7 @@
      "instinct": null,
      "critical": "Reposition 2. You may perform a Bonus Attack!"
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 6,
@@ -2753,9 +2686,7 @@
      "instinct": "Place a 2x2 Rubble Terrain tile on each side of and adjacent to Stonemason Knight.",
      "critical": "Until the end of Clash ignore the Ruin Trait and any Rubble Terrain tile placement."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 8,
@@ -2800,9 +2731,7 @@
      "instinct": null,
      "critical": "Until the end of Clash you may ignore Armor [Armor] tokens on Ward Nodes when performing an Attack."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 8,
@@ -2857,9 +2786,7 @@
      "instinct": "Bane 2.",
      "critical": "Disable the Stonemason’s Bane X keyword."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 9,
@@ -2905,9 +2832,7 @@
      "instinct": null,
      "critical": "Until the end of Clash, all Knights may ignore Gated Effects. You may perform a Bonus Attack, ignoring the Lodestone Armor Trait!"
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 7,
@@ -2963,9 +2888,7 @@
      "instinct": "Perform Signature against the Attacker.",
      "critical": "Devote."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 7,
@@ -3015,9 +2938,7 @@
      "instinct": "Discard 1 Gear [Gear] card with the Metal Trait. Gain +2 [H].",
      "critical": "The Stonemason Knight dies! See 5442."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 9,
@@ -3225,21 +3146,22 @@
    }
   ],
   "notes": [
-   "지형·시작 칸은 코덱스 도식에서 읽음 [해석, 확인 필요]"
+   "지형·시작 칸은 코덱스 도식에서 읽음 (소유자 확인 2026-11-18)"
   ]
  },
- "zoneNote": "Zone 도식(카드에서 읽음): Backhand Swat = 정면 2칸; Flattening Swipe = 정면 2x2 + 양 옆 대각 2칸씩; Hammer Launch = 정면 2줄 x 4칸; Stone Smite = 정면 2칸 + 그 바깥 대각 2칸; Mass Driver = 정면 2줄 끝까지; Toppling Sweep = 주변 마름모(가로 2·4·6·6·4·2칸); Force Discharge = 더 큰 마름모(2·4·6·8·8·6·4·2칸) [해석, 확인 필요]",
+ "zoneNote": "Zone 도식(카드에서 읽음): Backhand Swat = 정면 2칸; Flattening Swipe = 정면 2x2 + 양 옆 대각 2칸씩; Hammer Launch = 정면 2줄 x 4칸; Stone Smite = 정면 2x2 + 바깥 대각 2칸; Mass Driver = 정면 2x8; Toppling Sweep = 주변 마름모(가로 2·4·6·6·4·2칸); Force Discharge = 더 큰 마름모(2·4·6·8·8·6·4·2칸) (소유자 확인 2026-11-18)",
  "rulings": [
-  "Zone 도식(카드에서 읽음): Backhand Swat = 정면 2칸; Flattening Swipe = 정면 2x2 + 양 옆 대각 2칸씩; Hammer Launch = 정면 2줄 x 4칸; Stone Smite = 정면 2칸 + 그 바깥 대각 2칸; Mass Driver = 정면 2줄 끝까지; Toppling Sweep = 주변 마름모(가로 2·4·6·6·4·2칸); Force Discharge = 더 큰 마름모(2·4·6·8·8·6·4·2칸) [해석, 확인 필요]",
-  "Lodestone Armor: 기사가 공격을 시작한 위치 기준으로 면(앞/뒤/좌/우)을 정함. 대각선 위치는 앞/뒤 우선 [해석, 확인 필요]. 그 면에 Armor 토큰이 있으면 AT +1, 없으면 공격을 모두 해결한 뒤 그 면 Ward Node에 토큰 1개. 네 번째 Node에 놓게 되면 대신 모든 Node에서 1개씩 버리고 Zone 2의 기사들 Knockback 2, 이번 Round 끝까지 토큰 획득 불가",
-  "Heat 3+ \"THREE OR MORE HITS, LOSE -N [V]\": 3회 이상 명중 시 추가로 -N (예: 1회 -3 / 2회+ -5 / 게이트·3회+ → -5 -2) [해석, 확인 필요]",
+  "Zone 도식(카드에서 읽음): Backhand Swat = 정면 2칸; Flattening Swipe = 정면 2x2 + 양 옆 대각 2칸씩; Hammer Launch = 정면 2줄 x 4칸; Stone Smite = 정면 2x2 + 바깥 대각 2칸; Mass Driver = 정면 2x8; Toppling Sweep = 주변 마름모(가로 2·4·6·6·4·2칸); Force Discharge = 더 큰 마름모(2·4·6·8·8·6·4·2칸) (소유자 확인 2026-11-18)",
+  "Lodestone Armor: 기사가 공격을 시작한 위치 기준으로 면(앞/뒤/좌/우)을 정함. 대각선 위치는 맞닿은 두 면 중 플레이어가 선택 (소유자 확인 2026-11-18). 그 면에 Armor 토큰이 있으면 AT +1, 없으면 공격을 모두 해결한 뒤 그 면 Ward Node에 토큰 1개. 네 번째 Node에 놓게 되면 대신 모든 Node에서 1개씩 버리고 Zone 2의 기사들 Knockback 2, 이번 Round 끝까지 토큰 획득 불가",
+  "Heat 3+ \"THREE OR MORE HITS, LOSE -N [V]\": 3회 이상 명중 시 추가로 -N (예: 1회 -3 / 2회+ -5 / 게이트·3회+ → -5 -2) (소유자 확인 2026-11-18)",
   "Ruin: Stonemason 정면에 인접한 2x2. 보드 밖이면 놓지 않음. Rubble을 기사 밑에 놓을 때: 그 기사 칸을 포함하는 2x2 중 Stonemason에 가장 가까운 위치(Stonemason과 겹치지 않게). 기존 Rubble 타일과 겹치면 그 타일을 치우고 새 타일에 가장 많은 변으로 인접하게 다시 놓음(동률이면 선택) (Architect of Destruction)",
   "Move Lateral (Hammer Launch, Mass Driver): 가로 또는 세로 직선으로 최단 이동해 대상이 Zone 안에 들어오는 칸으로 이동 (Rulebook)",
   "March of Devastation: 가장 가까운 기사부터 한 명씩 Move & Attack",
   "Penetrate (확장 Codex p.9): \"During Armor Roll, ignore one of your Armor dice of the highest tier.\" — 그 공격의 Armor Roll에서 가장 높은 tier(white > black > red) 주사위 1개를 굴리지 않음 (소유자 확인 2026-11-18)",
-  "Ornate Visor Critical(영구 음수 Precision 토큰), Sliver of Faith Critical(Devote): 미구현",
-  "Hug 1 / Reposition 2 + Bonus Attack: 해당 기사가 최대 1/2칸 이동 후 Bonus Attack으로 처리 [해석, 확인 필요]",
-  "Ferrospikes: Rubble 칸으로 이동해 들어갈 때마다 Vigor -1 [해석, 확인 필요]",
+  "Ornate Visor Critical(영구 음수 Precision 토큰): 이후 모든 Monster Attack의 Difficulty -1 — Ratwolves의 임시 토큰(다음 Monster Attack Difficulty -1 후 버림, 소유자 확인 2026-11-18)과 같은 효과가 계속되는 것으로 처리 [해석, 확인 필요]",
+  "Sliver of Faith Critical(Devote): 미구현",
+  "Reposition 2 + Bonus Attack: 최대 2칸 이동 후 Bonus Attack. Hug 1 + Bonus Attack(Sturdy Backplate): Hug 정의대로 — 몬스터에 인접해 있을 때만, 인접을 유지하며 최대 1칸 (소유자 확인 2026-11-18)",
+  "Ferrospikes: Rubble 칸으로 들어갈 때마다 Vigor -1 — 스스로 이동, 밀리거나 끌려감, 발밑에 Rubble이 놓임 모두 적용 (소유자 확인 2026-11-18)",
   "Magnetite Reinforcement: 기사가 가장 많이 있는 면의 Node에 토큰 2개 (동률이면 선택)"
  ]
 }

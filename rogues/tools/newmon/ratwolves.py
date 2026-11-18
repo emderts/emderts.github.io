@@ -42,4 +42,4 @@ bp = [
  R('Alpha Ratwolf', 3, 1, 5, (4, 'Power 1'), wound='Activate 1.', fail='Escalate AI.', critical='You may perform a Bonus Attack!', whileRevealed='Increase [V] loss caused by each Monster Attack by 1. When Alpha Ratwolf dies: You win!'),
 ]
 write('ratwolves', dict(sheet=sheet, ai=ai, bp=bp, routine=dict(name='Chittering Pack', text='Each Knight gains the Fear Condition card and suffers Poison 2.'), signature=None,
- _notes=['AI 10장, BP 9장', 'Lone Knight = 3칸 이내에 다른 기사 없음 (참고 시트 v1.2)', 'Parasitize, Swarm 키워드 정의 확인 필요']))
+ _notes=['AI 10장, BP 9장', 'Lone Knight = 3칸 이내에 다른 기사 없음 (참고 시트 v1.2)']))

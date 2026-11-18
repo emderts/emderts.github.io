@@ -15,7 +15,7 @@ RUIN = {'op': 'smRuin'}; PEN = {'op': 'penetrate'}
 ON = lambda *ops: [{'op': 'smOnHit', 'then': list(ops)}]
 G3 = lambda n: [{'op': 'smThree', 'stat': 'heat', 'gte': 3, 'n': n}]
 CF = ['Closest Knight in front', 'Closest Knight in sight']; CN = ['Closest Knight not in front', 'Closest Knight in sight']
-Z = {'Backhand Swat': ['>>R', '>>R'], 'Flattening Swipe': ['.RR.', '>>RR', '>>RR', '.RR.'], 'Hammer Launch': ['>>RRRR', '>>RRRR'], 'Stone Smite': ['...R', '>>R.', '>>R.', '...R'], 'Mass Driver': ['>>' + 'R' * 13, '>>' + 'R' * 13],
+Z = {'Backhand Swat': ['>>R', '>>R'], 'Flattening Swipe': ['.RR.', '>>RR', '>>RR', '.RR.'], 'Hammer Launch': ['>>RRRR', '>>RRRR'], 'Stone Smite': ['...R', '>>RR', '>>RR', '...R'], 'Mass Driver': ['>>' + 'R' * 8, '>>' + 'R' * 8],
      'Toppling Sweep': ['..RR..', '.RRRR.', 'RR^^RR', 'RR^^RR', '.RRRR.', '..RR..'], 'Force Discharge': ['...RR...', '..RRRR..', '.RRRRRR.', 'RRR^^RRR', 'RRR^^RRR', '.RRRRRR.', '..RRRR..', '...RR...']}
 AI = {
  'Kick!': dict(effects=ON(BANE(1), V(2), KB(4))),
@@ -42,12 +42,12 @@ SIGA = {'op': 'signatureAgainstAttacker'}; RUB = {'op': 'smRubbleUnder', 'who': 
 BA = {'op': 'bonusAttack', 'who': 'self', 'optional': True}; REPO = {'op': 'smMoveBonus', 'who': 'self', 'n': 2}
 BP = {
  'Stone Greaves': dict(wound=[RUB], fail=[SIGA], critical=[UNEX, {'op': 'monsterModifier', 'stat': 'toHit', 'n': -1}]),
- 'Sturdy Backplate': dict(instinct=[EX1], critical=[{'op': 'smMoveBonus', 'who': 'other', 'n': 1}]),
+ 'Sturdy Backplate': dict(instinct=[EX1], critical=[{'op': 'smMoveBonus', 'who': 'other', 'n': 1, 'hug': True}]),
  'Hollow Plackart': dict(wound=[KB(4)], fail=[SIGA], critical=[{'op': 'smNoToken'}, {'op': 'smDiscardNode'}]),
  'Vambraces of the Builders': dict(wound=[KD], fail=[BANE(1)], critical=[BA]),
  'Layered Tassets': dict(wound=[KB(4)], fail=[RUB], critical=[{'op': 'gainPassion', 'n': 1}, {'op': 'leaveTokens', 'n': 2, 'tokens': ['opening', 'break']}]),
  'Waist Gap': dict(wound=[EX1], fail=[BANE(1)], critical=[UNEX, {'op': 'resetHeat'}]),
- 'Ornate Visor': dict(wound=[BANE(1)], fail=[SIGA], critical=[{'op': 'smNote', 'text': 'Ornate Visor Critical: Stonemason Knight 영구 음수 Precision 토큰 — 효과 미확인, 미구현'}]),
+ 'Ornate Visor': dict(wound=[BANE(1)], fail=[SIGA], critical=[{'op': 'monsterNegPrecision', 'permanent': True}]),
  'Gauntlets of Ruin': dict(wound=[SIGA], fail=[RUB], critical=[REPO]),
  'Lodestone Chestplate': dict(wound=[EX1, HEAT(1)], fail=[DI1, HEAT(2)], critical=[{'op': 'smClearNodes', 'lock': 'knightRound'}]),
  'Carved Pauldrons': dict(wound=[EX1, HEAT(1)], fail=[BANE(1), KB(5)], critical=[{'op': 'additionalSingleWound'}]),
@@ -82,18 +82,19 @@ d = {
            'routine': {**raw['routine'], 'type': 'routine', 'ops': [{'op': 'smRoutine'}]}},
  'sm': True,
  'clashSetup': {'_source': 'Expansion Codex p.56–57 (Stonemason Knight Clash)', 'steps': CS['steps'], 'requiredTiles': CS['requiredTiles'], 'monsterCells': CS['monsterCells'], 'facing': 'S',
-  'knightStart': CS['knightStart'], 'terrain': CS['terrain'], 'notes': ['지형·시작 칸은 코덱스 도식에서 읽음 [해석, 확인 필요]']},
- 'zoneNote': 'Zone 도식(카드에서 읽음): Backhand Swat = 정면 2칸; Flattening Swipe = 정면 2x2 + 양 옆 대각 2칸씩; Hammer Launch = 정면 2줄 x 4칸; Stone Smite = 정면 2칸 + 그 바깥 대각 2칸; Mass Driver = 정면 2줄 끝까지; Toppling Sweep = 주변 마름모(가로 2·4·6·6·4·2칸); Force Discharge = 더 큰 마름모(2·4·6·8·8·6·4·2칸) [해석, 확인 필요]',
+  'knightStart': CS['knightStart'], 'terrain': CS['terrain'], 'notes': ['지형·시작 칸은 코덱스 도식에서 읽음 (소유자 확인 2026-11-18)']},
+ 'zoneNote': 'Zone 도식(카드에서 읽음): Backhand Swat = 정면 2칸; Flattening Swipe = 정면 2x2 + 양 옆 대각 2칸씩; Hammer Launch = 정면 2줄 x 4칸; Stone Smite = 정면 2x2 + 바깥 대각 2칸; Mass Driver = 정면 2x8; Toppling Sweep = 주변 마름모(가로 2·4·6·6·4·2칸); Force Discharge = 더 큰 마름모(2·4·6·8·8·6·4·2칸) (소유자 확인 2026-11-18)',
  'rulings': [
-  'Lodestone Armor: 기사가 공격을 시작한 위치 기준으로 면(앞/뒤/좌/우)을 정함. 대각선 위치는 앞/뒤 우선 [해석, 확인 필요]. 그 면에 Armor 토큰이 있으면 AT +1, 없으면 공격을 모두 해결한 뒤 그 면 Ward Node에 토큰 1개. 네 번째 Node에 놓게 되면 대신 모든 Node에서 1개씩 버리고 Zone 2의 기사들 Knockback 2, 이번 Round 끝까지 토큰 획득 불가',
-  'Heat 3+ "THREE OR MORE HITS, LOSE -N [V]": 3회 이상 명중 시 추가로 -N (예: 1회 -3 / 2회+ -5 / 게이트·3회+ → -5 -2) [해석, 확인 필요]',
+  'Lodestone Armor: 기사가 공격을 시작한 위치 기준으로 면(앞/뒤/좌/우)을 정함. 대각선 위치는 맞닿은 두 면 중 플레이어가 선택 (소유자 확인 2026-11-18). 그 면에 Armor 토큰이 있으면 AT +1, 없으면 공격을 모두 해결한 뒤 그 면 Ward Node에 토큰 1개. 네 번째 Node에 놓게 되면 대신 모든 Node에서 1개씩 버리고 Zone 2의 기사들 Knockback 2, 이번 Round 끝까지 토큰 획득 불가',
+  'Heat 3+ "THREE OR MORE HITS, LOSE -N [V]": 3회 이상 명중 시 추가로 -N (예: 1회 -3 / 2회+ -5 / 게이트·3회+ → -5 -2) (소유자 확인 2026-11-18)',
   'Ruin: Stonemason 정면에 인접한 2x2. 보드 밖이면 놓지 않음. Rubble을 기사 밑에 놓을 때: 그 기사 칸을 포함하는 2x2 중 Stonemason에 가장 가까운 위치(Stonemason과 겹치지 않게). 기존 Rubble 타일과 겹치면 그 타일을 치우고 새 타일에 가장 많은 변으로 인접하게 다시 놓음(동률이면 선택) (Architect of Destruction)',
   'Move Lateral (Hammer Launch, Mass Driver): 가로 또는 세로 직선으로 최단 이동해 대상이 Zone 안에 들어오는 칸으로 이동 (Rulebook)',
   'March of Devastation: 가장 가까운 기사부터 한 명씩 Move & Attack',
   'Penetrate (확장 Codex p.9): "During Armor Roll, ignore one of your Armor dice of the highest tier." — 그 공격의 Armor Roll에서 가장 높은 tier(white > black > red) 주사위 1개를 굴리지 않음 (소유자 확인 2026-11-18)',
-  'Ornate Visor Critical(영구 음수 Precision 토큰), Sliver of Faith Critical(Devote): 미구현',
-  'Hug 1 / Reposition 2 + Bonus Attack: 해당 기사가 최대 1/2칸 이동 후 Bonus Attack으로 처리 [해석, 확인 필요]',
-  'Ferrospikes: Rubble 칸으로 이동해 들어갈 때마다 Vigor -1 [해석, 확인 필요]',
+  'Ornate Visor Critical(영구 음수 Precision 토큰): 이후 모든 Monster Attack의 Difficulty -1 — Ratwolves의 임시 토큰(다음 Monster Attack Difficulty -1 후 버림, 소유자 확인 2026-11-18)과 같은 효과가 계속되는 것으로 처리 [해석, 확인 필요]',
+  'Sliver of Faith Critical(Devote): 미구현',
+  'Reposition 2 + Bonus Attack: 최대 2칸 이동 후 Bonus Attack. Hug 1 + Bonus Attack(Sturdy Backplate): Hug 정의대로 — 몬스터에 인접해 있을 때만, 인접을 유지하며 최대 1칸 (소유자 확인 2026-11-18)',
+  'Ferrospikes: Rubble 칸으로 들어갈 때마다 Vigor -1 — 스스로 이동, 밀리거나 끌려감, 발밑에 Rubble이 놓임 모두 적용 (소유자 확인 2026-11-18)',
   'Magnetite Reinforcement: 기사가 가장 많이 있는 면의 Node에 토큰 2개 (동률이면 선택)',
  ],
 }

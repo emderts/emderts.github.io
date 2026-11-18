@@ -3,7 +3,7 @@ CF = ['Closest Knight in front', 'Closest Knight in sight']; CN = ['Closest Knig
 MA = 'MOVE & ATTACK'; EX = '[Peril]. Exhaust 1 Gear [Gear] card with the Metal Trait.'
 G = lambda t: [dict(stat='Heat', gte=3, effect=t, where='effect')]
 T35 = ['One hit, lose -3 [V].', 'Two or more hits, lose -5 [V].']; SIG = 'Perform Signature against the Attacker.'; RUB = 'Place a 2x2 Rubble Terrain tile under the Attacker.'
-ZU = ['@ZONE']; GU = ['Heat 3+ 리본의 숫자(-2/-3 [V]) 작은 글씨 — 확인 필요']
+ZU = ['@ZONE']; GU = []
 sheet = dict(name='Stonemason Knight', code='26B1077', traitsLine=['Vassal', 'Knight', 'Construct', 'Stone'], footprint='2x2, rear = the two cells behind (R R), four Ward Nodes (one per side)', basicAbilities=['Unavoidable Knockback 5', 'Ignore Difficult Terrain'],
  levels={1: L('6+', 8, 2, ['AI'], ['Lodestone Armor', 'Architect of Destruction', 'Ruin']), 2: L('7+', 10, 4, ['AI'], ['Uneven Footing', 'Buried Alive'], at=1, vig=2),
          3: L('8+', 10, 4, ['AI'], ['Magnetite Reinforcement', 'Impervious Armor'], esc=1, at=2, vig=3), 4: L('10+', 10, 4, ['AI'], ['Unwavering Devotion', 'Ferrospikes'], esc=1, at=3, vig=6)},
@@ -37,7 +37,7 @@ ai = [
  A('Force Discharge', 3, 'ZONE ATTACK', 3, 7, ['Zone'], 'ATTACK', ['One hit, lose -4 [V].', 'Two or more hits, lose -7 [V].', '[Peril]. Exhaust all Gear [Gear] cards with the Metal Trait. Pull 2.'], gates=G('THREE OR MORE HITS, LOSE -2 [V]'), unclear=ZU + GU),
  A('Pulverize', 3, 'ATTACK', 3, 8, CF, MA, ['One hit, lose -7 [V].', 'Two or more hits, lose -9 [V].', '[Peril]. Exhaust all Gear [Gear] cards with the Metal Trait.', 'Knockdown.'], 'Ruin.', gates=G('THREE OR MORE HITS, YOU DIE')),
 ]
-P = lambda n: (n, 'Power 1'); OU = ['Overcome 숫자 작은 글씨 — 확인 필요']
+P = lambda n: (n, 'Power 1'); OU = []
 EXM = 'Exhaust 1 Gear [Gear] card with the Metal Trait.'; DIS = 'Discard 1 Gear [Gear] card with the Metal Trait. Gain +2 [H].'
 bp = [
  B('Stone Greaves', 1, 5, P(3), wound=RUB, fail=SIG, critical='Unexhaust 1 Gear [Gear] card with the Metal Trait. The Stonemason Knight gains a permanent negative To Hit [To Hit] token.', unclear=OU),

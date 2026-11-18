@@ -41,4 +41,9 @@ const P = (c, l) => c.board.parse(l), L = (c, x) => c.board.label(x);
 { const c = mk(7); const k = c.knights[0]; const v0 = k.vigor; await c.smOp({ op: 'smHits', table: [3, 5] }, { target: k, hits: 3, gatesOn: [{ op: 'smThree', n: 2 }] }); ok(v0 - k.vigor >= 1 && v0 - k.vigor <= 7, `hit table with the Heat 3+ gate: 3 hits → -5 -2 before Armor (lost ${v0 - k.vigor})`); }
 { let done = 0, win = 0; for (let seed = 1; seed <= 12; seed++) for (const lv of [1, 2, 3, 4]) { if ((seed + lv) % 3) continue; const c = mk(seed * 13 + lv, lv); try { const r = await c.run(); done++; if (r === 'win') win++; } catch (e) { console.log('ERR', seed, lv, e.stack.split('\n').slice(0, 5).join(' | ')); fails++; } }
   ok(done === 16, `simulations finished: ${done} (wins ${win})`); }
+{ const ai = n => SM.cards.ai.find(x => x.name === n); ok(ai('Stone Smite').ops.zoneDiagram.red.length === 6 && ai('Mass Driver').ops.zoneDiagram.red.length === 16, 'Stone Smite = front 2x2 + 2 diagonals, Mass Driver = front 2x8');
+  const c = mk(61); const M = c.monster; const xs = M.cells.map(q => q.c), ys = M.cells.map(q => q.r); const diag = { c: Math.max(...xs) + 1, r: Math.max(...ys) + 1 }, str = { c: Math.max(...xs) + 1, r: Math.max(...ys) };
+  ok(c.smSideOptions(diag).length === 2 && c.smSideOptions(str).length === 1, 'Lodestone Armor: a diagonal position may be either side (player choice)');
+  c.monNegPrecTemp = 0; await c.fx.runMonsterOp({ op: 'monsterNegPrecision' }, {}); await c.fx.runMonsterOp({ op: 'monsterNegPrecision', permanent: true }, {}); ok(c.monNegPrecTemp === 1 && c.monNegPrecPerm === 1, 'negative Precision tokens on the Monster (temporary / permanent)');
+  ok(SM.cards.bp.find(x => x.name === 'Sturdy Backplate').ops.critical[0].hug === true, 'Sturdy Backplate Critical uses Hug'); }
 console.log(fails ? `FAIL (${fails})` : 'ALL PASS (stonemason knight)'); process.exit(fails ? 1 : 0);

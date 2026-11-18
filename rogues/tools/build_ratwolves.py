@@ -29,7 +29,7 @@ BP = {
  ('Ratwolf', 'leftmost'): dict(wound=[{'op': 'revealBP', 'side': 'leftmost'}], fail=[SIGN], critical=[{'op': 'lookBP'}]),
  'Stalking Ratwolf': dict(wound=[{'op': 'ratPriority'}], instinct=[{'op': 'drawAIFor', 'which': 'furthest'}], critical=[{'op': 'bonusAttack', 'who': 'otherKnight', 'optional': True}], aura={'allGates': True}),
  'Giant Ratwolf': dict(wound=[{'op': 'ratMoveToken'}], fail=[SIGN], critical=[{'op': 'flipBPDown'}], aura={'atAll': 1}),
- 'Plague-Ridden Ratwolf': dict(whenRevealed=[{'op': 'armorToken', 'to': 'this'}, {'op': 'armorToken', 'to': 'otherMobsInZone', 'z': 2}], instinct=[{'op': 'parasitize', 'n': 1}], fail=[SIGN], critical=[{'op': 'ratNote', 'text': 'Plague-Ridden Ratwolf Critical: 임시 음수 Precision 토큰 — 미구현'}]),
+ 'Plague-Ridden Ratwolf': dict(whenRevealed=[{'op': 'armorToken', 'to': 'this'}, {'op': 'armorToken', 'to': 'otherMobsInZone', 'z': 2}], instinct=[{'op': 'parasitize', 'n': 1}], fail=[SIGN], critical=[{'op': 'monsterNegPrecision'}]),
  'Leader of the Pack': dict(wound=[{'op': 'drawAIFor', 'which': 'furthest'}], fail=[DRAG(3)], critical=[COND('Courage'), {'op': 'resetHeat'}], winOnDeath=True),
  'Alpha Ratwolf': dict(wound=[{'op': 'activate', 'n': 1}], fail=[{'op': 'escalateAI'}], critical=[{'op': 'bonusAttack', 'who': 'self', 'optional': True}], aura={'mobAttackVigor': 1}, winOnDeath=True),
 }
@@ -73,7 +73,8 @@ d = {
   '"If no other Knight in Zone N, Knockdown" (Dire Howl, Ratswarm): 대상 기사 주변 Zone N에 다른 기사가 없을 때로 처리 (소유자 확인 2026-11-18)',
   'Famished Ratwolf "All other Ratwolves gain Instinct: Poison 1": 공개된 Famished Ratwolf 한 장당, 다른 Ratwolf를 공격한 기사가 (Critical이 아니면) Poison 1',
   'Cursed Bite "If a Knight dies from this Attack, gain +1 [Curse]": 아이콘은 Curse (소유자 확인 2026-11-18) — 공용 Curse +1',
-  'Plague-Ridden Ratwolf Critical "temporary negative Precision token in the Knight Pool": 미구현',
+  'Plague-Ridden Ratwolf Critical "temporary negative Precision token in the Knight Pool": 다음 Monster Attack의 Difficulty -1, 그 뒤 버림 (소유자 확인 2026-11-18)',
+  'Parasitize X / Swarm X: Rulebook 키워드 정의대로 (Parasitize: Panzer Parasite Condition + Generic 토큰 X / Swarm: 인접한 다른 Monster마다 Vigor -X)',
  ],
 }
 json.dump(d, open(sys.argv[1], 'w'), ensure_ascii=False, indent=1); print('wrote', sys.argv[1], len(d['cards']['ai']), 'AI', len(d['cards']['bp']), 'BP')
