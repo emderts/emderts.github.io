@@ -284,7 +284,7 @@
    "afterTag": "AFTER FINAL ATTACK",
    "after": "Ruin.",
    "unclear": [
-    "Zone (카드 도식에서 읽음, ▶=Stonemason 정면 방향): 정면에 붙은 2칸 [▶▶■ / ▶▶■]. 구현됨 — 판독 확인만 필요"
+    "Zone (카드 도식에서 읽음, ▶=Stonemason 정면 방향): 정면에 붙은 2칸 [▶▶■ / ▶▶■] (소유자 확인 2026-11-18)"
    ],
    "reactWindows": [
     "targeting",
@@ -349,7 +349,7 @@
    "afterTag": null,
    "after": null,
    "unclear": [
-    "Zone (카드 도식에서 읽음, ▶=Stonemason 정면 방향): 정면 2x2 + 그 안쪽 열의 위·아래 대각 2칸씩 = 8칸 [·■■· / ▶▶■■ / ▶▶■■ / ·■■·]. 구현됨 — 판독 확인만 필요"
+    "Zone (카드 도식에서 읽음, ▶=Stonemason 정면 방향): 정면 2x2 + 그 안쪽 열의 위·아래 대각 2칸씩 = 8칸 [·■■· / ▶▶■■ / ▶▶■■ / ·■■·] (소유자 확인 2026-11-18)"
    ],
    "reactWindows": [
     "targeting"
@@ -387,7 +387,7 @@
    "afterTag": "AFTER FINAL ATTACK",
    "after": "Ruin.",
    "unclear": [
-    "Zone (카드 도식에서 읽음, ▶=Stonemason 정면 방향): 정면 2줄 x 4칸 = 8칸 [▶▶■■■■ / ▶▶■■■■]. 구현됨 — 판독 확인만 필요"
+    "Zone (카드 도식에서 읽음, ▶=Stonemason 정면 방향): 정면 2줄 x 4칸 = 8칸 [▶▶■■■■ / ▶▶■■■■] (소유자 확인 2026-11-18)"
    ],
    "reactWindows": [
     "targeting"
@@ -420,7 +420,7 @@
    "afterTag": "AFTER FINAL ATTACK",
    "after": "Ruin.",
    "unclear": [
-    "Zone (카드 도식에서 읽음, ▶=Stonemason 정면 방향): 정면 2칸 + 그 바깥 대각 2칸 = 4칸 [···■ / ▶▶■· / ▶▶■· / ···■]. 구현됨 — 판독 확인만 필요"
+    "Zone (카드 도식에서 읽음, ▶=Stonemason 정면 방향): 정면 2x2 + 바깥 대각 2칸 = 6칸 [···■ / ▶▶■■ / ▶▶■■ / ···■] (소유자 확인 2026-11-18)"
    ],
    "reactWindows": [
     "targeting",
@@ -492,7 +492,7 @@
    "afterTag": null,
    "after": null,
    "unclear": [
-    "Zone (카드 도식에서 읽음, ▶=Stonemason 정면 방향): Stonemason 주변 마름모 20칸 [가로 2·4·6·6·4·2칸, 가운데 2x2가 Stonemason]. 구현됨 — 판독 확인만 필요"
+    "Zone (카드 도식에서 읽음, ▶=Stonemason 정면 방향): Stonemason 주변 마름모 20칸 [가로 2·4·6·6·4·2칸, 가운데 2x2가 Stonemason] (소유자 확인 2026-11-18)"
    ],
    "reactWindows": [
     "targeting",
@@ -605,7 +605,7 @@
    "afterTag": "AFTER FINAL ATTACK",
    "after": "Ruin.",
    "unclear": [
-    "Zone (카드 도식에서 읽음, ▶=Stonemason 정면 방향): 정면 2줄이 보드 끝까지 [▶▶■■■■…]. 구현됨 — 판독 확인만 필요"
+    "Zone (카드 도식에서 읽음, ▶=Stonemason 정면 방향): 정면 2x8 = 16칸 [▶▶■■■■■■■■ / ▶▶■■■■■■■■] (소유자 확인 2026-11-18)"
    ],
    "reactWindows": [
     "targeting"
@@ -743,7 +743,7 @@
    "afterTag": null,
    "after": null,
    "unclear": [
-    "Zone (카드 도식에서 읽음, ▶=Stonemason 정면 방향): Stonemason 주변 큰 마름모 36칸 [가로 2·4·6·8·8·6·4·2칸, 가운데 2x2가 Stonemason]. 구현됨 — 판독 확인만 필요"
+    "Zone (카드 도식에서 읽음, ▶=Stonemason 정면 방향): Stonemason 주변 큰 마름모 36칸 [가로 2·4·6·8·8·6·4·2칸, 가운데 2x2가 Stonemason] (소유자 확인 2026-11-18)"
    ],
    "reactWindows": [
     "targeting"

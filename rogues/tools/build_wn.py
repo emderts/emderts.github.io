@@ -51,7 +51,7 @@ def bp(c, spec):
 missing = [c['name'] for c in raw['ai'] if c['name'] not in AI] + [c['name'] for c in raw['bp'] if c['name'] not in BP]; assert not missing, missing
 bps = {c['name']: bp(c, BP[c['name']]) for c in raw['bp']}
 levels = {l: {'toHit': v['toHit'], 'wounds': v['wounds'], 'activations': ['AI'], 'traitsAdd': v['traitsAdd'], 'bonuses': v['bonuses']} for l, v in S['levels'].items()}
-RUT_NOTE = 'Rut: 몬스터가 지나가면 뒤집혀 Swamp가 됨 (구현). 기사가 Rut 위에서 공격하면 무기가 Cumbersome — Cumbersome 키워드가 엔진에 아직 없어 미구현'
+RUT_NOTE = 'Rut: 몬스터가 지나가면 뒤집혀 Swamp가 됨. 공격 중 한 번이라도 Rut 위에 있으면 그 공격 동안 사용 무기가 Cumbersome을 얻음'
 d = {
  'id': 'winged-nightmare', 'name': 'Winged Nightmare', 'kind': 'mob', 'code': S.get('code'), 'traitsLine': S.get('traitsLine'),
  '_source': 'Monster Sheet, AI/BP/Trait cards, Signature, Routine — owner scans (readings owner-confirmed 2026-11-15); Clash Setup: Sunken Kingdom Codex p.38',
@@ -85,7 +85,7 @@ d = {
   '"moves to the closest empty Column tile" while already on a Column: she stays where she is (소유자 확인 2026-11-15)',
   '"MOVE TO THE CLOSEST CHASM & JUDGE" (Aria of Doom): moves onto the closest Chasm space, the judged Knights are those in Zone 4 of her ORIGINAL position (targeting comes first); Misleading Melody / Aria movement is per hit (1 / 2 spaces per hit), Knights stop adjacent to the Chasm (voluntary movement cannot enter it) (소유자 확인 2026-11-15)',
   'Owner reference sheet (WN v1.2, 2026-11-15): Superior Bypass lets her end a MOVE on Obstacle terrain (perches on Columns); on the Tail side "move to the closest empty Column" = move ADJACENT to it; climbing a Column is once per round per Knight; Flee turns her to face the board edge; pushed / dragged through a Column destroys it; Bloody Defiance keeps Superior Bypass; Overpower resolves before responses',
-  'Marble Forest "instead of a Reflex" is not implemented (free action only); ' + RUT_NOTE,
+  'Marble Forest: free action(라운드당 1회) 또는 Reflex 대신 인접한 Column 오르기; ' + RUT_NOTE,
  ],
 }
 json.dump(d, open(sys.argv[1], 'w'), ensure_ascii=False, indent=1)

@@ -60,8 +60,8 @@ bp = [
  B('Magnetite Core', 3, 9, P(5), instinct=DIS, critical='The Stonemason Knight dies! See 5442.', unclear=OU),
 ]
 ZD = {'Backhand Swat': '정면에 붙은 2칸 [▶▶■ / ▶▶■]', 'Flattening Swipe': '정면 2x2 + 그 안쪽 열의 위·아래 대각 2칸씩 = 8칸 [·■■· / ▶▶■■ / ▶▶■■ / ·■■·]', 'Hammer Launch': '정면 2줄 x 4칸 = 8칸 [▶▶■■■■ / ▶▶■■■■]',
-      'Stone Smite': '정면 2칸 + 그 바깥 대각 2칸 = 4칸 [···■ / ▶▶■· / ▶▶■· / ···■]', 'Toppling Sweep': 'Stonemason 주변 마름모 20칸 [가로 2·4·6·6·4·2칸, 가운데 2x2가 Stonemason]', 'Mass Driver': '정면 2줄이 보드 끝까지 [▶▶■■■■…]',
+      'Stone Smite': '정면 2x2 + 바깥 대각 2칸 = 6칸 [···■ / ▶▶■■ / ▶▶■■ / ···■]', 'Toppling Sweep': 'Stonemason 주변 마름모 20칸 [가로 2·4·6·6·4·2칸, 가운데 2x2가 Stonemason]', 'Mass Driver': '정면 2x8 = 16칸 [▶▶■■■■■■■■ / ▶▶■■■■■■■■]',
       'Force Discharge': 'Stonemason 주변 큰 마름모 36칸 [가로 2·4·6·8·8·6·4·2칸, 가운데 2x2가 Stonemason]'}
-for c in ai: c['unclear'] = ['Zone (카드 도식에서 읽음, ▶=Stonemason 정면 방향): ' + ZD[c['name']] + '. 구현됨 — 판독 확인만 필요' if u == '@ZONE' else u for u in c['unclear']]
+for c in ai: c['unclear'] = ['Zone (카드 도식에서 읽음, ▶=Stonemason 정면 방향): ' + ZD[c['name']] + ' (소유자 확인 2026-11-18)' if u == '@ZONE' else u for u in c['unclear']]
 write('stonemason_knight', dict(sheet=sheet, ai=ai, bp=bp, routine=dict(name='Magnetopress', text='Each Knight exhausts 1 Gear [Gear] card with the Metal Trait and gains 1 Bane [Bane] token.'), signature=None,
  _notes=['Signature 카드, Clash Setup 다이어그램 미수령']))

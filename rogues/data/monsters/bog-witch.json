@@ -268,9 +268,7 @@
     ],
     "afterTag": null,
     "after": null,
-    "unclear": [
-     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "hex": {
      "type": "Eternal Pain Hex",
      "name": "Mire Sores",
@@ -906,8 +904,7 @@
     "afterTag": null,
     "after": null,
     "unclear": [
-     "Zone (카드 도식에서 읽음): Target 칸 + 주변 8칸 = 3x3 [■■■ / ■T■ / ■■■] (소유자 확인 2026-11-17)",
-     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
+     "Zone (카드 도식에서 읽음): Target 칸 + 주변 8칸 = 3x3 [■■■ / ■T■ / ■■■] (소유자 확인 2026-11-17)"
     ],
     "hex": {
      "type": "Tongue-Tied Hex",
@@ -1104,9 +1101,7 @@
     ],
     "afterTag": null,
     "after": null,
-    "unclear": [
-     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "hex": {
      "type": "Bad Luck Hex",
      "name": "Quagmire of Misfortune",
@@ -1489,9 +1484,7 @@
     ],
     "afterTag": null,
     "after": null,
-    "unclear": [
-     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "hex": {
      "type": "Tongue-Tied Party Hex",
      "name": "Mouthful of Bog",
@@ -1680,9 +1673,7 @@
     ],
     "afterTag": null,
     "after": null,
-    "unclear": [
-     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "hex": {
      "type": "Bad Luck Hex",
      "name": "Bog Cursed",
@@ -1854,9 +1845,7 @@
      "instinct": null,
      "critical": "One Knight may discard a Condition card."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 4,
@@ -1908,9 +1897,7 @@
      "instinct": "Poison 2. Gain +2 [H].",
      "critical": "One Knight may discard a Poisoned X or Toxified X Condition card."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 5,
@@ -1965,9 +1952,7 @@
      "instinct": null,
      "critical": "You may discard a Hex you have. Disable the effects of Mortal Fault Hexes."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "fail"
     ],
@@ -2026,9 +2011,7 @@
      "instinct": null,
      "critical": "You may discard a Hex you have. Disable the effects of Eternal Pain Hexes."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "fail"
     ],
@@ -2084,9 +2067,7 @@
      "instinct": null,
      "critical": "You may discard a Hex you have. Gain the [Priority Target] Priority Target token. You may perform a Bonus Attack!"
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "wound:after 'Pushback 3.'"
     ],
@@ -2153,9 +2134,7 @@
      "instinct": null,
      "critical": "Clash Scavenge 2."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "wound"
     ],
@@ -2212,9 +2191,7 @@
      "instinct": null,
      "critical": "You may discard a Hex you have. Disable the effects of Master’s Hexes."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "fail"
     ],
@@ -2270,9 +2247,7 @@
      "instinct": null,
      "critical": "Scavenge 3."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "fail:after 'Toxify 2.'"
     ],
@@ -2329,9 +2304,7 @@
      "instinct": null,
      "critical": "You may discard a Hex you have. Disable Party Hexes."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "fail:after 'Gain +2 [H].'"
     ],
@@ -2391,9 +2364,7 @@
      "instinct": null,
      "critical": "Place the Bog Witch anywhere on the Board."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "wound:after 'Pushback 3.'"
     ],
@@ -2450,7 +2421,6 @@
      "critical": "You may discard a Hex you have or a Party Hex. Disable the effects of Bad Luck Hexes."
     },
     "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요",
      "Fail \"lower your [H]! by 2\" — Heat Limit을 뜻하는지 확인 필요"
     ],
     "reactWindows": [],
@@ -2510,9 +2480,7 @@
      "instinct": null,
      "critical": "Deal an additional Single Wound!"
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "wound"
     ],
@@ -2568,9 +2536,7 @@
      "instinct": null,
      "critical": "One Knight may discard a Hex they have. Disable the effects of Tongue-tied Hexes. After the Clash, if Fleischritter is in the party, see 2636."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "wound:after 'One Knight may discard a Hex they have.'"
     ],
@@ -2635,9 +2601,7 @@
      "instinct": null,
      "critical": "Gain the [Priority Target] Priority Target token. You may perform a Bonus Attack! Immediately see 6371."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 10,
@@ -2700,9 +2664,7 @@
      "instinct": null,
      "critical": "The Bog Witch dies!"
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 8,
@@ -2760,9 +2722,7 @@
      "instinct": null,
      "critical": "Gain the [Priority Target] Priority Target token. You may perform a Bonus Attack!"
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 9,
@@ -2817,9 +2777,7 @@
      "instinct": "Toxify 3. Bog Move.",
      "critical": "Disable the One With The Bog trait."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 7,
@@ -2869,9 +2827,7 @@
      "instinct": null,
      "critical": "You may discard a Hex you have or a Party Hex. Disable the effects of Omen Hexes."
     },
-    "unclear": [
-     "Overcome 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 8,

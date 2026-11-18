@@ -1,7 +1,10 @@
 // Generates docs/audit/index.html: every transcribed table/card ↔ how the engine implements it ↔ which test covers it.
 // Run: node tools/audit.mjs   (re-run after every data/engine change)
 import fs from 'fs';
-import { GEAR_RULINGS, GEAR_QUESTIONS, KNIGHT_RULINGS, KNIGHT_QUESTIONS } from './gear_rulings.mjs';
+import { GEAR_RULINGS as GR0, GEAR_QUESTIONS, KNIGHT_RULINGS as KR0, KNIGHT_QUESTIONS } from './gear_rulings.mjs';
+// Owner-confirmed entries leave the page (unless --full); entries that still carry an open question or are unimplemented stay.
+const FULL0 = process.argv.includes('--full'); const openItem = r => { const t = typeof r === 'string' ? r : JSON.stringify(r); return FULL0 || !/소유자 확인/.test(t) || /\[해석, 확인 필요\]|미구현/.test(t); };
+const GEAR_RULINGS = GR0.filter(openItem), KNIGHT_RULINGS = KR0.filter(openItem);
 import path from 'path';
 import { parseGearText, KEYWORD_STATUS } from '../src/engine/gearkw.js';
 const rd = p => JSON.parse(fs.readFileSync(p, 'utf8'));
@@ -246,7 +249,16 @@ sec.push(`<section id="campaign"><h2>11. 캠페인 레이어 — Rosegraal 루�
 // 👁 몬스터 정보). A section stays if it still carries a "확인 필요" marker. `node tools/audit.mjs --full` keeps everything.
 const FULL = process.argv.includes('--full'); const isMonSec = x => /^<section id="(eggknight|mob-|boss-|raw-|fools)/.test(x); const pending = x => /\[해석, 확인 필요\]|미구현/.test(x);
 const done = sec.filter(x => isMonSec(x) && !pending(x) && !FULL).map(x => (x.match(/<h2>(?:\d+b?\.\s*)?([^<—]+)/) || [])[1].trim());
-const out = sec.filter(x => FULL || !isMonSec(x) || pending(x));
+const pend = t => /\[해석, 확인 필요\]|미구현|확인 필요/.test(typeof t === 'string' ? t : JSON.stringify(t));
+// A reviewed Monster with open items keeps only those items on the page (the full tables are in the game's 👁 몬스터 view / --full).
+const compact = x => { const m = x.match(/^<section id="mob-([a-z0-9-]+)"/); if (!m || FULL) return x; const M = rd('data/monsters/' + m[1] + '.json'); const items = [];
+  for (const r of M.rulings || []) if (pend(r)) items.push(esc(r)); for (const r of M.unclear || []) if (openItem(r)) items.push(esc(r));
+  for (const t of M.traits || []) { if (t.implemented === false) items.push(`Trait <b>${esc(t.name)}</b>: ✘ 미구현 — ${esc(t.text)}`); for (const u of [].concat(t.unclear || [])) items.push(`Trait <b>${esc(t.name)}</b>: ${esc(u)}`); }
+  for (const c of [...(M.cards.ai || []), ...(M.cards.bp || []), M.cards.signature, M.cards.routine].filter(Boolean)) for (const u of [].concat(c.unclear || [])) if (!/^@/.test(u) && openItem(u)) items.push(`<b>${esc(c.name)}</b>: ${esc(u)}`);
+  for (const n of [...((M.clashSetup || {}).notes || []), ...((M.clashSetup || {}).unclear || [])]) if (pend(n)) items.push('Clash Setup: ' + esc(n));
+  if (!items.length) return x; const title = (x.match(/<h2>(?:\d+b?\.\s*)?([^<—]+)/) || [])[1].trim();
+  return `<section id="mob-${m[1]}"><h2>${esc(title)} — 남은 항목 (${items.length})</h2><p class="impl">소유자 확인이 끝난 표·해석은 뺐습니다 (게임 화면 👁 몬스터에서 열람, 전체 표는 <code>node tools/audit.mjs --full</code>).</p><ul>${items.map(i => `<li>${i}</li>`).join('')}</ul></section>`; };
+const out = sec.filter(x => FULL || !isMonSec(x) || pending(x)).map(compact);
 { const i = out.findIndex(x => /^<section id="gearkw"/.test(x)); if (i > 0) out.unshift(out.splice(i, 1)[0]); } // confirmation-needed Gear rulings first
 if (done.length) out.push(`<section id="mon-done"><h2>몬스터 — 오딧 완료 (${done.length})</h2><p class="impl">소유자 확인이 끝난 몬스터는 이 페이지에서 빼고, 게임 화면 오른쪽 위 <b>👁 몬스터</b> 버튼(몬스터 정보: Sheet · Trait · AI/BP · Signature/Routine · Setup · 규칙 해석)에서 볼 수 있습니다. 전체 표가 필요하면 <code>node tools/audit.mjs --full</code>.</p><ul>${done.map(n => `<li>${esc(n)}</li>`).join('')}</ul></section>`);
 

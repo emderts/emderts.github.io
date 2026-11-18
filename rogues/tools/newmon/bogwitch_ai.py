@@ -3,7 +3,7 @@ NH = ['Knight without a Hex card', 'Highest [H]']; HH = ['Highest [H]']
 BJ = 'BOG MOVE & JUDGE'; BR = 'BOG MOVE & RANGE ATTACK UNLIMITED'
 KING = lambda d: [dict(stat='King', effect=f'DIFFICULTY {d}+ INSTEAD', where='moveTag')]
 H = lambda n, t, w='moveTag': [dict(stat='Heat', gte=n, effect=t, where=w)]
-ZU = ['Zone (카드 도식에서 읽음): Target 칸 + 주변 8칸 = 3x3 [■■■ / ■T■ / ■■■] (소유자 확인 2026-11-17)']; GU = ['Heat 게이트 숫자 작은 글씨 — 확인 필요']
+ZU = ['Zone (카드 도식에서 읽음): Target 칸 + 주변 8칸 = 3x3 [■■■ / ■T■ / ■■■] (소유자 확인 2026-11-17)']; GU = []
 def X(a, hexType, hexName, hexText, party=False): a['hex'] = dict(type=hexType, name=hexName, text=hexText, party=party); return a
 AI = [
  X(A('Fiendish Cackle', 1, 'JUDGEMENT', 2, 10, NH, BJ, ['Bravery / Insight.', 'For each hit gain +1 [H] and lose -3 [V]. [Peril].']), 'Omen Hex', 'As Quag Prophesied', 'When you draw a positive Mortis card (excluding Judicium), redraw it (once). Hexed Squires cannot redraw Mettle cards when evading.'),

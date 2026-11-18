@@ -1,5 +1,5 @@
 from common import *
-P = lambda n: (n, 'Power 1'); OU = ['Overcome 숫자 작은 글씨 — 확인 필요']; DH = 'You may discard a Hex you have.'; DHP = 'You may discard a Hex you have or a Party Hex.'
+P = lambda n: (n, 'Power 1'); OU = []; DH = 'You may discard a Hex you have.'; DHP = 'You may discard a Hex you have or a Party Hex.'
 PTBA = 'Gain the [Priority Target] Priority Target token. You may perform a Bonus Attack!'
 BP = [
  B('A Bundle of Elixirs', 1, 4, P(2), wound='Gain the Slimed Condition card.', fail='Poison 2.', critical='One Knight may discard a Condition card.', unclear=OU),

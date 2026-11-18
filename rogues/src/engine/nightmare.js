@@ -37,7 +37,9 @@ export const NightmareMixin = {
   async wnFlip() { if (this.defianceOn) return; const W = this.wnCards; this.wn.card = this.wn.card === W.wide ? W.tails : W.wide; this.say(`BP 뒤집음 → ${this.wn.card.name} (AT ${this.mobAT(this.wn)})${this.wn.card === W.tails ? ' · Superior Bypass 상실' : ''}`, 'bp'); },
   // ---------- Marble Forest ----------
   wnFreeActions(k) { if (!this.isWN || !this.monster.hasTrait('Marble Forest') || k.wnClimbRound === this.round) return []; const B = this.board; return B.neighbors(k.pos).filter(c => { const t = B.terrainAt(c); return t && t.id === 'column' && !this.knightAt(c) && !this.monsterOccupies(c); }).map(c => ({ id: 'climb:' + B.label(c), label: `Column 오르기 → ${B.label(c)} (Marble Forest)` })); },
-  async wnClimb(k, label) { k.wnClimbRound = this.round; const c = this.board.parse(label); this.moveKnight(k, c); this.say(`${k.name}: Column ${label} 위로 올라감 (Marble Forest)`); },
+  /** Marble Forest: "As a free action, or instead of a Reflex, Knights may climb adjacent Column Terrain tiles." */
+  wnReflexColumns(k) { if (!this.isWN || !this.monster.hasTrait('Marble Forest') || !k.pos) return []; const B = this.board; return B.neighbors(k.pos).filter(c => { const t = B.terrainAt(c); return t && t.id === 'column' && !this.knightAt(c) && !this.monsterOccupies(c); }); },
+  async wnClimb(k, label, viaReflex = false) { if (!viaReflex) k.wnClimbRound = this.round; const c = this.board.parse(label); this.moveKnight(k, c); this.say(`${k.name}: Column ${label} 위로 올라감 (Marble Forest)`); },
   /** On a Column: Knockdown / involuntary movement → Displaced + Crash instead. Returns true when it replaced the effect. */
   async wnColumnGuard(k, what) { if (!this.isWN || this._wnGuard || !k.alive || !this.wnOnColumn(k) || !this.monster.hasTrait('Marble Forest')) return false; this._wnGuard = true; try { this.say(`${k.name}: Column 위에서 ${what} → 대신 Displace + Crash (Marble Forest)`); await this.displace(k); if (k.alive) await this.crash(k); } finally { this._wnGuard = false; } return true; },
   // ---------- movement ----------
