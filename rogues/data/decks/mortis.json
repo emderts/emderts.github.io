@@ -8,7 +8,8 @@
   "[Gear]": "gear/pouch icon",
   "[Opening]": "Opening token icon",
   "[Break]": "Break token icon",
-  "[Speed]": "Speed (running knight) icon"
+  "[Speed]": "Speed (running knight) icon",
+  "positive": "symbol \"cross\" = + (positive Mortis), \"weapon\" = - (negative Mortis) (소유자 확인 2026-11-18)"
  },
  "minor": [
   {
@@ -32,7 +33,8 @@
       }
      ]
     }
-   ]
+   ],
+   "positive": false
   },
   {
    "name": "Panzerdecay",
@@ -49,7 +51,8 @@
      "op": "parasitize",
      "n": 1
     }
-   ]
+   ],
+   "positive": false
   },
   {
    "name": "Slime Spell",
@@ -72,7 +75,8 @@
       }
      ]
     }
-   ]
+   ],
+   "positive": false
   },
   {
    "name": "Poison",
@@ -93,7 +97,8 @@
      "op": "gainHeat",
      "n": 1
     }
-   ]
+   ],
+   "positive": false
   },
   {
    "name": "Rebound",
@@ -114,7 +119,8 @@
      "op": "refresh",
      "n": 1
     }
-   ]
+   ],
+   "positive": true
   },
   {
    "name": "Restrain",
@@ -130,7 +136,8 @@
     {
      "op": "restrain"
     }
-   ]
+   ],
+   "positive": false
   },
   {
    "name": "Subdue",
@@ -147,7 +154,8 @@
      "op": "cooldown",
      "n": 1
     }
-   ]
+   ],
+   "positive": false
   },
   {
    "name": "Distracted",
@@ -164,7 +172,8 @@
      "op": "condition",
      "id": "Distracted"
     }
-   ]
+   ],
+   "positive": false
   },
   {
    "name": "Gash",
@@ -187,7 +196,8 @@
     {
      "op": "perilCheck"
     }
-   ]
+   ],
+   "positive": false
   },
   {
    "name": "Thrown Off-Balance",
@@ -208,7 +218,8 @@
       }
      ]
     }
-   ]
+   ],
+   "positive": false
   },
   {
    "name": "Feign Death",
@@ -228,7 +239,8 @@
      "op": "condition",
      "id": "Knockdown (Standing Up)"
     }
-   ]
+   ],
+   "positive": true
   },
   {
    "name": "Feint",
@@ -249,7 +261,8 @@
      ],
      "n": 2
     }
-   ]
+   ],
+   "positive": true
   },
   {
    "name": "Insulted",
@@ -269,7 +282,8 @@
      "op": "bonusAttack",
      "optional": true
     }
-   ]
+   ],
+   "positive": true
   },
   {
    "name": "Vision of the Graal",
@@ -287,7 +301,8 @@
      "n": 1,
      "optional": true
     }
-   ]
+   ],
+   "positive": true
   }
  ],
  "major": [
@@ -312,7 +327,8 @@
       }
      ]
     }
-   ]
+   ],
+   "positive": false
   },
   {
    "name": "Panzerrust",
@@ -329,7 +345,8 @@
      "op": "parasitize",
      "n": 2
     }
-   ]
+   ],
+   "positive": false
   },
   {
    "name": "Slime Hex",
@@ -356,7 +373,8 @@
       }
      ]
     }
-   ]
+   ],
+   "positive": false
   },
   {
    "name": "Poisoned",
@@ -377,7 +395,8 @@
      "op": "gainHeat",
      "n": 3
     }
-   ]
+   ],
+   "positive": false
   },
   {
    "name": "Heroic Death",
@@ -420,7 +439,8 @@
       }
      ]
     }
-   ]
+   ],
+   "positive": false
   },
   {
    "name": "Panicked",
@@ -437,7 +457,8 @@
      "op": "condition",
      "id": "Panicked"
     }
-   ]
+   ],
+   "positive": false
   },
   {
    "name": "Smother",
@@ -458,7 +479,8 @@
       }
      ]
     }
-   ]
+   ],
+   "positive": false
   },
   {
    "name": "Impair",
@@ -475,7 +497,8 @@
      "op": "discard",
      "n": 1
     }
-   ]
+   ],
+   "positive": false
   },
   {
    "name": "Inner Strength",
@@ -499,7 +522,8 @@
      "op": "bonusAttack",
      "optional": true
     }
-   ]
+   ],
+   "positive": true
   },
   {
    "name": "Show of Willpower",
@@ -522,7 +546,8 @@
       }
      ]
     }
-   ]
+   ],
+   "positive": true
   },
   {
    "name": "Counterattack",
@@ -551,7 +576,8 @@
      "op": "bonusAttack",
      "optional": true
     }
-   ]
+   ],
+   "positive": true
   },
   {
    "name": "Priestly Cunning",
@@ -572,7 +598,8 @@
      ],
      "n": 3
     }
-   ]
+   ],
+   "positive": true
   },
   {
    "name": "Giant Gash",
@@ -595,7 +622,8 @@
     {
      "op": "perilCheck"
     }
-   ]
+   ],
+   "positive": false
   },
   {
    "name": "Whisper of the Graal",
@@ -613,7 +641,8 @@
      "n": 2,
      "optional": true
     }
-   ]
+   ],
+   "positive": true
   }
  ],
  "grave": [
@@ -638,7 +667,8 @@
       }
      ]
     }
-   ]
+   ],
+   "positive": false
   },
   {
    "name": "Panzerrot",
@@ -655,7 +685,8 @@
      "op": "parasitize",
      "n": 3
     }
-   ]
+   ],
+   "positive": false
   },
   {
    "name": "Slime Scourge",
@@ -682,7 +713,8 @@
       }
      ]
     }
-   ]
+   ],
+   "positive": false
   },
   {
    "name": "Toxified",
@@ -703,7 +735,8 @@
      "op": "gainHeat",
      "n": 3
     }
-   ]
+   ],
+   "positive": false
   },
   {
    "name": "Call of the Graal",
@@ -724,7 +757,8 @@
      "op": "condition",
      "id": "Courage"
     }
-   ]
+   ],
+   "positive": true
   },
   {
    "name": "Knight Counter",
@@ -762,7 +796,8 @@
       }
      ]
     }
-   ]
+   ],
+   "positive": true
   },
   {
    "name": "Sabotage",
@@ -784,7 +819,8 @@
       }
      ]
     }
-   ]
+   ],
+   "positive": false
   },
   {
    "name": "Push the Limit!",
@@ -815,7 +851,8 @@
      "op": "bonusAttack",
      "optional": true
     }
-   ]
+   ],
+   "positive": true
   },
   {
    "name": "Disemboweled",
@@ -835,7 +872,8 @@
      "op": "die",
      "reason": "Disemboweled"
     }
-   ]
+   ],
+   "positive": false
   },
   {
    "name": "Disemboweled",
@@ -855,7 +893,8 @@
      "op": "die",
      "reason": "Disemboweled"
     }
-   ]
+   ],
+   "positive": false
   },
   {
    "name": "Burning Heart",
@@ -880,7 +919,8 @@
      "op": "bonusAttack",
      "optional": true
     }
-   ]
+   ],
+   "positive": true
   },
   {
    "name": "Godly Resolve",
@@ -902,7 +942,8 @@
       }
      ]
     }
-   ]
+   ],
+   "positive": true
   },
   {
    "name": "Disemboweled",
@@ -922,7 +963,8 @@
      "op": "die",
      "reason": "Disemboweled"
     }
-   ]
+   ],
+   "positive": false
   },
   {
    "name": "Knight Stand",
@@ -956,7 +998,8 @@
     {
      "op": "shuffleBack"
     }
-   ]
+   ],
+   "positive": false
   },
   {
    "name": "There Will Be a Reckoning",
@@ -973,7 +1016,8 @@
      "op": "addJudicium",
      "name": "You Died Horribly"
     }
-   ]
+   ],
+   "positive": false
   }
  ],
  "judicium": [
