@@ -82,7 +82,7 @@ export class Campaign {
     const cur = this.current; const m = this.data.monsters[cur.monster];
     if (!m) throw new Error(`몬스터 데이터 없음: ${cur.monsterName}`);
     cur.snapshot = JSON.stringify(this.serialize());
-    const knights = this.knights.filter(k => !k.dead).map(k => ({ def: k.def, name: k.name, portrait: k.loadout.portrait, heroicArc: k.loadout.heroicArc, perilArc: k.loadout.perilArc, talent: k.loadout.talent, techniques: k.loadout.techniques, gear: k.loadout.gear, tier: cur.nodeLevel, gold: k.gold, sigh: k.sigh, firstDeath: k.firstDeath, bane: k.bane }));
+    const knights = this.knights.filter(k => !k.dead).map(k => ({ def: k.def, name: k.name, portrait: k.loadout.portrait, heroicArc: k.loadout.heroicArc, perilArc: k.loadout.perilArc, talent: k.loadout.talent, techniques: k.loadout.techniques, gear: k.loadout.gear, tier: cur.nodeLevel, gold: k.gold, sigh: k.sigh, firstDeath: k.firstDeath, bane: k.bane, maxVigorMod: k.maxVigorMod || 0 }));
     const clash = new Clash({ data: this.data, knights, monster: cur.monster, level: cur.level, nodeLevel: cur.nodeLevel, kingdom: cur.kingdom, seed: this.rng.int(1e9), listeners: { ...(opts.listeners || {}), beforeDeath: (k, reason, c) => this.beforeDeath(k, reason, c), onDeath: (k, reason, c) => this.onDeath(k, reason, c) } });
     clash.ask = opts.ask || this.ask; clash.curseLevel = this.curseLevel; clash.gearDef = n => this.gearDef(n);
     for (const kn of clash.knights) { const ck = this.knights.find(x => x.name === kn.name); kn.bane = ck.bane; kn.gear = kn.gear.map(g => g.name ? g : g); }
@@ -121,7 +121,7 @@ export class Campaign {
     const cur = this.current; const node = this.node(cur.nodeId); const win = clash.result === 'win'; if ((clash.curseLevel || 0) > this.curseLevel) { this.say(`공용 Curse ${this.curseLevel} → ${clash.curseLevel}`); this.curseLevel = clash.curseLevel; }
     const deaths = clash.knights.filter(k => !k.alive).length; const survivors = clash.knights.filter(k => k.alive).length;
     // carry back knight state
-    for (const kn of clash.knights) { const ck = this.knights.find(x => x.name === kn.name); ck.bane = Math.max(0, kn.bane - 2); ck.gold = kn.gold; }
+    for (const kn of clash.knights) { const ck = this.knights.find(x => x.name === kn.name); ck.bane = Math.max(0, kn.bane - 2); ck.gold = kn.gold; if (kn.permMaxVigor) { ck.maxVigorMod = (ck.maxVigorMod || 0) + kn.permMaxVigor; this.say(`${ck.name}: Maximum Vigor 영구 ${ck.maxVigorMod}`); } }
     this.say(`Clash ${win ? '승리' : '패배'} — 사망 ${deaths}, 생존 ${survivors}`);
     // Sigh of the Graal offer
     const withSigh = this.knights.filter(k => k.sigh > 0);

@@ -199,9 +199,7 @@
     ],
     "afterTag": "AFTER ATTACK",
     "after": "Knockdown.",
-    "unclear": [
-     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "targeting",
      "After Attack 앞"
@@ -343,9 +341,7 @@
     ],
     "afterTag": "AFTER ATTACK",
     "after": "Drag 5.",
-    "unclear": [
-     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "targeting",
      "After Attack 앞"
@@ -421,9 +417,7 @@
     ],
     "afterTag": "AFTER ATTACK",
     "after": "Drag 2.",
-    "unclear": [
-     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "targeting"
     ],
@@ -571,9 +565,7 @@
     ],
     "afterTag": "AFTER ATTACK",
     "after": "Knockback 3.",
-    "unclear": [
-     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "targeting",
      "효과 사이: 'Condition card.' 뒤"
@@ -688,9 +680,7 @@
     ],
     "afterTag": "AFTER ATTACK",
     "after": "Drag 6.",
-    "unclear": [
-     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "targeting",
      "After Attack 앞"
@@ -774,9 +764,7 @@
     ],
     "afterTag": "AFTER ATTACK",
     "after": "Drag 2.",
-    "unclear": [
-     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "targeting",
      "효과 사이: 'Swarm 1.' 뒤"
@@ -865,13 +853,11 @@
     ],
     "effects": [
      "For each hit lose -2 [V]. [Peril].",
-     "If a Knight dies from this Attack, gain +1 [Escalation]."
+     "If a Knight dies from this Attack, gain +1 [Curse]."
     ],
     "afterTag": "AFTER ATTACK",
     "after": "Activate 1.",
-    "unclear": [
-     "\"gain +1 [아이콘]\" — Escalation 아이콘으로 읽음, 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "targeting",
      "After Attack 앞"
@@ -903,6 +889,10 @@
        "op": "loseVigorPerHit",
        "n": 2,
        "perilCheck": true
+      },
+      {
+       "op": "ratCurseIfDied",
+       "n": 1
       },
       {
        "op": "ratWeakest"
@@ -948,9 +938,7 @@
     ],
     "afterTag": "AFTER ATTACK",
     "after": "Pushback 5.",
-    "unclear": [
-     "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [
      "targeting",
      "효과 사이: '(resolve once). [Peril].' 뒤"
@@ -1174,9 +1162,7 @@
      "instinct": "Draw AI for the furthest Mob.",
      "critical": "Another Knight may perform a Bonus Attack!"
     },
-    "unclear": [
-     "Overcome 숫자 확인 필요"
-    ],
+    "unclear": [],
     "toughness": 1,
     "reactWindows": [],
     "ops": {
@@ -1321,9 +1307,7 @@
      "instinct": null,
      "critical": "Gain the Courage Condition card. Reset your [H]."
     },
-    "unclear": [
-     "Overcome 숫자 확인 필요"
-    ],
+    "unclear": [],
     "toughness": 1,
     "reactWindows": [],
     "ops": {
@@ -1379,9 +1363,7 @@
      "instinct": null,
      "critical": "You may perform a Bonus Attack!"
     },
-    "unclear": [
-     "Overcome 숫자 확인 필요"
-    ],
+    "unclear": [],
     "toughness": 1,
     "reactWindows": [],
     "ops": {
@@ -1600,7 +1582,7 @@
    }
   ],
   "notes": [
-   "지형·시작 칸은 코덱스 도식에서 읽음 [해석, 확인 필요]"
+   "지형·시작 칸은 코덱스 도식에서 읽음 (소유자 확인 2026-11-18)"
   ]
  },
  "rulings": [
@@ -1609,10 +1591,10 @@
   "Lone Knight = 3칸 이내에 다른 기사 없음 (참고 시트 v1.2)",
   "Rising Pressure: Condition 토큰을 얻은 만큼 Heat (Poison/Toxify/Parasitize 토큰)",
   "Go for the Weakest Link: 명중이 있었을 때만(Full Evade면 생략), 다른 Attack Consequence 뒤에 처리 (참고 시트)",
-  "Drag: 인접해야 시작; Ratwolf가 기사 반대쪽으로 이동하고 기사가 따라옴. Obstacle·미니어처에 막히면 멈춤. Board Edge에 닿으면 가장 가까운 짧은 변 쪽으로 가장자리를 따라 이동 (참고 시트). Lv2+ Into the Chittering Shadows: 처음부터 가장 가까운 짧은 변(1열/14열) 방향. 끌려가는 기사가 그 방향에 서 있으면 Ratwolf가 자리를 바꿔 지나간 뒤 계속 끌고 감. Lv4 Ravening Ratswarm: 짧은 변을 넘어가게 되면 대상 사망 [해석, 확인 필요]",
-  "\"If no other Knight in Zone N, Knockdown\" (Dire Howl, Ratswarm): 대상 기사 주변 Zone N에 다른 기사가 없을 때로 처리 [해석, 확인 필요]",
+  "Drag: 인접해야 시작; Ratwolf가 기사 반대쪽으로 이동하고 기사가 따라옴. Obstacle·미니어처에 막히면 멈춤. Board Edge에 닿으면 가장 가까운 짧은 변 쪽으로 가장자리를 따라 이동 (참고 시트). Lv2+ Into the Chittering Shadows: 처음부터 가장 가까운 짧은 변(1열/14열) 방향. 끌려가는 기사가 그 방향에 서 있으면 Ratwolf가 자리를 바꿔 지나간 뒤 계속 끌고 감. Lv4 Ravening Ratswarm: 짧은 변을 넘어가게 되면 대상 사망 (소유자 확인 2026-11-18)",
+  "\"If no other Knight in Zone N, Knockdown\" (Dire Howl, Ratswarm): 대상 기사 주변 Zone N에 다른 기사가 없을 때로 처리 (소유자 확인 2026-11-18)",
   "Famished Ratwolf \"All other Ratwolves gain Instinct: Poison 1\": 공개된 Famished Ratwolf 한 장당, 다른 Ratwolf를 공격한 기사가 (Critical이 아니면) Poison 1",
-  "Cursed Bite \"If a Knight dies from this Attack, gain +1 [아이콘]\": 아이콘 미확인 — 미구현",
+  "Cursed Bite \"If a Knight dies from this Attack, gain +1 [Curse]\": 아이콘은 Curse (소유자 확인 2026-11-18) — 공용 Curse +1",
   "Plague-Ridden Ratwolf Critical \"temporary negative Precision token in the Knight Pool\": 미구현"
  ]
 }

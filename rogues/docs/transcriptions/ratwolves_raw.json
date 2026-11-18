@@ -187,9 +187,7 @@
    ],
    "afterTag": "AFTER ATTACK",
    "after": "Knockdown.",
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "targeting",
     "After Attack 앞"
@@ -257,9 +255,7 @@
    ],
    "afterTag": "AFTER ATTACK",
    "after": "Drag 5.",
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "targeting",
     "After Attack 앞"
@@ -296,9 +292,7 @@
    ],
    "afterTag": "AFTER ATTACK",
    "after": "Drag 2.",
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "targeting"
    ],
@@ -369,9 +363,7 @@
    ],
    "afterTag": "AFTER ATTACK",
    "after": "Knockback 3.",
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "targeting",
     "효과 사이: 'Condition card.' 뒤"
@@ -413,9 +405,7 @@
    ],
    "afterTag": "AFTER ATTACK",
    "after": "Drag 6.",
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "targeting",
     "After Attack 앞"
@@ -455,9 +445,7 @@
    ],
    "afterTag": "AFTER ATTACK",
    "after": "Drag 2.",
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "targeting",
     "효과 사이: 'Swarm 1.' 뒤"
@@ -494,13 +482,11 @@
    ],
    "effects": [
     "For each hit lose -2 [V]. [Peril].",
-    "If a Knight dies from this Attack, gain +1 [Escalation]."
+    "If a Knight dies from this Attack, gain +1 [Curse]."
    ],
    "afterTag": "AFTER ATTACK",
    "after": "Activate 1.",
-   "unclear": [
-    "\"gain +1 [아이콘]\" — Escalation 아이콘으로 읽음, 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "targeting",
     "After Attack 앞"
@@ -538,9 +524,7 @@
    ],
    "afterTag": "AFTER ATTACK",
    "after": "Pushback 5.",
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "targeting",
     "효과 사이: '(resolve once). [Peril].' 뒤"
@@ -646,9 +630,7 @@
     "instinct": "Draw AI for the furthest Mob.",
     "critical": "Another Knight may perform a Bonus Attack!"
    },
-   "unclear": [
-    "Overcome 숫자 확인 필요"
-   ],
+   "unclear": [],
    "toughness": 1,
    "reactWindows": []
   },
@@ -705,9 +687,7 @@
     "instinct": null,
     "critical": "Gain the Courage Condition card. Reset your [H]."
    },
-   "unclear": [
-    "Overcome 숫자 확인 필요"
-   ],
+   "unclear": [],
    "toughness": 1,
    "reactWindows": []
   },
@@ -728,9 +708,7 @@
     "instinct": null,
     "critical": "You may perform a Bonus Attack!"
    },
-   "unclear": [
-    "Overcome 숫자 확인 필요"
-   ],
+   "unclear": [],
    "toughness": 1,
    "reactWindows": []
   }

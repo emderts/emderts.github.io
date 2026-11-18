@@ -18,7 +18,7 @@ AI = {
  'Dire Howl': dict(judge=['Bravery'], gates=[HA(4, [{'op': 'escalateLowestUnrevealed'}])], effects=[HITS(1, [COND('Fear')], lt=3), HITS(3, [COND('Dread')]), ALONE(2)], afterAttack=[{'op': 'knockback', 'n': 3}]),
  'Isolating Pull': dict(gates=[HD(3)], effects=[V(1), AFF(1)], afterAttack=[DRAG(6)]),
  'Verminous Gnawing': dict(gates=[HA(3, [AFF(1)])], effects=[V(2), {'op': 'swarm', 'n': 1}, KD], afterAttack=[DRAG(2)]),
- 'Cursed Bite': dict(gates=[{'op': 'evasionDice', 'stat': 'condTokens', 'gte': 3, 'n': 1}], effects=[V(2)], afterAttack=[{'op': 'activate', 'n': 1}]),
+ 'Cursed Bite': dict(gates=[{'op': 'evasionDice', 'stat': 'condTokens', 'gte': 3, 'n': 1}], effects=[V(2), {'op': 'ratCurseIfDied', 'n': 1}], afterAttack=[{'op': 'activate', 'n': 1}]),
  'Ratswarm': dict(gates=[HV(4, 2)], extraDice={'perHits': 2}, effects=[V(1), {'op': 'ratAfflictPerHit', 'n': 1}, ALONE(1)], afterAttack=[{'op': 'pushback', 'n': 5}]),
 }
 SIG = dict(gates=[{'op': 'noop', 'stat': 'condTokens', 'gte': 3, 'alsoOps': [KD]}], effects=[V(1)], afterAttack=[DRAG(2)])
@@ -62,17 +62,17 @@ d = {
  'rat': {'kingdomTrait': {'sunken': 'Bile and Poison', 'principality': 'Parasite Bed'}},
  'clashSetup': {'_source': CS['page'], 'steps': CS['steps'], 'requiredTiles': CS['requiredTiles'],
   'mobStart': [{'cell': c, 'facing': FACE[f]} for c, f in CS['mobStart']], 'mobTrack': {'1': 4}, 'knightStart': CS['knightStart'], 'terrain': CS['terrain'],
-  'notes': ['지형·시작 칸은 코덱스 도식에서 읽음 [해석, 확인 필요]']},
+  'notes': ['지형·시작 칸은 코덱스 도식에서 읽음 (소유자 확인 2026-11-18)']},
  'rulings': [
   'Strength of the Pack: 처음 부상은 BP 위에 Generic 토큰(Toughness까지), 토큰 수 = Toughness일 때 부상하면 죽음. 토큰만 놓을 때는 Wound·Escalation 없음, Response는 Wound로 처리, 장비·Arc의 "부상 시" 효과는 발동하지 않음 (참고 시트 v1.2)',
   'Immediate Spawn: 죽은 Ratwolf의 Mob track 칸에 한 Level 높은 BP(없으면 같은 Level 이하 중 높은 것), 무작위 기사에 인접한 칸 중 Board Edge에 가장 가까운(Obstacle 없는) 칸, 점유 시 Displace, 이후 Signature(일반 Targeting)',
   'Lone Knight = 3칸 이내에 다른 기사 없음 (참고 시트 v1.2)',
   'Rising Pressure: Condition 토큰을 얻은 만큼 Heat (Poison/Toxify/Parasitize 토큰)',
   'Go for the Weakest Link: 명중이 있었을 때만(Full Evade면 생략), 다른 Attack Consequence 뒤에 처리 (참고 시트)',
-  'Drag: 인접해야 시작; Ratwolf가 기사 반대쪽으로 이동하고 기사가 따라옴. Obstacle·미니어처에 막히면 멈춤. Board Edge에 닿으면 가장 가까운 짧은 변 쪽으로 가장자리를 따라 이동 (참고 시트). Lv2+ Into the Chittering Shadows: 처음부터 가장 가까운 짧은 변(1열/14열) 방향. 끌려가는 기사가 그 방향에 서 있으면 Ratwolf가 자리를 바꿔 지나간 뒤 계속 끌고 감. Lv4 Ravening Ratswarm: 짧은 변을 넘어가게 되면 대상 사망 [해석, 확인 필요]',
-  '"If no other Knight in Zone N, Knockdown" (Dire Howl, Ratswarm): 대상 기사 주변 Zone N에 다른 기사가 없을 때로 처리 [해석, 확인 필요]',
+  'Drag: 인접해야 시작; Ratwolf가 기사 반대쪽으로 이동하고 기사가 따라옴. Obstacle·미니어처에 막히면 멈춤. Board Edge에 닿으면 가장 가까운 짧은 변 쪽으로 가장자리를 따라 이동 (참고 시트). Lv2+ Into the Chittering Shadows: 처음부터 가장 가까운 짧은 변(1열/14열) 방향. 끌려가는 기사가 그 방향에 서 있으면 Ratwolf가 자리를 바꿔 지나간 뒤 계속 끌고 감. Lv4 Ravening Ratswarm: 짧은 변을 넘어가게 되면 대상 사망 (소유자 확인 2026-11-18)',
+  '"If no other Knight in Zone N, Knockdown" (Dire Howl, Ratswarm): 대상 기사 주변 Zone N에 다른 기사가 없을 때로 처리 (소유자 확인 2026-11-18)',
   'Famished Ratwolf "All other Ratwolves gain Instinct: Poison 1": 공개된 Famished Ratwolf 한 장당, 다른 Ratwolf를 공격한 기사가 (Critical이 아니면) Poison 1',
-  'Cursed Bite "If a Knight dies from this Attack, gain +1 [아이콘]": 아이콘 미확인 — 미구현',
+  'Cursed Bite "If a Knight dies from this Attack, gain +1 [Curse]": 아이콘은 Curse (소유자 확인 2026-11-18) — 공용 Curse +1',
   'Plague-Ridden Ratwolf Critical "temporary negative Precision token in the Knight Pool": 미구현',
  ],
 }

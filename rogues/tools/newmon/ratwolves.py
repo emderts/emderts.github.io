@@ -1,6 +1,6 @@
 from common import *
 H = lambda n, t, w='moveTag': dict(stat='Heat', gte=n, effect=t, where=w)
-GU = ['Heat 게이트 숫자 작은 글씨 — 확인 필요']; MA = 'MOVE & ATTACK'
+GU = []; MA = 'MOVE & ATTACK'
 CF = ['Closest Knight in front', 'Closest Knight in sight']; KD = ['Closest knocked down Knight'] + CF; LK = ['Closest Lone Knight'] + CF
 sheet = dict(name='Ratwolves', code='26A1073', traitsLine=['Mob', 'Beast', 'Hunter'], footprint='1x1, rear = the cell behind (R)', basicAbilities=['Immediate Spawn'],
  levels={1: L('6+', 4, 1, ['AI', 'AI'], ['Strength of the Pack', 'Rising Pressure', 'Go for the Weakest Link', 'Kingdom Trait (see Clash Setup)']), 2: L('6+', 5, 2, ['AI', 'AI'], ['Relentless Pull', 'Into the Chittering Shadows'], at=1, vig=1),
@@ -26,7 +26,7 @@ ai = [
  A('Dire Howl', 2, 'JUDGEMENT', 3, 9, LK, 'JUDGE', ['Bravery.', 'One or two hits, gain the Fear Condition card. Three or more hits, gain the Dread Condition card.', 'If no other Knight in Zone 2, Knockdown.'], 'Knockback 3.', gates=[H(4, 'ESCALATE THE LOWEST UNREVEALED BP')], unclear=GU),
  A('Isolating Pull', 2, 'ATTACK', 3, 8, KD, MA, ['For each hit lose -1 [V]. [Peril].', 'Afflict 1.'], 'Drag 6.', gates=[H(3, '+1 [die]')], unclear=GU),
  A('Verminous Gnawing', 2, 'ATTACK', 2, 8, LK, MA, ['For each hit lose -2 [V]. [Peril].', 'Swarm 1.', 'Knockdown.'], 'Drag 2.', gates=[H(3, 'AFFLICT 1', 'effect')], unclear=GU),
- A('Cursed Bite', 3, 'ATTACK', 3, 8, ['Closest Lone Knight', '[Priority Target] Priority Target in sight'], MA, ['For each hit lose -2 [V]. [Peril].', 'If a Knight dies from this Attack, gain +1 [Escalation].'], 'Activate 1.', gates=[dict(stat='ConditionTokens', gte=3, effect='+1 [die]', where='moveTag')], unclear=['"gain +1 [아이콘]" — Escalation 아이콘으로 읽음, 확인 필요']),
+ A('Cursed Bite', 3, 'ATTACK', 3, 8, ['Closest Lone Knight', '[Priority Target] Priority Target in sight'], MA, ['For each hit lose -2 [V]. [Peril].', 'If a Knight dies from this Attack, gain +1 [Curse].'], 'Activate 1.', gates=[dict(stat='ConditionTokens', gte=3, effect='+1 [die]', where='moveTag')]),
  A('Ratswarm', 3, 'ATTACK', 4, 7, ['[Priority Target] Priority Target in sight'], MA, ['For each hit lose -1 [V] and Afflict 1.', 'For every 2 hits roll 1 additional [die] (resolve once). [Peril].', 'If no other Knight in Zone 1, Knockdown.'], 'Pushback 5.', gates=[H(4, '-2 [V] INSTEAD', 'effect:0')], unclear=GU),
 ]
 def R(name, level, tough, at, oc=None, **kw): b = B(name, level, at, oc, **kw); b['toughness'] = tough; return b
@@ -35,11 +35,11 @@ bp = [
  R('Famished Ratwolf', 1, 1, 2, **FAM), R('Famished Ratwolf', 1, 1, 2, **FAM),
  R('Ratwolf', 1, 1, 3, wound='Reveal the rightmost unrevealed Mob BP on the Mob track.', fail='Perform Signature against the Attacker.', critical='Look at a chosen BP card.'),
  R('Ratwolf', 1, 1, 3, wound='Reveal the leftmost unrevealed Mob BP on the Mob track.', fail='Perform Signature against the Attacker.', critical='Look at a chosen BP card.'),
- R('Stalking Ratwolf', 2, 1, 4, (3, 'Power 1'), wound='Gain the [Priority Target] Priority Target token.', instinct='Draw AI for the furthest Mob.', critical='Another Knight may perform a Bonus Attack!', whileRevealed='Always trigger [H] effects.', unclear=['Overcome 숫자 확인 필요']),
+ R('Stalking Ratwolf', 2, 1, 4, (3, 'Power 1'), wound='Gain the [Priority Target] Priority Target token.', instinct='Draw AI for the furthest Mob.', critical='Another Knight may perform a Bonus Attack!', whileRevealed='Always trigger [H] effects.'),
  R('Giant Ratwolf', 2, 2, 5, wound='Move one Activation token to the next unassigned Mob.', fail='Perform Signature against the Attacker.', critical='You may flip a chosen BP card face down.', whileRevealed='All Ratwolves gain +1 [AT].'),
  R('Plague-Ridden Ratwolf', 2, 1, 3, whenRevealed='This Ratwolf and every other Ratwolf in Zone 2 gain an Armor [Armor] token.', instinct='Parasitize 1.', fail='Perform Signature against the Attacker.', critical='Place a temporary negative Precision token in the Knight Pool.'),
- R('Leader of the Pack', 3, 1, 7, (5, 'Power 1'), wound='Draw AI for the furthest Mob.', fail='Drag 3.', critical='Gain the Courage Condition card. Reset your [H].', whileRevealed='When Leader of the Pack dies: You win!', unclear=['Overcome 숫자 확인 필요']),
- R('Alpha Ratwolf', 3, 1, 5, (4, 'Power 1'), wound='Activate 1.', fail='Escalate AI.', critical='You may perform a Bonus Attack!', whileRevealed='Increase [V] loss caused by each Monster Attack by 1. When Alpha Ratwolf dies: You win!', unclear=['Overcome 숫자 확인 필요']),
+ R('Leader of the Pack', 3, 1, 7, (5, 'Power 1'), wound='Draw AI for the furthest Mob.', fail='Drag 3.', critical='Gain the Courage Condition card. Reset your [H].', whileRevealed='When Leader of the Pack dies: You win!'),
+ R('Alpha Ratwolf', 3, 1, 5, (4, 'Power 1'), wound='Activate 1.', fail='Escalate AI.', critical='You may perform a Bonus Attack!', whileRevealed='Increase [V] loss caused by each Monster Attack by 1. When Alpha Ratwolf dies: You win!'),
 ]
 write('ratwolves', dict(sheet=sheet, ai=ai, bp=bp, routine=dict(name='Chittering Pack', text='Each Knight gains the Fear Condition card and suffers Poison 2.'), signature=None,
  _notes=['AI 10장, BP 9장', 'Lone Knight = 3칸 이내에 다른 기사 없음 (참고 시트 v1.2)', 'Parasitize, Swarm 키워드 정의 확인 필요']))

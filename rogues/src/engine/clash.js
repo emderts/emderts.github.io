@@ -60,7 +60,7 @@ export class Clash {
     const def = this.data.knights[k.def]; const portrait = def.portraits.find(p => p.id === (k.portrait || def.setup.portrait));
     const perilArc = this.data.knights.peril_arcs.arcs[k.def].find(a => a.name === (k.perilArc || def.setup.perilArc));
     const th = ['Minor', 'Major', 'Grave', 'Judicium'].map(p => ({ peril: p, atVigor: perilArc.levels[p].vigor[0], heatLimit: perilArc.levels[p].heatLimit }));
-    const kn = new Knight({ id: `${k.def}-${i}`, name: k.name || def.name + (cfg0(i)), portrait, perilArc: { maxVigor: perilArc.maxVigor, uninjuredHeatLimit: perilArc.levels.Uninjured.heatLimit, thresholds: th } });
+    const kn = new Knight({ id: `${k.def}-${i}`, name: k.name || def.name + (cfg0(i)), portrait, perilArc: { maxVigor: perilArc.maxVigor + (k.maxVigorMod || 0), uninjuredHeatLimit: perilArc.levels.Uninjured.heatLimit, thresholds: th } });
     kn.def = def; kn.knightId = k.def; kn.perilArcDef = perilArc; kn.portraitDef = portrait;
     kn.heroicArc = def.heroicArcs.find(a => a.name === (k.heroicArc || def.setup.heroicArc)); kn.talent = def.talents.find(t => t.name === (k.talent || def.setup.talent));
     kn.hand = (k.techniques || def.setup.techniques).map(n => ({ ...def.techniques.find(t => t.name === n) }));

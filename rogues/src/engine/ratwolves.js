@@ -74,6 +74,7 @@ export const RatMixin = {
   async ratOp(o, ctx) {
     if (!this.isRat) return false; const M = this.monster; const src = ctx.source || (ctx.attack && ctx.attack.mob) || M.cur; const t = ctx.target || ctx.primary || ctx.attacker; const k = ctx.attacker || t;
     switch (o.op) {
+      case 'ratCurseIfDied': if (t && !t.alive) { this.curseLevel = (this.curseLevel || 0) + o.n; this.say(`${t.name} 사망 → Curse +${o.n} (공용 Curse ${this.curseLevel})`, 'warn'); } return true;
       case 'ratAfflict': await this.ratAfflict(t, o.n); return true;
       case 'ratAfflictPerHit': await this.ratAfflict(t, o.n * (ctx.hits || 0)); return true;
       case 'ratDrag': await this.ratDrag(src, t, o.n); return true;
@@ -89,4 +90,4 @@ export const RatMixin = {
     }
   },
 };
-export const RAT_OPS = ['ratAfflict', 'ratAfflictPerHit', 'ratDrag', 'ratIfHits', 'ratIfAlone', 'ratWeakest', 'ratSignature', 'ratPriority', 'ratMoveToken', 'ratPoisonAll', 'ratNote', 'noop'];
+export const RAT_OPS = ['ratCurseIfDied', 'ratAfflict', 'ratAfflictPerHit', 'ratDrag', 'ratIfHits', 'ratIfAlone', 'ratWeakest', 'ratSignature', 'ratPriority', 'ratMoveToken', 'ratPoisonAll', 'ratNote', 'noop'];

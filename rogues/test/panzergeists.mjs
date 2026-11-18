@@ -48,4 +48,6 @@ const P = (c, l) => c.board.parse(l), L = (c, x) => c.board.label(x);
   for (const m of c.monster.mobs) if (m !== mob && m.cells.length && [a, b, to].some(x => x.c === m.cells[0].c && x.r === m.cells[0].r)) { B.remove(m.cells); m.cells = []; }
   c.pzPut(a, 1); c.pzPut(b, 1); let seen = 0; const a0 = c.ask; c.ask = async q => { if (/이동 경로/.test(q.text || '')) { seen = q.options.length; return q.options[q.options.length - 1].value; } return a0(q); };
   B.remove(mob.cells); mob.cells = [to]; const ar0 = mob.armor; await c.pzThrough(mob, from); ok(seen >= 3 && mob.armor === ar0, `movement route is the player's choice (${seen} routes; picked the one without tokens)`); }
+{ const c = mk(44); const k = c.knights[0]; k.possessed = c.monster.mobs[0]; c.pzEndOfClash(); ok(!k.alive && k.permMaxVigor === -1, 'End of Clash while Possessed: die and Maximum Vigor permanently -1');
+  const c2 = new Clash({ data, knights: [{ def: 'fleischritter', name: 'X', maxVigorMod: -1 }, { def: 'fleischritter', name: 'Y' }], monster: 'panzergeists', level: 1, kingdom: 'sunken', seed: 3 }); c2.ask = autoAsk(c2); c2.setup(); ok(c2.knights[0].maxVigor === c2.knights[1].maxVigor - 1, 'the permanent Maximum Vigor penalty carries into later Clashes'); }
 console.log(fails ? `FAIL (${fails})` : 'ALL PASS (panzergeists)'); process.exit(fails ? 1 : 0);
