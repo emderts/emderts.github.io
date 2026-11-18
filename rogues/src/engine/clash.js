@@ -239,7 +239,7 @@ export class Clash {
 
   /** Monster Attack (p.47–54): targeting → movement → evasion per target → consequences → after attack. */
   async resolveMonsterAttack(card, ctx = {}) {
-    this._slowSteps = null;
+    this._slowSteps = null; this._stopMove = false;
     const ops = card.ops; if (ops.preReact && ops.pre) { this.say('REACT! (Targeting 앞)'); await this.windowOfOpportunity('react', null, null, 'pre'); }
     if (ops.pre) await this.fx.runMonsterOps(ops.pre, {});
     let tg = ctx.forceTarget && ctx.forceTarget.alive ? { targets: [ctx.forceTarget], primary: ctx.forceTarget, line: 'Signature 대상 지정' } : await this.resolveTargeting(card);
@@ -321,7 +321,7 @@ export class Clash {
   }
   async monsterMoveToward(target) { this._moveSeq = (this._moveSeq || 0) + 1;
     const B = this.board; let steps = 0; let lastAxis = null; this._moveCrashed = new Set();
-    this._slowSteps = null; const cap = this.slowToken ? 3 : 30; if (this.slowToken) { this.slowToken = false; this.say('임시 Speed 토큰: 이번 이동은 3칸에서 멈춤 (토큰 버림)', 'tech'); }
+    this._slowSteps = null; this._stopMove = false; const cap = this.slowToken ? 3 : 30; if (this.slowToken) { this.slowToken = false; this.say('임시 Speed 토큰: 이번 이동은 3칸에서 멈춤 (토큰 버림)', 'tech'); }
     while (!this.board.footprintsAdjacent(this.monster.cells, [target.pos]) && steps < cap) {
       const m = this.monsterCenter(); const dc = target.pos.c - m.c, dr = target.pos.r - m.r;
       const opts = []; if (Math.abs(dc) > 0.5) opts.push({ c: Math.sign(dc), r: 0 }); if (Math.abs(dr) > 0.5) opts.push({ c: 0, r: Math.sign(dr) });
@@ -332,7 +332,7 @@ export class Clash {
       let d = valid[0];
       if (valid.length > 1) { const alt = lastAxis ? valid.find(x => (x.c ? 'c' : 'r') !== lastAxis) : null; if (alt) d = alt; else { const i = await this.ask({ type: 'pick', preview: 'path', text: '몬스터 이동 시작 방향 (지그재그) — 옵션을 눌러 보드에서 경로 미리보기 후 확정', options: valid.map((x, i) => ({ path: this.simulateMonsterPath(target, x), label: this.dirName(x) + ' — 밟히는 기사 ' + this.monster.cells.map(m => ({ c: m.c + x.c, r: m.r + x.r })).filter(cc => this.knightAt(cc) && !this.monster.cells.some(mc => cellEq(mc, cc))).length + '명', value: i })) }); d = valid[i] || valid[0]; } }
       lastAxis = d.c ? 'c' : 'r';
-      await this.monsterStep(d); steps++; if (await this.fx.monsterMoved(this.monster.cells)) break;
+      await this.monsterStep(d); steps++; if (this._stopMove) break;
     }
     if (steps) this.say(`몬스터 이동 ${steps}칸 → ${this.monster.cells.map(c => B.label(c)).join('/')}`); await this.fenAfterMove(); await this.endMoveOnKnights();
   }
@@ -343,12 +343,13 @@ export class Clash {
   /** One step of boss movement; returns false if blocked by board edge. */
   async monsterStep(d, { charge = false } = {}) {
     const B = this.board; const nc = this.monster.cells.map(x => ({ c: x.c + d.c, r: x.r + d.r })); this._monDir = { c: Math.sign(d.c), r: Math.sign(d.r) };
-    if (this.slowToken) { this.slowToken = false; this._slowSteps = 3; this.say('임시 Speed 토큰: 이번 이동은 3칸에서 멈춤 (토큰 버림)', 'tech'); } if (this._slowSteps != null) { if (this._slowSteps <= 0) return 'slow'; this._slowSteps--; }
+    if (this.slowToken) { this.slowToken = false; this._slowSteps = 3; this.say('임시 Speed 토큰: 이번 이동은 3칸에서 멈춤 (토큰 버림)', 'tech'); } if (this._stopMove) return 'slow'; if (this._slowSteps != null) { if (this._slowSteps <= 0) return 'slow'; this._slowSteps--; }
     if (!nc.every(x => B.inside(x))) return 'edge';
     const newCells = nc.filter(x => !this.monster.cells.some(mc => cellEq(mc, x)));
     for (const x of newCells) { const t = B.terrainAt(x); if (t && t.obstacle) { if (charge && !this.monster.hasTrait('Just a Scratch')) return 'obstacle'; if (t.destructible) { B.terrain.delete(B.key(x)); this.say(`지형 ${t.id} 파괴 (${B.label(x)})`); } else return 'obstacle'; } }
     B.remove(this.monster.cells); this.monster.cells = nc; B.place({ kind: 'monster', id: this.monster.id }, nc);
     for (const x of newCells) { const k = this.knightAt(x); if (k) { try { if (this._moveCrashed) this._moveCrashed.add(k); await this.crash(k, { charge, through: true }); } catch (e) { if (!e.chainBreak) throw e; this.say(`Chain Break 중 돌진 계속 (${e.message})`, 'warn'); } } }
+    if (!this._inMoved) { this._inMoved = true; try { if (await this.fx.monsterMoved(this.monster.cells)) this._stopMove = true; } finally { this._inMoved = false; } }
     return 'ok';
   }
   /** Crash (p.80): -1 Vigor + Knockdown. Charge over knocked-down Knight → Judicium instead (Humpty Charge). */
@@ -645,9 +646,9 @@ export class Clash {
   /** Swamp: "When you move through this tile, roll a d10, +1 per Armor die on your Armor Gear. If the result is higher than your current Vigor, you die." */
   /** Campfire: moving through / ending on it → -1 Vigor per Metal Gear card, discard all Flammable Gear cards. */
   async campfireBurn(k) { const metal = k.gear.filter(g => !g.discarded && this.fx.gearTraits(k, g).includes('Metal')).length; const fl = k.gear.filter(g => !g.discarded && this.fx.gearTraits(k, g).includes('Flammable')); this.say(`${k.name}: Campfire — Metal Gear ${metal}장 → -${metal} Vigor${fl.length ? `, Flammable Gear 버림 (${fl.map(g => g.name).join(', ')})` : ''}`); for (const g of fl) g.discarded = true; if (metal) await this.loseVigor(k, metal, { source: 'effect', armor: false }); }
-  async swampThrough(k, cells) { const noSw = this.fx.ignoresSwamp(k); for (const c of cells) { if (!k.alive) return; if (noSw && this.board.terrainAt(c) && this.board.terrainAt(c).id === 'swamp') continue; { const tt = this.board.terrainAt(c); if (tt && tt.id === 'campfire') { if (!k._terrainFreeNow) await this.campfireBurn(k); continue; } } let d = await this.d10For(k, 'Swamp'); const a = this.armorGearDice(k); if (d + a > k.vigor && this.fx.gearHas(k, 'swampReroll') && await this.yesNo(`${k.name}: Swamp d10 ${d}${a ? ' +' + a : ''} vs Vigor ${k.vigor} — 다시 굴리기 (Gear, 1회)?`, true)) { d = await this.d10For(k, 'Swamp 재굴림'); this.say(`Swamp 재굴림 → ${d}`, 'dice'); } const dead = d + a > k.vigor; this.say(`${k.name}: Swamp(${this.board.label(c)}) 통과 — d10 ${d}${a ? ` +${a} (Armor die)` : ''} = ${d + a} vs Vigor ${k.vigor} → ${dead ? '사망' : '통과'}`, dead ? 'death' : 'dice'); if (dead) await this.die(k, 'Swamp'); } }
+  async swampThrough(k, cells) { const noSw = this.fx.ignoresSwamp(k); for (const c of cells) { if (!k.alive) return; if (this.fx.gearHas(k, 'swampDrown') && this.board.terrainAt(c) && this.board.terrainAt(c).id === 'swamp') { this.say(`${k.name}: Swamp(${this.board.label(c)})를 지나감 → 익사 (Gear)`, 'death'); await this.die(k, 'Swamp'); return; } if (noSw && this.board.terrainAt(c) && this.board.terrainAt(c).id === 'swamp') continue; { const tt = this.board.terrainAt(c); if (tt && tt.id === 'campfire') { if (!k._terrainFreeNow) await this.campfireBurn(k); continue; } } let d = await this.d10For(k, 'Swamp'); const a = this.armorGearDice(k); if (d + a > k.vigor && this.fx.gearHas(k, 'swampReroll') && await this.yesNo(`${k.name}: Swamp d10 ${d}${a ? ' +' + a : ''} vs Vigor ${k.vigor} — 다시 굴리기 (Gear, 1회)?`, true)) { d = await this.d10For(k, 'Swamp 재굴림'); this.say(`Swamp 재굴림 → ${d}`, 'dice'); } const dead = d + a > k.vigor; this.say(`${k.name}: Swamp(${this.board.label(c)}) 통과 — d10 ${d}${a ? ` +${a} (Armor die)` : ''} = ${d + a} vs Vigor ${k.vigor} → ${dead ? '사망' : '통과'}`, dead ? 'death' : 'dice'); if (dead) await this.die(k, 'Swamp'); } }
   /** Swamp: "If you end your movement on this tile (voluntary or not), you die." Checked for every Knight that moved since the last sweep. */
-  async swampSweep() { for (const k of this.knights) { if (!k._moved) continue; k._moved = false; if (!k.alive) continue; if (this.fx.gearHas(k, 'moveEndBreak') && (this.monster.isMob ? this.adjacentMobs(k).length : this.adjacentToMonster(k))) { this.say(`${k.name}: 몬스터 옆에서 이동 종료 → Break 1 (Gear)`, 'tech'); this.poolAdd('break', 1); } const t = this.board.terrainAt(k.pos); if (t && t.id === 'campfire') { await this.campfireBurn(k); continue; } if (t && t.id === 'swamp' && this.fx.ignoresSwamp(k)) continue; if (t && t.id === 'swamp') { if (await this.fx.gearUse(k, ['lifeline'], 'Swamp에서 이동 종료 → 사망. Lifeline으로 Displace?')) { await this.displace(k); continue; } if (await this.stoneRock(k, 'Swamp')) continue; this.say(`${k.name}: Swamp(${this.board.label(k.pos)})에서 이동 종료 → 사망`, 'death'); await this.die(k, 'Swamp'); } } }
+  async swampSweep() { if (this.traps && this.traps.length) this.fx.trapCheck(this.monster.isMob ? this.monster.mobs.flatMap(m => m.cells) : this.monster.cells); for (const k of this.knights) { if (!k._moved) continue; k._moved = false; if (!k.alive) continue; if (this.fx.gearHas(k, 'moveEndBreak') && (this.monster.isMob ? this.adjacentMobs(k).length : this.adjacentToMonster(k))) { this.say(`${k.name}: 몬스터 옆에서 이동 종료 → Break 1 (Gear)`, 'tech'); this.poolAdd('break', 1); } const t = this.board.terrainAt(k.pos); if (t && t.id === 'campfire') { await this.campfireBurn(k); continue; } if (t && t.id === 'swamp' && this.fx.ignoresSwamp(k)) continue; if (t && t.id === 'swamp') { if (await this.fx.gearUse(k, ['lifeline'], 'Swamp에서 이동 종료 → 사망. Lifeline으로 Displace?')) { await this.displace(k); continue; } if (await this.stoneRock(k, 'Swamp')) continue; this.say(`${k.name}: Swamp(${this.board.label(k.pos)})에서 이동 종료 → 사망`, 'death'); await this.die(k, 'Swamp'); } } }
   async knightMove(k, speed) {
     const cells = this.reachable(k, speed); if (!cells.length) { this.say(`${k.name} 이동 불가`); return; }
     const target = await this.ask({ type: 'move', knight: k.id, cells, options: cells.map(c => ({ label: this.board.label(c), value: c })) });
@@ -661,7 +662,7 @@ export class Clash {
   }
 
   // ---------- Knight Attack (pp.56–62) ----------
-  async knightAttack(k, opts = {}) { this._slowSteps = null; k.tempPrecision = k.tempPrecisionNext || 0; k.tempPrecisionNext = 0; let r; try { r = await this._knightAttack(k, opts); } finally { k.tempReach = 0; k.rangeDouble = false; } if (k._bonusPending && k.alive) { k._bonusPending = false; if (this.canAttack(k)) { this.say(`${k.name}: Bonus Attack (Gear)`, 'tech'); await this.knightAttack(k, { bonus: true }); } } return r; }
+  async knightAttack(k, opts = {}) { this._slowSteps = null; this._stopMove = false; k.tempPrecision = k.tempPrecisionNext || 0; k.tempPrecisionNext = 0; let r; try { r = await this._knightAttack(k, opts); } finally { k.tempReach = 0; k.rangeDouble = false; } if (k._bonusPending && k.alive) { k._bonusPending = false; if (this.canAttack(k)) { this.say(`${k.name}: Bonus Attack (Gear)`, 'tech'); await this.knightAttack(k, { bonus: true }); } } return r; }
   async _knightAttack(k, { bonus = false, weapon = null, techOp = null } = {}) {
     { const ws = weapon ? [weapon] : this.fx.usableWeapons(k, bonus); const isR = w => this.fx.kwList(w).some(o => o.op === 'ranged' && o.status === 'ok'); if (ws.some(w => !isR(w))) { const o = await this.fx.gearUse(k, ['atkReach'], '공격 직전 — 이번 근접 공격에 Reach 얻기?'); if (o) k.tempReach = Math.max(k.tempReach || 0, o.n); } if (ws.some(isR)) { const o = await this.fx.gearUse(k, ['atkRangeDouble'], '공격 직전 — 이번 Ranged 공격의 최대 사거리 2배?'); if (o) k.rangeDouble = true; } }
     let weapons = weapon ? [weapon] : this.fx.usableWeapons(k, bonus); { const inR = weapons.filter(w => this.attackTargets(k, w).length); if (inR.length) weapons = inR; }

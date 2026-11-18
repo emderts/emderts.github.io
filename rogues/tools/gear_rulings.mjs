@@ -2,15 +2,9 @@
 // Remove a line once confirmed (and record it in the code/test with "(소유자 확인 YYYY-MM-DD)").
 export const GEAR_RULINGS = [
   ['Vicious Fang Necklace', '미확인 — 현재 구현: 1 Charge로 Attack Roll 재굴림 단계 뒤에 주사위 전부를 다시 굴림, 마지막 Charge를 쓰면 그 공격이 끝난 뒤 Bonus Attack. [해석, 확인 필요]'],
-  ['Holy Pendant', '미확인 — 현재 구현: "1 Charge: Inspire 1"은 본인 턴 프리 액션 (넘어진 기사 한 명을 일으킴). "Spend X Charge to Motivate X"는 미구현. [해석, 확인 필요]'],
-  ['Congealed Spite', '"Swamp 위에 있으면 익사"는 기본 Swamp 규칙(이동 종료 시 사망)과 같다고 보고 따로 처리하지 않음.'],
   ['Wide-brimmed Wizard\'s Hat', 'Party Trick: 1 Heat, 손패 1장을 Cooldown으로 보내고 Refresh 1.'],
   ['Ghost Catalyst', '[JUDICIUM] 2 Heat + Exhaust: 이 Weapon 사거리 안의 빈 칸으로 순간이동.'],
-  ['Reclaimed Bogpump / Anvil of Andermainz', '지형은 칸 단위로 카드에 올리고 다시 놓는다. "사거리"는 장착한 Weapon의 사거리(최소 1칸).'],
   ['Whiskerfin Shield 등 "Block or Defy"', '비용이 있는 "Block or Defy"는 일반 공격에는 Block, Judgement에는 Defy로 제시.'],
-  ['Motivate 계열 (Golden Armguard, Dragoon\'s Pride, Grasping Whip, Holy Pendant, The Incisors)', 'Motivate = 대상 기사가 최대 X칸 이동(선택). "each Knight other than you"는 다른 기사 각자 X칸. "toward"는 그 대상에 가까워지는 칸으로만.'],
-  ['이동 정지 (Weighted Net, Skyhooks, Skypiercer Lance)', '몬스터가 한 칸 움직여 인접하게 될 때마다 사용 여부를 묻고, 쓰면 그 이동을 멈춘다. Net·Skyhooks는 AI/Signature 공격 해결 중에는 사용 불가. 대상을 향한 일반 이동에만 걸림 (돌진·고유 이동 제외).'],
-  ['설치형 (Scorching Caltrops, Poisoned Ratwolf Bait)', '인접 2칸에 설치. 몬스터가 일반 이동으로 그 칸에 들어오면 발동. 보드 화면에는 아직 표시되지 않고 로그로만 알림.'],
   ['Holy Water / Spider Venom Curse / Strapped Incendiaries / Power Bank', '"discard this Upgrade" = 장착된 Upgrade만 떼어낸다 (Gear 본체는 유지). Strapped Incendiaries는 Power Roll을 굴리기 전에 선언.'],
   ['Visage of the Endless', '1 Heat + Exhaust: 현재 Peril 단계의 Mortis(Uninjured면 선택)를 미리 뽑아 두고, 다음 Peril Check에서 그 카드를 해결.'],
   ['Sawed Man Escutcheon', '턴 시작에 각 Mortis 덱 맨 위를 공개(로그). [JUDICIUM] Judicium 대신 그때 덱 맨 위에 있는 Mortis 하나를 골라 해결.'],
@@ -265,6 +259,12 @@ export const GEAR_CONFIRMED = [
   ['Bejeweled Head', '[DEVIL] Wound 시 가장 가까운 기사의 Condition 카드 하나를 가져올 수 있다. (소유자 확인 2026-11-18)'],
   ['Membrane Halberd', '사거리 안의 몬스터 점유 칸 수 -1(공격한 칸)만큼, 최대 3개 Black 토큰. (소유자 확인 2026-11-18)'],
   ["Mud Catalyst", "[BANE 2+] 공격 대상이 Swamp 위에 있으면 To Hit -1. 1 Heat + Exhaust: 가장 가까운 Swamp 칸을 유효 사거리 안의 빈 칸으로 옮김. (소유자 확인 2026-11-18)"],
+  ["Holy Pendant", "\"1 Charge: Inspire 1\"은 본인 공격의 1차 능력 창에서, \"Spend X Charge to Motivate X\"는 2차 능력 창에서 제시 (프리 액션 아님). (소유자 확인 2026-11-19)"],
+  ["Congealed Spite", "Swamp 칸을 지나가기만 해도 익사(사망). (소유자 확인 2026-11-19)"],
+  ["Reclaimed Bogpump / Anvil of Andermainz", "지형은 타일 단위로 카드에 올리고 다시 놓는다 (타일 모양 그대로, 회전 없음). 공격 시 Power 토큰은 칸 단위로 셈. \"사거리\"는 장착한 Weapon의 사거리(최소 1칸). (소유자 확인 2026-11-19)"],
+  ["Motivate", "키워드 정의대로: 2차 능력 창에서 다른 기사들이 합쳐서 최대 X칸 이동. Technique의 Motivate도 같은 방식. \"each Knight other than you\" / \"toward\"처럼 카드에 따로 적힌 것만 예외. (소유자 확인 2026-11-19)"],
+  ["이동 정지 (Weighted Net, Skyhooks, Skypiercer Lance)", "몬스터가 한 칸 움직여 인접하게 될 때마다 사용 여부를 묻고, 쓰면 그 이동을 멈춘다 — 돌진·고유 이동·밀려남 등 칸 단위 이동 전부. Net·Skyhooks는 AI/Signature 공격 해결 중에는 사용 불가. (소유자 확인 2026-11-19)"],
+  ["설치형 (Scorching Caltrops, Poisoned Ratwolf Bait)", "인접 2칸에 설치. 몬스터가 어떤 식으로든 그 칸에 들어오면 발동. 보드에 ✸(Caltrops) / ☠(Bait)로 표시. (소유자 확인 2026-11-19)"],
 ];
 export const KNIGHT_QUESTIONS = [
   ['Stoneface — 미구현', 'Talent: Stonewall (Wave Attack이 엔진에 없음).'],
