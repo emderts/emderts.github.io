@@ -15,16 +15,16 @@ export class Campaign {
     this.map = data.rosegraal.map; this.tables = data.rosegraal.monster_tables; this.rewards = data.rosegraal.rewards;
     if (cfg.restore) { Object.assign(this, cfg.restore); this.rng = new Rng(cfg.restore.rngSeed); this.rng.s = cfg.restore.rngState; return; }
     this.owned = cfg.ownedMonsters || null;
-    this.knights = cfg.knights.map((k, i) => this._newKnight(k, i));
+    this.knights = cfg.knights.map((k, i, all) => this._newKnight(k, i, all.filter(x => x.def === k.def).length > 1));
     this.resurrections = 5; this.crossed = ['S']; this.round = 0; this.result = null; this.curseLevel = 0;
     this.unknownSaintUnlocked = false; this.mercPool = this._mercDeck(); this.hired = []; this.history = [];
     this.current = null; // { nodeId, monster, level, kingdom }
     this.say(`Rogue's Path 캠페인 시작 — 기사 ${this.knights.map(k => k.name).join(', ')}, 부활 ${this.resurrections}, 각 기사 Gold 10`);
   }
   say(m, kind = 'info') { this.log.push({ msg: m, kind, round: this.round }); return m; }
-  _newKnight(k, i) {
+  _newKnight(k, i, dup = true) {
     const def = this.data.knights[k.def];
-    return { id: `${k.def}-${i}`, def: k.def, name: k.name || def.name + (i ? ' ' + (i + 1) : ''), gold: 10, sigh: 0, bane: 0, firstDeath: false, alive: true, dead: false,
+    return { id: `${k.def}-${i}`, def: k.def, name: k.name || def.name + (dup && i ? ' ' + (i + 1) : ''), gold: 10, sigh: 0, bane: 0, firstDeath: false, alive: true, dead: false,
       virtues: { ...def.setup.virtues }, unlocked: { techniques: [...def.setup.techniques], heroicArcs: [def.setup.heroicArc], perilArcs: [def.setup.perilArc], talents: [def.setup.talent], portraits: [def.setup.portrait] },
       loadout: { portrait: def.setup.portrait, heroicArc: def.setup.heroicArc, perilArc: def.setup.perilArc, talent: def.setup.talent, techniques: [...def.setup.techniques], gear: this._normalizeGear(this._startGear(def, k)) },
       armory: this._startGear(def, k), claimed: [], rapport: {}, devotion: 0, saint: null };

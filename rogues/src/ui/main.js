@@ -25,14 +25,21 @@ const save = () => { if (!camp) return; try { localStorage.setItem(SAVE_KEY, JSO
 const loadSaved = () => { try { const s = localStorage.getItem(SAVE_KEY); return s ? JSON.parse(s) : null; } catch (e) { return null; } };
 
 // ---------- home ----------
+const KNIGHT_IDS = Object.keys(DATA.knights).filter(id => DATA.knights[id].setup); const partySel = [0, 1, 2, 3].map(i => KNIGHT_IDS[i % KNIGHT_IDS.length]);
 const renderHome = () => {
   const mons = Object.values(DATA.monsters).filter(m => m.clashSetup || /[?&]dev/.test(location.search)); const saved = loadSaved();
   app.replaceChildren(
     h('h1', {}, "Kingdoms Forlorn — Rogue's Path"),
     h('p', { class: 'sub' }, `웹 싱글플레이 · v${DATA.meta.version} · 빌드 ${DATA.meta.builtAt.slice(0, 16).replace('T', ' ')} UTC`),
     h('div', { class: 'card' },
+      h('h2', {}, '기사 선택'),
+      h('p', { class: 'small muted' }, '캠페인과 Clash 단독 테스트 모두 여기서 고른 기사 4명으로 시작합니다. 같은 기사는 중복할 수 없습니다 (이미 고른 기사를 고르면 두 자리가 서로 바뀝니다).'),
+      h('div', { class: 'row' }, ...[0, 1, 2, 3].map(i => h('label', {}, `${i + 1} `, h('select', { id: 'kn' + i, onchange: e => { const v = e.target.value, old = partySel[i]; const o = partySel.indexOf(v); if (o >= 0 && o !== i) { partySel[o] = old; const el = $('#kn' + o); if (el) el.value = old; } partySel[i] = v; syncGearChoice(); } }, KNIGHT_IDS.map(id => h('option', { value: id, selected: partySel[i] === id ? '' : null }, DATA.knights[id].name)))))),
+      h('div', { id: 'kgrow', class: 'small' }, ...[0, 1, 2, 3].map(i => h('label', { id: 'kgl' + i, style: 'display:none;margin-right:8px' }, `기사 ${i + 1} 시작 장비 `, h('select', { id: 'kg' + i })))),
+    ),
+    h('div', { class: 'card' },
       h('h2', {}, 'Rogue\'s Path 캠페인'),
-      h('p', { class: 'small muted' }, `기사 4명(Fleischritter ×4 — 다른 기사는 데이터 입력 후), Rosegraal 103 노드. 구현된 몬스터: ${mons.map(m => m.name).join(', ')} — 표에 그 몬스터가 없는 노드는 아직 선택 불가.`),
+      h('p', { class: 'small muted' }, `기사 4명, Rosegraal 103 노드. 구현된 몬스터: ${mons.map(m => m.name).join(', ')} — 표에 그 몬스터가 없는 노드는 아직 선택 불가.`),
       h('div', { class: 'row' },
         saved ? h('button', { class: 'primary', onclick: () => { camp = Campaign.restore(DATA, saved); camp.ask = askViaSheet; screen = 'map'; render(); } }, `이어하기 (라운드 ${saved.round}, 노드 ${saved.crossed.length - 1}/102)`) : null,
         h('button', { class: saved ? '' : 'primary', onclick: newCampaign }, '새 캠페인'),
@@ -43,8 +50,6 @@ const renderHome = () => {
       h('h2', {}, 'Clash 단독 테스트'),
       h('div', { class: 'row' },
         h('label', {}, '몬스터 ', h('select', { id: 'mon' }, mons.map(m => h('option', { value: m.id }, m.name)))),
-        h('label', {}, '기사 ', ...[0, 1, 2, 3].map(i => h('select', { id: 'kn' + i, onchange: syncGearChoice }, Object.keys(DATA.knights).filter(id => DATA.knights[id].setup).map(id => h('option', { value: id }, DATA.knights[id].name))))),
-        h('div', { id: 'kgrow', class: 'small' }, ...[0, 1, 2, 3].map(i => h('label', { id: 'kgl' + i, style: 'display:none;margin-right:8px' }, `기사 ${i + 1} 시작 장비 `, h('select', { id: 'kg' + i })))),
         h('label', {}, '레벨 ', h('select', { id: 'lv' }, [1, 2, 3, 4].map(l => h('option', { value: l }, `Lv ${l}`)))),
         h('label', {}, '노드 레벨 ', h('select', { id: 'nlv' }, [1, 2, 3, 4, 5].map(l => h('option', { value: l }, `${l} · ${['Mob', 'Vassal', 'King', 'Devil', 'Dragon'][l - 1]}`)))),
         h('label', {}, '시드 ', h('input', { id: 'seed', type: 'number', placeholder: '무작위', style: 'width:110px', value: seedInput })),
@@ -56,7 +61,7 @@ const renderHome = () => {
 };
 const syncGearChoice = () => { for (let i = 0; i < 4; i++) { const el = $('#kn' + i), lab = $('#kgl' + i), sel = $('#kg' + i); if (!el || !lab || !sel) continue; const ch = DATA.knights[el.value] && DATA.knights[el.value].setup.gearChoice; if (!ch) { lab.style.display = 'none'; sel.dataset.kn = ''; continue; } lab.style.display = ''; if (sel.dataset.kn !== el.value) { sel.dataset.kn = el.value; sel.innerHTML = ''; for (const n of ch.options) { const o = document.createElement('option'); o.value = n; o.textContent = n; if (n === ch.default) o.selected = true; sel.appendChild(o); } } } };
 const startGearOf = i => { const el = $('#kn' + i), sel = $('#kg' + i); const ch = el && DATA.knights[el.value] && DATA.knights[el.value].setup.gearChoice; return ch ? (sel && ch.options.includes(sel.value) ? sel.value : ch.default) : null; };
-const partyDefs = () => [0, 1, 2, 3].map(i => { const el = $('#kn' + i); return el && DATA.knights[el.value] ? el.value : 'fleischritter'; });
+const partyDefs = () => [0, 1, 2, 3].map(i => { const el = $('#kn' + i); return el && DATA.knights[el.value] ? el.value : partySel[i]; });
 const newCampaign = () => { if (loadSaved() && !confirm('저장된 캠페인을 덮어씁니다. 계속할까요?')) return; camp = new Campaign(DATA, { seed: Math.floor(Math.random() * 1e9), knights: partyDefs().map((def, i) => ({ def, startGear: startGearOf(i) })), ask: askViaSheet, ownedMonsters: null }); save(); screen = 'map'; render(); };
 const startTestClash = () => {
   const seed = +$('#seed').value || Math.floor(Math.random() * 1e9); seedInput = String(seed);
