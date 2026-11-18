@@ -244,7 +244,7 @@ sec.push(`<section id="campaign"><h2>11. 캠페인 레이어 — Rosegraal 루�
 <details><summary>카드별 미해결 문장 (${rows.length}장)</summary><table><tr><th>파일</th><th>카드</th><th>엔진이 해결하지 않는 문장</th></tr>${rows.join('')}</table></details></section>`); }
 // Monster sections whose transcription + rulings the owner has fully confirmed leave the audit page (they are browsable in the game:
 // 👁 몬스터 정보). A section stays if it still carries a "확인 필요" marker. `node tools/audit.mjs --full` keeps everything.
-const FULL = process.argv.includes('--full'); const isMonSec = x => /^<section id="(eggknight|mob-|boss-|raw-|fools)/.test(x); const pending = x => /\[해석, 확인 필요\]/.test(x);
+const FULL = process.argv.includes('--full'); const isMonSec = x => /^<section id="(eggknight|mob-|boss-|raw-|fools)/.test(x); const pending = x => /\[해석, 확인 필요\]|미구현/.test(x);
 const done = sec.filter(x => isMonSec(x) && !pending(x) && !FULL).map(x => (x.match(/<h2>(?:\d+b?\.\s*)?([^<—]+)/) || [])[1].trim());
 const out = sec.filter(x => FULL || !isMonSec(x) || pending(x));
 { const i = out.findIndex(x => /^<section id="gearkw"/.test(x)); if (i > 0) out.unshift(out.splice(i, 1)[0]); } // confirmation-needed Gear rulings first

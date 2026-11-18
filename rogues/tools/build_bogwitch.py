@@ -74,7 +74,7 @@ d = {
            'routine': {**raw['routine'], 'type': 'routine', 'ops': [{'op': 'bwRoutine'}]}},
  'bw': {'track': ['Swamp', 'Mud Wisp', 'Rotten Stump']},
  'clashSetup': {'_source': 'Expansion Codex p.60 (Bog Witch Clash)', 'steps': CS['steps'], 'requiredTiles': CS['requiredTiles'], 'monsterCells': CS['monsterCells'], 'facing': 'N',
-  'knightStart': CS['knightStart'], 'terrain': [{'tile': t['tile'], 'cells': t['cells']} for t in CS['terrain']], 'notes': ['지형·시작 칸은 코덱스 도식에서 읽음 [해석, 확인 필요]']},
+  'knightStart': CS['knightStart'], 'terrain': [{'tile': t['tile'], 'cells': t['cells']} for t in CS['terrain']], 'notes': ['지형·시작 칸은 코덱스 도식에서 읽음 (소유자 확인 2026-11-17)']},
  'rulings': [
   'Level 3 Vigor 보너스: 에라타대로 +1 (소유자 확인 2026-11-17)',
   'Bog Move — Target은 그 공격의 대상(여럿이면 먼저 해결하는 기사) 또는 공격자. Swamp: Witch 밑에 2x2 Swamp를 놓고 Target에서 가장 먼 Swamp 2x2 타일 위로 이동. Mud Wisp: 원하는 Weakspot(W) 칸에 Mud Wisp 마커(플레이어 선택), 그 뒤 Target 반대쪽으로 4칸(방향 유지). Rotten Stump: Witch 밑에 Rotten Stump 2x2를 놓고 Witch를 보드에서 제거(보드 밖에서도 공격 수행). 보드 밖일 때 "Witch 밑" 배치는 생략 (소유자 확인 2026-11-17)',
@@ -87,7 +87,7 @@ d = {
   '"KING ▸ DIFFICULTY N+ INSTEAD" 게이트 (Judgement 5장): 노드 Level이 King 이상이면 적용 — 아이템 Tier 게이트와 같음 (소유자 확인 2026-11-17)',
   'Hex "Marsh Fumes": Heroic Arc에서 Knight Pool에 놓는 토큰만 막음 (문구대로, 소유자 확인 2026-11-17)',
   'Hex "Slough Sickness": Poison Limit -1 + 턴 시작 Poison 1',
-  'Hex "Beast of the Swamp": 턴 시작 d10 — 1–3 영구 음수 Precision 토큰, 4–6 영구 음수 Speed 토큰, 7–9 영구 음수 Evasion 토큰, 10 그 턴의 공격에서 Power 1 무시 (소유자 확인 2026-11-17). "영구"는 이 Clash 동안만 적용 — 캠페인에는 남지 않음 [해석, 확인 필요]',
+  'Hex "Beast of the Swamp": 턴 시작 d10 — 1–3 영구 음수 Precision 토큰, 4–6 영구 음수 Speed 토큰, 7–9 영구 음수 Evasion 토큰, 10 그 턴의 공격에서 Power 1 무시 (소유자 확인 2026-11-17). "영구"는 이 Clash 동안만 적용 — 캠페인에는 남지 않음 (소유자 확인 2026-11-17)',
   'Hex "Burden of the Fen": 그 기사 주변 Zone 1의 모든 칸을 (지형이 있어도) Swamp로 취급 (소유자 확인 2026-11-17)',
   'Cookie Crumbs: Monster Round 종료 시 토큰 3–5 Signature / 6–8 AI / 9+ Signature 후 AI',
   'A Long Lost Child "voluntarily end this Attack": Power Roll 전에 물음',
