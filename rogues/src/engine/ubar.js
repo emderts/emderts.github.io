@@ -16,6 +16,7 @@ export const UbarMixin = {
   /** Shapeshift: swap the current form; "When you Shapeshift, you may move 1 space" (swap places for Simian Strategist). */
   async shapeshift(k, why = '') {
     k.form = k.form === 'ape' ? 'human' : 'ape'; this.say(`${k.name}: Shapeshift → ${k.form === 'ape' ? 'Ape' : 'Human'}${why ? ` (${why})` : ''}`, 'tech');
+    for (const g of k.gear) if (!g.discarded) for (const y of this.fx.constKw(k, g)) if (y.op === 'shiftHeat' && k.heat > 0) { k.heat = Math.max(0, k.heat - y.n); this.say(`${g.name}: Shapeshift → Heat -${y.n} (${k.heat})`, 'tech'); }
     const o = tops(k, 'shiftMove')[0]; if (!o || !k.alive || this.knockedDown(k) || k.engulfed) return;
     const adj = o.swap ? this.alive().filter(x => x !== k && this.board.adjacent(x.pos, k.pos) && !x.engulfed) : [];
     const v = await this.ask({ type: 'pick', knight: k.id, text: `${k.name}: Shapeshift — 이동?`, options: [{ label: `${o.n}칸 이동`, value: 'move' }, ...adj.map(x => ({ label: `${x.name}와 자리 교환`, value: 'swap:' + x.id })), { label: '이동 안 함', value: 'skip' }] });

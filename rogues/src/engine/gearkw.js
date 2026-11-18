@@ -6,9 +6,9 @@ const TOKENS = { 'Break': 'break', 'Opening': 'opening', 'Closing': 'closing', '
 const OK = { 'Commit': 'commit', 'Cumbersome': 'cumbersome', 'Tireless': 'tireless', 'Deadly': 'deadly', 'Overbreak': 'overbreak', 'Envenomed': 'envenomed', 'Attack Re-roll': 'attackReroll', 'Power Re-roll': 'powerReroll',
   'Reposition': 'reposition', 'Pushback': 'pushback', 'Vault': 'vault', 'Hug': 'hug', 'Daze': 'daze', 'Provoke': 'provoke', 'Inspire': 'inspire', 'Motivate': 'motivate', 'Drag': 'drag', 'Reach': 'reach', 'Unwieldy': 'unwieldy',
   'Soak': 'soak', 'Poison Resilience': 'poisonResilience', 'Tumble': 'tumble', 'Stalwart': 'stalwart', 'Rocksteady': 'rocksteady', 'Braced': 'braced', 'Armor-piercing': 'armorPiercing',
-  'Deploy': 'deploy', 'Guard': 'guard', 'Pull': 'pull', 'Knockback': 'knockback', 'Second Chance': 'secondChance', 'Superior Chance': 'secondChance', 'Lifeline': 'lifeline', 'Reflex': 'reflex', 'Advanced Reflex': 'reflex2', 'Superior Reflex': 'reflex3', 'Precise': 'precise', 'Bypass': 'bypass', 'Advanced Bypass': 'bypass', 'Defy': 'defy', 'Advanced Defy': 'defy2', 'Superior Defy': 'defy3',
+  'Deploy': 'deploy', 'Guard': 'guard', 'Pull': 'pull', 'Knockback': 'knockback', 'Second Chance': 'secondChance', 'Superior Chance': 'secondChance', 'Lifeline': 'lifeline', 'Reflex': 'reflex', 'Advanced Reflex': 'reflex2', 'Superior Reflex': 'reflex3', 'Precise': 'precise', 'Bypass': 'bypass', 'Superior Bypass': 'superiorBypass', 'Advanced Bypass': 'bypass', 'Defy': 'defy', 'Advanced Defy': 'defy2', 'Superior Defy': 'defy3',
   'Block': 'block', 'Advanced Block': 'block2', 'Superior Block': 'block3', 'Dodge': 'dodge', 'Lesser Dodge': 'dodge0', 'Advanced Dodge': 'dodge2', 'Superior Dodge': 'dodge3', 'Reinforce': 'reinforce', 'Advanced Reinforce': 'reinforceBlack', 'Superior Reinforce': 'reinforceWhite' };
-const PENDING = ['Ammo Reserves', 'Superior Bypass', 'Armor Re-roll', 'Hide', 'Pass', 'Greater Pass', 'Spotlight', 'Heartseeker', 'Soulseeker', 'Fortify', 'Acrobatics', 'Roll Out', 'Jump', 'Advanced Jump', 'Area', 'Bane', 'Parasitize', 'Poison', 'Toxify', 'Sacrifice', 'Rush', 'Improved Rush', 'Refresh', 'Falsity', 'Zeal', 'Devote', 'Magic', 'Scavenge', 'Suppress', 'BP Suppress', 'AI Suppress', 'Immune to Fear', 'Ignore Lumbering', 'Ignore Obscuring'];
+const PENDING = ['Ammo Reserves', 'Armor Re-roll', 'Hide', 'Pass', 'Greater Pass', 'Spotlight', 'Heartseeker', 'Soulseeker', 'Fortify', 'Acrobatics', 'Roll Out', 'Jump', 'Advanced Jump', 'Area', 'Bane', 'Parasitize', 'Poison', 'Toxify', 'Sacrifice', 'Rush', 'Improved Rush', 'Refresh', 'Falsity', 'Zeal', 'Devote', 'Magic', 'Scavenge', 'Suppress', 'BP Suppress', 'AI Suppress', 'Immune to Fear', 'Ignore Lumbering', 'Ignore Obscuring'];
 const NA = ['Wither', 'Growth', 'Clockwork', 'Bloodletter', 'Leech'];
 const camel = s => s.replace(/[^A-Za-z ]/g, '').split(' ').map((w, i) => i ? w[0].toUpperCase() + w.slice(1).toLowerCase() : w.toLowerCase()).join('');
 /** Keywords the engine resolves only when printed without a cost (constant) — with a cost they are 'pending' unless listed in ACTIVE_OK. */
@@ -195,6 +195,28 @@ const SPECIAL = [
   [/^Wound: After resolving the Attack, exchange your \[Passion\] and \[Heat\]$/, () => ({ op: 'woundSwapPH' })],
   [/^You die immediately$/, () => ({ op: 'gateDie' })],
   [/^Flip a Condition card and gain \+(\d+) \[Vigor\]$/, m => ({ op: 'fFlipCondVigor', n: +m[1], free: true })],
+  [/^You have (?:an|one|1) additional \[(Hand|Support)(?: slot)?\] slot$/, m => ({ op: 'extraSlot', slot: m[1].toLowerCase() })],
+  [/^When you deal a Wound, gain (\d+) Gold \[Gold\]$/, m => ({ op: 'woundGold', n: +m[1], active: true })],
+  [/^If you're fighting the Knighteater, trigger Wolf Down 0$/, () => ({ op: 'fWolfDown0', free: true })],
+  [/^Ignore up to (\d+) Panzer Parasite Condition tokens?$/, m => ({ op: 'parasiteIgnore', n: +m[1] })],
+  [/^You cannot die from the Panzer Parasite Condition card$/, () => ({ op: 'parasiteNoDeath' })],
+  [/^When you are about to suffer Parasitize X, lower X by (\d+) \(to a minimum of 0\)$/, m => ({ op: 'parasitizeLower', n: +m[1], active: true })],
+  [/^If you're adjacent to a Monster, Reflex$/, () => ({ op: 'reflexAdj', active: true })],
+  [/^Another Knight performs Reflex$/, () => ({ op: 'reflexOther', active: true })],
+  [/^Another Knight may move (\d+) space$/, m => ({ op: 'moveOther', n: +m[1], active: true })],
+  [/^You may perform a Bonus Attack with this Weapon, then discard it and gain (\d+) Bane \[Bane\] token$/, m => ({ op: 'rxBonusDiscard', n: +m[1], active: true })],
+  [/^When you Provoke, Motivate (\d+) each other Knight$/, m => ({ op: 'provokeMotivate', n: +m[1] })],
+  [/^The Monster performs Signature against you$/, () => ({ op: 'fSignatureMe', free: true })],
+  [/^After you resolve it, perform a Bonus Attack!$/, () => ({ op: 'note', na: true })],
+  [/^When you are about to be devoured, draw a Judicium instead$/, () => ({ op: 'devourJudicium' })],
+  [/^When you are about to be devoured, ignore that devour$/, () => ({ op: 'devourIgnore', active: true })],
+  [/^\+X\* to all Judgement and Virtue tests$/, () => ({ op: 'maskBonus' })],
+  [/^Swap spaces with another Knight with the Ancestral Ritual Mask \[Gear\] card$/, () => ({ op: 'fMaskSwap', free: true })],
+  [/^\*X is the number of Knights with the Ancestral Ritual Mask \[Gear\] card$/, () => ({ op: 'note', na: true })],
+  [/^When you Shapeshift, lose -(\d+) \[Heat\]$/, m => ({ op: 'shiftHeat', n: +m[1] })],
+  [/^Reduce suffered Knockback or Pushback by (\d+)$/, m => ({ op: 'reduceKB', n: +m[1], active: true })],
+  [/^Adjacent Knights may use this card's ability as a free action \(they still need to pay its cost\)$/, () => ({ op: 'note', na: true })],
+  [/^When using the Monarch ability, trigger Signature instead$/, () => ({ op: 'note', na: true })],
   [/^Bane Limit(?: \[Bane Limit\])? ([+-]\d+)$/, m => ({ op: 'baneLimitMod', n: +m[1] })],
   [/^You may use your \[Combat action\] as a \[Move action\]$/, () => ({ op: 'combatAsMove' })],
   [/^Re-roll your Attack Roll \(all dice\)$/, () => ({ op: 'rerollAttackAll', active: true })],
@@ -364,6 +386,8 @@ export function parseSentence(s) {
   const text = s.trim(); let r = text.replace(/\.$/, '').trim(); const o = {};
   for (let guard = 0; guard < 8; guard++) { let m;
     if ((m = /^\[(MINOR|MAJOR|GRAVE|JUDICIUM)\]\s*/.exec(r))) { o.gate = m[1]; r = r.slice(m[0].length); continue; }
+    if ((m = /^\[(HUMAN|APE)\]\s*/.exec(r))) { o.form = m[1].toLowerCase(); r = r.slice(m[0].length); continue; }
+    if ((m = /^\[(SLIMED|DROWNING|POISONED)\]\s*/.exec(r))) { o.condGate = m[1][0] + m[1].slice(1).toLowerCase(); r = r.slice(m[0].length); continue; }
     if ((m = /^\[(PRINCIPALITY OF STONE|SUNKEN KINGDOM)\]\s*/.exec(r))) { o.kingdom = m[1] === 'SUNKEN KINGDOM' ? 'sunken' : 'principality'; r = r.slice(m[0].length); continue; }
     if ((m = /^\[BANE (\d+)\+\]\s*/i.exec(r))) { o.baneMin = +m[1]; r = r.slice(m[0].length); continue; }
     if ((m = /^\[Move action\]\+\[Combat action\]\s*/i.exec(r))) { (o.cost = o.cost || {}).action = 'both'; r = r.slice(m[0].length); continue; }
@@ -389,7 +413,7 @@ export function parseSentence(s) {
     if ((m = /^(\d+) \[Charge\]\s*/.exec(r))) { (o.cost = o.cost || {}).charge = +m[1]; r = r.slice(m[0].length); continue; }
     break; }
   const b = body(r); if (!b) { if (/\b(Delve|Deep Fog|Trailmake|Wander|Rotation|Adventure|Ambush|Encounter|Exploration|Shortcuts?|Possessed|Clues?|District|Investigation)\b/.test(text)) return { op: 'nonClash', status: 'na', text }; return { op: 'text', status: 'text', text }; }
-  const k = { ...b, ...o, text }; if (k.atTurnStart && k.op === 'hide') k.op = 'hideStart'; if (k.op === 'tumble' && (k.cost || k.reaction)) { k.op = 'tumblePaid'; k.special = true; k.active = true; } if (k.op === 'soak' && k.cost) { k.op = 'soakPaid'; k.special = true; k.active = true; } if (k.status === 'ok' && (k.cost || k.reaction) && !ACTIVE_OK.has(k.op) && !k.special) k.status = 'pending'; // costed versions of constant keywords need their own timing window
+  const k = { ...b, ...o, text }; if (k.op === 'deadly' && k.cost) { k.op = 'deadlyPaid'; k.status = 'ok'; k.special = true; k.active = true; } if (k.atTurnStart && k.op === 'hide') k.op = 'hideStart'; if (k.op === 'tumble' && (k.cost || k.reaction)) { k.op = 'tumblePaid'; k.special = true; k.active = true; } if (k.op === 'soak' && k.cost) { k.op = 'soakPaid'; k.special = true; k.active = true; } if (k.status === 'ok' && (k.cost || k.reaction) && !ACTIVE_OK.has(k.op) && !k.special) k.status = 'pending'; // costed versions of constant keywords need their own timing window
   return k;
 }
 /** Parse a whole ability text → list of keywords (one per sentence). */

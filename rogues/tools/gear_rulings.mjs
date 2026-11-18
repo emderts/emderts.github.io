@@ -24,19 +24,30 @@ export const GEAR_RULINGS = [
   ['Aegis of Averted Eyes', '[MAJOR] Discard: 턴 시작 Refresh에서 Card Refresh 대신 Heat Refresh를 한 번 더, 또는 그 반대.'],
   ['Sign of the Saints', '이 Weapon의 Block 능력을 Judgement에도 (Defy처럼) 쓸 수 있다.'],
   ['Dragonrazor', '"climb test 자동 성공" — 현재 구현의 Climb은 테스트 없이 성공하므로 효과 없음으로 처리.'],
+  ['[신규] Nightmare Tailspear — 보스 순간이동', '임시 Speed 토큰은 칸 단위 이동(일반 이동·돌진·밀려남)과 Mob의 모든 이동에 적용. 보스형 몬스터의 배치형 이동(Knighteater Appear Behind, Stonemason Move Lateral, White Ape Troll 재배치)은 칸을 세지 않아 아직 3칸 제한이 걸리지 않음. [해석, 확인 필요]'],
+  ['[신규] Superior Chance (Gear: Wilder Plate 등)', 'Mortis뿐 아니라 Judicium도 무시하고 다시 뽑음 (You Died Horribly 제외). [해석, 확인 필요]'],
+  ['[신규] Parasite 계열 (Stalking Parasite, Parasite Bait, Parasitic Gambeson)', 'Stalking Parasite: 사망 판정(토큰 5개)에서 토큰 1개를 빼고 셈. Parasite Bait: Parasitize X를 받을 때 1 Heat + Exhaust로 X -1. Parasitic Gambeson [JUDICIUM]: Panzer Parasite로 죽지 않음. [해석, 확인 필요]'],
+  ['[신규] Gear Reaction (Hunter\'s Prize, Decoy Shield, Bejeweled Head, Ghostly Blade)', 'REACT! 창에서 제시. Hunter\'s Prize: 몬스터에 인접해 있을 때만 Reflex. Decoy Shield / Bejeweled Head: 다른 기사 1명이 Reflex / 1칸 이동. Ghostly Blade [BANE 4+]: 그 Weapon으로 Bonus Attack 후 카드 버림 + Bane 1. [해석, 확인 필요]'],
+  ['[신규] Skypiercer Lance', '3 Heat + Exhaust (본인 턴 프리 액션): 몬스터가 나에게 Signature, 해결 뒤 Bonus Attack. [해석, 확인 필요]'],
+  ['[신규] Ancestral Ritual Mask', '+X는 Virtue test 보너스로 적용 (X = Mask를 가진 살아 있는 기사 수). 자리 바꾸기는 본인 턴 프리 액션. "X가 3 이상이면 Reaction으로 사용"은 미구현. [해석, 확인 필요]'],
+  ['[신규] 추가 슬롯 (Automail Hand, Geistling, Dragon Plattenpanzer)', 'Outpost 장착 화면에서 Hand / Support 슬롯 한도를 +1. [해석, 확인 필요]'],
+  ['[신규] Haunted Cutlass', '[GRAVE] Discard: Wound 시 Gold +1 — Clash가 끝나면 캠페인 Gold에 그대로 반영. [해석, 확인 필요]'],
+  ['[신규] Knighteater Helm', '1 Heat 본인 턴 프리 액션: Knighteater와 싸우는 중이면 Wolf Down 0. [해석, 확인 필요]'],
+  ['[신규] Light Lamellar Armor', '피할 수 있는 Pushback/Knockback을 받을 때 1 Heat + Exhaust로 칸 수 -1. [해석, 확인 필요]'],
+  ['[신규] Whiskerfin Shield / Stone Javelin', 'devour 당할 때: Whiskerfin [GRAVE]는 대신 Judicium, Stone Javelin은 1 Charge + 1 Heat + Exhaust로 무시. [해석, 확인 필요]'],
+  ['[신규] Royal Red', '[SLIMED] Slimed Condition이 있을 때 Provoke하면 다른 기사 각자 Motivate 1. [해석, 확인 필요]'],
+  ['[신규] Scavenged Handaxe / Ghost Catalyst', 'Handaxe: 공격 직전 2 Heat로 그 공격에 Deadly. Ghost Catalyst: Superior Bypass(미니어처·Obstacle 통과, Difficult 무시). [해석, 확인 필요]'],
+  ['[신규] Ser Ubar 형태 게이트 (Helm of the Silent Witness, Aegis of Averted Eyes)', 'Shapeshift할 때마다 Heat -1. [HUMAN] / [APE] 줄은 그 형태일 때만 사용 가능. [해석, 확인 필요]'],
 ];
 export const GEAR_QUESTIONS = [
   ['Chainbreaker [MAJOR]', '"Overpower 발동 시 Crit Chance 획득" — Overpower는 Power Roll 뒤에 판정되는데 Crit Chance를 언제 쓰는가?'],
   ['Mantle of the Faithful', '비용 표기가 숫자 없이 "[Heat]"로만 전사되어 있음 — Heat 몇인지 확인 필요.'],
   ['Toadscale', '카드에 "*X is the number of dice you were hit with"만 있고 X를 쓰는 키워드가 전사에 없음 — 원문 확인 필요.'],
   ['Divine Target', 'Spotlight 조건의 Divine Target 토큰 — 엔진에 없음. 지금은 Priority Target만 본다.'],
-  ['Parasitize X / Panzer Parasite', 'Panzer Parasite Condition 카드 문구가 필요 (Parasite Bait, Stalking Parasite, Parasitic Gambeson, Anti-Parasite Rust).'],
   ['Ammo Reserves X', '"Additional X Charges per empty slot" — 어떤 슬롯 기준인지 (The Crippler, Stone Javelin, Blowgun, Gut-Churning Concoction).'],
   ['Devotion 토큰 / Devote', 'Sword of a Sunken Legacy, The Law of Blood.'],
   ['Magic 토큰', 'Knight Pool의 Magic 토큰 공급원 (Torchbearer\'s Swordstaff는 X=Magic 토큰 수로 구현됨, Bluesteel Sword 대기).'],
   ['Leash / Unleash', 'Plate of the Sleeping Giant, Shield of the Defiant, Stalagmight.'],
-  ['추가 슬롯', '"You have an additional [Hand/Support] slot" — 로드아웃 슬롯 확장을 캠페인 장착 화면에 반영할지 (Automail Hand, Geistling, Dragon Plattenpanzer).'],
-  ['Haunted Cutlass', 'Clash 중 얻은 Gold를 캠페인 Gold에 바로 더해도 되는가?'],
 ];
 // Renholder (added 2026-11-16) — interpretations and missing material.
 export const KNIGHT_RULINGS = [
