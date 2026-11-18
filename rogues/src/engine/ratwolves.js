@@ -19,7 +19,7 @@ export const RatMixin = {
     const arg = fx.armorRollGear.bind(fx); fx.armorRollGear = async (k, r) => { let mit = await arg(k, r); if (M.hasTrait('Adaptability') && C.ratKingdom === 'Bile and Poison') { const x = Math.min(mit, C.condTokens(k)); if (x > 0) { mit -= x; C.say(`Adaptability (Bile and Poison): ${k.name} Armor Roll 기호 ${x}개 무시`, 'bp'); } } return mit; };
     const pc = this.perilCheck.bind(this); this.perilCheck = async k => { const r = await pc(k); if (k.alive && M.hasTrait('Adaptability') && C.ratKingdom === 'Parasite Bed') { const n = C.condTokens(k); if (n >= 2) { const op = n >= 4 ? 'delay' : 'cooldown'; C.say(`Adaptability (Parasite Bed): ${k.name} Condition 토큰 ${n} → ${op === 'delay' ? 'Delay' : 'Cooldown'}`, 'bp'); await run({ op }, k, {}); } } return r; };
   },
-  condTokens(k) { return (k.conditions || []).reduce((s, c) => s + (c.tokens || 0), 0); },
+  condTokens(k) { return (k.conditions || []).reduce((s, c) => s + (c.id === 'Panzer Parasite' ? Math.max(0, (c.tokens || 0) - this.fx.parasiteIgnore(k)) : (c.tokens || 0)), 0); },
   /** Strength of the Pack: Generic tokens up to Toughness, then the Ratwolf dies. Returns the Wounds dealt. */
   ratWound(A) {
     const mob = A.mob, T = mob.card.toughness || 0; mob.gen = mob.gen || 0;

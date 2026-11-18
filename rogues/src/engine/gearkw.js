@@ -213,6 +213,7 @@ const SPECIAL = [
   [/^\+X\* to all Judgement and Virtue tests$/, () => ({ op: 'maskBonus' })],
   [/^Swap spaces with another Knight with the Ancestral Ritual Mask \[Gear\] card$/, () => ({ op: 'fMaskSwap', free: true })],
   [/^\*X is the number of Knights with the Ancestral Ritual Mask \[Gear\] card$/, () => ({ op: 'note', na: true })],
+  [/^If X\* is 3 or more, you may use this card's ability as a \[Reaction\]$/, () => ({ op: 'note', na: true })],
   [/^When you Shapeshift, lose -(\d+) \[Heat\]$/, m => ({ op: 'shiftHeat', n: +m[1] })],
   [/^Reduce suffered Knockback or Pushback by (\d+)$/, m => ({ op: 'reduceKB', n: +m[1], active: true })],
   [/^Adjacent Knights may use this card's ability as a free action \(they still need to pay its cost\)$/, () => ({ op: 'note', na: true })],
