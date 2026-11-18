@@ -62,17 +62,17 @@ d = {
   'unclear': CS.get('unclear', []), 'notes': ['지형·시작 칸·Armor 토큰 위치는 코덱스 도식에서 읽음 [해석, 확인 필요]']},
  'rulings': [
   'Suit Up!: 보드의 Armor 토큰 칸을 지나거나 그 위에 멈추면 그 Mob의 BP로 옮김(Armor 토큰 1개 = AT +1). Armor 토큰이 있는 Geist를 부상시키면 토큰을 그 칸에 놓음 (참고 시트 v1.1)',
-  'Superior Bypass 이동은 최단 경로 중 Armor 토큰을 가장 많이 줍는 경로로 처리 [해석, 확인 필요]',
+  '이동 경로: 가능한 (최단) 경로가 서로 다른 Armor 토큰 칸을 지나면 플레이어가 경로를 고름 (소유자 확인 2026-11-18)',
   '"MOVE BEHIND & ATTACK": 대상에 인접한 빈 칸 중 Geist의 출발 칸에서 가장 먼 칸으로 이동 (Appear Behind와 같은 방식) [해석, 확인 필요]',
   'All Things Die: Armor 토큰이 없는 Geist를 Rust·Ethereal·Holy Trait가 없는 무기로 공격하면 To Hit +4. Rust: 장착한 Metal Gear마다 Bane 토큰 1개(Bane으로 계산), 그 Gear는 Rust를 얻고 Metal을 잃음',
-  'Muffled Potential: 시트 문구대로 "Rust Trait가 있는 무기로 공격할 때" Power die마다 Potential 1 무시 (참고 시트 v1.1은 반대로 적혀 있음) [해석, 확인 필요]',
-  'Ceaseless Hunger: Maximum Vigor가 0 이하가 되면 가장 가까운 (빙의 중이 아닌) Mob이 기사 칸으로 옮겨와 빙의. 빙의된 기사는 턴을 건너뛰고 대상이 되지 않음. 그 Mob을 부상시키면 그 칸에서 풀려나고 Maximum Vigor 복구(Vigor는 그대로). 모든 기사가 빙의되면 패배. Clash 종료 시 빙의 상태면 사망 [해석, 확인 필요]',
+  'Muffled Potential: 시트 문구대로 "Rust Trait가 있는 무기로 공격할 때" Power die마다 Potential 1 무시 (참고 시트 v1.1은 반대로 적혀 있음 — 참고 시트가 틀림, 소유자 확인 2026-11-18)',
+  'Ceaseless Hunger: 시트 문구 그대로 (소유자 확인 2026-11-18). 엔진: 가장 가까운 Mob(이미 다른 기사에 빙의 중인 Mob 제외)이 기사 칸으로 옮겨와 빙의, 빙의된 기사 미니어처는 그 Mob으로 취급(Targeting 대상 아님), 그 Mob을 부상시키면 그 칸에서 풀려나고 Maximum Vigor 복구(Vigor는 그대로)',
   'Clash 종료 시 빙의 → Maximum Vigor 영구 -1: 미구현 (캠페인 반영 안 됨)',
   'Recover X: Maximum Vigor +X (Clash 종료까지), 그 뒤 Vigor +X',
   'Panzer Cascade: Escalation 덱에 AI가 없으면 일반 보너스 대신 가장 낮은 BP Level의 Mob에 Armor 토큰 1개',
-  'No Rest for Any: 빙의된 기사의 "턴 시작"은 Knight Round 시작 시 처리 [해석, 확인 필요]',
+  'No Rest for Any: 빙의된 기사도 Knight Round에서 일반 턴처럼 순서를 골라 턴을 가짐 — 턴 시작에 그 Mob이 Signature, 턴은 건너뜀 (소유자 확인 2026-11-18)',
   'BP "When you reveal": 그 Mob을 명중시킨 기사 (참고 시트)',
-  '"Discard Bane tokens": Gear 위(Rust)가 아닌 Bane 토큰부터 버림 [해석, 확인 필요]',
+  '"Discard Bane tokens": 어느 Bane 토큰(Gear 위 / 그 외)을 버릴지 플레이어가 고름 (소유자 확인 2026-11-18)',
  ],
 }
 json.dump(d, open(sys.argv[1], 'w'), ensure_ascii=False, indent=1); print('wrote', sys.argv[1], len(d['cards']['ai']), 'AI', len(d['cards']['bp']), 'BP')

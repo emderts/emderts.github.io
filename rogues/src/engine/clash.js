@@ -567,9 +567,9 @@ export class Clash {
     this.phase = 'knight'; this.say(`— 라운드 ${this.round}: Knight Round —`, 'phase');
     const acted = new Set(); this._nixie = false; const empty = () => this.knights.length - this.alive().length; if (this.isWN) await this.wnNixie(empty());
     while (true) {
-      const avail = this.alive().filter(k => !acted.has(k.id)); if (!avail.length) break;
-      let k = avail[0]; if (avail.length > 1) { const id = await this.ask({ type: 'pickKnight', options: avail.map(x => ({ label: x.name, value: x.id })) }); k = this.knights.find(x => x.id === id) || avail[0]; }
-      acted.add(k.id); await this.guard(() => this.knightTurn(k)); if (k._extraTurn && k.alive) { k._extraTurn = false; this.say(`${k.name}: 추가 턴`, 'turn'); await this.guard(() => this.knightTurn(k)); if (k.alive) { this.say(`${k.name}: 추가 턴 종료 → 사망`, 'death'); await this.guard(() => this.die(k, 'additional turn')); } } this.checkEnd(); if (this.isWN) await this.guard(() => this.wnNixie(acted.size + empty()));
+      const avail = [...this.alive(), ...(this.isPz ? this.pzTurnKnights() : [])].filter(k => !acted.has(k.id)); if (!avail.length || this.result) break;
+      let k = avail[0]; if (avail.length > 1) { const id = await this.ask({ type: 'pickKnight', options: avail.map(x => ({ label: x.possessed ? `${x.name} (빙의 — Signature)` : x.name, value: x.id })) }); k = this.knights.find(x => x.id === id) || avail[0]; }
+      acted.add(k.id); if (k.possessed) { await this.guard(() => this.pzPossessedTurn(k)); continue; } await this.guard(() => this.knightTurn(k)); if (k._extraTurn && k.alive) { k._extraTurn = false; this.say(`${k.name}: 추가 턴`, 'turn'); await this.guard(() => this.knightTurn(k)); if (k.alive) { this.say(`${k.name}: 추가 턴 종료 → 사망`, 'death'); await this.guard(() => this.die(k, 'additional turn')); } } this.checkEnd(); if (this.isWN) await this.guard(() => this.wnNixie(acted.size + empty()));
     }
     for (const k of this.alive()) await this.guard(() => this.fx.endOfKnightRound(k));
     if (this.monster.isMob) { for (const k of this.knights) k.cestusLock = null; await this.guard(() => this.firstmenEndKnightRound()); await this.guard(() => this.icdEndKnightRound()); }

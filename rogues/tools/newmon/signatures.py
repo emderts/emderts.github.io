@@ -2,7 +2,7 @@
 import json, os
 from common import A
 SIG = {
- 'panzergeists': A('Ghostly Miasma', None, 'SIGNATURE', '4!', 11, ['Closest Knight in sight'], 'MOVE & ATTACK', ['For each hit lose -4 [V]. [Peril].'], 'Lower your Maximum [V] by 3.'),
+ 'panzergeists': A('Ghostly Miasma', None, 'SIGNATURE', '1!', 11, ['Closest Knight in sight'], 'MOVE & ATTACK', ['For each hit lose -4 [V]. [Peril].'], 'Lower your Maximum [V] by 3.'),
  'stonemason_knight': A('Tear Down', None, 'SIGNATURE', 2, 9, ['Closest Knight not in front', 'Closest Knight in sight'], 'MOVE & ATTACK', ['For each hit lose -2 [V]. [Peril].', 'Knockback 4.'], 'Ruin.', gates=[dict(stat='Heat', gte=3, effect='+1 [die]', where='moveTag')]),
  'knighteater': A('A Succulent Meal', None, 'SIGNATURE', 3, 8, ['Highest [P]'], 'MOVE & ATTACK', ['For each hit lose -1 [V]. [Peril]. Three or more hits, gain the Fear Condition card.'], 'Wolf Down 2.', 'AFTER FINAL ATTACK', gates=[dict(stat='Heat', gte=3, effect='PENETRATE', where='moveTag')]),
  'firstmen_lictor_hunters': A('Suppressing Fire', None, 'RANGE SIGNATURE', 2, 8, ['Tactics Target', '[Priority Target] Priority Target'], 'RANGE ATTACK UNLIMITED', ['For each hit lose -1 [V]. Poison 1. [Peril].', 'The next non-Decoying Mob performs Decoy.'], gates=[dict(stat='Heat', gte=3, effect='TACTIC A', where='moveTag')]),

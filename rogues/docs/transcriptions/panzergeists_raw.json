@@ -673,7 +673,7 @@
   "name": "Ghostly Miasma",
   "level": null,
   "type": "SIGNATURE",
-  "evasionDice": "4!",
+  "evasionDice": "1!",
   "evasionDifficulty": 11,
   "preTargeting": null,
   "targeting": [
