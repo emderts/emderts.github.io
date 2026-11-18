@@ -7,7 +7,7 @@ import re
 raw = json.load(open('docs/transcriptions/knighteater_raw.json')); S = raw['sheet']; CS = raw['clashSetup']
 V = lambda n: {'op': 'loseVigorPerHit', 'n': n, 'perilCheck': True}
 WD = lambda n: {'op': 'keWolf', 'n': n}; ON = lambda *ops: [{'op': 'keOnHit', 'then': list(ops)}]; COND = lambda i: {'op': 'keCondition', 'id': i}
-DRAG = lambda n: {'op': 'keDrag', 'n': n}; FV = {'op': 'keVault'}; FVP = {'op': 'keVault', 'crashToPeril': True}; PEN = {'op': 'keNote', 'text': 'Penetrate — 키워드 정의 미확인, 미구현'}
+DRAG = lambda n: {'op': 'keDrag', 'n': n}; FV = {'op': 'keVault'}; FVP = {'op': 'keVault', 'crashToPeril': True}; PEN = {'op': 'penetrate'}
 HD = lambda g: {'op': 'evasionDice', 'stat': 'heat', 'gte': g, 'n': 1}; HV = lambda g, n: {'op': 'vigorPerHitInstead', 'stat': 'heat', 'gte': g, 'n': n}
 GEAR = lambda mode, typ: {'op': 'keGear', 'mode': mode, 'type': typ}; CENTER = [{'op': 'moveToCenter'}, {'op': 'faceMostKnights'}, {'op': 'keSettle'}]
 HT = lambda *t: {'op': 'keHits', 'table': list(t)}
@@ -80,24 +80,24 @@ d = {
            'routine': {**raw['routine'], 'type': 'routine', 'ops': [{'op': 'keRoutine'}]}},
  'ke': {'kingdomTrait': {'sunken': 'Adaptable', 'principality': 'Iron Confines'}},
  'clashSetup': {'_source': 'Expansion Codex p.50–51 (Knighteater Clash)', 'steps': CS['steps'], 'requiredTiles': CS['requiredTiles'], 'monsterCells': CS['monsterCells'], 'monsterFacing': 'bottom Minor Mortis arrow: ↑/↓ → facing ↓, ←/→ → facing ←',
-  'knightStart': CS['knightStart'], 'terrain': CS['terrain'], 'notes': ['지형·시작 칸은 코덱스 도식에서 읽음 [해석, 확인 필요]']},
+  'knightStart': CS['knightStart'], 'terrain': CS['terrain'], 'notes': ['지형·시작 칸은 코덱스 도식에서 읽음 (소유자 확인 2026-11-18)']},
  'rulings': [
-  'Armor 토큰: 개수만큼 모든 BP의 AT +1로 처리 (BP Level 구분 없음) [해석, 확인 필요]',
+  'Armor 토큰: 개수만큼 모든 BP의 AT +1 (Mob이면 BP마다 적용) (소유자 확인 2026-11-18)',
   'Ultrainstinct: BP를 정한 직후, Power Roll 전에 처리 (Rulebook p.58). Crit Chance면 무시 (Eggknight와 같은 처리)',
   'Frenzied Hunger: Berserk 동안 Priority Target 토큰은 Knighteater Sheet에 있고 기사는 얻을 수 없음. Targeting 동률이면 동률인 기사 전원을 가까운 순서로 이동·공격(Sequential). Berserk가 공격 중에 풀리면 그 공격은 Chain Break',
   'Starved Slaughterman Additional Setup: 각 기사가 Peril check를 할지 선택 — 하면 Fleisch 토큰 1개. 긍정 Mortis 카드는 효과 무시',
   'Meatbait: 공격 선언 시 선택 — Precision -2로 공격하고 Fleisch 토큰을 Knighteater Level만큼 Knight Pool에',
   'Measured Movement: 이동 중 지나간 Column은 그대로 두고, 이동을 마쳤을 때 밑에 있는 Column은 인접한 빈 칸으로 옮김',
   'Appear Behind (Rulebook): 대상에 인접한 위치 중 현재 위치에서 가장 먼 곳에 놓고 대상을 향함',
-  'Forced Vault (Rulebook): 인접한 기사를 Knighteater 반대편 인접 칸으로 옮김(비자발 이동). 보드 밖/파괴 불가 Obstacle이면 사망. "If this Vault would cause Crash, [Peril] instead": 도착 칸이 Obstacle/다른 미니어처면 Peril check로 대체 [해석, 확인 필요]',
+  'Forced Vault (Rulebook): 인접한 기사를 Knighteater 반대편 인접 칸으로 옮김(비자발 이동). 보드 밖/파괴 불가 Obstacle이면 사망. "If this Vault would cause Crash, [Peril] instead": 도착 칸이 Obstacle/다른 미니어처면 Peril check로 대체 (소유자 확인 2026-11-18)',
   'Drag X: Knighteater가 대상 반대쪽으로 X칸 이동하고 대상이 같은 방향으로 따라옴 (인접해야 시작)',
-  'Lowest / Highest Peril Threshold: Uninjured < Minor < Major < Grave < Judicium 순 [해석, 확인 필요]',
+  'Lowest / Highest Peril Threshold: Uninjured < Minor < Major < Grave < Judicium 순 (소유자 확인 2026-11-18)',
   '"Closest Squire" Targeting 줄: Squire 미구현이라 건너뜀',
   'Debilitating Crush Targeting 첫 줄: "Knight with a [Two-handed] Weapon" (소유자 확인 2026-11-17) — Two-handed 무기를 든 기사 중 가장 가까운 기사',
   '카드 맨 위 "Wolf Down X"(9장): 그 앞에 REACT! 창, Wolf Down은 Targeting보다 먼저 해결 (소유자 확인 2026-11-17)',
-  'Penetrate (Armor Cracker, Debilitating Crush, Can Opener, Offal Harvest, Blood-Drenched Butchery, Heat 게이트 3장): 키워드 정의 미확인 — 미구현',
+  'Penetrate (확장 Codex p.9): "During Armor Roll, ignore one of your Armor dice of the highest tier." — 그 공격의 Armor Roll에서 가장 높은 tier(white > black > red) 주사위 1개를 굴리지 않음 (소유자 확인 2026-11-18)',
   'devoured (die): 즉사. Cannibal’s Mouthpiece Critical 이후에는 Judicium Draw로 대체',
-  '"You may voluntarily end this Attack before performing a Power Roll" (Cannibal’s Mouthpiece, Monstrous Stomach): Ultrainstinct 뒤에 물음. 끝내면 Knight Pool을 비우고 Response 없이 BP는 버림 [해석, 확인 필요]',
+  '"You may voluntarily end this Attack before performing a Power Roll" (Cannibal’s Mouthpiece, Monstrous Stomach): Ultrainstinct 뒤에 물음. 끝내면 Knight Pool을 비우고 Response 없이 BP는 버림 (소유자 확인 2026-11-18)',
  ],
 }
 json.dump(d, open(sys.argv[1], 'w'), ensure_ascii=False, indent=1); print('wrote', sys.argv[1], len(d['cards']['ai']), 'AI', len(d['cards']['bp']), 'BP')

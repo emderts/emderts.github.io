@@ -1,7 +1,7 @@
 from common import *
 MA = 'MOVE & ATTACK'; AB = 'APPEAR BEHIND & ATTACK'; AF = 'AFTER FINAL ATTACK'
 H = lambda n, t, w='moveTag': [dict(stat='Heat', gte=n, effect=t, where=w)]
-GU = ['Heat 게이트 숫자 작은 글씨 — 확인 필요']
+GU = []
 sheet = dict(name='Knighteater', code='26B1080', traitsLine=['Vassal', 'Knight', 'Hunter', 'Hunger'], footprint='2x2, the two cells behind are Rear + Blindspot', basicAbilities=['Unavoidable Knockback 4', 'Blindspot'],
  levels={1: L('5+', 8, 2, ['AI'], ['Starved Slaughterman', 'Frenzied Hunger', 'Meatbait', 'Measured Movement', 'Kingdom Trait (see Clash Setup)']), 2: L('6+', 10, 4, ['AI'], ['Brute', 'Glutton'], esc=1, at=2, vig=1),
          3: L('7+', 10, 4, ['AI'], ['Living Up to the Name'], esc=1, at=4, vig=2), 4: L('8+', 10, 4, ['AI'], ['Feral Guard'], esc=2, at=6, vig=3)},
@@ -40,7 +40,7 @@ ai = [
 ]
 WDX = 'LEVEL 2+ ▸ Wolf Down X, where X is Knighteater’s level.'
 def K(name, level, at, oc, ultra=None, **kw):
-    b = B(name, level, at, None, **kw); b['overcome'] = dict(tag=oc[0], n=oc[1], effect=oc[2]); b['responses']['ultrainstinct'] = ultra; b['unclear'] = ['Overcome/Overpower 숫자 작은 글씨 — 확인 필요']; return b
+    b = B(name, level, at, None, **kw); b['overcome'] = dict(tag=oc[0], n=oc[1], effect=oc[2]); b['responses']['ultrainstinct'] = ultra; b['unclear'] = []; return b
 OC1 = lambda n: ('OVERCOME', n, 'Discard 1 Armor [Armor] token'); OC2 = lambda n: ('OVERCOME', n, 'Discard 2 Armor [Armor] tokens'); OP = lambda n, f: ('OVERPOWER', n, f'Fleisch {f}')
 AWAY = lambda n: f'The Knighteater moves {n} space{"s" if n > 1 else ""} directly away from the Attacker, stopping before any Obstacles (without turning).'
 PTBA = 'Gain the [Priority Target] Priority Target token. You may perform a Bonus Attack!'; F2 = 'You may immediately place up to 2 Fleisch tokens in the Knight Pool.'

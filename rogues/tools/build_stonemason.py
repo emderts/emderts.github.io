@@ -11,7 +11,7 @@ def bzone(rows):
 V = lambda n: {'op': 'loseVigorPerHit', 'n': n, 'perilCheck': True}; HT = lambda *t: {'op': 'smHits', 'table': list(t), 'perilCheck': True}
 BANE = lambda n: {'op': 'smBane', 'n': n}; KB = lambda n: {'op': 'knockback', 'n': n}; PB = lambda n: {'op': 'pushback', 'n': n}; KD = {'op': 'knockdown'}
 EX1 = {'op': 'smMetal', 'mode': 'exhaust', 'n': 1}; EXA = {'op': 'smMetal', 'mode': 'exhaust', 'n': 'all'}; DI1 = {'op': 'smMetal', 'mode': 'discard', 'n': 1}
-RUIN = {'op': 'smRuin'}; PEN = {'op': 'smNote', 'text': 'Penetrate — 키워드 정의 미확인, 미구현'}
+RUIN = {'op': 'smRuin'}; PEN = {'op': 'penetrate'}
 ON = lambda *ops: [{'op': 'smOnHit', 'then': list(ops)}]
 G3 = lambda n: [{'op': 'smThree', 'stat': 'heat', 'gte': 3, 'n': n}]
 CF = ['Closest Knight in front', 'Closest Knight in sight']; CN = ['Closest Knight not in front', 'Closest Knight in sight']
@@ -90,7 +90,7 @@ d = {
   'Ruin: Stonemason 정면에 인접한 2x2. 보드 밖이면 놓지 않음. Rubble을 기사 밑에 놓을 때: 그 기사 칸을 포함하는 2x2 중 Stonemason에 가장 가까운 위치(Stonemason과 겹치지 않게). 기존 Rubble 타일과 겹치면 그 타일을 치우고 새 타일에 가장 많은 변으로 인접하게 다시 놓음(동률이면 선택) (Architect of Destruction)',
   'Move Lateral (Hammer Launch, Mass Driver): 가로 또는 세로 직선으로 최단 이동해 대상이 Zone 안에 들어오는 칸으로 이동 (Rulebook)',
   'March of Devastation: 가장 가까운 기사부터 한 명씩 Move & Attack',
-  'Penetrate: 키워드 정의 미확인 — 미구현',
+  'Penetrate (확장 Codex p.9): "During Armor Roll, ignore one of your Armor dice of the highest tier." — 그 공격의 Armor Roll에서 가장 높은 tier(white > black > red) 주사위 1개를 굴리지 않음 (소유자 확인 2026-11-18)',
   'Ornate Visor Critical(영구 음수 Precision 토큰), Sliver of Faith Critical(Devote): 미구현',
   'Hug 1 / Reposition 2 + Bonus Attack: 해당 기사가 최대 1/2칸 이동 후 Bonus Attack으로 처리 [해석, 확인 필요]',
   'Ferrospikes: Rubble 칸으로 이동해 들어갈 때마다 Vigor -1 [해석, 확인 필요]',

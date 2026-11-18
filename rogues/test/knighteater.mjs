@@ -43,4 +43,8 @@ const P = (c, l) => c.board.parse(l), L = (c, x) => c.board.label(x);
 { const ai = n => KE.cards.ai.find(x => x.name === n); ok(ai('Terrorizing Presence').ops.preReact && ai('Knight Opener').ops.preReact && !ai('Dine and Dash').ops.preReact, 'REACT! window before the printed Wolf Down (9 cards)');
   ok(ai('Dine and Dash').ops.gates[0].gte === 4, 'Dine and Dash Heat gate 4+'); ok(ai('Debilitating Crush').ops.targeting[0] === 'Knight with a Two-handed Weapon', 'Debilitating Crush: Two-handed Weapon targeting');
   ok(KE.cards.signature.ops.afterFinalAttack.some(o => o.op === 'keWolf' && o.n === 2), 'A Succulent Meal: After Final Attack Wolf Down 2'); }
+{ const c = mk(31, 1); const k = c.knights[0]; k.reinforce = { red: 1, black: 1, white: 1 }; const seen = []; const say = c.say.bind(c); c.say = (m, kd) => { seen.push(m); return say(m, kd); };
+  c.currentAttack = { penetrate: true }; await c.loseVigor(k, 1, { source: 'attack', armor: true }); c.currentAttack = null;
+  ok(seen.some(m => /Penetrate: .*white Armor 주사위 1개 무시/.test(m)), 'Penetrate: one Armor die of the highest tier is ignored');
+  ok(KE.cards.ai.find(x => x.name === 'Armor Cracker').ops.effects[0].then[0].op === 'penetrate', 'Armor Cracker has Penetrate'); }
 console.log(fails ? `FAIL (${fails})` : 'ALL PASS (knighteater)'); process.exit(fails ? 1 : 0);

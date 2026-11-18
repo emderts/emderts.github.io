@@ -207,9 +207,7 @@
    ],
    "afterTag": "AFTER FINAL ATTACK",
    "after": "Wolf Down 1.",
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "Wolf Down(Targeting 앞) 앞",
     "After Attack 앞"
@@ -248,9 +246,7 @@
    ],
    "afterTag": "AFTER FINAL ATTACK",
    "after": "Exhaust your Armor [Gear] card.",
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "Wolf Down(Targeting 앞) 앞",
     "After Attack 앞"
@@ -289,9 +285,7 @@
    ],
    "afterTag": "AFTER FINAL ATTACK",
    "after": "Knighteater gains an Armor [Armor] token.",
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "targeting",
     "After Attack 앞"
@@ -330,9 +324,7 @@
    ],
    "afterTag": "AFTER FINAL ATTACK",
    "after": "Wolf Down 2.",
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "targeting",
     "After Attack 앞"
@@ -371,9 +363,7 @@
    ],
    "afterTag": "AFTER FINAL ATTACK",
    "after": "Knighteater moves 2 spaces directly away from the Target.",
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "Wolf Down(Targeting 앞) 앞",
     "After Attack 앞"
@@ -449,9 +439,7 @@
    ],
    "afterTag": "AFTER FINAL ATTACK",
    "after": "Exhaust your Weapon [Gear] card.",
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "Wolf Down(Targeting 앞) 앞",
     "After Attack 앞"
@@ -490,9 +478,7 @@
    ],
    "afterTag": "AFTER FINAL ATTACK",
    "after": "Discard your Armor [Gear] card. You may [Peril] to Exhaust your Armor [Gear] card instead.",
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "Wolf Down(Targeting 앞) 앞",
     "After Attack 앞"
@@ -532,9 +518,7 @@
    ],
    "afterTag": "AFTER FINAL ATTACK",
    "after": "Wolf Down 2. Wolf Down 1.",
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "targeting",
     "After Attack 앞"
@@ -573,9 +557,7 @@
    ],
    "afterTag": "AFTER FINAL ATTACK",
    "after": "Exhaust all your exhaustable Gear [Gear] cards.",
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "targeting",
     "After Attack 앞"
@@ -644,9 +626,7 @@
    ],
    "afterTag": "AFTER FINAL ATTACK",
    "after": "Wolf Down 2.",
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "Wolf Down(Targeting 앞) 앞",
     "After Attack 앞"
@@ -714,9 +694,7 @@
    ],
    "afterTag": "AFTER FINAL ATTACK",
    "after": "Exhaust your Armor [Gear] card. Wolf Down 2.",
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "Wolf Down(Targeting 앞) 앞",
     "After Attack 앞"
@@ -822,9 +800,7 @@
    ],
    "afterTag": "AFTER FINAL ATTACK",
    "after": "Discard your Weapon [Gear] card. Wolf Down X, where X is the number of Fleisch tokens in the Knight Pool.",
-   "unclear": [
-    "Heat 게이트 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [],
    "afterAttack": "AFTER FINAL ATTACK: Discard your Weapon [Gear] card. Wolf Down X, where X is the number of Fleisch tokens in the Knight Pool.",
    "reactSpec": {
@@ -854,9 +830,7 @@
     "critical": "You may immediately place up to 2 Fleisch tokens in the Knight Pool.",
     "ultrainstinct": "LEVEL 2+ ▸ Wolf Down X, where X is Knighteater’s level."
    },
-   "unclear": [
-    "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "ultrainstinct"
    ]
@@ -880,9 +854,7 @@
     "critical": "Gain the [Priority Target] Priority Target token. You may perform a Bonus Attack!",
     "ultrainstinct": "LEVEL 2+ ▸ Wolf Down X, where X is Knighteater’s level."
    },
-   "unclear": [
-    "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "ultrainstinct",
     "wound:after 'Fleisch 1.'"
@@ -907,9 +879,7 @@
     "critical": "You may immediately place up to 2 Fleisch tokens in the Knight Pool.",
     "ultrainstinct": "LEVEL 2+ ▸ Wolf Down X, where X is Knighteater’s level."
    },
-   "unclear": [
-    "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "ultrainstinct"
    ]
@@ -933,9 +903,7 @@
     "critical": "Gain the [Priority Target] Priority Target token. You may perform a Bonus Attack!",
     "ultrainstinct": "The Knighteater moves 1 space directly away from the Attacker, stopping before any Obstacles (without turning)."
    },
-   "unclear": [
-    "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": []
   },
   {
@@ -957,9 +925,7 @@
     "critical": "Gain the [Priority Target] Priority Target token. You may perform a Bonus Attack!",
     "ultrainstinct": "LEVEL 2+ ▸ Wolf Down X, where X is Knighteater’s level."
    },
-   "unclear": [
-    "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "ultrainstinct",
     "wound"
@@ -984,9 +950,7 @@
     "critical": "All Knights gain Tumble until the end of Clash.",
     "ultrainstinct": "The Knighteater moves 1 space directly away from the Attacker, stopping before any Obstacles (without turning)."
    },
-   "unclear": [
-    "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": []
   },
   {
@@ -1008,9 +972,7 @@
     "critical": "You may immediately place up to 2 Fleisch tokens in the Knight Pool.",
     "ultrainstinct": "LEVEL 2+ ▸ Wolf Down X, where X is Knighteater’s level."
    },
-   "unclear": [
-    "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "ultrainstinct"
    ]
@@ -1034,9 +996,7 @@
     "critical": "Scavenge 2.",
     "ultrainstinct": "Pushback 2, stopping before any Obstacles."
    },
-   "unclear": [
-    "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": []
   },
   {
@@ -1058,9 +1018,7 @@
     "critical": "Discard all Fear and Dread Condition cards from all Knights. Disable gaining those Condition cards.",
     "ultrainstinct": "The Knighteater moves 1 space directly away from the Attacker, stopping before any Obstacles (without turning)."
    },
-   "unclear": [
-    "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": []
   },
   {
@@ -1082,9 +1040,7 @@
     "critical": "Gain the [Priority Target] Priority Target token. You may perform a Bonus Attack!",
     "ultrainstinct": "LEVEL 2+ ▸ Wolf Down X, where X is Knighteater’s level."
    },
-   "unclear": [
-    "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "ultrainstinct",
     "instinct"
@@ -1109,9 +1065,7 @@
     "critical": "All Instant Death effects become Judicium Draws.",
     "ultrainstinct": "LEVEL 2+ ▸ Wolf Down X, where X is Knighteater’s level."
    },
-   "unclear": [
-    "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "ultrainstinct"
    ]
@@ -1135,9 +1089,7 @@
     "critical": "All Ultrainstinct Responses become Instinct Responses.",
     "ultrainstinct": "The Knighteater moves 2 spaces directly away from the Attacker, stopping before any Obstacles (without turning)."
    },
-   "unclear": [
-    "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": []
   },
   {
@@ -1159,9 +1111,7 @@
     "critical": "Disable the Wolf Down X keyword.",
     "ultrainstinct": "Pushback 3, stopping before any Obstacles."
    },
-   "unclear": [
-    "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": []
   },
   {
@@ -1183,9 +1133,7 @@
     "critical": "Disable Ultrainstinct Responses.",
     "ultrainstinct": "The Knighteater moves 3 spaces directly away from the Attacker, stopping before any Obstacles (without turning)."
    },
-   "unclear": [
-    "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "wound"
    ]
@@ -1209,9 +1157,7 @@
     "critical": "The Knighteater stops being Berserk. You may immediately place up to 4 Fleisch tokens in the Knight Pool.",
     "ultrainstinct": "LEVEL 2+ ▸ Wolf Down X, where X is Knighteater’s level."
    },
-   "unclear": [
-    "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": [
     "ultrainstinct"
    ]
@@ -1235,9 +1181,7 @@
     "critical": "Disable Armor [Armor] tokens.",
     "ultrainstinct": "LEVEL 2+ ▸ Wolf Down X, where X is Knighteater’s level."
    },
-   "unclear": [
-    "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": []
   },
   {
@@ -1259,9 +1203,7 @@
     "critical": "Scavenge 2.",
     "ultrainstinct": "Pushback 3, stopping before any Obstacles."
    },
-   "unclear": [
-    "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": []
   },
   {
@@ -1283,9 +1225,7 @@
     "critical": "The Knighteater dies!",
     "ultrainstinct": "The Knighteater moves 2 spaces directly away from the Attacker, stopping before any Obstacles (without turning)."
    },
-   "unclear": [
-    "Overcome/Overpower 숫자 작은 글씨 — 확인 필요"
-   ],
+   "unclear": [],
    "reactWindows": []
   }
  ],
