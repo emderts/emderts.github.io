@@ -50,5 +50,5 @@ const P = (c, l) => c.board.parse(l), L = (c, x) => c.board.label(x);
 { const c = mk(9, 3); const k = c.knights[0], o = c.knights[1]; k.hexes = [{ ...BW.cards.ai.find(x => x.name === 'Vile Soup Spill') }];
   ok(c.bwHexed(k, 'Morass Residue') && !c.bwMayTarget(k, o) && c.bwMayTarget(k, k) && c.bwMayTarget(o, k), 'Morass Residue: no keywords/abilities that target other Knights');
   const an = BW.cards.ai.find(x => x.name === 'Anthropophagy').ops.gates[0]; ok(an.op === 'bwDoomed' && an.stat === 'vigor' && an.gte === 4, 'Anthropophagy gate: Vigor 4+ → Doomed');
-  o.heat = 0; await c.bwOp({ op: 'bwHeatReset' }, { target: o }); ok(o.heat === o.uninjuredHeatLimit, 'Mudcurse: Heat reset to the Maximum Vigor threshold'); }
+  o.heatLimitBonus = 2; await c.bwOp({ op: 'bwHeatReset' }, { target: o }); ok(o.heatLimit === o.uninjuredHeatLimit, 'Mudcurse: Heat Limit reset to the Maximum Vigor threshold value'); }
 console.log(fails ? `FAIL (${fails})` : 'ALL PASS (bog witch)'); process.exit(fails ? 1 : 0);

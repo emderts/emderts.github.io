@@ -12,7 +12,7 @@ BP = [
  B('Rotten Stump', 2, 7, P(5), wound='Gain the Slimed Condition card.', fail='Toxify 2. Bog Move.', critical='Scavenge 3.', unclear=OU),
  B('Bedeviled Nithing Staff', 2, 6, P(3), wound=DH, fail='Gain +2 [H]. Stray 3.', critical=DH + ' Disable Party Hexes.', unclear=OU),
  B('Bog-Devoured Carcass', 2, 6, P(4), wound='Pushback 3. Bog Move.', fail='Poison 3.', critical='Place the Bog Witch anywhere on the Board.', unclear=OU),
- B('Feathered Serpent Talisman', 2, 7, P(5), wound=DHP, fail='Lose -3 [V], lower your [H]! by 2 and lose -1 [P].', critical=DHP + ' Disable the effects of Bad Luck Hexes.', unclear=OU + ['Fail "lower your [H]! by 2" — Heat Limit을 뜻하는지 확인 필요']),
+ B('Feathered Serpent Talisman', 2, 7, P(5), wound=DHP, fail='Lose -3 [V], lower your [H]! by 2 and lose -1 [P].', critical=DHP + ' Disable the effects of Bad Luck Hexes.', unclear=OU),
  B('Dead Eyes', 2, 5, P(3), wound='Stray 3.', fail='Poison 2. Bog Move.', critical='Deal an additional Single Wound!', unclear=OU),
  B('Dried Meat Amulet', 3, 8, P(6), wound='One Knight may discard a Hex they have. Stray 5.', fail='Pushback 5. Bog Move.', critical='One Knight may discard a Hex they have. Disable the effects of Tongue-tied Hexes. After the Clash, if Fleischritter is in the party, see 2636.', unclear=OU),
  B('A Long Lost Child', 3, 10, P(7), note='You may voluntarily end this Attack before performing a Power Roll. If you do, clear the Knight Pool.', wound='Exhaust your active Weapon [Gear] card. Gain +4 [H].', fail='Gain the Panicked Condition card. Lower your [H]! Limit to 1.', critical=PTBA + ' Immediately see 6371.', unclear=OU),

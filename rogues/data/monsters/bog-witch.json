@@ -2420,9 +2420,7 @@
      "instinct": null,
      "critical": "You may discard a Hex you have or a Party Hex. Disable the effects of Bad Luck Hexes."
     },
-    "unclear": [
-     "Fail \"lower your [H]! by 2\" — Heat Limit을 뜻하는지 확인 필요"
-    ],
+    "unclear": [],
     "reactWindows": [],
     "ops": {
      "at": 7,
@@ -3092,7 +3090,7 @@
   "Cookie Crumbs: Monster Round 종료 시 토큰 3–5 Signature / 6–8 AI / 9+ Signature 후 AI",
   "A Long Lost Child \"voluntarily end this Attack\": Power Roll 전에 물음",
   "Anthropophagy 게이트 \"[V] 4+ ▸ DOOMED\": 대상 Vigor 4 이상이면 이 공격은 Doomed (소유자 확인 2026-11-17: 문구 맞음)",
-  "Mudcurse \"Reset your [H]! to your Maximum [V] threshold\": 문구 맞음(소유자 확인 2026-11-17). 엔진: Heat를 Maximum Vigor(Uninjured) threshold의 Heat Limit 값으로 맞춤 [해석, 확인 필요]",
+  "Mudcurse \"Reset your [H]! to your Maximum [V] threshold\": [H]! = Heat Limit (소유자 확인 2026-11-18) — Heat Limit을 Maximum Vigor(Uninjured) threshold의 Heat Limit 값으로 되돌림",
   "Hex \"Morass Residue\": Inspire·Motivate·Bonus Attack(다른 기사)·부활·Nurturing·Puppeteer·Rock Pull·Inspiring Light 등 다른 기사를 고르는 키워드·능력을 막음 (소유자 확인 2026-11-17: 문구 맞음). \"Mouthful of Bog\"(You cannot talk): 싱글플레이라 강제 불가 — 효과 없음 (소유자 확인 2026-11-17)",
   "Beast of the Swamp의 영구 토큰은 이번 Clash 동안만 적용 (소유자 확인 2026-11-17)"
  ]

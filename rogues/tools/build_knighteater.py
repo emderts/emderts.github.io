@@ -92,7 +92,7 @@ d = {
   'Forced Vault (Rulebook): 인접한 기사를 Knighteater 반대편 인접 칸으로 옮김(비자발 이동). 보드 밖/파괴 불가 Obstacle이면 사망. "If this Vault would cause Crash, [Peril] instead": 도착 칸이 Obstacle/다른 미니어처면 Peril check로 대체 (소유자 확인 2026-11-18)',
   'Drag X: Knighteater가 대상 반대쪽으로 X칸 이동하고 대상이 같은 방향으로 따라옴 (인접해야 시작)',
   'Lowest / Highest Peril Threshold: Uninjured < Minor < Major < Grave < Judicium 순 (소유자 확인 2026-11-18)',
-  '"Closest Squire" Targeting 줄: Squire 미구현이라 건너뜀',
+  '"Closest Squire" Targeting 줄: Squire는 구현하지 않음 — 건너뜀 (소유자 확인 2026-11-18)',
   'Debilitating Crush Targeting 첫 줄: "Knight with a [Two-handed] Weapon" (소유자 확인 2026-11-17) — Two-handed 무기를 든 기사 중 가장 가까운 기사',
   '카드 맨 위 "Wolf Down X"(9장): 그 앞에 REACT! 창, Wolf Down은 Targeting보다 먼저 해결 (소유자 확인 2026-11-17)',
   'Penetrate (확장 Codex p.9): "During Armor Roll, ignore one of your Armor dice of the highest tier." — 그 공격의 Armor Roll에서 가장 높은 tier(white > black > red) 주사위 1개를 굴리지 않음 (소유자 확인 2026-11-18)',

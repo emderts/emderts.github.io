@@ -5,6 +5,10 @@ import { GEAR_RULINGS as GR0, GEAR_QUESTIONS, KNIGHT_RULINGS as KR0, KNIGHT_QUES
 // Owner-confirmed entries leave the page (unless --full); entries that still carry an open question or are unimplemented stay.
 const FULL0 = process.argv.includes('--full'); const openItem = r => { const t = typeof r === 'string' ? r : JSON.stringify(r); return FULL0 || !/소유자 확인/.test(t) || /\[해석, 확인 필요\]|미구현/.test(t); };
 const GEAR_RULINGS = GR0.filter(openItem), KNIGHT_RULINGS = KR0.filter(openItem);
+// Card text next to each Gear ruling / question: every Gear card named in the row.
+const GEAR_TEXT = (() => { const out = new Map(); const add = (n, t) => { if (n && t && !out.has(n)) out.set(n, String(t).split('\n').join(' / ')); }; for (const f of fs.readdirSync('data/gear')) { const d = JSON.parse(fs.readFileSync('data/gear/' + f, 'utf8')); for (const g of d.gear || []) { add(g.name, g.text || (g.side && g.side.text)); if (g.reforgedName && g.reforged) add(g.reforgedName, g.reforged.text); } for (const c of d.consumables || []) add(c.name, c.text); for (const u of d.upgrades || []) add(u.name, u.text); } return [...out.entries()].sort((a, b) => b[0].length - a[0].length); })();
+const gearTextOf = (a, b) => { let hay = `${a} ${b}`; const hit = []; for (const [n, t] of GEAR_TEXT) { if (n.length < 4) continue; const i = hay.indexOf(n); if (i < 0) continue; hay = hay.slice(0, i) + ' '.repeat(n.length) + hay.slice(i + n.length); hit.push(`<div class="small"><b>${esc0(n)}</b>: ${esc0(t)}</div>`); } return hit.join('') || '<span class="muted small">—</span>'; };
+const esc0 = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 import path from 'path';
 import { parseGearText, KEYWORD_STATUS } from '../src/engine/gearkw.js';
 const rd = p => JSON.parse(fs.readFileSync(p, 'utf8'));
@@ -240,8 +244,8 @@ sec.push(`<section id="campaign"><h2>11. 캠페인 레이어 — Rosegraal 루�
 <tr><td>방어 활성 (비용)</td><td>Block / Advanced / Superior, Dodge 계열, Reinforce 계열</td><td>Evasion Roll 전에 사용 여부를 묻고 Heat·Exhaust·Discard·Charge 비용 지불. 능력당 라운드 1회</td></tr></table>
 <h3>Knights — 확인 필요 (${KNIGHT_RULINGS.length})</h3><table><tr><th>항목</th><th>현재 구현 [해석, 확인 필요]</th></tr>${KNIGHT_RULINGS.map(([a, b]) => `<tr><td>${esc(a)}</td><td>${esc(b)}</td></tr>`).join('')}</table>
 <h3>Knights — 없는 자료 · 미구현 (${KNIGHT_QUESTIONS.length})</h3><table><tr><th>항목</th><th>내용</th></tr>${KNIGHT_QUESTIONS.map(([a, b]) => `<tr><td>${esc(a)}</td><td class="warn">${esc(b)}</td></tr>`).join('')}</table>
-<h3>확인 필요 — 해석 (${GEAR_RULINGS.length})</h3><table><tr><th>카드 / 규칙</th><th>현재 구현 [해석, 확인 필요]</th></tr>${GEAR_RULINGS.map(([a, b]) => `<tr><td>${esc(a)}</td><td>${esc(b)}</td></tr>`).join('')}</table>
-<h3>확인 필요 — 정의·답변이 있어야 구현 가능한 것 (${GEAR_QUESTIONS.length})</h3><table><tr><th>항목</th><th>질문</th></tr>${GEAR_QUESTIONS.map(([a, b]) => `<tr><td>${esc(a)}</td><td class="warn">${esc(b)}</td></tr>`).join('')}</table>
+<h3>확인 필요 — 해석 (${GEAR_RULINGS.length})</h3><table><tr><th>카드 / 규칙</th><th>현재 구현 [해석, 확인 필요]</th><th>카드 텍스트</th></tr>${GEAR_RULINGS.map(([a, b]) => `<tr><td>${esc(a)}</td><td>${esc(b)}</td><td>${gearTextOf(a, b)}</td></tr>`).join('')}</table>
+<h3>확인 필요 — 정의·답변이 있어야 구현 가능한 것 (${GEAR_QUESTIONS.length})</h3><table><tr><th>항목</th><th>질문</th><th>카드 텍스트</th></tr>${GEAR_QUESTIONS.map(([a, b]) => `<tr><td>${esc(a)}</td><td class="warn">${esc(b)}</td><td>${gearTextOf(a, b)}</td></tr>`).join('')}</table>
 <p class="small">아직 문장이 남은 카드 ${rows.length}장 중 약 ${blocked}장은 위 질문이나 미구현 몬스터 전용 규칙(Devour · Wolf Down · Stray · VP · Ward Node · Shapeshift 등)에 걸려 있고, 나머지는 카드 한 장짜리 고유 효과로 구현 대기 중입니다.</p>
 <h3>인식만 되고 효과가 없는 키워드 (${st.pending})</h3><p>${Object.entries(pend).sort((a, b) => b[1] - a[1]).map(([k, n]) => `${esc(k)} ×${n}`).join(' · ')}</p>
 <details><summary>카드별 미해결 문장 (${rows.length}장)</summary><table><tr><th>파일</th><th>카드</th><th>엔진이 해결하지 않는 문장</th></tr>${rows.join('')}</table></details></section>`); }

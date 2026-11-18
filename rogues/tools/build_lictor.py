@@ -92,7 +92,7 @@ d = {
   'Seek & Destroy: Decoy는 Lumbering(이동하지 않음). Swamp 위 Decoy는 AT -1, To Hit +2. Decoy를 공격할 때 Knight Pool의 Fire 토큰 1개당 To Hit -1',
   'Mangrove Deployment: 죽으면 한 Level 높은 BP(없으면 BP 3)로 새 Lictor Hunter가 Great Mangrove #1부터 시계 방향으로 대기. Knight Round 종료 시 번호 순으로 Dwell(가장 가까운 빈 Swamp 칸으로 이동)',
   'It’s a Trap!: Decoy를 공격했을 때 Instinct로 처리 — 그 Decoy 주변 Zone 1의 모든 기사 Vigor -1, 잃은 기사 수만큼 Fire 토큰',
-  'Battle Tactics의 "in range": Tactics Target 문구에 in range가 있으면 그 공격의 Range 안에 있는 기사만 Tactics Target (소유자 확인 2026-11-17). Range가 없는 공격은 사거리 조건 없이 적용 [해석, 확인 필요]',
+  'Battle Tactics의 "in range": Tactics Target 문구에 in range가 있으면 그 공격의 Range 안에 있는 기사만 Tactics Target. Range가 없는 근접 공격은 근접(인접)이 Range, Decoying Hunter는 모든 기사를 인접으로 취급 (소유자 확인 2026-11-18)',
   'End of Monster Round(Battle Tactics): 이번 Monster Round에 활성화된 Monster만 2칸 이동 (Decoying은 이동하지 않음)',
   'Censor "While revealed: Disable Responses that flip BP cards face down": "flip … face down" Response(Censor·Frumentari)와 Critical의 "You may flip a chosen BP"에 모두 적용 — Critical로는 뒷면 BP를 앞면으로만 뒤집을 수 있음 (소유자 확인 2026-11-17)',
   'Stilicho "-1 AT when adjacent to any other Monster", Speculatore "All Monsters have +1 To Hit", Exploratore "+1 Vigor loss": 공개된 동안 적용',

@@ -182,7 +182,7 @@ export class Clash {
       if (L.startsWith('zone ')) { const x = +L.match(/\d/)[0]; const cells = B.zone(this.monster.cells, x); return { zone: cells, targets: alive.filter(k => cells.some(c => cellEq(c, k.pos))), line, zoneX: x }; }
       let cand = alive; const behind = /and 1 space behind target/.test(L);
       const chasmD = k => Math.min(...this.wnChasm().map(h => Math.abs(h.c - k.pos.c) + Math.abs(h.r - k.pos.r)), 99); const minBy = (arr, f) => { if (!arr.length) return []; const m = Math.min(...arr.map(f)); return arr.filter(k => f(k) === m); };
-      if (L === 'tactics target') cand = closest(this.tacticsTargetPool(alive).filter(k => !ops0.range || !/in range/i.test(this.tactics.ops.target) || this.distKM(k) <= ops0.range));
+      if (L === 'tactics target') cand = closest(this.tacticsTargetPool(alive).filter(k => !/in range/i.test(this.tactics.ops.target) || (ops0.range ? this.distKM(k) <= ops0.range : (this.monster.cur && this.monster.cur.decoying) || this.distKM(k) <= 1)));
       else if (L.includes('poisoned condition')) cand = closest(alive.filter(k => this.hasCondition(k, 'Poisoned') && (!ops0.range || this.distKM(k) <= ops0.range)));
       else if (L.includes('engaged knight in range') && ops0.range) cand = closest(alive.filter(k => this.engaged(k) && this.distKM(k) <= ops0.range));
       else if (L.includes('in range') && ops0.range) { const pool = alive.filter(k => this.distKM(k) <= ops0.range && (L.includes('in front') ? inFront(B, this.monster.cells, this.monster.facing, k.pos) && this.losTo(k) : this.inSight(k))); cand = L.startsWith('furthest') ? furthest(pool) : closest(pool); }

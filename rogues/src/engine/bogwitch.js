@@ -146,7 +146,7 @@ export const WitchMixin = {
       case 'bwHeatLimitTo': if (k && k.alive) { k.heatLimitBonus = (k.heatLimitBonus || 0) - Math.max(0, k.heatLimit - o.n); if (k.heat > k.heatLimit) k.heat = k.heatLimit; this.say(`${k.name}: Heat Limit → ${k.heatLimit}`, 'dmg'); } return true;
       case 'bwExhaustWeapon': { if (!k || !k.alive) return true; const w = (ctx.attack && ctx.attack.weapon && k.gear.includes(ctx.attack.weapon)) ? ctx.attack.weapon : k.gear.find(g => g.type === 'weapon' && !g.discarded && !g.exhausted); if (w) { w.exhausted = true; this.say(`${k.name}: ${w.name} 소진`, 'dmg'); } return true; }
       case 'bwRoutine': for (const x of this.alive()) { await this.addCondition(x, 'Drowning'); await this.fx.runKnightOp({ op: 'toxify', n: 4 }, x, {}); } return true;
-      case 'bwHeatReset': if (t && t.alive) { t.heat = t.uninjuredHeatLimit; this.say(`${t.name}: Heat → ${t.heat} (Maximum Vigor threshold)`, 'dmg'); } return true;
+      case 'bwHeatReset': if (t && t.alive) { t.heatLimitBonus = (t.heatLimitBonus || 0) - (t.heatLimit - t.uninjuredHeatLimit); if (t.heat > t.heatLimit) t.heat = t.heatLimit; this.say(`${t.name}: Heat Limit → ${t.heatLimit} (Maximum Vigor threshold의 값)`, 'dmg'); } return true;
       case 'bwNote': this.say(o.text, 'warn'); return true;
       default: return false;
     }
