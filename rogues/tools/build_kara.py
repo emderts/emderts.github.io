@@ -70,6 +70,9 @@ techniques = [
  tech("Know Thyself", "Quest: Knight of the Grand Kingdoms", [], "Discard any amount of Bane [Bane], Condition, and modifier tokens, and Condition cards you have. Nothing can prevent you from using this Technique.", "discard", [O("knowThyself")], "free", ex("Hope", "discard")),
 ]
 for _t in techniques:
+    if _t["name"] == "Living Weapon": _t["returnOnFullEvade"] = True; _t["unclear"] = []
+    if _t["name"] == "Avert a Dire Fate": _t["acrobaticsHeat"] = 1; _t["unclear"] = []
+    if _t["name"] == "Fleet of Foot": _t["notTarget"] = True; _t["straightWithMonster"] = True; _t["unclear"] = []
     if _t["name"] in ("Dice with the Devil", "Just Like We Practised"): _t["alsoReaction"] = True; _t["unclear"] = [u for u in _t["unclear"] if "Reaction" not in u]
 data = {"id": "kara", "name": "Kara",
  "_source": "Knightbook 'A Knight's Tale: Kara' (p.3–4 rules & Knight Setup) + Portrait / Talent / Heroic Arc / Technique sprite sheets (owner-supplied 2026-11-16).",

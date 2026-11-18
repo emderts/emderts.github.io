@@ -2217,7 +2217,7 @@
    "gates": [],
    "depletion": "cooldown",
    "unclear": [
-    "Only the free-action use, the Priority Target pass and the +1 Evasion are implemented (not Advanced Bypass / untargetable / Reaction use)"
+    "Advanced Bypass / +1 Evasion / untargetable apply while the card is in the Delay or Cooldown area"
    ],
    "ops": [
     {
@@ -2230,7 +2230,8 @@
     "token": "PowerReroll",
     "n": 1,
     "depletion": "cooldown"
-   }
+   },
+   "alsoReaction": true
   },
   {
    "name": "Power Overwhelming",

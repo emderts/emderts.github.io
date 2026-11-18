@@ -57,10 +57,12 @@ export const KNIGHT_RULINGS = [
   ['[수정] Brain over Brawn', '자기 턴이 아니어도 공격할 때 사용 여부를 결정.'],
   ['[수정] Unholy Furnace', '턴 시작뿐 아니라 Magic 1 → Heat Refresh, 장비의 Heat Refresh에도 "대신 Card Refresh" 바꾸기를 물음.'],
   ['[수정] Harmonized Soul Peril Arc 보너스', '"[아이콘] 1" = Evasion Re-roll 1 (소유자 확인 2026-11-16).'],
-  ['Shadows Between Worlds', '구현: 프리 액션, Priority Target 넘기기, Delay/Cooldown에 있는 동안 Evasion +1과 Advanced Bypass. 미구현: "다른 대상이 있으면 대상이 되지 않음", Reaction 사용.'],
-  ['[수정] Juggernaut', '1차·2차 창 모두 제안. 대상과 인접하면 대상을 다른 인접 칸으로 옮김 — 현재 Mob(1칸 대상)만 지원, 보스 몬스터 옮기기는 미구현.'],
   ['Power from Camaraderie', '다른 기사가 Technique를 쓸 때 Knight Round당 1회 · Monster Round당 1회. Squire는 미구현.'],
   ['Sympathetic Magic / Manifestation', '다른 기사가 명중당하거나 Wound에 실패하면 그 기사 보드에 Magic 1. Manifestation은 본인 턴 프리 액션으로만(Reaction 사용 미구현), 효과는 그 라운드 끝까지.'],
+  ['[신규] Stoneface', 'Juggernaut: 보스 몬스터도 내 옆의 다른 위치로 옮김. Rolling Stone: Rush 경로에 인접했던 기사 1명을 도착 칸 옆으로 Drag. Transmute Pain to Power: 시야 내 몬스터를 Pull X 한 뒤 공격. Go Beyond!: Fail Response만 무시, Wound + Overcome/Overpower면 Critical Wound. I\'ll Be Your Rock: Zone 3의 다른 기사가 Swamp에서 죽기 직전 옆으로 데려옴 + Leash 3. Rock, Meet Hard Place: 이동 칸 일부를 Pushback으로 사용, 몬스터가 Obstacle에 막히면 임시 AT -1 (Clash당 1회). Split the Heavens: 그 턴 동안 Wound 시 Condition 카드 하나 버리기. [해석, 확인 필요]'],
+  ['[신규] Ser Ubar', 'Inner Turmoil HUMAN: Vault 그리고/또는 Move action. You\'re in Here With Me APE: 1 Heat로 비자발 이동 -2. Knight Roll APE: 넘어진 채 사용 가능 (다른 Technique Reaction은 Knockdown (Falling Down) 중 사용 불가로 막음). Knuckle Charge APE: 그 Rush 동안 Difficult Terrain 무시. Untouchable HUMAN: 카드가 Delay에 있는 동안 [Reaction] [Discard] Superior Reflex. [해석, 확인 필요]'],
+  ['[신규] Kara', 'Living Weapon: Full Evade 시 카드가 손으로 복귀. Avert a Dire Fate: 버림 더미에 있는 동안 1 Heat로 Knockdown 대신 Vault (보스에 인접해 있을 때). Fleet of Foot: 대상이 아닐 때만, 몬스터가 마지막으로 움직인 방향의 직선으로만 이동. [해석, 확인 필요]'],
+  ['[신규] Paracelsa / Renholder', 'Flee From Evil: 대상에게서 멀어지는 칸으로만 이동. Shadows Between Worlds: Delay/Cooldown에 있는 동안 다른 유효 대상이 있으면 대상이 되지 않음, Reaction으로도 사용 가능. [해석, 확인 필요]'],
 ];
 /** Rulings the owner has reviewed (Kara, Paracelsa, Ser Sonch — 소유자 확인 2026-11-16). Kept for the record; not shown on the audit page. */
 export const KNIGHT_CONFIRMED = [
@@ -265,9 +267,9 @@ export const GEAR_CONFIRMED = [
   ["Mud Catalyst", "[BANE 2+] 공격 대상이 Swamp 위에 있으면 To Hit -1. 1 Heat + Exhaust: 가장 가까운 Swamp 칸을 유효 사거리 안의 빈 칸으로 옮김. (소유자 확인 2026-11-18)"],
 ];
 export const KNIGHT_QUESTIONS = [
-  ['Stoneface — 미구현', 'Talent: Stonewall(Wave Attack 없음), Juggernaut의 대상 이동, Rolling Stone의 Drag, Transmute Pain to Power의 Pull. Technique 일부 효과: Go Beyond!의 Critical Wound, I\'ll Be Your Rock의 Terrain 사망 무시, Rock Meet Hard Place의 Pushback, Split the Heavens의 Condition 버리기.'],
-  ['Ser Ubar — 미구현', 'Knights Together Strong의 "VP 위", You\'re in Here With Me APE(비자발 이동 -2), Knight Roll APE(넘어진 채 사용), Knuckle Charge APE(Difficult Terrain 무시), Untouchable HUMAN, Inner Turmoil HUMAN의 Vault.'],
+  ['Stoneface — 미구현', 'Talent: Stonewall (Wave Attack이 엔진에 없음).'],
+  ['Ser Ubar — 미구현', 'Knights Together Strong의 "VP 위" 조건 (VP가 엔진에 없음).'],
   ['Ser Sonch — 미구현', 'Exemplary Leader의 Little Ser 소모품, Exploration/Encounter/Delve 전용 능력, Tag Team 무기 교환, Time to Shine DRAGON.'],
-  ['Paracelsa — 판독 못 한 Talent 혜택 (미적용)', 'Fireheart Zealot 4·6·7번, Inquisitor 9번("-1 [아이콘]")·11번 아이콘. 시트 해상도로는 판독 불가. Inquisitor 12번 Incarnate는 미구현.'],
-  ['Kara — 미구현', 'Doing My Own Thing의 Encounter 배치, Crusader\'s Strike의 Devote, Avert a Dire Fate의 Acrobatics, Living Weapon의 Full Evade 복귀, Oath of Valor 카드 이동, Fleet of Foot의 방향 제한.'],
+  ['Paracelsa — 판독 못 한 Talent 혜택 (미적용)', 'Fireheart Zealot 4·6·7번, Inquisitor 9번("-1 [아이콘]")·11번 아이콘. 시트 해상도로는 판독 불가. Inquisitor 12번 Incarnate, Second Chance의 "Zeal 3+ → Disemboweled 무시", Divine Intervention의 덱 뒤집기는 미구현.'],
+  ['Kara — 미구현', 'Doing My Own Thing의 Encounter 배치, Crusader\'s Strike의 Devote, Oath of Valor 카드 이동.'],
 ];

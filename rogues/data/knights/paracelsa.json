@@ -1765,9 +1765,7 @@
     }
    ],
    "depletion": "cooldown",
-   "unclear": [
-    "'away from the Target' is not enforced"
-   ],
+   "unclear": [],
    "ops": [
     {
      "op": "flee",

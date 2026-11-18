@@ -111,6 +111,7 @@ data = {
 }
 out = os.path.join(os.path.dirname(__file__), '..', 'data', 'knights', 'renholder.json')
 for _t in data["techniques"]:
+    if _t["name"] == "Shadows Between Worlds": _t["alsoReaction"] = True; _t["unclear"] = ["Advanced Bypass / +1 Evasion / untargetable apply while the card is in the Delay or Cooldown area"]
     if _t["name"] == "Burning Barrage": _t["ops"][0]["weapon"]["area"] = "line"
     if _t["name"] == "Blackfire": _t["ops"][0]["weapon"]["area"] = "zone1"
 json.dump(data, open(out, 'w'), ensure_ascii=False, indent=1)

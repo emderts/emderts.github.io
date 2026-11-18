@@ -123,9 +123,6 @@
        "op": "rollingStone",
        "unleash": 5
       }
-     ],
-     "unclear": [
-      "Dragging another Knight is not implemented"
      ]
     },
     {
@@ -172,9 +169,6 @@
        "unleash": 7,
        "n": 3
       }
-     ],
-     "unclear": [
-      "Moving the Target is implemented for Mobs (single-space Targets)"
      ]
     },
     {
@@ -255,9 +249,6 @@
        "op": "transmutePain",
        "bane": 1
       }
-     ],
-     "unclear": [
-      "The Pull of the Monster is not implemented (attack only when already in range)"
      ]
     },
     {
@@ -2201,12 +2192,10 @@
    "text": "You must declare using this Technique before you perform the Power Roll. Ignore Fail Responses during this Attack. Additionally, if you deal a Wound and trigger the Overcome or Overpower effect, deal a Critical Wound.",
    "gates": [],
    "depletion": "discard",
-   "unclear": [
-    "All Responses are ignored; the Critical Wound part is not implemented"
-   ],
+   "unclear": [],
    "ops": [
     {
-     "op": "ignoreResponses"
+     "op": "goBeyond"
     }
    ],
    "timing": "beforePowerRoll",
@@ -2290,9 +2279,7 @@
    "text": "When another Knight in Zone 3 from you is about to die from moving onto a Terrain tile, ignore that death and place them adjacent to you. Then, Leash 3. OR [Reaction] Pull 2 another Knight in Zone 3. Then, Leash 3.",
    "gates": [],
    "depletion": "discard",
-   "unclear": [
-    "Only the Reaction option is implemented"
-   ],
+   "unclear": [],
    "ops": [
     {
      "op": "rockPull",
@@ -2358,9 +2345,7 @@
    "text": "Perform a [Move action] with +2 Speed [Speed]. You may treat any amount of spaces of this [Move action] as Pushback. If a Monster would be moved onto an Obstacle during this movement, place a temporary negative AT token in the Knight Pool (once per Clash).",
    "gates": [],
    "depletion": "cooldown",
-   "unclear": [
-    "Only the Move action with +2 Speed is implemented"
-   ],
+   "unclear": [],
    "ops": [
     {
      "op": "moveBoosted",
@@ -2455,7 +2440,7 @@
    "gates": [],
    "depletion": "cooldown",
    "unclear": [
-    "The Armor exhaust is offered when the Technique is used; the Wound → discard a Condition part is not implemented"
+    "The Armor exhaust is offered when the Technique is used"
    ],
    "ops": [
     {

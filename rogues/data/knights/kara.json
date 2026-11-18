@@ -1483,9 +1483,7 @@
     }
    ],
    "depletion": "cooldown",
-   "unclear": [
-    "Implemented as a plain reaction move of up to 3 (5) spaces — the 'not the Target / straight line in the Monster's direction' restriction is not enforced"
-   ],
+   "unclear": [],
    "ops": [
     {
      "op": "reflex",
@@ -1505,7 +1503,9 @@
     "token": "PowerReroll",
     "n": 1,
     "depletion": "cooldown"
-   }
+   },
+   "notTarget": true,
+   "straightWithMonster": true
   },
   {
    "name": "Picking Your Battles",
@@ -1773,9 +1773,7 @@
    "text": "Look at the top AI card, then gain the Priority Target token and turn all Monsters to face you. As long as this card is discarded, gain: \"1 [Heat] Acrobatics (you may Vault instead of suffering Knockdown).\"",
    "gates": [],
    "depletion": "discard",
-   "unclear": [
-    "The 'Acrobatics' ability gained while discarded is not implemented"
-   ],
+   "unclear": [],
    "ops": [
     {
      "op": "avertFate"
@@ -1787,7 +1785,8 @@
     "token": "Break",
     "n": 1,
     "depletion": "discard"
-   }
+   },
+   "acrobaticsHeat": 1
   },
   {
    "name": "Rebuke, Reposition, Retaliate!",
@@ -2075,9 +2074,7 @@
    "text": "Use this Technique before the Attack Roll. Gain Deadly. After the Attack Roll, for each \"10\" you rolled, gain +1 [Power]. Full Evade: Return this card to your hand.",
    "gates": [],
    "depletion": "cooldown",
-   "unclear": [
-    "'Full Evade: Return this card to your hand' is not implemented"
-   ],
+   "unclear": [],
    "ops": [
     {
      "op": "livingWeapon"
@@ -2089,7 +2086,8 @@
     "token": "PowerReroll",
     "n": 1,
     "depletion": "cooldown"
-   }
+   },
+   "returnOnFullEvade": true
   },
   {
    "name": "Know Thyself",
