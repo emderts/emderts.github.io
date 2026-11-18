@@ -46,4 +46,5 @@ const P = (c, l) => c.board.parse(l), L = (c, x) => c.board.label(x);
   ok(c.smSideOptions(diag).length === 2 && c.smSideOptions(str).length === 1, 'Lodestone Armor: a diagonal position may be either side (player choice)');
   c.monNegPrecTemp = 0; await c.fx.runMonsterOp({ op: 'monsterNegPrecision' }, {}); await c.fx.runMonsterOp({ op: 'monsterNegPrecision', permanent: true }, {}); ok(c.monNegPrecTemp === 1 && c.monNegPrecPerm === 1, 'negative Precision tokens on the Monster (temporary / permanent)');
   ok(SM.cards.bp.find(x => x.name === 'Sturdy Backplate').ops.critical[0].hug === true, 'Sturdy Backplate Critical uses Hug'); }
+{ const c = mk(62); const M = c.monster; const xs = M.cells.map(q => q.c), ys = M.cells.map(q => q.r); const diag = { c: Math.max(...xs) + 1, r: Math.max(...ys) + 1 }; const o = c.smSideOptions(diag); const cnt = {}; for (const s of o) cnt[s] = 1; ok(o.length === 2 && Object.keys(cnt).length === 2, 'a diagonal Knight counts on both adjoining sides (Magnetite Reinforcement)'); }
 console.log(fails ? `FAIL (${fails})` : 'ALL PASS (stonemason knight)'); process.exit(fails ? 1 : 0);

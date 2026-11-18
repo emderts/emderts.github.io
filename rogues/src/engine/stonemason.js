@@ -41,7 +41,7 @@ export const MasonMixin = {
     n[side]++; this.say(`Lodestone Armor: ${SIDE_KO[side]} 면 Ward Node에 Armor 토큰 (${this.smNodeText()})`, 'bp');
   },
   async smMagnetite() {
-    if (!this.smCanGain()) return; const cnt = {}; for (const s of SIDES) cnt[s] = 0; for (const k of this.alive()) cnt[this.smSide(k.pos)]++; const m = Math.max(...SIDES.map(s => cnt[s])); const best = SIDES.filter(s => cnt[s] === m);
+    if (!this.smCanGain()) return; const cnt = {}; for (const s of SIDES) cnt[s] = 0; for (const k of this.alive()) for (const s of this.smSideOptions(k.pos)) cnt[s]++; const m = Math.max(...SIDES.map(s => cnt[s])); const best = SIDES.filter(s => cnt[s] === m);
     const side = best.length > 1 ? await this.ask({ type: 'pick', text: 'Magnetite Reinforcement: 기사가 가장 많은 면 (동률)', options: best.map(s => ({ label: `${SIDE_KO[s]} (${cnt[s]}명)`, value: s })) }) || best[0] : best[0];
     this.sm.nodes[side] += 2; this.say(`Magnetite Reinforcement: ${SIDE_KO[side]} 면 Ward Node +2 (${this.smNodeText()})`, 'bp');
   },

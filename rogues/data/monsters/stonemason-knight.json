@@ -3162,6 +3162,6 @@
   "Sliver of Faith Critical(Devote): 미구현",
   "Reposition 2 + Bonus Attack: 최대 2칸 이동 후 Bonus Attack. Hug 1 + Bonus Attack(Sturdy Backplate): Hug 정의대로 — 몬스터에 인접해 있을 때만, 인접을 유지하며 최대 1칸 (소유자 확인 2026-11-18)",
   "Ferrospikes: Rubble 칸으로 들어갈 때마다 Vigor -1 — 스스로 이동, 밀리거나 끌려감, 발밑에 Rubble이 놓임 모두 적용 (소유자 확인 2026-11-18)",
-  "Magnetite Reinforcement: 기사가 가장 많이 있는 면의 Node에 토큰 2개 (동률이면 선택)"
+  "Magnetite Reinforcement: 기사가 가장 많이 있는 면의 Node에 토큰 2개 (동률이면 선택). 대각선 위치의 기사는 맞닿은 두 면 모두에 있는 것으로 셈 (소유자 확인 2026-11-18)"
  ]
 }
