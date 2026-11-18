@@ -91,7 +91,7 @@ d = {
   'Move Lateral (Hammer Launch, Mass Driver): 가로 또는 세로 직선으로 최단 이동해 대상이 Zone 안에 들어오는 칸으로 이동 (Rulebook)',
   'March of Devastation: 가장 가까운 기사부터 한 명씩 Move & Attack',
   'Penetrate (확장 Codex p.9): "During Armor Roll, ignore one of your Armor dice of the highest tier." — 그 공격의 Armor Roll에서 가장 높은 tier(white > black > red) 주사위 1개를 굴리지 않음 (소유자 확인 2026-11-18)',
-  'Ornate Visor Critical(영구 음수 Precision 토큰): 이후 모든 Monster Attack의 Difficulty -1 — Ratwolves의 임시 토큰(다음 Monster Attack Difficulty -1 후 버림, 소유자 확인 2026-11-18)과 같은 효과가 계속되는 것으로 처리 [해석, 확인 필요]',
+  'Ornate Visor Critical(영구 음수 Precision 토큰): 이후 모든 Monster Attack의 Difficulty -1 — Ratwolves의 임시 토큰(다음 Monster Attack Difficulty -1 후 버림, 소유자 확인 2026-11-18)과 같은 효과가 계속되는 것으로 처리 (소유자 확인 2026-11-18)',
   'Sliver of Faith Critical(Devote): 미구현',
   'Reposition 2 + Bonus Attack: 최대 2칸 이동 후 Bonus Attack. Hug 1 + Bonus Attack(Sturdy Backplate): Hug 정의대로 — 몬스터에 인접해 있을 때만, 인접을 유지하며 최대 1칸 (소유자 확인 2026-11-18)',
   'Ferrospikes: Rubble 칸으로 들어갈 때마다 Vigor -1 — 스스로 이동, 밀리거나 끌려감, 발밑에 Rubble이 놓임 모두 적용 (소유자 확인 2026-11-18)',

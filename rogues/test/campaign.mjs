@@ -98,4 +98,8 @@ ok(stats.rounds >= 8, `campaign rounds simulated: ${stats.rounds} (win ${stats.w
 { const c = mk(43); const k = c.knights[0]; k.armory.push('Possessive Mudling', 'Hexed Soul', 'Eggplate', 'Egglure', 'Shell Helmet');
   let threw = false; try { c.setLoadoutGear(k, ['Possessive Mudling', 'Eggplate']); } catch (e) { threw = true; } ok(threw, 'Possessive Mudling takes 1 hand + the Armor slot');
   c.setLoadoutGear(k, ['Possessive Mudling', 'Egglure', 'Shell Helmet', 'Hexed Soul']); ok(k.loadout.gear.includes('Hexed Soul'), 'Hexed Soul occupies no slot (fits with 2 supports)'); }
+{ const c = mk(77); const k = c.knights[0]; const els = Object.values(c.rewards.elements || {}).flat ? [] : [];
+  ok(/Attack 1d10/.test(c.gearStats('Knighves')) && /Armor dice 1 black/.test(c.gearStats('Great Antler Helm')), 'gearStats shows attack and Armor dice');
+  ok(/L1: /.test(c.heroicArcDetail(k, k.loadout.heroicArc)) && /Heat Limit/.test(c.perilArcDetail(k, k.loadout.perilArc)) && c.talentDetail(k, k.loadout.talent).length > 20 && /Speed/.test(c.portraitDetail(k, k.loadout.portrait)), 'Arc / Talent / Portrait details for the pickers');
+  ok(c.rewardDetail(k, k.loadout.heroicArc, 'H') === c.heroicArcDetail(k, k.loadout.heroicArc) && /Attack/.test(c.rewardDetail(k, 'Knighves', 'G')), 'reward options carry full details'); }
 console.log(fails ? `${fails} FAIL` : 'ALL PASS'); process.exit(fails ? 1 : 0);

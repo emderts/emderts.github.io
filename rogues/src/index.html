@@ -57,8 +57,8 @@ body.wide #app { max-width:1500px; padding:8px; }
 .kn.kd { stroke-dasharray:2 1.5; }
 .lbl { font:bold 5px monospace; fill:#f0e6d2; text-anchor:middle; pointer-events:none; }
 .coord { font:3.8px monospace; fill:#8a7d68; text-anchor:middle; }
-.tabs { display:flex; gap:4px; }
-.tabs button { flex:1; border-radius:8px 8px 0 0; }
+.tabs { display:flex; gap:4px; flex-wrap:wrap; }
+.tabs button { flex:1 1 0; min-width:0; padding-left:4px; padding-right:4px; overflow-wrap:anywhere; border-radius:8px 8px 0 0; }
 .tabs button.on { background:var(--panel); border-bottom-color:var(--panel); color:var(--gold); font-weight:700; }
 .pane { background:var(--panel); border:1px solid var(--line); border-radius:0 0 10px 10px; padding:10px; flex:1 1 auto; min-height:120px; overflow:auto; }
 .log div { padding:2px 0; border-bottom:1px dashed var(--line); font-size:13px; }
@@ -80,6 +80,11 @@ body.wide #app { max-width:1500px; padding:8px; }
 .sheet .opts { display:flex; flex-wrap:wrap; gap:6px; }
 .sheet .opts button { flex:1 1 auto; min-width:120px; }
 .sheet .opts.num button { min-width:44px; flex:0 0 auto; }
+.sheet .opts button.wide, .optlist button.wide { flex:1 1 100%; width:100%; text-align:left; white-space:normal; height:auto; padding:8px 10px; }
+.optd { font-weight:normal; white-space:normal; margin-top:2px; opacity:.85; line-height:1.35; }
+.optlist { display:flex; flex-direction:column; gap:6px; margin:6px 0; }
+.optrow { display:flex; gap:8px; align-items:flex-start; cursor:pointer; white-space:normal; }
+.optrow.on { outline:1px solid #7fb3ff; }
 .chip { display:inline-block; padding:2px 8px; border-radius:10px; font-size:12px; background:#3a3128; margin:2px; }
 .pvpath { fill:rgba(255,170,60,.18); stroke:rgba(255,170,60,.5); stroke-width:.5; pointer-events:none; } .pvend { fill:rgba(255,140,40,.32); stroke:#ff8c28; stroke-width:1; pointer-events:none; } .pvtxt { font:bold 4px monospace; fill:#ff8c28; text-anchor:middle; pointer-events:none; }
 button.tog { border-style:dashed; } button.tog.on { background:#5a4a1a; border-color:var(--gold); border-style:solid; }
