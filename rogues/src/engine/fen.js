@@ -102,7 +102,7 @@ export const FenMixin = {
       const v = await this.ask({ type: 'action', knight: k.id, text: `${k.name} — Engulfed`, options: opts }); if (v === 'end' || !v) break;
       if (v === 'attack') { combat = false; k.actions.combat = false; await this.knightAttack(k); this.checkEnd(); continue; }
       sab = true; if (v === 'sabC') { combat = false; k.actions.combat = false; } else k.gainHeat(3, { voluntary: true });
-      const vs = ['Fortitude', 'Might']; const vt = await this.ask({ type: 'pick', knight: k.id, text: `${k.name} Sabotage — Test (10+) Virtue`, options: vs.map(x => ({ label: `${x} +${(k.virtues || {})[x] || 0}`, value: x })) }) || vs[0]; const d = await this.d10For(k, 'Sabotage Test'); const b = (k.virtues || {})[vt] || 0; const okk = d10Success(d, b, 10);
+      const vs = ['Fortitude', 'Might']; const vt = await this.ask({ type: 'pick', knight: k.id, text: `${k.name} Sabotage — Test (10+) Virtue`, options: vs.map(x => ({ label: `${x} +${(k.virtues || {})[x] || 0}`, value: x })) }) || vs[0]; const d = await this.d10For(k, 'Sabotage Test'); const b = ((k.virtues || {})[vt] || 0) + await this.fx.virtueCharge(k, `${vt} Test`); const okk = d10Success(d, b, 10);
       this.say(`${k.name} Sabotage: Test ${vt} d10 ${d} +${b} vs 10+ → ${okk ? '성공' : '실패'}`, 'dice');
       if (okk) { const c = await this.ask({ type: 'pick', knight: k.id, text: 'Sabotage 성공 — 효과 선택', options: [{ label: 'AI Suppress (AI 버림 더미를 덱에 섞음)', value: 'ai' }, { label: `Armor 토큰 모두 버림 (현재 ${this.fenArmor})`, value: 'armor' }] }); if (c === 'armor') { this.fenArmor = 0; this.say('Sabotage: Armor 토큰 모두 버림'); } else { M.ai.cards.push(...M.ai.discard); M.ai.discard = []; M.ai.shuffle(); this.say('Sabotage: AI Suppress'); } }
     }

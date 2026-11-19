@@ -121,7 +121,7 @@ export const MobMixin = {
     const others = M.mobs.filter(m => m !== mob && m.cells.length);
     if (others.some(m => B.adjacent(m.cells[0], k.pos))) { this.say(`${k.name}: 이미 다른 Mob과 인접 → Knockdown`); await this.knockdown(k); }
     else if (rem > 0 && others.length && !(k.braced)) {
-      const n = Math.max(0, rem - this.fx.involuntaryReduction(k));
+      let n = Math.max(0, rem - this.fx.involuntaryReduction(k)); if (n > 0 && await this.fx.ignoreInvol(k, `Gangup 이동 ${n}`)) n = 0;
       const pass = c => !B.isObstacle(c) && !this.knightAt(c) && (!this.mobAt(c) || this.mobAt(c) === mob);
       const path = B.path(k.pos, c => pass(c) && others.some(m => B.adjacent(m.cells[0], c)), pass);
       if (path && n > 0) {
