@@ -1,0 +1,2782 @@
+{
+ "id": "young-devour-dragon",
+ "name": "Young Devour Dragon",
+ "kind": "boss",
+ "code": "26B1081",
+ "traitsLine": [
+  "Dragon",
+  "Calamity",
+  "Hunger"
+ ],
+ "_source": "Owner scans 2026-11-19; Clash Setup: TTSF Codex (Young Devour Dragon Clash)",
+ "footprint": {
+  "size": 9,
+  "shape": "3x3",
+  "rear": "the 3 cells directly behind the footprint",
+  "facingOnSheet": "down"
+ },
+ "basicAbilities": [
+  {
+   "name": "Lumbering"
+  },
+  {
+   "name": "Unavoidable Knockback",
+   "value": 5
+  },
+  {
+   "name": "VP"
+  }
+ ],
+ "vp": {
+  "name": "Broad Back",
+  "text": "Climb: Test Might (10+).\nHold on: End of Monster Round: If on the VP, test Tenacity (12+). Fail: Knockdown, Displace.\nYoung Devour Dragon starts with the VP unlocked.\n[Divine Target] Divine Target cannot move to the VP. When you leave the VP, gain the [Divine Target] Divine Target token.\nWhile on the VP, you have +X [Power], where X is the Level of the attacked BP. If you deal a Wound, gain +1 [P].",
+  "unlocked": true,
+  "climb": {
+   "virtue": "Might",
+   "n": 10
+  },
+  "hold": {
+   "virtue": "Tenacity",
+   "n": 12
+  }
+ },
+ "levels": {
+  "1": {
+   "toHit": 8,
+   "wounds": 8,
+   "exhibitionWounds": null,
+   "activations": [
+    "AI"
+   ],
+   "activationsText": "1 AI",
+   "traitsAdd": [
+    "Falling Skies",
+    "Ruined Bastion",
+    "Climbable Appendages",
+    "Dragonfeast",
+    "Groundscraper"
+   ],
+   "bonuses": {
+    "escalations": 0,
+    "at": 0,
+    "vigorLoss": 0,
+    "evasionDice": 0
+   }
+  },
+  "2": {
+   "toHit": 8,
+   "wounds": 10,
+   "exhibitionWounds": null,
+   "activations": [
+    "AI"
+   ],
+   "activationsText": "1 AI",
+   "traitsAdd": [
+    "Curse of Endless Hunger",
+    "Inescapable Maw"
+   ],
+   "bonuses": {
+    "escalations": 0,
+    "at": 1,
+    "vigorLoss": 0,
+    "evasionDice": 0
+   }
+  }
+ },
+ "traits": [
+  {
+   "name": "Falling Skies",
+   "level": 1,
+   "text": "Additional Setup: Take the three Phase Trait cards, Flying High (Phase I), Floating Low (Phase II), and Grounded (Phase III), and place them in a stack face up (Flying High on top, Grounded on the bottom). Only the effects of the top card are active.\n! When a Knight deals a Wound, do not Escalate!\nExhibition Clash: Remove the Grounded (Phase III) Phase Trait card.",
+   "implemented": true
+  },
+  {
+   "name": "Ruined Bastion",
+   "level": 1,
+   "text": "Knights may move onto Ruined Wall Terrain tiles during their voluntary movement.\nKnights may move onto Tower Terrain tiles from Ruined Wall Terrain tiles or the VP during their voluntary movement.\nKnights treat Tower and Ruined Wall Terrain tiles as Indestructible during their involuntary movement.",
+   "implemented": true
+  },
+  {
+   "name": "Climbable Appendages",
+   "level": 1,
+   "text": "Young Devour Dragon starts the Clash with the VP unlocked.",
+   "implemented": true
+  },
+  {
+   "name": "Dragonfeast",
+   "level": 1,
+   "text": "Additional Setup: Add the Your Death Becomes a Dragon's Sacrament Judicium card to the Judicium deck.",
+   "implemented": true
+  },
+  {
+   "name": "Groundscraper",
+   "level": 1,
+   "text": "Ram: The Dragon moves adjacent to the designated Terrain tile. Then, trigger effects based on the current Phase's Trait card.",
+   "implemented": true
+  },
+  {
+   "name": "Curse of Endless Hunger",
+   "level": 2,
+   "text": "End of Monster Round: [Divine Target] Divine Target loses [V] equal to their [P].",
+   "implemented": true
+  },
+  {
+   "name": "Inescapable Maw",
+   "level": 2,
+   "text": "When a Knight is Devoured, place their Portrait card near the Monster Sheet, they cannot be resurrected during that Clash.",
+   "implemented": true
+  },
+  {
+   "name": "Flying High (PHASE I)",
+   "level": 1,
+   "text": "The Dragon gains +4 To Hit unless attacked from a Terrain tile, the VP, or during a Lunging Attack (see Tower Terrain tile).\nThe Dragon gains +2 To Hit when attacked from a Ruined Wall Terrain tile.\nThe Dragon doesn't destroy Terrain tiles and doesn't cause Crash unless stated otherwise.\nYou fail all Climb tests.\nWhen the Dragon Rams a Tower, each Knight on it suffers Crash.\n—\nWhen you finish resolving the current action, if there are 3+ Wounds on the Wound Stack, remove this card and all AI 1 and BP 1 cards from the Clash, except cards on the Wound Stack. Create new AI and BP decks using AI 2 and BP 2 cards. Then, the Dragon performs AI.",
+   "implemented": true
+  },
+  {
+   "name": "Floating Low (PHASE II)",
+   "level": 1,
+   "text": "The Dragon has +2 To Hit unless attacked from a Terrain tile, the VP, or during a Lunging Attack (see Tower Terrain tile).\nThe Dragon causes Crash as normal.\nWhen the Dragon Rams a Tower, that Tower is destroyed.\n—\nWhen you finish resolving the current action, if there are 6+ Wounds on the Wound Stack:\nExhibition: You win the Clash.\nFull Clash: Remove this card and all AI 2 and BP 2 cards from the Clash, except cards on the Wound Stack. Create new AI and BP decks using AI 3 and BP 3 cards. Then, the Dragon performs AI.",
+   "implemented": true
+  },
+  {
+   "name": "Grounded (PHASE III)",
+   "level": 1,
+   "text": "The Dragon Crash Devours you (you die). If you survive, Displace to the closest Empty Space.\nIf a Knight with the Called by the Heavens Condition card would draw a Judicium, they are Devoured instead.\n+3 to all Climb tests.\nWhen the Dragon Rams a Tower, that Tower is destroyed and all Knights on it are devoured (die).\n—\nTo leave the VP voluntarily, you must pass a Climb Down test (same difficulty as the Climb test).",
+   "implemented": true
+  }
+ ],
+ "cards": {
+  "ai": [
+   {
+    "name": "Gulping Run",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 10,
+    "pre": null,
+    "targeting": [
+     "Each Knight on a Tower, starting from the closest",
+     "Closest Knight"
+    ],
+    "tag": "MOVE & ATTACK {P3+: +1 [die]}",
+    "effects": [
+     "Gain +1 [P].",
+     "For each hit lose -3 [V]. [Peril].",
+     "[React]"
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "The Dragon moves 4 spaces forward.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "SEQUENTIAL ATTACK",
+    "moveTag": "MOVE & ATTACK {P3+: +1 [die]}",
+    "afterAttack": "AFTER FINAL ATTACK: The Dragon moves 4 spaces forward.",
+    "ops": {
+     "targeting": [
+      "Each Knight on a Tower, starting from the closest",
+      "Closest Knight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "passion",
+       "gte": 3,
+       "op": "evasionDice",
+       "n": 1
+      }
+     ],
+     "before": [
+      {
+       "op": "yddP",
+       "n": 1
+      }
+     ],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 3,
+       "perilCheck": true
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "yddForward",
+       "n": 4,
+       "after": true
+      }
+     ]
+    }
+   },
+   {
+    "name": "Damning Discharge",
+    "level": 1,
+    "type": "zone",
+    "evasionDice": 2,
+    "evasionDifficulty": 10,
+    "pre": null,
+    "targeting": [
+     "[Divine Target] Divine Target and [Priority Target] Priority Target"
+    ],
+    "tag": "JUDGE {BOTH [Divine Target] AND [Priority Target]: DOOMED AND +1 [die]}",
+    "effects": [
+     "Fortitude / Might.",
+     "Gain the Called by the Heavens Condition card. For each hit lose -4 [V]. [Peril]."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Ram the furthest Tower.",
+    "zone": null,
+    "unclear": [
+     "Gate read as \"both tokens on the same Knight → Doomed and +1 die\""
+    ],
+    "typePrinted": "SIMULTANEOUS JUDGEMENT",
+    "moveTag": "JUDGE {BOTH [Divine Target] AND [Priority Target]: DOOMED AND +1 [die]}",
+    "afterAttack": "AFTER FINAL ATTACK: Ram the furthest Tower.",
+    "ops": {
+     "targeting": [
+      "[Divine Target] Divine Target and [Priority Target] Priority Target"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "fn",
+       "fn": "yddGate",
+       "is": "both",
+       "gte": 0,
+       "op": "doomed"
+      },
+      {
+       "stat": "fn",
+       "fn": "yddGate",
+       "is": "both",
+       "gte": 0,
+       "op": "evasionDice",
+       "n": 1
+      }
+     ],
+     "before": [
+      {
+       "op": "yddCbh"
+      }
+     ],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 4,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "yddRam"
+      }
+     ],
+     "judge": [
+      "Fortitude",
+      "Might"
+     ]
+    }
+   },
+   {
+    "name": "Bile Vomit",
+    "level": 1,
+    "type": "zone",
+    "evasionDice": 4,
+    "evasionDifficulty": 8,
+    "pre": null,
+    "targeting": [
+     "Closest Knight on a Tower",
+     "Closest Knight in front",
+     "Closest Knight"
+    ],
+    "tag": "MOVE & ATTACK {P3+: +1 [die]}",
+    "effects": [
+     "For each hit lose -2 [V].",
+     "Bane 1 and gain +1 [P]. [Peril].",
+     "[React]"
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Ram the furthest Tower.",
+    "zone": "diagram: inverted triangle in front of the Dragon (3 rows, widest far away)",
+    "unclear": [
+     "Zone diagram read from a small image"
+    ],
+    "typePrinted": "WAVE ATTACK",
+    "moveTag": "MOVE & ATTACK {P3+: +1 [die]}",
+    "afterAttack": "AFTER FINAL ATTACK: Ram the furthest Tower.",
+    "ops": {
+     "targeting": [
+      "Closest Knight on a Tower",
+      "Closest Knight in front",
+      "Closest Knight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "passion",
+       "gte": 3,
+       "op": "evasionDice",
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "yddK",
+       "k": {
+        "op": "bane",
+        "n": 1
+       },
+       "who": "target",
+       "perHit": false
+      },
+      {
+       "op": "yddP",
+       "n": 1
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "yddRam"
+      }
+     ],
+     "wave": true,
+     "zoneDiagram": {
+      "red": [
+       [
+        1,
+        0
+       ],
+       [
+        1,
+        1
+       ],
+       [
+        1,
+        2
+       ],
+       [
+        2,
+        -1
+       ],
+       [
+        2,
+        0
+       ],
+       [
+        2,
+        1
+       ],
+       [
+        2,
+        2
+       ],
+       [
+        2,
+        3
+       ],
+       [
+        3,
+        -2
+       ],
+       [
+        3,
+        -1
+       ],
+       [
+        3,
+        0
+       ],
+       [
+        3,
+        1
+       ],
+       [
+        3,
+        2
+       ],
+       [
+        3,
+        3
+       ],
+       [
+        3,
+        4
+       ]
+      ],
+      "yellow": [],
+      "step": null,
+      "block": true
+     }
+    }
+   },
+   {
+    "name": "Autotomic Evisceration",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 10,
+    "pre": null,
+    "targeting": [
+     "Closest Knight on a Tower",
+     "Closest Knight in front",
+     "Closest Knight"
+    ],
+    "tag": "MOVE & ATTACK {P3+: +1 [die]}",
+    "effects": [
+     "Gain +1 [P]. For each hit lose -4 [V] and Bane 1. [Peril].",
+     "[React]"
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Draw a card from the Fool's deck, and move the Dragon to the designated space.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "ATTACK",
+    "moveTag": "MOVE & ATTACK {P3+: +1 [die]}",
+    "afterAttack": "AFTER ATTACK: Draw a card from the Fool's deck, and move the Dragon to the designated space.",
+    "ops": {
+     "targeting": [
+      "Closest Knight on a Tower",
+      "Closest Knight in front",
+      "Closest Knight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "passion",
+       "gte": 3,
+       "op": "evasionDice",
+       "n": 1
+      }
+     ],
+     "before": [
+      {
+       "op": "yddP",
+       "n": 1
+      }
+     ],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 4,
+       "perilCheck": true
+      },
+      {
+       "op": "yddK",
+       "k": {
+        "op": "bane",
+        "n": 1
+       },
+       "who": "target",
+       "perHit": true
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "yddFool"
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Skewer",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 1,
+    "evasionDifficulty": 12,
+    "pre": null,
+    "targeting": [
+     "Furthest Knight in Zone 2",
+     "No Target: Perform Signature"
+    ],
+    "tag": "RANGE ATTACK 4 {P3+: +1 [die]}",
+    "effects": [
+     "If hit, lose -8 [V]. Gain +1 [P]. [Peril].",
+     "Bane 2. Gain the Called by the Heavens Condition card.",
+     "[React]"
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Draw a card from the Fool's deck, and move the Dragon to the designated space.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "RANGE ATTACK",
+    "moveTag": "RANGE ATTACK 4 {P3+: +1 [die]}",
+    "afterAttack": "AFTER ATTACK: Draw a card from the Fool's deck, and move the Dragon to the designated space.",
+    "ops": {
+     "targeting": [
+      "Furthest Knight in Zone 2",
+      "No Target: Perform Signature"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "passion",
+       "gte": 3,
+       "op": "evasionDice",
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "yddFlat",
+       "n": 8,
+       "perilCheck": true
+      },
+      {
+       "op": "yddP",
+       "n": 1
+      },
+      {
+       "op": "yddK",
+       "k": {
+        "op": "bane",
+        "n": 2
+       },
+       "who": "target",
+       "perHit": false
+      },
+      {
+       "op": "yddCbh"
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "yddFool"
+      }
+     ],
+     "afterFinalAttack": null,
+     "range": 4
+    }
+   },
+   {
+    "name": "Hungry Chomp",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 11,
+    "pre": null,
+    "targeting": [
+     "Highest [Passion]"
+    ],
+    "tag": "MOVE & ATTACK {[Divine Target] DIVINE TARGET: +1 [die]}",
+    "effects": [
+     "For each hit lose -5 [V]. [Peril].",
+     "If you declared a Shield as your active Weapon during this Attack, discard it.",
+     "[React]"
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "The Dragon moves 4 spaces forward.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "ATTACK",
+    "moveTag": "MOVE & ATTACK {[Divine Target] DIVINE TARGET: +1 [die]}",
+    "afterAttack": "AFTER ATTACK: The Dragon moves 4 spaces forward.",
+    "ops": {
+     "targeting": [
+      "Highest [Passion]"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "fn",
+       "fn": "yddGate",
+       "is": "divine",
+       "gte": 0,
+       "op": "evasionDice",
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 5,
+       "perilCheck": true
+      },
+      {
+       "op": "yddShield"
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "yddForward",
+       "n": 4,
+       "after": true
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Devouring Vortex",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 10,
+    "pre": null,
+    "targeting": [
+     "Each Knight on a Tower",
+     "[Divine Target] Divine Target",
+     "[Priority Target] Priority Target"
+    ],
+    "tag": "RANGE ATTACK UNLIMITED {P4+: +1 [die]}",
+    "effects": [
+     "For each hit Pull 3 and lose -3 [V].",
+     "Then, if you are adjacent to the Dragon, lose -9 [V]. [Peril].",
+     "[React]"
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Draw a card from the Fool's deck, and move the Dragon to the designated space.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "SIMULTANEOUS RANGE ATTACK",
+    "moveTag": "RANGE ATTACK UNLIMITED {P4+: +1 [die]}",
+    "afterAttack": "AFTER FINAL ATTACK: Draw a card from the Fool's deck, and move the Dragon to the designated space.",
+    "ops": {
+     "targeting": [
+      "Each Knight on a Tower",
+      "[Divine Target] Divine Target",
+      "[Priority Target] Priority Target"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "passion",
+       "gte": 4,
+       "op": "evasionDice",
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "yddPull",
+       "n": 3
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 3,
+       "perilCheck": true
+      },
+      {
+       "op": "yddIfAdj",
+       "then": [
+        {
+         "op": "loseVigor",
+         "n": 9
+        }
+       ]
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "yddFool"
+      }
+     ],
+     "range": "unlimited",
+     "yddAllThree": true
+    }
+   },
+   {
+    "name": "Dive Attack",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 10,
+    "pre": null,
+    "targeting": [
+     "Each Knight on a Tower, starting from the closest",
+     "Closest Knight"
+    ],
+    "tag": "MOVE & ATTACK {P4+: +1 [die]}",
+    "effects": [
+     "Gain +1 [P].",
+     "For each hit lose -6 [V]. [Peril].",
+     "[React]"
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "The Dragon moves 6 spaces forward.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "SEQUENTIAL ATTACK",
+    "moveTag": "MOVE & ATTACK {P4+: +1 [die]}",
+    "afterAttack": "AFTER FINAL ATTACK: The Dragon moves 6 spaces forward.",
+    "ops": {
+     "targeting": [
+      "Each Knight on a Tower, starting from the closest",
+      "Closest Knight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "passion",
+       "gte": 4,
+       "op": "evasionDice",
+       "n": 1
+      }
+     ],
+     "before": [
+      {
+       "op": "yddP",
+       "n": 1
+      }
+     ],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 6,
+       "perilCheck": true
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "yddForward",
+       "n": 6,
+       "after": true
+      }
+     ]
+    }
+   },
+   {
+    "name": "Thunder Storm",
+    "level": 2,
+    "type": "zone",
+    "evasionDice": 3,
+    "evasionDifficulty": 10,
+    "pre": null,
+    "targeting": [
+     "[Divine Target] Divine Target, [Priority Target] Priority Target, and Zone 1 around them"
+    ],
+    "tag": "JUDGE {EITHER [Divine Target] OR [Priority Target]: DOOMED, GAIN THE CALLED BY THE HEAVENS CONDITION CARD}",
+    "effects": [
+     "Fortitude / Might.",
+     "Gain the Panicked Condition card.",
+     "For each hit lose -4 [V] and gain +1 [P].",
+     "[Peril]. Three or more hits, Knockdown.",
+     "[React]"
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Ram the furthest Tower.",
+    "zone": "diagram: Zone 1 around a Knight",
+    "unclear": [],
+    "typePrinted": "SIMULTANEOUS JUDGEMENT",
+    "moveTag": "JUDGE {EITHER [Divine Target] OR [Priority Target]: DOOMED, GAIN THE CALLED BY THE HEAVENS CONDITION CARD}",
+    "afterAttack": "AFTER FINAL ATTACK: Ram the furthest Tower.",
+    "ops": {
+     "targeting": [
+      "[Divine Target] Divine Target, [Priority Target] Priority Target, and Zone 1 around them"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "fn",
+       "fn": "yddGate",
+       "is": "either",
+       "gte": 0,
+       "op": "doomed"
+      },
+      {
+       "stat": "fn",
+       "fn": "yddGate",
+       "is": "either",
+       "gte": 0,
+       "op": "yddAlso",
+       "alsoOps": [
+        {
+         "op": "yddCbh"
+        }
+       ]
+      }
+     ],
+     "before": [
+      {
+       "op": "yddK",
+       "k": {
+        "op": "condition",
+        "id": "Panicked"
+       },
+       "who": "target",
+       "perHit": false
+      }
+     ],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 4,
+       "perilCheck": true
+      },
+      {
+       "op": "yddP",
+       "n": 1,
+       "perHit": true
+      },
+      {
+       "op": "yddIfHits",
+       "gte": 3,
+       "then": [
+        {
+         "op": "knockdown"
+        }
+       ]
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "yddRam"
+      }
+     ],
+     "judge": [
+      "Fortitude",
+      "Might"
+     ]
+    }
+   },
+   {
+    "name": "Command of the Famishing",
+    "level": 2,
+    "type": "zone",
+    "evasionDice": 2,
+    "evasionDifficulty": 11,
+    "pre": null,
+    "targeting": [
+     "Each Knight without the Called by the Heavens Condition card",
+     "No Target: Perform Signature"
+    ],
+    "tag": "JUDGE {P3+: +1 [die]}",
+    "effects": [
+     "Bravery / Tenacity. Gain the Called by the Heavens Condition card. One hit, move 3 spaces toward the closest Tower and gain +1 [P]. Two or more hits, move 5 spaces toward the closest Tower and gain +3 [P]. Lose [V] equal to your [P]. [Peril].",
+     "[React]"
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Ram the furthest Tower and Devour all Knights on it.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "SIMULTANEOUS JUDGEMENT",
+    "moveTag": "JUDGE {P3+: +1 [die]}",
+    "afterAttack": "AFTER FINAL ATTACK: Ram the furthest Tower and Devour all Knights on it.",
+    "ops": {
+     "targeting": [
+      "Each Knight without the Called by the Heavens Condition card",
+      "No Target: Perform Signature"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "passion",
+       "gte": 3,
+       "op": "evasionDice",
+       "n": 1
+      }
+     ],
+     "before": [
+      {
+       "op": "yddCommand"
+      }
+     ],
+     "effects": [
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "yddRam",
+       "devour": true
+      }
+     ],
+     "judge": [
+      "Bravery",
+      "Tenacity"
+     ]
+    }
+   },
+   {
+    "name": "Bile Cannon",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 4,
+    "evasionDifficulty": 8,
+    "pre": null,
+    "targeting": [
+     "Furthest Knight on a Tower and Zone 1 around them",
+     "Furthest Knight in sight and Zone 1 around them"
+    ],
+    "tag": "RANGE ATTACK UNLIMITED {P4+: +1 [die]}",
+    "effects": [
+     "For each hit lose -4 [V], Bane 1 and gain +1 [P]. [Peril].",
+     "[React]"
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Draw a card from the Fool's deck, and move the Dragon to the designated space.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "RANGE ZONE ATTACK",
+    "moveTag": "RANGE ATTACK UNLIMITED {P4+: +1 [die]}",
+    "afterAttack": "AFTER FINAL ATTACK: Draw a card from the Fool's deck, and move the Dragon to the designated space.",
+    "ops": {
+     "targeting": [
+      "Furthest Knight on a Tower and Zone 1 around them",
+      "Furthest Knight in sight and Zone 1 around them"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "passion",
+       "gte": 4,
+       "op": "evasionDice",
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 4,
+       "perilCheck": true
+      },
+      {
+       "op": "yddK",
+       "k": {
+        "op": "bane",
+        "n": 1
+       },
+       "who": "target",
+       "perHit": true
+      },
+      {
+       "op": "yddP",
+       "n": 1,
+       "perHit": true
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "yddFool"
+      }
+     ],
+     "range": "unlimited",
+     "zoneAroundTarget": 1
+    }
+   },
+   {
+    "name": "Fearsome Feast",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 9,
+    "pre": null,
+    "targeting": [
+     "Highest [Passion]"
+    ],
+    "tag": "MOVE & ATTACK {[Divine Target] DIVINE TARGET: +1 [die]}",
+    "effects": [
+     "For each hit lose -5 [V]. [Peril].",
+     "If you declared a Shield as your active Weapon during this Attack, discard it.",
+     "[React]"
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "The Dragon moves 6 spaces forward.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "ATTACK",
+    "moveTag": "MOVE & ATTACK {[Divine Target] DIVINE TARGET: +1 [die]}",
+    "afterAttack": "AFTER ATTACK: The Dragon moves 6 spaces forward.",
+    "ops": {
+     "targeting": [
+      "Highest [Passion]"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "fn",
+       "fn": "yddGate",
+       "is": "divine",
+       "gte": 0,
+       "op": "evasionDice",
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 5,
+       "perilCheck": true
+      },
+      {
+       "op": "yddShield"
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "yddForward",
+       "n": 6,
+       "after": true
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Madness of the Famishing",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 11,
+    "pre": null,
+    "targeting": [
+     "[Divine Target] Divine Target in sight",
+     "[Priority Target] Priority Target in sight",
+     "Highest [Passion] in sight"
+    ],
+    "tag": "JUDGE",
+    "effects": [
+     "Bravery / Tenacity. Stand up and move at your full [Speed] toward another closest Knight. If you are or become adjacent to each other, roll your Knight's Power dice three times. That Knight loses [V] for every symbol you rolled and performs a [Peril].",
+     "[React]"
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Draw a card from the Fool's deck, and move the Dragon to the designated space.",
+    "zone": null,
+    "unclear": [
+     "\"at your full [icon]\" read as Speed"
+    ],
+    "typePrinted": "JUDGEMENT",
+    "moveTag": "JUDGE",
+    "afterAttack": "AFTER ATTACK: Draw a card from the Fool's deck, and move the Dragon to the designated space.",
+    "ops": {
+     "targeting": [
+      "[Divine Target] Divine Target in sight",
+      "[Priority Target] Priority Target in sight",
+      "Highest [Passion] in sight"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "yddMad"
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "yddFool"
+      }
+     ],
+     "afterFinalAttack": null,
+     "judge": [
+      "Bravery",
+      "Tenacity"
+     ]
+    }
+   },
+   {
+    "name": "Grind to a Pulp",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 9,
+    "pre": null,
+    "targeting": [
+     "Furthest Knight in sight and Zone 1 around them"
+    ],
+    "tag": "MOVE & ATTACK",
+    "effects": [
+     "Your [V] becomes 0, you die. If you survive, discard your Armor [Gear] card.",
+     "[React]"
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "The Dragon moves 8 spaces forward.",
+    "zone": "diagram: Zone 1 around a Knight",
+    "unclear": [],
+    "typePrinted": "ZONE ATTACK",
+    "moveTag": "MOVE & ATTACK",
+    "afterAttack": "AFTER FINAL ATTACK: The Dragon moves 8 spaces forward.",
+    "ops": {
+     "targeting": [
+      "Furthest Knight in sight and Zone 1 around them"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "yddGrind"
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "yddForward",
+       "n": 8,
+       "after": true
+      }
+     ],
+     "zoneAroundTarget": 1
+    }
+   },
+   {
+    "name": "Slice 'n' Dice",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 5,
+    "evasionDifficulty": 10,
+    "pre": null,
+    "targeting": [
+     "Furthest Knight in Zone 3",
+     "No Target: Perform Signature"
+    ],
+    "tag": "RANGE ATTACK 6",
+    "effects": [
+     "For each hit lose -4 [V].",
+     "Gain +2 [P]. [Peril]. Bane 4.",
+     "[React]"
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Draw a card from the Fool's deck, and move the Dragon to the designated space.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "RANGE ATTACK",
+    "moveTag": "RANGE ATTACK 6",
+    "afterAttack": "AFTER ATTACK: Draw a card from the Fool's deck, and move the Dragon to the designated space.",
+    "ops": {
+     "targeting": [
+      "Furthest Knight in Zone 3",
+      "No Target: Perform Signature"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 4,
+       "perilCheck": true
+      },
+      {
+       "op": "yddP",
+       "n": 2
+      },
+      {
+       "op": "yddK",
+       "k": {
+        "op": "bane",
+        "n": 4
+       },
+       "who": "target",
+       "perHit": false
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "yddFool"
+      }
+     ],
+     "afterFinalAttack": null,
+     "range": 6
+    }
+   },
+   {
+    "name": "Snatch 'n' Snap",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 9,
+    "pre": null,
+    "targeting": [
+     "Knight on a VP",
+     "Last Knight to wound",
+     "Closest Knight in sight"
+    ],
+    "tag": "MOVE & ATTACK",
+    "effects": [
+     "For each hit lose -7 [V] and gain +1 [P]. Two hits, disable one of your [hand] Weapon slots (you lose that slot until the end of Clash). Three or more hits, you are Devoured. [Peril].",
+     "[React]"
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "The Dragon moves 3 spaces to the left (without turning), then 3 spaces forward.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "ATTACK",
+    "moveTag": "MOVE & ATTACK",
+    "afterAttack": "AFTER ATTACK: The Dragon moves 3 spaces to the left (without turning), then 3 spaces forward.",
+    "ops": {
+     "targeting": [
+      "Knight on a VP",
+      "Last Knight to wound",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 7,
+       "perilCheck": true
+      },
+      {
+       "op": "yddP",
+       "n": 1,
+       "perHit": true
+      },
+      {
+       "op": "yddSlot"
+      },
+      {
+       "op": "yddDevour",
+       "gte": 3
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "yddForward",
+       "n": 3,
+       "side": "left",
+       "sideN": 3,
+       "after": true
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "World Eater",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 4,
+    "evasionDifficulty": 10,
+    "pre": null,
+    "targeting": [
+     "Knight on a VP",
+     "Highest [Passion]"
+    ],
+    "tag": "MOVE & ATTACK {VP: +1 [die]}",
+    "effects": [
+     "For each hit lose -2 [V] and Bane 1. [Peril].",
+     "Based on the number of hits:",
+     "1+ hit, Discard the Talent card (until the end of Clash).",
+     "2+ hits, Discard all Technique cards.",
+     "3+ hits, Discard all Gear [Gear] cards.",
+     "4+ hits, you are Devoured.",
+     "[React]"
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "The Dragon moves 3 spaces to the right (without turning), then 3 spaces forward.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "ATTACK",
+    "moveTag": "MOVE & ATTACK {VP: +1 [die]}",
+    "afterAttack": "AFTER ATTACK: The Dragon moves 3 spaces to the right (without turning), then 3 spaces forward.",
+    "ops": {
+     "targeting": [
+      "Knight on a VP",
+      "Highest [Passion]"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "fn",
+       "fn": "yddGate",
+       "is": "vp",
+       "gte": 0,
+       "op": "evasionDice",
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "yddK",
+       "k": {
+        "op": "bane",
+        "n": 1
+       },
+       "who": "target",
+       "perHit": true
+      },
+      {
+       "op": "yddWorld"
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "yddForward",
+       "n": 3,
+       "side": "right",
+       "sideN": 3,
+       "after": true
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Black Hole",
+    "level": 3,
+    "type": "zone",
+    "evasionDice": 4,
+    "evasionDifficulty": 11,
+    "pre": "Turn to face the most Knights, then destroy all Terrain tiles in front.",
+    "targeting": [
+     "All spaces in front"
+    ],
+    "tag": "ATTACK",
+    "effects": [
+     "For each hit Pull 3 and lose -5 [V].",
+     "Then, if you are adjacent to the Dragon, you are Devoured. [Peril].",
+     "[React]"
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "The Dragon moves 8 spaces forward.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "ZONE ATTACK",
+    "moveTag": "ATTACK",
+    "afterAttack": "AFTER FINAL ATTACK: The Dragon moves 8 spaces forward.",
+    "ops": {
+     "targeting": [
+      "All spaces in front"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "yddPull",
+       "n": 3
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 5,
+       "perilCheck": true
+      },
+      {
+       "op": "yddIfAdj",
+       "then": [
+        {
+         "op": "yddDevour"
+        }
+       ]
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "yddForward",
+       "n": 8,
+       "after": true
+      }
+     ],
+     "pre": [
+      {
+       "op": "yddBlackHole"
+      }
+     ]
+    }
+   }
+  ],
+  "bp": [
+   {
+    "name": "Greedy Claws",
+    "level": 1,
+    "at": 11,
+    "top": "OVERCOME 7+: Power 1",
+    "note": null,
+    "ultrainstinct": "Gain +2 [H].",
+    "instinct": null,
+    "wound": "Exhaust your active Weapon. Lose -2 [V].",
+    "fail": null,
+    "critical": "The Dragon gains 1 permanent negative To Hit token.",
+    "unclear": [],
+    "responses": {
+     "ultrainstinct": "Gain +2 [H].",
+     "instinct": null,
+     "wound": "Exhaust your active Weapon. Lose -2 [V].",
+     "fail": null,
+     "critical": "The Dragon gains 1 permanent negative To Hit token."
+    },
+    "ops": {
+     "at": 11,
+     "overcome": {
+      "n": 7,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "ultrainstinct": [
+      {
+       "op": "yddK",
+       "k": {
+        "op": "gainHeat",
+        "n": 2
+       },
+       "who": "attacker",
+       "perHit": false
+      }
+     ],
+     "wound": [
+      {
+       "op": "yddExhaustWeapon"
+      },
+      {
+       "op": "loseVigor",
+       "n": 2
+      }
+     ],
+     "fail": null,
+     "instinct": null,
+     "critical": [
+      {
+       "op": "monsterModifier",
+       "stat": "toHit",
+       "n": -1
+      }
+     ]
+    }
+   },
+   {
+    "name": "Unhinged Jaw",
+    "level": 1,
+    "at": 11,
+    "top": "OVERPOWER 2+: Reposition 2",
+    "note": null,
+    "ultrainstinct": null,
+    "instinct": null,
+    "wound": "Lose -2 [V].",
+    "fail": null,
+    "critical": "You may gain or discard the Called by the Heavens Condition card.",
+    "unclear": [],
+    "responses": {
+     "ultrainstinct": null,
+     "instinct": null,
+     "wound": "Lose -2 [V].",
+     "fail": null,
+     "critical": "You may gain or discard the Called by the Heavens Condition card."
+    },
+    "ops": {
+     "at": 11,
+     "overcome": {
+      "n": 2,
+      "kind": "overpower",
+      "ops": [
+       {
+        "op": "yddMove",
+        "n": 2
+       }
+      ]
+     },
+     "ultrainstinct": null,
+     "wound": [
+      {
+       "op": "loseVigor",
+       "n": 2
+      }
+     ],
+     "fail": null,
+     "instinct": null,
+     "critical": [
+      {
+       "op": "yddCbhChoice"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Winding Tail",
+    "level": 1,
+    "at": 10,
+    "top": "OVERCOME 3+: Reposition 1",
+    "note": null,
+    "ultrainstinct": null,
+    "instinct": null,
+    "wound": null,
+    "fail": "Bane 1. [React] The Dragon moves 2 spaces forward.",
+    "critical": "The Dragon gains 1 permanent negative Precision token.",
+    "unclear": [],
+    "responses": {
+     "ultrainstinct": null,
+     "instinct": null,
+     "wound": null,
+     "fail": "Bane 1. [React] The Dragon moves 2 spaces forward.",
+     "critical": "The Dragon gains 1 permanent negative Precision token."
+    },
+    "ops": {
+     "at": 10,
+     "overcome": {
+      "n": 3,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "yddMove",
+        "n": 1
+       }
+      ]
+     },
+     "ultrainstinct": null,
+     "wound": null,
+     "fail": [
+      {
+       "op": "yddK",
+       "k": {
+        "op": "bane",
+        "n": 1
+       },
+       "who": "attacker",
+       "perHit": false
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      },
+      {
+       "op": "yddForward",
+       "n": 2
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "monsterNegPrecision",
+       "permanent": true
+      }
+     ]
+    }
+   },
+   {
+    "name": "Springy Hindlimbs",
+    "level": 1,
+    "at": 10,
+    "top": "OVERCOME 5+: Reposition 2",
+    "note": null,
+    "ultrainstinct": "If you're on a front space, Chain Break.",
+    "instinct": null,
+    "wound": "[React] Ram the Tower furthest from the Dragon.",
+    "fail": "Knockback 5.",
+    "critical": "Until the end of Clash, when the Dragon moves during After Attack, stop that movement after 3 spaces.",
+    "unclear": [],
+    "responses": {
+     "ultrainstinct": "If you're on a front space, Chain Break.",
+     "instinct": null,
+     "wound": "[React] Ram the Tower furthest from the Dragon.",
+     "fail": "Knockback 5.",
+     "critical": "Until the end of Clash, when the Dragon moves during After Attack, stop that movement after 3 spaces."
+    },
+    "ops": {
+     "at": 10,
+     "overcome": {
+      "n": 5,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "yddMove",
+        "n": 2
+       }
+      ]
+     },
+     "ultrainstinct": [
+      {
+       "op": "yddChainFront"
+      }
+     ],
+     "wound": [
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      },
+      {
+       "op": "yddRam"
+      }
+     ],
+     "fail": [
+      {
+       "op": "knockback",
+       "n": 5
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "yddFlag",
+       "id": "after3",
+       "text": "Clash 종료까지 After Attack의 Dragon 이동은 3칸에서 멈춤"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Whiskerfin",
+    "level": 1,
+    "at": 9,
+    "top": "OVERPOWER 4+: Ignore the Wound Response",
+    "note": null,
+    "ultrainstinct": null,
+    "instinct": "Bane 2.",
+    "wound": "Knockdown.",
+    "fail": null,
+    "critical": "You may perform a Bonus Attack!",
+    "unclear": [],
+    "responses": {
+     "ultrainstinct": null,
+     "instinct": "Bane 2.",
+     "wound": "Knockdown.",
+     "fail": null,
+     "critical": "You may perform a Bonus Attack!"
+    },
+    "ops": {
+     "at": 9,
+     "overcome": {
+      "n": 4,
+      "kind": "overpower",
+      "ops": [
+       {
+        "op": "yddIgnoreWound"
+       }
+      ]
+     },
+     "ultrainstinct": null,
+     "wound": [
+      {
+       "op": "knockdown"
+      }
+     ],
+     "fail": null,
+     "instinct": [
+      {
+       "op": "yddK",
+       "k": {
+        "op": "bane",
+        "n": 2
+       },
+       "who": "attacker",
+       "perHit": false
+      }
+     ],
+     "critical": [
+      {
+       "op": "yddBonus"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Venomous Whiskers",
+    "level": 1,
+    "at": 9,
+    "top": "OVERCOME 4+: Power 1",
+    "note": null,
+    "ultrainstinct": "If you're in front of the Dragon, gain +1 [P]. Then, lose [V] equal to your [P].",
+    "instinct": null,
+    "wound": null,
+    "fail": "Bane 1. Toxify 3.",
+    "critical": "You may perform a Bonus Attack!",
+    "unclear": [],
+    "responses": {
+     "ultrainstinct": "If you're in front of the Dragon, gain +1 [P]. Then, lose [V] equal to your [P].",
+     "instinct": null,
+     "wound": null,
+     "fail": "Bane 1. Toxify 3.",
+     "critical": "You may perform a Bonus Attack!"
+    },
+    "ops": {
+     "at": 9,
+     "overcome": {
+      "n": 4,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "ultrainstinct": [
+      {
+       "op": "yddFrontP"
+      }
+     ],
+     "wound": null,
+     "fail": [
+      {
+       "op": "yddK",
+       "k": {
+        "op": "bane",
+        "n": 1
+       },
+       "who": "attacker",
+       "perHit": false
+      },
+      {
+       "op": "yddK",
+       "k": {
+        "op": "toxify",
+        "n": 3
+       },
+       "who": "attacker",
+       "perHit": false
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "yddBonus"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Steelribbon Tendril",
+    "level": 2,
+    "at": 13,
+    "top": "OVERPOWER 4+: Ignore Wound Response",
+    "note": null,
+    "ultrainstinct": "Toxify 2.",
+    "instinct": null,
+    "wound": "Bane 2. Knockdown.",
+    "fail": null,
+    "critical": "You may perform a Bonus Attack!",
+    "unclear": [],
+    "responses": {
+     "ultrainstinct": "Toxify 2.",
+     "instinct": null,
+     "wound": "Bane 2. Knockdown.",
+     "fail": null,
+     "critical": "You may perform a Bonus Attack!"
+    },
+    "ops": {
+     "at": 13,
+     "overcome": {
+      "n": 4,
+      "kind": "overpower",
+      "ops": [
+       {
+        "op": "yddIgnoreWound"
+       }
+      ]
+     },
+     "ultrainstinct": [
+      {
+       "op": "yddK",
+       "k": {
+        "op": "toxify",
+        "n": 2
+       },
+       "who": "attacker",
+       "perHit": false
+      }
+     ],
+     "wound": [
+      {
+       "op": "yddK",
+       "k": {
+        "op": "bane",
+        "n": 2
+       },
+       "who": "attacker",
+       "perHit": false
+      },
+      {
+       "op": "knockdown"
+      }
+     ],
+     "fail": null,
+     "instinct": null,
+     "critical": [
+      {
+       "op": "yddBonus"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Hollow Bones",
+    "level": 2,
+    "at": 12,
+    "top": "OVERPOWER 2+: Reposition 2",
+    "note": null,
+    "ultrainstinct": null,
+    "instinct": "[React] Ram the Tower furthest from the Dragon.",
+    "wound": null,
+    "fail": null,
+    "critical": "Scavenge 1.",
+    "unclear": [],
+    "responses": {
+     "ultrainstinct": null,
+     "instinct": "[React] Ram the Tower furthest from the Dragon.",
+     "wound": null,
+     "fail": null,
+     "critical": "Scavenge 1."
+    },
+    "ops": {
+     "at": 12,
+     "overcome": {
+      "n": 2,
+      "kind": "overpower",
+      "ops": [
+       {
+        "op": "yddMove",
+        "n": 2
+       }
+      ]
+     },
+     "ultrainstinct": null,
+     "wound": null,
+     "fail": null,
+     "instinct": [
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      },
+      {
+       "op": "yddRam"
+      }
+     ],
+     "critical": [
+      {
+       "op": "yddScavenge",
+       "n": 1
+      }
+     ]
+    }
+   },
+   {
+    "name": "Mucus-Coated Underbelly",
+    "level": 2,
+    "at": 12,
+    "top": "OVERCOME 3+: Reposition 1",
+    "note": null,
+    "ultrainstinct": "If you're on a front space, Chain Break.",
+    "instinct": null,
+    "wound": "[React] Ram the Tower furthest from the Dragon.",
+    "fail": "Knockback 6.",
+    "critical": "Until the end of Clash, when a Knight is about to lose [V] equal to their [P], ignore that loss.",
+    "unclear": [],
+    "responses": {
+     "ultrainstinct": "If you're on a front space, Chain Break.",
+     "instinct": null,
+     "wound": "[React] Ram the Tower furthest from the Dragon.",
+     "fail": "Knockback 6.",
+     "critical": "Until the end of Clash, when a Knight is about to lose [V] equal to their [P], ignore that loss."
+    },
+    "ops": {
+     "at": 12,
+     "overcome": {
+      "n": 3,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "yddMove",
+        "n": 1
+       }
+      ]
+     },
+     "ultrainstinct": [
+      {
+       "op": "yddChainFront"
+      }
+     ],
+     "wound": [
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      },
+      {
+       "op": "yddRam"
+      }
+     ],
+     "fail": [
+      {
+       "op": "knockback",
+       "n": 6
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "yddFlag",
+       "id": "noPLoss",
+       "text": "Clash 종료까지 기사가 [P]만큼 [V]를 잃게 될 때 그 손실을 무시"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Barbed Palate",
+    "level": 2,
+    "at": 13,
+    "top": "OVERCOME 5+: Reposition 2",
+    "note": null,
+    "ultrainstinct": "If you're in front of the Dragon, gain +1 [P]. Then lose [V] equal to your [P].",
+    "instinct": "Bane 1. Lose -3 [V].",
+    "wound": null,
+    "fail": null,
+    "critical": "Ram no longer destroys Tower Terrain tiles.",
+    "unclear": [],
+    "responses": {
+     "ultrainstinct": "If you're in front of the Dragon, gain +1 [P]. Then lose [V] equal to your [P].",
+     "instinct": "Bane 1. Lose -3 [V].",
+     "wound": null,
+     "fail": null,
+     "critical": "Ram no longer destroys Tower Terrain tiles."
+    },
+    "ops": {
+     "at": 13,
+     "overcome": {
+      "n": 5,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "yddMove",
+        "n": 2
+       }
+      ]
+     },
+     "ultrainstinct": [
+      {
+       "op": "yddFrontP"
+      }
+     ],
+     "wound": null,
+     "fail": null,
+     "instinct": [
+      {
+       "op": "yddK",
+       "k": {
+        "op": "bane",
+        "n": 1
+       },
+       "who": "attacker",
+       "perHit": false
+      },
+      {
+       "op": "loseVigor",
+       "n": 3
+      }
+     ],
+     "critical": [
+      {
+       "op": "yddFlag",
+       "id": "noRamDestroy",
+       "text": "Ram이 더 이상 Tower를 파괴하지 않음"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Pitted Cobalt Scales",
+    "level": 2,
+    "at": 14,
+    "top": "OVERCOME 4+: Power 1",
+    "note": null,
+    "ultrainstinct": "Exhaust your active Weapon (you still benefit from its offensive stats).",
+    "instinct": "Bane 2. [React] The Dragon moves 2 spaces forward.",
+    "wound": null,
+    "fail": null,
+    "critical": "Disable [Divine Target] Divine Target gated effects on AI cards.",
+    "unclear": [],
+    "responses": {
+     "ultrainstinct": "Exhaust your active Weapon (you still benefit from its offensive stats).",
+     "instinct": "Bane 2. [React] The Dragon moves 2 spaces forward.",
+     "wound": null,
+     "fail": null,
+     "critical": "Disable [Divine Target] Divine Target gated effects on AI cards."
+    },
+    "ops": {
+     "at": 14,
+     "overcome": {
+      "n": 4,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "ultrainstinct": [
+      {
+       "op": "yddExhaustWeapon"
+      }
+     ],
+     "wound": null,
+     "fail": null,
+     "instinct": [
+      {
+       "op": "yddK",
+       "k": {
+        "op": "bane",
+        "n": 2
+       },
+       "who": "attacker",
+       "perHit": false
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      },
+      {
+       "op": "yddForward",
+       "n": 2
+      }
+     ],
+     "critical": [
+      {
+       "op": "yddFlag",
+       "id": "noDivineGate",
+       "text": "AI 카드의 Divine Target 게이트 효과 비활성"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Razor-Sharp Teeth",
+    "level": 2,
+    "at": 14,
+    "top": "OVERCOME 7+: Power 1",
+    "note": null,
+    "ultrainstinct": null,
+    "instinct": "Exhaust your active Weapon. Lose -2 [V].",
+    "wound": null,
+    "fail": null,
+    "critical": "Until the end of Clash, when a Knight is about to be Devoured, they draw a Judicium instead.",
+    "unclear": [],
+    "responses": {
+     "ultrainstinct": null,
+     "instinct": "Exhaust your active Weapon. Lose -2 [V].",
+     "wound": null,
+     "fail": null,
+     "critical": "Until the end of Clash, when a Knight is about to be Devoured, they draw a Judicium instead."
+    },
+    "ops": {
+     "at": 14,
+     "overcome": {
+      "n": 7,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "ultrainstinct": null,
+     "wound": null,
+     "fail": null,
+     "instinct": [
+      {
+       "op": "yddExhaustWeapon"
+      },
+      {
+       "op": "loseVigor",
+       "n": 2
+      }
+     ],
+     "critical": [
+      {
+       "op": "yddFlag",
+       "id": "devourJud",
+       "text": "Clash 종료까지 Devour 대신 Judicium을 뽑음"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Black-Bile Organ",
+    "level": 3,
+    "at": 16,
+    "top": "OVERPOWER 4+: Ignore Wound Response",
+    "note": null,
+    "ultrainstinct": null,
+    "instinct": null,
+    "wound": "Bane 3. Knockdown.",
+    "fail": "Perform Signature against the Attacker.",
+    "critical": "Disable the Bane X keyword.",
+    "unclear": [],
+    "responses": {
+     "ultrainstinct": null,
+     "instinct": null,
+     "wound": "Bane 3. Knockdown.",
+     "fail": "Perform Signature against the Attacker.",
+     "critical": "Disable the Bane X keyword."
+    },
+    "ops": {
+     "at": 16,
+     "overcome": {
+      "n": 4,
+      "kind": "overpower",
+      "ops": [
+       {
+        "op": "yddIgnoreWound"
+       }
+      ]
+     },
+     "ultrainstinct": null,
+     "wound": [
+      {
+       "op": "yddK",
+       "k": {
+        "op": "bane",
+        "n": 3
+       },
+       "who": "attacker",
+       "perHit": false
+      },
+      {
+       "op": "knockdown"
+      }
+     ],
+     "fail": [
+      {
+       "op": "signatureAgainstAttacker"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "yddFlag",
+       "id": "noBane",
+       "text": "Bane X 키워드 비활성"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Hollow Body",
+    "level": 3,
+    "at": 15,
+    "top": "OVERCOME 8+: Power 1",
+    "note": null,
+    "ultrainstinct": null,
+    "instinct": "Exhaust your active Weapon. Perform Signature against the Attacker.",
+    "wound": null,
+    "fail": null,
+    "critical": "Scavenge 1.",
+    "unclear": [],
+    "responses": {
+     "ultrainstinct": null,
+     "instinct": "Exhaust your active Weapon. Perform Signature against the Attacker.",
+     "wound": null,
+     "fail": null,
+     "critical": "Scavenge 1."
+    },
+    "ops": {
+     "at": 15,
+     "overcome": {
+      "n": 8,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "power",
+        "n": 1
+       }
+      ]
+     },
+     "ultrainstinct": null,
+     "wound": null,
+     "fail": null,
+     "instinct": [
+      {
+       "op": "yddExhaustWeapon"
+      },
+      {
+       "op": "signatureAgainstAttacker"
+      }
+     ],
+     "critical": [
+      {
+       "op": "yddScavenge",
+       "n": 1
+      }
+     ]
+    }
+   },
+   {
+    "name": "Bottomless Stomach",
+    "level": 3,
+    "at": 17,
+    "top": "OVERPOWER 3+: Reset your [H]",
+    "note": null,
+    "ultrainstinct": "Gain +3 [H].",
+    "instinct": null,
+    "wound": "Lose [V] equal to your [P].",
+    "fail": "You are Devoured.",
+    "critical": "All Devoured Knights are regurgitated on the front spaces of the Dragon with half of their maximum [V], rounding up (ignore the Inescapable Maw Trait).",
+    "unclear": [],
+    "responses": {
+     "ultrainstinct": "Gain +3 [H].",
+     "instinct": null,
+     "wound": "Lose [V] equal to your [P].",
+     "fail": "You are Devoured.",
+     "critical": "All Devoured Knights are regurgitated on the front spaces of the Dragon with half of their maximum [V], rounding up (ignore the Inescapable Maw Trait)."
+    },
+    "ops": {
+     "at": 17,
+     "overcome": {
+      "n": 3,
+      "kind": "overpower",
+      "ops": [
+       {
+        "op": "yddResetHeat"
+       }
+      ]
+     },
+     "ultrainstinct": [
+      {
+       "op": "yddK",
+       "k": {
+        "op": "gainHeat",
+        "n": 3
+       },
+       "who": "attacker",
+       "perHit": false
+      }
+     ],
+     "wound": [
+      {
+       "op": "yddLoseP",
+       "who": "attacker"
+      }
+     ],
+     "fail": [
+      {
+       "op": "yddDevour",
+       "who": "attacker"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "yddRegurgitate"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Spinal Air Sac",
+    "level": 3,
+    "at": 15,
+    "top": "OVERCOME 4+: Reposition 1",
+    "note": null,
+    "ultrainstinct": null,
+    "instinct": null,
+    "wound": "Each Knight in Zone 3 of the Dragon suffers Knockback 4 and Knockdown.",
+    "fail": "Bane 3.",
+    "critical": "Gain the Courage Condition card. Then, you may perform a Bonus Attack!",
+    "unclear": [],
+    "responses": {
+     "ultrainstinct": null,
+     "instinct": null,
+     "wound": "Each Knight in Zone 3 of the Dragon suffers Knockback 4 and Knockdown.",
+     "fail": "Bane 3.",
+     "critical": "Gain the Courage Condition card. Then, you may perform a Bonus Attack!"
+    },
+    "ops": {
+     "at": 15,
+     "overcome": {
+      "n": 4,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "yddMove",
+        "n": 1
+       }
+      ]
+     },
+     "ultrainstinct": null,
+     "wound": [
+      {
+       "op": "yddZoneKb"
+      }
+     ],
+     "fail": [
+      {
+       "op": "yddK",
+       "k": {
+        "op": "bane",
+        "n": 3
+       },
+       "who": "attacker",
+       "perHit": false
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "yddK",
+       "k": {
+        "op": "condition",
+        "id": "Courage"
+       },
+       "who": "attacker",
+       "perHit": false
+      },
+      {
+       "op": "yddBonus"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Glassy Eyes",
+    "level": 3,
+    "at": 16,
+    "top": "OVERCOME 6+: Immediately Reposition 3",
+    "note": null,
+    "ultrainstinct": "If you're in front of the Dragon, gain +1 [P]. Then, lose [V] equal to your [P].",
+    "instinct": null,
+    "wound": "[React] The Dragon moves 5 spaces in a random direction.",
+    "fail": "[React] The Dragon moves 3 spaces forward.",
+    "critical": "If you are adjacent to the Dragon, you may climb the VP. Then, you may perform a Bonus Attack!",
+    "unclear": [],
+    "responses": {
+     "ultrainstinct": "If you're in front of the Dragon, gain +1 [P]. Then, lose [V] equal to your [P].",
+     "instinct": null,
+     "wound": "[React] The Dragon moves 5 spaces in a random direction.",
+     "fail": "[React] The Dragon moves 3 spaces forward.",
+     "critical": "If you are adjacent to the Dragon, you may climb the VP. Then, you may perform a Bonus Attack!"
+    },
+    "ops": {
+     "at": 16,
+     "overcome": {
+      "n": 6,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "yddMove",
+        "n": 3
+       }
+      ]
+     },
+     "ultrainstinct": [
+      {
+       "op": "yddFrontP"
+      }
+     ],
+     "wound": [
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      },
+      {
+       "op": "yddForward",
+       "n": 5,
+       "random": true
+      }
+     ],
+     "fail": [
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      },
+      {
+       "op": "yddForward",
+       "n": 3
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "yddClimb"
+      },
+      {
+       "op": "yddBonus"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Insatiable Heart",
+    "level": 3,
+    "at": 17,
+    "top": "OVERCOME 6+: Reposition 3",
+    "note": null,
+    "ultrainstinct": "Gain +3 [P].",
+    "instinct": "Lose [V] equal to your [P].",
+    "wound": null,
+    "fail": null,
+    "critical": "Devote.",
+    "unclear": [],
+    "responses": {
+     "ultrainstinct": "Gain +3 [P].",
+     "instinct": "Lose [V] equal to your [P].",
+     "wound": null,
+     "fail": null,
+     "critical": "Devote."
+    },
+    "ops": {
+     "at": 17,
+     "overcome": {
+      "n": 6,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "yddMove",
+        "n": 3
+       }
+      ]
+     },
+     "ultrainstinct": [
+      {
+       "op": "yddP",
+       "n": 3,
+       "who": "attacker"
+      }
+     ],
+     "wound": null,
+     "fail": null,
+     "instinct": [
+      {
+       "op": "yddLoseP",
+       "who": "attacker"
+      }
+     ],
+     "critical": [
+      {
+       "op": "devote"
+      }
+     ]
+    }
+   }
+  ],
+  "signature": {
+   "name": "Tail Lash",
+   "level": 0,
+   "type": "zone",
+   "evasionDice": 2,
+   "evasionDifficulty": 10,
+   "pre": null,
+   "targeting": [
+    "Knight in Rear",
+    "Closest Knight in front",
+    "Closest Knight in sight"
+   ],
+   "tag": "MOVE & ATTACK",
+   "effects": [
+    "Gain +1 [P].",
+    "For each hit lose -4 [V]. [Peril].",
+    "[React]",
+    "Knockdown."
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "Knockback 5 to the right.",
+   "zone": "diagram: the 3 cells directly in front of the Dragon",
+   "unclear": [],
+   "typePrinted": "ZONE SIGNATURE",
+   "moveTag": "MOVE & ATTACK",
+   "afterAttack": "AFTER FINAL ATTACK: Knockback 5 to the right.",
+   "ops": {
+    "targeting": [
+     "Knight in Rear",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "move": true,
+    "gates": [],
+    "before": [
+     {
+      "op": "yddP",
+      "n": 1
+     }
+    ],
+    "effects": [
+     {
+      "op": "loseVigorPerHit",
+      "n": 4,
+      "perilCheck": true
+     },
+     {
+      "op": "reactWindow",
+      "at": "mid"
+     },
+     {
+      "op": "knockdown"
+     }
+    ],
+    "afterAttack": null,
+    "afterFinalAttack": [
+     {
+      "op": "yddKbRight",
+      "n": 5
+     }
+    ],
+    "zoneDiagram": {
+     "red": [
+      [
+       1,
+       0
+      ],
+      [
+       1,
+       1
+      ],
+      [
+       1,
+       2
+      ]
+     ],
+     "yellow": [],
+     "step": null,
+     "block": true
+    }
+   }
+  },
+  "routine": {
+   "name": "Craving's Call",
+   "text": "Each Knight with the Called by the Heavens Condition card dies. All other Knights gain the Called by the Heavens Condition card.\nThe Dragon moves to the center of the Clash Board, then turns to face the most Knights.",
+   "type": "routine",
+   "ops": [
+    {
+     "op": "yddRoutine"
+    }
+   ]
+  }
+ },
+ "bellow": {
+  "name": "Bellow of the Famished",
+  "level": 0,
+  "type": "attack",
+  "evasionDice": 0,
+  "evasionDifficulty": 0,
+  "pre": null,
+  "targeting": [
+   "Three random Knights"
+  ],
+  "tag": "JUDGE",
+  "effects": [
+   "One random Knight gains the [Divine Target] Divine Target token. Two other random Knights gain the Called by the Heavens Condition card."
+  ],
+  "afterTag": "AFTER FINAL ATTACK",
+  "after": "Remove this card from the Clash and perform AI.",
+  "zone": null,
+  "unclear": [],
+  "typePrinted": "SIMULTANEOUS JUDGEMENT",
+  "moveTag": "JUDGE",
+  "afterAttack": "AFTER FINAL ATTACK: Remove this card from the Clash and perform AI.",
+  "ops": {
+   "targeting": [
+    "Three random Knights"
+   ],
+   "move": false,
+   "gates": [],
+   "before": [],
+   "effects": [],
+   "afterAttack": null,
+   "afterFinalAttack": null
+  }
+ },
+ "ydd": true,
+ "clashSetup": {
+  "_source": "TTSF Codex — Young Devour Dragon Clash",
+  "steps": [
+   "Standard Preparations (Rulebook p.44)",
+   "Monster Positioning: Place the Young Devour Dragon miniature on the space designated on the diagram (facing: all-direction marker — random arrow).",
+   "Additional Setup: Place the Divine Target token and the Fool's deck near the Monster Sheet. Follow additional Clash Setup instructions introduced by Traits (if any)."
+  ],
+  "requiredTiles": [
+   "3x Tower",
+   "3x Ruined Wall L",
+   "2x Ruined Wall I"
+  ],
+  "monsterCells": [
+   "I8",
+   "I9",
+   "I10",
+   "H8",
+   "H9",
+   "H10",
+   "G8",
+   "G9",
+   "G10"
+  ],
+  "knightStart": [
+   "G4",
+   "E6",
+   "E12",
+   "C8"
+  ],
+  "terrain": [
+   {
+    "tile": "tower",
+    "cells": [
+     "G3",
+     "G4",
+     "F3",
+     "F4"
+    ],
+    "shape": "2x2"
+   },
+   {
+    "tile": "tower",
+    "cells": [
+     "F11",
+     "F12",
+     "E11",
+     "E12"
+    ],
+    "shape": "2x2"
+   },
+   {
+    "tile": "tower",
+    "cells": [
+     "C6",
+     "C7",
+     "B6",
+     "B7"
+    ],
+    "shape": "2x2"
+   },
+   {
+    "tile": "ruined wall",
+    "cells": [
+     "I4",
+     "I5",
+     "I6",
+     "H4"
+    ]
+   },
+   {
+    "tile": "ruined wall",
+    "cells": [
+     "C8",
+     "B8",
+     "B9",
+     "B10"
+    ]
+   },
+   {
+    "tile": "ruined wall",
+    "cells": [
+     "D11",
+     "D12",
+     "C11",
+     "B11"
+    ]
+   },
+   {
+    "tile": "ruined wall",
+    "cells": [
+     "F5",
+     "E5",
+     "D5",
+     "C5"
+    ]
+   },
+   {
+    "tile": "ruined wall",
+    "cells": [
+     "I13",
+     "H13",
+     "G13",
+     "F13"
+    ]
+   }
+  ],
+  "notes": [
+   "Dragon 3x3 = G8–I10 (방향 표시는 4방향 마커 — 무작위), 기사 시작 칸 G4·E12는 Tower 위, C8은 Ruined Wall 위. 타일·시작 칸은 코덱스 도식에서 읽음 [해석, 확인 필요]"
+  ]
+ },
+ "rulings": [
+  "Bellow of the Famished: 첫 AI로 수행 — 무작위 기사 1명이 Divine Target, 다른 무작위 2명이 Called by the Heavens. 카드를 제거하고 AI 수행",
+  "Falling Skies: Wound를 줘도 Escalate하지 않음. Phase I(Flying High) → Wound 3개에서 AI·BP 1을 제거하고 AI·BP 2 덱으로, Phase II(Floating Low) → Wound 6개에서 AI·BP 3 덱으로(Phase III Grounded). 전환할 때마다 Dragon이 AI를 수행. Exhibition Clash(Wound 6개에서 승리)는 이 구현에 없음 — 항상 Full Clash",
+  "To Hit: Phase I +4 (Terrain 타일·VP·Lunging Attack에서는 0, Ruined Wall에서는 +2), Phase II +2 (Terrain 타일·VP·Lunging Attack에서는 0), Phase III 보정 없음",
+  "Phase I: Dragon은 Terrain을 파괴하지 않고 Crash를 일으키지 않음 — Dragon 아래에 놓이게 된 기사는 가장 가까운 빈 칸으로 Displace만 함 [해석, 확인 필요]. Phase II: 일반 규칙대로 Crash. Phase III: Dragon의 Crash = Devour(사망)",
+  "Ram: Dragon이 지정된 Tower에 인접한 위치로 이동(가장 가까운 유효 위치). Phase I: Tower 위의 기사 Crash / II: Tower 파괴(Rubble) / III: Tower 파괴 + 위의 기사 Devour. \"Ram the furthest Tower\" = Dragon에서 가장 먼 Tower",
+  "Ruined Bastion: 기사는 자발적 이동으로 Ruined Wall 위로 올라갈 수 있고, Tower에는 Ruined Wall(또는 같은 Tower)에서만 올라감. 비자발적 이동에서는 Tower·Ruined Wall이 Indestructible. Tower에서 비자발적으로 이동하게 되면 Crash 후 모든 Obstacle을 무시. 이 Clash의 기사 이동은 Bypass 계열 효과를 반영하지 않음 (미구현)",
+  "Lunging Attack (Tower): Move + Combat action. Tower에서 Speed만큼 직선으로 이동해 Dragon에 인접한 뒤 공격 — 명중하면 즉시 VP로, 아니면 Knockdown. 이동 경로의 Terrain은 무시 [해석, 확인 필요]",
+  "VP (Broad Back): 처음부터 열려 있음. Climb = Might 10+ (Phase I: 모두 실패, Phase III: +3, 내려올 때도 Climb Down 테스트). Hold On = Tenacity 12+ (실패: Knockdown, Displace). Divine Target은 VP로 이동할 수 없고, VP를 떠나면 Divine Target 토큰을 얻음. VP 위: +X Power (X = 공격한 BP의 Level), Wound를 주면 +1 [P]",
+  "Called by the Heavens: Tower 위에서 Monster Attack을 받으면 모든 Gated Effect 적용, VP로 이동하면 버림. 턴 종료 시 가장 가까운 Tower 쪽으로 최단 경로 3칸, Tower 위면 +1 [P]",
+  "Fool's deck 이동: 카드의 좌표가 Dragon 3x3의 가운데 칸이 되도록 배치(보드 밖이면 안쪽으로 보정) [해석, 확인 필요]",
+  "\"The Dragon moves N spaces forward\": 바라보는 방향으로 한 칸씩, Board Edge에서 멈춤",
+  "Zone 도식(작은 그림에서 읽음) [해석, 확인 필요]: Bile Vomit = 정면에서 넓어지는 삼각형 3줄, Tail Lash = 정면 3칸. Black Hole \"All spaces in front\" = Dragon의 앞쪽 호 전체",
+  "Command of the Famishing: Called by the Heavens 획득과 \"[P]만큼 [V] 손실\"은 명중과 무관하게 적용, 이동과 [P] 획득은 명중 수에 따름 [해석, 확인 필요]",
+  "Madness of the Famishing: 명중 시 일어나서 가장 가까운 다른 기사 쪽으로 Speed만큼 이동, 인접하면 Knight Power dice를 3번 굴려 나온 기호 수만큼 그 기사가 [V] 손실 + Peril Check [해석, 확인 필요]",
+  "미구현: Lumbering, Exhibition Clash, Hungry Chomp·Fearsome Feast의 \"Shield를 active Weapon으로 선언했으면 버림\", Snatch 'n' Snap의 Weapon 슬롯 비활성, World Eater의 Talent 카드 버리기, Inescapable Maw(부활 불가 — 현재 Clash 중 부활 효과 없음), 각 AI 카드의 REACT! 창 위치"
+ ]
+}
