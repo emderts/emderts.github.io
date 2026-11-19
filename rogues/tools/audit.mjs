@@ -262,7 +262,9 @@ const compact = x => { const m = x.match(/^<section id="mob-([a-z0-9-]+)"/); if 
   for (const n of [...((M.clashSetup || {}).notes || []), ...((M.clashSetup || {}).unclear || [])]) if (pend(n)) items.push('Clash Setup: ' + esc(n));
   if (!items.length) return x; const title = (x.match(/<h2>(?:\d+b?\.\s*)?([^<—]+)/) || [])[1].trim();
   return `<section id="mob-${m[1]}"><h2>${esc(title)} — 남은 항목 (${items.length})</h2><p class="impl">소유자 확인이 끝난 표·해석은 뺐습니다 (게임 화면 👁 몬스터에서 열람, 전체 표는 <code>node tools/audit.mjs --full</code>).</p><ul>${items.map(i => `<li>${i}</li>`).join('')}</ul></section>`; };
-const out = sec.filter(x => FULL || !isMonSec(x) || pending(x)).map(compact);
+// Sections the owner has finished reviewing (Fleischritter, Gear tables, Mortis/Condition/Terrain/Outpost, Merchant, Monster/Kingdom Gear) leave the page — the Gear check lists (gearkw) stay.
+const REVIEWED = /^<section id="(fleischritter|gear|decks|shop|mgear)"/;
+const out = sec.filter(x => FULL || !REVIEWED.test(x.trim())).filter(x => FULL || !isMonSec(x) || pending(x)).map(compact);
 { const i = out.findIndex(x => /^<section id="gearkw"/.test(x)); if (i > 0) out.unshift(out.splice(i, 1)[0]); } // confirmation-needed Gear rulings first
 if (done.length) out.push(`<section id="mon-done"><h2>몬스터 — 오딧 완료 (${done.length})</h2><p class="impl">소유자 확인이 끝난 몬스터는 이 페이지에서 빼고, 게임 화면 오른쪽 위 <b>👁 몬스터</b> 버튼(몬스터 정보: Sheet · Trait · AI/BP · Signature/Routine · Setup · 규칙 해석)에서 볼 수 있습니다. 전체 표가 필요하면 <code>node tools/audit.mjs --full</code>.</p><ul>${done.map(n => `<li>${esc(n)}</li>`).join('')}</ul></section>`);
 
@@ -274,5 +276,6 @@ table{border-collapse:collapse;width:100%;font-size:13px}td,th{border:1px solid 
 <nav><a href="#monsters">몬스터 표</a><a href="#map">Rosegraal 지도</a><a href="#rewards">Rewards</a><a href="#components">구성물</a><a href="#fleischritter">Fleischritter</a><a href="#gear">Gear</a><a href="#mon-done">몬스터(완료)</a><a href="#gearkw"><b>Gear — 확인 필요</b></a><a href="#decks">Mortis·Condition·Terrain·Outpost</a><a href="#engine">엔진 대응</a><a href="#shop">상점·용병·Loot</a><a href="#campaign">캠페인</a><a href="#mgear">몬스터 Gear·Consumable·Upgrade</a></nav>
 ${out.join('\n')}
 </body></html>`;
-fs.mkdirSync('docs/audit', { recursive: true }); fs.writeFileSync('docs/audit/index.html', html);
+const html2 = html.replace(/<a href="#([a-z0-9-]+)">[^<]*<\/a>/g, (m, id) => html.includes(`<section id="${id}"`) || html.includes(` id="${id}"`) ? m : '');
+fs.mkdirSync('docs/audit', { recursive: true }); fs.writeFileSync('docs/audit/index.html', html2);
 console.log('wrote docs/audit/index.html', (html.length / 1024).toFixed(0), 'KB');

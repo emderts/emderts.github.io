@@ -81,6 +81,7 @@ const SPECIAL = [
   [/^Hide$/, () => ({ op: 'hide', active: true })],
   [/^Full hit: You may trigger Overcome or Overpower$/i, () => ({ op: 'fullHitOvercome' })],
   [/^When you trigger Overpower, lose -(\d+) \[Heat\] and ignore Cumbersome$/, m => ({ op: 'overpowerBoon', n: +m[1] })],
+  [/^When you trigger Overpower, gain a Crit Chance$/, () => ({ op: 'overpowerCrit' })],
   [/^Sacrifice$/, () => ({ op: 'sacrifice' })],
   [/^Falsity$/, () => ({ op: 'falsity' })],
   [/^Crit Evade Fail: Immediately Zeal (\d+)$/, m => ({ op: 'critEvadeFailZeal', n: +m[1] })],

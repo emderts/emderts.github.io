@@ -5,7 +5,6 @@ export const GEAR_RULINGS = [
   ['Nightmare Tailspear — 남은 배치형 이동', 'Stonemason Move Lateral을 포함한 칸 단위 이동과 Mob의 모든 이동에 3칸 제한 적용. Knighteater Appear Behind와 White Ape Troll 재배치(칸을 세지 않는 배치)에는 아직 적용되지 않음. [해석, 확인 필요]'],
 ];
 export const GEAR_QUESTIONS = [
-  ['Chainbreaker [MAJOR]', '"Overpower 발동 시 Crit Chance 획득" — Overpower는 Power Roll 뒤에 판정되는데 Crit Chance를 언제 쓰는가?'],
   ['Mantle of the Faithful', '비용 표기가 숫자 없이 "[Heat]"로만 전사되어 있음 — Heat 몇인지 확인 필요.'],
   ['Toadscale', '카드에 "*X is the number of dice you were hit with"만 있고 X를 쓰는 키워드가 전사에 없음 — 원문 확인 필요.'],
   ['Divine Target', 'Spotlight 조건의 Divine Target 토큰 — 엔진에 없음. 지금은 Priority Target만 본다.'],
@@ -265,6 +264,7 @@ export const GEAR_CONFIRMED = [
   ['[신규] Royal Red', '[SLIMED] Slimed Condition이 있을 때 Provoke하면 다른 기사 각자 Motivate 1. (소유자 확인 2026-11-19)'],
   ['[신규] Scavenged Handaxe / Ghost Catalyst', 'Handaxe: 공격 직전 2 Heat로 그 공격에 Deadly. Ghost Catalyst: Superior Bypass(미니어처·Obstacle 통과, Difficult 무시). (소유자 확인 2026-11-19)'],
   ['[신규] Ser Ubar 형태 게이트 (Helm of the Silent Witness, Aegis of Averted Eyes)', 'Shapeshift할 때마다 Heat -1. [HUMAN] / [APE] 줄은 그 형태일 때만 사용 가능. (소유자 확인 2026-11-19)'],
+  ['Chainbreaker', 'Overpower를 발동하면 Heat -1, Cumbersome 무시. [MAJOR] Overpower 발동 시 Crit Chance를 얻어 그 Wound가 Critical Wound가 됨 — Wound Response 대신 Critical Response를 해결 (소유자 확인 2026-11-19)'],
 ];
 export const KNIGHT_QUESTIONS = [
   ['Stoneface — 미구현', 'Talent: Stonewall (Wave Attack이 엔진에 없음).'],
