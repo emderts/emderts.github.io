@@ -2,34 +2,17 @@
 // Remove a line once confirmed (and record it in the code/test with "(소유자 확인 YYYY-MM-DD)").
 export const GEAR_RULINGS = [
   ['Dragonrazor', 'Climb test는 룰북상 몬스터의 VP(Vantage Point)에 오를 때만 하는 테스트. 구현된 몬스터 15종의 시트에는 VP 설명이 없어("VP 설명이 없는 몬스터에는 VP를 만들 수 없음") Climb test가 발생하지 않음 — 그래서 효과 없음으로 처리. Winged Nightmare의 Column 오르기는 Marble Forest 문구대로 테스트 없음. [해석, 확인 필요]'],
-  ['Nightmare Tailspear — 남은 배치형 이동', 'Stonemason Move Lateral을 포함한 칸 단위 이동과 Mob의 모든 이동에 3칸 제한 적용. Knighteater Appear Behind와 White Ape Troll 재배치(칸을 세지 않는 배치)에는 아직 적용되지 않음. [해석, 확인 필요]'],
-  ['[신규] Mantle of the Faithful', '1 Heat (소유자 확인 2026-11-19): negative Minor/Major Mortis를 해결하기 직전에 대신 Vigor -1/-2, 그 카드를 덱에 섞고 Peril Check를 다시 한다. [해석, 확인 필요]'],
-  ['[신규] Ammo Reserves X', 'Start of Clash: 비어 있는 Hand·Support 슬롯 하나당 Charge +X (소유자 확인 2026-11-19). 슬롯 수는 추가 슬롯 Gear 포함. [해석, 확인 필요]'],
-  ['[신규] Devote (The Law of Blood, Crusader\'s Strike)', 'The Law of Blood [PASSION 3+] 2 Heat: Judicium을 뽑고 살아남으면 Devote. Crusader\'s Strike: 그 Rush에서 Wound를 주면 카드를 Discard하고 Devote. Sword of a Sunken Legacy의 Auto-hope X(Devotion 수)는 미구현. [해석, 확인 필요]'],
-  ['[신규] Bluesteel Sword', '공격할 때 Knight Pool의 Magic 토큰 1개(Renholder가 놓은 것)를 써서 이 카드의 Opening 2를 Cantrip 2로 바꿈. [해석, 확인 필요]'],
-  ['[신규] Leash / Unleash Gear (Stoneface 규칙 사용)', 'Stalagmight: 2차 능력 창에서 Unleash 3 → 임시 AT -1 토큰. Shield of the Defiant: Exhaust → Leash 1 + Advanced Reinforce 1. Plate of the Sleeping Giant [MAJOR]: Armor Roll 때 Leash 1 + black Armor 주사위 1개를 white로. [해석, 확인 필요]'],
-  ['[신규] Cone Armor', 'Pushback/Gangup 직전에 X를 골라 Heat +X, X만큼 감소 (Exhaust). 실제로 이동한 칸 수만큼 Break. [해석, 확인 필요]'],
-  ['[신규] Geistly Flame / Lightgrasp / Hexed Soul / Two-Faced Shield', 'Geistly Flame [MAJOR]: 살아 있는 기사 누구든 Cantrip을 Fire로 바꿀 수 있음. Lightgrasp [GRAVE]: Area Zone 2 (다른 Area와 같은 판정). Hexed Soul [BANE 3+]: 본인·인접 기사의 Stray 무시 여부를 물음. Two-Faced Shield: Slimed·Drowning의 턴 종료(이동 안 함) 효과 무시. [해석, 확인 필요]'],
-  ['[신규] Rapport', '+N Rapport 보상은 Outpost 기사 카드에서 다른 기사에게 +1씩 배분(양쪽 모두 표시). 3이 되면 서로의 Rapport Boon을 얻고, 그 기사가 파티에 살아 있을 때만 적용. 적용: Renholder(Start of Clash: Cantrip 1), Kara(Deploy 1), Paracelsa(Crit Chance: Auto-break 1). 미적용: Ser Ubar(Start of Delve — 소유자 확인 2026-11-19), Fleischritter(Encounter 전용), Stoneface·Ser Sonch("During Rest" — Rogue\'s Path에 Rest 없음, Sonch는 아이콘 미판독). [해석, 확인 필요]'],
-  ['[신규] Exhaust/Discard 방지 (Sanded Grip, Magnetized Fists, Leather Strapguard, Masterforged Shield)', 'Sanded Grip·Magnetized Fists: 몬스터 효과로 Weapon이 Exhaust/Discard될 때만 (Bog Witch 무기 소진, Murmillo, Knighteater). Leather Strapguard·Masterforged Shield: 자발적인 것도 포함 (소유자 확인 2026-11-19) — Gear 능력의 Exhaust/Discard 비용을 내기 직전과 Cumbersome Exhaust 때 물음. Cumbersome·Full Miss Exhaust를 "비자발"로 보지는 않음. [해석, 확인 필요]'],
-  ['[신규] Uncompromising Justice', 'Combat action + 2 Heat 프리 액션: 이 무기로 Ranged 2–4 공격 → Wound면 영구 AT -1 토큰 → 카드 버림. [해석, 확인 필요]'],
-  ['[신규] Decoy Shield / Heart\'s Sacrament Wine — 대상 가로채기', 'Targeting으로 단일 대상이 정해진 직후에 물음. Decoy Shield [MAJOR]: 같은 Targeting 줄의 후보(동률)였던 기사만 사용 가능. Wine: AI 카드(Signature 제외)일 때 1 Charge로 누구든 대상이 됨. Wine의 Virtue test +X는 Judgement·Insight Test(Damned to the Mire)·Sabotage Test 직전에 X를 물음. [해석, 확인 필요]'],
-  ['[신규] Bog Camouflage / Wyrdweave Garb', 'Bog Camouflage: REACT!에서 Advanced Reflex 후, 다음 Evasion Roll에 Lesser Dodge(다른 Evasion 보너스 없을 때 +1). [MAJOR] Obstacle은 지나갈 수만 있고 그 위에서 멈출 수는 없음. Wyrdweave Garb: 손패의 무작위 Technique 1장을 Delay로 보내고 Dodge(Evasion 전) / [MAJOR] Reflex(REACT!). 손패가 없으면 사용 불가. [해석, 확인 필요]'],
-  ['[신규] Petrified Shrine Statue', '1 Heat + Exhaust: Evasion Roll 전에 Block(Judgement면 Defy)으로 사용, 직후 Peril Check. [해석, 확인 필요]'],
-  ['[신규] The Bastard of the Church', '1차 능력 창 직전에 다른 한손 무기로 active Weapon 교체 가능(명중 수는 새 무기의 최대치로 제한), 안 하면 Auto-rouse 1. [해석, 확인 필요]'],
-  ['[신규] Bloatburst Leech', 'X Vigor + Exhaust → Charge +X (Peril Check 없음 — 소유자 확인 2026-11-19). X Charge + Discard: 사거리 3–5 칸 지정, d10 1–5면 무작위 직교 방향으로 2칸 이동, 그 칸 Zone 3 안의 몬스터(Mob은 개체마다) 하나당 Opening/Break X개. [해석, 확인 필요]'],
-  ['[신규] Preventive Leeches', 'Start of Clash에 Charge X개를 Knight Board로 옮김. Parasitize / Poison / Toxify로 토큰을 얻을 때 X개를 버려 X개 무시 — 한 번 쓰면 보드에 남은 Charge도 사라짐("the next time"). "X Charge: Vigor -X"는 프리 액션 (Peril Check 없음 — 소유자 확인 2026-11-19). [해석, 확인 필요]'],
 ];
 export const GEAR_QUESTIONS = [
   ['Divine Target', 'Spotlight 조건의 Divine Target 토큰 — 엔진에 없음. 지금은 Priority Target만 본다.'],
 ];
 // Renholder (added 2026-11-16) — interpretations and missing material.
 export const KNIGHT_RULINGS = [
-  ['[수정] Harmonized Soul Peril Arc 보너스', '"[아이콘] 1" = Evasion Re-roll 1 (소유자 확인 2026-11-16).'],
-  ['[신규] Ser Ubar — Knight Roll APE', '카드의 APE 줄 전사가 "Additionally, you may use this Technique while knocked down."이라 Knockdown 중에도 Reaction으로 쓸 수 있게 함. 전사가 틀렸으면 알려주세요. [해석, 확인 필요]'],
 ];
 /** Rulings the owner has reviewed (Kara, Paracelsa, Ser Sonch — 소유자 확인 2026-11-16). Kept for the record; not shown on the audit page. */
 export const KNIGHT_CONFIRMED = [
+  ['Harmonized Soul Peril Arc 보너스', '"[아이콘] 1" = Evasion Re-roll 1 (소유자 확인 2026-11-16). (소유자 확인 2026-11-19)'],
+  ['Ser Ubar — Knight Roll APE', '카드의 APE 줄 전사가 "Additionally, you may use this Technique while knocked down."이라 Knockdown 중에도 Reaction으로 쓸 수 있게 함. (소유자 확인 2026-11-19)'],
   ['I\'ll Be Your Rock', 'Swamp뿐 아니라 Chasm으로 죽기 직전에도 발동 (소유자 확인 2026-11-19).'],
   ['[수정] Area 공격 (Burning Barrage, Blackfire)', 'Power Roll을 Area 칸의 다른 Mob에게도 각각의 AT로 판정(Response는 원래 대상만). Burning Barrage: 대상 방향 직선의 사거리 내 칸, Blackfire: 대상 주변 Zone 1. Troll·Nightmare·Pumpkinhead·Ratwolf도 같은 방식으로 판정. (소유자 확인 2026-11-19)'],
   ['[수정] Mirage', 'Evasion Roll 뒤, Guard를 쓰는 시점(재굴림 직전)에 사용 여부를 결정. (소유자 확인 2026-11-19)'],
@@ -159,6 +142,23 @@ export const KNIGHT_CONFIRMED = [
 ];
 /** Gear rulings the owner has reviewed (Hide … The Command — 소유자 확인 2026-11-18). Kept for the record; not shown on the audit page. */
 export const GEAR_CONFIRMED = [
+  ['Nightmare Tailspear — 남은 배치형 이동', 'Stonemason Move Lateral을 포함한 칸 단위 이동과 Mob의 모든 이동에 3칸 제한 적용. Knighteater Appear Behind와 White Ape Troll 재배치(칸을 세지 않는 배치)에는 아직 적용되지 않음. (소유자 확인 2026-11-19)'],
+  ['Mantle of the Faithful', '1 Heat (소유자 확인 2026-11-19): negative Minor/Major Mortis를 해결하기 직전에 대신 Vigor -1/-2, 그 카드를 덱에 섞고 Peril Check를 다시 한다. (소유자 확인 2026-11-19)'],
+  ['Ammo Reserves X', 'Start of Clash: 비어 있는 Hand·Support 슬롯 하나당 Charge +X (소유자 확인 2026-11-19). 슬롯 수는 추가 슬롯 Gear 포함. (소유자 확인 2026-11-19)'],
+  ['Devote (The Law of Blood, Crusader\'s Strike)', 'The Law of Blood [PASSION 3+] 2 Heat: Judicium을 뽑고 살아남으면 Devote. Crusader\'s Strike: 그 Rush에서 Wound를 주면 카드를 Discard하고 Devote. Sword of a Sunken Legacy: Auto-hope X(X = Devotion 수, 캠페인 누적분 포함). (소유자 확인 2026-11-19)'],
+  ['Bluesteel Sword', '공격할 때 Knight Pool의 Magic 토큰 1개(Renholder가 놓은 것)를 써서 이 카드의 Opening 2를 Cantrip 2로 바꿈. (소유자 확인 2026-11-19)'],
+  ['Leash / Unleash Gear (Stoneface 규칙 사용)', 'Stalagmight: 2차 능력 창에서 Unleash 3 → 임시 AT -1 토큰. Shield of the Defiant: Exhaust → Leash 1 + Advanced Reinforce 1. Plate of the Sleeping Giant [MAJOR]: Armor Roll 때 Leash 1 + black Armor 주사위 1개를 white로. (소유자 확인 2026-11-19)'],
+  ['Cone Armor', 'Pushback/Gangup 직전에 X를 골라 Heat +X, X만큼 감소 (Exhaust). 실제로 이동한 칸 수만큼 Break. (소유자 확인 2026-11-19)'],
+  ['Geistly Flame / Lightgrasp / Hexed Soul / Two-Faced Shield', 'Geistly Flame [MAJOR]: 살아 있는 기사 누구든 Cantrip을 Fire로 바꿀 수 있음. Lightgrasp [GRAVE]: Area Zone 2 (다른 Area와 같은 판정). Hexed Soul [BANE 3+]: 본인·인접 기사의 Stray 무시 여부를 물음. Two-Faced Shield: Slimed·Drowning의 턴 종료(이동 안 함) 효과 무시. (소유자 확인 2026-11-19)'],
+  ['Rapport', '+N Rapport 보상은 Outpost 기사 카드에서 다른 기사에게 +1씩 배분(양쪽 모두 표시). 3이 되면 서로의 Rapport Boon을 얻고, 그 기사가 파티에 살아 있을 때만 적용. 적용: Renholder(Start of Clash: Cantrip 1), Kara(Deploy 1), Paracelsa(Crit Chance: Auto-break 1). 미적용: Ser Ubar(Start of Delve — 소유자 확인 2026-11-19), Fleischritter(Encounter 전용), Stoneface·Ser Sonch("During Rest" — Rogue\'s Path에 Rest 없음, Sonch는 아이콘 미판독). (소유자 확인 2026-11-19)'],
+  ['Exhaust/Discard 방지 (Sanded Grip, Magnetized Fists, Leather Strapguard, Masterforged Shield)', 'Sanded Grip·Magnetized Fists: 몬스터 효과로 Weapon이 Exhaust/Discard될 때만 (Bog Witch 무기 소진, Murmillo, Knighteater). Leather Strapguard·Masterforged Shield: 자발적인 것도 포함 (소유자 확인 2026-11-19) — Gear 능력의 Exhaust/Discard 비용을 내기 직전과 Cumbersome Exhaust 때 물음. Cumbersome·Full Miss Exhaust를 "비자발"로 보지는 않음. (소유자 확인 2026-11-19)'],
+  ['Uncompromising Justice', 'Combat action + 2 Heat 프리 액션: 이 무기로 Ranged 2–4 공격 → Wound면 영구 AT -1 토큰 → 카드 버림. (소유자 확인 2026-11-19)'],
+  ['Decoy Shield / Heart\'s Sacrament Wine — 대상 가로채기', 'Targeting으로 단일 대상이 정해진 직후에 물음. Decoy Shield [MAJOR]: 같은 Targeting 줄의 후보(동률)였던 기사만 사용 가능. Wine: AI 카드(Signature 제외)일 때 1 Charge로 누구든 대상이 됨. Wine의 Virtue test +X는 Judgement·Insight Test(Damned to the Mire)·Sabotage Test 직전에 X를 물음. (소유자 확인 2026-11-19)'],
+  ['Bog Camouflage / Wyrdweave Garb', 'Bog Camouflage: REACT!에서 Advanced Reflex 후, 다음 Evasion Roll에 Lesser Dodge(다른 Evasion 보너스 없을 때 +1). [MAJOR] Obstacle은 지나갈 수만 있고 그 위에서 멈출 수는 없음. Wyrdweave Garb: 손패의 무작위 Technique 1장을 Delay로 보내고 Dodge(Evasion 전) / [MAJOR] Reflex(REACT!). 손패가 없으면 사용 불가. (소유자 확인 2026-11-19)'],
+  ['Petrified Shrine Statue', '1 Heat + Exhaust: Evasion Roll 전에 Block(Judgement면 Defy)으로 사용, 직후 Peril Check. (소유자 확인 2026-11-19)'],
+  ['The Bastard of the Church', '1차 능력 창 직전에 다른 한손 무기로 active Weapon 교체 가능(명중 수는 새 무기의 최대치로 제한), 안 하면 Auto-rouse 1. (소유자 확인 2026-11-19)'],
+  ['Bloatburst Leech', 'X Vigor + Exhaust → Charge +X (Peril Check 없음 — 소유자 확인 2026-11-19). X Charge + Discard: 사거리 3–5 칸 지정, d10 1–5면 무작위 직교 방향으로 2칸 이동, 그 칸 Zone 3 안의 몬스터(Mob은 개체마다) 하나당 Opening/Break X개. (소유자 확인 2026-11-19)'],
+  ['Preventive Leeches', 'Start of Clash에 Charge X개를 Knight Board로 옮김. Parasitize / Poison / Toxify로 토큰을 얻을 때 X개를 버려 X개 무시 — 한 번 쓰면 보드에 남은 Charge도 사라짐("the next time"). "X Charge: Vigor -X"는 프리 액션 (Peril Check 없음 — 소유자 확인 2026-11-19). (소유자 확인 2026-11-19)'],
   ['Toadscale', 'Evasion Re-roll은 카드 스탯(X)이고 X = 맞은 주사위 수 (소유자 확인 2026-11-19).'],
   ['Nithing Staff', '본인·인접 기사의 모든 비자발적 이동(Pushback·Pull·Drag·Gangup·Stray) 무시 (소유자 확인 2026-11-19).'],
   ['Trophy Armor', '착용자가 Break 토큰을 실제로 놓을 때마다 그 토큰을 Hope로 대신 놓을지 물음 (소유자 확인 2026-11-19).'],
