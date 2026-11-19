@@ -78,6 +78,7 @@ export const EaterMixin = {
     if (type === 'all') { for (const g of pool) g.exhausted = true; this.say(`${k.name}: Gear ${pool.map(g => g.name).join(', ')} 소진`, 'dmg'); return; }
     const nm = pool.length === 1 ? pool[0].name : await this.ask({ type: 'pick', knight: k.id, text: `${k.name}: ${tn} Gear 1장 ${mode === 'discard' ? '버리기' : '소진'}`, options: pool.map(g => ({ label: g.name, value: g.name })) }); const g = pool.find(x => x.name === nm) || pool[0];
     if (mode === 'discard' && perilToExhaust && !g.exhausted && await this.yesNo(`${k.name}: ${g.name}을 버리는 대신 Peril check를 하고 소진?`, false)) { await this.perilCheck(k); g.exhausted = true; this.say(`${k.name}: ${g.name} 소진 (Peril check)`, 'dmg'); return; }
+    if (await this.fx.keepGear(k, g, mode)) return;
     if (mode === 'discard') g.discarded = true; else g.exhausted = true; this.say(`${k.name}: ${g.name} ${mode === 'discard' ? '버림' : '소진'}`, 'dmg');
   },
   async keOp(o, ctx) {

@@ -12,6 +12,10 @@ export const GEAR_RULINGS = [
   ['[신규] Nithing Staff', '본인 또는 인접 기사의 Pushback·Pull·Stray 직전에 2 Heat + Exhaust로 그 이동을 무시. Gangup으로 밀리는 경우와 Drag는 아직 연결 안 됨. [해석, 확인 필요]'],
   ['[신규] Cone Armor', 'Pushback/Gangup 직전에 X를 골라 Heat +X, X만큼 감소 (Exhaust). 실제로 이동한 칸 수만큼 Break. [해석, 확인 필요]'],
   ['[신규] Geistly Flame / Lightgrasp / Hexed Soul / Two-Faced Shield', 'Geistly Flame [MAJOR]: 살아 있는 기사 누구든 Cantrip을 Fire로 바꿀 수 있음. Lightgrasp [GRAVE]: Area Zone 2 (다른 Area와 같은 판정). Hexed Soul [BANE 3+]: 본인·인접 기사의 Stray 무시 여부를 물음. Two-Faced Shield: Slimed·Drowning의 턴 종료(이동 안 함) 효과 무시. [해석, 확인 필요]'],
+  ['[신규] Rapport', '+N Rapport 보상은 Outpost 기사 카드에서 다른 기사에게 +1씩 배분(양쪽 모두 표시). 3이 되면 서로의 Rapport Boon을 얻고, 그 기사가 파티에 살아 있을 때만 적용. 적용: Renholder(Start of Clash: Cantrip 1), Kara(Deploy 1), Paracelsa(Crit Chance: Auto-break 1), Ser Ubar(Heat Limit +1 — "Start of Delve"를 Clash마다로 처리). 미적용: Fleischritter(Encounter 전용), Stoneface·Ser Sonch("During Rest" — Rogue\'s Path에 Rest 없음, Sonch는 아이콘 미판독). [해석, 확인 필요]'],
+  ['[신규] 비자발 Exhaust/Discard 방지 (Sanded Grip, Magnetized Fists, Leather Strapguard, Masterforged Shield)', '몬스터 효과로 Weapon이 Exhaust/Discard될 때 적용 (Bog Witch 무기 소진, Murmillo, Knighteater의 Gear 소진/버림). Cumbersome·Full Miss Exhaust 같은 자기 키워드와 비용 지불에는 미적용. Leather Strapguard의 "자발적인 것도"는 아직 미구현. [해석, 확인 필요]'],
+  ['[신규] Trophy Armor', '공격 선언 시(토큰 변환 단계) Knight Pool의 Break 토큰 중 원하는 수를 Hope로 바꿈 — "놓으려 할 때" 대신 이 시점에 한 번 물음. [해석, 확인 필요]'],
+  ['[신규] Uncompromising Justice', 'Combat action + 2 Heat 프리 액션: 이 무기로 Ranged 2–4 공격 → Wound면 영구 AT -1 토큰 → 카드 버림. [해석, 확인 필요]'],
 ];
 export const GEAR_QUESTIONS = [
   ['Divine Target', 'Spotlight 조건의 Divine Target 토큰 — 엔진에 없음. 지금은 Priority Target만 본다.'],
