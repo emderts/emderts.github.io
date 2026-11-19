@@ -22,6 +22,8 @@ export const GEAR_RULINGS = [
   ['[신규] The Bastard of the Church', '1차 능력 창 직전에 다른 한손 무기로 active Weapon 교체 가능(명중 수는 새 무기의 최대치로 제한), 안 하면 Auto-rouse 1. [해석, 확인 필요]'],
   ['[신규] Appalling Trophy', 'REACT! 창(공격 전 창 제외)에서 Exhaust + Heat +X로 몬스터를 X칸 밀어냄 (Knockback과 같은 밀기 처리). "After Attack/Response 직전 창"만 구분하지는 못함. [해석, 확인 필요]'],
   ['[신규] Bloatburst Leech', 'X Vigor + Exhaust → Charge +X (직후 Peril Check). X Charge + Discard: 사거리 3–5 칸 지정, d10 1–5면 무작위 직교 방향으로 2칸 이동, 그 칸 Zone 3 안의 몬스터(Mob은 개체마다) 하나당 Opening/Break X개. [해석, 확인 필요]'],
+  ['[신규] Counterweights', 'Gear 능력(프리 액션·리액션·방어 창)과 Technique의 Heat 비용이 1~2일 때 지불 직전에 "Heat 대신 이 Armor Exhaust?"를 물음. 재굴림 Heat, X Heat 비용, Exert에는 미적용. [해석, 확인 필요]'],
+  ['[신규] Preventive Leeches', 'Start of Clash에 Charge X개를 Knight Board로 옮김. Parasitize / Poison / Toxify로 토큰을 얻을 때 X개를 버려 X개 무시 — 한 번 쓰면 보드에 남은 Charge도 사라짐("the next time"). "X Charge: Vigor -X"는 프리 액션(직후 Peril Check). 다른 종류의 Condition 토큰에는 미연결. [해석, 확인 필요]'],
 ];
 export const GEAR_QUESTIONS = [
   ['Divine Target', 'Spotlight 조건의 Divine Target 토큰 — 엔진에 없음. 지금은 Priority Target만 본다.'],
