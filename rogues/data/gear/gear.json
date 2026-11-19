@@ -709,7 +709,7 @@
    "evasion": null,
    "evasionReroll": null,
    "armorDice": null,
-   "text": "[Heat] When you're about to resolve a negative Minor or Major Mortis, lose respectively -1 [Vigor] or -2 [Vigor] instead.\nThen, shuffle that card back into the deck and resolve the [Peril Check] again.\n[P 2+] Provoke.",
+   "text": "1 [Heat] When you're about to resolve a negative Minor or Major Mortis, lose respectively -1 [Vigor] or -2 [Vigor] instead.\nThen, shuffle that card back into the deck and resolve the [Peril Check] again.\n[P 2+] Provoke.",
    "gates": [
     {
      "gate": "PASSION 2+",

@@ -3,15 +3,15 @@
 export const GEAR_RULINGS = [
   ['Dragonrazor', 'Climb test는 룰북상 몬스터의 VP(Vantage Point)에 오를 때만 하는 테스트. 구현된 몬스터 15종의 시트에는 VP 설명이 없어("VP 설명이 없는 몬스터에는 VP를 만들 수 없음") Climb test가 발생하지 않음 — 그래서 효과 없음으로 처리. Winged Nightmare의 Column 오르기는 Marble Forest 문구대로 테스트 없음. [해석, 확인 필요]'],
   ['Nightmare Tailspear — 남은 배치형 이동', 'Stonemason Move Lateral을 포함한 칸 단위 이동과 Mob의 모든 이동에 3칸 제한 적용. Knighteater Appear Behind와 White Ape Troll 재배치(칸을 세지 않는 배치)에는 아직 적용되지 않음. [해석, 확인 필요]'],
+  ['[신규] Mantle of the Faithful', '1 Heat (소유자 확인 2026-11-19): negative Minor/Major Mortis를 해결하기 직전에 대신 Vigor -1/-2, 그 카드를 덱에 섞고 Peril Check를 다시 한다. [해석, 확인 필요]'],
+  ['[신규] Toadscale', '"Evasion Re-roll X" — X = 맞은 주사위 수 (소유자 확인 2026-11-19: X는 Evasion Re-roll 개수). 카드 전사에 키워드가 빠져 있어 "Evasion Re-roll X*."를 추가함. [해석, 확인 필요]'],
+  ['[신규] Ammo Reserves X', 'Start of Clash: 비어 있는 Hand·Support 슬롯 하나당 Charge +X (소유자 확인 2026-11-19). 슬롯 수는 추가 슬롯 Gear 포함. [해석, 확인 필요]'],
+  ['[신규] Devote (The Law of Blood, Crusader\'s Strike)', 'The Law of Blood [PASSION 3+] 2 Heat: Judicium을 뽑고 살아남으면 Devote. Crusader\'s Strike: 그 Rush에서 Wound를 주면 카드를 Discard하고 Devote. Sword of a Sunken Legacy의 Auto-hope X(Devotion 수)는 미구현. [해석, 확인 필요]'],
+  ['[신규] Bluesteel Sword', '공격할 때 Knight Pool의 Magic 토큰 1개(Renholder가 놓은 것)를 써서 이 카드의 Opening 2를 Cantrip 2로 바꿈. [해석, 확인 필요]'],
+  ['[신규] Leash / Unleash Gear (Stoneface 규칙 사용)', 'Stalagmight: 2차 능력 창에서 Unleash 3 → 임시 AT -1 토큰. Shield of the Defiant: Exhaust → Leash 1 + Advanced Reinforce 1. Plate of the Sleeping Giant [MAJOR]: Armor Roll 때 Leash 1 + black Armor 주사위 1개를 white로. [해석, 확인 필요]'],
 ];
 export const GEAR_QUESTIONS = [
-  ['Mantle of the Faithful', '비용 표기가 숫자 없이 "[Heat]"로만 전사되어 있음 — Heat 몇인지 확인 필요.'],
-  ['Toadscale', '카드에 "*X is the number of dice you were hit with"만 있고 X를 쓰는 키워드가 전사에 없음 — 원문 확인 필요.'],
   ['Divine Target', 'Spotlight 조건의 Divine Target 토큰 — 엔진에 없음. 지금은 Priority Target만 본다.'],
-  ['Ammo Reserves X', '"Additional X Charges per empty slot" — 어떤 슬롯 기준인지 (The Crippler, Stone Javelin, Blowgun, Gut-Churning Concoction).'],
-  ['Devotion 토큰 / Devote', 'Sword of a Sunken Legacy, The Law of Blood.'],
-  ['Magic 토큰', 'Knight Pool의 Magic 토큰 공급원 (Torchbearer\'s Swordstaff는 X=Magic 토큰 수로 구현됨, Bluesteel Sword 대기).'],
-  ['Leash / Unleash', 'Plate of the Sleeping Giant, Shield of the Defiant, Stalagmight.'],
 ];
 // Renholder (added 2026-11-16) — interpretations and missing material.
 export const KNIGHT_RULINGS = [

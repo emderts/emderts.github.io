@@ -70,6 +70,7 @@ techniques = [
  tech("Know Thyself", "Quest: Knight of the Grand Kingdoms", [], "Discard any amount of Bane [Bane], Condition, and modifier tokens, and Condition cards you have. Nothing can prevent you from using this Technique.", "discard", [O("knowThyself")], "free", ex("Hope", "discard")),
 ]
 for _t in techniques:
+    if _t["name"] == "Crusader's Strike": _t["devoteOnWound"] = True; _t["unclear"] = []
     if _t["name"] == "Living Weapon": _t["returnOnFullEvade"] = True; _t["unclear"] = []
     if _t["name"] == "Avert a Dire Fate": _t["acrobaticsHeat"] = 1; _t["unclear"] = []
     if _t["name"] == "Fleet of Foot": _t["notTarget"] = True; _t["straightWithMonster"] = True; _t["unclear"] = []

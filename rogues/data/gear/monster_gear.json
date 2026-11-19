@@ -5448,7 +5448,7 @@
    "evasionReroll": "X",
    "armorDice": null,
    "charges": null,
-   "text": "Poison Resilience 2.\nWhen you're hit, AI and BP Suppress.\n[Reaction] 1 [Heat] [Exhaust] Superior Reflex.\n*X is the number of dice you were hit with.\n[POSTGAME] When you attack, if you have 3+ [Passion], you may gain Rouse X, where X is your [Passion], then reset your [Passion].",
+   "text": "Poison Resilience 2. Evasion Re-roll X*.\nWhen you're hit, AI and BP Suppress.\n[Reaction] 1 [Heat] [Exhaust] Superior Reflex.\n*X is the number of dice you were hit with.\n[POSTGAME] When you attack, if you have 3+ [Passion], you may gain Rouse X, where X is your [Passion], then reset your [Passion].",
    "gates": [
     {
      "gate": "POSTGAME",

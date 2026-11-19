@@ -8,7 +8,7 @@ const OK = { 'Commit': 'commit', 'Cumbersome': 'cumbersome', 'Tireless': 'tirele
   'Soak': 'soak', 'Poison Resilience': 'poisonResilience', 'Tumble': 'tumble', 'Stalwart': 'stalwart', 'Rocksteady': 'rocksteady', 'Braced': 'braced', 'Armor-piercing': 'armorPiercing',
   'Deploy': 'deploy', 'Guard': 'guard', 'Pull': 'pull', 'Knockback': 'knockback', 'Second Chance': 'secondChance', 'Superior Chance': 'secondChance', 'Lifeline': 'lifeline', 'Reflex': 'reflex', 'Advanced Reflex': 'reflex2', 'Superior Reflex': 'reflex3', 'Precise': 'precise', 'Bypass': 'bypass', 'Superior Bypass': 'superiorBypass', 'Advanced Bypass': 'bypass', 'Defy': 'defy', 'Advanced Defy': 'defy2', 'Superior Defy': 'defy3',
   'Block': 'block', 'Advanced Block': 'block2', 'Superior Block': 'block3', 'Dodge': 'dodge', 'Lesser Dodge': 'dodge0', 'Advanced Dodge': 'dodge2', 'Superior Dodge': 'dodge3', 'Reinforce': 'reinforce', 'Advanced Reinforce': 'reinforceBlack', 'Superior Reinforce': 'reinforceWhite' };
-const PENDING = ['Ammo Reserves', 'Armor Re-roll', 'Hide', 'Pass', 'Greater Pass', 'Spotlight', 'Heartseeker', 'Soulseeker', 'Fortify', 'Acrobatics', 'Roll Out', 'Jump', 'Advanced Jump', 'Area', 'Bane', 'Parasitize', 'Poison', 'Toxify', 'Sacrifice', 'Rush', 'Improved Rush', 'Refresh', 'Falsity', 'Zeal', 'Devote', 'Magic', 'Scavenge', 'Suppress', 'BP Suppress', 'AI Suppress', 'Immune to Fear', 'Ignore Lumbering', 'Ignore Obscuring'];
+const PENDING = ['Armor Re-roll', 'Hide', 'Pass', 'Greater Pass', 'Spotlight', 'Heartseeker', 'Soulseeker', 'Fortify', 'Acrobatics', 'Roll Out', 'Jump', 'Advanced Jump', 'Area', 'Bane', 'Parasitize', 'Poison', 'Toxify', 'Sacrifice', 'Rush', 'Improved Rush', 'Refresh', 'Falsity', 'Zeal', 'Devote', 'Magic', 'Scavenge', 'Suppress', 'BP Suppress', 'AI Suppress', 'Immune to Fear', 'Ignore Lumbering', 'Ignore Obscuring'];
 const NA = ['Wither', 'Growth', 'Clockwork', 'Bloodletter', 'Leech'];
 const camel = s => s.replace(/[^A-Za-z ]/g, '').split(' ').map((w, i) => i ? w[0].toUpperCase() + w.slice(1).toLowerCase() : w.toLowerCase()).join('');
 /** Keywords the engine resolves only when printed without a cost (constant) — with a cost they are 'pending' unless listed in ACTIVE_OK. */
@@ -219,6 +219,15 @@ const SPECIAL = [
   [/^Reduce suffered Knockback or Pushback by (\d+)$/, m => ({ op: 'reduceKB', n: +m[1], active: true })],
   [/^Adjacent Knights may use this card's ability as a free action \(they still need to pay its cost\)$/, () => ({ op: 'note', na: true })],
   [/^When using the Monarch ability, trigger Signature instead$/, () => ({ op: 'note', na: true })],
+  [/^When you're about to resolve a negative Minor or Major Mortis, lose respectively -1 \[Vigor\] or -2 \[Vigor\] instead$/, () => ({ op: 'mortisInstead', active: true })],
+  [/^Then, shuffle that card back into the deck and resolve the \[Peril Check\] again$/, () => ({ op: 'note', na: true })],
+  [/^Evasion Re-roll X\*$/, () => ({ op: 'evasionRerollHits' })],
+  [/^Ammo Reserves (\d+)$/, m => ({ op: 'ammoReserves', n: +m[1] })],
+  [/^\*X is the number of dice you were hit with$/, () => ({ op: 'note', na: true })],
+  [/^If you survive, Devote$/, () => ({ op: 'note', na: true })],
+  [/^When you attack, you may spend (\d+) Magic \[Magic\] token to change this card's Opening (\d+) into Cantrip (\d+) instead$/, m => ({ op: 'magicSwap', n: +m[1] })],
+  [/^Unleash (\d+): During the second ability window, place a temporary negative AT \[AT\] in the Knight Pool$/, m => ({ op: 'unleashNegAT', n: +m[1] })],
+  [/^turn \[black Armor die\] into \[white Armor die\]$/, () => ({ op: 'armorUpgrade' })],
   [/^Bane Limit(?: \[Bane Limit\])? ([+-]\d+)$/, m => ({ op: 'baneLimitMod', n: +m[1] })],
   [/^You may use your \[Combat action\] as a \[Move action\]$/, () => ({ op: 'combatAsMove' })],
   [/^Re-roll your Attack Roll \(all dice\)$/, () => ({ op: 'rerollAttackAll', active: true })],
@@ -388,6 +397,7 @@ export function parseSentence(s) {
   const text = s.trim(); let r = text.replace(/\.$/, '').trim(); const o = {};
   for (let guard = 0; guard < 8; guard++) { let m;
     if ((m = /^\[(MINOR|MAJOR|GRAVE|JUDICIUM)\]\s*/.exec(r))) { o.gate = m[1]; r = r.slice(m[0].length); continue; }
+    if ((m = /^Leash (\d+) and /.exec(r))) { o.leash = +m[1]; r = r.slice(m[0].length); continue; }
     if ((m = /^\[(HUMAN|APE)\]\s*/.exec(r))) { o.form = m[1].toLowerCase(); r = r.slice(m[0].length); continue; }
     if ((m = /^\[(SLIMED|DROWNING|POISONED)\]\s*/.exec(r))) { o.condGate = m[1][0] + m[1].slice(1).toLowerCase(); r = r.slice(m[0].length); continue; }
     if ((m = /^\[(PRINCIPALITY OF STONE|SUNKEN KINGDOM)\]\s*/.exec(r))) { o.kingdom = m[1] === 'SUNKEN KINGDOM' ? 'sunken' : 'principality'; r = r.slice(m[0].length); continue; }
@@ -433,6 +443,6 @@ export function parseGearText(text) { if (!text) return []; const ss = String(te
     if ((m = /^(.*\S )Block or Defy\.?$/.exec(t)) && /\[Heat\]|\[Exhaust\]|\[Discard\]|\[Charge\]/.test(m[1])) { const p1 = parseSentence(m[1] + 'Block.'), p2 = parseSentence(m[1] + 'Defy.'); if (p1.status === 'ok' && p2.status === 'ok') { p1.text = t; p2.text = t; out.push(p1, p2); continue; } }
     out.push(parseSentence(t)); }
   { let up = null; for (const o of out) { if (o.upgrade) up = o.upgrade; else if (up) o.upgrade = up; } }
-  out.forEach((o, i) => { if (o.op === 'fDrawJudicium') { const nx = out[i + 1]; if (nx && /discard all Armor/.test(nx.text)) o.then = 'clearArmor'; else if (nx && /return a chosen Knight to life adjacent to you/.test(nx.text)) { o.then = 'revive'; nx.op = 'note'; nx.status = 'na'; } else { o.op = 'text'; o.status = 'text'; } } if (o.op === 'fVigorForHeat') { const nx = out[i + 1]; if (nx && nx.poison) o.poison = nx.poison; } if (o.op === 'fPlaceTrap') { const nx = out.slice(i + 1).find(x => x.trap); if (nx) { o.trap = nx.trap; o.trapN = nx.n; } } if (o.op === 'fFlipOtherCond') { const nx = out[i + 1]; if (nx && nx.vigor) o.vigor = nx.vigor; } if (o.op === 'fInspire' && !o.cost) { o.op = 'inspire'; delete o.free; } if (o.op === 'fPlaceTerrain') o.tile = /Rubble/.test(o.text) ? 'rubble' : 'swamp'; }); return out; }
+  out.forEach((o, i) => { if (o.op === 'fDrawJudicium') { const nx = out[i + 1]; if (nx && /discard all Armor/.test(nx.text)) o.then = 'clearArmor'; else if (nx && /^If you survive, Devote/.test(nx.text)) o.op = 'fJudiciumDevote'; else if (nx && /return a chosen Knight to life adjacent to you/.test(nx.text)) { o.then = 'revive'; nx.op = 'note'; nx.status = 'na'; } else { o.op = 'text'; o.status = 'text'; } } if (o.op === 'fVigorForHeat') { const nx = out[i + 1]; if (nx && nx.poison) o.poison = nx.poison; } if (o.op === 'fPlaceTrap') { const nx = out.slice(i + 1).find(x => x.trap); if (nx) { o.trap = nx.trap; o.trapN = nx.n; } } if (o.op === 'fFlipOtherCond') { const nx = out[i + 1]; if (nx && nx.vigor) o.vigor = nx.vigor; } if (o.op === 'fInspire' && !o.cost) { o.op = 'inspire'; delete o.free; } if (o.op === 'fPlaceTerrain') o.tile = /Rubble/.test(o.text) ? 'rubble' : 'swamp'; }); return out; }
 export const isDefensive = op => DEFENSIVE.has(op);
 export const KEYWORD_STATUS = { TOKENS, OK, PENDING, NA };

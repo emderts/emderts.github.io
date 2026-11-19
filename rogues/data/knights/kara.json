@@ -1854,10 +1854,7 @@
    "text": "Rush. If you deal a Wound during this Rush, you may [Discard] this card to Devote.",
    "gates": [],
    "depletion": "instant",
-   "unclear": [
-    "Devote is not implemented (Rush only)",
-    "No Exert icon on this card"
-   ],
+   "unclear": [],
    "ops": [
     {
      "op": "rush"
@@ -1865,7 +1862,8 @@
    ],
    "timing": "complicated",
    "gateOps": {},
-   "exert": null
+   "exert": null,
+   "devoteOnWound": true
   },
   {
    "name": "Act on Instinct",
