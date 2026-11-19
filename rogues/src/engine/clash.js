@@ -30,6 +30,7 @@ import { UbarMixin, installUbar } from './ubar.js';
 import { StonefaceMixin } from './stoneface.js';
 import { KingLowMixin } from './kinglaidlow.js';
 import { DevilMixin } from './devils.js';
+import { SmeltedMixin } from './smeltedfears.js';
 import { ExtrasMixin, installExtras } from './extras.js';
 
 export class ChainBreak extends Error { constructor(msg = 'Chain Break') { super(msg); this.chainBreak = true; } }
@@ -89,7 +90,7 @@ export class Clash {
     if (this.monster.isMob) { this.hauntsSetup(); if (this.monsterDef.nightmare) this.nightmareSetup(cs); else if (this.monsterDef.pump) this.pumpSetup(cs); else this.setupMobs(cs); if (this.monsterDef.rat) this.ratSetup(); if (this.monsterDef.pz) this.pzSetup(cs); this.bloodSetup(); this.firstmenSetup(); if (this.monsterDef.lh) this.lhSetup(); } else {
     this.monster.cells = cs.monsterCells.map(l => B.parse(l)); B.place({ kind: 'monster', id: this.monster.id }, this.monster.cells);
     if (cs.facing) { this.monster.facing = cs.facing; this.say(`${this.monster.name} 배치 ${cs.monsterCells.join('/')} · 방향 ${cs.facing}`); } else { const bottom = this.mortis.Minor.cards.at(-1); const arrowDir = { up: 'N', down: 'S', left: 'W', right: 'E' }[bottom.marker.arrow]; this.monster.facing = arrowDir; this.say(`Eggknight 배치 ${cs.monsterCells.join('/')} · 방향 ${arrowDir} (Minor Mortis 바닥: ${bottom.name})`); }
-    this.trollSetup(cs); this.fenSetup(); if (this.monsterDef.sm) this.smSetup(cs); if (this.monsterDef.ke) this.keSetup(cs); if (this.monsterDef.bw) this.bwSetup(cs); if (this.monsterDef.kl) this.klSetup(cs); if (this.monsterDef.dad) this.dadSetup(cs); }
+    this.trollSetup(cs); this.fenSetup(); if (this.monsterDef.sm) this.smSetup(cs); if (this.monsterDef.ke) this.keSetup(cs); if (this.monsterDef.bw) this.bwSetup(cs); if (this.monsterDef.kl) this.klSetup(cs); if (this.monsterDef.dad) this.dadSetup(cs); if (this.monsterDef.dsf) this.dsfSetup(cs); }
     // knights
     this.knights.forEach((k, i) => { k.pos = B.parse(cs.knightStart[i]); B.place({ kind: 'knight', id: k.id }, [k.pos]); });
     // traits additional setup (Panzeronion)
@@ -190,7 +191,7 @@ export class Clash {
       if (L.startsWith('zone ')) { const x = +L.match(/\d/)[0]; const cells = B.zone(this.monster.cells, x); return { zone: cells, targets: alive.filter(k => cells.some(c => cellEq(c, k.pos))), line, zoneX: x }; }
       let cand = alive; const behind = /and 1 space behind target/.test(L);
       const chasmD = k => Math.min(...this.wnChasm().map(h => Math.abs(h.c - k.pos.c) + Math.abs(h.r - k.pos.r)), 99); const minBy = (arr, f) => { if (!arr.length) return []; const m = Math.min(...arr.map(f)); return arr.filter(k => f(k) === m); };
-      const ext = this.klTargets ? this.klTargets(L, alive, closest) : undefined; if (ext && ext.result) { if (!ext.result.targets.length) continue; this.say(`Targeting: ${line}`); return { ...ext.result, line }; }
+      const ext = (this.isKl ? this.klTargets(L, alive, closest) : undefined) ?? (this.isDsf ? this.dsfTargets(L, alive, closest) : undefined); if (ext && ext.result) { if (!ext.result.targets.length) continue; this.say(`Targeting: ${line}`); return { ...ext.result, line }; }
       if (Array.isArray(ext)) cand = ext;
       else if (L === 'tactics target') cand = closest(this.tacticsTargetPool(alive).filter(k => !/in range/i.test(this.tactics.ops.target) || (ops0.range ? this.distKM(k) <= ops0.range : (this.monster.cur && this.monster.cur.decoying) || this.distKM(k) <= 1)));
       else if (L.includes('poisoned condition')) cand = closest(alive.filter(k => this.hasCondition(k, 'Poisoned') && (!ops0.range || this.distKM(k) <= ops0.range)));
@@ -375,7 +376,7 @@ export class Clash {
   async attackOneTarget(attack, k) {
     const card = attack.card, ops = card.ops; const M = this.monster;
     // gates
-    const allG = this.allGatesOn(); const gatesOn = (this.isSm && this.sm.flags.noGates ? [] : ops.gates).filter(g => allG || g.stat === 'always' ? true : g.stat === 'heat' ? k.heat >= g.gte : g.stat === 'blood' ? this.mobBlood() >= g.gte : g.stat === 'condTokens' ? this.condTokens(k) >= g.gte : g.stat === 'tier' ? (this.nodeLevel || 1) >= g.gte : g.stat === 'vigor' ? k.vigor >= g.gte : g.stat === 'passion' ? k.passion >= g.gte : g.stat === 'knockdown' ? this.knockedDown(k) : g.stat === 'vigorMax' ? k.vigor <= g.lte : false); if (gatesOn.some(g => g.op === 'doomed') && !attack.doomed) { attack.doomed = true; this.say(`${k.name}: Doomed — 이 공격 동안 Heat로 Evasion/Judgement 재굴림 불가`, 'ai'); } if (this.isBw && gatesOn.some(g => g.op === 'bwDoomed') && !this.bw.doomed) { this.bw.doomed = true; this.say(`${k.name} Vigor ${k.vigor} → Doomed: 이 공격 동안 Heat로 Evasion/Judgement 재굴림 불가`, 'ai'); }
+    const allG = this.allGatesOn(); const gatesOn = (this.isSm && this.sm.flags.noGates ? [] : ops.gates).filter(g => allG || g.stat === 'always' ? true : g.stat === 'heat' ? (k.heat >= g.gte || !!(g.orLevel && M.level >= g.orLevel)) : g.stat === 'blood' ? this.mobBlood() >= g.gte : g.stat === 'condTokens' ? this.condTokens(k) >= g.gte : g.stat === 'tier' ? (this.nodeLevel || 1) >= g.gte : g.stat === 'vigor' ? k.vigor >= g.gte : g.stat === 'passion' ? k.passion >= g.gte : g.stat === 'knockdown' ? this.knockedDown(k) : g.stat === 'vigorMax' ? k.vigor <= g.lte : false); if (gatesOn.some(g => g.op === 'doomed') && !attack.doomed) { attack.doomed = true; this.say(`${k.name}: Doomed — 이 공격 동안 Heat로 Evasion/Judgement 재굴림 불가`, 'ai'); } if (this.isBw && gatesOn.some(g => g.op === 'bwDoomed') && !this.bw.doomed) { this.bw.doomed = true; this.say(`${k.name} Vigor ${k.vigor} → Doomed: 이 공격 동안 Heat로 Evasion/Judgement 재굴림 불가`, 'ai'); }
     let dice = (ops.pzDice && this.isPz ? this.pzDice(M.cur) : 0) + (this.isLh ? this.lhDice() : 0) + (ops.diceFromDopps ? 1 + this.guardians.length : ops.diceFromVigor ? Math.min(6, k.vigor + 1) : ops.diceFromBlood ? ops.diceFromBlood * this.mobBlood() : ops.klMomentum && this.isKl ? this.kl.momentum : card.evasionDice) + M.bonuses.evasionDice + sum(gatesOn.filter(g => g.op === 'evasionDice').map(g => g.n)) + (M.isMob && !(M.cur && M.cur.isTroll) ? this.firstmenDice() : 0) + (this.isWAT && !this.actingGuardian && this.flags.trollMinusDie ? -1 : 0); let diff = card.evasionDifficulty + M.modifiers.precision;
     const diffInstead = gatesOn.find(g => g.op === 'difficultyInstead'); if (diffInstead) diff = diffInstead.n; if (attack._np == null) { attack._np = (this.monNegPrecPerm || 0) + (this.monNegPrecTemp || 0); if (this.monNegPrecTemp) { this.say(`임시 음수 Precision 토큰 ${this.monNegPrecTemp}개 사용 → 버림`, 'tech'); this.monNegPrecTemp = 0; } } if (attack._np && typeof diff === 'number') { diff -= attack._np; this.say(`음수 Precision 토큰: Difficulty -${attack._np} → ${diff}+`, 'tech'); }
     if (this.negMonPrecision) { diff = Math.max(2, diff - this.negMonPrecision); this.say(`임시 Precision -${this.negMonPrecision} 토큰: Evasion 난이도 → ${diff}+ (토큰 버림)`, 'tech'); this.negMonPrecision = 0; }
@@ -850,7 +851,7 @@ export class Clash {
   cardHasTargetingReact(card) { const w = card.reactWindows ?? card.react; if (w == null) return true; const l = [].concat(w).map(String); if (l.some(x => /^(after )?targeting$/i.test(x))) return true; if (!l.length) return false; return !JSON.stringify(card.ops || {}).includes('"reactWindow"') && !card.reactExact; }
   async windowOfOpportunity(when, attack, target = null, at = null) { this._reactNow = this._reactKind || (at === 'after' ? 'after' : null); this._reactKind = null; const a = attack || this.currentAttack; if (a && a.noReact && when !== 'beforeEffects' && (a.noReact === true || a.noReact === at)) { this.say('REACT! 무시 (게이트)'); return; } await this.fx.reactions(when, attack, target); }
 }
-Object.assign(Clash.prototype, MobMixin, BloodMixin, HauntsMixin, FirstmenMixin, TrollMixin, NightmareMixin, FenMixin, PumpMixin, RatMixin, PanzerMixin, MasonMixin, EaterMixin, LictorMixin, WitchMixin, IroncastMixin, RenholderMixin, KaraMixin, ParacelsaMixin, SonchMixin, UbarMixin, StonefaceMixin, ExtrasMixin, KingLowMixin, DevilMixin);
+Object.assign(Clash.prototype, MobMixin, BloodMixin, HauntsMixin, FirstmenMixin, TrollMixin, NightmareMixin, FenMixin, PumpMixin, RatMixin, PanzerMixin, MasonMixin, EaterMixin, LictorMixin, WitchMixin, IroncastMixin, RenholderMixin, KaraMixin, ParacelsaMixin, SonchMixin, UbarMixin, StonefaceMixin, ExtrasMixin, KingLowMixin, DevilMixin, SmeltedMixin);
 installKara(Clash);
 installParacelsa(Clash);
 installSonch(Clash);

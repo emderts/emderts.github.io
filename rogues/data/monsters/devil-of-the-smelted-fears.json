@@ -1,0 +1,2952 @@
+{
+ "id": "devil-of-the-smelted-fears",
+ "name": "Devil of the Smelted Fears",
+ "kind": "boss",
+ "code": "26A1063",
+ "traitsLine": [
+  "Devil",
+  "Curse",
+  "Horror"
+ ],
+ "_source": "Owner scans 2026-11-19; Clash Setup: Principality of Stone Codex p.52–53",
+ "footprint": {
+  "size": 4,
+  "shape": "2x2",
+  "rear": "the 2 cells directly behind the footprint",
+  "facingOnSheet": "down"
+ },
+ "basicAbilities": [
+  {
+   "name": "Unavoidable Knockback",
+   "value": 9
+  },
+  {
+   "name": "Blindspot"
+  }
+ ],
+ "levels": {
+  "1": {
+   "toHit": 9,
+   "wounds": 10,
+   "exhibitionWounds": 3,
+   "activations": [
+    "AI",
+    "S"
+   ],
+   "activationsText": "1 AI + Signature",
+   "traitsAdd": [
+    "Ferrobaptism X",
+    "The Gate",
+    "Stains of Profanity",
+    "Devil's Bargain",
+    "Master of the Oubliette",
+    "The Iron Tithe"
+   ],
+   "bonuses": {
+    "escalations": 0,
+    "at": 0,
+    "vigorLoss": 0,
+    "evasionDice": 0
+   }
+  },
+  "2": {
+   "toHit": 10,
+   "wounds": 10,
+   "exhibitionWounds": 3,
+   "activations": [
+    "AI",
+    "S"
+   ],
+   "activationsText": "1 AI + Signature",
+   "traitsAdd": [
+    "Molten Chains"
+   ],
+   "bonuses": {
+    "escalations": 0,
+    "at": 1,
+    "vigorLoss": 1,
+    "evasionDice": 0
+   }
+  },
+  "3": {
+   "toHit": 11,
+   "wounds": 10,
+   "exhibitionWounds": 3,
+   "activations": [
+    "AI",
+    "S"
+   ],
+   "activationsText": "1 AI + Signature",
+   "traitsAdd": [
+    "Only Fear Will Remain"
+   ],
+   "bonuses": {
+    "escalations": 0,
+    "at": 1,
+    "vigorLoss": 1,
+    "evasionDice": 1
+   }
+  }
+ },
+ "traits": [
+  {
+   "name": "Ferrobaptism X",
+   "level": 1,
+   "text": "Start of Clash: Ferrobaptism 2.\nFerrobaptism X: The Devil gains X Armor [Armor] tokens.\nLevel 3+: Increase Ferrobaptism on the Devil's Signature by 1.",
+   "implemented": true
+  },
+  {
+   "name": "The Gate",
+   "level": 1,
+   "text": "Gatekeeper: Gain a Single Panzergate token if you don't have any (place it on your Knight Board). Discard it the next time you deal a Wound or at the end of Knight Round if you are adjacent to another Knight. You cannot Bargain or leave the Oubliette as long as you have any Panzergate tokens.\nGatecrasher: Exhaust all Armor and Shield [Gear] cards. If you have a Single Panzergate token, discard them instead.",
+   "implemented": true
+  },
+  {
+   "name": "Stains of Profanity",
+   "level": 1,
+   "text": "Start of Clash: All Knights raise their [H]! to 9.\nWhen performing a [Peril], before you draw a Mortis card, consult the table below instead of your Peril Arc (unless using the Peril Arc would result in a higher Mortis level):\n[H] 0–2: Minor.\n[H] 3–5: Major.\n[H] 6–8: Grave.\n[H] 9: Judicium.",
+   "implemented": true
+  },
+  {
+   "name": "Devil's Bargain",
+   "level": 1,
+   "text": "Bargain: Bane 1. You may either start drawing cards from the Fool's deck or shuffle the discard pile into it (if there is one). If you choose the former, draw cards either until you choose to stop, or until you draw a card with \"A\" or \"B.\" For every drawn card, starting from the top, resolve the corresponding effect (see below). Then, discard the drawn cards and continue the Attack as normal.\nA: Stop drawing and discard all drawn cards. Move to the Oubliette, then shuffle the Fool's deck discard pile into the deck.\nB: Stop drawing. Discard.\nC: Discard 3 Armor [Armor] tokens.\nD: Discard 2 Armor [Armor] tokens.\nE: Discard 1 Armor [Armor] token.\nF: You may gain +1 [H] to discard 1 Armor [Armor] token.",
+   "implemented": true
+  },
+  {
+   "name": "Master of the Oubliette",
+   "level": 1,
+   "text": "The Devil gains the Always There Basic Ability against Knights in the Oubliette. Knights in the Oubliette cannot be moved involuntarily.",
+   "implemented": true
+  },
+  {
+   "name": "The Iron Tithe",
+   "level": 1,
+   "text": "Additional Setup: Place the Smelter Oubliette Trait card near the Monster Sheet.\nWhen you discard Armor [Armor] tokens via Bargain, place them on the Smelter Oubliette Trait card.",
+   "implemented": true
+  },
+  {
+   "name": "Molten Chains",
+   "level": 2,
+   "text": "After you perform a [Peril], if you used the Stains of Profanity Trait to determine its severity, suffer the following penalty:\nMinor: Cooldown.\nMajor: Delay. Exhaust 1 Gear [Gear] card.\nGrave: Discard. Exhaust 1 Gear [Gear] card.\nJudicium: Gatekeeper. Exhaust 1 Gear [Gear] card.",
+   "implemented": true
+  },
+  {
+   "name": "Only Fear Will Remain",
+   "level": 3,
+   "text": "When you discard or exhaust a Gear [Gear] card, Choke 1.",
+   "implemented": true
+  },
+  {
+   "name": "Smelter Oubliette (Trait card)",
+   "level": 1,
+   "text": "When you are moved to the Oubliette, place your miniature on this card.\nYou cannot leave the Oubliette until you Escape. You can attack the Devil regardless of your Weapon's effective range.\n[Move action] Escape: Discard X Armor [Armor] tokens from this card to move onto any space on the Clash Board that is 4+ spaces away from the closest Board Edge. Then, gain the Baptized in Metal Condition card. X is 5 + the number of Knights with the Baptized in Metal Condition card.\nEnd of your turn: Choke X, where X is your [P]. Then, lose [V] equal to your [H].",
+   "implemented": true
+  }
+ ],
+ "cards": {
+  "ai": [
+   {
+    "name": "I Revel in Your Torment",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 4,
+    "evasionDifficulty": 10,
+    "pre": null,
+    "targeting": [
+     "Knight in the Oubliette",
+     "Least Bane in sight",
+     "Closest Knight in sight"
+    ],
+    "tag": "JUDGE {H5+: +1 [die]}",
+    "effects": [
+     "Tenacity / Bravery.",
+     "For each hit lose -2 [V] and gain +1 [H]. [Peril]. Two or more hits, move Target to the Oubliette.",
+     "[React]"
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Ferrobaptism 2.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "JUDGEMENT",
+    "moveTag": "JUDGE {H5+: +1 [die]}",
+    "afterAttack": "AFTER ATTACK: Ferrobaptism 2.",
+    "ops": {
+     "targeting": [
+      "Knight in the Oubliette",
+      "Least Bane in sight",
+      "Closest Knight in sight"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 5,
+       "op": "evasionDice",
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "dsfK",
+       "k": {
+        "op": "gainHeat",
+        "n": 1
+       },
+       "who": "target",
+       "perHit": true
+      },
+      {
+       "op": "dsfIfHits",
+       "gte": 2,
+       "then": [
+        {
+         "op": "dsfOubliette",
+         "who": "target"
+        }
+       ]
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "dsfFerro",
+       "n": 2
+      }
+     ],
+     "afterFinalAttack": null,
+     "judge": [
+      "Tenacity",
+      "Bravery"
+     ]
+    }
+   },
+   {
+    "name": "Tail Swipe",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 10,
+    "pre": null,
+    "targeting": [
+     "Furthest Knight in sight",
+     "[Priority Target] Priority Target in sight",
+     "Closest Knight in sight"
+    ],
+    "tag": "MOVE & ATTACK {H5+: DOUBLE THE KNOCKBACK}",
+    "effects": [
+     "If hit, lose -5 [V]. [Peril].",
+     "Knockdown.",
+     "[React]",
+     "Knockback 7 to the left."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Ferrobaptism 2.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "ATTACK",
+    "moveTag": "MOVE & ATTACK {H5+: DOUBLE THE KNOCKBACK}",
+    "afterAttack": "AFTER ATTACK: Ferrobaptism 2.",
+    "ops": {
+     "targeting": [
+      "Furthest Knight in sight",
+      "[Priority Target] Priority Target in sight",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 5,
+       "op": "dsfDouble"
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "dsfHits",
+       "n": 5,
+       "flat": true,
+       "perilCheck": true
+      },
+      {
+       "op": "knockdown"
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      },
+      {
+       "op": "dsfKnockLeft",
+       "n": 7
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "dsfFerro",
+       "n": 2
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Spear Downthrust",
+    "level": 1,
+    "type": "zone",
+    "evasionDice": 4,
+    "evasionDifficulty": 9,
+    "pre": null,
+    "targeting": [
+     "Least Bane in sight",
+     "[Priority Target] Priority Target"
+    ],
+    "tag": "LAND ON TOP & KNOCKDOWN & ZONE 1 ATTACK {H4+: GATECRASHER}",
+    "effects": [
+     "For each hit lose -2 [V]. [Peril].",
+     "Two or more hits, exhaust 1 Gear [Gear] card.",
+     "[React]"
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Ferrobaptism 2.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "ZONE ATTACK",
+    "moveTag": "LAND ON TOP & KNOCKDOWN & ZONE 1 ATTACK {H4+: GATECRASHER}",
+    "afterAttack": "AFTER FINAL ATTACK: Ferrobaptism 2.",
+    "ops": {
+     "targeting": [
+      "Least Bane in sight",
+      "[Priority Target] Priority Target"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 4,
+       "op": "dsfAlso",
+       "alsoOps": [
+        {
+         "op": "dsfGatecrasher",
+         "who": "target"
+        }
+       ]
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "dsfIfHits",
+       "gte": 2,
+       "then": [
+        {
+         "op": "dsfExhaust",
+         "n": 1,
+         "who": "target",
+         "mode": "exhaust"
+        }
+       ]
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "dsfFerro",
+       "n": 2
+      }
+     ],
+     "beforeAttack": [
+      {
+       "op": "dsfLand"
+      }
+     ],
+     "zoneAroundSelf": 1
+    }
+   },
+   {
+    "name": "Spear Thrust",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 10,
+    "pre": null,
+    "targeting": [
+     "Least Bane in sight",
+     "Furthest Knight in front",
+     "[Priority Target] Priority Target"
+    ],
+    "tag": "MOVE & ATTACK ALL KNIGHTS IN PATH {H4+: GATECRASHER}",
+    "effects": [
+     "For each hit lose -2 [V] and gain +1 [H].",
+     "[Peril]. Bane 1."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Pushback 3. Ferrobaptism 2.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "SEQUENTIAL ATTACK",
+    "moveTag": "MOVE & ATTACK ALL KNIGHTS IN PATH {H4+: GATECRASHER}",
+    "afterAttack": "AFTER FINAL ATTACK: Pushback 3. Ferrobaptism 2.",
+    "ops": {
+     "targeting": [
+      "Least Bane in sight",
+      "Furthest Knight in front",
+      "[Priority Target] Priority Target"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 4,
+       "op": "dsfAlso",
+       "alsoOps": [
+        {
+         "op": "dsfGatecrasher",
+         "who": "target"
+        }
+       ]
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "dsfK",
+       "k": {
+        "op": "gainHeat",
+        "n": 1
+       },
+       "who": "target",
+       "perHit": true
+      },
+      {
+       "op": "dsfK",
+       "k": {
+        "op": "bane",
+        "n": 1
+       },
+       "who": "target",
+       "perHit": false
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "dsfPush",
+       "n": 3
+      },
+      {
+       "op": "dsfFerro",
+       "n": 2
+      }
+     ],
+     "pathAttack": true
+    }
+   },
+   {
+    "name": "Spear Bash",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 9,
+    "pre": null,
+    "targeting": [
+     "Least Bane in sight",
+     "[Priority Target] Priority Target in front",
+     "Closest Knight in sight"
+    ],
+    "tag": "MOVE & ATTACK {H4+: GATEKEEPER}",
+    "effects": [
+     "If hit, lose -5 [V]. [Peril]. Gain +2 [H].",
+     "Knockdown.",
+     "[React]"
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Ferrobaptism 2. Knockback 5 to the left.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "ATTACK",
+    "moveTag": "MOVE & ATTACK {H4+: GATEKEEPER}",
+    "afterAttack": "AFTER ATTACK: Ferrobaptism 2. Knockback 5 to the left.",
+    "ops": {
+     "targeting": [
+      "Least Bane in sight",
+      "[Priority Target] Priority Target in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 4,
+       "op": "dsfAlso",
+       "alsoOps": [
+        {
+         "op": "dsfGatekeeper",
+         "who": "target"
+        }
+       ]
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "dsfHits",
+       "n": 5,
+       "flat": true,
+       "perilCheck": true
+      },
+      {
+       "op": "dsfK",
+       "k": {
+        "op": "gainHeat",
+        "n": 2
+       },
+       "who": "target",
+       "perHit": false
+      },
+      {
+       "op": "knockdown"
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "dsfFerro",
+       "n": 2
+      },
+      {
+       "op": "dsfKnockLeft",
+       "n": 5
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "The Jaws of Hell",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 10,
+    "pre": null,
+    "targeting": [
+     "Lone Knight",
+     "Furthest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "tag": "PULL UNLIMITED & JUDGE",
+    "effects": [
+     "Tenacity / Bravery.",
+     "For each hit lose -3 [V] and Cooldown.",
+     "You may exhaust a Shield or Helmet [Gear] card to lose -2 [V] per hit instead. [Peril]."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Ferrobaptism 2. Move Target to the Oubliette.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "JUDGEMENT",
+    "moveTag": "PULL UNLIMITED & JUDGE",
+    "afterAttack": "AFTER ATTACK: Ferrobaptism 2. Move Target to the Oubliette.",
+    "ops": {
+     "targeting": [
+      "Lone Knight",
+      "Furthest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "dsfHits",
+       "n": 3,
+       "shield": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "dsfK",
+       "k": {
+        "op": "cooldown",
+        "n": 1
+       },
+       "who": "target",
+       "perHit": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "dsfFerro",
+       "n": 2
+      },
+      {
+       "op": "dsfOubliette",
+       "who": "target"
+      }
+     ],
+     "afterFinalAttack": null,
+     "judge": [
+      "Tenacity",
+      "Bravery"
+     ],
+     "beforeAttack": [
+      {
+       "op": "dsfPullIn"
+      }
+     ]
+    }
+   },
+   {
+    "name": "The Decalogue of Suffering",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 4,
+    "evasionDifficulty": 10,
+    "pre": null,
+    "targeting": [
+     "Knight in the Oubliette",
+     "Least Bane in sight",
+     "Closest Knight in sight"
+    ],
+    "tag": "JUDGE {H5+: +1 [die]}",
+    "effects": [
+     "Tenacity / Bravery.",
+     "For each hit lose -2 [V] and gain +2 [H].",
+     "[Peril]. Two or more hits, move Target to the Oubliette. If already in the Oubliette, you die.",
+     "[React]"
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Ferrobaptism 3.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "JUDGEMENT",
+    "moveTag": "JUDGE {H5+: +1 [die]}",
+    "afterAttack": "AFTER ATTACK: Ferrobaptism 3.",
+    "ops": {
+     "targeting": [
+      "Knight in the Oubliette",
+      "Least Bane in sight",
+      "Closest Knight in sight"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 5,
+       "op": "evasionDice",
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "dsfK",
+       "k": {
+        "op": "gainHeat",
+        "n": 2
+       },
+       "who": "target",
+       "perHit": true
+      },
+      {
+       "op": "dsfIfHits",
+       "gte": 2,
+       "then": [
+        {
+         "op": "dsfOubliette",
+         "who": "target",
+         "elseDie": true
+        }
+       ]
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "dsfFerro",
+       "n": 3
+      }
+     ],
+     "afterFinalAttack": null,
+     "judge": [
+      "Tenacity",
+      "Bravery"
+     ]
+    }
+   },
+   {
+    "name": "Merciless Impalement",
+    "level": 2,
+    "type": "zone",
+    "evasionDice": 4,
+    "evasionDifficulty": 9,
+    "pre": null,
+    "targeting": [
+     "Least Bane in sight",
+     "[Priority Target] Priority Target"
+    ],
+    "tag": "LAND ON TOP & KNOCKDOWN & ZONE 2 ATTACK {H5+: GATECRASHER}",
+    "effects": [
+     "For each hit lose -3 [V]. [Peril].",
+     "Three or more hits, exhaust 2 Gear [Gear] cards."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Ferrobaptism 3.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "ZONE ATTACK",
+    "moveTag": "LAND ON TOP & KNOCKDOWN & ZONE 2 ATTACK {H5+: GATECRASHER}",
+    "afterAttack": "AFTER FINAL ATTACK: Ferrobaptism 3.",
+    "ops": {
+     "targeting": [
+      "Least Bane in sight",
+      "[Priority Target] Priority Target"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 5,
+       "op": "dsfAlso",
+       "alsoOps": [
+        {
+         "op": "dsfGatecrasher",
+         "who": "target"
+        }
+       ]
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 3,
+       "perilCheck": true
+      },
+      {
+       "op": "dsfIfHits",
+       "gte": 3,
+       "then": [
+        {
+         "op": "dsfExhaust",
+         "n": 2,
+         "who": "target",
+         "mode": "exhaust"
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "dsfFerro",
+       "n": 3
+      }
+     ],
+     "beforeAttack": [
+      {
+       "op": "dsfLand"
+      }
+     ],
+     "zoneAroundSelf": 2
+    }
+   },
+   {
+    "name": "Vile Vortex",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 10,
+    "pre": null,
+    "targeting": [
+     "Furthest Knight in sight",
+     "[Priority Target] Priority Target in sight",
+     "Closest Knight in sight"
+    ],
+    "tag": "MOVE & ATTACK {H5+: GATECRASHER}",
+    "effects": [
+     "For each hit lose -4 [V] and gain +1 [H].",
+     "[Peril]. If the Devil is closer to the center of the Board than you, Forced Vault."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Ferrobaptism 3. If [V] was lost, Pushback Unlimited toward the center of the Clash Board. If a Knight would suffer Crash during this Pushback, they lose -4 [V] instead.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "ATTACK",
+    "moveTag": "MOVE & ATTACK {H5+: GATECRASHER}",
+    "afterAttack": "AFTER FINAL ATTACK: Ferrobaptism 3. If [V] was lost, Pushback Unlimited toward the center of the Clash Board. If a Knight would suffer Crash during this Pushback, they lose -4 [V] instead.",
+    "ops": {
+     "targeting": [
+      "Furthest Knight in sight",
+      "[Priority Target] Priority Target in sight",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 5,
+       "op": "dsfAlso",
+       "alsoOps": [
+        {
+         "op": "dsfGatecrasher",
+         "who": "target"
+        }
+       ]
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 4,
+       "perilCheck": true
+      },
+      {
+       "op": "dsfK",
+       "k": {
+        "op": "gainHeat",
+        "n": 1
+       },
+       "who": "target",
+       "perHit": true
+      },
+      {
+       "op": "dsfVortex",
+       "vault": true
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "dsfFerro",
+       "n": 3
+      },
+      {
+       "op": "dsfVortex"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Tormentor of Souls",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 10,
+    "pre": null,
+    "targeting": [
+     "Lone Knight",
+     "Furthest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "tag": "PULL UNLIMITED & JUDGE",
+    "effects": [
+     "Tenacity / Bravery. For each hit lose -4 [V] and Cooldown. You may exhaust a Shield or Helmet [Gear] card to lose -3 [V] per hit instead. [Peril].",
+     "{OUBLIETTE: Gain Bane [Bane] tokens up to your Bane Limit, then escape from the Smelter Oubliette.}",
+     "[React]"
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Ferrobaptism 3.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "JUDGEMENT",
+    "moveTag": "PULL UNLIMITED & JUDGE",
+    "afterAttack": "AFTER ATTACK: Ferrobaptism 3.",
+    "ops": {
+     "targeting": [
+      "Lone Knight",
+      "Furthest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "dsfHits",
+       "n": 4,
+       "shield": 3,
+       "perilCheck": true
+      },
+      {
+       "op": "dsfK",
+       "k": {
+        "op": "cooldown",
+        "n": 1
+       },
+       "who": "target",
+       "perHit": true
+      },
+      {
+       "op": "dsfBaneFill"
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "dsfFerro",
+       "n": 3
+      }
+     ],
+     "afterFinalAttack": null,
+     "judge": [
+      "Tenacity",
+      "Bravery"
+     ],
+     "beforeAttack": [
+      {
+       "op": "dsfPullIn"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Dragged Down Under",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 9,
+    "pre": null,
+    "targeting": [
+     "Least Bane in sight",
+     "[Priority Target] Priority Target in front",
+     "Closest Knight in sight"
+    ],
+    "tag": "MOVE & JUDGE {H4+: GATEKEEPER}",
+    "effects": [
+     "Sagacity / Insight.",
+     "If hit, lose -X [V], where X is 2 + the number of Armor [Armor] tokens on the Devil. [Peril]. Gain +2 [H].",
+     "Knockdown.",
+     "[React]"
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Move 1 adjacent knocked down Knight to the Oubliette. Ferrobaptism 3.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "JUDGEMENT",
+    "moveTag": "MOVE & JUDGE {H4+: GATEKEEPER}",
+    "afterAttack": "AFTER ATTACK: Move 1 adjacent knocked down Knight to the Oubliette. Ferrobaptism 3.",
+    "ops": {
+     "targeting": [
+      "Least Bane in sight",
+      "[Priority Target] Priority Target in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 4,
+       "op": "dsfAlso",
+       "alsoOps": [
+        {
+         "op": "dsfGatekeeper",
+         "who": "target"
+        }
+       ]
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "dsfHits",
+       "n": "X",
+       "flat": true,
+       "perilCheck": true
+      },
+      {
+       "op": "dsfK",
+       "k": {
+        "op": "gainHeat",
+        "n": 2
+       },
+       "who": "target",
+       "perHit": false
+      },
+      {
+       "op": "knockdown"
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "dsfOubKD"
+      },
+      {
+       "op": "dsfFerro",
+       "n": 3
+      }
+     ],
+     "afterFinalAttack": null,
+     "judge": [
+      "Sagacity",
+      "Insight"
+     ]
+    }
+   },
+   {
+    "name": "Flaming Arc",
+    "level": 2,
+    "type": "zone",
+    "evasionDice": 4,
+    "evasionDifficulty": 10,
+    "pre": null,
+    "targeting": [
+     "Least Bane in sight",
+     "Furthest Knight in front",
+     "[Priority Target] Priority Target"
+    ],
+    "tag": "MOVE & ATTACK {H5+: GATECRASHER}",
+    "effects": [
+     "For each hit lose -3 [V] and gain +1 [H].",
+     "[Peril]. Bane 1.",
+     "[React]"
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Ferrobaptism 3.",
+    "zone": "diagram: an arc of red cells in front of the Devil (wider near the Devil, narrowing away)",
+    "unclear": [
+     "Zone diagram read from a small image"
+    ],
+    "typePrinted": "ZONE ATTACK",
+    "moveTag": "MOVE & ATTACK {H5+: GATECRASHER}",
+    "afterAttack": "AFTER FINAL ATTACK: Ferrobaptism 3.",
+    "ops": {
+     "targeting": [
+      "Least Bane in sight",
+      "Furthest Knight in front",
+      "[Priority Target] Priority Target"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 5,
+       "op": "dsfAlso",
+       "alsoOps": [
+        {
+         "op": "dsfGatecrasher",
+         "who": "target"
+        }
+       ]
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 3,
+       "perilCheck": true
+      },
+      {
+       "op": "dsfK",
+       "k": {
+        "op": "gainHeat",
+        "n": 1
+       },
+       "who": "target",
+       "perHit": true
+      },
+      {
+       "op": "dsfK",
+       "k": {
+        "op": "bane",
+        "n": 1
+       },
+       "who": "target",
+       "perHit": false
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "dsfFerro",
+       "n": 3
+      }
+     ],
+     "zoneDiagram": {
+      "red": [
+       [
+        1,
+        -2
+       ],
+       [
+        0,
+        -1
+       ],
+       [
+        1,
+        -1
+       ],
+       [
+        2,
+        -1
+       ],
+       [
+        1,
+        0
+       ],
+       [
+        2,
+        0
+       ],
+       [
+        1,
+        1
+       ],
+       [
+        2,
+        1
+       ],
+       [
+        0,
+        2
+       ],
+       [
+        1,
+        2
+       ],
+       [
+        2,
+        2
+       ],
+       [
+        1,
+        3
+       ]
+      ],
+      "yellow": [],
+      "step": null,
+      "block": true
+     }
+    }
+   },
+   {
+    "name": "Smelting Point",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 11,
+    "pre": null,
+    "targeting": [
+     "Knight in the Oubliette",
+     "Least Bane in sight",
+     "[Priority Target] Priority Target in front",
+     "Closest Knight in sight"
+    ],
+    "tag": "MOVE & ATTACK {LEVEL 3+ OR H7+: +1 [die]}",
+    "effects": [
+     "If hit, draw a Judicium, and for each hit add 1 You Died card to the Judicium deck according to the Massive Peril Chart (for this draw only)."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Ferrobaptism 4. Discard 1 Gear [Gear] card and Pushback 3.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "ATTACK",
+    "moveTag": "MOVE & ATTACK {LEVEL 3+ OR H7+: +1 [die]}",
+    "afterAttack": "AFTER ATTACK: Ferrobaptism 4. Discard 1 Gear [Gear] card and Pushback 3.",
+    "ops": {
+     "targeting": [
+      "Knight in the Oubliette",
+      "Least Bane in sight",
+      "[Priority Target] Priority Target in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 7,
+       "op": "evasionDice",
+       "n": 1,
+       "orLevel": 3
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "dsfSmelt"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "dsfFerro",
+       "n": 4
+      },
+      {
+       "op": "dsfExhaust",
+       "n": 1,
+       "who": "target",
+       "mode": "discard"
+      },
+      {
+       "op": "dsfPush",
+       "n": 3
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Molten Rain",
+    "level": 3,
+    "type": "zone",
+    "evasionDice": 5,
+    "evasionDifficulty": 10,
+    "pre": null,
+    "targeting": [
+     "Clash Board",
+     "[Priority Target] Priority Target"
+    ],
+    "tag": "ATTACK {H6+: GATECRASHER}",
+    "effects": [
+     "For each hit lose -2 [V] and gain +1 [H].",
+     "[Peril]. Gatekeeper."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Ferrobaptism 4.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "ZONE ATTACK",
+    "moveTag": "ATTACK {H6+: GATECRASHER}",
+    "afterAttack": "AFTER FINAL ATTACK: Ferrobaptism 4.",
+    "ops": {
+     "targeting": [
+      "All Knights"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 6,
+       "op": "dsfAlso",
+       "alsoOps": [
+        {
+         "op": "dsfGatecrasher",
+         "who": "target"
+        }
+       ]
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "dsfK",
+       "k": {
+        "op": "gainHeat",
+        "n": 1
+       },
+       "who": "target",
+       "perHit": true
+      },
+      {
+       "op": "dsfGatekeeper",
+       "who": "target"
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "dsfFerro",
+       "n": 4
+      }
+     ]
+    }
+   },
+   {
+    "name": "Hell-ter Smelter",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 4,
+    "evasionDifficulty": 9,
+    "pre": null,
+    "targeting": [
+     "Furthest Knight in sight",
+     "[Priority Target] Priority Target"
+    ],
+    "tag": "MOVE & ATTACK ALL KNIGHTS IN PATH {H6+: IGNORE BONUS ATTACKS AND CHAIN BREAKS}",
+    "effects": [
+     "For each hit lose -2 [V], gain +2 [H] and Ferrobaptism 1. [Peril].",
+     "[React]"
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "If [V] was lost, repeat Hell-ter Smelter against a Knight that hasn't been attacked this Round. Repeat until all Knights have been attacked or no [V] has been lost.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "SEQUENTIAL ATTACK",
+    "moveTag": "MOVE & ATTACK ALL KNIGHTS IN PATH {H6+: IGNORE BONUS ATTACKS AND CHAIN BREAKS}",
+    "afterAttack": "AFTER ATTACK: If [V] was lost, repeat Hell-ter Smelter against a Knight that hasn't been attacked this Round. Repeat until all Knights have been attacked or no [V] has been lost.",
+    "ops": {
+     "targeting": [
+      "Furthest Knight in sight",
+      "[Priority Target] Priority Target"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "dsfK",
+       "k": {
+        "op": "gainHeat",
+        "n": 2
+       },
+       "who": "target",
+       "perHit": true
+      },
+      {
+       "op": "dsfFerro",
+       "n": 1,
+       "perHit": true
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "dsfRepeatUnattacked"
+      }
+     ],
+     "afterFinalAttack": null,
+     "pathAttack": true
+    }
+   },
+   {
+    "name": "Smelting Kiss",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 4,
+    "evasionDifficulty": 10,
+    "pre": null,
+    "targeting": [
+     "Lone Knight",
+     "Furthest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "tag": "PULL UNLIMITED & JUDGE {H6+: GATECRASHER}",
+    "effects": [
+     "Tenacity / Bravery.",
+     "For each hit lose -4 [V] and Cooldown.",
+     "You may exhaust a Shield or Helmet [Gear] card to lose -2 [V] per hit instead.",
+     "[Peril]. Knockdown.",
+     "[React]"
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Ferrobaptism 4.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "JUDGEMENT",
+    "moveTag": "PULL UNLIMITED & JUDGE {H6+: GATECRASHER}",
+    "afterAttack": "AFTER ATTACK: Ferrobaptism 4.",
+    "ops": {
+     "targeting": [
+      "Lone Knight",
+      "Furthest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 6,
+       "op": "dsfAlso",
+       "alsoOps": [
+        {
+         "op": "dsfGatecrasher",
+         "who": "target"
+        }
+       ]
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "dsfHits",
+       "n": 4,
+       "shield": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "dsfK",
+       "k": {
+        "op": "cooldown",
+        "n": 1
+       },
+       "who": "target",
+       "perHit": true
+      },
+      {
+       "op": "knockdown"
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "dsfFerro",
+       "n": 4
+      }
+     ],
+     "afterFinalAttack": null,
+     "judge": [
+      "Tenacity",
+      "Bravery"
+     ],
+     "beforeAttack": [
+      {
+       "op": "dsfPullIn"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Searing Iron",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 9,
+    "pre": null,
+    "targeting": [
+     "Least Bane in sight",
+     "[Priority Target] Priority Target in front",
+     "Closest Knight in sight"
+    ],
+    "tag": "GAIN +3 [H] → JUDGE",
+    "effects": [
+     "Sagacity / Insight.",
+     "For each hit Ferrobaptism 1. Lose -X [V], where X is 2 + the number of Armor [Armor] tokens on the Devil. [Peril].",
+     "Knockdown.",
+     "[React]"
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Ferrobaptism 2. Move 1 adjacent knocked down Knight to the Oubliette.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "JUDGEMENT",
+    "moveTag": "GAIN +3 [H] → JUDGE",
+    "afterAttack": "AFTER ATTACK: Ferrobaptism 2. Move 1 adjacent knocked down Knight to the Oubliette.",
+    "ops": {
+     "targeting": [
+      "Least Bane in sight",
+      "[Priority Target] Priority Target in front",
+      "Closest Knight in sight"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "dsfFerro",
+       "n": 1,
+       "perHit": true
+      },
+      {
+       "op": "dsfHits",
+       "n": "X",
+       "flat": true,
+       "perilCheck": true
+      },
+      {
+       "op": "knockdown"
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "dsfFerro",
+       "n": 2
+      },
+      {
+       "op": "dsfOubKD"
+      }
+     ],
+     "afterFinalAttack": null,
+     "judge": [
+      "Sagacity",
+      "Insight"
+     ],
+     "beforeAttack": [
+      {
+       "op": "dsfK",
+       "k": {
+        "op": "gainHeat",
+        "n": 3
+       },
+       "who": "target",
+       "perHit": false
+      }
+     ]
+    }
+   },
+   {
+    "name": "Perdition's Flame",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 5,
+    "evasionDifficulty": 9,
+    "pre": null,
+    "targeting": [
+     "Knight in Blindspot",
+     "Highest [Heat] in sight",
+     "[Priority Target] Priority Target"
+    ],
+    "tag": "APPEAR BEHIND & ATTACK {H6+: GATEKEEPER}",
+    "effects": [
+     "For each hit gain +1 [H]. Then, lose [V] equal to your [H]. [Peril].",
+     "[React]"
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "If the Target died, Ferrobaptism 4, and repeat this Attack (once).",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "ATTACK",
+    "moveTag": "APPEAR BEHIND & ATTACK {H6+: GATEKEEPER}",
+    "afterAttack": "AFTER ATTACK: If the Target died, Ferrobaptism 4, and repeat this Attack (once).",
+    "ops": {
+     "targeting": [
+      "Knight in Blindspot",
+      "Highest [Heat] in sight",
+      "[Priority Target] Priority Target"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 6,
+       "op": "dsfAlso",
+       "alsoOps": [
+        {
+         "op": "dsfGatekeeper",
+         "who": "target"
+        }
+       ]
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "dsfHeatLose"
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "dsfRepeatIfDied"
+      }
+     ],
+     "afterFinalAttack": null,
+     "beforeAttack": [
+      {
+       "op": "dsfAppear"
+      }
+     ]
+    }
+   }
+  ],
+  "bp": [
+   {
+    "name": "Rancid Loincloth",
+    "level": 1,
+    "at": 5,
+    "top": "OVERCOME 3+: Move 1 Armor [Armor] token from the Devil onto the Smelter Oubliette Trait card",
+    "note": "You may voluntarily fail this Attack.",
+    "wound": "Move to the Oubliette. Gain the [Priority Target] Priority Target token.",
+    "fail": "Bargain. Cooldown.",
+    "instinct": null,
+    "critical": "You may perform a Bonus Attack!",
+    "unclear": [],
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 3,
+     "effect": "Move 1 Armor token from the Devil onto the Smelter Oubliette Trait card"
+    },
+    "responses": {
+     "wound": "Move to the Oubliette. Gain the [Priority Target] Priority Target token.",
+     "fail": "Bargain. Cooldown.",
+     "instinct": null,
+     "critical": "You may perform a Bonus Attack!"
+    },
+    "ops": {
+     "at": 5,
+     "bargain": false,
+     "overcome": {
+      "n": 3,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "dsfTithe",
+        "n": 1,
+        "why": "Overcome/Overpower"
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "dsfOubliette",
+       "who": "attacker"
+      },
+      {
+       "op": "dsfPriority"
+      }
+     ],
+     "fail": [
+      {
+       "op": "dsfBargain"
+      },
+      {
+       "op": "dsfK",
+       "k": {
+        "op": "cooldown",
+        "n": 1
+       },
+       "who": "attacker",
+       "perHit": false
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "dsfMoveBonus"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Grotesque Tail",
+    "level": 1,
+    "at": 7,
+    "top": "OVERCOME 2+: Move 1 Armor [Armor] token from the Devil onto the Smelter Oubliette Trait card",
+    "note": null,
+    "wound": "The Devil moves to the center of the Clash Board. Ferrobaptism 1.",
+    "fail": "Knockdown. Cooldown.",
+    "instinct": null,
+    "critical": "Scavenge 1.",
+    "unclear": [],
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 2,
+     "effect": "Move 1 Armor token from the Devil onto the Smelter Oubliette Trait card"
+    },
+    "responses": {
+     "wound": "The Devil moves to the center of the Clash Board. Ferrobaptism 1.",
+     "fail": "Knockdown. Cooldown.",
+     "instinct": null,
+     "critical": "Scavenge 1."
+    },
+    "ops": {
+     "at": 7,
+     "bargain": false,
+     "overcome": {
+      "n": 2,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "dsfTithe",
+        "n": 1,
+        "why": "Overcome/Overpower"
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "dsfCenter"
+      },
+      {
+       "op": "dsfFerro",
+       "n": 1
+      }
+     ],
+     "fail": [
+      {
+       "op": "knockdown"
+      },
+      {
+       "op": "dsfK",
+       "k": {
+        "op": "cooldown",
+        "n": 1
+       },
+       "who": "attacker",
+       "perHit": false
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "dsfScavenge",
+       "n": 1
+      }
+     ]
+    }
+   },
+   {
+    "name": "Tainted Gauntlet",
+    "level": 1,
+    "at": 8,
+    "top": "OVERCOME 3+: Move 1 Armor [Armor] token from the Devil onto the Smelter Oubliette Trait card",
+    "note": "You may Bargain before the Power Roll.",
+    "wound": "Ferrobaptism 1. Gatekeeper.",
+    "fail": "Bargain.",
+    "instinct": null,
+    "critical": "Discard a Choked Condition card and reset your [H]!",
+    "unclear": [],
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 3,
+     "effect": "Move 1 Armor token from the Devil onto the Smelter Oubliette Trait card"
+    },
+    "responses": {
+     "wound": "Ferrobaptism 1. Gatekeeper.",
+     "fail": "Bargain.",
+     "instinct": null,
+     "critical": "Discard a Choked Condition card and reset your [H]!"
+    },
+    "ops": {
+     "at": 8,
+     "bargain": true,
+     "overcome": {
+      "n": 3,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "dsfTithe",
+        "n": 1,
+        "why": "Overcome/Overpower"
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "dsfFerro",
+       "n": 1
+      },
+      {
+       "op": "dsfGatekeeper",
+       "who": "attacker"
+      }
+     ],
+     "fail": [
+      {
+       "op": "dsfBargain"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "dsfReset",
+       "choked": true
+      }
+     ]
+    }
+   },
+   {
+    "name": "Infested Knee Armor",
+    "level": 1,
+    "at": 5,
+    "top": "OVERCOME 3+: Move 1 Armor [Armor] token from the Devil onto the Smelter Oubliette Trait card",
+    "note": "You may Bargain before the Power Roll.",
+    "wound": "Ferrobaptism 1. Cooldown.",
+    "fail": "Bargain.",
+    "instinct": null,
+    "critical": "Reset your [H]!",
+    "unclear": [],
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 3,
+     "effect": "Move 1 Armor token from the Devil onto the Smelter Oubliette Trait card"
+    },
+    "responses": {
+     "wound": "Ferrobaptism 1. Cooldown.",
+     "fail": "Bargain.",
+     "instinct": null,
+     "critical": "Reset your [H]!"
+    },
+    "ops": {
+     "at": 5,
+     "bargain": true,
+     "overcome": {
+      "n": 3,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "dsfTithe",
+        "n": 1,
+        "why": "Overcome/Overpower"
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "dsfFerro",
+       "n": 1
+      },
+      {
+       "op": "dsfK",
+       "k": {
+        "op": "cooldown",
+        "n": 1
+       },
+       "who": "attacker",
+       "perHit": false
+      }
+     ],
+     "fail": [
+      {
+       "op": "dsfBargain"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "dsfReset"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Pale Hand",
+    "level": 1,
+    "at": 6,
+    "top": "OVERCOME 3+: Move 1 Armor [Armor] token from the Devil onto the Smelter Oubliette Trait card",
+    "note": "You may Bargain before the Power Roll.",
+    "wound": "Perform Signature against the Attacker.",
+    "fail": "Gatekeeper.",
+    "instinct": null,
+    "critical": "You may perform a Bonus Attack!",
+    "unclear": [],
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 3,
+     "effect": "Move 1 Armor token from the Devil onto the Smelter Oubliette Trait card"
+    },
+    "responses": {
+     "wound": "Perform Signature against the Attacker.",
+     "fail": "Gatekeeper.",
+     "instinct": null,
+     "critical": "You may perform a Bonus Attack!"
+    },
+    "ops": {
+     "at": 6,
+     "bargain": true,
+     "overcome": {
+      "n": 3,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "dsfTithe",
+        "n": 1,
+        "why": "Overcome/Overpower"
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "signatureAgainstAttacker"
+      }
+     ],
+     "fail": [
+      {
+       "op": "dsfGatekeeper",
+       "who": "attacker"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "dsfMoveBonus"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Scrap Metal Breastplate",
+    "level": 1,
+    "at": 8,
+    "top": "OVERCOME 2+: Move 1 Armor [Armor] token from the Devil onto the Smelter Oubliette Trait card",
+    "note": "You may Bargain before the Power Roll.",
+    "wound": "Ferrobaptism 1. Gain the [Priority Target] Priority Target token.",
+    "fail": "Gain +1 [H].",
+    "instinct": null,
+    "critical": "Lower each Ferrobaptism by 1 (to a minimum of 1)! Reduce the number of Armor [Armor] tokens required to Escape by 1.",
+    "unclear": [],
+    "overcomeTag": "OVERCOME",
+    "overcome": {
+     "n": 2,
+     "effect": "Move 1 Armor token from the Devil onto the Smelter Oubliette Trait card"
+    },
+    "responses": {
+     "wound": "Ferrobaptism 1. Gain the [Priority Target] Priority Target token.",
+     "fail": "Gain +1 [H].",
+     "instinct": null,
+     "critical": "Lower each Ferrobaptism by 1 (to a minimum of 1)! Reduce the number of Armor [Armor] tokens required to Escape by 1."
+    },
+    "ops": {
+     "at": 8,
+     "bargain": true,
+     "overcome": {
+      "n": 2,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "dsfTithe",
+        "n": 1,
+        "why": "Overcome/Overpower"
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "dsfFerro",
+       "n": 1
+      },
+      {
+       "op": "dsfPriority"
+      }
+     ],
+     "fail": [
+      {
+       "op": "dsfK",
+       "k": {
+        "op": "gainHeat",
+        "n": 1
+       },
+       "who": "attacker",
+       "perHit": false
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "dsfFlag",
+       "id": "ferroDown"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Exposed Tendon",
+    "level": 2,
+    "at": 9,
+    "top": "OVERPOWER 2+: Move 1 Armor [Armor] token from the Devil onto the Smelter Oubliette Trait card",
+    "note": "You may Bargain before the Power Roll.",
+    "wound": "Ferrobaptism 2. Gain the [Priority Target] Priority Target token.",
+    "fail": "Bargain. Delay.",
+    "instinct": null,
+    "critical": "Disable Sequential and Zone Attacks.",
+    "unclear": [],
+    "overcomeTag": "OVERPOWER",
+    "overcome": {
+     "n": 2,
+     "effect": "Move 1 Armor token from the Devil onto the Smelter Oubliette Trait card"
+    },
+    "responses": {
+     "wound": "Ferrobaptism 2. Gain the [Priority Target] Priority Target token.",
+     "fail": "Bargain. Delay.",
+     "instinct": null,
+     "critical": "Disable Sequential and Zone Attacks."
+    },
+    "ops": {
+     "at": 9,
+     "bargain": true,
+     "overcome": {
+      "n": 2,
+      "kind": "overpower",
+      "ops": [
+       {
+        "op": "dsfTithe",
+        "n": 1,
+        "why": "Overcome/Overpower"
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "dsfFerro",
+       "n": 2
+      },
+      {
+       "op": "dsfPriority"
+      }
+     ],
+     "fail": [
+      {
+       "op": "dsfBargain"
+      },
+      {
+       "op": "dsfK",
+       "k": {
+        "op": "delay",
+        "n": 1
+       },
+       "who": "attacker",
+       "perHit": false
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "dsfFlag",
+       "id": "noSeqZone"
+      },
+      {
+       "op": "dsfNote",
+       "text": "Sequential·Zone Attack 비활성은 아직 AI 카드에 적용되지 않음 (미구현)"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Rotting Visage",
+    "level": 2,
+    "at": 9,
+    "top": "OVERPOWER 2+: Move 1 Armor [Armor] token from the Devil onto the Smelter Oubliette Trait card",
+    "note": "You may voluntarily fail this Attack.",
+    "wound": "Perform AI against the Attacker.",
+    "fail": "Discard.",
+    "instinct": null,
+    "critical": "Disable The Gate Trait and discard all Single Panzergate tokens from all Knights!",
+    "unclear": [],
+    "overcomeTag": "OVERPOWER",
+    "overcome": {
+     "n": 2,
+     "effect": "Move 1 Armor token from the Devil onto the Smelter Oubliette Trait card"
+    },
+    "responses": {
+     "wound": "Perform AI against the Attacker.",
+     "fail": "Discard.",
+     "instinct": null,
+     "critical": "Disable The Gate Trait and discard all Single Panzergate tokens from all Knights!"
+    },
+    "ops": {
+     "at": 9,
+     "bargain": false,
+     "overcome": {
+      "n": 2,
+      "kind": "overpower",
+      "ops": [
+       {
+        "op": "dsfTithe",
+        "n": 1,
+        "why": "Overcome/Overpower"
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "dsfAI"
+      }
+     ],
+     "fail": [
+      {
+       "op": "dsfK",
+       "k": {
+        "op": "discard",
+        "n": 1
+       },
+       "who": "attacker",
+       "perHit": false
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "dsfFlag",
+       "id": "noGate"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Blasphemer's Horn",
+    "level": 2,
+    "at": 8,
+    "top": "OVERPOWER 3+: Move 1 Armor [Armor] token from the Devil onto the Smelter Oubliette Trait card",
+    "note": "You may Bargain before the Power Roll.",
+    "wound": "Ferrobaptism 2. Discard 1 Bane [Bane] token.",
+    "fail": "Gatekeeper.",
+    "instinct": null,
+    "critical": "Devote!",
+    "unclear": [],
+    "overcomeTag": "OVERPOWER",
+    "overcome": {
+     "n": 3,
+     "effect": "Move 1 Armor token from the Devil onto the Smelter Oubliette Trait card"
+    },
+    "responses": {
+     "wound": "Ferrobaptism 2. Discard 1 Bane [Bane] token.",
+     "fail": "Gatekeeper.",
+     "instinct": null,
+     "critical": "Devote!"
+    },
+    "ops": {
+     "at": 8,
+     "bargain": true,
+     "overcome": {
+      "n": 3,
+      "kind": "overpower",
+      "ops": [
+       {
+        "op": "dsfTithe",
+        "n": 1,
+        "why": "Overcome/Overpower"
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "dsfFerro",
+       "n": 2
+      },
+      {
+       "op": "dsfBaneOff",
+       "n": 1
+      }
+     ],
+     "fail": [
+      {
+       "op": "dsfGatekeeper",
+       "who": "attacker"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "devote"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Flayed Back",
+    "level": 2,
+    "at": 10,
+    "top": "OVERPOWER 2+: Move 1 Armor [Armor] token from the Devil onto the Smelter Oubliette Trait card",
+    "note": "You may Bargain before the Power Roll.",
+    "wound": "Gatekeeper.",
+    "fail": null,
+    "instinct": "Ferrobaptism 2.",
+    "critical": "Deal an additional Single Wound!",
+    "unclear": [],
+    "overcomeTag": "OVERPOWER",
+    "overcome": {
+     "n": 2,
+     "effect": "Move 1 Armor token from the Devil onto the Smelter Oubliette Trait card"
+    },
+    "responses": {
+     "wound": "Gatekeeper.",
+     "fail": null,
+     "instinct": "Ferrobaptism 2.",
+     "critical": "Deal an additional Single Wound!"
+    },
+    "ops": {
+     "at": 10,
+     "bargain": true,
+     "overcome": {
+      "n": 2,
+      "kind": "overpower",
+      "ops": [
+       {
+        "op": "dsfTithe",
+        "n": 1,
+        "why": "Overcome/Overpower"
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "dsfGatekeeper",
+       "who": "attacker"
+      }
+     ],
+     "fail": null,
+     "instinct": [
+      {
+       "op": "dsfFerro",
+       "n": 2
+      }
+     ],
+     "critical": [
+      {
+       "op": "additionalSingleWound"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Skull Trophies",
+    "level": 2,
+    "at": 7,
+    "top": "OVERPOWER 3+: Move 1 Armor [Armor] token from the Devil onto the Smelter Oubliette Trait card",
+    "note": null,
+    "wound": "Gain +2 [H] and the [Priority Target] Priority Target token.",
+    "fail": "Gatekeeper. Gatecrasher.",
+    "instinct": null,
+    "critical": "Each Knight may discard all their Bane [Bane] tokens!",
+    "unclear": [],
+    "overcomeTag": "OVERPOWER",
+    "overcome": {
+     "n": 3,
+     "effect": "Move 1 Armor token from the Devil onto the Smelter Oubliette Trait card"
+    },
+    "responses": {
+     "wound": "Gain +2 [H] and the [Priority Target] Priority Target token.",
+     "fail": "Gatekeeper. Gatecrasher.",
+     "instinct": null,
+     "critical": "Each Knight may discard all their Bane [Bane] tokens!"
+    },
+    "ops": {
+     "at": 7,
+     "bargain": false,
+     "overcome": {
+      "n": 3,
+      "kind": "overpower",
+      "ops": [
+       {
+        "op": "dsfTithe",
+        "n": 1,
+        "why": "Overcome/Overpower"
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "dsfK",
+       "k": {
+        "op": "gainHeat",
+        "n": 2
+       },
+       "who": "attacker",
+       "perHit": false
+      },
+      {
+       "op": "dsfPriority"
+      }
+     ],
+     "fail": [
+      {
+       "op": "dsfGatekeeper",
+       "who": "attacker"
+      },
+      {
+       "op": "dsfGatecrasher",
+       "who": "attacker"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "dsfBaneOff",
+       "all": true,
+       "n": "all",
+       "optional": true
+      }
+     ]
+    }
+   },
+   {
+    "name": "Spear of the Third Sacrament",
+    "level": 2,
+    "at": 9,
+    "top": "OVERPOWER 3+: Move 1 Armor [Armor] token from the Devil onto the Smelter Oubliette Trait card",
+    "note": "You may Bargain before the Power Roll.",
+    "wound": "Ferrobaptism 2. Delay.",
+    "fail": "Perform Signature against the Attacker.",
+    "instinct": null,
+    "critical": "You may perform a Bonus Attack!",
+    "unclear": [],
+    "overcomeTag": "OVERPOWER",
+    "overcome": {
+     "n": 3,
+     "effect": "Move 1 Armor token from the Devil onto the Smelter Oubliette Trait card"
+    },
+    "responses": {
+     "wound": "Ferrobaptism 2. Delay.",
+     "fail": "Perform Signature against the Attacker.",
+     "instinct": null,
+     "critical": "You may perform a Bonus Attack!"
+    },
+    "ops": {
+     "at": 9,
+     "bargain": true,
+     "overcome": {
+      "n": 3,
+      "kind": "overpower",
+      "ops": [
+       {
+        "op": "dsfTithe",
+        "n": 1,
+        "why": "Overcome/Overpower"
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "dsfFerro",
+       "n": 2
+      },
+      {
+       "op": "dsfK",
+       "k": {
+        "op": "delay",
+        "n": 1
+       },
+       "who": "attacker",
+       "perHit": false
+      }
+     ],
+     "fail": [
+      {
+       "op": "signatureAgainstAttacker"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "dsfMoveBonus"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Smelting Tongue",
+    "level": 3,
+    "at": 9,
+    "top": "OVERPOWER 4+: Move 1 Armor [Armor] token from the Devil onto the Smelter Oubliette Trait card",
+    "note": "You may Bargain before the Power Roll.",
+    "wound": "Ferrobaptism 3. Gain +2 [H] and the [Priority Target] Priority Target token.",
+    "fail": "Knockdown.",
+    "instinct": null,
+    "critical": "Each Knight discards the Choked Condition card and resets their [H]!",
+    "unclear": [],
+    "overcomeTag": "OVERPOWER",
+    "overcome": {
+     "n": 4,
+     "effect": "Move 1 Armor token from the Devil onto the Smelter Oubliette Trait card"
+    },
+    "responses": {
+     "wound": "Ferrobaptism 3. Gain +2 [H] and the [Priority Target] Priority Target token.",
+     "fail": "Knockdown.",
+     "instinct": null,
+     "critical": "Each Knight discards the Choked Condition card and resets their [H]!"
+    },
+    "ops": {
+     "at": 9,
+     "bargain": true,
+     "overcome": {
+      "n": 4,
+      "kind": "overpower",
+      "ops": [
+       {
+        "op": "dsfTithe",
+        "n": 1,
+        "why": "Overcome/Overpower"
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "dsfFerro",
+       "n": 3
+      },
+      {
+       "op": "dsfK",
+       "k": {
+        "op": "gainHeat",
+        "n": 2
+       },
+       "who": "attacker",
+       "perHit": false
+      },
+      {
+       "op": "dsfPriority"
+      }
+     ],
+     "fail": [
+      {
+       "op": "knockdown"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "dsfReset",
+       "all": true,
+       "choked": true
+      }
+     ]
+    }
+   },
+   {
+    "name": "Crucible of Smelted Fears",
+    "level": 3,
+    "at": 10,
+    "top": "OVERPOWER 3+: Move 1 Armor [Armor] token from the Devil onto the Smelter Oubliette Trait card",
+    "note": "You may Bargain before the Power Roll.",
+    "wound": null,
+    "fail": null,
+    "instinct": "Ferrobaptism 3.",
+    "critical": "Move all Armor [Armor] tokens from the Devil onto the Smelter Oubliette Trait card.",
+    "unclear": [],
+    "overcomeTag": "OVERPOWER",
+    "overcome": {
+     "n": 3,
+     "effect": "Move 1 Armor token from the Devil onto the Smelter Oubliette Trait card"
+    },
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Ferrobaptism 3.",
+     "critical": "Move all Armor [Armor] tokens from the Devil onto the Smelter Oubliette Trait card."
+    },
+    "ops": {
+     "at": 10,
+     "bargain": true,
+     "overcome": {
+      "n": 3,
+      "kind": "overpower",
+      "ops": [
+       {
+        "op": "dsfTithe",
+        "n": 1,
+        "why": "Overcome/Overpower"
+       }
+      ]
+     },
+     "wound": null,
+     "fail": null,
+     "instinct": [
+      {
+       "op": "dsfFerro",
+       "n": 3
+      }
+     ],
+     "critical": [
+      {
+       "op": "dsfTithe",
+       "n": "all",
+       "why": "Critical"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Smelter Oubliette",
+    "level": 3,
+    "at": 11,
+    "top": "OVERPOWER 3+: Move 1 Armor [Armor] token from the Devil onto the Smelter Oubliette Trait card",
+    "note": "You may Bargain before the Power Roll.",
+    "wound": "Discard 1 Bane [Bane] token.",
+    "fail": "Discard 1 Gear [Gear] card. Move to the Oubliette.",
+    "instinct": null,
+    "critical": "Disable the Smelter Oubliette Trait card, everyone Escapes!",
+    "unclear": [],
+    "overcomeTag": "OVERPOWER",
+    "overcome": {
+     "n": 3,
+     "effect": "Move 1 Armor token from the Devil onto the Smelter Oubliette Trait card"
+    },
+    "responses": {
+     "wound": "Discard 1 Bane [Bane] token.",
+     "fail": "Discard 1 Gear [Gear] card. Move to the Oubliette.",
+     "instinct": null,
+     "critical": "Disable the Smelter Oubliette Trait card, everyone Escapes!"
+    },
+    "ops": {
+     "at": 11,
+     "bargain": true,
+     "overcome": {
+      "n": 3,
+      "kind": "overpower",
+      "ops": [
+       {
+        "op": "dsfTithe",
+        "n": 1,
+        "why": "Overcome/Overpower"
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "dsfBaneOff",
+       "n": 1
+      }
+     ],
+     "fail": [
+      {
+       "op": "dsfExhaust",
+       "n": 1,
+       "who": "attacker",
+       "mode": "discard"
+      },
+      {
+       "op": "dsfOubliette",
+       "who": "attacker"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "dsfFlag",
+       "id": "noOub"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Cursed Offertory Box",
+    "level": 3,
+    "at": 10,
+    "top": "OVERPOWER 3+: Move 1 Armor [Armor] token from the Devil onto the Smelter Oubliette Trait card",
+    "note": "You may Bargain before the Power Roll.",
+    "wound": "Discard 2 Bane [Bane] tokens.",
+    "fail": "Bane 2. Discard.",
+    "instinct": null,
+    "critical": "Bargain is free! Until the end of Clash, all Knights ignore \"Bane 1\" when Bargaining.",
+    "unclear": [],
+    "overcomeTag": "OVERPOWER",
+    "overcome": {
+     "n": 3,
+     "effect": "Move 1 Armor token from the Devil onto the Smelter Oubliette Trait card"
+    },
+    "responses": {
+     "wound": "Discard 2 Bane [Bane] tokens.",
+     "fail": "Bane 2. Discard.",
+     "instinct": null,
+     "critical": "Bargain is free! Until the end of Clash, all Knights ignore \"Bane 1\" when Bargaining."
+    },
+    "ops": {
+     "at": 10,
+     "bargain": true,
+     "overcome": {
+      "n": 3,
+      "kind": "overpower",
+      "ops": [
+       {
+        "op": "dsfTithe",
+        "n": 1,
+        "why": "Overcome/Overpower"
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "dsfBaneOff",
+       "n": 2
+      }
+     ],
+     "fail": [
+      {
+       "op": "dsfK",
+       "k": {
+        "op": "bane",
+        "n": 2
+       },
+       "who": "attacker",
+       "perHit": false
+      },
+      {
+       "op": "dsfK",
+       "k": {
+        "op": "discard",
+        "n": 1
+       },
+       "who": "attacker",
+       "perHit": false
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "dsfFlag",
+       "id": "free"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Chains of an Ancient Ritual",
+    "level": 3,
+    "at": 12,
+    "top": "OVERPOWER 2+: Move 1 Armor [Armor] token from the Devil onto the Smelter Oubliette Trait card",
+    "note": "You may Bargain before the Power Roll.",
+    "wound": null,
+    "fail": "Bargain. Discard.",
+    "instinct": "Perform AI against the Attacker.",
+    "critical": "Scavenge 2.",
+    "unclear": [],
+    "overcomeTag": "OVERPOWER",
+    "overcome": {
+     "n": 2,
+     "effect": "Move 1 Armor token from the Devil onto the Smelter Oubliette Trait card"
+    },
+    "responses": {
+     "wound": null,
+     "fail": "Bargain. Discard.",
+     "instinct": "Perform AI against the Attacker.",
+     "critical": "Scavenge 2."
+    },
+    "ops": {
+     "at": 12,
+     "bargain": true,
+     "overcome": {
+      "n": 2,
+      "kind": "overpower",
+      "ops": [
+       {
+        "op": "dsfTithe",
+        "n": 1,
+        "why": "Overcome/Overpower"
+       }
+      ]
+     },
+     "wound": null,
+     "fail": [
+      {
+       "op": "dsfBargain"
+      },
+      {
+       "op": "dsfK",
+       "k": {
+        "op": "discard",
+        "n": 1
+       },
+       "who": "attacker",
+       "perHit": false
+      }
+     ],
+     "instinct": [
+      {
+       "op": "dsfAI"
+      }
+     ],
+     "critical": [
+      {
+       "op": "dsfScavenge",
+       "n": 2
+      }
+     ]
+    }
+   },
+   {
+    "name": "Fragment of a Primal Soul",
+    "level": 3,
+    "at": 10,
+    "top": "OVERPOWER 3+: Move 1 Armor [Armor] token from the Devil onto the Smelter Oubliette Trait card",
+    "note": "You may Bargain before the Power Roll.",
+    "wound": "Ferrobaptism 3.",
+    "fail": "Bargain.",
+    "instinct": null,
+    "critical": "The Devil of the Smelted Fears dies! See 3310.",
+    "unclear": [],
+    "overcomeTag": "OVERPOWER",
+    "overcome": {
+     "n": 3,
+     "effect": "Move 1 Armor token from the Devil onto the Smelter Oubliette Trait card"
+    },
+    "responses": {
+     "wound": "Ferrobaptism 3.",
+     "fail": "Bargain.",
+     "instinct": null,
+     "critical": "The Devil of the Smelted Fears dies! See 3310."
+    },
+    "ops": {
+     "at": 10,
+     "bargain": true,
+     "overcome": {
+      "n": 3,
+      "kind": "overpower",
+      "ops": [
+       {
+        "op": "dsfTithe",
+        "n": 1,
+        "why": "Overcome/Overpower"
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "dsfFerro",
+       "n": 3
+      }
+     ],
+     "fail": [
+      {
+       "op": "dsfBargain"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "slayMonster"
+      }
+     ]
+    }
+   }
+  ],
+  "signature": {
+   "name": "Profane Punishment",
+   "level": 0,
+   "type": "attack",
+   "evasionDice": 3,
+   "evasionDifficulty": 9,
+   "pre": null,
+   "targeting": [
+    "Closest Knight not in front",
+    "Furthest Knight in sight",
+    "[Priority Target] Priority Target"
+   ],
+   "tag": "APPEAR BEHIND & ATTACK {H6+: GATECRASHER}",
+   "effects": [
+    "Pushback 1. For each hit lose -2 [V] and gain +1 [H]. [Peril].",
+    "[React]"
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Ferrobaptism 2. {LEVEL 3+: FERROBAPTISM 3 INSTEAD}",
+   "zone": null,
+   "unclear": [],
+   "typePrinted": "SIGNATURE",
+   "moveTag": "APPEAR BEHIND & ATTACK {H6+: GATECRASHER}",
+   "afterAttack": "AFTER ATTACK: Ferrobaptism 2. {LEVEL 3+: FERROBAPTISM 3 INSTEAD}",
+   "ops": {
+    "targeting": [
+     "Closest Knight not in front",
+     "Furthest Knight in sight",
+     "[Priority Target] Priority Target"
+    ],
+    "move": false,
+    "gates": [
+     {
+      "stat": "heat",
+      "gte": 6,
+      "op": "dsfAlso",
+      "alsoOps": [
+       {
+        "op": "dsfGatecrasher",
+        "who": "target"
+       }
+      ]
+     }
+    ],
+    "before": [],
+    "effects": [
+     {
+      "op": "dsfPush",
+      "n": 1
+     },
+     {
+      "op": "loseVigorPerHit",
+      "n": 2,
+      "perilCheck": true
+     },
+     {
+      "op": "dsfK",
+      "k": {
+       "op": "gainHeat",
+       "n": 1
+      },
+      "who": "target",
+      "perHit": true
+     },
+     {
+      "op": "reactWindow",
+      "at": "mid"
+     }
+    ],
+    "afterAttack": [
+     {
+      "op": "dsfFerro",
+      "n": 2,
+      "sig": true
+     }
+    ],
+    "afterFinalAttack": null,
+    "beforeAttack": [
+     {
+      "op": "dsfAppear"
+     }
+    ]
+   }
+  },
+  "routine": {
+   "name": "Blessing of Fear",
+   "text": "Ferrobaptism 2. Each Knight suffers Bane X, where X is the number of Armor [Armor] tokens on the Devil. Place a random Knight on one of the four spaces in the center of the Clash Board.",
+   "type": "routine",
+   "ops": [
+    {
+     "op": "dsfRoutine"
+    }
+   ]
+  }
+ },
+ "dsf": true,
+ "clashSetup": {
+  "_source": "Principality of Stone Codex p.52–53 (Devil of the Smelted Fears Clash)",
+  "steps": [
+   "Standard Preparations (Rulebook p.44)",
+   "Monster Positioning: Place the Devil of the Smelted Fears miniature on the space designated on the diagram. Note the facing direction indicated by the arrow.",
+   "Additional Setup: Place the Smelter Oubliette Trait card, Panzergate tokens, and the Fool's deck near the Monster Sheet."
+  ],
+  "requiredTiles": [
+   "10x Column"
+  ],
+  "monsterCells": [
+   "H2",
+   "H3",
+   "I2",
+   "I3"
+  ],
+  "facing": "E",
+  "knightStart": [
+   "G8",
+   "F10",
+   "E7",
+   "D9"
+  ],
+  "terrain": [
+   {
+    "tile": "column",
+    "cells": [
+     "J9"
+    ]
+   },
+   {
+    "tile": "column",
+    "cells": [
+     "I7"
+    ]
+   },
+   {
+    "tile": "column",
+    "cells": [
+     "I13"
+    ]
+   },
+   {
+    "tile": "column",
+    "cells": [
+     "G12"
+    ]
+   },
+   {
+    "tile": "column",
+    "cells": [
+     "F4"
+    ]
+   },
+   {
+    "tile": "column",
+    "cells": [
+     "E13"
+    ]
+   },
+   {
+    "tile": "column",
+    "cells": [
+     "D5"
+    ]
+   },
+   {
+    "tile": "column",
+    "cells": [
+     "B4"
+    ]
+   },
+   {
+    "tile": "column",
+    "cells": [
+     "B10"
+    ]
+   },
+   {
+    "tile": "column",
+    "cells": [
+     "A8"
+    ]
+   }
+  ],
+  "notes": [
+   "Column·시작 칸은 코덱스 도식에서 읽음 [해석, 확인 필요]"
+  ]
+ },
+ "rulings": [
+  "Ferrobaptism X: Devil이 Armor 토큰 X개를 얻음. Armor 토큰 1개당 모든 BP의 AT +1. Level 3+: Signature의 Ferrobaptism +1",
+  "Bargain: Bane 1 → 버림 더미를 섞거나 카드를 한 장씩 뽑음(멈추거나 A/B가 나올 때까지). A가 나오면 뽑은 카드를 모두 버리고(다른 카드 효과 없음) Oubliette로 이동, 버림 더미를 덱에 섞음. 그 외에는 뽑은 순서대로 C/D/E = Armor 토큰 3/2/1개, F = Heat +1로 1개, B = 중단 + Discard. 버린 Armor 토큰은 Smelter Oubliette 카드로 (The Iron Tithe) [해석, 확인 필요]",
+  "Smelter Oubliette: 안에 있는 기사는 보드 밖(Devil에 인접·사거리 무관 공격 가능, 몬스터 시야 밖, 비자발 이동 없음). Escape = Move action, 카드의 Armor 토큰 X개(5 + Baptized in Metal을 가진 기사 수)를 버리고 Board Edge에서 4칸 이상 떨어진 칸으로, Baptized in Metal 획득. 턴 종료 시 Choke(Passion) 후 Heat만큼 [V] 손실 [해석, 확인 필요]",
+  "Gatekeeper: Panzergate 토큰이 없으면 1개. Wound를 주거나 Knight Round 종료 시 다른 기사에 인접하면 버림. 토큰이 있으면 Bargain과 Escape 불가. Gatecrasher: Armor(Armor Gear)·Shield Trait Gear를 모두 Exhaust, Panzergate 토큰이 있으면 Discard",
+  "Molten Chains (Lv2+): Stains of Profanity 표로 Peril 등급이 정해진 Peril Check 뒤에 벌칙 — Cooldown/Delay/Discard는 손패에서 무작위 1장, Gear Exhaust는 플레이어 선택",
+  "Only Fear Will Remain (Lv3): 이 몬스터의 효과(공격·Gatecrasher·Molten Chains·Shield/Helmet 대체)로 Gear를 Exhaust/Discard할 때만 Choke 1 — 기사가 스스로 비용으로 Exhaust하는 경우는 아직 미연결 [해석, 확인 필요]",
+  "Zone 도식: Flaming Arc = 정면의 호 모양(작은 그림에서 읽음) [해석, 확인 필요]. Spear Downthrust / Merciless Impalement = Land on Top + Knockdown 후 Devil 주변 Zone 1 / 2",
+  "\"Knockback N to the left\" = Devil이 바라보는 방향 기준 왼쪽 [해석, 확인 필요]",
+  "Pull Unlimited & Judge: 대상을 Devil에 인접할 때까지 끌어옴",
+  "Appear Behind: 대상에 인접한 칸 중 Devil의 현재 위치에서 가장 먼 쪽(대상의 반대편)에 나타남 [해석, 확인 필요]",
+  "Vile Vortex: 명중 시 Devil이 중앙에 더 가까우면 Forced Vault. After: [V]를 잃었다면 대상을 보드 중앙 쪽으로 Pushback(중앙까지), 그 중 Crash는 -4 [V]로 대체 [해석, 확인 필요]",
+  "Smelting Point: 명중 1/2/3회 = Massive Peril -5/-9/-12의 You Died 카드를 이번 Judicium에만 추가 [해석, 확인 필요]",
+  "Hell-ter Smelter: [V]를 잃었으면 이번에 공격받지 않은 기사 중 가장 먼 기사에게 반복, 모두 공격받거나 [V] 손실이 없을 때까지 [해석, 확인 필요]",
+  "Blessing of Fear(Routine): Ferrobaptism 2, 모든 기사 Bane X(X = Devil의 Armor 토큰), 무작위 기사를 중앙 4칸 중 한 곳으로",
+  "미구현: \"You may voluntarily fail this Attack\"(Rancid Loincloth, Rotting Visage), Exposed Tendon Critical의 Sequential·Zone Attack 비활성, Hell-ter Smelter의 Heat 6+ 게이트(Bonus Attack·Chain Break 무시), 각 AI 카드의 REACT! 창 위치(효과 사이 창은 넣음)"
+ ]
+}

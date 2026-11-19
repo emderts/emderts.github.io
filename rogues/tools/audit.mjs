@@ -271,7 +271,7 @@ const out = sec.filter(x => FULL || !REVIEWED.test(x.trim())).filter(x => FULL |
 if (done.length) out.push(`<section id="mon-done"><h2>몬스터 — 오딧 완료 (${done.length})</h2><p class="impl">소유자 확인이 끝난 몬스터는 이 페이지에서 빼고, 게임 화면 오른쪽 위 <b>👁 몬스터</b> 버튼(몬스터 정보: Sheet · Trait · AI/BP · Signature/Routine · Setup · 규칙 해석)에서 볼 수 있습니다. 전체 표가 필요하면 <code>node tools/audit.mjs --full</code>.</p><ul>${done.map(n => `<li>${esc(n)}</li>`).join('')}</ul></section>`);
 
 { // new King / Devil monsters: transcription only (engine not implemented) — shown for the owner to check the readings
-  const ids = ['puppet_king_edelhardt', 'devil_of_the_ancient_dusk', 'devil_of_the_smelted_fears', 'toadragon_of_the_great_marsh', 'panzerdragon_veldr', 'young_devour_dragon'].filter(i => fs.existsSync(`docs/transcriptions/${i}_raw.json`));
+  const ids = ['puppet_king_edelhardt', 'toadragon_of_the_great_marsh', 'panzerdragon_veldr', 'young_devour_dragon'].filter(i => fs.existsSync(`docs/transcriptions/${i}_raw.json`));
   if (ids.length) { const e = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); const nl = s => e(s).split('\n').join('<br>'); const U = a => (a && a.length) ? `<div class="warn small">⚠ ${a.map(e).join(' · ')}</div>` : '';
     const one = id => { const m = JSON.parse(fs.readFileSync(`docs/transcriptions/${id}_raw.json`, 'utf8')); const S = m.sheet;
       const lv = Object.entries(S.levels).map(([l, v]) => `<tr><td>${l}</td><td>${e(v.toHit)}</td><td>${v.wounds} / ${v.exhibitionWounds} · ${v.activations.join(' + ')}</td><td>Esc ${v.bonuses.escalations} · AT +${v.bonuses.at} · [die] +${v.bonuses.evasionDice} · [V] +${v.bonuses.vigorLoss} · [H] +${v.bonuses.heat}</td><td>${v.traitsAdd.map(e).join(', ')}</td></tr>`).join('');
