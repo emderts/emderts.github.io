@@ -1,0 +1,787 @@
+{
+ "id": "puppet-king-edelhardt",
+ "sheet": {
+  "name": "Puppet King Edelhardt",
+  "code": "26A1062",
+  "traitsLine": [
+   "King",
+   "Parasite",
+   "Undead"
+  ],
+  "footprint": "2x2, rear = the two cells behind (R R, Blindspot)",
+  "basicAbilities": [
+   "Unavoidable Knockback 5",
+   "Blindspot",
+   "Always There",
+   "VP"
+  ],
+  "levels": {
+   "1": {
+    "toHit": "7+",
+    "wounds": 10,
+    "exhibitionWounds": 3,
+    "activations": [
+     "AI",
+     "S"
+    ],
+    "traitsAdd": [
+     "Welcome to My Castle!",
+     "Five Fingers",
+     "Shockwave",
+     "Dark Fog",
+     "Fallen Knight Army"
+    ],
+    "bonuses": {
+     "escalations": 0,
+     "at": 0,
+     "vigorLoss": 0,
+     "evasionDice": 0,
+     "heat": 0
+    }
+   },
+   "2": {
+    "toHit": "7+",
+    "wounds": 10,
+    "exhibitionWounds": 3,
+    "activations": [
+     "AI",
+     "S"
+    ],
+    "traitsAdd": [
+     "Obedient Knights"
+    ],
+    "bonuses": {
+     "escalations": 1,
+     "at": 1,
+     "vigorLoss": 1,
+     "evasionDice": 0,
+     "heat": 0
+    }
+   },
+   "3": {
+    "toHit": "8+",
+    "wounds": 10,
+    "exhibitionWounds": 3,
+    "activations": [
+     "AI",
+     "S"
+    ],
+    "traitsAdd": [
+     "Unstoppable Force"
+    ],
+    "bonuses": {
+     "escalations": 1,
+     "at": 2,
+     "vigorLoss": 1,
+     "evasionDice": 1,
+     "heat": 0
+    }
+   },
+   "4": {
+    "toHit": "9+",
+    "wounds": 10,
+    "exhibitionWounds": 3,
+    "activations": [
+     "AI",
+     "S"
+    ],
+    "traitsAdd": [
+     "On Command"
+    ],
+    "bonuses": {
+     "escalations": 2,
+     "at": 4,
+     "vigorLoss": 2,
+     "evasionDice": 2,
+     "heat": 0
+    }
+   }
+  },
+  "traits": [
+   {
+    "name": "Welcome to My Castle!",
+    "level": 1,
+    "text": "Start of Clash: Perform The King Says: Come to Me Trait Attack (this does not count as an AI activation).\nAdditional Setup: Draw 2 Grave Mortis cards and place Loose String Terrain tiles on designated spaces. If you draw the same space twice, repeat the draw. If one of those spaces is occupied, place the Loose String Terrain tile on the closest empty space instead."
+   },
+   {
+    "name": "Five Fingers",
+    "level": 1,
+    "text": "Puppet King Edelhardt cannot be involuntarily moved and turned.\nWhen you wound one of the Five Fingers BP cards, immediately:\n1st Finger: Flip one chosen Fallen Knight to Column Terrain tile.\n2nd Finger: Flip two chosen Fallen Knights to Column Terrain tiles.\n3rd Finger: Place a Generic Single Wound card on the Wound Stack.\n4th Finger: Place a Generic Single Wound card on the Wound Stack.\n5th Finger: Place a Generic Double Wound card on the Wound Stack."
+   },
+   {
+    "name": "Shockwave",
+    "level": 1,
+    "text": "Shockwave: Each Knight on the Clash Board loses -X [V] and suffers Knockback X, where X is 4 + the King's Level–the number of spaces between the Knight and the King. Treat this effect as a Wave Attack effect (you may block it with Obstacles)."
+   },
+   {
+    "name": "Dark Fog",
+    "level": 1,
+    "text": "When you attack, lose -1 Precision for every space between you and the Target."
+   },
+   {
+    "name": "Fallen Knight Army",
+    "level": 1,
+    "text": "! Fallen Knights move only in a straight line from the lowest numbered column to the highest numbered column.\nEnd of your turn: Move the Fallen Knight that's in the same row as you 5 spaces. If there are no Fallen Knights in that row, move the furthest Fallen Knight in a chosen adjacent row instead. If you're on the VP, move any 1 Fallen Knight instead. Then, if no Fallen Knight was moved, Spawn a new Fallen Knight in the lowest numbered column in your row.\nFallen Knights destroy Column Terrain tiles they move through.\nWhen you would place or move a Fallen Knight into Zone 1 around the King or the last column of the Clash Board (column 14), immediately remove that Fallen Knight from the Clash Board and the King gains 1 Armor [Armor] token. Level 3+: 2 Armor [Armor] tokens instead. When the King gains the 5th Armor [Armor] token, discard all Armor [Armor] tokens and each Knight suffers Bane 5.\nTreat Fallen Knights as Mobs that never activate. All Fallen Knights are represented by a single Trait BP card.\nEach time a Fallen Knight is dealt a Wound, place a Generic token on its Trait BP card instead of Escalating. When you finish resolving the current action, if there are 2 or more Generic tokens on that card, discard all Generic tokens and place a Generic Single Wound card on the Wound Stack, then Escalate 1."
+   },
+   {
+    "name": "Obedient Knights",
+    "level": 2,
+    "text": "If you wound a King BP other than one of the Five Fingers and you're not on the VP, immediately place a Fallen Knight on an adjacent space closest to the King. If you deal a Wound from the VP, after you finish resolving your Attack, perform Signature."
+   },
+   {
+    "name": "Unstoppable Force",
+    "level": 3,
+    "text": "When a Fallen Knight is about to move through or onto a Knight's space, that Knight suffers Forced Vault and Knockdown, then the Fallen Knight continues its movement."
+   },
+   {
+    "name": "On Command",
+    "level": 4,
+    "text": "When you're about to draw an AI, look at the top 2 AI cards and perform the higher Level one. If both cards are the same Level, perform the one that is a Command Attack. If neither is a Command Attack, perform Routine instead."
+   }
+  ],
+  "vp": {
+   "name": "The Seat of Power",
+   "text": "When you move onto the Loose String Terrain tile, immediately climb the VP (see the Loose String Terrain card).\n[Move action] If you're in the Blindspot, climb the VP.\nWhile on the VP, you gain either Precise or Heartseeker, ignore Armor [Armor] tokens and have +1 [Power]. Ignore normal Responses, and resolve these instead:\nWOUND: Gain the Subjugated Condition card. Move to any space in front and in Zone 1 of the King.\nFAIL: Shockwave. Displace to any space in front and adjacent to the King."
+  },
+  "unclear": [
+   "Level bar: first blue-bar number read as Escalations, then +AT, +[die], +[V]"
+  ]
+ },
+ "ai": [
+  {
+   "name": "Dismissive Flick",
+   "level": 1,
+   "type": "RANGE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 9,
+   "pre": null,
+   "targeting": [
+    "[Priority Target] Priority Target in sight",
+    "Closest Knight in front",
+    "Closest Knight in sight"
+   ],
+   "tag": "RANGE ATTACK UNLIMITED",
+   "effects": [
+    "For each hit lose -3 [V]. Knockback 6 and Knockdown. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Gain the Subjugated Condition card.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Dragged by the Ear",
+   "level": 1,
+   "type": "RANGE ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 8,
+   "pre": null,
+   "targeting": [
+    "Knight on the VP",
+    "Knight in Blindspot",
+    "Closest Knight not in front",
+    "Closest Knight"
+   ],
+   "tag": "RANGE ATTACK UNLIMITED {H3+: +1 [die]}",
+   "effects": [
+    "For each hit lose -3 [V] and gain +1 [H]. [Peril]. If you're on the VP, Displace.",
+    "{H6+: KNOCKDOWN}",
+    "[React]"
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Knockback 4.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Puppeteer",
+   "level": 1,
+   "type": "JUDGEMENT",
+   "evasionDice": 4,
+   "evasionDifficulty": 9,
+   "pre": null,
+   "targeting": [
+    "[Priority Target] Priority Target in sight",
+    "Closest Knight in front",
+    "Closest Knight in sight"
+   ],
+   "tag": "JUDGE",
+   "effects": [
+    "Tenacity / Sagacity.",
+    "For each hit lose -3 [V]. [Peril].",
+    "Knockback 5 in a random direction."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Gain the Subjugated Condition card.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "The King Commands: Bow Down!",
+   "level": 1,
+   "type": "WAVE COMMAND ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 9,
+   "pre": "NO KNIGHT IN ZONE: Perform Signature instead",
+   "targeting": [
+    "Clash Board"
+   ],
+   "tag": "COMMAND",
+   "effects": [
+    "Obey: Knockdown. Bane 2.",
+    "Disobey: Gain the Subjugated Condition card. For each hit lose -2 [V]. [Peril]."
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "If all Targets Obeyed, the King gains 1 Armor [Armor] token. Shockwave.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "The King Commands: Begone!",
+   "level": 1,
+   "type": "WAVE COMMAND ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 9,
+   "pre": "NO KNIGHT IN ZONE: Perform Signature instead",
+   "targeting": [
+    "Clash Board"
+   ],
+   "tag": "COMMAND",
+   "effects": [
+    "Obey: Knockback 6.",
+    "Disobey: For each hit lose -2 [V]. Two or more hits, gain the Subjugated Condition card. [Peril]."
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "If all Targets Obeyed, the King gains 1 Armor [Armor] token. Shockwave.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "The King Commands: Begone!",
+   "level": 1,
+   "type": "WAVE COMMAND ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 9,
+   "pre": "NO KNIGHT IN ZONE: Perform Signature instead",
+   "targeting": [
+    "Clash Board"
+   ],
+   "tag": "COMMAND",
+   "effects": [
+    "Obey: Knockback 6.",
+    "Disobey: For each hit lose -2 [V]. Two or more hits, gain the Subjugated Condition card. [Peril]."
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "If all Targets Obeyed, the King gains 1 Armor [Armor] token. Shockwave.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Slap in the Face",
+   "level": 2,
+   "type": "RANGE ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": 9,
+   "pre": null,
+   "targeting": [
+    "[Priority Target] Priority Target in sight",
+    "Closest Knight in front",
+    "Closest Knight"
+   ],
+   "tag": "RANGE ATTACK UNLIMITED {H3+: +1 [die]}",
+   "effects": [
+    "For each hit lose -5 [V]. [Peril].",
+    "Knockback 10 to the side."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Gain the Distracted Condition card.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Eye Poke",
+   "level": 2,
+   "type": "RANGE ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": 10,
+   "pre": null,
+   "targeting": [
+    "Closest Knight not in front",
+    "Closest Knight in sight"
+   ],
+   "tag": "RANGE ATTACK UNLIMITED",
+   "effects": [
+    "For each hit lose -5 [V]. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Exhaust a Weapon [Gear] card or discard a Helm [Gear] card.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Puppet Sword Dance",
+   "level": 2,
+   "type": "ZONE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 9,
+   "pre": null,
+   "targeting": [
+    "Zone 2 around each Fallen Knight"
+   ],
+   "tag": "ATTACK",
+   "effects": [
+    "For each hit lose -4 [V]. [Peril]."
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "Shockwave.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "The King Commands: Obey Me!",
+   "level": 2,
+   "type": "WAVE COMMAND ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 10,
+   "pre": "NO KNIGHT IN ZONE: Perform Signature instead",
+   "targeting": [
+    "Clash Board"
+   ],
+   "tag": "COMMAND",
+   "effects": [
+    "Obey: Exhaust all your Gear [Gear] cards.",
+    "Disobey: For each hit lose -2 [V]. Bane 1. [Peril]. Gain the Subjugated Condition card."
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "If at least 2 Targets Obeyed, the King gains 1 Armor [Armor] token. All Knights in Zone 2 suffer Knockdown.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "The King Commands: Get Out of My Sight!",
+   "level": 2,
+   "type": "WAVE COMMAND ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": 10,
+   "pre": "NO KNIGHT IN ZONE: Perform Signature instead",
+   "targeting": [
+    "Clash Board"
+   ],
+   "tag": "COMMAND",
+   "effects": [
+    "Obey: Knockback 8. Bane 2.",
+    "Disobey: For each hit lose -3 [V]. Gain the Subjugated Condition card. [Peril]."
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "If at least 2 Targets Obeyed, the King gains 1 Armor [Armor] token. Shockwave.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "The King Commands: Entertain Me!",
+   "level": 2,
+   "type": "WAVE COMMAND ATTACK",
+   "evasionDice": 5,
+   "evasionDifficulty": 7,
+   "pre": "NO KNIGHT IN ZONE: Perform Signature instead",
+   "targeting": [
+    "Clash Board"
+   ],
+   "tag": "COMMAND",
+   "effects": [
+    "Obey: Move up to your Speed to have another closest Knight in effective range of your Weapon. Perform a Power Roll as if you hit with all your Attack dice. That Knight loses [V] equal to Total Power.",
+    "Disobey: For each hit lose -3 [V]. [Peril]."
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "If all Targets Obeyed, the King gains 1 Armor [Armor] token. All Targets gain the Subjugated Condition card.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Shadow Punch",
+   "level": 3,
+   "type": "RANGE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 9,
+   "pre": null,
+   "targeting": [
+    "[Priority Target] Priority Target in sight",
+    "Closest Knight in front",
+    "Closest Knight"
+   ],
+   "tag": "RANGE ATTACK UNLIMITED",
+   "effects": [
+    "Choke 3. For each hit lose -4 [V]. [Peril].",
+    "[React]",
+    "Knockdown.",
+    "Knockback X+4, where X is the number of hits."
+   ],
+   "afterTag": null,
+   "after": null,
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Crushing Burden",
+   "level": 3,
+   "type": "RANGE ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 9,
+   "pre": null,
+   "targeting": [
+    "[Priority Target] Priority Target in sight",
+    "Closest Knight"
+   ],
+   "tag": "RANGE ATTACK UNLIMITED {H3+: +1 [die]}",
+   "effects": [
+    "For each hit lose -3 [V]. [Peril].",
+    "Knockdown. All other Knights in Zone 2 around the Target suffer Discard, Restrain, and Knockdown."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Gain a temporary negative Speed token.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Marionette Massacre",
+   "level": 3,
+   "type": "ZONE ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": 10,
+   "pre": null,
+   "targeting": [
+    "Zone 4"
+   ],
+   "tag": "ATTACK",
+   "effects": [
+    "For each hit lose -5 [V].",
+    "{H3+: -6 [V] INSTEAD} [Peril]."
+   ],
+   "afterTag": null,
+   "after": null,
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "The King Commands: Yield!",
+   "level": 3,
+   "type": "WAVE COMMAND ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 11,
+   "pre": "NO KNIGHT IN ZONE: Perform Signature instead",
+   "targeting": [
+    "Clash Board"
+   ],
+   "tag": "COMMAND",
+   "effects": [
+    "Obey: Restrain all cards from your Hand and Cooldown area.",
+    "Disobey: For each hit lose -2 [V]. Bane 3. [Peril]."
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "If at least 2 Targets Obeyed, the King gains 1 Armor [Armor] token. All Targets gain the Courage Condition card.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "The King Commands: Get Away From Me!",
+   "level": 3,
+   "type": "WAVE COMMAND ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 10,
+   "pre": "NO KNIGHT IN ZONE: Perform Signature instead",
+   "targeting": [
+    "Clash Board"
+   ],
+   "tag": "COMMAND {H3+: +1 [die]}",
+   "effects": [
+    "Obey: Knockback 10. Bane 2.",
+    "Disobey: For each hit lose -3 [V]. [Peril]."
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "If at least 1 Target Obeyed, the King gains 1 Armor [Armor] token. Shockwave.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "The King Commands: Lay Down Your Arms!",
+   "level": 3,
+   "type": "WAVE COMMAND ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 9,
+   "pre": "NO KNIGHT IN ZONE: Perform Signature instead",
+   "targeting": [
+    "Clash Board"
+   ],
+   "tag": "COMMAND {H3+: KNOCKDOWN}",
+   "effects": [
+    "Obey: Exhaust all your Gear [Gear] cards.",
+    "Disobey: For each hit lose -3 [V] and Bane 1. [Peril]."
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "If at least 2 Targets Obeyed, the King gains 1 Armor [Armor] token. Shockwave.",
+   "zone": null,
+   "unclear": []
+  }
+ ],
+ "signature": {
+  "name": "String Pull",
+  "type": "SIGNATURE",
+  "text": "Two Fallen Knights closest to the left Board Edge move 3 spaces. If there is a tie, prioritize the Fallen Knights furthest from the King."
+ },
+ "routine": {
+  "name": "It's Time to Pay!",
+  "text": "Each Knight loses -8 [V]. The King gains 2 Armor [Armor] tokens."
+ },
+ "traitCards": [
+  {
+   "name": "The King Commands: Come to Me",
+   "type": "TRAIT WAVE COMMAND ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 9,
+   "targeting": [
+    "Clash Board"
+   ],
+   "pre": "NO KNIGHT IN ZONE: Perform Signature instead",
+   "effects": [
+    "Obey: Move 4 spaces toward the King in a straight line. Gain the Subjugated Condition card.",
+    "Disobey: For each hit lose -2 [V]. [Peril]."
+   ],
+   "after": "AFTER FINAL ATTACK: If all Targets Obeyed, the King gains 1 Armor [Armor] token. Shockwave."
+  },
+  {
+   "name": "Fallen Knight",
+   "type": "TRAIT BP",
+   "at": 7,
+   "header": "Obstacle. Destructible. Odd Spawn. Fallen Knights have the same [Armor] as the Puppet King.",
+   "top": "OVERCOME 3+: Power 1 · OVERPOWER 3+: Remove this Fallen Knight from the Clash Board",
+   "wound": "Discard the Subjugated Condition card. Flip this Fallen Knight to Column Terrain tile.",
+   "fail": "Parasitize 1.",
+   "critical": "Discard all your Mind Condition cards. Flip this Fallen Knight to Column Terrain tile and place a Loose String Terrain tile adjacent to it. You may move up to 2 spaces and perform a Bonus Attack!"
+  }
+ ],
+ "bp": [
+  {
+   "name": "Heavy-Settled Crown",
+   "level": 1,
+   "at": 6,
+   "top": "OVERCOME 2+: Power 1",
+   "note": null,
+   "wound": null,
+   "fail": null,
+   "instinct": "Shockwave.",
+   "critical": "Scavenge 1.",
+   "unclear": []
+  },
+  {
+   "name": "Five Fingers: The Ring Finger",
+   "level": 1,
+   "at": 8,
+   "top": null,
+   "note": null,
+   "wound": null,
+   "fail": null,
+   "instinct": "Shockwave. Place a Loose String Terrain tile on any empty space outside Zone 2 around the King.",
+   "critical": "Leave additional 2 Opening and/or Break tokens.",
+   "unclear": []
+  },
+  {
+   "name": "Five Fingers: The Little Finger",
+   "level": 1,
+   "at": 8,
+   "top": "OVERCOME 3+: Power 1",
+   "note": null,
+   "wound": "Shockwave. Place a Loose String Terrain tile on any empty space outside Zone 2 around the King.",
+   "fail": "Gain the Subjugated Condition card.",
+   "instinct": null,
+   "critical": "You may perform a Bonus Attack!",
+   "unclear": []
+  },
+  {
+   "name": "Panzerthrone",
+   "level": 1,
+   "at": 7,
+   "top": null,
+   "note": null,
+   "wound": "Remove the Column Terrain tile closest to the King.",
+   "fail": "All Fallen Knights move 1 space.",
+   "instinct": null,
+   "critical": "Disable the Dark Fog Trait.",
+   "unclear": []
+  },
+  {
+   "name": "Feeble Chest",
+   "level": 1,
+   "at": 7,
+   "top": "OVERCOME 2+: Power 1",
+   "note": null,
+   "wound": null,
+   "fail": null,
+   "instinct": "Lose -2 [V]. Knockback 2.",
+   "critical": "Deal an additional Single Wound!",
+   "unclear": []
+  },
+  {
+   "name": "Cold Feet",
+   "level": 1,
+   "at": 6,
+   "top": "OVERCOME 3+: Power 1",
+   "note": null,
+   "wound": null,
+   "fail": null,
+   "instinct": "Shockwave.",
+   "critical": "Deal an additional Single Wound!",
+   "unclear": []
+  },
+  {
+   "name": "Chaos Ladder",
+   "level": 2,
+   "at": 8,
+   "top": "OVERCOME 4+: Power 1 or discard 1 Armor [Armor] token",
+   "note": null,
+   "wound": "You may immediately climb the VP.",
+   "fail": "All Fallen Knights move 1 space.",
+   "instinct": null,
+   "critical": "You may perform a Bonus Attack with Auto-break 2!",
+   "unclear": []
+  },
+  {
+   "name": "Five Fingers: The Middle Finger",
+   "level": 2,
+   "at": 9,
+   "top": "OVERCOME 5+: Discard 2 Armor [Armor] tokens",
+   "note": null,
+   "wound": "Knockback 4. Place a Loose String Terrain tile on any empty space outside Zone 2 around the King.",
+   "fail": "Shockwave.",
+   "instinct": null,
+   "critical": "You may perform a Bonus Attack!",
+   "unclear": []
+  },
+  {
+   "name": "Five Fingers: The Index Finger",
+   "level": 2,
+   "at": 9,
+   "top": "OVERCOME 3+: Discard 2 Armor [Armor] tokens",
+   "note": null,
+   "wound": "Shockwave. Place a Loose String Terrain tile on any empty space outside Zone 2 around the King.",
+   "fail": "Lose -3 [V]. Gain a temporary negative Precision token.",
+   "instinct": null,
+   "critical": "Gain +1 Precision until the end of Clash. You may perform a Bonus Attack!",
+   "unclear": []
+  },
+  {
+   "name": "Shield of the Fallen",
+   "level": 2,
+   "at": 7,
+   "top": "OVERCOME 5+: Power 1 or discard 1 Armor [Armor] token",
+   "note": null,
+   "wound": "Armor-piercing 1.",
+   "fail": "All Fallen Knights move 1 space.",
+   "instinct": null,
+   "critical": "Scavenge 2.",
+   "unclear": []
+  },
+  {
+   "name": "Shadowy Influence",
+   "level": 2,
+   "at": 8,
+   "top": "OVERCOME 4+: Power 1 or discard 1 Armor [Armor] token",
+   "note": null,
+   "wound": "Remove the Column Terrain tile closest to the King.",
+   "fail": "All Fallen Knights move 1 space.",
+   "instinct": null,
+   "critical": "Until the end of Clash, Fallen Knights' movement during Signature is reduced by 2.",
+   "unclear": []
+  },
+  {
+   "name": "Heart of the Throne",
+   "level": 2,
+   "at": 7,
+   "top": "OVERCOME 4+: Power 1 or discard 1 Armor [Armor] token",
+   "note": null,
+   "wound": "Place a Loose String Terrain tile on any empty space. Armor-piercing 1.",
+   "fail": "Draw and perform an AI card.",
+   "instinct": null,
+   "critical": "You may perform a Bonus Attack!",
+   "unclear": []
+  },
+  {
+   "name": "Fluchaura",
+   "level": 3,
+   "at": 9,
+   "top": "OVERCOME 2+: Power 1",
+   "note": null,
+   "wound": null,
+   "fail": null,
+   "instinct": "Gain the Subjugated Condition card.",
+   "critical": "All Knights discard the Subjugated Condition card. Disable gaining the Subjugated Condition card.",
+   "unclear": []
+  },
+  {
+   "name": "Hoary Codger",
+   "level": 3,
+   "at": 9,
+   "top": "OVERCOME 4+: Power 2",
+   "note": null,
+   "wound": null,
+   "fail": null,
+   "instinct": "Draw and perform an AI card.",
+   "critical": "Without a host, the throne loses its power. You win!",
+   "unclear": []
+  },
+  {
+   "name": "Five Fingers: Hidden Finger",
+   "level": 3,
+   "at": 11,
+   "top": "OVERCOME 2+: Power 2 or discard 3 Armor [Armor] tokens",
+   "note": null,
+   "wound": null,
+   "fail": null,
+   "instinct": "Perform Signature. Place a Loose String Terrain tile on any empty space outside Zone 2 around the King.",
+   "critical": "Deal an additional Single Wound. You may perform a Bonus Attack!",
+   "unclear": []
+  },
+  {
+   "name": "Five Fingers: The Thumb",
+   "level": 3,
+   "at": 12,
+   "top": "OVERCOME 4+: Power 3 or discard 3 Armor [Armor] tokens",
+   "note": null,
+   "wound": "Shockwave. Place a Loose String Terrain tile on any empty space outside Zone 2 around the King.",
+   "fail": "Draw and perform an AI card against the Attacker.",
+   "instinct": null,
+   "critical": "Deal an additional Single Wound.",
+   "unclear": []
+  },
+  {
+   "name": "Riesenmörder Sword",
+   "level": 3,
+   "at": 10,
+   "top": "OVERCOME 3+: Power 1 or discard 1 Armor [Armor] token",
+   "note": null,
+   "wound": "Draw and perform an AI card.",
+   "fail": "Choke 3. Gain the Panicked Condition card.",
+   "instinct": null,
+   "critical": "Disable the Shockwave Trait. Immediately see 2329.",
+   "unclear": []
+  },
+  {
+   "name": "Strands of the Wyrd",
+   "level": 3,
+   "at": 10,
+   "top": "OVERCOME 4+: Discard 2 Armor [Armor] tokens",
+   "note": null,
+   "wound": null,
+   "fail": null,
+   "instinct": "Perform Signature.",
+   "critical": "Scavenge 2.",
+   "unclear": []
+  }
+ ],
+ "notes": [
+  "\"The King Commands: Begone!\" appears twice among the AI 1 cards (6 AI 1 cards in total)",
+  "The Trait Attack is titled \"The King Commands: Come to Me\" on the card and \"The King Says: Come to Me\" on the Monster Sheet",
+  "Six BP cards are named Five Fingers (Ring, Little, Middle, Index, Hidden Finger, Thumb) while the Trait lists five results — which finger counts as which needs the rules reference",
+  "Overcome thresholds on the BP cards are printed very small — check every \"N+\""
+ ],
+ "_source": "Owner scans 2026-11-19 (Monster Sheet + card sheet). Engine NOT implemented."
+}

@@ -1,0 +1,753 @@
+{
+ "id": "devil-of-the-ancient-dusk",
+ "sheet": {
+  "name": "Devil of the Ancient Dusk",
+  "code": "26A1069",
+  "traitsLine": [
+   "Devil",
+   "Curse",
+   "Ancient"
+  ],
+  "footprint": "2x2, rear = the two cells behind (R R, Blindspot)",
+  "basicAbilities": [
+   "Unavoidable Knockback 5",
+   "Blindspot",
+   "Ignore Difficult Terrain"
+  ],
+  "levels": {
+   "1": {
+    "toHit": "10+",
+    "wounds": 10,
+    "exhibitionWounds": 3,
+    "activations": [
+     "AI",
+     "S"
+    ],
+    "traitsAdd": [
+     "Primordial Soup",
+     "Rising Tide",
+     "Stains of Profanity",
+     "Devil's Bargain",
+     "Devil of the Crossroads"
+    ],
+    "bonuses": {
+     "escalations": 0,
+     "at": 0,
+     "vigorLoss": 0,
+     "evasionDice": 0,
+     "heat": 0
+    }
+   },
+   "2": {
+    "toHit": "11+",
+    "wounds": 10,
+    "exhibitionWounds": 3,
+    "activations": [
+     "AI",
+     "S"
+    ],
+    "traitsAdd": [],
+    "bonuses": {
+     "escalations": 0,
+     "at": 2,
+     "vigorLoss": 1,
+     "evasionDice": 0,
+     "heat": 1
+    }
+   },
+   "3": {
+    "toHit": "11+",
+    "wounds": 10,
+    "exhibitionWounds": 3,
+    "activations": [
+     "AI",
+     "S"
+    ],
+    "traitsAdd": [
+     "Ancestral Recollection"
+    ],
+    "bonuses": {
+     "escalations": 0,
+     "at": 3,
+     "vigorLoss": 1,
+     "evasionDice": 0,
+     "heat": 1
+    }
+   }
+  },
+  "traits": [
+   {
+    "name": "Primordial Soup",
+    "level": 1,
+    "text": "The Clash starts with 5 pairs of opposite (left and right) Swamp Terrain tiles. Each pair of tiles is placed in two specific rows of the Clash Board, and can never be moved beyond those rows. Treat all spaces of the Board that aren't caught between a pair of opposite Swamp Terrain tiles as Swamp Terrain tiles as well. You cannot place Column Terrain tiles on those spaces.\nImportant: Swamp Terrain tiles in this Clash cannot be removed, flipped, rotated, or moved to different rows by any means."
+   },
+   {
+    "name": "Rising Tide",
+    "level": 1,
+    "text": "Deluge: Find the pair of opposite Swamp Terrain tiles in the same row as the targeted or attacking Knight. Move the left tile toward the opposite tile until it moves onto a Column Terrain tile (that Column is destroyed) or those tiles become adjacent. Then, repeat it for the right tile.\nNote: If those tiles are already adjacent to each other, nothing happens."
+   },
+   {
+    "name": "Stains of Profanity",
+    "level": 1,
+    "text": "Start of Clash: All Knights raise their Heat Limit [H]! to 9.\nWhen performing a [Peril], before you draw a Mortis card, consult the table below instead of your Peril Arc (unless using the Peril Arc would result in a higher Mortis level):\n[H] 0–2: Minor\n[H] 3–5: Major\n[H] 6–8: Grave\n[H] 9: Judicium"
+   },
+   {
+    "name": "Devil's Bargain",
+    "level": 1,
+    "text": "Bargain: Bane 1. Choose a number, then draw that many cards from the Fool's deck and check for pairs with matching letters. For each pair, resolve the effect corresponding with its letter (see below). For every two drawn cards, place a Column Terrain tile on an empty space on the Clash Board in the same row as any Knight. Then, discard all drawn cards, and continue the Attack as normal. If you drew a \"C\" card, shuffle all discarded cards into the deck.\nA: Suffer Pull 2 toward the closest short Board Edge.\nB: Gain the Drowning Condition card.\nC: You've indebted yourself enough to drown (you die)!\nD: The attacked BP card gains \"Overcome 6+: Knockdown.\"\nE: Gain the Exposed Condition card.\nF: Discard. If you cannot, you die instead."
+   },
+   {
+    "name": "Devil of the Crossroads",
+    "level": 1,
+    "text": "Swampwalk: The Devil appears in a straight line from the Target, adjacent to the short Board Edge closest to the Target, then moves adjacent to the Target."
+   },
+   {
+    "name": "Ancestral Recollection",
+    "level": 3,
+    "text": "Start of Monster Round: Each Knight in front of the Devil suffers Choke 2."
+   }
+  ],
+  "unclear": [
+   "Level bar: +AT, +[V], +[H] (the last icon is read as Heat)",
+   "Devil's Bargain does not say what drawing the cards gives the Knight — the benefit must be in the rules reference"
+  ]
+ },
+ "ai": [
+  {
+   "name": "Snake Bite",
+   "level": 1,
+   "type": "ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": 10,
+   "pre": null,
+   "targeting": [
+    "Furthest Knight with the Exposed Condition card in sight",
+    "Furthest Knight in sight"
+   ],
+   "tag": "SWAMPWALK & ATTACK",
+   "effects": [
+    "Poison 2. For each hit lose -5 [V]. [Peril].",
+    "Bane 2."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "{H4+: PUSHBACK 3}",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Join the Dead",
+   "level": 1,
+   "type": "ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 8,
+   "pre": null,
+   "targeting": [
+    "Furthest Knight in front",
+    "Furthest Knight in sight"
+   ],
+   "tag": "SWAMPWALK & ATTACK {H5+: +1 [die]}",
+   "effects": [
+    "One hit, lose -4 [V]. Two hits, lose -9 [V]. Three or more hits, lose -13 [V]. [Peril].",
+    "{H4+: KNOCKDOWN} Gain +2 [H]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Pushback 3.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Toss Away",
+   "level": 1,
+   "type": "ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 11,
+   "pre": null,
+   "targeting": [
+    "Furthest Knight in front",
+    "Furthest Knight in sight"
+   ],
+   "tag": "SWAMPWALK & ATTACK {H5+: +1 [die]}",
+   "effects": [
+    "For each hit lose -3 [V]. [Peril].",
+    "Knockback X, where X is the number of hits."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "The Devil moves to the center of the Clash Board, then turns to face the most Knights.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Tail Thrust",
+   "level": 1,
+   "type": "ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": 10,
+   "pre": null,
+   "targeting": [
+    "Closest Knight in front",
+    "Closest Knight in sight"
+   ],
+   "tag": "MOVE & ATTACK {H4+: +1 [die]}",
+   "effects": [
+    "For each hit lose -4 [V]. [Peril].",
+    "For each hit gain +1 [H].",
+    "Gain the Exposed Condition card."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "If adjacent, gain the Slimed Condition card.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Savage Swing",
+   "level": 1,
+   "type": "ZONE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 9,
+   "pre": "The Devil turns to face the closest Knight.",
+   "targeting": [
+    "Zone"
+   ],
+   "tag": "DESTROY ALL COLUMN TERRAIN TILES IN ZONE → ATTACK",
+   "effects": [
+    "For each hit lose -4 [V]. [Peril].",
+    "Gain the Exposed Condition card.",
+    "Bane 1.",
+    "{P3+: KNOCKDOWN}"
+   ],
+   "afterTag": null,
+   "after": null,
+   "zone": "diagram: a wide block in front of the Devil (read as 3 rows x 6 columns, centred)",
+   "unclear": [
+    "Zone diagram read from a small image",
+    "The purple gate icon is read as Passion"
+   ]
+  },
+  {
+   "name": "Sink or Swim",
+   "level": 1,
+   "type": "JUDGEMENT",
+   "evasionDice": 3,
+   "evasionDifficulty": 9,
+   "pre": null,
+   "targeting": [
+    "Highest [H] in sight"
+   ],
+   "tag": "JUDGE {H4+: DIFFICULTY 10+ INSTEAD}",
+   "effects": [
+    "Tenacity / Insight.",
+    "Bane 1. For each hit lose -3 [V] and destroy the Column Terrain tile closest to the Target. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "{H4+: GAIN THE SLIMED CONDITION CARD}",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Sideswipe",
+   "level": 2,
+   "type": "ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 10,
+   "pre": null,
+   "targeting": [
+    "Furthest Knight in front",
+    "Furthest Knight in sight"
+   ],
+   "tag": "SWAMPWALK & ATTACK {H5+: +1 [die]}",
+   "effects": [
+    "Bane 1.",
+    "For each hit lose -4 [V]. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Knockback 5 to the side.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Drag to the Depths",
+   "level": 2,
+   "type": "JUDGEMENT",
+   "evasionDice": 2,
+   "evasionDifficulty": 11,
+   "pre": null,
+   "targeting": [
+    "[Priority Target] Priority Target in sight",
+    "Highest [H] in sight"
+   ],
+   "tag": "JUDGE {H5+: +1 [die]}",
+   "effects": [
+    "Fortitude / Tenacity.",
+    "For each hit lose -5 [V] and Deluge. [Peril]. Gain +3 [H]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Knockdown. The Devil moves to the center of the Clash Board, then turns to face the most Knights.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Devilish Embrace",
+   "level": 2,
+   "type": "ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": 11,
+   "pre": null,
+   "targeting": [
+    "Furthest Knight in front",
+    "Furthest Knight in sight"
+   ],
+   "tag": "SWAMPWALK & ATTACK {H3+: +1 [die]}",
+   "effects": [
+    "One hit, lose -6 [V] and Toxify 1. Two hits, lose -9 [V], Toxify 2, and gain the Slimed Condition card. Three or more hits, lose -11 [V], Toxify 4, and gain the Drowning Condition card. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "{P3+: KNOCKDOWN}",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Tail Pierce",
+   "level": 2,
+   "type": "ZONE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 9,
+   "pre": null,
+   "targeting": [
+    "Closest Knight with the Exposed Condition card in sight",
+    "Closest Knight in sight"
+   ],
+   "tag": "MOVE & ATTACK {H5+: +1 [die]}",
+   "effects": [
+    "One hit, lose -7 [V]. Two hits, lose -10 [V]. Three or more hits, lose -15 [V].",
+    "Bane 1. {P4+: KNOCKDOWN}"
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Deluge.",
+   "zone": "diagram: 2x2 red block directly in front of the Devil",
+   "unclear": [
+    "Zone diagram read from a small image"
+   ]
+  },
+  {
+   "name": "Sunder Foundations",
+   "level": 2,
+   "type": "ZONE ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 7,
+   "pre": null,
+   "targeting": [
+    "Furthest Knight with the Exposed Condition card in sight",
+    "Furthest Knight in sight"
+   ],
+   "tag": "SWAMPWALK → DESTROY ALL COLUMN TERRAIN TILES IN ZONE → ATTACK",
+   "effects": [
+    "For each hit lose -4 [V].",
+    "{P3+: -5 [V] INSTEAD} [Peril].",
+    "For each hit gain +1 [H]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Gain the Exposed Condition card. {P3+: KNOCKDOWN}",
+   "zone": "diagram: large area in front and to the sides of the Devil",
+   "unclear": [
+    "Zone diagram read from a small image"
+   ]
+  },
+  {
+   "name": "Crushing Grasp",
+   "level": 2,
+   "type": "ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": 11,
+   "pre": null,
+   "targeting": [
+    "[Priority Target] Priority Target in sight",
+    "Highest [H] in sight"
+   ],
+   "tag": "MOVE & ATTACK",
+   "effects": [
+    "Lose -8 [V]. {P3+: -10 [V] INSTEAD}",
+    "Two or more hits, Knockdown. [Peril].",
+    "Bane 1. Gain the Exposed and Slimed Condition cards."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Deluge.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Nudge of the Finger",
+   "level": 3,
+   "type": "ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 10,
+   "pre": null,
+   "targeting": [
+    "Furthest Knight in front",
+    "Furthest Knight in sight"
+   ],
+   "tag": "MOVE & ATTACK",
+   "effects": [
+    "Bane 1. For each hit lose -4 [V]. [Peril].",
+    "Pushback X, where X is your [H]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Deluge.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Manic Mudslide",
+   "level": 3,
+   "type": "SEQUENTIAL ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 8,
+   "pre": "During this Attack, the Devil's movement doesn't cause Crash.",
+   "targeting": [
+    "Each Knight with the Exposed Condition card, starting from the closest",
+    "No Target: Perform Signature"
+   ],
+   "tag": "MOVE & ATTACK {H6+: DIFFICULTY 10+ INSTEAD}",
+   "effects": [
+    "One hit, lose -7 [V]. Two hits, lose -9 [V], gain +2 [H] and gain the Exposed Condition card. Three or more hits, lose -13 [V], gain the Exposed Condition and Drowning Condition cards. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Deluge.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Back to Your Fathers!",
+   "level": 3,
+   "type": "JUDGEMENT",
+   "evasionDice": 3,
+   "evasionDifficulty": 10,
+   "pre": null,
+   "targeting": [
+    "Furthest Knight in front",
+    "Furthest Knight in sight"
+   ],
+   "tag": "SWAMPWALK & JUDGE",
+   "effects": [
+    "Bravery / Sagacity.",
+    "For each hit gain +1 [H] and resolve a Fool's deck card (see Devil's Bargain Trait). Then, shuffle the drawn cards back into the Fool's deck. [Peril]."
+   ],
+   "afterTag": null,
+   "after": null,
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "The Oldest Trick",
+   "level": 3,
+   "type": "ZONE ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 9,
+   "pre": null,
+   "targeting": [
+    "[Priority Target] Priority Target in sight",
+    "Highest [H] in sight"
+   ],
+   "tag": "SWAMPWALK & ATTACK",
+   "effects": [
+    "For each hit lose -4 [V].",
+    "{P5+: -5 [V] INSTEAD} [Peril].",
+    "Gain the Drowning and Exposed Condition cards."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "{H4+: KNOCKDOWN}",
+   "zone": "diagram: 2 rows x 3 columns in front of the Devil",
+   "unclear": [
+    "Zone diagram read from a small image"
+   ]
+  },
+  {
+   "name": "Ravening Mire",
+   "level": 3,
+   "type": "ZONE ATTACK",
+   "evasionDice": 6,
+   "evasionDifficulty": 8,
+   "pre": null,
+   "targeting": [
+    "All spaces in front"
+   ],
+   "tag": "DESTROY ALL COLUMN TERRAIN TILES IN ZONE → ATTACK",
+   "effects": [
+    "For each hit lose -3 [V] and gain +1 [H]. [Peril].",
+    "{H8+: GAIN THE SLIMED CONDITION CARD}"
+   ],
+   "afterTag": null,
+   "after": null,
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Ritual Macabre",
+   "level": 3,
+   "type": "SEQUENTIAL ATTACK",
+   "evasionDice": 1,
+   "evasionDifficulty": 11,
+   "pre": "During this Attack, the Devil's movement doesn't cause Crash.",
+   "targeting": [
+    "Each Knight with the Exposed Condition card, starting from the closest",
+    "Closest Knight in sight"
+   ],
+   "tag": "SWAMPWALK & ATTACK {H6+: +1 [die]}",
+   "effects": [
+    "If your [V] is reduced to 0 during this Attack, you die. Bane 2. Lose -9 [V].",
+    "Gain +3 [H]. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Reveal the top card of the Grave Mortis deck. If it's Disemboweled, keep it on top. Otherwise, put the card on the bottom of the deck.",
+   "zone": null,
+   "unclear": []
+  }
+ ],
+ "signature": {
+  "name": "Overhead Swing",
+  "level": 0,
+  "type": "SIGNATURE",
+  "evasionDice": 3,
+  "evasionDifficulty": 9,
+  "pre": null,
+  "targeting": [
+   "Closest Knight not in front in sight",
+   "Furthest Knight in sight"
+  ],
+  "tag": "JUMP & ATTACK {H5+: +1 [die]}",
+  "effects": [
+   "For each hit lose -3 [V].",
+   "Gain +2 [H]. [Peril]."
+  ],
+  "afterTag": "AFTER ATTACK",
+  "after": "Deluge.",
+  "zone": "diagram: 2 red cells directly in front of the Devil",
+  "unclear": []
+ },
+ "routine": {
+  "name": "Return to the Past",
+  "text": "The Devil moves to the center of the Clash Board. Deluge all Swamp Terrain tiles. Each Knight gains the Drowning Condition card."
+ },
+ "bp": [
+  {
+   "name": "Devil's Foot",
+   "level": 1,
+   "at": 8,
+   "top": null,
+   "note": "You may Bargain before the Power Roll.",
+   "wound": "Gain the Exposed Condition card.",
+   "fail": "Knockdown.",
+   "instinct": null,
+   "critical": "One Knight may discard the Exposed Condition card.",
+   "unclear": []
+  },
+  {
+   "name": "Visage of the Endless",
+   "level": 1,
+   "at": 9,
+   "top": null,
+   "note": "You may Bargain before the Power Roll.",
+   "wound": null,
+   "fail": "Lose -3 [V].",
+   "instinct": "Gain the Slimed Condition card.",
+   "critical": "You may perform a Bonus Attack!",
+   "unclear": []
+  },
+  {
+   "name": "Honed Abs",
+   "level": 1,
+   "at": 10,
+   "top": null,
+   "note": "You may Bargain before the Power Roll.",
+   "wound": "Gain +2 [H]. Bane 1.",
+   "fail": "Gain the Distracted Condition card.",
+   "instinct": null,
+   "critical": "Each Knight may discard up to 2 Bane [Bane] tokens.",
+   "unclear": []
+  },
+  {
+   "name": "Amulet of Beginnings",
+   "level": 1,
+   "at": 7,
+   "top": null,
+   "note": null,
+   "wound": "Deluge. The Devil moves 1 space toward the closest short Board Edge (without turning).",
+   "fail": "Destroy the Column Terrain tile closest to you.",
+   "instinct": null,
+   "critical": "Reduce all Pushbacks and Knockbacks performed by the Devil by 2.",
+   "unclear": []
+  },
+  {
+   "name": "Uncovered Back",
+   "level": 1,
+   "at": 9,
+   "top": null,
+   "note": "If you attack this BP from a Rear [R] space, gain +1 [Power].",
+   "wound": "Knockdown. Knockback 2.",
+   "fail": null,
+   "instinct": null,
+   "critical": "You may perform a Bonus Attack!",
+   "unclear": []
+  },
+  {
+   "name": "Golden Bracers",
+   "level": 1,
+   "at": 8,
+   "top": null,
+   "note": "You may Bargain before the Power Roll.",
+   "wound": "Deluge. The Devil moves 1 space toward the closest short Board Edge (without turning).",
+   "fail": null,
+   "instinct": null,
+   "critical": "You may lose up to -3 [H].",
+   "unclear": []
+  },
+  {
+   "name": "Serpent-Nest Crown",
+   "level": 2,
+   "at": 9,
+   "top": null,
+   "note": null,
+   "wound": "Gain +3 [H].",
+   "fail": "Toxify 4.",
+   "instinct": null,
+   "critical": "You may move up to 3 spaces and perform a Bonus Attack!",
+   "unclear": []
+  },
+  {
+   "name": "Stolen Countenance",
+   "level": 2,
+   "at": 10,
+   "top": null,
+   "note": "You may Bargain before the Power Roll.",
+   "wound": "Deluge. The Devil moves 2 spaces toward the closest short Board Edge (without turning).",
+   "fail": "Suffer Pull 2 toward the closest short Board Edge.",
+   "instinct": null,
+   "critical": "The Devil gains a permanent negative To Hit token.",
+   "unclear": []
+  },
+  {
+   "name": "Leering Pelvis Guard",
+   "level": 2,
+   "at": 11,
+   "top": null,
+   "note": "You may Bargain before the Power Roll.",
+   "wound": "Gain the Exposed Condition card.",
+   "fail": "Knockback 4.",
+   "instinct": null,
+   "critical": "Scavenge 1.",
+   "unclear": []
+  },
+  {
+   "name": "Pearl White Ribcage",
+   "level": 2,
+   "at": 10,
+   "top": null,
+   "note": "You may Bargain before the Power Roll.",
+   "wound": "Deluge. The Devil moves 2 spaces toward the closest short Board Edge (without turning).",
+   "fail": "Gain the Slimed Condition card.",
+   "instinct": null,
+   "critical": "Bargain is free! Until the end of Clash, all Knights may ignore \"Bane 1\" when Bargaining.",
+   "unclear": []
+  },
+  {
+   "name": "Tail End",
+   "level": 2,
+   "at": 10,
+   "top": null,
+   "note": "You may Bargain before the Power Roll.",
+   "wound": null,
+   "fail": "Gain the Slimed Condition card.",
+   "instinct": "Gain the Exposed Condition card.",
+   "critical": "Until the end of Clash, if the Devil starts its movement on a Swamp Terrain tile, it stops after 3 spaces.",
+   "unclear": []
+  },
+  {
+   "name": "The Deal-Taker's Razor",
+   "level": 2,
+   "at": 11,
+   "top": null,
+   "note": "You may Bargain before the Power Roll.",
+   "wound": "Lose -3 [V]. Gain +2 [H].",
+   "fail": "Perform Signature against the Attacker.",
+   "instinct": null,
+   "critical": "The Devil gains a permanent negative Precision token.",
+   "unclear": []
+  },
+  {
+   "name": "Oozing Heart",
+   "level": 3,
+   "at": 14,
+   "top": null,
+   "note": "You may Bargain before the Power Roll.",
+   "wound": "Discard 1 Bane [Bane] token.",
+   "fail": null,
+   "instinct": "Deluge. The Devil moves 3 spaces toward the closest short Board Edge (without turning).",
+   "critical": "The Devil of the Ancient Dusk melts into the mud, you win!",
+   "unclear": []
+  },
+  {
+   "name": "Your Deepest Desire",
+   "level": 3,
+   "at": 12,
+   "top": null,
+   "note": "You may Bargain before the Power Roll.",
+   "wound": "Deluge. Choke 3. The Devil moves 3 spaces toward the closest short Board Edge (without turning).",
+   "fail": "Gain the Exposed Condition card. Gain +2 [H].",
+   "instinct": null,
+   "critical": "Scavenge 1. You may move up to 3 spaces and perform a Bonus Attack!",
+   "unclear": []
+  },
+  {
+   "name": "Rattling Body",
+   "level": 3,
+   "at": 12,
+   "top": null,
+   "note": "You may Bargain before the Power Roll.",
+   "wound": null,
+   "fail": "Perform Signature against the Attacker.",
+   "instinct": "Destroy 3 Column Terrain tiles farthest from you.",
+   "critical": "Return all Swamp Terrain tiles to their starting positions. Disable the Deluge keyword until the next Knight Round.",
+   "unclear": []
+  },
+  {
+   "name": "11th Finger",
+   "level": 3,
+   "at": 13,
+   "top": null,
+   "note": "You may Bargain before the Power Roll.",
+   "wound": "Deluge. Gain +3 [H]. The Devil moves 3 spaces toward the closest short Board Edge (without turning).",
+   "fail": "Gain the Drowning Condition card.",
+   "instinct": null,
+   "critical": "Discard all Bane [Bane] tokens from all Knights. Until the end of Clash, keep the top card of the Fool's deck revealed.",
+   "unclear": []
+  },
+  {
+   "name": "Relic of an Age of Profanity",
+   "level": 3,
+   "at": 19,
+   "top": null,
+   "note": "When you reveal this card: Shuffle all discarded cards into the Fool's deck. You may Bargain before the Power Roll. If you do, gain +1 [Power] for each drawn card.",
+   "wound": "Devote.",
+   "fail": "Draw a Judicium.",
+   "instinct": null,
+   "critical": "Devote. All Swamp spaces become Rut spaces instead. Flip all Swamp Terrain tiles to Rut tiles—they cannot be flipped again. Disable the Deluge keyword.",
+   "unclear": []
+  },
+  {
+   "name": "History of the Past",
+   "level": 3,
+   "at": 13,
+   "top": null,
+   "note": "You may Bargain before the Power Roll.",
+   "wound": "Bane 2.",
+   "fail": "Knockdown. Gain the Slimed Condition card.",
+   "instinct": null,
+   "critical": "Each Knight may reset their [H]. You may perform a Bonus Attack! After the Clash, see 9576.",
+   "unclear": []
+  }
+ ],
+ "notes": [
+  "No Overcome / Overpower lines are printed on these BP cards",
+  "Purple gate icons on AI cards are read as Passion [P] gates"
+ ],
+ "_source": "Owner scans 2026-11-19 (Monster Sheet + card sheet). Engine NOT implemented."
+}

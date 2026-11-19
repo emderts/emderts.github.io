@@ -1,0 +1,782 @@
+{
+ "id": "king-laid-low",
+ "sheet": {
+  "name": "The King Laid Low",
+  "code": "26A1068",
+  "traitsLine": [
+   "King",
+   "Beast",
+   "Cursed"
+  ],
+  "footprint": "2x2, rear = the two cells behind (R R, Blindspot)",
+  "basicAbilities": [
+   "Unavoidable Knockback 4",
+   "Blindspot",
+   "VP",
+   "Ignore Difficult Terrain"
+  ],
+  "levels": {
+   "1": {
+    "toHit": "8+",
+    "wounds": 10,
+    "exhibitionWounds": 3,
+    "activations": [
+     "AI",
+     "S"
+    ],
+    "traitsAdd": [
+     "Get out of My Swamp!",
+     "Ditch Digger",
+     "Heavy Is the Crown"
+    ],
+    "bonuses": {
+     "escalations": 1,
+     "at": 0,
+     "vigorLoss": 0,
+     "evasionDice": 0,
+     "heat": 0
+    }
+   },
+   "2": {
+    "toHit": "9+",
+    "wounds": 10,
+    "exhibitionWounds": 3,
+    "activations": [
+     "AI",
+     "S"
+    ],
+    "traitsAdd": [
+     "Putrid Penance",
+     "Shallow Grave",
+     "Guilt of Generations"
+    ],
+    "bonuses": {
+     "escalations": 1,
+     "at": 1,
+     "vigorLoss": 1,
+     "evasionDice": 0,
+     "heat": 0
+    }
+   },
+   "3": {
+    "toHit": "10+",
+    "wounds": 10,
+    "exhibitionWounds": 3,
+    "activations": [
+     "AI",
+     "S"
+    ],
+    "traitsAdd": [
+     "Bow before Your King!"
+    ],
+    "bonuses": {
+     "escalations": 1,
+     "at": 2,
+     "vigorLoss": 1,
+     "evasionDice": 0,
+     "heat": 0
+    }
+   },
+   "4": {
+    "toHit": "10+",
+    "wounds": 10,
+    "exhibitionWounds": 3,
+    "activations": [
+     "AI",
+     "S"
+    ],
+    "traitsAdd": [
+     "Shrug It Off"
+    ],
+    "bonuses": {
+     "escalations": 2,
+     "at": 3,
+     "vigorLoss": 2,
+     "evasionDice": 1,
+     "heat": 0
+    }
+   }
+  },
+  "traits": [
+   {
+    "name": "Get out of My Swamp!",
+    "level": 1,
+    "text": "Drill X: The King moves X spaces toward the Target or Attacker. If he already is or becomes adjacent, he continues his movement forward in a straight line through that Knight. If the Target or Attacker is on the VP, the King moves X spaces forward in a straight line instead. At the end of Drill, the King turns to face the most Knights.\n! Drill does not cause Crash.\nWhen the King moves through or ends his movement on a Knight during Drill, that Knight immediately suffers Unavoidable Knockback Y (resolve it as soon as the King enters their space). Usually, you will have two directions to choose from when resolving Unavoidable Knockbacks.\nLevel 1: Y=3. Level 2–3: Y=4. Level 4+: Y=5."
+   },
+   {
+    "name": "Ditch Digger",
+    "level": 1,
+    "text": "During Drill, when the King stops moving and is about to turn toward most Knights, place a 1x2 Rut Terrain tile on an empty space directly behind the King (with the short edge adjacent to the King, if possible).\nSwamp Terrain tiles gain the Indestructible Trait—you cannot place Rut Terrain tiles on them!"
+   },
+   {
+    "name": "Heavy Is the Crown",
+    "level": 1,
+    "text": "Start of Clash: A random Knight gains the Malediction (Dormant) card. When a Knight with the Malediction card dies, pass it to another random Knight (with the Dormant side up)."
+   },
+   {
+    "name": "Putrid Penance",
+    "level": 2,
+    "text": "Each time the King is dealt a Wound (a Double Wound is treated as 2 Wounds), place a Generic token on this Trait. After you finish resolving the current action, if there are 4 or more Generic tokens on this Trait, discard all Generic tokens and perform Signature."
+   },
+   {
+    "name": "Shallow Grave",
+    "level": 2,
+    "text": "When a Knight ends their involuntary movement on a Rut Terrain tile, flip it. That Knight immediately dies!"
+   },
+   {
+    "name": "Guilt of Generations",
+    "level": 2,
+    "text": "When the Knight with the Malediction card finishes their [Move action], place a 1x2 Rut Terrain tile on an adjacent space."
+   },
+   {
+    "name": "Bow before Your King!",
+    "level": 3,
+    "text": "End of Monster Round: The King commands each Knight to bow:\nObey: Knockdown. Lose -2 [V].\nDisobey: Gain the Fear Condition card."
+   },
+   {
+    "name": "Shrug It Off",
+    "level": 4,
+    "text": "During the Power Roll, unless you are on a Rut Terrain tile, Blindspot, or VP space, ignore all [Potential] symbols."
+   }
+  ],
+  "vp": {
+   "name": "Misshapen Hump",
+   "text": "Climb: Test Insight (7+). Fail: Gain the Slimed Condition card.\nHold On: End of Monster Round: If on the VP, test Fortitude (8+). Fail: Knockdown. Displace to an adjacent space.\nOnce there are 6+ Wounds on the Wound Stack, the VP is created. You have +1 [Power] while on the VP.\nBridle: When the King is about to perform Drill X as a Response or during an After Attack, if there's a Knight on the VP, they may gain +2 [H]. If they do, the King performs Drill 4 in a straight line in a chosen direction instead."
+  },
+  "unclear": [
+   "Level bar icons: the first blue-bar number (\"1\" / \"2\" with a burst icon) is read as Escalations",
+   "Shrug It Off: the ignored symbol is read as the Potential symbol"
+  ]
+ },
+ "ai": [
+  {
+   "name": "Churning Charge",
+   "level": 1,
+   "type": "ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": 8,
+   "pre": null,
+   "targeting": [
+    "Knight on the VP",
+    "Closest Knight in front",
+    "Closest Knight in sight"
+   ],
+   "tag": "MOVE & ATTACK {H4+: IGNORE ALL [icon]}",
+   "effects": [
+    "For each hit lose -3 [V]. [Peril].",
+    "[React]",
+    "Knockdown."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Drill 4.",
+   "zone": null,
+   "unclear": [
+    "Gate effect \"IGNORE ALL [icon]\" — icon unreadable (Armor / Evasion Re-rolls?)"
+   ]
+  },
+  {
+   "name": "Slime Stampede",
+   "level": 1,
+   "type": "SEQUENTIAL ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 8,
+   "pre": "The King turns to face the most Knights.",
+   "targeting": [
+    "Furthest Knight in front",
+    "Furthest Knight in sight"
+   ],
+   "tag": "MOVE & ATTACK ALL KNIGHTS IN PATH",
+   "effects": [
+    "For each hit lose -2 [V]. [Peril].",
+    "{H3+: Gain the Slimed Condition card}"
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Drill 2.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Ancestors' Admonition",
+   "level": 1,
+   "type": "JUDGEMENT",
+   "evasionDice": 5,
+   "evasionDifficulty": 9,
+   "pre": null,
+   "targeting": [
+    "Closest Knight with a Melee Weapon",
+    "[Priority Target] Priority Target"
+   ],
+   "tag": "MOVE & JUDGE {H4+: DOOMED}",
+   "effects": [
+    "Fortitude / Might.",
+    "For each hit lose -1 [V]. [Peril].",
+    "Four or more hits, gain the Distracted Condition card."
+   ],
+   "afterTag": null,
+   "after": null,
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Tongue-Lashing",
+   "level": 1,
+   "type": "JUDGEMENT",
+   "evasionDice": 3,
+   "evasionDifficulty": 10,
+   "pre": null,
+   "targeting": [
+    "Highest [H]"
+   ],
+   "tag": "JUDGE",
+   "effects": [
+    "Tenacity / Insight.",
+    "For each hit lose -2 [V]. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Pull 4.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Slippery Slope",
+   "level": 1,
+   "type": "ZONE ATTACK",
+   "evasionDice": 5,
+   "evasionDifficulty": 8,
+   "pre": null,
+   "targeting": [
+    "Closest Knight in front",
+    "Closest Knight in sight"
+   ],
+   "tag": "MOVE & ATTACK",
+   "effects": [
+    "For each hit lose -1 [V]. [Peril].",
+    "{H5+: -2 [V] INSTEAD}"
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "Drill 4.",
+   "zone": "diagram: a block of red cells directly in front of the King (read as 2 rows x 4 columns in front)",
+   "unclear": [
+    "Zone diagram size read from a small image"
+   ]
+  },
+  {
+   "name": "Ankle-Biter",
+   "level": 1,
+   "type": "ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 9,
+   "pre": null,
+   "targeting": [
+    "Closest Knight in front",
+    "Closest Knight in sight"
+   ],
+   "tag": "MOVE & ATTACK {H3+: -1 [die]}",
+   "effects": [
+    "For each hit lose -2 [V]. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "The Knight with the Malediction card passes it to you.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Malediction's Momentum",
+   "level": 2,
+   "type": "ATTACK",
+   "evasionDice": "X*",
+   "evasionDifficulty": 10,
+   "pre": null,
+   "targeting": [
+    "Knight with the Malediction card",
+    "Furthest Knight"
+   ],
+   "tag": "MOVE & ATTACK",
+   "effects": [
+    "*X is the number of spaces between you and the King right before he moves (minimum 1, maximum 5).",
+    "For each hit lose -2 [V]. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Drill 3.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Floodstrike",
+   "level": 2,
+   "type": "ATTACK",
+   "evasionDice": 5,
+   "evasionDifficulty": 9,
+   "pre": null,
+   "targeting": [
+    "Knight on the VP",
+    "Closest Knight in front",
+    "Closest Knight in sight"
+   ],
+   "tag": "MOVE & ATTACK",
+   "effects": [
+    "Knockback 5.",
+    "For each hit lose -2 [V]. [Peril]."
+   ],
+   "afterTag": null,
+   "after": null,
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "The Sinking Sin",
+   "level": 2,
+   "type": "ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 9,
+   "pre": null,
+   "targeting": [
+    "Closest Knight in front",
+    "Closest Knight in sight"
+   ],
+   "tag": "MOVE & ATTACK {H5+: CHOKE 3}",
+   "effects": [
+    "For each hit lose -2 [V]. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "If you are adjacent to a Swamp Terrain tile, draw a Judicium.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Tongue Strike",
+   "level": 2,
+   "type": "ATTACK",
+   "evasionDice": 5,
+   "evasionDifficulty": 7,
+   "pre": "The King turns to face the most Knights.",
+   "targeting": [
+    "Closest Knight in front",
+    "Closest Knight in sight"
+   ],
+   "tag": "MOVE & ATTACK {H4+: +1 [die]}",
+   "effects": [
+    "Drill 2. Gain the Slimed Condition card. For each hit lose -2 [V]. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Drill 5.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Royal Decree",
+   "level": 2,
+   "type": "SIMULTANEOUS JUDGEMENT",
+   "evasionDice": 3,
+   "evasionDifficulty": 9,
+   "pre": null,
+   "targeting": [
+    "Two Knights with the highest [H]"
+   ],
+   "tag": "JUDGE",
+   "effects": [
+    "Sagacity / Tenacity.",
+    "If hit, lose -5 [V]. [Peril]."
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "Swap [P], [H], and [V] of targeted Knights (if both alive).",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Off With Your Head!",
+   "level": 2,
+   "type": "JUDGEMENT",
+   "evasionDice": 3,
+   "evasionDifficulty": 7,
+   "pre": null,
+   "targeting": [
+    "Knight on the VP",
+    "Closest Knight in front",
+    "Closest Knight in sight"
+   ],
+   "tag": "MOVE & JUDGE",
+   "effects": [
+    "Bravery / Sagacity.",
+    "One hit, lose -2 [V]. Two hits, lose -5 [V]. Three or more hits, you die. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "{H4+: DRILL 5}",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Scorn of the Swamplands",
+   "level": 3,
+   "type": "JUDGEMENT",
+   "evasionDice": 3,
+   "evasionDifficulty": 10,
+   "pre": null,
+   "targeting": [
+    "Knight with the Malediction card",
+    "Lowest [V]"
+   ],
+   "tag": "JUMP & JUDGE",
+   "effects": [
+    "Might / Fortitude.",
+    "For each hit lose -3 [V]. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Drill 5.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Musk of Fear",
+   "level": 3,
+   "type": "ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 9,
+   "pre": null,
+   "targeting": [
+    "Knight on the VP",
+    "Furthest Knight in front",
+    "Furthest Knight in sight"
+   ],
+   "tag": "MOVE & ATTACK",
+   "effects": [
+    "For each hit lose -3 [V]. [Peril].",
+    "Four or more hits, gain the Dread Condition card."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "{V 9 or less: SWAP YOUR [P] AND [V]}",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Goring Charge",
+   "level": 3,
+   "type": "SEQUENTIAL ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 9,
+   "pre": null,
+   "targeting": [
+    "All Knights in random order"
+   ],
+   "tag": "MOVE & ATTACK",
+   "effects": [
+    "For each hit lose -2 [V]. [Peril]. Drill 4.",
+    "{H6+: DISCARD A WEAPON [Gear] CARD}"
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "Until the end of Clash, increase all Knockbacks by 1.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Swamp of Smothering",
+   "level": 3,
+   "type": "ATTACK",
+   "evasionDice": 5,
+   "evasionDifficulty": 9,
+   "pre": null,
+   "targeting": [
+    "Closest Knight with a Ranged Weapon",
+    "[Priority Target] Priority Target"
+   ],
+   "tag": "MOVE & ATTACK {H4+: +1 [die]}",
+   "effects": [
+    "One hit, lose -3 [V]. Two or three hits, lose -6 [V]. Four or more hits, lose -10 [V]. [Peril]. Gain the Drowning Condition card."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "{H5+: DRILL 6}",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Mudflood Tsunami",
+   "level": 3,
+   "type": "ZONE ATTACK",
+   "evasionDice": 5,
+   "evasionDifficulty": 7,
+   "pre": null,
+   "targeting": [
+    "Furthest Knight in front",
+    "Furthest Knight in sight"
+   ],
+   "tag": "JUMP & ATTACK {H5+: KNOCKDOWN}",
+   "effects": [
+    "For each hit lose -3 [V]. [Peril].",
+    "Three or more hits, Choke 3."
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "Flip all Rut Terrain tiles in Zone 2.",
+   "zone": "diagram: Zone 2 around the King",
+   "unclear": []
+  },
+  {
+   "name": "True Love's Kiss",
+   "level": 3,
+   "type": "ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 8,
+   "pre": null,
+   "targeting": [
+    "Highest [P]"
+   ],
+   "tag": "MOVE & ATTACK {KNOCKDOWN: DOOMED}",
+   "effects": [
+    "One hit, lose -4 [V]. Two hits, you are devoured (you die). Three or more hits, you are devoured and Heal 1. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "The King moves to the center of the Clash Board, then turns to face the most Knights.",
+   "zone": null,
+   "unclear": []
+  }
+ ],
+ "signature": {
+  "name": "Sacrament of Slime",
+  "level": 0,
+  "type": "SIGNATURE",
+  "evasionDice": 3,
+  "evasionDifficulty": 8,
+  "pre": "The King turns to face the most Knights.",
+  "targeting": [
+   "Closest Knight in front",
+   "Closest Knight in sight",
+   "Knight on the VP"
+  ],
+  "tag": "MOVE & ATTACK {H4+: +1 [die]}",
+  "effects": [
+   "For each hit lose -2 [V]. [Peril].",
+   "Gain the Slimed Condition card."
+  ],
+  "afterTag": "AFTER ATTACK",
+  "after": "Drill 4.",
+  "zone": null,
+  "unclear": []
+ },
+ "routine": {
+  "name": "Burden of the Past",
+  "text": "Knight on the VP suffers Unavoidable Knockback 5. Place a 1x2 Swamp Terrain tile under a random Knight. Escalate 1."
+ },
+ "bp": [
+  {
+   "name": "Slimy Skin",
+   "level": 1,
+   "at": 7,
+   "top": "OVERCOME 4+: Power 1",
+   "note": null,
+   "wound": "Drill 5.",
+   "fail": "Pull 2. Gain the Slimed Condition card.",
+   "instinct": null,
+   "critical": "Deal an additional Single Wound!",
+   "unclear": []
+  },
+  {
+   "name": "Dirty Feet",
+   "level": 1,
+   "at": 8,
+   "top": "OVERCOME 3+: Power 1",
+   "note": null,
+   "wound": null,
+   "fail": "Drill 4.",
+   "instinct": null,
+   "critical": "Gain Auto-hope 1 until the end of Clash.",
+   "unclear": []
+  },
+  {
+   "name": "Mucus-Clogged Nostrils",
+   "level": 1,
+   "at": 8,
+   "top": "OVERCOME 4+: Power 1",
+   "note": null,
+   "wound": "Pull 2. [React] Drag 2.",
+   "fail": "Lose -2 [V]. Gain the Slimed Condition card.",
+   "instinct": null,
+   "critical": "Gain +1 [P].",
+   "unclear": []
+  },
+  {
+   "name": "Contorted Hand",
+   "level": 1,
+   "at": 7,
+   "top": "OVERCOME 3+: Power 1",
+   "note": null,
+   "wound": null,
+   "fail": null,
+   "instinct": "Drill 4.",
+   "critical": "You may perform a Bonus Attack!",
+   "unclear": []
+  },
+  {
+   "name": "Bejewelled Skull",
+   "level": 1,
+   "at": 6,
+   "top": "OVERPOWER 3+: Another Knight may move up to 3 spaces",
+   "note": null,
+   "wound": "Drill 5.",
+   "fail": "Place a 1x2 Rut Terrain tile adjacent to the Attacker.",
+   "instinct": null,
+   "critical": "Gain a temporary positive Evasion token.",
+   "unclear": []
+  },
+  {
+   "name": "Malformed Jaw",
+   "level": 1,
+   "at": 6,
+   "top": "OVERPOWER 2+: Another Knight may move up to 2 spaces",
+   "note": null,
+   "wound": "Gain the Slimed Condition card.",
+   "fail": "Drag 2.",
+   "instinct": null,
+   "critical": "Scavenge 1.",
+   "unclear": []
+  },
+  {
+   "name": "Royal Signet",
+   "level": 2,
+   "at": 8,
+   "top": "OVERCOME 6+: Power 1",
+   "note": null,
+   "wound": "Perform Signature.",
+   "fail": "Drill 5.",
+   "instinct": null,
+   "critical": "You may move up to 3 spaces and perform a Bonus Attack!",
+   "unclear": []
+  },
+  {
+   "name": "Vile Tongue",
+   "level": 2,
+   "at": 9,
+   "top": "OVERCOME 5+: Power 1",
+   "note": null,
+   "wound": null,
+   "fail": null,
+   "instinct": "Drill 6.",
+   "critical": "Disable the Cumbersome keyword.",
+   "unclear": []
+  },
+  {
+   "name": "Toad-Like Hind Leg",
+   "level": 2,
+   "at": 9,
+   "top": "OVERCOME 5+: Power 1",
+   "note": null,
+   "wound": "Drill 5.",
+   "fail": "Pull 2. Knockdown.",
+   "instinct": null,
+   "critical": "Remove up to 3 Rut and/or Swamp Terrain tiles from the Clash Board.",
+   "unclear": []
+  },
+  {
+   "name": "Hunched Back",
+   "level": 2,
+   "at": 7,
+   "top": "OVERPOWER 3+: Another Knight may move up to 3 spaces",
+   "note": null,
+   "wound": "The King moves to the center of the Clash Board, then turns to face the most Knights.",
+   "fail": "Pull 2. Drag 3.",
+   "instinct": null,
+   "critical": "Until the end of Clash, if a Knight ends their turn on a Rut Terrain tile, they gain +1 [V].",
+   "unclear": []
+  },
+  {
+   "name": "Torn Cape",
+   "level": 2,
+   "at": 7,
+   "top": "OVERPOWER 2+: Another Knight may move up to 2 spaces",
+   "note": null,
+   "wound": null,
+   "fail": null,
+   "instinct": "Place a 1x2 Rut Terrain tile adjacent to the King. [React] Pull 2 all Knights.",
+   "critical": "Gain a permanent positive Speed token.",
+   "unclear": []
+  },
+  {
+   "name": "Mud-Filled Lung",
+   "level": 2,
+   "at": 8,
+   "top": "OVERPOWER 3+: One Knight may discard a Condition card",
+   "note": null,
+   "wound": "Drill 5.",
+   "fail": "Drag 3. Gain the Slimed Condition card.",
+   "instinct": null,
+   "critical": "Create the VP. If it's already unlocked, gain +2 [P] instead.",
+   "unclear": []
+  },
+  {
+   "name": "Sky-Starved Face",
+   "level": 3,
+   "at": 10,
+   "top": "OVERCOME 6+: Power 1",
+   "note": null,
+   "wound": "Drill 7. Gain the Drowning Condition card.",
+   "fail": "Perform Signature against the Attacker.",
+   "instinct": null,
+   "critical": "Another Knight may move up to 5 spaces and perform a Bonus Attack!",
+   "unclear": []
+  },
+  {
+   "name": "Hateful Tumor",
+   "level": 3,
+   "at": 11,
+   "top": "OVERCOME 7+: Power 1",
+   "note": null,
+   "wound": null,
+   "fail": null,
+   "instinct": "Perform AI.",
+   "critical": "The King Laid Low dies! You win!",
+   "unclear": []
+  },
+  {
+   "name": "Mud-Stained Abdomen",
+   "level": 3,
+   "at": 11,
+   "top": "OVERCOME 6+: Power 1",
+   "note": null,
+   "wound": "Discard your active Weapon or gain +3 [H].",
+   "fail": "Drill 5. Drill 5.",
+   "instinct": null,
+   "critical": "Flip all Swamp Terrain tiles.",
+   "unclear": []
+  },
+  {
+   "name": "Throne of a Defiled Nation",
+   "level": 3,
+   "at": 10,
+   "top": "OVERPOWER 2+: You deal a Critical Wound!",
+   "note": null,
+   "wound": "The King performs [icon] Drill 6 against a random Knight in Range 5.",
+   "fail": "Draw a Judicium.",
+   "instinct": null,
+   "critical": "Place the Slimy Throne Terrain tile on a chosen empty space.",
+   "unclear": [
+    "Wound: small icon before \"Drill 6\" unreadable"
+   ]
+  },
+  {
+   "name": "Golden Crown",
+   "level": 3,
+   "at": 9,
+   "top": "OVERPOWER 2+: Two other Knights may move up to 2 spaces",
+   "note": null,
+   "wound": null,
+   "fail": null,
+   "instinct": "Flip all Rut Terrain tiles.",
+   "critical": "Reduce Drill X by 1.",
+   "unclear": []
+  },
+  {
+   "name": "Scepter of Smothered Ages",
+   "level": 3,
+   "at": 9,
+   "top": "OVERPOWER 2+: Two other Knights may move up to 3 spaces",
+   "note": null,
+   "wound": "Pull 3 all Knights. Drill 7.",
+   "fail": "Gain the Drowning Condition card.",
+   "instinct": null,
+   "critical": "The Knight with the Malediction card may discard it. Immediately see 4085.",
+   "unclear": []
+  }
+ ],
+ "notes": [
+  "Overcome / Overpower thresholds on the BP cards are printed very small — every \"N+\" there needs checking against the cards"
+ ],
+ "_source": "Owner scans 2026-11-19 (Monster Sheet + card sheet). Engine NOT implemented."
+}
