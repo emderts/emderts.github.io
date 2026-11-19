@@ -103,7 +103,7 @@ export const NightmareMixin = {
     const took = []; for (const c of path) { if (took.length >= x) break; if (this.knightAt(c) || (!this.wnBypass() && B.terrainAt(c) && B.terrainAt(c).obstacle)) break; took.push(c); }
     if (!took.length) { this.say(`Drag ${x}: Winged Nightmare가 움직일 수 없음`); return; } const start = me; await this.wnMoveTo(took.at(-1), `Drag ${x} — Chasm ${B.label(goal)} 방향 ${took.length}칸`, took);
     const walk = [start, ...took.slice(0, -1)]; let m = 0;
-    for (const c of walk) { if (!k.alive) break; const t = B.terrainAt(c); if (t && t.obstacle) { await this.crash(k); if (t.destructible) { B.terrain.delete(B.key(c)); this.say(`${t.id} 파괴 (${B.label(c)})`); } else break; if (!k.alive) break; } if (this.knightAt(c)) break; this.moveKnight(k, c); m++; if (t && t.chasm) { await this.die(k, 'Chasm'); break; } if (t && t.id === 'rubble') await this.knockdown(k); }
+    for (const c of walk) { if (!k.alive) break; const t = B.terrainAt(c); if (t && t.obstacle) { await this.crash(k); if (t.destructible) { B.terrain.delete(B.key(c)); this.say(`${t.id} 파괴 (${B.label(c)})`); } else break; if (!k.alive) break; } if (this.knightAt(c)) break; this.moveKnight(k, c); m++; if (t && t.chasm) { if (!await this.stoneRock(k, 'Chasm')) await this.die(k, 'Chasm'); break; } if (t && t.id === 'rubble') await this.knockdown(k); }
     if (k.alive) { this.turnToward(k.pos); this.say(`${k.name} Drag: ${m}칸 끌려감 → ${B.label(k.pos)}`); }
   },
   // ---------- Knight keywords against the Nightmare ----------

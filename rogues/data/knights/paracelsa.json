@@ -217,7 +217,7 @@
    "abilities": [
     {
      "name": "Consecrated Champion",
-     "text": "One or more Misses: Zeal 2. When you resolve a [Judicium draw] or another Knight draws a Judicium, Zeal 2. You gain the following stacking benefits depending on the number of Zeal [Zeal] tokens on your Knight Board: 1: +1 [Power]. 2: Evasion Re-roll 1. 3: Tumble. 4: +1 [Speed]. 5: +1 [Precision]. 6: Attack Re-roll 1. 7: Auto-break 1. 8: Deadly. 9: -1 [Power]. 10: [Power Re-roll] 1. 11: Heartseeker. 12: Immediately Incarnate! (Once per Clash). Zeal Threshold: 12.",
+     "text": "One or more Misses: Zeal 2. When you resolve a [Judicium draw] or another Knight draws a Judicium, Zeal 2. You gain the following stacking benefits depending on the number of Zeal [Zeal] tokens on your Knight Board: 1: +1 [Power]. 2: Evasion Re-roll 1. 3: Tumble. 4: +1 [Speed]. 5: +1 [Precision]. 6: Attack Re-roll 1. 7: Auto-break 1. 8: Deadly. 9: +1 [Power]. 10: [Power Re-roll] 1. 11: Heartseeker. 12: Immediately Incarnate! (Once per Clash). Zeal Threshold: 12.",
      "ops": [
       {
        "op": "zeal",
@@ -268,7 +268,7 @@
         {
          "at": 9,
          "kind": "power",
-         "n": -1
+         "n": 1
         },
         {
          "at": 10,

@@ -9,27 +9,31 @@ export const GEAR_RULINGS = [
   ['[신규] Devote (The Law of Blood, Crusader\'s Strike)', 'The Law of Blood [PASSION 3+] 2 Heat: Judicium을 뽑고 살아남으면 Devote. Crusader\'s Strike: 그 Rush에서 Wound를 주면 카드를 Discard하고 Devote. Sword of a Sunken Legacy의 Auto-hope X(Devotion 수)는 미구현. [해석, 확인 필요]'],
   ['[신규] Bluesteel Sword', '공격할 때 Knight Pool의 Magic 토큰 1개(Renholder가 놓은 것)를 써서 이 카드의 Opening 2를 Cantrip 2로 바꿈. [해석, 확인 필요]'],
   ['[신규] Leash / Unleash Gear (Stoneface 규칙 사용)', 'Stalagmight: 2차 능력 창에서 Unleash 3 → 임시 AT -1 토큰. Shield of the Defiant: Exhaust → Leash 1 + Advanced Reinforce 1. Plate of the Sleeping Giant [MAJOR]: Armor Roll 때 Leash 1 + black Armor 주사위 1개를 white로. [해석, 확인 필요]'],
+  ['[신규] Nithing Staff', '본인 또는 인접 기사의 Pushback·Pull·Stray 직전에 2 Heat + Exhaust로 그 이동을 무시. Gangup으로 밀리는 경우와 Drag는 아직 연결 안 됨. [해석, 확인 필요]'],
+  ['[신규] Cone Armor', 'Pushback/Gangup 직전에 X를 골라 Heat +X, X만큼 감소 (Exhaust). 실제로 이동한 칸 수만큼 Break. [해석, 확인 필요]'],
+  ['[신규] Geistly Flame / Lightgrasp / Hexed Soul / Two-Faced Shield', 'Geistly Flame [MAJOR]: 살아 있는 기사 누구든 Cantrip을 Fire로 바꿀 수 있음. Lightgrasp [GRAVE]: Area Zone 2 (다른 Area와 같은 판정). Hexed Soul [BANE 3+]: 본인·인접 기사의 Stray 무시 여부를 물음. Two-Faced Shield: Slimed·Drowning의 턴 종료(이동 안 함) 효과 무시. [해석, 확인 필요]'],
 ];
 export const GEAR_QUESTIONS = [
   ['Divine Target', 'Spotlight 조건의 Divine Target 토큰 — 엔진에 없음. 지금은 Priority Target만 본다.'],
 ];
 // Renholder (added 2026-11-16) — interpretations and missing material.
 export const KNIGHT_RULINGS = [
-  ['[수정] Area 공격 (Burning Barrage, Blackfire)', 'Power Roll을 Area 칸의 다른 Mob에게도 각각의 AT로 판정(Response는 원래 대상만). Burning Barrage: 대상 방향 직선의 사거리 내 칸, Blackfire: 대상 주변 Zone 1. Troll·Nightmare·Pumpkinhead Mob은 아직 Area 판정 미구현.'],
-  ['[수정] Mirage', 'Evasion Roll 뒤, Guard를 쓰는 시점(재굴림 직전)에 사용 여부를 결정.'],
-  ['[수정] Superior Chance', 'Mortis뿐 아니라 Judicium 카드도 무시하고 같은 덱에서 다시 뽑음. 다시 뽑을 때 "You died horribly"는 제외, 두 번째 뽑기는 무시 불가.'],
-  ['[수정] Brain over Brawn', '자기 턴이 아니어도 공격할 때 사용 여부를 결정.'],
-  ['[수정] Unholy Furnace', '턴 시작뿐 아니라 Magic 1 → Heat Refresh, 장비의 Heat Refresh에도 "대신 Card Refresh" 바꾸기를 물음.'],
   ['[수정] Harmonized Soul Peril Arc 보너스', '"[아이콘] 1" = Evasion Re-roll 1 (소유자 확인 2026-11-16).'],
-  ['Power from Camaraderie', '다른 기사가 Technique를 쓸 때 Knight Round당 1회 · Monster Round당 1회. Squire는 미구현.'],
-  ['Sympathetic Magic / Manifestation', '다른 기사가 명중당하거나 Wound에 실패하면 그 기사 보드에 Magic 1. Manifestation은 본인 턴 프리 액션으로만(Reaction 사용 미구현), 효과는 그 라운드 끝까지.'],
-  ['[신규] Stoneface', 'Juggernaut: 보스 몬스터도 내 옆의 다른 위치로 옮김. Rolling Stone: Rush 경로에 인접했던 기사 1명을 도착 칸 옆으로 Drag. Transmute Pain to Power: 시야 내 몬스터를 Pull X 한 뒤 공격. Go Beyond!: Fail Response만 무시, Wound + Overcome/Overpower면 Critical Wound. I\'ll Be Your Rock: Zone 3의 다른 기사가 Swamp에서 죽기 직전 옆으로 데려옴 + Leash 3. Rock, Meet Hard Place: 이동 칸 일부를 Pushback으로 사용, 몬스터가 Obstacle에 막히면 임시 AT -1 (Clash당 1회). Split the Heavens: 그 턴 동안 Wound 시 Condition 카드 하나 버리기. [해석, 확인 필요]'],
   ['[신규] Ser Ubar', 'Inner Turmoil HUMAN: Vault 그리고/또는 Move action. You\'re in Here With Me APE: 1 Heat로 비자발 이동 -2. Knight Roll APE: 넘어진 채 사용 가능 (다른 Technique Reaction은 Knockdown (Falling Down) 중 사용 불가로 막음). Knuckle Charge APE: 그 Rush 동안 Difficult Terrain 무시. Untouchable HUMAN: 카드가 Delay에 있는 동안 [Reaction] [Discard] Superior Reflex. [해석, 확인 필요]'],
-  ['[신규] Kara', 'Living Weapon: Full Evade 시 카드가 손으로 복귀. Avert a Dire Fate: 버림 더미에 있는 동안 1 Heat로 Knockdown 대신 Vault (보스에 인접해 있을 때). Fleet of Foot: 대상이 아닐 때만, 몬스터가 마지막으로 움직인 방향의 직선으로만 이동. [해석, 확인 필요]'],
-  ['[신규] Paracelsa / Renholder', 'Flee From Evil: 대상에게서 멀어지는 칸으로만 이동. Shadows Between Worlds: Delay/Cooldown에 있는 동안 다른 유효 대상이 있으면 대상이 되지 않음, Reaction으로도 사용 가능. [해석, 확인 필요]'],
 ];
 /** Rulings the owner has reviewed (Kara, Paracelsa, Ser Sonch — 소유자 확인 2026-11-16). Kept for the record; not shown on the audit page. */
 export const KNIGHT_CONFIRMED = [
+  ['I\'ll Be Your Rock', 'Swamp뿐 아니라 Chasm으로 죽기 직전에도 발동 (소유자 확인 2026-11-19).'],
+  ['[수정] Area 공격 (Burning Barrage, Blackfire)', 'Power Roll을 Area 칸의 다른 Mob에게도 각각의 AT로 판정(Response는 원래 대상만). Burning Barrage: 대상 방향 직선의 사거리 내 칸, Blackfire: 대상 주변 Zone 1. Troll·Nightmare·Pumpkinhead·Ratwolf도 같은 방식으로 판정. (소유자 확인 2026-11-19)'],
+  ['[수정] Mirage', 'Evasion Roll 뒤, Guard를 쓰는 시점(재굴림 직전)에 사용 여부를 결정. (소유자 확인 2026-11-19)'],
+  ['[수정] Superior Chance', 'Mortis뿐 아니라 Judicium 카드도 무시하고 같은 덱에서 다시 뽑음. 다시 뽑을 때 "You died horribly"는 제외, 두 번째 뽑기는 무시 불가. (소유자 확인 2026-11-19)'],
+  ['[수정] Brain over Brawn', '자기 턴이 아니어도 공격할 때 사용 여부를 결정. (소유자 확인 2026-11-19)'],
+  ['[수정] Unholy Furnace', '턴 시작뿐 아니라 Magic 1 → Heat Refresh, 장비의 Heat Refresh에도 "대신 Card Refresh" 바꾸기를 물음. (소유자 확인 2026-11-19)'],
+  ['Power from Camaraderie', '다른 기사가 Technique를 쓸 때 Knight Round당 1회 · Monster Round당 1회. Squire는 미구현. (소유자 확인 2026-11-19)'],
+  ['Sympathetic Magic / Manifestation', '다른 기사가 명중당하거나 Wound에 실패하면 그 기사 보드에 Magic 1. Manifestation은 프리 액션 또는 REACT! 창에서 Reaction으로 사용, 효과는 그 라운드 끝까지. (소유자 확인 2026-11-19)'],
+  ['[신규] Stoneface', 'Juggernaut: 보스 몬스터도 내 옆의 다른 위치로 옮김. Rolling Stone: Rush 경로에 인접했던 기사 1명을 도착 칸 옆으로 Drag. Transmute Pain to Power: 시야 내 몬스터를 Pull X 한 뒤 공격. Go Beyond!: Fail Response만 무시, Wound + Overcome/Overpower면 Critical Wound. I\'ll Be Your Rock: Zone 3의 다른 기사가 Swamp에서 죽기 직전 옆으로 데려옴 + Leash 3. Rock, Meet Hard Place: 이동 칸 일부를 Pushback으로 사용, 몬스터가 Obstacle에 막히면 임시 AT -1 (Clash당 1회). Split the Heavens: 그 턴 동안 Wound 시 Condition 카드 하나 버리기. (소유자 확인 2026-11-19)'],
+  ['[신규] Kara', 'Living Weapon: Full Evade 시 카드가 손으로 복귀. Avert a Dire Fate: 버림 더미에 있는 동안 1 Heat로 Knockdown 대신 Vault (보스에 인접해 있을 때). Fleet of Foot: 대상이 아닐 때만, 몬스터가 마지막으로 움직인 방향의 직선으로만 이동. (소유자 확인 2026-11-19)'],
+  ['[신규] Paracelsa / Renholder', 'Flee From Evil: 대상에게서 멀어지는 칸으로만 이동. Shadows Between Worlds: Delay/Cooldown에 있는 동안 다른 유효 대상이 있으면 대상이 되지 않음, Reaction으로도 사용 가능. (소유자 확인 2026-11-19)'],
   ['[수정] Ser Ubar — Heat 조건 Shapeshift', 'Heat가 바뀐 직후 처리: Technique 사용·재굴림 지불·Exert 직후, 능력 창 시작, 행동/공격 종료 시점마다 즉시 확인.'],
   ['[수정] Skull Crack', '공격 선언 시점에 사용 → Attack Roll 전에 Attack die 1개를 따로 두고 자동 명중 1로 계산.'],
   ['[수정] Become a Stumbling Block / My Turn', 'Judicium이 아니라 Peril check 뒤에 제안 (몬스터 공격 중). My Turn: Chain Break, BP 맨 위 공개, Unleash X(X = AT)로 Wound — Wound/Instinct Response 해결, Wound Stack, Escalate.'],
@@ -45,7 +49,6 @@ export const KNIGHT_CONFIRMED = [
   ['비용 선택', '"+1 Heat or -1 Magic"처럼 대안이 있으면 둘 다 낼 수 있을 때 플레이어가 고른다. X 비용은 사용할 때 값을 고른다.'],
   ['Vigor 비용', 'Vigor를 비용으로 낼 때 0 이하로는 못 내린다. 비용으로 잃은 Vigor에는 Peril Check를 하지 않는다 (Power from Pain은 발동).'],
   ['주문 공격 (Dazzling Light, Burning Barrage, Blackfire, Final Flash)', '카드에 적힌 Dice / Precision / Power die / Bonus Power로 임시 Weapon을 만들어 공격. "Power die"는 명중당 그 색 주사위 1개(Burning Barrage는 빨강 2개). 사거리 표기가 없는 주문은 근접(1칸).'],
-  ['Area 공격 미구현', 'Burning Barrage(같은 방향의 모든 칸), Blackfire(대상 주변 Zone 1)는 지금 대상 하나만 공격한다.'],
   ['Final Flash', 'Wound를 주고 Total Power가 AT를 3 이상 넘으면 Response를 무시하고, 공격이 끝난 뒤 같은 공격을 한 번 더 한다.'],
   ['Mirage', 'Monster Attack의 대상이 되었을 때 사용: Guard 2(DEVIL 3 / DRAGON 4) + Priority Target 토큰을 Passion이 가장 높은 다른 기사에게.'],
   ['Shadow Manipulation', '몬스터가 AI를 뽑기 직전에 사용 여부를 묻고, 쓰면 AI 대신 Signature를 수행한다.'],
@@ -265,11 +268,11 @@ export const GEAR_CONFIRMED = [
   ['[신규] Scavenged Handaxe / Ghost Catalyst', 'Handaxe: 공격 직전 2 Heat로 그 공격에 Deadly. Ghost Catalyst: Superior Bypass(미니어처·Obstacle 통과, Difficult 무시). (소유자 확인 2026-11-19)'],
   ['[신규] Ser Ubar 형태 게이트 (Helm of the Silent Witness, Aegis of Averted Eyes)', 'Shapeshift할 때마다 Heat -1. [HUMAN] / [APE] 줄은 그 형태일 때만 사용 가능. (소유자 확인 2026-11-19)'],
   ['Chainbreaker', 'Overpower를 발동하면 Heat -1, Cumbersome 무시. [MAJOR] Overpower 발동 시 Crit Chance를 얻어 그 Wound가 Critical Wound가 됨 — Wound Response 대신 Critical Response를 해결 (소유자 확인 2026-11-19)'],
-  ['[신규] Paracelsa — Talent 혜택 아이콘 2', 'Fireheart Zealot 4 = BP Suppress, 6 = Deadly, 7 = Heartseeker. Inquisitor 9 = -1 [Power], 11 = Heartseeker (소유자 확인 2026-11-19). BP Suppress는 공격 시작 때 수행 여부를 물음. 9번은 시트 전사대로 Power -1로 적용. [해석, 확인 필요]'],
-  ['[신규] Second Chance (Paracelsa) — Disemboweled 무시', 'Zeal 3+일 때 Disemboweled Mortis를 뽑으면 이 카드를 써서(비용·Depletion 그대로) 무시 가능. 무시한 카드는 덱 맨 아래로. [해석, 확인 필요]'],
-  ['[신규] Divine Intervention — 덱 뒤집기', 'Suppress 후 덱 순서를 뒤집고 모든 카드를 앞면 표시. 앞면 카드가 맨 위에 있으면 화면에 이름 표시. Escalation으로 추가되는 카드는 뒷면. [해석, 확인 필요]'],
-  ['[신규] Oath of Valor — 카드 이동', '사용하면 Cooldown 대신 공격한 기사의 손패로 이동. 그 기사가 다른 기사 공격 때 (자기 Heat로) 다시 쓸 수 있음. Kara 이외 기사의 Hand Limit에는 세지 않음. [해석, 확인 필요]'],
-  ['[신규] Tag Team — 무기 교환', 'Little Ser가 무기를 들고 있으면, 자리를 바꾼 기사의 한손 무기 하나와 교환 가능. [해석, 확인 필요]'],
+  ['[신규] Paracelsa — Talent 혜택 아이콘 2', 'Fireheart Zealot 4 = BP Suppress, 6 = Deadly, 7 = Heartseeker. Inquisitor 9 = +1 [Power], 11 = Heartseeker (소유자 확인 2026-11-19). BP Suppress는 공격 시작 때 수행 여부를 물음.'],
+  ['[신규] Second Chance (Paracelsa) — Disemboweled 무시', 'Zeal 3+일 때 Disemboweled Mortis를 뽑으면 이 카드를 써서(비용·Depletion 그대로) 무시 가능. 무시한 카드는 덱 맨 아래로. (소유자 확인 2026-11-19)'],
+  ['[신규] Divine Intervention — 덱 뒤집기', 'Suppress 후 덱 순서를 뒤집고 모든 카드를 앞면 표시. 앞면 카드가 맨 위에 있으면 화면에 이름 표시. Escalation으로 추가되는 카드는 뒷면. (소유자 확인 2026-11-19)'],
+  ['[신규] Oath of Valor — 카드 이동', '사용하면 Cooldown 대신 공격한 기사의 손패로 이동. 그 기사가 다른 기사 공격 때 (자기 Heat로) 다시 쓸 수 있음. Kara 이외 기사의 Hand Limit에는 세지 않음. (소유자 확인 2026-11-19)'],
+  ['[신규] Tag Team — 무기 교환', 'Little Ser가 무기를 들고 있으면, 자리를 바꾼 기사의 한손 무기 하나와 교환 가능. (소유자 확인 2026-11-19)'],
 ];
 export const KNIGHT_QUESTIONS = [
   ['Stoneface — 미구현', 'Talent: Stonewall (Wave Attack이 엔진에 없음).'],

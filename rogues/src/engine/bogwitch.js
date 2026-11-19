@@ -99,7 +99,7 @@ export const WitchMixin = {
   },
   /** Stray X: move X spaces directly toward the Mud Wisp marker (or the closest Terrain tile), around occupied spaces. */
   async bwStray(k, n) {
-    const B = this.board, S = this.bw; if (!k || !k.alive || !(n > 0)) return; let goals = S.wisp ? [S.wisp] : [...B.terrain.keys()].map(key => { const [c, r] = key.split(',').map(Number); return { c, r }; }); if (!goals.length) return;
+    const B = this.board, S = this.bw; if (!k || !k.alive || !(n > 0)) return; { const ig = this.alive().find(s => (s === k || B.adjacent(s.pos, k.pos)) && this.fx.gearHas(s, 'ignoreStray')); if (ig && await this.yesNo(`${k.name}: Stray ${n} 무시? (${ig.name}의 Gear)`, true)) { this.say(`${k.name}: Stray 무시 (Gear)`, 'tech'); return; } if (await this.fx.ignoreInvol(k, `Stray ${n}`)) return; } let goals = S.wisp ? [S.wisp] : [...B.terrain.keys()].map(key => { const [c, r] = key.split(',').map(Number); return { c, r }; }); if (!goals.length) return;
     const pass = c => B.inside(c) && !this.knightAt(c) && !this.monsterOccupies(c) && !B.isObstacle(c); const dist = new Map([[B.key(k.pos), 0]]); const prev = new Map(); let fr = [k.pos]; let hit = null;
     while (fr.length && !hit) { const nx = []; for (const c of fr) { if (goals.some(g => cellEq(g, c)) && !cellEq(c, k.pos)) { hit = c; break; } for (const m of B.neighbors(c)) { const key = B.key(m); if (dist.has(key) || !(pass(m) || goals.some(g => cellEq(g, m) && !this.knightAt(m) && !this.monsterOccupies(m)))) continue; dist.set(key, dist.get(B.key(c)) + 1); prev.set(key, c); nx.push(m); } } fr = nx; }
     if (!hit) { this.say(`${k.name} Stray ${n}: 갈 수 있는 경로 없음`); return; } const path = []; let c = hit; while (c && !cellEq(c, k.pos)) { path.unshift(c); c = prev.get(B.key(c)); }

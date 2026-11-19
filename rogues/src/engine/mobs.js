@@ -113,9 +113,10 @@ export const MobMixin = {
 
   // ---------- keywords ----------
   /** Gangup X (p.81 box). */
-  async gangup(mob, k, x) {
+  async gangup(mob, k, x) { try { await this.gangup0(mob, k, x); } finally { if (k) this.fx.coneBreak(k); } },
+  async gangup0(mob, k, x) {
     const M = this.monster, B = this.board; if (!mob || !mob.cells.length || !M.mobs.includes(mob) || !k || !k.alive) return;
-    x += this.mobAura('gangupBonus'); if (x > 0 && this.fx.gearHas(k, 'reduceGangup') && await this.yesNo(`${k.name}: Gangup ${x} → ${x - 1}로 줄이기 (Gear)?`, true)) x -= 1; this.say(`Gangup ${x}: Mob #${mob.n} → ${k.name}`, 'ai');
+    x += this.mobAura('gangupBonus'); x -= await this.fx.coneArmor(k, x, 'Gangup'); if (x > 0 && this.fx.gearHas(k, 'reduceGangup') && await this.yesNo(`${k.name}: Gangup ${x} → ${x - 1}로 줄이기 (Gear)?`, true)) x -= 1; this.say(`Gangup ${x}: Mob #${mob.n} → ${k.name}`, 'ai');
     const moved = await this.mobMoveToward(mob, k.pos, x); const rem = x - moved;
     const others = M.mobs.filter(m => m !== mob && m.cells.length);
     if (others.some(m => B.adjacent(m.cells[0], k.pos))) { this.say(`${k.name}: 이미 다른 Mob과 인접 → Knockdown`); await this.knockdown(k); }
@@ -125,7 +126,7 @@ export const MobMixin = {
       const path = B.path(k.pos, c => pass(c) && others.some(m => B.adjacent(m.cells[0], c)), pass);
       if (path && n > 0) {
         const walk = path.slice(0, n); let rubble = false; let prev = k.pos; let end = k.pos;
-        for (const c of walk) { const t = B.terrainAt(c); if (t && t.chasm) { this.moveKnight(k, c); await this.die(k, 'Chasm'); return; } if (t && t.id === 'rubble') rubble = true; prev = end; end = c; }
+        for (const c of walk) { const t = B.terrainAt(c); if (t && t.chasm) { this.moveKnight(k, c); if (!await this.stoneRock(k, 'Chasm')) await this.die(k, 'Chasm'); return; } if (t && t.id === 'rubble') rubble = true; prev = end; end = c; }
         if (cellEq(end, mob.cells[0])) { this.mobStepTo(mob, prev); this.say(`Mob #${mob.n} Displace → ${B.label(prev)}`); }
         if (!cellEq(end, k.pos)) { this.moveKnight(k, end); this.say(`${k.name} 끌려감 ${walk.length}칸 → ${B.label(end)} (비자발적 이동)`); }
         if (rubble && k.alive) { this.say(`${k.name}: Rubble로 비자발적 이동 → Knockdown`); await this.knockdown(k); }
