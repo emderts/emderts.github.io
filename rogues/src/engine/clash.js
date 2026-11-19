@@ -31,6 +31,7 @@ import { StonefaceMixin } from './stoneface.js';
 import { KingLowMixin } from './kinglaidlow.js';
 import { DevilMixin } from './devils.js';
 import { SmeltedMixin } from './smeltedfears.js';
+import { PuppetMixin } from './puppetking.js';
 import { ExtrasMixin, installExtras } from './extras.js';
 
 export class ChainBreak extends Error { constructor(msg = 'Chain Break') { super(msg); this.chainBreak = true; } }
@@ -90,7 +91,7 @@ export class Clash {
     if (this.monster.isMob) { this.hauntsSetup(); if (this.monsterDef.nightmare) this.nightmareSetup(cs); else if (this.monsterDef.pump) this.pumpSetup(cs); else this.setupMobs(cs); if (this.monsterDef.rat) this.ratSetup(); if (this.monsterDef.pz) this.pzSetup(cs); this.bloodSetup(); this.firstmenSetup(); if (this.monsterDef.lh) this.lhSetup(); } else {
     this.monster.cells = cs.monsterCells.map(l => B.parse(l)); B.place({ kind: 'monster', id: this.monster.id }, this.monster.cells);
     if (cs.facing) { this.monster.facing = cs.facing; this.say(`${this.monster.name} 배치 ${cs.monsterCells.join('/')} · 방향 ${cs.facing}`); } else { const bottom = this.mortis.Minor.cards.at(-1); const arrowDir = { up: 'N', down: 'S', left: 'W', right: 'E' }[bottom.marker.arrow]; this.monster.facing = arrowDir; this.say(`Eggknight 배치 ${cs.monsterCells.join('/')} · 방향 ${arrowDir} (Minor Mortis 바닥: ${bottom.name})`); }
-    this.trollSetup(cs); this.fenSetup(); if (this.monsterDef.sm) this.smSetup(cs); if (this.monsterDef.ke) this.keSetup(cs); if (this.monsterDef.bw) this.bwSetup(cs); if (this.monsterDef.kl) this.klSetup(cs); if (this.monsterDef.dad) this.dadSetup(cs); if (this.monsterDef.dsf) this.dsfSetup(cs); }
+    this.trollSetup(cs); this.fenSetup(); if (this.monsterDef.sm) this.smSetup(cs); if (this.monsterDef.ke) this.keSetup(cs); if (this.monsterDef.bw) this.bwSetup(cs); if (this.monsterDef.kl) this.klSetup(cs); if (this.monsterDef.dad) this.dadSetup(cs); if (this.monsterDef.dsf) this.dsfSetup(cs); if (this.monsterDef.pke) this.pkeSetup(cs); }
     // knights
     this.knights.forEach((k, i) => { k.pos = B.parse(cs.knightStart[i]); B.place({ kind: 'knight', id: k.id }, [k.pos]); });
     // traits additional setup (Panzeronion)
@@ -136,7 +137,7 @@ export class Clash {
   async run() {
     try {
       if (!this._deployed) { this._deployed = true; await this.fx.deployAll(); }
-      await this.fenStart(); await this.keStart();
+      await this.fenStart(); await this.keStart(); await this.pkeStart();
       if (this._askPriority) { this._askPriority = false; const id = await this.ask({ type: 'pickKnight', text: 'Passion 동률 — 시작 Priority Target 선택', options: this.knights.map(k => ({ label: k.name, value: k.id })) }); this.priorityTarget = this.knights.find(k => k.id === id) || this.knights[0]; this.say(`Priority Target: ${this.priorityTarget.name}`); }
       while (!this.result) { this.round++; await this.monsterRound(); if (this.result) break; await this.knightRound(); this.firstRound = false; this.renRoundEnd(); this.karaRoundEnd(); }
     } catch (e) { if (e instanceof GameOver) this.result = e.result; else throw e; }
@@ -191,7 +192,7 @@ export class Clash {
       if (L.startsWith('zone ')) { const x = +L.match(/\d/)[0]; const cells = B.zone(this.monster.cells, x); return { zone: cells, targets: alive.filter(k => cells.some(c => cellEq(c, k.pos))), line, zoneX: x }; }
       let cand = alive; const behind = /and 1 space behind target/.test(L);
       const chasmD = k => Math.min(...this.wnChasm().map(h => Math.abs(h.c - k.pos.c) + Math.abs(h.r - k.pos.r)), 99); const minBy = (arr, f) => { if (!arr.length) return []; const m = Math.min(...arr.map(f)); return arr.filter(k => f(k) === m); };
-      const ext = (this.isKl ? this.klTargets(L, alive, closest) : undefined) ?? (this.isDsf ? this.dsfTargets(L, alive, closest) : undefined); if (ext && ext.result) { if (!ext.result.targets.length) continue; this.say(`Targeting: ${line}`); return { ...ext.result, line }; }
+      const ext = (this.isKl ? this.klTargets(L, alive, closest) : undefined) ?? (this.isDsf ? this.dsfTargets(L, alive, closest) : undefined) ?? (this.isPke ? this.pkeTargets(L) : undefined); if (ext && ext.result) { if (!ext.result.targets.length) continue; this.say(`Targeting: ${line}`); return { ...ext.result, line }; }
       if (Array.isArray(ext)) cand = ext;
       else if (L === 'tactics target') cand = closest(this.tacticsTargetPool(alive).filter(k => !/in range/i.test(this.tactics.ops.target) || (ops0.range ? this.distKM(k) <= ops0.range : (this.monster.cur && this.monster.cur.decoying) || this.distKM(k) <= 1)));
       else if (L.includes('poisoned condition')) cand = closest(alive.filter(k => this.hasCondition(k, 'Poisoned') && (!ops0.range || this.distKM(k) <= ops0.range)));
@@ -284,7 +285,8 @@ export class Clash {
       // zone targets recomputed after movement
       let targets = attack.targets;
       let stepTo = null;
-      if (card.type === 'zone' && ops.zoneDiagram && this.monster.isMob) { if (tg.primary) this.turnToward(tg.primary.pos); const zc = this.diagramCells(ops.zoneDiagram); targets = this.alive().filter(k => zc.cells.some(c => cellEq(c, k.pos))); attack.zoneCells = zc.cells; stepTo = zc.step; this.say(`Zone (카드 도식${this.monster.hasTrait('No Mercy') ? '+노란 칸' : ''}): ${targets.map(t => t.name).join(', ') || '대상 없음'}`); }
+      if (this.isPke && (ops.command || ops.pkeZone)) { targets = this.pkeZoneTargets(ops); this.say(`${ops.command ? 'Wave Command' : 'Zone'}: ${targets.map(t => t.name).join(', ') || '대상 없음'}`); }
+      else if (card.type === 'zone' && ops.zoneDiagram && this.monster.isMob) { if (tg.primary) this.turnToward(tg.primary.pos); const zc = this.diagramCells(ops.zoneDiagram); targets = this.alive().filter(k => zc.cells.some(c => cellEq(c, k.pos))); attack.zoneCells = zc.cells; stepTo = zc.step; this.say(`Zone (카드 도식${this.monster.hasTrait('No Mercy') ? '+노란 칸' : ''}): ${targets.map(t => t.name).join(', ') || '대상 없음'}`); }
       else if (card.type === 'zone' && ops.zoneDiagram && ops.zoneDiagram.block && !this.monster.isMob) { if (ops.smLateral && this.isSm && tg.primary) await this.smLateral(card, tg.primary); if (tg.primary) this.turnToward(tg.primary.pos); const cells = this.bossDiagramCells(ops.zoneDiagram); targets = this.alive().filter(k => cells.some(c => cellEq(c, k.pos))); attack.zoneCells = cells; this.say(`Zone (카드 도식): ${targets.map(t => t.name).join(', ') || '대상 없음'}`); }
       else if (card.type === 'zone' && !tg.zone && ops.zoneAroundSelf) { if (ops.prePushback && tg.primary && this.alive().includes(tg.primary)) { this.turnToward(tg.primary.pos); this.say(`Pushback ${ops.prePushback} (Zone Attack 전) — Target ${tg.primary.name}`); await this.pushback(tg.primary, ops.prePushback); } const cells = this.board.zone(this.monster.cells, ops.zoneAroundSelf); targets = this.alive().filter(k => cells.some(c => cellEq(c, k.pos))); attack.zoneCells = cells; this.say(`Zone ${ops.zoneAroundSelf} (Mob 주위): ${targets.map(t => t.name).join(', ') || '대상 없음'}`); }
       else if (card.type === 'zone' && !tg.zone) { const cells = this.frontCells(); if (tg.behind && tg.primary) { const d = this.dirFromMonster(tg.primary.pos); const b = { c: tg.primary.pos.c + d.c, r: tg.primary.pos.r + d.r }; cells.push(b); }
@@ -792,7 +794,7 @@ export class Clash {
     else if (!this.monster.isMob && !A.guardian && bp.isThickSkin) { this.monster.bp.putTop(bp); this.say('Thick Skin: Wound 실패 → BP 덱 맨 위에 그대로'); }
     else if (!this.monster.isMob && !A.guardian) this.monster.discardBP(bp);
     if (A.wnDefianceNow) { const o2 = this.wn.card.ops; resp.length = 0; resp.push(A.critical ? ['Critical', o2.critical] : ['Wound', o2.wound]); }
-    for (const [kind, rops] of resp) { if (A.techOp && A.techOp.repeatOver && A.wounded && (A.overAT || 0) >= A.techOp.repeatOver) { this.say(`${A.weapon.name}: AT를 ${A.techOp.repeatOver}+ 초과 — Response 무시`, 'tech'); continue; } if (kind === 'Wound' && A.ignoreWoundResp) { this.say('Wound Response 무시 (Gear)', 'tech'); continue; } if (ignore && !kind.startsWith('Critical')) { this.say(`${kind} Response 무시 (${A.ignoreResponses ? 'Distracting Bait' : 'Diversion'})`); continue; } this.say(`${kind} Response`); const isAttack = rops.some(o => o.op === 'signature' || o.op === 'aiAttack' || o.op === 'drawAIFor'); const rIdx = this.bpReactIndices(bp, kind); if (isAttack) deferred.push([rops, rIdx]); else { try { await this.runResponseOps(rops, rIdx, { attacker: k, attack: A, target: k }); } catch (e) { if (!e.chainBreak) throw e; this.say(`Chain Break: ${e.message}`, 'warn'); } } }
+    for (const [kind, rops] of resp) { if (A.techOp && A.techOp.repeatOver && A.wounded && (A.overAT || 0) >= A.techOp.repeatOver) { this.say(`${A.weapon.name}: AT를 ${A.techOp.repeatOver}+ 초과 — Response 무시`, 'tech'); continue; } if (A.vpNoResp) { this.say(`${kind} Response 무시 (VP — The Seat of Power)`, 'tech'); continue; } if (kind === 'Wound' && A.ignoreWoundResp) { this.say('Wound Response 무시 (Gear)', 'tech'); continue; } if (ignore && !kind.startsWith('Critical')) { this.say(`${kind} Response 무시 (${A.ignoreResponses ? 'Distracting Bait' : 'Diversion'})`); continue; } this.say(`${kind} Response`); const isAttack = rops.some(o => o.op === 'signature' || o.op === 'aiAttack' || o.op === 'drawAIFor'); const rIdx = this.bpReactIndices(bp, kind); if (isAttack) deferred.push([rops, rIdx]); else { try { await this.runResponseOps(rops, rIdx, { attacker: k, attack: A, target: k }); } catch (e) { if (!e.chainBreak) throw e; this.say(`Chain Break: ${e.message}`, 'warn'); } } }
     await this.multiBPResolve(k, A);
     if (this.monster.isMob) { await this.resolveMobDeaths(); await this.firstmenDeaths(); }
     if (k.engulfed && A.wounded && k.alive) await this.fenFree(k, 'Wound');
@@ -851,7 +853,7 @@ export class Clash {
   cardHasTargetingReact(card) { const w = card.reactWindows ?? card.react; if (w == null) return true; const l = [].concat(w).map(String); if (l.some(x => /^(after )?targeting$/i.test(x))) return true; if (!l.length) return false; return !JSON.stringify(card.ops || {}).includes('"reactWindow"') && !card.reactExact; }
   async windowOfOpportunity(when, attack, target = null, at = null) { this._reactNow = this._reactKind || (at === 'after' ? 'after' : null); this._reactKind = null; const a = attack || this.currentAttack; if (a && a.noReact && when !== 'beforeEffects' && (a.noReact === true || a.noReact === at)) { this.say('REACT! 무시 (게이트)'); return; } await this.fx.reactions(when, attack, target); }
 }
-Object.assign(Clash.prototype, MobMixin, BloodMixin, HauntsMixin, FirstmenMixin, TrollMixin, NightmareMixin, FenMixin, PumpMixin, RatMixin, PanzerMixin, MasonMixin, EaterMixin, LictorMixin, WitchMixin, IroncastMixin, RenholderMixin, KaraMixin, ParacelsaMixin, SonchMixin, UbarMixin, StonefaceMixin, ExtrasMixin, KingLowMixin, DevilMixin, SmeltedMixin);
+Object.assign(Clash.prototype, MobMixin, BloodMixin, HauntsMixin, FirstmenMixin, TrollMixin, NightmareMixin, FenMixin, PumpMixin, RatMixin, PanzerMixin, MasonMixin, EaterMixin, LictorMixin, WitchMixin, IroncastMixin, RenholderMixin, KaraMixin, ParacelsaMixin, SonchMixin, UbarMixin, StonefaceMixin, ExtrasMixin, KingLowMixin, DevilMixin, SmeltedMixin, PuppetMixin);
 installKara(Clash);
 installParacelsa(Clash);
 installSonch(Clash);

@@ -41,7 +41,7 @@ export const KingLowMixin = {
   },
   // ---------- Vantage Point (rulebook p.65) ----------
   vpKnight() { return this.knights.find(k => k.alive && k.onVP); },
-  vpClimb(k) { const C = this; if (this.vpKnight()) return false; this.board.remove([k.pos]); k.onVP = true; Object.defineProperty(k, 'pos', { configurable: true, enumerable: true, get() { return C.monster.cells[0]; }, set() {} }); this.say(`${k.name}: VP (Misshapen Hump) 위 — +1 [Power]`, 'tech'); return true; },
+  vpClimb(k) { const C = this; if (this.vpKnight()) return false; this.board.remove([k.pos]); k.onVP = true; Object.defineProperty(k, 'pos', { configurable: true, enumerable: true, get() { return C.monster.cells[0]; }, set() {} }); if (this.isKl) this.say(`${k.name}: VP (Misshapen Hump) 위 — +1 [Power]`, 'tech'); return true; },
   vpLeave(k, cell) { if (!k.onVP) return; delete k.pos; k.onVP = false; k.pos = cell || this.monster.cells[0]; if (cell) { k._moved = true; this.board.place({ kind: 'knight', id: k.id }, [cell]); } },
   vpFree(c) { const B = this.board; const t = B.terrainAt(c); return B.inside(c) && !(t && t.obstacle) && !this.knightAt(c) && !this.monsterOccupies(c); },
   async vpPickAdjacent(k, text, filter = null) { const B = this.board, M = this.monster; let cells = []; for (const m of M.cells) for (const n of B.neighbors(m)) if (this.vpFree(n) && !cells.some(x => cellEq(x, n))) cells.push(n); if (filter) { const f = cells.filter(filter); if (f.length) cells = f; } if (!cells.length) return null; if (cells.length === 1) return cells[0]; return await this.ask({ type: 'move', knight: k.id, text: `${k.name}: ${text}`, cells, options: cells.map(c => ({ label: B.label(c), value: c })) }) || cells[0]; },

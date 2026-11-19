@@ -1,0 +1,2409 @@
+{
+ "id": "puppet-king-edelhardt",
+ "name": "Puppet King Edelhardt",
+ "kind": "boss",
+ "code": "26A1062",
+ "traitsLine": [
+  "King",
+  "Parasite",
+  "Undead"
+ ],
+ "_source": "Owner scans 2026-11-19; PKE reference v1.2 (owner); Clash Setup: Principality of Stone Codex p.50–51",
+ "footprint": {
+  "size": 4,
+  "shape": "2x2",
+  "rear": "the 2 cells directly behind the footprint",
+  "facingOnSheet": "down"
+ },
+ "basicAbilities": [
+  {
+   "name": "Unavoidable Knockback",
+   "value": 5
+  },
+  {
+   "name": "Blindspot"
+  },
+  {
+   "name": "Always There"
+  },
+  {
+   "name": "VP"
+  }
+ ],
+ "levels": {
+  "1": {
+   "toHit": 7,
+   "wounds": 10,
+   "exhibitionWounds": 3,
+   "activations": [
+    "AI",
+    "S"
+   ],
+   "activationsText": "1 AI + Signature",
+   "traitsAdd": [
+    "Welcome to My Castle!",
+    "Five Fingers",
+    "Shockwave",
+    "Dark Fog",
+    "Fallen Knight Army"
+   ],
+   "bonuses": {
+    "escalations": 0,
+    "at": 0,
+    "vigorLoss": 0,
+    "evasionDice": 0
+   }
+  },
+  "2": {
+   "toHit": 7,
+   "wounds": 10,
+   "exhibitionWounds": 3,
+   "activations": [
+    "AI",
+    "S"
+   ],
+   "activationsText": "1 AI + Signature",
+   "traitsAdd": [
+    "Obedient Knights"
+   ],
+   "bonuses": {
+    "escalations": 1,
+    "at": 1,
+    "vigorLoss": 1,
+    "evasionDice": 0
+   }
+  },
+  "3": {
+   "toHit": 8,
+   "wounds": 10,
+   "exhibitionWounds": 3,
+   "activations": [
+    "AI",
+    "S"
+   ],
+   "activationsText": "1 AI + Signature",
+   "traitsAdd": [
+    "Unstoppable Force"
+   ],
+   "bonuses": {
+    "escalations": 1,
+    "at": 2,
+    "vigorLoss": 1,
+    "evasionDice": 1
+   }
+  },
+  "4": {
+   "toHit": 9,
+   "wounds": 10,
+   "exhibitionWounds": 3,
+   "activations": [
+    "AI",
+    "S"
+   ],
+   "activationsText": "1 AI + Signature",
+   "traitsAdd": [
+    "On Command"
+   ],
+   "bonuses": {
+    "escalations": 2,
+    "at": 4,
+    "vigorLoss": 2,
+    "evasionDice": 2
+   }
+  }
+ },
+ "traits": [
+  {
+   "name": "Welcome to My Castle!",
+   "level": 1,
+   "text": "Start of Clash: Perform The King Says: Come to Me Trait Attack (this does not count as an AI activation).\nAdditional Setup: Draw 2 Grave Mortis cards and place Loose String Terrain tiles on designated spaces. If you draw the same space twice, repeat the draw. If one of those spaces is occupied, place the Loose String Terrain tile on the closest empty space instead.",
+   "implemented": true
+  },
+  {
+   "name": "Five Fingers",
+   "level": 1,
+   "text": "Puppet King Edelhardt cannot be involuntarily moved and turned.\nWhen you wound one of the Five Fingers BP cards, immediately:\n1st Finger: Flip one chosen Fallen Knight to Column Terrain tile.\n2nd Finger: Flip two chosen Fallen Knights to Column Terrain tiles.\n3rd Finger: Place a Generic Single Wound card on the Wound Stack.\n4th Finger: Place a Generic Single Wound card on the Wound Stack.\n5th Finger: Place a Generic Double Wound card on the Wound Stack.",
+   "implemented": true
+  },
+  {
+   "name": "Shockwave",
+   "level": 1,
+   "text": "Shockwave: Each Knight on the Clash Board loses -X [V] and suffers Knockback X, where X is 4 + the King's Level–the number of spaces between the Knight and the King. Treat this effect as a Wave Attack effect (you may block it with Obstacles).",
+   "implemented": true
+  },
+  {
+   "name": "Dark Fog",
+   "level": 1,
+   "text": "When you attack, lose -1 Precision for every space between you and the Target.",
+   "implemented": true
+  },
+  {
+   "name": "Fallen Knight Army",
+   "level": 1,
+   "text": "! Fallen Knights move only in a straight line from the lowest numbered column to the highest numbered column.\nEnd of your turn: Move the Fallen Knight that's in the same row as you 5 spaces. If there are no Fallen Knights in that row, move the furthest Fallen Knight in a chosen adjacent row instead. If you're on the VP, move any 1 Fallen Knight instead. Then, if no Fallen Knight was moved, Spawn a new Fallen Knight in the lowest numbered column in your row.\nFallen Knights destroy Column Terrain tiles they move through.\nWhen you would place or move a Fallen Knight into Zone 1 around the King or the last column of the Clash Board (column 14), immediately remove that Fallen Knight from the Clash Board and the King gains 1 Armor [Armor] token. Level 3+: 2 Armor [Armor] tokens instead. When the King gains the 5th Armor [Armor] token, discard all Armor [Armor] tokens and each Knight suffers Bane 5.\nTreat Fallen Knights as Mobs that never activate. All Fallen Knights are represented by a single Trait BP card.\nEach time a Fallen Knight is dealt a Wound, place a Generic token on its Trait BP card instead of Escalating. When you finish resolving the current action, if there are 2 or more Generic tokens on that card, discard all Generic tokens and place a Generic Single Wound card on the Wound Stack, then Escalate 1.",
+   "implemented": true
+  },
+  {
+   "name": "Obedient Knights",
+   "level": 2,
+   "text": "If you wound a King BP other than one of the Five Fingers and you're not on the VP, immediately place a Fallen Knight on an adjacent space closest to the King. If you deal a Wound from the VP, after you finish resolving your Attack, perform Signature.",
+   "implemented": true
+  },
+  {
+   "name": "Unstoppable Force",
+   "level": 3,
+   "text": "When a Fallen Knight is about to move through or onto a Knight's space, that Knight suffers Forced Vault and Knockdown, then the Fallen Knight continues its movement.",
+   "implemented": true
+  },
+  {
+   "name": "On Command",
+   "level": 4,
+   "text": "When you're about to draw an AI, look at the top 2 AI cards and perform the higher Level one. If both cards are the same Level, perform the one that is a Command Attack. If neither is a Command Attack, perform Routine instead.",
+   "implemented": true
+  }
+ ],
+ "cards": {
+  "ai": [
+   {
+    "name": "Dismissive Flick",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 9,
+    "pre": null,
+    "targeting": [
+     "[Priority Target] Priority Target in sight",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "tag": "RANGE ATTACK UNLIMITED",
+    "effects": [
+     "For each hit lose -3 [V]. Knockback 6 and Knockdown. [Peril]."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Gain the Subjugated Condition card.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "RANGE ATTACK",
+    "moveTag": "RANGE ATTACK UNLIMITED",
+    "afterAttack": "AFTER ATTACK: Gain the Subjugated Condition card.",
+    "ops": {
+     "targeting": [
+      "[Priority Target] Priority Target in sight",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 3,
+       "perilCheck": true
+      },
+      {
+       "op": "pkeKb",
+       "n": 6
+      },
+      {
+       "op": "knockdown"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "pkeSub",
+       "who": "target"
+      }
+     ],
+     "afterFinalAttack": null,
+     "range": "unlimited"
+    }
+   },
+   {
+    "name": "Dragged by the Ear",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 4,
+    "evasionDifficulty": 8,
+    "pre": null,
+    "targeting": [
+     "Knight on the VP",
+     "Knight in Blindspot",
+     "Closest Knight not in front",
+     "Closest Knight"
+    ],
+    "tag": "RANGE ATTACK UNLIMITED {H3+: +1 [die]}",
+    "effects": [
+     "For each hit lose -3 [V] and gain +1 [H]. [Peril]. If you're on the VP, Displace.",
+     "{H6+: KNOCKDOWN}",
+     "[React]"
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Knockback 4.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "RANGE ATTACK",
+    "moveTag": "RANGE ATTACK UNLIMITED {H3+: +1 [die]}",
+    "afterAttack": "AFTER ATTACK: Knockback 4.",
+    "ops": {
+     "targeting": [
+      "Knight on the VP",
+      "Knight in Blindspot",
+      "Closest Knight not in front",
+      "Closest Knight"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 3,
+       "op": "evasionDice",
+       "n": 1
+      },
+      {
+       "stat": "heat",
+       "gte": 6,
+       "op": "pkeAlso",
+       "alsoOps": [
+        {
+         "op": "knockdown"
+        }
+       ]
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 3,
+       "perilCheck": true
+      },
+      {
+       "op": "pkeK",
+       "k": {
+        "op": "gainHeat",
+        "n": 1
+       },
+       "who": "target",
+       "perHit": true
+      },
+      {
+       "op": "pkeVPDisplace"
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "pkeKb",
+       "n": 4
+      }
+     ],
+     "afterFinalAttack": null,
+     "range": "unlimited"
+    }
+   },
+   {
+    "name": "Puppeteer",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 4,
+    "evasionDifficulty": 9,
+    "pre": null,
+    "targeting": [
+     "[Priority Target] Priority Target in sight",
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "tag": "JUDGE",
+    "effects": [
+     "Tenacity / Sagacity.",
+     "For each hit lose -3 [V]. [Peril].",
+     "Knockback 5 in a random direction."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Gain the Subjugated Condition card.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "JUDGEMENT",
+    "moveTag": "JUDGE",
+    "afterAttack": "AFTER ATTACK: Gain the Subjugated Condition card.",
+    "ops": {
+     "targeting": [
+      "[Priority Target] Priority Target in sight",
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 3,
+       "perilCheck": true
+      },
+      {
+       "op": "pkeKb",
+       "n": 5,
+       "dir": "random"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "pkeSub",
+       "who": "target"
+      }
+     ],
+     "afterFinalAttack": null,
+     "judge": [
+      "Tenacity",
+      "Sagacity"
+     ]
+    }
+   },
+   {
+    "name": "The King Commands: Bow Down!",
+    "level": 1,
+    "type": "zone",
+    "evasionDice": 3,
+    "evasionDifficulty": 9,
+    "pre": "NO KNIGHT IN ZONE: Perform Signature instead",
+    "targeting": [
+     "Clash Board"
+    ],
+    "tag": "COMMAND",
+    "effects": [
+     "Obey: Knockdown. Bane 2.",
+     "Disobey: Gain the Subjugated Condition card. For each hit lose -2 [V]. [Peril]."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "If all Targets Obeyed, the King gains 1 Armor [Armor] token. Shockwave.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "WAVE COMMAND ATTACK",
+    "moveTag": "COMMAND",
+    "afterAttack": "AFTER FINAL ATTACK: If all Targets Obeyed, the King gains 1 Armor [Armor] token. Shockwave.",
+    "ops": {
+     "targeting": [
+      "Clash Board"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "pkeSub",
+       "who": "target"
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "pkeCmdAfter",
+       "need": "all",
+       "shock": true
+      }
+     ],
+     "command": {
+      "obey": [
+       {
+        "op": "knockdown"
+       },
+       {
+        "op": "pkeK",
+        "k": {
+         "op": "bane",
+         "n": 2
+        },
+        "who": "target",
+        "perHit": false
+       }
+      ],
+      "obeyText": "Knockdown, Bane 2",
+      "disobeyText": "Subjugated, 명중당 -2 [V], Peril"
+     }
+    }
+   },
+   {
+    "name": "The King Commands: Begone!",
+    "level": 1,
+    "type": "zone",
+    "evasionDice": 3,
+    "evasionDifficulty": 9,
+    "pre": "NO KNIGHT IN ZONE: Perform Signature instead",
+    "targeting": [
+     "Clash Board"
+    ],
+    "tag": "COMMAND",
+    "effects": [
+     "Obey: Knockback 6.",
+     "Disobey: For each hit lose -2 [V]. Two or more hits, gain the Subjugated Condition card. [Peril]."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "If all Targets Obeyed, the King gains 1 Armor [Armor] token. Shockwave.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "WAVE COMMAND ATTACK",
+    "moveTag": "COMMAND",
+    "afterAttack": "AFTER FINAL ATTACK: If all Targets Obeyed, the King gains 1 Armor [Armor] token. Shockwave.",
+    "ops": {
+     "targeting": [
+      "Clash Board"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "pkeIfHits",
+       "gte": 2,
+       "then": [
+        {
+         "op": "pkeSub",
+         "who": "target"
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "pkeCmdAfter",
+       "need": "all",
+       "shock": true
+      }
+     ],
+     "command": {
+      "obey": [
+       {
+        "op": "pkeKb",
+        "n": 6,
+        "voluntary": true
+       }
+      ],
+      "obeyText": "Knockback 6",
+      "disobeyText": "명중당 -2 [V], 2회 이상 명중 시 Subjugated, Peril"
+     }
+    }
+   },
+   {
+    "name": "The King Commands: Begone!",
+    "level": 1,
+    "type": "zone",
+    "evasionDice": 3,
+    "evasionDifficulty": 9,
+    "pre": "NO KNIGHT IN ZONE: Perform Signature instead",
+    "targeting": [
+     "Clash Board"
+    ],
+    "tag": "COMMAND",
+    "effects": [
+     "Obey: Knockback 6.",
+     "Disobey: For each hit lose -2 [V]. Two or more hits, gain the Subjugated Condition card. [Peril]."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "If all Targets Obeyed, the King gains 1 Armor [Armor] token. Shockwave.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "WAVE COMMAND ATTACK",
+    "moveTag": "COMMAND",
+    "afterAttack": "AFTER FINAL ATTACK: If all Targets Obeyed, the King gains 1 Armor [Armor] token. Shockwave.",
+    "ops": {
+     "targeting": [
+      "Clash Board"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "pkeIfHits",
+       "gte": 2,
+       "then": [
+        {
+         "op": "pkeSub",
+         "who": "target"
+        }
+       ]
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "pkeCmdAfter",
+       "need": "all",
+       "shock": true
+      }
+     ],
+     "command": {
+      "obey": [
+       {
+        "op": "pkeKb",
+        "n": 6,
+        "voluntary": true
+       }
+      ],
+      "obeyText": "Knockback 6",
+      "disobeyText": "명중당 -2 [V], 2회 이상 명중 시 Subjugated, Peril"
+     }
+    }
+   },
+   {
+    "name": "Slap in the Face",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 9,
+    "pre": null,
+    "targeting": [
+     "[Priority Target] Priority Target in sight",
+     "Closest Knight in front",
+     "Closest Knight"
+    ],
+    "tag": "RANGE ATTACK UNLIMITED {H3+: +1 [die]}",
+    "effects": [
+     "For each hit lose -5 [V]. [Peril].",
+     "Knockback 10 to the side."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Gain the Distracted Condition card.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "RANGE ATTACK",
+    "moveTag": "RANGE ATTACK UNLIMITED {H3+: +1 [die]}",
+    "afterAttack": "AFTER ATTACK: Gain the Distracted Condition card.",
+    "ops": {
+     "targeting": [
+      "[Priority Target] Priority Target in sight",
+      "Closest Knight in front",
+      "Closest Knight"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 3,
+       "op": "evasionDice",
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 5,
+       "perilCheck": true
+      },
+      {
+       "op": "pkeKb",
+       "n": 10,
+       "dir": "side"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "condition",
+       "id": "Distracted"
+      }
+     ],
+     "afterFinalAttack": null,
+     "range": "unlimited"
+    }
+   },
+   {
+    "name": "Eye Poke",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 10,
+    "pre": null,
+    "targeting": [
+     "Closest Knight not in front",
+     "Closest Knight in sight"
+    ],
+    "tag": "RANGE ATTACK UNLIMITED",
+    "effects": [
+     "For each hit lose -5 [V]. [Peril]."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Exhaust a Weapon [Gear] card or discard a Helm [Gear] card.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "RANGE ATTACK",
+    "moveTag": "RANGE ATTACK UNLIMITED",
+    "afterAttack": "AFTER ATTACK: Exhaust a Weapon [Gear] card or discard a Helm [Gear] card.",
+    "ops": {
+     "targeting": [
+      "Closest Knight not in front",
+      "Closest Knight in sight"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 5,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "pkeExhaust",
+       "mode": "weaponOrHelm"
+      }
+     ],
+     "afterFinalAttack": null,
+     "range": "unlimited"
+    }
+   },
+   {
+    "name": "Puppet Sword Dance",
+    "level": 2,
+    "type": "zone",
+    "evasionDice": 3,
+    "evasionDifficulty": 9,
+    "pre": null,
+    "targeting": [
+     "Zone 2 around each Fallen Knight"
+    ],
+    "tag": "ATTACK",
+    "effects": [
+     "For each hit lose -4 [V]. [Peril]."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "Shockwave.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "ZONE ATTACK",
+    "moveTag": "ATTACK",
+    "afterAttack": "AFTER FINAL ATTACK: Shockwave.",
+    "ops": {
+     "targeting": [
+      "Zone 2 around each Fallen Knight"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 4,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "pkeShock"
+      }
+     ],
+     "pkeZone": "fk2"
+    }
+   },
+   {
+    "name": "The King Commands: Obey Me!",
+    "level": 2,
+    "type": "zone",
+    "evasionDice": 4,
+    "evasionDifficulty": 10,
+    "pre": "NO KNIGHT IN ZONE: Perform Signature instead",
+    "targeting": [
+     "Clash Board"
+    ],
+    "tag": "COMMAND",
+    "effects": [
+     "Obey: Exhaust all your Gear [Gear] cards.",
+     "Disobey: For each hit lose -2 [V]. Bane 1. [Peril]. Gain the Subjugated Condition card."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "If at least 2 Targets Obeyed, the King gains 1 Armor [Armor] token. All Knights in Zone 2 suffer Knockdown.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "WAVE COMMAND ATTACK",
+    "moveTag": "COMMAND",
+    "afterAttack": "AFTER FINAL ATTACK: If at least 2 Targets Obeyed, the King gains 1 Armor [Armor] token. All Knights in Zone 2 suffer Knockdown.",
+    "ops": {
+     "targeting": [
+      "Clash Board"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "pkeK",
+       "k": {
+        "op": "bane",
+        "n": 1
+       },
+       "who": "target",
+       "perHit": false
+      },
+      {
+       "op": "pkeSub",
+       "who": "target"
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "pkeCmdAfter",
+       "need": 2,
+       "zoneKD": 2
+      }
+     ],
+     "command": {
+      "obey": [
+       {
+        "op": "pkeExhaust",
+        "mode": "all"
+       }
+      ],
+      "obeyText": "모든 Gear Exhaust",
+      "disobeyText": "명중당 -2 [V], Bane 1, Peril, Subjugated"
+     }
+    }
+   },
+   {
+    "name": "The King Commands: Get Out of My Sight!",
+    "level": 2,
+    "type": "zone",
+    "evasionDice": 2,
+    "evasionDifficulty": 10,
+    "pre": "NO KNIGHT IN ZONE: Perform Signature instead",
+    "targeting": [
+     "Clash Board"
+    ],
+    "tag": "COMMAND",
+    "effects": [
+     "Obey: Knockback 8. Bane 2.",
+     "Disobey: For each hit lose -3 [V]. Gain the Subjugated Condition card. [Peril]."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "If at least 2 Targets Obeyed, the King gains 1 Armor [Armor] token. Shockwave.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "WAVE COMMAND ATTACK",
+    "moveTag": "COMMAND",
+    "afterAttack": "AFTER FINAL ATTACK: If at least 2 Targets Obeyed, the King gains 1 Armor [Armor] token. Shockwave.",
+    "ops": {
+     "targeting": [
+      "Clash Board"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 3,
+       "perilCheck": true
+      },
+      {
+       "op": "pkeSub",
+       "who": "target"
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "pkeCmdAfter",
+       "need": 2,
+       "shock": true
+      }
+     ],
+     "command": {
+      "obey": [
+       {
+        "op": "pkeKb",
+        "n": 8,
+        "voluntary": true
+       },
+       {
+        "op": "pkeK",
+        "k": {
+         "op": "bane",
+         "n": 2
+        },
+        "who": "target",
+        "perHit": false
+       }
+      ],
+      "obeyText": "Knockback 8, Bane 2",
+      "disobeyText": "명중당 -3 [V], Subjugated, Peril"
+     }
+    }
+   },
+   {
+    "name": "The King Commands: Entertain Me!",
+    "level": 2,
+    "type": "zone",
+    "evasionDice": 5,
+    "evasionDifficulty": 7,
+    "pre": "NO KNIGHT IN ZONE: Perform Signature instead",
+    "targeting": [
+     "Clash Board"
+    ],
+    "tag": "COMMAND",
+    "effects": [
+     "Obey: Move up to your Speed to have another closest Knight in effective range of your Weapon. Perform a Power Roll as if you hit with all your Attack dice. That Knight loses [V] equal to Total Power.",
+     "Disobey: For each hit lose -3 [V]. [Peril]."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "If all Targets Obeyed, the King gains 1 Armor [Armor] token. All Targets gain the Subjugated Condition card.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "WAVE COMMAND ATTACK",
+    "moveTag": "COMMAND",
+    "afterAttack": "AFTER FINAL ATTACK: If all Targets Obeyed, the King gains 1 Armor [Armor] token. All Targets gain the Subjugated Condition card.",
+    "ops": {
+     "targeting": [
+      "Clash Board"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 3,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "pkeCmdAfter",
+       "need": "all",
+       "targetsCond": "Subjugated"
+      }
+     ],
+     "command": {
+      "obey": [
+       {
+        "op": "pkeEntertain"
+       }
+      ],
+      "obeyText": "Speed만큼 이동해 가장 가까운 다른 기사를 Weapon 사거리에 넣고, 모든 Attack dice 명중으로 Power Roll — 그 기사가 Total Power만큼 [V] 손실",
+      "disobeyText": "명중당 -3 [V], Peril"
+     }
+    }
+   },
+   {
+    "name": "Shadow Punch",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 9,
+    "pre": null,
+    "targeting": [
+     "[Priority Target] Priority Target in sight",
+     "Closest Knight in front",
+     "Closest Knight"
+    ],
+    "tag": "RANGE ATTACK UNLIMITED",
+    "effects": [
+     "Choke 3. For each hit lose -4 [V]. [Peril].",
+     "[React]",
+     "Knockdown.",
+     "Knockback X+4, where X is the number of hits."
+    ],
+    "afterTag": null,
+    "after": null,
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "RANGE ATTACK",
+    "moveTag": "RANGE ATTACK UNLIMITED",
+    "afterAttack": null,
+    "ops": {
+     "targeting": [
+      "[Priority Target] Priority Target in sight",
+      "Closest Knight in front",
+      "Closest Knight"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "choke",
+       "n": 3
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 4,
+       "perilCheck": true
+      },
+      {
+       "op": "reactWindow",
+       "at": "mid"
+      },
+      {
+       "op": "knockdown"
+      },
+      {
+       "op": "pkeKb",
+       "n": 4,
+       "plusHits": true
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null,
+     "range": "unlimited"
+    }
+   },
+   {
+    "name": "Crushing Burden",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 4,
+    "evasionDifficulty": 9,
+    "pre": null,
+    "targeting": [
+     "[Priority Target] Priority Target in sight",
+     "Closest Knight"
+    ],
+    "tag": "RANGE ATTACK UNLIMITED {H3+: +1 [die]}",
+    "effects": [
+     "For each hit lose -3 [V]. [Peril].",
+     "Knockdown. All other Knights in Zone 2 around the Target suffer Discard, Restrain, and Knockdown."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Gain a temporary negative Speed token.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "RANGE ATTACK",
+    "moveTag": "RANGE ATTACK UNLIMITED {H3+: +1 [die]}",
+    "afterAttack": "AFTER ATTACK: Gain a temporary negative Speed token.",
+    "ops": {
+     "targeting": [
+      "[Priority Target] Priority Target in sight",
+      "Closest Knight"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 3,
+       "op": "evasionDice",
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 3,
+       "perilCheck": true
+      },
+      {
+       "op": "knockdown"
+      },
+      {
+       "op": "pkeCrush"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "pkeSpeedNeg"
+      }
+     ],
+     "afterFinalAttack": null,
+     "range": "unlimited"
+    }
+   },
+   {
+    "name": "Marionette Massacre",
+    "level": 3,
+    "type": "zone",
+    "evasionDice": 2,
+    "evasionDifficulty": 10,
+    "pre": null,
+    "targeting": [
+     "Zone 4"
+    ],
+    "tag": "ATTACK",
+    "effects": [
+     "For each hit lose -5 [V].",
+     "{H3+: -6 [V] INSTEAD} [Peril]."
+    ],
+    "afterTag": null,
+    "after": null,
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "ZONE ATTACK",
+    "moveTag": "ATTACK",
+    "afterAttack": null,
+    "ops": {
+     "targeting": [
+      "Zone 4"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 3,
+       "op": "vigorPerHitInstead",
+       "n": 6
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 5,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null,
+     "pkeZone": 4
+    }
+   },
+   {
+    "name": "The King Commands: Yield!",
+    "level": 3,
+    "type": "zone",
+    "evasionDice": 3,
+    "evasionDifficulty": 11,
+    "pre": "NO KNIGHT IN ZONE: Perform Signature instead",
+    "targeting": [
+     "Clash Board"
+    ],
+    "tag": "COMMAND",
+    "effects": [
+     "Obey: Restrain all cards from your Hand and Cooldown area.",
+     "Disobey: For each hit lose -2 [V]. Bane 3. [Peril]."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "If at least 2 Targets Obeyed, the King gains 1 Armor [Armor] token. All Targets gain the Courage Condition card.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "WAVE COMMAND ATTACK",
+    "moveTag": "COMMAND",
+    "afterAttack": "AFTER FINAL ATTACK: If at least 2 Targets Obeyed, the King gains 1 Armor [Armor] token. All Targets gain the Courage Condition card.",
+    "ops": {
+     "targeting": [
+      "Clash Board"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 2,
+       "perilCheck": true
+      },
+      {
+       "op": "pkeK",
+       "k": {
+        "op": "bane",
+        "n": 3
+       },
+       "who": "target",
+       "perHit": false
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "pkeCmdAfter",
+       "need": 2,
+       "targetsCond": "Courage"
+      }
+     ],
+     "command": {
+      "obey": [
+       {
+        "op": "pkeRestrainAll"
+       }
+      ],
+      "obeyText": "Hand와 Cooldown의 모든 카드 Restrain",
+      "disobeyText": "명중당 -2 [V], Bane 3, Peril"
+     }
+    }
+   },
+   {
+    "name": "The King Commands: Get Away From Me!",
+    "level": 3,
+    "type": "zone",
+    "evasionDice": 3,
+    "evasionDifficulty": 10,
+    "pre": "NO KNIGHT IN ZONE: Perform Signature instead",
+    "targeting": [
+     "Clash Board"
+    ],
+    "tag": "COMMAND {H3+: +1 [die]}",
+    "effects": [
+     "Obey: Knockback 10. Bane 2.",
+     "Disobey: For each hit lose -3 [V]. [Peril]."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "If at least 1 Target Obeyed, the King gains 1 Armor [Armor] token. Shockwave.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "WAVE COMMAND ATTACK",
+    "moveTag": "COMMAND {H3+: +1 [die]}",
+    "afterAttack": "AFTER FINAL ATTACK: If at least 1 Target Obeyed, the King gains 1 Armor [Armor] token. Shockwave.",
+    "ops": {
+     "targeting": [
+      "Clash Board"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 3,
+       "op": "evasionDice",
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 3,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "pkeCmdAfter",
+       "need": 1,
+       "shock": true
+      }
+     ],
+     "command": {
+      "obey": [
+       {
+        "op": "pkeKb",
+        "n": 10,
+        "voluntary": true
+       },
+       {
+        "op": "pkeK",
+        "k": {
+         "op": "bane",
+         "n": 2
+        },
+        "who": "target",
+        "perHit": false
+       }
+      ],
+      "obeyText": "Knockback 10, Bane 2",
+      "disobeyText": "명중당 -3 [V], Peril"
+     }
+    }
+   },
+   {
+    "name": "The King Commands: Lay Down Your Arms!",
+    "level": 3,
+    "type": "zone",
+    "evasionDice": 3,
+    "evasionDifficulty": 9,
+    "pre": "NO KNIGHT IN ZONE: Perform Signature instead",
+    "targeting": [
+     "Clash Board"
+    ],
+    "tag": "COMMAND {H3+: KNOCKDOWN}",
+    "effects": [
+     "Obey: Exhaust all your Gear [Gear] cards.",
+     "Disobey: For each hit lose -3 [V] and Bane 1. [Peril]."
+    ],
+    "afterTag": "AFTER FINAL ATTACK",
+    "after": "If at least 2 Targets Obeyed, the King gains 1 Armor [Armor] token. Shockwave.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "WAVE COMMAND ATTACK",
+    "moveTag": "COMMAND {H3+: KNOCKDOWN}",
+    "afterAttack": "AFTER FINAL ATTACK: If at least 2 Targets Obeyed, the King gains 1 Armor [Armor] token. Shockwave.",
+    "ops": {
+     "targeting": [
+      "Clash Board"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 3,
+       "op": "pkeAlso",
+       "alsoOps": [
+        {
+         "op": "knockdown"
+        }
+       ]
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 3,
+       "perilCheck": true
+      },
+      {
+       "op": "pkeK",
+       "k": {
+        "op": "bane",
+        "n": 1
+       },
+       "who": "target",
+       "perHit": true
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": [
+      {
+       "op": "pkeCmdAfter",
+       "need": 2,
+       "shock": true
+      }
+     ],
+     "command": {
+      "obey": [
+       {
+        "op": "pkeExhaust",
+        "mode": "all"
+       }
+      ],
+      "obeyText": "모든 Gear Exhaust",
+      "disobeyText": "명중당 -3 [V], Bane 1, Peril"
+     }
+    }
+   }
+  ],
+  "bp": [
+   {
+    "name": "Heavy-Settled Crown",
+    "level": 1,
+    "at": 6,
+    "top": "OVERCOME 2+: Power 1",
+    "note": null,
+    "wound": null,
+    "fail": null,
+    "instinct": "Shockwave.",
+    "critical": "Scavenge 1.",
+    "unclear": [],
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Shockwave.",
+     "critical": "Scavenge 1."
+    },
+    "ops": {
+     "at": 6,
+     "overcome": {
+      "n": 2,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "pkeOvercome",
+        "power": 1,
+        "armor": 0
+       }
+      ]
+     },
+     "wound": null,
+     "fail": null,
+     "instinct": [
+      {
+       "op": "pkeShock"
+      }
+     ],
+     "critical": [
+      {
+       "op": "pkeScavenge",
+       "n": 1
+      }
+     ]
+    }
+   },
+   {
+    "name": "Five Fingers: The Ring Finger",
+    "level": 1,
+    "at": 8,
+    "top": null,
+    "note": null,
+    "wound": null,
+    "fail": null,
+    "instinct": "Shockwave. Place a Loose String Terrain tile on any empty space outside Zone 2 around the King.",
+    "critical": "Leave additional 2 Opening and/or Break tokens.",
+    "unclear": [],
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Shockwave. Place a Loose String Terrain tile on any empty space outside Zone 2 around the King.",
+     "critical": "Leave additional 2 Opening and/or Break tokens."
+    },
+    "ops": {
+     "at": 8,
+     "overcome": null,
+     "wound": null,
+     "fail": null,
+     "instinct": [
+      {
+       "op": "pkeShock"
+      },
+      {
+       "op": "pkeString",
+       "where": "outside2"
+      }
+     ],
+     "critical": [
+      {
+       "op": "leaveTokens",
+       "n": 2,
+       "tokens": [
+        "opening",
+        "break"
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "name": "Five Fingers: The Little Finger",
+    "level": 1,
+    "at": 8,
+    "top": "OVERCOME 3+: Power 1",
+    "note": null,
+    "wound": "Shockwave. Place a Loose String Terrain tile on any empty space outside Zone 2 around the King.",
+    "fail": "Gain the Subjugated Condition card.",
+    "instinct": null,
+    "critical": "You may perform a Bonus Attack!",
+    "unclear": [],
+    "responses": {
+     "wound": "Shockwave. Place a Loose String Terrain tile on any empty space outside Zone 2 around the King.",
+     "fail": "Gain the Subjugated Condition card.",
+     "instinct": null,
+     "critical": "You may perform a Bonus Attack!"
+    },
+    "ops": {
+     "at": 8,
+     "overcome": {
+      "n": 3,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "pkeOvercome",
+        "power": 1,
+        "armor": 0
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "pkeShock"
+      },
+      {
+       "op": "pkeString",
+       "where": "outside2"
+      }
+     ],
+     "fail": [
+      {
+       "op": "pkeSub",
+       "who": "attacker"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "pkeBonus"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Panzerthrone",
+    "level": 1,
+    "at": 7,
+    "top": null,
+    "note": null,
+    "wound": "Remove the Column Terrain tile closest to the King.",
+    "fail": "All Fallen Knights move 1 space.",
+    "instinct": null,
+    "critical": "Disable the Dark Fog Trait.",
+    "unclear": [],
+    "responses": {
+     "wound": "Remove the Column Terrain tile closest to the King.",
+     "fail": "All Fallen Knights move 1 space.",
+     "instinct": null,
+     "critical": "Disable the Dark Fog Trait."
+    },
+    "ops": {
+     "at": 7,
+     "overcome": null,
+     "wound": [
+      {
+       "op": "pkeRemoveColumn"
+      }
+     ],
+     "fail": [
+      {
+       "op": "pkeFkMove",
+       "n": 1
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "pkeFlag",
+       "id": "noFog",
+       "text": "Dark Fog Trait 비활성"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Feeble Chest",
+    "level": 1,
+    "at": 7,
+    "top": "OVERCOME 2+: Power 1",
+    "note": null,
+    "wound": null,
+    "fail": null,
+    "instinct": "Lose -2 [V]. Knockback 2.",
+    "critical": "Deal an additional Single Wound!",
+    "unclear": [],
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Lose -2 [V]. Knockback 2.",
+     "critical": "Deal an additional Single Wound!"
+    },
+    "ops": {
+     "at": 7,
+     "overcome": {
+      "n": 2,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "pkeOvercome",
+        "power": 1,
+        "armor": 0
+       }
+      ]
+     },
+     "wound": null,
+     "fail": null,
+     "instinct": [
+      {
+       "op": "loseVigor",
+       "n": 2,
+       "who": "attacker"
+      },
+      {
+       "op": "pkeKb",
+       "n": 2,
+       "who": "attacker"
+      }
+     ],
+     "critical": [
+      {
+       "op": "additionalSingleWound"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Cold Feet",
+    "level": 1,
+    "at": 6,
+    "top": "OVERCOME 3+: Power 1",
+    "note": null,
+    "wound": null,
+    "fail": null,
+    "instinct": "Shockwave.",
+    "critical": "Deal an additional Single Wound!",
+    "unclear": [],
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Shockwave.",
+     "critical": "Deal an additional Single Wound!"
+    },
+    "ops": {
+     "at": 6,
+     "overcome": {
+      "n": 3,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "pkeOvercome",
+        "power": 1,
+        "armor": 0
+       }
+      ]
+     },
+     "wound": null,
+     "fail": null,
+     "instinct": [
+      {
+       "op": "pkeShock"
+      }
+     ],
+     "critical": [
+      {
+       "op": "additionalSingleWound"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Chaos Ladder",
+    "level": 2,
+    "at": 8,
+    "top": "OVERCOME 4+: Power 1 or discard 1 Armor [Armor] token",
+    "note": null,
+    "wound": "You may immediately climb the VP.",
+    "fail": "All Fallen Knights move 1 space.",
+    "instinct": null,
+    "critical": "You may perform a Bonus Attack with Auto-break 2!",
+    "unclear": [],
+    "responses": {
+     "wound": "You may immediately climb the VP.",
+     "fail": "All Fallen Knights move 1 space.",
+     "instinct": null,
+     "critical": "You may perform a Bonus Attack with Auto-break 2!"
+    },
+    "ops": {
+     "at": 8,
+     "overcome": {
+      "n": 4,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "pkeOvercome",
+        "power": 1,
+        "armor": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "pkeClimb"
+      }
+     ],
+     "fail": [
+      {
+       "op": "pkeFkMove",
+       "n": 1
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "pkeBonus",
+       "autoBreak": 2
+      }
+     ]
+    }
+   },
+   {
+    "name": "Five Fingers: The Middle Finger",
+    "level": 2,
+    "at": 9,
+    "top": "OVERCOME 5+: Discard 2 Armor [Armor] tokens",
+    "note": null,
+    "wound": "Knockback 4. Place a Loose String Terrain tile on any empty space outside Zone 2 around the King.",
+    "fail": "Shockwave.",
+    "instinct": null,
+    "critical": "You may perform a Bonus Attack!",
+    "unclear": [],
+    "responses": {
+     "wound": "Knockback 4. Place a Loose String Terrain tile on any empty space outside Zone 2 around the King.",
+     "fail": "Shockwave.",
+     "instinct": null,
+     "critical": "You may perform a Bonus Attack!"
+    },
+    "ops": {
+     "at": 9,
+     "overcome": {
+      "n": 5,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "pkeOvercome",
+        "power": 0,
+        "armor": 2
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "pkeKb",
+       "n": 4,
+       "who": "attacker"
+      },
+      {
+       "op": "pkeString",
+       "where": "outside2"
+      }
+     ],
+     "fail": [
+      {
+       "op": "pkeShock"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "pkeBonus"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Five Fingers: The Index Finger",
+    "level": 2,
+    "at": 9,
+    "top": "OVERCOME 3+: Discard 2 Armor [Armor] tokens",
+    "note": null,
+    "wound": "Shockwave. Place a Loose String Terrain tile on any empty space outside Zone 2 around the King.",
+    "fail": "Lose -3 [V]. Gain a temporary negative Precision token.",
+    "instinct": null,
+    "critical": "Gain +1 Precision until the end of Clash. You may perform a Bonus Attack!",
+    "unclear": [],
+    "responses": {
+     "wound": "Shockwave. Place a Loose String Terrain tile on any empty space outside Zone 2 around the King.",
+     "fail": "Lose -3 [V]. Gain a temporary negative Precision token.",
+     "instinct": null,
+     "critical": "Gain +1 Precision until the end of Clash. You may perform a Bonus Attack!"
+    },
+    "ops": {
+     "at": 9,
+     "overcome": {
+      "n": 3,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "pkeOvercome",
+        "power": 0,
+        "armor": 2
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "pkeShock"
+      },
+      {
+       "op": "pkeString",
+       "where": "outside2"
+      }
+     ],
+     "fail": [
+      {
+       "op": "loseVigor",
+       "n": 3,
+       "who": "attacker"
+      },
+      {
+       "op": "pkePrecNeg",
+       "who": "attacker"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "pkePrecision"
+      },
+      {
+       "op": "pkeBonus"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Shield of the Fallen",
+    "level": 2,
+    "at": 7,
+    "top": "OVERCOME 5+: Power 1 or discard 1 Armor [Armor] token",
+    "note": null,
+    "wound": "Armor-piercing 1.",
+    "fail": "All Fallen Knights move 1 space.",
+    "instinct": null,
+    "critical": "Scavenge 2.",
+    "unclear": [],
+    "responses": {
+     "wound": "Armor-piercing 1.",
+     "fail": "All Fallen Knights move 1 space.",
+     "instinct": null,
+     "critical": "Scavenge 2."
+    },
+    "ops": {
+     "at": 7,
+     "overcome": {
+      "n": 5,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "pkeOvercome",
+        "power": 1,
+        "armor": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "pkeNote",
+       "text": "Armor-piercing 1 (Wound Response) — 미구현"
+      }
+     ],
+     "fail": [
+      {
+       "op": "pkeFkMove",
+       "n": 1
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "pkeScavenge",
+       "n": 2
+      }
+     ]
+    }
+   },
+   {
+    "name": "Shadowy Influence",
+    "level": 2,
+    "at": 8,
+    "top": "OVERCOME 4+: Power 1 or discard 1 Armor [Armor] token",
+    "note": null,
+    "wound": "Remove the Column Terrain tile closest to the King.",
+    "fail": "All Fallen Knights move 1 space.",
+    "instinct": null,
+    "critical": "Until the end of Clash, Fallen Knights' movement during Signature is reduced by 2.",
+    "unclear": [],
+    "responses": {
+     "wound": "Remove the Column Terrain tile closest to the King.",
+     "fail": "All Fallen Knights move 1 space.",
+     "instinct": null,
+     "critical": "Until the end of Clash, Fallen Knights' movement during Signature is reduced by 2."
+    },
+    "ops": {
+     "at": 8,
+     "overcome": {
+      "n": 4,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "pkeOvercome",
+        "power": 1,
+        "armor": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "pkeRemoveColumn"
+      }
+     ],
+     "fail": [
+      {
+       "op": "pkeFkMove",
+       "n": 1
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "pkeSigReduce",
+       "n": 2
+      }
+     ]
+    }
+   },
+   {
+    "name": "Heart of the Throne",
+    "level": 2,
+    "at": 7,
+    "top": "OVERCOME 4+: Power 1 or discard 1 Armor [Armor] token",
+    "note": null,
+    "wound": "Place a Loose String Terrain tile on any empty space. Armor-piercing 1.",
+    "fail": "Draw and perform an AI card.",
+    "instinct": null,
+    "critical": "You may perform a Bonus Attack!",
+    "unclear": [],
+    "responses": {
+     "wound": "Place a Loose String Terrain tile on any empty space. Armor-piercing 1.",
+     "fail": "Draw and perform an AI card.",
+     "instinct": null,
+     "critical": "You may perform a Bonus Attack!"
+    },
+    "ops": {
+     "at": 7,
+     "overcome": {
+      "n": 4,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "pkeOvercome",
+        "power": 1,
+        "armor": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "pkeString",
+       "where": "any"
+      },
+      {
+       "op": "pkeNote",
+       "text": "Armor-piercing 1 (Wound Response) — 미구현"
+      }
+     ],
+     "fail": [
+      {
+       "op": "pkeAI"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "pkeBonus"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Fluchaura",
+    "level": 3,
+    "at": 9,
+    "top": "OVERCOME 2+: Power 1",
+    "note": null,
+    "wound": null,
+    "fail": null,
+    "instinct": "Gain the Subjugated Condition card.",
+    "critical": "All Knights discard the Subjugated Condition card. Disable gaining the Subjugated Condition card.",
+    "unclear": [],
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Gain the Subjugated Condition card.",
+     "critical": "All Knights discard the Subjugated Condition card. Disable gaining the Subjugated Condition card."
+    },
+    "ops": {
+     "at": 9,
+     "overcome": {
+      "n": 2,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "pkeOvercome",
+        "power": 1,
+        "armor": 0
+       }
+      ]
+     },
+     "wound": null,
+     "fail": null,
+     "instinct": [
+      {
+       "op": "pkeSub",
+       "who": "attacker"
+      }
+     ],
+     "critical": [
+      {
+       "op": "pkeUnsub"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Hoary Codger",
+    "level": 3,
+    "at": 9,
+    "top": "OVERCOME 4+: Power 2",
+    "note": null,
+    "wound": null,
+    "fail": null,
+    "instinct": "Draw and perform an AI card.",
+    "critical": "Without a host, the throne loses its power. You win!",
+    "unclear": [],
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Draw and perform an AI card.",
+     "critical": "Without a host, the throne loses its power. You win!"
+    },
+    "ops": {
+     "at": 9,
+     "overcome": {
+      "n": 4,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "pkeOvercome",
+        "power": 2,
+        "armor": 0
+       }
+      ]
+     },
+     "wound": null,
+     "fail": null,
+     "instinct": [
+      {
+       "op": "pkeAI"
+      }
+     ],
+     "critical": [
+      {
+       "op": "slayMonster"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Five Fingers: Hidden Finger",
+    "level": 3,
+    "at": 11,
+    "top": "OVERCOME 2+: Power 2 or discard 3 Armor [Armor] tokens",
+    "note": null,
+    "wound": null,
+    "fail": null,
+    "instinct": "Perform Signature. Place a Loose String Terrain tile on any empty space outside Zone 2 around the King.",
+    "critical": "Deal an additional Single Wound. You may perform a Bonus Attack!",
+    "unclear": [],
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Perform Signature. Place a Loose String Terrain tile on any empty space outside Zone 2 around the King.",
+     "critical": "Deal an additional Single Wound. You may perform a Bonus Attack!"
+    },
+    "ops": {
+     "at": 11,
+     "overcome": {
+      "n": 2,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "pkeOvercome",
+        "power": 2,
+        "armor": 3
+       }
+      ]
+     },
+     "wound": null,
+     "fail": null,
+     "instinct": [
+      {
+       "op": "pkeSignature"
+      },
+      {
+       "op": "pkeString",
+       "where": "outside2"
+      }
+     ],
+     "critical": [
+      {
+       "op": "additionalSingleWound"
+      },
+      {
+       "op": "pkeBonus"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Five Fingers: The Thumb",
+    "level": 3,
+    "at": 12,
+    "top": "OVERCOME 4+: Power 3 or discard 3 Armor [Armor] tokens",
+    "note": null,
+    "wound": "Shockwave. Place a Loose String Terrain tile on any empty space outside Zone 2 around the King.",
+    "fail": "Draw and perform an AI card against the Attacker.",
+    "instinct": null,
+    "critical": "Deal an additional Single Wound.",
+    "unclear": [],
+    "responses": {
+     "wound": "Shockwave. Place a Loose String Terrain tile on any empty space outside Zone 2 around the King.",
+     "fail": "Draw and perform an AI card against the Attacker.",
+     "instinct": null,
+     "critical": "Deal an additional Single Wound."
+    },
+    "ops": {
+     "at": 12,
+     "overcome": {
+      "n": 4,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "pkeOvercome",
+        "power": 3,
+        "armor": 3
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "pkeShock"
+      },
+      {
+       "op": "pkeString",
+       "where": "outside2"
+      }
+     ],
+     "fail": [
+      {
+       "op": "pkeAI",
+       "against": true
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "additionalSingleWound"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Riesenmörder Sword",
+    "level": 3,
+    "at": 10,
+    "top": "OVERCOME 3+: Power 1 or discard 1 Armor [Armor] token",
+    "note": null,
+    "wound": "Draw and perform an AI card.",
+    "fail": "Choke 3. Gain the Panicked Condition card.",
+    "instinct": null,
+    "critical": "Disable the Shockwave Trait. Immediately see 2329.",
+    "unclear": [],
+    "responses": {
+     "wound": "Draw and perform an AI card.",
+     "fail": "Choke 3. Gain the Panicked Condition card.",
+     "instinct": null,
+     "critical": "Disable the Shockwave Trait. Immediately see 2329."
+    },
+    "ops": {
+     "at": 10,
+     "overcome": {
+      "n": 3,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "pkeOvercome",
+        "power": 1,
+        "armor": 1
+       }
+      ]
+     },
+     "wound": [
+      {
+       "op": "pkeAI"
+      }
+     ],
+     "fail": [
+      {
+       "op": "choke",
+       "n": 3
+      },
+      {
+       "op": "condition",
+       "id": "Panicked"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "pkeFlag",
+       "id": "noShock",
+       "text": "Shockwave Trait 비활성 — \"Immediately see 2329\" (스토리 항목, 미구현)"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Strands of the Wyrd",
+    "level": 3,
+    "at": 10,
+    "top": "OVERCOME 4+: Discard 2 Armor [Armor] tokens",
+    "note": null,
+    "wound": null,
+    "fail": null,
+    "instinct": "Perform Signature.",
+    "critical": "Scavenge 2.",
+    "unclear": [],
+    "responses": {
+     "wound": null,
+     "fail": null,
+     "instinct": "Perform Signature.",
+     "critical": "Scavenge 2."
+    },
+    "ops": {
+     "at": 10,
+     "overcome": {
+      "n": 4,
+      "kind": "overcome",
+      "ops": [
+       {
+        "op": "pkeOvercome",
+        "power": 0,
+        "armor": 2
+       }
+      ]
+     },
+     "wound": null,
+     "fail": null,
+     "instinct": [
+      {
+       "op": "pkeSignature"
+      }
+     ],
+     "critical": [
+      {
+       "op": "pkeScavenge",
+       "n": 2
+      }
+     ]
+    }
+   }
+  ],
+  "signature": {
+   "name": "String Pull",
+   "type": "signature",
+   "text": "Two Fallen Knights closest to the left Board Edge move 3 spaces. If there is a tie, prioritize the Fallen Knights furthest from the King.",
+   "ops": {
+    "targeting": [],
+    "move": false,
+    "gates": [],
+    "before": [],
+    "effects": []
+   }
+  },
+  "routine": {
+   "name": "It's Time to Pay!",
+   "text": "Each Knight loses -8 [V]. The King gains 2 Armor [Armor] tokens.",
+   "type": "routine",
+   "ops": [
+    {
+     "op": "pkeRoutine"
+    }
+   ]
+  }
+ },
+ "traitAttack": {
+  "name": "The King Commands: Come to Me",
+  "type": "zone",
+  "evasionDice": 3,
+  "evasionDifficulty": 9,
+  "targeting": [
+   "Clash Board"
+  ],
+  "pre": "NO KNIGHT IN ZONE: Perform Signature instead",
+  "effects": [
+   "Obey: Move 4 spaces toward the King in a straight line. Gain the Subjugated Condition card.",
+   "Disobey: For each hit lose -2 [V]. [Peril]."
+  ],
+  "after": "AFTER FINAL ATTACK: If all Targets Obeyed, the King gains 1 Armor [Armor] token. Shockwave.",
+  "level": 0,
+  "afterTag": null,
+  "tag": "COMMAND",
+  "typePrinted": "TRAIT WAVE COMMAND ATTACK",
+  "moveTag": "COMMAND",
+  "afterAttack": "AFTER FINAL ATTACK: If all Targets Obeyed, the King gains 1 Armor [Armor] token. Shockwave.",
+  "ops": {
+   "targeting": [
+    "Clash Board"
+   ],
+   "move": false,
+   "gates": [],
+   "before": [],
+   "effects": [
+    {
+     "op": "loseVigorPerHit",
+     "n": 2,
+     "perilCheck": true
+    }
+   ],
+   "afterAttack": null,
+   "afterFinalAttack": [
+    {
+     "op": "pkeCmdAfter",
+     "need": "all",
+     "shock": true
+    }
+   ],
+   "command": {
+    "obey": [
+     {
+      "op": "pkeComeToMe",
+      "n": 4
+     },
+     {
+      "op": "pkeSub",
+      "who": "target"
+     }
+    ],
+    "obeyText": "King 쪽으로 직선 4칸 이동, Subjugated",
+    "disobeyText": "명중당 -2 [V], Peril"
+   }
+  },
+  "kind": "traitAttack"
+ },
+ "fallenKnight": {
+  "bp": {
+   "name": "Fallen Knight",
+   "at": 7,
+   "header": "Obstacle. Destructible. Odd Spawn. Fallen Knights have the same [Armor] as the Puppet King.",
+   "top": "OVERCOME 3+: Power 1 · OVERPOWER 3+: Remove this Fallen Knight from the Clash Board",
+   "responses": {
+    "wound": "Discard the Subjugated Condition card. Flip this Fallen Knight to Column Terrain tile.",
+    "fail": "Parasitize 1.",
+    "critical": "Discard all your Mind Condition cards. Flip this Fallen Knight to Column Terrain tile and place a Loose String Terrain tile adjacent to it. You may move up to 2 spaces and perform a Bonus Attack!"
+   },
+   "ops": {
+    "at": 7,
+    "overcome": {
+     "n": 3,
+     "kind": "overcome",
+     "ops": [
+      {
+       "op": "power",
+       "n": 1
+      }
+     ]
+    },
+    "wound": [
+     {
+      "op": "pkeFkWound"
+     }
+    ],
+    "fail": [
+     {
+      "op": "pkeK",
+      "k": {
+       "op": "parasitize",
+       "n": 1
+      },
+      "who": "attacker",
+      "perHit": false
+     }
+    ],
+    "instinct": null,
+    "critical": [
+     {
+      "op": "pkeMind"
+     },
+     {
+      "op": "pkeFkWound",
+      "crit": true
+     },
+     {
+      "op": "pkeBonus",
+      "move": 2
+     }
+    ]
+   }
+  }
+ },
+ "pke": true,
+ "clashSetup": {
+  "_source": "Principality of Stone Codex p.50–51 (Puppet King Edelhardt Clash)",
+  "steps": [
+   "Standard Preparations (Rulebook p.44)",
+   "Monster Positioning: Place the Puppet King Edelhardt miniature on the space designated on the diagram. Note the facing direction indicated by the arrow.",
+   "Additional Setup: Place the Fallen Knight BP card near the BP deck. Place The King Commands: Come to Me AI card near the AI deck. Follow additional Clash Setup instructions introduced by Traits (if any)."
+  ],
+  "requiredTiles": [
+   "4x Column",
+   "10x Fallen Knight"
+  ],
+  "monsterCells": [
+   "E12",
+   "E13",
+   "F12",
+   "F13"
+  ],
+  "facing": "W",
+  "knightStart": [
+   "G4",
+   "F4",
+   "E4",
+   "D4"
+  ],
+  "terrain": [
+   {
+    "tile": "column",
+    "cells": [
+     "I11"
+    ]
+   },
+   {
+    "tile": "column",
+    "cells": [
+     "G9"
+    ]
+   },
+   {
+    "tile": "column",
+    "cells": [
+     "D9"
+    ]
+   },
+   {
+    "tile": "column",
+    "cells": [
+     "B11"
+    ]
+   }
+  ],
+  "notes": [
+   "Fallen Knight 10개: 1열의 모든 행 (A1–J1)",
+   "Column·시작 칸은 코덱스 도식에서 읽음 [해석, 확인 필요]"
+  ]
+ },
+ "rulings": [
+  "Welcome to My Castle!: Grave Mortis 2장의 좌표에 Loose String 타일(같은 좌표면 다시 뽑음, 점유된 칸이면 가장 가까운 빈 칸). Start of Clash: The King Commands: Come to Me (AI activation 아님)",
+  "Command: 대상 기사마다 Obey / Disobey를 고름. Obey → Obey 효과를 자발적으로 수행(Evasion Roll 없음), Disobey → 일반 Monster Attack처럼 Evasion Roll 후 Disobey 효과. Subjugated인 기사는 반드시 Obey. 선택은 Evasion Roll 전에 함 [해석, 확인 필요 — 레퍼런스 v1.2는 \"Evasion dice를 굴린 뒤 결정\"처럼 읽힘]",
+  "Wave Attack (Command·Shockwave): King의 가장 가까운 칸의 가장 가까운 모서리에서 기사 칸의 가장 먼 모서리까지 그은 선이 그 기사에 인접한 Obstacle(Column·Fallen Knight, 서로 인접한 Obstacle은 하나로 취급)을 지나면 그 기사는 제외. 대상이 한 명도 없으면 Signature",
+  "Shockwave: X = 4 + King Level − (기사와 King 사이의 칸 수). 인접 = 0칸 [해석, 확인 필요]. X ≥ 1이면 -X [V], Knockback X",
+  "Five Fingers: 1st = Thumb, 2nd = Index, 3rd = Middle, 4th = Ring, 5th = Little Finger로 대응시킴. Hidden Finger는 Trait 효과 없음 [해석, 확인 필요 — BP 카드가 6장이라 대응이 인쇄되어 있지 않음]",
+  "Five Fingers: \"cannot be involuntarily moved and turned\" — 현재 King을 움직이거나 돌리는 기사 효과가 없어 별도 처리 없음",
+  "Dark Fog: 공격자와 대상(King 또는 Fallen Knight) 사이의 칸 수만큼 Precision 감소. VP 위에서는 0",
+  "Fallen Knight Army: Fallen Knight는 같은 행에서 열 번호가 커지는 쪽으로만 직선 이동, Column을 파괴. 다음 칸에 기사나 다른 Fallen Knight가 있으면 멈춤(Lv3+ Unstoppable Force: 기사는 Forced Vault + Knockdown 후 계속) [해석, 확인 필요 — 레퍼런스 v1.2: \"기사에 인접하면 멈춤\"]",
+  "Fallen Knight Army — End of your turn: 같은 행의 Fallen Knight 1개가 5칸(여러 개면 플레이어 선택) [해석, 확인 필요 — 레퍼런스 v1.2는 \"같은 행의 모든 FK\"]. 없으면 고른 인접 행에서 기사로부터 가장 먼 Fallen Knight. VP 위면 아무 Fallen Knight 1개. 하나도 움직이지 않았으면 자기 행 1열에 Spawn (VP 위에서는 Spawn 없음 [해석])",
+  "Fallen Knight가 King 주위 Zone 1 또는 14열로 이동/배치되면 제거하고 Armor 토큰 1 (Lv3+: 2). 5번째 Armor 토큰 → 모두 버리고 모든 기사 Bane 5. Armor 토큰 1개당 King·Fallen Knight BP의 AT +1",
+  "Fallen Knight: To Hit = King과 같음, AT 7 + Level 보너스 + Armor 토큰. Wound → Trait BP 카드에 Generic 토큰(Escalate 없음), Column으로 뒤집음(Overpower 3+: 보드에서 제거). 현재 액션이 끝날 때 토큰 2개 이상이면 Generic Single Wound + Escalate 1",
+  "The Seat of Power (VP): Loose String 위에서 이동을 끝내면 즉시 VP(타일 제거), 또는 Blindspot에서 Move action으로 오름(테스트 없음). VP에는 기사 1명만. VP 위 공격: Precise 또는 Heartseeker 선택, Armor 토큰 무시, +1 Power, 일반 Response(Critical 포함) 무시 [해석, 확인 필요] — WOUND: Subjugated + King 앞 Zone 1 칸으로, FAIL: Shockwave + King 앞 인접 칸으로 Displace",
+  "VP 위의 기사는 Fallen Knight를 공격할 수 없음 [해석, 확인 필요]",
+  "Obedient Knights (Lv2+): Five Fingers가 아닌 King BP를 VP 밖에서 Wound → 그 기사에 인접한 칸 중 King에 가장 가까운 칸에 Fallen Knight. VP에서 Wound → 공격을 마친 뒤 Signature",
+  "On Command (Lv4): AI 맨 위 2장 중 Level이 높은 카드, 같으면 Command인 카드, 둘 다 Command가 아니면 Routine. 수행하지 않은 카드는 덱 맨 위로 돌려놓음 [해석, 확인 필요]",
+  "String Pull (Signature): 왼쪽 Board Edge(1열)에 가장 가까운 Fallen Knight 2개가 3칸 이동 (동률: King에서 먼 쪽)",
+  "Subjugated: Start of your turn에 고른 Virtue 테스트(9+), 성공하면 뒤집음. 두 번째로 얻으면 사망",
+  "Entertain Me! (Obey): 가장 가까운 다른 기사가 Weapon 사거리에 들어오도록 Speed만큼 이동 → 모든 Attack dice가 명중한 것으로 Power Roll(무기 Power dice × Attack dice 수 + Knight Power die) → 그 기사가 Total Power만큼 [V] 손실 (Armor Roll 없음) [해석, 확인 필요]",
+  "\"Knockback N to the side\" = King이 바라보는 방향 기준 왼쪽/오른쪽 중 플레이어 선택, \"random direction\" = 4방향 무작위 [해석, 확인 필요]",
+  "미구현: Armor-piercing 1 (Shield of the Fallen, Heart of the Throne의 Wound Response), Riesenmörder Sword Critical의 \"see 2329\", 각 AI 카드의 REACT! 창 위치(효과 사이 창은 넣음), Fallen Knight의 비자발적 이동(기사의 Pushback 등)"
+ ]
+}
