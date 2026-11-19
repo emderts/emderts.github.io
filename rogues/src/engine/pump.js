@@ -71,7 +71,7 @@ export const PumpMixin = {
     const red = M.mobs.filter(m => m.side === 'sapling' && m.red); for (const m of red) m.red = false; if (red.length) this.say(`Red Sapling ${red.map(m => '#' + m.n).join(', ')} → Green`);
     await this.pumpBurn(); if (M.hasTrait('Spore Spreader') && (this._spore || 0) < 2) { this._spore = (this._spore || 0) + 1; try { for (const m of grown) if (M.mobs.includes(m) && m.side === 'pumpkin' && this.alive().length) { this.say(`Spore Spreader: Pumpkinhead #${m.n} Signature`, 'ai'); await this.withMob(m, () => this.performSignature()); } } finally { this._spore--; } }
   },
-  async pumpAfflict(k, n) { if (!k || !k.alive) return; if (this.pumpKingdom === 'Venomous Quagmire') { this.say(`${k.name}: Afflict ${n} → Poison ${n}`); await this.fx.runKnightOp({ op: 'poison', n }, k, {}); } else this.say(`${k.name}: Afflict ${n} → Parasitize ${n} [미구현 — 키워드 정의 필요]`, 'warn'); },
+  async pumpAfflict(k, n) { if (!k || !k.alive) return; if (this.pumpKingdom === 'Venomous Quagmire') { this.say(`${k.name}: Afflict ${n} → Poison ${n}`); await this.fx.runKnightOp({ op: 'poison', n }, k, {}); } else { this.say(`${k.name}: Afflict ${n} → Parasitize ${n}`); await this.fx.runKnightOp({ op: 'parasitize', n }, k, {}); } },
   async pumpAfterAction() { if (!this.isPump || this._pumpBusy) return; this._pumpBusy = true; try { await this.pumpBurn(); } finally { this._pumpBusy = false; } },
   // ---------- ops ----------
   async pumpOp(o, ctx) {

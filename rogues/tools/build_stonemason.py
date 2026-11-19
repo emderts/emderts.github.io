@@ -57,7 +57,7 @@ BP = {
  'Ferrofluid Veins': dict(wound=[SIGA], fail=[DI1, HEAT(2)], critical=[{'op': 'smFlag', 'id': 'ignoreNodes'}]),
  'Splinter of Corrupted Purpose': dict(instinct=[BANE(2)], critical=[{'op': 'smFlag', 'id': 'noBane'}]),
  'Circlet of Andermainz': dict(wound=[KD, KB(6)], fail=[SIGA], critical=[{'op': 'smFlag', 'id': 'noGates'}, {'op': 'smBonusNoLodestone'}]),
- 'Sliver of Faith': dict(fail=[BANE(2)], instinct=[SIGA], critical=[{'op': 'smNote', 'text': 'Sliver of Faith Critical: Devote — 미구현'}]),
+ 'Sliver of Faith': dict(fail=[BANE(2)], instinct=[SIGA], critical=[{'op': 'devote'}]),
  'Magnetite Core': dict(instinct=[DI1, HEAT(2)], critical=[{'op': 'slayMonster'}]),
 }
 def ai(c, spec):
@@ -92,7 +92,7 @@ d = {
   'March of Devastation: 가장 가까운 기사부터 한 명씩 Move & Attack',
   'Penetrate (확장 Codex p.9): "During Armor Roll, ignore one of your Armor dice of the highest tier." — 그 공격의 Armor Roll에서 가장 높은 tier(white > black > red) 주사위 1개를 굴리지 않음 (소유자 확인 2026-11-18)',
   'Ornate Visor Critical(영구 음수 Precision 토큰): 이후 모든 Monster Attack의 Difficulty -1 — Ratwolves의 임시 토큰(다음 Monster Attack Difficulty -1 후 버림, 소유자 확인 2026-11-18)과 같은 효과가 계속되는 것으로 처리 (소유자 확인 2026-11-18)',
-  'Sliver of Faith Critical(Devote): 미구현',
+  'Sliver of Faith Critical: Devote — 공격한 기사가 Devotion 토큰 +1 (Clash 뒤 Knight Sheet에 반영, Incarnation 이동 칸 수에 더해짐)',
   'Reposition 2 + Bonus Attack: 최대 2칸 이동 후 Bonus Attack. Hug 1 + Bonus Attack(Sturdy Backplate): Hug 정의대로 — 몬스터에 인접해 있을 때만, 인접을 유지하며 최대 1칸 (소유자 확인 2026-11-18)',
   'Ferrospikes: Rubble 칸으로 들어갈 때마다 Vigor -1 — 스스로 이동, 밀리거나 끌려감, 발밑에 Rubble이 놓임 모두 적용 (소유자 확인 2026-11-18)',
   'Magnetite Reinforcement: 기사가 가장 많이 있는 면의 Node에 토큰 2개 (동률이면 선택). 대각선 위치의 기사는 맞닿은 두 면 모두에 있는 것으로 셈 (소유자 확인 2026-11-18)',

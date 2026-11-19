@@ -628,6 +628,8 @@ export class Clash {
     const kd2 = k.conditions.find(c => c.id === 'Knockdown (Falling Down)'); if (kd2) { kd2.id = 'Knockdown (Standing Up)'; this.say(`${k.name}: Knockdown → Standing Up (다음 턴 시작 시 일어남)`); }
     await this.fx.endOfTurn(k);
   }
+  /** Devote (Rulebook p.68): "Gain a Devotion token." Tokens gained in the Clash go onto the Knight Sheet afterwards (they add to the Incarnation move). */
+  devote(k) { k.devotionGained = (k.devotionGained || 0) + 1; this.say(`${k.name}: Devote — Devotion 토큰 +1`, 'tech'); }
   /** One d10 rolled by a Knight ("a [d10] you just rolled" effects such as Devil's Hand Charm may change it). */
   async d10For(k, label = 'd10') { const d = [{ v: this.rng.die(10) }]; if (k && k.alive) await this.fx.changeDieOffer(k, d, label); return d[0].v; }
   canAttack(k) { if (this.fx.usableWeapons(k).some(w => this.attackTargets(k, w).length > 0)) return true; const r = this.fx.gearAbilities(k, ['atkReach'])[0], d = this.fx.gearAbilities(k, ['atkRangeDouble'])[0]; if (!r && !d) return false; const t0 = k.tempReach, d0 = k.rangeDouble; if (r) k.tempReach = Math.max(k.tempReach || 0, r.o.n); if (d) k.rangeDouble = true; try { return this.fx.usableWeapons(k).some(w => this.attackTargets(k, w).length > 0); } finally { k.tempReach = t0; k.rangeDouble = d0; } }

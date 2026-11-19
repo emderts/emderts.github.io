@@ -106,7 +106,7 @@ export class Campaign {
   }
   async incarnate(kn, clash) {
     kn.vigor = Math.max(1, kn.vigor); clash.standUp(kn); kn.conditions = []; kn.bane = Math.max(0, kn.bane - 2); kn.incarnated = true;
-    const n = 2 + (this.knights.find(x => x.name === kn.name)?.devotion || 0); await clash.knightMove(kn, n);
+    const n = 2 + (this.knights.find(x => x.name === kn.name)?.devotion || 0) + (kn.devotionGained || 0); await clash.knightMove(kn, n);
     if (clash.canAttack(kn) && await clash.yesNo(`${kn.name} Incarnation: Bonus Attack 수행?`, true)) { kn.bonusAttacks = 0; await clash.knightAttack(kn, { bonus: true }); }
     clash.say(`${kn.name} Incarnation 종료 — 사망하지 않음`, 'mortis');
     throw new ChainBreak('Incarnation');
@@ -121,7 +121,7 @@ export class Campaign {
     const cur = this.current; const node = this.node(cur.nodeId); const win = clash.result === 'win'; if ((clash.curseLevel || 0) > this.curseLevel) { this.say(`공용 Curse ${this.curseLevel} → ${clash.curseLevel}`); this.curseLevel = clash.curseLevel; }
     const deaths = clash.knights.filter(k => !k.alive).length; const survivors = clash.knights.filter(k => k.alive).length;
     // carry back knight state
-    for (const kn of clash.knights) { const ck = this.knights.find(x => x.name === kn.name); ck.bane = Math.max(0, kn.bane - 2); ck.gold = kn.gold; if (kn.permMaxVigor) { ck.maxVigorMod = (ck.maxVigorMod || 0) + kn.permMaxVigor; this.say(`${ck.name}: Maximum Vigor 영구 ${ck.maxVigorMod}`); } }
+    for (const kn of clash.knights) { const ck = this.knights.find(x => x.name === kn.name); ck.bane = Math.max(0, kn.bane - 2); ck.gold = kn.gold; if (kn.devotionGained) { ck.devotion = (ck.devotion || 0) + kn.devotionGained; this.say(`${ck.name}: Devotion +${kn.devotionGained} (${ck.devotion})`); } if (kn.permMaxVigor) { ck.maxVigorMod = (ck.maxVigorMod || 0) + kn.permMaxVigor; this.say(`${ck.name}: Maximum Vigor 영구 ${ck.maxVigorMod}`); } }
     this.say(`Clash ${win ? '승리' : '패배'} — 사망 ${deaths}, 생존 ${survivors}`);
     // Sigh of the Graal offer
     const withSigh = this.knights.filter(k => k.sigh > 0);

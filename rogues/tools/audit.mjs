@@ -263,7 +263,7 @@ const compact = x => { const m = x.match(/^<section id="mob-([a-z0-9-]+)"/); if 
   if (!items.length) return x; const title = (x.match(/<h2>(?:\d+b?\.\s*)?([^<—]+)/) || [])[1].trim();
   return `<section id="mob-${m[1]}"><h2>${esc(title)} — 남은 항목 (${items.length})</h2><p class="impl">소유자 확인이 끝난 표·해석은 뺐습니다 (게임 화면 👁 몬스터에서 열람, 전체 표는 <code>node tools/audit.mjs --full</code>).</p><ul>${items.map(i => `<li>${i}</li>`).join('')}</ul></section>`; };
 // Sections the owner has finished reviewing (Fleischritter, Gear tables, Mortis/Condition/Terrain/Outpost, Merchant, Monster/Kingdom Gear) leave the page — the Gear check lists (gearkw) stay.
-const REVIEWED = /^<section id="(fleischritter|gear|decks|shop|mgear)"/;
+const REVIEWED = /^<section id="(fleischritter|gear|decks|shop|mgear|fools)"/;
 const out = sec.filter(x => FULL || !REVIEWED.test(x.trim())).filter(x => FULL || !isMonSec(x) || pending(x)).map(compact);
 { const i = out.findIndex(x => /^<section id="gearkw"/.test(x)); if (i > 0) out.unshift(out.splice(i, 1)[0]); } // confirmation-needed Gear rulings first
 if (done.length) out.push(`<section id="mon-done"><h2>몬스터 — 오딧 완료 (${done.length})</h2><p class="impl">소유자 확인이 끝난 몬스터는 이 페이지에서 빼고, 게임 화면 오른쪽 위 <b>👁 몬스터</b> 버튼(몬스터 정보: Sheet · Trait · AI/BP · Signature/Routine · Setup · 규칙 해석)에서 볼 수 있습니다. 전체 표가 필요하면 <code>node tools/audit.mjs --full</code>.</p><ul>${done.map(n => `<li>${esc(n)}</li>`).join('')}</ul></section>`);
