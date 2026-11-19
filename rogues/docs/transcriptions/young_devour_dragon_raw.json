@@ -1,0 +1,813 @@
+{
+ "id": "young-devour-dragon",
+ "sheet": {
+  "name": "Young Devour Dragon",
+  "code": "26B1081",
+  "traitsLine": [
+   "Dragon",
+   "Calamity",
+   "Hunger"
+  ],
+  "footprint": "3x3; rear = the three cells behind (R R R)",
+  "basicAbilities": [
+   "Lumbering",
+   "Unavoidable Knockback 5",
+   "VP"
+  ],
+  "levels": {
+   "1": {
+    "toHit": "8+",
+    "wounds": 8,
+    "exhibitionWounds": "-",
+    "activations": [
+     "AI"
+    ],
+    "traitsAdd": [
+     "Falling Skies",
+     "Ruined Bastion",
+     "Climbable Appendages",
+     "Dragonfeast",
+     "Groundscraper"
+    ],
+    "bonuses": {
+     "escalations": 0,
+     "at": 0,
+     "vigorLoss": 0,
+     "evasionDice": 0,
+     "heat": 0
+    }
+   },
+   "2": {
+    "toHit": "8+",
+    "wounds": 10,
+    "exhibitionWounds": "-",
+    "activations": [
+     "AI"
+    ],
+    "traitsAdd": [
+     "Curse of Endless Hunger",
+     "Inescapable Maw"
+    ],
+    "bonuses": {
+     "escalations": 0,
+     "at": 1,
+     "vigorLoss": 0,
+     "evasionDice": 0,
+     "heat": 0
+    }
+   }
+  },
+  "traits": [
+   {
+    "name": "Falling Skies",
+    "level": 1,
+    "text": "Additional Setup: Take the three Phase Trait cards, Flying High (Phase I), Floating Low (Phase II), and Grounded (Phase III), and place them in a stack face up (Flying High on top, Grounded on the bottom). Only the effects of the top card are active.\n! When a Knight deals a Wound, do not Escalate!\nExhibition Clash: Remove the Grounded (Phase III) Phase Trait card."
+   },
+   {
+    "name": "Ruined Bastion",
+    "level": 1,
+    "text": "Knights may move onto Ruined Wall Terrain tiles during their voluntary movement.\nKnights may move onto Tower Terrain tiles from Ruined Wall Terrain tiles or the VP during their voluntary movement.\nKnights treat Tower and Ruined Wall Terrain tiles as Indestructible during their involuntary movement."
+   },
+   {
+    "name": "Climbable Appendages",
+    "level": 1,
+    "text": "Young Devour Dragon starts the Clash with the VP unlocked."
+   },
+   {
+    "name": "Dragonfeast",
+    "level": 1,
+    "text": "Additional Setup: Add the Your Death Becomes a Dragon's Sacrament Judicium card to the Judicium deck."
+   },
+   {
+    "name": "Groundscraper",
+    "level": 1,
+    "text": "Ram: The Dragon moves adjacent to the designated Terrain tile. Then, trigger effects based on the current Phase's Trait card."
+   },
+   {
+    "name": "Curse of Endless Hunger",
+    "level": 2,
+    "text": "End of Monster Round: [Divine Target] Divine Target loses [V] equal to their [P]."
+   },
+   {
+    "name": "Inescapable Maw",
+    "level": 2,
+    "text": "When a Knight is Devoured, place their Portrait card near the Monster Sheet, they cannot be resurrected during that Clash."
+   }
+  ],
+  "vp": {
+   "name": "Broad Back",
+   "text": "Climb: Test Might (10+).\nHold on: End of Monster Round: If on the VP, test Tenacity (12+). Fail: Knockdown, Displace.\nYoung Devour Dragon starts with the VP unlocked.\n[Divine Target] Divine Target cannot move to the VP. When you leave the VP, gain the [Divine Target] Divine Target token.\nWhile on the VP, you have +X [Power], where X is the Level of the attacked BP. If you deal a Wound, gain +1 [P]."
+  },
+  "unclear": [
+   "Level 2 bar: \"+1\" read as AT +1",
+   "Exhibition Wounds column shows \"-\" at both Levels"
+  ]
+ },
+ "ai": [
+  {
+   "name": "Bellow of the Famished",
+   "level": 0,
+   "type": "SIMULTANEOUS JUDGEMENT",
+   "evasionDice": null,
+   "evasionDifficulty": null,
+   "pre": null,
+   "targeting": [
+    "Three random Knights"
+   ],
+   "tag": "JUDGE",
+   "effects": [
+    "One random Knight gains the [Divine Target] Divine Target token. Two other random Knights gain the Called by the Heavens Condition card."
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "Remove this card from the Clash and perform AI.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Gulping Run",
+   "level": 1,
+   "type": "SEQUENTIAL ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": 10,
+   "pre": null,
+   "targeting": [
+    "Each Knight on a Tower, starting from the closest",
+    "Closest Knight"
+   ],
+   "tag": "MOVE & ATTACK {P3+: +1 [die]}",
+   "effects": [
+    "Gain +1 [P].",
+    "For each hit lose -3 [V]. [Peril].",
+    "[React]"
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "The Dragon moves 4 spaces forward.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Damning Discharge",
+   "level": 1,
+   "type": "SIMULTANEOUS JUDGEMENT",
+   "evasionDice": 2,
+   "evasionDifficulty": 10,
+   "pre": null,
+   "targeting": [
+    "[Divine Target] Divine Target and [Priority Target] Priority Target"
+   ],
+   "tag": "JUDGE {BOTH [Divine Target] AND [Priority Target]: DOOMED AND +1 [die]}",
+   "effects": [
+    "Fortitude / Might.",
+    "Gain the Called by the Heavens Condition card. For each hit lose -4 [V]. [Peril]."
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "Ram the furthest Tower.",
+   "zone": null,
+   "unclear": [
+    "Gate read as \"both tokens on the same Knight → Doomed and +1 die\""
+   ]
+  },
+  {
+   "name": "Bile Vomit",
+   "level": 1,
+   "type": "WAVE ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 8,
+   "pre": null,
+   "targeting": [
+    "Closest Knight on a Tower",
+    "Closest Knight in front",
+    "Closest Knight"
+   ],
+   "tag": "MOVE & ATTACK {P3+: +1 [die]}",
+   "effects": [
+    "For each hit lose -2 [V].",
+    "Bane 1 and gain +1 [P]. [Peril].",
+    "[React]"
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "Ram the furthest Tower.",
+   "zone": "diagram: inverted triangle in front of the Dragon (3 rows, widest far away)",
+   "unclear": [
+    "Zone diagram read from a small image"
+   ]
+  },
+  {
+   "name": "Autotomic Evisceration",
+   "level": 1,
+   "type": "ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 10,
+   "pre": null,
+   "targeting": [
+    "Closest Knight on a Tower",
+    "Closest Knight in front",
+    "Closest Knight"
+   ],
+   "tag": "MOVE & ATTACK {P3+: +1 [die]}",
+   "effects": [
+    "Gain +1 [P]. For each hit lose -4 [V] and Bane 1. [Peril].",
+    "[React]"
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Draw a card from the Fool's deck, and move the Dragon to the designated space.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Skewer",
+   "level": 1,
+   "type": "RANGE ATTACK",
+   "evasionDice": 1,
+   "evasionDifficulty": 12,
+   "pre": null,
+   "targeting": [
+    "Furthest Knight in Zone 2",
+    "No Target: Perform Signature"
+   ],
+   "tag": "RANGE ATTACK 4 {P3+: +1 [die]}",
+   "effects": [
+    "If hit, lose -8 [V]. Gain +1 [P]. [Peril].",
+    "Bane 2. Gain the Called by the Heavens Condition card.",
+    "[React]"
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Draw a card from the Fool's deck, and move the Dragon to the designated space.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Hungry Chomp",
+   "level": 1,
+   "type": "ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": 11,
+   "pre": null,
+   "targeting": [
+    "Highest [P]"
+   ],
+   "tag": "MOVE & ATTACK {[Divine Target] DIVINE TARGET: +1 [die]}",
+   "effects": [
+    "For each hit lose -5 [V]. [Peril].",
+    "If you declared a Shield as your active Weapon during this Attack, discard it.",
+    "[React]"
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "The Dragon moves 4 spaces forward.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Devouring Vortex",
+   "level": 2,
+   "type": "SIMULTANEOUS RANGE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 10,
+   "pre": null,
+   "targeting": [
+    "Each Knight on a Tower",
+    "[Divine Target] Divine Target",
+    "[Priority Target] Priority Target"
+   ],
+   "tag": "RANGE ATTACK UNLIMITED {P4+: +1 [die]}",
+   "effects": [
+    "For each hit Pull 3 and lose -3 [V].",
+    "Then, if you are adjacent to the Dragon, lose -9 [V]. [Peril].",
+    "[React]"
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "Draw a card from the Fool's deck, and move the Dragon to the designated space.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Dive Attack",
+   "level": 2,
+   "type": "SEQUENTIAL ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": 10,
+   "pre": null,
+   "targeting": [
+    "Each Knight on a Tower, starting from the closest",
+    "Closest Knight"
+   ],
+   "tag": "MOVE & ATTACK {P4+: +1 [die]}",
+   "effects": [
+    "Gain +1 [P].",
+    "For each hit lose -6 [V]. [Peril].",
+    "[React]"
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "The Dragon moves 6 spaces forward.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Thunder Storm",
+   "level": 2,
+   "type": "SIMULTANEOUS JUDGEMENT",
+   "evasionDice": 3,
+   "evasionDifficulty": 10,
+   "pre": null,
+   "targeting": [
+    "[Divine Target] Divine Target, [Priority Target] Priority Target, and Zone 1 around them"
+   ],
+   "tag": "JUDGE {EITHER [Divine Target] OR [Priority Target]: DOOMED, GAIN THE CALLED BY THE HEAVENS CONDITION CARD}",
+   "effects": [
+    "Fortitude / Might.",
+    "Gain the Panicked Condition card.",
+    "For each hit lose -4 [V] and gain +1 [P].",
+    "[Peril]. Three or more hits, Knockdown.",
+    "[React]"
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "Ram the furthest Tower.",
+   "zone": "diagram: Zone 1 around a Knight",
+   "unclear": []
+  },
+  {
+   "name": "Command of the Famishing",
+   "level": 2,
+   "type": "SIMULTANEOUS JUDGEMENT",
+   "evasionDice": 2,
+   "evasionDifficulty": 11,
+   "pre": null,
+   "targeting": [
+    "Each Knight without the Called by the Heavens Condition card",
+    "No Target: Perform Signature"
+   ],
+   "tag": "JUDGE {P3+: +1 [die]}",
+   "effects": [
+    "Bravery / Tenacity. Gain the Called by the Heavens Condition card. One hit, move 3 spaces toward the closest Tower and gain +1 [P]. Two or more hits, move 5 spaces toward the closest Tower and gain +3 [P]. Lose [V] equal to your [P]. [Peril].",
+    "[React]"
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "Ram the furthest Tower and Devour all Knights on it.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Bile Cannon",
+   "level": 2,
+   "type": "RANGE ZONE ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 8,
+   "pre": null,
+   "targeting": [
+    "Furthest Knight on a Tower and Zone 1 around them",
+    "Furthest Knight in sight and Zone 1 around them"
+   ],
+   "tag": "RANGE ATTACK UNLIMITED {P4+: +1 [die]}",
+   "effects": [
+    "For each hit lose -4 [V], Bane 1 and gain +1 [P]. [Peril].",
+    "[React]"
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "Draw a card from the Fool's deck, and move the Dragon to the designated space.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Fearsome Feast",
+   "level": 2,
+   "type": "ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": 9,
+   "pre": null,
+   "targeting": [
+    "Highest [P]"
+   ],
+   "tag": "MOVE & ATTACK {[Divine Target] DIVINE TARGET: +1 [die]}",
+   "effects": [
+    "For each hit lose -5 [V]. [Peril].",
+    "If you declared a Shield as your active Weapon during this Attack, discard it.",
+    "[React]"
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "The Dragon moves 6 spaces forward.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Madness of the Famishing",
+   "level": 3,
+   "type": "JUDGEMENT",
+   "evasionDice": 3,
+   "evasionDifficulty": 11,
+   "pre": null,
+   "targeting": [
+    "[Divine Target] Divine Target in sight",
+    "[Priority Target] Priority Target in sight",
+    "Highest [P] in sight"
+   ],
+   "tag": "JUDGE",
+   "effects": [
+    "Bravery / Tenacity. Stand up and move at your full [Speed] toward another closest Knight. If you are or become adjacent to each other, roll your Knight's Power dice three times. That Knight loses [V] for every symbol you rolled and performs a [Peril].",
+    "[React]"
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Draw a card from the Fool's deck, and move the Dragon to the designated space.",
+   "zone": null,
+   "unclear": [
+    "\"at your full [icon]\" read as Speed"
+   ]
+  },
+  {
+   "name": "Grind to a Pulp",
+   "level": 3,
+   "type": "ZONE ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": 9,
+   "pre": null,
+   "targeting": [
+    "Furthest Knight in sight and Zone 1 around them"
+   ],
+   "tag": "MOVE & ATTACK",
+   "effects": [
+    "Your [V] becomes 0, you die. If you survive, discard your Armor [Gear] card.",
+    "[React]"
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "The Dragon moves 8 spaces forward.",
+   "zone": "diagram: Zone 1 around a Knight",
+   "unclear": []
+  },
+  {
+   "name": "Slice 'n' Dice",
+   "level": 3,
+   "type": "RANGE ATTACK",
+   "evasionDice": 5,
+   "evasionDifficulty": 10,
+   "pre": null,
+   "targeting": [
+    "Furthest Knight in Zone 3",
+    "No Target: Perform Signature"
+   ],
+   "tag": "RANGE ATTACK 6",
+   "effects": [
+    "For each hit lose -4 [V].",
+    "Gain +2 [P]. [Peril]. Bane 4.",
+    "[React]"
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Draw a card from the Fool's deck, and move the Dragon to the designated space.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Snatch 'n' Snap",
+   "level": 3,
+   "type": "ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 9,
+   "pre": null,
+   "targeting": [
+    "Knight on a VP",
+    "Last Knight to wound",
+    "Closest Knight in sight"
+   ],
+   "tag": "MOVE & ATTACK",
+   "effects": [
+    "For each hit lose -7 [V] and gain +1 [P]. Two hits, disable one of your [hand] Weapon slots (you lose that slot until the end of Clash). Three or more hits, you are Devoured. [Peril].",
+    "[React]"
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "The Dragon moves 3 spaces to the left (without turning), then 3 spaces forward.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "World Eater",
+   "level": 3,
+   "type": "ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 10,
+   "pre": null,
+   "targeting": [
+    "Knight on a VP",
+    "Highest [P]"
+   ],
+   "tag": "MOVE & ATTACK {VP: +1 [die]}",
+   "effects": [
+    "For each hit lose -2 [V] and Bane 1. [Peril].",
+    "Based on the number of hits:",
+    "1+ hit, Discard the Talent card (until the end of Clash).",
+    "2+ hits, Discard all Technique cards.",
+    "3+ hits, Discard all Gear [Gear] cards.",
+    "4+ hits, you are Devoured.",
+    "[React]"
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "The Dragon moves 3 spaces to the right (without turning), then 3 spaces forward.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Black Hole",
+   "level": 3,
+   "type": "ZONE ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 11,
+   "pre": "Turn to face the most Knights, then destroy all Terrain tiles in front.",
+   "targeting": [
+    "All spaces in front"
+   ],
+   "tag": "ATTACK",
+   "effects": [
+    "For each hit Pull 3 and lose -5 [V].",
+    "Then, if you are adjacent to the Dragon, you are Devoured. [Peril].",
+    "[React]"
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "The Dragon moves 8 spaces forward.",
+   "zone": null,
+   "unclear": []
+  }
+ ],
+ "signature": {
+  "name": "Tail Lash",
+  "level": 0,
+  "type": "ZONE SIGNATURE",
+  "evasionDice": 2,
+  "evasionDifficulty": 10,
+  "pre": null,
+  "targeting": [
+   "Knight in Rear",
+   "Closest Knight in front",
+   "Closest Knight in sight"
+  ],
+  "tag": "MOVE & ATTACK",
+  "effects": [
+   "Gain +1 [P].",
+   "For each hit lose -4 [V]. [Peril].",
+   "[React]",
+   "Knockdown."
+  ],
+  "afterTag": "AFTER FINAL ATTACK",
+  "after": "Knockback 5 to the right.",
+  "zone": "diagram: the 3 cells directly in front of the Dragon",
+  "unclear": []
+ },
+ "routine": {
+  "name": "Craving's Call",
+  "text": "Each Knight with the Called by the Heavens Condition card dies. All other Knights gain the Called by the Heavens Condition card.\nThe Dragon moves to the center of the Clash Board, then turns to face the most Knights."
+ },
+ "traitCards": [
+  {
+   "name": "Flying High",
+   "type": "PHASE I",
+   "text": "The Dragon gains +4 To Hit unless attacked from a Terrain tile, the VP, or during a Lunging Attack (see Tower Terrain tile).\nThe Dragon gains +2 To Hit when attacked from a Ruined Wall Terrain tile.\nThe Dragon doesn't destroy Terrain tiles and doesn't cause Crash unless stated otherwise.\nYou fail all Climb tests.\nWhen the Dragon Rams a Tower, each Knight on it suffers Crash.\n—\nWhen you finish resolving the current action, if there are 3+ Wounds on the Wound Stack, remove this card and all AI 1 and BP 1 cards from the Clash, except cards on the Wound Stack. Create new AI and BP decks using AI 2 and BP 2 cards. Then, the Dragon performs AI."
+  },
+  {
+   "name": "Floating Low",
+   "type": "PHASE II",
+   "text": "The Dragon has +2 To Hit unless attacked from a Terrain tile, the VP, or during a Lunging Attack (see Tower Terrain tile).\nThe Dragon causes Crash as normal.\nWhen the Dragon Rams a Tower, that Tower is destroyed.\n—\nWhen you finish resolving the current action, if there are 6+ Wounds on the Wound Stack:\nExhibition: You win the Clash.\nFull Clash: Remove this card and all AI 2 and BP 2 cards from the Clash, except cards on the Wound Stack. Create new AI and BP decks using AI 3 and BP 3 cards. Then, the Dragon performs AI."
+  },
+  {
+   "name": "Grounded",
+   "type": "PHASE III",
+   "text": "The Dragon Crash Devours you (you die). If you survive, Displace to the closest Empty Space.\nIf a Knight with the Called by the Heavens Condition card would draw a Judicium, they are Devoured instead.\n+3 to all Climb tests.\nWhen the Dragon Rams a Tower, that Tower is destroyed and all Knights on it are devoured (die).\n—\nTo leave the VP voluntarily, you must pass a Climb Down test (same difficulty as the Climb test)."
+  }
+ ],
+ "bp": [
+  {
+   "name": "Greedy Claws",
+   "level": 1,
+   "at": 11,
+   "top": "OVERCOME 7+: Power 1",
+   "note": null,
+   "ultrainstinct": "Gain +2 [H].",
+   "instinct": null,
+   "wound": "Exhaust your active Weapon. Lose -2 [V].",
+   "fail": null,
+   "critical": "The Dragon gains 1 permanent negative To Hit token.",
+   "unclear": []
+  },
+  {
+   "name": "Unhinged Jaw",
+   "level": 1,
+   "at": 11,
+   "top": "OVERPOWER 2+: Reposition 2",
+   "note": null,
+   "ultrainstinct": null,
+   "instinct": null,
+   "wound": "Lose -2 [V].",
+   "fail": null,
+   "critical": "You may gain or discard the Called by the Heavens Condition card.",
+   "unclear": []
+  },
+  {
+   "name": "Winding Tail",
+   "level": 1,
+   "at": 10,
+   "top": "OVERCOME 3+: Reposition 1",
+   "note": null,
+   "ultrainstinct": null,
+   "instinct": null,
+   "wound": null,
+   "fail": "Bane 1. [React] The Dragon moves 2 spaces forward.",
+   "critical": "The Dragon gains 1 permanent negative Precision token.",
+   "unclear": []
+  },
+  {
+   "name": "Springy Hindlimbs",
+   "level": 1,
+   "at": 10,
+   "top": "OVERCOME 5+: Reposition 2",
+   "note": null,
+   "ultrainstinct": "If you're on a front space, Chain Break.",
+   "instinct": null,
+   "wound": "[React] Ram the Tower furthest from the Dragon.",
+   "fail": "Knockback 5.",
+   "critical": "Until the end of Clash, when the Dragon moves during After Attack, stop that movement after 3 spaces.",
+   "unclear": []
+  },
+  {
+   "name": "Whiskerfin",
+   "level": 1,
+   "at": 9,
+   "top": "OVERPOWER 4+: Ignore the Wound Response",
+   "note": null,
+   "ultrainstinct": null,
+   "instinct": "Bane 2.",
+   "wound": "Knockdown.",
+   "fail": null,
+   "critical": "You may perform a Bonus Attack!",
+   "unclear": []
+  },
+  {
+   "name": "Venomous Whiskers",
+   "level": 1,
+   "at": 9,
+   "top": "OVERCOME 4+: Power 1",
+   "note": null,
+   "ultrainstinct": "If you're in front of the Dragon, gain +1 [P]. Then, lose [V] equal to your [P].",
+   "instinct": null,
+   "wound": null,
+   "fail": "Bane 1. Toxify 3.",
+   "critical": "You may perform a Bonus Attack!",
+   "unclear": []
+  },
+  {
+   "name": "Steelribbon Tendril",
+   "level": 2,
+   "at": 13,
+   "top": "OVERPOWER 4+: Ignore Wound Response",
+   "note": null,
+   "ultrainstinct": "Toxify 2.",
+   "instinct": null,
+   "wound": "Bane 2. Knockdown.",
+   "fail": null,
+   "critical": "You may perform a Bonus Attack!",
+   "unclear": []
+  },
+  {
+   "name": "Hollow Bones",
+   "level": 2,
+   "at": 12,
+   "top": "OVERPOWER 2+: Reposition 2",
+   "note": null,
+   "ultrainstinct": null,
+   "instinct": "[React] Ram the Tower furthest from the Dragon.",
+   "wound": null,
+   "fail": null,
+   "critical": "Scavenge 1.",
+   "unclear": []
+  },
+  {
+   "name": "Mucus-Coated Underbelly",
+   "level": 2,
+   "at": 12,
+   "top": "OVERCOME 3+: Reposition 1",
+   "note": null,
+   "ultrainstinct": "If you're on a front space, Chain Break.",
+   "instinct": null,
+   "wound": "[React] Ram the Tower furthest from the Dragon.",
+   "fail": "Knockback 6.",
+   "critical": "Until the end of Clash, when a Knight is about to lose [V] equal to their [P], ignore that loss.",
+   "unclear": []
+  },
+  {
+   "name": "Barbed Palate",
+   "level": 2,
+   "at": 13,
+   "top": "OVERCOME 5+: Reposition 2",
+   "note": null,
+   "ultrainstinct": "If you're in front of the Dragon, gain +1 [P]. Then lose [V] equal to your [P].",
+   "instinct": "Bane 1. Lose -3 [V].",
+   "wound": null,
+   "fail": null,
+   "critical": "Ram no longer destroys Tower Terrain tiles.",
+   "unclear": []
+  },
+  {
+   "name": "Pitted Cobalt Scales",
+   "level": 2,
+   "at": 14,
+   "top": "OVERCOME 4+: Power 1",
+   "note": null,
+   "ultrainstinct": "Exhaust your active Weapon (you still benefit from its offensive stats).",
+   "instinct": "Bane 2. [React] The Dragon moves 2 spaces forward.",
+   "wound": null,
+   "fail": null,
+   "critical": "Disable [Divine Target] Divine Target gated effects on AI cards.",
+   "unclear": []
+  },
+  {
+   "name": "Razor-Sharp Teeth",
+   "level": 2,
+   "at": 14,
+   "top": "OVERCOME 7+: Power 1",
+   "note": null,
+   "ultrainstinct": null,
+   "instinct": "Exhaust your active Weapon. Lose -2 [V].",
+   "wound": null,
+   "fail": null,
+   "critical": "Until the end of Clash, when a Knight is about to be Devoured, they draw a Judicium instead.",
+   "unclear": []
+  },
+  {
+   "name": "Black-Bile Organ",
+   "level": 3,
+   "at": 16,
+   "top": "OVERPOWER 4+: Ignore Wound Response",
+   "note": null,
+   "ultrainstinct": null,
+   "instinct": null,
+   "wound": "Bane 3. Knockdown.",
+   "fail": "Perform Signature against the Attacker.",
+   "critical": "Disable the Bane X keyword.",
+   "unclear": []
+  },
+  {
+   "name": "Hollow Body",
+   "level": 3,
+   "at": 15,
+   "top": "OVERCOME 8+: Power 1",
+   "note": null,
+   "ultrainstinct": null,
+   "instinct": "Exhaust your active Weapon. Perform Signature against the Attacker.",
+   "wound": null,
+   "fail": null,
+   "critical": "Scavenge 1.",
+   "unclear": []
+  },
+  {
+   "name": "Bottomless Stomach",
+   "level": 3,
+   "at": 17,
+   "top": "OVERPOWER 3+: Reset your [H]",
+   "note": null,
+   "ultrainstinct": "Gain +3 [H].",
+   "instinct": null,
+   "wound": "Lose [V] equal to your [P].",
+   "fail": "You are Devoured.",
+   "critical": "All Devoured Knights are regurgitated on the front spaces of the Dragon with half of their maximum [V], rounding up (ignore the Inescapable Maw Trait).",
+   "unclear": []
+  },
+  {
+   "name": "Spinal Air Sac",
+   "level": 3,
+   "at": 15,
+   "top": "OVERCOME 4+: Reposition 1",
+   "note": null,
+   "ultrainstinct": null,
+   "instinct": null,
+   "wound": "Each Knight in Zone 3 of the Dragon suffers Knockback 4 and Knockdown.",
+   "fail": "Bane 3.",
+   "critical": "Gain the Courage Condition card. Then, you may perform a Bonus Attack!",
+   "unclear": []
+  },
+  {
+   "name": "Glassy Eyes",
+   "level": 3,
+   "at": 16,
+   "top": "OVERCOME 6+: Immediately Reposition 3",
+   "note": null,
+   "ultrainstinct": "If you're in front of the Dragon, gain +1 [P]. Then, lose [V] equal to your [P].",
+   "instinct": null,
+   "wound": "[React] The Dragon moves 5 spaces in a random direction.",
+   "fail": "[React] The Dragon moves 3 spaces forward.",
+   "critical": "If you are adjacent to the Dragon, you may climb the VP. Then, you may perform a Bonus Attack!",
+   "unclear": []
+  },
+  {
+   "name": "Insatiable Heart",
+   "level": 3,
+   "at": 17,
+   "top": "OVERCOME 6+: Reposition 3",
+   "note": null,
+   "ultrainstinct": "Gain +3 [P].",
+   "instinct": "Lose [V] equal to your [P].",
+   "wound": null,
+   "fail": null,
+   "critical": "Devote.",
+   "unclear": []
+  }
+ ],
+ "notes": [
+  "Overcome / Overpower thresholds on the BP cards are printed very small — check every \"N+\"",
+  "Needs the Tower Terrain tile card (Lunging Attack) and the Called by the Heavens Condition card"
+ ],
+ "_source": "Owner scans 2026-11-19 (Monster Sheet + card sheet). Engine NOT implemented."
+}

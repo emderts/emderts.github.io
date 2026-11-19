@@ -1,0 +1,799 @@
+{
+ "id": "toadragon-of-the-great-marsh",
+ "sheet": {
+  "name": "Toadragon of the Great Marsh",
+  "code": "26A1070",
+  "traitsLine": [
+   "Dragon",
+   "Beast",
+   "Toad"
+  ],
+  "footprint": "3x3; rear = the three cells behind (R R R, Blindspot); the three front cells are Weakspot (W) spaces",
+  "basicAbilities": [
+   "Lumbering",
+   "Blindspot",
+   "Weakspot",
+   "Unavoidable Knockback 5",
+   "VP",
+   "Ignore Difficult Terrain"
+  ],
+  "levels": {
+   "1": {
+    "toHit": "11+",
+    "wounds": 10,
+    "exhibitionWounds": 4,
+    "activations": [
+     "AI"
+    ],
+    "traitsAdd": [
+     "Bounding Behemoth",
+     "Dirge of Dominion",
+     "The Great Unknowable",
+     "Spawneater",
+     "Dragonfeast"
+    ],
+    "bonuses": {
+     "escalations": 0,
+     "at": 0,
+     "vigorLoss": 0,
+     "evasionDice": 0,
+     "heat": 0
+    }
+   },
+   "2": {
+    "toHit": "11+",
+    "wounds": 11,
+    "exhibitionWounds": 4,
+    "activations": [
+     "AI"
+    ],
+    "traitsAdd": [
+     "Favorite Child",
+     "Unrelenting Swarm"
+    ],
+    "bonuses": {
+     "escalations": 1,
+     "at": 2,
+     "vigorLoss": 0,
+     "evasionDice": 0,
+     "heat": 0
+    }
+   }
+  },
+  "traits": [
+   {
+    "name": "Bounding Behemoth",
+    "level": 1,
+    "text": "The Toadragon doesn't move space by space, instead it moves 3 spaces at a time in a straight line. If you would suffer Crash as a result of Toadragon movement, you die. If you survive, Displace to the closest empty space.\nWhen the Toadragon moves to attack its Target, it moves only the minimum required amount of times to have the Target within the Attack's effective range. If it cannot reach the Target, the Toadragon doesn't move at all.\nHop X: The Toadragon moves 3 spaces in the indicated direction. If the Toadragon would move beyond a Board Edge, it first turns to face directly away from that Board Edge, then moves 3 spaces."
+   },
+   {
+    "name": "Dirge of Dominion",
+    "level": 1,
+    "text": "All who hear the Toadragon's song are compelled to obey it. The toxic miasma that sheds from its skin afflicts the minds of any who draw near. When a Knight is about to lose [V] due to a Poisoned or Toxified Condition card, they gain that much [P] instead.\nIgnore during the first Monster Round:\nStart of Monster Round: Each Knight must choose to Submit or to Resist.\nEach Knight who Resists loses [V] equal to their [P]. For each Knight who Submits or is dead, discard a card from the top of the AI deck."
+   },
+   {
+    "name": "The Great Unknowable",
+    "level": 1,
+    "text": "All AI cards are placed in the discard pile face down—you cannot look at them."
+   },
+   {
+    "name": "Spawneater",
+    "level": 1,
+    "text": "When you Spawn a Toadlet, place its token on the Swamp Terrain tile without a Toadlet token furthest from the Toadragon. If there are already 6 Toadlet tokens on the Clash Board and/or the Monster Sheet, instead of Spawning, move the Toadlet token furthest from the Toadragon onto the Monster Sheet.\nWhen the Toadragon moves through or ends its movement on a Toadlet token, place that token on the Monster Sheet.\nWhen you move through or onto a Toadlet token, or end your movement adjacent to a Toadlet token, discard it and Poison 1.\nEnd of Monster Round: Move each Toadlet on the Clash Board, starting from the closest to the Toadragon, 3 spaces toward the Toadragon until adjacent (via the shortest possible path). If it is already adjacent and can still move, place it on the Monster Sheet. Toadlets cannot move through miniatures, Obstacles, or other Toadlets. Then, if there are 2+ Toadlet tokens on the Toadragon Sheet, discard them and perform Signature."
+   },
+   {
+    "name": "Dragonfeast",
+    "level": 1,
+    "text": "Additional Setup: Add the Your Death Becomes a Dragon's Sacrament Judicium card to the Judicium deck."
+   },
+   {
+    "name": "Favorite Child",
+    "level": 2,
+    "text": "If the [Divine Target] Divine Target token is not on the Clash Board and you are instructed to Spawn a Toadlet, place the [Divine Target] Divine Target token on the Clash Board instead, and treat it as a Toadlet. If you would place the [Divine Target] Divine Target token on the Toadragon Sheet, discard it and perform AI instead."
+   },
+   {
+    "name": "Unrelenting Swarm",
+    "level": 2,
+    "text": "Signature gains \"After Attack: Spawn a Toadlet.\""
+   }
+  ],
+  "vp": {
+   "name": "Severed Ichor Spines",
+   "text": "Climb: Test Might (11+).\nHold On: End of Monster Round: If on the VP, test Tenacity (12+). Fail: Displace to a Rear [R] space, Knockdown, Knockback 3.\nWhile on the VP, you have +2 [Power]. Ignore regular Responses, and resolve these instead:\nWOUND: Toxify 1. [React] Hop Forward. Perform a Hold on test.\nFAIL: Displace to a front space. Knockdown."
+  },
+  "unclear": [
+   "Level 2 bar: \"1 [burst icon]\" read as Escalation 1, \"+2\" read as AT +2"
+  ]
+ },
+ "ai": [
+  {
+   "name": "Crescendo of Subjugation",
+   "level": 0,
+   "type": "JUDGEMENT",
+   "evasionDice": null,
+   "evasionDifficulty": null,
+   "pre": "If this AI card would be discarded, perform it instead.",
+   "targeting": [
+    "All Knights"
+   ],
+   "tag": "JUDGE",
+   "effects": [
+    "First Monster Round Only: Each Knight suffers Poison 1. Place this card face up on the bottom of the AI deck and never shuffle or Escalate it. Perform an additional AI.",
+    "Any Other Round: All Knights die. You lose the Clash!"
+   ],
+   "afterTag": null,
+   "after": null,
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Lunge",
+   "level": 1,
+   "type": "WAVE ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": 10,
+   "pre": null,
+   "targeting": [
+    "Zone 2"
+   ],
+   "tag": "HOP FORWARD & ATTACK {H4+: +1 [die]}",
+   "effects": [
+    "If hit, lose -8 [V]. [Peril].",
+    "Knockdown.",
+    "[React]"
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "Spawn a Toadlet on every Swamp Terrain tile in Zone 2.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Tongue Whip",
+   "level": 1,
+   "type": "RANGE ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 9,
+   "pre": null,
+   "targeting": [
+    "[Priority Target] Priority Target in sight, in range",
+    "Highest [P] in sight, in range",
+    "No Target: Perform Signature"
+   ],
+   "tag": "RANGE ATTACK 7 {P5+: +1 [die]}",
+   "effects": [
+    "For each hit lose -3 [V] and Pull 2. [Peril].",
+    "Gain 1 temporary negative Evasion token."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "If adjacent, Knockback 6 toward the closest Obstacle (even if not in a straight line).",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Overwhelming Croak",
+   "level": 1,
+   "type": "SIMULTANEOUS JUDGEMENT",
+   "evasionDice": 3,
+   "evasionDifficulty": 9,
+   "pre": null,
+   "targeting": [
+    "All Knights in Zone 1 around a Swamp Terrain tile",
+    "No Target: Perform Signature"
+   ],
+   "tag": "JUDGE",
+   "effects": [
+    "Bravery / Sagacity.",
+    "Bane 1. For each hit lose -4 [V]. [Peril].",
+    "Three or more hits, you die!",
+    "If you survive, gain the Slimed and Distracted Condition cards.",
+    "[React]"
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "Hop forward.",
+   "zone": "diagram: Zone 1 around a Swamp tile",
+   "unclear": []
+  },
+  {
+   "name": "Putrescent Stench",
+   "level": 1,
+   "type": "ZONE JUDGEMENT",
+   "evasionDice": 2,
+   "evasionDifficulty": 11,
+   "pre": null,
+   "targeting": [
+    "Furthest Knight in front",
+    "Furthest Knight in sight"
+   ],
+   "tag": "MOVE & JUDGE",
+   "effects": [
+    "Tenacity / Fortitude.",
+    "Lose -10 [V]. [Peril]. Poison 2.",
+    "For each hit Spawn a Toadlet."
+   ],
+   "afterTag": null,
+   "after": null,
+   "zone": "diagram: wide block in front of the Toadragon (read as 3 rows deep, wider than the Toadragon)",
+   "unclear": [
+    "Zone diagram read from a small image"
+   ]
+  },
+  {
+   "name": "Poisonous Bile",
+   "level": 1,
+   "type": "WAVE ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 10,
+   "pre": null,
+   "targeting": [
+    "Furthest Knight in front",
+    "Furthest Knight in sight"
+   ],
+   "tag": "MOVE & ATTACK {P3+: DIFFICULTY 12+ INSTEAD}",
+   "effects": [
+    "One hit, lose -7 [V].",
+    "Two hits, lose -10 [V] and Poison 1.",
+    "Three hits, lose -12 [V] and Poison 2.",
+    "[Peril]. Bane 2."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Spawn a Toadlet.",
+   "zone": "diagram: 3 columns x 3 rows directly in front",
+   "unclear": [
+    "Zone diagram read from a small image"
+   ]
+  },
+  {
+   "name": "Toadlet Pack",
+   "level": 1,
+   "type": "WAVE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 9,
+   "pre": null,
+   "targeting": [
+    "Zone 2 around two closest Swamp Terrain tiles"
+   ],
+   "tag": "ATTACK",
+   "effects": [
+    "For each hit lose -6 [V] and Bane 1.",
+    "[Peril]. Gain the Slimed Condition card.",
+    "[React]"
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "Hop forward.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Rancid Breath",
+   "level": 2,
+   "type": "ZONE JUDGEMENT",
+   "evasionDice": 2,
+   "evasionDifficulty": 12,
+   "pre": null,
+   "targeting": [
+    "Furthest Knight in front",
+    "Furthest Knight in sight"
+   ],
+   "tag": "MOVE & JUDGE",
+   "effects": [
+    "Sagacity / Fortitude.",
+    "For each hit lose -7 [V] and Poison 2.",
+    "[Peril]. For each hit Spawn a Toadlet."
+   ],
+   "afterTag": null,
+   "after": null,
+   "zone": "diagram: cone in front of the Toadragon, widening away from it",
+   "unclear": [
+    "Zone diagram read from a small image"
+   ]
+  },
+  {
+   "name": "Mighty Slam",
+   "level": 2,
+   "type": "WAVE ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": 10,
+   "pre": null,
+   "targeting": [
+    "Zone 4"
+   ],
+   "tag": "HOP FORWARD & ATTACK {H5+: +1 [die]}",
+   "effects": [
+    "If hit, lose -12 [V]. [Peril]. Knockdown.",
+    "Knockback 2.",
+    "[React]"
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "Spawn a Toadlet on each Swamp Terrain tile in Zone 4.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Maw of the Marsh",
+   "level": 2,
+   "type": "ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 11,
+   "pre": null,
+   "targeting": [
+    "[Priority Target] Priority Target in front, not adjacent to a Board Edge",
+    "Closest Knight in front, not adjacent to a Board Edge",
+    "No Target: Perform Signature"
+   ],
+   "tag": "JUMP & ATTACK",
+   "effects": [
+    "Bane 2. For each hit lose -5 [V] and Spawn a Toadlet. [Peril]."
+   ],
+   "afterTag": null,
+   "after": null,
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Regurgitate Young",
+   "level": 2,
+   "type": "WAVE ATTACK",
+   "evasionDice": 5,
+   "evasionDifficulty": 8,
+   "pre": null,
+   "targeting": [
+    "Furthest Knight in front",
+    "Furthest Knight in sight"
+   ],
+   "tag": "MOVE & ATTACK {P4+: DIFFICULTY 10+ INSTEAD}",
+   "effects": [
+    "One hit, lose -8 [V] and Poison 1.",
+    "Two hits, lose -12 [V] and Poison 2.",
+    "Three or more hits, lose -15 [V] and Poison 3. [Peril]. Bane 2."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Spawn a Toadlet.",
+   "zone": "diagram: 3 rows wide, long strip in front of the Toadragon",
+   "unclear": [
+    "Zone diagram read from a small image"
+   ]
+  },
+  {
+   "name": "Toadlet Horde",
+   "level": 2,
+   "type": "WAVE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 10,
+   "pre": null,
+   "targeting": [
+    "Zone 3 around three furthest Swamp Terrain tiles"
+   ],
+   "tag": "ATTACK",
+   "effects": [
+    "For each hit lose -5 [V] and Bane 2.",
+    "[Peril]. Gain the Slimed Condition card.",
+    "[React]",
+    "If adjacent to a Swamp Terrain tile, Knockdown.",
+    "[React]"
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "Spawn a Toadlet on each targeted Swamp Terrain tile. Turn the Toadragon toward most Knights.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Tongue Twister",
+   "level": 2,
+   "type": "RANGE ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 10,
+   "pre": null,
+   "targeting": [
+    "[Priority Target] Priority Target in sight, in range",
+    "Highest [P] in sight, in range",
+    "No Target: Perform Signature"
+   ],
+   "tag": "RANGE ATTACK 8 {P6+: +1 [die]}",
+   "effects": [
+    "For each hit lose -3 [V] and Pull 3. [Peril].",
+    "Gain 1 temporary negative Evasion token.",
+    "[React]"
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "If adjacent, you die!",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Poison the Waters",
+   "level": 3,
+   "type": "ZONE JUDGEMENT",
+   "evasionDice": 2,
+   "evasionDifficulty": 12,
+   "pre": null,
+   "targeting": [
+    "Clash Board"
+   ],
+   "tag": "JUDGE {H5+: +1 [die]}",
+   "effects": [
+    "Tenacity / Insight / Fortitude.",
+    "For each hit lose -8 [V] and Poison 2.",
+    "[Peril]. For each hit Spawn a Toadlet.",
+    "[React]"
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "Hop forward. Hop left.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Gore-Gorger",
+   "level": 3,
+   "type": "ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 11,
+   "pre": null,
+   "targeting": [
+    "[Priority Target] Priority Target in front, not adjacent to a Board Edge",
+    "Closest Knight in front, not adjacent to a Board Edge",
+    "No Target: Perform Signature"
+   ],
+   "tag": "JUMP & ATTACK",
+   "effects": [
+    "For each hit lose -7 [V], Bane 1, and Spawn a Toadlet. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "If the Target died, Heal 1.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Engulf in Slime",
+   "level": 3,
+   "type": "ZONE ATTACK",
+   "evasionDice": "X*",
+   "evasionDifficulty": 10,
+   "pre": "Each Toadlet moves 1 space toward the closest Knight. [React]",
+   "targeting": [
+    "Zone 1 around each Toadlet"
+   ],
+   "tag": "ATTACK",
+   "effects": [
+    "*X is twice the number of Toadlets in Zone 1 around you. For each hit lose -5 [V] and Bane 2. Three or more hits, you die! [Peril]. Gain the Drowning Condition card.",
+    "[React]"
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "Hop forward. Hop right.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Toadlet Swarm",
+   "level": 3,
+   "type": "WAVE ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 9,
+   "pre": null,
+   "targeting": [
+    "Furthest Knight in front",
+    "Furthest Knight in sight"
+   ],
+   "tag": "MOVE LATERAL & ATTACK",
+   "effects": [
+    "One or two hits, lose -10 [V] and gain the Slimed Condition card. Three hits, lose -15 [V] and gain the Drowning Condition card. Four or more hits, you die! [Peril]. Bane 2. Poison 2."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Spawn a Toadlet.",
+   "zone": "diagram: large inverted triangle in front of the Toadragon reaching the far Board Edge",
+   "unclear": [
+    "Zone diagram read from a small image"
+   ]
+  },
+  {
+   "name": "Swamplands Surge",
+   "level": 3,
+   "type": "WAVE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 11,
+   "pre": null,
+   "targeting": [
+    "Clash Board"
+   ],
+   "tag": "ATTACK {P6+: IGNORE [Evasion Re-roll]}",
+   "effects": [
+    "Source of this Wave Attack is the closest Board Edge directly behind the Toadragon. For each hit lose -6 [V] and Bane 2. [Peril]. Gain the Drowning Condition card. Knockback 3."
+   ],
+   "afterTag": null,
+   "after": null,
+   "zone": null,
+   "unclear": [
+    "Gate effect \"IGNORE [icon]\" — icon read as Evasion Re-rolls"
+   ]
+  },
+  {
+   "name": "Fenland Fling",
+   "level": 3,
+   "type": "RANGE ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 10,
+   "pre": "\"Run!\" [React]",
+   "targeting": [
+    "[Priority Target] Priority Target in sight, in range",
+    "Highest [P] in sight, in range",
+    "No Target: Perform Signature"
+   ],
+   "tag": "RANGE ATTACK 9 {P7+: +1 [die]}",
+   "effects": [
+    "For each hit lose -5 [V] and Knockback 5 toward the closest short Board Edge (treat it as Boundless and ignore all Obstacles during that Knockback).",
+    "[Peril]. Gain 1 temporary negative Evasion token."
+   ],
+   "afterTag": null,
+   "after": null,
+   "zone": null,
+   "unclear": []
+  }
+ ],
+ "signature": {
+  "name": "Venomous Spit",
+  "level": 0,
+  "type": "RANGE SIGNATURE",
+  "evasionDice": 3,
+  "evasionDifficulty": 9,
+  "pre": null,
+  "targeting": [
+   "Closest Knight not in front",
+   "Furthest Knight in sight"
+  ],
+  "tag": "MOVE & RANGE ATTACK 2 {H4+: +1 [die]}",
+  "effects": [
+   "For each hit lose -3 [V]. [Peril].",
+   "Bane 1. Poison 1."
+  ],
+  "afterTag": "AFTER ATTACK",
+  "after": "{LEVEL 2+: SPAWN A TOADLET}",
+  "zone": null,
+  "unclear": []
+ },
+ "routine": {
+  "name": "Shadow of Submission",
+  "text": "Discard the top AI card for every Knight alive. Each Knight gains the Exposed Condition card and loses [V] equal to their [P]."
+ },
+ "bp": [
+  {
+   "name": "Crown of Fins",
+   "level": 1,
+   "at": 9,
+   "top": "OVERCOME 4+: Power 1",
+   "note": null,
+   "ultrainstinct": null,
+   "instinct": null,
+   "wound": "[React] Hop forward. Spawn a Toadlet.",
+   "fail": "Poison 1. Gain the Slimed Condition card.",
+   "critical": "Until the end of Clash, when a Knight Resists, they lose half as much [V] (rounding down).",
+   "unclear": []
+  },
+  {
+   "name": "Giant Tail",
+   "level": 1,
+   "at": 11,
+   "top": "OVERCOME 4+: Power 1",
+   "note": null,
+   "ultrainstinct": null,
+   "instinct": null,
+   "wound": "Perform Signature against the Attacker.",
+   "fail": "[React] Knockback 4.",
+   "critical": "Create a Vantage Point. If the VP is already in play and you are adjacent to the Toadragon, you may climb it.",
+   "unclear": []
+  },
+  {
+   "name": "Soft Underbelly",
+   "level": 1,
+   "at": 9,
+   "top": "OVERPOWER 5+: Ignore Cumbersome",
+   "note": null,
+   "ultrainstinct": null,
+   "instinct": "Spawn a Toadlet twice.",
+   "wound": "[React] Hop forward. Poison 1. Bane 1.",
+   "fail": null,
+   "critical": "The Toadragon gains a permanent negative To Hit token.",
+   "unclear": []
+  },
+  {
+   "name": "Hind Leg",
+   "level": 1,
+   "at": 10,
+   "top": "OVERPOWER 3+: Reposition 2",
+   "note": null,
+   "ultrainstinct": null,
+   "instinct": "[React] Hop toward the closest Toadlet.",
+   "wound": "Spawn a Toadlet.",
+   "fail": null,
+   "critical": "Hope 1. Closing 1.",
+   "unclear": []
+  },
+  {
+   "name": "Front Leg",
+   "level": 1,
+   "at": 10,
+   "top": "OVERPOWER 3+: Reposition 2",
+   "note": null,
+   "ultrainstinct": null,
+   "instinct": null,
+   "wound": "Perform Signature against the Attacker.",
+   "fail": "Knockdown.",
+   "critical": "Until the end of Clash, when the Toadragon is about to move, each Knight may gain +1 [H] to move 1 space.",
+   "unclear": []
+  },
+  {
+   "name": "Spiny Trunk",
+   "level": 1,
+   "at": 11,
+   "top": "OVERCOME 4+: Power 1",
+   "note": null,
+   "ultrainstinct": "Your Weapon gains Cumbersome for this Attack.",
+   "instinct": null,
+   "wound": "Poison 1.",
+   "fail": "Lose -2 [V]. [React] Knockdown.",
+   "critical": "Create a Vantage Point. If the VP is already in play and you are adjacent to the Toadragon, you may climb it.",
+   "unclear": []
+  },
+  {
+   "name": "Glider Wing",
+   "level": 2,
+   "at": 12,
+   "top": "OVERCOME 4+: Immediately move up to 2 spaces",
+   "note": null,
+   "ultrainstinct": null,
+   "instinct": "[React] Hop in random direction.",
+   "wound": null,
+   "fail": null,
+   "critical": "Disable death on Crash.",
+   "unclear": []
+  },
+  {
+   "name": "Distended Jaw",
+   "level": 2,
+   "at": 13,
+   "top": "OVERCOME 4+: Power 1",
+   "note": null,
+   "ultrainstinct": "Spawn a Toadlet.",
+   "instinct": "Spawn a Toadlet.",
+   "wound": "Hop toward the closest Toadlet.",
+   "fail": null,
+   "critical": "Scavenge 2.",
+   "unclear": []
+  },
+  {
+   "name": "Slimy Tongue",
+   "level": 2,
+   "at": 14,
+   "top": "OVERCOME 5+: Power 1",
+   "note": null,
+   "ultrainstinct": "Pull 3.",
+   "instinct": null,
+   "wound": "Gain the Slimed Condition card. Gain 1 permanent negative Speed token.",
+   "fail": "Bane 2.",
+   "critical": "Each Range Attack becomes Range Attack 3.",
+   "unclear": []
+  },
+  {
+   "name": "Gorged Innards",
+   "level": 2,
+   "at": 13,
+   "top": "OVERPOWER 6+: Ignore Cumbersome",
+   "note": null,
+   "ultrainstinct": null,
+   "instinct": null,
+   "wound": "Bane 2. Spawn a Toadlet.",
+   "fail": "Lose -3 [V]. [React] Knockback 4.",
+   "critical": "Reduce each Bane X by 1. The Toadragon gains a permanent negative To Hit token.",
+   "unclear": []
+  },
+  {
+   "name": "Razor Claws",
+   "level": 2,
+   "at": 11,
+   "top": "OVERCOME 5+: Power 1",
+   "note": null,
+   "ultrainstinct": null,
+   "instinct": null,
+   "wound": "Exhaust your Weapon. [React] Hop in random direction.",
+   "fail": "Lose -4 [V]. [React] Knockdown.",
+   "critical": "You may move up to 3 spaces and perform a Bonus Attack with +1 [Power]!",
+   "unclear": []
+  },
+  {
+   "name": "Warty Skin",
+   "level": 2,
+   "at": 12,
+   "top": "OVERCOME 5+: Power 1",
+   "note": null,
+   "ultrainstinct": null,
+   "instinct": "Poison 2. Bane 1.",
+   "wound": "Spawn a Toadlet twice.",
+   "fail": null,
+   "critical": "Create a Vantage Point. If the VP is already in play and you are adjacent to the Toadragon, you may climb it. Then, you may perform a Bonus Attack!",
+   "unclear": []
+  },
+  {
+   "name": "Ichor Gland",
+   "level": 3,
+   "at": 15,
+   "top": "OVERPOWER 5+: Reposition 2",
+   "note": null,
+   "ultrainstinct": null,
+   "instinct": "Poison 2. Choke 4.",
+   "wound": "Remove the lowest Level AI card in the AI discard pile from the Clash.",
+   "fail": null,
+   "critical": "Disable the Poison X keyword. Create a VP. If the VP is already in play and you are adjacent to the Toadragon, you may climb it.",
+   "unclear": []
+  },
+  {
+   "name": "Clogged Lungs",
+   "level": 3,
+   "at": 14,
+   "top": "OVERPOWER 7+: Ignore Cumbersome",
+   "note": null,
+   "ultrainstinct": "Place the closest Toadlet token on your active Weapon. As long as it's there, that Gear [Gear] card has Cumbersome. The Toadlet is treated as if it was on your space.",
+   "instinct": null,
+   "wound": "Poison 2. Lose -2 [V].",
+   "fail": "[React] Hop in a random direction.",
+   "critical": "Disable Judgements. Whenever at least one Knight chooses to Unearth, place a Generic Single Wound card on the Wound Stack.",
+   "unclear": [
+    "Critical says \"chooses to Unearth\" — the sheet's Trait uses Submit / Resist; transcribed as printed"
+   ]
+  },
+  {
+   "name": "The Oldest One",
+   "level": 3,
+   "at": 13,
+   "top": "OVERPOWER 8+: Resolve Crit Response instead",
+   "note": null,
+   "ultrainstinct": null,
+   "instinct": null,
+   "wound": "[React] Bane 2. Hop toward the closest Toadlet.",
+   "fail": "Gain the Slimed Condition card. Spawn a Toadlet adjacent to you.",
+   "critical": "Disable Toadlet movement.",
+   "unclear": []
+  },
+  {
+   "name": "Toad Heart",
+   "level": 3,
+   "at": 17,
+   "top": null,
+   "note": "When you reveal this BP: If you have 9 [P], gain +2 [Power] for this Attack.",
+   "ultrainstinct": null,
+   "instinct": null,
+   "wound": "Gain Bane tokens up to your Bane Limit.",
+   "fail": "Draw a Judicium. If you survive, gain the Fear Condition card.",
+   "critical": "The Toadragon of the Great Marsh dies! Its spawn spills from its body.",
+   "unclear": []
+  },
+  {
+   "name": "Spawn Sack",
+   "level": 3,
+   "at": 14,
+   "top": "OVERCOME 6+: Power 1",
+   "note": null,
+   "ultrainstinct": "Spawn a Toadlet three times.",
+   "instinct": "Perform Signature against the Attacker.",
+   "wound": "Gain a permanent negative Evasion token.",
+   "fail": "Bane 2.",
+   "critical": "Disable Spawning Toadlets. Immediately see 4567.",
+   "unclear": []
+  },
+  {
+   "name": "Withered Old Scale",
+   "level": 3,
+   "at": 15,
+   "top": "OVERCOME 6+: Power 1",
+   "note": null,
+   "ultrainstinct": "This card gains +2 [AT].",
+   "instinct": "[React] Knockback 7. Lose -3 [V]. Hop in a random direction.",
+   "wound": null,
+   "fail": null,
+   "critical": "Until the end of Clash, when a Knight attacks from a [W] space, they gain a Crit Chance for that Attack.",
+   "unclear": []
+  }
+ ],
+ "notes": [
+  "Overcome / Overpower thresholds on the BP cards are printed very small — check every \"N+\"",
+  "Exposed appears on the Routine; \"Unearth\" appears on Clogged Lungs but nowhere on the Monster Sheet"
+ ],
+ "_source": "Owner scans 2026-11-19 (Monster Sheet + card sheet). Engine NOT implemented."
+}

@@ -1,0 +1,840 @@
+{
+ "id": "panzerdragon-veldr",
+ "sheet": {
+  "name": "Panzerdragon Veldr",
+  "code": "26A1064",
+  "traitsLine": [
+   "Dragon",
+   "Parasite",
+   "Undead"
+  ],
+  "footprint": "3x3; rear = the three cells behind (R R R, Blindspot); the cells on its left and right sides are marked \"!\" (Field of Parasites); blue arrows = Primal Remnant path, clockwise around the Panzerdragon",
+  "basicAbilities": [
+   "Unavoidable Knockback 12",
+   "Lumbering",
+   "Blindspot",
+   "VP"
+  ],
+  "levels": {
+   "1": {
+    "toHit": "10+",
+    "wounds": 10,
+    "exhibitionWounds": 4,
+    "activations": [
+     "AI",
+     "AI"
+    ],
+    "traitsAdd": [
+     "Divine Fervor",
+     "Dragonfeast",
+     "Panzercolony Life Cycle",
+     "Panzercolony Migration",
+     "Panzercolony Germination",
+     "Field of Parasites",
+     "Primal Remnant",
+     "Beneath the Shadow of Their Wings",
+     "Turn to Rust",
+     "Mortal Retribution (see card)"
+    ],
+    "bonuses": {
+     "escalations": 0,
+     "at": 0,
+     "vigorLoss": 0,
+     "evasionDice": 0,
+     "heat": 0
+    }
+   },
+   "2": {
+    "toHit": "11+",
+    "wounds": 11,
+    "exhibitionWounds": 4,
+    "activations": [
+     "AI",
+     "AI"
+    ],
+    "traitsAdd": [
+     "Insect Tide"
+    ],
+    "bonuses": {
+     "escalations": 1,
+     "at": 0,
+     "vigorLoss": 0,
+     "evasionDice": 0,
+     "heat": 0
+    }
+   }
+  },
+  "traits": [
+   {
+    "name": "Divine Fervor",
+    "level": 1,
+    "text": "Whenever the Knight with [Divine Target] Divine Target token becomes the Target of an Attack, that Knight gains +1 [P]. Whenever the Knight with the [Priority Target] Priority Target token becomes the Target of an Attack, that Knight suffers Parasitize 1. The Knight with the [Divine Target] token may perform a [Peril] as a free action to pass the [Divine Target] token to another Knight. If the [Divine Target] token would be discarded or the Knight who has it dies, pass it to the Knight with the most Devotion tokens."
+   },
+   {
+    "name": "Dragonfeast",
+    "level": 1,
+    "text": "Additional Setup: Add the Your Death Becomes a Dragon's Sacrament Judicium card to the Judicium deck."
+   },
+   {
+    "name": "Panzercolony Life Cycle",
+    "level": 1,
+    "text": "You can put Armor [Armor] tokens in three places: the Knight Pool (called Field), the Panzerdragon Sheet (called Dragon), and the Primal Remnant BP card (called Remnant). Armor [Armor] tokens in Field and Remnant are independent of both each other and the Panzerdragon, and have their own effects described in other Traits."
+   },
+   {
+    "name": "Panzercolony Migration",
+    "level": 1,
+    "text": "Migrate: Move all Armor [Armor] tokens from each location to the next, as shown in the diagram below.\n(diagram: Remnant → Field → Dragon → Remnant)"
+   },
+   {
+    "name": "Panzercolony Germination",
+    "level": 1,
+    "text": "Germinate X: Place 1 Armor [Armor] token in the specified location (usually either Field, Dragon, or Remnant)."
+   },
+   {
+    "name": "Field of Parasites",
+    "level": 1,
+    "text": "End of Second Ability Window: Discard X Knight tokens from the Knight Pool, where X is the number of Armor [Armor] tokens in it.\nWhen you are about to attack the Panzerdragon from its left or right side while adjacent (marked with ! on the diagram), you can declare an Attack against the Field of Parasites instead—represented by the Field of Parasites Trait BP card. If you wound that BP, do not Escalate or place any cards in the Wound Stack. For the purpose of move-like abilities (i.e. Vault), treat spaces occupied by the Panzerdragon miniature as your Target."
+   },
+   {
+    "name": "Primal Remnant",
+    "level": 1,
+    "text": "Treat the Primal Remnant Terrain tile as a Monster that never activates and has the Lumbering Basic Ability. It is represented by the Primal Remnant Trait BP card. If you wound that BP, do not Escalate or place any cards in the Wound Stack.\nPrimal Remnant always moves adjacent to the Panzerdragon after it moves. When Primal Remnant moves through or ends its movement on a Knight or a Terrain tile, they vanish (for Knights, treat it as death).\nIron Apotheosis: A new Panzercolony is born, and the Knights are killed and consumed by the rampaging Panzerswarm. You lose the Clash!"
+   },
+   {
+    "name": "Beneath the Shadow of Their Wings",
+    "level": 1,
+    "text": "Start of Monster Round: Remnant Move 4.\nRemnant Move X: Move the Primal Remnant Terrain tile around the Panzerdragon clockwise. See Monster Diagram."
+   },
+   {
+    "name": "Turn to Rust",
+    "level": 1,
+    "text": "If your [P] would exceed 9, you die! If attacking, postpone your death until you finish resolving the Attack."
+   },
+   {
+    "name": "Insect Tide",
+    "level": 2,
+    "text": "End of Knight Round: Pull each Knight 3 spaces toward the Panzerdragon."
+   }
+  ],
+  "vp": {
+   "name": "Ruptured Carapace",
+   "text": "Climb: Test Might (8+).\nEnd of Monster Round: If on the VP, test Fortitude (9+). Fail: Displace. Knockdown.\nWhen on a VP, ignore Armor [Armor] tokens.\nEnd of your turn: Gain +1 [P]. Migrate."
+  },
+  "unclear": [
+   "Level 2 bar: \"1 [burst icon]\" read as Escalation 1",
+   "Migration diagram direction read as Remnant → Field → Dragon → Remnant"
+  ]
+ },
+ "ai": [
+  {
+   "name": "Dragon Roar",
+   "level": 0,
+   "type": "SIMULTANEOUS JUDGEMENT",
+   "evasionDice": null,
+   "evasionDifficulty": null,
+   "pre": null,
+   "targeting": [
+    "All Knights"
+   ],
+   "tag": "JUDGE",
+   "effects": [
+    "Gain the Fear Condition card and +1 [P]. Knockdown. Knight with the most Devotion tokens gains the [Divine Target] Divine Target token."
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "Germinate (Dragon) four times. Germinate (Remnant) four times. Germinate (Field) three times. Remove this card from the Clash and draw the next AI.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Rust Beam",
+   "level": 1,
+   "type": "ZONE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 11,
+   "pre": "The Panzerdragon turns to face the most Knights.",
+   "targeting": [
+    "Furthest Knight in front",
+    "Furthest Knight in sight"
+   ],
+   "tag": "MOVE LATERAL & ATTACK",
+   "effects": [
+    "For each hit lose -3 [V] and exhaust 1 Gear [Gear] card. [Peril]. Bane 1.",
+    "{P4+: BANE 2 INSTEAD}"
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Germinate (Dragon). Knockback 3.",
+   "zone": "diagram: beam — a line straight ahead of the Panzerdragon, unlimited length (∞)",
+   "unclear": [
+    "Beam width read as 1 row"
+   ]
+  },
+  {
+   "name": "Rend the Armor",
+   "level": 1,
+   "type": "ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 9,
+   "pre": null,
+   "targeting": [
+    "Knight in Blindspot",
+    "Last Knight to wound in sight",
+    "Closest Knight in sight"
+   ],
+   "tag": "MOVE & ATTACK {P4+: DIFFICULTY 11+ INSTEAD}",
+   "effects": [
+    "For each hit lose -5 [V]. [Peril].",
+    "Bane 2. Gain +1 [P]. Discard your Armor [Gear] card.",
+    "[React]"
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "If you died, Germinate (Remnant). Otherwise, Germinate (Field), Knockdown, and Knockback 10.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Sedimentalis",
+   "level": 1,
+   "type": "WAVE ATTACK",
+   "evasionDice": 5,
+   "evasionDifficulty": 9,
+   "pre": "The Panzerdragon turns to face the most Knights.",
+   "targeting": [
+    "Zone 2"
+   ],
+   "tag": "ATTACK",
+   "effects": [
+    "For each hit lose -2 [V]. [Peril]. Bane 1.",
+    "{P4+: BANE 2 INSTEAD}",
+    "For each hit Exhaust 1 Gear [Gear] card."
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "Germinate (Dragon) twice. The Panzerdragon moves 3 spaces forward.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Rustgasp",
+   "level": 1,
+   "type": "WAVE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 10,
+   "pre": "The Panzerdragon turns to face the most Knights. Migrate.",
+   "targeting": [
+    "Zone"
+   ],
+   "tag": "ATTACK",
+   "effects": [
+    "Gain +1 [P]. One hit, lose -5 [V]. Two hits, lose -9 [V]. Three or more hits, lose -15 [V]. [Peril]. Bane 1.",
+    "{P4+: BANE 2 INSTEAD}",
+    "Exhaust your Armor [Gear] card."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Germinate (Field).",
+   "zone": "diagram: triangle in front of the Panzerdragon widening away from it (read as 4 columns deep)",
+   "unclear": [
+    "Zone diagram read from a small image"
+   ]
+  },
+  {
+   "name": "Scrap Divebomb",
+   "level": 1,
+   "type": "ATTACK",
+   "evasionDice": 2,
+   "evasionDifficulty": 11,
+   "pre": null,
+   "targeting": [
+    "Knocked down Knight",
+    "[Priority Target] Priority Target or [Divine Target] Divine Target"
+   ],
+   "tag": "LAND ON TOP & ATTACK",
+   "effects": [
+    "Migrate. If the Attack hits you while you're knocked down, you die.",
+    "Gain +1 [P]. Lose -9 [V]. [Peril]. Bane 2.",
+    "Germinate (Dragon) twice."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Knockdown. Knockback 6.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Stampede of Steel",
+   "level": 1,
+   "type": "SEQUENTIAL ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 9,
+   "pre": null,
+   "targeting": [
+    "Furthest Knight not in front",
+    "Furthest Knight in sight"
+   ],
+   "tag": "MOVE & ATTACK ALL KNIGHTS IN PATH {P4+: MIGRATE}",
+   "effects": [
+    "For each hit lose -4 [V] and Bane 1. [Peril].",
+    "[React]",
+    "Knockback 6 to the side. Germinate (Dragon).",
+    "[React]"
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "The Panzerdragon moves 3 spaces forward.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Swarmsong",
+   "level": 2,
+   "type": "JUDGEMENT",
+   "evasionDice": 3,
+   "evasionDifficulty": 10,
+   "pre": null,
+   "targeting": [
+    "Highest [P]"
+   ],
+   "tag": "JUDGE {P5+: MIGRATE}",
+   "effects": [
+    "Bravery / Tenacity.",
+    "One hit, gain the Fear Condition card. Two or more hits, gain the Dread Condition card.",
+    "For each hit Parasitize 1.",
+    "[React]"
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Migrate.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "There and Back",
+   "level": 2,
+   "type": "SEQUENTIAL ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 9,
+   "pre": null,
+   "targeting": [
+    "Furthest Knight not in front",
+    "Furthest Knight in sight"
+   ],
+   "tag": "MOVE & ATTACK ALL KNIGHTS IN PATH {P5+: +1 [die]}",
+   "effects": [
+    "For each hit lose -4 [V] and Bane 1. [Peril]. Knockdown. Knockback 6 to the side. Germinate (Dragon) twice.",
+    "[React]"
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "Repeat this Attack (once). If you are knocked down while attacked the second time, you die instead.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Pall of Rust",
+   "level": 2,
+   "type": "WAVE ATTACK",
+   "evasionDice": 5,
+   "evasionDifficulty": 9,
+   "pre": "The Panzerdragon turns to face the most Knights.",
+   "targeting": [
+    "Zone 3"
+   ],
+   "tag": "ATTACK",
+   "effects": [
+    "For each hit lose -3 [V] and Exhaust 1 Gear [Gear] card. [Peril]. Bane 2.",
+    "{P5+: BANE 3 INSTEAD}"
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "Germinate (Remnant) twice. The Panzerdragon moves 4 spaces forward.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Metal Beam",
+   "level": 2,
+   "type": "ZONE ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 11,
+   "pre": "The Panzerdragon turns to face the most Knights.",
+   "targeting": [
+    "Furthest Knight in front",
+    "Furthest Knight in sight"
+   ],
+   "tag": "MOVE LATERAL & ATTACK",
+   "effects": [
+    "For each hit lose -3 [V]. Bane 1.",
+    "{P5+: BANE 2 INSTEAD} [Peril].",
+    "For each hit Exhaust 1 Gear [Gear] card."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Germinate (Dragon) twice. Knockback 4.",
+   "zone": "diagram: beam — as wide as the Panzerdragon, straight ahead, unlimited length (∞)",
+   "unclear": [
+    "Beam width read from a small image"
+   ]
+  },
+  {
+   "name": "Deep Impact",
+   "level": 2,
+   "type": "ATTACK",
+   "evasionDice": 4,
+   "evasionDifficulty": 11,
+   "pre": null,
+   "targeting": [
+    "Knocked down Knight",
+    "[Priority Target] Priority Target or [Divine Target] Divine Target"
+   ],
+   "tag": "LAND ON TOP & ATTACK",
+   "effects": [
+    "Migrate. If the Attack hits you while you're knocked down, you die.",
+    "For each hit Bane 1 and gain +1 [P].",
+    "Lose [V] equal to your [P]. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Knockdown. Knockback 7.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Rustbreath",
+   "level": 2,
+   "type": "WAVE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 11,
+   "pre": "The Panzerdragon turns to face the most Knights. Migrate.",
+   "targeting": [
+    "Zone"
+   ],
+   "tag": "ATTACK",
+   "effects": [
+    "One hit, lose -5 [V]. Two hits, lose -9 [V]. Three or more hits, your [V] becomes 0. Bane 1 and gain +1 [P].",
+    "{P5+: BANE 2 AND +2 [P] INSTEAD} [Peril].",
+    "Knockdown."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Germinate (Field) twice.",
+   "zone": "diagram: inverted triangle in front of the Panzerdragon (widest at the far side)",
+   "unclear": [
+    "Zone diagram read from a small image"
+   ]
+  },
+  {
+   "name": "Ultrametal Beam",
+   "level": 3,
+   "type": "ZONE ATTACK",
+   "evasionDice": 5,
+   "evasionDifficulty": 11,
+   "pre": "The Panzerdragon turns to face the most Knights.",
+   "targeting": [
+    "Furthest Knight in front",
+    "Furthest Knight in sight"
+   ],
+   "tag": "MOVE LATERAL & ATTACK",
+   "effects": [
+    "For each hit lose -3 [V]. Bane 1.",
+    "{P6+: BANE 2 INSTEAD}",
+    "Exhaust all Gear [Gear] cards. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Germinate (Dragon) twice. Knockback 7.",
+   "zone": "diagram: beam — as wide as the Panzerdragon, straight ahead, unlimited length (∞)",
+   "unclear": [
+    "Beam width read from a small image"
+   ]
+  },
+  {
+   "name": "Plague of Parasites",
+   "level": 3,
+   "type": "ZONE ATTACK",
+   "evasionDice": 6,
+   "evasionDifficulty": 7,
+   "pre": null,
+   "targeting": [
+    "Clash Board"
+   ],
+   "tag": "ATTACK",
+   "effects": [
+    "For each hit lose -2 [V], Bane 1 and Parasitize 1. [Peril]. Knockdown.",
+    "[React]"
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "Migrate. Germinate (Remnant) twice. The Panzerdragon moves 5 spaces forward.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Decaying Miasma",
+   "level": 3,
+   "type": "WAVE ATTACK",
+   "evasionDice": 6,
+   "evasionDifficulty": 9,
+   "pre": "Migrate.",
+   "targeting": [
+    "Zone 4"
+   ],
+   "tag": "ATTACK",
+   "effects": [
+    "For each hit lose -3 [V]. For every two hits discard 1 Gear [Gear] card. Bane 2.",
+    "{P6+: BANE 3 INSTEAD} [Peril]."
+   ],
+   "afterTag": "AFTER FINAL ATTACK",
+   "after": "Germinate (Dragon) twice. The Panzerdragon appears behind the furthest Knight in Zone 4.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Rubiginous Disgorge",
+   "level": 3,
+   "type": "WAVE ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 10,
+   "pre": "[React] The Panzerdragon turns to face the most Knights. Migrate.",
+   "targeting": [
+    "Zone"
+   ],
+   "tag": "ATTACK",
+   "effects": [
+    "One hit, lose -9 [V]. Two hits, lose -15 [V]. Three or more hits, your [V] becomes 0. For each hit gain +1 [P] and Bane 1. [Peril]. Knockdown."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Germinate (Remnant) twice.",
+   "zone": "diagram: large inverted triangle in front of the Panzerdragon reaching the far Board Edge",
+   "unclear": [
+    "Zone diagram read from a small image"
+   ]
+  },
+  {
+   "name": "Feed the Hive",
+   "level": 3,
+   "type": "ATTACK",
+   "evasionDice": 3,
+   "evasionDifficulty": 10,
+   "pre": null,
+   "targeting": [
+    "Closest Knight in sight",
+    "Most Bane",
+    "[Priority Target] Priority Target or [Divine Target] Divine Target"
+   ],
+   "tag": "MOVE & ATTACK",
+   "effects": [
+    "For each hit Germinate (Dragon) twice. For each hit lose -6 [V]. [Peril].",
+    "Discard your Armor [Gear] card.",
+    "[React]"
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Migrate. Knockback 8.",
+   "zone": null,
+   "unclear": []
+  },
+  {
+   "name": "Shadow of Doom",
+   "level": 3,
+   "type": "JUDGEMENT",
+   "evasionDice": 3,
+   "evasionDifficulty": 11,
+   "pre": null,
+   "targeting": [
+    "Most Bane",
+    "Last Knight to wound in sight",
+    "[Priority Target] Priority Target or [Divine Target] Divine Target"
+   ],
+   "tag": "JUDGE",
+   "effects": [
+    "Bravery / Tenacity.",
+    "Migrate. One hit, gain +3 [P] and draw a Judicium. Two hits, gain +4 [P] and draw a Judicium. Three hits, you die."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "If you have a Saint card, discard it.",
+   "zone": null,
+   "unclear": []
+  }
+ ],
+ "signature": {
+  "name": "Septic Slash",
+  "level": 0,
+  "type": "SIGNATURE",
+  "evasionDice": 6,
+  "evasionDifficulty": 10,
+  "pre": null,
+  "targeting": [
+   "Closest Knight not in front",
+   "Furthest Knight in sight"
+  ],
+  "tag": "MOVE & ATTACK {P5+: IGNORE YOUR ARMOR [Gear] CARD}",
+  "effects": [
+   "For each hit lose -2 [V]. [Peril].",
+   "Bane 1.",
+   "[React]"
+  ],
+  "afterTag": "AFTER ATTACK",
+  "after": "Germinate (Field) twice.",
+  "zone": null,
+  "unclear": []
+ },
+ "routine": {
+  "name": "Drachendämmerung",
+  "text": "Each Knight gains 3 Bane tokens. The Knight with the highest [P] dies (in case of a tie, choose).\nThe Panzerdragon moves to the center of the Clash Board and turns to face the most Knights."
+ },
+ "traitCards": [
+  {
+   "name": "Field of Parasites",
+   "type": "TRAIT BP",
+   "at": 5,
+   "header": "Field of Parasites has the same To Hit as the Panzerdragon and gains +1 [AT] for every Armor [Armor] token in the Knight Pool. Ignore Armor [Armor] tokens on the Panzerdragon.",
+   "top": "OVERPOWER X: Discard up to X Armor [Armor] tokens from the Knight Pool",
+   "text": "ULTRAINSTINCT: Germinate (Dragon).\nINSTINCT: Migrate. Parasitize 1.",
+   "critical": "Discard all Armor [Armor] tokens from the Knight Pool. You may perform a Bonus Attack!"
+  },
+  {
+   "name": "Primal Remnant",
+   "type": "TRAIT BP",
+   "at": 5,
+   "header": "Primal Remnant has the same To Hit as the Panzerdragon and gains +2 [AT] for every Armor [Armor] token on this card. Ignore Armor [Armor] tokens on the Panzerdragon. If there are 7+ [Armor] tokens on this card, perform Iron Apotheosis.",
+   "top": "OVERPOWER X: Discard up to X Armor [Armor] tokens from this card",
+   "text": "ULTRAINSTINCT: Germinate (Dragon).",
+   "wound": "Gain +1 [P]. Perform Signature against the Attacker.",
+   "fail": "Clockwise Remnant Move 4.",
+   "critical": "Discard all Armor [Armor] tokens from this card. Devote."
+  },
+  {
+   "name": "Mortal Retribution",
+   "type": "TRAIT",
+   "text": "When you discard an Armor [Armor] token from the Dragon, Remnant, or Field, place a Generic token on this card.\nWhen there are 8 Generic tokens on this card, a Knight may discard all of them to perform an additional [Combat action].\nYou cannot place more than 8 tokens on this card."
+  }
+ ],
+ "bp": [
+  {
+   "name": "Panzerclaws",
+   "level": 1,
+   "at": 9,
+   "top": "OVERCOME 5+: Discard all Armor [Armor] tokens from the Panzerdragon. Germinate (Field)",
+   "note": null,
+   "ultrainstinct": null,
+   "instinct": null,
+   "wound": "Germinate (Remnant).",
+   "fail": "Germinate (Dragon).",
+   "critical": "Disable Wave Attacks!",
+   "unclear": []
+  },
+  {
+   "name": "Corroded Scales",
+   "level": 1,
+   "at": 10,
+   "top": "OVERCOME 5+: You may discard up to 2 Armor [Armor] tokens from the Panzerdragon. If you do, Germinate (Field)",
+   "note": null,
+   "ultrainstinct": "Clockwise Remnant Move 4.",
+   "instinct": "Migrate.",
+   "wound": null,
+   "fail": null,
+   "critical": "Create a Vantage Point. If the VP is already in play and you are adjacent to the Panzerdragon, you may climb it.",
+   "unclear": []
+  },
+  {
+   "name": "Maultail",
+   "level": 1,
+   "at": 10,
+   "top": "OVERCOME 5+: You may discard up to 2 Armor [Armor] tokens from the Panzerdragon. If you do, Germinate (Field)",
+   "note": null,
+   "ultrainstinct": "Clockwise Remnant Move 4.",
+   "instinct": "Perform Signature against the Attacker.",
+   "wound": null,
+   "fail": null,
+   "critical": "Scavenge 2.",
+   "unclear": []
+  },
+  {
+   "name": "Inscribed Pauldron",
+   "level": 1,
+   "at": 9,
+   "top": "OVERCOME 5+: Discard all Armor [Armor] tokens from the Panzerdragon",
+   "note": null,
+   "ultrainstinct": null,
+   "instinct": null,
+   "wound": "Migrate.",
+   "fail": "Germinate (Remnant).",
+   "critical": "Discard all Armor [Armor] tokens from the Panzerdragon!",
+   "unclear": []
+  },
+  {
+   "name": "Loose Parasite Plate",
+   "level": 1,
+   "at": 8,
+   "top": "OVERCOME 5+: Sunder 1",
+   "note": null,
+   "ultrainstinct": null,
+   "instinct": null,
+   "wound": "Germinate (Field).",
+   "fail": "Gain +1 [P]. Germinate (Remnant).",
+   "critical": "You may perform a Bonus Attack!",
+   "unclear": []
+  },
+  {
+   "name": "Plated Abdomen",
+   "level": 1,
+   "at": 8,
+   "top": "OVERPOWER 1+: Discard 1 Armor [Armor] token from the Panzerdragon",
+   "note": null,
+   "ultrainstinct": null,
+   "instinct": null,
+   "wound": "Germinate (Field).",
+   "fail": "Gain +1 [P]. Germinate (Remnant).",
+   "critical": "You may perform a Bonus Attack!",
+   "unclear": []
+  },
+  {
+   "name": "Panzerscale Throatpouch",
+   "level": 2,
+   "at": 11,
+   "top": "OVERCOME 6+: Sunder 1",
+   "note": null,
+   "ultrainstinct": null,
+   "instinct": null,
+   "wound": "Migrate.",
+   "fail": "Gain +1 [P]. Germinate (Remnant).",
+   "critical": "Disable Ultrainstinct Responses!",
+   "unclear": []
+  },
+  {
+   "name": "Scalehorde",
+   "level": 2,
+   "at": 12,
+   "top": "OVERCOME 8+: You may discard up to 4 Armor [Armor] tokens from the Panzerdragon. Germinate (Field) for every 2 discarded tokens",
+   "note": null,
+   "ultrainstinct": "Clockwise Remnant Move 8.",
+   "instinct": "Germinate (Dragon, Field and Remnant).",
+   "wound": "Regain a discarded Gear [Gear] card or, if you didn't discard any, Scavenge 1.",
+   "fail": null,
+   "critical": "Discard all Armor [Armor] tokens from the Panzerdragon and Primal Remnant!",
+   "unclear": []
+  },
+  {
+   "name": "Serrated Nape",
+   "level": 2,
+   "at": 12,
+   "top": "OVERCOME 12+: Discard all Armor [Armor] tokens from the Panzerdragon. Germinate (Field) for every 2 discarded tokens",
+   "note": null,
+   "ultrainstinct": "Gain +2 [H].",
+   "instinct": null,
+   "wound": "Exhaust your Weapon [Gear] card.",
+   "fail": null,
+   "critical": "Disable [P] gain during Panzerdragon Attacks!",
+   "unclear": []
+  },
+  {
+   "name": "Tattered Wing",
+   "level": 2,
+   "at": 11,
+   "top": "OVERCOME 6+: Sunder 1",
+   "note": null,
+   "ultrainstinct": null,
+   "instinct": null,
+   "wound": "Perform Signature against the Attacker.",
+   "fail": "Gain +2 [P]. Germinate (Field).",
+   "critical": "Create a Vantage Point. If the VP is already in play and you are adjacent to the Panzerdragon, you may climb it.",
+   "unclear": []
+  },
+  {
+   "name": "Royal Gorget",
+   "level": 2,
+   "at": 10,
+   "top": "OVERCOME 8+: You may discard up to 4 Armor [Armor] tokens from the Panzerdragon. Germinate (Field) for every 2 discarded tokens",
+   "note": null,
+   "ultrainstinct": null,
+   "instinct": null,
+   "wound": "Gain +1 [P]. Germinate (Field) twice.",
+   "fail": "Knockdown. Knockback 10.",
+   "critical": "Scavenge 2.",
+   "unclear": []
+  },
+  {
+   "name": "Cruel Chamfron",
+   "level": 2,
+   "at": 10,
+   "top": "OVERCOME 6+: Sunder 1",
+   "note": null,
+   "ultrainstinct": "Clockwise Remnant Move 4.",
+   "instinct": "Germinate (Dragon) twice. Perform Signature against the Attacker.",
+   "wound": null,
+   "fail": null,
+   "critical": "Disable Beam Zone Attacks!",
+   "unclear": []
+  },
+  {
+   "name": "Rustlung",
+   "level": 3,
+   "at": 13,
+   "top": "OVERCOME 8+: Sunder 2",
+   "note": null,
+   "ultrainstinct": null,
+   "instinct": null,
+   "wound": "Migrate. Bane 2.",
+   "fail": "Discard 2 Gear [Gear] cards.",
+   "critical": "Disable all Zone Attacks with \"Target: Zone X.\"",
+   "unclear": []
+  },
+  {
+   "name": "Larval Sac",
+   "level": 3,
+   "at": 14,
+   "top": "OVERCOME 10+: You may discard up to 6 Armor [Armor] tokens from the Panzerdragon. Germinate (Field) for every 2 discarded tokens",
+   "note": null,
+   "ultrainstinct": "Germinate (Field) twice.",
+   "instinct": "Germinate (Dragon and Remnant) twice.",
+   "wound": null,
+   "fail": null,
+   "critical": "Each Germinate becomes Germinate (chosen).",
+   "unclear": []
+  },
+  {
+   "name": "Parasite Queenking",
+   "level": 3,
+   "at": 15,
+   "top": "OVERCOME 10+: You may discard up to 6 Armor [Armor] tokens from the Panzerdragon. Germinate (Field) for every 2 discarded tokens",
+   "note": null,
+   "ultrainstinct": "Counterclockwise Remnant Move 8.",
+   "instinct": "Migrate.",
+   "wound": null,
+   "fail": "Germinate (Remnant) twice.",
+   "critical": "Disable the Migrate keyword!",
+   "unclear": []
+  },
+  {
+   "name": "Sliver of Lost Glory",
+   "level": 3,
+   "at": 13,
+   "top": "OVERCOME 12+: Discard all Armor [Armor] tokens from the Panzerdragon. Germinate (Field) for every 2 discarded tokens",
+   "note": null,
+   "ultrainstinct": "Clockwise Remnant Move 8.",
+   "instinct": "Bane 2, then Germinate X in order (Dragon → Field → Remnant) as many times as you have Bane tokens.",
+   "wound": null,
+   "fail": null,
+   "critical": "All Knights discard all Bane tokens! Immediately see 9350.",
+   "unclear": []
+  },
+  {
+   "name": "Spiked Spinal Column",
+   "level": 3,
+   "at": 12,
+   "top": null,
+   "note": null,
+   "ultrainstinct": "Chain Break. Perform AI against the Attacker.",
+   "instinct": null,
+   "wound": null,
+   "fail": null,
+   "critical": "Create a Vantage Point. If the VP is already in play and you are adjacent to the Panzerdragon, you may climb it.",
+   "unclear": []
+  },
+  {
+   "name": "Drachenhertz",
+   "level": 3,
+   "at": 12,
+   "top": "OVERCOME 8+: Sunder 2",
+   "note": null,
+   "ultrainstinct": "Clockwise Remnant Move 8.",
+   "instinct": null,
+   "wound": "Gain +1 [P]. Migrate.",
+   "fail": "Germinate (Remnant).",
+   "critical": "The Panzerdragon Veldr dies!",
+   "unclear": []
+  }
+ ],
+ "notes": [
+  "Overcome / Overpower thresholds on the BP cards are printed very small — check every \"N+\"",
+  "Three Trait cards: Field of Parasites (Trait BP), Primal Remnant (Trait BP), Mortal Retribution"
+ ],
+ "_source": "Owner scans 2026-11-19 (Monster Sheet + card sheet). Engine NOT implemented."
+}
