@@ -1,0 +1,4236 @@
+{
+ "id": "devil-of-the-ancient-dusk",
+ "name": "Devil of the Ancient Dusk",
+ "kind": "boss",
+ "code": "26A1069",
+ "traitsLine": [
+  "Devil",
+  "Curse",
+  "Ancient"
+ ],
+ "_source": "Owner scans 2026-11-19; Clash Setup: Sunken Kingdom Codex p.54–55",
+ "footprint": {
+  "size": 4,
+  "shape": "2x2",
+  "rear": "the 2 cells directly behind the footprint",
+  "facingOnSheet": "down"
+ },
+ "basicAbilities": [
+  {
+   "name": "Unavoidable Knockback",
+   "value": 5
+  },
+  {
+   "name": "Blindspot"
+  },
+  {
+   "name": "Ignore Difficult Terrain"
+  }
+ ],
+ "levels": {
+  "1": {
+   "toHit": 10,
+   "wounds": 10,
+   "exhibitionWounds": 3,
+   "activations": [
+    "AI",
+    "S"
+   ],
+   "activationsText": "1 AI + Signature",
+   "traitsAdd": [
+    "Primordial Soup",
+    "Rising Tide",
+    "Stains of Profanity",
+    "Devil's Bargain",
+    "Devil of the Crossroads"
+   ],
+   "bonuses": {
+    "escalations": 0,
+    "at": 0,
+    "vigorLoss": 0,
+    "evasionDice": 0
+   }
+  },
+  "2": {
+   "toHit": 11,
+   "wounds": 10,
+   "exhibitionWounds": 3,
+   "activations": [
+    "AI",
+    "S"
+   ],
+   "activationsText": "1 AI + Signature",
+   "traitsAdd": [],
+   "bonuses": {
+    "escalations": 0,
+    "at": 2,
+    "vigorLoss": 1,
+    "evasionDice": 0
+   }
+  },
+  "3": {
+   "toHit": 11,
+   "wounds": 10,
+   "exhibitionWounds": 3,
+   "activations": [
+    "AI",
+    "S"
+   ],
+   "activationsText": "1 AI + Signature",
+   "traitsAdd": [
+    "Ancestral Recollection"
+   ],
+   "bonuses": {
+    "escalations": 0,
+    "at": 3,
+    "vigorLoss": 1,
+    "evasionDice": 0
+   }
+  }
+ },
+ "traits": [
+  {
+   "name": "Primordial Soup",
+   "level": 1,
+   "text": "The Clash starts with 5 pairs of opposite (left and right) Swamp Terrain tiles. Each pair of tiles is placed in two specific rows of the Clash Board, and can never be moved beyond those rows. Treat all spaces of the Board that aren't caught between a pair of opposite Swamp Terrain tiles as Swamp Terrain tiles as well. You cannot place Column Terrain tiles on those spaces.\nImportant: Swamp Terrain tiles in this Clash cannot be removed, flipped, rotated, or moved to different rows by any means.",
+   "implemented": true
+  },
+  {
+   "name": "Rising Tide",
+   "level": 1,
+   "text": "Deluge: Find the pair of opposite Swamp Terrain tiles in the same row as the targeted or attacking Knight. Move the left tile toward the opposite tile until it moves onto a Column Terrain tile (that Column is destroyed) or those tiles become adjacent. Then, repeat it for the right tile.\nNote: If those tiles are already adjacent to each other, nothing happens.",
+   "implemented": true
+  },
+  {
+   "name": "Stains of Profanity",
+   "level": 1,
+   "text": "Start of Clash: All Knights raise their Heat Limit [H]! to 9.\nWhen performing a [Peril], before you draw a Mortis card, consult the table below instead of your Peril Arc (unless using the Peril Arc would result in a higher Mortis level):\n[H] 0–2: Minor\n[H] 3–5: Major\n[H] 6–8: Grave\n[H] 9: Judicium",
+   "implemented": true
+  },
+  {
+   "name": "Devil's Bargain",
+   "level": 1,
+   "text": "Bargain: Bane 1. Choose a number, then draw that many cards from the Fool's deck and check for pairs with matching letters. For each pair, resolve the effect corresponding with its letter (see below). For every two drawn cards, place a Column Terrain tile on an empty space on the Clash Board in the same row as any Knight. Then, discard all drawn cards, and continue the Attack as normal. If you drew a \"C\" card, shuffle all discarded cards into the deck.\nA: Suffer Pull 2 toward the closest short Board Edge.\nB: Gain the Drowning Condition card.\nC: You've indebted yourself enough to drown (you die)!\nD: The attacked BP card gains \"Overcome 6+: Knockdown.\"\nE: Gain the Exposed Condition card.\nF: Discard. If you cannot, you die instead.",
+   "implemented": true
+  },
+  {
+   "name": "Devil of the Crossroads",
+   "level": 1,
+   "text": "Swampwalk: The Devil appears in a straight line from the Target, adjacent to the short Board Edge closest to the Target, then moves adjacent to the Target.",
+   "implemented": true
+  },
+  {
+   "name": "Ancestral Recollection",
+   "level": 3,
+   "text": "Start of Monster Round: Each Knight in front of the Devil suffers Choke 2.",
+   "implemented": true
+  }
+ ],
+ "cards": {
+  "ai": [
+   {
+    "name": "Snake Bite",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 10,
+    "pre": null,
+    "targeting": [
+     "Furthest Knight with the Exposed Condition card in sight",
+     "Furthest Knight in sight"
+    ],
+    "tag": "SWAMPWALK & ATTACK",
+    "effects": [
+     "Poison 2. For each hit lose -5 [V]. [Peril].",
+     "Bane 2."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "{H4+: PUSHBACK 3}",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "ATTACK",
+    "moveTag": "SWAMPWALK & ATTACK",
+    "afterAttack": "AFTER ATTACK: {H4+: PUSHBACK 3}",
+    "ops": {
+     "targeting": [
+      "Furthest Knight with the Exposed Condition card in sight",
+      "Furthest Knight in sight"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "dadK",
+       "k": {
+        "op": "poison",
+        "n": 2
+       },
+       "who": "target"
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 5,
+       "perilCheck": true
+      },
+      {
+       "op": "dadK",
+       "k": {
+        "op": "bane",
+        "n": 2
+       },
+       "who": "target"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "dadGate",
+       "stat": "heat",
+       "gte": 4,
+       "then": [
+        {
+         "op": "dadPush",
+         "n": 3,
+         "who": "target"
+        }
+       ]
+      }
+     ],
+     "afterFinalAttack": null,
+     "beforeAttack": [
+      {
+       "op": "dadSwampwalk",
+       "noCrash": false
+      }
+     ]
+    }
+   },
+   {
+    "name": "Join the Dead",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 4,
+    "evasionDifficulty": 8,
+    "pre": null,
+    "targeting": [
+     "Furthest Knight in front",
+     "Furthest Knight in sight"
+    ],
+    "tag": "SWAMPWALK & ATTACK {H5+: +1 [die]}",
+    "effects": [
+     "One hit, lose -4 [V]. Two hits, lose -9 [V]. Three or more hits, lose -13 [V]. [Peril].",
+     "{H4+: KNOCKDOWN} Gain +2 [H]."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Pushback 3.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "ATTACK",
+    "moveTag": "SWAMPWALK & ATTACK {H5+: +1 [die]}",
+    "afterAttack": "AFTER ATTACK: Pushback 3.",
+    "ops": {
+     "targeting": [
+      "Furthest Knight in front",
+      "Furthest Knight in sight"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 5,
+       "op": "evasionDice",
+       "n": 1
+      },
+      {
+       "stat": "heat",
+       "gte": 4,
+       "op": "dadAlso",
+       "alsoOps": [
+        {
+         "op": "knockdown"
+        }
+       ]
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "dadHits",
+       "table": [
+        4,
+        9,
+        13
+       ],
+       "perilCheck": true
+      },
+      {
+       "op": "dadK",
+       "k": {
+        "op": "gainHeat",
+        "n": 2
+       },
+       "who": "target"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "dadPush",
+       "n": 3,
+       "who": "target"
+      }
+     ],
+     "afterFinalAttack": null,
+     "beforeAttack": [
+      {
+       "op": "dadSwampwalk",
+       "noCrash": false
+      }
+     ]
+    }
+   },
+   {
+    "name": "Toss Away",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 11,
+    "pre": null,
+    "targeting": [
+     "Furthest Knight in front",
+     "Furthest Knight in sight"
+    ],
+    "tag": "SWAMPWALK & ATTACK {H5+: +1 [die]}",
+    "effects": [
+     "For each hit lose -3 [V]. [Peril].",
+     "Knockback X, where X is the number of hits."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "The Devil moves to the center of the Clash Board, then turns to face the most Knights.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "ATTACK",
+    "moveTag": "SWAMPWALK & ATTACK {H5+: +1 [die]}",
+    "afterAttack": "AFTER ATTACK: The Devil moves to the center of the Clash Board, then turns to face the most Knights.",
+    "ops": {
+     "targeting": [
+      "Furthest Knight in front",
+      "Furthest Knight in sight"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 5,
+       "op": "evasionDice",
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 3,
+       "perilCheck": true
+      },
+      {
+       "op": "dadPush",
+       "n": "hits",
+       "who": "target"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "dadCenter"
+      }
+     ],
+     "afterFinalAttack": null,
+     "beforeAttack": [
+      {
+       "op": "dadSwampwalk",
+       "noCrash": false
+      }
+     ]
+    }
+   },
+   {
+    "name": "Tail Thrust",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 10,
+    "pre": null,
+    "targeting": [
+     "Closest Knight in front",
+     "Closest Knight in sight"
+    ],
+    "tag": "MOVE & ATTACK {H4+: +1 [die]}",
+    "effects": [
+     "For each hit lose -4 [V]. [Peril].",
+     "For each hit gain +1 [H].",
+     "Gain the Exposed Condition card."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "If adjacent, gain the Slimed Condition card.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "ATTACK",
+    "moveTag": "MOVE & ATTACK {H4+: +1 [die]}",
+    "afterAttack": "AFTER ATTACK: If adjacent, gain the Slimed Condition card.",
+    "ops": {
+     "targeting": [
+      "Closest Knight in front",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 4,
+       "op": "evasionDice",
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 4,
+       "perilCheck": true
+      },
+      {
+       "op": "dadHeatPerHit"
+      },
+      {
+       "op": "dadCond",
+       "id": "Exposed",
+       "who": "target"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "dadCond",
+       "id": "Slimed",
+       "who": "target",
+       "ifAdjacent": true
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Savage Swing",
+    "level": 1,
+    "type": "zone",
+    "evasionDice": 3,
+    "evasionDifficulty": 9,
+    "pre": "The Devil turns to face the closest Knight.",
+    "targeting": [
+     "Zone"
+    ],
+    "tag": "DESTROY ALL COLUMN TERRAIN TILES IN ZONE → ATTACK",
+    "effects": [
+     "For each hit lose -4 [V]. [Peril].",
+     "Gain the Exposed Condition card.",
+     "Bane 1.",
+     "{P3+: KNOCKDOWN}"
+    ],
+    "afterTag": null,
+    "after": null,
+    "zone": "diagram: a wide block in front of the Devil (read as 3 rows x 6 columns, centred)",
+    "unclear": [
+     "Zone diagram read from a small image",
+     "The purple gate icon is read as Passion"
+    ],
+    "typePrinted": "ZONE ATTACK",
+    "moveTag": "DESTROY ALL COLUMN TERRAIN TILES IN ZONE → ATTACK",
+    "afterAttack": null,
+    "ops": {
+     "targeting": [
+      "Zone"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "passion",
+       "gte": 3,
+       "op": "dadAlso",
+       "alsoOps": [
+        {
+         "op": "knockdown"
+        }
+       ]
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 4,
+       "perilCheck": true
+      },
+      {
+       "op": "dadCond",
+       "id": "Exposed",
+       "who": "target"
+      },
+      {
+       "op": "dadK",
+       "k": {
+        "op": "bane",
+        "n": 1
+       },
+       "who": "target"
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null,
+     "pre": [
+      {
+       "op": "dadFaceClosest"
+      }
+     ],
+     "beforeAttack": [
+      {
+       "op": "dadDestroyZone"
+      }
+     ],
+     "zoneDiagram": {
+      "red": [
+       [
+        1,
+        -2
+       ],
+       [
+        2,
+        -2
+       ],
+       [
+        3,
+        -2
+       ],
+       [
+        1,
+        -1
+       ],
+       [
+        2,
+        -1
+       ],
+       [
+        3,
+        -1
+       ],
+       [
+        1,
+        0
+       ],
+       [
+        2,
+        0
+       ],
+       [
+        3,
+        0
+       ],
+       [
+        1,
+        1
+       ],
+       [
+        2,
+        1
+       ],
+       [
+        3,
+        1
+       ],
+       [
+        1,
+        2
+       ],
+       [
+        2,
+        2
+       ],
+       [
+        3,
+        2
+       ],
+       [
+        1,
+        3
+       ],
+       [
+        2,
+        3
+       ],
+       [
+        3,
+        3
+       ]
+      ],
+      "yellow": [],
+      "step": null,
+      "block": true
+     }
+    }
+   },
+   {
+    "name": "Sink or Swim",
+    "level": 1,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 9,
+    "pre": null,
+    "targeting": [
+     "Highest [Heat] in sight"
+    ],
+    "tag": "JUDGE {H4+: DIFFICULTY 10+ INSTEAD}",
+    "effects": [
+     "Tenacity / Insight.",
+     "Bane 1. For each hit lose -3 [V] and destroy the Column Terrain tile closest to the Target. [Peril]."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "{H4+: GAIN THE SLIMED CONDITION CARD}",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "JUDGEMENT",
+    "moveTag": "JUDGE {H4+: DIFFICULTY 10+ INSTEAD}",
+    "afterAttack": "AFTER ATTACK: {H4+: GAIN THE SLIMED CONDITION CARD}",
+    "ops": {
+     "targeting": [
+      "Highest [Heat] in sight"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 4,
+       "op": "difficultyInstead",
+       "n": 10
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "dadK",
+       "k": {
+        "op": "bane",
+        "n": 1
+       },
+       "who": "target"
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 3,
+       "perilCheck": true
+      },
+      {
+       "op": "dadDestroyNear",
+       "perHit": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "dadGate",
+       "stat": "heat",
+       "gte": 4,
+       "then": [
+        {
+         "op": "dadCond",
+         "id": "Slimed",
+         "who": "target"
+        }
+       ]
+      }
+     ],
+     "afterFinalAttack": null,
+     "judge": [
+      "Tenacity",
+      "Insight"
+     ]
+    }
+   },
+   {
+    "name": "Sideswipe",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 10,
+    "pre": null,
+    "targeting": [
+     "Furthest Knight in front",
+     "Furthest Knight in sight"
+    ],
+    "tag": "SWAMPWALK & ATTACK {H5+: +1 [die]}",
+    "effects": [
+     "Bane 1.",
+     "For each hit lose -4 [V]. [Peril]."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Knockback 5 to the side.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "ATTACK",
+    "moveTag": "SWAMPWALK & ATTACK {H5+: +1 [die]}",
+    "afterAttack": "AFTER ATTACK: Knockback 5 to the side.",
+    "ops": {
+     "targeting": [
+      "Furthest Knight in front",
+      "Furthest Knight in sight"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 5,
+       "op": "evasionDice",
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "dadK",
+       "k": {
+        "op": "bane",
+        "n": 1
+       },
+       "who": "target"
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 4,
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "knockbackSide",
+       "n": 5
+      }
+     ],
+     "afterFinalAttack": null,
+     "beforeAttack": [
+      {
+       "op": "dadSwampwalk",
+       "noCrash": false
+      }
+     ]
+    }
+   },
+   {
+    "name": "Drag to the Depths",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 11,
+    "pre": null,
+    "targeting": [
+     "[Priority Target] Priority Target in sight",
+     "Highest [Heat] in sight"
+    ],
+    "tag": "JUDGE {H5+: +1 [die]}",
+    "effects": [
+     "Fortitude / Tenacity.",
+     "For each hit lose -5 [V] and Deluge. [Peril]. Gain +3 [H]."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Knockdown. The Devil moves to the center of the Clash Board, then turns to face the most Knights.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "JUDGEMENT",
+    "moveTag": "JUDGE {H5+: +1 [die]}",
+    "afterAttack": "AFTER ATTACK: Knockdown. The Devil moves to the center of the Clash Board, then turns to face the most Knights.",
+    "ops": {
+     "targeting": [
+      "[Priority Target] Priority Target in sight",
+      "Highest [Heat] in sight"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 5,
+       "op": "evasionDice",
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 5,
+       "perilCheck": true
+      },
+      {
+       "op": "dadDeluge",
+       "who": "target"
+      },
+      {
+       "op": "dadK",
+       "k": {
+        "op": "gainHeat",
+        "n": 3
+       },
+       "who": "target"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "knockdown"
+      },
+      {
+       "op": "dadCenter"
+      }
+     ],
+     "afterFinalAttack": null,
+     "judge": [
+      "Fortitude",
+      "Tenacity"
+     ]
+    }
+   },
+   {
+    "name": "Devilish Embrace",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 11,
+    "pre": null,
+    "targeting": [
+     "Furthest Knight in front",
+     "Furthest Knight in sight"
+    ],
+    "tag": "SWAMPWALK & ATTACK {H3+: +1 [die]}",
+    "effects": [
+     "One hit, lose -6 [V] and Toxify 1. Two hits, lose -9 [V], Toxify 2, and gain the Slimed Condition card. Three or more hits, lose -11 [V], Toxify 4, and gain the Drowning Condition card. [Peril]."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "{P3+: KNOCKDOWN}",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "ATTACK",
+    "moveTag": "SWAMPWALK & ATTACK {H3+: +1 [die]}",
+    "afterAttack": "AFTER ATTACK: {P3+: KNOCKDOWN}",
+    "ops": {
+     "targeting": [
+      "Furthest Knight in front",
+      "Furthest Knight in sight"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 3,
+       "op": "evasionDice",
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "dadHits",
+       "table": [
+        {
+         "v": 6,
+         "then": [
+          {
+           "op": "dadK",
+           "k": {
+            "op": "toxify",
+            "n": 1
+           },
+           "who": "target"
+          }
+         ]
+        },
+        {
+         "v": 9,
+         "then": [
+          {
+           "op": "dadK",
+           "k": {
+            "op": "toxify",
+            "n": 2
+           },
+           "who": "target"
+          },
+          {
+           "op": "dadCond",
+           "id": "Slimed",
+           "who": "target"
+          }
+         ]
+        },
+        {
+         "v": 11,
+         "then": [
+          {
+           "op": "dadK",
+           "k": {
+            "op": "toxify",
+            "n": 4
+           },
+           "who": "target"
+          },
+          {
+           "op": "dadCond",
+           "id": "Drowning",
+           "who": "target"
+          }
+         ]
+        }
+       ],
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "dadGate",
+       "stat": "passion",
+       "gte": 3,
+       "then": [
+        {
+         "op": "knockdown"
+        }
+       ]
+      }
+     ],
+     "afterFinalAttack": null,
+     "beforeAttack": [
+      {
+       "op": "dadSwampwalk",
+       "noCrash": false
+      }
+     ]
+    }
+   },
+   {
+    "name": "Tail Pierce",
+    "level": 2,
+    "type": "zone",
+    "evasionDice": 3,
+    "evasionDifficulty": 9,
+    "pre": null,
+    "targeting": [
+     "Closest Knight with the Exposed Condition card in sight",
+     "Closest Knight in sight"
+    ],
+    "tag": "MOVE & ATTACK {H5+: +1 [die]}",
+    "effects": [
+     "One hit, lose -7 [V]. Two hits, lose -10 [V]. Three or more hits, lose -15 [V].",
+     "Bane 1. {P4+: KNOCKDOWN}"
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Deluge.",
+    "zone": "diagram: 2x2 red block directly in front of the Devil",
+    "unclear": [
+     "Zone diagram read from a small image"
+    ],
+    "typePrinted": "ZONE ATTACK",
+    "moveTag": "MOVE & ATTACK {H5+: +1 [die]}",
+    "afterAttack": "AFTER ATTACK: Deluge.",
+    "ops": {
+     "targeting": [
+      "Closest Knight with the Exposed Condition card in sight",
+      "Closest Knight in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 5,
+       "op": "evasionDice",
+       "n": 1
+      },
+      {
+       "stat": "passion",
+       "gte": 4,
+       "op": "dadAlso",
+       "alsoOps": [
+        {
+         "op": "knockdown"
+        }
+       ]
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "dadHits",
+       "table": [
+        7,
+        10,
+        15
+       ],
+       "perilCheck": false
+      },
+      {
+       "op": "dadK",
+       "k": {
+        "op": "bane",
+        "n": 1
+       },
+       "who": "target"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "dadDeluge",
+       "who": "target"
+      }
+     ],
+     "afterFinalAttack": null,
+     "zoneDiagram": {
+      "red": [
+       [
+        1,
+        0
+       ],
+       [
+        2,
+        0
+       ],
+       [
+        1,
+        1
+       ],
+       [
+        2,
+        1
+       ]
+      ],
+      "yellow": [],
+      "step": null,
+      "block": true
+     }
+    }
+   },
+   {
+    "name": "Sunder Foundations",
+    "level": 2,
+    "type": "zone",
+    "evasionDice": 4,
+    "evasionDifficulty": 7,
+    "pre": null,
+    "targeting": [
+     "Furthest Knight with the Exposed Condition card in sight",
+     "Furthest Knight in sight"
+    ],
+    "tag": "SWAMPWALK → DESTROY ALL COLUMN TERRAIN TILES IN ZONE → ATTACK",
+    "effects": [
+     "For each hit lose -4 [V].",
+     "{P3+: -5 [V] INSTEAD} [Peril].",
+     "For each hit gain +1 [H]."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Gain the Exposed Condition card. {P3+: KNOCKDOWN}",
+    "zone": "diagram: large area in front and to the sides of the Devil",
+    "unclear": [
+     "Zone diagram read from a small image"
+    ],
+    "typePrinted": "ZONE ATTACK",
+    "moveTag": "SWAMPWALK → DESTROY ALL COLUMN TERRAIN TILES IN ZONE → ATTACK",
+    "afterAttack": "AFTER ATTACK: Gain the Exposed Condition card. {P3+: KNOCKDOWN}",
+    "ops": {
+     "targeting": [
+      "Furthest Knight with the Exposed Condition card in sight",
+      "Furthest Knight in sight"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "passion",
+       "gte": 3,
+       "op": "vigorPerHitInstead",
+       "n": 5
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 4,
+       "perilCheck": true
+      },
+      {
+       "op": "dadHeatPerHit"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "dadCond",
+       "id": "Exposed",
+       "who": "target"
+      },
+      {
+       "op": "dadGate",
+       "stat": "passion",
+       "gte": 3,
+       "then": [
+        {
+         "op": "knockdown"
+        }
+       ]
+      }
+     ],
+     "afterFinalAttack": null,
+     "beforeAttack": [
+      {
+       "op": "dadSwampwalk"
+      },
+      {
+       "op": "dadDestroyZone"
+      }
+     ],
+     "zoneDiagram": {
+      "red": [
+       [
+        -1,
+        -2
+       ],
+       [
+        0,
+        -2
+       ],
+       [
+        1,
+        -2
+       ],
+       [
+        2,
+        -2
+       ],
+       [
+        3,
+        -2
+       ],
+       [
+        -1,
+        -1
+       ],
+       [
+        0,
+        -1
+       ],
+       [
+        1,
+        -1
+       ],
+       [
+        2,
+        -1
+       ],
+       [
+        3,
+        -1
+       ],
+       [
+        1,
+        0
+       ],
+       [
+        2,
+        0
+       ],
+       [
+        3,
+        0
+       ],
+       [
+        1,
+        1
+       ],
+       [
+        2,
+        1
+       ],
+       [
+        3,
+        1
+       ],
+       [
+        -1,
+        2
+       ],
+       [
+        0,
+        2
+       ],
+       [
+        1,
+        2
+       ],
+       [
+        2,
+        2
+       ],
+       [
+        3,
+        2
+       ],
+       [
+        -1,
+        3
+       ],
+       [
+        0,
+        3
+       ],
+       [
+        1,
+        3
+       ],
+       [
+        2,
+        3
+       ],
+       [
+        3,
+        3
+       ]
+      ],
+      "yellow": [],
+      "step": null,
+      "block": true
+     }
+    }
+   },
+   {
+    "name": "Crushing Grasp",
+    "level": 2,
+    "type": "attack",
+    "evasionDice": 2,
+    "evasionDifficulty": 11,
+    "pre": null,
+    "targeting": [
+     "[Priority Target] Priority Target in sight",
+     "Highest [Heat] in sight"
+    ],
+    "tag": "MOVE & ATTACK",
+    "effects": [
+     "Lose -8 [V]. {P3+: -10 [V] INSTEAD}",
+     "Two or more hits, Knockdown. [Peril].",
+     "Bane 1. Gain the Exposed and Slimed Condition cards."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Deluge.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "ATTACK",
+    "moveTag": "MOVE & ATTACK",
+    "afterAttack": "AFTER ATTACK: Deluge.",
+    "ops": {
+     "targeting": [
+      "[Priority Target] Priority Target in sight",
+      "Highest [Heat] in sight"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "passion",
+       "gte": 3,
+       "op": "dadFlatInstead",
+       "n": 10
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "dadHits",
+       "table": [
+        8,
+        8
+       ],
+       "perilCheck": true
+      },
+      {
+       "op": "dadIfHits",
+       "gte": 2,
+       "then": [
+        {
+         "op": "knockdown"
+        }
+       ]
+      },
+      {
+       "op": "dadK",
+       "k": {
+        "op": "bane",
+        "n": 1
+       },
+       "who": "target"
+      },
+      {
+       "op": "dadCond",
+       "id": "Exposed",
+       "who": "target"
+      },
+      {
+       "op": "dadCond",
+       "id": "Slimed",
+       "who": "target"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "dadDeluge",
+       "who": "target"
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Nudge of the Finger",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 10,
+    "pre": null,
+    "targeting": [
+     "Furthest Knight in front",
+     "Furthest Knight in sight"
+    ],
+    "tag": "MOVE & ATTACK",
+    "effects": [
+     "Bane 1. For each hit lose -4 [V]. [Peril].",
+     "Pushback X, where X is your [H]."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Deluge.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "ATTACK",
+    "moveTag": "MOVE & ATTACK",
+    "afterAttack": "AFTER ATTACK: Deluge.",
+    "ops": {
+     "targeting": [
+      "Furthest Knight in front",
+      "Furthest Knight in sight"
+     ],
+     "move": true,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "dadK",
+       "k": {
+        "op": "bane",
+        "n": 1
+       },
+       "who": "target"
+      },
+      {
+       "op": "loseVigorPerHit",
+       "n": 4,
+       "perilCheck": true
+      },
+      {
+       "op": "dadPush",
+       "n": "heat",
+       "who": "target"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "dadDeluge",
+       "who": "target"
+      }
+     ],
+     "afterFinalAttack": null
+    }
+   },
+   {
+    "name": "Manic Mudslide",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 8,
+    "pre": "During this Attack, the Devil's movement doesn't cause Crash.",
+    "targeting": [
+     "Each Knight with the Exposed Condition card, starting from the closest",
+     "No Target: Perform Signature"
+    ],
+    "tag": "MOVE & ATTACK {H6+: DIFFICULTY 10+ INSTEAD}",
+    "effects": [
+     "One hit, lose -7 [V]. Two hits, lose -9 [V], gain +2 [H] and gain the Exposed Condition card. Three or more hits, lose -13 [V], gain the Exposed Condition and Drowning Condition cards. [Peril]."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Deluge.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "SEQUENTIAL ATTACK",
+    "moveTag": "MOVE & ATTACK {H6+: DIFFICULTY 10+ INSTEAD}",
+    "afterAttack": "AFTER ATTACK: Deluge.",
+    "ops": {
+     "targeting": [
+      "Each Knight with the Exposed Condition card, starting from the closest",
+      "No Target: Perform Signature"
+     ],
+     "move": true,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 6,
+       "op": "difficultyInstead",
+       "n": 10
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "dadHits",
+       "table": [
+        7,
+        {
+         "v": 9,
+         "then": [
+          {
+           "op": "dadK",
+           "k": {
+            "op": "gainHeat",
+            "n": 2
+           },
+           "who": "target"
+          },
+          {
+           "op": "dadCond",
+           "id": "Exposed",
+           "who": "target"
+          }
+         ]
+        },
+        {
+         "v": 13,
+         "then": [
+          {
+           "op": "dadCond",
+           "id": "Exposed",
+           "who": "target"
+          },
+          {
+           "op": "dadCond",
+           "id": "Drowning",
+           "who": "target"
+          }
+         ]
+        }
+       ],
+       "perilCheck": true
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "dadDeluge",
+       "who": "target"
+      }
+     ],
+     "afterFinalAttack": null,
+     "beforeAttack": [
+      {
+       "op": "dadNoCrash"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Back to Your Fathers!",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 3,
+    "evasionDifficulty": 10,
+    "pre": null,
+    "targeting": [
+     "Furthest Knight in front",
+     "Furthest Knight in sight"
+    ],
+    "tag": "SWAMPWALK & JUDGE",
+    "effects": [
+     "Bravery / Sagacity.",
+     "For each hit gain +1 [H] and resolve a Fool's deck card (see Devil's Bargain Trait). Then, shuffle the drawn cards back into the Fool's deck. [Peril]."
+    ],
+    "afterTag": null,
+    "after": null,
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "JUDGEMENT",
+    "moveTag": "SWAMPWALK & JUDGE",
+    "afterAttack": null,
+    "ops": {
+     "targeting": [
+      "Furthest Knight in front",
+      "Furthest Knight in sight"
+     ],
+     "move": false,
+     "gates": [],
+     "before": [],
+     "effects": [
+      {
+       "op": "dadFool"
+      },
+      {
+       "op": "dadK",
+       "k": {
+        "op": "perilCheck"
+       }
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null,
+     "beforeAttack": [
+      {
+       "op": "dadSwampwalk",
+       "noCrash": false
+      }
+     ],
+     "judge": [
+      "Bravery",
+      "Sagacity"
+     ]
+    }
+   },
+   {
+    "name": "The Oldest Trick",
+    "level": 3,
+    "type": "zone",
+    "evasionDice": 4,
+    "evasionDifficulty": 9,
+    "pre": null,
+    "targeting": [
+     "[Priority Target] Priority Target in sight",
+     "Highest [Heat] in sight"
+    ],
+    "tag": "SWAMPWALK & ATTACK",
+    "effects": [
+     "For each hit lose -4 [V].",
+     "{P5+: -5 [V] INSTEAD} [Peril].",
+     "Gain the Drowning and Exposed Condition cards."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "{H4+: KNOCKDOWN}",
+    "zone": "diagram: 2 rows x 3 columns in front of the Devil",
+    "unclear": [
+     "Zone diagram read from a small image"
+    ],
+    "typePrinted": "ZONE ATTACK",
+    "moveTag": "SWAMPWALK & ATTACK",
+    "afterAttack": "AFTER ATTACK: {H4+: KNOCKDOWN}",
+    "ops": {
+     "targeting": [
+      "[Priority Target] Priority Target in sight",
+      "Highest [Heat] in sight"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "passion",
+       "gte": 5,
+       "op": "vigorPerHitInstead",
+       "n": 5
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 4,
+       "perilCheck": true
+      },
+      {
+       "op": "dadCond",
+       "id": "Drowning",
+       "who": "target"
+      },
+      {
+       "op": "dadCond",
+       "id": "Exposed",
+       "who": "target"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "dadGate",
+       "stat": "heat",
+       "gte": 4,
+       "then": [
+        {
+         "op": "knockdown"
+        }
+       ]
+      }
+     ],
+     "afterFinalAttack": null,
+     "beforeAttack": [
+      {
+       "op": "dadSwampwalk",
+       "noCrash": false
+      }
+     ],
+     "zoneDiagram": {
+      "red": [
+       [
+        1,
+        0
+       ],
+       [
+        2,
+        0
+       ],
+       [
+        3,
+        0
+       ],
+       [
+        1,
+        1
+       ],
+       [
+        2,
+        1
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "yellow": [],
+      "step": null,
+      "block": true
+     }
+    }
+   },
+   {
+    "name": "Ravening Mire",
+    "level": 3,
+    "type": "zone",
+    "evasionDice": 6,
+    "evasionDifficulty": 8,
+    "pre": null,
+    "targeting": [
+     "All spaces in front"
+    ],
+    "tag": "DESTROY ALL COLUMN TERRAIN TILES IN ZONE → ATTACK",
+    "effects": [
+     "For each hit lose -3 [V] and gain +1 [H]. [Peril].",
+     "{H8+: GAIN THE SLIMED CONDITION CARD}"
+    ],
+    "afterTag": null,
+    "after": null,
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "ZONE ATTACK",
+    "moveTag": "DESTROY ALL COLUMN TERRAIN TILES IN ZONE → ATTACK",
+    "afterAttack": null,
+    "ops": {
+     "targeting": [
+      "Zone"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 8,
+       "op": "dadAlso",
+       "alsoOps": [
+        {
+         "op": "dadCond",
+         "id": "Slimed",
+         "who": "target"
+        }
+       ]
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "loseVigorPerHit",
+       "n": 3,
+       "perilCheck": true
+      },
+      {
+       "op": "dadHeatPerHit"
+      }
+     ],
+     "afterAttack": null,
+     "afterFinalAttack": null,
+     "beforeAttack": [
+      {
+       "op": "dadDestroyZone"
+      }
+     ],
+     "zoneDiagram": {
+      "red": [
+       [
+        1,
+        -12
+       ],
+       [
+        1,
+        -11
+       ],
+       [
+        1,
+        -10
+       ],
+       [
+        1,
+        -9
+       ],
+       [
+        1,
+        -8
+       ],
+       [
+        1,
+        -7
+       ],
+       [
+        1,
+        -6
+       ],
+       [
+        1,
+        -5
+       ],
+       [
+        1,
+        -4
+       ],
+       [
+        1,
+        -3
+       ],
+       [
+        1,
+        -2
+       ],
+       [
+        1,
+        -1
+       ],
+       [
+        1,
+        0
+       ],
+       [
+        1,
+        1
+       ],
+       [
+        1,
+        2
+       ],
+       [
+        1,
+        3
+       ],
+       [
+        1,
+        4
+       ],
+       [
+        1,
+        5
+       ],
+       [
+        1,
+        6
+       ],
+       [
+        1,
+        7
+       ],
+       [
+        1,
+        8
+       ],
+       [
+        1,
+        9
+       ],
+       [
+        1,
+        10
+       ],
+       [
+        1,
+        11
+       ],
+       [
+        1,
+        12
+       ],
+       [
+        1,
+        13
+       ],
+       [
+        2,
+        -12
+       ],
+       [
+        2,
+        -11
+       ],
+       [
+        2,
+        -10
+       ],
+       [
+        2,
+        -9
+       ],
+       [
+        2,
+        -8
+       ],
+       [
+        2,
+        -7
+       ],
+       [
+        2,
+        -6
+       ],
+       [
+        2,
+        -5
+       ],
+       [
+        2,
+        -4
+       ],
+       [
+        2,
+        -3
+       ],
+       [
+        2,
+        -2
+       ],
+       [
+        2,
+        -1
+       ],
+       [
+        2,
+        0
+       ],
+       [
+        2,
+        1
+       ],
+       [
+        2,
+        2
+       ],
+       [
+        2,
+        3
+       ],
+       [
+        2,
+        4
+       ],
+       [
+        2,
+        5
+       ],
+       [
+        2,
+        6
+       ],
+       [
+        2,
+        7
+       ],
+       [
+        2,
+        8
+       ],
+       [
+        2,
+        9
+       ],
+       [
+        2,
+        10
+       ],
+       [
+        2,
+        11
+       ],
+       [
+        2,
+        12
+       ],
+       [
+        2,
+        13
+       ],
+       [
+        3,
+        -12
+       ],
+       [
+        3,
+        -11
+       ],
+       [
+        3,
+        -10
+       ],
+       [
+        3,
+        -9
+       ],
+       [
+        3,
+        -8
+       ],
+       [
+        3,
+        -7
+       ],
+       [
+        3,
+        -6
+       ],
+       [
+        3,
+        -5
+       ],
+       [
+        3,
+        -4
+       ],
+       [
+        3,
+        -3
+       ],
+       [
+        3,
+        -2
+       ],
+       [
+        3,
+        -1
+       ],
+       [
+        3,
+        0
+       ],
+       [
+        3,
+        1
+       ],
+       [
+        3,
+        2
+       ],
+       [
+        3,
+        3
+       ],
+       [
+        3,
+        4
+       ],
+       [
+        3,
+        5
+       ],
+       [
+        3,
+        6
+       ],
+       [
+        3,
+        7
+       ],
+       [
+        3,
+        8
+       ],
+       [
+        3,
+        9
+       ],
+       [
+        3,
+        10
+       ],
+       [
+        3,
+        11
+       ],
+       [
+        3,
+        12
+       ],
+       [
+        3,
+        13
+       ],
+       [
+        4,
+        -12
+       ],
+       [
+        4,
+        -11
+       ],
+       [
+        4,
+        -10
+       ],
+       [
+        4,
+        -9
+       ],
+       [
+        4,
+        -8
+       ],
+       [
+        4,
+        -7
+       ],
+       [
+        4,
+        -6
+       ],
+       [
+        4,
+        -5
+       ],
+       [
+        4,
+        -4
+       ],
+       [
+        4,
+        -3
+       ],
+       [
+        4,
+        -2
+       ],
+       [
+        4,
+        -1
+       ],
+       [
+        4,
+        0
+       ],
+       [
+        4,
+        1
+       ],
+       [
+        4,
+        2
+       ],
+       [
+        4,
+        3
+       ],
+       [
+        4,
+        4
+       ],
+       [
+        4,
+        5
+       ],
+       [
+        4,
+        6
+       ],
+       [
+        4,
+        7
+       ],
+       [
+        4,
+        8
+       ],
+       [
+        4,
+        9
+       ],
+       [
+        4,
+        10
+       ],
+       [
+        4,
+        11
+       ],
+       [
+        4,
+        12
+       ],
+       [
+        4,
+        13
+       ],
+       [
+        5,
+        -12
+       ],
+       [
+        5,
+        -11
+       ],
+       [
+        5,
+        -10
+       ],
+       [
+        5,
+        -9
+       ],
+       [
+        5,
+        -8
+       ],
+       [
+        5,
+        -7
+       ],
+       [
+        5,
+        -6
+       ],
+       [
+        5,
+        -5
+       ],
+       [
+        5,
+        -4
+       ],
+       [
+        5,
+        -3
+       ],
+       [
+        5,
+        -2
+       ],
+       [
+        5,
+        -1
+       ],
+       [
+        5,
+        0
+       ],
+       [
+        5,
+        1
+       ],
+       [
+        5,
+        2
+       ],
+       [
+        5,
+        3
+       ],
+       [
+        5,
+        4
+       ],
+       [
+        5,
+        5
+       ],
+       [
+        5,
+        6
+       ],
+       [
+        5,
+        7
+       ],
+       [
+        5,
+        8
+       ],
+       [
+        5,
+        9
+       ],
+       [
+        5,
+        10
+       ],
+       [
+        5,
+        11
+       ],
+       [
+        5,
+        12
+       ],
+       [
+        5,
+        13
+       ],
+       [
+        6,
+        -12
+       ],
+       [
+        6,
+        -11
+       ],
+       [
+        6,
+        -10
+       ],
+       [
+        6,
+        -9
+       ],
+       [
+        6,
+        -8
+       ],
+       [
+        6,
+        -7
+       ],
+       [
+        6,
+        -6
+       ],
+       [
+        6,
+        -5
+       ],
+       [
+        6,
+        -4
+       ],
+       [
+        6,
+        -3
+       ],
+       [
+        6,
+        -2
+       ],
+       [
+        6,
+        -1
+       ],
+       [
+        6,
+        0
+       ],
+       [
+        6,
+        1
+       ],
+       [
+        6,
+        2
+       ],
+       [
+        6,
+        3
+       ],
+       [
+        6,
+        4
+       ],
+       [
+        6,
+        5
+       ],
+       [
+        6,
+        6
+       ],
+       [
+        6,
+        7
+       ],
+       [
+        6,
+        8
+       ],
+       [
+        6,
+        9
+       ],
+       [
+        6,
+        10
+       ],
+       [
+        6,
+        11
+       ],
+       [
+        6,
+        12
+       ],
+       [
+        6,
+        13
+       ],
+       [
+        7,
+        -12
+       ],
+       [
+        7,
+        -11
+       ],
+       [
+        7,
+        -10
+       ],
+       [
+        7,
+        -9
+       ],
+       [
+        7,
+        -8
+       ],
+       [
+        7,
+        -7
+       ],
+       [
+        7,
+        -6
+       ],
+       [
+        7,
+        -5
+       ],
+       [
+        7,
+        -4
+       ],
+       [
+        7,
+        -3
+       ],
+       [
+        7,
+        -2
+       ],
+       [
+        7,
+        -1
+       ],
+       [
+        7,
+        0
+       ],
+       [
+        7,
+        1
+       ],
+       [
+        7,
+        2
+       ],
+       [
+        7,
+        3
+       ],
+       [
+        7,
+        4
+       ],
+       [
+        7,
+        5
+       ],
+       [
+        7,
+        6
+       ],
+       [
+        7,
+        7
+       ],
+       [
+        7,
+        8
+       ],
+       [
+        7,
+        9
+       ],
+       [
+        7,
+        10
+       ],
+       [
+        7,
+        11
+       ],
+       [
+        7,
+        12
+       ],
+       [
+        7,
+        13
+       ],
+       [
+        8,
+        -12
+       ],
+       [
+        8,
+        -11
+       ],
+       [
+        8,
+        -10
+       ],
+       [
+        8,
+        -9
+       ],
+       [
+        8,
+        -8
+       ],
+       [
+        8,
+        -7
+       ],
+       [
+        8,
+        -6
+       ],
+       [
+        8,
+        -5
+       ],
+       [
+        8,
+        -4
+       ],
+       [
+        8,
+        -3
+       ],
+       [
+        8,
+        -2
+       ],
+       [
+        8,
+        -1
+       ],
+       [
+        8,
+        0
+       ],
+       [
+        8,
+        1
+       ],
+       [
+        8,
+        2
+       ],
+       [
+        8,
+        3
+       ],
+       [
+        8,
+        4
+       ],
+       [
+        8,
+        5
+       ],
+       [
+        8,
+        6
+       ],
+       [
+        8,
+        7
+       ],
+       [
+        8,
+        8
+       ],
+       [
+        8,
+        9
+       ],
+       [
+        8,
+        10
+       ],
+       [
+        8,
+        11
+       ],
+       [
+        8,
+        12
+       ],
+       [
+        8,
+        13
+       ],
+       [
+        9,
+        -12
+       ],
+       [
+        9,
+        -11
+       ],
+       [
+        9,
+        -10
+       ],
+       [
+        9,
+        -9
+       ],
+       [
+        9,
+        -8
+       ],
+       [
+        9,
+        -7
+       ],
+       [
+        9,
+        -6
+       ],
+       [
+        9,
+        -5
+       ],
+       [
+        9,
+        -4
+       ],
+       [
+        9,
+        -3
+       ],
+       [
+        9,
+        -2
+       ],
+       [
+        9,
+        -1
+       ],
+       [
+        9,
+        0
+       ],
+       [
+        9,
+        1
+       ],
+       [
+        9,
+        2
+       ],
+       [
+        9,
+        3
+       ],
+       [
+        9,
+        4
+       ],
+       [
+        9,
+        5
+       ],
+       [
+        9,
+        6
+       ],
+       [
+        9,
+        7
+       ],
+       [
+        9,
+        8
+       ],
+       [
+        9,
+        9
+       ],
+       [
+        9,
+        10
+       ],
+       [
+        9,
+        11
+       ],
+       [
+        9,
+        12
+       ],
+       [
+        9,
+        13
+       ],
+       [
+        10,
+        -12
+       ],
+       [
+        10,
+        -11
+       ],
+       [
+        10,
+        -10
+       ],
+       [
+        10,
+        -9
+       ],
+       [
+        10,
+        -8
+       ],
+       [
+        10,
+        -7
+       ],
+       [
+        10,
+        -6
+       ],
+       [
+        10,
+        -5
+       ],
+       [
+        10,
+        -4
+       ],
+       [
+        10,
+        -3
+       ],
+       [
+        10,
+        -2
+       ],
+       [
+        10,
+        -1
+       ],
+       [
+        10,
+        0
+       ],
+       [
+        10,
+        1
+       ],
+       [
+        10,
+        2
+       ],
+       [
+        10,
+        3
+       ],
+       [
+        10,
+        4
+       ],
+       [
+        10,
+        5
+       ],
+       [
+        10,
+        6
+       ],
+       [
+        10,
+        7
+       ],
+       [
+        10,
+        8
+       ],
+       [
+        10,
+        9
+       ],
+       [
+        10,
+        10
+       ],
+       [
+        10,
+        11
+       ],
+       [
+        10,
+        12
+       ],
+       [
+        10,
+        13
+       ],
+       [
+        11,
+        -12
+       ],
+       [
+        11,
+        -11
+       ],
+       [
+        11,
+        -10
+       ],
+       [
+        11,
+        -9
+       ],
+       [
+        11,
+        -8
+       ],
+       [
+        11,
+        -7
+       ],
+       [
+        11,
+        -6
+       ],
+       [
+        11,
+        -5
+       ],
+       [
+        11,
+        -4
+       ],
+       [
+        11,
+        -3
+       ],
+       [
+        11,
+        -2
+       ],
+       [
+        11,
+        -1
+       ],
+       [
+        11,
+        0
+       ],
+       [
+        11,
+        1
+       ],
+       [
+        11,
+        2
+       ],
+       [
+        11,
+        3
+       ],
+       [
+        11,
+        4
+       ],
+       [
+        11,
+        5
+       ],
+       [
+        11,
+        6
+       ],
+       [
+        11,
+        7
+       ],
+       [
+        11,
+        8
+       ],
+       [
+        11,
+        9
+       ],
+       [
+        11,
+        10
+       ],
+       [
+        11,
+        11
+       ],
+       [
+        11,
+        12
+       ],
+       [
+        11,
+        13
+       ],
+       [
+        12,
+        -12
+       ],
+       [
+        12,
+        -11
+       ],
+       [
+        12,
+        -10
+       ],
+       [
+        12,
+        -9
+       ],
+       [
+        12,
+        -8
+       ],
+       [
+        12,
+        -7
+       ],
+       [
+        12,
+        -6
+       ],
+       [
+        12,
+        -5
+       ],
+       [
+        12,
+        -4
+       ],
+       [
+        12,
+        -3
+       ],
+       [
+        12,
+        -2
+       ],
+       [
+        12,
+        -1
+       ],
+       [
+        12,
+        0
+       ],
+       [
+        12,
+        1
+       ],
+       [
+        12,
+        2
+       ],
+       [
+        12,
+        3
+       ],
+       [
+        12,
+        4
+       ],
+       [
+        12,
+        5
+       ],
+       [
+        12,
+        6
+       ],
+       [
+        12,
+        7
+       ],
+       [
+        12,
+        8
+       ],
+       [
+        12,
+        9
+       ],
+       [
+        12,
+        10
+       ],
+       [
+        12,
+        11
+       ],
+       [
+        12,
+        12
+       ],
+       [
+        12,
+        13
+       ],
+       [
+        13,
+        -12
+       ],
+       [
+        13,
+        -11
+       ],
+       [
+        13,
+        -10
+       ],
+       [
+        13,
+        -9
+       ],
+       [
+        13,
+        -8
+       ],
+       [
+        13,
+        -7
+       ],
+       [
+        13,
+        -6
+       ],
+       [
+        13,
+        -5
+       ],
+       [
+        13,
+        -4
+       ],
+       [
+        13,
+        -3
+       ],
+       [
+        13,
+        -2
+       ],
+       [
+        13,
+        -1
+       ],
+       [
+        13,
+        0
+       ],
+       [
+        13,
+        1
+       ],
+       [
+        13,
+        2
+       ],
+       [
+        13,
+        3
+       ],
+       [
+        13,
+        4
+       ],
+       [
+        13,
+        5
+       ],
+       [
+        13,
+        6
+       ],
+       [
+        13,
+        7
+       ],
+       [
+        13,
+        8
+       ],
+       [
+        13,
+        9
+       ],
+       [
+        13,
+        10
+       ],
+       [
+        13,
+        11
+       ],
+       [
+        13,
+        12
+       ],
+       [
+        13,
+        13
+       ]
+      ],
+      "yellow": [],
+      "step": null,
+      "block": true
+     }
+    }
+   },
+   {
+    "name": "Ritual Macabre",
+    "level": 3,
+    "type": "attack",
+    "evasionDice": 1,
+    "evasionDifficulty": 11,
+    "pre": "During this Attack, the Devil's movement doesn't cause Crash.",
+    "targeting": [
+     "Each Knight with the Exposed Condition card, starting from the closest",
+     "Closest Knight in sight"
+    ],
+    "tag": "SWAMPWALK & ATTACK {H6+: +1 [die]}",
+    "effects": [
+     "If your [V] is reduced to 0 during this Attack, you die. Bane 2. Lose -9 [V].",
+     "Gain +3 [H]. [Peril]."
+    ],
+    "afterTag": "AFTER ATTACK",
+    "after": "Reveal the top card of the Grave Mortis deck. If it's Disemboweled, keep it on top. Otherwise, put the card on the bottom of the deck.",
+    "zone": null,
+    "unclear": [],
+    "typePrinted": "SEQUENTIAL ATTACK",
+    "moveTag": "SWAMPWALK & ATTACK {H6+: +1 [die]}",
+    "afterAttack": "AFTER ATTACK: Reveal the top card of the Grave Mortis deck. If it's Disemboweled, keep it on top. Otherwise, put the card on the bottom of the deck.",
+    "ops": {
+     "targeting": [
+      "Each Knight with the Exposed Condition card, starting from the closest",
+      "Closest Knight in sight"
+     ],
+     "move": false,
+     "gates": [
+      {
+       "stat": "heat",
+       "gte": 6,
+       "op": "evasionDice",
+       "n": 1
+      }
+     ],
+     "before": [],
+     "effects": [
+      {
+       "op": "dadRitual"
+      }
+     ],
+     "afterAttack": [
+      {
+       "op": "dadGrave"
+      }
+     ],
+     "afterFinalAttack": null,
+     "beforeAttack": [
+      {
+       "op": "dadSwampwalk",
+       "noCrash": true
+      }
+     ]
+    }
+   }
+  ],
+  "bp": [
+   {
+    "name": "Devil's Foot",
+    "level": 1,
+    "at": 8,
+    "top": null,
+    "note": "You may Bargain before the Power Roll.",
+    "wound": "Gain the Exposed Condition card.",
+    "fail": "Knockdown.",
+    "instinct": null,
+    "critical": "One Knight may discard the Exposed Condition card.",
+    "unclear": [],
+    "responses": {
+     "wound": "Gain the Exposed Condition card.",
+     "fail": "Knockdown.",
+     "instinct": null,
+     "critical": "One Knight may discard the Exposed Condition card."
+    },
+    "ops": {
+     "at": 8,
+     "overcome": null,
+     "bargain": true,
+     "rearPower": false,
+     "relic": false,
+     "wound": [
+      {
+       "op": "dadCond",
+       "id": "Exposed",
+       "who": "attacker"
+      }
+     ],
+     "fail": [
+      {
+       "op": "knockdown"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "dadDiscardExposed"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Visage of the Endless",
+    "level": 1,
+    "at": 9,
+    "top": null,
+    "note": "You may Bargain before the Power Roll.",
+    "wound": null,
+    "fail": "Lose -3 [V].",
+    "instinct": "Gain the Slimed Condition card.",
+    "critical": "You may perform a Bonus Attack!",
+    "unclear": [],
+    "responses": {
+     "wound": null,
+     "fail": "Lose -3 [V].",
+     "instinct": "Gain the Slimed Condition card.",
+     "critical": "You may perform a Bonus Attack!"
+    },
+    "ops": {
+     "at": 9,
+     "overcome": null,
+     "bargain": true,
+     "rearPower": false,
+     "relic": false,
+     "wound": null,
+     "fail": [
+      {
+       "op": "loseVigor",
+       "n": 3
+      }
+     ],
+     "instinct": [
+      {
+       "op": "dadCond",
+       "id": "Slimed",
+       "who": "attacker"
+      }
+     ],
+     "critical": [
+      {
+       "op": "dadMoveBonus",
+       "n": 0
+      }
+     ]
+    }
+   },
+   {
+    "name": "Honed Abs",
+    "level": 1,
+    "at": 10,
+    "top": null,
+    "note": "You may Bargain before the Power Roll.",
+    "wound": "Gain +2 [H]. Bane 1.",
+    "fail": "Gain the Distracted Condition card.",
+    "instinct": null,
+    "critical": "Each Knight may discard up to 2 Bane [Bane] tokens.",
+    "unclear": [],
+    "responses": {
+     "wound": "Gain +2 [H]. Bane 1.",
+     "fail": "Gain the Distracted Condition card.",
+     "instinct": null,
+     "critical": "Each Knight may discard up to 2 Bane [Bane] tokens."
+    },
+    "ops": {
+     "at": 10,
+     "overcome": null,
+     "bargain": true,
+     "rearPower": false,
+     "relic": false,
+     "wound": [
+      {
+       "op": "dadK",
+       "k": {
+        "op": "gainHeat",
+        "n": 2
+       },
+       "who": "attacker"
+      },
+      {
+       "op": "dadK",
+       "k": {
+        "op": "bane",
+        "n": 1
+       },
+       "who": "attacker"
+      }
+     ],
+     "fail": [
+      {
+       "op": "dadCond",
+       "id": "Distracted",
+       "who": "attacker"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "dadBaneOff",
+       "all": true,
+       "n": 2
+      }
+     ]
+    }
+   },
+   {
+    "name": "Amulet of Beginnings",
+    "level": 1,
+    "at": 7,
+    "top": null,
+    "note": null,
+    "wound": "Deluge. The Devil moves 1 space toward the closest short Board Edge (without turning).",
+    "fail": "Destroy the Column Terrain tile closest to you.",
+    "instinct": null,
+    "critical": "Reduce all Pushbacks and Knockbacks performed by the Devil by 2.",
+    "unclear": [],
+    "responses": {
+     "wound": "Deluge. The Devil moves 1 space toward the closest short Board Edge (without turning).",
+     "fail": "Destroy the Column Terrain tile closest to you.",
+     "instinct": null,
+     "critical": "Reduce all Pushbacks and Knockbacks performed by the Devil by 2."
+    },
+    "ops": {
+     "at": 7,
+     "overcome": null,
+     "bargain": false,
+     "rearPower": false,
+     "relic": false,
+     "wound": [
+      {
+       "op": "dadDeluge",
+       "who": "attacker"
+      },
+      {
+       "op": "dadRetreat",
+       "n": 1
+      }
+     ],
+     "fail": [
+      {
+       "op": "dadDestroyNear",
+       "who": "attacker"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "dadFlag",
+       "id": "softPush"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Uncovered Back",
+    "level": 1,
+    "at": 9,
+    "top": null,
+    "note": "If you attack this BP from a Rear [R] space, gain +1 [Power].",
+    "wound": "Knockdown. Knockback 2.",
+    "fail": null,
+    "instinct": null,
+    "critical": "You may perform a Bonus Attack!",
+    "unclear": [],
+    "responses": {
+     "wound": "Knockdown. Knockback 2.",
+     "fail": null,
+     "instinct": null,
+     "critical": "You may perform a Bonus Attack!"
+    },
+    "ops": {
+     "at": 9,
+     "overcome": null,
+     "bargain": false,
+     "rearPower": true,
+     "relic": false,
+     "wound": [
+      {
+       "op": "knockdown"
+      },
+      {
+       "op": "dadPush",
+       "n": 2,
+       "who": "attacker"
+      }
+     ],
+     "fail": null,
+     "instinct": null,
+     "critical": [
+      {
+       "op": "dadMoveBonus",
+       "n": 0
+      }
+     ]
+    }
+   },
+   {
+    "name": "Golden Bracers",
+    "level": 1,
+    "at": 8,
+    "top": null,
+    "note": "You may Bargain before the Power Roll.",
+    "wound": "Deluge. The Devil moves 1 space toward the closest short Board Edge (without turning).",
+    "fail": null,
+    "instinct": null,
+    "critical": "You may lose up to -3 [H].",
+    "unclear": [],
+    "responses": {
+     "wound": "Deluge. The Devil moves 1 space toward the closest short Board Edge (without turning).",
+     "fail": null,
+     "instinct": null,
+     "critical": "You may lose up to -3 [H]."
+    },
+    "ops": {
+     "at": 8,
+     "overcome": null,
+     "bargain": true,
+     "rearPower": false,
+     "relic": false,
+     "wound": [
+      {
+       "op": "dadDeluge",
+       "who": "attacker"
+      },
+      {
+       "op": "dadRetreat",
+       "n": 1
+      }
+     ],
+     "fail": null,
+     "instinct": null,
+     "critical": [
+      {
+       "op": "dadHeatOff",
+       "n": 3
+      }
+     ]
+    }
+   },
+   {
+    "name": "Serpent-Nest Crown",
+    "level": 2,
+    "at": 9,
+    "top": null,
+    "note": null,
+    "wound": "Gain +3 [H].",
+    "fail": "Toxify 4.",
+    "instinct": null,
+    "critical": "You may move up to 3 spaces and perform a Bonus Attack!",
+    "unclear": [],
+    "responses": {
+     "wound": "Gain +3 [H].",
+     "fail": "Toxify 4.",
+     "instinct": null,
+     "critical": "You may move up to 3 spaces and perform a Bonus Attack!"
+    },
+    "ops": {
+     "at": 9,
+     "overcome": null,
+     "bargain": false,
+     "rearPower": false,
+     "relic": false,
+     "wound": [
+      {
+       "op": "dadK",
+       "k": {
+        "op": "gainHeat",
+        "n": 3
+       },
+       "who": "attacker"
+      }
+     ],
+     "fail": [
+      {
+       "op": "dadK",
+       "k": {
+        "op": "toxify",
+        "n": 4
+       },
+       "who": "attacker"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "dadMoveBonus",
+       "n": 3
+      }
+     ]
+    }
+   },
+   {
+    "name": "Stolen Countenance",
+    "level": 2,
+    "at": 10,
+    "top": null,
+    "note": "You may Bargain before the Power Roll.",
+    "wound": "Deluge. The Devil moves 2 spaces toward the closest short Board Edge (without turning).",
+    "fail": "Suffer Pull 2 toward the closest short Board Edge.",
+    "instinct": null,
+    "critical": "The Devil gains a permanent negative To Hit token.",
+    "unclear": [],
+    "responses": {
+     "wound": "Deluge. The Devil moves 2 spaces toward the closest short Board Edge (without turning).",
+     "fail": "Suffer Pull 2 toward the closest short Board Edge.",
+     "instinct": null,
+     "critical": "The Devil gains a permanent negative To Hit token."
+    },
+    "ops": {
+     "at": 10,
+     "overcome": null,
+     "bargain": true,
+     "rearPower": false,
+     "relic": false,
+     "wound": [
+      {
+       "op": "dadDeluge",
+       "who": "attacker"
+      },
+      {
+       "op": "dadRetreat",
+       "n": 2
+      }
+     ],
+     "fail": [
+      {
+       "op": "dadPullEdge",
+       "n": 2
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "monsterModifier",
+       "stat": "toHit",
+       "n": -1
+      }
+     ]
+    }
+   },
+   {
+    "name": "Leering Pelvis Guard",
+    "level": 2,
+    "at": 11,
+    "top": null,
+    "note": "You may Bargain before the Power Roll.",
+    "wound": "Gain the Exposed Condition card.",
+    "fail": "Knockback 4.",
+    "instinct": null,
+    "critical": "Scavenge 1.",
+    "unclear": [],
+    "responses": {
+     "wound": "Gain the Exposed Condition card.",
+     "fail": "Knockback 4.",
+     "instinct": null,
+     "critical": "Scavenge 1."
+    },
+    "ops": {
+     "at": 11,
+     "overcome": null,
+     "bargain": true,
+     "rearPower": false,
+     "relic": false,
+     "wound": [
+      {
+       "op": "dadCond",
+       "id": "Exposed",
+       "who": "attacker"
+      }
+     ],
+     "fail": [
+      {
+       "op": "dadPush",
+       "n": 4,
+       "who": "attacker"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "dadScavenge",
+       "n": 1
+      }
+     ]
+    }
+   },
+   {
+    "name": "Pearl White Ribcage",
+    "level": 2,
+    "at": 10,
+    "top": null,
+    "note": "You may Bargain before the Power Roll.",
+    "wound": "Deluge. The Devil moves 2 spaces toward the closest short Board Edge (without turning).",
+    "fail": "Gain the Slimed Condition card.",
+    "instinct": null,
+    "critical": "Bargain is free! Until the end of Clash, all Knights may ignore \"Bane 1\" when Bargaining.",
+    "unclear": [],
+    "responses": {
+     "wound": "Deluge. The Devil moves 2 spaces toward the closest short Board Edge (without turning).",
+     "fail": "Gain the Slimed Condition card.",
+     "instinct": null,
+     "critical": "Bargain is free! Until the end of Clash, all Knights may ignore \"Bane 1\" when Bargaining."
+    },
+    "ops": {
+     "at": 10,
+     "overcome": null,
+     "bargain": true,
+     "rearPower": false,
+     "relic": false,
+     "wound": [
+      {
+       "op": "dadDeluge",
+       "who": "attacker"
+      },
+      {
+       "op": "dadRetreat",
+       "n": 2
+      }
+     ],
+     "fail": [
+      {
+       "op": "dadCond",
+       "id": "Slimed",
+       "who": "attacker"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "dadFlag",
+       "id": "free"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Tail End",
+    "level": 2,
+    "at": 10,
+    "top": null,
+    "note": "You may Bargain before the Power Roll.",
+    "wound": null,
+    "fail": "Gain the Slimed Condition card.",
+    "instinct": "Gain the Exposed Condition card.",
+    "critical": "Until the end of Clash, if the Devil starts its movement on a Swamp Terrain tile, it stops after 3 spaces.",
+    "unclear": [],
+    "responses": {
+     "wound": null,
+     "fail": "Gain the Slimed Condition card.",
+     "instinct": "Gain the Exposed Condition card.",
+     "critical": "Until the end of Clash, if the Devil starts its movement on a Swamp Terrain tile, it stops after 3 spaces."
+    },
+    "ops": {
+     "at": 10,
+     "overcome": null,
+     "bargain": true,
+     "rearPower": false,
+     "relic": false,
+     "wound": null,
+     "fail": [
+      {
+       "op": "dadCond",
+       "id": "Slimed",
+       "who": "attacker"
+      }
+     ],
+     "instinct": [
+      {
+       "op": "dadCond",
+       "id": "Exposed",
+       "who": "attacker"
+      }
+     ],
+     "critical": [
+      {
+       "op": "dadFlag",
+       "id": "slowSwamp"
+      }
+     ]
+    }
+   },
+   {
+    "name": "The Deal-Taker's Razor",
+    "level": 2,
+    "at": 11,
+    "top": null,
+    "note": "You may Bargain before the Power Roll.",
+    "wound": "Lose -3 [V]. Gain +2 [H].",
+    "fail": "Perform Signature against the Attacker.",
+    "instinct": null,
+    "critical": "The Devil gains a permanent negative Precision token.",
+    "unclear": [],
+    "responses": {
+     "wound": "Lose -3 [V]. Gain +2 [H].",
+     "fail": "Perform Signature against the Attacker.",
+     "instinct": null,
+     "critical": "The Devil gains a permanent negative Precision token."
+    },
+    "ops": {
+     "at": 11,
+     "overcome": null,
+     "bargain": true,
+     "rearPower": false,
+     "relic": false,
+     "wound": [
+      {
+       "op": "loseVigor",
+       "n": 3
+      },
+      {
+       "op": "dadK",
+       "k": {
+        "op": "gainHeat",
+        "n": 2
+       },
+       "who": "attacker"
+      }
+     ],
+     "fail": [
+      {
+       "op": "signatureAgainstAttacker"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "monsterNegPrecision",
+       "permanent": true
+      }
+     ]
+    }
+   },
+   {
+    "name": "Oozing Heart",
+    "level": 3,
+    "at": 14,
+    "top": null,
+    "note": "You may Bargain before the Power Roll.",
+    "wound": "Discard 1 Bane [Bane] token.",
+    "fail": null,
+    "instinct": "Deluge. The Devil moves 3 spaces toward the closest short Board Edge (without turning).",
+    "critical": "The Devil of the Ancient Dusk melts into the mud, you win!",
+    "unclear": [],
+    "responses": {
+     "wound": "Discard 1 Bane [Bane] token.",
+     "fail": null,
+     "instinct": "Deluge. The Devil moves 3 spaces toward the closest short Board Edge (without turning).",
+     "critical": "The Devil of the Ancient Dusk melts into the mud, you win!"
+    },
+    "ops": {
+     "at": 14,
+     "overcome": null,
+     "bargain": true,
+     "rearPower": false,
+     "relic": false,
+     "wound": [
+      {
+       "op": "dadBaneOff",
+       "n": 1,
+       "force": true
+      }
+     ],
+     "fail": null,
+     "instinct": [
+      {
+       "op": "dadDeluge",
+       "who": "attacker"
+      },
+      {
+       "op": "dadRetreat",
+       "n": 3
+      }
+     ],
+     "critical": [
+      {
+       "op": "slayMonster"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Your Deepest Desire",
+    "level": 3,
+    "at": 12,
+    "top": null,
+    "note": "You may Bargain before the Power Roll.",
+    "wound": "Deluge. Choke 3. The Devil moves 3 spaces toward the closest short Board Edge (without turning).",
+    "fail": "Gain the Exposed Condition card. Gain +2 [H].",
+    "instinct": null,
+    "critical": "Scavenge 1. You may move up to 3 spaces and perform a Bonus Attack!",
+    "unclear": [],
+    "responses": {
+     "wound": "Deluge. Choke 3. The Devil moves 3 spaces toward the closest short Board Edge (without turning).",
+     "fail": "Gain the Exposed Condition card. Gain +2 [H].",
+     "instinct": null,
+     "critical": "Scavenge 1. You may move up to 3 spaces and perform a Bonus Attack!"
+    },
+    "ops": {
+     "at": 12,
+     "overcome": null,
+     "bargain": true,
+     "rearPower": false,
+     "relic": false,
+     "wound": [
+      {
+       "op": "dadDeluge",
+       "who": "attacker"
+      },
+      {
+       "op": "choke",
+       "n": 3
+      },
+      {
+       "op": "dadRetreat",
+       "n": 3
+      }
+     ],
+     "fail": [
+      {
+       "op": "dadCond",
+       "id": "Exposed",
+       "who": "attacker"
+      },
+      {
+       "op": "dadK",
+       "k": {
+        "op": "gainHeat",
+        "n": 2
+       },
+       "who": "attacker"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "dadScavenge",
+       "n": 1
+      },
+      {
+       "op": "dadMoveBonus",
+       "n": 3
+      }
+     ]
+    }
+   },
+   {
+    "name": "Rattling Body",
+    "level": 3,
+    "at": 12,
+    "top": null,
+    "note": "You may Bargain before the Power Roll.",
+    "wound": null,
+    "fail": "Perform Signature against the Attacker.",
+    "instinct": "Destroy 3 Column Terrain tiles farthest from you.",
+    "critical": "Return all Swamp Terrain tiles to their starting positions. Disable the Deluge keyword until the next Knight Round.",
+    "unclear": [],
+    "responses": {
+     "wound": null,
+     "fail": "Perform Signature against the Attacker.",
+     "instinct": "Destroy 3 Column Terrain tiles farthest from you.",
+     "critical": "Return all Swamp Terrain tiles to their starting positions. Disable the Deluge keyword until the next Knight Round."
+    },
+    "ops": {
+     "at": 12,
+     "overcome": null,
+     "bargain": true,
+     "rearPower": false,
+     "relic": false,
+     "wound": null,
+     "fail": [
+      {
+       "op": "signatureAgainstAttacker"
+      }
+     ],
+     "instinct": [
+      {
+       "op": "dadDestroyNear",
+       "who": "attacker",
+       "n": 3,
+       "far": true
+      }
+     ],
+     "critical": [
+      {
+       "op": "dadReset"
+      }
+     ]
+    }
+   },
+   {
+    "name": "11th Finger",
+    "level": 3,
+    "at": 13,
+    "top": null,
+    "note": "You may Bargain before the Power Roll.",
+    "wound": "Deluge. Gain +3 [H]. The Devil moves 3 spaces toward the closest short Board Edge (without turning).",
+    "fail": "Gain the Drowning Condition card.",
+    "instinct": null,
+    "critical": "Discard all Bane [Bane] tokens from all Knights. Until the end of Clash, keep the top card of the Fool's deck revealed.",
+    "unclear": [],
+    "responses": {
+     "wound": "Deluge. Gain +3 [H]. The Devil moves 3 spaces toward the closest short Board Edge (without turning).",
+     "fail": "Gain the Drowning Condition card.",
+     "instinct": null,
+     "critical": "Discard all Bane [Bane] tokens from all Knights. Until the end of Clash, keep the top card of the Fool's deck revealed."
+    },
+    "ops": {
+     "at": 13,
+     "overcome": null,
+     "bargain": true,
+     "rearPower": false,
+     "relic": false,
+     "wound": [
+      {
+       "op": "dadDeluge",
+       "who": "attacker"
+      },
+      {
+       "op": "dadK",
+       "k": {
+        "op": "gainHeat",
+        "n": 3
+       },
+       "who": "attacker"
+      },
+      {
+       "op": "dadRetreat",
+       "n": 3
+      }
+     ],
+     "fail": [
+      {
+       "op": "dadCond",
+       "id": "Drowning",
+       "who": "attacker"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "dadBaneOff",
+       "all": true,
+       "n": "all",
+       "force": true
+      },
+      {
+       "op": "dadFlag",
+       "id": "reveal"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Relic of an Age of Profanity",
+    "level": 3,
+    "at": 19,
+    "top": null,
+    "note": "When you reveal this card: Shuffle all discarded cards into the Fool's deck. You may Bargain before the Power Roll. If you do, gain +1 [Power] for each drawn card.",
+    "wound": "Devote.",
+    "fail": "Draw a Judicium.",
+    "instinct": null,
+    "critical": "Devote. All Swamp spaces become Rut spaces instead. Flip all Swamp Terrain tiles to Rut tiles—they cannot be flipped again. Disable the Deluge keyword.",
+    "unclear": [],
+    "responses": {
+     "wound": "Devote.",
+     "fail": "Draw a Judicium.",
+     "instinct": null,
+     "critical": "Devote. All Swamp spaces become Rut spaces instead. Flip all Swamp Terrain tiles to Rut tiles—they cannot be flipped again. Disable the Deluge keyword."
+    },
+    "ops": {
+     "at": 19,
+     "overcome": null,
+     "bargain": true,
+     "rearPower": false,
+     "relic": true,
+     "wound": [
+      {
+       "op": "devote"
+      }
+     ],
+     "fail": [
+      {
+       "op": "judicium"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "devote"
+      },
+      {
+       "op": "dadFlag",
+       "id": "rut"
+      }
+     ]
+    }
+   },
+   {
+    "name": "History of the Past",
+    "level": 3,
+    "at": 13,
+    "top": null,
+    "note": "You may Bargain before the Power Roll.",
+    "wound": "Bane 2.",
+    "fail": "Knockdown. Gain the Slimed Condition card.",
+    "instinct": null,
+    "critical": "Each Knight may reset their [H]. You may perform a Bonus Attack! After the Clash, see 9576.",
+    "unclear": [],
+    "responses": {
+     "wound": "Bane 2.",
+     "fail": "Knockdown. Gain the Slimed Condition card.",
+     "instinct": null,
+     "critical": "Each Knight may reset their [H]. You may perform a Bonus Attack! After the Clash, see 9576."
+    },
+    "ops": {
+     "at": 13,
+     "overcome": null,
+     "bargain": true,
+     "rearPower": false,
+     "relic": false,
+     "wound": [
+      {
+       "op": "dadK",
+       "k": {
+        "op": "bane",
+        "n": 2
+       },
+       "who": "attacker"
+      }
+     ],
+     "fail": [
+      {
+       "op": "knockdown"
+      },
+      {
+       "op": "dadCond",
+       "id": "Slimed",
+       "who": "attacker"
+      }
+     ],
+     "instinct": null,
+     "critical": [
+      {
+       "op": "dadHeatOff",
+       "all": true,
+       "reset": true
+      },
+      {
+       "op": "dadMoveBonus",
+       "n": 0
+      }
+     ]
+    }
+   }
+  ],
+  "signature": {
+   "name": "Overhead Swing",
+   "level": 0,
+   "type": "zone",
+   "evasionDice": 3,
+   "evasionDifficulty": 9,
+   "pre": null,
+   "targeting": [
+    "Closest Knight not in front in sight",
+    "Furthest Knight in sight"
+   ],
+   "tag": "JUMP & ATTACK {H5+: +1 [die]}",
+   "effects": [
+    "For each hit lose -3 [V].",
+    "Gain +2 [H]. [Peril]."
+   ],
+   "afterTag": "AFTER ATTACK",
+   "after": "Deluge.",
+   "zone": "diagram: 2 red cells directly in front of the Devil",
+   "unclear": [],
+   "typePrinted": "SIGNATURE",
+   "moveTag": "JUMP & ATTACK {H5+: +1 [die]}",
+   "afterAttack": "AFTER ATTACK: Deluge.",
+   "ops": {
+    "targeting": [
+     "Closest Knight not in front in sight",
+     "Furthest Knight in sight"
+    ],
+    "move": false,
+    "gates": [
+     {
+      "stat": "heat",
+      "gte": 5,
+      "op": "evasionDice",
+      "n": 1
+     }
+    ],
+    "before": [],
+    "effects": [
+     {
+      "op": "loseVigorPerHit",
+      "n": 3,
+      "perilCheck": true
+     },
+     {
+      "op": "dadK",
+      "k": {
+       "op": "gainHeat",
+       "n": 2
+      },
+      "who": "target"
+     }
+    ],
+    "afterAttack": [
+     {
+      "op": "dadDeluge",
+      "who": "target"
+     }
+    ],
+    "afterFinalAttack": null,
+    "jump": true,
+    "zoneDiagram": {
+     "red": [
+      [
+       1,
+       0
+      ],
+      [
+       1,
+       1
+      ]
+     ],
+     "yellow": [],
+     "step": null,
+     "block": true
+    }
+   }
+  },
+  "routine": {
+   "name": "Return to the Past",
+   "text": "The Devil moves to the center of the Clash Board. Deluge all Swamp Terrain tiles. Each Knight gains the Drowning Condition card.",
+   "type": "routine",
+   "ops": [
+    {
+     "op": "dadRoutine"
+    }
+   ]
+  }
+ },
+ "dad": true,
+ "clashSetup": {
+  "_source": "Sunken Kingdom Codex p.54–55 (Devil of the Ancient Dusk Clash)",
+  "steps": [
+   "Standard Preparations (Rulebook p.44)",
+   "Monster Positioning: Place the Devil of the Ancient Dusk miniature on the space designated on the diagram. Determine facing direction: look at the bottom card from the Minor Mortis deck and turn the Monster in the direction indicated by the arrow in the lower left corner.",
+   "Additional Setup: Place the Fool's deck near the Monster Sheet."
+  ],
+  "requiredTiles": [
+   "Level 1: 15x Column, 10x Swamp 1x2",
+   "Level 2+: 14x Column, 10x Swamp 1x2"
+  ],
+  "monsterCells": [
+   "E7",
+   "E8",
+   "F7",
+   "F8"
+  ],
+  "knightStart": [
+   "H5",
+   "H10",
+   "C5",
+   "C10"
+  ],
+  "terrain": [],
+  "dad": {
+   "level1": {
+    "pairs": [
+     {
+      "rows": [
+       "I",
+       "J"
+      ],
+      "left": 1,
+      "right": 14
+     },
+     {
+      "rows": [
+       "G",
+       "H"
+      ],
+      "left": 1,
+      "right": 14
+     },
+     {
+      "rows": [
+       "E",
+       "F"
+      ],
+      "left": 1,
+      "right": 14
+     },
+     {
+      "rows": [
+       "C",
+       "D"
+      ],
+      "left": 1,
+      "right": 14
+     },
+     {
+      "rows": [
+       "A",
+       "B"
+      ],
+      "left": 1,
+      "right": 14
+     }
+    ],
+    "columns": [
+     "J6",
+     "I4",
+     "I9",
+     "H2",
+     "H7",
+     "G11",
+     "F3",
+     "F13",
+     "E11",
+     "D12",
+     "C4",
+     "C8",
+     "B6",
+     "B10",
+     "A8"
+    ]
+   },
+   "level2": {
+    "pairs": [
+     {
+      "rows": [
+       "I",
+       "J"
+      ],
+      "left": 5,
+      "right": 13
+     },
+     {
+      "rows": [
+       "G",
+       "H"
+      ],
+      "left": 3,
+      "right": 14
+     },
+     {
+      "rows": [
+       "E",
+       "F"
+      ],
+      "left": 2,
+      "right": 13
+     },
+     {
+      "rows": [
+       "C",
+       "D"
+      ],
+      "left": 1,
+      "right": 12
+     },
+     {
+      "rows": [
+       "A",
+       "B"
+      ],
+      "left": 2,
+      "right": 10
+     }
+    ],
+    "columns": [
+     "J6",
+     "J11",
+     "I9",
+     "H4",
+     "H8",
+     "H12",
+     "F11",
+     "E4",
+     "D3",
+     "D11",
+     "C8",
+     "B6",
+     "B9",
+     "A4"
+    ]
+   }
+  },
+  "notes": [
+   "Swamp 타일·Column·시작 칸은 코덱스 도식에서 읽음 [해석, 확인 필요]"
+  ]
+ },
+ "rulings": [
+  "Zone 도식(작은 그림에서 읽음): Savage Swing = 정면 3칸 깊이 x 6칸 폭, Tail Pierce = 정면 2x2, Sunder Foundations = 정면 3칸 깊이 x 6칸 폭 + 양 옆, The Oldest Trick = 정면 3칸 깊이 x 2칸 폭, Ravening Mire = 정면 전체, Signature = 정면 2칸 [해석, 확인 필요]",
+  "Primordial Soup: 행 2개마다 Swamp 타일 한 쌍. 타일과 그 바깥쪽 칸은 모두 Swamp로 취급(끝난 이동이 Swamp면 기존 Swamp 규칙대로 사망). Level 1은 양 끝 열(1·14), Level 2+는 도식의 계단 모양 배치",
+  "Deluge: 대상(또는 공격자)이 있는 행의 타일 쌍 — 왼쪽 타일이 오른쪽으로 한 칸씩 가다가 Column을 만나면 파괴하고 그 자리에 멈춤, 아니면 맞닿을 때까지. 그다음 오른쪽 타일도 같은 방식. 물에 잠긴 기사는 즉시 Swamp 효과를 해결 [해석, 확인 필요]",
+  "Swampwalk: Devil이 대상의 행, 대상에게 가까운 짧은 Board Edge(1열 또는 13–14열)에 나타난 뒤 대상에게 인접할 때까지 이동. 나타난 칸의 기사는 Crash + Displace [해석, 확인 필요]",
+  "Devil's Bargain: Bane 1 → 장수를 정해 Fool's deck에서 뽑음 → 같은 글자 2장(한 쌍)마다 그 글자의 벌칙 → 뽑은 카드 2장마다 기사가 있는 행의 빈 칸에 Column 1개(위치 선택) → 버림. C 카드를 뽑았으면 버림 더미를 덱에 섞음. Bargain의 이득은 Column 배치(Deluge를 막음)로 이해함 [해석, 확인 필요]",
+  "Bargain D: 그 공격에서 Wound 실패 + Power 6 이상이면 공격자 Knockdown [해석, 확인 필요]",
+  "Stains of Profanity: Heat Limit 9. Peril Check 때 Heat 표(0–2 Minor / 3–5 Major / 6–8 Grave / 9 Judicium)와 Peril Arc 중 높은 쪽 사용",
+  "Purple 게이트는 Passion 게이트로 처리 (드래곤 카드의 같은 아이콘으로 확인)",
+  "Drag to the Depths: \"For each hit lose -5 [V] and Deluge\" — Deluge는 한 번만 수행 [해석, 확인 필요]",
+  "Crushing Grasp: 명중 수와 무관하게 -8 [V] (Passion 3+면 -10) [해석, 확인 필요]",
+  "Ritual Macabre: Bane 2 → -9 [V](Armor Roll 없음) → [V] 0이면 사망 → Heat +3 → Peril Check [해석, 확인 필요]",
+  "Back to Your Fathers!: 명중당 Heat +1, Fool's deck 1장을 뽑아 그 글자의 벌칙을 바로 적용(D는 효과 없음), 뽑은 카드는 덱에 다시 섞음 [해석, 확인 필요]",
+  "Relic of an Age of Profanity Critical: 모든 Swamp 칸이 Rut이 되고 Deluge 비활성",
+  "미구현: 각 AI 카드의 REACT! 창 위치(Targeting 뒤 창만 공통 적용), Level 2+의 [Heat] 보너스 아이콘(의미 미확인)"
+ ]
+}

@@ -29,6 +29,7 @@ import { SonchMixin, installSonch } from './sonch.js';
 import { UbarMixin, installUbar } from './ubar.js';
 import { StonefaceMixin } from './stoneface.js';
 import { KingLowMixin } from './kinglaidlow.js';
+import { DevilMixin } from './devils.js';
 import { ExtrasMixin, installExtras } from './extras.js';
 
 export class ChainBreak extends Error { constructor(msg = 'Chain Break') { super(msg); this.chainBreak = true; } }
@@ -88,7 +89,7 @@ export class Clash {
     if (this.monster.isMob) { this.hauntsSetup(); if (this.monsterDef.nightmare) this.nightmareSetup(cs); else if (this.monsterDef.pump) this.pumpSetup(cs); else this.setupMobs(cs); if (this.monsterDef.rat) this.ratSetup(); if (this.monsterDef.pz) this.pzSetup(cs); this.bloodSetup(); this.firstmenSetup(); if (this.monsterDef.lh) this.lhSetup(); } else {
     this.monster.cells = cs.monsterCells.map(l => B.parse(l)); B.place({ kind: 'monster', id: this.monster.id }, this.monster.cells);
     if (cs.facing) { this.monster.facing = cs.facing; this.say(`${this.monster.name} 배치 ${cs.monsterCells.join('/')} · 방향 ${cs.facing}`); } else { const bottom = this.mortis.Minor.cards.at(-1); const arrowDir = { up: 'N', down: 'S', left: 'W', right: 'E' }[bottom.marker.arrow]; this.monster.facing = arrowDir; this.say(`Eggknight 배치 ${cs.monsterCells.join('/')} · 방향 ${arrowDir} (Minor Mortis 바닥: ${bottom.name})`); }
-    this.trollSetup(cs); this.fenSetup(); if (this.monsterDef.sm) this.smSetup(cs); if (this.monsterDef.ke) this.keSetup(cs); if (this.monsterDef.bw) this.bwSetup(cs); if (this.monsterDef.kl) this.klSetup(cs); }
+    this.trollSetup(cs); this.fenSetup(); if (this.monsterDef.sm) this.smSetup(cs); if (this.monsterDef.ke) this.keSetup(cs); if (this.monsterDef.bw) this.bwSetup(cs); if (this.monsterDef.kl) this.klSetup(cs); if (this.monsterDef.dad) this.dadSetup(cs); }
     // knights
     this.knights.forEach((k, i) => { k.pos = B.parse(cs.knightStart[i]); B.place({ kind: 'knight', id: k.id }, [k.pos]); });
     // traits additional setup (Panzeronion)
@@ -736,6 +737,7 @@ export class Clash {
     // Ultrainstinct (Impenetrable Shell)
     if (!A.critChance && this.monster.hasTrait('Impenetrable Shell') && this.armorTokens[bp.level] > 0 && this.frontCells().some(c => cellEq(c, k.pos))) { this.say('Ultrainstinct: Impenetrable Shell → Knockback 1'); await this.pushback(k, 1); }
     if ((this.isKe && !A.guardian && await this.keUltra(k, A, bp)) || (this.isBw && !A.guardian && await this.bwMayEnd(k, A, bp))) { this.monster.discardBP(bp); this.currentKnightAttack = null; await this.afterAction(); return; }
+    if (this.isDevil) await this.dvBargainOffer(k, A, bp); if (!k.alive) { this.monster.discardBP(bp); this.clearPool(); this.currentKnightAttack = null; return; }
     await this.fx.arcAt(k, A, 'power');
     // 6. power roll
     const TIERS = ['red', 'black', 'white']; const kd = TIERS[Math.min(2, TIERS.indexOf(k.powerDie) + (A.promote || 0))]; if (A.promote) this.say(`Power Dice Promotion: Knight Power die ${k.powerDie} → ${kd}`);
@@ -777,6 +779,7 @@ export class Clash {
     if (A.wounded) this.say(`${A.critical ? '★ Critical Wound' : 'Wound'}!`, 'wound'); else { this.say('Fail to wound'); await this.fx.onFailToWound(k, A); }
     // Overcome
     if (ops.overcome && (A.forceOvercome || (!A.wounded && ops.overcome.kind !== 'overpower' && power >= ops.overcome.n) || (A.wounded && A.overAT >= ops.overcome.n))) { this.say(`${A.wounded ? 'Overpower' : 'Overcome'} ${ops.overcome.n}+`); A.overcame = true; if (A.wounded && A.weapon) for (const o of this.fx.constKw(k, A.weapon)) { if (o.op === 'overpowerBoon') { k.heat = Math.max(0, k.heat - o.n); A.ignoreCumbersome = true; this.say(`${A.weapon.name}: Overpower → Heat -${o.n}, Cumbersome 무시`, 'tech'); } if (o.op === 'overpowerCrit' && !A.critical) { A.critical = true; this.say(`${A.weapon.name}: Overpower → Crit Chance → ★ Critical Wound (Critical Response 해결)`, 'wound'); } } if (A.wounded && !A.critical && A.flags && A.flags.has('goBeyond')) { A.critical = true; this.say('Go Beyond!: Wound + Overcome/Overpower → ★ Critical Wound', 'wound'); } A.overcameMelee = this.monster.isMob ? !!(A.mob && A.mob.cells.length && this.board.adjacent(A.mob.cells[0], k.pos)) : this.adjacentToMonster(k); if (A.bp && A.bp.overcomeTag === 'OVERPOWER' && (A.kw || []).some(o => o.op === 'overpowerBonus') && k._opBonusRound !== this.round && await this.yesNo(`${k.name}: Overpower — Bonus Attack (라운드당 1회)?`, true)) { k._opBonusRound = this.round; k._bonusPending = true; } for (const o of A.kw || []) if (o.op === 'overpowerBoon' && A.bp && A.bp.overcomeTag === 'OVERPOWER') { k.heat = Math.max(0, k.heat - o.n); A.ignoreCumbersome = true; this.say(`${A.weapon.name}: Overpower — Heat -${o.n}, Cumbersome 무시`, 'tech'); } await this.fx.runMonsterOps(ops.overcome.ops, { attacker: k, attack: A }); }
+    if (A.dadKnockdown && !A.wounded && power >= 6) { this.say('Bargain D: Overcome 6+ → Knockdown', 'bp'); await this.knockdown(k); }
     // 7. responses
     const resp = []; if (A.critical) { if (ops.critical) resp.push(['Critical', ops.critical]); } else { if (A.wounded && ops.wound) resp.push(['Wound', ops.wound]); if (!A.wounded && ops.fail) resp.push(['Fail', ops.fail]); if (ops.instinct) resp.push(['Instinct', ops.instinct]); }
     if (stack2) { const b = A.guardian.cards[1]; const noAtk = l => (l || []).filter(o => !['signature', 'aiAttack', 'drawAIFor', 'fenPerformAI', 'signatureAgainstAttacker'].includes(o.op)); const add = (kind, l) => { const x = noAtk(l); if (x.length) resp.push([`${kind} (아래 BP: ${b.name})`, x]); }; if (A.critical) add('Critical', b.ops.critical); else { if (!A.wounded) add('Fail', b.ops.fail); add('Instinct', b.ops.instinct); } }
@@ -847,7 +850,7 @@ export class Clash {
   cardHasTargetingReact(card) { const w = card.reactWindows ?? card.react; if (w == null) return true; const l = [].concat(w).map(String); if (l.some(x => /^(after )?targeting$/i.test(x))) return true; if (!l.length) return false; return !JSON.stringify(card.ops || {}).includes('"reactWindow"') && !card.reactExact; }
   async windowOfOpportunity(when, attack, target = null, at = null) { this._reactNow = this._reactKind || (at === 'after' ? 'after' : null); this._reactKind = null; const a = attack || this.currentAttack; if (a && a.noReact && when !== 'beforeEffects' && (a.noReact === true || a.noReact === at)) { this.say('REACT! 무시 (게이트)'); return; } await this.fx.reactions(when, attack, target); }
 }
-Object.assign(Clash.prototype, MobMixin, BloodMixin, HauntsMixin, FirstmenMixin, TrollMixin, NightmareMixin, FenMixin, PumpMixin, RatMixin, PanzerMixin, MasonMixin, EaterMixin, LictorMixin, WitchMixin, IroncastMixin, RenholderMixin, KaraMixin, ParacelsaMixin, SonchMixin, UbarMixin, StonefaceMixin, ExtrasMixin, KingLowMixin);
+Object.assign(Clash.prototype, MobMixin, BloodMixin, HauntsMixin, FirstmenMixin, TrollMixin, NightmareMixin, FenMixin, PumpMixin, RatMixin, PanzerMixin, MasonMixin, EaterMixin, LictorMixin, WitchMixin, IroncastMixin, RenholderMixin, KaraMixin, ParacelsaMixin, SonchMixin, UbarMixin, StonefaceMixin, ExtrasMixin, KingLowMixin, DevilMixin);
 installKara(Clash);
 installParacelsa(Clash);
 installSonch(Clash);
