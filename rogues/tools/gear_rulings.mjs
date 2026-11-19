@@ -16,6 +16,12 @@ export const GEAR_RULINGS = [
   ['[신규] 비자발 Exhaust/Discard 방지 (Sanded Grip, Magnetized Fists, Leather Strapguard, Masterforged Shield)', '몬스터 효과로 Weapon이 Exhaust/Discard될 때 적용 (Bog Witch 무기 소진, Murmillo, Knighteater의 Gear 소진/버림). Cumbersome·Full Miss Exhaust 같은 자기 키워드와 비용 지불에는 미적용. Leather Strapguard의 "자발적인 것도"는 아직 미구현. [해석, 확인 필요]'],
   ['[신규] Trophy Armor', '공격 선언 시(토큰 변환 단계) Knight Pool의 Break 토큰 중 원하는 수를 Hope로 바꿈 — "놓으려 할 때" 대신 이 시점에 한 번 물음. [해석, 확인 필요]'],
   ['[신규] Uncompromising Justice', 'Combat action + 2 Heat 프리 액션: 이 무기로 Ranged 2–4 공격 → Wound면 영구 AT -1 토큰 → 카드 버림. [해석, 확인 필요]'],
+  ['[신규] Decoy Shield / Heart\'s Sacrament Wine — 대상 가로채기', 'Targeting으로 단일 대상이 정해진 직후에 물음. Decoy Shield [MAJOR]: 같은 Targeting 줄의 후보(동률)였던 기사만 사용 가능. Wine: AI 카드(Signature 제외)일 때 1 Charge로 누구든 대상이 됨. Wine의 "Virtue test +X"는 미구현. [해석, 확인 필요]'],
+  ['[신규] Bog Camouflage / Wyrdweave Garb', 'Bog Camouflage: REACT!에서 Advanced Reflex 후, 다음 Evasion Roll에 Lesser Dodge(다른 Evasion 보너스 없을 때 +1). [MAJOR] Obstacle 통과는 미구현. Wyrdweave Garb: 손패의 무작위 Technique 1장을 Delay로 보내고 Dodge(Evasion 전) / [MAJOR] Reflex(REACT!). 손패가 없으면 사용 불가. [해석, 확인 필요]'],
+  ['[신규] Petrified Shrine Statue', '1 Heat + Exhaust: Evasion Roll 전에 Block(Judgement면 Defy)으로 사용, 직후 Peril Check. [해석, 확인 필요]'],
+  ['[신규] The Bastard of the Church', '1차 능력 창 직전에 다른 한손 무기로 active Weapon 교체 가능(명중 수는 새 무기의 최대치로 제한), 안 하면 Auto-rouse 1. [해석, 확인 필요]'],
+  ['[신규] Appalling Trophy', 'REACT! 창(공격 전 창 제외)에서 Exhaust + Heat +X로 몬스터를 X칸 밀어냄 (Knockback과 같은 밀기 처리). "After Attack/Response 직전 창"만 구분하지는 못함. [해석, 확인 필요]'],
+  ['[신규] Bloatburst Leech', 'X Vigor + Exhaust → Charge +X (직후 Peril Check). X Charge + Discard: 사거리 3–5 칸 지정, d10 1–5면 무작위 직교 방향으로 2칸 이동, 그 칸 Zone 3 안의 몬스터(Mob은 개체마다) 하나당 Opening/Break X개. [해석, 확인 필요]'],
 ];
 export const GEAR_QUESTIONS = [
   ['Divine Target', 'Spotlight 조건의 Divine Target 토큰 — 엔진에 없음. 지금은 Priority Target만 본다.'],

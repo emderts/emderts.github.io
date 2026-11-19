@@ -238,6 +238,19 @@ const SPECIAL = [
   [/^When you are about to place Break \[Break\] tokens in the Knight Pool, you may place Hope \[Hope\] tokens instead$/, () => ({ op: 'breakToHope' })],
   [/^Perform an Attack with this Weapon, it gains Ranged (\d+)[–-](\d+)$/, m => ({ op: 'fThrowAttack', free: true, n: +m[1], m: +m[2] })],
   [/^(?:If you deal a Wound, place a permanent negative AT token on the Monster Sheet|Then discard this card)$/, () => ({ op: 'note', na: true })],
+  [/^Advanced Reflex, then, Lesser Dodge$/, () => ({ op: 'reflex2', lesserDodge: true })],
+  [/^Delay \[Delay\] a random Technique from your hand to Dodge$/, () => ({ op: 'dodge', randDelay: true })],
+  [/^Delay \[Delay\] a random Technique from your hand to Reflex$/, () => ({ op: 'reflex', randDelay: true })],
+  [/^Block or Defy, \[Peril Check\]$/, () => ({ op: 'block', alsoDefy: true, perilAfter: true })],
+  [/^If you are one of the viable Targets of an Attack, become the only Target of that Attack$/, () => ({ op: 'becomeOnlyTarget', active: true })],
+  [/^When a Monster performs an AI, become its Target$/, () => ({ op: 'becomeTarget', active: true })],
+  [/^Before you proceed to the first ability window, you may change your active Weapon to another \[one-hand\] Weapon you have equipped \(you cannot exceed the maximum number of hits of the new Weapon\)$/, () => ({ op: 'swapWeaponFirst' })],
+  [/^If you don't, gain Auto-rouse (\d+)$/, m => ({ op: 'elseRouse', n: +m[1] })],
+  [/^Gain \+X \[Heat\] to move the closest Monster X spaces directly away from you$/, () => ({ op: 'appallPush' })],
+  [/^You may use this ability only during \[REACT! window\] preceding an After Attack or a Response$/, () => ({ op: 'note', na: true })],
+  [/^\*?Gain X \[Charge\]$/, () => ({ op: 'fLeechCharge', free: true })],
+  [/^Choose a space as your Target in range (\d+)[–-](\d+) and roll a \[d10\]:?$/, m => ({ op: 'fLeechBurst', free: true, n: +m[1], m: +m[2] })],
+  [/^(?:• )?(?:1–5: The Target changes by 2 spaces in a random direction|6–10: Nothing happens|For each Monster in Zone 3 from the Target, place X Opening \[Opening\] and\/or Break \[Break\] tokens in the Knight Pool)$/, () => ({ op: 'note', na: true })],
   [/^Ammo Reserves (\d+)$/, m => ({ op: 'ammoReserves', n: +m[1] })],
   [/^\*X is the number of dice you were hit with$/, () => ({ op: 'note', na: true })],
   [/^If you survive, Devote$/, () => ({ op: 'note', na: true })],
@@ -424,6 +437,7 @@ export function parseSentence(s) {
     if ((m = /^\[Move action\] or \[Combat action\]\s*/i.exec(r))) { o.eitherAction = true; r = r.slice(m[0].length); continue; }
     if ((m = /^X \[Charge\]\s*/.exec(r))) { o.chargeX = true; r = r.slice(m[0].length); continue; }
     if ((m = /^X \[Heat\]\s*/.exec(r))) { o.heatX = true; r = r.slice(m[0].length); continue; }
+    if ((m = /^X \[Vigor\]\s*/.exec(r))) { o.vigorX = true; r = r.slice(m[0].length); continue; }
     if ((m = /^Start of your turn:\s*(?=\d+ \[Heat\])/.exec(r))) { o.atTurnStart = true; r = r.slice(m[0].length); continue; }
     if ((m = /^When you trigger Overcome X in Melee range:\s*/.exec(r))) { o.overcomeMelee = true; r = r.slice(m[0].length); continue; }
     if ((m = /^(\d+) \[Vigor\]\s+(?=\[|[A-Z])/.exec(r))) { (o.cost = o.cost || {}).vigor = +m[1]; r = r.slice(m[0].length); continue; }
