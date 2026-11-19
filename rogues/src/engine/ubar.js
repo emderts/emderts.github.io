@@ -37,7 +37,7 @@ export const UbarMixin = {
   async ubarDrainAll() { for (const k of this.knights) if (k.alive && k._heatQ && k._heatQ.length) await this.ubarDrain(k); },
   async ubarTurnStart(k) {
     if (!isUbar(k)) return;
-    if (!this.fx._ubarWrap) { this.fx._ubarWrap = true; for (const fn of ['useTechnique', 'payRerolls', 'exertWindow']) { const f0 = this.fx[fn]; if (typeof f0 !== 'function') continue; this.fx[fn] = async (...a) => { const r = await f0.apply(this.fx, a); await this.ubarDrainAll(); return r; }; } }
+    if (!this.fx._ubarWrap) { this.fx._ubarWrap = true; for (const fn of ['useTechnique', 'payRerolls', 'exertWindow', 'exertFree']) { const f0 = this.fx[fn]; if (typeof f0 !== 'function') continue; this.fx[fn] = async (...a) => { const r = await f0.apply(this.fx, a); await this.ubarDrainAll(); return r; }; } }
     if (!k._formAsked) { k._formAsked = true; const v = await this.ask({ type: 'pick', knight: k.id, text: `${k.name}: 이 Clash를 시작하는 형태`, options: [{ label: 'Human', value: 'human' }, { label: 'Ape', value: 'ape' }] }); k.form = v === 'ape' ? 'ape' : 'human'; this.say(`${k.name}: ${k.form === 'ape' ? 'Ape' : 'Human'} 형태로 시작`, 'tech'); }
     if (tops(k, 'shiftersGrace').length) { const d = await this.d10For(k, "Shifter's Grace"); const r = d + (k.bane || 0); this.say(`${k.name} Shifter's Grace: d10 ${d}${k.bane ? ` + Bane ${k.bane}` : ''} = ${r} vs Heat ${k.heat}`, 'dice'); if (r <= k.heat) await this.shapeshift(k, "Shifter's Grace"); }
     for (const o of tops(k, 'beastMode')) if (k.heat + o.cost <= k.heatLimit && await this.yesNo(`${k.name}: Beast Mode — Heat +${o.cost}로 Shapeshift? (현재 ${k.form === 'ape' ? 'Ape' : 'Human'})`, false)) { k.gainHeat(o.cost, { voluntary: true }); await this.shapeshift(k, 'Beast Mode'); }

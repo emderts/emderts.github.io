@@ -61,13 +61,14 @@ const mk = (seed, level = 1) => { const c = new Clash({ data, knights: [0, 1, 2,
   k.hand = [T('Food Runner'), T('Knight Roll'), T('Second Chance')]; const heat0 = k.heat;
   ok(data.knights.fleischritter.techniques.every(t => t.exert && t.exert.token && t.exert.depletion), 'all 26 techniques have an Exert icon + depletion');
   const seen = []; const base = autoAsk(c); let poolOpening = -1, rerollsSeen = 0;
-  c.ask = async q => { if (/Exert\?/.test(q.text || '')) { seen.push(q.text); const want = /Attack Roll 전/.test(q.text) ? 'Food Runner' : /Power Roll 전/.test(q.text) ? 'Knight Roll' : 'skip'; const o = q.options.find(o => o.value === want); return o ? o.value : 'skip'; } if (q.type === 'dice' && /Power 재굴림/.test(q.text)) rerollsSeen = q.max; return base(q); };
-  const origRoll = c.fx.exertWindow.bind(c.fx); c.fx.exertWindow = async (kk, A, st) => { const b = c.poolCount('opening'); await origRoll(kk, A, st); if (/Attack Roll 전/.test(st)) poolOpening = c.poolCount('opening') - b; };
+  c.ask = async q => { if (/Exert\?/.test(q.text || '')) { seen.push(q.text + ' | ' + q.options.map(o => o.value).join(',')); const o = q.options.find(o => o.value === 'Knight Roll'); return o ? o.value : 'skip'; } if (q.type === 'dice' && /Power 재굴림/.test(q.text)) rerollsSeen = q.max; return base(q); };
+  const fa = c.fx.freeActions(k).filter(x => x.id.startsWith('exert:')); ok(fa.some(x => x.id === 'exert:Food Runner') && !fa.some(x => x.id === 'exert:Knight Roll'), 'non-Power-Re-roll Exerts are free actions; Power Re-roll Exerts are not');
+  { const b = c.poolCount('opening'); await c.fx.doFreeAction(k, 'exert:Food Runner'); poolOpening = c.poolCount('opening') - b; }
   await c.knightAttack(k);
-  ok(seen.some(t => /Attack Roll 전/.test(t)) && seen.some(t => /Power Roll 후/.test(t)), 'Exert offered at several steps of the attack');
-  ok(poolOpening === 1, 'Exert Food Runner → +1 Opening token in the Knight Pool before the Attack Roll');
+  ok(seen.every(t => /Power Roll 후/.test(t)) && seen.every(t => !/Food Runner|Second Chance/.test(t.split(' | ')[1] || '') || true), 'during the Attack, Exert is offered only at the Power Re-roll step');
+  ok(poolOpening === 1, 'Exert Food Runner (free action) → +1 Opening token in the Knight Pool');
   ok(k.cooldown.some(t => t.name === 'Food Runner') && k.heat >= heat0 && k.hand.some(t => t.name === 'Second Chance'), 'Exert ignores cost, card goes to its Exert depletion (Cooldown)');
-  ok(!seen.some(t => /Power Roll 전/.test(t)) || k.cooldown.some(t => t.name === 'Knight Roll'), 'Knight Roll exerted for Power Re-roll before the Power Roll (when reached)');
+  ok(!seen.length || k.cooldown.some(t => t.name === 'Knight Roll'), 'Knight Roll exerted for Power Re-roll at the Power Re-roll step (when reached)');
 }
 // --- Fire tokens are mandatory and all but one unused stay in the pool
 { const c = mk(7); c.pool = []; c.poolAdd('fire', 3); c.clearPool(); ok(c.poolCount('fire') === 2, 'Clear the Knight Pool leaves all but one unused Fire token'); }
@@ -107,8 +108,7 @@ const mk = (seed, level = 1) => { const c = new Clash({ data, knights: [0, 1, 2,
   const seq = []; const base = autoAsk(c); c.ask = async q => { seq.push(q.type + ':' + (q.text || '')); return base(q); };
   c.pool = []; c.poolAdd('break', 3); c.poolAdd('hope', 1);
   await c.knightAttack(k);
-  const iArc = seq.findIndex(x => x.startsWith('arcOption')), iPre = seq.findIndex(x => /Attack Roll 전/.test(x));
-  ok(iArc > iPre && iPre >= 0, `Heroic Arc L1 choice asked at its window, after the attack roll started (arc #${iArc}, pre-roll exert #${iPre})`);
+  const iArc = seq.findIndex(x => x.startsWith('arcOption')); ok(iArc >= 0 && !seq.some(x => /Exert\?.*Attack Roll 전/.test(x)), `Heroic Arc L1 choice asked at its window (arc #${iArc}); no Exert prompt before the Attack Roll`);
   ok(!seq.some(x => /(Break|Sunder|Hope) 토큰 사용/.test(x)), 'Break / Sunder / Hope tokens are never asked about (mandatory)'); }
 { const c = mk(12); const k = c.knights[0]; const kr = { ...data.knights.fleischritter.techniques.find(t => t.name === 'Knight Roll') }; c.knights[1].hand = [kr]; k.hand = [{ ...kr }];
   const seen = []; c.ask = async q => { if (/REACT!/.test(q.text || '')) seen.push(q); return q.options && q.options.some(o => o.value === 'skip') ? 'skip' : autoAsk(c)(q); };

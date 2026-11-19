@@ -681,7 +681,6 @@ export class Clash {
     // 2. Passion + priority target
     k.gainPassion(1); if ((!this.priorityTarget || k.passion > this.priorityTarget.passion) && !(this.priorityTarget && this.priorityTarget.alive && this.fx.gearHas(this.priorityTarget, 'keepPriority'))) { this.priorityTarget = k; }
     await this.fx.beforeAttack(k, A);
-    await this.fx.exertWindow(k, A, 'Attack Roll 전');
     // 3. Attack roll
     let dice = (parseInt(w.attackDice, 10) || 0) + this.fx.extraAttackDice(k, w, A); { const ck = this.fx.constKw(k, w); const di = ck.find(o => o.op === 'attackDiceInstead'); if (ck.some(o => o.op === 'powerHitCap')) A.powerHitCap = parseInt(w.attackDice, 10); if (di) { dice = dice - parseInt(w.attackDice, 10) + di.n; this.say(`${w.name}: ${di.gate} — 공격 주사위 ${di.n}개`, 'tech'); } } let prec = (Number(w.precision) || 0) + this.fx.precision(k) + (A.extraPrecision || 0) + (this.fx.gearHas(k, 'noOpening') || (A.flags && A.flags.has('noOpening')) ? 0 : this.poolCount('opening')) + this.poolCount('closing') + (this.monster.isMob ? this.mobAura('knightPrecision') : 0) + this.hauntPrecision(k) + (!A.guardian && !k.engulfed && (!this.monster.isMob || (A.mob && A.mob.isTroll)) && this.inBlindspot(k) ? 1 : 0);
     if (A.ubar && A.ubar.autoHit && dice > 1) { dice -= 1; A.autoHits = (A.autoHits || 0) + 1; A.ubar.autoHit = 0; this.say('Skull Crack: Attack die 1개를 따로 두고 자동 명중으로 처리', 'tech'); }
@@ -691,7 +690,6 @@ export class Clash {
     const nth = this.negToHit || 0; if (nth) { this.negToHit = 0; this.say(`임시 To Hit -${nth} 토큰 적용 후 버림`, 'tech'); }
     const isHit = d => d.v === 10 ? true : d.v === 1 ? false : (critSafe && d === roll.dice[0]) ? true : d.v + prec >= toHit - swOn - nth;
     this.say(`${k.name} Attack Roll ${dice}d → [${roll.dice.map(d => d.v).join(' ')}] (재굴림 전)`, 'dice'); await this.fx.attackRollPre(k, A, roll, isHit);
-    await this.fx.exertWindow(k, A, `Attack Roll 후, 재굴림 전 — [${roll.dice.map(d => d.v + (isHit(d) ? '✓' : '✗')).join(' ')}] vs ${toHit}+ (보너스 +${prec}), 명중 ${roll.dice.filter(isHit).length}/${dice}`);
     prec = (Number(w.precision) || 0) + this.fx.precision(k) + (A.extraPrecision || 0) + (this.fx.gearHas(k, 'noOpening') || (A.flags && A.flags.has('noOpening')) ? 0 : this.poolCount('opening')) + this.poolCount('closing') + (this.monster.isMob ? this.mobAura('knightPrecision') : 0) + this.hauntPrecision(k);
     let misses = roll.dice.filter(d => !isHit(d));
     const critD = roll.dice.find(d => d.crit) || roll.dice[0]; const falsOK = !!(critD && !critD.rerolled && (A.falsity || (A.kw || []).some(o => o.op === 'falsity'))); // Falsity: the Crit die may be re-rolled without Heat (Zeal 1 if it was already a hit)
@@ -725,7 +723,6 @@ export class Clash {
     if (!A.critChance && this.monster.hasTrait('Impenetrable Shell') && this.armorTokens[bp.level] > 0 && this.frontCells().some(c => cellEq(c, k.pos))) { this.say('Ultrainstinct: Impenetrable Shell → Knockback 1'); await this.pushback(k, 1); }
     if ((this.isKe && !A.guardian && await this.keUltra(k, A, bp)) || (this.isBw && !A.guardian && await this.bwMayEnd(k, A, bp))) { this.monster.discardBP(bp); this.currentKnightAttack = null; await this.afterAction(); return; }
     await this.fx.arcAt(k, A, 'power');
-    await this.fx.exertWindow(k, A, 'Power Roll 전');
     // 6. power roll
     const TIERS = ['red', 'black', 'white']; const kd = TIERS[Math.min(2, TIERS.indexOf(k.powerDie) + (A.promote || 0))]; if (A.promote) this.say(`Power Dice Promotion: Knight Power die ${k.powerDie} → ${kd}`);
     const wpOf = col => { const p = w.weaponPower; if (!p) return 0; if (Array.isArray(p.dice)) return p.dice.filter(c => c === col).length; if (p.dice && typeof p.dice === 'object') return p.dice[col] || 0; return p.colour === col ? p.n : 0; }; // weapon power per hit, mixed colours supported
@@ -742,7 +739,6 @@ export class Clash {
         let blackLeft = fromBlack; for (const i of picked) { if (blackLeft <= 0) break; const f = pr.dice[i].face; if (!(f.T > 0)) continue; if (await this.yesNo(`Black: 재굴림한 ${pr.dice[i].colour} 주사위(${face(f)})의 ✦1 → ⚔1?`, true)) { pr.dice[i].face = { ...f, T: f.T - 1, P: (f.P || 0) + 1 }; blackLeft--; this.say('Black: ✦ → ⚔'); } } } }
     let power = pr.dice.reduce((a, d) => a + (d.face.P || 0), 0) + pool.raw; let potential = pr.dice.reduce((a, d) => a + (d.face.T || 0), 0) + pool.potential; if (this.isPz) potential = this.pzPotential(k, A, pr.dice, potential); if (this.isBw && k._bwIgnorePower && power > 0) { power -= 1; this.say(`${k.name}: Beast of the Swamp — Power 1 무시`, 'bp'); } const hope = pr.dice.reduce((a, d) => a + (d.face.H || 0), 0);
     // potentials → power via Break / Sunder / Hope / Fire tokens
-    await this.fx.exertWindow(k, A, `✦ 변환 단계 — 현재 ⚔${power} ✦${potential} 🕊${hope}`);
     // Break / Sunder / Hope are mandatory: every token converts while symbols remain (owner ruling 2026-11-03).
     // When ✦ are too few for both Sunder and Break, the player chooses how many go to Sunder (the rest to Break).
     let useS = 0, useB = 0, useH = 0; const nS = this.poolCount('sunder'), nB = this.poolCount('break');
