@@ -98,4 +98,5 @@ d = {'id': 'toadragon-of-the-great-marsh', 'name': S['name'], 'kind': 'boss', 'c
   'Ultrainstinct Response는 BP 공개 직후(Power Roll 전)에 처리',
   '미구현: Lumbering(몬스터를 움직이는 기사 효과), Toadlet Swarm의 Lateral Movement(일반 이동으로 처리), Swamplands Surge의 "P6+: Evasion Re-roll 무시", Fenland Fling의 "Run!", Front Leg·Clogged Lungs Critical, Clogged Lungs·Spiny Trunk·Withered Old Scale Ultrainstinct, Spawn Sack Critical의 "see 4567", 각 AI 카드의 REACT! 창 위치',
  ]}
+import reactfix; reactfix.apply('toadragon-of-the-great-marsh', d)
 json.dump(d, open(sys.argv[1], 'w'), ensure_ascii=False, indent=1); print('wrote', sys.argv[1], len(d['cards']['ai']), 'AI', len(d['cards']['bp']), 'BP')

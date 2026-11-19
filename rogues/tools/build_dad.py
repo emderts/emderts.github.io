@@ -99,4 +99,5 @@ d = {'id': 'devil-of-the-ancient-dusk', 'name': S['name'], 'kind': 'boss', 'code
   'Relic of an Age of Profanity Critical: 모든 Swamp 칸이 Rut이 되고 Deluge 비활성',
   '미구현: 각 AI 카드의 REACT! 창 위치(Targeting 뒤 창만 공통 적용), Level 2+의 [Heat] 보너스 아이콘(의미 미확인)',
  ]}
+import reactfix; reactfix.apply('devil-of-the-ancient-dusk', d)
 json.dump(d, open(sys.argv[1], 'w'), ensure_ascii=False, indent=1); print('wrote', sys.argv[1], len(d['cards']['ai']), 'AI', len(d['cards']['bp']), 'BP')

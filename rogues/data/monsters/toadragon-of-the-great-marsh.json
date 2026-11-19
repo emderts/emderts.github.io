@@ -186,14 +186,14 @@
       },
       {
        "op": "knockdown"
-      },
-      {
-       "op": "reactWindow",
-       "at": "mid"
       }
      ],
      "afterAttack": null,
      "afterFinalAttack": [
+      {
+       "op": "reactWindow",
+       "at": "after"
+      },
       {
        "op": "tdSpawn",
        "zone": 2
@@ -212,7 +212,12 @@
        ]
       }
      ]
-    }
+    },
+    "reactWindows": [
+     "targeting",
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "Tongue Whip",
@@ -276,7 +281,11 @@
      ],
      "afterFinalAttack": null,
      "range": 7
-    }
+    },
+    "reactWindows": [
+     "targeting"
+    ],
+    "reactExact": true
    },
    {
     "name": "Overwhelming Croak",
@@ -338,14 +347,14 @@
         "Distracted"
        ],
        "who": "target"
-      },
-      {
-       "op": "reactWindow",
-       "at": "mid"
       }
      ],
      "afterAttack": null,
      "afterFinalAttack": [
+      {
+       "op": "reactWindow",
+       "at": "after"
+      },
       {
        "op": "tdHop",
        "dirs": [
@@ -366,7 +375,11 @@
       "Bravery",
       "Sagacity"
      ]
-    }
+    },
+    "reactWindows": [
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "Putrescent Stench",
@@ -495,7 +508,11 @@
       "step": null,
       "block": true
      }
-    }
+    },
+    "reactWindows": [
+     "targeting"
+    ],
+    "reactExact": true
    },
    {
     "name": "Poisonous Bile",
@@ -621,7 +638,11 @@
       "step": null,
       "block": true
      }
-    }
+    },
+    "reactWindows": [
+     "targeting"
+    ],
+    "reactExact": true
    },
    {
     "name": "Toadlet Pack",
@@ -674,14 +695,14 @@
         "Slimed"
        ],
        "who": "target"
-      },
-      {
-       "op": "reactWindow",
-       "at": "mid"
       }
      ],
      "afterAttack": null,
      "afterFinalAttack": [
+      {
+       "op": "reactWindow",
+       "at": "after"
+      },
       {
        "op": "tdHop",
        "dirs": [
@@ -698,7 +719,12 @@
       }
      },
      "wave": true
-    }
+    },
+    "reactWindows": [
+     "targeting",
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "Rancid Breath",
@@ -863,7 +889,11 @@
       "step": null,
       "block": true
      }
-    }
+    },
+    "reactWindows": [
+     "targeting"
+    ],
+    "reactExact": true
    },
    {
     "name": "Mighty Slam",
@@ -914,14 +944,14 @@
       {
        "op": "knockback",
        "n": 2
-      },
-      {
-       "op": "reactWindow",
-       "at": "mid"
       }
      ],
      "afterAttack": null,
      "afterFinalAttack": [
+      {
+       "op": "reactWindow",
+       "at": "after"
+      },
       {
        "op": "tdSpawn",
        "zone": 4
@@ -940,7 +970,12 @@
        ]
       }
      ]
-    }
+    },
+    "reactWindows": [
+     "targeting",
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "Maw of the Marsh",
@@ -997,7 +1032,11 @@
      "afterAttack": null,
      "afterFinalAttack": null,
      "jump": true
-    }
+    },
+    "reactWindows": [
+     "targeting"
+    ],
+    "reactExact": true
    },
    {
     "name": "Regurgitate Young",
@@ -1242,7 +1281,11 @@
       "step": null,
       "block": true
      }
-    }
+    },
+    "reactWindows": [
+     "targeting"
+    ],
+    "reactExact": true
    },
    {
     "name": "Toadlet Horde",
@@ -1304,14 +1347,14 @@
       },
       {
        "op": "tdKdSwamp"
-      },
-      {
-       "op": "reactWindow",
-       "at": "mid"
       }
      ],
      "afterAttack": null,
      "afterFinalAttack": [
+      {
+       "op": "reactWindow",
+       "at": "after"
+      },
       {
        "op": "tdSpawn",
        "targeted": true
@@ -1329,7 +1372,13 @@
       }
      },
      "wave": true
-    }
+    },
+    "reactWindows": [
+     "targeting",
+     "effect:3",
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "Tongue Twister",
@@ -1384,20 +1433,25 @@
       },
       {
        "op": "tdEvNeg"
-      },
-      {
-       "op": "reactWindow",
-       "at": "mid"
       }
      ],
      "afterAttack": [
+      {
+       "op": "reactWindow",
+       "at": "after"
+      },
       {
        "op": "tdDieAdjacent"
       }
      ],
      "afterFinalAttack": null,
      "range": 8
-    }
+    },
+    "reactWindows": [
+     "targeting",
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "Poison the Waters",
@@ -1455,14 +1509,14 @@
       {
        "op": "tdSpawn",
        "perHit": true
-      },
-      {
-       "op": "reactWindow",
-       "at": "mid"
       }
      ],
      "afterAttack": null,
      "afterFinalAttack": [
+      {
+       "op": "reactWindow",
+       "at": "after"
+      },
       {
        "op": "tdHop",
        "dirs": [
@@ -1480,7 +1534,11 @@
       "Insight",
       "Fortitude"
      ]
-    }
+    },
+    "reactWindows": [
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "Gore-Gorger",
@@ -1541,7 +1599,11 @@
      ],
      "afterFinalAttack": null,
      "jump": true
-    }
+    },
+    "reactWindows": [
+     "targeting"
+    ],
+    "reactExact": true
    },
    {
     "name": "Engulf in Slime",
@@ -1597,14 +1659,14 @@
         "Drowning"
        ],
        "who": "target"
-      },
-      {
-       "op": "reactWindow",
-       "at": "mid"
       }
      ],
      "afterAttack": null,
      "afterFinalAttack": [
+      {
+       "op": "reactWindow",
+       "at": "after"
+      },
       {
        "op": "tdHop",
        "dirs": [
@@ -1627,7 +1689,11 @@
        "at": "mid"
       }
      ]
-    }
+    },
+    "reactWindows": [
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "Toadlet Swarm",
@@ -2500,7 +2566,11 @@
       "step": null,
       "block": true
      }
-    }
+    },
+    "reactWindows": [
+     "targeting"
+    ],
+    "reactExact": true
    },
    {
     "name": "Swamplands Surge",
@@ -2566,7 +2636,9 @@
       "board": "rearEdge"
      },
      "wave": true
-    }
+    },
+    "reactWindows": [],
+    "reactExact": true
    },
    {
     "name": "Fenland Fling",
@@ -2631,7 +2703,11 @@
        "at": "mid"
       }
      ]
-    }
+    },
+    "reactWindows": [
+     "targeting"
+    ],
+    "reactExact": true
    }
   ],
   "bp": [
@@ -4091,6 +4167,7 @@
   "Tongue Whip After Attack: 인접해 있으면 가장 가까운 Obstacle 쪽(가로/세로 중 더 먼 축)으로 Knockback 6 [해석, 확인 필요]. Fenland Fling: 가까운 짧은 Board Edge(1열/14열) 쪽으로 명중당 Knockback 5, Obstacle 무시, Boundless(보드 밖 = 사망) [해석, 확인 필요]",
   "Engulf in Slime: Evasion dice X = 그 기사 주위 Zone 1의 Toadlet 수 × 2",
   "Ultrainstinct Response는 BP 공개 직후(Power Roll 전)에 처리",
-  "미구현: Lumbering(몬스터를 움직이는 기사 효과), Toadlet Swarm의 Lateral Movement(일반 이동으로 처리), Swamplands Surge의 \"P6+: Evasion Re-roll 무시\", Fenland Fling의 \"Run!\", Front Leg·Clogged Lungs Critical, Clogged Lungs·Spiny Trunk·Withered Old Scale Ultrainstinct, Spawn Sack Critical의 \"see 4567\", 각 AI 카드의 REACT! 창 위치"
+  "미구현: Lumbering(몬스터를 움직이는 기사 효과), Toadlet Swarm의 Lateral Movement(일반 이동으로 처리), Swamplands Surge의 \"P6+: Evasion Re-roll 무시\", Fenland Fling의 \"Run!\", Front Leg·Clogged Lungs Critical, Clogged Lungs·Spiny Trunk·Withered Old Scale Ultrainstinct, Spawn Sack Critical의 \"see 4567\"",
+  "REACT! 창: AI 카드는 인쇄된 위치대로 — Targeting 목록 아래 표시가 있는 카드만 Targeting 뒤 창, 효과 줄 사이 표시는 그 자리, 마지막 효과 줄 뒤 표시는 After Attack / After Final Attack 앞 (스캔 재판독 2026-11-19). Signature·Trait Attack·BP 카드의 REACT! 표시는 재판독 전이라 이전 처리 그대로 [확인 필요]"
  ]
 }

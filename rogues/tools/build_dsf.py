@@ -96,4 +96,5 @@ d = {'id': 'devil-of-the-smelted-fears', 'name': S['name'], 'kind': 'boss', 'cod
   'Blessing of Fear(Routine): Ferrobaptism 2, 모든 기사 Bane X(X = Devil의 Armor 토큰), 무작위 기사를 중앙 4칸 중 한 곳으로',
   '미구현: "You may voluntarily fail this Attack"(Rancid Loincloth, Rotting Visage), Exposed Tendon Critical의 Sequential·Zone Attack 비활성, Hell-ter Smelter의 Heat 6+ 게이트(Bonus Attack·Chain Break 무시), 각 AI 카드의 REACT! 창 위치(효과 사이 창은 넣음)',
  ]}
+import reactfix; reactfix.apply('devil-of-the-smelted-fears', d)
 json.dump(d, open(sys.argv[1], 'w'), ensure_ascii=False, indent=1); print('wrote', sys.argv[1], len(d['cards']['ai']), 'AI', len(d['cards']['bp']), 'BP')

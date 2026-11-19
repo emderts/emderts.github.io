@@ -96,4 +96,5 @@ d = {'id': 'young-devour-dragon', 'name': S['name'], 'kind': 'boss', 'code': S['
   'Madness of the Famishing: 명중 시 일어나서 가장 가까운 다른 기사 쪽으로 Speed만큼 이동, 인접하면 Knight Power dice를 3번 굴려 나온 기호 수만큼 그 기사가 [V] 손실 + Peril Check [해석, 확인 필요]',
   '미구현: Lumbering, Exhibition Clash, Hungry Chomp·Fearsome Feast의 "Shield를 active Weapon으로 선언했으면 버림", Snatch \'n\' Snap의 Weapon 슬롯 비활성, World Eater의 Talent 카드 버리기, Inescapable Maw(부활 불가 — 현재 Clash 중 부활 효과 없음), 각 AI 카드의 REACT! 창 위치',
  ]}
+import reactfix; reactfix.apply('young-devour-dragon', d)
 json.dump(d, open(sys.argv[1], 'w'), ensure_ascii=False, indent=1); print('wrote', sys.argv[1], len(d['cards']['ai']), 'AI', len(d['cards']['bp']), 'BP')

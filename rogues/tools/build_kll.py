@@ -99,4 +99,5 @@ d = {'id': 'king-laid-low', 'name': S['name'], 'kind': 'boss', 'code': S['code']
   'Burden of the Past(Routine): VP 기사는 Displace 후 Unavoidable Knockback 5, 무작위 기사 밑에 1x2 Swamp(위치 선택), Escalate 1',
   '미구현: Churning Charge의 Heat 4+ 게이트(아이콘 미판독), Throne of a Defiled Nation Critical의 Slimy Throne 타일, 각 AI 카드의 REACT! 창 위치(Targeting 뒤 창만 공통 적용)',
  ]}
+import reactfix; reactfix.apply('king-laid-low', d)
 json.dump(d, open(sys.argv[1], 'w'), ensure_ascii=False, indent=1); print('wrote', sys.argv[1], len(d['cards']['ai']), 'AI', len(d['cards']['bp']), 'BP')

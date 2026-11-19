@@ -218,7 +218,11 @@
      ],
      "afterFinalAttack": null,
      "range": "unlimited"
-    }
+    },
+    "reactWindows": [
+     "targeting"
+    ],
+    "reactExact": true
    },
    {
     "name": "Dragged by the Ear",
@@ -290,13 +294,13 @@
       },
       {
        "op": "pkeVPDisplace"
-      },
-      {
-       "op": "reactWindow",
-       "at": "mid"
       }
      ],
      "afterAttack": [
+      {
+       "op": "reactWindow",
+       "at": "after"
+      },
       {
        "op": "pkeKb",
        "n": 4
@@ -304,7 +308,12 @@
      ],
      "afterFinalAttack": null,
      "range": "unlimited"
-    }
+    },
+    "reactWindows": [
+     "targeting",
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "Puppeteer",
@@ -363,7 +372,11 @@
       "Tenacity",
       "Sagacity"
      ]
-    }
+    },
+    "reactWindows": [
+     "targeting"
+    ],
+    "reactExact": true
    },
    {
     "name": "The King Commands: Bow Down!",
@@ -408,6 +421,10 @@
      "afterAttack": null,
      "afterFinalAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "pkeCmdAfter",
        "need": "all",
        "shock": true
@@ -431,7 +448,11 @@
       "obeyText": "Knockdown, Bane 2",
       "disobeyText": "Subjugated, 명중당 -2 [V], Peril"
      }
-    }
+    },
+    "reactWindows": [
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "The King Commands: Begone!",
@@ -482,6 +503,10 @@
      "afterAttack": null,
      "afterFinalAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "pkeCmdAfter",
        "need": "all",
        "shock": true
@@ -498,7 +523,11 @@
       "obeyText": "Knockback 6",
       "disobeyText": "명중당 -2 [V], 2회 이상 명중 시 Subjugated, Peril"
      }
-    }
+    },
+    "reactWindows": [
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "The King Commands: Begone!",
@@ -549,6 +578,10 @@
      "afterAttack": null,
      "afterFinalAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "pkeCmdAfter",
        "need": "all",
        "shock": true
@@ -565,7 +598,11 @@
       "obeyText": "Knockback 6",
       "disobeyText": "명중당 -2 [V], 2회 이상 명중 시 Subjugated, Peril"
      }
-    }
+    },
+    "reactWindows": [
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "Slap in the Face",
@@ -627,7 +664,11 @@
      ],
      "afterFinalAttack": null,
      "range": "unlimited"
-    }
+    },
+    "reactWindows": [
+     "targeting"
+    ],
+    "reactExact": true
    },
    {
     "name": "Eye Poke",
@@ -668,13 +709,22 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "pkeExhaust",
        "mode": "weaponOrHelm"
       }
      ],
      "afterFinalAttack": null,
      "range": "unlimited"
-    }
+    },
+    "reactWindows": [
+     "targeting",
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "Puppet Sword Dance",
@@ -718,7 +768,11 @@
       }
      ],
      "pkeZone": "fk2"
-    }
+    },
+    "reactWindows": [
+     "targeting"
+    ],
+    "reactExact": true
    },
    {
     "name": "The King Commands: Obey Me!",
@@ -772,6 +826,10 @@
      "afterAttack": null,
      "afterFinalAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "pkeCmdAfter",
        "need": 2,
        "zoneKD": 2
@@ -787,7 +845,12 @@
       "obeyText": "모든 Gear Exhaust",
       "disobeyText": "명중당 -2 [V], Bane 1, Peril, Subjugated"
      }
-    }
+    },
+    "reactWindows": [
+     "targeting",
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "The King Commands: Get Out of My Sight!",
@@ -832,6 +895,10 @@
      "afterAttack": null,
      "afterFinalAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "pkeCmdAfter",
        "need": 2,
        "shock": true
@@ -857,7 +924,11 @@
       "obeyText": "Knockback 8, Bane 2",
       "disobeyText": "명중당 -3 [V], Subjugated, Peril"
      }
-    }
+    },
+    "reactWindows": [
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "The King Commands: Entertain Me!",
@@ -898,6 +969,10 @@
      "afterAttack": null,
      "afterFinalAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "pkeCmdAfter",
        "need": "all",
        "targetsCond": "Subjugated"
@@ -912,7 +987,12 @@
       "obeyText": "Speed만큼 이동해 가장 가까운 다른 기사를 Weapon 사거리에 넣고, 모든 Attack dice 명중으로 Power Roll — 그 기사가 Total Power만큼 [V] 손실",
       "disobeyText": "명중당 -3 [V], Peril"
      }
-    }
+    },
+    "reactWindows": [
+     "targeting",
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "Shadow Punch",
@@ -975,7 +1055,12 @@
      "afterAttack": null,
      "afterFinalAttack": null,
      "range": "unlimited"
-    }
+    },
+    "reactWindows": [
+     "targeting",
+     "effect:2"
+    ],
+    "reactExact": true
    },
    {
     "name": "Crushing Burden",
@@ -1030,12 +1115,21 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "pkeSpeedNeg"
       }
      ],
      "afterFinalAttack": null,
      "range": "unlimited"
-    }
+    },
+    "reactWindows": [
+     "targeting",
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "Marionette Massacre",
@@ -1083,7 +1177,11 @@
      "afterAttack": null,
      "afterFinalAttack": null,
      "pkeZone": 4
-    }
+    },
+    "reactWindows": [
+     "targeting"
+    ],
+    "reactExact": true
    },
    {
     "name": "The King Commands: Yield!",
@@ -1133,6 +1231,10 @@
      "afterAttack": null,
      "afterFinalAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "pkeCmdAfter",
        "need": 2,
        "targetsCond": "Courage"
@@ -1147,7 +1249,12 @@
       "obeyText": "Hand와 Cooldown의 모든 카드 Restrain",
       "disobeyText": "명중당 -2 [V], Bane 3, Peril"
      }
-    }
+    },
+    "reactWindows": [
+     "targeting",
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "The King Commands: Get Away From Me!",
@@ -1195,6 +1302,10 @@
      "afterAttack": null,
      "afterFinalAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "pkeCmdAfter",
        "need": 1,
        "shock": true
@@ -1220,7 +1331,12 @@
       "obeyText": "Knockback 10, Bane 2",
       "disobeyText": "명중당 -3 [V], Peril"
      }
-    }
+    },
+    "reactWindows": [
+     "targeting",
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "The King Commands: Lay Down Your Arms!",
@@ -1281,6 +1397,10 @@
      "afterAttack": null,
      "afterFinalAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "pkeCmdAfter",
        "need": 2,
        "shock": true
@@ -1296,7 +1416,11 @@
       "obeyText": "모든 Gear Exhaust",
       "disobeyText": "명중당 -3 [V], Bane 1, Peril"
      }
-    }
+    },
+    "reactWindows": [
+     "After Attack 앞"
+    ],
+    "reactExact": true
    }
   ],
   "bp": [
@@ -2404,6 +2528,7 @@
   "Subjugated: Start of your turn에 고른 Virtue 테스트(9+), 성공하면 뒤집음. 두 번째로 얻으면 사망",
   "Entertain Me! (Obey): 가장 가까운 다른 기사가 Weapon 사거리에 들어오도록 Speed만큼 이동 → 모든 Attack dice가 명중한 것으로 Power Roll(무기 Power dice × Attack dice 수 + Knight Power die) → 그 기사가 Total Power만큼 [V] 손실 (Armor Roll 없음) [해석, 확인 필요]",
   "\"Knockback N to the side\" = King이 바라보는 방향 기준 왼쪽/오른쪽 중 플레이어 선택, \"random direction\" = 4방향 무작위 [해석, 확인 필요]",
-  "미구현: Armor-piercing 1 (Shield of the Fallen, Heart of the Throne의 Wound Response), Riesenmörder Sword Critical의 \"see 2329\", 각 AI 카드의 REACT! 창 위치(효과 사이 창은 넣음), Fallen Knight의 비자발적 이동(기사의 Pushback 등)"
+  "미구현: Armor-piercing 1 (Shield of the Fallen, Heart of the Throne의 Wound Response), Riesenmörder Sword Critical의 \"see 2329\", Fallen Knight의 비자발적 이동(기사의 Pushback 등)",
+  "REACT! 창: AI 카드는 인쇄된 위치대로 — Targeting 목록 아래 표시가 있는 카드만 Targeting 뒤 창, 효과 줄 사이 표시는 그 자리, 마지막 효과 줄 뒤 표시는 After Attack / After Final Attack 앞 (스캔 재판독 2026-11-19). Signature·Trait Attack·BP 카드의 REACT! 표시는 재판독 전이라 이전 처리 그대로 [확인 필요]"
  ]
 }

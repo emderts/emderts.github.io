@@ -100,4 +100,5 @@ d = {'id': 'panzerdragon-veldr', 'name': S['name'], 'kind': 'boss', 'code': S['c
   'Drachendämmerung(Routine): 모든 기사 Bane 3, [P]가 가장 높은 기사 사망, Panzerdragon이 보드 중앙으로 이동해 가장 많은 기사를 바라봄',
   "미구현: Lumbering(몬스터를 움직이는 기사 효과), Septic Slash의 \"P5+: Ignore your Armor Gear card\", Shadow of Doom의 Saint 카드 버리기, Sliver of Lost Glory Critical의 \"see 9350\", Fool's deck(이 Clash에서 참조하는 카드 없음), 각 AI 카드의 REACT! 창 위치",
  ]}
+import reactfix; reactfix.apply('panzerdragon-veldr', d)
 json.dump(d, open(sys.argv[1], 'w'), ensure_ascii=False, indent=1); print('wrote', sys.argv[1], len(d['cards']['ai']), 'AI', len(d['cards']['bp']), 'BP')

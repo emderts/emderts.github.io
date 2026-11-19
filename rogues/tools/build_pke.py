@@ -101,4 +101,5 @@ d = {'id': 'puppet-king-edelhardt', 'name': S['name'], 'kind': 'boss', 'code': S
   '"Knockback N to the side" = King이 바라보는 방향 기준 왼쪽/오른쪽 중 플레이어 선택, "random direction" = 4방향 무작위 [해석, 확인 필요]',
   '미구현: Armor-piercing 1 (Shield of the Fallen, Heart of the Throne의 Wound Response), Riesenmörder Sword Critical의 "see 2329", 각 AI 카드의 REACT! 창 위치(효과 사이 창은 넣음), Fallen Knight의 비자발적 이동(기사의 Pushback 등)',
  ]}
+import reactfix; reactfix.apply('puppet-king-edelhardt', d)
 json.dump(d, open(sys.argv[1], 'w'), ensure_ascii=False, indent=1); print('wrote', sys.argv[1], len(d['cards']['ai']), 'AI', len(d['cards']['bp']), 'BP')

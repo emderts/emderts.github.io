@@ -235,13 +235,23 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "klDrill",
        "n": 4,
        "after": true
       }
      ],
      "afterFinalAttack": null
-    }
+    },
+    "reactWindows": [
+     "targeting",
+     "effect:1",
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "Slime Stampede",
@@ -298,6 +308,10 @@
      "afterAttack": null,
      "afterFinalAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "klDrill",
        "n": 2,
        "after": true
@@ -309,7 +323,12 @@
        "op": "faceMostKnights"
       }
      ]
-    }
+    },
+    "reactWindows": [
+     "targeting",
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "Ancestors' Admonition",
@@ -374,7 +393,11 @@
       "Fortitude",
       "Might"
      ]
-    }
+    },
+    "reactWindows": [
+     "targeting"
+    ],
+    "reactExact": true
    },
    {
     "name": "Tongue-Lashing",
@@ -415,6 +438,10 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "klPull",
        "n": 4
       }
@@ -424,7 +451,11 @@
       "Tenacity",
       "Insight"
      ]
-    }
+    },
+    "reactWindows": [
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "Slippery Slope",
@@ -477,6 +508,10 @@
      "afterAttack": null,
      "afterFinalAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "klDrill",
        "n": 4,
        "after": true
@@ -521,7 +556,12 @@
       "step": null,
       "block": true
      }
-    }
+    },
+    "reactWindows": [
+     "targeting",
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "Ankle-Biter",
@@ -574,7 +614,11 @@
       }
      ],
      "afterFinalAttack": null
-    }
+    },
+    "reactWindows": [
+     "targeting"
+    ],
+    "reactExact": true
    },
    {
     "name": "Malediction's Momentum",
@@ -617,6 +661,10 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "klDrill",
        "n": 3,
        "after": true
@@ -629,7 +677,12 @@
        "op": "klMomentum"
       }
      ]
-    }
+    },
+    "reactWindows": [
+     "targeting",
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "Floodstrike",
@@ -678,7 +731,11 @@
      ],
      "afterAttack": null,
      "afterFinalAttack": null
-    }
+    },
+    "reactWindows": [
+     "targeting"
+    ],
+    "reactExact": true
    },
    {
     "name": "The Sinking Sin",
@@ -732,11 +789,20 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "klIfSwampAdj"
       }
      ],
      "afterFinalAttack": null
-    }
+    },
+    "reactWindows": [
+     "targeting",
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "Tongue Strike",
@@ -794,6 +860,10 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "klDrill",
        "n": 5,
        "after": true
@@ -805,7 +875,12 @@
        "op": "faceMostKnights"
       }
      ]
-    }
+    },
+    "reactWindows": [
+     "targeting",
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "Royal Decree",
@@ -856,7 +931,9 @@
       "Sagacity",
       "Tenacity"
      ]
-    }
+    },
+    "reactWindows": [],
+    "reactExact": true
    },
    {
     "name": "Off With Your Head!",
@@ -905,6 +982,10 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "gated",
        "stat": "heat",
        "gte": 4,
@@ -922,7 +1003,12 @@
       "Bravery",
       "Sagacity"
      ]
-    }
+    },
+    "reactWindows": [
+     "targeting",
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "Scorn of the Swamplands",
@@ -965,6 +1051,10 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "klDrill",
        "n": 5,
        "after": true
@@ -976,7 +1066,11 @@
       "Fortitude"
      ],
      "jump": true
-    }
+    },
+    "reactWindows": [
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "Musk of Fear",
@@ -1036,7 +1130,11 @@
       }
      ],
      "afterFinalAttack": null
-    }
+    },
+    "reactWindows": [
+     "targeting"
+    ],
+    "reactExact": true
    },
    {
     "name": "Goring Charge",
@@ -1096,7 +1194,11 @@
        "op": "klKnockbackUp"
       }
      ]
-    }
+    },
+    "reactWindows": [
+     "targeting"
+    ],
+    "reactExact": true
    },
    {
     "name": "Swamp of Smothering",
@@ -1155,6 +1257,10 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "gated",
        "stat": "heat",
        "gte": 5,
@@ -1168,7 +1274,11 @@
       }
      ],
      "afterFinalAttack": null
-    }
+    },
+    "reactWindows": [
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "Mudflood Tsunami",
@@ -1233,13 +1343,22 @@
      "afterAttack": null,
      "afterFinalAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "klFlipRuts",
        "zone": 2
       }
      ],
      "jump": true,
      "zoneAroundSelf": 2
-    }
+    },
+    "reactWindows": [
+     "targeting",
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "True Love's Kiss",
@@ -1288,11 +1407,19 @@
      ],
      "afterAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "klCenter"
       }
      ],
      "afterFinalAttack": null
-    }
+    },
+    "reactWindows": [
+     "After Attack 앞"
+    ],
+    "reactExact": true
    }
   ],
   "bp": [
@@ -2499,6 +2626,7 @@
   "Royal Decree: Heat가 가장 높은 기사 2명(동률은 정렬 순). 둘 다 살아 있으면 [P]·[H]·[V] 교환 (최대치 초과분은 잘림)",
   "True Love's Kiss: 2회 명중 = Devoured(사망), 3회 이상 = Devoured + Heal 1(Wound Stack 맨 위 1장 제거) [해석, 확인 필요]",
   "Burden of the Past(Routine): VP 기사는 Displace 후 Unavoidable Knockback 5, 무작위 기사 밑에 1x2 Swamp(위치 선택), Escalate 1",
-  "미구현: Churning Charge의 Heat 4+ 게이트(아이콘 미판독), Throne of a Defiled Nation Critical의 Slimy Throne 타일, 각 AI 카드의 REACT! 창 위치(Targeting 뒤 창만 공통 적용)"
+  "미구현: Churning Charge의 Heat 4+ 게이트(아이콘 미판독), Throne of a Defiled Nation Critical의 Slimy Throne 타일",
+  "REACT! 창: AI 카드는 인쇄된 위치대로 — Targeting 목록 아래 표시가 있는 카드만 Targeting 뒤 창, 효과 줄 사이 표시는 그 자리, 마지막 효과 줄 뒤 표시는 After Attack / After Final Attack 앞 (스캔 재판독 2026-11-19). Signature·Trait Attack·BP 카드의 REACT! 표시는 재판독 전이라 이전 처리 그대로 [확인 필요]"
  ]
 }

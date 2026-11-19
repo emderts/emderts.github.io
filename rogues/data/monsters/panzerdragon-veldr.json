@@ -240,7 +240,11 @@
        "op": "faceMostKnights"
       }
      ]
-    }
+    },
+    "reactWindows": [
+     "targeting"
+    ],
+    "reactExact": true
    },
    {
     "name": "Rend the Armor",
@@ -302,13 +306,13 @@
        "op": "pvExhaust",
        "armor": true,
        "discard": true
-      },
-      {
-       "op": "reactWindow",
-       "at": "mid"
       }
      ],
      "afterAttack": [
+      {
+       "op": "reactWindow",
+       "at": "after"
+      },
       {
        "op": "pvIfDied",
        "then": [
@@ -335,7 +339,12 @@
       }
      ],
      "afterFinalAttack": null
-    }
+    },
+    "reactWindows": [
+     "targeting",
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "Sedimentalis",
@@ -408,7 +417,11 @@
        "op": "faceMostKnights"
       }
      ]
-    }
+    },
+    "reactWindows": [
+     "targeting"
+    ],
+    "reactExact": true
    },
    {
     "name": "Rustgasp",
@@ -601,7 +614,11 @@
       "step": null,
       "block": true
      }
-    }
+    },
+    "reactWindows": [
+     "targeting"
+    ],
+    "reactExact": true
    },
    {
     "name": "Scrap Divebomb",
@@ -674,7 +691,11 @@
      ],
      "afterFinalAttack": null,
      "landOnTop": true
-    }
+    },
+    "reactWindows": [
+     "targeting"
+    ],
+    "reactExact": true
    },
    {
     "name": "Stampede of Steel",
@@ -745,21 +766,27 @@
        "op": "pvGerm",
        "loc": "dragon",
        "n": 1
-      },
-      {
-       "op": "reactWindow",
-       "at": "mid"
       }
      ],
      "afterAttack": null,
      "afterFinalAttack": [
+      {
+       "op": "reactWindow",
+       "at": "after"
+      },
       {
        "op": "pvForward",
        "n": 3
       }
      ],
      "pathAttack": true
-    }
+    },
+    "reactWindows": [
+     "targeting",
+     "effect:2",
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "Swarmsong",
@@ -817,13 +844,13 @@
        },
        "who": "target",
        "perHit": true
-      },
-      {
-       "op": "reactWindow",
-       "at": "mid"
       }
      ],
      "afterAttack": [
+      {
+       "op": "reactWindow",
+       "at": "after"
+      },
       {
        "op": "pvMig"
       }
@@ -833,7 +860,12 @@
       "Bravery",
       "Tenacity"
      ]
-    }
+    },
+    "reactWindows": [
+     "targeting",
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "There and Back",
@@ -897,20 +929,25 @@
        "op": "pvGerm",
        "loc": "dragon",
        "n": 2
-      },
-      {
-       "op": "reactWindow",
-       "at": "mid"
       }
      ],
      "afterAttack": null,
      "afterFinalAttack": [
       {
+       "op": "reactWindow",
+       "at": "after"
+      },
+      {
        "op": "pvRepeat"
       }
      ],
      "pathAttack": true
-    }
+    },
+    "reactWindows": [
+     "targeting",
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "Pall of Rust",
@@ -982,7 +1019,11 @@
        "op": "faceMostKnights"
       }
      ]
-    }
+    },
+    "reactWindows": [
+     "targeting"
+    ],
+    "reactExact": true
    },
    {
     "name": "Metal Beam",
@@ -1062,7 +1103,11 @@
        "op": "faceMostKnights"
       }
      ]
-    }
+    },
+    "reactWindows": [
+     "targeting"
+    ],
+    "reactExact": true
    },
    {
     "name": "Deep Impact",
@@ -1131,7 +1176,11 @@
      ],
      "afterFinalAttack": null,
      "landOnTop": true
-    }
+    },
+    "reactWindows": [
+     "targeting"
+    ],
+    "reactExact": true
    },
    {
     "name": "Rustbreath",
@@ -1368,7 +1417,11 @@
       "step": null,
       "block": true
      }
-    }
+    },
+    "reactWindows": [
+     "targeting"
+    ],
+    "reactExact": true
    },
    {
     "name": "Ultrametal Beam",
@@ -1448,7 +1501,11 @@
        "op": "faceMostKnights"
       }
      ]
-    }
+    },
+    "reactWindows": [
+     "targeting"
+    ],
+    "reactExact": true
    },
    {
     "name": "Plague of Parasites",
@@ -1502,14 +1559,14 @@
       },
       {
        "op": "knockdown"
-      },
-      {
-       "op": "reactWindow",
-       "at": "mid"
       }
      ],
      "afterAttack": null,
      "afterFinalAttack": [
+      {
+       "op": "reactWindow",
+       "at": "after"
+      },
       {
        "op": "pvMig"
       },
@@ -1527,7 +1584,12 @@
      "pvZone": {
       "board": true
      }
-    }
+    },
+    "reactWindows": [
+     "targeting",
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "Decaying Miasma",
@@ -1599,7 +1661,11 @@
        "op": "pvMig"
       }
      ]
-    }
+    },
+    "reactWindows": [
+     "targeting"
+    ],
+    "reactExact": true
    },
    {
     "name": "Rubiginous Disgorge",
@@ -2473,7 +2539,11 @@
       "step": null,
       "block": true
      }
-    }
+    },
+    "reactWindows": [
+     "targeting"
+    ],
+    "reactExact": true
    },
    {
     "name": "Feed the Hive",
@@ -2525,13 +2595,13 @@
        "op": "pvExhaust",
        "armor": true,
        "discard": true
-      },
-      {
-       "op": "reactWindow",
-       "at": "mid"
       }
      ],
      "afterAttack": [
+      {
+       "op": "reactWindow",
+       "at": "after"
+      },
       {
        "op": "pvMig"
       },
@@ -2541,7 +2611,12 @@
       }
      ],
      "afterFinalAttack": null
-    }
+    },
+    "reactWindows": [
+     "targeting",
+     "After Attack 앞"
+    ],
+    "reactExact": true
    },
    {
     "name": "Shadow of Doom",
@@ -2595,7 +2670,11 @@
       "Bravery",
       "Tenacity"
      ]
-    }
+    },
+    "reactWindows": [
+     "targeting"
+    ],
+    "reactExact": true
    }
   ],
   "bp": [
@@ -3991,6 +4070,7 @@
   "\"P4+: Bane 2 instead\" 등 [P] 게이트는 대상 기사의 [P]로 판정",
   "\"Disable Wave Attacks / Beam Zone Attacks / Zone X\" Critical: 해당 AI 카드를 AI 덱·버림 더미·Escalation 더미에서 제거 [해석, 확인 필요]",
   "Drachendämmerung(Routine): 모든 기사 Bane 3, [P]가 가장 높은 기사 사망, Panzerdragon이 보드 중앙으로 이동해 가장 많은 기사를 바라봄",
-  "미구현: Lumbering(몬스터를 움직이는 기사 효과), Septic Slash의 \"P5+: Ignore your Armor Gear card\", Shadow of Doom의 Saint 카드 버리기, Sliver of Lost Glory Critical의 \"see 9350\", Fool's deck(이 Clash에서 참조하는 카드 없음), 각 AI 카드의 REACT! 창 위치"
+  "미구현: Lumbering(몬스터를 움직이는 기사 효과), Septic Slash의 \"P5+: Ignore your Armor Gear card\", Shadow of Doom의 Saint 카드 버리기, Sliver of Lost Glory Critical의 \"see 9350\", Fool's deck(이 Clash에서 참조하는 카드 없음)",
+  "REACT! 창: AI 카드는 인쇄된 위치대로 — Targeting 목록 아래 표시가 있는 카드만 Targeting 뒤 창, 효과 줄 사이 표시는 그 자리, 마지막 효과 줄 뒤 표시는 After Attack / After Final Attack 앞 (스캔 재판독 2026-11-19). Signature·Trait Attack·BP 카드의 REACT! 표시는 재판독 전이라 이전 처리 그대로 [확인 필요]"
  ]
 }
