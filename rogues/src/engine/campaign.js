@@ -82,7 +82,7 @@ export class Campaign {
     const cur = this.current; const m = this.data.monsters[cur.monster];
     if (!m) throw new Error(`몬스터 데이터 없음: ${cur.monsterName}`);
     cur.snapshot = JSON.stringify(this.serialize());
-    const knights = this.knights.filter(k => !k.dead).map(k => ({ def: k.def, name: k.name, portrait: k.loadout.portrait, heroicArc: k.loadout.heroicArc, perilArc: k.loadout.perilArc, talent: k.loadout.talent, techniques: k.loadout.techniques, gear: k.loadout.gear, tier: cur.nodeLevel, gold: k.gold, sigh: k.sigh, firstDeath: k.firstDeath, bane: k.bane, maxVigorMod: k.maxVigorMod || 0 }));
+    const knights = this.knights.filter(k => !k.dead).map(k => ({ def: k.def, name: k.name, portrait: k.loadout.portrait, heroicArc: k.loadout.heroicArc, perilArc: k.loadout.perilArc, talent: k.loadout.talent, techniques: k.loadout.techniques, gear: k.loadout.gear, tier: cur.nodeLevel, gold: k.gold, sigh: k.sigh, firstDeath: k.firstDeath, bane: k.bane, maxVigorMod: k.maxVigorMod || 0, devotion: k.devotion || 0 }));
     const clash = new Clash({ data: this.data, knights, monster: cur.monster, level: cur.level, nodeLevel: cur.nodeLevel, kingdom: cur.kingdom, seed: this.rng.int(1e9), listeners: { ...(opts.listeners || {}), beforeDeath: (k, reason, c) => this.beforeDeath(k, reason, c), onDeath: (k, reason, c) => this.onDeath(k, reason, c) } });
     clash.ask = opts.ask || this.ask; clash.curseLevel = this.curseLevel; clash.gearDef = n => this.gearDef(n);
     for (const kn of clash.knights) { const ck = this.knights.find(x => x.name === kn.name); kn.bane = ck.bane; kn.gear = kn.gear.map(g => g.name ? g : g); }

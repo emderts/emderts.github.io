@@ -26,8 +26,10 @@ export const ParacelsaMixin = {
     const pw = this.paraStat(k, 'power'); if (pw) A.extraPool.raw += pw;
     const ab = this.paraStat(k, 'autoBreak'); if (ab) this.poolAdd('break', ab);
     if (this.paraStat(k, 'deadly')) A.flags.add('deadly');
+    if (this.paraStat(k, 'heartseeker')) { A.flags.add('heartseeker'); this.say(`${k.name}: Zeal ${k.zeal} 혜택 — Heartseeker`, 'tech'); }
+    if (this.paraStat(k, 'bpSuppress') && !this.monster.isMob && await this.yesNo(`${k.name}: Zeal ${k.zeal} 혜택 — BP Suppress 수행?`, true)) this.ubarSuppress('bp', `${k.name} (Zeal)`);
     A.zealBreak = this.paraStat(k, 'break');
-    if (ar || pr || pw || ab || A.zealBreak) this.say(`${k.name}: Zeal ${k.zeal} 혜택 —${ar ? ` Attack Re-roll ${ar}` : ''}${pr ? ` Power Re-roll ${pr}` : ''}${pw ? ` +${pw} Power` : ''}${ab ? ` Auto-break ${ab}` : ''}${A.zealBreak ? ` Break ${A.zealBreak}` : ''}`, 'tech');
+    if (ar || pr || pw || ab || A.zealBreak) this.say(`${k.name}: Zeal ${k.zeal} 혜택 —${ar ? ` Attack Re-roll ${ar}` : ''}${pr ? ` Power Re-roll ${pr}` : ''}${pw ? ` ${pw > 0 ? '+' : ''}${pw} Power` : ''}${ab ? ` Auto-break ${ab}` : ''}${A.zealBreak ? ` Break ${A.zealBreak}` : ''}`, 'tech');
     for (const o of tops(k, 'zealAutoHope')) if ((k.zeal || 0) >= o.need) { this.poolAdd('hope', o.n); this.say(`${k.name}: Zeal ${o.need}+ → Auto-hope ${o.n}`, 'tech'); }
     if (k.pendingPara && k.pendingPara.fireFaith) { const card = A.mob && A.mob.card; await this.fireOfFaithPay(k, Math.max(1, (card && card.level) || 1), A); }
     if (k.pendingPara) { A.paraSecond = k.pendingPara.second || null; if (k.pendingPara.spotlight && this.priorityTarget === k) { A.extraPool.red += 1; this.say(`${k.name}: Spotlight — Priority Target → +1 빨간 Power die`, 'tech'); } if (k.pendingPara.red) A.extraPool.red += k.pendingPara.red; if (k.pendingPara.noOpening) A.flags.add('noOpening'); k.pendingPara = null; }
@@ -102,7 +104,7 @@ export const ParacelsaMixin = {
       case 'spotlightNow': P().spotlight = true; return true;
       case 'secondHopeDaze': P().second = { hope: o.n, daze: true }; return true;
       case 'notYourTime': { const dead = this.knights.filter(x => !x.alive); const cell = this.board.neighbors(k.pos).find(c => !this.knightAt(c) && !this.board.isObstacle(c) && !this.monsterOccupies(c)); if (!dead.length || !cell) { this.say(`${k.name}: 되살릴 기사 또는 빈 인접 칸 없음`, 'warn'); return true; } const id = dead.length > 1 ? await this.ask({ type: 'pickKnight', text: 'Not Your Time — 되살릴 기사', options: dead.map(x => ({ label: x.name, value: x.id })) }) : dead[0].id; const who = dead.find(x => x.id === id) || dead[0]; who.alive = true; who.vigor = 0; who.conditions = []; who.pos = cell; this.board.place({ kind: 'knight', id: who.id }, [cell]); this.say(`${who.name} 부활 (Vigor 0, Condition 모두 버림) → ${this.board.label(cell)}`, 'tech'); return true; }
-      case 'divineIntervention': { const v = await this.ask({ type: 'pick', knight: k.id, text: `${k.name}: Divine Intervention — 덱 선택`, options: [{ label: 'AI 덱', value: 'ai' }, { label: 'BP 덱', value: 'bp' }] }) || 'ai'; const d = this.monster[v]; if (d && d.cards) { d.cards.push(...d.discard); d.discard = []; d.shuffle(); this.say(`${v.toUpperCase()} Suppress`, 'tech'); } return true; }
+      case 'divineIntervention': { const v = await this.ask({ type: 'pick', knight: k.id, text: `${k.name}: Divine Intervention — 덱 선택`, options: [{ label: 'AI 덱', value: 'ai' }, { label: 'BP 덱', value: 'bp' }] }) || 'ai'; const d = this.monster[v]; if (d && d.cards) { d.cards.push(...d.discard); d.discard = []; d.shuffle(); d.cards.reverse(); for (const c of d.cards) c.faceUp = true; if (d.cards[0]) this.say(`${v.toUpperCase()} 덱을 앞면으로 뒤집음 — 맨 위: ${d.cards[0].name}`, 'tech'); this.say(`${v.toUpperCase()} Suppress`, 'tech'); } return true; }
       case 'persecuted': case 'fullMissTokens': case 'negPrecision': case 'flee': case 'techBlock': case 'spareRod': case 'pursuit': return true; // resolved at their timing
     }
     return false;

@@ -42,7 +42,7 @@ export const KaraMixin = {
   /** Start of an Attack: Strike as One (Kara), Oath of Valor (another Knight attacks). */
   async karaBeforeAttack(k, A) {
     if (talentHas(k, 'strikeAsOne')) { const tc = this.fx.targetCells(A); const n = this.karaAllies(k).filter(x => tc.some(c => this.board.adjacent(c, x.pos))).length; if (n >= 1) { A.extraPrecision = (A.extraPrecision || 0) + 1; if (n >= 2) this.poolAdd('break', 1); if (n >= 3) this.poolAdd('rouse', 1); this.say(`Strike as One: 대상 옆 Ally ${n}명 → +1 Precision${n >= 2 ? ' · Auto-break 1' : ''}${n >= 3 ? ' · Auto-rouse 1' : ''}`, 'tech'); } }
-    for (const x of this.karaAllies(k)) { const t = techAt(x, 'onOtherAttack'); const ops = t && await this.karaUse(x, t, `${k.name}의 공격에 +2 Precision · Precise`); if (ops) { A.extraPrecision = (A.extraPrecision || 0) + 2; A.flags.add('precise'); break; } }
+    for (const x of this.karaAllies(k)) { const t = techAt(x, 'onOtherAttack'); const ops = t && await this.karaUse(x, t, `${k.name}의 공격에 +2 Precision · Precise`); if (ops) { A.extraPrecision = (A.extraPrecision || 0) + 2; A.flags.add('precise'); if (ops.some(o => o.op === 'oathOfValor')) { for (const pile of [x.hand, x.cooldown, x.delay || [], x.discard]) { const i = pile.indexOf(t); if (i >= 0) pile.splice(i, 1); } t._oathKara = t._oathKara || x; k.hand.push(t); this.say(`${t.name} → ${k.name}의 손패${t._oathKara === k ? '' : ' (Hand Limit에 포함 안 됨)'}`, 'tech'); } break; } }
   },
   /** After the Attack Roll: Relentless Momentum, Living Weapon. */
   async karaAfterAttackRoll(k, A, roll, isHit, toHit, prec) {

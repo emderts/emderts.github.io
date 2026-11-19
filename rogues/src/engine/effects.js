@@ -280,7 +280,7 @@ export class Effects {
   has(k, flag, A = null) { if (k.flags && k.flags.has(flag)) return true; if (flag === 'rocksteady' && k.steady) return true; if ((flag === 'rocksteady' || flag === 'tireless') && this.gearHas(k, flag)) return true; if (A && A.flags && A.flags.has(flag)) return true; if (flag === 'deadly' && A && this.weaponHas(A.weapon, 'deadly')) return true; return false; }
   weaponHas(w, kw) { return this.kwList(w).some(o => o.op === kw && o.status === 'ok' && !o.cost && !o.gate && !o.twoHanded && !o.kingdom); }
   extraAttackDice(k, w, A) { let n = 0; for (const o of this.constKw(k, w)) if (o.op === 'plusAttackDice') n += o.n; for (const g of k.gear) if (g !== w && !g.discarded && !g.exhausted) for (const o of this.constKw(k, g)) { if (o.op === 'weaponPlusDice') n += o.n; if (o.op === 'powerHitCapAll') A.powerHitCap = parseInt(w.attackDice, 10); } if (w.name === 'Knighves' && !k.gear.some(g => g.type === 'weapon' && g !== w && !g.discarded)) n += 1; /* two-handed Knighves */ return n + (A.extraAttackDice || 0); }
-  enforceHandLimit(k) { const lim = k.handLimit + k.conditions.reduce((a, c) => { const d = this.c.conditionDefs[c.id]; return a + (d && d.ops && d.ops.handLimit ? d.ops.handLimit : 0); }, 0); while (k.hand.length > Math.max(0, lim)) { const card = k.hand.pop(); k.underCondition = k.underCondition || []; k.underCondition.push(card); this.say(`${k.name}: 손패 제한 ${lim} → ${card.name} 보류`); } }
+  enforceHandLimit(k) { const lim = k.handLimit + k.conditions.reduce((a, c) => { const d = this.c.conditionDefs[c.id]; return a + (d && d.ops && d.ops.handLimit ? d.ops.handLimit : 0); }, 0); const cnt = () => k.hand.filter(t => !(t._oathKara && t._oathKara !== k)).length; while (cnt() > Math.max(0, lim)) { const idx = k.hand.map((t, i) => (t._oathKara && t._oathKara !== k) ? -1 : i).filter(i => i >= 0).pop(); const card = k.hand.splice(idx, 1)[0]; k.underCondition = k.underCondition || []; k.underCondition.push(card); this.say(`${k.name}: 손패 제한 ${lim} → ${card.name} 보류`); } }
 
   // ---------- Heroic Arc ----------
   /** Options available this attack: levels ≤ passion whose option not yet used this attack. */
@@ -342,6 +342,7 @@ export class Effects {
     if (k.pendingAttackFlags) { for (const f of k.pendingAttackFlags) A.flags.add(f); if (k.pendingExtraPool) for (const col in k.pendingExtraPool) A.extraPool[col] += k.pendingExtraPool[col]; k.pendingAttackFlags = null; k.pendingExtraPool = null; }
   }
   async firstWindow(k, A) { await this.c.windowTechs(k, A, 'firstWindow'); if (this.c.alive().some(x => this.c.knockedDown(x))) { const o = await this.gearUse(k, ['winInspire'], '1차 능력 창 — Inspire?'); if (o) await this.inspire(k, o.n); }
+    for (const o of A.kw || []) if (o.op === 'autoDevotion') { const n = (k.devotion || 0) + (k.devotionGained || 0); if (n) { this.c.poolAdd('hope', n); this.say(`${A.weapon.name}: Auto-hope ${n} (Devotion ${n})`, 'tech'); } }
     for (const o of A.kw || []) if (o.op === 'auto') { this.c.poolAdd(o.token, o.n); this.say(`${A.weapon.name}: Auto-${o.token} ${o.n}`); }
     const wk = this.gearMoves(A); for (const o of A.kw || []) if (o.op === 'provoke' || o.op === 'inspire') wk.push({ token: o.op === 'provoke' ? 'Provoke' : 'Inspire', n: o.n, gear: true });
     const first = [...(await this.arcAt(k, A, 'first')), ...wk].map((t, i) => ({ ...t, id: i }));

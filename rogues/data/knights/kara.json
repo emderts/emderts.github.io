@@ -1988,9 +1988,7 @@
    "text": "When another Knight is about to attack, they gain +2 Precision [Precision] and Precise. Then, place this card in that Knight's hand. This Technique does not count toward the Hand Limit of Knights other than Kara. End of Clash: Return this card to Kara's hand.",
    "gates": [],
    "depletion": "cooldown",
-   "unclear": [
-    "The card goes to Kara's Cooldown instead of the other Knight's hand"
-   ],
+   "unclear": [],
    "ops": [
     {
      "op": "oathOfValor"

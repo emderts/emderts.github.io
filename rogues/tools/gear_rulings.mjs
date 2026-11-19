@@ -265,11 +265,16 @@ export const GEAR_CONFIRMED = [
   ['[신규] Scavenged Handaxe / Ghost Catalyst', 'Handaxe: 공격 직전 2 Heat로 그 공격에 Deadly. Ghost Catalyst: Superior Bypass(미니어처·Obstacle 통과, Difficult 무시). (소유자 확인 2026-11-19)'],
   ['[신규] Ser Ubar 형태 게이트 (Helm of the Silent Witness, Aegis of Averted Eyes)', 'Shapeshift할 때마다 Heat -1. [HUMAN] / [APE] 줄은 그 형태일 때만 사용 가능. (소유자 확인 2026-11-19)'],
   ['Chainbreaker', 'Overpower를 발동하면 Heat -1, Cumbersome 무시. [MAJOR] Overpower 발동 시 Crit Chance를 얻어 그 Wound가 Critical Wound가 됨 — Wound Response 대신 Critical Response를 해결 (소유자 확인 2026-11-19)'],
+  ['[신규] Paracelsa — Talent 혜택 아이콘 2', 'Fireheart Zealot 4 = BP Suppress, 6 = Deadly, 7 = Heartseeker. Inquisitor 9 = -1 [Power], 11 = Heartseeker (소유자 확인 2026-11-19). BP Suppress는 공격 시작 때 수행 여부를 물음. 9번은 시트 전사대로 Power -1로 적용. [해석, 확인 필요]'],
+  ['[신규] Second Chance (Paracelsa) — Disemboweled 무시', 'Zeal 3+일 때 Disemboweled Mortis를 뽑으면 이 카드를 써서(비용·Depletion 그대로) 무시 가능. 무시한 카드는 덱 맨 아래로. [해석, 확인 필요]'],
+  ['[신규] Divine Intervention — 덱 뒤집기', 'Suppress 후 덱 순서를 뒤집고 모든 카드를 앞면 표시. 앞면 카드가 맨 위에 있으면 화면에 이름 표시. Escalation으로 추가되는 카드는 뒷면. [해석, 확인 필요]'],
+  ['[신규] Oath of Valor — 카드 이동', '사용하면 Cooldown 대신 공격한 기사의 손패로 이동. 그 기사가 다른 기사 공격 때 (자기 Heat로) 다시 쓸 수 있음. Kara 이외 기사의 Hand Limit에는 세지 않음. [해석, 확인 필요]'],
+  ['[신규] Tag Team — 무기 교환', 'Little Ser가 무기를 들고 있으면, 자리를 바꾼 기사의 한손 무기 하나와 교환 가능. [해석, 확인 필요]'],
 ];
 export const KNIGHT_QUESTIONS = [
   ['Stoneface — 미구현', 'Talent: Stonewall (Wave Attack이 엔진에 없음).'],
   ['Ser Ubar — 미구현', 'Knights Together Strong의 "VP 위" 조건 (VP가 엔진에 없음).'],
-  ['Ser Sonch — 미구현', 'Exemplary Leader의 Little Ser 소모품, Exploration/Encounter/Delve 전용 능력, Tag Team 무기 교환, Time to Shine DRAGON.'],
-  ['Paracelsa — 판독 못 한 Talent 혜택 (미적용)', 'Fireheart Zealot 4·6·7번, Inquisitor 9번("-1 [아이콘]")·11번 아이콘. 시트 해상도로는 판독 불가. Inquisitor 12번 Incarnate, Second Chance의 "Zeal 3+ → Disemboweled 무시", Divine Intervention의 덱 뒤집기는 미구현.'],
-  ['Kara — 미구현', 'Doing My Own Thing의 Encounter 배치, Crusader\'s Strike의 Devote, Oath of Valor 카드 이동.'],
+  ['Ser Sonch — 미구현', 'Exemplary Leader의 Little Ser 소모품, Exploration/Encounter/Delve 전용 능력. Time to Shine DRAGON은 구현했지만 Divine Target 토큰을 주는 효과가 아직 없음.'],
+  ['Paracelsa — 미구현', 'Inquisitor 12번 "Immediately Incarnate!" — Saint 카드 데이터가 없어 미구현 (필요: Saint 카드 텍스트, Saint 없이도 Incarnate 되는지).'],
+  ['Kara — 미구현', 'Doing My Own Thing의 Encounter 배치 (Rogue\'s Path에 Encounter 없음).'],
 ];

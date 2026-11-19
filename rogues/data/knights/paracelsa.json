@@ -152,7 +152,7 @@
    "abilities": [
     {
      "name": "Fervent Acolyte",
-     "text": "One or more Misses: Zeal 1. When you resolve a [Judicium draw] or another Knight draws a Judicium, Zeal 1. You gain the following stacking benefits depending on the number of Zeal [Zeal] tokens on your Knight Board: 1: Auto-break 1. 2: +1 [Speed]. 3: Attack Re-roll 1. 4: [icon]. 5: Sacrifice. 6: [icon]. 7: [icon]. Zeal Threshold: 7.",
+     "text": "One or more Misses: Zeal 1. When you resolve a [Judicium draw] or another Knight draws a Judicium, Zeal 1. You gain the following stacking benefits depending on the number of Zeal [Zeal] tokens on your Knight Board: 1: Auto-break 1. 2: +1 [Speed]. 3: Attack Re-roll 1. 4: BP Suppress. 5: Sacrifice. 6: Deadly. 7: Heartseeker. Zeal Threshold: 7.",
      "ops": [
       {
        "op": "zeal",
@@ -176,15 +176,27 @@
          "n": 1
         },
         {
+         "at": 4,
+         "kind": "bpSuppress",
+         "n": 1
+        },
+        {
          "at": 5,
          "kind": "sacrifice",
+         "n": 1
+        },
+        {
+         "at": 6,
+         "kind": "deadly",
+         "n": 1
+        },
+        {
+         "at": 7,
+         "kind": "heartseeker",
          "n": 1
         }
        ]
       }
-     ],
-     "unclear": [
-      "Benefits 4, 6 and 7 are single icons that cannot be read at the sheet's resolution — not applied"
      ]
     },
     {
@@ -205,7 +217,7 @@
    "abilities": [
     {
      "name": "Consecrated Champion",
-     "text": "One or more Misses: Zeal 2. When you resolve a [Judicium draw] or another Knight draws a Judicium, Zeal 2. You gain the following stacking benefits depending on the number of Zeal [Zeal] tokens on your Knight Board: 1: +1 [Power]. 2: Evasion Re-roll 1. 3: Tumble. 4: +1 [Speed]. 5: +1 [Precision]. 6: Attack Re-roll 1. 7: Auto-break 1. 8: Deadly. 9: -1 [icon]. 10: [Power Re-roll] 1. 11: [icon]. 12: Immediately Incarnate! (Once per Clash). Zeal Threshold: 12.",
+     "text": "One or more Misses: Zeal 2. When you resolve a [Judicium draw] or another Knight draws a Judicium, Zeal 2. You gain the following stacking benefits depending on the number of Zeal [Zeal] tokens on your Knight Board: 1: +1 [Power]. 2: Evasion Re-roll 1. 3: Tumble. 4: +1 [Speed]. 5: +1 [Precision]. 6: Attack Re-roll 1. 7: Auto-break 1. 8: Deadly. 9: -1 [Power]. 10: [Power Re-roll] 1. 11: Heartseeker. 12: Immediately Incarnate! (Once per Clash). Zeal Threshold: 12.",
      "ops": [
       {
        "op": "zeal",
@@ -254,15 +266,25 @@
          "n": 1
         },
         {
+         "at": 9,
+         "kind": "power",
+         "n": -1
+        },
+        {
          "at": 10,
          "kind": "powerReroll",
+         "n": 1
+        },
+        {
+         "at": 11,
+         "kind": "heartseeker",
          "n": 1
         }
        ]
       }
      ],
      "unclear": [
-      "Benefits 9 ('-1 [icon]') and 11 (icon) cannot be read; 12 (Incarnate) is not implemented"
+      "12 (Incarnate) is not implemented — needs Saint card data"
      ]
     },
     {
@@ -1915,9 +1937,7 @@
     }
    ],
    "depletion": "cooldown",
-   "unclear": [
-    "The 'ignore the Disemboweled Mortis card' option is not implemented"
-   ],
+   "unclear": [],
    "ops": [
     {
      "op": "secondChance"
@@ -2301,9 +2321,7 @@
    "text": "Choose the AI or BP deck. Suppress, then flip the chosen deck face up (the bottom card becomes the top card of its deck). The cards flipped this way remain face up, even when shuffled or removed during Escalation. New cards are added to the deck face down.",
    "gates": [],
    "depletion": "discard",
-   "unclear": [
-    "Only the Suppress is implemented; the face-up deck is not"
-   ],
+   "unclear": [],
    "ops": [
     {
      "op": "divineIntervention"

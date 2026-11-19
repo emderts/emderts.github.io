@@ -1958,16 +1958,21 @@
     }
    ],
    "depletion": "cooldown",
-   "unclear": [
-    "DRAGON gate (Divine Target) is not implemented"
-   ],
+   "unclear": [],
    "ops": [
     {
      "op": "timeToShine"
     }
    ],
    "timing": "beforeAttack",
-   "gateOps": {},
+   "gateOps": {
+    "DRAGON": [
+     {
+      "op": "timeToShine",
+      "dragon": true
+     }
+    ]
+   },
    "exert": {
     "token": "Break",
     "n": 1,
@@ -2098,9 +2103,7 @@
     }
    ],
    "depletion": "cooldown",
-   "unclear": [
-    "The Weapon swap is not implemented"
-   ],
+   "unclear": [],
    "ops": [
     {
      "op": "tagTeam",
