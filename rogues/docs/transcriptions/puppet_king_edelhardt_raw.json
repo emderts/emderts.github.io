@@ -390,7 +390,7 @@
    "tag": "COMMAND",
    "effects": [
     "Obey: Move up to your Speed to have another closest Knight in effective range of your Weapon. Perform a Power Roll as if you hit with all your Attack dice. That Knight loses [V] equal to Total Power.",
-    "Disobey: For each hit lose -3 [V]. [Peril]."
+    "Disobey: For each hit lose -3 [V]. Bane 2. [Peril]."
    ],
    "afterTag": "AFTER FINAL ATTACK",
    "after": "If all Targets Obeyed, the King gains 1 Armor [Armor] token. All Targets gain the Subjugated Condition card.",
@@ -552,7 +552,7 @@
    "name": "Fallen Knight",
    "type": "TRAIT BP",
    "at": 7,
-   "header": "Obstacle. Destructible. Odd Spawn. Fallen Knights have the same [Armor] as the Puppet King.",
+   "header": "Obstacle. Destructible. Odd Spawn. Fallen Knights have the same [To Hit] as the Puppet King.",
    "top": "OVERCOME 3+: Power 1 · OVERPOWER 3+: Remove this Fallen Knight from the Clash Board",
    "wound": "Discard the Subjugated Condition card. Flip this Fallen Knight to Column Terrain tile.",
    "fail": "Parasitize 1.",
@@ -564,7 +564,7 @@
    "name": "Heavy-Settled Crown",
    "level": 1,
    "at": 6,
-   "top": "OVERCOME 2+: Power 1",
+   "top": "OVERCOME 3+: Power 1",
    "note": null,
    "wound": null,
    "fail": null,
@@ -648,7 +648,7 @@
    "name": "Five Fingers: The Middle Finger",
    "level": 2,
    "at": 9,
-   "top": "OVERCOME 5+: Discard 2 Armor [Armor] tokens",
+   "top": "OVERCOME 3+: Discard 2 Armor [Armor] tokens",
    "note": null,
    "wound": "Knockback 4. Place a Loose String Terrain tile on any empty space outside Zone 2 around the King.",
    "fail": "Shockwave.",

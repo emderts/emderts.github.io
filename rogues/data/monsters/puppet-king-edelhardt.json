@@ -943,7 +943,7 @@
     "tag": "COMMAND",
     "effects": [
      "Obey: Move up to your Speed to have another closest Knight in effective range of your Weapon. Perform a Power Roll as if you hit with all your Attack dice. That Knight loses [V] equal to Total Power.",
-     "Disobey: For each hit lose -3 [V]. [Peril]."
+     "Disobey: For each hit lose -3 [V]. Bane 2. [Peril]."
     ],
     "afterTag": "AFTER FINAL ATTACK",
     "after": "If all Targets Obeyed, the King gains 1 Armor [Armor] token. All Targets gain the Subjugated Condition card.",
@@ -962,16 +962,28 @@
      "effects": [
       {
        "op": "loseVigorPerHit",
-       "n": 3,
-       "perilCheck": true
+       "n": 3
+      },
+      {
+       "op": "pkeK",
+       "k": {
+        "op": "bane",
+        "n": 2
+       },
+       "who": "target",
+       "perHit": false
+      },
+      {
+       "op": "pkeK",
+       "k": {
+        "op": "perilCheck"
+       },
+       "who": "target",
+       "perHit": false
       }
      ],
      "afterAttack": null,
      "afterFinalAttack": [
-      {
-       "op": "reactWindow",
-       "at": "after"
-      },
       {
        "op": "pkeCmdAfter",
        "need": "all",
@@ -985,12 +997,11 @@
        }
       ],
       "obeyText": "Speed만큼 이동해 가장 가까운 다른 기사를 Weapon 사거리에 넣고, 모든 Attack dice 명중으로 Power Roll — 그 기사가 Total Power만큼 [V] 손실",
-      "disobeyText": "명중당 -3 [V], Peril"
+      "disobeyText": "명중당 -3 [V], Bane 2, Peril"
      }
     },
     "reactWindows": [
-     "targeting",
-     "After Attack 앞"
+     "targeting"
     ],
     "reactExact": true
    },
@@ -1428,7 +1439,7 @@
     "name": "Heavy-Settled Crown",
     "level": 1,
     "at": 6,
-    "top": "OVERCOME 2+: Power 1",
+    "top": "OVERCOME 3+: Power 1",
     "note": null,
     "wound": null,
     "fail": null,
@@ -1444,7 +1455,7 @@
     "ops": {
      "at": 6,
      "overcome": {
-      "n": 2,
+      "n": 3,
       "kind": "overcome",
       "ops": [
        {
@@ -1774,7 +1785,7 @@
     "name": "Five Fingers: The Middle Finger",
     "level": 2,
     "at": 9,
-    "top": "OVERCOME 5+: Discard 2 Armor [Armor] tokens",
+    "top": "OVERCOME 3+: Discard 2 Armor [Armor] tokens",
     "note": null,
     "wound": "Knockback 4. Place a Loose String Terrain tile on any empty space outside Zone 2 around the King.",
     "fail": "Shockwave.",
@@ -1790,7 +1801,7 @@
     "ops": {
      "at": 9,
      "overcome": {
-      "n": 5,
+      "n": 3,
       "kind": "overcome",
       "ops": [
        {
@@ -2444,7 +2455,7 @@
   "bp": {
    "name": "Fallen Knight",
    "at": 7,
-   "header": "Obstacle. Destructible. Odd Spawn. Fallen Knights have the same [Armor] as the Puppet King.",
+   "header": "Obstacle. Destructible. Odd Spawn. Fallen Knights have the same [To Hit] as the Puppet King.",
    "top": "OVERCOME 3+: Power 1 · OVERPOWER 3+: Remove this Fallen Knight from the Clash Board",
    "responses": {
     "wound": "Discard the Subjugated Condition card. Flip this Fallen Knight to Column Terrain tile.",
@@ -2562,8 +2573,8 @@
   "Dark Fog: 공격자와 대상(King 또는 Fallen Knight) 사이의 칸 수만큼 Precision 감소. VP 위에서는 0",
   "Fallen Knight Army: Fallen Knight는 같은 행에서 열 번호가 커지는 쪽으로만 직선 이동, Column을 파괴. 다음 칸에 기사나 다른 Fallen Knight가 있으면 멈춤(Lv3+ Unstoppable Force: 기사는 Forced Vault + Knockdown 후 계속) [해석, 확인 필요 — 레퍼런스 v1.2: \"기사에 인접하면 멈춤\"]",
   "Fallen Knight Army — End of your turn: 같은 행의 Fallen Knight 1개가 5칸(여러 개면 플레이어 선택) [해석, 확인 필요 — 레퍼런스 v1.2는 \"같은 행의 모든 FK\"]. 없으면 고른 인접 행에서 기사로부터 가장 먼 Fallen Knight. VP 위면 아무 Fallen Knight 1개. 하나도 움직이지 않았으면 자기 행 1열에 Spawn (VP 위에서는 Spawn 없음 [해석])",
-  "Fallen Knight가 King 주위 Zone 1 또는 14열로 이동/배치되면 제거하고 Armor 토큰 1 (Lv3+: 2). 5번째 Armor 토큰 → 모두 버리고 모든 기사 Bane 5. Armor 토큰 1개당 King·Fallen Knight BP의 AT +1",
-  "Fallen Knight: To Hit = King과 같음, AT 7 + Level 보너스 + Armor 토큰. Wound → Trait BP 카드에 Generic 토큰(Escalate 없음), Column으로 뒤집음(Overpower 3+: 보드에서 제거). 현재 액션이 끝날 때 토큰 2개 이상이면 Generic Single Wound + Escalate 1",
+  "Fallen Knight가 King 주위 Zone 1 또는 14열로 이동/배치되면 제거하고 Armor 토큰 1 (Lv3+: 2). 5번째 Armor 토큰 → 모두 버리고 모든 기사 Bane 5. Armor 토큰 1개당 King BP의 AT +1",
+  "Fallen Knight: To Hit = King과 같음 (카드 문구 \"same [To Hit]\" — 소유자 확인 2026-11-21), AT 7 + Level 보너스 (King의 Armor 토큰은 적용 안 함). Wound → Trait BP 카드에 Generic 토큰(Escalate 없음), Column으로 뒤집음(Overpower 3+: 보드에서 제거). 현재 액션이 끝날 때 토큰 2개 이상이면 Generic Single Wound + Escalate 1",
   "The Seat of Power (VP): Loose String 위에서 이동을 끝내면 즉시 VP(타일 제거), 또는 Blindspot에서 Move action으로 오름(테스트 없음). VP에는 기사 1명만. VP 위 공격: Precise 또는 Heartseeker 선택, Armor 토큰 무시, +1 Power, 일반 Response(Critical 포함) 무시 [해석, 확인 필요] — WOUND: Subjugated + King 앞 Zone 1 칸으로, FAIL: Shockwave + King 앞 인접 칸으로 Displace",
   "VP 위의 기사는 Fallen Knight를 공격할 수 없음 [해석, 확인 필요]",
   "Obedient Knights (Lv2+): Five Fingers가 아닌 King BP를 VP 밖에서 Wound → 그 기사에 인접한 칸 중 King에 가장 가까운 칸에 Fallen Knight. VP에서 Wound → 공격을 마친 뒤 Signature",

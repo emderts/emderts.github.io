@@ -15,7 +15,7 @@ END = {
  'king-laid-low': ['Churning Charge', 'Slime Stampede', 'Tongue-Lashing', 'Slippery Slope', "Malediction's Momentum", 'The Sinking Sin', 'Tongue Strike', 'Off With Your Head!', 'Scorn of the Swamplands', 'Swamp of Smothering', 'Mudflood Tsunami', "True Love's Kiss"],
  'devil-of-the-ancient-dusk': ['Join the Dead', 'Tail Thrust', 'Sideswipe', 'Tail Pierce', 'Sunder Foundations', 'Crushing Grasp', 'Nudge of the Finger', 'Manic Mudslide'],
  'young-devour-dragon': ['Damning Discharge'],
- 'puppet-king-edelhardt': ['Dragged by the Ear', 'The King Commands: Bow Down!', 'The King Commands: Begone!', 'Eye Poke', 'The King Commands: Obey Me!', 'The King Commands: Get Out of My Sight!', 'The King Commands: Entertain Me!', 'Crushing Burden', 'The King Commands: Yield!', 'The King Commands: Get Away From Me!', 'The King Commands: Lay Down Your Arms!'],
+ 'puppet-king-edelhardt': ['Dragged by the Ear', 'The King Commands: Bow Down!', 'The King Commands: Begone!', 'Eye Poke', 'The King Commands: Obey Me!', 'The King Commands: Get Out of My Sight!', 'Crushing Burden', 'The King Commands: Yield!', 'The King Commands: Get Away From Me!', 'The King Commands: Lay Down Your Arms!'],
 }
 # Signature / Trait Attack cards: (targeting tag?, tag after the last effect line?)
 SIG = {'king-laid-low': (True, True), 'devil-of-the-ancient-dusk': (True, True), 'devil-of-the-smelted-fears': (True, True), 'toadragon-of-the-great-marsh': (True, False), 'panzerdragon-veldr': (True, True), 'young-devour-dragon': (True, False)}

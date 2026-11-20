@@ -16,7 +16,7 @@ export const PuppetMixin = {
     const gn = this.guardianName.bind(this); this.guardianName = g => g.isFK ? `Fallen Knight #${g.n}` : gn(g);
     const gt = this.guardianToHit.bind(this); this.guardianToHit = g => g.isFK ? M.toHit + M.modifiers.toHit : gt(g);
     const gb = this.guardianBP.bind(this); this.guardianBP = g => g.isFK ? { ...D.fallenKnight.bp, level: 'G', isGuardianBP: true } : gb(g);
-    const at = this.bpAT.bind(this); this.bpAT = bp => { const A = C.currentKnightAttack; return at(bp) + (A && A.pkeVP ? 0 : C.pke.armor); };
+    const at = this.bpAT.bind(this); this.bpAT = bp => { const A = C.currentKnightAttack; return at(bp) + ((A && A.pkeVP) || (bp && bp.isGuardianBP) ? 0 : C.pke.armor); };
     const tg = this.attackTargets.bind(this); this.attackTargets = (k, w) => k.onVP ? ['boss'] : tg(k, w);
     const kt = this.knightTurn.bind(this); this.knightTurn = async k => { await C.guard(() => C.pkeTurnStart(k)); try { return await kt(k); } finally { if (!C.result) await C.guard(() => C.pkeTurnEnd(k)); C.checkEnd(); } };
     const ka = this.knightAttack.bind(this); this.knightAttack = async (k, opts) => { const d = C.pke.stack.length; let r; try { r = await ka(k, opts); } finally { const A = C.pke.stack[d]; C.pke.stack.length = d; if (A && !C.result) await C.guard(() => C.pkeAfterAttack(k, A)); } return r; };
@@ -78,7 +78,7 @@ export const PuppetMixin = {
   async pkeArmor(n, why = '') { for (let i = 0; i < n; i++) { this.pke.armor++; this.say(`${why ? why + ': ' : ''}King Armor 토큰 +1 → ${this.pke.armor}`, 'ai'); if (this.pke.armor >= 5) { this.pke.armor = 0; this.say('5번째 Armor 토큰 → 모두 버리고 모든 기사 Bane 5', 'ai'); for (const k of this.alive()) await this.fx.runKnightOp({ op: 'bane', n: 5 }, k, {}); } } },
   pkeArmorOff(n) { const x = Math.min(n, this.pke.armor); this.pke.armor -= x; this.say(`King Armor 토큰 -${x} → ${this.pke.armor}`, 'tech'); return x; },
   // ---------- Fallen Knights ----------
-  pkeAddFK(cell) { const g = this.addGuardian(cell, 'E'); g.isFK = true; const C = this; Object.defineProperty(g, 'armor', { get() { return C.pke.armor; }, set(v) { C.pke.armor = Math.max(0, v); }, enumerable: true }); return g; },
+  pkeAddFK(cell) { const g = this.addGuardian(cell, 'E'); g.isFK = true; /* card: "Fallen Knights have the same [To Hit] as the Puppet King" — the King's Armor tokens are his own */ return g; },
   pkeRemoveFK(g) { const i = this.guardians.indexOf(g); if (i < 0) return; this.board.remove(g.cells); this.guardians.splice(i, 1); },
   pkeKingZone(c) { return c.c >= this.board.cols || this.board.zone(this.monster.cells, 1).some(z => cellEq(z, c)); },
   async pkeAbsorb(g, why) { this.pkeRemoveFK(g); this.say(`Fallen Knight #${g.n} — ${why} → 제거`, 'ai'); await this.pkeArmor(this.monster.level >= 3 ? 2 : 1, 'Fallen Knight Army'); },
