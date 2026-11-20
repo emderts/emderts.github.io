@@ -93,4 +93,11 @@ const fp = (c, col, row) => c.monster.cells.length === 1 ? [row + col] : [row + 
   const w = { name: 'Morg', type: 'weapon', hands: 1, attackDice: 1, precision: 0, weaponPower: { dice: ['red'] }, text: 'Break 2. [Two-handed]: +1 [Power]. Cumbersome.' }; const other = { name: 'Knife', type: 'weapon', hands: 1, attackDice: 1, precision: 0, weaponPower: { dice: ['red'] }, text: '' }; k.gear = [w, other];
   let seen = null; const ask0 = c.ask; c.ask = async q => { if (q.type === 'weapon') return 'Morg'; if (/Two-handed로 사용/.test(q.text || '')) { seen = q.text; return true; } return ask0(q); };
   try { await c.knightAttack(k, {}); } catch (e) { if (!c.result) throw e; } ok(seen && /Knife 버려짐/.test(seen) && other.discarded && !w.discarded, 'declaring Two-handed discards the other hand\'s Weapon (two hand slots)'); }
+// ---- Hug X ----
+{ const c = mk('eggknight'); clear(c); const M = c.monster; const [a, b, d, e] = c.knights; put(c, b, 'A1'); put(c, d, 'A2'); put(c, e, 'A3'); setM(c, ['E5', 'E6', 'D5', 'D6'].slice(0, M.cells.length === 1 ? 1 : 4), 'E'); const one = M.cells.length === 1; put(c, a, 'E4');
+  const cs = n => c.fx.hugCells(a, n).map(x => L(c, x)).sort().join(','); ok(cs(1) === (one ? 'D5,F5' : 'D4,F5'), `Hug 1: diagonal step to a space adjacent to the Monster (${cs(1)})`);
+  ok(!cs(2).includes('C4') && !cs(2).includes('F4'), 'Hug: every space moved to must be adjacent to a Monster');
+  put(c, b, 'F4'); ok(one ? true : !c.fx.hugCells(a, 1).some(x => L(c, x) === 'F5'), 'Hug: no diagonal step through a corner between two occupied spaces'); put(c, b, 'A1');
+  put(c, a, 'H9'); ok(c.fx.hugCells(a, 2).length === 0, 'Hug: only while adjacent to a Monster');
+  put(c, a, 'E4'); const w = { name: 'Dagger', type: 'weapon', hands: 1, attackDice: 1, text: '' }; const A = { weapon: w, _win: 'first' }; const all = c.fx.hugCells(a, 3).length, lim = c.fx.hugCells(a, 3, A).length; ok(lim <= all && c.fx.hugCells(a, 3, A).every(x => { const p0 = a.pos; a.pos = x; const r = c.inAttackRange(a, A); a.pos = p0; return r; }), `Hug in the first window keeps the Target in range (${lim}/${all})`); }
 console.log(fails ? `FAIL (${fails})` : 'ALL PASS (knockback rules)'); process.exit(fails ? 1 : 0);
