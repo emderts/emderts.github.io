@@ -535,7 +535,7 @@ export class Clash {
   standUp(k) { const c = k.conditions.find(c => /^Knockdown/.test(c.id)); if (c) { k.conditions.splice(k.conditions.indexOf(c), 1); this.say(`${k.name} 일어남`); return true; } return false; }
   /** Involuntary straight-line movement away from the monster (Pushback / Knockback). Obstacles: Crash (+destroy if destructible); edge: slide along (p.56). */
   async pushback(k, n, opts = {}) { if (!k.alive || n <= 0 || k.engulfed) return; if (!opts.unavoidable) { if (await this.fx.ignoreInvol(k, `비자발적 이동 ${n}`)) return; n -= await this.fx.coneArmor(k, n, 'Pushback'); } try { if (n > 0) await this.pushback0(k, n, opts); } finally { this.fx.coneBreak(k); } }
-  async pushback0(k, n, { unavoidable = false, dir = null } = {}) {
+  async pushback0(k, n, { unavoidable = false, dir = null, isPush = false } = {}) {
     if (!k.alive || n <= 0 || k.engulfed) return; n = await this.ubarReduce(k, n); if (n <= 0) return; if (!unavoidable) { const u = await this.fx.gearUse(k, ['reduceKB'], `Pushback/Knockback ${n} — 줄이기?`); if (u) { n -= u.n; this.say(`${k.name}: ${n + u.n} → ${n} (Gear)`, 'tech'); if (n <= 0) return; } } if (await this.wnColumnGuard(k, '비자발적 이동')) return; if (!unavoidable && !k.braced && !this.fx.gearHas(k, 'braced') && this.fx.gearAbilities(k, ['braced']).length && await this.fx.gearUse(k, ['braced'], `비자발적 이동 ${n}칸 — Braced 사용?`)) k.braced = true;
     if ((k.braced || k.rooted || this.fx.gearHas(k, 'braced')) && !unavoidable) { this.say(`${k.name} Braced: 밀려나지 않음`); return; }
     if (!unavoidable && n > 0) { const u = await this.fx.gearUse(k, ['reduceKnockback'], `Knockback/Pushback ${n} — 줄이기?`); if (u) { n = Math.max(0, n - u.n); this.say(`${k.name}: 비자발적 이동 → ${n} (Gear)`, 'tech'); if (n <= 0) return; } }
@@ -556,7 +556,9 @@ export class Clash {
       if (t && t.chasm) { this.moveKnight(k, next); if (await this.fx.gearUse(k, ['lifeline'], 'Chasm으로 이동 → 사망. Lifeline으로 Displace?')) { k._moved = false; await this.displace(k); return; } if (await this.stoneRock(k, 'Chasm')) return; await this.die(k, 'Chasm'); return; }
       if (this.isFen && this.guardianAt(next)) { this.say(`${k.name}: Doppelknight 위로 비자발적 이동 → Displace + Slimed`); await this.addCondition(k, 'Slimed'); break; }
       if (this.monsterOccupies(next)) { await this.crash(k); break; }
-      const other = this.knights.find(o => o !== k && o.alive && !o.engulfed && !o.possessed && !o.onVP && cellEq(o.pos, next)); this.moveKnight(k, next); moved++; trail.push(next);
+      const other = this.knights.find(o => o !== k && o.alive && !o.engulfed && !o.possessed && !o.onVP && cellEq(o.pos, next));
+      if (other && isPush && this.monster.isMob) { this.say(`${k.name}: Pushback (Mob) — ${other.name}의 칸 앞에서 멈춤`); break; } // rulebook Pushback X: a Mob source stops before another miniature's space
+      this.moveKnight(k, next); moved++; trail.push(next);
       if (under) B.place({ kind: 'knight', id: under.id }, [under.pos]); under = other || null;
     }
     } finally { await settle(); }

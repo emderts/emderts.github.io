@@ -620,8 +620,8 @@ export class Effects {
       case 'loseVigorPerHit': { const per = ctx.vigorPerHitOverride ?? (o.nFrom === 'blood' ? C.mobBlood((ctx.attack && ctx.attack.mob) || M.cur) : o.n); const total = per * ctx.hits + M.bonuses.vigorLoss + (M.hasTrait('Jacked') && C.jackedTokens >= 9 ? 3 : 0) + (M.bonuses.vigorLossPerHit || 0) * ctx.hits + (M.isMob ? C.mobAura('mobAttackVigor') + C.hauntVigorBonus((ctx.attack && ctx.attack.mob) || M.cur) + (C.monsterDef.battleTactics ? C.firstmenVigorPerHit((ctx.attack && ctx.attack.mob) || M.cur) * ctx.hits + C.firstmenVigorFlat(t, (ctx.attack && ctx.attack.mob) || M.cur) : 0) : 0); return C.loseVigor(t, Math.max(0, total), { source: 'attack', perilCheck: o.perilCheck, ...(ctx.judgement ? { armor: false } : {}) }); }
       case 'loseVigor': return C.loseVigor(t, o.n, { source: 'response', armor: false });
       case 'allKnightsLoseVigor': { for (const k of C.alive()) await C.loseVigor(k, o.n, { source: 'routine', armor: false }); return; }
-      case 'knockdown': if (C.monsterDisabled && C.monsterDisabled.has('knockdown')) return; if (ctx.attack && ctx.attack.card && !C.adjacentToMonster(t) && ctx.attacker) return; return C.knockdown(t);
-      case 'pushback': if (C.kbSkip(t, ctx, 'Pushback')) return; return C.pushback(t, o.n);
+      case 'knockdown': if (C.monsterDisabled && C.monsterDisabled.has('knockdown')) return; if (C.kbSkip(t, ctx, 'Knockdown')) return; return C.knockdown(t);
+      case 'pushback': if (C.kbSkip(t, ctx, 'Pushback')) return; return C.pushback(t, o.n, { isPush: true });
       case 'knockback': if (C.kbSkip(t, ctx)) return; return C.pushback(t, o.n + (M.isMob ? C.mobAura('knockbackBonus') : 0));
       case 'cooldown': if (C.monsterDisabled && C.monsterDisabled.has('cooldown')) return; return this.runKnightOp({ op: 'cooldown', n: o.n }, t, {});
       case 'discard': if (t && (this.gearHas(t, 'noDiscard') || this.gearHas(t, 'noDiscardDelay'))) { this.say(`${t.name}: Technique 카드를 강제로 Discard당하지 않음 (Gear)`); return; } if (C.monsterDisabled && C.monsterDisabled.has('discard')) return; return this.runKnightOp({ op: 'discard', n: o.n }, t, {});
