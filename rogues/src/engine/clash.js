@@ -309,6 +309,8 @@ export class Clash {
         targets = uniq([tg.primary, ...this.alive().filter(k => cells.some(c => cellEq(c, k.pos)))].filter(Boolean)); attack.zoneCells = cells; }
       else if (tg.zone) { targets = this.alive().filter(k => tg.zone.some(c => cellEq(c, k.pos))); attack.zoneCells = tg.zone; }
       if (ops.zoneAroundTarget && tg.primary) { const zc = this.board.zone([tg.primary.pos], ops.zoneAroundTarget); attack.zoneCells = [tg.primary.pos, ...zc]; targets = uniq([tg.primary, ...this.alive().filter(k => zc.some(c => cellEq(c, k.pos)))]); this.say(`Zone ${ops.zoneAroundTarget} (대상 주위): ${targets.map(t => t.name).join(', ')}`); }
+      // "[Target] and Zone X around them": the zone is checked when the Attack resolves (after the REACT window), so a Knight who left it is no longer attacked.
+      if (tg.zoneJudge) { const t0 = tg.zoneJudge; const zc = t0.alive && t0.pos ? this.board.zone([t0.pos], tg.zoneX) : []; const now = uniq([t0, ...this.alive().filter(k => k !== t0 && zc.some(c => cellEq(c, k.pos)))].filter(k => k.alive)); const left = targets.filter(k => !now.includes(k)); if (left.length) this.say(`Zone ${tg.zoneX} (${t0.name} 주위): ${left.map(k => k.name).join(', ')} — Zone 밖으로 이동 (대상 아님)`, 'ai'); targets = now; attack.zoneCells = t0.pos ? [t0.pos, ...zc] : zc; }
       if (ops.wave && !ops.zoneFn && this.waveBlocked) { const bl = targets.filter(k => this.waveBlocked(k)); if (bl.length) { this.say(`Wave Attack: ${bl.map(k => k.name).join(', ')} — Obstacle 뒤 (대상 아님)`, 'ai'); targets = targets.filter(k => !bl.includes(k)); } }
       attack.targets = targets;
       if (!targets.length) { this.say('Zone 공격: 대상 없음(Zone은 수행된 것으로 간주)'); }

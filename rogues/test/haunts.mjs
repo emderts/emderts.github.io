@@ -68,4 +68,9 @@ const card = n => [...HU.cards.ai, HU.cards.signature].find(x => x.name === n);
   ok(wins + losses === N, `${N} seeded Haunts Clashes finished: ${wins} win / ${losses} lose`);
   for (const lv of [2, 3, 4]) { const c = mk(700 + lv, lv); const r = await c.run(); ok(['win', 'lose'].includes(r) && !c.log.some(l => /미구현/.test(l.msg)), `level ${lv} simulation finished (${r}, ${c.round} rounds)`); } }
 
+// "Priority Target and Zone 1 around them": a Knight who leaves the zone in the REACT window is no longer attacked
+{ const c = mk(5); const pt = c.priorityTarget; const o = c.knights.find(k => k !== pt); const far = c.knights.filter(k => k !== pt && k !== o); const B = c.board; for (const key of [...B.terrain.keys()]) B.terrain.delete(key);
+  c.moveKnight(pt, B.parse('E5')); c.moveKnight(o, B.parse('E6')); c.moveKnight(far[0], B.parse('A1')); c.moveKnight(far[1], B.parse('A2')); c.monster.cur = c.monster.mobs.find(m => m.cells.length);
+  const woo = c.windowOfOpportunity.bind(c); c.windowOfOpportunity = async (...a) => { if (a[3] === 'targeting') c.moveKnight(o, B.parse('E9')); }; const hit = []; c.attackOneTarget = async (A, t) => { hit.push(t); };
+  await c.resolveMonsterAttack(card('Piercing Gaze')); ok(hit.includes(pt) && !hit.includes(o), `Zone around the Target: a Knight who Reflexed out of the zone is not attacked (${hit.map(k => k.name).join(', ')})`); }
 console.log(fails ? `${fails} FAIL` : 'ALL PASS'); process.exit(fails ? 1 : 0);
