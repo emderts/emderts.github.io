@@ -87,7 +87,7 @@ export class Effects {
     if (where === 'egg') await C.loseArmorToken('armorPiercing', { n: x, noTrait: true }); else if (where === 'fen') C.fenArmor -= x; else if (where === 'pke') C.pke.armor -= x; else if (where === 'pv') C.pvDiscard('dragon', x); else if (where === 'dsf') C.dsfTithe(x, 'Armor-piercing'); else (where === 'mob' ? A.mob : A.guardian).armor -= x; this.say(`Armor-piercing: 대상의 Armor 토큰 ${x}개 버림`, 'tech'); }
   /** Move-like keywords from Gear usable in either ability window (not both): Pushback, Vault, Hug, Daze, Drag, Pull, Knockback. */
   gearMoves(A) { const NAME = { pushback: 'Pushback', vault: 'Vault', hug: 'Hug', daze: 'Daze', drag: 'Drag', pull: 'Pull', knockback: 'Knockback' }; const out = []; for (const o of A.kw || []) { if (NAME[o.op]) out.push({ token: NAME[o.op], n: o.n, gear: true, src: o }); if (o.op === 'choice') for (const x of o.options) if (NAME[x.op]) out.push({ token: NAME[x.op], n: x.n, gear: true, src: o, choice: o }); } return out.filter(t => !(A.dualUsed && A.dualUsed.has(t.src))); }
-  async runMove(k, A, t) { const C = this.c; if (t.src) (A.dualUsed = A.dualUsed || new Set()).add(t.src);
+  async runMove(k, A, t) { const C = this.c; if (t.src) (A.dualUsed = A.dualUsed || new Set()).add(t.src); if (A.arcLate && A.arcLate.includes(t)) A.arcLate.splice(A.arcLate.indexOf(t), 1); if (t.token === 'Reposition') { await C.knightMove(k, t.n); return; }
     if (t.token === 'Pushback' || t.token === 'Knockback') await this.pushMonster(k, t.n, A, { follow: t.token === 'Pushback' }); else if (t.token === 'Vault') await this.vault(k); else if (t.token === 'Hug') await this.hug(k, t.n); else if (t.token === 'Drag') await this.dragMonster(k, A, t.n); else if (t.token === 'Pull') await this.pullMonster(k, A, t.n);
     else if (t.token === 'Daze') { if (C.adjacentToMonster(k)) { const f = C.monster.facing; C.monster.facing = { N: 'S', S: 'N', E: 'W', W: 'E' }[f]; this.say('Daze: 몬스터가 등을 돌림'); } } }
   /** Pull X by a Knight: the Monster moves up to X spaces toward the Knight until adjacent. */
@@ -373,7 +373,8 @@ export class Effects {
     for (const o of A.kw || []) if (o.op === 'autoDevotion') { const n = (k.devotion || 0) + (k.devotionGained || 0); if (n) { this.c.poolAdd('hope', n); this.say(`${A.weapon.name}: Auto-hope ${n} (Devotion ${n})`, 'tech'); } }
     for (const o of A.kw || []) if (o.op === 'auto') { this.c.poolAdd(o.token, o.n); this.say(`${A.weapon.name}: Auto-${o.token} ${o.n}`); }
     const wk = this.gearMoves(A); for (const o of A.kw || []) if (o.op === 'provoke' || o.op === 'inspire') wk.push({ token: o.op === 'provoke' ? 'Provoke' : 'Inspire', n: o.n, gear: true });
-    const first = [...(await this.arcAt(k, A, 'first')), ...wk].map((t, i) => ({ ...t, id: i }));
+    // Reposition X (rulebook p.86): second ability window only. Hug X (p.83): any ability window — an unused Hug is offered again in the second.
+    const arc1 = await this.arcAt(k, A, 'first'); A.arcLate = arc1.filter(t => t.token === 'Reposition'); const first = [...arc1.filter(t => t.token !== 'Reposition'), ...wk].map((t, i) => ({ ...t, id: i }));
     const avail = [...first];
     while (avail.length) {
       const pick = await this.c.ask({ type: 'pick', knight: k.id, text: '1차 능력 창 — 사용할 능력과 순서를 선택 (끝내려면 "넘어가기")', options: [...avail.map(t => ({ label: `${t.token}${t.n ? ' ' + t.n : ''}`, value: t.id })), { label: '넘어가기', value: 'skip' }] });
@@ -393,6 +394,7 @@ export class Effects {
       else this.say(`[1st window 미구현] ${t.token}`, 'warn');
       if (!this.c.inAttackRange(k, A)) throw new ChainBreak(`${k.name}: 사거리 이탈`);
     }
+    A.arcLate.push(...avail.filter(t => !t.gear && t.token === 'Hug'));
     const ap = A.weapon.ops && A.weapon.ops.gates ? A.weapon.ops.gates.filter(g => g.when === 'GRAVE' && this.perilGateOk(k, 'GRAVE')).flatMap(g => g.ops).filter(o => o.op === 'armorPiercing') : []; for (const o of ap) A.apCount = (A.apCount || 0) + o.n;
   }
   async secondWindow(k, A) { await this.c.windowTechs(k, A, 'secondWindow'); for (const o of A.kw || []) if (o.op === 'unleashNegAT' && this.c.canUnleash(k, o.n) && await this.c.yesNo(`${k.name}: ${A.weapon.name} — Unleash ${o.n}: 임시 AT -1 토큰?`, true) && this.c.unleash(k, o.n)) { this.c.negAT = (this.c.negAT || 0) + 1; this.say(`${A.weapon.name}: 임시 AT -1 토큰`, 'tech'); } for (const { g, o } of this.gearAbilities(k, ['winMotivateX'])) { const mx = this.chargesOf(g); if (mx < 1 || this.c.alive().length < 2) continue; const v = await this.c.ask({ type: 'pick', knight: k.id, text: `${k.name}: 2차 능력 창 — ${g.name}: Charge X를 써서 Motivate X`, options: Array.from({ length: mx + 1 }, (_, i) => ({ label: `${i}`, value: i })) }); const x0 = typeof v === 'number' ? v : 0; if (x0 > 0) { g.chargesLeft = mx - x0; this.say(`${g.name}: Charge ${x0} → Motivate ${x0}`, 'tech'); await this.motivate(k, x0, g.name + ' Motivate'); } }
@@ -406,7 +408,7 @@ export class Effects {
     for (const o of A.kw || []) if (o.op === 'fullHitPermNegAT' && A.fullHit) { this.c.monster.modifiers.at = (this.c.monster.modifiers.at || 0) - 1; this.say(`${A.weapon.name}: Full Hit → 영구 AT -1 토큰 (Monster Sheet)`, 'tech'); }
     for (const o of A.kw || []) if (o.op === 'fullHitNegAT' && A.fullHit) { this.c.negAT = (this.c.negAT || 0) + 1; this.say(`${A.weapon.name}: Full Hit → 임시 AT -1 토큰 (다음 Power Roll에 적용, 총 ${this.c.negAT})`, 'tech'); }
     for (const o of A.kw || []) if (o.op === 'repositionPerHit' && A.hits && k.alive && !k.engulfed && await this.c.yesNo(`${k.name}: 명중 ${A.hits} → Reposition ${o.n * A.hits}?`, false)) await this.c.knightMove(k, o.n * A.hits);
-    if (k.alive && !k.engulfed) for (;;) { const mv = this.gearMoves(A).filter(t => !(t.choice && A.choiceUsed && A.choiceUsed.has(t.choice))); if (!mv.length) break; const i = await this.c.ask({ type: 'pick', knight: k.id, text: '2차 능력 창 — 1차 창에서 쓰지 않은 이동류 능력', options: [...mv.map((t, i) => ({ label: `${t.token}${t.n ? ' ' + t.n : ''}`, value: i })), { label: '넘어가기', value: 'skip' }] }); if (i == null || i === 'skip') break; const t = mv[i]; if (!t) break; if (t.choice) (A.choiceUsed = A.choiceUsed || new Set()).add(t.choice); await this.runMove(k, A, t); }
+    if (k.alive && !k.engulfed) for (;;) { const mv = [...this.gearMoves(A).filter(t => !(t.choice && A.choiceUsed && A.choiceUsed.has(t.choice))), ...(A.arcLate || [])]; if (!mv.length) break; const i = await this.c.ask({ type: 'pick', knight: k.id, text: '2차 능력 창 — 1차 창에서 쓰지 않은 이동류 능력', options: [...mv.map((t, i) => ({ label: `${t.token}${t.n ? ' ' + t.n : ''}`, value: i })), { label: '넘어가기', value: 'skip' }] }); if (i == null || i === 'skip') break; const t = mv[i]; if (!t) break; if (t.choice) (A.choiceUsed = A.choiceUsed || new Set()).add(t.choice); await this.runMove(k, A, t); }
     for (const o of A.kw || []) {
       if (o.op === 'token') { if (o.token === 'fleisch') this.c.poolAdd('fleisch', o.n, { resource: true }); else this.c.poolAdd(o.token, o.n); }
       else if (o.op === 'overbreak' && A.wounded && (A.overAT || 0) >= 1) { this.c.poolAdd('break', o.n); this.say(`Overbreak ${o.n}`); }
