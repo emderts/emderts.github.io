@@ -98,7 +98,7 @@ d = {'id': 'king-laid-low', 'name': S['name'], 'kind': 'boss', 'code': S['code']
   "True Love's Kiss: 2회 명중 = Devoured(사망), 3회 이상 = Devoured + Heal 1(Wound Stack 맨 위 1장 제거)",
   'Burden of the Past(Routine): VP 기사는 Displace 후 Unavoidable Knockback 5, 무작위 기사 밑에 1x2 Swamp(위치 선택), Escalate 1',
   'AI·BP 카드 전사 확인 완료 (소유자 확인 2026-11-20): Churning Charge 게이트 = "H4+: Ignore all REACT! windows", Ankle-Biter 게이트 = "H3+: +1 Evasion die", Throne of a Defiled Nation Wound = REACT! 창 뒤 Drill 6',
-  'Slimy Throne: Critical 시 빈 칸(미니어처·Terrain 없음)에 배치. 타일 위 기사는 Blindspot 취급, free action으로 Tenacity 4+ 테스트(성공: 타일과 기사를 Terrain 없는 빈 칸으로 / 실패: Slimed). King Laid Low 전체 확인 완료 (소유자 확인 2026-11-20)',
+  'Slimy Throne: Critical 시 빈 칸(미니어처·Terrain 없음)에 배치. 타일 위 기사는 Blindspot 취급, free action으로 Tenacity 4+ 테스트(성공: 타일과 기사를 Terrain 없는 빈 칸으로 / 실패: Slimed) — 같은 소스의 기능은 라운드당 1회이므로 Throne 테스트도 라운드당 1회. King Laid Low 전체 확인 완료 (소유자 확인 2026-11-20)',
  ]}
 # The whole King Laid Low sheet (AI, BP, traits, setup, rulings) was checked by the owner on 2026-11-20
 OK = ' (소유자 확인 2026-11-20)'

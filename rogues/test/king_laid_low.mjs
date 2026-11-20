@@ -53,5 +53,6 @@ const MD = 'Malediction (Dormant)', MM = 'Malediction (Manifested)';
   await c.klOp({ op: 'klThrone' }, { attacker: k }); ok(B.terrainAt(free[0]) && B.terrainAt(free[0]).id === 'slimy throne', 'Throne of a Defiled Nation (Critical): the Slimy Throne tile is placed on a chosen empty space');
   c.moveKnight(k, free[0]); ok(c.klOnThrone(k) && c.inBlindspot(k) && c.klFreeActions(k).some(o => o.id === 'kl:throne'), 'Slimy Throne: the Knight on it is in a Blindspot and gets the free action');
   dest = free[5]; c.d10For = async () => 10; await c.klFree(k, 'kl:throne'); ok(L(c, k.pos) === L(c, free[5]) && B.terrainAt(free[5]).id === 'slimy throne' && !B.terrainAt(free[0]), 'Slimy Throne: test passed — tile and Knight are placed on the chosen space');
+  ok(!c.klFreeActions(k).some(o => o.id === 'kl:throne'), 'Slimy Throne: once per round (same source)'); c.round++;
   c.d10For = async () => 1; k.virtues = { ...(k.virtues || {}), Tenacity: 0 }; const p0 = L(c, k.pos); await c.klFree(k, 'kl:throne'); ok(L(c, k.pos) === p0 && c.hasCondition(k, 'Slimed'), 'Slimy Throne: test failed — Slimed'); }
 console.log(fails ? `FAIL (${fails})` : 'ALL PASS (king laid low)'); process.exit(fails ? 1 : 0);
