@@ -61,8 +61,8 @@ export const SmeltedMixin = {
       case 'dsfGatekeeper': this.dsfGatekeeper(who); return true;
       case 'dsfGatecrasher': await this.dsfGatecrasher(who); return true;
       case 'dsfExhaust': await this.dsfExhaust(who, o.n, o.mode || 'exhaust'); return true;
-      case 'dsfKnockLeft': { if (!t || !t.alive || t.inOub) return true; const n = o.n * ((ctx.gatesOn || []).some(g => g.op === 'dsfDouble') ? 2 : 1); await this.pushback(t, n, { dir: DIRS[LEFT[M.facing]] }); return true; }
-      case 'dsfPush': if (who && who.alive && !who.inOub) await this.pushback(who, o.n); return true;
+      case 'dsfKnockLeft': { if (!t || !t.alive || t.inOub || this.kbSkip(t, ctx)) return true; const n = o.n * ((ctx.gatesOn || []).some(g => g.op === 'dsfDouble') ? 2 : 1); await this.pushback(t, n, { dir: DIRS[LEFT[M.facing]] }); return true; }
+      case 'dsfPush': if (who && who.alive && !who.inOub && !this.kbSkip(who, ctx)) await this.pushback(who, o.n); return true;
       case 'dsfPullIn': { const p = ctx.primary || t; if (p && p.alive && !p.inOub && !this.adjacentToMonster(p)) { this.turnToward(p.pos); this.say(`Pull Unlimited: ${p.name}`, 'ai'); await this.pull(M, p, 20); } return true; }
       case 'dsfAppear': { const p = ctx.primary || t; if (p && p.alive && !p.inOub) await this.dsfAppearBehind(p); return true; }
       case 'dsfLand': { const p = ctx.primary || t; if (p && p.alive && !p.inOub) { await this.bossLandOnTop(p); if (p.alive) await this.knockdown(p); await this.endMoveOnKnights(); } return true; }

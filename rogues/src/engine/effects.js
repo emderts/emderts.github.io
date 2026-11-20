@@ -621,8 +621,8 @@ export class Effects {
       case 'loseVigor': return C.loseVigor(t, o.n, { source: 'response', armor: false });
       case 'allKnightsLoseVigor': { for (const k of C.alive()) await C.loseVigor(k, o.n, { source: 'routine', armor: false }); return; }
       case 'knockdown': if (C.monsterDisabled && C.monsterDisabled.has('knockdown')) return; if (ctx.attack && ctx.attack.card && !C.adjacentToMonster(t) && ctx.attacker) return; return C.knockdown(t);
-      case 'pushback': if (ctx.attacker && !C.adjacentToMonster(t)) { this.say('Pushback 무시 (비인접)'); return; } return C.pushback(t, o.n);
-      case 'knockback': return C.pushback(t, o.n + (M.isMob ? C.mobAura('knockbackBonus') : 0));
+      case 'pushback': if (C.kbSkip(t, ctx, 'Pushback')) return; return C.pushback(t, o.n);
+      case 'knockback': if (C.kbSkip(t, ctx)) return; return C.pushback(t, o.n + (M.isMob ? C.mobAura('knockbackBonus') : 0));
       case 'cooldown': if (C.monsterDisabled && C.monsterDisabled.has('cooldown')) return; return this.runKnightOp({ op: 'cooldown', n: o.n }, t, {});
       case 'discard': if (t && (this.gearHas(t, 'noDiscard') || this.gearHas(t, 'noDiscardDelay'))) { this.say(`${t.name}: Technique 카드를 강제로 Discard당하지 않음 (Gear)`); return; } if (C.monsterDisabled && C.monsterDisabled.has('discard')) return; return this.runKnightOp({ op: 'discard', n: o.n }, t, {});
       case 'restrain': return this.runKnightOp({ op: 'restrain' }, t, {});
