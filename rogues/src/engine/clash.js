@@ -375,7 +375,7 @@ export class Clash {
     if (this.slowToken) { this.slowToken = false; this._slowSteps = 3; this.say('임시 Speed 토큰: 이번 이동은 3칸에서 멈춤 (토큰 버림)', 'tech'); } if (this._stopMove) return 'slow'; if (this._slowSteps != null) { if (this._slowSteps <= 0) return 'slow'; this._slowSteps--; }
     if (!nc.every(x => B.inside(x))) return 'edge';
     const newCells = nc.filter(x => !this.monster.cells.some(mc => cellEq(mc, x)));
-    for (const x of newCells) { const t = B.terrainAt(x); if (t && t.obstacle) { if (charge && !this.monster.hasTrait('Just a Scratch')) return 'obstacle'; if (t.destructible) { B.terrain.delete(B.key(x)); this.say(`지형 ${t.id} 파괴 (${B.label(x)})`); } else return 'obstacle'; } }
+    for (const x of newCells) { const t = B.terrainAt(x); if (t && t.obstacle) { if (charge && !this.monster.hasTrait('Just a Scratch')) return 'obstacle'; this._stepObstacle = true; if (t.destructible) { this.destroyObstacle(x); this.say(`지형 ${t.id} 파괴 (${B.label(x)})`); } else if (this.monster.isMob && !(this.isWN && this.wn)) return 'obstacle'; /* rulebook p.51 "Boss Movement through and onto Terrain": Boss Monsters ignore Terrain tiles unless Destructible (destroyed) — they move through and onto Indestructible Obstacles */ } }
     B.remove(this.monster.cells); this.monster.cells = nc; B.place({ kind: 'monster', id: this.monster.id }, nc);
     for (const x of newCells) { const k = this.knightAt(x); if (k) { try { if (this._moveCrashed) this._moveCrashed.add(k); await this.crash(k, { charge, through: true }); } catch (e) { if (!e.chainBreak) throw e; this.say(`Chain Break 중 돌진 계속 (${e.message})`, 'warn'); } } }
     await this.guardiansUnder();
@@ -686,7 +686,7 @@ export class Clash {
       const kdNow = k.conditions.find(c => c.id === 'Knockdown (Falling Down)');
       const opts = [];
       if (!kdNow) { if (k.actions.move) opts.push({ label: `이동 (Speed ${this.fx.speed(k)})`, value: 'move' }); if (k.actions.combat && this.fx.gearHas(k, 'combatAsMove')) opts.push({ label: `이동 — Combat action 사용 (Speed ${this.fx.speed(k)})`, value: 'moveC' }); if ((k.actions.combat || k.actions.extraCombat > 0) && this.canAttack(k)) opts.push({ label: '공격', value: 'attack' }); for (const t of this.fx.usableTechniques(k)) opts.push({ label: `기술: ${t.name} (${this.fx.costLabel(k, t)})`, value: 'tech:' + t.name }); for (const a of this.fx.freeActions(k)) opts.push({ label: a.label, value: 'free:' + a.id }); }
-      else opts.push(...this.fx.usableTechniques(k).filter(t => t.ops.some(o => o.op === 'standUp')).map(t => ({ label: `기술: ${t.name}`, value: 'tech:' + t.name })));
+      else opts.push(...this.fx.usableTechniques(k).filter(t => t.ops.some(o => o.op === 'standUp')).map(t => ({ label: `기술: ${t.name} (${this.fx.costLabel(k, t)})`, value: 'tech:' + t.name })));
       if (!kdNow && k.gear.some(g => g.exhausted && !g.discarded)) { if (k.actions.move) opts.push({ label: `Unexhaust — 이동 행동 사용 (${k.gear.filter(g => g.exhausted && !g.discarded).map(g => g.name).join(', ')})`, value: 'unex:move' }); if (k.actions.combat) opts.push({ label: 'Unexhaust — 전투 행동 사용', value: 'unex:combat' }); }
       opts.push({ label: '턴 종료', value: 'end' });
       const choice = opts.length === 1 ? 'end' : await this.ask({ type: 'action', knight: k.id, options: opts });
