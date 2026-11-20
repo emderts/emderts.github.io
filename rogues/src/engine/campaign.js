@@ -108,7 +108,7 @@ export class Campaign {
   async incarnate(kn, clash) {
     kn.vigor = Math.max(1, kn.vigor); clash.standUp(kn); kn.conditions = []; kn.bane = Math.max(0, kn.bane - 2); kn.incarnated = true;
     const n = 2 + (this.knights.find(x => x.name === kn.name)?.devotion || 0) + (kn.devotionGained || 0); await clash.knightMove(kn, n);
-    if (clash.canAttack(kn) && await clash.yesNo(`${kn.name} Incarnation: Bonus Attack 수행?`, true)) { kn.bonusAttacks = 0; await clash.knightAttack(kn, { bonus: true }); }
+    if (clash.canAttack(kn, true) && await clash.yesNo(`${kn.name} Incarnation: Bonus Attack 수행?`, true)) { kn.bonusAttacks = 0; await clash.knightAttack(kn, { bonus: true }); }
     clash.say(`${kn.name} Incarnation 종료 — 사망하지 않음`, 'mortis');
     throw new ChainBreak('Incarnation');
   }

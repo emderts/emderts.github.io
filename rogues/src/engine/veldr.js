@@ -94,7 +94,7 @@ export const VeldrMixin = {
       case 'pvAI': { if (k && k.alive) { const c = M.drawAI(); if (c) { this.say(`AI: ${c.name} (${k.name} 대상)`, 'ai'); await this.guard(() => this.resolveMonsterAttack(c, { forceTarget: k })); M.discardAI(c); } } return true; }
       case 'pvChainBreak': if (A) { A.pvChain = true; this.say('Ultrainstinct: Chain Break — 이 공격은 여기서 끝남', 'ai'); } return true;
       case 'pvVP': await this.dgCreateOrClimb(k); return true;
-      case 'pvBonus': if (k && k.alive && this.canAttack(k) && await this.yesNo(`${k.name}: Bonus Attack 수행?`, true)) await this.knightAttack(k, { bonus: true }); return true;
+      case 'pvBonus': if (k && k.alive && this.canAttack(k, true) && await this.yesNo(`${k.name}: Bonus Attack 수행?`, true)) await this.knightAttack(k, { bonus: true }); return true;
       case 'pvRegain': { if (!k) return true; const d = k.gear.filter(g => g.discarded); if (!d.length) { this.scavengeBonus = (this.scavengeBonus || 0) + 1; this.say('버린 Gear 없음 → Scavenge 1', 'tech'); return true; } const nm = d.length === 1 ? d[0].name : await this.ask({ type: 'pick', knight: k.id, text: '되찾을 Gear', options: d.map(g => ({ label: g.name, value: g.name })) }); const g = d.find(x => x.name === nm) || d[0]; g.discarded = false; g.exhausted = false; this.say(`${k.name}: ${g.name} 되찾음`, 'tech'); return true; }
       case 'pvScavenge': this.scavengeBonus = (this.scavengeBonus || 0) + o.n; this.say(`Scavenge ${o.n}: Aftermath Loot +${o.n}`, 'tech'); return true;
       case 'pvSunder': this.poolAdd('sunder', o.n); return true;

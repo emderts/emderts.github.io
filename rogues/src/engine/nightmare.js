@@ -134,7 +134,7 @@ export const NightmareMixin = {
       case 'wnIfRear': await this.fx.runMonsterOps(k && this.inWnRear(k) ? o.then : o.else, ctx); return true;
       case 'ifHits': if ((ctx.hits || 0) >= (o.gte || 0) && (o.lt == null || ctx.hits < o.lt) && t && t.alive) await this.fx.runMonsterOps(o.then, ctx); return true;
       case 'wnPull': if (t && t.alive) await this.pull(this.wn, t, o.n); return true;
-      case 'wnPushbackHits': if (t && t.alive && ctx.hits) { if (o.toChasm) await this.wnPushToChasm(t, ctx.hits); else await this.pushback(t, ctx.hits); } return true;
+      case 'wnPushbackHits': if (t && t.alive && ctx.hits) { if (o.toChasm) await this.wnPushToChasm(t, ctx.hits); else await this.pushback(t, ctx.hits, { isPush: true }); } return true;
       case 'wnPushToChasm': if (t && t.alive) await this.wnPushToChasm(t, o.n, o.front); return true;
       case 'wnDrag': if (t && t.alive) await this.wnDragToChasm(t, (ctx.hits || 0) + (o.plus || 0)); return true;
       case 'wnTowardNightmare': if (t && t.alive) await this.wnKnightWalk(t, o.n * (ctx.hits || 0), this.wn.cells, 'Winged Nightmare 쪽으로 이동'); return true;

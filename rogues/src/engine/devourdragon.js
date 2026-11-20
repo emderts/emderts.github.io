@@ -132,7 +132,7 @@ export const DevourMixin = {
       case 'yddResetHeat': if (k) { k.heat = 0; this.say(`${k.name}: [H] 리셋`, 'tech'); } return true;
       case 'yddMove': if (k && k.alive && !k.onVP && !this.knockedDown(k) && await this.yesNo(`${k.name}: Reposition ${o.n} — ${o.n}칸까지 이동?`, false)) await this.knightMove(k, o.n); return true;
       case 'yddExhaustWeapon': if (A && A.weapon && k && !await this.fx.keepGear(k, A.weapon, 'exhaust')) { A.weapon.exhausted = true; this.say(`${k.name}: ${A.weapon.name} 소진`, 'dmg'); } return true;
-      case 'yddBonus': if (k && k.alive && this.canAttack(k) && await this.yesNo(`${k.name}: Bonus Attack 수행?`, true)) await this.knightAttack(k, { bonus: true }); return true;
+      case 'yddBonus': if (k && k.alive && this.canAttack(k, true) && await this.yesNo(`${k.name}: Bonus Attack 수행?`, true)) await this.knightAttack(k, { bonus: true }); return true;
       case 'yddClimb': if (k && k.alive && !k.onVP && !this.vpKnight() && this.adjacentToMonster(k) && this.divineTarget !== k && await this.yesNo(`${k.name}: VP에 오름?`, true)) this.dgClimb(k); return true;
       case 'yddScavenge': this.scavengeBonus = (this.scavengeBonus || 0) + o.n; this.say(`Scavenge ${o.n}: Aftermath Loot +${o.n}`, 'tech'); return true;
       case 'yddRoutine': { for (const x of [...this.alive()]) { if (this.hasCondition(x, CBH)) { this.say(`Craving's Call: ${x.name} (Called by the Heavens) 사망`, 'death'); await this.die(x, "Craving's Call"); } else await this.addCondition(x, CBH); } const list = await this.bossPositions(fp => fp.some(c => c.c === 7 && c.r === 4) && fp.some(c => c.c === 8 && c.r === 5)); if (list.length) await this.yddPlace(list[0], '보드 중앙으로 이동'); this.faceMostKnights(); return true; }

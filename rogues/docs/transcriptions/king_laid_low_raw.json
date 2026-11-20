@@ -161,7 +161,7 @@
     "Closest Knight in front",
     "Closest Knight in sight"
    ],
-   "tag": "MOVE & ATTACK {H4+: IGNORE ALL [icon]}",
+   "tag": "MOVE & ATTACK {H4+: IGNORE ALL [React window]}",
    "effects": [
     "For each hit lose -3 [V]. [Peril].",
     "[React]",
@@ -170,9 +170,7 @@
    "afterTag": "AFTER ATTACK",
    "after": "Drill 4.",
    "zone": null,
-   "unclear": [
-    "Gate effect \"IGNORE ALL [icon]\" — icon unreadable (Armor / Evasion Re-rolls?)"
-   ]
+   "unclear": []
   },
   {
    "name": "Slime Stampede",
@@ -271,7 +269,7 @@
     "Closest Knight in front",
     "Closest Knight in sight"
    ],
-   "tag": "MOVE & ATTACK {H3+: -1 [die]}",
+   "tag": "MOVE & ATTACK {H3+: +1 [die]}",
    "effects": [
     "For each hit lose -2 [V]. [Peril]."
    ],
@@ -742,13 +740,11 @@
    "at": 10,
    "top": "OVERPOWER 2+: You deal a Critical Wound!",
    "note": null,
-   "wound": "The King performs [icon] Drill 6 against a random Knight in Range 5.",
+   "wound": "The King performs [React window] Drill 6 against a random Knight in Range 5.",
    "fail": "Draw a Judicium.",
    "instinct": null,
    "critical": "Place the Slimy Throne Terrain tile on a chosen empty space.",
-   "unclear": [
-    "Wound: small icon before \"Drill 6\" unreadable"
-   ]
+   "unclear": []
   },
   {
    "name": "Golden Crown",

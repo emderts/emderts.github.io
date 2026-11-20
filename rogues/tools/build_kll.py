@@ -12,12 +12,12 @@ def bzone(rows):
     rel = lambda x, y: (x - max(xs), y - min(ys))
     return {'red': [rel(x, y) for y, r in enumerate(rows) for x, ch in enumerate(r) if ch == 'R'], 'yellow': [], 'step': None, 'block': True}
 AI = {
- 'Churning Charge': dict(gates=[G(4, op='klNoteGate')], effects=[V(3), RX, KD], afterAttack=[D(4, after=True)], notes=['Heat 4+ 게이트 "IGNORE ALL [아이콘]"은 아이콘 미판독으로 미적용']),
+ 'Churning Charge': dict(gates=[G(4, op='ignoreReact')], effects=[V(3), RX, KD], afterAttack=[D(4, after=True)]),
  'Slime Stampede': dict(pathAttack=True, pre=FACE, gates=[G(3, op='klAlso', alsoOps=[COND('Slimed')])], effects=[V(2)], afterFinalAttack=[D(2, after=True)]),
  "Ancestors' Admonition": dict(judge=['Fortitude', 'Might'], gates=[G(4, op='doomed')], effects=[V(1), {'op': 'klIfHits', 'gte': 4, 'then': [COND('Distracted')]}]),
  'Tongue-Lashing': dict(judge=['Tenacity', 'Insight'], move=False, effects=[V(2)], afterAttack=[{'op': 'klPull', 'n': 4}]),
  'Slippery Slope': dict(type='zone', gates=[G(5, op='vigorPerHitInstead', n=2)], effects=[V(1)], afterFinalAttack=[D(4, after=True)], zone=['..RR', '>>RR', '>>RR', '..RR']),
- 'Ankle-Biter': dict(gates=[G(3, op='evasionDice', n=-1)], effects=[V(2)], afterAttack=[{'op': 'klMalePass'}]),
+ 'Ankle-Biter': dict(gates=[G(3, op='evasionDice', n=1)], effects=[V(2)], afterAttack=[{'op': 'klMalePass'}]),
  "Malediction's Momentum": dict(klMomentum=True, beforeAttack=[{'op': 'klMomentum'}], effects=[V(2)], afterAttack=[D(3, after=True)]),
  'Floodstrike': dict(effects=[{'op': 'klKnockback', 'n': 5}, V(2)]),
  'The Sinking Sin': dict(gates=[G(5, op='klAlso', alsoOps=[{'op': 'choke', 'n': 3}])], effects=[V(2)], afterAttack=[{'op': 'klIfSwampAdj'}]),
@@ -49,7 +49,7 @@ BP = {
  'Sky-Starved Face': dict(oc=6, wound=[D(7), COND('Drowning', A)], fail=[SIGA], critical=[{'op': 'klOtherMove', 'n': 5, 'bonus': True}]),
  'Hateful Tumor': dict(oc=7, instinct=[{'op': 'klAI'}], critical=[{'op': 'slayMonster'}]),
  'Mud-Stained Abdomen': dict(oc=6, wound=[{'op': 'klDiscardWeapon', 'who': A, 'active': True, 'orHeat': 3}], fail=[D(5), D(5)], critical=[{'op': 'klFlipSwamps'}]),
- 'Throne of a Defiled Nation': dict(op=2, top=[{'op': 'klCritWound'}], wound=[D(6, random=5)], fail=[{'op': 'judicium'}], critical=[{'op': 'klNote', 'text': 'Slimy Throne Terrain 타일 배치는 미구현'}]),
+ 'Throne of a Defiled Nation': dict(op=2, top=[{'op': 'klCritWound'}], wound=[RX, D(6, random=5)], fail=[{'op': 'judicium'}], critical=[{'op': 'klNote', 'text': 'Slimy Throne Terrain 타일 배치는 미구현'}]),
  'Golden Crown': dict(op=2, top=[{'op': 'klOtherMove', 'n': 2, 'count': 2}], instinct=[{'op': 'klFlipRuts'}], critical=[{'op': 'klFlag', 'id': 'drillDown'}]),
  'Scepter of Smothered Ages': dict(op=2, top=[{'op': 'klOtherMove', 'n': 3, 'count': 2}], wound=[{'op': 'klPull', 'n': 3, 'all': True}, D(7)], fail=[COND('Drowning', A)], critical=[{'op': 'klMaleDiscard'}]),
 }
@@ -97,7 +97,8 @@ d = {'id': 'king-laid-low', 'name': S['name'], 'kind': 'boss', 'code': S['code']
   'Royal Decree: Heat가 가장 높은 기사 2명(동률은 정렬 순). 둘 다 살아 있으면 [P]·[H]·[V] 교환 (최대치 초과분은 잘림)',
   "True Love's Kiss: 2회 명중 = Devoured(사망), 3회 이상 = Devoured + Heal 1(Wound Stack 맨 위 1장 제거) [해석, 확인 필요]",
   'Burden of the Past(Routine): VP 기사는 Displace 후 Unavoidable Knockback 5, 무작위 기사 밑에 1x2 Swamp(위치 선택), Escalate 1',
-  '미구현: Churning Charge의 Heat 4+ 게이트(아이콘 미판독), Throne of a Defiled Nation Critical의 Slimy Throne 타일, 각 AI 카드의 REACT! 창 위치(Targeting 뒤 창만 공통 적용)',
+  'AI·BP 카드 전사 확인 완료 (소유자 확인 2026-11-20): Churning Charge 게이트 = "H4+: Ignore all REACT! windows", Ankle-Biter 게이트 = "H3+: +1 Evasion die", Throne of a Defiled Nation Wound = REACT! 창 뒤 Drill 6',
+  '미구현: Throne of a Defiled Nation Critical의 Slimy Throne 타일',
  ]}
 import reactfix; reactfix.apply('king-laid-low', d)
 json.dump(d, open(sys.argv[1], 'w'), ensure_ascii=False, indent=1); print('wrote', sys.argv[1], len(d['cards']['ai']), 'AI', len(d['cards']['bp']), 'BP')
