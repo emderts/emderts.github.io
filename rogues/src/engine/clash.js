@@ -147,7 +147,7 @@ export class Clash {
     try {
       if (!this._deployed) { this._deployed = true; await this.fx.deployAll(); }
       await this.fenStart(); await this.keStart(); await this.pkeStart();
-      if (this._askPriority) { this._askPriority = false; const id = await this.ask({ type: 'pickKnight', text: 'Passion 동률 — 시작 Priority Target 선택', options: this.knights.map(k => ({ label: k.name, value: k.id })) }); this.priorityTarget = this.knights.find(k => k.id === id) || this.knights[0]; this.say(`Priority Target: ${this.priorityTarget.name}`); }
+      if (this._askPriority) { this._askPriority = false; const mx = Math.max(...this.knights.map(k => k.passion)); const top = this.knights.filter(k => k.passion === mx); const id = top.length === 1 ? top[0].id : await this.ask({ type: 'pickKnight', text: 'Passion 동률 — 시작 Priority Target 선택', options: top.map(k => ({ label: k.name, value: k.id })) }); this.priorityTarget = top.find(k => k.id === id) || top[0]; this.say(`Priority Target: ${this.priorityTarget.name}`); }
       while (!this.result) { this.round++; await this.monsterRound(); if (this.result) break; await this.knightRound(); this.firstRound = false; this.renRoundEnd(); this.karaRoundEnd(); }
     } catch (e) { if (e instanceof GameOver) this.result = e.result; else throw e; }
     if (this.isPz) this.pzEndOfClash();
@@ -788,7 +788,7 @@ export class Clash {
     A.hits = roll.dice.filter(isHit).length + (A.autoHits || 0); A.critChance = roll.dice[0].v === 10 || ((this.fx.has(k, 'deadly') || A.deadlyPaid) && roll.dice[0].v >= 9); if (A.tdWCrit) A.critChance = true; if (A.critChance && this.isBw && this.bwHexed(k, 'Quagmire of Misfortune')) { A.critChance = false; this.say(`${k.name}: Quagmire of Misfortune — Crit Chance를 얻을 수 없음`, 'bp'); }
     this.flash('dice', { title: `${k.name} Attack Roll ${toHit}+ (+${prec})`, dice: roll.dice.map(d => ({ v: d.v, ok: isHit(d), crit: d.crit })), sub: `명중 ${A.hits}/${dice}${A.critChance ? ' ★Crit Chance' : ''}`, cls: A.hits ? 'good' : 'bad' });
     this.say(`${k.name} Attack Roll ${dice}d vs ${toHit}+ (+${prec}) → [${roll.dice.map(d => d.v + (d.rerolled ? '*' : '')).join(' ')}] 명중 ${A.hits}/${dice}${A.critChance ? ' ★Crit Chance' : ''}`, 'dice');
-    if (A.hits === 0) { this.say(`${k.name} Full Miss`); await this.stoneFullMiss(k, A); await this.fx.onFullMiss(k, A); if (!A.keepPool) this.clearPool(); await this.paraFullMiss(k, A); await this.fx.secondWindow(k, A); this.currentKnightAttack = null; return; }
+    if (A.hits === 0) { this.say(`${k.name} Full Miss`); await this.stoneFullMiss(k, A); await this.fx.onFullMiss(k, A); if (!A.keepPool) this.clearPool(); await this.paraFullMiss(k, A); /* rulebook p.57: a Full Miss goes straight to step 9, activates "Full Miss" abilities and ends the Attack — no second ability window */ this.currentKnightAttack = null; return; }
     if (A.hits === dice) await this.fx.onFullHit(k, A);
     // 4. first ability window (a Chain Break here ends the attack: clear pool + second window, p.54)
     await this.fx.afterHits(k, A, roll.dice.length);
