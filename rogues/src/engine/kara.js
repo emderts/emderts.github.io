@@ -21,7 +21,7 @@ export const KaraMixin = {
   /** We Go Together: Kara may move diagonally; during her turn so may her Allies. */
   karaDiag(k) { if (talentHas(k, 'weGoTogether')) return true; const t = this._turnKnight; return !!(this.phase === 'knight' && t && t !== k && t.alive && talentHas(t, 'weGoTogether')); },
   karaRoundEnd() { for (const k of this.knights) k._flowUsed = false; },
-  async karaUse(k, t, text) { if (!t || !this.fx.canPay(k, this.fx.costOf(k, t))) return null; if (!await this.yesNo(`${k.name}: ${t.name} 사용? (${this.fx.costLabel(k, t) || '비용 없음'}) — ${text || t.text}`, false)) return null; const pc = await this.fx.chooseCost(k, t); if (!pc) return null; this.fx.pay(k, pc.alt, pc.x); this.say(`${k.name} 기술 사용: ${t.name}`, 'tech'); const ops = this.fx.activeOps(k, t); this.fx.deplete(k, t); await this.renTechniqueUsed(k); return ops; },
+  async karaUse(k, t, text) { if (!t || !this.fx.canPay(k, this.fx.costOf(k, t))) return null; if (!await this.yesNo(`${k.name}: ${t.name} 사용? (${this.fx.costDep(k, t)}) — ${text || t.text}`, false)) return null; const pc = await this.fx.chooseCost(k, t); if (!pc) return null; this.fx.pay(k, pc.alt, pc.x); this.say(`${k.name} 기술 사용: ${t.name}`, 'tech'); const ops = this.fx.activeOps(k, t); this.fx.deplete(k, t); await this.renTechniqueUsed(k); return ops; },
   /** Start of turn — Peek at the Devil's Hand. */
   async karaTurnStart(k) {
     if (!talentHas(k, 'peekDevilsHand')) return; const tiers = Object.keys(this.mortis || {}).filter(t => this.mortis[t] && this.mortis[t].cards && this.mortis[t].cards.length); if (!tiers.length) return;
