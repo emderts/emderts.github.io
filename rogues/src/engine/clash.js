@@ -576,8 +576,9 @@ export class Clash {
    *  the Knight is Displaced so the source can enter its space, then continue (impossible → the Knight dies). Mob source: stops before
    *  another miniature, an Indestructible Obstacle (Crash) or the Board Edge (Displace if possible). */
   async pushLoop(k, n) {
-    const B = this.board, M = this.monster; const g = this.actingGuardian || null; const wn = this.isWN && this.wn ? this.wn : null; // Winged Nightmare: a Non-Mob Monster kept on the Mob track
-    const mob = (!!M.isMob && !wn) || !!g; const stepper = !M.isMob || !!wn; let moved = 0, steps = 0; const trail = []; let under = null; const start = { ...k.pos };
+    const B = this.board, M = this.monster; const g = this.actingGuardian || null; const wn = this.isWN && this.wn ? this.wn : null;
+    // Guardians and the Winged Nightmare follow the Mob Pushback rules; Board Edge handling is the same for every source (소유자 확인 2026-11-20)
+    const mob = !!M.isMob || !!g; const stepper = !M.isMob || !!wn; let moved = 0, steps = 0; const trail = []; let under = null; const start = { ...k.pos };
     const settle = async () => { const o = under; under = null; if (!o || !o.alive) return; if (k.alive && cellEq(k.pos, o.pos)) { this.say(`${k.name}의 이동이 ${o.name}의 칸에서 끝남 → ${o.name} Displace`); B.place({ kind: 'knight', id: k.id }, [k.pos]); await this.displace(o); B.place({ kind: 'knight', id: k.id }, [k.pos]); } else B.place({ kind: 'knight', id: o.id }, [o.pos]); };
     const mobShift = d => { const m = M.cur; if (!m || !m.cells.length) return false; const cs = m.cells.map(c => ({ c: c.c + d.c, r: c.r + d.r })); if (!cs.every(c => B.inside(c) && !B.isObstacle(c) && !this.knightAt(c) && !(B.terrainAt(c) && B.terrainAt(c).chasm) && !M.mobs.some(o => o !== m && o.cells.some(x => cellEq(x, c))))) return false; B.remove(m.cells); m.cells = cs; B.place({ kind: 'mob', n: m.n }, cs); return true; };
     // Rulebook Pushback X: the source itself "moves up to X spaces in the direction of the affected miniature, pushing it" — Mob sources too.
