@@ -12,7 +12,7 @@ const h = (tag, attrs = {}, ...kids) => {
   for (const k of kids.flat()) if (k != null) e.append(k.nodeType ? k : document.createTextNode(String(k)));
   return e;
 };
-const svg = (tag, attrs = {}, ...kids) => { const e = document.createElementNS('http://www.w3.org/2000/svg', tag); for (const [k, v] of Object.entries(attrs)) if (v != null && v !== false) e.setAttribute(k, v); for (const k of kids.flat()) if (k != null) e.append(k.nodeType ? k : document.createTextNode(String(k))); return e; };
+const svg = (tag, attrs = {}, ...kids) => { const e = document.createElementNS('http://www.w3.org/2000/svg', tag); for (const [k, v] of Object.entries(attrs)) if (v != null && v !== false) { if (typeof v === 'function' && k.startsWith('on')) e.addEventListener(k.slice(2), v); else e.setAttribute(k, v); } for (const k of kids.flat()) if (k != null) e.append(k.nodeType ? k : document.createTextNode(String(k))); return e; };
 const ROMAN = ['', 'I', 'II', 'III', 'IV', 'V'];
 const SAVE_KEY = 'kf.rogues.campaign';
 
@@ -193,7 +193,7 @@ const renderBoard = () => {
   }
   for (let r = 0; r < B.rows; r++) s.append(svg('text', { x: PAD - 2, y: y(r) + CW * .65, class: 'coord' }, B.rowLabels[r]));
   for (let c = 1; c <= B.cols; c++) s.append(svg('text', { x: x(c) + CW / 2, y: H - 1, class: 'coord' }, c));
-  for (const [key, t] of B.terrain) { const [c, r] = key.split(',').map(Number); s.append(svg('rect', { x: x(c) + 1.5, y: y(r) + 1.5, width: CW - 3, height: CW - 3, rx: 1.5, class: 'ter t-' + t.id.replace(/\s+/g, '-') })); s.append(svg('text', { x: x(c) + CW / 2, y: y(r) + CW * .68, class: 'lbl' }, t.id === 'paleburrow' ? '◎' + (t.num || '') : t.id === 'bloodgeyser' ? '' : t.id === 'rut' ? '≈' : t.id === 'loose string' ? '⤴' : t.id === 'bottomless well' ? '◯' : t.id[0].toUpperCase())); }
+  for (const [key, t] of B.terrain) { const [c, r] = key.split(',').map(Number); s.append(svg('rect', { x: x(c) + 1.5, y: y(r) + 1.5, width: CW - 3, height: CW - 3, rx: 1.5, class: 'ter t-' + t.id.replace(/\s+/g, '-'), style: 'pointer-events:auto;cursor:pointer', onclick: () => { const sel = selCells.find(q => q.c === c && q.r === r); if (sel) answer(sel); else openModal(`지형 — ${B.label({ c, r })}`, terrainView(t, key)); } })); s.append(svg('text', { x: x(c) + CW / 2, y: y(r) + CW * .68, class: 'lbl' }, t.id === 'paleburrow' ? '◎' + (t.num || '') : t.id === 'bloodgeyser' ? '' : t.id === 'rut' ? '≈' : t.id === 'loose string' ? '⤴' : t.id === 'bottomless well' ? '◯' : t.id[0].toUpperCase())); }
   pv.forEach((fp, i) => { const last = i === pv.length - 1; for (const c of fp) s.append(svg('rect', { x: x(c.c) + .8, y: y(c.r) + .8, width: CW - 1.6, height: CW - 1.6, rx: 1, class: last ? 'pvend' : 'pvpath' })); const cc = fp.reduce((a, c) => ({ c: a.c + c.c / fp.length, r: a.r + c.r / fp.length }), { c: 0, r: 0 }); s.append(svg('text', { x: x(cc.c) + CW / 2, y: y(cc.r) + CW * .62, class: 'pvtxt' }, String(i + 1))); });
   if (clash.isTd) for (const t of clash.td.toads) s.append(svg('text', { x: x(t.c) + CW / 2, y: y(t.r) + CW * .7, class: 'lbl', style: 'font-size:' + CW * .55 + 'px' }, t.divine ? '✹' : '🐸'));
   if (!M.isMob && clash.guardians) for (const gd of clash.guardians) { const c = gd.cells[0]; const cx = x(c.c) + CW / 2, cy = y(c.r) + CW / 2; const d = DIRS[gd.facing]; const act = clash.actingGuardian === gd;
@@ -286,6 +286,11 @@ const mentionView = (k, title, words) => { const re = new RegExp(words.join('|')
   return h('div', { class: 'cardview' }, h('div', { class: 'cv-title' }, title), out.length ? out : h('div', { class: 'small muted' }, '관련 카드 문구를 찾지 못함'), ); };
 const knightSheet = k => h('div', {}, h('div', { class: 'cardview' }, h('div', { class: 'cv-title' }, k.name), h('div', { class: 'small muted' }, `Power die ${k.powerDie} · Speed ${clash.fx.speed ? clash.fx.speed(k) : k.speed} · Hand Limit ${k.handLimit} · Card Refresh ${k.cardRefresh} · Heat Refresh ${k.heatRefresh} · Bane ${k.bane}/${k.baneLimit}`), h('div', { class: 'small muted' }, `Vigor ${k.vigor}/${k.maxVigor} (${k.peril()}) · Heat ${k.heat}/${k.heatLimit} · Passion ${k.passion}`)),
   k.talent ? talentView(k) : null, k.conditions.map(condView), k.gear.map(gearView), heroicView(k), perilView(k));
+
+const terrainView = (t, key) => { const d = (DATA.terrain.terrain || []).find(x => x.name.toLowerCase() === t.id); const B = clash.board; const same = [...B.terrain].filter(([, x]) => x.id === t.id).map(([k]) => { const [c, r] = k.split(',').map(Number); return B.label({ c, r }); });
+  const flags = [t.obstacle && 'Obstacle', t.destructible && 'Destructible', t.obscuring && 'Obscuring', t.difficult && 'Difficult', t.chasm && 'Chasm', t.num != null && `#${t.num}`].filter(Boolean);
+  return h('div', { class: 'cardview' }, h('div', { class: 'cv-title' }, d ? d.name : t.name || t.id), h('div', { class: 'small muted' }, [d && d.sizes && d.sizes.length ? `크기 ${d.sizes.join(' / ')}` : '', (d && d.keywords && d.keywords.length ? d.keywords : flags).join(' · ')].filter(Boolean).join(' · ')),
+    (d && d.text) || t.text ? h('div', { class: 'cv-text', style: 'white-space:pre-line' }, (d && d.text) || t.text) : h('div', { class: 'small muted' }, '카드 문구 자료 없음'), h('div', { class: 'small muted' }, `보드 위 칸: ${same.join(', ')}`)); };
 
 const knightBox = k => { const active = pending && pending.q.knight === k.id;
   const info = (title, words) => () => openModal(`${k.name} — ${title}`, mentionView(k, title, words));
