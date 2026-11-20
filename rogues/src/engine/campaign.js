@@ -77,6 +77,11 @@ export class Campaign {
     this.say(`라운드 ${this.round}: 노드 ${n.id} (${n.kingdom}, Lv${n.level}) → d10 ${r.rolls.join('→')} → ${r.name} Lv${r.level}`);
     return this.current;
   }
+  /** House rule (not in the rulebook): once per node, after the Monster has been rolled and before the Clash starts, the party may re-roll it. */
+  canRerollMonster() { const c = this.current; return !!c && !c.rerolled && !c.snapshot && !this.result; }
+  rerollMonster() { const c = this.current; if (!this.canRerollMonster()) throw new Error('이 노드에서는 이미 다시 굴렸거나 Clash가 시작됨'); const n = this.node(c.nodeId); const before = `${c.monsterName} Lv${c.level}`;
+    const r = rollMonster(this.tables, this.rng, n.level, n.kingdom, this.playableMonsters()); Object.assign(c, { monster: r.monster, monsterName: r.name, level: r.level, roll: [...c.roll, '↻', ...r.rolls], rerolled: true });
+    this.say(`(하우스룰) 몬스터 재굴림: ${before} → d10 ${r.rolls.join('→')} → ${r.name} Lv${r.level}`); return c; }
   /** Build a Clash from the current loadouts. */
   buildClash(opts = {}) {
     const cur = this.current; const m = this.data.monsters[cur.monster];

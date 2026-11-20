@@ -126,6 +126,7 @@ const renderEncounter = () => {
       h('p', {}, h('b', { style: 'font-size:20px;color:var(--rose)' }, `${cur.monsterName} Lv${cur.level}`)),
       h('p', { class: 'small muted' }, 'Clash 전에 Outpost(상점·용병·장비 구성)를 방문할 수 있습니다. 이번 라운드의 상점 티어 = 이 노드의 티어.'),
       h('div', { class: 'row' }, h('button', { class: 'primary', onclick: startCampaignClash }, 'Clash 시작'), h('button', { onclick: () => { screen = 'outpost'; render(); } }, 'Outpost'), h('button', { onclick: () => { screen = 'map'; render(); } }, '지도')),
+      h('div', { class: 'row', style: 'margin-top:8px' }, h('button', { class: 'sm', disabled: !camp.canRerollMonster(), onclick: () => { camp.rerollMonster(); save(); render(); } }, cur.rerolled ? '🎲 몬스터 다시 굴리기 (하우스룰) — 사용함' : '🎲 몬스터 다시 굴리기 (하우스룰) — 노드당 1회')),
     ));
 };
 const startCampaignClash = () => {
