@@ -2,7 +2,7 @@
 import { Clash } from '../engine/clash.js';
 import { Campaign } from '../engine/campaign.js';
 import { DIRS, inFront, rearCells } from '../engine/board.js';
-import { mountMonsterInfo } from './monsterinfo.js';
+import { mountMonsterInfo, makeCardViews } from './monsterinfo.js';
 
 const DATA = window.KF_DATA;
 const $ = (sel, el = document) => el.querySelector(sel);
@@ -238,8 +238,10 @@ const modalEl = () => modal ? h('div', { class: 'overlay', onclick: e => { if (e
 const techView = t => h('div', { class: 'cardview' }, h('div', { class: 'cv-title' }, t.name), h('div', { class: 'small muted' }, `${t.unlock || ''} · 비용 ${clash ? clash.fx.costLabel(null, t) : JSON.stringify(t.cost)} · 소진 ${t.depletion}`), h('div', { class: 'cv-text' }, t.text), ...(t.gates || []).map(g => h('div', { class: 'cv-gate' }, h('b', {}, g.gate + ' '), g.text)), t.exert ? h('div', { class: 'cv-gate' }, h('b', {}, 'Exert '), `${t.exert.token === 'PowerReroll' ? 'Power Re-roll' : t.exert.token} ${t.exert.n} → ${t.exert.depletion}`) : null);
 const RWN = w => { const t = typeof w === 'string' ? w : JSON.stringify(w); return t.replace(/^targeting$/, 'Targeting 뒤').replace(/^effect:(\d+)$/, (_, n) => `효과 ${+n + 1}번째 줄 뒤`).replace(/^moveTag$/, '이동 태그 뒤').replace(/^afterAttack$/, 'After Attack 뒤').replace(/^afterFinalAttack$/, 'After Final Attack 뒤'); };
 const reactLine = c => { const a = c.reactWindows || c.react; const w = [...(a == null ? [] : Array.isArray(a) ? a : [a]), ...(c.aiResponseReactMarker ? ['AI Response 앞'] : [])]; return h('div', { class: 'cv-gate' }, h('b', {}, 'REACT! '), w.length ? w.map(RWN).join(' · ') : '없음'); };
-const aiView = c => h('div', { class: 'cardview ai' }, h('div', { class: 'cv-title' }, `${c.level ? 'AI ' + c.level + ' — ' : ''}${c.name || 'Attack'}`), reactLine(c), h('div', { class: 'small muted' }, `${c.type || ''}${c.evasionDice ? ` · 회피 ${c.evasionDice}d ${c.evasionDifficulty}+` : ''}${c.move ? ' · Move & Attack' : ''}`), c.targeting ? h('div', { class: 'cv-text' }, h('b', {}, 'Targeting: '), c.targeting.join(' / ')) : null, ...(c.gates || []).map(g => h('div', { class: 'cv-gate' }, `${g.stat} ${g.gte}+ ▸ ${g.effect}`)), (c.keywordsBeforeAttack || []).length ? h('div', { class: 'cv-text' }, c.keywordsBeforeAttack.join(' ')) : null, ...(c.effects || (c.text ? [c.text] : [])).map(e => h('div', { class: 'cv-text' }, e)), c.afterAttack ? h('div', { class: 'cv-text' }, 'After Attack: ' + c.afterAttack) : null, c.afterFinalAttack ? h('div', { class: 'cv-text' }, 'After Final Attack: ' + c.afterFinalAttack) : null);
-const bpView = c => h('div', { class: 'cardview bp' }, h('div', { class: 'cv-title' }, `BP ${c.level} — ${c.name}`), h('div', { class: 'small muted' }, `${c.toughness ? 'Toughness ' + c.toughness + ' · ' : ''}AT ${c.at}${clash ? ` (현재 ${clash.bpAT(c)})` : ''} · Overcome ${c.overcome ? c.overcome.n + '+: ' + c.overcome.effect : '-'}`), ...['wound', 'fail', 'instinct', 'critical'].filter(r => c.responses && c.responses[r]).map(r => h('div', { class: 'cv-text' }, h('b', {}, r.toUpperCase() + ': '), c.responses[r])));
+let _cv = null; const cardViews = () => _cv || (_cv = makeCardViews(h));
+// Same full rendering as the monster info viewer (move tag, gates, every effect line, After Attack, AI Response, REACT! windows).
+const aiView = c => h('div', { class: 'cardview ai' }, cardViews().aiCard({ ...c, name: c.name || 'Attack' }), c.reactWindows || c.react || c.aiResponseReactMarker ? null : h('div', { class: 'mi-react' }, 'REACT! 없음'));
+const bpView = c => h('div', { class: 'cardview bp' }, cardViews().bpCard(c), h('div', { class: 'small muted' }, `${c.toughness ? 'Toughness ' + c.toughness + ' · ' : ''}${clash ? `현재 AT ${clash.bpAT(c)}` : ''}`));
 const anyView = x => x.at != null && x.responses ? bpView(x) : x.targeting || x.evasionDice ? aiView(x) : h('div', { class: 'cardview' }, h('div', { class: 'cv-title' }, x.name), h('div', { class: 'cv-text' }, x.text || ''));
 const pileBtn = (label, cards, view = anyView) => h('button', { class: 'sm link', onclick: () => openModal(`${label} (${cards.length})`, cards.length ? h('div', {}, cards.map(view)) : h('div', { class: 'muted' }, '비어 있음')) }, `${label} ${cards.length}`);
 let flashOn = true; try { flashOn = localStorage.getItem('kf.flash') !== '0'; } catch (e) { }

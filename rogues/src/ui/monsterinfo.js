@@ -10,8 +10,8 @@ export const normaliseMonster = (m, raw = false) => {
   return { id: 'raw:' + S.name, name: S.name, kind: /boss|vassal/i.test(JSON.stringify(m._notes || '')) ? 'boss' : 'mob', playable: false, rawOnly: true, traitsLine: S.traitsLine, levels: S.levels, basic: S.basicAbilities || [], footprint: S.facingDiagram, traits: S.traits || [], ai: m.ai || [], bp: m.bp || [], signature: m.signature, routine: m.routine, extra: arr(m.extra).map(x => ({ title: `${x.kind || ''} — ${x.name}`, text: x.text })), setup: null, rulings: [] };
 };
 
-export const mountMonsterInfo = (DATA, h, current) => {
-  const list = [...Object.values(DATA.monsters || {}).map(m => normaliseMonster(m)), ...Object.values(DATA.rawMonsters || {}).map(m => normaliseMonster(m, true))].sort((a, b) => a.name.localeCompare(b.name));
+/** Full card renderers (shared by the monster info viewer and the Clash screen). */
+export const makeCardViews = h => {
   const line = (label, v) => arr(v).filter(Boolean).length ? h('div', { class: 'mi-l' }, h('b', {}, label + ' '), arr(v).filter(Boolean).join(' ')) : null;
   const react = c => { const w = [...arr(c.reactWindows || c.react), ...(c.aiResponseReactMarker ? ['AI Response 앞'] : [])]; return w.length ? h('div', { class: 'mi-react' }, 'REACT! ' + w.map(rwName).join(' · ')) : null; };
   const gate = g => h('div', { class: 'mi-gate' }, `[${g.stat} ${g.gte ?? (g.lte != null ? '≤' + g.lte : g.eq ?? '')}${g.gte != null ? '+' : ''} ▸ ${g.effect}]`);
@@ -25,6 +25,12 @@ export const mountMonsterInfo = (DATA, h, current) => {
     c.overcome ? h('div', { class: 'mi-tag' }, `${c.overcomeTag || 'OVERCOME'} ${String(c.overcome.n).replace(/\+$/, '')}+ ▸ ${c.overcome.effect || ''}`) : null,
     ...['wound', 'fail', 'instinct', 'critical'].map(k => line(k[0].toUpperCase() + k.slice(1) + ':', (c.responses || {})[k])), line('When revealed:', c.whenRevealed), line('', c.whileRevealed), react(c),
     c.back ? h('div', { class: 'mi-back' }, h('b', {}, `뒷면 — ${c.back.name} (AT ${c.back.at})`), ...['wound', 'fail', 'instinct', 'critical'].map(k => line(k[0].toUpperCase() + k.slice(1) + ':', (c.back.responses || {})[k])), line('When revealed:', c.back.whenRevealed), line('', c.back.whileRevealed)) : null);
+  return { line, react, gate, aiCard, bpCard };
+};
+
+export const mountMonsterInfo = (DATA, h, current) => {
+  const list = [...Object.values(DATA.monsters || {}).map(m => normaliseMonster(m)), ...Object.values(DATA.rawMonsters || {}).map(m => normaliseMonster(m, true))].sort((a, b) => a.name.localeCompare(b.name));
+  const { line, aiCard, bpCard } = makeCardViews(h);
   const setupView = cs => { if (!cs) return h('div', { class: 'mi-l muted' }, '이 왕국의 Clash Setup 미입수 또는 엔진 미구현'); const pos = [cs.monsterCells && `몬스터 ${cs.monsterCells.join('/')}${cs.facing ? ' (방향 ' + cs.facing + ')' : ''}`, cs.mobStart && `Mob ${arr(cs.mobStart).map(x => typeof x === 'string' ? x : `${x.cell}${x.facing ? '→' + x.facing : ''}`).join(', ')}`, cs.guardians && `Guardian ${cs.guardians.map(g => g.cell).join(', ')}`, (cs.knightStart || cs.knights) && `기사 ${arr(cs.knightStart || cs.knights).join(', ')}`].filter(Boolean);
     return h('div', {}, ...arr(cs.steps).map((s, i) => h('div', { class: 'mi-b' }, `${i + 1}. ${s}`)), ...pos.map(p => h('div', { class: 'mi-l' }, p)), ...arr(cs.terrain).map(t => h('div', { class: 'mi-b' }, `${t.tile}${t.size ? ' ' + t.size : ''}: ${arr(t.cells).join(', ')}`))); };
   const page = m => { const lv = Object.entries(m.levels || {}); const sec = (t, ...k) => h('details', { class: 'mi-sec', open: '' }, h('summary', {}, t), ...k);
