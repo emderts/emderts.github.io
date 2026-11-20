@@ -100,4 +100,10 @@ const fp = (c, col, row) => c.monster.cells.length === 1 ? [row + col] : [row + 
   put(c, b, 'F4'); ok(one ? true : !c.fx.hugCells(a, 1).some(x => L(c, x) === 'F5'), 'Hug: no diagonal step through a corner between two occupied spaces'); put(c, b, 'A1');
   put(c, a, 'H9'); ok(c.fx.hugCells(a, 2).length === 0, 'Hug: only while adjacent to a Monster');
   put(c, a, 'E4'); const w = { name: 'Dagger', type: 'weapon', hands: 1, attackDice: 1, text: '' }; const A = { weapon: w, _win: 'first' }; const all = c.fx.hugCells(a, 3).length, lim = c.fx.hugCells(a, 3, A).length; ok(lim <= all && c.fx.hugCells(a, 3, A).every(x => { const p0 = a.pos; a.pos = x; const r = c.inAttackRange(a, A); a.pos = p0; return r; }), `Hug in the first window keeps the Target in range (${lim}/${all})`); }
+// ---- Knight of the Fen: a Knight attacking during a Doppelknight's action sees the real Monster ----
+{ const c = mk('knight-of-the-fen'); const M = c.monster; const k = c.knights[0]; if (!c.guardians.length) await c.fenSpawn?.(); const g = c.guardians[0]; ok(!!g, '(setup) a Doppelknight exists');
+  if (g) { const real = M.cells; const far = real.every(x => x.c > 7) ? 2 : 12; for (const key of [...c.board.terrain.keys()]) c.board.terrain.delete(key); for (const o of c.knights.slice(1)) put(c, o, 'A' + (1 + c.knights.indexOf(o))); put(c, k, 'J' + far); c.board.remove(g.cells); g.cells = [P(c, 'J' + (far + 1))]; c.board.place({ kind: 'mob', n: 'G' + g.n }, g.cells);
+    const w = c.fx.usableWeapons(k)[0]; let seen = null; c._knightAttack = async () => { seen = c.attackTargets(k, w); };
+    await c.fenWithDopp(g, async () => { ok(c.attackTargets(k, w).includes('boss'), '(precondition) inside the Doppelknight action monster.cells are the Doppelknight\'s'); await c.knightAttack(k, { bonus: true }); });
+    ok(seen && !seen.includes('boss') && seen.includes(g), 'Fen: during a Doppelknight action the Knight of the Fen is not a target unless really in range'); ok(M.cells === real && c.fenBoss() === real, 'Fen: real footprint restored'); } }
 console.log(fails ? `FAIL (${fails})` : 'ALL PASS (knockback rules)'); process.exit(fails ? 1 : 0);

@@ -80,7 +80,7 @@ export const FenMixin = {
     else if (spec.target === 'closestSwamp') { const sw = this.tileCells('swamp'); t = await pickBy(ks, k => Math.min(...sw.map(s => man(s, k.pos)), 99), 'Swamp에 가장 가까운 기사'); }
     if (!t) { this.say(`Doppelknight #${g.n}: 유효 대상 없음 — 공격 생략`); return true; }
     const dice = card.ops.diceFromDopps ? 1 + this.guardians.length : card.evasionDice;
-    const pc = spec.repeatMain ? { ...card, name: `${card.name} — Doppelganger`, ops: { ...card.ops, dg: null, afterAttack: null, afterFinalAttack: null } } : { name: `${card.name} — Doppelganger`, level: card.level, type: 'attack', evasionDice: dice, evasionDifficulty: card.evasionDifficulty, targeting: [], ops: { targeting: [], move: true, range: spec.range || null, gates: [], before: [], effects: spec.effects, afterAttack: null, afterFinalAttack: null } };
+    const pc = spec.repeatMain ? { ...card, name: `${card.name} — Doppelganger`, ops: { ...card.ops, dg: null, afterAttack: null, afterFinalAttack: null } } : { name: `${card.name} — Doppelganger`, level: card.level, type: 'attack', evasionDice: dice, evasionDifficulty: card.evasionDifficulty, targeting: [`Doppelknight #${g.n} → ${t.name}`], effects: [card.doppelganger || ''].filter(Boolean), reactWindows: [], ops: { targeting: [], move: true, range: spec.range || null, gates: [], before: [], effects: spec.effects, afterAttack: null, afterFinalAttack: null } };
     this.say(`Doppelknight #${g.n}: Doppelganger — ${card.doppelganger || card.name}`, 'ai'); this.lastChainBreak = false;
     await this.fenWithDopp(g, () => this.resolveMonsterAttack(pc, { dopp: g, forceTarget: t })); return !this.lastChainBreak;
   },

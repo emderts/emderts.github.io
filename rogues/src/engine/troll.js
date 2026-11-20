@@ -37,9 +37,9 @@ export const TrollMixin = {
     try { return await fn(); } finally { g.cells = M.cells; g.facing = M.facing; M.cells = save.cells; M.facing = save.facing; this.actingGuardian = prev; this._bossSave = prevSave; }
   },
   /** While a Guardian acts, monster.cells are the Guardian's. Anything a Knight does against the Monster itself (attack targeting, range) must see the real Monster. */
-  async asBoss(fn) { const g = this.actingGuardian, save = this._bossSave; if (!g || !save || this.isFen) return fn(); const M = this.monster; g.cells = M.cells; g.facing = M.facing; M.cells = save.cells; M.facing = save.facing; this.actingGuardian = null; this._bossSave = null;
-    try { return await fn(); } finally { save.cells = M.cells; save.facing = M.facing; M.cells = g.cells; M.facing = g.facing; this.actingGuardian = g; this._bossSave = save; } },
-  asBossSync(fn) { const g = this.actingGuardian, save = this._bossSave; if (!g || !save || this.isFen) return fn(); const M = this.monster; const gc = M.cells, gf = M.facing; M.cells = save.cells; M.facing = save.facing; this.actingGuardian = null; try { return fn(); } finally { M.cells = gc; M.facing = gf; this.actingGuardian = g; } },
+  async asBoss(fn) { const g = this.actingGuardian, save = this._bossSave; if (!g || !save) return fn(); const M = this.monster; g.cells = M.cells; g.facing = M.facing; M.cells = save.cells; M.facing = save.facing; this.actingGuardian = null; this._bossSave = null;
+    try { return await fn(); } finally { save.cells = M.cells; save.facing = M.facing; if (this._realBoss) this._realBoss = save.cells; M.cells = g.cells; M.facing = g.facing; this.actingGuardian = g; this._bossSave = save; } },
+  asBossSync(fn) { const g = this.actingGuardian, save = this._bossSave; if (!g || !save) return fn(); const M = this.monster; const gc = M.cells, gf = M.facing; M.cells = save.cells; M.facing = save.facing; this.actingGuardian = null; try { return fn(); } finally { M.cells = gc; M.facing = gf; this.actingGuardian = g; } },
   async guardianMoveToward(target) {
     const B = this.board, g = this.actingGuardian; const start = g.cells[0]; if (B.adjacent(start, target)) return;
     const pass = c => B.inside(c) && !B.isObstacle(c); const dist = new Map([[B.key(start), 0]]); let fr = [start];
