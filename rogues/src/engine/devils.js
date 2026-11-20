@@ -74,7 +74,7 @@ export const DevilMixin = {
       case 'dadK': await K(o.k, o.who === 'attacker' ? k : t); return true;
       case 'dadCond': { const x = o.who === 'attacker' ? k : t; if (x && x.alive && !(o.ifAdjacent && !this.adjacentToMonster(x))) await this.addCondition(x, o.id); return true; }
       case 'dadHeatPerHit': if (t && t.alive && ctx.hits > 0) await K({ op: 'gainHeat', n: ctx.hits * (o.n || 1) }); return true;
-      case 'dadPush': { const x = o.who === 'attacker' ? k : t; if (!x || !x.alive) return true; const n = P(o.n === 'hits' ? ctx.hits : o.n === 'heat' ? x.heat : o.n === 'hits+0' ? ctx.hits : o.n); if (n > 0) await this.pushback(x, n); return true; }
+      case 'dadPush': { const x = o.who === 'attacker' ? k : t; if (!x || !x.alive) return true; const n = P(o.n === 'hits' ? ctx.hits : o.n === 'heat' ? x.heat : o.n === 'hits+0' ? ctx.hits : o.n); if (n > 0) await this.pushback(x, n, { isPush: true }); return true; }
       case 'dadPullEdge': await this.dadPullEdge(k, o.n); return true;
       case 'dadRetreat': await this.dadRetreat(o.n); return true;
       case 'dadGate': { const v = o.stat === 'passion' ? t.passion : t.heat; if (t && t.alive && v >= o.gte) { this.say(`${o.stat === 'passion' ? 'Passion' : 'Heat'} ${v} ≥ ${o.gte} → 게이트 효과`); await this.fx.runMonsterOps(o.then, ctx); } return true; }

@@ -112,7 +112,7 @@ export const FirstmenMixin = {
       case 'drag': if (t && t.alive && src && src.cells.length) await this.drag(src, t, o.n); return true;
       case 'herd': if (t && t.alive && src && src.cells.length) await this.herd(src, t, o.n); return true;
       case 'splinter': if (t) await this.splinter(t, o.n); return true;
-      case 'pushbackPerHit': { const h = ctx.attack && ctx.attack.hits ? ctx.attack.hits[t.id] || 0 : ctx.hits || 0; if (t && t.alive && h) await this.pushback(t, h * o.n); return true; }
+      case 'pushbackPerHit': { const h = ctx.attack && ctx.attack.hits ? ctx.attack.hits[t.id] || 0 : ctx.hits || 0; if (t && t.alive && h) await this.pushback(t, h * o.n, { isPush: true }); return true; }
       case 'tempSpeed': if (t && t.alive) { if (this.flags.noAiSpeed && o.n < 0) { this.say('Venator Critical: 음수 Speed 토큰 무시'); return true; } t.tempSpeed = (t.tempSpeed || 0) + o.n; this.say(`${t.name}: 임시 Speed ${o.n > 0 ? '+' : ''}${o.n} 토큰`); } return true;
       case 'vigorPerAdjacentMob': { if (!t || !t.alive || !src || !src.cells.length) return true; const n = M.mobs.filter(m => m !== src && m.cells.length && B.adjacent(m.cells[0], src.cells[0])).length * o.n; if (n) await this.loseVigor(t, n, { source: 'attack', perilCheck: o.perilCheck, armor: false }); else if (o.perilCheck) await this.perilCheck(t); return true; }
       case 'graveToJudicium': if (this.currentAttack) this.currentAttack.graveToJudicium = true; return true;
