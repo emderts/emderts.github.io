@@ -159,12 +159,12 @@ export class Campaign {
     const take = type => { const c = L.find(c => c.type === type && !lootDeck.includes(c) && !this.lootUsed?.includes(c.code)); if (c) lootDeck.push(c); return c; };
     if (win) take('fullClash');
     const nScav = 3 + (clash.scavengeBonus || 0); const tier = TIER[cur.nodeLevel];
-    for (let i = 0; i < nScav; i++) { const t = await this.ask({ type: 'pick', text: `Scavenge ${i + 1}/${nScav} — Loot 종류 선택 (지금까지: ${lootDeck.map(c => c.type).join(', ') || '없음'})`, options: [['kingdomGear', 'Kingdom Gear'], ['upgrade', 'Upgrade'], ['consumableGear', 'Consumable Gear']].map(([v, l]) => ({ label: l, value: v, detail: this.lootDetail(v, tier) })) }); take(t || 'kingdomGear'); }
+    for (let i = 0; i < nScav; i++) { const t = await this.ask({ type: 'pick', text: `Scavenge ${i + 1}/${nScav} — Loot 종류 선택 (지금까지: ${lootDeck.map(c => c.type).join(', ') || '없음'})`, options: [['kingdomGear', 'Kingdom Gear'], ['upgrade', 'Upgrade'], ['consumableGear', 'Consumable Gear']].map(([v, l]) => ({ label: l, value: v, detail: this.lootDetail(v, tier), items: this.lootItems(v, tier) })) }); take(t || 'kingdomGear'); }
     this.say(`Loot deck: ${lootDeck.map(c => c.type).join(', ')}`);
      const alive = this.knights.filter(k => !k.dead);
     // distribution: each Knight picks 1 (party decides order), then spare scrap round robin → gold
     const pool = [...lootDeck];
-    for (const ck of alive) { if (!pool.length) break; const pick = await this.ask({ type: 'pick', text: `${ck.name} — Loot 1장 선택 (Gear 교환 또는 Gold)`, options: pool.map(c => ({ label: `${c.type} (${c.gold[tier]}G)`, value: c.code, detail: this.lootDetail(c.type, tier) })) }); const card = pool.find(c => c.code === pick) || pool[0]; pool.splice(pool.indexOf(card), 1); await this.exchangeLoot(ck, card, tier, true); }
+    for (const ck of alive) { if (!pool.length) break; const pick = await this.ask({ type: 'pick', text: `${ck.name} — Loot 1장 선택 (Gear 교환 또는 Gold)`, options: pool.map(c => ({ label: `${c.type} (${c.gold[tier]}G)`, value: c.code, detail: this.lootDetail(c.type, tier), items: this.lootItems(c.type, tier) })) }); const card = pool.find(c => c.code === pick) || pool[0]; pool.splice(pool.indexOf(card), 1); await this.exchangeLoot(ck, card, tier, true); }
     let i = 0; while (pool.length) { const ck = alive[i % alive.length]; const card = pool.shift(); ck.gold += card.gold[tier]; this.say(`Spare Scrap: ${ck.name} +${card.gold[tier]}G (${card.type})`); i++; }
     if (!win) { this.say('패배 — Rosegraal 보상 없음, 노드 유지'); this.current = null; this.history.push({ round: this.round, node: node.id, monster: cur.monsterName, level: cur.level, result: 'lose' }); if (this.lost) this.result = 'lose'; return 'lose'; }
     // Rosegraal rewards
@@ -258,7 +258,13 @@ export class Campaign {
     if (type === 'kingdomGear') return this.kingdomGearList(cur.kingdom).filter(g => !g.story && okTier(g.tier) && this.ownedCount(g.name) < (g.copies || 1)).map(g => `${g.name} (${g.tier})`);
     if (type === 'consumableGear') return (G.consumables ? G.consumables.consumables.filter(c => okTier(c.tier)) : []).map(c => `${c.name} (${c.tier})`);
     if (type === 'upgrade') return (G.upgrades ? G.upgrades.upgrades.filter(u => okTier(u.tier)) : []).map(u => `${u.name} (${u.tier} ${u.kind === 'weapon' ? 'Weapon' : 'Armor'})`); return []; }
-  lootDetail(type, tier) { const n = this.lootNames(type, tier); return n.length ? `교환 가능 ${n.length}종: ${n.join(', ')}` : '교환 가능한 Gear 없음 → Gold만'; }
+  /** The same list with each card's printed stats and text, for tap-to-view chips. */
+  lootItems(type, tier) { const G = this.data.gear; const tierLevel = TIER_IDX[tier]; const okTier = t => t !== 'Legendary' && TIER_IDX[t] <= tierLevel; const cur = this.current || {}; const gear = g => ({ name: g.name, sub: `${g.tier}`, stats: this.gearStats(g.name) || this.gearStats(g), traits: (g.traits || []).join(', '), text: g.text || (this.gearDef(g.name) || {}).text || '' });
+    if (type === 'fullClash' || type === 'exhibitionClash') return (G.monster_gear ? G.monster_gear.gear.filter(g => g.monster === cur.monster && okTier(g.tier)) : []).map(gear);
+    if (type === 'kingdomGear') return this.kingdomGearList(cur.kingdom).filter(g => !g.story && okTier(g.tier) && this.ownedCount(g.name) < (g.copies || 1)).map(gear);
+    if (type === 'consumableGear') return (G.consumables ? G.consumables.consumables.filter(c => okTier(c.tier)) : []).map(c => ({ name: c.name, sub: c.tier, stats: `Consumable · ${c.tier} · Charge ${c.charges}`, traits: (c.traits || []).join(', '), text: c.text || '' }));
+    if (type === 'upgrade') return (G.upgrades ? G.upgrades.upgrades.filter(u => okTier(u.tier)) : []).map(u => ({ name: u.name, sub: u.tier, stats: `${u.kind === 'weapon' ? 'Weapon' : 'Armor'} Upgrade · ${u.tier}`, traits: '', text: u.text || '' })); return []; }
+  lootDetail(type, tier) { const n = this.lootNames(type, tier); return n.length ? `교환 가능 ${n.length}종 — 아래 이름을 누르면 카드 정보` : '교환 가능한 Gear 없음 → Gold만'; }
   async exchangeLoot(ck, card, tier, allowGear) {
     const gold = card.gold[tier]; const tierLevel = TIER_IDX[tier];
     let gearOpts = [];

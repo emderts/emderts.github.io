@@ -107,7 +107,7 @@ const renderMap = () => {
   app.replaceChildren(
     partyBar(), flash ? h('div', { class: 'good small' }, flash) : null,
     camp.result ? h('div', { class: 'card ' + (camp.result === 'win' ? 'good' : 'err') }, camp.result === 'win' ? '🏆 Rosegraal 완료 — 캠페인 승리!' : '☠ 캠페인 패배 — 기사와 부활이 모두 소진되었습니다.') : null,
-    h('div', { class: 'row' }, h('span', { class: 'small muted' }, '금색 테두리 = 선택 가능 · 점선 = 몬스터 데이터 없음 · ✕ = 완료'), h('span', { style: 'flex:1' }), h('button', { class: 'sm', onclick: () => { mapScale = Math.min(3, mapScale * 1.3); render(); } }, '＋'), h('button', { class: 'sm', onclick: () => { mapScale = Math.max(.25, mapScale / 1.3); render(); } }, '－')),
+    h('div', { class: 'row' }, h('span', { class: 'small muted' }, '금색 테두리 = 선택 가능 · 점선 = 몬스터 데이터 없음 · ✕ = 완료'), h('span', { style: 'flex:1' }), h('button', { class: 'sm', onclick: () => openModal('Rosegraal 보상', rewardsView()) }, '🏵 Rosegraal 보상'), h('button', { class: 'sm', onclick: () => { mapScale = Math.min(3, mapScale * 1.3); render(); } }, '＋'), h('button', { class: 'sm', onclick: () => { mapScale = Math.max(.25, mapScale / 1.3); render(); } }, '－')),
     h('div', { id: 'mapwrap', style: 'overflow:auto;border:1px solid var(--line);border-radius:10px;max-height:55vh;touch-action:pan-x pan-y pinch-zoom' }, renderMapSvg()),
     n ? h('div', { class: 'card' },
       h('div', {}, h('b', {}, `${n.id} — ${n.kingdom === 'sunken' ? 'Sunken Kingdom' : 'Principality of Stone'} · Lv ${ROMAN[n.level]} (${camp.tierOf(n.level)} 티어)`)),
@@ -233,9 +233,9 @@ const renderBoard = () => {
 
 
 // ---------- modal (card / trait / pile viewer) & flash overlay (ATO-style) ----------
-let modal = null; const openModal = (title, ...body) => { modal = { title, body }; render(); };
-const modalEl = () => modal ? h('div', { class: 'overlay', onclick: e => { if (e.target.classList.contains('overlay')) { modal = null; render(); } } }, h('div', { class: 'modal' }, h('button', { class: 'sm close', onclick: () => { modal = null; render(); } }, '✕'), h('h3', {}, modal.title), ...modal.body)) : null;
-const techView = t => h('div', { class: 'cardview' }, h('div', { class: 'cv-title' }, t.name), h('div', { class: 'small muted' }, `${t.unlock || ''} · 비용 ${clash ? clash.fx.costLabel(null, t) : JSON.stringify(t.cost)} · 소진 ${t.depletion}`), h('div', { class: 'cv-text' }, t.text), ...(t.gates || []).map(g => h('div', { class: 'cv-gate' }, h('b', {}, g.gate + ' '), g.text)), t.exert ? h('div', { class: 'cv-gate' }, h('b', {}, 'Exert '), `${t.exert.token === 'PowerReroll' ? 'Power Re-roll' : t.exert.token} ${t.exert.n} → ${t.exert.depletion}`) : null);
+let modal = null; const modalStack = []; const openModal = (title, ...body) => { if (modal) modalStack.push(modal); modal = { title, body }; render(); }; const closeModal = () => { modal = modalStack.pop() || null; render(); };
+const modalEl = () => modal ? h('div', { class: 'overlay', onclick: e => { if (e.target.classList.contains('overlay')) closeModal(); } }, h('div', { class: 'modal' }, h('button', { class: 'sm close', onclick: closeModal }, modalStack.length ? '←' : '✕'), h('h3', {}, modal.title), ...modal.body)) : null;
+const techView = t => h('div', { class: 'cardview' }, h('div', { class: 'cv-title' }, t.name), h('div', { class: 'small muted' }, `${t.unlock || ''} · 비용 ${clash ? clash.fx.costLabel(null, t) : costStr(t.cost)} · 소진 ${t.depletion}`), h('div', { class: 'cv-text' }, t.text), ...(t.gates || []).map(g => h('div', { class: 'cv-gate' }, h('b', {}, g.gate + ' '), g.text)), t.exert ? h('div', { class: 'cv-gate' }, h('b', {}, 'Exert '), `${t.exert.token === 'PowerReroll' ? 'Power Re-roll' : t.exert.token} ${t.exert.n} → ${t.exert.depletion}`) : null);
 const RWN = w => { const t = typeof w === 'string' ? w : JSON.stringify(w); return t.replace(/^targeting$/, 'Targeting 뒤').replace(/^effect:(\d+)$/, (_, n) => `효과 ${+n + 1}번째 줄 뒤`).replace(/^moveTag$/, '이동 태그 뒤').replace(/^afterAttack$/, 'After Attack 뒤').replace(/^afterFinalAttack$/, 'After Final Attack 뒤'); };
 const reactLine = c => { const a = c.reactWindows || c.react; const w = [...(a == null ? [] : Array.isArray(a) ? a : [a]), ...(c.aiResponseReactMarker ? ['AI Response 앞'] : [])]; return h('div', { class: 'cv-gate' }, h('b', {}, 'REACT! '), w.length ? w.map(RWN).join(' · ') : '없음'); };
 let _cv = null; const cardViews = () => _cv || (_cv = makeCardViews(h));
@@ -293,6 +293,15 @@ const terrainView = (t, key) => { const d = (DATA.terrain.terrain || []).find(x 
     (d && d.text) || t.text ? h('div', { class: 'cv-text', style: 'white-space:pre-line' }, (d && d.text) || t.text) : h('div', { class: 'small muted' }, '카드 문구 자료 없음'), h('div', { class: 'small muted' }, `보드 위 칸: ${same.join(', ')}`)); };
 
 const costStr = cost => { if (!cost || !cost.length) return '비용 없음'; const alts = Array.isArray(cost[0]) ? cost : [cost]; return alts.map(a => a.map(c => c.res === 'Action' ? (c.actions || []).map(x => x === 'combat' ? '전투 행동' : '이동 행동').join('+') : c.res === 'Heat' ? `Heat +${c.n}` : `${c.res} ${c.n}`).join(' + ')).join(' 또는 '); };
+const itemView = it => h('div', { class: 'cardview' }, h('div', { class: 'cv-title' }, it.name), it.stats ? h('div', { class: 'small muted' }, it.stats) : null, it.traits ? h('div', { class: 'cv-gate' }, h('b', {}, 'Traits '), it.traits) : null, it.text ? h('div', { class: 'cv-text', style: 'white-space:pre-line' }, it.text) : h('div', { class: 'small muted' }, '카드 문구 없음'));
+/** Rosegraal reward sheet of every party Knight: all levels and kinds; tap a reward for its card. */
+const rewardsView = () => { const R = camp.rewards; const lvls = Object.keys(R.levels).map(Number).sort((a, b) => a - b); const KO = ['C', 'H', 'P', 'T', 'V', 'G', 'W'];
+  return h('div', {}, h('div', { class: 'small muted', style: 'margin-bottom:6px' }, '노드 보상 종류에 맞는 칸에서, 노드 레벨 이하의 보상 1개를 고릅니다. ✓ = 이미 획득. 이름을 누르면 카드 정보.'), camp.knights.map(ck => h('div', { class: 'kbox', style: 'margin-bottom:8px' }, h('b', {}, ck.name + (ck.dead ? ' (사망)' : '')),
+    lvls.map(lv => { const row = R.levels[String(lv)][ck.def]; if (!row) return null; return h('div', { style: 'margin-top:4px' }, h('div', { class: 'small', style: 'color:var(--gold)' }, `Lv ${ROMAN[lv] || lv}`), KO.filter(kd => (row[kd] || []).length).map(kd => h('div', { class: 'small' }, h('span', { class: 'muted' }, `${R.kinds[kd]}: `), row[kd].map((r, i) => { const got = (ck.claimed || []).includes(`${ck.def}:${lv}:${kd}:${i}`); const label = camp.rewardLabel(r); const det = camp.rewardDetail(ck, r, kd);
+      return h('span', { class: 'tag link', style: got ? 'opacity:.55' : '', onclick: () => { const head = h('div', { class: 'small muted' }, `${ck.name} · Lv ${ROMAN[lv] || lv} · ${R.kinds[kd]}${got ? ' · 획득함' : ''}`); const tq = r && r.kind === 'technique' ? camp.knightDef(ck).techniques.find(x => x.name === r.name) : null; const gn = kd === 'G' ? String(r).split(' // ')[0] : null; const gd = gn ? camp.gearDef(gn) : null;
+        if (tq) return openModal(label, head, techView(tq)); if (gd) return openModal(label, head, itemView({ name: String(r), stats: camp.gearStats(gd), traits: (gd.traits || []).join(', '), text: gd.text || '' }));
+        openModal(label, h('div', { class: 'cardview' }, h('div', { class: 'cv-title' }, label), head, det ? h('div', { class: 'cv-text', style: 'white-space:pre-line' }, det.split(' / ').join('\n').split(' — ').join('\n')) : h('div', { class: 'small muted' }, '추가 정보 없음'))); } }, (got ? '✓ ' : '') + label); })))); }))) ); };
+
 const knightBox = k => { const active = pending && pending.q.knight === k.id;
   const info = (title, words) => () => openModal(`${k.name} — ${title}`, mentionView(k, title, words));
   const stat = (cls, n, v, sub, on) => h('div', { class: 'stat ' + cls + (on ? ' link' : ''), onclick: on || null }, h('div', { class: 'sn' }, n), h('div', { class: 'sv' }, v), sub ? h('div', { class: 'ss' }, sub) : null);
@@ -374,7 +383,7 @@ const sheet = () => {
     q.text ? h('div', { class: 'small', style: 'margin-bottom:8px' }, q.text) : null,
     curCard ? h('div', { class: 'small link', style: 'margin-bottom:8px;color:var(--gold)', onclick: () => openModal('해결 중인 공격 카드', aiView(curCard)) }, `▸ 해결 중인 카드 보기: ${curCard.name || 'Attack'}`) : null,
     q.type === 'move' ? h('div', { class: 'row' }, /Displace/.test(q.text || '') ? null : h('button', { onclick: () => answer(null) }, '이동 안 함')) : null,
-    h('div', { class: 'opts' + (numeric ? ' num' : '') }, opts.filter(o => q.type !== 'move').map(o => h('button', { class: (o.value === 'attack' || o.value === true || (numeric && o.value === q.default) ? 'primary' : '') + (o.detail ? ' wide' : ''), onclick: () => answer(o.value) }, o.detail ? [h('b', {}, o.label), h('div', { class: 'small optd' }, o.detail)] : o.label))),
+    h('div', { class: 'opts' + (numeric ? ' num' : '') }, opts.filter(o => q.type !== 'move').map(o => [h('button', { class: (o.value === 'attack' || o.value === true || (numeric && o.value === q.default) ? 'primary' : '') + (o.detail ? ' wide' : ''), onclick: () => answer(o.value) }, o.detail ? [h('b', {}, o.label), h('div', { class: 'small optd' }, o.detail)] : o.label), o.items && o.items.length ? h('div', { style: 'flex:1 1 100%;margin:-2px 0 6px' }, o.items.map(it => h('span', { class: 'tag link', onclick: () => openModal(it.name, itemView(it)) }, `${it.name}${it.sub ? ' (' + it.sub + ')' : ''}`))) : null]).flat()),
   );
 };
 
@@ -393,15 +402,16 @@ const renderClash = () => {
   const lp = document.getElementById('lpane'); if (lp) lp.scrollTop = !was.lpane || was.lpane.bottom ? lp.scrollHeight : was.lpane.top; // log sticks to the bottom unless the reader scrolled up
   for (const id of ['mpane', 'kpane']) { const e = document.getElementById(id); if (e && was[id]) e.scrollTop = was[id].top; }
 };
-const render = () => { setTimeout(syncGearChoice, 0);
+const render = () => { render0(); if (modal && !document.querySelector('.overlay')) app.append(modalEl()); };
+function render0() { setTimeout(syncGearChoice, 0);
   if (!(screen === 'clash' && clash)) document.body.classList.remove('wide');
   if (screen === 'clash' && clash) return renderClash();
   if (camp && screen === 'map') { renderMap(); if (pending) app.append(sheet()); return; }
   if (camp && screen === 'encounter') return renderEncounter();
   if (camp && screen === 'aftermath') { renderAftermath(); if (pending) app.append(sheet()); return; }
-  if (camp && screen === 'outpost') { renderOutpost(); if (pending) app.append(sheet()); if (modal) app.append(modalEl()); return; }
+  if (camp && screen === 'outpost') { renderOutpost(); if (pending) app.append(sheet()); return; }
   if (camp && screen === 'camplog') return renderCampLog();
   renderHome();
-};
+}
 render();
 mountMonsterInfo(DATA, h, () => (clash && clash.monsterDef && clash.monsterDef.id) || null);
