@@ -33,9 +33,13 @@ export const TrollMixin = {
   },
   avengerNeed() { return this.monster.level >= 4 ? 3 : this.monster.level === 3 ? 4 : 5; },
   async withGuardian(g, fn) {
-    const M = this.monster; const save = { cells: M.cells, facing: M.facing }; const prev = this.actingGuardian; this.actingGuardian = g; M.cells = g.cells; M.facing = g.facing;
-    try { return await fn(); } finally { g.cells = M.cells; g.facing = M.facing; M.cells = save.cells; M.facing = save.facing; this.actingGuardian = prev; }
+    const M = this.monster; const save = { cells: M.cells, facing: M.facing }; const prev = this.actingGuardian; const prevSave = this._bossSave; this.actingGuardian = g; this._bossSave = save; M.cells = g.cells; M.facing = g.facing;
+    try { return await fn(); } finally { g.cells = M.cells; g.facing = M.facing; M.cells = save.cells; M.facing = save.facing; this.actingGuardian = prev; this._bossSave = prevSave; }
   },
+  /** While a Guardian acts, monster.cells are the Guardian's. Anything a Knight does against the Monster itself (attack targeting, range) must see the real Monster. */
+  async asBoss(fn) { const g = this.actingGuardian, save = this._bossSave; if (!g || !save || this.isFen) return fn(); const M = this.monster; g.cells = M.cells; g.facing = M.facing; M.cells = save.cells; M.facing = save.facing; this.actingGuardian = null; this._bossSave = null;
+    try { return await fn(); } finally { save.cells = M.cells; save.facing = M.facing; M.cells = g.cells; M.facing = g.facing; this.actingGuardian = g; this._bossSave = save; } },
+  asBossSync(fn) { const g = this.actingGuardian, save = this._bossSave; if (!g || !save || this.isFen) return fn(); const M = this.monster; const gc = M.cells, gf = M.facing; M.cells = save.cells; M.facing = save.facing; this.actingGuardian = null; try { return fn(); } finally { M.cells = gc; M.facing = gf; this.actingGuardian = g; } },
   async guardianMoveToward(target) {
     const B = this.board, g = this.actingGuardian; const start = g.cells[0]; if (B.adjacent(start, target)) return;
     const pass = c => B.inside(c) && !B.isObstacle(c); const dist = new Map([[B.key(start), 0]]); let fr = [start];
@@ -45,7 +49,7 @@ export const TrollMixin = {
     const end = pool.length > 1 ? await this.ask({ type: 'move', text: `Guardian #${g.n} 이동 도착 칸 (동률)`, cells: pool, options: pool.map(c => ({ label: B.label(c), value: c })) }) || pool[0] : pool[0];
     B.remove([start]); g.cells = [end]; this.monster.cells = [end]; B.place({ kind: 'mob', n: 'G' + g.n }, [end]); this.say(`Guardian #${g.n} 이동 ${best}칸 → ${B.label(end)}`);
   },
-  async coordinatedAttack(g) { if (!g || !this.alive().length) return; this.say(`Guardian #${g.n}: Coordinated Attack`, 'ai'); await this.withGuardian(g, () => this.resolveMonsterAttack(this.monsterDef.guardian.attack, { guardian: g })); },
+  async coordinatedAttack(g) { if (!g || !this.alive().length) return; this.say(`Guardian #${g.n}: Coordinated Attack`, 'ai'); { const gc = this.monsterDef.guardian.attack; this.flash('card', { title: `Guardian #${g.n} — Coordinated Attack`, name: gc.name || 'Coordinated Attack', cls: 'ai', card: gc }); } await this.withGuardian(g, () => this.resolveMonsterAttack(this.monsterDef.guardian.attack, { guardian: g })); },
   async guardiansToTroll(n = Infinity, { crash = false } = {}) {
     const B = this.board; const order = [...this.guardians].sort((a, b) => a.n - b.n);
     for (const g of order) {
@@ -92,7 +96,7 @@ export const TrollMixin = {
     const M = this.monster, B = this.board; const t = ctx.target || ctx.primary || ctx.attacker; const k = ctx.attacker || t;
     switch (o.op) {
       case 'guardianDies': if (ctx.attack && ctx.attack.guardian) this.killGuardian(ctx.attack.guardian); return true;
-      case 'guardianBonusAttack': { if (!k || !k.alive) return true; if (!o.always && this.gBonusUsed.has(k.id)) { this.say(`${k.name}: 이번 라운드 Guardian Bonus Attack 이미 사용`); return true; } if (!this.canAttack(k, true)) { this.say(`${k.name}: Bonus Attack 불가 — 사거리 안에 대상이 없음`, 'warn'); return true; } if (!await this.yesNo(`${k.name} Bonus Attack?`, true)) return true; if (!o.always) this.gBonusUsed.add(k.id); k.bonusAttacks++; return true; }
+      case 'guardianBonusAttack': { if (!k || !k.alive) return true; if (!o.always && this.gBonusUsed.has(k.id)) { this.say(`${k.name}: 이번 라운드 Guardian Bonus Attack 이미 사용`); return true; } if (!this.asBossSync(() => this.canAttack(k, true))) { this.say(`${k.name}: Bonus Attack 불가 — 사거리 안에 대상이 없음`, 'warn'); return true; } if (!await this.yesNo(`${k.name} Bonus Attack?`, true)) return true; if (!o.always) this.gBonusUsed.add(k.id); k.bonusAttacks++; return true; }
       case 'strengthInNumbers': if (t && t.alive && M.hasTrait('Strength in Numbers')) { const g = ctx.attack && ctx.attack.ctx && ctx.attack.ctx.guardian; const x = this.guardians.filter(y => y !== g).length; if (x && ctx.hits) { this.say(`Strength in Numbers: 다른 Guardian ${x} → 추가 Vigor -${x}`); await this.loseVigor(t, x, { source: 'attack', armor: false }); } } return true;
       case 'knockbackSide': { if (!t || !t.alive) return true; const f = DIRS[M.facing]; const sides = [{ c: f.r, r: -f.c }, { c: -f.r, r: f.c }]; const nm = d => d.c > 0 ? '오른쪽' : d.c < 0 ? '왼쪽' : d.r > 0 ? '위' : '아래'; const i = await this.ask({ type: 'pick', knight: t.id, text: `${t.name}: Knockback ${o.n} 옆 방향`, options: sides.map((d, i) => ({ label: nm(d), value: i })) }) || 0; await this.pushback(t, o.n, { dir: sides[i] }); return true; }
       case 'bossMoveAway': { if (!k) return true; const c0 = this.monsterCenter(); const dc = c0.c - k.pos.c, dr = c0.r - k.pos.r; const d = Math.abs(dc) >= Math.abs(dr) ? { c: Math.sign(dc) || 1, r: 0 } : { c: 0, r: Math.sign(dr) || 1 }; let n = 0; for (let i = 0; i < o.n; i++) { const r = await this.monsterStep(d); if (r === 'edge' || r === 'obstacle') break; n++; } this.say(`White Ape Troll ${k.name}에게서 ${n}칸 멀어짐 (방향 유지)`); await this.displaceKnightsUnderMonster(); return true; }
