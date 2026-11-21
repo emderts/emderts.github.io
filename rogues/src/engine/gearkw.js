@@ -423,6 +423,15 @@ const SPECIAL = [
   [/^When you Shapeshift into an Ape, flip this card$/, () => ({ op: 'flipOnForm', form: 'ape' })],
   [/^Ignore involuntary Shapeshift$/, () => ({ op: 'ignoreShift' })],
   [/^When you start your turn in the same form you ended your previous turn in, your Knight Power die becomes one tier higher$/, () => ({ op: 'sameFormPromote' })],
+  [/^When you discard another Gear \[Gear\] card, you may place it underneath this card$/, () => ({ op: 'sackStore' })],
+  [/^X \[Heat\] \[Discard\] Return X cards from underneath this card to your Knight$/, () => ({ op: 'fSackReturn', free: true })],
+  [/^During voluntary movement, gain \+X \[Heat\] to ignore X spaces of a Terrain tile$/, () => ({ op: 'fSinkBoots', free: true })],
+  [/^You may gain 1 Bane \[Bane\] token to ignore the effects of 1 Condition card until the end of your turn$/, () => ({ op: 'fIgnoreCond', free: true })],
+  [/^During your attack, gain \+1 \[Power\], then equip a Gear \[Gear\] card with the Sword Trait from an Armory of any Knight until the end of Clash$/, () => ({ op: 'kingsReward', active: true, special: true })],
+  [/^You may give this card and a chosen Hex you have to an adjacent Knight$/, () => ({ op: 'fGiveHexed', free: true })],
+  [/^Move all Activation tokens onto chosen Mobs$/, () => ({ op: 'moveActTokens', active: true, special: true })],
+  [/^When you deal a Wound, you may place an Armor \[Armor\] token on a chosen Stonemason Ward Node or move 1 Armor \[Armor\] token between Mobs$/, () => ({ op: 'woundArmorMove' })],
+  [/^When you are hit, discard all Armor \[Armor\] tokens from Stonemason Ward Nodes or up to 3 Armor \[Armor\] tokens from a chosen Monster BP or Sheet$/, () => ({ op: 'hitDemagnetize', active: true, special: true })],
   [/^Gain \+(\d+) to Incarnation rolls$/, m => ({ op: 'incarnBonus', n: +m[1] })],
   [/^Roll Out(?: \(.*\))?$/, () => ({ op: 'rollOut', active: true })],
   [/^Ignore Swamp Terrain tiles$/, () => ({ op: 'ignoreSwamp' })],
@@ -487,7 +496,7 @@ export function parseSentence(s) {
     if ((m = /^\[Discard\]\s*/.exec(r))) { (o.cost = o.cost || {}).discard = true; r = r.slice(m[0].length); continue; }
     if ((m = /^(\d+) \[Charge\]\s*/.exec(r))) { (o.cost = o.cost || {}).charge = +m[1]; r = r.slice(m[0].length); continue; }
     break; }
-  const b = body(r); if (!b) { if (/\b(Delve|Deep Fog|Trailmake|Wander|Rotation|Adventure|Ambush|Encounter|Exploration|Shortcuts?|Possessed|Clues?|District|Investigation)\b/.test(text)) return { op: 'nonClash', status: 'na', text }; if (o.tier === 'POSTGAME') return { op: 'postgame', status: 'na', text }; /* opens only above Dragon level (Withergraal) — never in the Rosegraal (소유자 확인 2026-11-21) */ if (/^\[(?:red crossed-sticks X|yellow open-book) icon\]:/.test(text)) return { op: 'squire', status: 'na', text }; /* Squire part of the card — ignored (소유자 확인 2026-11-21) */ return { op: 'text', status: 'text', text }; }
+  const b = body(r); if (!b) { if (/\b(Delve|Deep Fog|Trailmake|Wander|Rotation|Adventure|Ambush|Encounter|Exploration|Shortcuts?|Possessed|Clues?|District|Investigation)\b/.test(text)) return { op: 'nonClash', status: 'na', text }; if (/^X \[Heat\] \[Discard\] Return X cards from underneath this card to your Knight/.test(text)) return { op: 'fSackReturn', free: true, status: 'ok', special: true, text }; if (/^Start of Monster Round: 1 \[Heat\] Move all Activation tokens onto chosen Mobs/.test(text)) return { op: 'moveActTokens', active: true, status: 'ok', special: true, cost: { heat: 1 }, text }; if (o.tier === 'POSTGAME') return { op: 'postgame', status: 'na', text }; /* opens only above Dragon level (Withergraal) — never in the Rosegraal (소유자 확인 2026-11-21) */ if (/^\[(?:red crossed-sticks X|yellow open-book) icon\]:/.test(text)) return { op: 'squire', status: 'na', text }; /* Squire part of the card — ignored (소유자 확인 2026-11-21) */ return { op: 'text', status: 'text', text }; }
   const k = { ...b, ...o, text }; if (k.op === 'deadly' && k.cost) { k.op = 'deadlyPaid'; k.status = 'ok'; k.special = true; k.active = true; } if (k.atTurnStart && k.op === 'hide') k.op = 'hideStart'; if (k.op === 'tumble' && (k.cost || k.reaction)) { k.op = 'tumblePaid'; k.special = true; k.active = true; } if (k.op === 'soak' && k.cost) { k.op = 'soakPaid'; k.special = true; k.active = true; } if (k.status === 'ok' && (k.cost || k.reaction) && !ACTIVE_OK.has(k.op) && !k.special) k.status = 'pending'; // costed versions of constant keywords need their own timing window
   return k;
 }

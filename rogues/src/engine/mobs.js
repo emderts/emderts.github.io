@@ -54,6 +54,7 @@ export const MobMixin = {
   async mobMonsterRound() {
     const M = this.monster; await this.guard(() => this.firstmenStartMR()); if (this.isWN) await this.wnStartMR();
     for (const m of M.mobs) for (const t of m.tokens) t.ready = true;
+    await this.guard(() => this.fx.startMonsterRoundGear());
     for (let guard = 0; guard < 40; guard++) {
       const mob = M.mobs.find(m => m.tokens.some(t => t.ready)); if (!mob) break; const tok = mob.tokens.find(t => t.ready);
       await this.guard(() => this.icdBeforeActivation()); if (!M.mobs.includes(mob) || !mob.tokens.includes(tok)) continue;

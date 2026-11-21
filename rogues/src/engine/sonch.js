@@ -46,7 +46,7 @@ export const SonchMixin = {
     if (k.pendingSonch) { A.sonch = k.pendingSonch; k.pendingSonch = null; }
   },
   async sonchSecondWindow(k, A) { const s = A.sonch; if (!s || s.guess == null) return; A.sonch = null; const right = !!A.wounded === s.guess; if (right) { this.poolAdd('power', s.n); this.say(`Veteran's Insight: 예측 적중 → Power ${s.n}`, 'tech'); } else { this.poolAdd('break', 1); this.say("Veteran's Insight: 예측 빗나감 → Break 1", 'tech'); } },
-  async sonchInspire(n) { for (let i = 0; i < n; i++) { const kd = this.alive().filter(x => this.knockedDown(x)); if (!kd.length) break; const id = kd.length > 1 ? await this.ask({ type: 'pickKnight', text: 'Inspire — 일으킬 기사', options: kd.map(x => ({ label: x.name, value: x.id })) }) : kd[0].id; const x = kd.find(y => y.id === id) || kd[0]; this.standUp(x); this.say(`Inspire: ${x.name} 일어남`, 'tech'); } },
+  async sonchInspire(n) { for (let i = 0; i < n; i++) { const kd = this.alive().filter(x => this.knockedDown(x)); if (!kd.length) break; const id = kd.length > 1 ? await this.ask({ type: 'pickKnight', text: 'Inspire — 일으킬 기사', options: kd.map(x => ({ label: x.name, value: x.id })) }) : kd[0].id; const x = kd.find(y => y.id === id) || kd[0]; if (await this.eudesConfirm(x) && (this.standUp(x), true)) this.say(`Inspire: ${x.name} 일어남`, 'tech'); } },
   /** About to draw an AI card: Knowing Is Half the Battle. */
   async sonchAIDraw() {
     const d = this.monster.ai; if (!d || !d.cards || d.cards.length < 2) return;
