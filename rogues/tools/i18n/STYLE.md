@@ -88,6 +88,11 @@
 - Panzergeists · Haunts of Utrebant 문구 확정 (소유자 확인 2026-11-21).
 | Engulfed / Crit Evade Fail / Crit Miss / Critical Response | 삼켜짐 / 치명적 회피 실패 / 치명적 빗나감 / 치명타 대응 |
 | Unexhaust / Total Power / Support / Melee Weapon / Monster Sheet | 소진 해제 / 총 위력 / 보조 / 근접 무기 / 몬스터 시트 |
-| AI Suppress / [Combat action] / Ward Node / Stonemason | AI 억제 / [전투 행동] / 수호 마디 / 석공 |
+| AI Suppress / [Combat action] / Ward Node / Stonemason | AI 억제 / [전투 행동] / 수호 노드 / 석공 기사 |
 
-- Firstmen Warriors · Lictor Hunters 문구 확정. Rust 특성 = "녹" 유지. Suit Up! = 갑옷을 걸쳐라!, Gruesome / Savage Display = 섬뜩한 / 야만적인 광경, Guerrilla Tactics = 게릴라 전술 (소유자 확인 2026-11-21). Splinter / Decoy / Dwell 은 대안 검토 중 (현재 파편 / 미끼 / 체류).
+- Firstmen Warriors · Lictor Hunters 문구 확정. Rust 특성 = "녹" 유지. Suit Up! = 갑옷을 걸쳐라!, Gruesome / Savage Display = 섬뜩한 / 야만적인 광경, Guerrilla Tactics = 게릴라 전술 (소유자 확인 2026-11-21). Splinter = 여파, Decoy = 위장 (떼어 둔 미니어처 = 위장물, Decoying Mob = 위장한 개체), Dwell = 늪 숨기 (소유자 확인 2026-11-21).
+| Wolf Down / Fleisch / Berserk / devoured | 먹어치우기 / 살코기 / 광폭 상태 / 잡아먹힙니다 |
+| Peril Threshold / Instant Death / Sequential Attack | 위험 한계치 / 즉사 / 연속 공격 |
+| Tree Climb / Auto-break / Full Miss / Range Attack | 나무 타기 / 자동 파쇄 / 완전 빗나감 / 원거리 공격 |
+
+- Knight of the Fen · Stonemason Knight 문구 확정. Doppelknight = 도플 기사, Ward Node = 수호 노드, Stonemason = 석공 기사로 통일 (소유자 확인 2026-11-21). Support / Hug / Sunder 는 대안 검토 중 (현재 보조 / 선회 / 절단).

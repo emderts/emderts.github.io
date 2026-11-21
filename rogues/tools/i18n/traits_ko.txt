@@ -36,7 +36,7 @@ Impenetrable Shell = 뚫을 수 없는 껍데기
 ## First Men
 Battle Tactics = 전투 전술
 Mangrove Deployment = 맹그로브 전개
-Taunt & Decoy = 조롱과 미끼
+Taunt & Decoy = 조롱과 위장
 Seek & Destroy = 수색 섬멸
 It’s a Trap! = 함정이다!
 Advanced Tactics = 고급 전술
@@ -72,7 +72,7 @@ Misshapen Hump = 기형 혹
 ## Knight of the Fen
 One with the Swamp = 늪과 하나로
 We Are Many = 우리는 여럿이다
-Doppelknight = 도플나이트
+Doppelknight = 도플 기사
 Ooze Trap = 점액 함정
 Doppelganger = 도플갱어
 Spread Thin = 얇게 퍼짐

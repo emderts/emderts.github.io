@@ -75,7 +75,7 @@
  "Tactic A: X: Pull X, Drag X.": "전술 A: X: 당기기 X, 끌기 X.",
  "Tactic B: X: Pull X, Drag X.": "전술 B: X: 당기기 X, 끌기 X.",
  "Tactic A: X: Herd X.": "전술 A: X: 몰기 X.",
- "Tactic B: X: Splinter X.": "전술 B: X: 파편 X.",
+ "Tactic B: X: Splinter X.": "전술 B: X: 여파 X.",
  "Starting from the lowest number, each Mob moves 2 spaces to another closest Mob until adjacent.": "번호가 가장 낮은 개체부터, 각 개체가 가장 가까운 다른 개체에게 인접할 때까지 2칸 이동합니다.",
  "End of Monster Round: Starting from the lowest number, each Mob moves 2 spaces to another closest Mob until adjacent.": "몬스터 라운드 종료 시: 번호가 가장 낮은 개체부터, 각 개체가 가장 가까운 다른 개체에게 인접할 때까지 2칸 이동합니다.",
  "Starting from the lowest number, each Mob moves 2 spaces directly away from most Knights.": "번호가 가장 낮은 개체부터, 각 개체가 가장 많은 기사에게서 곧장 멀어지는 방향으로 2칸 이동합니다.",
