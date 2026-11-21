@@ -97,10 +97,16 @@
 
 - Knight of the Fen · Stonemason Knight 문구 확정. Doppelknight = 도플 기사, Ward Node = 수호 노드, Stonemason = 석공 기사로 통일 (소유자 확인 2026-11-21). Support = 지원, Hug = 밀착 이동, Sunder = 쪼개기, Fleischritter = 플라이슈리터(뜻풀이 없이) (소유자 확인 2026-11-21).
 | Hex / Hexed / Party Hex | 주술 / 주술에 걸린 / 파티 주술 |
-| Omen / Eternal Pain / Master's / Mortal Fault / Bad Luck / Tongue-Tied Hex | 징조 / 영원한 고통 / 주인의 / 치명적 결함 / 불운 / 혀 묶임 주술 |
+| Omen / Eternal Pain / Master's / Mortal Fault / Bad Luck / Tongue-Tied Hex | 징조 / 영원한 고통 / 주인의 / 필멸의 결함 / 불운 / 혀 묶임 주술 |
 | Stray / Bog Move / Mud Wisp / Wisper Zone / Weakspot | 헤매기 / 수렁 이동 / 진흙 도깨비불 / 도깨비불 영역 / 약점 |
 | Crit die / Crit Chance / Critical Wound | 치명타 주사위 / 치명타 기회 / 치명타 부상 |
 | Mettle card / Heroic Arc / Refresh step / Poison Limit | 기개 카드 / 영웅 서사 / 재정비 단계 / 독 한계 |
-| Drill / Malediction (Dormant) / Climb / Hold On / Bridle | 굴착 / 악언 (휴면) / 오르기 / 매달리기 / 고삐 잡기 |
+| Drill / Malediction (Dormant) / Climb / Hold On / Bridle | 굴착 / 저주 (잠복) / 오르기 / 매달리기 / 고삐 잡기 |
 
 - Knighteater · White Ape Troll 문구 확정 (소유자 확인 2026-11-21).
+| Fallen Knight / Shockwave / Loose String / Subjugated | 타락한 기사 / 충격파 / 늘어진 줄 / 복속됨 |
+| Command Attack / Wave Attack / effective range / column / row | 명령 공격 / 파동 공격 / 유효 범위 / 열 / 행 |
+| Ferrobaptism / Gatekeeper / Gatecrasher / Escape / Peril Arc | 쇠의 세례 / 문지기 / 문 부수기 / 탈출 / 위험 궤적 |
+
+- Bog Witch · King Laid Low 문구 확정. Doomed = 파멸적, Mortal Fault Hex = 필멸의 결함 주술, Malediction = 아이템 이름과 같이 "저주 (잠복)" (소유자 확인 2026-11-22).
+- Bog track: 이 게임에는 트랙 그림이 없으므로 한국어 문구에 칸 순서를 적는다 — "가장 왼쪽 칸(늪)", "늪 → 진흙 도깨비불 → 썩은 그루터기 → 다시 늪". Weakspot W space = "약점 칸" (소유자 확인 2026-11-22).
