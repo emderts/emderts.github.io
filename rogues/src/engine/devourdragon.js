@@ -28,10 +28,10 @@ export const DevourMixin = {
     const kt = this.knightTurn.bind(this); this.knightTurn = async k => { try { return await kt(k); } finally { if (!C.result) await C.guard(() => C.yddTurnEnd(k)); C.checkEnd(); } };
     const ka = this.knightAttack.bind(this); this.knightAttack = async (k, opts) => { const d = C.ydd.stack.length; let r; try { r = await ka(k, opts); } finally { const A = C.ydd.stack[d]; C.ydd.stack.length = d; if (A && A.dgVP && A.wounded && k.alive) { k.gainPassion(1); C.say(`${k.name}: VP에서 Wound → +1 [P] (${k.passion})`, 'tech'); } } return r; };
     const aa = this.afterAction.bind(this); this.afterAction = async () => { await aa(); await C.yddPhaseCheck(); };
-    const a1 = this.attackOneTarget.bind(this); this.attackOneTarget = async (attack, k) => { const p = C.ydd.cur; C.ydd.cur = k; const hid = [];
-      // Hungry Chomp / Fearsome Feast: "If you declared a Shield as your active Weapon during this Attack, discard it." — the declaration is asked up front; an undeclared Shield gives nothing this Attack
-      if (k.alive && (attack.card.ops.effects || []).some(o => o.op === 'yddShield')) { const sh = k.gear.filter(g => !g.discarded && !g.exhausted && g.type === 'weapon' && C.fx.gearTraits(k, g).includes('Shield')); let used = null; for (const g of sh) { if (!used && await C.yesNo(`${k.name}: ${attack.card.name} — ${g.name}(Shield)을 이 공격의 active Weapon으로 선언? (방어 능력 사용 가능, 공격 후 버려짐)`, false)) { used = g; (attack.shieldWeapon = attack.shieldWeapon || {})[k.id] = g; C.say(`${k.name}: ${g.name}을(를) active Weapon으로 선언`, 'tech'); } else { g.discarded = true; hid.push(g); } } }
-      try { return await a1(attack, k); } finally { for (const g of hid) g.discarded = false; C.ydd.cur = p; } };
+    const a1 = this.attackOneTarget.bind(this); this.attackOneTarget = async (attack, k) => { const p = C.ydd.cur; C.ydd.cur = k;
+      // Hungry Chomp / Fearsome Feast: "If you declared a Shield as your active Weapon during this Attack, discard it." — here the active Weapon is always asked, even with a single defensive Weapon
+      if (k.alive && (attack.card.ops.effects || []).some(o => o.op === 'yddShield')) await C.fx.defWeaponPick(k, attack, { force: true });
+      try { return await a1(attack, k); } finally { C.ydd.cur = p; } };
     const ag = this.allGatesOn.bind(this); this.allGatesOn = () => { const k = C.ydd.cur; if (k && k.alive && !k.onVP && C.hasCondition(k, CBH) && C.yddOnTower(k)) { C.say(`${k.name}: Called by the Heavens + Tower 위 — 모든 Gated Effect 적용`, 'ai'); return true; } return ag(); };
     const die = this.die.bind(this); this.die = async (k, why) => { const had = C.divineTarget === k; const r = await die(k, why); if (had && !k.alive) { C.divineTarget = null; } return r; };
     const vc = this.vpClimb.bind(this); this.vpClimb = k => { if (C.divineTarget === k) { C.say(`${k.name}: Divine Target은 VP로 이동할 수 없음`); return false; } const r = vc(k); if (r) C.removeCondition(k, CBH); return r; };
@@ -115,7 +115,7 @@ export const DevourMixin = {
       case 'yddFool': await this.yddFool(); return true;
       case 'yddCbh': if (who && who.alive) await this.addCondition(who, CBH); return true;
       case 'yddCbhChoice': { if (!k || !k.alive) return true; const has = this.hasCondition(k, CBH); if (await this.yesNo(`${k.name}: Called by the Heavens Condition 카드를 ${has ? '버림' : '얻음'}?`, !!has)) { if (has) this.removeCondition(k, CBH); else await this.addCondition(k, CBH); } return true; }
-      case 'yddShield': if (t && t.alive && A && A.shieldWeapon && A.shieldWeapon[t.id]) { const g = A.shieldWeapon[t.id]; g.discarded = true; this.say(`${t.name}: 이번 공격에 active Weapon으로 선언한 Shield ${g.name} 버림`, 'dmg'); } return true;
+      case 'yddShield': if (t && t.alive && A && A.defW && A.defW[t.id] && !A.defW[t.id].discarded && this.fx.gearTraits(t, A.defW[t.id]).includes('Shield')) { const g = A.defW[t.id]; g.discarded = true; this.say(`${t.name}: 이번 공격에 active Weapon으로 선언한 Shield ${g.name} 버림`, 'dmg'); } return true;
       case 'yddPull': if (t && t.alive && hits > 0 && !t.onVP) await this.pull(M, t, o.n); return true;
       case 'yddIfAdj': if (t && t.alive && !t.onVP && this.adjacentToMonster(t)) await this.fx.runMonsterOps(o.then, ctx); return true;
       case 'yddDevour': if (t && t.alive && (o.gte == null || hits >= o.gte)) await this.yddDevour(o.who === 'attacker' ? k : t, A && A.card ? A.card.name : 'Devour'); return true;

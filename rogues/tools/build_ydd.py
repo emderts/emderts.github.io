@@ -94,7 +94,7 @@ d = {'id': 'young-devour-dragon', 'name': S['name'], 'kind': 'boss', 'code': S['
   'Zone 도식: Bile Vomit = 정면에서 넓어지는 삼각형 3줄, Tail Lash = 정면 3칸. Black Hole "All spaces in front" = Dragon의 앞쪽 호 전체',
   'Command of the Famishing: 모두 회피하면 Called by the Heavens 획득과 "[P]만큼 [V] 손실"도 없음. 이동과 [P] 획득은 명중 수에 따름',
   'Madness of the Famishing: 명중 시 일어나서 가장 가까운 다른 기사 쪽으로 Speed만큼 이동, 인접하면 Knight Power dice를 3번 굴려 나온 기호 수만큼 그 기사가 [V] 손실 + Peril Check [해석, 확인 필요]',
-  'Lumbering: 기사의 Pushback / Knockback / Drag / Pull은 Dragon에 무효. Hungry Chomp·Fearsome Feast: 그 공격에서 Shield를 active Weapon으로 선언했으면 버림. Snatch \'n\' Snap 2 hits: Hand 슬롯 1개 비활성 — 넘치는 Weapon은 골라서 버림. World Eater 1+ hit: Talent 카드 버림(Clash 종료까지). Inescapable Maw: Devoured 기사는 이 Clash 동안 되살리는 효과의 대상이 아님(Bottomless Stomach Critical 제외)',
+  'Lumbering: 기사의 Pushback / Knockback / Drag / Pull은 Dragon에 무효. Hungry Chomp·Fearsome Feast: 이 두 공격에서는 방어용 Weapon이 하나뿐이어도 active Weapon을 물어보고, Shield를 선언했으면 버림. Snatch \'n\' Snap 2 hits: Hand 슬롯 1개 비활성 — 넘치는 Weapon은 골라서 버림. World Eater 1+ hit: Talent 카드 버림(Clash 종료까지). Inescapable Maw: Devoured 기사는 이 Clash 동안 되살리는 효과의 대상이 아님(Bottomless Stomach Critical 제외)',
   '미구현: Exhibition Clash (항상 Full Clash)',
  ]}
 # The whole Young Devour Dragon sheet was checked by the owner on 2026-11-21
