@@ -64,6 +64,7 @@ export class Board {
    * through (or along the edge of) an Obscuring terrain cell. Miniatures never block LoS. Corners touching are fine.
    */
   hasLoS(from, to) {
+    if (this._noObsc) return true;
     const obscuring = [...this.terrain.entries()].filter(([, t]) => t.obscuring).map(([k]) => { const [c, r] = k.split(',').map(Number); return { c, r }; });
     if (!obscuring.length) return true;
     const corners = cell => [[cell.c - 0.5, cell.r - 0.5], [cell.c + 0.5, cell.r - 0.5], [cell.c - 0.5, cell.r + 0.5], [cell.c + 0.5, cell.r + 0.5]];

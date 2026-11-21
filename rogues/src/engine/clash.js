@@ -70,7 +70,7 @@ export class Clash {
     const perilArc = this.data.knights.peril_arcs.arcs[k.def].find(a => a.name === (k.perilArc || def.setup.perilArc));
     const th = ['Minor', 'Major', 'Grave', 'Judicium'].map(p => ({ peril: p, atVigor: perilArc.levels[p].vigor[0], heatLimit: perilArc.levels[p].heatLimit }));
     const kn = new Knight({ id: `${k.def}-${i}`, name: k.name || def.name + (cfg0(i)), portrait, perilArc: { maxVigor: perilArc.maxVigor + (k.maxVigorMod || 0), uninjuredHeatLimit: perilArc.levels.Uninjured.heatLimit, thresholds: th } });
-    kn.def = def; kn.knightId = k.def; kn.devotion = k.devotion || 0; kn.perilArcDef = perilArc; kn.portraitDef = portrait;
+    kn.def = def; kn.knightId = k.def; kn.devotion = k.devotion || 0; kn.saint = k.saint ? ((this.data.decks.saints && this.data.decks.saints.saints) || []).find(s => s.name === k.saint) || null : null; kn.perilArcDef = perilArc; kn.portraitDef = portrait;
     kn.heroicArc = def.heroicArcs.find(a => a.name === (k.heroicArc || def.setup.heroicArc)); kn.talent = def.talents.find(t => t.name === (k.talent || def.setup.talent));
     kn.hand = (k.techniques || def.setup.techniques).map(n => ({ ...def.techniques.find(t => t.name === n) }));
     kn.gear = (k.gear || def.setup.gear).map(n => ({ ...this.gearByName(n), exhausted: false, discarded: false }));
@@ -114,7 +114,8 @@ export class Clash {
   /** Is the Knight within the active weapon's range of its Attack target (Reach / Ranged / Unwieldy)? */
   inAttackRange(k, A) { if (k.engulfed) return true; const cells = A.guardian ? A.guardian.cells : A.mob ? A.mob.cells : this.monster.cells; return this.fx.inWeaponRange(k, A.weapon, cells); }
   /** Everything the Knight can attack with weapon `w` right now: Mobs (Mob Clash) or 'boss' / Guardians (Boss Clash). */
-  attackTargets(k, w) { const out = []; if (this.monster.isMob) { const adj = this.adjacentMobs(k), att = this.attackableMobs(k); const locked = att.length < adj.length; for (const m of [...this.monster.mobs, ...(this.troll ? [this.troll] : [])]) if (m.cells.length && this.fx.inWeaponRange(k, w, m.cells) && (!locked || att.includes(m))) out.push(m); return out; } if (this.fx.inWeaponRange(k, w, this.monster.cells) && (k.engulfed || this.board.hasLoS([k.pos], this.monster.cells))) out.push('boss'); for (const g of this.guardians || []) if (!k.engulfed && this.fx.inWeaponRange(k, w, g.cells)) out.push(g); return out; }
+  attackTargets(k, w) { const B0 = this.board; B0._noObsc = this.fx.gearHas(k, 'ignoreObscuring'); /* Cat Eye Glasses: "Ignore Obscuring." */ try { return this._attackTargets0(k, w); } finally { B0._noObsc = false; } }
+  _attackTargets0(k, w) { const out = []; if (this.monster.isMob) { const adj = this.adjacentMobs(k), att = this.attackableMobs(k); const locked = att.length < adj.length; for (const m of [...this.monster.mobs, ...(this.troll ? [this.troll] : [])]) if (m.cells.length && this.fx.inWeaponRange(k, w, m.cells) && (!locked || att.includes(m))) out.push(m); return out; } if (this.fx.inWeaponRange(k, w, this.monster.cells) && (k.engulfed || this.board.hasLoS([k.pos], this.monster.cells))) out.push('boss'); for (const g of this.guardians || []) if (!k.engulfed && this.fx.inWeaponRange(k, w, g.cells)) out.push(g); return out; }
   /** Knockback / Knockdown printed on a melee Attack or a BP Response needs the Knight to be adjacent to its source (e.g. it does not apply after a Reflex move away). */
   kbAdjacent(t, ctx = {}) { const g = (ctx.attack && ctx.attack.guardian) || this.actingGuardian; if (g && g.cells && g.cells.length && !t.onVP && !g.isField) return this.board.footprintsAdjacent([t.pos], g.cells); return this.adjacentToMonster(t); }
   kbNeedsAdjacent(ctx = {}) { if (ctx.attacker) return true; const c = ctx.attack && ctx.attack.card; if (!c || !c.ops) return false; const o = c.ops; return c.type !== 'zone' && !o.range && !o.zoneAroundTarget && !o.zoneAroundSelf && !o.zoneDiagram && !o.zoneFn && !o.command && !o.pathAttack; }
@@ -483,6 +484,7 @@ export class Clash {
   /** Vigor loss from a Monster Attack: Armor Roll first (if any armor dice), then apply; Peril Check / Judicium handled by caller flags. */
   async loseVigor(k, n, { source = 'attack', perilCheck = false, armor = true } = {}) {
     if (!k.alive || n <= 0) return 0;
+    if (k._incarn && k._incarn.vigorInvert) { const b = k.vigor; k.vigor = Math.min(k.maxVigor, k.vigor + n); this.say(`${k.name}: ${k._incarn.name} — Vigor 손실 ${n} 대신 획득 (${b}→${k.vigor})`, 'tech'); return 0; }
     // Judgement (rulebook p.53): "Vigor loss caused by Judgements cannot be mitigated with an Armor Roll"
     if (armor && source === 'attack' && this.currentAttack && this.currentAttack.card && this.currentAttack.card.ops && this.currentAttack.card.ops.judge) { armor = false; this.say(`${k.name}: Judgement — Armor Roll 없음`, 'tech'); }
     let loss = n;
@@ -541,6 +543,7 @@ export class Clash {
 
   // ---------- conditions / movement effects ----------
   async addCondition(k, id, { tokens = 0 } = {}) {
+    { const cd = this.conditionDefs[id]; if (k._incarn && k._incarn.immuneBody && cd && cd.type === 'body') { this.say(`${k.name}: ${id} Condition 무시 (${k._incarn.name})`, 'tech'); return; } }
     { const cd = this.conditionDefs[id]; if (cd && cd.type) for (const g of k.gear) { if (g.discarded || g.exhausted) continue; const o = this.fx.constKw(k, g).find(x => x.op === 'ignoreCondType' && x.type === cd.type); if (o && (!o.ask || await this.yesNo(`${k.name}: ${g.name} — ${id} Condition 무시?`, true))) { this.say(`${k.name}: ${id} Condition 무시 (${g.name})`, 'tech'); return; } } }
     if (id === 'Exposed' && this.flags && this.flags.noExposed) { this.say(`${k.name}: Exposed를 받을 수 없음 (Milky Eyes)`); return; }
     const def = this.conditionDefs[id]; if (!def) { this.say(`[미구현 Condition] ${id}`, 'warn'); return; }
@@ -845,7 +848,8 @@ export class Clash {
     await this.fx.arcAt(k, A, 'power');
     // 6. power roll
     const TIERS = ['red', 'black', 'white']; const kd = TIERS[Math.min(2, TIERS.indexOf(k.powerDie) + (A.promote || 0))]; if (A.promote) this.say(`Power Dice Promotion: Knight Power die ${k.powerDie} → ${kd}`);
-    const wpOf = col => { const p = w.weaponPower; if (!p) return 0; if (Array.isArray(p.dice)) return p.dice.filter(c => c === col).length; if (p.dice && typeof p.dice === 'object') return p.dice[col] || 0; return p.colour === col ? p.n : 0; }; // weapon power per hit, mixed colours supported
+    const wpOf0 = col => { const p = w.weaponPower; if (!p) return 0; if (Array.isArray(p.dice)) return p.dice.filter(c => c === col).length; if (p.dice && typeof p.dice === 'object') return p.dice[col] || 0; return p.colour === col ? p.n : 0; }; // weapon power per hit, mixed colours supported
+    const wpOf = col => { const pr = Math.min(wpOf0('black'), this.fx.constKw(k, w).filter(o => o.op === 'wpPromote').length); return wpOf0(col) + (col === 'white' ? pr : col === 'black' ? -pr : 0); }; // Shield of the Defiant: black Power die → white
     const pHits = A.powerHitCap ? Math.min(A.hits, A.powerHitCap) : A.hits; if (pHits < A.hits) this.say(`Power Pool은 명중 ${pHits}개까지만 계산`);
     const pool = buildPowerPool({ red: wpOf('red') * pHits + (kd === 'red' ? (k.powerDice || 1) : 0) + A.extraPool.red, black: wpOf('black') * pHits + (kd === 'black' ? (k.powerDice || 1) : 0) + A.extraPool.black, white: wpOf('white') * pHits + (kd === 'white' ? (k.powerDice || 1) : 0) + A.extraPool.white, raw: (w.bonusPower && w.bonusPower.raw ? w.bonusPower.raw : 0) + A.extraPool.raw }, this.data.components.dice.limits);
     if (w.bonusPower && w.bonusPower.colour) pool[w.bonusPower.colour] += w.bonusPower.n;

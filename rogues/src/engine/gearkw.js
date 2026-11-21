@@ -3,12 +3,12 @@
 // status: 'ok' = resolved by the engine · 'pending' = recognised keyword, no engine effect yet · 'na' = irrelevant in these Kingdoms ·
 // 'text' = free text the parser does not understand (resolved manually by the players).
 const TOKENS = { 'Break': 'break', 'Opening': 'opening', 'Closing': 'closing', 'Hope': 'hope', 'Black': 'black', 'Sunder': 'sunder', 'Fire': 'fire', 'Power': 'power', 'Cantrip': 'cantrip', 'Spell': 'spell', 'Rouse': 'rouse', 'Diversion': 'diversion', 'Improved Diversion': 'improvedDiversion', 'Fleisch': 'fleisch' };
-const OK = { 'Commit': 'commit', 'Cumbersome': 'cumbersome', 'Tireless': 'tireless', 'Deadly': 'deadly', 'Overbreak': 'overbreak', 'Envenomed': 'envenomed', 'Attack Re-roll': 'attackReroll', 'Power Re-roll': 'powerReroll',
+const OK = { 'Ignore Obscuring': 'ignoreObscuring', 'Commit': 'commit', 'Cumbersome': 'cumbersome', 'Tireless': 'tireless', 'Deadly': 'deadly', 'Overbreak': 'overbreak', 'Envenomed': 'envenomed', 'Attack Re-roll': 'attackReroll', 'Power Re-roll': 'powerReroll',
   'Reposition': 'reposition', 'Pushback': 'pushback', 'Vault': 'vault', 'Hug': 'hug', 'Daze': 'daze', 'Provoke': 'provoke', 'Inspire': 'inspire', 'Motivate': 'motivate', 'Drag': 'drag', 'Reach': 'reach', 'Unwieldy': 'unwieldy',
   'Soak': 'soak', 'Poison Resilience': 'poisonResilience', 'Tumble': 'tumble', 'Stalwart': 'stalwart', 'Rocksteady': 'rocksteady', 'Braced': 'braced', 'Armor-piercing': 'armorPiercing',
   'Deploy': 'deploy', 'Guard': 'guard', 'Pull': 'pull', 'Knockback': 'knockback', 'Second Chance': 'secondChance', 'Superior Chance': 'secondChance', 'Lifeline': 'lifeline', 'Reflex': 'reflex', 'Advanced Reflex': 'reflex2', 'Superior Reflex': 'reflex3', 'Precise': 'precise', 'Bypass': 'bypass', 'Superior Bypass': 'superiorBypass', 'Advanced Bypass': 'bypass', 'Defy': 'defy', 'Advanced Defy': 'defy2', 'Superior Defy': 'defy3',
   'Block': 'block', 'Advanced Block': 'block2', 'Superior Block': 'block3', 'Dodge': 'dodge', 'Lesser Dodge': 'dodge0', 'Advanced Dodge': 'dodge2', 'Superior Dodge': 'dodge3', 'Reinforce': 'reinforce', 'Advanced Reinforce': 'reinforceBlack', 'Superior Reinforce': 'reinforceWhite' };
-const PENDING = ['Armor Re-roll', 'Hide', 'Pass', 'Greater Pass', 'Spotlight', 'Heartseeker', 'Soulseeker', 'Fortify', 'Acrobatics', 'Roll Out', 'Jump', 'Advanced Jump', 'Area', 'Bane', 'Parasitize', 'Poison', 'Toxify', 'Sacrifice', 'Rush', 'Improved Rush', 'Refresh', 'Falsity', 'Zeal', 'Devote', 'Magic', 'Scavenge', 'Suppress', 'BP Suppress', 'AI Suppress', 'Immune to Fear', 'Ignore Lumbering', 'Ignore Obscuring'];
+const PENDING = ['Armor Re-roll', 'Hide', 'Pass', 'Greater Pass', 'Spotlight', 'Heartseeker', 'Soulseeker', 'Fortify', 'Acrobatics', 'Roll Out', 'Jump', 'Advanced Jump', 'Area', 'Bane', 'Parasitize', 'Poison', 'Toxify', 'Sacrifice', 'Rush', 'Improved Rush', 'Refresh', 'Falsity', 'Zeal', 'Devote', 'Magic', 'Scavenge', 'Suppress', 'BP Suppress', 'AI Suppress', 'Immune to Fear', 'Ignore Lumbering'];
 const NA = ['Wither', 'Growth', 'Clockwork', 'Bloodletter', 'Leech'];
 const camel = s => s.replace(/[^A-Za-z ]/g, '').split(' ').map((w, i) => i ? w[0].toUpperCase() + w.slice(1).toLowerCase() : w.toLowerCase()).join('');
 /** Keywords the engine resolves only when printed without a cost (constant) — with a cost they are 'pending' unless listed in ACTIVE_OK. */
@@ -402,6 +402,9 @@ const SPECIAL = [
   [/^When hit with a Wave Attack, automatically evade 1 hit$/, () => ({ op: 'waveEvade' })],
   [/^If you're adjacent to a Monster, move to its VP$/, () => ({ op: 'fToVP', free: true })],
   [/^You may move through Obstacles, but you cannot end your movement on an Obstacle$/, () => ({ op: 'throughObstacles' })],
+  [/^You may exchange one of your Weapon \[Gear\] cards for one Weapon from your Knight Armory$/, () => ({ op: 'fSwapWeapon', free: true })],
+  [/^(?:Another )?\[black Power die\] turns into \[white Power die\]$/, () => ({ op: 'wpPromote' })],
+  [/^If you're fighting the Young Devour Dragon, Hide$/, () => ({ op: 'hide', active: true, onlyMonster: 'young-devour-dragon' })],
   [/^Gain \+(\d+) to Incarnation rolls$/, m => ({ op: 'incarnBonus', n: +m[1] })],
   [/^Roll Out(?: \(.*\))?$/, () => ({ op: 'rollOut', active: true })],
   [/^Ignore Swamp Terrain tiles$/, () => ({ op: 'ignoreSwamp' })],
@@ -465,7 +468,7 @@ export function parseSentence(s) {
     if ((m = /^\[Discard\]\s*/.exec(r))) { (o.cost = o.cost || {}).discard = true; r = r.slice(m[0].length); continue; }
     if ((m = /^(\d+) \[Charge\]\s*/.exec(r))) { (o.cost = o.cost || {}).charge = +m[1]; r = r.slice(m[0].length); continue; }
     break; }
-  const b = body(r); if (!b) { if (/\b(Delve|Deep Fog|Trailmake|Wander|Rotation|Adventure|Ambush|Encounter|Exploration|Shortcuts?|Possessed|Clues?|District|Investigation)\b/.test(text)) return { op: 'nonClash', status: 'na', text }; return { op: 'text', status: 'text', text }; }
+  const b = body(r); if (!b) { if (/\b(Delve|Deep Fog|Trailmake|Wander|Rotation|Adventure|Ambush|Encounter|Exploration|Shortcuts?|Possessed|Clues?|District|Investigation)\b/.test(text)) return { op: 'nonClash', status: 'na', text }; if (o.tier === 'POSTGAME') return { op: 'postgame', status: 'na', text }; /* opens only above Dragon level (Withergraal) — never in the Rosegraal (소유자 확인 2026-11-21) */ if (/^\[(?:red crossed-sticks X|yellow open-book) icon\]:/.test(text)) return { op: 'squire', status: 'na', text }; /* Squire part of the card — ignored (소유자 확인 2026-11-21) */ return { op: 'text', status: 'text', text }; }
   const k = { ...b, ...o, text }; if (k.op === 'deadly' && k.cost) { k.op = 'deadlyPaid'; k.status = 'ok'; k.special = true; k.active = true; } if (k.atTurnStart && k.op === 'hide') k.op = 'hideStart'; if (k.op === 'tumble' && (k.cost || k.reaction)) { k.op = 'tumblePaid'; k.special = true; k.active = true; } if (k.op === 'soak' && k.cost) { k.op = 'soakPaid'; k.special = true; k.active = true; } if (k.status === 'ok' && (k.cost || k.reaction) && !ACTIVE_OK.has(k.op) && !k.special) k.status = 'pending'; // costed versions of constant keywords need their own timing window
   return k;
 }

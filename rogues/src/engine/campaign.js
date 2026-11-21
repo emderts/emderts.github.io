@@ -17,7 +17,7 @@ export class Campaign {
     this.owned = cfg.ownedMonsters || null;
     this.knights = cfg.knights.map((k, i, all) => this._newKnight(k, i, all.filter(x => x.def === k.def).length > 1));
     this.resurrections = 5; this.crossed = ['S']; this.round = 0; this.result = null; this.curseLevel = 0;
-    this.unknownSaintUnlocked = false; this.mercPool = this._mercDeck(); this.hired = []; this.history = [];
+    this.unknownSaintUnlocked = false; this.unlockedSaints = []; this.mercPool = this._mercDeck(); this.hired = []; this.history = [];
     this.current = null; // { nodeId, monster, level, kingdom }
     this.say(`Rogue's Path 캠페인 시작 — 기사 ${this.knights.map(k => k.name).join(', ')}, 부활 ${this.resurrections}, 각 기사 Gold 10`);
   }
@@ -87,7 +87,7 @@ export class Campaign {
     const cur = this.current; const m = this.data.monsters[cur.monster];
     if (!m) throw new Error(`몬스터 데이터 없음: ${cur.monsterName}`);
     cur.snapshot = JSON.stringify(this.serialize());
-    const knights = this.knights.filter(k => !k.dead).map(k => ({ def: k.def, name: k.name, portrait: k.loadout.portrait, heroicArc: k.loadout.heroicArc, perilArc: k.loadout.perilArc, talent: k.loadout.talent, techniques: k.loadout.techniques, gear: k.loadout.gear, tier: cur.nodeLevel, gold: k.gold, sigh: k.sigh, firstDeath: k.firstDeath, bane: k.bane, maxVigorMod: k.maxVigorMod || 0, devotion: k.devotion || 0 }));
+    const knights = this.knights.filter(k => !k.dead).map(k => ({ def: k.def, name: k.name, portrait: k.loadout.portrait, heroicArc: k.loadout.heroicArc, perilArc: k.loadout.perilArc, talent: k.loadout.talent, techniques: k.loadout.techniques, gear: k.loadout.gear, tier: cur.nodeLevel, gold: k.gold, sigh: k.sigh, firstDeath: k.firstDeath, bane: k.bane, maxVigorMod: k.maxVigorMod || 0, devotion: k.devotion || 0 , saint: k.saint || null}));
     const clash = new Clash({ data: this.data, knights, monster: cur.monster, level: cur.level, nodeLevel: cur.nodeLevel, kingdom: cur.kingdom, seed: this.rng.int(1e9), listeners: { ...(opts.listeners || {}), beforeDeath: (k, reason, c) => this.beforeDeath(k, reason, c), onDeath: (k, reason, c) => this.onDeath(k, reason, c) } });
     clash.ask = opts.ask || this.ask; clash.curseLevel = this.curseLevel; clash.gearDef = n => this.gearDef(n);
     for (const kn of clash.knights) { const ck = this.knights.find(x => x.name === kn.name); kn.bane = ck.bane; kn.gear = kn.gear.map(g => g.name ? g : g); }
@@ -105,7 +105,12 @@ export class Campaign {
     if (reason === 'Bane Limit exceeded') return false;
     const ck = this.knights.find(x => x.name === kn.name);
     if (!this.unknownSaintUnlocked) { this.unknownSaintUnlocked = true; clash.say(`✦ Kingdom Mysteries 9999: ${kn.name}이(가) 죽음의 문턱에서 Unknown Saint로 Incarnate! (이후 모든 기사는 사망 직전 d10=10으로 Incarnate 시도 가능)`, 'mortis'); await this.incarnate(kn, clash); return true; }
-    if (ck && ck.saint) return false; // devoted to a specific Saint → that Saint's rules (not implemented)
+    if (ck && ck.saint && kn.saint) { // rulebook p.69 — How to Incarnate
+      const S = kn.saint, dv = clash.fx.devo(kn); if (!await clash.yesNo(`${kn.name}: 사망 직전 (${reason}) — ${S.title}: Incarnation 굴림? (${dv >= 5 ? 'Devotion 5+ → 자동 성공' : `d10 ${S.incarnation.value}+`}; 실패하면 Devotion이 1로, 1 이하였으면 Saint 카드를 잃음)`, true)) return false;
+      let ok = dv >= 5; if (ok) clash.say(`${kn.name}: Devotion ${dv} → Incarnation 자동 성공`, 'mortis'); else { const r0 = clash.rng.die(10); const ib = clash.fx.gearSum(kn, 'incarnBonus'); ok = r0 + ib >= S.incarnation.value; clash.say(`${kn.name} Incarnation (${S.title}) d10 = ${r0}${ib ? ` +${ib} (Gear)` : ''} vs ${S.incarnation.value}+ → ${ok ? 'Incarnate!' : '실패'}`, 'dice'); }
+      if (ok) { kn._incarn = S.incarnation; kn._incarnSkip = clash._pzTurn === kn; kn._saintLost = true; if (S.incarnation.braced) kn.braced = true; clash.say(`${kn.name}: ${S.incarnation.name} — ${S.incarnation.text} (다음 자기 턴 종료까지)`, 'mortis'); await this.incarnate(kn, clash); return true; }
+      if (dv <= 1) { kn._saintLost = true; kn.saint = null; clash.say(`${kn.name}: Incarnation 실패 — Devotion ${dv} → Saint 카드를 잃음`, 'mortis'); } else { kn.devotion = 1; kn.devotionGained = 0; kn._devoSet = true; clash.say(`${kn.name}: Incarnation 실패 — Devotion 토큰 1개로`, 'mortis'); }
+      return false; }
     const r0 = clash.rng.die(10); const ib = clash.fx.gearSum(kn, 'incarnBonus'); const r = r0 + ib; clash.say(`${kn.name} Unknown Saint Incarnation d10 = ${r0}${ib ? ` +${ib} (Gear)` : ''}${r >= 10 ? ' → Incarnate!' : ''}`, 'dice');
     if (r >= 10) { await this.incarnate(kn, clash); return true; }
     return false;
@@ -127,7 +132,7 @@ export class Campaign {
     const cur = this.current; const node = this.node(cur.nodeId); const win = clash.result === 'win'; if ((clash.curseLevel || 0) > this.curseLevel) { this.say(`공용 Curse ${this.curseLevel} → ${clash.curseLevel}`); this.curseLevel = clash.curseLevel; }
     const deaths = clash.knights.filter(k => !k.alive).length; const survivors = clash.knights.filter(k => k.alive).length;
     // carry back knight state
-    for (const kn of clash.knights) { const ck = this.knights.find(x => x.name === kn.name); ck.bane = Math.max(0, kn.bane - 2); ck.gold = kn.gold; if (kn.devotionGained) { ck.devotion = (ck.devotion || 0) + kn.devotionGained; this.say(`${ck.name}: Devotion +${kn.devotionGained} (${ck.devotion})`); } if (kn.permMaxVigor) { ck.maxVigorMod = (ck.maxVigorMod || 0) + kn.permMaxVigor; this.say(`${ck.name}: Maximum Vigor 영구 ${ck.maxVigorMod}`); } }
+    for (const kn of clash.knights) { const ck = this.knights.find(x => x.name === kn.name); ck.bane = Math.max(0, kn.bane - 2); ck.gold = kn.gold; if (kn._saintLost) { if (ck.saint) this.say(`${ck.name}: Saint ${ck.saint} 카드와 Devotion 토큰을 모두 잃음`); ck.saint = null; ck.devotion = 0; } else { if (kn._devoSet) ck.devotion = kn.devotion; if (kn.devotionGained) { ck.devotion = (ck.devotion || 0) + kn.devotionGained; this.say(`${ck.name}: Devotion +${kn.devotionGained} (${ck.devotion})`); } if (ck.saint && !kn.alive) { this.say(`${ck.name}: 사망 — Saint ${ck.saint} 카드를 잃음`); ck.saint = null; } else if (ck.saint) { ck.devotion = (ck.devotion || 0) + 1; this.say(`${ck.name}: Holy Commandment를 지킴 → Devote (Devotion ${ck.devotion})`); } } if (kn.permMaxVigor) { ck.maxVigorMod = (ck.maxVigorMod || 0) + kn.permMaxVigor; this.say(`${ck.name}: Maximum Vigor 영구 ${ck.maxVigorMod}`); } }
     this.say(`Clash ${win ? '승리' : '패배'} — 사망 ${deaths}, 생존 ${survivors}`);
     // Sigh of the Graal offer
     const withSigh = this.knights.filter(k => k.sigh > 0);
@@ -206,7 +211,7 @@ export class Campaign {
     else if (kind === 'P') { if (!U.perilArcs.includes(r)) U.perilArcs.push(r); }
     else if (kind === 'G') { const n = r.split(' // ')[0]; ck.armory.push(n); }
     else if (kind === 'V') { for (const [v, n] of Object.entries(r.bonuses)) ck.virtues[v] = (ck.virtues[v] || 0) + n; }
-    else if (kind === 'W') { if (r.kind === 'gold') ck.gold += r.n; else if (r.kind === 'rapport') ck.rapport._pending = (ck.rapport._pending || 0) + r.n; else if (r.kind === 'mercenary') { const m = this.data.decks.mercenaries.mercenaries.find(x => x.class === r.cls && x.level === r.tier); if (m && !this.mercPool.some(p => p.class === m.class && p.level === m.level)) this.mercPool.push({ class: m.class, level: m.level, cost: m.cost, side: 'A' }); } else if (r.kind === 'saint') { ck.saintUnlocked = ck.saintUnlocked || []; ck.saintUnlocked.push(r.name); } }
+    else if (kind === 'W') { if (r.kind === 'gold') ck.gold += r.n; else if (r.kind === 'rapport') ck.rapport._pending = (ck.rapport._pending || 0) + r.n; else if (r.kind === 'mercenary') { const m = this.data.decks.mercenaries.mercenaries.find(x => x.class === r.cls && x.level === r.tier); if (m && !this.mercPool.some(p => p.class === m.class && p.level === m.level)) this.mercPool.push({ class: m.class, level: m.level, cost: m.cost, side: 'A' }); } else if (r.kind === 'saint') { /* "gain a specific Saint: unlock that Saint and gain their card" (rulebook p.68) */ this.unlockedSaints = this.unlockedSaints || []; if (!this.unlockedSaints.includes(r.name)) this.unlockedSaints.push(r.name); if (!this.knights.some(x => x.saint === r.name)) { ck.saint = r.name; this.say(`${ck.name}: Saint ${r.name} 해금 — Saint 카드 획득`); } else this.say(`Saint ${r.name} 해금`); } }
     else if (kind === 'C' || kind === 'T') { if (r.kind === 'technique') { if (!U.techniques.includes(r.name)) U.techniques.push(r.name); } else if (r.kind === 'portrait') { const def = this.knightDef(ck); const p = def.portraits.find(p => p.classes.includes(r.name)); if (p && !U.portraits.includes(p.id)) U.portraits.push(p.id); const t = def.talents.find(t => t.name === r.name); if (t && !U.talents.includes(t.name)) U.talents.push(t.name); } }
   }
 
@@ -221,6 +226,9 @@ export class Campaign {
   hire(payer, mercClass, level) { if (this.hired.length >= 4) throw new Error('용병 최대 4'); const m = this.mercPool.find(m => m.class === mercClass && m.level === level); if (!m) throw new Error('없음'); if (this.hired.some(h => h.class === m.class)) throw new Error('같은 이름 용병 중복 불가'); if (payer.gold < m.cost) throw new Error('Gold 부족'); payer.gold -= m.cost; this.hired.push({ ...m, side: 'A' }); this.say(`${payer.name}이 ${m.class} L${m.level} 고용 (-${m.cost}G)`); }
   dismissAll() { this.hired = []; }
   /** Outpost state for this Rosegraal round: first section visited gets its Early Bird (rulebook p.28). */
+  /** Shrine of the Saints: "Any Knight with at least 1 Devotion token may discard 1 Devotion token to gain a chosen unlocked Saint's card." A Saint is patron to one Knight at a time. */
+  saintDef(name) { return ((this.data.decks.saints && this.data.decks.saints.saints) || []).find(s => s.name === name) || null; }
+  shrine(ck, name) { if (!(this.unlockedSaints || []).includes(name)) throw new Error('해금되지 않은 Saint'); if ((ck.devotion || 0) < 1) throw new Error('Devotion 토큰이 없음'); const holder = this.knights.find(x => x.saint === name); if (holder) throw new Error(`${holder.name}이(가) 이미 ${name}의 가호를 받고 있음`); ck.devotion -= 1; const old = ck.saint; ck.saint = name; this.say(`Shrine of the Saints: ${ck.name} — Devotion 1 버림 → Saint ${name}${old ? ` (${old} 카드는 반납)` : ''}`); }
   outpostState() { if (!this.outpost || this.outpost.round !== this.round) this.outpost = { round: this.round, earlyBird: null, inn: null, tempMercs: [] }; return this.outpost; }
   async earlyBird(section, tierLevel) {
     const st = this.outpostState(); if (st.earlyBird) return st.earlyBird; st.earlyBird = section; const ask = this.ask;

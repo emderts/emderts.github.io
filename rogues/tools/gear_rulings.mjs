@@ -1,7 +1,7 @@
 // Gear rulings that still need the owner's confirmation, and open questions that block an implementation.
 // Remove a line once confirmed (and record it in the code/test with "(소유자 확인 YYYY-MM-DD)").
 export const GEAR_RULINGS = [
-  ['Dragonrazor', 'Climb test(VP 오르기)를 하게 되면 테스트 없이 자동 성공. Young Devour Dragon Phase I의 "You fail all Climb tests"보다 우선 — 테스트 자체를 하지 않으므로 [해석, 확인 필요]'],
+  ['Dragonrazor', 'Climb test(VP 오르기)를 하게 되면 테스트 없이 자동 성공. Young Devour Dragon Phase I의 "You fail all Climb tests"보다 우선 — 테스트 자체를 하지 않으므로 (소유자 확인 2026-11-21)'],
 ];
 export const GEAR_QUESTIONS = [
 ];
