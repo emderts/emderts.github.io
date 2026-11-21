@@ -376,10 +376,13 @@ export class Clash {
   }
   /** Rulebook p.51: a Knight on a space the Boss ends its (normal) movement on suffers Crash and Unavoidable Knockback X (소유자 확인 2026-11-15).
    *  A Knight already crashed while the Boss moved onto it during this move is not crashed twice. */
-  async endMoveOnKnights() { const ab = (this.monsterDef.basicAbilities || []).find(b => b.name === 'Unavoidable Knockback'); const done = this._moveCrashed || new Set(); this._moveCrashed = null; if (this.isFen || !ab || !ab.value || (this.monster.isMob && !(this.monster.cur && this.monster.cur.isTroll))) return;
+  async endMoveOnKnights() { const r = await this._endMoveOnKnights0(); await this.pincerClose(); return r; }
+  async _endMoveOnKnights0() { const ab = (this.monsterDef.basicAbilities || []).find(b => b.name === 'Unavoidable Knockback'); const done = this._moveCrashed || new Set(); this._moveCrashed = null; if (this.isFen || !ab || !ab.value || (this.monster.isMob && !(this.monster.cur && this.monster.cur.isTroll))) return;
     for (const k of this.alive()) if (this.monster.cells.some(c => cellEq(c, k.pos))) { this.say(`${k.name}: 몬스터가 이 칸에서 이동 종료 → Crash + Unavoidable Knockback ${ab.value}`); if (!done.has(k)) await this.crash(k); if (k.alive) await this.knockback(k, ab.value, { unavoidable: true }); } }
   /** One step of boss movement; returns false if blocked by board edge. */
-  async monsterStep(d, { charge = false } = {}) {
+  async monsterStep(d, o = {}) { if (!this.monster.isMob && !this._mvOpen && !(this._mvWrap > 0) && !(this._involMon > 0) && !this._inPincer && !this.actingGuardian && this.knights.some(k => k.alive && k.gear.some(g => !g.discarded && /Mailbreaker Pincer/.test(g.name)))) { this._mvOpen = { pending: true }; this._mvOpen = await this.fx.pincerPre(null); } return this._monsterStep0(d, o); }
+  async pincerClose() { const st = this._mvOpen; if (!st || st.pending) return; this._mvOpen = null; await this.fx.pincerPost(st); }
+  async _monsterStep0(d, { charge = false } = {}) {
     const B = this.board; const nc = this.monster.cells.map(x => ({ c: x.c + d.c, r: x.r + d.r })); this._monDir = { c: Math.sign(d.c), r: Math.sign(d.r) };
     if (this.slowToken) { this.slowToken = false; this._slowSteps = 3; this.say('임시 Speed 토큰: 이번 이동은 3칸에서 멈춤 (토큰 버림)', 'tech'); } if (this._stopMove) return 'slow'; if (this._slowSteps != null) { if (this._slowSteps <= 0) return 'slow'; this._slowSteps--; }
     if (!nc.every(x => B.inside(x))) return 'edge';
@@ -946,7 +949,7 @@ export class Clash {
   bpAT(bp) { if (bp && bp.isGuardianBP) return bp.at + this.monster.bonuses.at + this.monster.modifiers.at; if (this.isFen) { const g = this.guardians.find(g => g.cards.includes(bp)); return g ? this.doppAT(g) : this.fenAT(bp); } if (this.monster.isMob) { const m = this.monster.mobs.find(x => x.card === bp); return m ? this.mobAT(m) : bp.at + this.monster.bonuses.at + this.monster.modifiers.at; } return this.monster.atOf(bp, (this.monster.hasTrait('Panzeronion') ? this.armorTokens[bp.level] : 0) + this.difficultTerrainAT(this.monster.cells)); }
   clearPool() { const fire = this.pool.filter(t => t.token === 'fire'); if (fire.length) for (const k of this.alive()) for (const g of k.gear) if (!g.discarded && this.fx.kwList(g).some(o => o.op === 'fireRemovedCharge')) { g.chargesLeft = this.fx.chargesOf(g) + 1; this.say(`${g.name}: 쓰지 않은 Fire 토큰 제거 → Charge +1 (${g.chargesLeft})`, 'tech'); } const passed = this.pool.filter(t => t.pass); for (const t of passed) t.pass = false; const keep = [...this.pool.filter(t => t.resource), ...fire.slice(1), ...passed.filter(t => t.token !== 'fire' && !t.resource)]; /* Fire: leave all but one unused Fire token (p.19) */ const n = this.pool.length - keep.length; this.pool = keep; if (n) this.say(`Knight Pool 정리 (-${n})`, 'pool'); }
   /** After any action: Counter trait (Eggknight). */
-  async afterAction() { if (this.paraIncarnCheck) await this.paraIncarnCheck(); for (const kn of this.knights) kn.reinforce = null; await this.swampSweep(); await this.fenAfterAction(); await this.pumpAfterAction(); if (!this.monster.isMob) await this.trollAfterAction();
+  async afterAction() { await this.pincerClose(); if (this.paraIncarnCheck) await this.paraIncarnCheck(); for (const kn of this.knights) kn.reinforce = null; await this.swampSweep(); await this.fenAfterAction(); await this.pumpAfterAction(); if (!this.monster.isMob) await this.trollAfterAction();
     if (this.monster.isMob) await this.mobAfterAction();
     if (this.monster.hasTrait('Counter') && (this.monster.generic.counter || 0) >= 3) { this.monster.generic.counter = 0; this.say('Counter: 토큰 3 → Signature'); await this.performSignature(); }
   }

@@ -3,13 +3,14 @@ import { Clash } from '../engine/clash.js';
 import { Campaign } from '../engine/campaign.js';
 import { DIRS, inFront, rearCells } from '../engine/board.js';
 import { mountMonsterInfo, makeCardViews } from './monsterinfo.js';
+import { initI18n, getLang, setLang, LANGS, tn, tx, auto, translatedCount } from './i18n.js';
 
-const DATA = window.KF_DATA;
+const DATA = window.KF_DATA; initI18n(DATA);
 const $ = (sel, el = document) => el.querySelector(sel);
 const h = (tag, attrs = {}, ...kids) => {
   const e = document.createElement(tag);
   for (const [k, v] of Object.entries(attrs)) { if (v == null || v === false) continue; if (k === 'class') e.className = v; else if (k === 'style') e.style.cssText = v; else if (k.startsWith('on')) e.addEventListener(k.slice(2), v); else if (k === 'html') e.innerHTML = v; else e.setAttribute(k, v); }
-  for (const k of kids.flat()) if (k != null) e.append(k.nodeType ? k : document.createTextNode(String(k)));
+  for (const k of kids.flat()) if (k != null) e.append(k.nodeType ? k : document.createTextNode(auto(String(k)))); // auto(): language option — a text node that is exactly a known name / text line is shown translated
   return e;
 };
 const svg = (tag, attrs = {}, ...kids) => { const e = document.createElementNS('http://www.w3.org/2000/svg', tag); for (const [k, v] of Object.entries(attrs)) if (v != null && v !== false) { if (typeof v === 'function' && k.startsWith('on')) e.addEventListener(k.slice(2), v); else e.setAttribute(k, v); } for (const k of kids.flat()) if (k != null) e.append(k.nodeType ? k : document.createTextNode(String(k))); return e; };
@@ -279,9 +280,9 @@ const perilView = k => { const a = k.perilArcDef; if (!a) return h('div', { clas
 const talentView = k => { const t = k.talent; if (!t) return null; return h('div', { class: 'cardview' }, h('div', { class: 'cv-title' }, `Talent — ${t.name}`), t.abilities.map(a => h('div', { class: 'cv-text' }, h('b', {}, a.name + ': '), a.text))); };
 
 // ---------- Knight info: every tag / stat on a Knight box opens its card text ----------
-const gearView = g => h('div', { class: 'cardview' }, h('div', { class: 'cv-title' }, g.name + (g.exhausted ? ' (Exhausted)' : '') + (g.discarded ? ' (버려짐)' : '')), h('div', { class: 'small muted' }, Campaign.prototype.gearStats.call(null, g) + (g.consumable ? ` · 남은 Charge ${g.chargesLeft}` : '')), g.traits && g.traits.length ? h('div', { class: 'cv-gate' }, h('b', {}, 'Traits '), g.traits.join(', ')) : null, g.text ? h('div', { class: 'cv-text' }, g.text) : h('div', { class: 'small muted' }, '카드 문구 없음'));
+const gearView = g => h('div', { class: 'cardview' }, h('div', { class: 'cv-title' }, tn(g.name) + (g.exhausted ? ' (Exhausted)' : '') + (g.discarded ? ' (버려짐)' : '')), h('div', { class: 'small muted' }, Campaign.prototype.gearStats.call(null, g) + (g.consumable ? ` · 남은 Charge ${g.chargesLeft}` : '')), g.traits && g.traits.length ? h('div', { class: 'cv-gate' }, h('b', {}, 'Traits '), g.traits.join(', ')) : null, g.text ? h('div', { class: 'cv-text' }, tx(g.text)) : h('div', { class: 'small muted' }, '카드 문구 없음'));
 const condView = c => { const defs = clash.conditionDefs || {}; const d = defs[c.id] || Object.values(defs).find(x => x.name.startsWith(c.id) || c.id.startsWith(x.name));
-  return h('div', { class: 'cardview' }, h('div', { class: 'cv-title' }, `Condition — ${c.id}` + (c.tokens ? ` ×${c.tokens}` : '')), d ? [h('div', { class: 'small muted' }, [d.type, d.flipSide ? `뒷면: ${d.flipSide}` : ''].filter(Boolean).join(' · ')), h('div', { class: 'cv-text' }, d.text), d.squire ? h('div', { class: 'cv-gate' }, h('b', {}, 'Squire '), d.squire) : null] : h('div', { class: 'small muted' }, '카드 문구 자료 없음')); };
+  return h('div', { class: 'cardview' }, h('div', { class: 'cv-title' }, `Condition — ${c.id}` + (c.tokens ? ` ×${c.tokens}` : '')), d ? [h('div', { class: 'small muted' }, [d.type, d.flipSide ? `뒷면: ${d.flipSide}` : ''].filter(Boolean).join(' · ')), h('div', { class: 'cv-text' }, tx(d.text)), d.squire ? h('div', { class: 'cv-gate' }, h('b', {}, 'Squire '), d.squire) : null] : h('div', { class: 'small muted' }, '카드 문구 자료 없음')); };
 /** Printed texts (Talent / Gear / Technique / Monster Trait / Terrain) that mention a keyword — for board-state stats that have no card of their own. */
 const mentionView = (k, title, words) => { const re = new RegExp(words.join('|'), 'i'); const out = [];
   if (k.talent) for (const a of k.talent.abilities) if (re.test(a.name + ' ' + a.text)) out.push(h('div', { class: 'cv-text' }, h('b', {}, `Talent ${a.name}: `), a.text));
@@ -298,7 +299,7 @@ const terrainView = (t, key) => { const d = (DATA.terrain.terrain || []).find(x 
     (d && d.text) || t.text ? h('div', { class: 'cv-text', style: 'white-space:pre-line' }, (d && d.text) || t.text) : h('div', { class: 'small muted' }, '카드 문구 자료 없음'), h('div', { class: 'small muted' }, `보드 위 칸: ${same.join(', ')}`)); };
 
 const costStr = cost => { if (!cost || !cost.length) return '비용 없음'; const alts = Array.isArray(cost[0]) ? cost : [cost]; return alts.map(a => a.map(c => c.res === 'Action' ? (c.actions || []).map(x => x === 'combat' ? '전투 행동' : '이동 행동').join('+') : c.res === 'Heat' ? `Heat +${c.n}` : `${c.res} ${c.n}`).join(' + ')).join(' 또는 '); };
-const itemView = it => h('div', { class: 'cardview' }, h('div', { class: 'cv-title' }, it.name), it.stats ? h('div', { class: 'small muted' }, it.stats) : null, it.traits ? h('div', { class: 'cv-gate' }, h('b', {}, 'Traits '), it.traits) : null, it.text ? h('div', { class: 'cv-text', style: 'white-space:pre-line' }, it.text) : h('div', { class: 'small muted' }, '카드 문구 없음'));
+const itemView = it => h('div', { class: 'cardview' }, h('div', { class: 'cv-title' }, it.name), it.stats ? h('div', { class: 'small muted' }, it.stats) : null, it.traits ? h('div', { class: 'cv-gate' }, h('b', {}, 'Traits '), it.traits) : null, it.text ? h('div', { class: 'cv-text', style: 'white-space:pre-line' }, tx(it.text)) : h('div', { class: 'small muted' }, '카드 문구 없음'));
 /** Rosegraal reward sheet of every party Knight: all levels and kinds; tap a reward for its card. */
 const rewardsView = () => { const R = camp.rewards; const avN = camp.result || camp.current ? [] : camp.availableNodes(); const nodesFor = (kd, lv) => avN.filter(n => n.reward === kd && n.level >= lv);
   const goNode = n => { selNode = n.id; modal = null; modalStack.length = 0; const w = Math.min(window.innerWidth - 30, 700); mapJump = { l: Math.max(0, n.pos[0] * mapScale - w / 2), t: Math.max(0, n.pos[1] * mapScale - 180) }; render(); };
@@ -410,7 +411,9 @@ const renderClash = () => {
   const lp = document.getElementById('lpane'); if (lp) lp.scrollTop = !was.lpane || was.lpane.bottom ? lp.scrollHeight : was.lpane.top; // log sticks to the bottom unless the reader scrolled up
   for (const id of ['mpane', 'kpane']) { const e = document.getElementById(id); if (e && was[id]) e.scrollTop = was[id].top; }
 };
-const render = () => { render0(); if (modal && !document.querySelector('.overlay')) app.append(modalEl()); };
+// Language option (English original ↔ 한국어 translation): a small toggle in the corner; see src/ui/i18n.js
+const langButton = () => { let b = document.getElementById('langbtn'); if (!b) { b = document.createElement('button'); b.id = 'langbtn'; b.style.cssText = 'position:fixed;right:6px;bottom:6px;z-index:60;font-size:11px;padding:3px 7px;border-radius:10px;opacity:.75;background:#221d16;color:#cbbf9c;border:1px solid #5a4d33'; b.addEventListener('click', () => { const i = LANGS.findIndex(l => l.id === getLang()); setLang(LANGS[(i + 1) % LANGS.length].id); render(); }); document.body.append(b); } const cur = LANGS.find(l => l.id === getLang()); b.textContent = `🌐 ${cur.id === 'en' ? 'EN' : '한국어'}`; b.title = `카드 이름·문구 언어: ${cur.label}${cur.id === 'en' ? '' : ` — 번역된 항목 ${translatedCount()}개 (없는 항목은 원문)`} · 누르면 전환`; };
+const render = () => { render0(); langButton(); if (modal && !document.querySelector('.overlay')) app.append(modalEl()); };
 function render0() { setTimeout(syncGearChoice, 0);
   if (!(screen === 'clash' && clash)) document.body.classList.remove('wide');
   if (screen === 'clash' && clash) return renderClash();
