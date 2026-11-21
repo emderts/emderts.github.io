@@ -132,7 +132,7 @@ Fire Walk with Me = 불이여 나와 함께 걸으라
 Spore Spreader = 포자 살포자
 Pumpkin Plague = 호박 역병
 Accelerated Regrowth = 가속 재생
-Venomous Quagmire = 독 수렁
+Venomous Quagmire = 독 진펄
 Floraforge Fury = 식물 대장간의 분노
 ## Puppet King Edelhardt
 Welcome to My Castle! = 내 성에 온 것을 환영하노라!
