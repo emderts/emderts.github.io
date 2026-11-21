@@ -1,10 +1,9 @@
 // Gear rulings that still need the owner's confirmation, and open questions that block an implementation.
 // Remove a line once confirmed (and record it in the code/test with "(소유자 확인 YYYY-MM-DD)").
 export const GEAR_RULINGS = [
-  ['Dragonrazor', 'Climb test는 룰북상 몬스터의 VP(Vantage Point)에 오를 때만 하는 테스트. 구현된 몬스터 15종의 시트에는 VP 설명이 없어("VP 설명이 없는 몬스터에는 VP를 만들 수 없음") Climb test가 발생하지 않음 — 그래서 효과 없음으로 처리. Winged Nightmare의 Column 오르기는 Marble Forest 문구대로 테스트 없음. [해석, 확인 필요]'],
+  ['Dragonrazor', 'Climb test(VP 오르기)를 하게 되면 테스트 없이 자동 성공. Young Devour Dragon Phase I의 "You fail all Climb tests"보다 우선 — 테스트 자체를 하지 않으므로 [해석, 확인 필요]'],
 ];
 export const GEAR_QUESTIONS = [
-  ['Divine Target', 'Spotlight 조건의 Divine Target 토큰 — 엔진에 없음. 지금은 Priority Target만 본다.'],
 ];
 // Renholder (added 2026-11-16) — interpretations and missing material.
 export const KNIGHT_RULINGS = [
@@ -122,7 +121,7 @@ export const KNIGHT_CONFIRMED = [
   ['Paracelsa — Falsity', '일반 Attack 재굴림을 정할 때 함께 결정: Crit die(★)는 Heat 없이 재굴림 가능, 이미 명중인 Crit die를 재굴리면 Zeal 1 (소유자 확인 2026-11-16).'],
   ['Paracelsa — 죽기 직전 Talent', '일어나서 최대 3칸 이동 후 Bonus Attack. Wound 판정은 그 공격으로 Wound를 줬는지. Talent 버림 = 그 Clash 동안 Talent 능력 없음.'],
   ['Paracelsa — Zone 2 (The Fire of Zeal)', 'Paracelsa로부터 가로·세로·대각 2칸 이내의 다른 기사 수만큼 Fire.'],
-  ['Paracelsa — Spotlight (Arc/Technique)', 'Priority Target일 때 빨간 Power die +1 (Divine Target은 미구현).'],
+  ['Paracelsa — Spotlight (Arc/Technique)', 'Priority Target 또는 Divine Target일 때 빨간 Power die +1.'],
   ['Paracelsa — Overbreak X (Arc)', 'Wound를 주고 Total Power가 AT를 1 이상 넘으면 2차 창에서 Break X.'],
   ['Paracelsa — Evade the Devil\'s Snare', '"임시 음수 Precision 토큰"을 몬스터의 다음 Evasion Roll 난이도 -1 토큰으로 처리.'],
   ['Paracelsa — Scion of the Light', 'Spotlight 또는 (Zeal 2 추가로 빨간 Power die +1) 중 하나만 (소유자 확인 2026-11-16).'],
@@ -287,8 +286,6 @@ export const GEAR_CONFIRMED = [
   ['[신규] Tag Team — 무기 교환', 'Little Ser가 무기를 들고 있으면, 자리를 바꾼 기사의 한손 무기 하나와 교환 가능. (소유자 확인 2026-11-19)'],
 ];
 export const KNIGHT_QUESTIONS = [
-  ['Stoneface — 미구현', 'Talent: Stonewall (Wave Attack이 엔진에 없음).'],
-  ['Ser Ubar — 미구현', 'Knights Together Strong의 "VP 위" 조건 (VP가 엔진에 없음).'],
-  ['Ser Sonch — 미구현', 'Exemplary Leader의 Little Ser 소모품. Time to Shine DRAGON은 구현했지만 Divine Target 토큰을 주는 효과가 아직 없음.'],
+  ['Ser Sonch — 미구현', 'Exemplary Leader의 Little Ser 소모품.'],
   ['Paracelsa / Incarnate — 미구현', 'Inquisitor 12번 "Immediately Incarnate!", Sword of a Sunken Legacy +3, Visage of the Endless. Saint가 없어도 Unknown Saint가 열려 있으면 가능 (소유자 확인 2026-11-19). Saint 카드 자료를 받으면 구현.'],
 ];

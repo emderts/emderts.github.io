@@ -32,7 +32,7 @@ export const DragonMixin = {
   dgClimb(k) { if (!this.vpClimb(k)) return false; const v = this.monsterDef.vp; this.say(`${k.name}: VP (${v.name}) 위`, 'tech'); return true; },
   dgFreeActions(k) { const out = [], v = this.monsterDef.vp; if (!v) return out; if (this.dg.vp && !k.onVP && !this.vpKnight() && this.adjacentToMonster(k) && !this.knockedDown(k) && this.dgMayClimb(k) && !(k.freeUsed && k.freeUsed.has('dg:climb'))) out.push({ id: 'dg:climb', label: `VP 오르기 — Climb: ${v.climb.virtue} 테스트 (${v.climb.n}+)` }); if (k.onVP && k.actions && k.actions.move) out.push({ id: 'dg:down', label: 'VP에서 내려오기 (Move action — 인접한 칸)' }); if (this.isPv) out.push(...this.pvFreeActions(k)); return out; },
   async dgFree(k, id) { const v = this.monsterDef.vp;
-    if (id === 'dg:climb') { k.freeUsed && k.freeUsed.add('dg:climb'); if (await this.dgTest(k, v.climb.virtue, v.climb.n, 'Climb')) this.dgClimb(k); return; }
+    if (id === 'dg:climb') { k.freeUsed && k.freeUsed.add('dg:climb'); if (this.fx.gearHas(k, 'autoClimb')) { this.say(`${k.name}: Climb 테스트 자동 성공 (Gear)`, 'tech'); this.dgClimb(k); return; } if (await this.dgTest(k, v.climb.virtue, v.climb.n, 'Climb')) this.dgClimb(k); return; }
     if (id === 'dg:down') { const c = await this.vpPickAdjacent(k, 'VP에서 내려올 칸'); if (!c) return; this.vpLeave(k, c); k.actions.move = false; this.say(`${k.name}: VP에서 ${this.board.label(c)}(으)로 내려옴 (Move action)`, 'tech'); if (this.dgLeftVP) this.dgLeftVP(k); return; }
     if (this.isPv) return this.pvFree(k, id); },
   /** Hold On (End of Monster Round). */

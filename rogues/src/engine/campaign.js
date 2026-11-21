@@ -106,8 +106,8 @@ export class Campaign {
     const ck = this.knights.find(x => x.name === kn.name);
     if (!this.unknownSaintUnlocked) { this.unknownSaintUnlocked = true; clash.say(`✦ Kingdom Mysteries 9999: ${kn.name}이(가) 죽음의 문턱에서 Unknown Saint로 Incarnate! (이후 모든 기사는 사망 직전 d10=10으로 Incarnate 시도 가능)`, 'mortis'); await this.incarnate(kn, clash); return true; }
     if (ck && ck.saint) return false; // devoted to a specific Saint → that Saint's rules (not implemented)
-    const r = clash.rng.die(10); clash.say(`${kn.name} Unknown Saint Incarnation d10 = ${r}${r === 10 ? ' → Incarnate!' : ''}`, 'dice');
-    if (r === 10) { await this.incarnate(kn, clash); return true; }
+    const r0 = clash.rng.die(10); const ib = clash.fx.gearSum(kn, 'incarnBonus'); const r = r0 + ib; clash.say(`${kn.name} Unknown Saint Incarnation d10 = ${r0}${ib ? ` +${ib} (Gear)` : ''}${r >= 10 ? ' → Incarnate!' : ''}`, 'dice');
+    if (r >= 10) { await this.incarnate(kn, clash); return true; }
     return false;
   }
   async incarnate(kn, clash) {

@@ -2622,7 +2622,7 @@
   "\"you\" on AI cards = the targeted Knight (e.g. \"If you’re not adjacent to another Mob\" = the Knight is not adjacent to a Mob other than the attacker) [소유자 확인 2026-11-15]",
   "\"If no other Knight in Zone X\" = Zone X of the attacking Mob, other than the Target [소유자 확인 2026-11-15]",
   "\"Draw AI for the furthest / closest Mob\" (BP responses) = measured from the attacking Knight; ties chosen by the players [소유자 확인 2026-11-15]",
-  "In front (Mob) = spaces beyond the Mob's front edge with LoS, same as the Boss rule [확인 필요]",
+  "In front (Mob) = spaces beyond the Mob's front edge with LoS, same as the Boss rule (소유자 확인 2026-11-21)",
   "Healed Mob returns face up (revealed) [소유자 확인 2026-11-15 — 일단 앞면]",
   "Curse / Threat effects: no Kingdom track in Rogue's Path → no effect",
   "BP REACT! markers open a Window of Opportunity right before the marked instruction (rulebook p.54) — implemented 2026-11-15 (Clash.bpReactIndices / runResponseOps)",

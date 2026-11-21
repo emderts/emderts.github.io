@@ -32,7 +32,7 @@ export const ParacelsaMixin = {
     if (ar || pr || pw || ab || A.zealBreak) this.say(`${k.name}: Zeal ${k.zeal} 혜택 —${ar ? ` Attack Re-roll ${ar}` : ''}${pr ? ` Power Re-roll ${pr}` : ''}${pw ? ` ${pw > 0 ? '+' : ''}${pw} Power` : ''}${ab ? ` Auto-break ${ab}` : ''}${A.zealBreak ? ` Break ${A.zealBreak}` : ''}`, 'tech');
     for (const o of tops(k, 'zealAutoHope')) if ((k.zeal || 0) >= o.need) { this.poolAdd('hope', o.n); this.say(`${k.name}: Zeal ${o.need}+ → Auto-hope ${o.n}`, 'tech'); }
     if (k.pendingPara && k.pendingPara.fireFaith) { const card = A.mob && A.mob.card; await this.fireOfFaithPay(k, Math.max(1, (card && card.level) || 1), A); }
-    if (k.pendingPara) { A.paraSecond = k.pendingPara.second || null; if (k.pendingPara.spotlight && this.priorityTarget === k) { A.extraPool.red += 1; this.say(`${k.name}: Spotlight — Priority Target → +1 빨간 Power die`, 'tech'); } if (k.pendingPara.red) A.extraPool.red += k.pendingPara.red; if (k.pendingPara.noOpening) A.flags.add('noOpening'); k.pendingPara = null; }
+    if (k.pendingPara) { A.paraSecond = k.pendingPara.second || null; if (k.pendingPara.spotlight && (this.priorityTarget === k || this.divineTarget === k)) { A.extraPool.red += 1; this.say(`${k.name}: Spotlight — Priority / Divine Target → +1 빨간 Power die`, 'tech'); } if (k.pendingPara.red) A.extraPool.red += k.pendingPara.red; if (k.pendingPara.noOpening) A.flags.add('noOpening'); k.pendingPara = null; }
   },
   /** After the Attack Roll: Falsity, Zeal on misses / Crit Miss. */
   async paraAfterAttackRoll(k, A, roll, isHit) {

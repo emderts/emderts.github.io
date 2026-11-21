@@ -232,7 +232,7 @@
      "name": "Stonewall",
      "text": "For the purpose of Wave Attacks, other Knights treat you as an Obstacle.",
      "ops": [],
-     "note": "미구현 (Wave Attack)."
+     "note": "Wave Attack의 Obstacle 판정에서 다른 기사에게 Obstacle로 취급."
     }
    ]
   },
@@ -274,7 +274,7 @@
      "name": "Stonewall",
      "text": "For the purpose of Wave Attacks, other Knights treat you as an Obstacle.",
      "ops": [],
-     "note": "미구현 (Wave Attack)."
+     "note": "Wave Attack의 Obstacle 판정에서 다른 기사에게 Obstacle로 취급."
     }
    ]
   }
