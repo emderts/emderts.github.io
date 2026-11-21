@@ -724,10 +724,8 @@
    "instinct": null,
    "wound": "Poison 2. Lose -2 [V].",
    "fail": "[React] Hop in a random direction.",
-   "critical": "Disable Judgements. Whenever at least one Knight chooses to Unearth, place a Generic Single Wound card on the Wound Stack.",
-   "unclear": [
-    "Critical says \"chooses to Unearth\" — the sheet's Trait uses Submit / Resist; transcribed as printed"
-   ]
+   "critical": "Disable Judgements. Whenever at least one Knight chooses to Submit, place a Generic Single Wound card on the Wound Stack.",
+   "unclear": []
   },
   {
    "name": "The Oldest One",
@@ -783,8 +781,7 @@
   }
  ],
  "notes": [
-  "Overcome / Overpower thresholds on the BP cards are printed very small — check every \"N+\"",
-  "Exposed appears on the Routine; \"Unearth\" appears on Clogged Lungs but nowhere on the Monster Sheet"
+  "Overcome / Overpower thresholds on the BP cards are printed very small — check every \"N+\""
  ],
  "_source": "Owner scans 2026-11-19 (Monster Sheet + card sheet). Engine NOT implemented."
 }
