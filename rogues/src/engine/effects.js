@@ -606,7 +606,7 @@ export class Effects {
       case 'bonusAttack': { if (!k.alive) return; if (!C.canAttack(k, true)) { this.say(`${k.name}: Bonus Attack 불가 — ${C.fx.usableWeapons(k, true).length ? '사거리 안에 대상이 없음' : '사용할 수 있는 Weapon 없음'}`, 'warn'); if (o.onFail) await this.runKnightOps(o.onFail, k, ctx); return; } if (o.optional && !await C.yesNo(`${k.name}: Bonus Attack 수행?`, true)) return; const w0 = C.monster.wounds, a0 = C.lastAttack; await C.knightAttack(k, { bonus: true }); const A = C.lastAttack !== a0 ? C.lastAttack : null; const wounded = C.monster.wounds > w0 || !!(A && A.knight === k && A.wounded); // a Wound on a guardian / Mob counts too
         if (o.onWound && wounded) { this.say('Wound 성공 → 생존'); ctx.lived = true; } else if (o.onFail) { await this.runKnightOps(o.onFail, k, ctx); } return; }
       case 'move': { const n = o.n === 'speed' ? this.speed(k) : o.n; if (!await opt(`최대 ${n}칸 이동?`)) return; await C.knightMove(k, n); return; }
-      case 'chainBreak': throw new ChainBreak(ctx.card ? ctx.card.name : 'effect');
+      case 'chainBreak': if (C.noChainBreak) { C.say('Chain Break 무시 (이 공격은 Bonus Attack·Chain Break를 무시)', 'ai'); return; } throw new ChainBreak(ctx.card ? ctx.card.name : 'effect');
       case 'die': if (ctx.lived) return; return C.die(k, o.reason);
       case 'shuffleBack': { if (ctx.deck) { ctx.deck.cards.push(ctx.card); ctx.deck.shuffle(); ctx.shuffledBack = true; } return; }
       case 'perilCheck': return C.perilCheck(k);

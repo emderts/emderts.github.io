@@ -17,19 +17,19 @@ AI = {
  'Tail Swipe': dict(gates=[G(5, op='dsfDouble')], effects=[{'op': 'dsfHits', 'n': 5, 'flat': True, 'perilCheck': True}, KD, RX, {'op': 'dsfKnockLeft', 'n': 7}], afterAttack=[F(2)]),
  'Spear Downthrust': dict(type='zone', move=False, beforeAttack=[{'op': 'dsfLand'}], zoneAroundSelf=1, gates=[HG(4, GC())], effects=[V(2), IFH(2, EXH(1)), RX], afterFinalAttack=[F(2)]),
  'Spear Thrust': dict(pathAttack=True, gates=[HG(4, GC())], effects=[V(2), HEAT(1, perHit=True), BANE(1)], afterFinalAttack=[{'op': 'dsfPush', 'n': 3}, F(2)]),
- 'Spear Bash': dict(gates=[HG(4, GK())], effects=[{'op': 'dsfHits', 'n': 5, 'flat': True, 'perilCheck': True}, HEAT(2), KD, RX], afterAttack=[F(2), {'op': 'dsfKnockLeft', 'n': 5}]),
+ 'Spear Bash': dict(gates=[HG(4, GK())], effects=[{'op': 'dsfHits', 'n': 5, 'flat': True, 'perilCheck': True}, HEAT(2), RX, KD], afterAttack=[F(2), {'op': 'dsfKnockLeft', 'n': 5}]),
  'The Jaws of Hell': dict(judge=TB, move=False, beforeAttack=PULL, effects=[{'op': 'dsfHits', 'n': 3, 'shield': 2, 'perilCheck': True}, CD()], afterAttack=[F(2), OUB()]),
  'The Decalogue of Suffering': dict(judge=TB, move=False, gates=[DIE1(5)], effects=[V(2), HEAT(2, perHit=True), IFH(2, OUB(elseDie=True)), RX], afterAttack=[F(3)]),
  'Merciless Impalement': dict(type='zone', move=False, beforeAttack=[{'op': 'dsfLand'}], zoneAroundSelf=2, gates=[HG(5, GC())], effects=[V(3), IFH(3, EXH(2))], afterFinalAttack=[F(3)]),
  'Vile Vortex': dict(gates=[HG(5, GC())], effects=[V(4), HEAT(1, perHit=True), {'op': 'dsfVortex', 'vault': True}], afterFinalAttack=[F(3), {'op': 'dsfVortex'}]),
  'Tormentor of Souls': dict(judge=TB, move=False, beforeAttack=PULL, effects=[{'op': 'dsfHits', 'n': 4, 'shield': 3, 'perilCheck': True}, CD(), {'op': 'dsfBaneFill'}, RX], afterAttack=[F(3)]),
- 'Dragged Down Under': dict(judge=SI, gates=[HG(4, GK())], effects=[{'op': 'dsfHits', 'n': 'X', 'flat': True, 'perilCheck': True}, HEAT(2), KD, RX], afterAttack=[{'op': 'dsfOubKD'}, F(3)]),
+ 'Dragged Down Under': dict(judge=SI, gates=[HG(4, GK())], effects=[{'op': 'dsfHits', 'n': 'X', 'flat': True, 'perilCheck': True}, HEAT(2), RX, KD], afterAttack=[{'op': 'dsfOubKD'}, F(3)]),
  'Flaming Arc': dict(type='zone', gates=[HG(5, GC())], effects=[V(3), HEAT(1, perHit=True), BANE(1), RX], afterFinalAttack=[F(3)], zone=['..R.', '.RRR', '>>RR', '>>RR', '.RRR', '..R.']),
  'Smelting Point': dict(gates=[G(7, op='evasionDice', n=1, orLevel=3)], effects=[{'op': 'dsfSmelt'}], afterAttack=[F(4), EXH(1, mode='discard'), {'op': 'dsfPush', 'n': 3}]),
  'Molten Rain': dict(type='zone', move=False, targeting=['All Knights'], gates=[HG(6, GC())], effects=[V(2), HEAT(1, perHit=True), GK()], afterFinalAttack=[F(4)]),
- 'Hell-ter Smelter': dict(pathAttack=True, effects=[V(2), HEAT(2, perHit=True), {'op': 'dsfFerro', 'n': 1, 'perHit': True}, RX], afterAttack=[{'op': 'dsfRepeatUnattacked'}]),
+ 'Hell-ter Smelter': dict(pathAttack=True, gates=[{'stat': 'heat', 'gte': 6, 'op': 'dsfIgnoreBA'}], effects=[V(2), HEAT(2, perHit=True), {'op': 'dsfFerro', 'n': 1, 'perHit': True}, RX], afterAttack=[{'op': 'dsfRepeatUnattacked'}]),
  'Smelting Kiss': dict(judge=TB, move=False, beforeAttack=PULL, gates=[HG(6, GC())], effects=[{'op': 'dsfHits', 'n': 4, 'shield': 2, 'perilCheck': True}, CD(), KD, RX], afterAttack=[F(4)]),
- 'Searing Iron': dict(judge=SI, beforeAttack=[K('gainHeat', n=3)], effects=[{'op': 'dsfFerro', 'n': 1, 'perHit': True}, {'op': 'dsfHits', 'n': 'X', 'flat': True, 'perilCheck': True}, KD, RX], afterAttack=[F(2), {'op': 'dsfOubKD'}]),
+ 'Searing Iron': dict(judge=SI, beforeAttack=[K('gainHeat', n=3)], effects=[{'op': 'dsfFerro', 'n': 1, 'perHit': True}, {'op': 'dsfHits', 'n': 'X', 'flat': True, 'perilCheck': True}, RX, KD], afterAttack=[F(2), {'op': 'dsfOubKD'}]),
  "Perdition's Flame": dict(move=False, beforeAttack=APP, gates=[HG(6, GK())], effects=[{'op': 'dsfHeatLose'}, RX], afterAttack=[{'op': 'dsfRepeatIfDied'}]),
 }
 SIG = dict(move=False, beforeAttack=APP, gates=[HG(6, GC())], effects=[{'op': 'dsfPush', 'n': 1}, V(2), HEAT(1, perHit=True), RX], afterAttack=[F(2, sig=True)])
@@ -41,7 +41,7 @@ BP = {
  'Infested Knee Armor': dict(oc=3, wound=[F(1), CDA], fail=[BARG], critical=[{'op': 'dsfReset'}]),
  'Pale Hand': dict(oc=3, wound=[SIGA], fail=[GK(A)], critical=[BA]),
  'Scrap Metal Breastplate': dict(oc=2, wound=[F(1), PT], fail=[HEAT(1, A)], critical=[FLAG('ferroDown')]),
- 'Exposed Tendon': dict(op=2, wound=[F(2), PT], fail=[BARG, K('delay', A, n=1)], critical=[FLAG('noSeqZone'), {'op': 'dsfNote', 'text': 'Sequential·Zone Attack 비활성은 아직 AI 카드에 적용되지 않음 (미구현)'}]),
+ 'Exposed Tendon': dict(op=2, wound=[F(2), PT], fail=[BARG, K('delay', A, n=1)], critical=[FLAG('noSeqZone')]),
  'Rotting Visage': dict(op=2, nb=True, wound=[{'op': 'dsfAI'}], fail=[K('discard', A, n=1)], critical=[FLAG('noGate')]),
  "Blasphemer's Horn": dict(op=3, wound=[F(2), {'op': 'dsfBaneOff', 'n': 1}], fail=[GK(A)], critical=[{'op': 'devote'}]),
  'Flayed Back': dict(op=2, instinct=[F(2)], wound=[GK(A)], critical=[{'op': 'additionalSingleWound'}]),
@@ -82,10 +82,10 @@ d = {'id': 'devil-of-the-smelted-fears', 'name': S['name'], 'kind': 'boss', 'cod
  'rulings': [
   'Ferrobaptism X: Devil이 Armor 토큰 X개를 얻음. Armor 토큰 1개당 모든 BP의 AT +1. Level 3+: Signature의 Ferrobaptism +1',
   'Bargain: Bane 1 → 버림 더미를 섞거나 카드를 한 장씩 뽑음(멈추거나 A/B가 나올 때까지). A가 나오면 뽑은 카드를 모두 버리고(다른 카드 효과 없음) Oubliette로 이동, 버림 더미를 덱에 섞음. 그 외에는 뽑은 순서대로 C/D/E = Armor 토큰 3/2/1개, F = Heat +1로 1개, B = 중단 + Discard. 버린 Armor 토큰은 Smelter Oubliette 카드로 (The Iron Tithe) [해석, 확인 필요]',
-  'Smelter Oubliette: 안에 있는 기사는 보드 밖(Devil에 인접·사거리 무관 공격 가능, 몬스터 시야 밖, 비자발 이동 없음). Escape = Move action, 카드의 Armor 토큰 X개(5 + Baptized in Metal을 가진 기사 수)를 버리고 Board Edge에서 4칸 이상 떨어진 칸으로, Baptized in Metal 획득. 턴 종료 시 Choke(Passion) 후 Heat만큼 [V] 손실 [해석, 확인 필요]',
+  'Smelter Oubliette: 안에 있는 기사는 보드 밖(사거리 무관 공격 가능, 비자발 이동 없음). Master of the Oubliette의 Always There 때문에 Devil의 공격·효과에는 항상 인접 = 시야 안으로 취급 (소유자 확인 2026-11-21). Escape = Move action, 카드의 Armor 토큰 X개(5 + Baptized in Metal을 가진 기사 수)를 버리고 Board Edge에서 4칸 이상 떨어진 칸으로, Baptized in Metal 획득. 턴 종료 시 Choke(Passion) 후 Heat만큼 [V] 손실 [해석, 확인 필요]',
   'Gatekeeper: Panzergate 토큰이 없으면 1개. Wound를 주거나 Knight Round 종료 시 다른 기사에 인접하면 버림. 토큰이 있으면 Bargain과 Escape 불가. Gatecrasher: Armor(Armor Gear)·Shield Trait Gear를 모두 Exhaust, Panzergate 토큰이 있으면 Discard',
   'Molten Chains (Lv2+): Stains of Profanity 표로 Peril 등급이 정해진 Peril Check 뒤에 벌칙 — Cooldown/Delay/Discard는 손패에서 무작위 1장, Gear Exhaust는 플레이어 선택',
-  'Only Fear Will Remain (Lv3): 이 몬스터의 효과(공격·Gatecrasher·Molten Chains·Shield/Helmet 대체)로 Gear를 Exhaust/Discard할 때만 Choke 1 — 기사가 스스로 비용으로 Exhaust하는 경우는 아직 미연결 [해석, 확인 필요]',
+  'Only Fear Will Remain (Lv3): Gear가 Exhaust/Discard될 때마다 Choke 1 — 몬스터 효과든 기사가 비용으로 소진하든 모두 적용 (소유자 확인 2026-11-21)',
   'Zone 도식: Flaming Arc = 정면의 호 모양(작은 그림에서 읽음) [해석, 확인 필요]. Spear Downthrust / Merciless Impalement = Land on Top + Knockdown 후 Devil 주변 Zone 1 / 2',
   '"Knockback N to the left" = Devil이 바라보는 방향 기준 왼쪽 [해석, 확인 필요]',
   'Pull Unlimited & Judge: 대상을 Devil에 인접할 때까지 끌어옴',
@@ -94,7 +94,14 @@ d = {'id': 'devil-of-the-smelted-fears', 'name': S['name'], 'kind': 'boss', 'cod
   'Smelting Point: 명중 1/2/3회 = Massive Peril -5/-9/-12의 You Died 카드를 이번 Judicium에만 추가 [해석, 확인 필요]',
   'Hell-ter Smelter: [V]를 잃었으면 이번에 공격받지 않은 기사 중 가장 먼 기사에게 반복, 모두 공격받거나 [V] 손실이 없을 때까지 [해석, 확인 필요]',
   'Blessing of Fear(Routine): Ferrobaptism 2, 모든 기사 Bane X(X = Devil의 Armor 토큰), 무작위 기사를 중앙 4칸 중 한 곳으로',
-  '미구현: "You may voluntarily fail this Attack"(Rancid Loincloth, Rotting Visage), Exposed Tendon Critical의 Sequential·Zone Attack 비활성, Hell-ter Smelter의 Heat 6+ 게이트(Bonus Attack·Chain Break 무시), 각 AI 카드의 REACT! 창 위치(효과 사이 창은 넣음)',
+  '"You may voluntarily fail this Attack"(Rancid Loincloth, Rotting Visage): Wound가 될 Power여도 실패로 처리할지 선택. Exposed Tendon Critical: 이후 ZONE ATTACK·SEQUENTIAL ATTACK 카드는 수행하지 않고 버림. Hell-ter Smelter Heat 6+: 그 공격 동안 기사의 Bonus Attack과 Chain Break 능력 무시(대상 사망 Mercy Rule은 그대로)',
+  '[Heat] 보너스(Lv2+): 이 몬스터의 공격 효과가 기사에게 Heat를 줄 때 효과당 한 번 추가 (소유자 확인 2026-11-21)',
  ]}
+# The whole Devil of the Smelted Fears sheet was checked by the owner on 2026-11-21
+import re
+OK = ' (소유자 확인 2026-11-21)'
+d['rulings'] = [re.sub(r' ?\[해석, 확인 필요[^\]]*\]', '', r) for r in d['rulings']]
+d['rulings'] = [r if '소유자 확인' in r else r + OK for r in d['rulings']]
+d['clashSetup']['notes'] = [re.sub(r' ?\[해석, 확인 필요[^\]]*\]', OK, x) for x in d['clashSetup'].get('notes', [])]
 import reactfix; reactfix.apply('devil-of-the-smelted-fears', d)
 json.dump(d, open(sys.argv[1], 'w'), ensure_ascii=False, indent=1); print('wrote', sys.argv[1], len(d['cards']['ai']), 'AI', len(d['cards']['bp']), 'BP')

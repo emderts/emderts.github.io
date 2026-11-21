@@ -73,7 +73,7 @@ export const DevilMixin = {
       case 'dadIfHits': if (ctx.hits >= o.gte && t && t.alive) await this.fx.runMonsterOps(o.then, ctx); return true;
       case 'dadK': await K(this.atkHeat(o.k, ctx), o.who === 'attacker' ? k : t); return true;
       case 'dadCond': { const x = o.who === 'attacker' ? k : t; if (x && x.alive && !(o.ifAdjacent && !this.adjacentToMonster(x))) await this.addCondition(x, o.id); return true; }
-      case 'dadHeatPerHit': if (t && t.alive && ctx.hits > 0) await K({ op: 'gainHeat', n: ctx.hits * ((o.n || 1) + (ctx.attack ? M.bonuses.heat || 0 : 0)) }); return true;
+      case 'dadHeatPerHit': if (t && t.alive && ctx.hits > 0) await K(this.atkHeat({ op: 'gainHeat', n: ctx.hits * (o.n || 1) }, ctx)); return true;
       case 'dadPush': { const x = o.who === 'attacker' ? k : t; if (!x || !x.alive) return true; const n = P(o.n === 'hits' ? ctx.hits : o.n === 'heat' ? x.heat : o.n === 'hits+0' ? ctx.hits : o.n); if (n > 0) await this.pushback(x, n, { isPush: true }); return true; }
       case 'dadPullEdge': await this.dadPullEdge(k, o.n); return true;
       case 'dadRetreat': await this.dadRetreat(o.n); return true;

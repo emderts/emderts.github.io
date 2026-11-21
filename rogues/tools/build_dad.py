@@ -97,7 +97,7 @@ d = {'id': 'devil-of-the-ancient-dusk', 'name': S['name'], 'kind': 'boss', 'code
   'Ritual Macabre: Bane 2 → -9 [V](Armor Roll 가능) → [V] 0이면 사망 → Heat +3 → Peril Check',
   "Back to Your Fathers!: 명중당 Heat +1, Fool's deck 1장을 뽑아 그 글자의 벌칙을 바로 적용(D는 효과 없음), 뽑은 카드는 덱에 다시 섞음 [해석, 확인 필요]",
   'Relic of an Age of Profanity Critical: 모든 Swamp 칸이 Rut이 되고 Deluge 비활성',
-  'Level 2+의 [Heat] 보너스: 이 몬스터의 공격이 기사에게 Heat를 줄 때마다 그만큼 추가 (소유자 확인 2026-11-21). "명중당 Heat" 효과에는 명중마다 더함',
+  'Level 2+의 [Heat] 보너스: 이 몬스터의 공격이 기사에게 Heat를 줄 때마다 그만큼 추가 (소유자 확인 2026-11-21). "명중당 Heat" 효과에도 효과 전체에 한 번만 더함',
  ]}
 # The whole Devil of the Ancient Dusk sheet (AI, BP, traits, setup, rulings) was checked by the owner on 2026-11-21
 import re
