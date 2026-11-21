@@ -39,6 +39,13 @@
 | Armor Roll / Power Roll / Power Pool | 방어 굴림 / 위력 굴림 / 위력 풀 |
 | Hide / Hidden | 은신 / 은신 상태 |
 | Targeting line / Mob track | 대상 지정 줄 / 개체 트랙 |
-| Fail Response / BP Suppress / Massive Peril | 실패 반응 / BP 억제 / 대위험 |
+| Fail Response / BP Suppress / Massive Peril | 실패 반응 / BP 억제 / 막대한 위험 |
 | Exploration card / Encounter / Ambush | 탐험 카드 / 조우 / 매복 |
 | Kingdom tile / Party Marker / District / Shortcut / Travel step | 왕국 타일 / 파티 마커 / 구역 / 지름길 / 여행 단계 |
+| Massive Peril | 막대한 위험 |
+| Signature / Zone / Blindspot | 시그니처 / 영역 / 사각지대 |
+| in sight / in front | 시야 내 / 정면 |
+| [React] (REACT! window) | [반응 창] |
+| Single Wound / Attacker / reveal | 단일 부상 / 공격자 / 공개 |
+
+- 숫자만 다른 줄은 `#` 틀 하나로 번역한다 (`tools/i18n/text/monster_common.json`): `Knockback #.` → `튕겨내기 #.`

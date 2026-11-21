@@ -16,11 +16,15 @@ const hit = (d, k) => (d && typeof d[k] === 'string' && d[k] ? d[k] : null);
 /** A card / Knight / Monster / Gear name. */
 export const tn = name => (typeof name === 'string' ? hit(sec('names'), name) || name : name);
 /** Card text: the whole text if the dictionary has it, otherwise each line (and each " / "-joined part) on its own. */
-export const tx = text => { if (typeof text !== 'string' || lang === 'en') return text; const d = sec('text'); if (!d) return text; const whole = hit(d, text); if (whole) return whole; return text.split('\n').map(l => hit(d, l) || hit(d, l.trim()) || l).join('\n'); };
+// A line that differs from a dictionary entry only in its numbers uses that entry as a template: "Knockback 4." ← "Knockback #.": "튕겨내기 #."
+// ('#' is filled with the numbers of the line in order; '#1', '#2' … pick a number by position when the order changes.)
+const tpl = (d, l) => { const nums = l.match(/\d+/g); if (!nums) return null; const v = hit(d, l.replace(/\d+/g, '#')); if (!v) return null; let i = 0; return v.replace(/#(\d)?/g, (m, k) => (k ? nums[+k - 1] : nums[i++]) ?? m); };
+const line = (d, l) => hit(d, l) || hit(d, l.trim()) || tpl(d, l.trim());
+export const tx = text => { if (typeof text !== 'string' || lang === 'en') return text; const d = sec('text'); if (!d) return text; const whole = hit(d, text); if (whole) return whole; return text.split('\n').map(l => line(d, l) || l).join('\n'); };
 /** An interface string by key. */
 export const tu = (key, fallback) => hit(sec('ui'), key) || fallback;
 /** Used by the DOM helper: a text node that is exactly a known name or text line is shown translated (no effect in English). */
-export const auto = s => { if (lang === 'en' || typeof s !== 'string' || !s) return s; return hit(sec('names'), s) || hit(sec('text'), s) || trIn(s, true); };
+export const auto = s => { if (lang === 'en' || typeof s !== 'string' || !s) return s; return hit(sec('names'), s) || line(sec('text') || {}, s) || trIn(s, true); };
 // Names inside a longer sentence (log lines, prompts, button labels): every dictionary name that is not a glossary keyword
 // (DICT[lang]._inlineSkip) is replaced where it stands as a whole word. `multiOnly` limits this to names of two or more words —
 // used for arbitrary text nodes, where a one-word name ("Slash", "Ruin", "Counter") could be an ordinary word.
