@@ -77,3 +77,7 @@
 - Gate = 조건부. Scab Armor = 피딱지 갑옷, Cursed Overgrowth = 저주받은 과성장 (소유자 확인 2026-11-21).
 - Paleblood Worms · Pumpkinhead Monstrosities 문구 확정 (소유자 확인 2026-11-21).
 - 숫자 틀(#)은 [d10] 아이콘의 10을 숫자로 세지 않는다.
+| Possessed / Recover / Maximum [Vigor] / Knight Sheet | 빙의됨 / 복구 / 최대 [활기] / 기사 시트 |
+| Grouped Knight / Haunt / Line of Sight / Unavoidable / Delve | 뭉쳐 있는 기사 / 망령 / 시야 / 회피 불가 / 탐사 |
+
+- Winged Nightmare · Ironcast Dead 문구 확정 (소유자 확인 2026-11-21). Swarm / Gangup / Necronode 는 대안 검토 중 (현재 군단 / 패거리 / 사령 마디).
