@@ -100,19 +100,23 @@
 | Omen / Eternal Pain / Master's / Mortal Fault / Bad Luck / Tongue-Tied Hex | 징조 / 영원한 고통 / 주인의 / 필멸의 결함 / 불운 / 혀 묶임 주술 |
 | Stray / Bog Move / Mud Wisp / Wisper Zone / Weakspot | 헤매기 / 수렁 이동 / 진흙 도깨비불 / 도깨비불 영역 / 약점 |
 | Crit die / Crit Chance / Critical Wound | 치명타 주사위 / 치명타 기회 / 치명타 부상 |
-| Mettle card / Heroic Arc / Refresh step / Poison Limit | 기개 카드 / 영웅 게이지 / 재정비 단계 / 독 한계 |
+| Mettle card / Heroic Arc / Refresh step / Poison Limit | 기개 카드 / 영웅 서사 / 재정비 단계 / 독 한계 |
 | Drill / Malediction (Dormant) / Climb / Hold On / Bridle | 굴착 / 저주의 말 (잠복) / 오르기 / 매달리기 / 고삐 잡기 |
 
 - Knighteater · White Ape Troll 문구 확정 (소유자 확인 2026-11-21).
 | Fallen Knight / Shockwave / Loose String / Subjugated | 타락한 기사 / 충격파 / 늘어진 줄 / 복속됨 |
 | Command Attack / Wave Attack / effective range / column / row | 명령 공격 / 파동 공격 / 유효 범위 / 열 / 행 |
-| Ferrobaptism / Gatekeeper / Gatecrasher / Escape / Peril Arc | 철의 세례 / 문지기 / 문 부수기 / 탈출 / 위험 게이지 |
+| Ferrobaptism / Gatekeeper / Gatecrasher / Escape / Peril Arc | 철의 세례 / 문지기 / 문 부수기 / 탈출 / 위험 서사 |
 
 - Bog Witch · King Laid Low 문구 확정. Doomed = 파멸적, Mortal Fault Hex = 필멸의 결함 주술, Malediction = 아이템 이름과 같이 "저주 (잠복)" (소유자 확인 2026-11-22).
 - Bog track: 이 게임에는 트랙 그림이 없으므로 한국어 문구에 칸 순서를 적는다 — "가장 왼쪽 칸(늪)", "늪 → 진흙 도깨비불 → 썩은 그루터기 → 다시 늪". Weakspot W space = "약점 칸" (소유자 확인 2026-11-22).
 | Deluge / Swampwalk / short Board Edge | 범람 / 늪 걷기 / 짧은 보드 가장자리 |
-| Toadlet / Hop / Submit / Resist / Vantage Point | 새끼 두꺼비 / 도약 / 굴복 / 저항 / 유리한 고지(VP) |
+| Toadlet / Hop / Submit / Resist / Vantage Point | 새끼 두꺼비 / 도약 / 굴복 / 저항 / VP |
 
 - Puppet King Edelhardt · Devil of the Smelted Fears 문구 확정. Malediction = 저주의 말, Ferrobaptism = 철의 세례, Stains of Profanity = 신성모독의 자국 (소유자 확인 2026-11-22).
-- Helm 과 Helmet 은 장비 특성에 둘 다 있으므로 나눈다: Helm = 투구 (7장), Helmet = 헬멧 (4장).
-- Heroic Arc / Peril Arc = 영웅 게이지 / 위험 게이지 [제안, 소유자 확인 필요].
+- Helm 과 Helmet 은 둘 다 "투구"로 합친다 (소유자 확인 2026-11-22).
+- Heroic Arc / Peril Arc = 영웅 서사 / 위험 서사 [임시, 소유자 확인 필요]. Vantage Point 는 풀어 쓰지 않고 항상 "VP" (소유자 확인 2026-11-22).
+| Germinate (Dragon / Field / Remnant) / Migrate / Remnant Move | 발아 (용 / 밭 / 잔재) / 이주 / 잔재 이동 |
+| Ram / Devoured / Phase / Talent card / Portrait card / Climb Down | 들이받기 / 잡아먹힘 / 단계 / 재능 카드 / 초상 카드 / 내려오기 |
+
+- Devil of the Ancient Dusk · Toadragon 문구 확정 (소유자 확인 2026-11-22). Hop 은 대안 검토 중 (현재 도약).
