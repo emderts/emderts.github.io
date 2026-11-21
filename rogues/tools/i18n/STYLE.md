@@ -111,12 +111,25 @@
 - Bog Witch · King Laid Low 문구 확정. Doomed = 파멸적, Mortal Fault Hex = 필멸의 결함 주술, Malediction = 아이템 이름과 같이 "저주 (잠복)" (소유자 확인 2026-11-22).
 - Bog track: 이 게임에는 트랙 그림이 없으므로 한국어 문구에 칸 순서를 적는다 — "가장 왼쪽 칸(늪)", "늪 → 진흙 도깨비불 → 썩은 그루터기 → 다시 늪". Weakspot W space = "약점 칸" (소유자 확인 2026-11-22).
 | Deluge / Swampwalk / short Board Edge | 범람 / 늪 걷기 / 짧은 보드 가장자리 |
-| Toadlet / Hop / Submit / Resist / Vantage Point | 새끼 두꺼비 / 도약 / 굴복 / 저항 / VP |
+| Toadlet / Hop / Submit / Resist / Vantage Point | 새끼 두꺼비 / 껑충 뛰기 / 굴복 / 저항 / VP |
 
 - Puppet King Edelhardt · Devil of the Smelted Fears 문구 확정. Malediction = 저주의 말, Ferrobaptism = 철의 세례, Stains of Profanity = 신성모독의 자국 (소유자 확인 2026-11-22).
 - Helm 과 Helmet 은 둘 다 "투구"로 합친다 (소유자 확인 2026-11-22).
-- Heroic Arc / Peril Arc = 영웅 서사 / 위험 서사 [임시, 소유자 확인 필요]. Vantage Point 는 풀어 쓰지 않고 항상 "VP" (소유자 확인 2026-11-22).
+- Heroic Arc / Peril Arc = 영웅 서사 / 위험 서사 (소유자 확인 2026-11-22, "일단" — 바뀔 수 있음). Vantage Point 는 풀어 쓰지 않고 항상 "VP" (소유자 확인 2026-11-22).
 | Germinate (Dragon / Field / Remnant) / Migrate / Remnant Move | 발아 (용 / 밭 / 잔재) / 이주 / 잔재 이동 |
 | Ram / Devoured / Phase / Talent card / Portrait card / Climb Down | 들이받기 / 잡아먹힘 / 단계 / 재능 카드 / 초상 카드 / 내려오기 |
 
-- Devil of the Ancient Dusk · Toadragon 문구 확정 (소유자 확인 2026-11-22). Hop 은 대안 검토 중 (현재 도약).
+- Devil of the Ancient Dusk · Toadragon 문구 확정 (소유자 확인 2026-11-22). Hop = 껑충 뛰기 (소유자 확인 2026-11-22).
+
+## 기사 카드
+
+| 원문 | 번역 |
+|---|---|
+| Talent / Technique / Ally / Encounter | 재능 / 기술 / 아군 / 조우 |
+| Power Pool / [Attack die] / [1H] / [2H] | 위력 풀 / [공격 주사위] / [한손] / [양손] |
+| first / second ability window / Clear the Knight Pool step | 첫 번째 / 두 번째 능력 창 / 기사 풀 비우기 단계 |
+| Body / Mind Condition card / Immune to X | 신체 / 정신 상태 카드 / X에 대한 면역 |
+| First Death / Sigh of the Graal / Deep Fog / Kingdoms Forlorn | 첫 죽음 / 그랄의 한숨 / 깊은 안개 / 버려진 왕국들 |
+
+- 게이트 줄 "X instead." 는 "대신 X." 로 옮긴다: "Improved Rush instead." → "대신 개선된 돌진."
+- 몬스터 22종 문구 전부 확정 (Panzerdragon Veldr · Young Devour Dragon 포함, 소유자 확인 2026-11-22). Germinate / Field 는 대안 검토 중 (현재 발아 / 밭).
