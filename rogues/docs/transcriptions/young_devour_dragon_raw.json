@@ -181,8 +181,7 @@
    ],
    "tag": "MOVE & ATTACK {P3+: +1 [die]}",
    "effects": [
-    "For each hit lose -2 [V].",
-    "Bane 1 and gain +1 [P]. [Peril].",
+    "For each hit lose -2 [V], Bane 1 and gain +1 [P]. [Peril].",
     "[React]"
    ],
    "afterTag": "AFTER FINAL ATTACK",
@@ -743,7 +742,7 @@
    "name": "Hollow Body",
    "level": 3,
    "at": 15,
-   "top": "OVERCOME 8+: Power 1",
+   "top": "OVERCOME 6+: Power 1",
    "note": null,
    "ultrainstinct": null,
    "instinct": "Exhaust your active Weapon. Perform Signature against the Attacker.",

@@ -88,7 +88,7 @@ d = {'id': 'panzerdragon-veldr', 'name': S['name'], 'kind': 'boss', 'code': S['c
   'Dragon Roar: 첫 AI로 수행 — 모든 기사 Fear, +1 [P], Knockdown, Devotion 토큰이 가장 많은 기사가 Divine Target. Germinate (Dragon) ×4, (Remnant) ×4, (Field) ×3 후 카드를 제거하고 다음 AI를 뽑음',
   'Panzercolony: Armor 토큰은 Field(Knight Pool) / Dragon(Sheet) / Remnant(Primal Remnant BP)에 놓임. Migrate = Remnant → Field → Dragon → Remnant로 동시에 이동 [해석, 확인 필요 — 도식 방향]. Dragon의 Armor 토큰 1개당 Panzerdragon BP AT +1',
   'Field of Parasites: Second Ability Window 종료 시 Field의 Armor 토큰 수만큼 Knight Pool의 Knight 토큰을 버림(플레이어 선택). Panzerdragon의 왼쪽/오른쪽 면에 인접한 기사는 Field of Parasites BP(AT 5 + Field 토큰)를 대신 공격할 수 있음 — Wound해도 Escalate·Wound Stack 없음',
-  'Primal Remnant: 절대 활성화하지 않는 Lumbering 몬스터. BP AT 5 + Remnant 토큰 ×2. Remnant에 토큰 7개 이상이면 Iron Apotheosis(패배). Remnant Move X = Panzerdragon 주위 고리(모서리 포함 16칸)를 시계 방향으로 X칸. 고리의 칸이 보드 밖이면 보드 밖에 있는 채로 돎(그동안은 공격할 수 없고 아무것도 밟지 않음). 지나가거나 멈춘 칸의 기사는 사망, Terrain 타일은 소멸. Panzerdragon이 이동하면 고리의 같은 자리로 따라감',
+  'Primal Remnant: 절대 활성화하지 않는 Lumbering 몬스터. BP AT 5 + Remnant 토큰 ×2. Remnant에 토큰 7개 이상이면 Iron Apotheosis(패배). Remnant Move X = Panzerdragon 주위 고리(모서리 포함 16칸)를 시계 방향으로 X칸. 고리의 칸이 보드 밖이면 보드 밖에 있는 채로 돎(그동안은 공격할 수 없고 아무것도 밟지 않음, 화면에는 가장자리에 흐리게 표시). 지나가거나 멈춘 칸의 기사는 사망, Terrain 타일은 소멸. Panzerdragon이 이동하면 고리의 같은 자리로 따라감',
   'Divine Fervor: Divine Target 기사가 공격 대상이 되면 +1 [P], Priority Target 기사가 대상이 되면 Parasitize 1. Divine Target 기사는 프리 액션으로 Peril Check를 하고 토큰을 넘길 수 있음. 토큰 보유자가 죽으면 Devotion 토큰이 가장 많은 기사에게',
   'Turn to Rust: [P]가 9를 넘게 되면 사망 (공격 중이면 공격을 마친 뒤)',
   'Mortal Retribution: Armor 토큰을 버릴 때마다 Generic 토큰 1 (최대 8). 8개면 기사 1명이 모두 버리고 추가 Combat action (프리 액션으로 선언)',
@@ -98,13 +98,13 @@ d = {'id': 'panzerdragon-veldr', 'name': S['name'], 'kind': 'boss', 'code': S['c
   '"P4+: Bane 2 instead" 등 [P] 게이트는 대상 기사의 [P]로 판정',
   '"Disable Wave Attacks / Beam Zone Attacks / Zone X" Critical: 카드를 제거하지 않음 — 해당 AI 카드가 뽑혀 수행하려 할 때 그냥 무시하고 버림',
   'Drachendämmerung(Routine): 모든 기사 Bane 3, [P]가 가장 높은 기사 사망, Panzerdragon이 보드 중앙으로 이동해 가장 많은 기사를 바라봄',
-  'Lumbering: 기사의 Pushback / Knockback / Drag / Pull은 Panzerdragon에 무효(Ignore Lumbering 제외). Septic Slash "P5+: Ignore your Armor Gear card" = 대상의 [P]가 5 이상이면 Armor Roll에서 Armor Gear 카드의 주사위를 빼고 굴림(Reinforce 등은 유지) [해석, 확인 필요]. Shadow of Doom의 Saint 카드: 특정 Saint에 Devote한 기사만 해당(현재 캠페인에서 얻는 경로 없음)',
+  'Lumbering: 기사의 Pushback / Knockback / Drag / Pull은 Panzerdragon에 무효(Ignore Lumbering 제외). Septic Slash "P5+: Ignore your Armor Gear card" = 대상의 [P]가 5 이상이면 그 공격 동안 Armor Gear 카드의 주사위·능력을 모두 사용할 수 없음. Shadow of Doom의 Saint 카드: 특정 Saint에 Devote한 기사만 해당(현재 캠페인에서 얻는 경로 없음)',
   "미구현(스토리 항목): Sliver of Lost Glory Critical의 \"see 9350\". Fool's deck은 이 Clash에서 참조하는 카드가 없음",
  ]}
 # The whole Panzerdragon sheet was checked by the owner on 2026-11-21 (items still marked [해석, 확인 필요] are new questions)
 import re
 OK = ' (소유자 확인 2026-11-21)'
-KEEP = ('Septic Slash "P5+',)
+KEEP = ()
 d['rulings'] = [r if any(x in r for x in KEEP) else re.sub(r' ?\[해석, 확인 필요[^\]]*\]', '', r) for r in d['rulings']]
 d['rulings'] = [r if '소유자 확인' in r or '확인 필요' in r else r + OK for r in d['rulings']]
 d['clashSetup']['notes'] = [re.sub(r' ?\[해석, 확인 필요[^\]]*\]', OK, x) for x in d['clashSetup'].get('notes', [])]

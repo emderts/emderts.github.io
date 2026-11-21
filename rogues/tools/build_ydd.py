@@ -12,7 +12,7 @@ Z = lambda rows: {'red': [(f, r) for f, (a, b) in rows.items() for r in range(a,
 AI = {
  'Gulping Run': dict(move=True, gates=[GP(3)], before=[P(1)], effects=[V(3), RX], afterFinalAttack=[FW(4, after=True)]),
  'Damning Discharge': dict(type='zone', judge=['Fortitude', 'Might'], gates=[FN('both', op='doomed'), FN('both', op='evasionDice', n=1)], before=[CBH], effects=[V(4)], afterFinalAttack=[RAM()]),
- 'Bile Vomit': dict(type='zone', wave=True, move=True, zoneDiagram=Z({1: (0, 2), 2: (-1, 3), 3: (-2, 4)}), gates=[GP(3)], effects=[V(2), BANE(1), P(1), RX], afterFinalAttack=[RAM()]),
+ 'Bile Vomit': dict(type='zone', wave=True, move=True, zoneDiagram=Z({1: (0, 2), 2: (-1, 3), 3: (-2, 4)}), gates=[GP(3)], effects=[V(2), BANE(1, perHit=True), P(1, perHit=True), RX], afterFinalAttack=[RAM()]),
  'Autotomic Evisceration': dict(move=True, gates=[GP(3)], before=[P(1)], effects=[V(4), BANE(1, perHit=True), RX], afterAttack=[FOOL]),
  'Skewer': dict(range=4, gates=[GP(3)], effects=[{'op': 'yddFlat', 'n': 8, 'perilCheck': True}, P(1), BANE(2), CBH, RX], afterAttack=[FOOL]),
  'Hungry Chomp': dict(move=True, gates=[FN('divine', op='evasionDice', n=1)], effects=[V(5), {'op': 'yddShield'}, RX], afterAttack=[FW(4, after=True)]),
@@ -47,7 +47,7 @@ BP = {
  'Pitted Cobalt Scales': dict(oc=OC(4, P1), ultrainstinct=[EXW], instinct=[BANE(2, A), RX, FW(2)], critical=[FL('noDivineGate', 'AI 카드의 Divine Target 게이트 효과 비활성')]),
  'Razor-Sharp Teeth': dict(oc=OC(7, P1), instinct=[EXW, LV(2)], critical=[FL('devourJud', 'Clash 종료까지 Devour 대신 Judicium을 뽑음')]),
  'Black-Bile Organ': dict(oc=OC(4, IW, kind='overpower'), wound=[BANE(3, A), KD], fail=[SIGA], critical=[FL('noBane', 'Bane X 키워드 비활성')]),
- 'Hollow Body': dict(oc=OC(8, P1), instinct=[EXW, SIGA], critical=[SC(1)]),
+ 'Hollow Body': dict(oc=OC(6, P1), instinct=[EXW, SIGA], critical=[SC(1)]),
  'Bottomless Stomach': dict(oc=OC(3, {'op': 'yddResetHeat'}, kind='overpower'), ultrainstinct=[K('gainHeat', A, n=3)], wound=[LP], fail=[{'op': 'yddDevour', 'who': A}], critical=[{'op': 'yddRegurgitate'}]),
  'Spinal Air Sac': dict(oc=OC(4, MV(1)), wound=[{'op': 'yddZoneKb'}], fail=[BANE(3, A)], critical=[K('condition', A, id='Courage'), BONUS]),
  'Glassy Eyes': dict(oc=OC(6, MV(3)), ultrainstinct=[FP], wound=[RX, FW(5, random=True)], fail=[RX, FW(3)], critical=[{'op': 'yddClimb'}, BONUS]),
@@ -85,16 +85,23 @@ d = {'id': 'young-devour-dragon', 'name': S['name'], 'kind': 'boss', 'code': S['
   'To Hit: Phase I +4 (Terrain 타일·VP·Lunging Attack에서는 0, Ruined Wall에서는 +2), Phase II +2 (Terrain 타일·VP·Lunging Attack에서는 0), Phase III 보정 없음',
   'Phase I: Dragon은 Terrain을 파괴하지 않고 Crash를 일으키지 않음 — Dragon 아래에 놓이게 된 기사는 가장 가까운 빈 칸으로 Displace만 함 [해석, 확인 필요]. Phase II: 일반 규칙대로 Crash. Phase III: Dragon의 Crash = Devour(사망)',
   'Ram: Dragon이 지정된 Tower에 인접한 위치로 이동(가장 가까운 유효 위치). Phase I: Tower 위의 기사 Crash / II: Tower 파괴(Rubble) / III: Tower 파괴 + 위의 기사 Devour. "Ram the furthest Tower" = Dragon에서 가장 먼 Tower',
-  'Ruined Bastion: 기사는 자발적 이동으로 Ruined Wall 위로 올라갈 수 있고, Tower에는 Ruined Wall(또는 같은 Tower)에서만 올라감. 비자발적 이동에서는 Tower·Ruined Wall이 Indestructible. Tower에서 비자발적으로 이동하게 되면 Crash 후 모든 Obstacle을 무시. 이 Clash의 기사 이동은 Bypass 계열 효과를 반영하지 않음 (미구현)',
+  'Ruined Bastion: 기사는 자발적 이동으로 Ruined Wall 위로 올라갈 수 있고, Tower에는 Ruined Wall이나 VP에서 올라감(같은 Tower 안에서는 이동 가능). 비자발적 이동에서는 Tower·Ruined Wall이 Indestructible. Tower에서 비자발적으로 이동하게 되면 Crash 후 모든 Obstacle을 무시(Tower 타일 문구). 기사 이동은 일반 규칙(Bypass·Jump 등) 그대로',
   'Lunging Attack (Tower): Move + Combat action. Tower에서 Speed만큼 직선으로 이동해 Dragon에 인접한 뒤 공격 — 명중하면 즉시 VP로, 아니면 Knockdown. 이동 경로의 Terrain은 무시 [해석, 확인 필요]',
   'VP (Broad Back): 처음부터 열려 있음. Climb = Might 10+ (Phase I: 모두 실패, Phase III: +3, 내려올 때도 Climb Down 테스트). Hold On = Tenacity 12+ (실패: Knockdown, Displace). Divine Target은 VP로 이동할 수 없고, VP를 떠나면 Divine Target 토큰을 얻음. VP 위: +X Power (X = 공격한 BP의 Level), Wound를 주면 +1 [P]',
   'Called by the Heavens: Tower 위에서 Monster Attack을 받으면 모든 Gated Effect 적용, VP로 이동하면 버림. 턴 종료 시 가장 가까운 Tower 쪽으로 최단 경로 3칸, Tower 위면 +1 [P]',
   "Fool's deck 이동: 카드의 좌표가 Dragon 3x3의 가운데 칸이 되도록 배치(보드 밖이면 안쪽으로 보정) [해석, 확인 필요]",
-  '"The Dragon moves N spaces forward": 바라보는 방향으로 한 칸씩, Board Edge에서 멈춤',
-  'Zone 도식(작은 그림에서 읽음) [해석, 확인 필요]: Bile Vomit = 정면에서 넓어지는 삼각형 3줄, Tail Lash = 정면 3칸. Black Hole "All spaces in front" = Dragon의 앞쪽 호 전체',
-  'Command of the Famishing: Called by the Heavens 획득과 "[P]만큼 [V] 손실"은 명중과 무관하게 적용, 이동과 [P] 획득은 명중 수에 따름 [해석, 확인 필요]',
+  '"The Dragon moves N spaces forward": 바라보는 방향으로 한 칸씩. Board Edge에 걸리면 일반 이동 규칙대로 가장자리를 따라 계속 이동(처음에 기사가 더 적은 쪽으로)',
+  'Zone 도식: Bile Vomit = 정면에서 넓어지는 삼각형 3줄, Tail Lash = 정면 3칸. Black Hole "All spaces in front" = Dragon의 앞쪽 호 전체',
+  'Command of the Famishing: 모두 회피하면 Called by the Heavens 획득과 "[P]만큼 [V] 손실"도 없음. 이동과 [P] 획득은 명중 수에 따름',
   'Madness of the Famishing: 명중 시 일어나서 가장 가까운 다른 기사 쪽으로 Speed만큼 이동, 인접하면 Knight Power dice를 3번 굴려 나온 기호 수만큼 그 기사가 [V] 손실 + Peril Check [해석, 확인 필요]',
-  '미구현: Lumbering, Exhibition Clash, Hungry Chomp·Fearsome Feast의 "Shield를 active Weapon으로 선언했으면 버림", Snatch \'n\' Snap의 Weapon 슬롯 비활성, World Eater의 Talent 카드 버리기, Inescapable Maw(부활 불가 — 현재 Clash 중 부활 효과 없음), 각 AI 카드의 REACT! 창 위치',
+  'Lumbering: 기사의 Pushback / Knockback / Drag / Pull은 Dragon에 무효. Hungry Chomp·Fearsome Feast: 그 공격에서 Shield를 active Weapon으로 선언했으면 버림. Snatch \'n\' Snap 2 hits: Hand 슬롯 1개 비활성 — 넘치는 Weapon은 골라서 버림. World Eater 1+ hit: Talent 카드 버림(Clash 종료까지). Inescapable Maw: Devoured 기사는 이 Clash 동안 되살리는 효과의 대상이 아님(Bottomless Stomach Critical 제외)',
+  '미구현: Exhibition Clash (항상 Full Clash)',
  ]}
+# The whole Young Devour Dragon sheet was checked by the owner on 2026-11-21
+import re
+OK = ' (소유자 확인 2026-11-21)'
+d['rulings'] = [re.sub(r' ?\[해석, 확인 필요[^\]]*\]', '', r) for r in d['rulings']]
+d['rulings'] = [r if '소유자 확인' in r else r + OK for r in d['rulings']]
+d['clashSetup']['notes'] = [re.sub(r' ?\[해석, 확인 필요[^\]]*\]', OK, x) for x in d['clashSetup'].get('notes', [])]
 import reactfix; reactfix.apply('young-devour-dragon', d)
 json.dump(d, open(sys.argv[1], 'w'), ensure_ascii=False, indent=1); print('wrote', sys.argv[1], len(d['cards']['ai']), 'AI', len(d['cards']['bp']), 'BP')
