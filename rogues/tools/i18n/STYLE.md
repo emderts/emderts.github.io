@@ -41,4 +41,4 @@
 | Targeting line / Mob track | 대상 지정 줄 / 개체 트랙 |
 | Fail Response / BP Suppress / Massive Peril | 실패 반응 / BP 억제 / 대위험 |
 | Exploration card / Encounter / Ambush | 탐험 카드 / 조우 / 매복 |
-| Kingdom tile / Party Marker / District / Shortcut / Travel step | 왕국 타일 / 일행 마커 / 구역 / 지름길 / 여행 단계 |
+| Kingdom tile / Party Marker / District / Shortcut / Travel step | 왕국 타일 / 파티 마커 / 구역 / 지름길 / 여행 단계 |
