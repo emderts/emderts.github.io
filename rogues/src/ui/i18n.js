@@ -19,7 +19,9 @@ export const tn = name => (typeof name === 'string' ? hit(sec('names'), name) ||
 // A line that differs from a dictionary entry only in its numbers uses that entry as a template: "Knockback 4." ← "Knockback #.": "튕겨내기 #."
 // ('#' is filled with the numbers of the line in order; '#1', '#2' … pick a number by position when the order changes.)
 const tpl = (d, l) => { const nums = l.match(/\d+/g); if (!nums) return null; const v = hit(d, l.replace(/\d+/g, '#')); if (!v) return null; let i = 0; return v.replace(/#(\d)?/g, (m, k) => (k ? nums[+k - 1] : nums[i++]) ?? m); };
-const line = (d, l) => hit(d, l) || hit(d, l.trim()) || tpl(d, l.trim());
+// [V] / [H] / [P] / [Peril] are transcription variants of [Vigor] / [Heat] / [Passion] / [Peril Check]: looked up in the canonical spelling
+export const canon = s => s.replace(/\[V\]/g, '[Vigor]').replace(/\[H\]/g, '[Heat]').replace(/\[P\]/g, '[Passion]').replace(/\[Peril\]/g, '[Peril Check]');
+const line = (d, l) => { const t = l.trim(); const c = canon(t); return hit(d, l) || hit(d, t) || hit(d, c) || tpl(d, t) || (c !== t ? tpl(d, c) : null); };
 export const tx = text => { if (typeof text !== 'string' || lang === 'en') return text; const d = sec('text'); if (!d) return text; const whole = hit(d, text); if (whole) return whole; return text.split('\n').map(l => line(d, l) || l).join('\n'); };
 /** An interface string by key. */
 export const tu = (key, fallback) => hit(sec('ui'), key) || fallback;

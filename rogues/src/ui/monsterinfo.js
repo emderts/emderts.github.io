@@ -13,26 +13,26 @@ export const normaliseMonster = (m, raw = false) => {
 /** Full card renderers (shared by the monster info viewer and the Clash screen). */
 /** A Trait BP card (Fallen Knight, Field of Parasites …) as plain lines. */
 const tbp = b => [b.at != null ? `AT ${b.at}` : '', b.header, b.top, b.text, ...Object.entries(b.responses || {}).map(([k, v]) => v ? `${k[0].toUpperCase() + k.slice(1)}: ${v}` : '')].filter(Boolean).join('\n');
-export const makeCardViews = h => {
-  const line = (label, v) => arr(v).filter(Boolean).length ? h('div', { class: 'mi-l' }, h('b', {}, label + ' '), arr(v).filter(Boolean).join(' ')) : null;
+export const makeCardViews = (h, tx = s => s) => { // tx: language option (card text inside a longer string)
+  const line = (label, v) => arr(v).filter(Boolean).length ? h('div', { class: 'mi-l' }, h('b', {}, label + ' '), arr(v).filter(Boolean).map(tx).join(' ')) : null;
   const react = c => { const w = [...arr(c.reactWindows || c.react), ...(c.aiResponseReactMarker ? ['AI Response 앞'] : [])]; return w.length ? h('div', { class: 'mi-react' }, 'REACT! ' + w.map(rwName).join(' · ')) : null; };
-  const gate = g => h('div', { class: 'mi-gate' }, `[${g.stat} ${g.gte ?? (g.lte != null ? '≤' + g.lte : g.eq ?? '')}${g.gte != null ? '+' : ''} ▸ ${g.effect}]`);
+  const gate = g => h('div', { class: 'mi-gate' }, `[${g.stat} ${g.gte ?? (g.lte != null ? '≤' + g.lte : g.eq ?? '')}${g.gte != null ? '+' : ''} ▸ ${tx(g.effect)}]`);
   const aiCard = c => h('div', { class: 'mi-card ai' },
     h('div', { class: 'mi-h' }, h('span', { class: 'mi-lv' }, c.level ? 'AI ' + c.level : (c.type || '').toUpperCase() === 'SIGNATURE' || !c.level ? 'SIG' : ''), h('b', {}, c.name), h('span', { class: 'mi-sub' }, `${c.type || ''}${c.evasionDice != null ? ` · 회피 ${c.evasionDice}d ${c.evasionDifficulty}+` : ''}`)),
-    line('', c.preTargeting), h('div', { class: 'mi-l' }, h('b', {}, 'Targeting '), arr(c.targeting).map((t, i) => h('div', { class: 'mi-b' }, `${i + 1}. ${t}`))),
+    line('', c.preTargeting), h('div', { class: 'mi-l' }, h('b', {}, 'Targeting '), arr(c.targeting).map((t, i) => h('div', { class: 'mi-b' }, `${i + 1}. ${tx(t)}`))),
     c.moveTag ? h('div', { class: 'mi-tag' }, c.moveTag) : (c.move ? h('div', { class: 'mi-tag' }, 'MOVE & ATTACK') : null), ...arr(c.gates).map(gate),
     ...arr(c.effects).map(e => h('div', { class: 'mi-b' }, e)), line('After Attack:', c.afterAttack), line('After Final Attack:', c.afterFinalAttack), line('AI Response:', c.aiResponse), line('Doppelganger:', c.doppelganger), line('', c.bottomBox), react(c));
   const bpCard = c => h('div', { class: 'mi-card bp' },
     h('div', { class: 'mi-h' }, h('span', { class: 'mi-lv' }, 'BP ' + c.level), h('b', {}, c.name), h('span', { class: 'mi-sub' }, `AT ${c.at}`)),
-    c.overcome ? h('div', { class: 'mi-tag' }, `${c.overcomeTag || 'OVERCOME'} ${String(c.overcome.n).replace(/\+$/, '')}+ ▸ ${c.overcome.effect || ''}`) : null,
+    c.overcome ? h('div', { class: 'mi-tag' }, `${c.overcomeTag || 'OVERCOME'} ${String(c.overcome.n).replace(/\+$/, '')}+ ▸ ${tx(c.overcome.effect || '')}`) : null,
     ...['wound', 'fail', 'instinct', 'critical'].map(k => line(k[0].toUpperCase() + k.slice(1) + ':', (c.responses || {})[k])), line('When revealed:', c.whenRevealed), line('', c.whileRevealed), react(c),
     c.back ? h('div', { class: 'mi-back' }, h('b', {}, `뒷면 — ${c.back.name} (AT ${c.back.at})`), ...['wound', 'fail', 'instinct', 'critical'].map(k => line(k[0].toUpperCase() + k.slice(1) + ':', (c.back.responses || {})[k])), line('When revealed:', c.back.whenRevealed), line('', c.back.whileRevealed)) : null);
   return { line, react, gate, aiCard, bpCard };
 };
 
-export const mountMonsterInfo = (DATA, h, current) => {
+export const mountMonsterInfo = (DATA, h, current, tx = s => s) => {
   const list = [...Object.values(DATA.monsters || {}).map(m => normaliseMonster(m)), ...Object.values(DATA.rawMonsters || {}).map(m => normaliseMonster(m, true))].sort((a, b) => a.name.localeCompare(b.name));
-  const { line, aiCard, bpCard } = makeCardViews(h);
+  const { line, aiCard, bpCard } = makeCardViews(h, tx);
   const setupView = cs => { if (!cs) return h('div', { class: 'mi-l muted' }, '이 왕국의 Clash Setup 미입수 또는 엔진 미구현'); const pos = [cs.monsterCells && `몬스터 ${cs.monsterCells.join('/')}${cs.facing ? ' (방향 ' + cs.facing + ')' : ''}`, cs.mobStart && `Mob ${arr(cs.mobStart).map(x => typeof x === 'string' ? x : `${x.cell}${x.facing ? '→' + x.facing : ''}`).join(', ')}`, cs.guardians && `Guardian ${cs.guardians.map(g => g.cell).join(', ')}`, (cs.knightStart || cs.knights) && `기사 ${arr(cs.knightStart || cs.knights).join(', ')}`].filter(Boolean);
     return h('div', {}, ...arr(cs.steps).map((s, i) => h('div', { class: 'mi-b' }, `${i + 1}. ${s}`)), ...pos.map(p => h('div', { class: 'mi-l' }, p)), ...arr(cs.terrain).map(t => h('div', { class: 'mi-b' }, `${t.tile}${t.size ? ' ' + t.size : ''}: ${arr(t.cells).join(', ')}`))); };
   const page = m => { const lv = Object.entries(m.levels || {}); const sec = (t, ...k) => h('details', { class: 'mi-sec', open: '' }, h('summary', {}, t), ...k);

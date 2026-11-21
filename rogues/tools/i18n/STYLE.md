@@ -39,7 +39,7 @@
 | Armor Roll / Power Roll / Power Pool | 방어 굴림 / 위력 굴림 / 위력 풀 |
 | Hide / Hidden | 은신 / 은신 상태 |
 | Targeting line / Mob track | 대상 지정 줄 / 개체 트랙 |
-| Fail Response / BP Suppress / Massive Peril | 실패 반응 / BP 억제 / 막대한 위험 |
+| Fail Response / BP Suppress / Massive Peril | 실패 대응 / BP 억제 / 막대한 위험 |
 | Exploration card / Encounter / Ambush | 탐험 카드 / 조우 / 매복 |
 | Kingdom tile / Party Marker / District / Shortcut / Travel step | 왕국 타일 / 파티 마커 / 구역 / 지름길 / 여행 단계 |
 | Massive Peril | 막대한 위험 |
@@ -49,3 +49,14 @@
 | Single Wound / Attacker / reveal | 단일 부상 / 공격자 / 공개 |
 
 - 숫자만 다른 줄은 `#` 틀 하나로 번역한다 (`tools/i18n/text/monster_common.json`): `Knockback #.` → `튕겨내기 #.`
+- Targeting 줄: in sight / in front = "시야 내에 있는 / 정면에 있는". Look at = "확인해 봅니다". [Peril] = [Peril Check] = [위험 체크]; [V]/[H]/[P] = [Vigor]/[Heat]/[Passion] (조회할 때 통일).
+- 수치 획득: "[열기]를 N 얻습니다" 꼴로 통일 ("[열기] +N을 얻습니다" 쓰지 않음).
+| Response (Wound / Fail / Instinct / Critical) | 대응 |
+| Instinct / Ultrainstinct | 본능 / 초본능 |
+| Restrain / Discard / Cooldown (monster keywords) | 연장 / 버리기 / 대기 |
+| Evasion die / Generic token / Activation token | 회피 주사위 / 일반 토큰 / 활성화 토큰 |
+| Sheet / Trait / Level / Board Edge | 시트 / 특성 / 레벨 / 보드 가장자리 |
+| Grave Mortis / Double Wound | 중대 모르티스 / 이중 부상 |
+| Lone Knight / Toughness / Attack Consequences | 고립된 기사 / 강인함 / 공격 결과 |
+| Principality of Stone / Sunken Kingdom / Kingdom Trait | 돌의 공국 / 가라앉은 왕국 / 왕국 특성 |
+| After Attack / After Final Attack | 공격 후 / 최종 공격 후 |

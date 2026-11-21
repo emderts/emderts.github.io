@@ -246,7 +246,7 @@ const modalEl = () => modal ? h('div', { class: 'overlay', onclick: e => { if (e
 const techView = t => h('div', { class: 'cardview' }, h('div', { class: 'cv-title' }, t.name), h('div', { class: 'small muted' }, `${t.unlock || ''} · 비용 ${clash ? clash.fx.costLabel(null, t) : costStr(t.cost)} · 소진 ${t.depletion}`), h('div', { class: 'cv-text' }, t.text), ...(t.gates || []).map(g => h('div', { class: 'cv-gate' }, h('b', {}, g.gate + ' '), g.text)), t.exert ? h('div', { class: 'cv-gate' }, h('b', {}, 'Exert '), `${t.exert.token === 'PowerReroll' ? 'Power Re-roll' : t.exert.token} ${t.exert.n} → ${t.exert.depletion}`) : null);
 const RWN = w => { const t = typeof w === 'string' ? w : JSON.stringify(w); return t.replace(/^targeting$/, 'Targeting 뒤').replace(/^effect:(\d+)$/, (_, n) => `효과 ${+n + 1}번째 줄 뒤`).replace(/^moveTag$/, '이동 태그 뒤').replace(/^afterAttack$/, 'After Attack 뒤').replace(/^afterFinalAttack$/, 'After Final Attack 뒤'); };
 const reactLine = c => { const a = c.reactWindows || c.react; const w = [...(a == null ? [] : Array.isArray(a) ? a : [a]), ...(c.aiResponseReactMarker ? ['AI Response 앞'] : [])]; return h('div', { class: 'cv-gate' }, h('b', {}, 'REACT! '), w.length ? w.map(RWN).join(' · ') : '없음'); };
-let _cv = null; const cardViews = () => _cv || (_cv = makeCardViews(h));
+let _cv = null; const cardViews = () => _cv || (_cv = makeCardViews(h, tx));
 // Same full rendering as the monster info viewer (move tag, gates, every effect line, After Attack, AI Response, REACT! windows).
 const aiView = c => h('div', { class: 'cardview ai' }, cardViews().aiCard({ ...c, name: c.name || 'Attack' }), c.reactWindows || c.react || c.aiResponseReactMarker ? null : h('div', { class: 'mi-react' }, 'REACT! 없음'));
 const bpView = c => h('div', { class: 'cardview bp' }, cardViews().bpCard(c), h('div', { class: 'small muted' }, `${c.toughness ? 'Toughness ' + c.toughness + ' · ' : ''}${clash ? `현재 AT ${clash.bpAT(c)}` : ''}`));
@@ -427,4 +427,4 @@ function render0() { setTimeout(syncGearChoice, 0);
   renderHome();
 }
 render();
-mountMonsterInfo(DATA, h, () => (clash && clash.monsterDef && clash.monsterDef.id) || null);
+mountMonsterInfo(DATA, h, () => (clash && clash.monsterDef && clash.monsterDef.id) || null, tx);
