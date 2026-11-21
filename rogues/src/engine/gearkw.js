@@ -405,6 +405,13 @@ const SPECIAL = [
   [/^You may exchange one of your Weapon \[Gear\] cards for one Weapon from your Knight Armory$/, () => ({ op: 'fSwapWeapon', free: true })],
   [/^(?:Another )?\[black Power die\] turns into \[white Power die\]$/, () => ({ op: 'wpPromote' })],
   [/^If you're fighting the Young Devour Dragon, Hide$/, () => ({ op: 'hide', active: true, onlyMonster: 'young-devour-dragon' })],
+  [/^X is the amount of Armor \[Armor\] tokens the Monster had when you attacked \(up to 4\)$/, () => ({ op: 'note', na: true })],
+  [/^You gain a Crit Chance on a natural X–10 result, where X is your \[Vigor\] \(minimum 2 and maximum 9\)$/, () => ({ op: 'critVigor' })],
+  [/^When you're about to die, you may petrify one \[Gear\] slot instead \(place a Generic token on it and discard any \[Gear\] cards from it—you lose that slot\)$/, () => ({ op: 'petrifySlot' })],
+  [/^When you deal a Critical Wound, create a \[W\] on the space you attacked from$/, () => ({ op: 'critW' })],
+  [/^When you attack from a VP, a Blindspot or a \[W\] space, you may ignore Armor \[Armor\] tokens$/, () => ({ op: 'flankIgnoreArmor' })],
+  [/^Reinforce X, where X is the value of Swarm X of the Attack$/, () => ({ op: 'reinforceSwarm' })],
+  [/^\*This card does not occupy a \[Gear\] slot$/, () => ({ op: 'note', na: true })],
   [/^Gain \+(\d+) to Incarnation rolls$/, m => ({ op: 'incarnBonus', n: +m[1] })],
   [/^Roll Out(?: \(.*\))?$/, () => ({ op: 'rollOut', active: true })],
   [/^Ignore Swamp Terrain tiles$/, () => ({ op: 'ignoreSwamp' })],
@@ -487,6 +494,7 @@ export function parseGearText(text) { if (!text) return []; const ss = String(te
     if ((m = /^(.*\S )Block or Defy\.?$/.exec(t)) && /\[Heat\]|\[Exhaust\]|\[Discard\]|\[Charge\]/.test(m[1])) { const p1 = parseSentence(m[1] + 'Block.'), p2 = parseSentence(m[1] + 'Defy.'); if (p1.status === 'ok' && p2.status === 'ok') { p1.text = t; p2.text = t; out.push(p1, p2); continue; } }
     out.push(parseSentence(t)); }
   { let up = null; for (const o of out) { if (o.upgrade) up = o.upgrade; else if (up) o.upgrade = up; } }
+  if (/X is the amount of Armor \[Armor\] tokens the Monster had when you attacked/.test(text)) for (const o of out) if (o.op === 'token' && o.n === 'X') { o.x = 'armor4'; o.status = 'ok'; } // Parasite Sword: Closing X / Hope X
   out.forEach((o, i) => { if (o.op === 'fDrawJudicium') { const nx = out[i + 1]; if (nx && /discard all Armor/.test(nx.text)) o.then = 'clearArmor'; else if (nx && /^If you survive, Devote/.test(nx.text)) o.op = 'fJudiciumDevote'; else if (nx && /return a chosen Knight to life adjacent to you/.test(nx.text)) { o.then = 'revive'; nx.op = 'note'; nx.status = 'na'; } else { o.op = 'text'; o.status = 'text'; } } if (o.op === 'fVigorForHeat') { const nx = out[i + 1]; if (nx && nx.poison) o.poison = nx.poison; } if (o.op === 'fPlaceTrap') { const nx = out.slice(i + 1).find(x => x.trap); if (nx) { o.trap = nx.trap; o.trapN = nx.n; } } if (o.op === 'fFlipOtherCond') { const nx = out[i + 1]; if (nx && nx.vigor) o.vigor = nx.vigor; } if (o.op === 'fInspire' && !o.cost) { o.op = 'inspire'; delete o.free; } if (o.op === 'fPlaceTerrain') o.tile = /Rubble/.test(o.text) ? 'rubble' : 'swamp'; }); return out; }
 export const isDefensive = op => DEFENSIVE.has(op);
 export const KEYWORD_STATUS = { TOKENS, OK, PENDING, NA };

@@ -37,7 +37,7 @@ export const WitchMixin = {
   // ---------- Hexes ----------
   bwHexOn(h) { const x = h.ops.hex; return !this.bw.disabled.has(x.type.replace(/ Party Hex| Hex/g, '')) && !(x.party && this.bw.disabled.has('Party')); },
   /** Morass Residue: "You cannot use keywords and abilities that target other Knights." x = null → any other Knight. */
-  bwMayTarget(k, x) { if (!this.isBw || !k || x === k || !this.bwHexed(k, 'Morass Residue')) return true; if (!this._mrSaid || this._mrSaid !== this.round + ':' + k.id) { this._mrSaid = this.round + ':' + k.id; this.say(`${k.name}: Morass Residue — 다른 기사를 대상으로 하는 키워드·능력 사용 불가`, 'bp'); } return false; },
+  bwMayTarget(k, x) { if (k && x && x !== k && x.saint && x.saint.commandmentOp === 'noOtherAbilities') { if (this._eudesSaid !== this.round + ':' + x.id) { this._eudesSaid = this.round + ':' + x.id; this.say(`${x.name}: ${x.saint.title} — Commandment: 다른 기사는 이 기사에게 능력을 쓸 수 없음`, 'tech'); } return false; } if (!this.isBw || !k || x === k || !this.bwHexed(k, 'Morass Residue')) return true; if (!this._mrSaid || this._mrSaid !== this.round + ':' + k.id) { this._mrSaid = this.round + ':' + k.id; this.say(`${k.name}: Morass Residue — 다른 기사를 대상으로 하는 키워드·능력 사용 불가`, 'bp'); } return false; },
   bwHexed(k, name) { return !!(this.isBw && k && ((k.hexes || []).some(h => h.ops.hex.name === name && this.bwHexOn(h)) || this.bwParty(name))); },
   bwParty(name) { return this.isBw && this.bw.party.some(h => h.ops.hex.name === name && this.bwHexOn(h)); },
   bwTake(card) { const M = this.monster; for (const pile of [M.ai.discard, M.ai.cards]) { const i = pile.indexOf(card); if (i >= 0) pile.splice(i, 1); } },

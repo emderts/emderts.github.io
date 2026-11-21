@@ -1,0 +1,95 @@
+{
+ "_source": "Sunken Kingdom Codex p.10 'Sinking Fleet Outpost' (owner PDF, read 2026-11-21). Rogue's Path: ignore sections tied to story / Kingdom map / Delve (Scouts' Guild, Notice Board, Inn results 7, 8).",
+ "id": "sunken",
+ "name": "Sinking Fleet Outpost",
+ "sections": {
+  "mercenaryGuild": {
+   "earlyBird": {
+    "text": "Add 1 random level 2 Mercenary card to the Mercenary deck. Remove that card from Mercenary deck at the end of the Outpost phase.",
+    "devil": "You may add 1 random level 3 Mercenary card instead."
+   },
+   "text": "The Mercenary deck consists of all level 1 Mercenary cards, the Swamp Strider card, and all additional Mercenary cards you've unlocked. Hired help: From the Mercenary deck the Party may hire up to 4 Mercenaries for this Expedition. At the end of the Expedition, return those cards to the Mercenary deck.",
+   "roguesPath": "use",
+   "special": "Swamp Strider"
+  },
+  "inn": {
+   "earlyBird": {
+    "text": "Instead of rolling for an effect, you may choose an effect."
+   },
+   "text": "You may roll a d10 and resolve the corresponding effect:",
+   "results": {
+    "1": {
+     "text": "Two random Knights gain +1 to any Virtue for the duration of this Expedition.",
+     "roguesPath": "use (duration = this Rosegraal Round)",
+     "fx": "virtue"
+    },
+    "2": {
+     "text": "Two random Knights raise their Heat Limit by 1.",
+     "roguesPath": "use",
+     "fx": "heatLimit"
+    },
+    "3": {
+     "text": "Two random Knights Fortify 2.",
+     "roguesPath": "use",
+     "fx": "fortify"
+    },
+    "4": {
+     "text": "A random Knight gains +1 [Passion] and, for the duration of this Expedition, their [Passion] cannot fall below 1.",
+     "roguesPath": "use",
+     "fx": "passion"
+    },
+    "5": {
+     "text": "Draw a Loot card. Each Knight gains X Gold, where X is the Gold denoted on that card for their tier. Then, return that card to the Scavenge Deck.",
+     "roguesPath": "use",
+     "fx": "lootGold"
+    },
+    "6": {
+     "text": "One chosen Knight gains +1 [Speed] for the duration of this Expedition.",
+     "roguesPath": "use (duration = this Rosegraal Round)",
+     "fx": "speed",
+     "unclear": [
+      "icon read as Speed"
+     ]
+    },
+    "7": {
+     "text": "Shuffle 1 Survey Exploration card into the Exploration deck.",
+     "roguesPath": "ignore"
+    },
+    "8": {
+     "text": "After you prepare the Exploration deck for your next Expedition, you may place the top Exploration card on the bottom of the Exploration deck.",
+     "roguesPath": "ignore"
+    },
+    "9": {
+     "text": "Two random Knights gain Poison Resilience 1 for the duration of this Expedition.",
+     "roguesPath": "use",
+     "fx": "poisonRes"
+    },
+    "10": {
+     "text": "One Knight raises their Hand Limit by 1.",
+     "roguesPath": "use",
+     "fx": "handLimit"
+    }
+   }
+  },
+  "scoutsGuild": {
+   "roguesPath": "ignore (Delve)",
+   "text": "Recon / Patrol / Survey — Kingdom exploration only."
+  },
+  "merchantsWorkshop": {
+   "earlyBird": {
+    "text": "Each Consumable card you purchase gains an additional Charge.",
+    "fx": "consumableCharge"
+   },
+   "text": "Merchant deck consists of all Merchant cards of your tier and tiers below, and all unlocked Consumable cards. You may buy any Gear cards from Merchant deck. You may reforge any owned Merchant Gear.",
+   "roguesPath": "use (Stone Key purchase: ignore)"
+  },
+  "shrineOfTheSaints": {
+   "text": "Any Knight with at least 1 Devotion token may discard 1 Devotion token to gain a chosen unlocked Saint's card.",
+   "roguesPath": "use only if a Saint is unlocked via Rosegraal Wild Card"
+  },
+  "noticeBoard": {
+   "text": "The Party may sign a Contract.",
+   "roguesPath": "ignore (story/Delve)"
+  }
+ }
+}

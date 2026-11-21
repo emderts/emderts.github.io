@@ -1,16 +1,87 @@
 {
  "_source": "Saint cards (owner scans 2026-11-21). Rulebook p.68–69: Holy Infusion by Devotion tokens, Holy Commandment, Holy Incarnation.",
  "saints": [
-  {"name": "Eudes", "title": "Saint Eudes — The Conduit of Fortitude", "code": "12A0464",
+  {
+   "name": "Eudes",
+   "title": "Saint Eudes — The Conduit of Fortitude",
+   "code": "12A0464",
    "commandment": "Other Knights cannot use any abilities on you.",
-   "infusionText": ["1 Devotion: [red Armor die].", "3 Devotion: Your [red Armor die] becomes [black Armor die].", "5 Devotion: Your [black Armor die] becomes [white Armor die]."],
-   "infusion": [{"at": 1, "op": "armorDie", "colour": "red"}, {"at": 3, "op": "armorDie", "colour": "black"}, {"at": 5, "op": "armorDie", "colour": "white"}],
-   "incarnation": {"value": 10, "name": "Conduit of Fortitude Incarnation", "text": "Knight Power die one tier higher. +3 [Power]. Immune to Body Condition cards. Braced.", "promote": 1, "power": 3, "immuneBody": true, "braced": true}},
-  {"name": "Linde", "title": "Saint Linde — The Font of Faith", "code": "12A0466",
+   "infusionText": [
+    "1 Devotion: [red Armor die].",
+    "3 Devotion: Your [red Armor die] becomes [black Armor die].",
+    "5 Devotion: Your [black Armor die] becomes [white Armor die]."
+   ],
+   "infusion": [
+    {
+     "at": 1,
+     "op": "armorDie",
+     "colour": "red"
+    },
+    {
+     "at": 3,
+     "op": "armorDie",
+     "colour": "black"
+    },
+    {
+     "at": 5,
+     "op": "armorDie",
+     "colour": "white"
+    }
+   ],
+   "incarnation": {
+    "value": 10,
+    "name": "Conduit of Fortitude Incarnation",
+    "text": "Knight Power die one tier higher. +3 [Power]. Immune to Body Condition cards. Braced.",
+    "promote": 1,
+    "power": 3,
+    "immuneBody": true,
+    "braced": true
+   },
+   "commandmentOp": "noOtherAbilities"
+  },
+  {
+   "name": "Linde",
+   "title": "Saint Linde — The Font of Faith",
+   "code": "12A0466",
    "commandment": "You cannot re-roll your Crit die.",
-   "infusionText": ["1 Devotion: Sacrifice.", "3 Devotion: When you attack, you may lose -3 [Vigor] to gain +1 [Power].", "4 Devotion: When you perform a [Attack action], gain +1 [Passion]."],
-   "infusion": [{"at": 1, "op": "sacrifice"}, {"at": 3, "op": "vigorPower", "v": 3, "n": 1}, {"at": 4, "op": "attackPassion", "n": 1}],
-   "incarnation": {"value": 10, "name": "Martyr of Anatiocha Incarnation", "text": "Knight Power die one tier higher. +3 [Precision]. +2 [Power]. Auto-break 3. When you are about to lose [Vigor], gain that much [Vigor] instead.", "promote": 1, "precision": 3, "power": 2, "autoBreak": 3, "vigorInvert": true},
-   "unclear": ["4 Devotion line: the red icon is read as [Attack action]"]}
+   "infusionText": [
+    "1 Devotion: Sacrifice.",
+    "3 Devotion: When you attack, you may lose -3 [Vigor] to gain +1 [Power].",
+    "4 Devotion: When you perform a [Peril Check], gain +1 [Passion]."
+   ],
+   "infusion": [
+    {
+     "at": 1,
+     "op": "sacrifice"
+    },
+    {
+     "at": 3,
+     "op": "vigorPower",
+     "v": 3,
+     "n": 1
+    },
+    {
+     "at": 4,
+     "op": "perilPassion",
+     "n": 1
+    }
+   ],
+   "incarnation": {
+    "value": 10,
+    "name": "Martyr of Anatiocha Incarnation",
+    "text": "Knight Power die one tier higher. +3 [Precision]. +2 [Power]. Auto-break 3. When you are about to lose [Vigor], gain that much [Vigor] instead.",
+    "promote": 1,
+    "precision": 3,
+    "power": 2,
+    "autoBreak": 3,
+    "vigorInvert": true
+   },
+   "commandmentOp": "noCritReroll"
+  }
+ ],
+ "_rulings": [
+  "Holy Commandment: 처음 어기면 Saint 미니어처를 치움(그 Clash 종료 시 Devote 없음), 다시 어기면 Saint 카드를 버림. Rogue's Path에서는 Expedition 종료 = Clash 종료 (소유자 확인 2026-11-21)",
+  "Saint Linde: Crit die를 재굴림하면 위반. Saint Eudes: 다른 기사가 이 기사를 대상으로 능력을 쓸 수 없게 막음(위반이 일어나지 않음) [해석, 확인 필요]",
+  "Saint를 가진 기사가 죽으면 Saint 카드를 잃음 (소유자 확인 2026-11-21)"
  ]
 }
