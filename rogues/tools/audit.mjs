@@ -165,7 +165,7 @@ const gBp = c => `<tr><td>${c.level}</td><td><b>${esc(c.name)}</b><br><span clas
 const cardTables = (ai, bp) => `<h3>AI 카드 (${ai.length - 1}) + Signature</h3><table><tr><th>Lv</th><th>이름</th><th>회피</th><th>Targeting</th><th>태그/게이트</th><th>효과</th><th>After / Response</th><th>REACT! 창 · 비고</th></tr>${ai.map(gAi).join('')}</table>
 <h3>BP 카드 (${bp.length})</h3><table><tr><th>Lv</th><th>이름</th><th>AT</th><th>Overcome / Overpower</th><th>Wound</th><th>Fail</th><th>Instinct</th><th>Critical</th><th>Revealed · REACT! 창 · 비고</th></tr>${bp.map(gBp).join('')}</table>`;
 // 13. Mob monsters
-const NEWMON = ['panzerdragon-veldr', 'young-devour-dragon']; // shown in full (transcription + windows + setup + rulings) until the owner has checked them
+const NEWMON = ['young-devour-dragon']; // shown in full (transcription + windows + setup + rulings) until the owner has checked them
 for (const [mid, M] of fs.readdirSync('data/monsters').map(f => [f.replace('.json', ''), rd('data/monsters/' + f)]).filter(([, m]) => m.kind === 'mob' || m.fen || m.sm || m.ke || m.bw || m.kl || m.dad || m.dsf || m.pke || m.td || m.pv || m.ydd).filter(([mid]) => !NEWMON.includes(mid))) {
   const cs = M.clashSetup || {};
   sec.push(`<section id="mob-${mid}"><h2>13. ${esc(M.name)} — ${M.kind === 'mob' ? 'Mob' : 'Boss'} Clash (Sheet · AI/BP · Signature · Routine · Setup)</h2>

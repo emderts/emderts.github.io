@@ -572,42 +572,6 @@
        [
         3,
         4
-       ],
-       [
-        4,
-        -3
-       ],
-       [
-        4,
-        -2
-       ],
-       [
-        4,
-        -1
-       ],
-       [
-        4,
-        0
-       ],
-       [
-        4,
-        1
-       ],
-       [
-        4,
-        2
-       ],
-       [
-        4,
-        3
-       ],
-       [
-        4,
-        4
-       ],
-       [
-        4,
-        5
        ]
       ],
       "yellow": [],
@@ -798,7 +762,7 @@
     "targeting": [
      "Highest [Passion]"
     ],
-    "tag": "JUDGE {P5+: MIGRATE}",
+    "tag": "JUDGE {P6+: MIGRATE}",
     "effects": [
      "Bravery / Tenacity.",
      "One hit, gain the Fear Condition card. Two or more hits, gain the Dread Condition card.",
@@ -810,7 +774,7 @@
     "zone": null,
     "unclear": [],
     "typePrinted": "JUDGEMENT",
-    "moveTag": "JUDGE {P5+: MIGRATE}",
+    "moveTag": "JUDGE {P6+: MIGRATE}",
     "afterAttack": "AFTER ATTACK: Migrate.",
     "ops": {
      "targeting": [
@@ -820,7 +784,7 @@
      "gates": [
       {
        "stat": "passion",
-       "gte": 5,
+       "gte": 6,
        "op": "pvMigGate",
        "alsoOps": [
         {
@@ -944,7 +908,6 @@
      "pathAttack": true
     },
     "reactWindows": [
-     "targeting",
      "After Attack 앞"
     ],
     "reactExact": true
@@ -1177,9 +1140,7 @@
      "afterFinalAttack": null,
      "landOnTop": true
     },
-    "reactWindows": [
-     "targeting"
-    ],
+    "reactWindows": [],
     "reactExact": true
    },
    {
@@ -1367,50 +1328,6 @@
        [
         4,
         5
-       ],
-       [
-        5,
-        -4
-       ],
-       [
-        5,
-        -3
-       ],
-       [
-        5,
-        -2
-       ],
-       [
-        5,
-        -1
-       ],
-       [
-        5,
-        0
-       ],
-       [
-        5,
-        1
-       ],
-       [
-        5,
-        2
-       ],
-       [
-        5,
-        3
-       ],
-       [
-        5,
-        4
-       ],
-       [
-        5,
-        5
-       ],
-       [
-        5,
-        6
        ]
       ],
       "yellow": [],
@@ -1502,9 +1419,7 @@
       }
      ]
     },
-    "reactWindows": [
-     "targeting"
-    ],
+    "reactWindows": [],
     "reactExact": true
    },
    {
@@ -1662,9 +1577,7 @@
       }
      ]
     },
-    "reactWindows": [
-     "targeting"
-    ],
+    "reactWindows": [],
     "reactExact": true
    },
    {
@@ -1893,646 +1806,6 @@
        [
         5,
         6
-       ],
-       [
-        6,
-        -5
-       ],
-       [
-        6,
-        -4
-       ],
-       [
-        6,
-        -3
-       ],
-       [
-        6,
-        -2
-       ],
-       [
-        6,
-        -1
-       ],
-       [
-        6,
-        0
-       ],
-       [
-        6,
-        1
-       ],
-       [
-        6,
-        2
-       ],
-       [
-        6,
-        3
-       ],
-       [
-        6,
-        4
-       ],
-       [
-        6,
-        5
-       ],
-       [
-        6,
-        6
-       ],
-       [
-        6,
-        7
-       ],
-       [
-        7,
-        -6
-       ],
-       [
-        7,
-        -5
-       ],
-       [
-        7,
-        -4
-       ],
-       [
-        7,
-        -3
-       ],
-       [
-        7,
-        -2
-       ],
-       [
-        7,
-        -1
-       ],
-       [
-        7,
-        0
-       ],
-       [
-        7,
-        1
-       ],
-       [
-        7,
-        2
-       ],
-       [
-        7,
-        3
-       ],
-       [
-        7,
-        4
-       ],
-       [
-        7,
-        5
-       ],
-       [
-        7,
-        6
-       ],
-       [
-        7,
-        7
-       ],
-       [
-        7,
-        8
-       ],
-       [
-        8,
-        -7
-       ],
-       [
-        8,
-        -6
-       ],
-       [
-        8,
-        -5
-       ],
-       [
-        8,
-        -4
-       ],
-       [
-        8,
-        -3
-       ],
-       [
-        8,
-        -2
-       ],
-       [
-        8,
-        -1
-       ],
-       [
-        8,
-        0
-       ],
-       [
-        8,
-        1
-       ],
-       [
-        8,
-        2
-       ],
-       [
-        8,
-        3
-       ],
-       [
-        8,
-        4
-       ],
-       [
-        8,
-        5
-       ],
-       [
-        8,
-        6
-       ],
-       [
-        8,
-        7
-       ],
-       [
-        8,
-        8
-       ],
-       [
-        8,
-        9
-       ],
-       [
-        9,
-        -8
-       ],
-       [
-        9,
-        -7
-       ],
-       [
-        9,
-        -6
-       ],
-       [
-        9,
-        -5
-       ],
-       [
-        9,
-        -4
-       ],
-       [
-        9,
-        -3
-       ],
-       [
-        9,
-        -2
-       ],
-       [
-        9,
-        -1
-       ],
-       [
-        9,
-        0
-       ],
-       [
-        9,
-        1
-       ],
-       [
-        9,
-        2
-       ],
-       [
-        9,
-        3
-       ],
-       [
-        9,
-        4
-       ],
-       [
-        9,
-        5
-       ],
-       [
-        9,
-        6
-       ],
-       [
-        9,
-        7
-       ],
-       [
-        9,
-        8
-       ],
-       [
-        9,
-        9
-       ],
-       [
-        9,
-        10
-       ],
-       [
-        10,
-        -9
-       ],
-       [
-        10,
-        -8
-       ],
-       [
-        10,
-        -7
-       ],
-       [
-        10,
-        -6
-       ],
-       [
-        10,
-        -5
-       ],
-       [
-        10,
-        -4
-       ],
-       [
-        10,
-        -3
-       ],
-       [
-        10,
-        -2
-       ],
-       [
-        10,
-        -1
-       ],
-       [
-        10,
-        0
-       ],
-       [
-        10,
-        1
-       ],
-       [
-        10,
-        2
-       ],
-       [
-        10,
-        3
-       ],
-       [
-        10,
-        4
-       ],
-       [
-        10,
-        5
-       ],
-       [
-        10,
-        6
-       ],
-       [
-        10,
-        7
-       ],
-       [
-        10,
-        8
-       ],
-       [
-        10,
-        9
-       ],
-       [
-        10,
-        10
-       ],
-       [
-        10,
-        11
-       ],
-       [
-        11,
-        -10
-       ],
-       [
-        11,
-        -9
-       ],
-       [
-        11,
-        -8
-       ],
-       [
-        11,
-        -7
-       ],
-       [
-        11,
-        -6
-       ],
-       [
-        11,
-        -5
-       ],
-       [
-        11,
-        -4
-       ],
-       [
-        11,
-        -3
-       ],
-       [
-        11,
-        -2
-       ],
-       [
-        11,
-        -1
-       ],
-       [
-        11,
-        0
-       ],
-       [
-        11,
-        1
-       ],
-       [
-        11,
-        2
-       ],
-       [
-        11,
-        3
-       ],
-       [
-        11,
-        4
-       ],
-       [
-        11,
-        5
-       ],
-       [
-        11,
-        6
-       ],
-       [
-        11,
-        7
-       ],
-       [
-        11,
-        8
-       ],
-       [
-        11,
-        9
-       ],
-       [
-        11,
-        10
-       ],
-       [
-        11,
-        11
-       ],
-       [
-        11,
-        12
-       ],
-       [
-        12,
-        -11
-       ],
-       [
-        12,
-        -10
-       ],
-       [
-        12,
-        -9
-       ],
-       [
-        12,
-        -8
-       ],
-       [
-        12,
-        -7
-       ],
-       [
-        12,
-        -6
-       ],
-       [
-        12,
-        -5
-       ],
-       [
-        12,
-        -4
-       ],
-       [
-        12,
-        -3
-       ],
-       [
-        12,
-        -2
-       ],
-       [
-        12,
-        -1
-       ],
-       [
-        12,
-        0
-       ],
-       [
-        12,
-        1
-       ],
-       [
-        12,
-        2
-       ],
-       [
-        12,
-        3
-       ],
-       [
-        12,
-        4
-       ],
-       [
-        12,
-        5
-       ],
-       [
-        12,
-        6
-       ],
-       [
-        12,
-        7
-       ],
-       [
-        12,
-        8
-       ],
-       [
-        12,
-        9
-       ],
-       [
-        12,
-        10
-       ],
-       [
-        12,
-        11
-       ],
-       [
-        12,
-        12
-       ],
-       [
-        12,
-        13
-       ],
-       [
-        13,
-        -12
-       ],
-       [
-        13,
-        -11
-       ],
-       [
-        13,
-        -10
-       ],
-       [
-        13,
-        -9
-       ],
-       [
-        13,
-        -8
-       ],
-       [
-        13,
-        -7
-       ],
-       [
-        13,
-        -6
-       ],
-       [
-        13,
-        -5
-       ],
-       [
-        13,
-        -4
-       ],
-       [
-        13,
-        -3
-       ],
-       [
-        13,
-        -2
-       ],
-       [
-        13,
-        -1
-       ],
-       [
-        13,
-        0
-       ],
-       [
-        13,
-        1
-       ],
-       [
-        13,
-        2
-       ],
-       [
-        13,
-        3
-       ],
-       [
-        13,
-        4
-       ],
-       [
-        13,
-        5
-       ],
-       [
-        13,
-        6
-       ],
-       [
-        13,
-        7
-       ],
-       [
-        13,
-        8
-       ],
-       [
-        13,
-        9
-       ],
-       [
-        13,
-        10
-       ],
-       [
-        13,
-        11
-       ],
-       [
-        13,
-        12
-       ],
-       [
-        13,
-        13
-       ],
-       [
-        13,
-        14
        ]
       ],
       "yellow": [],
@@ -2541,8 +1814,7 @@
      }
     },
     "reactWindows": [
-     "Targeting 앞",
-     "targeting"
+     "Targeting 앞"
     ],
     "reactExact": true
    },
@@ -2672,9 +1944,7 @@
       "Tenacity"
      ]
     },
-    "reactWindows": [
-     "targeting"
-    ],
+    "reactWindows": [],
     "reactExact": true
    }
   ],
@@ -2683,7 +1953,7 @@
     "name": "Panzerclaws",
     "level": 1,
     "at": 9,
-    "top": "OVERCOME 5+: Discard all Armor [Armor] tokens from the Panzerdragon. Germinate (Field)",
+    "top": "OVERCOME 9+: Discard all Armor [Armor] tokens from the Panzerdragon. Germinate (Field)",
     "note": null,
     "ultrainstinct": null,
     "instinct": null,
@@ -2701,7 +1971,7 @@
     "ops": {
      "at": 9,
      "overcome": {
-      "n": 5,
+      "n": 9,
       "kind": "overcome",
       "ops": [
        {
@@ -2733,7 +2003,7 @@
        "match": [
         "wave"
        ],
-       "text": "Wave Attack 비활성 — Wave Attack AI 카드를 Clash에서 제거"
+       "text": "Wave Attack 비활성 — 뽑히면 수행하지 않고 무시"
       }
      ]
     }
@@ -2742,7 +2012,7 @@
     "name": "Corroded Scales",
     "level": 1,
     "at": 10,
-    "top": "OVERCOME 5+: You may discard up to 2 Armor [Armor] tokens from the Panzerdragon. If you do, Germinate (Field)",
+    "top": "OVERCOME 8+: You may discard up to 2 Armor [Armor] tokens from the Panzerdragon. If you do, Germinate (Field)",
     "note": null,
     "ultrainstinct": "Clockwise Remnant Move 4.",
     "instinct": "Migrate.",
@@ -2760,7 +2030,7 @@
     "ops": {
      "at": 10,
      "overcome": {
-      "n": 5,
+      "n": 8,
       "kind": "overcome",
       "ops": [
        {
@@ -2794,7 +2064,7 @@
     "name": "Maultail",
     "level": 1,
     "at": 10,
-    "top": "OVERCOME 5+: You may discard up to 2 Armor [Armor] tokens from the Panzerdragon. If you do, Germinate (Field)",
+    "top": "OVERCOME 8+: You may discard up to 2 Armor [Armor] tokens from the Panzerdragon. If you do, Germinate (Field)",
     "note": null,
     "ultrainstinct": "Clockwise Remnant Move 4.",
     "instinct": "Perform Signature against the Attacker.",
@@ -2812,7 +2082,7 @@
     "ops": {
      "at": 10,
      "overcome": {
-      "n": 5,
+      "n": 8,
       "kind": "overcome",
       "ops": [
        {
@@ -2847,7 +2117,7 @@
     "name": "Inscribed Pauldron",
     "level": 1,
     "at": 9,
-    "top": "OVERCOME 5+: Discard all Armor [Armor] tokens from the Panzerdragon",
+    "top": "OVERCOME 9+: Discard all Armor [Armor] tokens from the Panzerdragon",
     "note": null,
     "ultrainstinct": null,
     "instinct": null,
@@ -2865,7 +2135,7 @@
     "ops": {
      "at": 9,
      "overcome": {
-      "n": 5,
+      "n": 9,
       "kind": "overcome",
       "ops": [
        {
@@ -2959,7 +2229,7 @@
     "name": "Plated Abdomen",
     "level": 1,
     "at": 8,
-    "top": "OVERPOWER 1+: Discard 1 Armor [Armor] token from the Panzerdragon",
+    "top": "OVERPOWER 4+: Discard 1 Armor [Armor] token from the Panzerdragon",
     "note": null,
     "ultrainstinct": null,
     "instinct": null,
@@ -2977,7 +2247,7 @@
     "ops": {
      "at": 8,
      "overcome": {
-      "n": 1,
+      "n": 4,
       "kind": "overpower",
       "ops": [
        {
@@ -3379,7 +2649,7 @@
        "match": [
         "isBeam"
        ],
-       "text": "Beam Zone Attack 비활성 — Beam AI 카드를 Clash에서 제거"
+       "text": "Beam Zone Attack 비활성 — 뽑히면 수행하지 않고 무시"
       }
      ]
     }
@@ -3445,7 +2715,7 @@
        "match": [
         "zoneX"
        ],
-       "text": "\"Target: Zone X\" Zone Attack 비활성 — 해당 AI 카드를 Clash에서 제거"
+       "text": "\"Target: Zone X\" Zone Attack 비활성 — 뽑히면 수행하지 않고 무시"
       }
      ]
     }
@@ -3757,7 +3027,13 @@
      "Furthest Knight in sight"
     ],
     "move": true,
-    "gates": [],
+    "gates": [
+     {
+      "stat": "passion",
+      "gte": 5,
+      "op": "pvNoArmorGear"
+     }
+    ],
     "before": [],
     "effects": [
      {
@@ -4059,24 +3335,25 @@
    }
   ],
   "notes": [
-   "Panzerdragon 3x3 = G7–I9, Primal Remnant = J8, Column·시작 칸은 코덱스 도식에서 읽음 [해석, 확인 필요]"
+   "Panzerdragon 3x3 = G7–I9, Primal Remnant = J8, Column·시작 칸은 코덱스 도식에서 읽음 (소유자 확인 2026-11-21)"
   ]
  },
  "rulings": [
-  "Dragon Roar: 첫 AI로 수행 — 모든 기사 Fear, +1 [P], Knockdown, Devotion 토큰이 가장 많은 기사가 Divine Target. Germinate (Dragon) ×4, (Remnant) ×4, (Field) ×3 후 카드를 제거하고 다음 AI를 뽑음",
-  "Panzercolony: Armor 토큰은 Field(Knight Pool) / Dragon(Sheet) / Remnant(Primal Remnant BP)에 놓임. Migrate = Remnant → Field → Dragon → Remnant로 동시에 이동 [해석, 확인 필요 — 도식 방향]. Dragon의 Armor 토큰 1개당 Panzerdragon BP AT +1",
-  "Field of Parasites: Second Ability Window 종료 시 Field의 Armor 토큰 수만큼 Knight Pool의 Knight 토큰을 버림(플레이어 선택). Panzerdragon의 왼쪽/오른쪽 면에 인접한 기사는 Field of Parasites BP(AT 5 + Field 토큰)를 대신 공격할 수 있음 — Wound해도 Escalate·Wound Stack 없음",
-  "Primal Remnant: 절대 활성화하지 않는 Lumbering 몬스터. BP AT 5 + Remnant 토큰 ×2. Remnant에 토큰 7개 이상이면 Iron Apotheosis(패배). Remnant Move X = Panzerdragon 주위 고리(모서리 포함 16칸)를 시계 방향으로 X칸, 보드 밖 칸은 건너뜀 [해석, 확인 필요]. 지나가거나 멈춘 칸의 기사는 사망, Terrain 타일은 소멸. Panzerdragon이 이동하면 고리의 같은 자리로 따라감",
-  "Divine Fervor: Divine Target 기사가 공격 대상이 되면 +1 [P], Priority Target 기사가 대상이 되면 Parasitize 1. Divine Target 기사는 프리 액션으로 Peril Check를 하고 토큰을 넘길 수 있음. 토큰 보유자가 죽으면 Devotion 토큰이 가장 많은 기사에게",
-  "Turn to Rust: [P]가 9를 넘게 되면 사망 (공격 중이면 공격을 마친 뒤)",
-  "Mortal Retribution: Armor 토큰을 버릴 때마다 Generic 토큰 1 (최대 8). 8개면 기사 1명이 모두 버리고 추가 Combat action (프리 액션으로 선언)",
-  "VP (Ruptured Carapace): Critical로 생성. Climb = Might 8+, Monster Round 종료 시 Fortitude 9+ (실패: Displace, Knockdown). VP 위에서는 Armor 토큰 무시, 자기 턴 종료 시 +1 [P]와 Migrate",
-  "Beam: Rust Beam = 정면 가운데 1줄, Metal / Ultrametal Beam = Panzerdragon 폭(3줄), 보드 끝까지. Lateral Movement = 대상이 Beam 안에 들어올 때까지 옆으로 이동 [해석, 확인 필요]",
-  "Zone 도식(작은 그림에서 읽음) [해석, 확인 필요]: Rustgasp = 정면에서 넓어지는 삼각형 4칸 깊이, Rustbreath = 5칸 깊이, Rubiginous Disgorge = 보드 끝까지",
-  "\"P4+: Bane 2 instead\" 등 [P] 게이트는 대상 기사의 [P]로 판정",
-  "\"Disable Wave Attacks / Beam Zone Attacks / Zone X\" Critical: 해당 AI 카드를 AI 덱·버림 더미·Escalation 더미에서 제거 [해석, 확인 필요]",
-  "Drachendämmerung(Routine): 모든 기사 Bane 3, [P]가 가장 높은 기사 사망, Panzerdragon이 보드 중앙으로 이동해 가장 많은 기사를 바라봄",
-  "미구현: Lumbering(몬스터를 움직이는 기사 효과), Septic Slash의 \"P5+: Ignore your Armor Gear card\", Shadow of Doom의 Saint 카드 버리기, Sliver of Lost Glory Critical의 \"see 9350\", Fool's deck(이 Clash에서 참조하는 카드 없음)",
+  "Dragon Roar: 첫 AI로 수행 — 모든 기사 Fear, +1 [P], Knockdown, Devotion 토큰이 가장 많은 기사가 Divine Target. Germinate (Dragon) ×4, (Remnant) ×4, (Field) ×3 후 카드를 제거하고 다음 AI를 뽑음 (소유자 확인 2026-11-21)",
+  "Panzercolony: Armor 토큰은 Field(Knight Pool) / Dragon(Sheet) / Remnant(Primal Remnant BP)에 놓임. Migrate = Remnant → Field → Dragon → Remnant로 동시에 이동. Dragon의 Armor 토큰 1개당 Panzerdragon BP AT +1 (소유자 확인 2026-11-21)",
+  "Field of Parasites: Second Ability Window 종료 시 Field의 Armor 토큰 수만큼 Knight Pool의 Knight 토큰을 버림(플레이어 선택). Panzerdragon의 왼쪽/오른쪽 면에 인접한 기사는 Field of Parasites BP(AT 5 + Field 토큰)를 대신 공격할 수 있음 — Wound해도 Escalate·Wound Stack 없음 (소유자 확인 2026-11-21)",
+  "Primal Remnant: 절대 활성화하지 않는 Lumbering 몬스터. BP AT 5 + Remnant 토큰 ×2. Remnant에 토큰 7개 이상이면 Iron Apotheosis(패배). Remnant Move X = Panzerdragon 주위 고리(모서리 포함 16칸)를 시계 방향으로 X칸. 고리의 칸이 보드 밖이면 보드 밖에 있는 채로 돎(그동안은 공격할 수 없고 아무것도 밟지 않음). 지나가거나 멈춘 칸의 기사는 사망, Terrain 타일은 소멸. Panzerdragon이 이동하면 고리의 같은 자리로 따라감 (소유자 확인 2026-11-21)",
+  "Divine Fervor: Divine Target 기사가 공격 대상이 되면 +1 [P], Priority Target 기사가 대상이 되면 Parasitize 1. Divine Target 기사는 프리 액션으로 Peril Check를 하고 토큰을 넘길 수 있음. 토큰 보유자가 죽으면 Devotion 토큰이 가장 많은 기사에게 (소유자 확인 2026-11-21)",
+  "Turn to Rust: [P]가 9를 넘게 되면 사망 (공격 중이면 공격을 마친 뒤) (소유자 확인 2026-11-21)",
+  "Mortal Retribution: Armor 토큰을 버릴 때마다 Generic 토큰 1 (최대 8). 8개면 기사 1명이 모두 버리고 추가 Combat action (프리 액션으로 선언) (소유자 확인 2026-11-21)",
+  "VP (Ruptured Carapace): Critical로 생성. Climb = Might 8+, Monster Round 종료 시 Fortitude 9+ (실패: Displace, Knockdown). VP 위에서는 Armor 토큰 무시, 자기 턴 종료 시 +1 [P]와 Migrate (소유자 확인 2026-11-21)",
+  "Beam: Rust Beam = 정면 가운데 1줄, Metal / Ultrametal Beam = Panzerdragon 폭(3줄), 보드 끝까지. Lateral Movement = 대상이 Beam 안에 들어올 때까지 옆으로 이동 (소유자 확인 2026-11-21)",
+  "Zone 도식: 정면에서 넓어지는 삼각형 — Rustgasp 3/5/7 (15칸), Rustbreath 3/5/7/9 (24칸), Rubiginous Disgorge 3/5/7/9/11 (35칸) (소유자 확인 2026-11-21)",
+  "\"P4+: Bane 2 instead\" 등 [P] 게이트는 대상 기사의 [P]로 판정 (소유자 확인 2026-11-21)",
+  "\"Disable Wave Attacks / Beam Zone Attacks / Zone X\" Critical: 카드를 제거하지 않음 — 해당 AI 카드가 뽑혀 수행하려 할 때 그냥 무시하고 버림 (소유자 확인 2026-11-21)",
+  "Drachendämmerung(Routine): 모든 기사 Bane 3, [P]가 가장 높은 기사 사망, Panzerdragon이 보드 중앙으로 이동해 가장 많은 기사를 바라봄 (소유자 확인 2026-11-21)",
+  "Lumbering: 기사의 Pushback / Knockback / Drag / Pull은 Panzerdragon에 무효(Ignore Lumbering 제외). Septic Slash \"P5+: Ignore your Armor Gear card\" = 대상의 [P]가 5 이상이면 Armor Roll에서 Armor Gear 카드의 주사위를 빼고 굴림(Reinforce 등은 유지) [해석, 확인 필요]. Shadow of Doom의 Saint 카드: 특정 Saint에 Devote한 기사만 해당(현재 캠페인에서 얻는 경로 없음)",
+  "미구현(스토리 항목): Sliver of Lost Glory Critical의 \"see 9350\". Fool's deck은 이 Clash에서 참조하는 카드가 없음 (소유자 확인 2026-11-21)",
   "REACT! 창: AI 카드는 인쇄된 위치대로 — Targeting 목록 아래 표시가 있는 카드만 Targeting 뒤 창, 효과 줄 사이 표시는 그 자리, 마지막 효과 줄 뒤 표시는 After Attack / After Final Attack 앞 (스캔 재판독 2026-11-19). Signature·Trait Attack도 같은 방식. BP 카드는 Response 머리글의 표시 = 그 Response 앞, 문장 사이 표시 = 그 자리"
  ]
 }

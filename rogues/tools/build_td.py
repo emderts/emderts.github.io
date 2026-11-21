@@ -87,7 +87,7 @@ d = {'id': 'toadragon-of-the-great-marsh', 'name': S['name'], 'kind': 'boss', 'c
   'The Great Unknowable: AI 버림 더미는 뒷면 — 로그에는 버린 카드 이름을 표시하지 않음 (수행한 카드는 이미 공개됨)',
   'Bounding Behemoth: Toadragon은 한 번에 3칸씩 직선으로 Hop. 이동 공격은 대상이 유효 사거리(근접 = 인접, Range X = X칸, Zone 도식 = 도식 안)에 들어오는 최소 Hop 수만 이동하고, 닿을 수 없으면 전혀 이동하지 않음. Hop 경로의 기사는 Crash 대신 사망, 살아남으면 가장 가까운 빈 칸으로 Displace. Obstacle은 Hop을 막지 않음 — Boss는 지형을 무시하고 Destructible만 파괴 (소유자 확인 2026-11-21)',
   'Hop X: 방향으로 3칸. Board Edge 밖으로 나가게 되면 그 Edge의 반대쪽을 향해 돌아선 뒤 3칸 이동',
-  'Spawneater: Spawn = Toadlet이 없는 Swamp 타일 중 Toadragon에서 가장 먼 타일. 보드+Sheet에 6개면 Spawn 대신 가장 먼 Toadlet을 Sheet로. Toadragon이 지나가거나 멈춘 칸의 Toadlet은 Sheet로. 기사가 이동을 Toadlet 위나 인접한 칸에서 끝내면 버리고 Poison 1 — 이동 중 지나간 Toadlet도 같음(Toadlet을 가장 적게 지나는 경로로 판정)',
+  'Spawneater: Spawn = Toadlet이 없는 Swamp 타일 중 Toadragon에서 가장 먼 타일. 보드+Sheet에 6개면 Spawn 대신 가장 먼 Toadlet을 Sheet로. Toadragon이 지나가거나 멈춘 칸의 Toadlet은 Sheet로. 기사가 이동을 Toadlet 위나 인접한 칸에서 끝내면 버리고 Poison 1 — 이동 중 지나간 Toadlet도 같음(가능한 경로가 여럿이면 어느 Toadlet을 지났는지 플레이어가 선택)',
   'Spawneater — End of Monster Round: 가까운 Toadlet부터 3칸까지 Toadragon 쪽으로 이동. 이미 인접했거나 인접한 뒤 이동력이 남으면 Sheet로 [해석, 확인 필요]. Sheet에 2개 이상이면 버리고 Signature',
   'Favorite Child (Lv2): Divine Target 토큰이 보드에 없을 때 Spawn하면 Toadlet 대신 Divine Target 토큰을 놓음(Toadlet 취급). Sheet로 가게 되면 버리고 AI 수행',
   'VP (Severed Ichor Spines): Critical로 생성. Climb = Might 11+ (프리 액션, 인접), Hold On = Monster Round 종료 시 Tenacity 12+ (실패: Rear 칸으로 Displace, Knockdown, Knockback 3). VP 위: +2 Power, 일반 Response(Critical 포함) 대신 WOUND: Toxify 1 → Hop Forward → Hold On 테스트 / FAIL: 앞 칸으로 Displace, Knockdown [해석, 확인 필요]',
@@ -98,14 +98,14 @@ d = {'id': 'toadragon-of-the-great-marsh', 'name': S['name'], 'kind': 'boss', 'c
   'Ultrainstinct Response는 BP 공개 직후(Power Roll 전)에 처리',
   'Swamplands Surge {P6+: IGNORE [React window]}: Passion 6 이상인 기사는 이 공격에 REACT! 불가 (기사별 적용 [해석, 확인 필요]). Fenland Fling의 "Run!" = Targeting 앞 REACT! 창. Passion 게이트는 녹색 아이콘 = Passion 맞음 (소유자 확인 2026-11-21). Weakspot 없음 (소유자 확인 2026-11-21)',
   'Lumbering: 기사의 Pushback / Knockback / Drag / Pull은 Toadragon에 무효(Ignore Lumbering 제외). Toadlet Swarm의 Move Lateral: 방향을 바꾸지 않고 옆으로 Hop해 대상을 Zone에 넣는 최소 횟수만 이동, 불가능하면 이동 없음',
-  'Front Leg Critical: Toadragon이 이동하려 할 때마다 각 기사가 Heat +1로 1칸 이동 가능(한 번의 이동 공격·Hop 지시당 1회). Clogged Lungs Critical: Judgement 카드는 수행하지 않고, Dirge에서 한 명이라도 Submit하면 Generic Single Wound. Crescendo of Subjugation은 Judgement 비활성의 영향을 받지 않는 것으로 처리 [해석, 확인 필요]',
-  'Ultrainstinct: Spiny Trunk = 이번 공격 동안 Weapon에 Cumbersome, Withered Old Scale = 그 카드 AT +2(이후에도 유지), Clogged Lungs = 가장 가까운 Toadlet이 active Weapon 위로(그 Gear는 Cumbersome, Toadlet은 그 기사의 칸에 있는 것으로 취급 — 다른 기사가 인접해 이동을 끝내거나 Toadragon이 그 칸을 지나면 떨어짐)',
+  'Front Leg Critical: Toadragon이 이동하려 할 때마다 각 기사가 Heat +1로 1칸 이동 가능(한 번의 이동 공격·Hop 지시당 1회). Clogged Lungs Critical: Judgement 카드는 수행하지 않고, Dirge에서 한 명이라도 Submit하면 Generic Single Wound. Crescendo of Subjugation도 Judgement이므로 비활성 중에는 뽑혀도 무시',
+  'Ultrainstinct: Spiny Trunk = 이번 공격 동안 Weapon에 Cumbersome, Withered Old Scale = 그 공격 동안만 AT +2, Clogged Lungs = 가장 가까운 Toadlet이 active Weapon 위로(그 Gear는 Cumbersome, Toadlet은 그 기사의 칸에 있는 것으로 취급 — 다른 기사가 인접해 이동을 끝내거나 Toadragon이 그 칸을 지나면 떨어짐)',
   '미구현(스토리 항목): Spawn Sack Critical의 "Immediately see 4567" — Toadlet Spawn 비활성만 적용',
  ]}
 # The whole Toadragon sheet was checked by the owner on 2026-11-21 (items still marked [해석, 확인 필요] are new questions)
 import re
 OK = ' (소유자 확인 2026-11-21)'
-KEEP = ('Crescendo of Subjugation은 Judgement',)
+KEEP = ()
 d['rulings'] = [r if any(x in r for x in KEEP) else re.sub(r' ?\[해석, 확인 필요[^\]]*\]', '', r) for r in d['rulings']]
 d['rulings'] = [r if '소유자 확인' in r or '확인 필요' in r else r + OK for r in d['rulings']]
 d['clashSetup']['notes'] = [re.sub(r' ?\[해석, 확인 필요[^\]]*\]', OK, x) for x in d['clashSetup'].get('notes', [])]

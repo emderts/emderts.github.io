@@ -8,7 +8,7 @@ NO_T = {
  'devil-of-the-smelted-fears': ['Molten Rain'],
  'puppet-king-edelhardt': ['The King Commands: Bow Down!', 'The King Commands: Begone!', 'The King Commands: Get Out of My Sight!', 'The King Commands: Lay Down Your Arms!'],
  'toadragon-of-the-great-marsh': ['Overwhelming Croak', 'Poison the Waters', 'Engulf in Slime', 'Swamplands Surge', 'Tongue Twister', 'Fenland Fling'],
- 'panzerdragon-veldr': [],
+ 'panzerdragon-veldr': ['There and Back', 'Deep Impact', 'Ultrametal Beam', 'Decaying Miasma', 'Rubiginous Disgorge', 'Shadow of Doom'],
  'young-devour-dragon': ['Damning Discharge', 'Skewer', 'Thunder Storm', 'Command of the Famishing', 'Bile Cannon', 'Madness of the Famishing', "Slice 'n' Dice"],
 }
 END = {
