@@ -99,7 +99,7 @@ d = {'id': 'puppet-king-edelhardt', 'name': S['name'], 'kind': 'boss', 'code': S
   'Subjugated: Start of your turn에 고른 Virtue 테스트(9+), 성공하면 뒤집음. 두 번째로 얻으면 사망',
   'Entertain Me! (Obey): 가장 가까운 다른 기사가 Weapon 사거리에 들어오도록 Speed만큼 이동 → 모든 Attack dice가 명중한 것으로 Power Roll(무기 Power dice × Attack dice 수 + Knight Power die) → 그 기사가 Total Power만큼 [V] 손실 (Armor Roll 없음) [해석, 확인 필요]',
   '"Knockback N to the side" = King이 바라보는 방향 기준 왼쪽/오른쪽 중 플레이어 선택, "random direction" = 4방향 무작위 [해석, 확인 필요]',
-  'Five Fingers: King은 비자발적으로 이동·회전하지 않음 — 기사의 Pushback / Knockback / Drag / Pull은 King에게 무효. Fallen Knight는 낮은 열 → 높은 열 방향으로만 움직이므로 그 방향의 Pushback / Knockback만 적용(Column 파괴, Zone 1·14열 제거 규칙 그대로)',
+  'Five Fingers: King은 비자발적으로 이동·회전하지 않음 — 기사의 Pushback / Knockback / Drag / Pull은 King에게 무효. Fallen Knight는 기사가 어느 방향으로든 밀 수 있음 (소유자 확인 2026-11-21) — Column 파괴, Zone 1·14열 제거 규칙 그대로',
   'Armor-piercing 1 (Shield of the Fallen, Heart of the Throne의 Wound Response): King의 Armor 토큰을 최대 1개 버림',
   '미구현(스토리 항목): Riesenmörder Sword Critical의 "Immediately see 2329" — Shockwave 비활성만 적용',
  ]}

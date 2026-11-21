@@ -213,15 +213,12 @@
     "For each hit lose -4 [V]. [Peril].",
     "Gain the Exposed Condition card.",
     "Bane 1.",
-    "{P3+: KNOCKDOWN}"
+    "{Bane 3+: KNOCKDOWN}"
    ],
    "afterTag": null,
    "after": null,
-   "zone": "diagram: a wide block in front of the Devil (read as 3 rows x 6 columns, centred)",
-   "unclear": [
-    "Zone diagram read from a small image",
-    "The purple gate icon is read as Passion"
-   ]
+   "zone": "diagram: 6 columns x 2 rows in front of the Devil, plus 2 spaces on each side of the Devil toward the front",
+   "unclear": []
   },
   {
    "name": "Sink or Swim",
@@ -301,7 +298,7 @@
     "One hit, lose -6 [V] and Toxify 1. Two hits, lose -9 [V], Toxify 2, and gain the Slimed Condition card. Three or more hits, lose -11 [V], Toxify 4, and gain the Drowning Condition card. [Peril]."
    ],
    "afterTag": "AFTER ATTACK",
-   "after": "{P3+: KNOCKDOWN}",
+   "after": "{Bane 3+: KNOCKDOWN}",
    "zone": null,
    "unclear": []
   },
@@ -319,14 +316,12 @@
    "tag": "MOVE & ATTACK {H5+: +1 [die]}",
    "effects": [
     "One hit, lose -7 [V]. Two hits, lose -10 [V]. Three or more hits, lose -15 [V].",
-    "Bane 1. {P4+: KNOCKDOWN}"
+    "[Peril]. Bane 1. {Bane 4+: KNOCKDOWN}"
    ],
    "afterTag": "AFTER ATTACK",
    "after": "Deluge.",
    "zone": "diagram: 2x2 red block directly in front of the Devil",
-   "unclear": [
-    "Zone diagram read from a small image"
-   ]
+   "unclear": []
   },
   {
    "name": "Sunder Foundations",
@@ -342,15 +337,13 @@
    "tag": "SWAMPWALK → DESTROY ALL COLUMN TERRAIN TILES IN ZONE → ATTACK",
    "effects": [
     "For each hit lose -4 [V].",
-    "{P3+: -5 [V] INSTEAD} [Peril].",
+    "{Bane 3+: -5 [V] INSTEAD} [Peril].",
     "For each hit gain +1 [H]."
    ],
    "afterTag": "AFTER ATTACK",
-   "after": "Gain the Exposed Condition card. {P3+: KNOCKDOWN}",
-   "zone": "diagram: large area in front and to the sides of the Devil",
-   "unclear": [
-    "Zone diagram read from a small image"
-   ]
+   "after": "Gain the Exposed Condition card. {Bane 3+: KNOCKDOWN}",
+   "zone": "diagram: 16 spaces — rows of 4 / 6 in front of the Devil and 3 + 3 on its sides",
+   "unclear": []
   },
   {
    "name": "Crushing Grasp",
@@ -365,7 +358,7 @@
    ],
    "tag": "MOVE & ATTACK",
    "effects": [
-    "Lose -8 [V]. {P3+: -10 [V] INSTEAD}",
+    "Lose -8 [V]. {Bane 3+: -10 [V] INSTEAD}",
     "Two or more hits, Knockdown. [Peril].",
     "Bane 1. Gain the Exposed and Slimed Condition cards."
    ],
@@ -450,7 +443,7 @@
    "tag": "SWAMPWALK & ATTACK",
    "effects": [
     "For each hit lose -4 [V].",
-    "{P5+: -5 [V] INSTEAD} [Peril].",
+    "{Bane 5+: -5 [V] INSTEAD} [Peril].",
     "Gain the Drowning and Exposed Condition cards."
    ],
    "afterTag": "AFTER ATTACK",

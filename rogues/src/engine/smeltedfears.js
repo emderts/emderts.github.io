@@ -54,7 +54,7 @@ export const SmeltedMixin = {
     switch (o.op) {
       case 'dsfFerro': if (o.perHit && !(ctx.hits > 0)) return true; this.dsfFerro((o.perHit ? ctx.hits : 1) * o.n + (o.sig && M.level >= 3 ? 1 : 0)); return true;
       case 'dsfHits': { if (!t || !t.alive || !(ctx.hits > 0)) return true; const per = o.shield && await this.dsfShield(t) ? o.shield : o.n; const v = o.flat ? (o.n === 'X' ? X() : o.n) : per * ctx.hits; await this.loseVigor(t, v + (M.bonuses.vigorLoss || 0), { source: 'attack', perilCheck: !!o.perilCheck }); return true; }
-      case 'dsfK': await K(o.perHit ? { ...o.k, n: (o.k.n || 1) * ctx.hits } : o.k); return true;
+      case 'dsfK': { const b = this.atkHeat(o.k, ctx); await K(o.perHit ? { ...b, n: (b.n || 1) * ctx.hits } : b); return true; }
       case 'dsfIfHits': if (ctx.hits >= o.gte && t && t.alive) await this.fx.runMonsterOps(o.then, ctx); return true;
       case 'dsfOubliette': { const x = who; if (!x || !x.alive) return true; if (x.inOub) { if (o.elseDie) { this.say(`${x.name}: 이미 Oubliette 안 → 사망`, 'death'); await this.die(x, this.lastAI ? this.lastAI.name : 'Oubliette'); } return true; } this.dsfIn(x); return true; }
       case 'dsfOubKD': { const pool = this.alive().filter(x => !x.inOub && this.knockedDown(x) && this.adjacentToMonster(x)); if (!pool.length) return true; const id = pool.length === 1 ? pool[0].id : await this.ask({ type: 'pickKnight', text: 'Oubliette로 옮길 인접한 Knockdown 기사', options: pool.map(x => ({ label: x.name, value: x.id })) }); this.dsfIn(pool.find(x => x.id === id) || pool[0]); return true; }
