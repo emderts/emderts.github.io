@@ -366,6 +366,7 @@ const SPECIAL = [
   [/^Remove a (Swamp|Rubble)(?: Terrain)? tile in your effective range and place it on this card.*$/, m => ({ op: 'fTakeTerrain', tile: m[1].toLowerCase(), free: true })],
   [/^Place all (?:Swamps|Rubble tiles) from this card (on spaces in your effective range|anywhere on the Board)$/, m => ({ op: 'fPlaceTerrain', anywhere: /anywhere/.test(m[1]), free: true })],
   [/^Motivate (\d+) each Knight other than you$/, m => ({ op: 'motivateEach', n: +m[1] })],
+  [/^Motivate (\d+) each Knight instead$/, m => ({ op: 'motivateEach', n: +m[1], instead: true })],
   [/^Each hit: Closing (\d+), Fire (\d+), Inspire (\d+), Motivate (\d+)$/, m => ({ op: 'eachHitCFIM', closing: +m[1], fire: +m[2], inspire: +m[3], motivate: +m[4] })],
   [/^Inspire (\d+) and Motivate (\d+) a Knight in effective range of this Weapon$/, m => ({ op: 'fInspireMotivate', inspire: +m[1], n: +m[2], free: true })],
   [/^Spend X \[Charge\] to Motivate X$/, () => ({ op: 'winMotivateX', active: true })],
@@ -412,6 +413,16 @@ const SPECIAL = [
   [/^When you attack from a VP, a Blindspot or a \[W\] space, you may ignore Armor \[Armor\] tokens$/, () => ({ op: 'flankIgnoreArmor' })],
   [/^Reinforce X, where X is the value of Swarm X of the Attack$/, () => ({ op: 'reinforceSwarm' })],
   [/^\*This card does not occupy a \[Gear\] slot$/, () => ({ op: 'note', na: true })],
+  [/^You may ignore Monster Move Responses$/, () => ({ op: 'ignoreMoveResp' })],
+  [/^When your \[Heat\] exceeds your Heat Limit \[Heat\]!, you may gain \[Passion\] up to your Heat Limit \[Heat\]!$/, () => ({ op: 'overheatPassion' })],
+  [/^When you're about to die from the Disemboweled Mortis card, Incarnate into the Unknown Saint instead$/, () => ({ op: 'disembowelIncarnate' })],
+  [/^If Little Ser is adjacent to a Monster, perform a \[Attack action\]$/, () => ({ op: 'fLSAttack', free: true })],
+  [/^When you flip this card to this si\[de\], gain 1 temporary po\[sitive\] Speed \[Speed\] token and 1 Power \[Power token\] token in \[the\] Knight Pool$/, () => ({ op: 'flipGain', speed: 1, power: 1 })],
+  [/^When you flip this card to this side, Refresh 1$/, () => ({ op: 'flipGain', refresh: 1 })],
+  [/^When you Shapeshi\[ft into\] a Human, flip this ca\[rd\]$/, () => ({ op: 'flipOnForm', form: 'human' })],
+  [/^When you Shapeshift into an Ape, flip this card$/, () => ({ op: 'flipOnForm', form: 'ape' })],
+  [/^Ignore involuntary Shapeshift$/, () => ({ op: 'ignoreShift' })],
+  [/^When you start your turn in the same form you ended your previous turn in, your Knight Power die becomes one tier higher$/, () => ({ op: 'sameFormPromote' })],
   [/^Gain \+(\d+) to Incarnation rolls$/, m => ({ op: 'incarnBonus', n: +m[1] })],
   [/^Roll Out(?: \(.*\))?$/, () => ({ op: 'rollOut', active: true })],
   [/^Ignore Swamp Terrain tiles$/, () => ({ op: 'ignoreSwamp' })],
@@ -471,6 +482,7 @@ export function parseSentence(s) {
     if ((m = /^\[Reaction\]\s*/.exec(r))) { o.reaction = true; r = r.slice(m[0].length); continue; }
     if ((m = /^\[(Combat|Move|Attack|Movement|Complicated) action\]\s*/i.exec(r))) { (o.cost = o.cost || {}).action = m[1].toLowerCase(); r = r.slice(m[0].length); continue; }
     if ((m = /^(\d+) \[Heat\]\s*/.exec(r))) { (o.cost = o.cost || {}).heat = +m[1]; r = r.slice(m[0].length); continue; }
+    if ((m = /^\[ANY CONDITION\]\s*/.exec(r))) { o.anyCond = true; r = r.slice(m[0].length); continue; }
     if ((m = /^\[Exhaust\]\s*/.exec(r))) { (o.cost = o.cost || {}).exhaust = true; r = r.slice(m[0].length); continue; }
     if ((m = /^\[Discard\]\s*/.exec(r))) { (o.cost = o.cost || {}).discard = true; r = r.slice(m[0].length); continue; }
     if ((m = /^(\d+) \[Charge\]\s*/.exec(r))) { (o.cost = o.cost || {}).charge = +m[1]; r = r.slice(m[0].length); continue; }

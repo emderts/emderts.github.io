@@ -104,6 +104,7 @@ export class Campaign {
   async beforeDeath(kn, reason, clash) {
     if (reason === 'Bane Limit exceeded') return false;
     const ck = this.knights.find(x => x.name === kn.name);
+    if (/Disemboweled/.test(reason || '') && clash.fx.gearHas(kn, 'disembowelIncarnate')) { clash.say(`${kn.name}: Disemboweled — Unknown Saint로 Incarnate (Gear)`, 'mortis'); await this.incarnate(kn, clash); return true; }
     if (!this.unknownSaintUnlocked) { this.unknownSaintUnlocked = true; clash.say(`✦ Kingdom Mysteries 9999: ${kn.name}이(가) 죽음의 문턱에서 Unknown Saint로 Incarnate! (이후 모든 기사는 사망 직전 d10=10으로 Incarnate 시도 가능)`, 'mortis'); await this.incarnate(kn, clash); return true; }
     if (ck && ck.saint && kn.saint) { // rulebook p.69 — How to Incarnate
       const S = kn.saint, dv = clash.fx.devo(kn); if (!await clash.yesNo(`${kn.name}: 사망 직전 (${reason}) — ${S.title}: Incarnation 굴림? (${dv >= 5 ? 'Devotion 5+ → 자동 성공' : `d10 ${S.incarnation.value}+`}; 실패하면 Devotion이 1로, 1 이하였으면 Saint 카드를 잃음)`, true)) return false;

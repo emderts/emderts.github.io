@@ -81,7 +81,7 @@
  ],
  "_rulings": [
   "Holy Commandment: 처음 어기면 Saint 미니어처를 치움(그 Clash 종료 시 Devote 없음), 다시 어기면 Saint 카드를 버림. Rogue's Path에서는 Expedition 종료 = Clash 종료 (소유자 확인 2026-11-21)",
-  "Saint Linde: Crit die를 재굴림하면 위반. Saint Eudes: 다른 기사가 이 기사를 대상으로 능력을 쓸 수 없게 막음(위반이 일어나지 않음) [해석, 확인 필요]",
+  "Saint Linde: Crit die를 재굴림하면 위반. Saint Eudes: 다른 기사의 능력(Motivate·Inspire·이동·Bonus Attack 부여 등)이 이 기사에게 적용되면 위반 — 막지는 않고 경고창을 띄움 (소유자 확인 2026-11-21). 감지 범위: 이동·일으키기·Bonus Attack으로 이어지는 능력 [Condition 뒤집기·되살리기 등은 아직 감지 못함]",
   "Saint를 가진 기사가 죽으면 Saint 카드를 잃음 (소유자 확인 2026-11-21)"
  ]
 }
