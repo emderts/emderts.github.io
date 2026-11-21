@@ -60,7 +60,7 @@
 | Lone Knight / Toughness / Attack Consequences | 고립된 기사 / 강인함 / 공격 결과 |
 | Principality of Stone / Sunken Kingdom / Kingdom Trait | 돌의 공국 / 가라앉은 왕국 / 왕국 특성 |
 | After Attack / After Final Attack | 공격 후 / 최종 공격 후 |
-| Suck / Burrow / [Blood gate] | 흡혈 / 굴 파기 / [피 조건] |
+| Suck / Burrow / [Blood gate] | 흡혈 / 굴 이동 / [피 조건부] (It Sucks! = 흡혈한다!) |
 | Sapling / Pumpkinhead / Fast Regrowth / Transforming Seed | 묘목 / 호박머리 / 빠른 재생 / 변이하는 씨앗 |
 | Wound Stack / Fool's deck / discard pile | 부상 더미 / 광대 덱 / 버림 더미 |
 | To Hit / Basic Ability / Monster Responses | 명중 수치 / 기본 능력 / 몬스터 대응 |
@@ -68,4 +68,12 @@
 
 - [Priority Target] 아이콘은 옮기지 않는다: "[Priority Target] Priority Target" → "주요 대상" (소유자 확인 2026-11-21).
 - Eggknight · Ratwolves 문구, Mortis 등급(하위 / 상위 / 중대), Response = 대응, 왕국 이름(돌의 공국 / 가라앉은 왕국) 확정 (소유자 확인 2026-11-21).
-- Instinct / Ultrainstinct, Crash 는 대안 검토 중 (현재 본능 / 초본능, 충돌).
+- Instinct / Ultrainstinct = 본능 / 초본능, Crash = 충돌 유지 (소유자 확인 2026-11-21).
+| Flank / Flee / Endure / AI Response | 측면 기동 / 도주 / 버티기 / AI 대응 |
+| Engaged / Lair / Threat / Rear | 교전 중인 / 둥지 / 위협 / 후방 |
+| Monster Round / Knight Round | 몬스터 라운드 / 기사 라운드 |
+
+- "X [X]" 꼴(이름 뒤에 같은 이름의 아이콘)은 하나만 남긴다: "Blood [Blood] tokens" → "피 토큰", "Armor [Armor] token" → "방어구 토큰", "Precision [Precision]" → "정확도" (소유자 확인 2026-11-21). 이름 없이 아이콘만 있는 경우([활기], [열기], [AT])는 그대로 둔다.
+- Gate = 조건부. Scab Armor = 피딱지 갑옷, Cursed Overgrowth = 저주받은 과성장 (소유자 확인 2026-11-21).
+- Paleblood Worms · Pumpkinhead Monstrosities 문구 확정 (소유자 확인 2026-11-21).
+- 숫자 틀(#)은 [d10] 아이콘의 10을 숫자로 세지 않는다.

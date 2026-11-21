@@ -30,7 +30,7 @@
  "Place the Party Marker on any explored Kingdom tile in your current District.": "파티 마커를 현재 구역의 탐험된 왕국 타일 아무 곳에나 놓습니다.",
  "Place one Knight on any empty space on the Clash Board.": "기사 한 명을 격돌 보드의 빈칸 아무 곳에나 놓습니다.",
  "[Reaction] Place one Knight on an empty space closest to the center of the Clash Board.": "[반응] 기사 한 명을 격돌 보드 중앙에 가장 가까운 빈칸에 놓습니다.",
- "Place the Party Marker on any explored Point of Interest [Point of Interest].": "파티 마커를 탐험된 관심 지점 [관심 지점] 아무 곳에나 놓습니다.",
+ "Place the Party Marker on any explored Point of Interest [Point of Interest].": "파티 마커를 탐험된 관심 지점 아무 곳에나 놓습니다.",
  "Look at the top BP card, you may put it at the bottom of the deck. If fighting against Mobs, look at a chosen BP card on the Mob track instead.": "맨 위 BP 카드를 확인해 봅니다. 당신은 그 카드를 덱 맨 밑에 놓아도 됩니다. 개체와 싸우는 중이면, 대신 개체 트랙의 BP 카드 하나를 골라 확인해 봅니다.",
  "After you draw an Exploration card, ignore it and repeat the draw.": "당신이 탐험 카드를 뽑은 뒤, 그 카드를 무시하고 다시 뽑습니다.",
  "One Knight immediately Hides (even if in front of a Monster). As long as they are Hidden, the next time they would be a valid Target for a Targeting line of an Attack, you may skip that Targeting line.": "기사 한 명이 즉시 은신합니다(몬스터의 정면에 있더라도). 그 기사가 은신 상태인 동안, 다음에 그 기사가 공격의 대상 지정 줄에 맞는 대상이 되면 당신은 그 대상 지정 줄을 건너뛰어도 됩니다.",
@@ -46,7 +46,7 @@
  "Re-roll your Armor Roll (all dice) or gain Power Re-roll 2.": "당신의 방어 굴림을 다시 굴리거나(모든 주사위), 위력 재굴림 2를 얻습니다.",
  "Reduce your [Vigor] loss by up to 3.": "당신의 [활기] 손실을 최대 3 줄입니다.",
  "When you fully miss an Attack, don't clear the Knight Pool.": "당신의 공격이 완전히 빗나가도 기사 풀을 비우지 않습니다.",
- "During an Encounter: When you are about to attack, place 1 Break [Break] token in the Knight Pool.": "조우 중: 당신이 공격하려 할 때, 파쇄 [파쇄] 토큰 1개를 기사 풀에 놓습니다.",
+ "During an Encounter: When you are about to attack, place 1 Break [Break] token in the Knight Pool.": "조우 중: 당신이 공격하려 할 때, 파쇄 토큰 1개를 기사 풀에 놓습니다.",
  "When you are about to perform an Armor Roll, add your Knight Power die to the Armor dice Pool twice.": "당신이 방어 굴림을 하려 할 때, 당신의 기사 위력 주사위를 방어 주사위 풀에 두 번 더합니다.",
  "Ignore a Failure or Partial Success effect of an Encounter.": "조우의 실패 또는 부분 성공 효과 하나를 무시합니다.",
  "When you fully miss an Attack, declare that you have hit with all dice instead. Don't add your Knight Power die to the Power Pool.": "당신의 공격이 완전히 빗나가면, 대신 모든 주사위가 명중했다고 선언합니다. 당신의 기사 위력 주사위는 위력 풀에 더하지 않습니다.",
@@ -56,11 +56,11 @@
  "When you attack, before the Power Roll, double your Power Pool.": "당신이 공격할 때, 위력 굴림 전에 당신의 위력 풀을 두 배로 늘립니다.",
  "During an Encounter: When a Knight fails to Scrape, do not clear the Encounter Pool, that Knight immediately performs an Attack Action again.": "조우 중: 기사가 긁어내기에 실패하면 조우 풀을 비우지 않고, 그 기사는 즉시 공격 행동을 다시 수행합니다.",
  "Lifeline.": "생명선.",
- "During the Travel step, ignore Flood [Flood] tokens. As long as this Mercenary is recruited, during the Travel step, you may move through Shortcuts.": "여행 단계 동안 범람 [범람] 토큰을 무시합니다. 이 용병이 고용되어 있는 동안, 여행 단계에 당신은 지름길을 지나 이동해도 됩니다.",
+ "During the Travel step, ignore Flood [Flood] tokens. As long as this Mercenary is recruited, during the Travel step, you may move through Shortcuts.": "여행 단계 동안 범람 토큰을 무시합니다. 이 용병이 고용되어 있는 동안, 여행 단계에 당신은 지름길을 지나 이동해도 됩니다.",
  "During voluntary movement, treat connected Swamp Terrain tiles as 1 space (ignore the dice roll).": "자발적 이동 중에는 이어진 늪 지형 타일들을 1칸으로 취급합니다(주사위 굴림은 무시합니다).",
- "Additionally, discard 1 Surge [Surge] token.": "추가로, 격랑 [격랑] 토큰 1개를 버립니다.",
+ "Additionally, discard 1 Surge [Surge] token.": "추가로, 격랑 토큰 1개를 버립니다.",
  "Remove 1 Rubble Terrain tile from the Clash Board.": "격돌 보드에서 잔해 지형 타일 1개를 제거합니다.",
- "During the Travel step, ignore Single Panzergates [Panzergate]. As long as this Mercenary is recruited, during the Travel step, you may move through Shortcuts.": "여행 단계 동안 단일 장갑문 [장갑문]을 무시합니다. 이 용병이 고용되어 있는 동안, 여행 단계에 당신은 지름길을 지나 이동해도 됩니다.",
+ "During the Travel step, ignore Single Panzergates [Panzergate]. As long as this Mercenary is recruited, during the Travel step, you may move through Shortcuts.": "여행 단계 동안 단일 장갑문을 무시합니다. 이 용병이 고용되어 있는 동안, 여행 단계에 당신은 지름길을 지나 이동해도 됩니다.",
  "During voluntary movement, treat connected Rubble Terrain tiles as 1 space.": "자발적 이동 중에는 이어진 잔해 지형 타일들을 1칸으로 취급합니다.",
- "Discard a Single Panzergate [Panzergate] token from any path.": "아무 길에서나 단일 장갑문 [장갑문] 토큰 1개를 버립니다."
+ "Discard a Single Panzergate [Panzergate] token from any path.": "아무 길에서나 단일 장갑문 토큰 1개를 버립니다."
 }

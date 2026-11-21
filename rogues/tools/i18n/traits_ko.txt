@@ -97,11 +97,11 @@ Iron Confines = 쇠 우리
 Adaptable = 적응력
 ## Paleblood Worms
 Bloodrush = 피의 쇄도
-It Sucks! = 빨아들인다!
+It Sucks! = 흡혈한다!
 Bloodbath = 피바다
 Subterranean Menace = 땅속의 위협
 Red Soil = 붉은 흙
-Scab Armor = 딱지 갑옷
+Scab Armor = 피딱지 갑옷
 Bloodline = 혈통
 ## Panzerdragon Veldr
 Divine Fervor = 신성한 열정
@@ -124,7 +124,7 @@ Armored Contagion = 갑옷 전염
 No Rest for Any = 누구에게도 안식은 없다
 ## Pumpkinhead Monstrosities
 Sinister Saplings = 불길한 묘목
-Cursed Overgrowth = 저주받은 무성함
+Cursed Overgrowth = 저주받은 과성장
 Ecological Cataclysm = 생태 대재앙
 Invasive Species = 침입종
 Controlled Burn = 통제된 불놓기
