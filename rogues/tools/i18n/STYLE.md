@@ -60,3 +60,12 @@
 | Lone Knight / Toughness / Attack Consequences | 고립된 기사 / 강인함 / 공격 결과 |
 | Principality of Stone / Sunken Kingdom / Kingdom Trait | 돌의 공국 / 가라앉은 왕국 / 왕국 특성 |
 | After Attack / After Final Attack | 공격 후 / 최종 공격 후 |
+| Suck / Burrow / [Blood gate] | 흡혈 / 굴 파기 / [피 조건] |
+| Sapling / Pumpkinhead / Fast Regrowth / Transforming Seed | 묘목 / 호박머리 / 빠른 재생 / 변이하는 씨앗 |
+| Wound Stack / Fool's deck / discard pile | 부상 더미 / 광대 덱 / 버림 더미 |
+| To Hit / Basic Ability / Monster Responses | 명중 수치 / 기본 능력 / 몬스터 대응 |
+| Kingdom Book / Upgrade card / 2-handed Weapon / Incarnated | 왕국 책 / 강화 카드 / 양손 무기 / 화신 상태 |
+
+- [Priority Target] 아이콘은 옮기지 않는다: "[Priority Target] Priority Target" → "주요 대상" (소유자 확인 2026-11-21).
+- Eggknight · Ratwolves 문구, Mortis 등급(하위 / 상위 / 중대), Response = 대응, 왕국 이름(돌의 공국 / 가라앉은 왕국) 확정 (소유자 확인 2026-11-21).
+- Instinct / Ultrainstinct, Crash 는 대안 검토 중 (현재 본능 / 초본능, 충돌).

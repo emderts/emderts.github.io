@@ -24,7 +24,7 @@
  "Reveal the rightmost unrevealed Mob BP on the Mob track.": "개체 트랙에서 공개되지 않은 가장 오른쪽 개체 BP를 공개합니다.",
  "Reveal the leftmost unrevealed Mob BP on the Mob track.": "개체 트랙에서 공개되지 않은 가장 왼쪽 개체 BP를 공개합니다.",
  "Always trigger [Heat] effects.": "[열기] 효과를 항상 발동시킵니다.",
- "Gain the [Priority Target] Priority Target token.": "[주요 대상] 주요 대상 토큰을 얻습니다.",
+ "Gain the [Priority Target] Priority Target token.": "주요 대상 토큰을 얻습니다.",
  "Draw AI for the furthest Mob.": "가장 먼 개체를 위해 AI를 뽑습니다.",
  "All Ratwolves gain +1 [AT].": "모든 쥐늑대가 [AT] +1을 얻습니다.",
  "Move one Activation token to the next unassigned Mob.": "활성화 토큰 1개를 토큰이 없는 다음 개체로 옮깁니다.",
