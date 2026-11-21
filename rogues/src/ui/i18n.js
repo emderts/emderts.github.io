@@ -20,5 +20,11 @@ export const tx = text => { if (typeof text !== 'string' || lang === 'en') retur
 /** An interface string by key. */
 export const tu = (key, fallback) => hit(sec('ui'), key) || fallback;
 /** Used by the DOM helper: a text node that is exactly a known name or text line is shown translated (no effect in English). */
-export const auto = s => { if (lang === 'en' || typeof s !== 'string' || !s) return s; return hit(sec('names'), s) || hit(sec('text'), s) || s; };
+export const auto = s => { if (lang === 'en' || typeof s !== 'string' || !s) return s; return hit(sec('names'), s) || hit(sec('text'), s) || trIn(s, true); };
+// Names inside a longer sentence (log lines, prompts, button labels): every dictionary name that is not a glossary keyword
+// (DICT[lang]._inlineSkip) is replaced where it stands as a whole word. `multiOnly` limits this to names of two or more words —
+// used for arbitrary text nodes, where a one-word name ("Slash", "Ruin", "Counter") could be an ordinary word.
+const RX = {};
+const rxFor = multiOnly => { const key = lang + (multiOnly ? ':m' : ':a'); if (key in RX) return RX[key]; const d = sec('names') || {}; const skip = new Set((DICT[lang] && DICT[lang]._inlineSkip) || []); const ns = Object.keys(d).filter(n => d[n] && !skip.has(n) && n.length > 2 && /^[A-Z0-9]/.test(n) && (!multiOnly || /\s/.test(n))).sort((a, b) => b.length - a.length); RX[key] = ns.length ? new RegExp('(?<![A-Za-z])(?:' + ns.map(n => n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')(?![A-Za-z])', 'g') : null; return RX[key]; };
+export const trIn = (s, multiOnly = false) => { if (lang === 'en' || typeof s !== 'string' || !s || !/[A-Za-z]{3}/.test(s)) return s; const rx = rxFor(multiOnly); if (!rx) return s; const d = sec('names'); return s.replace(rx, m => d[m] || m); };
 export const translatedCount = () => { const d = DICT[lang] || {}; return ['names', 'text', 'ui'].reduce((a, s) => a + Object.values(d[s] || {}).filter(v => typeof v === 'string' && v).length, 0); };

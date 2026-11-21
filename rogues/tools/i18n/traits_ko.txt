@@ -1,0 +1,204 @@
+# Monster Trait names — Korean
+## Bog Witch
+One with the Bog = 수렁과 하나로
+Hex Weaver = 주술을 엮는 자
+Talisman Hunt = 부적 사냥
+Wispers of the Bog = 수렁의 도깨비불 속삭임
+Misfortune’s Mistress = 불운의 여주인
+Cookie Crumbs = 과자 부스러기
+The Crone of the Bog = 수렁의 노파
+## Devils
+Primordial Soup = 원시 수프
+Rising Tide = 차오르는 물
+Stains of Profanity = 신성모독의 얼룩
+Devil's Bargain = 악마의 거래
+Devil of the Crossroads = 갈림길의 악마
+Ancestral Recollection = 선조의 회상
+Ferrobaptism X = 쇠의 세례 X
+Ferrobaptism = 쇠의 세례
+The Gate = 관문
+Master of the Oubliette = 지하감옥의 주인
+The Iron Tithe = 쇠의 십일조
+Molten Chains = 녹아내린 사슬
+Only Fear Will Remain = 공포만이 남으리라
+Smelter Oubliette (Trait card) = 용광로 지하감옥 (특성 카드)
+## Eggknight
+Humpty Charge = 험프티 돌격
+Humpty Fate = 험프티의 운명
+Counter = 반격
+Panzeronion = 장갑양파
+Hardboiled = 완숙
+Egged On = 부추김
+Jacked = 근육질
+Just a Scratch = 그저 긁힌 상처
+Coup de Grace = 최후의 일격
+Impenetrable Shell = 뚫을 수 없는 껍데기
+## First Men
+Battle Tactics = 전투 전술
+Mangrove Deployment = 맹그로브 전개
+Taunt & Decoy = 조롱과 미끼
+Seek & Destroy = 수색 섬멸
+It’s a Trap! = 함정이다!
+Advanced Tactics = 고급 전술
+Combat Flexibility = 전투 유연성
+Long Howl = 긴 울부짖음
+Show of Strength = 힘의 과시
+Retribution = 응징
+Keeping Up the Pressure = 압박 유지
+## Haunts of Utrebant
+Intangible = 실체 없음
+Ethereal Unity = 영체의 결속
+Spectral Step = 유령 걸음
+Obscured Vision = 가려진 시야
+The Grim Gift = 음산한 선물
+Revenge Served Ghastly Cold = 섬뜩하도록 차갑게 식힌 복수
+No Mercy = 무자비
+## Ironcast Dead
+Necrofusion = 사령 융합
+Armored Reawakening = 갑옷 입은 재각성
+Armored Dead = 갑옷 입은 망자
+Lifeless Army = 생명 없는 군대
+## The King Laid Low
+Get out of My Swamp! = 내 늪에서 나가라!
+Ditch Digger = 도랑 파는 자
+Heavy Is the Crown = 왕관의 무게
+Putrid Penance = 썩은 속죄
+Shallow Grave = 얕은 무덤
+Guilt of Generations = 대대로 이어진 죄책감
+Bow before Your King! = 네 왕 앞에 엎드려라!
+Shrug It Off = 털어내기
+VP — Misshapen Hump = VP — 기형 혹
+Misshapen Hump = 기형 혹
+## Knight of the Fen
+One with the Swamp = 늪과 하나로
+We Are Many = 우리는 여럿이다
+Doppelknight = 도플나이트
+Ooze Trap = 점액 함정
+Doppelganger = 도플갱어
+Spread Thin = 얇게 퍼짐
+Living Wasteheap = 살아 있는 쓰레기 더미
+Absorb the Fallen = 쓰러진 자 흡수
+Concentrated Strength = 응집된 힘
+We Are Legion = 우리는 군단이다
+Inescapable Slime = 벗어날 수 없는 점액
+Quick Summons = 빠른 소환
+Recycled Armor = 재활용 갑옷
+Engulfed = 삼켜짐
+## Knighteater
+Starved Slaughterman = 굶주린 도살자
+Frenzied Hunger = 광란의 허기
+Meatbait = 고기 미끼
+Measured Movement = 절제된 움직임
+Brute = 짐승 같은 자
+Glutton = 대식가
+Living Up to the Name = 이름값 하기
+Feral Guard = 야성의 경계
+Iron Confines = 쇠 우리
+Adaptable = 적응력
+## Paleblood Worms
+Bloodrush = 피의 쇄도
+It Sucks! = 빨아들인다!
+Bloodbath = 피바다
+Subterranean Menace = 땅속의 위협
+Red Soil = 붉은 흙
+Scab Armor = 딱지 갑옷
+Bloodline = 혈통
+## Panzerdragon Veldr
+Divine Fervor = 신성한 열정
+Dragonfeast = 용의 만찬
+Panzercolony Life Cycle = 장갑군체의 생활사
+Panzercolony Migration = 장갑군체의 이주
+Panzercolony Germination = 장갑군체의 발아
+Beneath the Shadow of Their Wings = 그들의 날개 그림자 아래
+Turn to Rust = 녹으로 변하다
+Insect Tide = 벌레의 밀물
+Mortal Retribution = 필멸자의 응징
+## Panzergeists
+Suit Up! = 갑옷을 입어라!
+Ceaseless Hunger = 끊임없는 허기
+All Things Die = 만물은 죽는다
+Panzer Cascade = 장갑 연쇄
+Muffled Potential = 억눌린 잠재력
+Soul of the Metal = 금속의 영혼
+Armored Contagion = 갑옷 전염
+No Rest for Any = 누구에게도 안식은 없다
+## Pumpkinhead Monstrosities
+Sinister Saplings = 불길한 묘목
+Cursed Overgrowth = 저주받은 무성함
+Ecological Cataclysm = 생태 대재앙
+Invasive Species = 침입종
+Controlled Burn = 통제된 불놓기
+Fire Walk with Me = 불이여 나와 함께 걸으라
+Spore Spreader = 포자 살포자
+Pumpkin Plague = 호박 역병
+Accelerated Regrowth = 가속 재생
+Venomous Quagmire = 독 수렁
+Floraforge Fury = 식물 대장간의 분노
+## Puppet King Edelhardt
+Welcome to My Castle! = 내 성에 온 것을 환영하노라!
+Five Fingers = 다섯 손가락
+Shockwave = 충격파
+Dark Fog = 어두운 안개
+Fallen Knight Army = 타락한 기사 군대
+Obedient Knights = 복종하는 기사들
+Unstoppable Force = 멈출 수 없는 힘
+On Command = 명령에 따라
+## Ratwolves
+Strength of the Pack = 무리의 힘
+Rising Pressure = 높아지는 압박
+Go for the Weakest Link = 가장 약한 고리를 노려라
+Relentless Pull = 끈질긴 잡아당기기
+Into the Chittering Shadows = 찍찍대는 그림자 속으로
+Kinderfänger = 킨더펭어 - 아이 잡는 자
+Adaptability = 적응성
+Ravening Ratswarm = 게걸스러운 쥐 떼
+Rat King = 쥐 왕
+Parasite Bed = 기생충 온상
+Bile and Poison = 담즙과 독
+## Stonemason Knight
+Lodestone Armor = 자철석 갑옷
+Architect of Destruction = 파괴의 건축가
+Ruin = 폐허
+Uneven Footing = 고르지 않은 발판
+Buried Alive = 생매장
+Magnetite Reinforcement = 자철석 보강
+Impervious Armor = 뚫리지 않는 갑옷
+Unwavering Devotion = 흔들림 없는 헌신
+Ferrospikes = 쇠가시
+## Toadragon of the Great Marsh
+Bounding Behemoth = 뛰어오르는 거수
+Dirge of Dominion = 지배의 만가
+The Great Unknowable = 위대한 불가지의 존재
+Spawneater = 알을 먹는 자
+Favorite Child = 총애받는 자식
+Unrelenting Swarm = 끈질긴 떼
+## White Ape Troll
+Regeneration = 재생
+Firstmen Guardians = 최초인 수호자
+Reinforcements Have Arrived = 증원군 도착
+Vantage Seeker = 높은 곳을 찾는 자
+Strength in Numbers = 수의 힘
+Avenger of the Tribe = 부족의 복수자
+Unnerving Presence = 불안하게 하는 존재감
+## Winged Nightmare
+Regional Lair = 지역 소굴
+Unpredictable Nature = 예측할 수 없는 본성
+Fight and Flight = 싸움과 비행
+Marble Forest = 대리석 숲
+Tougher than She Looks = 보기보다 질긴 그녀
+Siren’s Spite = 세이렌의 앙심
+Nixie’s Fury = 닉시의 분노
+Coiling Malice = 똬리 튼 악의
+## Young Devour Dragon
+Falling Skies = 무너지는 하늘
+Ruined Bastion = 폐허가 된 보루
+Climbable Appendages = 타고 오를 수 있는 부속지
+Groundscraper = 땅을 긁는 자
+Curse of Endless Hunger = 끝없는 허기의 저주
+Inescapable Maw = 벗어날 수 없는 아가리
+Flying High (PHASE I) = 높이 날다 (1단계)
+Floating Low (PHASE II) = 낮게 떠다니다 (2단계)
+Grounded (PHASE III) = 땅에 내려앉다 (3단계)
+Flying High = 높이 날다
+Floating Low = 낮게 떠다니다
+Grounded = 땅에 내려앉다
