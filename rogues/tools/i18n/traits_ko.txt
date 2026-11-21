@@ -10,12 +10,12 @@ The Crone of the Bog = 수렁의 노파
 ## Devils
 Primordial Soup = 원시 수프
 Rising Tide = 차오르는 물
-Stains of Profanity = 신성모독의 얼룩
+Stains of Profanity = 신성모독의 자국
 Devil's Bargain = 악마의 거래
 Devil of the Crossroads = 갈림길의 악마
 Ancestral Recollection = 선조의 회상
-Ferrobaptism X = 쇠의 세례 X
-Ferrobaptism = 쇠의 세례
+Ferrobaptism X = 철의 세례 X
+Ferrobaptism = 철의 세례
 The Gate = 관문
 Master of the Oubliette = 지하감옥의 주인
 The Iron Tithe = 쇠의 십일조
