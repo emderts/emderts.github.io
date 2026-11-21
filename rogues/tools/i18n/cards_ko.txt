@@ -157,7 +157,7 @@ Deformed Head = 기형 머리
 Sword Cut = 검 긋기
 Hard-Boiled = 완숙
 ## Firstmen Lictor Hunters
-Gruesome Display = 섬뜩한 전시
+Gruesome Display = 섬뜩한 광경
 Dastardly Distraction = 비열한 교란
 Jungle Trickery = 밀림의 속임수
 Surprise Attack = 기습
@@ -170,7 +170,7 @@ Coup de Grâce = 최후의 일격
 Treefrog Poison-Tipped Dart = 청개구리독 바른 다트
 Below the Belt = 급소 치기
 Thorn Snare = 가시 올가미
-Savage Display = 야만적인 전시
+Savage Display = 야만적인 광경
 Brutal Backstab = 잔혹한 등 찌르기
 Toxic Smokescreen = 독 연막
 Death from Above = 위에서 내리는 죽음

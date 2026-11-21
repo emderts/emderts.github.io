@@ -86,3 +86,8 @@
 | in range / Full Evade / ability window / Clash Diagram | 범위 안에 있는 / 완전 회피 / 능력 창 / 격돌 도식 |
 
 - Panzergeists · Haunts of Utrebant 문구 확정 (소유자 확인 2026-11-21).
+| Engulfed / Crit Evade Fail / Crit Miss / Critical Response | 삼켜짐 / 치명적 회피 실패 / 치명적 빗나감 / 치명타 대응 |
+| Unexhaust / Total Power / Support / Melee Weapon / Monster Sheet | 소진 해제 / 총 위력 / 보조 / 근접 무기 / 몬스터 시트 |
+| AI Suppress / [Combat action] / Ward Node / Stonemason | AI 억제 / [전투 행동] / 수호 마디 / 석공 |
+
+- Firstmen Warriors · Lictor Hunters 문구 확정. Rust 특성 = "녹" 유지. Suit Up! = 갑옷을 걸쳐라!, Gruesome / Savage Display = 섬뜩한 / 야만적인 광경, Guerrilla Tactics = 게릴라 전술 (소유자 확인 2026-11-21). Splinter / Decoy / Dwell 은 대안 검토 중 (현재 파편 / 미끼 / 체류).

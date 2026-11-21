@@ -114,7 +114,7 @@ Turn to Rust = 녹으로 변하다
 Insect Tide = 벌레의 밀물
 Mortal Retribution = 필멸자의 응징
 ## Panzergeists
-Suit Up! = 갑옷을 입어라!
+Suit Up! = 갑옷을 걸쳐라!
 Ceaseless Hunger = 끊임없는 허기
 All Things Die = 만물은 죽는다
 Panzer Cascade = 장갑 연쇄
