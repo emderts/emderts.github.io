@@ -33,3 +33,12 @@
 | Blood token | 피 토큰 |
 
 - Flavor 문구는 -합니다에 묶이지 않고 그때그때 어울리는 말투로 옮긴다.
+- Bane = 해악, Judicium = 판결, Rut = 진흙 고랑, Rebound = 재기, Knight Stand = 기사의 항전 (소유자 확인 2026-11-21).
+| Mind / Body Condition | 정신 / 신체 상태 |
+| symbol / [Reaction] | 기호 / [반응] |
+| Armor Roll / Power Roll / Power Pool | 방어 굴림 / 위력 굴림 / 위력 풀 |
+| Hide / Hidden | 은신 / 은신 상태 |
+| Targeting line / Mob track | 대상 지정 줄 / 개체 트랙 |
+| Fail Response / BP Suppress / Massive Peril | 실패 반응 / BP 억제 / 대위험 |
+| Exploration card / Encounter / Ambush | 탐험 카드 / 조우 / 매복 |
+| Kingdom tile / Party Marker / District / Shortcut / Travel step | 왕국 타일 / 일행 마커 / 구역 / 지름길 / 여행 단계 |
