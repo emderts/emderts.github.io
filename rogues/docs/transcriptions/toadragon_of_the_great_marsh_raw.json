@@ -8,11 +8,10 @@
    "Beast",
    "Toad"
   ],
-  "footprint": "3x3; rear = the three cells behind (R R R, Blindspot); the three front cells are Weakspot (W) spaces",
+  "footprint": "3x3; rear = the three cells behind (R R R, Blindspot)",
   "basicAbilities": [
    "Lumbering",
    "Blindspot",
-   "Weakspot",
    "Unavoidable Knockback 5",
    "VP",
    "Ignore Difficult Terrain"
@@ -212,10 +211,8 @@
    ],
    "afterTag": null,
    "after": null,
-   "zone": "diagram: wide block in front of the Toadragon (read as 3 rows deep, wider than the Toadragon)",
-   "unclear": [
-    "Zone diagram read from a small image"
-   ]
+   "zone": "diagram: 2 rows x 7 columns in front of the Toadragon plus a 2x2 block on each side toward the front",
+   "unclear": []
   },
   {
    "name": "Poisonous Bile",
@@ -348,10 +345,8 @@
    ],
    "afterTag": "AFTER ATTACK",
    "after": "Spawn a Toadlet.",
-   "zone": "diagram: 3 rows wide, long strip in front of the Toadragon",
-   "unclear": [
-    "Zone diagram read from a small image"
-   ]
+   "zone": "diagram: 3 wide x 6 deep in front of the Toadragon",
+   "unclear": []
   },
   {
    "name": "Toadlet Horde",
@@ -448,7 +443,7 @@
    "type": "ZONE ATTACK",
    "evasionDice": "X*",
    "evasionDifficulty": 10,
-   "pre": "Each Toadlet moves 1 space toward the closest Knight. [React]",
+   "pre": "[React] Each Toadlet moves 1 space toward the closest Knight.",
    "targeting": [
     "Zone 1 around each Toadlet"
    ],
@@ -479,10 +474,8 @@
    ],
    "afterTag": "AFTER ATTACK",
    "after": "Spawn a Toadlet.",
-   "zone": "diagram: large inverted triangle in front of the Toadragon reaching the far Board Edge",
-   "unclear": [
-    "Zone diagram read from a small image"
-   ]
+   "zone": "diagram: widening rows of 3 / 5 / 7 / 9 / 11 / 13 in front of the Toadragon (48 spaces)",
+   "unclear": []
   },
   {
    "name": "Swamplands Surge",
@@ -494,16 +487,14 @@
    "targeting": [
     "Clash Board"
    ],
-   "tag": "ATTACK {P6+: IGNORE [Evasion Re-roll]}",
+   "tag": "ATTACK {P6+: IGNORE [React window]}",
    "effects": [
     "Source of this Wave Attack is the closest Board Edge directly behind the Toadragon. For each hit lose -6 [V] and Bane 2. [Peril]. Gain the Drowning Condition card. Knockback 3."
    ],
    "afterTag": null,
    "after": null,
    "zone": null,
-   "unclear": [
-    "Gate effect \"IGNORE [icon]\" — icon read as Evasion Re-rolls"
-   ]
+   "unclear": []
   },
   {
    "name": "Fenland Fling",
@@ -649,7 +640,7 @@
    "name": "Distended Jaw",
    "level": 2,
    "at": 13,
-   "top": "OVERCOME 4+: Power 1",
+   "top": "OVERCOME 3+: Power 1",
    "note": null,
    "ultrainstinct": "Spawn a Toadlet.",
    "instinct": "Spawn a Toadlet.",

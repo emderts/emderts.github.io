@@ -40,4 +40,9 @@ const put = (c, k, l) => { c.board.remove([k.pos]); k.pos = P(c, l); c.board.pla
 { const c = mk(7); const k = c.knights[0]; c.dgCreateVP(k, 'test'); put(c, k, 'E9'); ok(c.dgFreeActions(k).some(a => a.id === 'dg:climb'), 'VP created: Climb offered to an adjacent Knight'); c.dgClimb(k); const A = { knight: k, extraPool: { raw: 0 } }; await c.tdBeforeAttack(k, A); ok(k.onVP && A.extraPool.raw === 2 && A.vpNoResp, 'Severed Ichor Spines: +2 Power, VP Responses'); }
 { let done = 0, win = 0; for (let seed = 1; seed <= 12; seed++) { const lv = seed % 2 + 1; const c = mk(seed * 31 + lv, lv); try { const r = await c.run(); done++; if (r === 'win') win++; } catch (e) { console.log('ERR', seed, lv, e.stack.split('\n').slice(0, 6).join(' | ')); fails++; } }
   ok(done === 12, `simulations finished: ${done} (wins ${win})`); }
+// ---- v0.67.20 (owner corrections 2026-11-21) ----
+{ const DT = data.monsters['toadragon-of-the-great-marsh']; const ai = n => DT.cards.ai.find(x => x.name === n);
+  ok(ai('Putrescent Stench').ops.zoneDiagram.red.length === 22 && ai('Regurgitate Young').ops.zoneDiagram.red.length === 18 && ai('Toadlet Swarm').ops.zoneDiagram.red.length === 48, 'zones: Putrescent Stench 22, Regurgitate Young 3x6, Toadlet Swarm 48 spaces');
+  ok(!ai('Tongue Twister').reactWindows.includes('targeting') && ai('Fenland Fling').reactWindows.join() === 'Targeting 앞' && ai('Engulf in Slime').ops.pre[0].op === 'reactWindow', 'REACT! windows: Tongue Twister (none after Targeting), Fenland Fling (before Targeting only), Engulf in Slime (before the Toadlets move)');
+  ok(DT.cards.bp.find(x => x.name === 'Distended Jaw').ops.overcome.n === 3 && DT.cards.bp.find(x => x.name === 'Distended Jaw').reactWindows.includes('wound') && !DT.basicAbilities.some(b => b.name === 'Weakspot'), 'Distended Jaw: Overcome 3+, Wound window; no Weakspot'); }
 console.log(fails ? `FAIL (${fails})` : 'ALL PASS (toadragon)'); process.exit(fails ? 1 : 0);

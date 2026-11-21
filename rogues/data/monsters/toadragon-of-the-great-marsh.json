@@ -13,7 +13,6 @@
   "size": 9,
   "shape": "3x3",
   "rear": "the 3 cells directly behind the footprint",
-  "weakspot": "the 3 cells directly in front",
   "facingOnSheet": "down"
  },
  "basicAbilities": [
@@ -22,9 +21,6 @@
   },
   {
    "name": "Blindspot"
-  },
-  {
-   "name": "Weakspot"
   },
   {
    "name": "Unavoidable Knockback",
@@ -400,10 +396,8 @@
     ],
     "afterTag": null,
     "after": null,
-    "zone": "diagram: wide block in front of the Toadragon (read as 3 rows deep, wider than the Toadragon)",
-    "unclear": [
-     "Zone diagram read from a small image"
-    ],
+    "zone": "diagram: 2 rows x 7 columns in front of the Toadragon plus a 2x2 block on each side toward the front",
+    "unclear": [],
     "typePrinted": "ZONE JUDGEMENT",
     "moveTag": "MOVE & JUDGE",
     "afterAttack": null,
@@ -445,6 +439,10 @@
       "red": [
        [
         1,
+        -2
+       ],
+       [
+        1,
         -1
        ],
        [
@@ -464,6 +462,14 @@
         3
        ],
        [
+        1,
+        4
+       ],
+       [
+        2,
+        -2
+       ],
+       [
         2,
         -1
        ],
@@ -484,24 +490,40 @@
         3
        ],
        [
-        3,
+        2,
+        4
+       ],
+       [
+        0,
+        -2
+       ],
+       [
+        0,
         -1
        ],
        [
-        3,
-        0
-       ],
-       [
-        3,
-        1
-       ],
-       [
-        3,
-        2
-       ],
-       [
-        3,
+        0,
         3
+       ],
+       [
+        0,
+        4
+       ],
+       [
+        -1,
+        -2
+       ],
+       [
+        -1,
+        -1
+       ],
+       [
+        -1,
+        3
+       ],
+       [
+        -1,
+        4
        ]
       ],
       "yellow": [],
@@ -1057,10 +1079,8 @@
     ],
     "afterTag": "AFTER ATTACK",
     "after": "Spawn a Toadlet.",
-    "zone": "diagram: 3 rows wide, long strip in front of the Toadragon",
-    "unclear": [
-     "Zone diagram read from a small image"
-    ],
+    "zone": "diagram: 3 wide x 6 deep in front of the Toadragon",
+    "unclear": [],
     "typePrinted": "WAVE ATTACK",
     "moveTag": "MOVE & ATTACK {P4+: DIFFICULTY 10+ INSTEAD}",
     "afterAttack": "AFTER ATTACK: Spawn a Toadlet.",
@@ -1190,90 +1210,6 @@
        ],
        [
         6,
-        2
-       ],
-       [
-        7,
-        0
-       ],
-       [
-        7,
-        1
-       ],
-       [
-        7,
-        2
-       ],
-       [
-        8,
-        0
-       ],
-       [
-        8,
-        1
-       ],
-       [
-        8,
-        2
-       ],
-       [
-        9,
-        0
-       ],
-       [
-        9,
-        1
-       ],
-       [
-        9,
-        2
-       ],
-       [
-        10,
-        0
-       ],
-       [
-        10,
-        1
-       ],
-       [
-        10,
-        2
-       ],
-       [
-        11,
-        0
-       ],
-       [
-        11,
-        1
-       ],
-       [
-        11,
-        2
-       ],
-       [
-        12,
-        0
-       ],
-       [
-        12,
-        1
-       ],
-       [
-        12,
-        2
-       ],
-       [
-        13,
-        0
-       ],
-       [
-        13,
-        1
-       ],
-       [
-        13,
         2
        ]
       ],
@@ -1448,7 +1384,6 @@
      "range": 8
     },
     "reactWindows": [
-     "targeting",
      "After Attack 앞"
     ],
     "reactExact": true
@@ -1611,7 +1546,7 @@
     "type": "zone",
     "evasionDice": 0,
     "evasionDifficulty": 10,
-    "pre": "Each Toadlet moves 1 space toward the closest Knight. [React]",
+    "pre": "[React] Each Toadlet moves 1 space toward the closest Knight.",
     "targeting": [
      "Zone 1 around each Toadlet"
     ],
@@ -1682,15 +1617,16 @@
      "tdDiceToads": true,
      "pre": [
       {
-       "op": "tdToadMove1"
-      },
-      {
        "op": "reactWindow",
        "at": "mid"
+      },
+      {
+       "op": "tdToadMove1"
       }
      ]
     },
     "reactWindows": [
+     "Targeting 앞",
      "After Attack 앞"
     ],
     "reactExact": true
@@ -1712,10 +1648,8 @@
     ],
     "afterTag": "AFTER ATTACK",
     "after": "Spawn a Toadlet.",
-    "zone": "diagram: large inverted triangle in front of the Toadragon reaching the far Board Edge",
-    "unclear": [
-     "Zone diagram read from a small image"
-    ],
+    "zone": "diagram: widening rows of 3 / 5 / 7 / 9 / 11 / 13 in front of the Toadragon (48 spaces)",
+    "unclear": [],
     "typePrinted": "WAVE ATTACK",
     "moveTag": "MOVE LATERAL & ATTACK",
     "afterAttack": "AFTER ATTACK: Spawn a Toadlet.",
@@ -1972,594 +1906,6 @@
        [
         6,
         7
-       ],
-       [
-        7,
-        -6
-       ],
-       [
-        7,
-        -5
-       ],
-       [
-        7,
-        -4
-       ],
-       [
-        7,
-        -3
-       ],
-       [
-        7,
-        -2
-       ],
-       [
-        7,
-        -1
-       ],
-       [
-        7,
-        0
-       ],
-       [
-        7,
-        1
-       ],
-       [
-        7,
-        2
-       ],
-       [
-        7,
-        3
-       ],
-       [
-        7,
-        4
-       ],
-       [
-        7,
-        5
-       ],
-       [
-        7,
-        6
-       ],
-       [
-        7,
-        7
-       ],
-       [
-        7,
-        8
-       ],
-       [
-        8,
-        -7
-       ],
-       [
-        8,
-        -6
-       ],
-       [
-        8,
-        -5
-       ],
-       [
-        8,
-        -4
-       ],
-       [
-        8,
-        -3
-       ],
-       [
-        8,
-        -2
-       ],
-       [
-        8,
-        -1
-       ],
-       [
-        8,
-        0
-       ],
-       [
-        8,
-        1
-       ],
-       [
-        8,
-        2
-       ],
-       [
-        8,
-        3
-       ],
-       [
-        8,
-        4
-       ],
-       [
-        8,
-        5
-       ],
-       [
-        8,
-        6
-       ],
-       [
-        8,
-        7
-       ],
-       [
-        8,
-        8
-       ],
-       [
-        8,
-        9
-       ],
-       [
-        9,
-        -8
-       ],
-       [
-        9,
-        -7
-       ],
-       [
-        9,
-        -6
-       ],
-       [
-        9,
-        -5
-       ],
-       [
-        9,
-        -4
-       ],
-       [
-        9,
-        -3
-       ],
-       [
-        9,
-        -2
-       ],
-       [
-        9,
-        -1
-       ],
-       [
-        9,
-        0
-       ],
-       [
-        9,
-        1
-       ],
-       [
-        9,
-        2
-       ],
-       [
-        9,
-        3
-       ],
-       [
-        9,
-        4
-       ],
-       [
-        9,
-        5
-       ],
-       [
-        9,
-        6
-       ],
-       [
-        9,
-        7
-       ],
-       [
-        9,
-        8
-       ],
-       [
-        9,
-        9
-       ],
-       [
-        9,
-        10
-       ],
-       [
-        10,
-        -9
-       ],
-       [
-        10,
-        -8
-       ],
-       [
-        10,
-        -7
-       ],
-       [
-        10,
-        -6
-       ],
-       [
-        10,
-        -5
-       ],
-       [
-        10,
-        -4
-       ],
-       [
-        10,
-        -3
-       ],
-       [
-        10,
-        -2
-       ],
-       [
-        10,
-        -1
-       ],
-       [
-        10,
-        0
-       ],
-       [
-        10,
-        1
-       ],
-       [
-        10,
-        2
-       ],
-       [
-        10,
-        3
-       ],
-       [
-        10,
-        4
-       ],
-       [
-        10,
-        5
-       ],
-       [
-        10,
-        6
-       ],
-       [
-        10,
-        7
-       ],
-       [
-        10,
-        8
-       ],
-       [
-        10,
-        9
-       ],
-       [
-        10,
-        10
-       ],
-       [
-        10,
-        11
-       ],
-       [
-        11,
-        -10
-       ],
-       [
-        11,
-        -9
-       ],
-       [
-        11,
-        -8
-       ],
-       [
-        11,
-        -7
-       ],
-       [
-        11,
-        -6
-       ],
-       [
-        11,
-        -5
-       ],
-       [
-        11,
-        -4
-       ],
-       [
-        11,
-        -3
-       ],
-       [
-        11,
-        -2
-       ],
-       [
-        11,
-        -1
-       ],
-       [
-        11,
-        0
-       ],
-       [
-        11,
-        1
-       ],
-       [
-        11,
-        2
-       ],
-       [
-        11,
-        3
-       ],
-       [
-        11,
-        4
-       ],
-       [
-        11,
-        5
-       ],
-       [
-        11,
-        6
-       ],
-       [
-        11,
-        7
-       ],
-       [
-        11,
-        8
-       ],
-       [
-        11,
-        9
-       ],
-       [
-        11,
-        10
-       ],
-       [
-        11,
-        11
-       ],
-       [
-        11,
-        12
-       ],
-       [
-        12,
-        -11
-       ],
-       [
-        12,
-        -10
-       ],
-       [
-        12,
-        -9
-       ],
-       [
-        12,
-        -8
-       ],
-       [
-        12,
-        -7
-       ],
-       [
-        12,
-        -6
-       ],
-       [
-        12,
-        -5
-       ],
-       [
-        12,
-        -4
-       ],
-       [
-        12,
-        -3
-       ],
-       [
-        12,
-        -2
-       ],
-       [
-        12,
-        -1
-       ],
-       [
-        12,
-        0
-       ],
-       [
-        12,
-        1
-       ],
-       [
-        12,
-        2
-       ],
-       [
-        12,
-        3
-       ],
-       [
-        12,
-        4
-       ],
-       [
-        12,
-        5
-       ],
-       [
-        12,
-        6
-       ],
-       [
-        12,
-        7
-       ],
-       [
-        12,
-        8
-       ],
-       [
-        12,
-        9
-       ],
-       [
-        12,
-        10
-       ],
-       [
-        12,
-        11
-       ],
-       [
-        12,
-        12
-       ],
-       [
-        12,
-        13
-       ],
-       [
-        13,
-        -12
-       ],
-       [
-        13,
-        -11
-       ],
-       [
-        13,
-        -10
-       ],
-       [
-        13,
-        -9
-       ],
-       [
-        13,
-        -8
-       ],
-       [
-        13,
-        -7
-       ],
-       [
-        13,
-        -6
-       ],
-       [
-        13,
-        -5
-       ],
-       [
-        13,
-        -4
-       ],
-       [
-        13,
-        -3
-       ],
-       [
-        13,
-        -2
-       ],
-       [
-        13,
-        -1
-       ],
-       [
-        13,
-        0
-       ],
-       [
-        13,
-        1
-       ],
-       [
-        13,
-        2
-       ],
-       [
-        13,
-        3
-       ],
-       [
-        13,
-        4
-       ],
-       [
-        13,
-        5
-       ],
-       [
-        13,
-        6
-       ],
-       [
-        13,
-        7
-       ],
-       [
-        13,
-        8
-       ],
-       [
-        13,
-        9
-       ],
-       [
-        13,
-        10
-       ],
-       [
-        13,
-        11
-       ],
-       [
-        13,
-        12
-       ],
-       [
-        13,
-        13
-       ],
-       [
-        13,
-        14
        ]
       ],
       "yellow": [],
@@ -2582,25 +1928,29 @@
     "targeting": [
      "Clash Board"
     ],
-    "tag": "ATTACK {P6+: IGNORE [Evasion Re-roll]}",
+    "tag": "ATTACK {P6+: IGNORE [React window]}",
     "effects": [
      "Source of this Wave Attack is the closest Board Edge directly behind the Toadragon. For each hit lose -6 [V] and Bane 2. [Peril]. Gain the Drowning Condition card. Knockback 3."
     ],
     "afterTag": null,
     "after": null,
     "zone": null,
-    "unclear": [
-     "Gate effect \"IGNORE [icon]\" — icon read as Evasion Re-rolls"
-    ],
+    "unclear": [],
     "typePrinted": "WAVE ATTACK",
-    "moveTag": "ATTACK {P6+: IGNORE [Evasion Re-roll]}",
+    "moveTag": "ATTACK {P6+: IGNORE [React window]}",
     "afterAttack": null,
     "ops": {
      "targeting": [
       "Clash Board"
      ],
      "move": false,
-     "gates": [],
+     "gates": [
+      {
+       "stat": "passion",
+       "gte": 6,
+       "op": "ignoreReact"
+      }
+     ],
      "before": [],
      "effects": [
       {
@@ -2705,7 +2055,7 @@
      ]
     },
     "reactWindows": [
-     "targeting"
+     "Targeting 앞"
     ],
     "reactExact": true
    }
@@ -2786,7 +2136,8 @@
        "td": true
       }
      ]
-    }
+    },
+    "reactWindows": []
    },
    {
     "name": "Giant Tail",
@@ -2842,7 +2193,8 @@
        "op": "tdVP"
       }
      ]
-    }
+    },
+    "reactWindows": []
    },
    {
     "name": "Soft Underbelly",
@@ -2918,7 +2270,8 @@
        "op": "tdMonToHit"
       }
      ]
-    }
+    },
+    "reactWindows": []
    },
    {
     "name": "Hind Leg",
@@ -2983,7 +2336,8 @@
        "n": 1
       }
      ]
-    }
+    },
+    "reactWindows": []
    },
    {
     "name": "Front Leg",
@@ -3037,7 +2391,8 @@
        "td": false
       }
      ]
-    }
+    },
+    "reactWindows": []
    },
    {
     "name": "Spiny Trunk",
@@ -3106,7 +2461,8 @@
        "op": "tdVP"
       }
      ]
-    }
+    },
+    "reactWindows": []
    },
    {
     "name": "Glider Wing",
@@ -3163,13 +2519,14 @@
        "td": false
       }
      ]
-    }
+    },
+    "reactWindows": []
    },
    {
     "name": "Distended Jaw",
     "level": 2,
     "at": 13,
-    "top": "OVERCOME 4+: Power 1",
+    "top": "OVERCOME 3+: Power 1",
     "note": null,
     "ultrainstinct": "Spawn a Toadlet.",
     "instinct": "Spawn a Toadlet.",
@@ -3187,7 +2544,7 @@
     "ops": {
      "at": 13,
      "overcome": {
-      "n": 4,
+      "n": 3,
       "kind": "overcome",
       "ops": [
        {
@@ -3222,7 +2579,10 @@
        "n": 2
       }
      ]
-    }
+    },
+    "reactWindows": [
+     "wound"
+    ]
    },
    {
     "name": "Slimy Tongue",
@@ -3291,7 +2651,8 @@
        "op": "tdRange3"
       }
      ]
-    }
+    },
+    "reactWindows": []
    },
    {
     "name": "Gorged Innards",
@@ -3365,7 +2726,8 @@
        "op": "tdMonToHit"
       }
      ]
-    }
+    },
+    "reactWindows": []
    },
    {
     "name": "Razor Claws",
@@ -3436,7 +2798,8 @@
        "power": 1
       }
      ]
-    }
+    },
+    "reactWindows": []
    },
    {
     "name": "Warty Skin",
@@ -3506,7 +2869,8 @@
        "op": "tdBonus"
       }
      ]
-    }
+    },
+    "reactWindows": []
    },
    {
     "name": "Ichor Gland",
@@ -3573,7 +2937,8 @@
        "op": "tdVP"
       }
      ]
-    }
+    },
+    "reactWindows": []
    },
    {
     "name": "Clogged Lungs",
@@ -3650,7 +3015,8 @@
        "td": false
       }
      ]
-    }
+    },
+    "reactWindows": []
    },
    {
     "name": "The Oldest One",
@@ -3728,7 +3094,8 @@
        "td": false
       }
      ]
-    }
+    },
+    "reactWindows": []
    },
    {
     "name": "Toad Heart",
@@ -3774,7 +3141,8 @@
        "op": "slayMonster"
       }
      ]
-    }
+    },
+    "reactWindows": []
    },
    {
     "name": "Spawn Sack",
@@ -3845,7 +3213,8 @@
        "td": false
       }
      ]
-    }
+    },
+    "reactWindows": []
    },
    {
     "name": "Withered Old Scale",
@@ -3915,7 +3284,8 @@
        "td": false
       }
      ]
-    }
+    },
+    "reactWindows": []
    }
   ],
   "signature": {
@@ -4166,12 +3536,13 @@
   "Spawneater — End of Monster Round: 가까운 Toadlet부터 3칸까지 Toadragon 쪽으로 이동. 이미 인접했거나 인접한 뒤 이동력이 남으면 Sheet로 [해석, 확인 필요]. Sheet에 2개 이상이면 버리고 Signature",
   "Favorite Child (Lv2): Divine Target 토큰이 보드에 없을 때 Spawn하면 Toadlet 대신 Divine Target 토큰을 놓음(Toadlet 취급). Sheet로 가게 되면 버리고 AI 수행",
   "VP (Severed Ichor Spines): Critical로 생성. Climb = Might 11+ (프리 액션, 인접), Hold On = Monster Round 종료 시 Tenacity 12+ (실패: Rear 칸으로 Displace, Knockdown, Knockback 3). VP 위: +2 Power, 일반 Response(Critical 포함) 대신 WOUND: Toxify 1 → Hop Forward → Hold On 테스트 / FAIL: 앞 칸으로 Displace, Knockdown [해석, 확인 필요]",
-  "Zone 도식(작은 그림에서 읽음) [해석, 확인 필요]: Putrescent Stench = 정면 5칸 폭 × 3칸 깊이, Poisonous Bile = 정면 3×3, Rancid Breath = 정면에서 넓어지는 원뿔 4칸 깊이, Regurgitate Young = 정면 3칸 폭 끝까지, Toadlet Swarm = 보드 끝까지 넓어지는 삼각형",
+  "Zone 도식: Putrescent Stench = 정면 7칸 폭 × 2칸 깊이 + 양옆 앞쪽 2x2씩, Regurgitate Young = 정면 3칸 폭 × 6칸 깊이, Toadlet Swarm = 정면으로 3/5/7/9/11/13칸씩 넓어지는 6줄(48칸) (소유자 확인 2026-11-21). Poisonous Bile = 정면 3×3, Rancid Breath = 정면에서 넓어지는 원뿔 4칸 깊이 [해석, 확인 필요]",
   "Wave Attack: Obstacle(Great Mangrove) 뒤에 인접한 기사는 제외. Toadlet Pack/Horde는 대상 Swamp 타일이, Swamplands Surge는 Toadragon 바로 뒤쪽 Board Edge가 Wave의 출발점",
   "Tongue Whip After Attack: 인접해 있으면 가장 가까운 Obstacle 쪽(가로/세로 중 더 먼 축)으로 Knockback 6 [해석, 확인 필요]. Fenland Fling: 가까운 짧은 Board Edge(1열/14열) 쪽으로 명중당 Knockback 5, Obstacle 무시, Boundless(보드 밖 = 사망) [해석, 확인 필요]",
   "Engulf in Slime: Evasion dice X = 그 기사 주위 Zone 1의 Toadlet 수 × 2",
   "Ultrainstinct Response는 BP 공개 직후(Power Roll 전)에 처리",
-  "미구현: Lumbering(몬스터를 움직이는 기사 효과), Toadlet Swarm의 Lateral Movement(일반 이동으로 처리), Swamplands Surge의 \"P6+: Evasion Re-roll 무시\", Fenland Fling의 \"Run!\", Front Leg·Clogged Lungs Critical, Clogged Lungs·Spiny Trunk·Withered Old Scale Ultrainstinct, Spawn Sack Critical의 \"see 4567\"",
+  "Swamplands Surge {P6+: IGNORE [React window]}: Passion 6 이상인 기사는 이 공격에 REACT! 불가 (기사별 적용 [해석, 확인 필요]). Fenland Fling의 \"Run!\" = Targeting 앞 REACT! 창. Passion 게이트는 녹색 아이콘 = Passion 맞음 (소유자 확인 2026-11-21). Weakspot 없음 (소유자 확인 2026-11-21)",
+  "미구현: Lumbering(몬스터를 움직이는 기사 효과), Toadlet Swarm의 Lateral Movement(일반 이동으로 처리), Front Leg·Clogged Lungs Critical, Clogged Lungs·Spiny Trunk·Withered Old Scale Ultrainstinct, Spawn Sack Critical의 \"see 4567\"",
   "REACT! 창: AI 카드는 인쇄된 위치대로 — Targeting 목록 아래 표시가 있는 카드만 Targeting 뒤 창, 효과 줄 사이 표시는 그 자리, 마지막 효과 줄 뒤 표시는 After Attack / After Final Attack 앞 (스캔 재판독 2026-11-19). Signature·Trait Attack도 같은 방식. BP 카드는 Response 머리글의 표시 = 그 Response 앞, 문장 사이 표시 = 그 자리"
  ]
 }

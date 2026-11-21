@@ -7,7 +7,7 @@ NO_T = {
  'devil-of-the-ancient-dusk': ['Savage Swing'],
  'devil-of-the-smelted-fears': ['Molten Rain'],
  'puppet-king-edelhardt': ['The King Commands: Bow Down!', 'The King Commands: Begone!', 'The King Commands: Get Out of My Sight!', 'The King Commands: Lay Down Your Arms!'],
- 'toadragon-of-the-great-marsh': ['Overwhelming Croak', 'Poison the Waters', 'Engulf in Slime', 'Swamplands Surge'],
+ 'toadragon-of-the-great-marsh': ['Overwhelming Croak', 'Poison the Waters', 'Engulf in Slime', 'Swamplands Surge', 'Tongue Twister', 'Fenland Fling'],
  'panzerdragon-veldr': [],
  'young-devour-dragon': ['Damning Discharge', 'Skewer', 'Thunder Storm', 'Command of the Famishing', 'Bile Cannon', 'Madness of the Famishing', "Slice 'n' Dice"],
 }
@@ -25,6 +25,7 @@ BP = {
  'king-laid-low': {'Slimy Skin': ['wound', 'fail'], 'Mucus-Clogged Nostrils': ['wound'], 'Contorted Hand': ['instinct'], 'Bejewelled Skull': ['wound'], 'Malformed Jaw': ['fail'], 'Vile Tongue': ['instinct'], 'Toad-Like Hind Leg': ['fail'], 'Hunched Back': ['wound', 'fail'], 'Mud-Filled Lung': ['wound', 'fail'], 'Golden Crown': ['instinct'], 'Scepter of Smothered Ages': ['wound']},
  'devil-of-the-ancient-dusk': {"Devil's Foot": ['fail'], 'Amulet of Beginnings': ['wound'], 'Uncovered Back': ['wound'], 'Golden Bracers': ['wound'], 'Stolen Countenance': ['wound'], 'Leering Pelvis Guard': ['fail'], 'Pearl White Ribcage': ['wound']},
  'devil-of-the-smelted-fears': {},
+ 'toadragon-of-the-great-marsh': {'Distended Jaw': ['wound']},
  'puppet-king-edelhardt': {'Heavy-Settled Crown': ['instinct'], 'Five Fingers: The Ring Finger': ['instinct'], 'Five Fingers: The Little Finger': ['wound'], 'Panzerthrone': ['fail'], 'Cold Feet': ['instinct'], 'Chaos Ladder': ['fail'], 'Five Fingers: The Middle Finger': ['fail'], 'Five Fingers: The Index Finger': ['wound'], 'Five Fingers: The Thumb': ['wound']},
 }
 def one(c, t, end):
@@ -36,7 +37,8 @@ def one(c, t, end):
             if not is_rx(ops[key][0]): ops[key] = [dict(RXA)] + list(ops[key])
         else: eff.append(dict(RX))
     ops['effects'] = eff
-    c['reactWindows'] = (['targeting'] if t else []) + [f'effect:{i}' for i, o in enumerate(eff) if is_rx(o)] + (['After Attack 앞'] if end else []); c['reactExact'] = True
+    pre = ['Targeting 앞'] if any(is_rx(o) for o in (ops.get('pre') or [])) else []
+    c['reactWindows'] = pre + (['targeting'] if t else []) + [f'effect:{i}' for i, o in enumerate(eff) if is_rx(o)] + (['After Attack 앞'] if end else []); c['reactExact'] = True
 def is_rx(o): return isinstance(o, dict) and o.get('op') == 'reactWindow'
 def apply(mid, d):
     """d: the built monster def. Only the AI deck cards are touched (Signature / Trait Attack / BP windows were not re-read)."""

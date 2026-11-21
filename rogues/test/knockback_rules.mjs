@@ -106,4 +106,10 @@ const fp = (c, col, row) => c.monster.cells.length === 1 ? [row + col] : [row + 
     const w = c.fx.usableWeapons(k)[0]; let seen = null; c._knightAttack = async () => { seen = c.attackTargets(k, w); };
     await c.fenWithDopp(g, async () => { ok(c.attackTargets(k, w).includes('boss'), '(precondition) inside the Doppelknight action monster.cells are the Doppelknight\'s'); await c.knightAttack(k, { bonus: true }); });
     ok(seen && !seen.includes('boss') && seen.includes(g), 'Fen: during a Doppelknight action the Knight of the Fen is not a target unless really in range'); ok(M.cells === real && c.fenBoss() === real, 'Fen: real footprint restored'); } }
+// ---- Block after the Evasion Roll; Card Refresh choice ----
+{ const c = mk('eggknight'); clear(c); const k = c.knights[0]; const order = []; const dw0 = c.fx.defenseWindow.bind(c.fx); c.fx.defenseWindow = async (kk, o = {}) => { order.push(o.after ? 'after:' + o.hits : 'before'); return dw0(kk, o); }; c.rng.die = () => 1; const say0 = c.say.bind(c); c.say = (m, t) => { if (/Evasion \d+d/.test(m)) order.push('rolled'); return say0(m, t); };
+  try { await c.attackOneTarget({ card: { name: 'T', type: 'attack', evasionDice: 2, evasionDifficulty: 9, ops: { gates: [], before: [], effects: [] } }, targets: [k], hits: {}, flags: new Set() }, k); } catch (e) { /* stub card */ }
+  ok(order[0] === 'before' && order.some(x => /^after:2/.test(x)), `Block abilities are offered after the Evasion dice are rolled (${order.join(' > ')})`); }
+{ const c = mk('eggknight'); const k = c.knights[0]; k.cooldown = k.hand.splice(0, 3); const want = k.cooldown[2]; const n = k.cardRefresh; let asked = 0; const ask0 = c.ask; c.ask = async q => { if (/Card Refresh — Cooldown/.test(q.text || '')) { asked++; return q.options.length - 1; } return ask0(q); };
+  const pick = await c.refreshPick(k); ok(n >= 3 ? asked === 0 : (asked === n && pick[0] === want), `Card Refresh: the player picks which Cooldown cards return (asked ${asked}, Card Refresh ${n})`); }
 console.log(fails ? `FAIL (${fails})` : 'ALL PASS (knockback rules)'); process.exit(fails ? 1 : 0);
