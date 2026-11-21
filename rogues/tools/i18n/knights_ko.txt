@@ -1,7 +1,7 @@
 # Knights: names, Portraits / Arcs / Talents, Talent abilities, Techniques — Korean
 # Foreign-language names (German, Italian, French, Latin, Japanese): "음차 - 뜻"
 ## Knights
-Fleischritter = 플라이슈리터 - 고기 기사
+Fleischritter = 플라이슈리터
 Kara = 카라
 Paracelsa = 파라켈사
 Renholder = 렌홀더

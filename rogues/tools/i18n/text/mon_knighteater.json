@@ -8,7 +8,7 @@
  "Knight in front": "정면에 있는 기사",
  "Knight not in front": "정면에 있지 않은 기사",
  "Knight in sight": "시야 내에 있는 기사",
- "Fleischritter": "플라이슈리터 - 고기 기사",
+ "Fleischritter": "플라이슈리터",
  "Wolf Down #.": "먹어치우기 #.",
  "WOLF DOWN #": "먹어치우기 #",
  "PENETRATE": "꿰뚫기",
@@ -103,5 +103,5 @@
  "The Knighteater cannot be wounded if it is Berserk.": "기사포식자가 광폭 상태이면 부상을 입힐 수 없습니다.",
  "[Kingdom Trait — Principality of Stone] Start of Monster Round: If the Knighteater is not Berserk, it gains 1 Armor [Armor] token.": "[왕국 특성 — 돌의 공국] 몬스터 라운드 시작 시: 기사포식자가 광폭 상태가 아니면 방어구 토큰 1개를 얻습니다.",
  "When the Knighteater stops being Berserk, it gains 1 Armor [Armor] token.": "기사포식자가 광폭 상태에서 벗어나면 방어구 토큰 1개를 얻습니다.",
- "[Kingdom Trait — Sunken Kingdom] When the Knighteater ends its movement, if it moved through or onto a Terrain tile, place a 1x2 Swamp Terrain tile in its Blindspot spaces.": "[왕국 특성 — 가라앉은 왕국] 기사포식자가 이동을 끝낼 때 지형 타일을 지나거나 그 위로 이동했다면, 그 사각지대 칸에 1x2 늪 지형 타일을 놓습니다."
+ "[Kingdom Trait — Sunken Kingdom] When the Knighteater ends its movement, if it moved through or onto a Terrain tile, place a 1x2 Swamp Terrain tile in its Blindspot spaces.": "[왕국 특성 — 가라앉은 왕국] 기사포식자가 이동을 끝낼 때 지형 타일을 지나거나 그 위로 이동했다면, 기사포식자의 사각지대 칸에 1x2 늪 지형 타일을 놓습니다."
 }
