@@ -286,6 +286,4 @@ export const GEAR_CONFIRMED = [
   ['[신규] Tag Team — 무기 교환', 'Little Ser가 무기를 들고 있으면, 자리를 바꾼 기사의 한손 무기 하나와 교환 가능. (소유자 확인 2026-11-19)'],
 ];
 export const KNIGHT_QUESTIONS = [
-  ['Ser Sonch — 미구현', 'Exemplary Leader의 Little Ser 소모품.'],
-  ['Paracelsa / Incarnate — 미구현', 'Inquisitor 12번 "Immediately Incarnate!", Sword of a Sunken Legacy +3, Visage of the Endless. Saint가 없어도 Unknown Saint가 열려 있으면 가능 (소유자 확인 2026-11-19). Saint 카드 자료를 받으면 구현.'],
 ];

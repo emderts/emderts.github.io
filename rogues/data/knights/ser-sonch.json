@@ -148,12 +148,12 @@
        },
        "board": {
         "precision": 1
-       }
+       },
+       "equip": "consumable",
+       "boardGear": true
       }
      ],
-     "unclear": [
-      "Little Ser's Consumable is not implemented"
-     ]
+     "unclear": []
     },
     {
      "name": "Seasoned Strategist",

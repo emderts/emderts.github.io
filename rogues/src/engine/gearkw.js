@@ -432,6 +432,10 @@ const SPECIAL = [
   [/^Move all Activation tokens onto chosen Mobs$/, () => ({ op: 'moveActTokens', active: true, special: true })],
   [/^When you deal a Wound, you may place an Armor \[Armor\] token on a chosen Stonemason Ward Node or move 1 Armor \[Armor\] token between Mobs$/, () => ({ op: 'woundArmorMove' })],
   [/^When you are hit, discard all Armor \[Armor\] tokens from Stonemason Ward Nodes or up to 3 Armor \[Armor\] tokens from a chosen Monster BP or Sheet$/, () => ({ op: 'hitDemagnetize', active: true, special: true })],
+  [/^You may use this ability as a \[Reaction\]$/, () => ({ op: 'note', na: true })],
+  [/^Critical Wound: Area: One space adjacent to and on the opposite site of the Target$/, () => ({ op: 'areaOpposite' })],
+  [/^When a Monster adjacent to you is about to move, Drag (\d+)$/, m => ({ op: 'preMoveDrag', n: +m[1], active: true, special: true })],
+  [/^As long as this card is exhausted, you may move simultaneously with an adjacent Monster \(the same direction and amount of spaces\)$/, () => ({ op: 'moveWithMonster' })],
   [/^Gain \+(\d+) to Incarnation rolls$/, m => ({ op: 'incarnBonus', n: +m[1] })],
   [/^Roll Out(?: \(.*\))?$/, () => ({ op: 'rollOut', active: true })],
   [/^Ignore Swamp Terrain tiles$/, () => ({ op: 'ignoreSwamp' })],
@@ -516,6 +520,7 @@ export function parseGearText(text) { if (!text) return []; const ss = String(te
     out.push(parseSentence(t)); }
   { let up = null; for (const o of out) { if (o.upgrade) up = o.upgrade; else if (up) o.upgrade = up; } }
   if (/X is the amount of Armor \[Armor\] tokens the Monster had when you attacked/.test(text)) for (const o of out) if (o.op === 'token' && o.n === 'X') { o.x = 'armor4'; o.status = 'ok'; } // Parasite Sword: Closing X / Hope X
+  out.forEach((o, i) => { if (o.op === 'fSwapWeapon' && out[i + 1] && /^You may use this ability as a \[Reaction\]/.test(out[i + 1].text || '')) o.alsoReaction = true; });
   out.forEach((o, i) => { if (o.op === 'fDrawJudicium') { const nx = out[i + 1]; if (nx && /discard all Armor/.test(nx.text)) o.then = 'clearArmor'; else if (nx && /^If you survive, Devote/.test(nx.text)) o.op = 'fJudiciumDevote'; else if (nx && /return a chosen Knight to life adjacent to you/.test(nx.text)) { o.then = 'revive'; nx.op = 'note'; nx.status = 'na'; } else { o.op = 'text'; o.status = 'text'; } } if (o.op === 'fVigorForHeat') { const nx = out[i + 1]; if (nx && nx.poison) o.poison = nx.poison; } if (o.op === 'fPlaceTrap') { const nx = out.slice(i + 1).find(x => x.trap); if (nx) { o.trap = nx.trap; o.trapN = nx.n; } } if (o.op === 'fFlipOtherCond') { const nx = out[i + 1]; if (nx && nx.vigor) o.vigor = nx.vigor; } if (o.op === 'fInspire' && !o.cost) { o.op = 'inspire'; delete o.free; } if (o.op === 'fPlaceTerrain') o.tile = /Rubble/.test(o.text) ? 'rubble' : 'swamp'; }); return out; }
 export const isDefensive = op => DEFENSIVE.has(op);
 export const KEYWORD_STATUS = { TOKENS, OK, PENDING, NA };

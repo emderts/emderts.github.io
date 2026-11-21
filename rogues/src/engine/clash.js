@@ -356,7 +356,8 @@ export class Clash {
     }
     return out;
   }
-  async monsterMoveToward(target) { this._moveSeq = (this._moveSeq || 0) + 1;
+  async monsterMoveToward(target) { return this.fx.aroundMonsterMove(null, () => this._monsterMoveToward0(target)); }
+  async _monsterMoveToward0(target) { this._moveSeq = (this._moveSeq || 0) + 1;
     const B = this.board; let steps = 0; let lastAxis = null; this._moveCrashed = new Set();
     this._slowSteps = null; this._stopMove = false; const cap = this.slowToken ? 3 : 30; if (this.slowToken) { this.slowToken = false; this.say('임시 Speed 토큰: 이번 이동은 3칸에서 멈춤 (토큰 버림)', 'tech'); }
     while (!this.board.footprintsAdjacent(this.monster.cells, [target.pos]) && steps < cap) {
@@ -945,7 +946,7 @@ export class Clash {
   bpAT(bp) { if (bp && bp.isGuardianBP) return bp.at + this.monster.bonuses.at + this.monster.modifiers.at; if (this.isFen) { const g = this.guardians.find(g => g.cards.includes(bp)); return g ? this.doppAT(g) : this.fenAT(bp); } if (this.monster.isMob) { const m = this.monster.mobs.find(x => x.card === bp); return m ? this.mobAT(m) : bp.at + this.monster.bonuses.at + this.monster.modifiers.at; } return this.monster.atOf(bp, (this.monster.hasTrait('Panzeronion') ? this.armorTokens[bp.level] : 0) + this.difficultTerrainAT(this.monster.cells)); }
   clearPool() { const fire = this.pool.filter(t => t.token === 'fire'); if (fire.length) for (const k of this.alive()) for (const g of k.gear) if (!g.discarded && this.fx.kwList(g).some(o => o.op === 'fireRemovedCharge')) { g.chargesLeft = this.fx.chargesOf(g) + 1; this.say(`${g.name}: 쓰지 않은 Fire 토큰 제거 → Charge +1 (${g.chargesLeft})`, 'tech'); } const passed = this.pool.filter(t => t.pass); for (const t of passed) t.pass = false; const keep = [...this.pool.filter(t => t.resource), ...fire.slice(1), ...passed.filter(t => t.token !== 'fire' && !t.resource)]; /* Fire: leave all but one unused Fire token (p.19) */ const n = this.pool.length - keep.length; this.pool = keep; if (n) this.say(`Knight Pool 정리 (-${n})`, 'pool'); }
   /** After any action: Counter trait (Eggknight). */
-  async afterAction() { for (const kn of this.knights) kn.reinforce = null; await this.swampSweep(); await this.fenAfterAction(); await this.pumpAfterAction(); if (!this.monster.isMob) await this.trollAfterAction();
+  async afterAction() { if (this.paraIncarnCheck) await this.paraIncarnCheck(); for (const kn of this.knights) kn.reinforce = null; await this.swampSweep(); await this.fenAfterAction(); await this.pumpAfterAction(); if (!this.monster.isMob) await this.trollAfterAction();
     if (this.monster.isMob) await this.mobAfterAction();
     if (this.monster.hasTrait('Counter') && (this.monster.generic.counter || 0) >= 3) { this.monster.generic.counter = 0; this.say('Counter: 토큰 3 → Signature'); await this.performSignature(); }
   }

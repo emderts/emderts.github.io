@@ -97,7 +97,7 @@ export class Campaign {
     for (const kn of clash.knights) { const ck = this.knights.find(x => x.name === kn.name); if (!ck) continue; kn.boons = this.rapportBoons(ck); }
     // Inn buffs for this Rosegraal round
     for (const kn of clash.knights) { const b = (this.roundBuffs || {})[kn.name]; if (!b) continue; if (b.heatLimit) kn.heatLimitBonus = (kn.heatLimitBonus || 0) + b.heatLimit; if (b.fortify) kn.extraVigor = (kn.extraVigor || 0) + b.fortify; if (b.passion) kn.gainPassion(b.passion); if (b.passionMin) kn.passionMin = b.passionMin; if (b.baneLimit) kn.baneLimit += b.baneLimit; if (b.resource) kn.fleischBoard = (kn.fleischBoard || 0) + b.resource; if (b.speed) kn.speed += b.speed; if (b.poisonRes) kn.poisonResBonus = (kn.poisonResBonus || 0) + b.poisonRes; if (b.handLimit) kn.handLimit += b.handLimit; if (b.parasiteBait) { const pb = this.gearDef('Parasite Bait'); if (pb) kn.gear.push({ ...pb, exhausted: false, discarded: false, temp: true }); } }
-    clash.hired = this.hired; clash.campaign = this;
+    clash.hired = this.hired; clash.campaign = this; { const g0 = clash.gearByName.bind(clash); clash.gearByName = n => g0(n) || this.gearDef(n) || undefined; } // monster / kingdom / Consumable Gear resolved by the Campaign (Armory swaps, Little Ser)
     this.clash = clash; return clash;
   }
   /** Unknown Saint incarnation hook (Kingdom Mysteries 9999 + rulebook p.69). Returns true if the Knight is saved. */
@@ -152,6 +152,7 @@ export class Campaign {
     }
     this.roundBuffs = {}; // Inn effects last for this Rosegraal round only
     // Consumable Gear equipped for this Clash moves to the Merchant deck (rulebook p.66 Loot / p.29)
+    { const ls = clash.littleSer; if (ls && ls.gear && ls.gear.consumable) for (const ck of this.knights) { const i = ck.armory.indexOf(ls.gear.name); if (i >= 0 && !(ck.loadout.gear || []).includes(ls.gear.name)) { ck.armory.splice(i, 1); (this.merchantConsumables = this.merchantConsumables || []).push(ls.gear.name); this.say(`Little Ser의 Consumable ${ls.gear.name} → Merchant 덱으로`); break; } } }
     for (const ck of this.knights) { const used = (ck.loadout.gear || []).filter(n => this.consumableDef(n)); for (const n of used) { ck.loadout.gear = ck.loadout.gear.filter(x => x !== n); const i = ck.armory.indexOf(n); if (i >= 0) ck.armory.splice(i, 1); (this.merchantConsumables = this.merchantConsumables || []).push(n); this.say(`${ck.name}: Consumable ${n} → Merchant 덱으로`); } }
     // resurrections
     if (deaths && survivors > 0) {
