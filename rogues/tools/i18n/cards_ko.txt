@@ -473,7 +473,7 @@ Drachenhertz = 드라헨헤르츠 - 용의 심장
 Septic Slash = 패혈의 베기
 Drachendämmerung = 드라헨데머룽 - 용의 황혼
 Dragon Roar = 용의 포효
-Field of Parasites = 기생충 밭
+Field of Parasites = 기생충 군락
 Primal Remnant = 원초의 잔재
 ## Panzergeists
 Flesh to Rust = 살을 녹으로

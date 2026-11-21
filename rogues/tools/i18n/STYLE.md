@@ -116,7 +116,7 @@
 - Puppet King Edelhardt · Devil of the Smelted Fears 문구 확정. Malediction = 저주의 말, Ferrobaptism = 철의 세례, Stains of Profanity = 신성모독의 자국 (소유자 확인 2026-11-22).
 - Helm 과 Helmet 은 둘 다 "투구"로 합친다 (소유자 확인 2026-11-22).
 - Heroic Arc / Peril Arc = 영웅 서사 / 위험 서사 (소유자 확인 2026-11-22, "일단" — 바뀔 수 있음). Vantage Point 는 풀어 쓰지 않고 항상 "VP" (소유자 확인 2026-11-22).
-| Germinate (Dragon / Field / Remnant) / Migrate / Remnant Move | 발아 (용 / 밭 / 잔재) / 이주 / 잔재 이동 |
+| Germinate (Dragon / Field / Remnant) / Migrate / Remnant Move | 증식 (용 / 군락 / 잔재) / 이주 / 잔재 이동 |
 | Ram / Devoured / Phase / Talent card / Portrait card / Climb Down | 들이받기 / 잡아먹힘 / 단계 / 재능 카드 / 초상 카드 / 내려오기 |
 
 - Devil of the Ancient Dusk · Toadragon 문구 확정 (소유자 확인 2026-11-22). Hop = 껑충 뛰기 (소유자 확인 2026-11-22).
@@ -132,4 +132,11 @@
 | First Death / Sigh of the Graal / Deep Fog / Kingdoms Forlorn | 첫 죽음 / 그랄의 한숨 / 깊은 안개 / 버려진 왕국들 |
 
 - 게이트 줄 "X instead." 는 "대신 X." 로 옮긴다: "Improved Rush instead." → "대신 개선된 돌진."
-- 몬스터 22종 문구 전부 확정 (Panzerdragon Veldr · Young Devour Dragon 포함, 소유자 확인 2026-11-22). Germinate / Field 는 대안 검토 중 (현재 발아 / 밭).
+- 몬스터 22종 문구 전부 확정 (Panzerdragon Veldr · Young Devour Dragon 포함, 소유자 확인 2026-11-22). Germinate = 증식, Field = 군락 (Field of Parasites = 기생충 군락), Deadly = "치명적인" 유지 (소유자 확인 2026-11-22).
+| Zeal Threshold / Incarnate / BP Suppress / Depletion / Peril Level | 열의 한계치 / 화신합니다 / BP 억제 / 소모 방식 / 위험 레벨 |
+| Magic Limit / Card Refresh / Heat Refresh / Auto-black / Auto-fire | 마법 한계 / 카드 회복 / 열기 회복 / 자동 칠흑 / 자동 화염 |
+| Little Ser token / Help action / Exploration / Delve Phase / Rest / Merchant | 꼬마 경 토큰 / 돕기 행동 / 탐험 / 탐사 단계 / 휴식 / 상인 |
+| Shapeshift / [HUMAN] / [APE] / Leash / Unleash / Melee/Reach | 변신 / [인간] / [유인원] / 속박 / 해방 / 근접/도달 |
+
+- "A and/or B" 는 문맥에 따라 "A와 B를 합쳐 N개"(토큰), "A하거나, B하거나, 둘 다 합니다"(행동)로 옮긴다.
+- 기사 7명 문구는 2026-11-22 에 한꺼번에 올림 — 소유자 검토 대기.
