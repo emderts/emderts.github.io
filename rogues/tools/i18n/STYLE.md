@@ -29,5 +29,7 @@
 | Mortis / Minor Mortis | 모르티스 / 하위 모르티스 |
 | suffer Knockdown / Crash | 넘어짐 / 충돌을 겪습니다 |
 | Lunging Attack / Search | 급습 공격 / 수색 |
-| active Weapon / Armor [Gear] / Armor token | 활성 무기 / 방어구 [장비] / 방어 토큰 |
+| active Weapon / Armor [Gear] / Armor token | 활성 무기 / 방어구 [장비] / 방어구 토큰 (Armor-Piercing = 방어구 관통, Armor die = 방어 주사위, Armor Re-roll = 방어 재굴림) |
 | Blood token | 피 토큰 |
+
+- Flavor 문구는 -합니다에 묶이지 않고 그때그때 어울리는 말투로 옮긴다.
