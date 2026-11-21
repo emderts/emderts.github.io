@@ -1,6 +1,6 @@
 # Builds data/monsters/puppet-king-edelhardt.json (King Clash) from docs/transcriptions/puppet_king_edelhardt_raw.json
 # + hand-written ops + Clash Setup (Principality of Stone Codex p.50–51). Usage: python3 tools/build_pke.py data/monsters/puppet-king-edelhardt.json
-import json, sys, copy
+import json, sys, copy, re
 raw = json.load(open('docs/transcriptions/puppet_king_edelhardt_raw.json')); S = raw['sheet']
 ICON = lambda s: s.replace('[H]', '[Heat]').replace('[P]', '[Passion]').replace('[V]', '[Vigor]')
 V = lambda n: {'op': 'loseVigorPerHit', 'n': n, 'perilCheck': True}; K = lambda op, who='target', perHit=False, **kw: {'op': 'pkeK', 'k': {'op': op, **kw}, 'who': who, 'perHit': perHit}
@@ -44,9 +44,9 @@ BP = {
  'Chaos Ladder': dict(oc=OC(4, 1, 1), wound=[{'op': 'pkeClimb'}], fail=[FKM], critical=[{'op': 'pkeBonus', 'autoBreak': 2}]),
  'Five Fingers: The Middle Finger': dict(oc=OC(3, 0, 2), wound=[KB(4, who=A), ST()], fail=[SHOCK], critical=[BONUS]),
  'Five Fingers: The Index Finger': dict(oc=OC(3, 0, 2), wound=[SHOCK, ST()], fail=[{'op': 'loseVigor', 'n': 3, 'who': A}, {'op': 'pkePrecNeg', 'who': A}], critical=[{'op': 'pkePrecision'}, BONUS]),
- 'Shield of the Fallen': dict(oc=OC(5, 1, 1), wound=[{'op': 'pkeNote', 'text': 'Armor-piercing 1 (Wound Response) — 미구현'}], fail=[FKM], critical=[{'op': 'pkeScavenge', 'n': 2}]),
+ 'Shield of the Fallen': dict(oc=OC(5, 1, 1), wound=[{'op': 'pkeAP', 'n': 1}], fail=[FKM], critical=[{'op': 'pkeScavenge', 'n': 2}]),
  'Shadowy Influence': dict(oc=OC(4, 1, 1), wound=[{'op': 'pkeRemoveColumn'}], fail=[FKM], critical=[{'op': 'pkeSigReduce', 'n': 2}]),
- 'Heart of the Throne': dict(oc=OC(4, 1, 1), wound=[ST('any'), {'op': 'pkeNote', 'text': 'Armor-piercing 1 (Wound Response) — 미구현'}], fail=[AIX], critical=[BONUS]),
+ 'Heart of the Throne': dict(oc=OC(4, 1, 1), wound=[ST('any'), {'op': 'pkeAP', 'n': 1}], fail=[AIX], critical=[BONUS]),
  'Fluchaura': dict(oc=OC(2, 1), instinct=[SUB(A)], critical=[{'op': 'pkeUnsub'}]),
  'Hoary Codger': dict(oc=OC(4, 2), instinct=[AIX], critical=[{'op': 'slayMonster'}]),
  'Five Fingers: Hidden Finger': dict(oc=OC(2, 2, 3), instinct=[{'op': 'pkeSignature'}, ST()], critical=[W1, BONUS]),
@@ -81,14 +81,14 @@ d = {'id': 'puppet-king-edelhardt', 'name': S['name'], 'kind': 'boss', 'code': S
   'notes': ['Fallen Knight 10개: 1열의 모든 행 (A1–J1)', 'Column·시작 칸은 코덱스 도식에서 읽음 [해석, 확인 필요]']},
  'rulings': [
   'Welcome to My Castle!: Grave Mortis 2장의 좌표에 Loose String 타일(같은 좌표면 다시 뽑음, 점유된 칸이면 가장 가까운 빈 칸). Start of Clash: The King Commands: Come to Me (AI activation 아님)',
-  'Command: 대상 기사마다 Obey / Disobey를 고름. Obey → Obey 효과를 자발적으로 수행(Evasion Roll 없음), Disobey → 일반 Monster Attack처럼 Evasion Roll 후 Disobey 효과. Subjugated인 기사는 반드시 Obey. 선택은 Evasion Roll 전에 함 [해석, 확인 필요 — 레퍼런스 v1.2는 "Evasion dice를 굴린 뒤 결정"처럼 읽힘]',
+  'Command: 대상 기사마다 Obey / Disobey를 고름. Obey → Obey 효과를 자발적으로 수행, Disobey → 굴린 Evasion 결과로 Disobey 효과. Subjugated인 기사는 반드시 Obey. Obey / Disobey는 Evasion Roll을 굴린 뒤 결정 (소유자 확인 2026-11-21). Subjugated인 기사는 굴리지 않고 바로 Obey',
   'Wave Attack (Command·Shockwave): King의 가장 가까운 칸의 가장 가까운 모서리에서 기사 칸의 가장 먼 모서리까지 그은 선이 그 기사에 인접한 Obstacle(Column·Fallen Knight, 서로 인접한 Obstacle은 하나로 취급)을 지나면 그 기사는 제외. 대상이 한 명도 없으면 Signature',
   'Shockwave: X = 4 + King Level − (기사와 King 사이의 칸 수). 인접 = 0칸 [해석, 확인 필요]. X ≥ 1이면 -X [V], Knockback X',
   'Five Fingers: 1st = Thumb, 2nd = Index, 3rd = Middle, 4th = Ring, 5th = Little Finger로 대응시킴. Hidden Finger는 Trait 효과 없음 [해석, 확인 필요 — BP 카드가 6장이라 대응이 인쇄되어 있지 않음]',
   'Five Fingers: "cannot be involuntarily moved and turned" — 현재 King을 움직이거나 돌리는 기사 효과가 없어 별도 처리 없음',
   'Dark Fog: 공격자와 대상(King 또는 Fallen Knight) 사이의 칸 수만큼 Precision 감소. VP 위에서는 0',
   'Fallen Knight Army: Fallen Knight는 같은 행에서 열 번호가 커지는 쪽으로만 직선 이동, Column을 파괴. 다음 칸에 기사나 다른 Fallen Knight가 있으면 멈춤(Lv3+ Unstoppable Force: 기사는 Forced Vault + Knockdown 후 계속) [해석, 확인 필요 — 레퍼런스 v1.2: "기사에 인접하면 멈춤"]',
-  'Fallen Knight Army — End of your turn: 같은 행의 Fallen Knight 1개가 5칸(여러 개면 플레이어 선택) [해석, 확인 필요 — 레퍼런스 v1.2는 "같은 행의 모든 FK"]. 없으면 고른 인접 행에서 기사로부터 가장 먼 Fallen Knight. VP 위면 아무 Fallen Knight 1개. 하나도 움직이지 않았으면 자기 행 1열에 Spawn (VP 위에서는 Spawn 없음 [해석])',
+  'Fallen Knight Army — End of your turn: 같은 행의 모든 Fallen Knight가 5칸 (앞선 것부터, 소유자 확인 2026-11-21). 없으면 고른 인접 행에서 기사로부터 가장 먼 Fallen Knight. VP 위면 아무 Fallen Knight 1개. 하나도 움직이지 않았으면 자기 행 1열에 Spawn (VP 위에서는 Spawn 없음 [해석])',
   'Fallen Knight가 King 주위 Zone 1 또는 14열로 이동/배치되면 제거하고 Armor 토큰 1 (Lv3+: 2). 5번째 Armor 토큰 → 모두 버리고 모든 기사 Bane 5. Armor 토큰 1개당 King BP의 AT +1',
   'Fallen Knight: To Hit = King과 같음 (카드 문구 "same [To Hit]" — 소유자 확인 2026-11-21), AT 7 + Level 보너스 (King의 Armor 토큰은 적용 안 함). Wound → Trait BP 카드에 Generic 토큰(Escalate 없음), Column으로 뒤집음(Overpower 3+: 보드에서 제거). 현재 액션이 끝날 때 토큰 2개 이상이면 Generic Single Wound + Escalate 1',
   'The Seat of Power (VP): Loose String 위에서 이동을 끝내면 즉시 VP(타일 제거), 또는 Blindspot에서 Move action으로 오름(테스트 없음). VP에는 기사 1명만. VP 위 공격: Precise 또는 Heartseeker 선택, Armor 토큰 무시, +1 Power, 일반 Response(Critical 포함) 무시 [해석, 확인 필요] — WOUND: Subjugated + King 앞 Zone 1 칸으로, FAIL: Shockwave + King 앞 인접 칸으로 Displace',
@@ -99,7 +99,14 @@ d = {'id': 'puppet-king-edelhardt', 'name': S['name'], 'kind': 'boss', 'code': S
   'Subjugated: Start of your turn에 고른 Virtue 테스트(9+), 성공하면 뒤집음. 두 번째로 얻으면 사망',
   'Entertain Me! (Obey): 가장 가까운 다른 기사가 Weapon 사거리에 들어오도록 Speed만큼 이동 → 모든 Attack dice가 명중한 것으로 Power Roll(무기 Power dice × Attack dice 수 + Knight Power die) → 그 기사가 Total Power만큼 [V] 손실 (Armor Roll 없음) [해석, 확인 필요]',
   '"Knockback N to the side" = King이 바라보는 방향 기준 왼쪽/오른쪽 중 플레이어 선택, "random direction" = 4방향 무작위 [해석, 확인 필요]',
-  '미구현: Armor-piercing 1 (Shield of the Fallen, Heart of the Throne의 Wound Response), Riesenmörder Sword Critical의 "see 2329", 각 AI 카드의 REACT! 창 위치(효과 사이 창은 넣음), Fallen Knight의 비자발적 이동(기사의 Pushback 등)',
+  'Five Fingers: King은 비자발적으로 이동·회전하지 않음 — 기사의 Pushback / Knockback / Drag / Pull은 King에게 무효. Fallen Knight는 낮은 열 → 높은 열 방향으로만 움직이므로 그 방향의 Pushback / Knockback만 적용(Column 파괴, Zone 1·14열 제거 규칙 그대로)',
+  'Armor-piercing 1 (Shield of the Fallen, Heart of the Throne의 Wound Response): King의 Armor 토큰을 최대 1개 버림',
+  '미구현(스토리 항목): Riesenmörder Sword Critical의 "Immediately see 2329" — Shockwave 비활성만 적용',
  ]}
+# The whole Puppet King sheet (AI, BP, traits, setup, rulings) was checked by the owner on 2026-11-21
+OK = ' (소유자 확인 2026-11-21)'
+d['rulings'] = [re.sub(r' ?\[해석, 확인 필요[^\]]*\]', '', r) for r in d['rulings']]
+d['rulings'] = [r if '소유자 확인' in r else r + OK for r in d['rulings']]
+d['clashSetup']['notes'] = [re.sub(r' ?\[해석, 확인 필요[^\]]*\]', OK, x) for x in d['clashSetup'].get('notes', [])]
 import reactfix; reactfix.apply('puppet-king-edelhardt', d)
 json.dump(d, open(sys.argv[1], 'w'), ensure_ascii=False, indent=1); print('wrote', sys.argv[1], len(d['cards']['ai']), 'AI', len(d['cards']['bp']), 'BP')
