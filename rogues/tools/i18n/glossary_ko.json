@@ -1,0 +1,841 @@
+{
+ "_source": "Owner glossary KF_keywords.xlsx (2026-11-21). \"[\" prefix = variant of the keyword above it.",
+ "terms": [
+  [
+   "Acrobatics",
+   "곡예"
+  ],
+  [
+   "Activate X",
+   "활성화 X"
+  ],
+  [
+   "Afflict X",
+   "부여 X"
+  ],
+  [
+   "Ammo Reserves X",
+   "탄약 비축 X"
+  ],
+  [
+   "Area",
+   "범위"
+  ],
+  [
+   "Armor-Piercing X",
+   "갑옷 관통 X"
+  ],
+  [
+   "Armor Re-roll X",
+   "방어 재굴림 X"
+  ],
+  [
+   "Attack Re-roll X",
+   "공격 재굴림 X"
+  ],
+  [
+   "Auto-X Y",
+   "자동"
+  ],
+  [
+   "Bane X",
+   "고난 X"
+  ],
+  [
+   "Bane Limit X/+X",
+   "고난 한계 X"
+  ],
+  [
+   "Black X",
+   "칠흑 X"
+  ],
+  [
+   "Block",
+   "막기"
+  ],
+  [
+   "[Advanced Block",
+   "향상된 막기"
+  ],
+  [
+   "[Superior Block",
+   "우수한 막기"
+  ],
+  [
+   "Bloodletter",
+   "사혈"
+  ],
+  [
+   "Boundless",
+   "무한"
+  ],
+  [
+   "Braced",
+   "확고부동"
+  ],
+  [
+   "Break X",
+   "파쇄 X"
+  ],
+  [
+   "Bypass",
+   "통과"
+  ],
+  [
+   "[Advanced Bypass",
+   "향상된 통과"
+  ],
+  [
+   "[Superior Bypass",
+   "우수한 통과"
+  ],
+  [
+   "Cantrip X",
+   "소마법 X"
+  ],
+  [
+   "Chasm",
+   "골짜기"
+  ],
+  [
+   "Choke X",
+   "질식 X"
+  ],
+  [
+   "Clockwork",
+   "시계태엽"
+  ],
+  [
+   "Commit",
+   "전념"
+  ],
+  [
+   "Cooldown",
+   "대기"
+  ],
+  [
+   "Closing X",
+   "결착 X"
+  ],
+  [
+   "Crash",
+   "충돌"
+  ],
+  [
+   "Cumbersome",
+   "번거로움"
+  ],
+  [
+   "Daze",
+   "교란"
+  ],
+  [
+   "Deadly",
+   "치명적인"
+  ],
+  [
+   "Defy",
+   "대항"
+  ],
+  [
+   "[Advanced Defy",
+   "향상된 대항"
+  ],
+  [
+   "[Superior Defy",
+   "우수한 대항"
+  ],
+  [
+   "Delay",
+   "지연"
+  ],
+  [
+   "Deploy X",
+   "전개 X"
+  ],
+  [
+   "Destructible",
+   "파괴 가능"
+  ],
+  [
+   "Devote",
+   "헌신"
+  ],
+  [
+   "Devote to X",
+   "X에게 헌신"
+  ],
+  [
+   "Difficult Terrain",
+   "험난 지형"
+  ],
+  [
+   "Discard",
+   "버리기"
+  ],
+  [
+   "Displace",
+   "옮겨짐"
+  ],
+  [
+   "Diversion",
+   "견제"
+  ],
+  [
+   "[Improved Diversion",
+   "개선된 견제"
+  ],
+  [
+   "Dodge",
+   "회피기동"
+  ],
+  [
+   "[Lesser Dodge",
+   "약소한 회피기동"
+  ],
+  [
+   "[Advanced Dodge",
+   "향상된 회피기동"
+  ],
+  [
+   "[Superior Dodge",
+   "우수한 회피기동"
+  ],
+  [
+   "Doomed",
+   "파멸적인"
+  ],
+  [
+   "Drag X",
+   "끌기 X"
+  ],
+  [
+   "Dwell",
+   "체류"
+  ],
+  [
+   "Envenomed X",
+   "독기 X"
+  ],
+  [
+   "Escalate X",
+   "격화 X"
+  ],
+  [
+   "Falsity",
+   "허위"
+  ],
+  [
+   "Fire X",
+   "화염 X"
+  ],
+  [
+   "Fleisch X",
+   "살코기 X"
+  ],
+  [
+   "Fortify X",
+   "요새화 X"
+  ],
+  [
+   "Gangup X",
+   "패거리 X"
+  ],
+  [
+   "Greater Pass X",
+   "상위 잔류 X"
+  ],
+  [
+   "Growth",
+   "성장"
+  ],
+  [
+   "Guard X",
+   "수비 X"
+  ],
+  [
+   "Heal X",
+   "회복 X"
+  ],
+  [
+   "Herd X",
+   "몰기 X"
+  ],
+  [
+   "Heartseeker",
+   "심장추격자"
+  ],
+  [
+   "[Soulseeker",
+   "영혼추격자"
+  ],
+  [
+   "Hide",
+   "은신"
+  ],
+  [
+   "Hope X",
+   "희망 X"
+  ],
+  [
+   "Hug X",
+   "선회 X"
+  ],
+  [
+   "Immune to X",
+   "X에 면역"
+  ],
+  [
+   "Indestructible",
+   "파괴 불가능"
+  ],
+  [
+   "Inspire X",
+   "격려 X"
+  ],
+  [
+   "Jump",
+   "도약"
+  ],
+  [
+   "[Advanced Jump",
+   "향상된 도약"
+  ],
+  [
+   "Knockback X",
+   "튕겨내기 X"
+  ],
+  [
+   "Knockdown",
+   "넘어짐"
+  ],
+  [
+   "Leech",
+   "거머리"
+  ],
+  [
+   "Lifeline",
+   "생명선"
+  ],
+  [
+   "Lumbering",
+   "육중함"
+  ],
+  [
+   "Magic X",
+   "마법 X"
+  ],
+  [
+   "Monkey Business X",
+   "원숭이 속임수 X"
+  ],
+  [
+   "Motivate X",
+   "동기부여 X"
+  ],
+  [
+   "Obscuring",
+   "시야 방해"
+  ],
+  [
+   "Obstacle",
+   "장애물"
+  ],
+  [
+   "Opening X",
+   "틈새 X"
+  ],
+  [
+   "Overbreak X",
+   "초과 파쇄 X"
+  ],
+  [
+   "Overcome X+",
+   "극복 X+"
+  ],
+  [
+   "Overpower X+",
+   "압도 X+"
+  ],
+  [
+   "Parasitize X",
+   "기생 X"
+  ],
+  [
+   "Pass X",
+   "잔류 X"
+  ],
+  [
+   "Penetrate",
+   "꿰뚫기"
+  ],
+  [
+   "Poison X",
+   "독 X"
+  ],
+  [
+   "[Toxify X",
+   "극독 X"
+  ],
+  [
+   "Poison Resilience X",
+   "독 내성 X"
+  ],
+  [
+   "Power X",
+   "위력 X"
+  ],
+  [
+   "Power re-roll X",
+   "위력 재굴림 X"
+  ],
+  [
+   "Precise",
+   "정밀"
+  ],
+  [
+   "Provoke",
+   "도발"
+  ],
+  [
+   "Pushback X",
+   "밀쳐내기 X"
+  ],
+  [
+   "Pull X",
+   "당기기 X"
+  ],
+  [
+   "Ranged X-Y",
+   "원거리 X-Y"
+  ],
+  [
+   "Reach X",
+   "도달 X"
+  ],
+  [
+   "Reflex",
+   "반사신경"
+  ],
+  [
+   "[Advanced Reflex",
+   "향상된 반사신경"
+  ],
+  [
+   "[Superior Reflex",
+   "우수한 반사신경"
+  ],
+  [
+   "Refresh X",
+   "단축 X"
+  ],
+  [
+   "Reinforce X",
+   "보강 X"
+  ],
+  [
+   "[Advanced Reinforce",
+   "향상된 보강"
+  ],
+  [
+   "[Superior Reinforce",
+   "우수한 보강"
+  ],
+  [
+   "Reposition X",
+   "재배치 X"
+  ],
+  [
+   "Restrain",
+   "연장"
+  ],
+  [
+   "Rocksteady",
+   "견고함"
+  ],
+  [
+   "Roll Out",
+   "구르기"
+  ],
+  [
+   "Rotation X",
+   "순환 X"
+  ],
+  [
+   "Rouse X",
+   "자극 X"
+  ],
+  [
+   "Rush",
+   "돌진"
+  ],
+  [
+   "[Improved Rush",
+   "개선된 돌진"
+  ],
+  [
+   "Sacrifice",
+   "희생"
+  ],
+  [
+   "Scavenge X",
+   "수집 X"
+  ],
+  [
+   "Second Chance",
+   "두 번째 기회"
+  ],
+  [
+   "[Superior Chance",
+   "우수한 기회"
+  ],
+  [
+   "Sink",
+   "침몰"
+  ],
+  [
+   "Soak X",
+   "경감 X"
+  ],
+  [
+   "Spell X",
+   "주문 X"
+  ],
+  [
+   "Splinter X",
+   "파편 X"
+  ],
+  [
+   "Spotlight",
+   "이목 집중"
+  ],
+  [
+   "Stalwart",
+   "굳건함"
+  ],
+  [
+   "Sunder X",
+   "절단 X"
+  ],
+  [
+   "Suppress",
+   "억제"
+  ],
+  [
+   "Swarm X",
+   "군단 X"
+  ],
+  [
+   "Tireless",
+   "불굴"
+  ],
+  [
+   "Trailmake X",
+   "길찾기 X"
+  ],
+  [
+   "Tumble",
+   "낙법"
+  ],
+  [
+   "Unwieldy",
+   "까다로움"
+  ],
+  [
+   "Vault",
+   "뛰어넘기"
+  ],
+  [
+   "[Forced Vault",
+   "강제 뛰어넘기"
+  ],
+  [
+   "Wander",
+   "떠돌기"
+  ],
+  [
+   "Zeal X",
+   "열의 X"
+  ],
+  [
+   "Zeal Threshold X",
+   "열의 한계 X"
+  ],
+  [
+   "Unavoidable Knockback",
+   "피할 수 없는 튕겨내기"
+  ],
+  [
+   "Always There",
+   "언제나 곁에"
+  ],
+  [
+   "Spawn",
+   "출현"
+  ],
+  [
+   "[Immediate Spawn",
+   "즉시 출현"
+  ],
+  [
+   "[Interval Spawn",
+   "간격 출현"
+  ],
+  [
+   "[Odd Spawn",
+   "특이 출현"
+  ],
+  [
+   "[Nevermore Spawn",
+   "추가 출현 금지"
+  ],
+  [
+   "Peril",
+   "위험"
+  ],
+  [
+   "Peril Check",
+   "위험 체크"
+  ],
+  [
+   "Judicium",
+   "유디시움"
+  ],
+  [
+   "Priority Target",
+   "주요 대상"
+  ],
+  [
+   "Divine Target",
+   "신성 대상"
+  ],
+  [
+   "Passion",
+   "격정"
+  ],
+  [
+   "Heat",
+   "열기"
+  ],
+  [
+   "Heat Limit",
+   "열기 한계"
+  ],
+  [
+   "Heat Refresh",
+   "열기 회복"
+  ],
+  [
+   "Vigor",
+   "활기"
+  ],
+  [
+   "Gear",
+   "장비"
+  ],
+  [
+   "Virtue",
+   "덕목"
+  ],
+  [
+   "[Bravery",
+   "용기"
+  ],
+  [
+   "[Tenacity",
+   "끈기"
+  ],
+  [
+   "[Sagacity",
+   "총명함"
+  ],
+  [
+   "[Fortitude",
+   "꿋꿋함"
+  ],
+  [
+   "[Might",
+   "힘"
+  ],
+  [
+   "[Insight",
+   "통찰력"
+  ],
+  [
+   "Vice",
+   "악덕"
+  ],
+  [
+   "[Cowardice",
+   "비겁"
+  ],
+  [
+   "[Dishonor",
+   "불명예"
+  ],
+  [
+   "[Duplicity",
+   "이중성"
+  ],
+  [
+   "[Disregard",
+   "경시"
+  ],
+  [
+   "[Cruelty",
+   "잔혹"
+  ],
+  [
+   "[Treachery",
+   "음모"
+  ],
+  [
+   "Mob",
+   "개체/개체군"
+  ],
+  [
+   "Vassal",
+   "가신"
+  ],
+  [
+   "King",
+   "왕"
+  ],
+  [
+   "Devil",
+   "악마"
+  ],
+  [
+   "Dragon",
+   "용"
+  ],
+  [
+   "Ratwolves",
+   "쥐늑대"
+  ],
+  [
+   "Winged Nightmare",
+   "날개달린 악몽"
+  ],
+  [
+   "Paleblood Worms",
+   "창백한 피벌레"
+  ],
+  [
+   "Pumpkinhead Monstrosities",
+   "호박머리 괴생명체"
+  ],
+  [
+   "Knights of Fen",
+   "습지의 기사"
+  ],
+  [
+   "Knighteater",
+   "기사포식자"
+  ],
+  [
+   "Young Devour Dragon",
+   "어린 탐식룡"
+  ],
+  [
+   "Panzergeist",
+   "장갑영혼"
+  ],
+  [
+   "Ironcast Dead",
+   "주철 망자"
+  ],
+  [
+   "Eggknight",
+   "달걀 기사"
+  ],
+  [
+   "Stonemason Knight",
+   "석공 기사"
+  ],
+  [
+   "Puppet King Edelhardt",
+   "꼭두각시 왕 에델하르트"
+  ],
+  [
+   "Devil of the Smelted Fears",
+   "제련된 공포의 악마"
+  ],
+  [
+   "Panzerdragon Veldr",
+   "장갑룡 벨더"
+  ],
+  [
+   "First Men Warriors",
+   "최초인 전사"
+  ],
+  [
+   "First Men Lictor Hunters",
+   "최초인 릭토르 사냥꾼"
+  ],
+  [
+   "Haunts of Utrebant",
+   "우트레반트의 망령"
+  ],
+  [
+   "White Ape Troll",
+   "흰 유인원 트롤"
+  ],
+  [
+   "Bog Witch",
+   "수렁 마녀"
+  ],
+  [
+   "King Laid Low",
+   "낮게 숙인 왕"
+  ],
+  [
+   "Devil of the Ancient Dusk",
+   "고대 어스름의 악마"
+  ],
+  [
+   "Toadragon of the Great Marsh",
+   "위대한 습지의 두꺼비용"
+  ],
+  [
+   "Occupied Space",
+   "점유 칸"
+  ],
+  [
+   "Full Clash",
+   "온전 격돌"
+  ],
+  [
+   "Exhibition Clash",
+   "시범 격돌"
+  ],
+  [
+   "Vision Phase",
+   "시야 단계"
+  ],
+  [
+   "Outpost Phase",
+   "초소 단계"
+  ],
+  [
+   "Delve Phase",
+   "탐방 단계"
+  ],
+  [
+   "Clash Phase",
+   "격돌 단계"
+  ],
+  [
+   "Rest Phase",
+   "휴식 단계"
+  ],
+  [
+   "Spoils Phase",
+   "전리품 단계"
+  ],
+  [
+   "clash",
+   "격돌"
+  ]
+ ]
+}
