@@ -273,3 +273,13 @@ Attack Responses = 공격 대응
 When revealed = 공개될 때
 @전초기지 — 남은 낱말
 Merchant's Workshop = 상인의 공방
+@전초기지 — 남은 낱말
+? Shrine of the Saints = 성인들의 성소
+? Exert = 분발
+? Portrait = 초상
+PowerReroll = 위력 재굴림
+PowerDieRed = 붉은 위력 주사위
+PowerDieBlack = 검은 위력 주사위
+PowerDieWhite = 흰 위력 주사위
+PowerDie = 위력 주사위
+Bog track = 수렁 트랙

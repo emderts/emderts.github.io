@@ -699,9 +699,34 @@
   "Geist": "영혼",
   "Attack Responses": "공격 대응",
   "When revealed": "공개될 때",
-  "Merchant's Workshop": "상인의 공방"
+  "Merchant's Workshop": "상인의 공방",
+  "Shrine of the Saints": "성인들의 성소",
+  "Exert": "분발",
+  "Portrait": "초상",
+  "PowerReroll": "위력 재굴림",
+  "PowerDieRed": "붉은 위력 주사위",
+  "PowerDieBlack": "검은 위력 주사위",
+  "PowerDieWhite": "흰 위력 주사위",
+  "PowerDie": "위력 주사위",
+  "Bog track": "수렁 트랙"
  },
- "_uiNew": [],
+ "_uiNew": [
+  [
+   "전초기지 — 남은 낱말",
+   "Shrine of the Saints",
+   "성인들의 성소"
+  ],
+  [
+   "전초기지 — 남은 낱말",
+   "Exert",
+   "분발"
+  ],
+  [
+   "전초기지 — 남은 낱말",
+   "Portrait",
+   "초상"
+  ]
+ ],
  "_inlineSkip": [
   "Acrobatics",
   "Activate",
@@ -6415,7 +6440,8 @@
   "You have 1 additional [Support] slot.": "당신은 [지원] 슬롯을 1개 더 가집니다.",
   "[red Armor die]": "[붉은 방어 주사위]",
   "[black Armor die]": "[검은 방어 주사위]",
-  "During Rest: Lose -1 [Bane].": "휴식 중: [해악]을 1 잃습니다."
+  "During Rest: Lose -1 [Bane].": "휴식 중: [해악]을 1 잃습니다.",
+  "You may add 1 random level 3 Mercenary card instead.": "대신 무작위 레벨 3 용병 카드 1장을 추가해도 됩니다."
  },
  "ui": {}
 }
