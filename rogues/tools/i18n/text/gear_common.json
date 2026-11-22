@@ -241,5 +241,15 @@
  "Each hit: Reposition #.": "명중 하나마다: 재배치 #.",
  "When you deal a Wound, Knockback #.": "당신이 부상을 입힐 때, 튕겨내기 #.",
  "When you Escalate, BP Suppress.": "당신이 격화할 때, BP 억제.",
- "When you Escalate, AI Suppress.": "당신이 격화할 때, AI 억제."
+ "When you Escalate, AI Suppress.": "당신이 격화할 때, AI 억제.",
+ "# [Heat] [Exhaust] Hide.": "# [열기] [소진] 은신.",
+ "# [Heat] [Discard] Lifeline.": "# [열기] [버리기] 생명선.",
+ "Superior Bypass.": "우수한 통과.",
+ "Full Hit: Daze.": "완전 명중: 교란.",
+ "Each hit: Opening #.": "명중 하나마다: 틈새 #.",
+ "Full hit: Power #.": "완전 명중: 위력 #.",
+ "Full Miss: Skip the Clear the Knight Pool step.": "완전 빗나감: 기사 풀 비우기 단계를 건너뜁니다.",
+ "Crit Chance:": "치명타 기회:",
+ "# [Heat] [Exhaust] During Delve, you may move through Shortcuts.": "# [열기] [소진] 탐사 중, 당신은 지름길을 지나 이동해도 됩니다.",
+ "[Move action]+[Combat action] # [Heat] Improved Rush.": "[이동 행동]+[전투 행동] # [열기] 개선된 돌진."
 }
