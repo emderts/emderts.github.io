@@ -223,7 +223,7 @@
  "Bloodletter.": "사혈.",
  "Growth.": "성장.",
  "Wither #.": "시듦 #.",
- "Pass #.": "잔류 #.",
+ "Pass #.": "이월 #.",
  "Clockwork.": "시계태엽.",
  "Ammo Reserves #.": "탄약 비축 #.",
  "-# Speed [Speed].": "속도 -#.",
@@ -251,5 +251,14 @@
  "Full Miss: Skip the Clear the Knight Pool step.": "완전 빗나감: 기사 풀 비우기 단계를 건너뜁니다.",
  "Crit Chance:": "치명타 기회:",
  "# [Heat] [Exhaust] During Delve, you may move through Shortcuts.": "# [열기] [소진] 탐사 중, 당신은 지름길을 지나 이동해도 됩니다.",
- "[Move action]+[Combat action] # [Heat] Improved Rush.": "[이동 행동]+[전투 행동] # [열기] 개선된 돌진."
+ "[Move action]+[Combat action] # [Heat] Improved Rush.": "[이동 행동]+[전투 행동] # [열기] 개선된 돌진.",
+ "Vault.": "뛰어넘기.",
+ "[Reaction] [Exhaust] Reflex.": "[반응] [소진] 반사신경.",
+ "[Discard] Perform Rotation #.": "[버리기] 순환 #을 수행합니다.",
+ "Full Miss: Gain +# [Passion].": "완전 빗나감: [격정]을 # 얻습니다.",
+ "# [Heat] [Discard] Discard a Condition card.": "# [열기] [버리기] 상태 카드 1장을 버립니다.",
+ "# [Heat] [Discard] Discard all Condition cards.": "# [열기] [버리기] 상태 카드를 모두 버립니다.",
+ "Ignore Swamp Terrain tiles.": "늪 지형 타일을 무시합니다.",
+ "Ignore Rubble Terrain tiles.": "잔해 지형 타일을 무시합니다.",
+ "Start of your turn: Gain # Bane [Bane] token.": "당신의 턴 시작 시: 해악 토큰 #개를 얻습니다."
 }
