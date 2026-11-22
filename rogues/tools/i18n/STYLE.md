@@ -149,3 +149,9 @@
 |---|---|
 | [Charge] / Spend X [Charge] to … | [충전] / [충전] X를 쓰고 … |
 | Adventure / Shortcut / Ambush / Deep Fog Traversal | 모험 / 지름길 / 매복 / 깊은 안개 횡단 |
+| [Exhaust] / [Discard] (비용 아이콘) | [소진] / [버리기] |
+| Knight Armory / Upgrade / maximum range | 기사 무기고 / 강화 / 최대 범위 |
+| 게이트 [JUDICIUM] / [GRAVE] / [MAJOR] / [PASSION 3+] | [판결] / [중대] / [상위] / [격정 3+] |
+
+- 소모품 문구 확정 (소유자 확인 2026-11-22).
+- 능력치 줄 "+1 Speed [Speed]." 은 "속도 +1." 로 쓴다.
