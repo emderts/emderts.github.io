@@ -190,3 +190,5 @@
 
 - 인터페이스 용어: 화면 · 로그 · 선택 창의 한국어 문장 안에 섞인 영어 용어는 한국어 모드에서 확정 번역어로 치환하고 조사를 맞춘다 (tools/i18n/uiterms_ko.txt; "? " 줄 = 소유자 미확인 제안).
 - 위험 서사 보너스 칸: Jump = 이동 시작에 쓰면 지형 칸 1개 무시 / After [Peril Check] = Uninjured여도 발동 / Armor die = 방어 굴림마다 1개 추가 (소유자 확인 2026-11-22).
+
+- UI 용어 확정 (소유자 확인 2026-11-22): Out of Reach 도달 범위 밖, Routine 루틴, Hidden 은신(Hide와 동일), Massive Peril 막대한 위험, Incarnation/Incarnate 화신, Haunt 망령(몬스터 개체).

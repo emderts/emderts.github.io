@@ -467,8 +467,8 @@
   "Monster Attack": "몬스터 공격",
   "Zone Attack": "영역 공격",
   "Lunging Attack": "돌진 공격",
-  "Out of Reach": "닿지 않음",
-  "Routine": "기본 행동",
+  "Out of Reach": "도달 범위 밖",
+  "Routine": "루틴",
   "Escalation": "격화",
   "After Attack": "공격 후",
   "After Final Attack": "최종 공격 후",
@@ -477,9 +477,10 @@
   "Card Refresh": "카드 회복",
   "Maximum Vigor": "최대 활기",
   "Knight Power": "기사 위력",
-  "Hidden": "숨음",
+  "Hidden": "은신",
   "Standing Up": "일어나는 중",
-  "Massive": "대규모",
+  "Massive Peril": "막대한 위험",
+  "Massive": "막대한",
   "Holy Commandment": "신성한 계명",
   "Swampwalk": "늪 걷기",
   "Madness": "광기",
@@ -491,14 +492,14 @@
   "Resist": "저항",
   "Command": "명령",
   "Obey": "복종",
-  "Incarnation": "현신",
-  "Incarnate": "현신",
+  "Incarnation": "화신",
+  "Incarnate": "화신",
   "Crescendo": "크레셴도",
   "Guardian": "수호자",
   "Appear Behind": "배후 출현",
   "Iron Apotheosis": "철의 신격화",
   "Mud Wisp": "진흙 도깨비불",
-  "Haunt": "출몰",
+  "Haunt": "망령",
   "Move Lateral": "측면 이동",
   "Necrofusion": "사령 융합"
  },
@@ -605,16 +606,6 @@
   ],
   [
    "격돌",
-   "Out of Reach",
-   "닿지 않음"
-  ],
-  [
-   "격돌",
-   "Routine",
-   "기본 행동"
-  ],
-  [
-   "격돌",
    "Escalation",
    "격화"
   ],
@@ -655,18 +646,8 @@
   ],
   [
    "격돌",
-   "Hidden",
-   "숨음"
-  ],
-  [
-   "격돌",
    "Standing Up",
    "일어나는 중"
-  ],
-  [
-   "격돌",
-   "Massive",
-   "대규모"
   ],
   [
    "격돌 — 몬스터별",
@@ -725,16 +706,6 @@
   ],
   [
    "격돌 — 몬스터별",
-   "Incarnation",
-   "현신"
-  ],
-  [
-   "격돌 — 몬스터별",
-   "Incarnate",
-   "현신"
-  ],
-  [
-   "격돌 — 몬스터별",
    "Crescendo",
    "크레셴도"
   ],
@@ -752,11 +723,6 @@
    "격돌 — 몬스터별",
    "Iron Apotheosis",
    "철의 신격화"
-  ],
-  [
-   "격돌 — 몬스터별",
-   "Haunt",
-   "출몰"
   ],
   [
    "격돌 — 몬스터별",
