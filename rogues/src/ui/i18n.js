@@ -24,8 +24,8 @@ const tpl = (d, l) => { const nums = l.match(NUM); if (!nums) return null; const
 export const canon = s => s.replace(/\[V\]/g, '[Vigor]').replace(/\[H\]/g, '[Heat]').replace(/\[P\]/g, '[Passion]').replace(/\[Peril\]/g, '[Peril Check]');
 const line0 = (d, l) => { const t = l.trim(); const c = canon(t); return hit(d, l) || hit(d, t) || hit(d, c) || tpl(d, t) || (c !== t ? tpl(d, c) : null); };
 // gate tags printed in front of a gated line: "[GRAVE] Falsity." / "[P 3+] Spotlight."
-const GATE_TAG = { JUDICIUM: '판결', GRAVE: '중대', MAJOR: '상위', MINOR: '하위', APE: '유인원', HUMAN: '인간', KING: '왕', DEVIL: '악마', DRAGON: '용', VASSAL: '봉신', 'ANY CONDITION': '모든 상태', 'PRINCIPALITY OF STONE': '돌의 공국', 'SUNKEN KINGDOM': '가라앉은 왕국' };
-const gateTag = g => GATE_TAG[g] || (/^(P|PASSION) (\d+\+)$/.test(g) ? '격정 ' + g.replace(/^\S+ /, '') : /^(Bane|BANE) \d+\+$/.test(g) ? '해악 ' + g.slice(5) : null);
+const GATE_TAG = { JUDICIUM: '판결', GRAVE: '중대', MAJOR: '상위', MINOR: '하위', APE: '유인원', HUMAN: '인간', KING: '왕', DEVIL: '악마', DRAGON: '용', VASSAL: '봉신', 'ANY CONDITION': '모든 상태', 'PRINCIPALITY OF STONE': '돌의 공국', 'SUNKEN KINGDOM': '가라앉은 왕국', SLIMED: '점액 범벅' };
+const gateTag = g => GATE_TAG[g] || (/^HEAT \d+\+$/.test(g) ? '열기 ' + g.slice(5) : null) || (/^(P|PASSION) (\d+\+)$/.test(g) ? '격정 ' + g.replace(/^\S+ /, '') : /^(Bane|BANE) \d+\+$/.test(g) ? '해악 ' + g.slice(5) : null);
 // a line the dictionary does not hold whole: a gate tag + a known line, or several known sentences ("Break 2. Commit.")
 const line = (d, l) => { const v = line0(d, l); if (v) return v; const t = l.trim();
   const g = t.match(/^\[([A-Z][A-Za-z0-9+ ]*)\] (.+)$/); if (g && gateTag(g[1])) { const r = line(d, g[2]); if (r) return `[${gateTag(g[1])}] ${r}`; }

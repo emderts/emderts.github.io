@@ -260,5 +260,14 @@
  "# [Heat] [Discard] Discard all Condition cards.": "# [열기] [버리기] 상태 카드를 모두 버립니다.",
  "Ignore Swamp Terrain tiles.": "늪 지형 타일을 무시합니다.",
  "Ignore Rubble Terrain tiles.": "잔해 지형 타일을 무시합니다.",
- "Start of your turn: Gain # Bane [Bane] token.": "당신의 턴 시작 시: 해악 토큰 #개를 얻습니다."
+ "Start of your turn: Gain # Bane [Bane] token.": "당신의 턴 시작 시: 해악 토큰 #개를 얻습니다.",
+ "Gain +# [d10].": "+# [d10]을 얻습니다.",
+ "# [Heat] Superior Reinforce #.": "# [열기] 우수한 보강 #.",
+ "Start of Clash: Parasitize #.": "격돌 시작 시: 기생 #.",
+ "Full Hit: AI Suppress.": "완전 명중: AI 억제.",
+ "Each hit: +# [Power].": "명중 하나마다: [위력] +#.",
+ "# [Vigor] Lose -# [Heat].": "# [활기] [열기]를 # 잃습니다.",
+ "Immune to Bane.": "해악에 대한 면역.",
+ "# [Heat] [Exhaust] When you're about to gain Bane [Bane] tokens, lower that gain to #.": "# [열기] [소진] 당신이 해악 토큰을 얻으려 할 때, 그 획득을 #2로 낮춥니다.",
+ "# [Heat] [Exhaust] When you are about to gain Bane [Bane] tokens, lower that gain to #.": "# [열기] [소진] 당신이 해악 토큰을 얻으려 할 때, 그 획득을 #2로 낮춥니다."
 }
