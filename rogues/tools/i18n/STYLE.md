@@ -183,3 +183,5 @@
 | N Devotion: … / Devoted to a Saint | 헌신 N: … / 성인에게 헌신한 |
 
 - 마침표 없는 키워드 나열("Auto-break 1, +1 [Precision]")도 번역기가 낱개로 조합한다.
+
+- 전초기지 · 성인 · 위험 서사 표 확정. Hired help = 용병 고용, "Instead of rolling for an effect, you may choose an effect." = "굴려서 효과를 정하는 대신, 효과를 골라도 됩니다." (소유자 확인 2026-11-22). 오딧에 영웅 서사 · 위험 서사 전사 데이터 전체 섹션(#arcs) 추가.
