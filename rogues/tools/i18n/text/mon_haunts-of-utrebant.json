@@ -50,6 +50,6 @@
  "If a Haunt were to appear on a space occupied by a Knight as a result of this Trait, that Knight suffers Unavoidable Knockback 3 and Crash. If a Haunt were to appear beyond a Board Edge, it appears adjacent to that Board Edge instead.": "이 특성의 결과로 망령이 기사가 점유한 칸에 나타나게 되면, 그 기사는 회피 불가 튕겨내기 3과 충돌을 겪습니다. 망령이 보드 가장자리 너머에 나타나게 되면, 대신 그 보드 가장자리에 인접하게 나타납니다.",
  "All Knights lose -2 Precision [Precision] when adjacent to a Ruined Wall Terrain tile.": "모든 기사는 무너진 벽 지형 타일에 인접해 있을 때 정확도를 2 잃습니다.",
  "During AI Escalation, always Escalate the lowest AI card from the AI deck or discard pile (prioritize the deck). This Trait takes precedence over regular Escalation rules.": "AI 격화 중에는 항상 AI 덱 또는 버림 더미에서 가장 낮은 AI 카드를 격화합니다(덱을 우선합니다). 이 특성은 일반 격화 규칙보다 우선합니다.",
- "When you Spawn new Haunts of Utrebant, the leftmost Haunt performs Signature. Ignore during the first Monster Round.": "당신이 새 우트레반트의 망령을 출현시키면, 가장 왼쪽 망령이 시그니처를 수행합니다. 첫 몬스터 라운드에는 무시합니다.",
+ "When you Spawn new Haunts of Utrebant, the leftmost Haunt performs Signature. Ignore during the first Monster Round.": "당신이 새 우트레반트의 망령을 출현시킬 때, 가장 왼쪽 망령이 시그니처를 수행합니다. 첫 몬스터 라운드에는 무시합니다.",
  "Zone sizes of all Zone Judgments change from 1 to 2, and diagrams of all Zone Attacks increase in size as indicated by the yellow colored spaces on the diagram. If a Haunt of Utrebant moves onto a space occupied by a Knight at the end of a Zone Attack, that Knight dies!": "모든 영역 심판의 영역 크기가 1에서 2로 바뀌고, 모든 영역 공격의 도식은 도식의 노란색 칸이 나타내는 대로 커집니다. 영역 공격이 끝날 때 우트레반트의 망령이 기사가 점유한 칸 위로 이동하면, 그 기사는 사망합니다!"
 }

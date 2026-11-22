@@ -139,4 +139,13 @@
 | Shapeshift / [HUMAN] / [APE] / Leash / Unleash / Melee/Reach | 변신 / [인간] / [유인원] / 속박 / 해방 / 근접/도달 |
 
 - "A and/or B" 는 문맥에 따라 "A와 B를 합쳐 N개"(토큰), "A하거나, B하거나, 둘 다 합니다"(행동)로 옮긴다.
-- 기사 7명 문구는 2026-11-22 에 한꺼번에 올림 — 소유자 검토 대기.
+- 기사 7명 문구 확정 (소유자 확인 2026-11-22).
+
+- **When … = "-할 때"** (소유자 확인 2026-11-22): "When you deal a Wound," → "당신이 부상을 입힐 때,". "-하면"은 If 에만 쓴다. Whenever = "-할 때마다", "When you are about to" = "-하려 할 때". 기존 문구 전체에 적용함.
+
+## 장비 (Gear)
+
+| 원문 | 번역 |
+|---|---|
+| [Charge] / Spend X [Charge] to … | [충전] / [충전] X를 쓰고 … |
+| Adventure / Shortcut / Ambush / Deep Fog Traversal | 모험 / 지름길 / 매복 / 깊은 안개 횡단 |
