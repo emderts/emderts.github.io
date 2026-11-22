@@ -281,5 +281,11 @@
  "# [Heat] [Exhaust] Block or Defy.": "# [열기] [소진] 막기 또는 대항.",
  "Ignore Armor [Armor] tokens.": "방어구 토큰을 무시합니다.",
  "*X is equal to the amount of Bane [Bane] tokens you have.": "*X는 당신이 가진 해악 토큰의 수와 같습니다.",
- "Auto-hope X*.": "자동 희망 X*."
+ "Auto-hope X*.": "자동 희망 X*.",
+ "[PowerReroll] #.": "[위력 재굴림] #.",
+ "[ArmorReroll] #.": "[방어 재굴림] #.",
+ "+# [Precision].": "[정확도] +#.",
+ "Diversion #.": "견제 #.",
+ "+# Magic Limit.": "마법 한계 +#.",
+ "+# to Virtue Tests.": "덕목 테스트에 +#."
 }

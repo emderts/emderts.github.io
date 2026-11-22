@@ -169,3 +169,17 @@
 - 몬스터 장비 3 확정. Possessive Mudling = 살아 움직이는 진흙덩이 (소유자 확인 2026-11-22). ↑[Heat]↓ 아이콘 = [열기 회복].
 
 - 몬스터 장비 4 확정. Royal Red = 왕가의 진홍 갑옷 (갑옷 이름답게, 소유자 요청 2026-11-22). Monarch = 군주.
+
+- 몬스터 장비 5 확정 — 장비 문구 전체 확정. Royal Red = 진홍 왕실 갑주, [POSTGAME] = [포스트게임] (소유자 확인 2026-11-22).
+
+## 전초기지 · 성인
+
+| 원문 | 번역 |
+|---|---|
+| Expedition / Outpost phase / Hired help | 원정 / 전초기지 단계 / 고용된 조력자 |
+| Mercenary deck / Merchant deck / Scavenge deck / Loot card | 용병 덱 / 상인 덱 / 수집 덱 / 전리품 카드 |
+| Stone Key / Contract / reforge / tier | 돌 열쇠 / 계약 / 재련 / 등급 |
+| Recon / Patrol / Survey / Unexplored | 정찰 / 순찰 / 답사 / 미탐험 |
+| N Devotion: … / Devoted to a Saint | 헌신 N: … / 성인에게 헌신한 |
+
+- 마침표 없는 키워드 나열("Auto-break 1, +1 [Precision]")도 번역기가 낱개로 조합한다.

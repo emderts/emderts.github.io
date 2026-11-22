@@ -32,6 +32,7 @@ const line = (d, l) => { const v = line0(d, l); if (v) return v; const t = l.tri
   const th = t.match(/^\[Two-handed(?: icon)?\]: (.+)$/); if (th) { const r = line(d, th[1]); if (r) return `[양손]: ${r}`; }
   const one = x => line0(d, x) || (/ instead\.$/.test(x) ? (r => (r ? '대신 ' + r : null))(line0(d, x.replace(/ instead\.$/, '.'))) : null); // "Closing 3 instead." = 대신 결착 3.
   const parts = t.split(/(?<=[.!])\s+/); const tr = parts.map(one); if (tr.every(Boolean)) return tr.join(' ');
+  if (!/[.!:?)"]$/.test(t)) { const ls = t.split(', ').map(x => one(x + '.')); if (ls.every(Boolean)) return ls.map(x => x.replace(/\.$/, '')).join(', '); } // a bare keyword list without the full stop: "Auto-break 1, +1 [Precision]"
   return null; };
 export const tx = text => { if (typeof text !== 'string' || lang === 'en') return text; const d = sec('text'); if (!d) return text; const whole = hit(d, text); if (whole) return whole; return text.split('\n').map(l => line(d, l) || l).join('\n'); };
 /** An interface string by key. */
