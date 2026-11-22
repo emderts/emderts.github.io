@@ -185,3 +185,5 @@
 - 마침표 없는 키워드 나열("Auto-break 1, +1 [Precision]")도 번역기가 낱개로 조합한다.
 
 - 전초기지 · 성인 · 위험 서사 표 확정. Hired help = 용병 고용, "Instead of rolling for an effect, you may choose an effect." = "굴려서 효과를 정하는 대신, 효과를 골라도 됩니다." (소유자 확인 2026-11-22). 오딧에 영웅 서사 · 위험 서사 전사 데이터 전체 섹션(#arcs) 추가.
+
+- 영웅 서사 정정: Knight of the Grand Kingdoms L3, Steadfast L2/L6, Enduring Legend L2/L6, Exemplary Leader L7, The Man, Made Myth L3 — Fire → Inspire; The Man, Made Myth L7 — Break → Envenomed. 위험 서사 아이콘: Champion of Utrebant = [Vigor], Marble Marionette · Tableau Vivant = [Support] 슬롯, Rebellious Child · Good, Strong Hands · Obedient Son · Knight of Stone = [red Armor die], No Strings on Me = [black Armor die]; Ser Sonch Rapport Boon = [Bane] (소유자 확인 2026-11-22).

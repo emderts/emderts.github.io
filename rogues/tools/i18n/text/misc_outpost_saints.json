@@ -11,10 +11,7 @@
  "Other Knights cannot use any abilities on you.": "다른 기사들은 당신에게 어떤 능력도 사용할 수 없습니다.",
  "You cannot re-roll your Crit die.": "당신은 당신의 치명타 주사위를 다시 굴릴 수 없습니다.",
  "Choose one: A7 or J8": "하나를 고릅니다: A7 또는 J8",
- "After [Peril Check], gain +1 [Vigor icon]": "[위험 체크] 뒤, [활기]를 1 얻습니다",
  "After [Peril Check], lose 1 Condition token": "[위험 체크] 뒤, 상태 토큰 1개를 잃습니다",
- "Soak 1. You have 1 additional [icon] slot.": "경감 1. 당신은 [아이콘] 슬롯을 1개 더 가집니다.",
- "You have 1 additional [icon] slot.": "당신은 [아이콘] 슬롯을 1개 더 가집니다.",
  "1 chosen Mob tier Merchant gear": "개체 등급 상인 장비 중 골라서 1장",
  "INSTINCT: Migrate. Parasitize 1.": "본능: 이주. 기생 1.",
  "ULTRAINSTINCT: Germinate (Dragon).": "초본능: 증식 (용).",
@@ -47,5 +44,10 @@
  "One chosen Knight gains +1 [Speed] for the duration of this Expedition.": "고른 기사 한 명이 이번 원정 동안 [속도] +1을 얻습니다.",
  "Shuffle 1 Survey Exploration card into the Exploration deck.": "답사 탐험 카드 1장을 탐험 덱에 섞어 넣습니다.",
  "Two random Knights gain Poison Resilience 1 for the duration of this Expedition.": "무작위 기사 두 명이 이번 원정 동안 독 내성 1을 얻습니다.",
- "Immediately Incarnate into the Unknown Saint. From now on, whenever a Knight is about to die and is not Devoted to any specific Saint, you may try to Incarnate into the Unknown Saint. To do so, roll a d10. You Incarnate on a \"10\", and during Incarnation you gain +1 [Power] (as denoted on the special Unknown Saint card). Return to the Delve.": "즉시 이름 없는 성인으로 화신합니다. 이제부터 기사가 사망하려 할 때 특정 성인에게 헌신한 상태가 아니라면, 이름 없는 성인으로 화신을 시도해도 됩니다. 그러려면 d10을 굴립니다. \"10\"이 나오면 화신하며, 화신 동안 [위력] +1을 얻습니다(특별한 이름 없는 성인 카드에 표시된 대로). 탐사로 돌아갑니다."
+ "Immediately Incarnate into the Unknown Saint. From now on, whenever a Knight is about to die and is not Devoted to any specific Saint, you may try to Incarnate into the Unknown Saint. To do so, roll a d10. You Incarnate on a \"10\", and during Incarnation you gain +1 [Power] (as denoted on the special Unknown Saint card). Return to the Delve.": "즉시 이름 없는 성인으로 화신합니다. 이제부터 기사가 사망하려 할 때 특정 성인에게 헌신한 상태가 아니라면, 이름 없는 성인으로 화신을 시도해도 됩니다. 그러려면 d10을 굴립니다. \"10\"이 나오면 화신하며, 화신 동안 [위력] +1을 얻습니다(특별한 이름 없는 성인 카드에 표시된 대로). 탐사로 돌아갑니다.",
+ "After [Peril Check], gain +1 [Vigor]": "[위험 체크] 뒤, [활기]를 1 얻습니다",
+ "You have 1 additional [Support] slot.": "당신은 [지원] 슬롯을 1개 더 가집니다.",
+ "[red Armor die]": "[붉은 방어 주사위]",
+ "[black Armor die]": "[검은 방어 주사위]",
+ "During Rest: Lose -1 [Bane].": "휴식 중: [해악]을 1 잃습니다."
 }

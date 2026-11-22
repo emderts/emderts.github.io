@@ -1962,7 +1962,8 @@
      }
     },
     "bonus": {
-     "text": "After [Peril Check], gain +1 [Vigor icon]"
+     "text": "After [Peril Check], gain +1 [Vigor]",
+     "note": "아이콘 (소유자 확인 2026-11-22)"
     }
    },
    {
@@ -2138,9 +2139,8 @@
      }
     },
     "bonus": {
-     "text": "You have 1 additional [icon] slot.",
-     "unclear": "Icon is a small black-outline round pouch/bag-like symbol (tied at top); exact slot type not identifiable from the crop.",
-     "guess": "[icon]=Support 슬롯 아이콘으로 추정"
+     "text": "You have 1 additional [Support] slot.",
+     "note": "아이콘 (소유자 확인 2026-11-22)"
     }
    },
    {
@@ -2230,9 +2230,8 @@
      }
     },
     "bonus": {
-     "text": "[icon]",
-     "unclear": "Bonus box contains only a small icon: a red cube/die with a white chalice (goblet) symbol; no text.",
-     "guess": "빨간(No Strings on Me는 검정) 주사위+성배 아이콘 = Armor die 1개(빨강/검정)로 추정"
+     "text": "[red Armor die]",
+     "note": "아이콘 (소유자 확인 2026-11-22)"
     }
    },
    {
@@ -2277,9 +2276,8 @@
      }
     },
     "bonus": {
-     "text": "[icon]",
-     "unclear": "Bonus box contains only a small icon: a red cube/die with a white chalice (goblet) symbol (same icon as Rebellious Child); no text.",
-     "guess": "빨간(No Strings on Me는 검정) 주사위+성배 아이콘 = Armor die 1개(빨강/검정)로 추정"
+     "text": "[red Armor die]",
+     "note": "아이콘 (소유자 확인 2026-11-22)"
     }
    },
    {
@@ -2324,9 +2322,8 @@
      }
     },
     "bonus": {
-     "text": "Soak 1. You have 1 additional [icon] slot.",
-     "unclear": "Icon is the same small black-outline round pouch/bag-like slot symbol as on Marble Marionette; exact slot type not identifiable from the crop.",
-     "guess": "[icon]=Support 슬롯 아이콘으로 추정"
+     "text": "Soak 1. You have 1 additional [Support] slot.",
+     "note": "아이콘 (소유자 확인 2026-11-22)"
     }
    },
    {
@@ -2371,9 +2368,8 @@
      }
     },
     "bonus": {
-     "text": "[icon]",
-     "unclear": "Bonus box contains only a small icon: a BLACK cube/die with a white chalice (goblet) symbol (the other Stoneface cards show a red cube with the same chalice); no text.",
-     "guess": "빨간(No Strings on Me는 검정) 주사위+성배 아이콘 = Armor die 1개(빨강/검정)로 추정"
+     "text": "[black Armor die]",
+     "note": "아이콘 (소유자 확인 2026-11-22)"
     }
    },
    {
@@ -2418,9 +2414,8 @@
      }
     },
     "bonus": {
-     "text": "[icon]",
-     "unclear": "Bonus box contains only a small icon: a red cube/die with a white chalice (goblet) symbol; no text.",
-     "guess": "빨간(No Strings on Me는 검정) 주사위+성배 아이콘 = Armor die 1개(빨강/검정)로 추정"
+     "text": "[red Armor die]",
+     "note": "아이콘 (소유자 확인 2026-11-22)"
     }
    },
    {
@@ -2465,9 +2460,8 @@
      }
     },
     "bonus": {
-     "text": "[icon]",
-     "unclear": "Bonus box contains only a small icon: a red cube/die with a white chalice (goblet) symbol; no text.",
-     "guess": "빨간(No Strings on Me는 검정) 주사위+성배 아이콘 = Armor die 1개(빨강/검정)로 추정"
+     "text": "[red Armor die]",
+     "note": "아이콘 (소유자 확인 2026-11-22)"
     }
    }
   ]

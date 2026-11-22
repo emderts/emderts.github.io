@@ -13,8 +13,8 @@
    "Bravery": 2
   },
   "rapportBoon": {
-   "text": "During Rest: Lose -1 [icon].",
-   "note": "Rogue's Path에서 미적용."
+   "text": "During Rest: Lose -1 [Bane].",
+   "note": "Rogue's Path에서 미적용. 아이콘 = Bane (소유자 확인 2026-11-22)"
   },
   "explorationCipher": "**37",
   "portraits": [
@@ -660,14 +660,17 @@
      "options": [
       [
        {
-        "token": "Fire",
+        "token": "Inspire",
         "n": 1
        }
       ]
      ]
     }
    ],
-   "unclear": []
+   "unclear": [],
+   "notes": [
+    "L7 Fire → Inspire (소유자 확인 2026-11-22)"
+   ]
   },
   {
    "name": "Hero to the People",
@@ -937,7 +940,7 @@
      "options": [
       [
        {
-        "token": "Fire",
+        "token": "Inspire",
         "n": 1
        },
        {
@@ -997,7 +1000,7 @@
      "options": [
       [
        {
-        "token": "Break",
+        "token": "Envenomed",
         "n": 2
        }
       ]
@@ -1015,7 +1018,11 @@
      ]
     }
    ],
-   "unclear": []
+   "unclear": [],
+   "notes": [
+    "L3 Fire → Inspire (소유자 확인 2026-11-22)",
+    "L7 Break → Envenomed (소유자 확인 2026-11-22)"
+   ]
   },
   {
    "name": "Enduring Legend",
@@ -1061,7 +1068,7 @@
         "n": 1
        },
        {
-        "token": "Fire",
+        "token": "Inspire",
         "n": 1
        }
       ]
@@ -1125,7 +1132,7 @@
         "n": 1
        },
        {
-        "token": "Fire",
+        "token": "Inspire",
         "n": 1
        }
       ]
@@ -1160,7 +1167,11 @@
      ]
     }
    ],
-   "unclear": []
+   "unclear": [],
+   "notes": [
+    "L2 Fire → Inspire (소유자 확인 2026-11-22)",
+    "L6 Fire → Inspire (소유자 확인 2026-11-22)"
+   ]
   }
  ],
  "perilArcsRef": "data/knights/peril_arcs.json → arcs.ser-sonch",

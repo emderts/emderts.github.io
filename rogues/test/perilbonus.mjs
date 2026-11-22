@@ -1,0 +1,24 @@
+// Peril Arc top-box bonuses (owner-confirmed icons 2026-11-22): armor die, Soak, Support slot, Virtue tests, Jump
+import fs from 'fs';
+import { Effects } from '../src/engine/effects.js';
+let fail = 0; const ok = (c, m) => { if (!c) { fail++; console.log('FAIL', m); } };
+const PA = JSON.parse(fs.readFileSync('data/knights/peril_arcs.json', 'utf8')).arcs; const arc = (k, n) => PA[k].find(a => a.name === n);
+const C = { perilBonus(k) { const b = k && k.perilArcDef && k.perilArcDef.bonus; return b ? String(b.text || '') : ''; }, alive: () => [] };
+const fx = Object.create(Effects.prototype); fx.c = C; fx.saintInf = () => []; fx.defOff = () => false; fx.gearSum = () => 0; fx.kwList = () => []; fx.constKw = () => []; fx.kwGateOk = () => true;
+const kn = a => ({ gear: [], perilArcDef: a, virtues: {} });
+ok(fx.armorDice(kn(arc('stoneface', 'Knight of Stone'))).red === 1, 'Knight of Stone: red Armor die');
+ok(fx.armorDice(kn(arc('stoneface', 'No Strings on Me'))).black === 1, 'No Strings on Me: black Armor die');
+ok(fx.armorDice(kn(arc('stoneface', 'Marble Marionette'))).red === 0, 'Marble Marionette: no Armor die');
+ok(fx.soak(kn(arc('stoneface', 'Tableau Vivant'))) === 1, 'Tableau Vivant: Soak 1');
+ok(fx.soak(kn(arc('stoneface', 'Mangiarovina'))) === 1, 'Mangiarovina: Soak 1');
+ok(fx.soak(kn(arc('stoneface', 'Knight of Stone'))) === 0, 'Knight of Stone: no Soak');
+ok(fx.virtueBonus(kn(arc('paracelsa', 'Reverent')), 'Bravery') === 1, 'Reverent: +1 to Virtue Tests');
+ok(/additional \[Support\] slot/.test(arc('stoneface', 'Marble Marionette').bonus.text) && /additional \[Support\] slot/.test(arc('stoneface', 'Tableau Vivant').bonus.text), 'Support slot text');
+ok(arc('ser-ubar', 'Champion of Utrebant').bonus.text === 'After [Peril Check], gain +1 [Vigor]', 'Champion of Utrebant text');
+for (const k in PA) for (const a of PA[k]) ok(!/\[icon\]|\[Vigor icon\]/.test((a.bonus || {}).text || ''), `${a.name}: unread icon left`);
+const K = f => JSON.parse(fs.readFileSync('data/knights/' + f, 'utf8')); const lv = (d, n, l) => d.heroicArcs.find(a => a.name === n).levels.find(x => x.level === l).options.flat().map(t => t.token);
+ok(lv(K('kara.json'), 'Knight of the Grand Kingdoms', 3).includes('Inspire') && !lv(K('kara.json'), 'Knight of the Grand Kingdoms', 3).includes('Fire'), 'Knight of the Grand Kingdoms L3 Inspire');
+ok(lv(K('kara.json'), 'Steadfast', 2).includes('Inspire') && lv(K('kara.json'), 'Steadfast', 6).includes('Inspire'), 'Steadfast L2/L6 Inspire');
+const S = K('ser-sonch.json'); ok(lv(S, 'Enduring Legend', 2).includes('Inspire') && lv(S, 'Enduring Legend', 6).includes('Inspire') && lv(S, 'Exemplary Leader', 7).includes('Inspire') && lv(S, 'The Man, Made Myth', 3).includes('Inspire'), 'Ser Sonch Inspire levels');
+ok(lv(S, 'The Man, Made Myth', 7).join() === 'Envenomed', 'The Man, Made Myth L7 Envenomed');
+console.log(fail ? `${fail} FAILED` : 'ALL PASS (peril bonus)'); if (fail) process.exit(1);

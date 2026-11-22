@@ -5705,7 +5705,12 @@
   "One chosen Knight gains +1 [Speed] for the duration of this Expedition.": "고른 기사 한 명이 이번 원정 동안 [속도] +1을 얻습니다.",
   "Shuffle 1 Survey Exploration card into the Exploration deck.": "답사 탐험 카드 1장을 탐험 덱에 섞어 넣습니다.",
   "Two random Knights gain Poison Resilience 1 for the duration of this Expedition.": "무작위 기사 두 명이 이번 원정 동안 독 내성 1을 얻습니다.",
-  "Immediately Incarnate into the Unknown Saint. From now on, whenever a Knight is about to die and is not Devoted to any specific Saint, you may try to Incarnate into the Unknown Saint. To do so, roll a d10. You Incarnate on a \"10\", and during Incarnation you gain +1 [Power] (as denoted on the special Unknown Saint card). Return to the Delve.": "즉시 이름 없는 성인으로 화신합니다. 이제부터 기사가 사망하려 할 때 특정 성인에게 헌신한 상태가 아니라면, 이름 없는 성인으로 화신을 시도해도 됩니다. 그러려면 d10을 굴립니다. \"10\"이 나오면 화신하며, 화신 동안 [위력] +1을 얻습니다(특별한 이름 없는 성인 카드에 표시된 대로). 탐사로 돌아갑니다."
+  "Immediately Incarnate into the Unknown Saint. From now on, whenever a Knight is about to die and is not Devoted to any specific Saint, you may try to Incarnate into the Unknown Saint. To do so, roll a d10. You Incarnate on a \"10\", and during Incarnation you gain +1 [Power] (as denoted on the special Unknown Saint card). Return to the Delve.": "즉시 이름 없는 성인으로 화신합니다. 이제부터 기사가 사망하려 할 때 특정 성인에게 헌신한 상태가 아니라면, 이름 없는 성인으로 화신을 시도해도 됩니다. 그러려면 d10을 굴립니다. \"10\"이 나오면 화신하며, 화신 동안 [위력] +1을 얻습니다(특별한 이름 없는 성인 카드에 표시된 대로). 탐사로 돌아갑니다.",
+  "After [Peril Check], gain +1 [Vigor]": "[위험 체크] 뒤, [활기]를 1 얻습니다",
+  "You have 1 additional [Support] slot.": "당신은 [지원] 슬롯을 1개 더 가집니다.",
+  "[red Armor die]": "[붉은 방어 주사위]",
+  "[black Armor die]": "[검은 방어 주사위]",
+  "During Rest: Lose -1 [Bane].": "휴식 중: [해악]을 1 잃습니다."
  },
  "ui": {}
 }
