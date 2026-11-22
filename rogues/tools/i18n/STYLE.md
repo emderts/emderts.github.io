@@ -192,3 +192,5 @@
 - 위험 서사 보너스 칸: Jump = 이동 시작에 쓰면 지형 칸 1개 무시 / After [Peril Check] = Uninjured여도 발동 / Armor die = 방어 굴림마다 1개 추가 (소유자 확인 2026-11-22).
 
 - UI 용어 확정 (소유자 확인 2026-11-22): Out of Reach 도달 범위 밖, Routine 루틴, Hidden 은신(Hide와 동일), Massive Peril 막대한 위험, Incarnation/Incarnate 화신, Haunt 망령(몬스터 개체).
+
+- UI 용어 나머지 45개 확정, 약어(BP · AI · AT · VP · Lv · CD/DL/DC)와 제목 "Rogue's Path"는 영어 그대로 둠 (소유자 확인 2026-11-22).
