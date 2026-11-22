@@ -22,7 +22,17 @@ const NUM = /(?<!\[d\d*)\d+/g; // numbers, except the 10 of the [d10] icon
 const tpl = (d, l) => { const nums = l.match(NUM); if (!nums) return null; const v = hit(d, l.replace(NUM, '#')); if (!v) return null; let i = 0; return v.replace(/#(\d)?/g, (m, k) => (k ? nums[+k - 1] : nums[i++]) ?? m); };
 // [V] / [H] / [P] / [Peril] are transcription variants of [Vigor] / [Heat] / [Passion] / [Peril Check]: looked up in the canonical spelling
 export const canon = s => s.replace(/\[V\]/g, '[Vigor]').replace(/\[H\]/g, '[Heat]').replace(/\[P\]/g, '[Passion]').replace(/\[Peril\]/g, '[Peril Check]');
-const line = (d, l) => { const t = l.trim(); const c = canon(t); return hit(d, l) || hit(d, t) || hit(d, c) || tpl(d, t) || (c !== t ? tpl(d, c) : null); };
+const line0 = (d, l) => { const t = l.trim(); const c = canon(t); return hit(d, l) || hit(d, t) || hit(d, c) || tpl(d, t) || (c !== t ? tpl(d, c) : null); };
+// gate tags printed in front of a gated line: "[GRAVE] Falsity." / "[P 3+] Spotlight."
+const GATE_TAG = { JUDICIUM: '판결', GRAVE: '중대', MAJOR: '상위', MINOR: '하위', APE: '유인원', HUMAN: '인간', KING: '왕', DEVIL: '악마', DRAGON: '용', VASSAL: '봉신', 'ANY CONDITION': '모든 상태' };
+const gateTag = g => GATE_TAG[g] || (/^(P|PASSION) (\d+\+)$/.test(g) ? '격정 ' + g.replace(/^\S+ /, '') : /^Bane \d+\+$/.test(g) ? '해악 ' + g.slice(5) : null);
+// a line the dictionary does not hold whole: a gate tag + a known line, or several known sentences ("Break 2. Commit.")
+const line = (d, l) => { const v = line0(d, l); if (v) return v; const t = l.trim();
+  const g = t.match(/^\[([A-Z][A-Za-z0-9+ ]*)\] (.+)$/); if (g && gateTag(g[1])) { const r = line(d, g[2]); if (r) return `[${gateTag(g[1])}] ${r}`; }
+  const th = t.match(/^\[Two-handed(?: icon)?\]: (.+)$/); if (th) { const r = line(d, th[1]); if (r) return `[양손]: ${r}`; }
+  const one = x => line0(d, x) || (/ instead\.$/.test(x) ? (r => (r ? '대신 ' + r : null))(line0(d, x.replace(/ instead\.$/, '.'))) : null); // "Closing 3 instead." = 대신 결착 3.
+  const parts = t.split(/(?<=[.!])\s+/); const tr = parts.map(one); if (tr.every(Boolean)) return tr.join(' ');
+  return null; };
 export const tx = text => { if (typeof text !== 'string' || lang === 'en') return text; const d = sec('text'); if (!d) return text; const whole = hit(d, text); if (whole) return whole; return text.split('\n').map(l => line(d, l) || l).join('\n'); };
 /** An interface string by key. */
 export const tu = (key, fallback) => hit(sec('ui'), key) || fallback;
