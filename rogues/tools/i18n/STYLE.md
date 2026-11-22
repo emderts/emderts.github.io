@@ -187,3 +187,6 @@
 - 전초기지 · 성인 · 위험 서사 표 확정. Hired help = 용병 고용, "Instead of rolling for an effect, you may choose an effect." = "굴려서 효과를 정하는 대신, 효과를 골라도 됩니다." (소유자 확인 2026-11-22). 오딧에 영웅 서사 · 위험 서사 전사 데이터 전체 섹션(#arcs) 추가.
 
 - 영웅 서사 정정: Knight of the Grand Kingdoms L3, Steadfast L2/L6, Enduring Legend L2/L6, Exemplary Leader L7, The Man, Made Myth L3 — Fire → Inspire; The Man, Made Myth L7 — Break → Envenomed. 위험 서사 아이콘: Champion of Utrebant = [Vigor], Marble Marionette · Tableau Vivant = [Support] 슬롯, Rebellious Child · Good, Strong Hands · Obedient Son · Knight of Stone = [red Armor die], No Strings on Me = [black Armor die]; Ser Sonch Rapport Boon = [Bane] (소유자 확인 2026-11-22).
+
+- 인터페이스 용어: 화면 · 로그 · 선택 창의 한국어 문장 안에 섞인 영어 용어는 한국어 모드에서 확정 번역어로 치환하고 조사를 맞춘다 (tools/i18n/uiterms_ko.txt; "? " 줄 = 소유자 미확인 제안).
+- 위험 서사 보너스 칸: Jump = 이동 시작에 쓰면 지형 칸 1개 무시 / After [Peril Check] = Uninjured여도 발동 / Armor die = 방어 굴림마다 1개 추가 (소유자 확인 2026-11-22).
