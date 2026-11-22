@@ -158,3 +158,6 @@
 
 - 왕국 장비 · 강화 문구 확정 (소유자 확인 2026-11-22).
 - 장비의 키워드 줄은 낱개 문장으로 번역해 두고 번역기가 조합한다 (`src/ui/i18n.js` 의 `line`): "Break 2. Commit." = "파쇄 2." + "전념.", 게이트 표시 "[GRAVE] X" = "[중대] " + X, "X instead." = "대신 X.", "[Two-handed]: X" = "[양손]: X". 낱개 문장은 `tools/i18n/text/gear_common.json`.
+
+- 기본 장비 · 상인 장비 · 장비 공통 키워드 줄 확정 (소유자 확인 2026-11-22).
+- 몬스터 장비는 `tools/i18n/text/gear_monster_N.json` 에 몬스터 5~6종씩 묶는다. Wither = 시듦, Take Root = 뿌리내리기.
