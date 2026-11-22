@@ -269,5 +269,17 @@
  "# [Vigor] Lose -# [Heat].": "# [활기] [열기]를 # 잃습니다.",
  "Immune to Bane.": "해악에 대한 면역.",
  "# [Heat] [Exhaust] When you're about to gain Bane [Bane] tokens, lower that gain to #.": "# [열기] [소진] 당신이 해악 토큰을 얻으려 할 때, 그 획득을 #2로 낮춥니다.",
- "# [Heat] [Exhaust] When you are about to gain Bane [Bane] tokens, lower that gain to #.": "# [열기] [소진] 당신이 해악 토큰을 얻으려 할 때, 그 획득을 #2로 낮춥니다."
+ "# [Heat] [Exhaust] When you are about to gain Bane [Bane] tokens, lower that gain to #.": "# [열기] [소진] 당신이 해악 토큰을 얻으려 할 때, 그 획득을 #2로 낮춥니다.",
+ "Gain +# [Evasion].": "[회피] +#을 얻습니다.",
+ "Gain +# [Power] against Dragons.": "용을 상대로 [위력] +#을 얻습니다.",
+ "# [Heat] [Exhaust] Lifeline.": "# [열기] [소진] 생명선.",
+ "[Reaction] # [Heat] Superior Reflex.": "[반응] # [열기] 우수한 반사신경.",
+ "Ignore Lumbering.": "육중함을 무시합니다.",
+ "Ignore Wound Responses.": "부상 대응을 무시합니다.",
+ "Each hit: Sunder #.": "명중 하나마다: 쪼개기 #.",
+ "[Exhaust] Guard #.": "[소진] 수비 #.",
+ "# [Heat] [Exhaust] Block or Defy.": "# [열기] [소진] 막기 또는 대항.",
+ "Ignore Armor [Armor] tokens.": "방어구 토큰을 무시합니다.",
+ "*X is equal to the amount of Bane [Bane] tokens you have.": "*X는 당신이 가진 해악 토큰의 수와 같습니다.",
+ "Auto-hope X*.": "자동 희망 X*."
 }
