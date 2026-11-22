@@ -196,3 +196,5 @@
 - UI 용어 나머지 45개 확정, 약어(BP · AI · AT · VP · Lv · CD/DL/DC)와 제목 "Rogue's Path"는 영어 그대로 둠 (소유자 확인 2026-11-22).
 
 - UI 용어 확정 (소유자 확인 2026-11-22): The Seat of Power 권좌, Bridle 고삐, Sword of Smiting 응징의 검, Land on Top 위에 내려앉기, Wisper 도깨비불, Tree 나무, Geist 영혼, Attack Responses 공격 대응, When revealed 공개될 때, Merchant's Workshop 상인의 공방, Move 이동.
+
+- 기본 언어 = 한국어 (소유자 요청 2026-11-22). 저장된 선택(localStorage kf.lang)이 있으면 그것을 따름.

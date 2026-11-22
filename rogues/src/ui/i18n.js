@@ -5,8 +5,8 @@
 //   ui    — interface strings by key (optional; the interface itself is Korean)  { "lang.toggle": "언어" }
 // A missing entry always falls back to the original, so a dictionary can be filled in gradually.
 // tools/i18n_extract.mjs writes docs/i18n/<lang>.template.json with every name and text line used by the data.
-export const LANGS = [{ id: 'en', label: 'English (원문)' }, { id: 'ko', label: '한국어 (번역)' }];
-let lang = 'en'; try { const v = localStorage.getItem('kf.lang'); if (LANGS.some(l => l.id === v)) lang = v; } catch (e) { }
+export const LANGS = [{ id: 'ko', label: '한국어 (번역)' }, { id: 'en', label: 'English (원문)' }];
+let lang = 'ko'; try { const v = localStorage.getItem('kf.lang'); if (LANGS.some(l => l.id === v)) lang = v; } catch (e) { }
 let DICT = {};
 export const initI18n = data => { DICT = (data && data.i18n) || {}; };
 export const getLang = () => lang;

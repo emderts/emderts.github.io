@@ -260,6 +260,7 @@ Move = 이동
 Remnant Move = 잔재 이동
 End of turn = 턴 종료 시
 You died = 너는 죽었다
+You win! = 당신의 승리입니다!
 @격돌 — 남은 낱말
 The Seat of Power = 권좌
 Bridle = 고삐

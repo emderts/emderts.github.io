@@ -2,6 +2,7 @@
 import { initI18n, getLang, setLang, tn, tx, tu, auto, trIn } from '../src/ui/i18n.js';
 let fails = 0; const ok = (c, m) => { if (!c) fails++; console.log((c ? 'PASS ' : 'FAIL ') + m); };
 initI18n({ i18n: { ko: { _inlineSkip: ['Heat'], names: { 'Chipped Axe': '이 빠진 도끼', Empty: '', Slash: '베기', Heat: '열기', 'Rust Beam': '녹 광선' }, text: { 'Knockback #.': '튕겨내기 #.', 'Move # then # spaces': '#2칸 뒤 #1칸', 'Break 1.': 'Break 1 (번역).', 'Whole\ntext': '전체 문구' }, ui: { 'lang.toggle': '언어' } } } });
+ok(getLang() === 'ko', 'Korean is the default language'); setLang('en');
 ok(getLang() === 'en' && tn('Chipped Axe') === 'Chipped Axe' && tx('Break 1.') === 'Break 1.' && auto('Chipped Axe') === 'Chipped Axe', 'English: everything is the original');
 setLang('ko'); ok(getLang() === 'ko' && tn('Chipped Axe') === '이 빠진 도끼' && tn('Unknown') === 'Unknown' && tn('Empty') === 'Empty', 'names: translated when present, original otherwise (empty values too)');
 ok(tx('Break 1.\nCommit.') === 'Break 1 (번역).\nCommit.' && tx('Whole\ntext') === '전체 문구', 'text: whole text first, then line by line');
