@@ -418,20 +418,20 @@ const langButton = () => { let b = document.getElementById('langbtn'); if (!b) {
 // ── Keyword dictionary: every confirmed term (English ↔ 한국어) + the rulebook KEYWORD LIST entry when there is one (data/rules/keywords.json)
 const T = x => document.createTextNode(String(x)); // a text node that the language option leaves alone
 const dictEntries = () => { const ko = (DATA.i18n && DATA.i18n.ko) || {}; const defs = ((DATA.rules || {}).keywords || {}).keywords || {}; const seen = new Set(); const out = [];
-  for (const [e, k] of Object.entries(ko.glossary || {})) { const en = e.replace(/^\[/, '').trim(); if (seen.has(en)) continue; seen.add(en); out.push({ en, ko: k.replace(/^\[/, '').trim(), def: defs[en] || '', kind: 'kw' }); }
+  for (const [e, k] of Object.entries(ko.glossary || {})) { const en = e.replace(/^\[/, '').trim(); if (seen.has(en)) continue; seen.add(en); out.push({ en, ko: k.replace(/^\[/, '').trim(), def: defs[en] || '', kdef: (ko.kwdefs || {})[en] || '', kind: 'kw' }); }
   for (const [en, d] of Object.entries(defs)) if (!seen.has(en)) { seen.add(en); out.push({ en, ko: '', def: d, kind: 'kw' }); }
   for (const [en, k] of Object.entries(ko.uiterms || {})) if (!seen.has(en) && !seen.has(en + ' X')) { seen.add(en); out.push({ en, ko: k, def: '', kind: 'term' }); }
   return out.sort((a, b) => a.en.localeCompare(b.en)); };
 const openDict = () => { const es = dictEntries(); const koFirst = getLang() !== 'en';
   const rows = es.map(x => { const a = koFirst && x.ko ? x.ko : x.en, b = koFirst ? (x.ko ? x.en : '') : x.ko; const head = [h('b', {}, T(a)), b ? h('span', { class: 'muted' }, T(' · ' + b)) : null];
-    const el = x.def ? h('details', { class: 'dict-e' }, h('summary', {}, ...head), h('div', { class: 'cv-text', style: 'white-space:pre-wrap;margin:4px 0 6px' }, T(x.def))) : h('div', { class: 'dict-e', style: 'padding-left:14px' }, ...head);
+    const el = x.def ? h('details', { class: 'dict-e' }, h('summary', {}, ...head), h('div', { class: 'cv-text', style: 'white-space:pre-wrap;margin:4px 0 6px' }, T(koFirst && x.kdef ? x.kdef : x.def)), koFirst && x.kdef ? h('details', { style: 'margin:0 0 6px' }, h('summary', { class: 'small muted' }, T('원문')), h('div', { class: 'small muted', style: 'white-space:pre-wrap' }, T(x.def))) : null) : h('div', { class: 'dict-e', style: 'padding-left:14px' }, ...head);
     el.dataset.q = (x.en + ' ' + x.ko).toLowerCase(); el.dataset.def = x.def ? '1' : ''; el.style.cssText += ';padding-top:3px;padding-bottom:3px;border-bottom:1px solid #2c261c;font-size:13px'; return el; });
   const cnt = h('span', { class: 'small muted' }, T(`${es.length}개`)); let onlyDef = false;
   const apply = () => { const q = inp.value.trim().toLowerCase(); let n = 0; for (const r of rows) { const ok = (!q || r.dataset.q.includes(q)) && (!onlyDef || r.dataset.def); r.style.display = ok ? '' : 'none'; if (ok) n++; } cnt.textContent = `${n}개`; };
   const inp = h('input', { type: 'search', placeholder: '검색 (한국어 / English)', style: 'flex:1;min-width:0', oninput: () => apply() });
   const tog = h('button', { class: 'sm', onclick: () => { onlyDef = !onlyDef; tog.textContent = onlyDef ? '전체 보기' : '설명 있는 것만'; apply(); } }, T('설명 있는 것만'));
   openModal('키워드 사전', h('div', { class: 'row', style: 'gap:6px;align-items:center;margin-bottom:6px' }, inp, tog, cnt),
-    h('p', { class: 'small muted', style: 'margin:0 0 6px' }, T('▸ 표시가 있는 항목을 누르면 룰북 KEYWORD LIST(p. 80–87)의 원문 설명이 펼쳐집니다. ▢ = 룰북의 아이콘 자리(아직 옮기지 못함). 설명은 아직 영어 원문입니다.')), h('div', {}, ...rows)); };
+    h('p', { class: 'small muted', style: 'margin:0 0 6px' }, T('▸ 표시가 있는 항목을 누르면 룰북 KEYWORD LIST(p. 80–87)의 설명이 펼쳐집니다. ▢ = 룰북의 아이콘 자리(아직 옮기지 못함).')), h('div', {}, ...rows)); };
 const dictButton = () => { let b = document.getElementById('dictbtn'); if (!b) { b = document.createElement('button'); b.id = 'dictbtn'; b.style.cssText = 'position:fixed;right:76px;bottom:6px;z-index:60;font-size:11px;padding:3px 7px;border-radius:10px;opacity:.75;background:#221d16;color:#cbbf9c;border:1px solid #5a4d33'; b.textContent = '📖 사전'; b.title = '키워드 사전'; b.addEventListener('click', () => { if (modal && modal.title === '키워드 사전') closeModal(); else openDict(); }); document.body.append(b); } };
 const render = () => { render0(); langButton(); dictButton(); if (modal && !document.querySelector('.overlay')) app.append(modalEl()); };
 function render0() { setTimeout(syncGearChoice, 0);

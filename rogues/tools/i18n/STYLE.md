@@ -200,3 +200,5 @@
 - 기본 언어 = 한국어 (소유자 요청 2026-11-22). 저장된 선택(localStorage kf.lang)이 있으면 그것을 따름.
 
 - 키워드 사전(📖): 확정 용어 전부(영어 ↔ 한국어) + 룰북 KEYWORD LIST(p. 80–87) 원문 설명(data/rules/keywords.json, 2단 텍스트 자동 추출 후 손질, ▢ = 아이콘 자리 미전사). 설명 번역은 아직 없음.
+
+- Wither = 시듦 (소유자 확인 2026-11-22). 키워드 사전 설명 번역: tools/i18n/keyword_defs_ko.json (source = 발동 주체, non-Mob Monster = 개체가 아닌 몬스터, involuntary movement = 비자발적 이동, effective range = 유효 범위, Line of Sight = 시야, Deep Fog = 깊은 안개, District Wheel = 구역 바퀴 — 소유자 미확인).
