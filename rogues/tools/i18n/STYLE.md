@@ -218,3 +218,5 @@
 - After Attack은 공격마다, After Final Attack은 한 번 (소유자 확인 2026-11-24) — 여러 대상을 가진 한 번의 공격에서는 REACT 창 · Tactic 한 번. Humpty Charge가 보드 가장자리 · 장애물에서 멈춰도 그 자리의 기사는 Crash + Unavoidable Knockback (룰북 p.51).
 
 - Vassal = 가신 (태그 [가신] 포함, 소유자 확인 2026-11-24).
+
+- Dread = 경악 (소유자 확인 2026-11-24). 용병: Bard L2 · Healer L2의 Clash 능력은 버튼으로 처리(기사·카드 선택), 나머지는 수동.

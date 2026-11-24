@@ -14,7 +14,7 @@
  "If hit, lose -# [Vigor]. [Peril Check].": "명중당하면 [활기]를 # 잃습니다. [위험 체크].",
  "Chosen Virtue. If hit, lose -# [Vigor]. [Peril Check].": "선택한 덕목. 명중당하면 [활기]를 # 잃습니다. [위험 체크].",
  "If hit, gain the Fear Condition card, and lose -# [Vigor]. [Peril Check].": "명중당하면 공포 상태 카드를 얻고 [활기]를 # 잃습니다. [위험 체크].",
- "If hit, gain the Dread Condition card and lose -# [Vigor]. [Peril Check].": "명중당하면 전율 상태 카드를 얻고 [활기]를 # 잃습니다. [위험 체크].",
+ "If hit, gain the Dread Condition card and lose -# [Vigor]. [Peril Check].": "명중당하면 경악 상태 카드를 얻고 [활기]를 # 잃습니다. [위험 체크].",
  "One hit, lose -# [Vigor], two or more hits, lose -# [Vigor]. [Peril Check].": "명중이 하나면 [활기]를 # 잃고, 명중이 둘 이상이면 [활기]를 # 잃습니다. [위험 체크].",
  "[Heat #+ ▸ -# [Vigor] INSTEAD] [Peril Check].": "[열기 #+ ▸ 대신 [활기] -#] [위험 체크].",
  "Cooldown. Restrain.": "대기. 연장.",
