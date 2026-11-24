@@ -97,7 +97,7 @@
    "ops": null,
    "notes": [
     "주사위 아이콘 = d10 (사용자 확인 2026-11-03)",
-    "Search 구현 (2026-11-24): 자유 행동, 타일마다 라운드당 1회. [해석, 확인 필요] +X Heat는 d10을 본 뒤에 정함 · X는 Heat Limit까지 · \"empty space\" = 미니어처도 지형도 없는 칸 · 5-10에서 Bog Witch를 놓으면 그 Rotten Stump 타일은 제거되고 Witch는 기사가 가장 많은 쪽을 봄(Mud Wisp 때와 같게)"
+    "Search 구현 (2026-11-24): 자유 행동, 타일마다 라운드당 1회. +X Heat는 d10을 굴리기 전에 정함 (소유자 확인 2026-11-24). [해석, 확인 필요] X는 Heat Limit까지 · \"empty space\" = 미니어처도 지형도 없는 칸 · 5-10에서 Bog Witch를 놓으면 그 Rotten Stump 타일은 제거되고 Witch는 기사가 가장 많은 쪽을 봄(Mud Wisp 때와 같게)"
    ]
   },
   {
