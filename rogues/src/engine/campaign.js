@@ -147,7 +147,8 @@ export class Campaign {
       const rk = this.knights.find(x => x.name === k.name);
       // If the Sigh existed before the Clash it is spent now; a Sigh gained during this Clash (First Death) is spent by being rewound.
       if (rk.sigh > 0) rk.sigh--;
-      this.current.sighUsed = (this.current.sighUsed || 0) + 1;
+      this.current.sighUsed = Math.max(this.current.sighUsed || 0, cur.sighUsed || 0) + 1;
+      for (let i = 0; i < this.current.sighUsed; i++) this.rng.int(1e9); // the replay gets a new seed (the snapshot would otherwise reproduce the same Clash) — 소유자 요청 2026-11-24
       this.say(`${k.name}이 Sigh of the Graal 사용 → Clash 재시작`); return 'replay';
     }
     this.roundBuffs = {}; // Inn effects last for this Rosegraal round only

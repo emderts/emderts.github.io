@@ -39,12 +39,13 @@ ok(stats.rounds >= 8, `campaign rounds simulated: ${stats.rounds} (win ${stats.w
     const c = mk(seed); c.ask = async q => { if (q.type === 'confirm' && /Sigh of the Graal 사용/.test(q.text)) return true; return campAsk(q); };
     const n = c.availableNodes().filter(n => c.nodePlayable(n)).sort((a, b) => a.level - b.level)[0]; c.chooseNode(n.id);
     const goldBefore = c.knights.map(k => k.gold).join(); const resBefore = c.resurrections;
-    const clash = c.buildClash(); clash.ask = clashAsk(clash); clash.setup(); await clash.run();
+    const clash = c.buildClash(); const seed0 = clash.rng.seed; clash.ask = clashAsk(clash); clash.setup(); await clash.run();
     if (!c.knights.some(k => k.sigh > 0)) continue; // nobody earned a Sigh this clash
     found = true;
     const fd = c.knights.filter(k => k.firstDeath).map(k => k.name);
     const res = await c.aftermath(clash);
     ok(res === 'replay', `seed ${seed}: Sigh → replay`);
+    { const again = c.buildClash(); ok(again.rng.seed !== seed0, `the replayed Clash has a new seed (${seed0} → ${again.rng.seed})`); }
     ok(c.knights.every(k => k.sigh === 0), `Sigh consumed (counts ${c.knights.map(k => k.sigh).join('/')})`);
     ok(c.knights.map(k => k.gold).join() === goldBefore && c.resurrections === resBefore && c.current && c.current.sighUsed === 1, 'state rewound to pre-Clash snapshot');
     ok(fd.every(nm => c.knights.find(k => k.name === nm).firstDeath), 'First Death remains recorded after rewind');
