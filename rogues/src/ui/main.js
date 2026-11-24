@@ -3,7 +3,7 @@ import { Clash } from '../engine/clash.js';
 import { Campaign } from '../engine/campaign.js';
 import { DIRS, inFront, rearCells } from '../engine/board.js';
 import { mountMonsterInfo, makeCardViews } from './monsterinfo.js';
-import { initI18n, getLang, setLang, LANGS, tn, tx, auto, trIn, translatedCount } from './i18n.js';
+import { initI18n, getLang, setLang, LANGS, tn, tx, auto, trIn, trLabel, translatedCount } from './i18n.js';
 
 const DATA = window.KF_DATA; initI18n(DATA);
 const $ = (sel, el = document) => el.querySelector(sel);
@@ -22,7 +22,7 @@ const _rc = app.replaceChildren.bind(app); app.replaceChildren = (...kids) => _r
 let screen = 'home'; let clash = null; let camp = null; let pending = null; let tab = 'log'; let seedInput = ''; let selNode = null; let mapScale = Math.min(1, Math.max(.55, (window.innerWidth - 30) / 700)); let outpostKnight = 0; let flash = '';
 let raf = 0; const scheduleRender = () => { if (raf) return; raf = requestAnimationFrame(() => { raf = 0; render(); }); };
 // Language option: names inside the prompt text and the button labels are shown translated (values are untouched)
-const askL10n = q => (getLang() === 'en' || !q ? q : { ...q, text: trIn(q.text), options: Array.isArray(q.options) ? q.options.map(o => (o && typeof o.label === 'string' ? { ...o, label: trIn(o.label), detail: typeof o.detail === 'string' ? trIn(o.detail) : o.detail } : o)) : q.options });
+const askL10n = q => (getLang() === 'en' || !q ? q : { ...q, text: trIn(q.text), options: Array.isArray(q.options) ? q.options.map(o => (o && typeof o.label === 'string' ? { ...o, label: trLabel(o.label), detail: typeof o.detail === 'string' ? trIn(o.detail) : o.detail } : o)) : q.options });
 const askViaSheet = q => new Promise(res => { pending = { q: askL10n(q), res }; render(); });
 const save = () => { if (!camp) return; try { localStorage.setItem(SAVE_KEY, JSON.stringify(camp.serialize())); } catch (e) { } };
 const loadSaved = () => { try { const s = localStorage.getItem(SAVE_KEY); return s ? JSON.parse(s) : null; } catch (e) { return null; } };
