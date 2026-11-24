@@ -4602,7 +4602,7 @@
   "GAIN THE DROWNING CONDITION CARD INSTEAD": "대신 익사 중 상태 카드를 얻음",
   "For each hit gain +# [Heat] and lose -# [Vigor]. [Peril Check].": "명중 하나마다 [열기]를 # 얻고 [활기]를 # 잃습니다. [위험 체크].",
   "For each hit gain +# [Heat].": "명중 하나마다 [열기]를 # 얻습니다.",
-  "For each hit lose -# [Vigor] and gain +# [Heat].": "명중 하나마다 [활기]를 # 잃고 [열기]를 # 얻습니다.",
+  "For each hit lose -# [Vigor] and gain +# [Heat].": "명중 하나마다 [활기]를 #1 잃고 [열기]를 #2 얻습니다.",
   "For each hit lose -# [Vigor] and Poison #. [Peril Check]. Stray #.": "명중 하나마다 [활기]를 # 잃고 독 #. [위험 체크]. 헤매기 #.",
   "For each hit lose -# [Vigor] and Stray #.": "명중 하나마다 [활기]를 # 잃고 헤매기 #.",
   "# hit, lose -# [Vigor]. #+ hits, lose -# [Vigor] and Stray #.": "명중이 #개면 [활기]를 # 잃습니다. 명중이 #개 이상이면 [활기]를 # 잃고 헤매기 #.",
@@ -6452,7 +6452,18 @@
   "[red Armor die]": "[붉은 방어 주사위]",
   "[black Armor die]": "[검은 방어 주사위]",
   "During Rest: Lose -1 [Bane].": "휴식 중: [해악]을 1 잃습니다.",
-  "You may add 1 random level 3 Mercenary card instead.": "대신 무작위 레벨 3 용병 카드 1장을 추가해도 됩니다."
+  "You may add 1 random level 3 Mercenary card instead.": "대신 무작위 레벨 3 용병 카드 1장을 추가해도 됩니다.",
+  "Move & Attack the Knight closest to a Swamp Terrain tile.": "늪 지형 타일에 가장 가까운 기사에게 이동 & 공격.",
+  "Move & Attack the closest Knight.": "가장 가까운 기사에게 이동 & 공격.",
+  "Move & Attack the furthest Knight.": "가장 먼 기사에게 이동 & 공격.",
+  "Move & Attack the furthest Knight in front.": "정면에 있는 가장 먼 기사에게 이동 & 공격.",
+  "Move & Attack the furthest Knight in sight.": "시야 내에 있는 가장 먼 기사에게 이동 & 공격.",
+  "Move & Attack the last target.": "마지막 대상에게 이동 & 공격.",
+  "Move & Range Attack 4 the closest Knight.": "가장 가까운 기사에게 이동 & 원거리 공격 4.",
+  "Repeat this Attack against another Target (once).": "다른 대상에게 이 공격을 반복합니다(한 번).",
+  "For each hit gain +1 [Heat].": "명중 하나마다 [열기]를 1 얻습니다.",
+  "If hit, lose -# [Vigor].": "명중하면 [활기]를 # 잃습니다.",
+  "[Peril Check]": "[위험 체크]"
  },
  "ui": {}
 }
