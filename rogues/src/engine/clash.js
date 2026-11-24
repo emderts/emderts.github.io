@@ -89,6 +89,10 @@ export class Clash {
   setup() {
     const cs = this.monsterDef.clashSetup; const B = this.board;
     // terrain
+    { // A Rotten Stump is one 2x2 tile: when any of its spaces is destroyed / removed / replaced, the whole tile goes (소유자 확인 2026-11-24)
+      const T = B.terrain, del = T.delete.bind(T), set = T.set.bind(T); let busy = false; const whole = key => { const [c, r] = String(key).split(',').map(Number); const tile = this.stumpTiles().find(x => x.cells.some(y => y.c === c && y.r === r)); return tile ? tile.cells.map(y => B.key(y)) : [key]; };
+      T.delete = key => { const t = T.get(key); if (!t || t.id !== 'rotten stump' || busy) return del(key); busy = true; try { for (const k2 of whole(key)) del(k2); } finally { busy = false; } return true; };
+      T.set = (key, v) => { const t = T.get(key); if (t && t.id === 'rotten stump' && !(v && v.id === 'rotten stump') && !busy) { busy = true; try { for (const k2 of whole(key)) del(k2); } finally { busy = false; } } return set(key, v); }; }
     for (const t of cs.terrain) { const tdef = this.data.terrain.terrain.find(x => x.name.toLowerCase() === t.tile); t.cells.forEach((lab, i) => B.terrain.set(B.key(B.parse(lab)), { num: t.numbers ? t.numbers[i] : t.num, id: t.tile, ...(t.tile === 'rotten stump' ? { tile: 's' + cs.terrain.indexOf(t) } : {}), obstacle: tdef.keywords.includes('Obstacle'), obscuring: tdef.keywords.includes('Obscuring'), destructible: tdef.keywords.includes('Destructible'), chasm: tdef.keywords.includes('Chasm'), difficult: tdef.keywords.includes('Difficult Terrain') })); }
     // monster
     if (this.monster.isMob) { this.hauntsSetup(); if (this.monsterDef.nightmare) this.nightmareSetup(cs); else if (this.monsterDef.pump) this.pumpSetup(cs); else this.setupMobs(cs); if (this.monsterDef.rat) this.ratSetup(); if (this.monsterDef.pz) this.pzSetup(cs); this.bloodSetup(); this.firstmenSetup(); if (this.monsterDef.lh) this.lhSetup(); } else {

@@ -54,7 +54,7 @@ const P = (c, l) => c.board.parse(l), L = (c, x) => c.board.label(x);
 // ── Rotten Stump Search (free action, once per Round per tile) and the Mud Wisp appearing right away
 { let f2 = 0; const ok2 = (c, m) => { if (!c) { f2++; console.log('FAIL', m); } else console.log('PASS', m); };
   const stump = (c, cells, tile) => { for (const l of cells) c.board.terrain.set(c.board.key(P(c, l)), { id: 'rotten stump', tile, obstacle: true, destructible: true }); };
-  const setup = seed => { const c = mk(seed); for (const key of [...c.board.terrain.keys()]) if (c.board.terrain.get(key).id === 'rotten stump') c.board.terrain.delete(key); stump(c, ['B2', 'B3', 'C2', 'C3'], 'a'); stump(c, ['B8', 'B9', 'C8', 'C9'], 'b'); return c; };
+  const setup = seed => { const c = mk(seed); for (const key of [...c.board.terrain.keys()]) if ((c.board.terrain.get(key) || {}).id === 'rotten stump') c.board.terrain.delete(key); stump(c, ['B2', 'B3', 'C2', 'C3'], 'a'); stump(c, ['B8', 'B9', 'C8', 'C9'], 'b'); return c; };
   { const c = setup(11); const k = c.knights[0]; c.moveKnight(k, P(c, 'D2')); ok2(c.stumpTiles().length === 2 && c.fx.freeActions(k).some(a => a.id.startsWith('search:')), 'Search is offered next to a Rotten Stump');
     c.moveKnight(k, P(c, 'F5')); ok2(!c.fx.freeActions(k).some(a => a.id.startsWith('search:')), 'not offered away from one'); c.moveKnight(k, P(c, 'D2'));
     c.d10For = async () => 2; c.ask = async q => q.type === 'number' ? 0 : q.options[0].value; await c.fx.doFreeAction(k, c.fx.freeActions(k).find(a => a.id.startsWith('search:')).id);
@@ -66,5 +66,7 @@ const P = (c, l) => c.board.parse(l), L = (c, x) => c.board.label(x);
   { const c = setup(14); const k = c.knights[0]; for (const o of c.knights.slice(1)) c.moveKnight(o, P(c, 'A' + (10 + c.knights.indexOf(o)))); c.moveKnight(k, P(c, 'F5')); c.bw.wisp = P(c, 'F7'); k.actions = { move: true, combat: true };
     const r = c.reachable(k, 4); ok2(r.some(x => L(c, x) === 'F7') && !r.some(x => L(c, x) === 'F8'), 'a move cannot pass through the Mud Wisp space in a straight corridor? (F8 not offered past F7 when only reachable through it or equally by going around: ' + r.some(x => L(c, x) === 'F8') + ')') ; }
   { const c = setup(15); const k = c.knights[0]; c.moveKnight(k, P(c, 'F5')); c.bw.wisp = P(c, 'F6'); c.moveKnight(k, P(c, 'F6')); ok2(!!c.bw.wispHit, 'stepping on the marker by any effect is noted'); await c.ask({ type: 'pick', text: 'next decision', options: [{ label: 'x', value: 1 }] }); ok2(!c.bw.wisp && !c.bw.wispHit && c.monster.cells.some(x => L(c, x) === 'F6'), 'the Bog Witch appears before the next decision (not at the end of the turn)'); }
+  { const c = setup(16); c.destroyObstacle(P(c, 'B2')); ok2(!['B2', 'B3', 'C2', 'C3'].some(l => c.board.terrainAt(P(c, l))) && !!c.board.terrainAt(P(c, 'B8')), 'destroying one space of a Rotten Stump removes the whole 2x2 tile (the other tile stays)');
+    c.board.terrain.set(c.board.key(P(c, 'C9')), { id: 'swamp' }); ok2(!c.board.terrainAt(P(c, 'B8')) && c.board.terrainAt(P(c, 'C9')).id === 'swamp', 'a tile placed over one of its spaces also removes the whole Rotten Stump'); }
   if (f2) { console.log(f2 + ' FAILED'); process.exit(1); } console.log('ALL PASS (search / wisp)'); }
 console.log(fails ? `FAIL (${fails})` : 'ALL PASS (bog witch)'); process.exit(fails ? 1 : 0);
