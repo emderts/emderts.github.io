@@ -50,7 +50,7 @@
  "After you discard Armor [Armor] tokens via the Lodestone Armor Trait, finish resolving the current action and perform Signature.": "자철석 갑옷 특성으로 방어구 토큰을 버린 뒤, 현재 행동의 해결을 마치고 시그니처를 수행합니다.",
  "If a Rubble Terrain tile would be placed on a Knight already standing on a Rubble Terrain tile, that Knight draws a Judicium.": "이미 잔해 지형 타일 위에 서 있는 기사 위에 잔해 지형 타일이 놓이게 되면, 그 기사는 판결을 뽑습니다.",
  "End of Monster Round: The Stonemason gains two Armor [Armor] tokens on the Ward Node matching the side of the Monster facing most Knights.": "몬스터 라운드 종료 시: 석공 기사는 가장 많은 기사를 마주한 측면에 해당하는 수호 노드에 방어구 토큰 2개를 얻습니다.",
- "The Stonemason cannot be dealt a Wound from a side matching a Ward Node with two or more Armor [Armor] tokens.": "방어구 토큰이 2개 이상 있는 수호 노드에 해당하는 측면에서는 석공 기사에게 부상을 입힐 수 없습니다.",
+ "The Stonemason cannot be dealt a Wound from a side matching a Ward Node with two or more Armor [Armor] tokens.": "방어구 토큰이 2개 이상 있는 수호 노드에 해당하는 측면에서는 석공 기사에게 상처를 입힐 수 없습니다.",
  "The Lodestone Armor Trait also places Armor [Armor] tokens on sides with one Armor [Armor] token.": "자철석 갑옷 특성은 방어구 토큰이 1개 있는 측면에도 방어구 토큰을 놓습니다.",
  "When a Knight moves through or ends their movement on a Rubble Terrain tile, they lose -1 [V].": "기사가 잔해 지형 타일을 지나거나 그 위에서 이동을 끝낼 때, 그 기사는 [활기]를 1 잃습니다."
 }

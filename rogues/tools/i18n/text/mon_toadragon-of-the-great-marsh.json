@@ -79,7 +79,7 @@
  "Poison #. Lose -# [Vigor].": "독 #. [활기]를 # 잃습니다.",
  "Remove the lowest Level AI card in the AI discard pile from the Clash.": "AI 버림 더미에서 레벨이 가장 낮은 AI 카드를 격돌에서 제거합니다.",
  "Place the closest Toadlet token on your active Weapon. As long as it's there, that Gear [Gear] card has Cumbersome. The Toadlet is treated as if it was on your space.": "가장 가까운 새끼 두꺼비 토큰을 당신의 활성 무기 위에 놓습니다. 그 토큰이 거기 있는 동안 그 장비 카드는 번거로움을 가집니다. 그 새끼 두꺼비는 당신의 칸에 있는 것으로 취급합니다.",
- "Disable Judgements. Whenever at least one Knight chooses to Submit, place a Generic Single Wound card on the Wound Stack.": "심판을 비활성화합니다. 기사가 한 명이라도 굴복을 고를 때마다, 일반 단일 부상 카드 1장을 부상 더미에 놓습니다.",
+ "Disable Judgements. Whenever at least one Knight chooses to Submit, place a Generic Single Wound card on the Wound Stack.": "심판을 비활성화합니다. 기사가 한 명이라도 굴복을 고를 때마다, 일반 단일 상처 카드 1장을 상처 더미에 놓습니다.",
  "Gain the Slimed Condition card. Spawn a Toadlet adjacent to you.": "점액 범벅 상태 카드를 얻습니다. 당신에게 인접하게 새끼 두꺼비 하나를 출현시킵니다.",
  "Disable Toadlet movement.": "새끼 두꺼비의 이동을 비활성화합니다.",
  "Gain Bane tokens up to your Bane Limit.": "당신의 해악 한계까지 해악 토큰을 얻습니다.",
@@ -111,6 +111,6 @@
  "Climb: Test Might (11+).": "오르기: 힘 (11+) 테스트를 합니다.",
  "Hold On: End of Monster Round: If on the VP, test Tenacity (12+). Fail: Displace to a Rear [R] space, Knockdown, Knockback 3.": "매달리기: 몬스터 라운드 종료 시: VP 위에 있으면 끈기 (12+) 테스트를 합니다. 실패: 후방 칸으로 옮겨지고, 넘어짐, 튕겨내기 3.",
  "While on the VP, you have +2 [Power]. Ignore regular Responses, and resolve these instead:": "VP 위에 있는 동안 당신은 [위력] +2를 가집니다. 일반 대응을 무시하고 대신 다음을 해결합니다:",
- "WOUND: Toxify 1. [React] Hop Forward. Perform a Hold on test.": "부상: 맹독 1. [반응 창] 앞으로 껑충 뛰기. 매달리기 테스트를 합니다.",
+ "WOUND: Toxify 1. [React] Hop Forward. Perform a Hold on test.": "상처: 맹독 1. [반응 창] 앞으로 껑충 뛰기. 매달리기 테스트를 합니다.",
  "FAIL: Displace to a front space. Knockdown.": "실패: 정면 칸으로 옮겨집니다. 넘어짐."
 }

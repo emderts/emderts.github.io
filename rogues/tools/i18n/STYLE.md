@@ -206,3 +206,5 @@
 - 이어 붙인 표시 줄(" / ", " · ", ", ", "이름: 문구")은 조각마다 번역한다. 장비 능력치 줄: weapon 무기 · 1H/2H 한손/양손 · All 공통 · Armor dice 방어 주사위 · red/black/white 붉은/검은/흰 · cooldown/delay/discard 대기/지연/버리기. 제안(미확인): Exert 분발, Portrait 초상, Shrine of the Saints 성인들의 성소.
 
 - 몬스터 카드: 이동 태그(MOVE & ATTACK 등)와 카드 유형(zone 등)을 한국어로 표시. REACT!(기회의 창)는 "⚡ 반응!" 알약 표시를 카드에서 그 창이 열리는 자리(대상 지정 뒤, 효과 줄 사이, 공격 후 앞, BP 대응 줄 옆)에 놓는다. 제안(미확인): REACT! = 반응!, 이동 태그 번역어.
+
+- 번역어 변경 (소유자 확인 2026-11-24): Mortis Minor / Major / Grave = 경미한 / 주요한 / 심각한 모르티스 (태그 · 단독 표기는 [경미] [주요] [심각]); Wound = 상처 (Wound Stack 상처 더미, Critical Wound 치명타 상처). Uninjured = 부상 없음은 그대로.

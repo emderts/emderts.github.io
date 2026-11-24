@@ -79,7 +79,7 @@
  "Each Knight with the Called by the Heavens Condition card dies. All other Knights gain the Called by the Heavens Condition card.": "하늘의 부름 상태 카드를 가진 각 기사가 사망합니다. 다른 모든 기사가 하늘의 부름 상태 카드를 얻습니다.",
  "The Dragon moves to the center of the Clash Board, then turns to face the most Knights.": "용이 격돌 보드 중앙으로 이동한 뒤, 가장 많은 기사가 있는 쪽을 바라보도록 방향을 돌립니다.",
  "Additional Setup: Take the three Phase Trait cards, Flying High (Phase I), Floating Low (Phase II), and Grounded (Phase III), and place them in a stack face up (Flying High on top, Grounded on the bottom). Only the effects of the top card are active.": "추가 준비: 단계 특성 카드 3장, 높이 날다 (단계 I), 낮게 떠다니다 (단계 II), 땅에 내려앉다 (단계 III)를 가져와 앞면 더미로 쌓습니다(높이 날다가 맨 위, 땅에 내려앉다가 맨 아래). 맨 위 카드의 효과만 활성 상태입니다.",
- "! When a Knight deals a Wound, do not Escalate!": "! 기사가 부상을 입혀도 격화하지 않습니다!",
+ "! When a Knight deals a Wound, do not Escalate!": "! 기사가 상처를 입혀도 격화하지 않습니다!",
  "Exhibition Clash: Remove the Grounded (Phase III) Phase Trait card.": "시범 격돌: 땅에 내려앉다 (단계 III) 단계 특성 카드를 제거합니다.",
  "Knights may move onto Ruined Wall Terrain tiles during their voluntary movement.": "기사는 자발적 이동 중에 무너진 벽 지형 타일 위로 이동해도 됩니다.",
  "Knights may move onto Tower Terrain tiles from Ruined Wall Terrain tiles or the VP during their voluntary movement.": "기사는 자발적 이동 중에 무너진 벽 지형 타일이나 VP에서 탑 지형 타일 위로 이동해도 됩니다.",
@@ -97,11 +97,11 @@
  "When the Dragon Rams a Tower, each Knight on it suffers Crash.": "용이 탑을 들이받을 때, 그 위의 각 기사가 충돌을 겪습니다.",
  "When the Dragon Rams a Tower, that Tower is destroyed.": "용이 탑을 들이받을 때, 그 탑은 파괴됩니다.",
  "When the Dragon Rams a Tower, that Tower is destroyed and all Knights on it are devoured (die).": "용이 탑을 들이받을 때, 그 탑은 파괴되고 그 위의 모든 기사가 잡아먹힙니다(사망합니다).",
- "When you finish resolving the current action, if there are 3+ Wounds on the Wound Stack, remove this card and all AI 1 and BP 1 cards from the Clash, except cards on the Wound Stack. Create new AI and BP decks using AI 2 and BP 2 cards. Then, the Dragon performs AI.": "현재 행동의 해결을 마쳤을 때 부상 더미에 부상이 3개 이상 있으면, 이 카드와 모든 AI 1, BP 1 카드를 격돌에서 제거합니다(부상 더미의 카드는 제외). AI 2와 BP 2 카드로 새 AI 덱과 BP 덱을 만듭니다. 그런 다음 용이 AI를 수행합니다.",
+ "When you finish resolving the current action, if there are 3+ Wounds on the Wound Stack, remove this card and all AI 1 and BP 1 cards from the Clash, except cards on the Wound Stack. Create new AI and BP decks using AI 2 and BP 2 cards. Then, the Dragon performs AI.": "현재 행동의 해결을 마쳤을 때 상처 더미에 상처가 3개 이상 있으면, 이 카드와 모든 AI 1, BP 1 카드를 격돌에서 제거합니다(상처 더미의 카드는 제외). AI 2와 BP 2 카드로 새 AI 덱과 BP 덱을 만듭니다. 그런 다음 용이 AI를 수행합니다.",
  "The Dragon causes Crash as normal.": "용은 평소대로 충돌을 일으킵니다.",
- "When you finish resolving the current action, if there are 6+ Wounds on the Wound Stack:": "현재 행동의 해결을 마쳤을 때 부상 더미에 부상이 6개 이상 있으면:",
+ "When you finish resolving the current action, if there are 6+ Wounds on the Wound Stack:": "현재 행동의 해결을 마쳤을 때 상처 더미에 상처가 6개 이상 있으면:",
  "Exhibition: You win the Clash.": "시범: 당신은 격돌에서 승리합니다.",
- "Full Clash: Remove this card and all AI 2 and BP 2 cards from the Clash, except cards on the Wound Stack. Create new AI and BP decks using AI 3 and BP 3 cards. Then, the Dragon performs AI.": "정식 격돌: 이 카드와 모든 AI 2, BP 2 카드를 격돌에서 제거합니다(부상 더미의 카드는 제외). AI 3과 BP 3 카드로 새 AI 덱과 BP 덱을 만듭니다. 그런 다음 용이 AI를 수행합니다.",
+ "Full Clash: Remove this card and all AI 2 and BP 2 cards from the Clash, except cards on the Wound Stack. Create new AI and BP decks using AI 3 and BP 3 cards. Then, the Dragon performs AI.": "정식 격돌: 이 카드와 모든 AI 2, BP 2 카드를 격돌에서 제거합니다(상처 더미의 카드는 제외). AI 3과 BP 3 카드로 새 AI 덱과 BP 덱을 만듭니다. 그런 다음 용이 AI를 수행합니다.",
  "The Dragon Crash Devours you (you die). If you survive, Displace to the closest Empty Space.": "용의 충돌은 당신을 잡아먹습니다(사망합니다). 살아남으면 가장 가까운 빈칸으로 옮겨집니다.",
  "If a Knight with the Called by the Heavens Condition card would draw a Judicium, they are Devoured instead.": "하늘의 부름 상태 카드를 가진 기사가 판결을 뽑게 되면, 대신 그 기사는 잡아먹힙니다.",
  "+3 to all Climb tests.": "모든 오르기 테스트에 +3.",
@@ -110,5 +110,5 @@
  "AFTER FINAL ATTACK: Remove this card from the Clash and perform AI.": "최종 공격 후: 이 카드를 격돌에서 제거하고 AI를 수행합니다.",
  "Hold on: End of Monster Round: If on the VP, test Tenacity (12+). Fail: Knockdown, Displace.": "매달리기: 몬스터 라운드 종료 시: VP 위에 있으면 끈기 (12+) 테스트를 합니다. 실패: 넘어짐, 옮겨집니다.",
  "[Divine Target] Divine Target cannot move to the VP. When you leave the VP, gain the [Divine Target] Divine Target token.": "신성 대상은 VP로 이동할 수 없습니다. 당신이 VP를 떠날 때 신성 대상 토큰을 얻습니다.",
- "While on the VP, you have +X [Power], where X is the Level of the attacked BP. If you deal a Wound, gain +1 [P].": "VP 위에 있는 동안 당신은 [위력] +X를 가집니다. X는 공격받은 BP의 레벨입니다. 당신이 부상을 입히면 [격정]을 1 얻습니다."
+ "While on the VP, you have +X [Power], where X is the Level of the attacked BP. If you deal a Wound, gain +1 [P].": "VP 위에 있는 동안 당신은 [위력] +X를 가집니다. X는 공격받은 BP의 레벨입니다. 당신이 상처를 입히면 [격정]을 1 얻습니다."
 }

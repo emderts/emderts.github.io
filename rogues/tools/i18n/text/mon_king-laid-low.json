@@ -58,7 +58,7 @@
  "Discard your active Weapon or gain +# [Heat].": "당신의 활성 무기를 버리거나 [열기]를 # 얻습니다.",
  "Flip all Swamp Terrain tiles.": "늪 지형 타일을 모두 뒤집습니다.",
  "Flip all Rut Terrain tiles.": "진흙 고랑 지형 타일을 모두 뒤집습니다.",
- "You deal a Critical Wound!": "당신은 치명타 부상을 입힙니다!",
+ "You deal a Critical Wound!": "당신은 치명타 상처를 입힙니다!",
  "The King performs [React window] Drill 6 against a random Knight in Range 5.": "왕이 범위 5 안의 무작위 기사를 대상으로 [반응 창] 굴착 6을 수행합니다.",
  "Place the Slimy Throne Terrain tile on a chosen empty space.": "빈칸 하나를 골라 끈적한 왕좌 지형 타일을 놓습니다.",
  "Reduce Drill X by 1.": "굴착 X를 1 줄입니다.",
@@ -72,7 +72,7 @@
  "During Drill, when the King stops moving and is about to turn toward most Knights, place a 1x2 Rut Terrain tile on an empty space directly behind the King (with the short edge adjacent to the King, if possible).": "굴착 중에 왕이 이동을 멈추고 가장 많은 기사 쪽으로 방향을 돌리려 할 때, 왕 바로 뒤의 빈칸에 1x2 진흙 고랑 지형 타일을 놓습니다(가능하면 짧은 변이 왕에게 인접하도록).",
  "Swamp Terrain tiles gain the Indestructible Trait—you cannot place Rut Terrain tiles on them!": "늪 지형 타일이 파괴 불가능 특성을 얻습니다. 그 위에는 진흙 고랑 지형 타일을 놓을 수 없습니다!",
  "Start of Clash: A random Knight gains the Malediction (Dormant) card. When a Knight with the Malediction card dies, pass it to another random Knight (with the Dormant side up).": "격돌 시작 시: 무작위 기사 한 명이 저주의 말 (잠복) 카드를 얻습니다. 저주의 말 카드를 가진 기사가 사망할 때, 그 카드를 다른 무작위 기사에게 넘깁니다(잠복 면이 위로 오게).",
- "Each time the King is dealt a Wound (a Double Wound is treated as 2 Wounds), place a Generic token on this Trait. After you finish resolving the current action, if there are 4 or more Generic tokens on this Trait, discard all Generic tokens and perform Signature.": "왕이 부상을 입을 때마다(이중 부상은 부상 2개로 취급합니다) 이 특성 위에 일반 토큰 1개를 놓습니다. 현재 행동의 해결을 마친 뒤 이 특성 위에 일반 토큰이 4개 이상 있으면, 일반 토큰을 모두 버리고 시그니처를 수행합니다.",
+ "Each time the King is dealt a Wound (a Double Wound is treated as 2 Wounds), place a Generic token on this Trait. After you finish resolving the current action, if there are 4 or more Generic tokens on this Trait, discard all Generic tokens and perform Signature.": "왕이 상처를 입을 때마다(이중 상처는 상처 2개로 취급합니다) 이 특성 위에 일반 토큰 1개를 놓습니다. 현재 행동의 해결을 마친 뒤 이 특성 위에 일반 토큰이 4개 이상 있으면, 일반 토큰을 모두 버리고 시그니처를 수행합니다.",
  "When a Knight ends their involuntary movement on a Rut Terrain tile, flip it. That Knight immediately dies!": "기사가 진흙 고랑 지형 타일 위에서 비자발적 이동을 끝낼 때 그 타일을 뒤집습니다. 그 기사는 즉시 사망합니다!",
  "When the Knight with the Malediction card finishes their [Move action], place a 1x2 Rut Terrain tile on an adjacent space.": "저주의 말 카드를 가진 기사가 자신의 [이동 행동]을 마칠 때, 인접한 칸에 1x2 진흙 고랑 지형 타일을 놓습니다.",
  "End of Monster Round: The King commands each Knight to bow:": "몬스터 라운드 종료 시: 왕이 각 기사에게 절하라고 명령합니다:",
@@ -81,6 +81,6 @@
  "During the Power Roll, unless you are on a Rut Terrain tile, Blindspot, or VP space, ignore all [Potential] symbols.": "위력 굴림 중, 당신이 진흙 고랑 지형 타일, 사각지대, 또는 VP 칸 위에 있지 않다면 모든 [잠재력] 기호를 무시합니다.",
  "Climb: Test Insight (7+). Fail: Gain the Slimed Condition card.": "오르기: 통찰력 (7+) 테스트를 합니다. 실패: 점액 범벅 상태 카드를 얻습니다.",
  "Hold On: End of Monster Round: If on the VP, test Fortitude (8+). Fail: Knockdown. Displace to an adjacent space.": "매달리기: 몬스터 라운드 종료 시: VP 위에 있으면 꿋꿋함 (8+) 테스트를 합니다. 실패: 넘어짐. 인접한 칸으로 옮겨집니다.",
- "Once there are 6+ Wounds on the Wound Stack, the VP is created. You have +1 [Power] while on the VP.": "부상 더미에 부상이 6개 이상 쌓이면 VP가 만들어집니다. VP 위에 있는 동안 당신은 [위력] +1을 가집니다.",
+ "Once there are 6+ Wounds on the Wound Stack, the VP is created. You have +1 [Power] while on the VP.": "상처 더미에 상처가 6개 이상 쌓이면 VP가 만들어집니다. VP 위에 있는 동안 당신은 [위력] +1을 가집니다.",
  "Bridle: When the King is about to perform Drill X as a Response or during an After Attack, if there's a Knight on the VP, they may gain +2 [H]. If they do, the King performs Drill 4 in a straight line in a chosen direction instead.": "고삐 잡기: 왕이 대응으로 또는 공격 후 중에 굴착 X를 수행하려 할 때, VP 위에 기사가 있으면 그 기사는 [열기]를 2 얻어도 됩니다. 그렇게 하면, 대신 왕은 그 기사가 고른 방향으로 일직선으로 굴착 4를 수행합니다."
 }
