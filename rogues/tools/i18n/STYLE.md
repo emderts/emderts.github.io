@@ -212,3 +212,5 @@
 - 확인 (소유자 2026-11-24): 태그·단독 표기 [경미] [주요] [심각], Uninjured = 부상 없음 유지, Rotten Stump 수색 해석 4건, Rotten Stump는 한 칸이 파괴되면 타일 전체 제거.
 
 - 주술(Hex) 카드는 기사 칸에 보라색 칩으로 표시(누르면 AI 카드). 격돌 머리줄에 버전 표시, 배포된 새 버전이 있으면 "새 버전 — 눌러서 새로고침" 버튼 (5분마다 · 화면 복귀 시 확인).
+
+- Scavenge X(몬스터 카드 op): 격돌 후 Loot 선택 +X, "Clash Scavenge X" = Full Clash Loot 카드 +X (남은 카드가 없으면 무시). "Zone X / No Knight in Zone: This Mob performs Signature": 영역 안에 기사가 없으면 시그니처. 제안(미확인): Aftermath = 격돌 후 처리, Full Clash = 온전 격돌.

@@ -41,4 +41,9 @@ const P = (c, l) => c.board.parse(l), L = (c, x) => c.board.label(x);
 { let done = 0, win = 0; for (let seed = 1; seed <= 12; seed++) for (const lv of [1, 2, 3, 4]) { if ((seed + lv) % 3) continue; const c = mk(seed * 19 + lv, lv); try { const r = await c.run(); done++; if (r === 'win') win++; const bad = c.log.filter(l => /미구현 targeting/.test(l.msg)); if (bad.length) { console.log('WARN', bad[0].msg); fails++; } } catch (e) { console.log('ERR', seed, lv, e.stack.split('\n').slice(0, 5).join(' | ')); fails++; } }
   ok(done === 16, `simulations finished: ${done} (wins ${win})`); }
 { const sp = LH.cards.bp.find(x => x.name === 'Speculatore'); ok(sp.ops.overcome.n === 4, 'Speculatore Overcome 4+ (owner)'); }
+{ // Toxic Gas — "Zone 2 / No Knight in Zone: This Mob performs Signature"
+  const c = mk(31); const card = LH.cards.ai.find(x => x.name === 'Toxic Gas'); const mob = c.monster.mobs.find(m => m.cells && m.cells.length);
+  await c.withMob(mob, async () => { const cells = c.board.zone(c.monster.cells, 2); const free = x => !c.board.terrainAt(x) && !c.monsterOccupies(x) && !c.knightAt(x); const far = []; for (let cc = 1; cc <= c.board.cols; cc++) for (let r = 1; r <= c.board.rows; r++) { const x = { c: cc, r }; if (!cells.some(y => y.c === cc && y.r === r) && free(x)) far.push(x); }
+    c.knights.forEach((k, i) => c.moveKnight(k, far[far.length - 1 - i * 3])); const tg = await c.resolveTargeting(card); ok(tg && tg.signatureInstead === true, 'Toxic Gas with no Knight in Zone 2 → the Mob performs Signature');
+    const near = cells.find(x => c.board.inside(x) && free(x)); c.moveKnight(c.knights[0], near); const tg2 = await c.resolveTargeting(card); ok(tg2 && !tg2.signatureInstead && tg2.targets.includes(c.knights[0]), 'Toxic Gas with a Knight in Zone 2 → Zone Attack'); }); }
 console.log(fails ? `FAIL (${fails})` : 'ALL PASS (lictor hunters)'); process.exit(fails ? 1 : 0);

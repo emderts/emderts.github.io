@@ -285,3 +285,7 @@ PowerDie = 위력 주사위
 Bog track = 수렁 트랙
 Boss = 보스
 Search = 수색
+Battle Tactic = 전투 전술
+Battle Tactics = 전투 전술
+? Aftermath = 격돌 후 처리
+REACT! = ⚡ 반응!

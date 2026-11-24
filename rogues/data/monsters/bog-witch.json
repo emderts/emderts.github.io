@@ -2168,7 +2168,8 @@
      "critical": [
       {
        "op": "scavenge",
-       "n": 2
+       "n": 2,
+        "kind": "clash"
       }
      ],
      "mayEnd": null
