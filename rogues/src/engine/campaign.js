@@ -152,6 +152,7 @@ export class Campaign {
       this.say(`${k.name}이 Sigh of the Graal 사용 → Clash 재시작`); return 'replay';
     }
     this.roundBuffs = {}; // Inn effects last for this Rosegraal round only
+    if (this.hired.length) { this.say(`용병 ${this.hired.map(m => m.class + (m.level != null ? ' L' + m.level : '')).join(', ')}: 이번 Clash가 끝나 떠남 (사용 여부와 무관)`); this.hired = []; } // hired Mercenaries serve the next Clash only (소유자 확인 2026-11-24)
     // Consumable Gear equipped for this Clash moves to the Merchant deck (rulebook p.66 Loot / p.29)
     { const ls = clash.littleSer; if (ls && ls.gear && ls.gear.consumable) for (const ck of this.knights) { const i = ck.armory.indexOf(ls.gear.name); if (i >= 0 && !(ck.loadout.gear || []).includes(ls.gear.name)) { ck.armory.splice(i, 1); (this.merchantConsumables = this.merchantConsumables || []).push(ls.gear.name); this.say(`Little Ser의 Consumable ${ls.gear.name} → Merchant 덱으로`); break; } } }
     for (const ck of this.knights) { const used = (ck.loadout.gear || []).filter(n => this.consumableDef(n)); for (const n of used) { ck.loadout.gear = ck.loadout.gear.filter(x => x !== n); const i = ck.armory.indexOf(n); if (i >= 0) ck.armory.splice(i, 1); (this.merchantConsumables = this.merchantConsumables || []).push(n); this.say(`${ck.name}: Consumable ${n} → Merchant 덱으로`); } }

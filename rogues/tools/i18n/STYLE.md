@@ -223,3 +223,5 @@
 
 - 용병 Clash 능력 전부 엔진에서 처리 (src/engine/mercs.js). 기사 턴 행동 선택: Bard L1–3, Healer L1–2, Mage L1–3, Rogue L1, Rogue L2 B, Ruin Stalker. 반응 창: Mage B면. 정해진 시점: Healer L3, Rogue L2 A · L3, Warrior L1–3, Swamp Strider. Squire 문구는 미적용(Squire 없음). [해석, 확인 필요] Knight Power die의 "symbol" = ⚔ · ✦ · 🕊 모두 / Rogue L3 B의 "in range" = 보드 위의 다른 기사 누구나 / Ruin Stalker의 타일 = 이어진 Rubble 칸 / Warrior L1 A = Armor Roll 뒤 재굴림 또는 Power Roll 전 Power Re-roll 2 / Mage B는 반응 창과 기사 턴 둘 다.
 - Sigh of the Graal로 다시 치르는 Clash는 새 시드 (소유자 요청 2026-11-24).
+
+- 고용한 용병은 다음 Clash에만 적용 — 사용 여부와 무관하게 그 Clash 뒤 전부 떠남 (소유자 확인 2026-11-24). Sigh of the Graal로 되감으면 고용 상태도 Clash 전으로 돌아감.
