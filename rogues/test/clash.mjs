@@ -50,6 +50,8 @@ const mk = (seed, level = 1) => { const c = new Clash({ data, knights: [0, 1, 2,
   ok(c.monster.cells.every(x => x.c >= 9), `charged east to ${cells}`); ok(c.armorTokens[1] + c.armorTokens[2] + c.armorTokens[3] < a0 + 2 + 3 || cols0 === 8, 'board edge → Humpty Fate (armor token lost) or stopped'); }
 { const c = mk(5); c.monster.facing = 'N'; // column at I6/I9 not in path (cols 7-8) → reaches edge at row J: moves E/F→... F7/F8 top row index 5, +4 → I/J then edge
   await c.humptyCharge(null); ok(c.monster.cells.some(x => x.r === 9), 'charged north to the top edge'); ok(c.armorTokens[1] === 0, 'Humpty Fate: lowest BP level with tokens lost one (BP1 1→0)'); ok([...c.board.terrain.values()].filter(t => t.id === 'column').length === 8, 'Panzeronion: Grave Mortis coordinate placed a Column (count stays 8: one recycled or new)'); }
+{ const c = mk(5); c.monster.facing = 'N'; const k = c.knights[0]; c.moveKnight(k, c.board.parse('I7')); for (const o of c.knights.slice(1)) c.moveKnight(o, c.board.parse('A' + (1 + c.knights.indexOf(o)))); // a Knight on the space where the Charge ends at the Board Edge
+  await c.humptyCharge(null); ok(c.monster.cells.some(x => x.r === 10) || c.monster.cells.some(x => x.r === 9), 'charged north'); ok(!k.alive || !c.monster.cells.some(x => x.c === k.pos.c && x.r === k.pos.r), `Humpty Fate stop: the Knight under the Eggknight is knocked away (${k.alive ? c.board.label(k.pos) : 'dead'})`); }
 
 // --- knight attack vs fixed BP
 { const c = mk(6); const k = c.knights[0]; k.pos = c.board.parse('G7'); c.board.place({ kind: 'knight', id: k.id }, [k.pos]); ok(c.canAttack(k), 'knight at G7 can attack (adjacent, LoS)');

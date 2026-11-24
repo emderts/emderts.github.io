@@ -675,10 +675,10 @@ export class Clash {
       const r = await this.monsterStep(d, { charge: true });
       if (r === 'edge') {
         if (M.hasTrait('Hardboiled')) { await this.faceMostKnights(); this.say('Hardboiled: 가장자리에서 방향 전환 후 계속'); const d2 = DIRS[M.facing]; const r2 = await this.monsterStep(d2, { charge: true }); if (r2 !== 'ok') break; continue; }
-        if (M.hasTrait('Humpty Fate')) { this.say('Humpty Fate: 가장자리 → 정지, Armor 토큰 1 상실'); await this.faceMostKnights(); if (armorDiscarded < maxDiscard) { await this.loseArmorToken('humptyCharge'); armorDiscarded++; } return; }
+        if (M.hasTrait('Humpty Fate')) { this.say('Humpty Fate: 가장자리 → 정지, Armor 토큰 1 상실'); await this.faceMostKnights(); await this.displaceKnightsUnderMonster(); /* the movement ended here: a Knight under the Eggknight suffers Crash + Unavoidable Knockback */ if (armorDiscarded < maxDiscard) { await this.loseArmorToken('humptyCharge'); armorDiscarded++; } return; }
         break;
       }
-      if (r === 'obstacle') { this.say('Humpty Charge: 장애물 → 정지, Armor 토큰 1 상실'); await this.faceMostKnights(); if (armorDiscarded < maxDiscard) { await this.loseArmorToken('humptyCharge'); armorDiscarded++; } return; }
+      if (r === 'obstacle') { this.say('Humpty Charge: 장애물 → 정지, Armor 토큰 1 상실'); await this.faceMostKnights(); await this.displaceKnightsUnderMonster(); if (armorDiscarded < maxDiscard) { await this.loseArmorToken('humptyCharge'); armorDiscarded++; } return; }
       if (M.hasTrait('Just a Scratch') && this.monster.cells.some(c => { const t = B.terrainAt(c); return t && t.obstacle; })) { for (const c of this.monster.cells) { const t = B.terrainAt(c); if (t && t.obstacle && t.destructible) B.terrain.delete(B.key(c)); } }
     }
     await this.faceMostKnights(); await this.displaceKnightsUnderMonster();

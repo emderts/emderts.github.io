@@ -214,3 +214,5 @@
 - 주술(Hex) 카드는 기사 칸에 보라색 칩으로 표시(누르면 AI 카드). 격돌 머리줄에 버전 표시, 배포된 새 버전이 있으면 "새 버전 — 눌러서 새로고침" 버튼 (5분마다 · 화면 복귀 시 확인).
 
 - Scavenge X(몬스터 카드 op): 격돌 후 Loot 선택 +X, "Clash Scavenge X" = Full Clash Loot 카드 +X (남은 카드가 없으면 무시). "Zone X / No Knight in Zone: This Mob performs Signature": 영역 안에 기사가 없으면 시그니처. 제안(미확인): Aftermath = 격돌 후 처리, Full Clash = 온전 격돌.
+
+- After Attack은 공격마다, After Final Attack은 한 번 (소유자 확인 2026-11-24) — 여러 대상을 가진 한 번의 공격에서는 REACT 창 · Tactic 한 번. Humpty Charge가 보드 가장자리 · 장애물에서 멈춰도 그 자리의 기사는 Crash + Unavoidable Knockback (룰북 p.51).
