@@ -49,4 +49,12 @@ const L = (c, cell) => c.board.label(cell); const P = (c, l) => c.board.parse(l)
   const p0 = c.log.length; await c.knightTurn(k); const L = c.log.slice(p0).map(l => l.msg);
   ok(hit && k.engulfed && seen.length === 2 && /Engulfed/.test(seen[1]) && !/move/.test(seen[1].split(' | ')[1]), `Engulfed mid-turn → next prompt is the Engulfed menu without movement (${seen[1]})`);
   ok(!L.some(m => /Poison 2/.test(m)) && !L.some(m => /이동 →/.test(m)), 'Engulfed mid-turn: no Movement, no "started your turn Engulfed" Poison 2'); }
+// Doppelknight movement: shortest path by zigzag (p.50), players choose the starting direction — not an arbitrary shortest path
+{ const c = await mk(81); const B = c.board; const g = c.guardians[0]; const P = s => B.parse(s); c.board.terrain.clear();
+  const put = (k, s) => { B.remove([k.pos]); k.pos = P(s); B.place({ kind: 'knight', id: k.id }, [k.pos]); }; put(c.knights[0], 'H7'); put(c.knights[1], 'D8'); put(c.knights[2], 'A1'); put(c.knights[3], 'A14');
+  B.remove(c.monster.cells); c.monster.cells = [P('I13'), P('I14'), P('J13'), P('J14')]; B.place({ kind: 'monster' }, c.monster.cells); B.remove(g.cells); g.cells = [P('C11')]; B.place({ kind: 'mob', n: 'G' + g.n }, g.cells);
+  const oozed = []; c.fenOoze = async k => { oozed.push(k.name); }; const asked = []; const base = c.ask; c.ask = async q => { if (q.type === 'move' && !q.knight) { asked.push(q.text + ' | ' + q.cells.map(x => B.label(x)).join(',')); return /동률/.test(q.text) ? q.cells.find(x => B.label(x) === 'H8') : q.cells[0]; } return base(q); };
+  const sv = [c.actingGuardian, c.monster.cells]; c.actingGuardian = g; await c.doppMoveToward(P('H7')); c.actingGuardian = sv[0];
+  ok(B.label(g.cells[0]) === 'H8' && asked.some(t => /지그재그/.test(t) && /C10/.test(t) && /D11/.test(t)), `Doppelknight: zigzag start direction is asked (${asked.join(' / ')})`);
+  ok(oozed.length === 0, `Doppelknight: zigzag C11→H8 does not run down column 8 through the Knight on D8 (${oozed.join(',') || 'none'})`); }
 console.log(fails ? `${fails} FAIL` : 'ALL PASS'); process.exit(fails ? 1 : 0);
