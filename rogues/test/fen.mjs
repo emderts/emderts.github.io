@@ -57,4 +57,9 @@ const L = (c, cell) => c.board.label(cell); const P = (c, l) => c.board.parse(l)
   const sv = [c.actingGuardian, c.monster.cells]; c.actingGuardian = g; await c.doppMoveToward(P('H7')); c.actingGuardian = sv[0];
   ok(B.label(g.cells[0]) === 'H8' && asked.some(t => /지그재그/.test(t) && /C10/.test(t) && /D11/.test(t)), `Doppelknight: zigzag start direction is asked (${asked.join(' / ')})`);
   ok(oozed.length === 0, `Doppelknight: zigzag C11→H8 does not run down column 8 through the Knight on D8 (${oozed.join(',') || 'none'})`); }
+// … and when the zigzag cannot continue but several shortest paths remain (an Obstacle in the way), the players choose the next space
+{ const c = await mk(82); const B = c.board; const g = c.guardians[0]; const P = s => B.parse(s); c.board.terrain.clear(); const put = (k, s) => { B.remove([k.pos]); k.pos = P(s); B.place({ kind: 'knight', id: k.id }, [k.pos]); }; put(c.knights[0], 'F8'); put(c.knights[1], 'A1'); put(c.knights[2], 'A2'); put(c.knights[3], 'A14');
+  B.remove(c.monster.cells); c.monster.cells = [P('I13'), P('I14'), P('J13'), P('J14')]; B.place({ kind: 'monster' }, c.monster.cells); B.remove(g.cells); g.cells = [P('B8')]; B.place({ kind: 'mob', n: 'G' + g.n }, g.cells); B.terrain.set(B.key(P('C8')), { id: 'rock', obstacle: true });
+  const asked = []; const base = c.ask; c.ask = async q => { if (q.type === 'move' && !q.knight) { asked.push(q.text + ' | ' + q.cells.map(x => B.label(x)).join(',')); return q.cells[0]; } return base(q); }; c.fenOoze = async () => { };
+  c.actingGuardian = g; await c.doppMoveToward(P('F8')); c.actingGuardian = null; ok(asked.length >= 1 && asked.every(t => /,/.test(t)), `Doppelknight around an Obstacle: every fork is asked (${asked.join(' / ')})`); }
 console.log(fails ? `${fails} FAIL` : 'ALL PASS'); process.exit(fails ? 1 : 0);
