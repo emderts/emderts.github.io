@@ -237,3 +237,4 @@
 - 2026-11-25: Doppelknight 이동 경로 — 룰북 p.50 그대로 최단 경로가 여럿이면 지그재그(한 칸마다 축 전환), 시작 방향은 플레이어 선택. 이전에는 임의의 최단 경로였음. (소유자 제보)
 - 2026-11-25: Mortis 카드로 Monster Attack 중에 Knight Bonus Attack을 수행하면 Chain Break (룰북 p.54 "If a Knight Bonus Attack … is triggered during a Monster Attack (for example, by a Mortis card), it causes a Chain Break"). Bonus Attack을 실제로 수행한 뒤 그 Monster Attack을 끝내고, Doppelganger 트레잇대로 그 라운드의 Doppelknight 활성화도 멈춘다. (소유자 제보)
 - 2026-11-25: Break / Sunder / Hope 토큰은 Power Roll에서 적용해도 Knight Pool에서 사라지지 않는다 (룰북 p.19 "Knight tokens are used during the following Knight's attack, after which they are discarded (regardless of whether you used them)"). Clear the Knight Pool 단계에서 정리되며 Pass X로 남길 수 있다. Fire(쓴 것은 제거, 안 쓴 것은 하나만 빼고 남김)와 Power는 종전대로. (소유자 제보)
+- Pass X는 Opening·Break·Cantrip만, Hope는 Greater Pass로만, Sunder·Power는 둘 다 불가 — 현재 엔진 처리 그대로. (소유자 확인 2026-11-25)
