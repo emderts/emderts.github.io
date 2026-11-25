@@ -243,3 +243,4 @@
 - 2026-11-25: "Exhaustible Gear"(Off Balance 등) = 룰북 p.21 그대로 Cumbersome 키워드가 있거나 [Exhaust]를 비용으로 하는 능동 능력이 있는 Gear. 이전에는 무기 전부를 소진했음. (소유자 제보)
 - 2026-11-25: Knighteater Ultrainstinct로 공격 Weapon의 사거리 밖이 되면 그 공격은 Power Roll 없이 끝난다. (소유자 확인 2026-11-25 — 룰북에서 해당 문구는 찾지 못함) BP는 버림 더미로, Knight Pool은 9단계처럼 정리 [해석, 확인 필요].
 - 2026-11-25: Scorching Caltrops "Place this card adjacent to you on 2 spaces": 카드 한 장(1x2)이므로 두 칸은 가로·세로로 붙어 있어야 한다. 첫 칸은 기사에게 인접, 둘째 칸은 첫 칸에 붙은 칸 [둘째 칸도 기사에 인접해야 하는지는 확인 필요]. (소유자 제보)
+- Ultrainstinct로 대상이 공격 Weapon의 사거리 밖이 되면 공격 종료 — 모든 몬스터에 적용. (소유자 확인 2026-11-25) 기사가 밀려난 경우(Impenetrable Shell의 Knockback 1 등)도 포함.
