@@ -394,12 +394,13 @@ export class Clash {
     if (this.slowToken) { this.slowToken = false; this._slowSteps = 3; this.say('임시 Speed 토큰: 이번 이동은 3칸에서 멈춤 (토큰 버림)', 'tech'); } if (this._stopMove) return 'slow'; if (this._slowSteps != null) { if (this._slowSteps <= 0) return 'slow'; this._slowSteps--; }
     if (!nc.every(x => B.inside(x))) return 'edge';
     const newCells = nc.filter(x => !this.monster.cells.some(mc => cellEq(mc, x)));
-    for (const x of newCells) { const t = B.terrainAt(x); if (t && t.obstacle) { if (charge && !this.monster.hasTrait('Just a Scratch')) return 'obstacle'; this._stepObstacle = true; if (t.destructible) { this.destroyObstacle(x); this.say(`지형 ${t.id} 파괴 (${B.label(x)})`); } else if ((this.monster.isMob && !(this.isWN && this.wn)) || this.actingGuardian) return 'obstacle'; /* rulebook p.51 "Boss Movement through and onto Terrain": Boss Monsters ignore Terrain tiles unless Destructible (destroyed) — they move through and onto Indestructible Obstacles */ } }
+    let hitObs = false; /* Humpty Charge: "moves over an Obstacle … immediately stops" — the Eggknight first moves onto it (p.51: a Boss destroys a Destructible tile it moves onto), then stops */
+    for (const x of newCells) { const t = B.terrainAt(x); if (t && t.obstacle) { if (charge && !this.monster.hasTrait('Just a Scratch')) hitObs = true; this._stepObstacle = true; if (t.destructible) { this.destroyObstacle(x); this.say(`지형 ${t.id} 파괴 (${B.label(x)})`); } else if ((this.monster.isMob && !(this.isWN && this.wn)) || this.actingGuardian) return 'obstacle'; /* rulebook p.51 "Boss Movement through and onto Terrain": Boss Monsters ignore Terrain tiles unless Destructible (destroyed) — they move through and onto Indestructible Obstacles */ } }
     B.remove(this.monster.cells); this.monster.cells = nc; B.place({ kind: 'monster', id: this.monster.id }, nc);
     for (const x of newCells) { const k = this.knightAt(x); if (k) { try { if (this._moveCrashed) this._moveCrashed.add(k); await this.crash(k, { charge, through: true }); } catch (e) { if (!e.chainBreak) throw e; this.say(`Chain Break 중 돌진 계속 (${e.message})`, 'warn'); } } }
     await this.guardiansUnder();
     if (!this._inMoved) { this._inMoved = true; try { if (await this.fx.monsterMoved(this.monster.cells)) this._stopMove = true; } finally { this._inMoved = false; } }
-    return 'ok';
+    return hitObs ? 'obstacle' : 'ok';
   }
   /** Crash (p.80): -1 Vigor + Knockdown. Charge over knocked-down Knight → Judicium instead (Humpty Charge). */
   async crash(k, opts = {}) { const { charge = false } = opts; if (this.isFen && opts.through && !this.actingGuardian) return this.monster.hasTrait('Inescapable Slime') ? this.fenOoze(k, 'boss') : this.fenPass(k);
@@ -683,7 +684,7 @@ export class Clash {
         if (M.hasTrait('Humpty Fate')) { this.say('Humpty Fate: 가장자리 → 정지, Armor 토큰 1 상실'); await this.faceMostKnights(); await this.displaceKnightsUnderMonster(); /* the movement ended here: a Knight under the Eggknight suffers Crash + Unavoidable Knockback */ if (armorDiscarded < maxDiscard) { await this.loseArmorToken('humptyCharge'); armorDiscarded++; } return; }
         break;
       }
-      if (r === 'obstacle') { this.say('Humpty Charge: 장애물 → 정지, Armor 토큰 1 상실'); await this.faceMostKnights(); await this.displaceKnightsUnderMonster(); if (armorDiscarded < maxDiscard) { await this.loseArmorToken('humptyCharge'); armorDiscarded++; } return; }
+      if (r === 'obstacle') { this.say('Humpty Charge: 장애물 위로 이동 → 정지, Armor 토큰 1 상실'); await this.faceMostKnights(); await this.displaceKnightsUnderMonster(); if (armorDiscarded < maxDiscard) { await this.loseArmorToken('humptyCharge'); armorDiscarded++; } return; }
       if (M.hasTrait('Just a Scratch') && this.monster.cells.some(c => { const t = B.terrainAt(c); return t && t.obstacle; })) { for (const c of this.monster.cells) { const t = B.terrainAt(c); if (t && t.obstacle && t.destructible) B.terrain.delete(B.key(c)); } }
     }
     await this.faceMostKnights(); await this.displaceKnightsUnderMonster();
