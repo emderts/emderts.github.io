@@ -80,6 +80,9 @@ export const RenholderMixin = {
       case 'signatureInstead': case 'soulscorch': case 'deadlyIfRear': case 'criticalLight': return true; // resolved at their timing
     }
     return false; },
+  /** Brain over Brawn: where the Knight stands right now, shown in the use prompt so the cost is not paid for nothing. */
+  renOnRear(k, A) { const tc = A.guardian ? A.guardian.cells : A.mob ? A.mob.cells : this.monster.cells; const f = A.mob ? A.mob.facing : A.guardian ? A.guardian.facing : this.monster.facing; return rearCells(this.board, tc, f).some(c => c.c === k.pos.c && c.r === k.pos.r); },
+  renRearNote(k, A) { if (this.renOnRear(k, A)) return ' [지금: Rear 칸]'; const cat = (A.weapon.traits || []).includes('Catalyst'); const m = this.poolCount('magic'); return ` [지금: Rear 칸 아님 · ${cat ? `Catalyst Weapon · Magic ${m}` : 'Catalyst Weapon 아님'}${cat && m >= 1 ? '' : ' → 효과 없음'}]`; },
   /** Brain over Brawn (beforeAttack). */
   async renBeforeAttack(k, A) {
     if (k.pendingDeadlyRear) { k.pendingDeadlyRear = false; const tc = A.guardian ? A.guardian.cells : A.mob ? A.mob.cells : this.monster.cells; const f = A.mob ? A.mob.facing : A.guardian ? A.guardian.facing : this.monster.facing; const rear = rearCells(this.board, tc, f).some(c => c.c === k.pos.c && c.r === k.pos.r); if (rear) { A.flags.add('deadly'); this.say('Brain over Brawn: Rear에서 공격 → Deadly', 'tech'); } else if ((A.weapon.traits || []).includes('Catalyst') && this.poolCount('magic') >= 1 && await this.yesNo(`${k.name}: Brain over Brawn — Magic 1로 Rear 조건 무시 (Catalyst Weapon)?`, true)) { this.poolTake('magic', 1); A.flags.add('deadly'); this.say('Brain over Brawn: Magic 1 → Deadly', 'tech'); } else this.say('Brain over Brawn: Rear가 아니어서 효과 없음'); }

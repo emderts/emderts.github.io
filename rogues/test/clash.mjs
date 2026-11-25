@@ -127,6 +127,9 @@ const mk = (seed, level = 1) => { const c = new Clash({ data, knights: [0, 1, 2,
 { const M = data.gear.merchant_principality.gear, by = n => M.find(g => g.name === n); ok(by('Pale-Axe').side.weaponPower.dice.join('') === 'blackredredred' && by('Crude Bow').hands === 2 && by('Scale Mail').side.evasion === 1 && !by('Padded Jack').side.evasion && by('Padded Jack').side.evasionReroll === 1, 'merchant gear owner corrections (power dice, hands, Eva/ER)'); }
 
 // --- full simulations
+// --- Overcome keyword tokens are placed during the second ability window (after step 9 clears the pool)
+{ let seen = 0, kept = 0, order = 0; for (let s = 300; s < 380 && seen < 3; s++) { const c = mk(s); const k = c.knights[0]; k.pos = c.board.parse('G7'); c.board.place({ kind: 'knight', id: k.id }, [k.pos]); const l0 = c.log.length; await c.knightAttack(k); const L = c.log.slice(l0).map(l => l.msg); const i = L.findIndex(m => /^Knight Pool \+(\d+) (\w+) \(두 번째 능력 창에 놓음\)/.test(m)); if (i < 0) continue; seen++; const [, n, tok] = /^Knight Pool \+(\d+) (\w+)/.exec(L[i]); const j = L.findIndex((m, x) => x > i && m === `Knight Pool +${n} ${tok}`); if (j > i && !L.slice(j + 1).some(m => /^Knight Pool 정리/.test(m))) order++; if (c.poolCount(tok) >= +n) kept++; }
+  ok(seen > 0 && order === seen && kept === seen, `Overcome token: held until the second ability window and still in the Knight Pool after the Attack (${seen} cases)`); }
 const results = { win: 0, lose: 0 }; const rounds = [];
 for (let s = 100; s < 112; s++) { const c = mk(s); const r = await c.run(); results[r]++; rounds.push(c.round); if (c.log.some(l => l.kind === 'warn' && /미구현/.test(l.msg))) console.log('  warn seed', s, [...new Set(c.log.filter(l => /미구현/.test(l.msg)).map(l => l.msg))].join(' | ')); }
 ok(results.win + results.lose === 12, `12 seeded Clashes complete: win ${results.win} / lose ${results.lose}, rounds ${Math.min(...rounds)}–${Math.max(...rounds)}`);

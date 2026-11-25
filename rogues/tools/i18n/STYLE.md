@@ -229,3 +229,7 @@
 - 영역 공격: 처리 중인 공격의 영역을 보드에 표시, AI 카드에는 영역 그림(카드에 인쇄된 격자 또는 "Zone N"을 몬스터 크기에 맞춰 그림).
 
 - Guard 배분: 주사위마다 물으며 "남은 Guard 주지 않음"을 고를 수 있음 (Guard를 받은 주사위는 재굴림 불가이므로). Doppelknight 창: 뒷면 BP의 레벨 표시.
+
+## 2026-11-25 — Overcome 토큰 시점
+- Overcome/Overpower 효과로 얻는 키워드 토큰(Power X, Sunder X, Break X, Opening X, Fire X …)은 키워드 정의("During the second ability window, place X … tokens in the Knight Pool") 그대로 9단계 풀 정리 뒤 두 번째 능력 창에 놓는다. (소유자 제보 2026-11-25)
+- Brain over Brawn 사용 확인 창에 지금 Rear 칸인지, Catalyst Weapon인지, 풀의 Magic 수를 표시한다. 규칙 변경 없음.
