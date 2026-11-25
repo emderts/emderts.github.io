@@ -235,3 +235,4 @@
 - Brain over Brawn 사용 확인 창에 지금 Rear 칸인지, Catalyst Weapon인지, 풀의 Magic 수를 표시한다. 규칙 변경 없음.
 - 2026-11-25: 자기 턴 중에 Engulfed가 되면 그 턴의 남은 부분은 Engulfed 카드("During your turn, you can either try to Sabotage or attack")대로 Sabotage/공격만 가능, 이동 행동 없음. 턴 종료 Poison 2는 "If you started your turn Engulfed"라서 적용 안 함. (소유자 제보 2026-11-25)
 - 2026-11-25: Doppelknight 이동 경로 — 룰북 p.50 그대로 최단 경로가 여럿이면 지그재그(한 칸마다 축 전환), 시작 방향은 플레이어 선택. 이전에는 임의의 최단 경로였음. (소유자 제보)
+- 2026-11-25: Mortis 카드로 Monster Attack 중에 Knight Bonus Attack을 수행하면 Chain Break (룰북 p.54 "If a Knight Bonus Attack … is triggered during a Monster Attack (for example, by a Mortis card), it causes a Chain Break"). Bonus Attack을 실제로 수행한 뒤 그 Monster Attack을 끝내고, Doppelganger 트레잇대로 그 라운드의 Doppelknight 활성화도 멈춘다. (소유자 제보)
