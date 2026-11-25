@@ -507,7 +507,7 @@ export class Effects {
    *  Pushback X (rulebook p.85): the source "moves up to X spaces in the direction of the affected miniature, pushing it" — the Knight follows, and may choose fewer spaces. Knockback: the Target alone moves. */
   async pushMonster(k, n, A = null, { follow = false } = {}) {
     const C = this.c, M = C.monster, B = C.board; const g = A && A.guardian && (C.guardians || []).includes(A.guardian) ? A.guardian : null;
-    if (C.isWN && !g) return C.wnPushedBy(k, n); if (C.isPump && M.cur && M.cur.side === 'sapling' && !(A && (A.kw || []).some(o => o.op === 'ignoreLumbering'))) { this.say('Lumbering: Sapling은 비자발적으로 움직일 수 없음'); return; }
+    if (C.isWN && !g) return C.wnPushedBy(k, n, follow); if (C.isPump && M.cur && M.cur.side === 'sapling' && !(A && (A.kw || []).some(o => o.op === 'ignoreLumbering'))) { this.say('Lumbering: Sapling은 비자발적으로 움직일 수 없음'); return; }
     if (follow && n > 1) { const v = await C.ask({ type: 'pick', knight: k.id, text: `${k.name}: Pushback — 몇 칸 밀지 (최대 ${n}, 기사도 함께 이동)`, options: Array.from({ length: n + 1 }, (_, i) => ({ label: `${n - i}칸`, value: n - i })) }); if (typeof v === 'number') n = v; } if (n <= 0) return;
     const cells = () => g ? g.cells : M.cells; const m = g ? g.cells[0] : C.monsterCenter(); const dc = m.c - k.pos.c, dr = m.r - k.pos.r; const d = Math.abs(dc) >= Math.abs(dr) ? { c: Math.sign(dc), r: 0 } : { c: 0, r: Math.sign(dr) };
     const kFree = c => B.inside(c) && !B.isObstacle(c) && !(B.terrainAt(c) && B.terrainAt(c).chasm) && !C.knightAt(c) && !(C.guardianAt && C.guardianAt(c)) && !C.monsterOccupies(c);
