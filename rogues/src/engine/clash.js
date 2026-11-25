@@ -981,7 +981,7 @@ export class Clash {
     if (k.hidden) { k.hidden = false; this.say(`${k.name}: 공격 후 Hidden 해제`); }
     this.currentKnightAttack = null;
     for (const [rops, rIdx] of deferred) { try { await this.runResponseOps(rops, rIdx, { attacker: k, attack: A, target: k }); } catch (e) { if (!e.chainBreak) throw e; this.say(`Chain Break: ${e.message}`, 'warn'); } }
-    for (let i = 0; i < k.bonusAttacks; i++) { k.bonusAttacks = 0; await this.knightAttack(k, { bonus: true }); }
+    for (let i = 0; i < k.bonusAttacks; i++) { k.bonusAttacks = 0; const gb = k._gBonus; k._gBonus = null; if (gb) { if (!k.alive || this.result) continue; if (!this.canAttack(k, true)) { this.say(`${k.name}: Bonus Attack 불가 — 사거리 안에 대상이 없음`, 'warn'); continue; } if (!await this.yesNo(`${k.name} Bonus Attack?`, true)) continue; if (gb === 'once') this.gBonusUsed.add(k.id); } await this.knightAttack(k, { bonus: true }); }
     // "Another Knight may … perform a Bonus Attack!" — the other Knight attacks right away
     for (const x of this.knights) { if (x === k || !x.alive || !(x.bonusAttacks > 0) || this.result) continue; x.bonusAttacks = 0; if (!await this.eudesConfirm(x)) continue; if (this.canAttack(x, true)) { this.say(`${x.name}: Bonus Attack`, 'tech'); await this.knightAttack(x, { bonus: true }); } else this.say(`${x.name}: Bonus Attack 불가 — 공격할 대상 없음`); }
     k.bonusAttacks = 0;
