@@ -24,7 +24,7 @@ let raf = 0; const scheduleRender = () => { if (raf) return; raf = requestAnimat
 // Language option: names inside the prompt text and the button labels are shown translated (values are untouched)
 const askL10n = q => (getLang() === 'en' || !q ? q : { ...q, text: trIn(q.text), options: Array.isArray(q.options) ? q.options.map(o => (o && typeof o.label === 'string' ? { ...o, label: trLabel(o.label), detail: typeof o.detail === 'string' ? trDetail(o.detail) : o.detail } : o)) : q.options });
 const askViaSheet = q => new Promise(res => { pending = { q: askL10n(q), res }; render(); });
-const save = () => { if (!camp) return; try { localStorage.setItem(SAVE_KEY, JSON.stringify(camp.serialize())); } catch (e) { } };
+const save = () => { if (!camp) return; try { localStorage.setItem(SAVE_KEY, JSON.stringify(camp.serialize())); } catch (e) { console.error('save failed: ' + (e && e.stack || e)); } };
 const loadSaved = () => { try { const s = localStorage.getItem(SAVE_KEY); return s ? JSON.parse(s) : null; } catch (e) { return null; } };
 
 // ---------- home ----------
