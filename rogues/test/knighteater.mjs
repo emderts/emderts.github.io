@@ -47,4 +47,9 @@ const P = (c, l) => c.board.parse(l), L = (c, x) => c.board.label(x);
   c.currentAttack = { penetrate: true }; await c.loseVigor(k, 1, { source: 'attack', armor: true }); c.currentAttack = null;
   ok(seen.some(m => /Penetrate: .*white Armor 주사위 1개 무시/.test(m)), 'Penetrate: one Armor die of the highest tier is ignored');
   ok(KE.cards.ai.find(x => x.name === 'Armor Cracker').ops.effects[0].then[0].op === 'penetrate', 'Armor Cracker has Penetrate'); }
+// Ultrainstinct that moves the Knighteater out of the attacking Weapon's range ends the Attack (owner ruling 2026-11-25)
+{ const c = mk(31); const B = c.board; B.terrain.clear(); const k = c.knights[0]; for (const o of c.knights.slice(1)) c.moveKnight(o, B.parse('J' + (1 + c.knights.indexOf(o)))); const M = c.monster; const top = Math.max(...M.cells.map(x => x.r)), col = M.cells[0].c;
+  c.moveKnight(k, { c: col, r: top + 1 }); const w = c.fx.usableWeapons(k, false)[0]; const bp = M.bp.cards.find(b => b.ops && (b.ops.ultra || []).some(o => o.op === 'keAway')) || c.monsterDef.cards.bp.find(b => b.name === 'Tattered Garments');
+  ok(c.attackTargets(k, w).includes('boss'), 'setup: the Knight can attack the Knighteater'); c.poolAdd('break', 1); const r = await c.keUltra(k, { weapon: w, flags: new Set(), kw: [] }, bp);
+  ok(r === true && !c.attackTargets(k, w).includes('boss') && c.poolCount('break') === 0, `Ultrainstinct moved it out of range → the Attack ends, the Knight Pool is cleared (${c.log.slice(-2).map(l => l.msg).join(' | ')})`); }
 console.log(fails ? `FAIL (${fails})` : 'ALL PASS (knighteater)'); process.exit(fails ? 1 : 0);

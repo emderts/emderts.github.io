@@ -241,3 +241,5 @@
 - 2026-11-25: AI 카드 유형 줄은 카드에 인쇄된 그대로(typePrinted) 단어별 번역: RANGE 원거리 · ZONE 영역 · ATTACK 공격 · JUDGEMENT 심판 · SIGNATURE 시그니처 · SEQUENTIAL 연속 · COMMAND 명령. SIMULTANEOUS 동시 · WAVE 파동은 제안(미확인).
 - 2026-11-25: Humpty Charge 중 Obstacle — "moves over an Obstacle … immediately stops": Eggknight는 그 칸 위로 이동한 뒤(p.51: Boss가 올라간 Destructible 타일은 파괴) 멈추고 Armor 토큰을 잃는다. 이전에는 한 칸 앞에서 멈추고 Column이 남았음. (소유자 제보)
 - 2026-11-25: "Exhaustible Gear"(Off Balance 등) = 룰북 p.21 그대로 Cumbersome 키워드가 있거나 [Exhaust]를 비용으로 하는 능동 능력이 있는 Gear. 이전에는 무기 전부를 소진했음. (소유자 제보)
+- 2026-11-25: Knighteater Ultrainstinct로 공격 Weapon의 사거리 밖이 되면 그 공격은 Power Roll 없이 끝난다. (소유자 확인 2026-11-25 — 룰북에서 해당 문구는 찾지 못함) BP는 버림 더미로, Knight Pool은 9단계처럼 정리 [해석, 확인 필요].
+- 2026-11-25: Scorching Caltrops "Place this card adjacent to you on 2 spaces": 카드 한 장(1x2)이므로 두 칸은 가로·세로로 붙어 있어야 한다. 첫 칸은 기사에게 인접, 둘째 칸은 첫 칸에 붙은 칸 [둘째 칸도 기사에 인접해야 하는지는 확인 필요]. (소유자 제보)
