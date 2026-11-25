@@ -918,10 +918,10 @@ export class Clash {
     if (potential && (nS || nB)) {
       if (nS && nB && potential < nS + nB) { const lo = Math.max(0, potential - nB), hi = Math.min(potential, nS); useS = lo === hi ? lo : await this.ask({ type: 'number', knight: k.id, text: `✦${potential}개에 Sunder ${nS} / Break ${nB} — Sunder(✦1→⚔2)에 쓸 개수 (나머지는 Break)`, default: hi, options: Array.from({ length: hi - lo + 1 }, (_, i) => ({ label: String(lo + i), value: lo + i })) }); useB = Math.min(nB, potential - useS); }
       else { useS = Math.min(nS, potential); useB = Math.min(nB, potential - useS); }
-      power += 2 * useS + useB; potential -= useS + useB; this.poolTake('sunder', useS); this.poolTake('break', useB);
-      if (useS) this.say(`Sunder 토큰 ${useS}개 사용 (✦ → ⚔⚔)`); if (useB) this.say(`Break 토큰 ${useB}개 사용 (✦ → ⚔)`);
+      power += 2 * useS + useB; potential -= useS + useB; /* p.19: Knight tokens stay in the Knight Pool and are discarded in the Clear the Knight Pool step "regardless of whether you used them" — a used Break / Sunder / Hope token is not removed here, so Pass X can still keep it */
+      if (useS) this.say(`Sunder 토큰 ${useS}개 적용 (✦ → ⚔⚔)`); if (useB) this.say(`Break 토큰 ${useB}개 적용 (✦ → ⚔)`);
     }
-    if ((potential || hope) && this.poolCount('hope')) { useH = Math.min(potential + hope, this.poolCount('hope')); const onT = Math.min(useH, potential); power += useH; potential -= onT; this.poolTake('hope', useH); this.say(`Hope 토큰 ${useH}개 사용 (✦/🕊 → ⚔)`); }
+    if ((potential || hope) && this.poolCount('hope')) { useH = Math.min(potential + hope, this.poolCount('hope')); const onT = Math.min(useH, potential); power += useH; potential -= onT; this.say(`Hope 토큰 ${useH}개 적용 (✦/🕊 → ⚔)`); }
     A.hadFire = this.poolCount('fire') > 0;
     // Fire: other tokens may be used first, then as many Fire tokens as possible are mandatory (p.19)
     if (potential > 0 && this.poolCount('fire')) { const n = Math.min(potential, this.poolCount('fire')); power += n; potential -= n; this.poolTake('fire', n); this.say(`Fire 토큰 ${n}개 사용 (✦ → ⚔)`); }
