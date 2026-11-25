@@ -240,3 +240,4 @@
 - Pass X는 Opening·Break·Cantrip만, Hope는 Greater Pass로만, Sunder·Power는 둘 다 불가 — 현재 엔진 처리 그대로. (소유자 확인 2026-11-25)
 - 2026-11-25: AI 카드 유형 줄은 카드에 인쇄된 그대로(typePrinted) 단어별 번역: RANGE 원거리 · ZONE 영역 · ATTACK 공격 · JUDGEMENT 심판 · SIGNATURE 시그니처 · SEQUENTIAL 연속 · COMMAND 명령. SIMULTANEOUS 동시 · WAVE 파동은 제안(미확인).
 - 2026-11-25: Humpty Charge 중 Obstacle — "moves over an Obstacle … immediately stops": Eggknight는 그 칸 위로 이동한 뒤(p.51: Boss가 올라간 Destructible 타일은 파괴) 멈추고 Armor 토큰을 잃는다. 이전에는 한 칸 앞에서 멈추고 Column이 남았음. (소유자 제보)
+- 2026-11-25: "Exhaustible Gear"(Off Balance 등) = 룰북 p.21 그대로 Cumbersome 키워드가 있거나 [Exhaust]를 비용으로 하는 능동 능력이 있는 Gear. 이전에는 무기 전부를 소진했음. (소유자 제보)
