@@ -244,3 +244,5 @@
 - 2026-11-25: Knighteater Ultrainstinct로 공격 Weapon의 사거리 밖이 되면 그 공격은 Power Roll 없이 끝난다. (소유자 확인 2026-11-25 — 룰북에서 해당 문구는 찾지 못함) BP는 버림 더미로, Knight Pool은 9단계처럼 정리 [해석, 확인 필요].
 - 2026-11-25: Scorching Caltrops "Place this card adjacent to you on 2 spaces": 카드 한 장(1x2)이므로 두 칸은 가로·세로로 붙어 있어야 한다. 첫 칸은 기사에게 인접, 둘째 칸은 첫 칸에 붙은 칸 [둘째 칸도 기사에 인접해야 하는지는 확인 필요]. (소유자 제보)
 - Ultrainstinct로 대상이 공격 Weapon의 사거리 밖이 되면 공격 종료 — 모든 몬스터에 적용. (소유자 확인 2026-11-25) 기사가 밀려난 경우(Impenetrable Shell의 Knockback 1 등)도 포함.
+- 2026-11-25: Fleisch(및 Magic) 토큰은 Resource 토큰 — 룰북 p.19 "Unlike Knight tokens, Resource tokens remain in the Pool until they're used". Clear the Knight Pool에서 지워지지 않는다. Meatbait·BP 효과로 놓인 Fleisch가 지워지던 버그 수정. (소유자 제보)
+- 2026-11-25: Knighteater Ultrainstinct "Pushback X, stopping before any Obstacles" — Pushback 정의(p.85)대로 Knighteater도 기사를 밀며 함께 이동(방향 유지). Knighteater 자신의 칸에 Obstacle이 걸려도 그 앞에서 멈춘다. (소유자 제보)
