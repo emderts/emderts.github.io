@@ -43,4 +43,10 @@ const L = (c, cell) => c.board.label(cell); const P = (c, l) => c.board.parse(l)
   for (let s = 1; s <= N; s++) { const c = await mk(3000 + s); const r = await c.run(); if (r === 'win') wins++; else losses++; const bad = c.log.filter(l => /미구현/.test(l.msg)); if (bad.length) ok(false, `seed ${s}: ${bad[0].msg}`); }
   ok(wins + losses === N, `${N} seeded Knight of the Fen Clashes finished: ${wins} win / ${losses} lose`);
   for (const lv of [2, 3, 4]) for (const sd of [1, 2]) { const c = await mk(3100 + lv * 10 + sd, lv, sd === 1 ? 'sunken' : 'principality'); const r = await c.run(); ok(['win', 'lose'].includes(r) && !c.log.some(l => /미구현/.test(l.msg)), `level ${lv} simulation finished (${r}, ${c.round} rounds)`); } }
+// Engulfed during the Knight's own turn (e.g. a Fail Response): the rest of the turn is Sabotage / attack only — no Movement action, no start-of-turn Poison
+{ const c = await mk(77); const k = c.knights[0]; const seen = []; let hit = false; const ka = c.knightAttack.bind(c); c.knightAttack = async kk => { if (!hit) { hit = true; await c.fenEngulf(kk); return; } return ka(kk); };
+  const base = c.ask; c.canAttack = () => true; c.ask = async q => { if (q.type === 'action') { seen.push((q.text || '') + ' | ' + q.options.map(o => o.value).join(',')); if (!hit && q.options.some(o => o.value === 'attack')) return 'attack'; return 'end'; } return base(q); };
+  const p0 = c.log.length; await c.knightTurn(k); const L = c.log.slice(p0).map(l => l.msg);
+  ok(hit && k.engulfed && seen.length === 2 && /Engulfed/.test(seen[1]) && !/move/.test(seen[1].split(' | ')[1]), `Engulfed mid-turn → next prompt is the Engulfed menu without movement (${seen[1]})`);
+  ok(!L.some(m => /Poison 2/.test(m)) && !L.some(m => /이동 →/.test(m)), 'Engulfed mid-turn: no Movement, no "started your turn Engulfed" Poison 2'); }
 console.log(fails ? `${fails} FAIL` : 'ALL PASS'); process.exit(fails ? 1 : 0);

@@ -94,8 +94,9 @@ export const FenMixin = {
     const to = cand.length > 1 ? await this.ask({ type: 'move', knight: k.id, text: `${k.name}: Engulfed 탈출 — Displace 칸`, cells: cand, options: cand.map(c => ({ label: B.label(c), value: c })) }) || cand[0] : cand[0]; k.pos = to; B.place({ kind: 'knight', id: k.id }, [to]); this.say(`${k.name}: Engulfed에서 풀려남 (${why}) → ${B.label(to)}`, 'cond'); },
   fenSync() { if (!this.isFen) return; for (const k of this.knights) if (k.engulfed) k.pos = { ...this.monster.cells[0] }; },
   async fenAfterMove() { if (!this.isFen || this.actingGuardian) return; const passed = [...(this._fenPassed || [])]; this._fenPassed = null; for (const k of passed) if (k.alive && !k.engulfed && !this.monster.cells.some(c => cellEq(c, k.pos))) await this.fenOoze(k, 'boss'); for (const k of this.fenKnights()) if (this.monster.cells.some(c => cellEq(c, k.pos))) { this.say(`Knight of the Fen이 ${k.name} 위에서 이동 종료`); await this.fenEngulf(k); if (k.alive && this.monster.level >= 2 && this.monster.level <= 3 && this.monster.hasTrait('Ooze Trap')) { this.say(`Ooze Trap (Level 2–3): ${k.name} -2 Vigor`); await this.loseVigor(k, 2, { source: 'effect', armor: false }); } } this.fenSync(); },
-  async fenEngulfedTurn(k) {
-    const M = this.monster; let combat = true, sab = false;
+  /** started: the Knight began this turn Engulfed (the end-of-turn Poison 2 applies only then). When a Knight becomes Engulfed during their own turn, the rest of the turn follows the Engulfed card: only Sabotage or attack, no movement. */
+  async fenEngulfedTurn(k, started = true, combat = true) {
+    const M = this.monster; let sab = false;
     while (k.alive && k.engulfed) {
       const hasW = k.gear.some(g => g.type === 'weapon' && !g.exhausted && !g.discarded); const opts = [];
       if (combat && hasW) opts.push({ label: '공격 (Engulfed — Knight of the Fen, Melee만)', value: 'attack' }); if (combat && !sab) opts.push({ label: 'Sabotage (Combat action)', value: 'sabC' }); if (!sab && k.heat + 3 <= k.heatLimit) opts.push({ label: `Sabotage (Heat +3, 현재 ${k.heat}/${k.heatLimit})`, value: 'sabH' }); opts.push({ label: '턴 종료', value: 'end' });
@@ -106,7 +107,7 @@ export const FenMixin = {
       this.say(`${k.name} Sabotage: Test ${vt} d10 ${d} +${b} vs 10+ → ${okk ? '성공' : '실패'}`, 'dice');
       if (okk) { const c = await this.ask({ type: 'pick', knight: k.id, text: 'Sabotage 성공 — 효과 선택', options: [{ label: 'AI Suppress (AI 버림 더미를 덱에 섞음)', value: 'ai' }, { label: `Armor 토큰 모두 버림 (현재 ${this.fenArmor})`, value: 'armor' }] }); if (c === 'armor') { this.fenArmor = 0; this.say('Sabotage: Armor 토큰 모두 버림'); } else { M.ai.cards.push(...M.ai.discard); M.ai.discard = []; M.ai.shuffle(); this.say('Sabotage: AI Suppress'); } }
     }
-    if (k.alive && k.engulfed) { this.say(`${k.name}: Engulfed 상태로 턴 시작·종료 → Poison 2`); await this.fx.runKnightOp({ op: 'poison', n: 2 }, k, {}); }
+    if (started && k.alive && k.engulfed) { this.say(`${k.name}: Engulfed 상태로 턴 시작·종료 → Poison 2`); await this.fx.runKnightOp({ op: 'poison', n: 2 }, k, {}); }
   },
   // ---------- Knight of the Fen movement ----------
   async fenStepUntil(cell, done) { for (let i = 0; i < 30 && !done(); i++) { const m = this.monsterCenter(); const dc = cell.c - m.c, dr = cell.r - m.r; if (Math.abs(dc) < 0.5 && Math.abs(dr) < 0.5) break; const d = Math.abs(dc) >= Math.abs(dr) ? { c: Math.sign(dc), r: 0 } : { c: 0, r: Math.sign(dr) }; const r = await this.monsterStep(d); if (r !== 'ok') { const alt = d.c ? { c: 0, r: Math.sign(dr) } : { c: Math.sign(dc), r: 0 }; if ((!alt.c && !alt.r) || await this.monsterStep(alt) !== 'ok') break; } } await this.fenAfterMove(); },

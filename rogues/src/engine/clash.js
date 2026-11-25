@@ -731,6 +731,7 @@ export class Clash {
     k.actions = { move: true, combat: true, extraCombat: 0 }; k.freeUsed = new Set();
     let done = false; if (k.engulfed) { await this.fenEngulfedTurn(k); done = true; }
     while (!done && k.alive) {
+      if (k.engulfed) { this.say(`${k.name}: Engulfed — 남은 턴에는 Sabotage 또는 공격만 가능 (이동 불가)`, 'cond'); await this.fenEngulfedTurn(k, false, !!(k.actions.combat || k.actions.extraCombat > 0)); break; }
       const kdNow = k.conditions.find(c => c.id === 'Knockdown (Falling Down)');
       const opts = [];
       if (!kdNow) { if (k.actions.move) opts.push({ label: `이동 (Speed ${this.fx.speed(k)})`, value: 'move' }); if (k.actions.combat && this.fx.gearHas(k, 'combatAsMove')) opts.push({ label: `이동 — Combat action 사용 (Speed ${this.fx.speed(k)})`, value: 'moveC' }); if ((k.actions.combat || k.actions.extraCombat > 0) && this.canAttack(k)) opts.push({ label: '공격', value: 'attack' }); for (const t of this.fx.usableTechniques(k)) { if (t.ops && t.ops[0] && t.ops[0].op === 'standUp') continue; /* "Stand up" Techniques are only offered while knocked down */ opts.push({ label: `기술: ${t.name} (${this.fx.costDep(k, t)})`, value: 'tech:' + t.name }); } for (const a of this.fx.freeActions(k)) opts.push({ label: a.label, value: 'free:' + a.id }); }

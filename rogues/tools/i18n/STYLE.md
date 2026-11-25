@@ -233,3 +233,4 @@
 ## 2026-11-25 — Overcome 토큰 시점
 - Overcome/Overpower 효과로 얻는 키워드 토큰(Power X, Sunder X, Break X, Opening X, Fire X …)은 키워드 정의("During the second ability window, place X … tokens in the Knight Pool") 그대로 9단계 풀 정리 뒤 두 번째 능력 창에 놓는다. (소유자 제보 2026-11-25)
 - Brain over Brawn 사용 확인 창에 지금 Rear 칸인지, Catalyst Weapon인지, 풀의 Magic 수를 표시한다. 규칙 변경 없음.
+- 2026-11-25: 자기 턴 중에 Engulfed가 되면 그 턴의 남은 부분은 Engulfed 카드("During your turn, you can either try to Sabotage or attack")대로 Sabotage/공격만 가능, 이동 행동 없음. 턴 종료 Poison 2는 "If you started your turn Engulfed"라서 적용 안 함. (소유자 제보 2026-11-25)
