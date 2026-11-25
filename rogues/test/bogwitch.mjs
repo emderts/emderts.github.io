@@ -69,4 +69,9 @@ const P = (c, l) => c.board.parse(l), L = (c, x) => c.board.label(x);
   { const c = setup(16); c.destroyObstacle(P(c, 'B2')); ok2(!['B2', 'B3', 'C2', 'C3'].some(l => c.board.terrainAt(P(c, l))) && !!c.board.terrainAt(P(c, 'B8')), 'destroying one space of a Rotten Stump removes the whole 2x2 tile (the other tile stays)');
     c.board.terrain.set(c.board.key(P(c, 'C9')), { id: 'swamp' }); ok2(!c.board.terrainAt(P(c, 'B8')) && c.board.terrainAt(P(c, 'C9')).id === 'swamp', 'a tile placed over one of its spaces also removes the whole Rotten Stump'); }
   if (f2) { console.log(f2 + ' FAILED'); process.exit(1); } console.log('ALL PASS (search / wisp)'); }
+// Birds of Carrion resolves against the Carrion Zone (owner report 2026-11-25: Witch G1-H2, Knights I4/G5/F4 safe, F8 in the Zone — nobody was attacked)
+{ const c = mk(6, 2); c.board.terrain.clear(); ['I4', 'G5', 'F4', 'F8'].forEach((s, i) => c.moveKnight(c.knights[i], P(c, s))); c.bwPlace(['G1', 'G2', 'H1', 'H2'].map(s => P(c, s)), 'test'); c.bwBogMove = async () => { };
+  const hit = []; c.attackOneTarget = async (a, t) => { hit.push(t.name); }; const card = c.monsterDef.cards.ai.find(a => a.name === 'Birds of Carrion'); const zc = c.bwCarrionCells().map(x => L(c, x));
+  await c.resolveMonsterAttack(card); ok(hit.join() === c.knights[3].name, `Birds of Carrion attacks exactly the Knight outside the rectangle (${hit.join(',') || 'nobody'})`);
+  ok(zc.includes('F8') && zc.includes('E1') && zc.includes('J1') && !zc.includes('I4') && !zc.includes('G5') && !zc.includes('F4') && !zc.includes('I5') && zc.includes('I6'), 'Carrion Zone cells: columns 1–5 × rows F–I are safe around a Witch on G1–H2'); }
 console.log(fails ? `FAIL (${fails})` : 'ALL PASS (bog witch)'); process.exit(fails ? 1 : 0);
