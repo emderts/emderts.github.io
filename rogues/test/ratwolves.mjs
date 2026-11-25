@@ -1,7 +1,7 @@
 // Ratwolves: data, Strength of the Pack (Toughness tokens, Immediate Spawn + Signature), Rising Pressure, Afflict, Drag traits, simulations.
 import fs from 'fs';
 import path from 'path';
-import { Clash } from '../src/engine/clash.js';
+import { Clash, ChainBreak } from '../src/engine/clash.js';
 import { KNOWN_OPS } from '../src/engine/effects.js';
 const root = new URL('../data/', import.meta.url);
 const loadData = dir => { const out = {}; for (const ent of fs.readdirSync(dir, { withFileTypes: true })) { const full = path.join(dir, ent.name); if (ent.isDirectory()) out[ent.name] = loadData(full); else if (ent.name.endsWith('.json')) out[ent.name.replace(/\.json$/, '')] = JSON.parse(fs.readFileSync(full, 'utf8')); } return out; };
@@ -43,4 +43,8 @@ const P = (c, l) => c.board.parse(l), L = (c, x) => c.board.label(x);
 { let done = 0, win = 0; for (let seed = 1; seed <= 12; seed++) for (const [lv, kd] of [[1, 'sunken'], [2, 'principality'], [3, 'sunken'], [4, 'principality']]) { if ((seed + lv) % 3) continue; const c = mk(seed * 7 + lv, lv, kd); try { const r = await c.run(60); done++; if (r === 'win' || c.result === 'win') win++; } catch (e) { console.log('ERR', seed, lv, e.stack.split('\n').slice(0, 4).join(' | ')); fails++; } }
   ok(done > 0, `simulations finished: ${done} (wins ${win})`); }
 { const c = mk(51, 3); const k = c.knights[0]; c.curseLevel = 0; k.alive = false; await c.ratOp({ op: 'ratCurseIfDied', n: 1 }, { target: k }); ok(c.curseLevel === 1, 'Cursed Bite: a Knight dying from the Attack gives +1 Curse'); }
+// Chain Break during a Ratwolf Attack (e.g. a Mortis Bonus Attack): the rest of that Attack — card Afflict, Go for the Weakest Link — is not resolved
+{ let seen = 0, bad = 0; for (let sd = 500; sd < 540 && seen < 3; sd++) { const c = mk(sd); const lv = c.loseVigor.bind(c); let thrown = false; c.loseVigor = async (k, n, o) => { await lv(k, n, o); if (c.currentAttack && !thrown && (!o || !o.source || o.source === 'attack')) { thrown = true; throw new ChainBreak('test'); } };
+    const l0 = c.log.length; await c.monsterRound(); if (!thrown) continue; seen++; const L = c.log.slice(l0).map(l => l.msg); const i = L.findIndex(m => /^Chain Break: test/.test(m)); const next = L.findIndex((m, x) => x > i && /^(Ratwolf #\d+ |AI:|Signature:|Activation)/.test(m)); const seg = L.slice(i + 1, next < 0 ? L.length : next); if (i < 0 || seg.some(m => /Go for the Weakest Link|Afflict \d → /.test(m))) { bad++; console.log(seg.join(' | ').slice(0, 400)); } }
+  ok(seen > 0 && bad === 0, `Chain Break in a Ratwolf Attack skips the card Afflict and Go for the Weakest Link (${seen} cases)`); }
 console.log(fails ? `FAIL (${fails})` : 'ALL PASS (ratwolves)'); process.exit(fails ? 1 : 0);
