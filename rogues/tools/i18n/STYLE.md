@@ -247,3 +247,4 @@
 - 2026-11-25: Fleisch(및 Magic) 토큰은 Resource 토큰 — 룰북 p.19 "Unlike Knight tokens, Resource tokens remain in the Pool until they're used". Clear the Knight Pool에서 지워지지 않는다. Meatbait·BP 효과로 놓인 Fleisch가 지워지던 버그 수정. (소유자 제보)
 - 2026-11-25: Knighteater Ultrainstinct "Pushback X, stopping before any Obstacles" — Pushback 정의(p.85)대로 Knighteater도 기사를 밀며 함께 이동(방향 유지). Knighteater 자신의 칸에 Obstacle이 걸려도 그 앞에서 멈춘다. (소유자 제보)
 - 2026-11-25: White Ape Troll — Guardian을 상처 입혀 얻는 Bonus Attack은 룰북 p.59("will happen immediately after this one is completely resolved")대로 현재 공격이 완전히 끝난 뒤(두 번째 능력 창의 Reposition·Hug 이후) 사거리를 판정하고 수행 여부를 묻는다. 이전에는 Response 시점에 사거리를 판정해 "불가"가 됐음. (소유자 제보, 디스코드 답변 인용)
+- 2026-11-26: Hardboiled — 가장자리에서 방향을 바꾼 뒤 남은 칸을 새 방향으로 계속 이동("continues movement in that direction"). 이전 코드는 방향 전환 후 한 칸만 새 방향으로 가고 다시 원래 방향으로 돌아가 가장자리에서 왕복했음 (버그). (소유자 제보)

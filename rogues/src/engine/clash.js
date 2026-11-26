@@ -675,12 +675,12 @@ export class Clash {
   async humptyCharge(attacker) {
     const M = this.monster; const B = this.board;
     if (attacker && attacker.alive) this.turnToward(attacker.pos);
-    const d = DIRS[M.facing]; let armorDiscarded = 0; const maxDiscard = M.hasTrait('Just a Scratch') ? 1 : 99;
+    let d = DIRS[M.facing]; let armorDiscarded = 0; const maxDiscard = M.hasTrait('Just a Scratch') ? 1 : 99;
     this.say(`Humpty Charge: ${M.facing} 방향으로 6칸 돌진`);
     for (let i = 0; i < 6; i++) {
       const r = await this.monsterStep(d, { charge: true });
       if (r === 'edge') {
-        if (M.hasTrait('Hardboiled')) { await this.faceMostKnights(); this.say('Hardboiled: 가장자리에서 방향 전환 후 계속'); const d2 = DIRS[M.facing]; const r2 = await this.monsterStep(d2, { charge: true }); if (r2 !== 'ok') break; continue; }
+        if (M.hasTrait('Hardboiled')) { await this.faceMostKnights(); this.say(`Hardboiled: 가장자리에서 방향 전환(${M.facing}) 후 남은 ${6 - i}칸 계속`); d = DIRS[M.facing]; /* "continues movement in that direction": the rest of the 6 spaces go the new way (the old direction was kept here, so it bounced off the edge every other space) */ const r2 = await this.monsterStep(d, { charge: true }); if (r2 === 'obstacle') { this.say('Humpty Charge: 장애물 위로 이동 → 정지, Armor 토큰 1 상실'); await this.faceMostKnights(); await this.displaceKnightsUnderMonster(); if (armorDiscarded < maxDiscard) { await this.loseArmorToken('humptyCharge'); armorDiscarded++; } return; } if (r2 !== 'ok') break; continue; }
         if (M.hasTrait('Humpty Fate')) { this.say('Humpty Fate: 가장자리 → 정지, Armor 토큰 1 상실'); await this.faceMostKnights(); await this.displaceKnightsUnderMonster(); /* the movement ended here: a Knight under the Eggknight suffers Crash + Unavoidable Knockback */ if (armorDiscarded < maxDiscard) { await this.loseArmorToken('humptyCharge'); armorDiscarded++; } return; }
         break;
       }
