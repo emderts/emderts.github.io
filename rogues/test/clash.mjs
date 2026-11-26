@@ -69,8 +69,8 @@ const mk = (seed, level = 1) => { const c = new Clash({ data, knights: [0, 1, 2,
   await c.knightAttack(k);
   ok(seen.every(t => /Power Roll 후/.test(t)) && seen.every(t => !/Food Runner|Second Chance/.test(t.split(' | ')[1] || '') || true), 'during the Attack, Exert is offered only at the Power Re-roll step');
   ok(poolOpening === 1, 'Exert Food Runner (free action) → +1 Opening token in the Knight Pool');
-  ok(k.cooldown.some(t => t.name === 'Food Runner') && k.heat >= heat0 && k.hand.some(t => t.name === 'Second Chance'), 'Exert ignores cost, card goes to its Exert depletion (Cooldown)');
-  ok(!seen.length || k.cooldown.some(t => t.name === 'Knight Roll'), 'Knight Roll exerted for Power Re-roll at the Power Re-roll step (when reached)');
+  ok(k.delay.some(t => t.name === 'Food Runner') && k.heat >= heat0 && k.hand.some(t => t.name === 'Second Chance'), 'Exert ignores cost, card goes to its Exert depletion (Cooldown)');
+  ok(!seen.length || k.delay.some(t => t.name === 'Knight Roll'), 'Knight Roll exerted for Power Re-roll at the Power Re-roll step (when reached)');
 }
 // --- Fire tokens are mandatory and all but one unused stay in the pool
 { const c = mk(7); c.pool = []; c.poolAdd('fire', 3); c.clearPool(); ok(c.poolCount('fire') === 2, 'Clear the Knight Pool leaves all but one unused Fire token'); }

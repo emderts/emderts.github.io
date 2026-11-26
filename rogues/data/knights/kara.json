@@ -1257,7 +1257,7 @@
      "text": "[Reaction] Superior Reflex."
     }
    ],
-   "depletion": "delay",
+   "depletion": "cooldown",
    "unclear": [],
    "ops": [
     {
@@ -1283,7 +1283,7 @@
    "exert": {
     "token": "Opening",
     "n": 1,
-    "depletion": "delay"
+    "depletion": "cooldown"
    }
   },
   {
@@ -1302,7 +1302,7 @@
      "text": "Rocksteady."
     }
    ],
-   "depletion": "delay",
+   "depletion": "cooldown",
    "unclear": [],
    "ops": [
     {
@@ -1323,7 +1323,7 @@
    "exert": {
     "token": "Opening",
     "n": 1,
-    "depletion": "delay"
+    "depletion": "cooldown"
    }
   },
   {
@@ -1346,7 +1346,7 @@
      "text": "+4 [Speed] instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1372,7 +1372,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1402,7 +1402,7 @@
      "text": "Additionally gain +1 Speed [Speed] and +1 [Power] for this Rush."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1433,7 +1433,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1452,7 +1452,7 @@
      "text": "Advanced Reinforce 1 instead."
     }
    ],
-   "depletion": "delay",
+   "depletion": "cooldown",
    "unclear": [],
    "ops": [
     {
@@ -1470,7 +1470,7 @@
    "exert": {
     "token": "Opening",
     "n": 1,
-    "depletion": "delay"
+    "depletion": "cooldown"
    }
   },
   {
@@ -1489,7 +1489,7 @@
      "text": "Up to 5 spaces instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1509,7 +1509,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    },
    "notTarget": true,
    "straightWithMonster": true
@@ -1525,7 +1525,7 @@
    ],
    "text": "Place the top BP card on the bottom of the BP deck. If fighting against Mobs, flip a chosen revealed BP card face down instead.",
    "gates": [],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1537,7 +1537,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1556,7 +1556,7 @@
      "text": "Tumble and Superior Bypass instead."
     }
    ],
-   "depletion": "delay",
+   "depletion": "cooldown",
    "unclear": [
     "Tumble: offered when about to suffer Crash. Bypass (DEVIL: Superior Bypass): offered when Kara is about to move and Bypass would open more spaces"
    ],
@@ -1570,7 +1570,7 @@
    "exert": {
     "token": "Opening",
     "n": 1,
-    "depletion": "delay"
+    "depletion": "cooldown"
    }
   },
   {
@@ -1589,7 +1589,7 @@
      "text": "Unexhaust all Gear [Gear] cards instead."
     }
    ],
-   "depletion": "delay",
+   "depletion": "cooldown",
    "unclear": [],
    "ops": [
     {
@@ -1608,7 +1608,7 @@
    "exert": {
     "token": "Opening",
     "n": 1,
-    "depletion": "delay"
+    "depletion": "cooldown"
    }
   },
   {
@@ -1663,7 +1663,7 @@
      "text": "An Improved Diversion [Improved Diversion] token instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1685,7 +1685,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1704,7 +1704,7 @@
      "text": "Motivate 4 instead."
     }
    ],
-   "depletion": "delay",
+   "depletion": "cooldown",
    "unclear": [],
    "ops": [
     {
@@ -1724,7 +1724,7 @@
    "exert": {
     "token": "Opening",
     "n": 1,
-    "depletion": "delay"
+    "depletion": "cooldown"
    }
   },
   {
@@ -1743,7 +1743,7 @@
      "text": "Rouse 2 instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1765,7 +1765,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1883,7 +1883,7 @@
    ],
    "text": "[Reaction] Superior Reflex. When you become the Target of an AI or Signature, immediately return this card to your hand and lose -1 [Heat].",
    "gates": [],
-   "depletion": "delay",
+   "depletion": "cooldown",
    "unclear": [],
    "ops": [
     {
@@ -1896,7 +1896,7 @@
    "exert": {
     "token": "Closing",
     "n": 1,
-    "depletion": "delay"
+    "depletion": "cooldown"
    }
   },
   {
@@ -1994,7 +1994,7 @@
    ],
    "text": "When another Knight is about to attack, they gain +2 Precision [Precision] and Precise. Then, place this card in that Knight's hand. This Technique does not count toward the Hand Limit of Knights other than Kara. End of Clash: Return this card to Kara's hand.",
    "gates": [],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -2006,7 +2006,7 @@
    "exert": {
     "token": "Closing",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -2015,7 +2015,7 @@
    "cost": [],
    "text": "Every other Knight may gain +1 [Heat] to move 1 space. Then, all non-Knight (and non-Squire) Allies may move 1 space. You may use this Technique as a free action or as a [Reaction].",
    "gates": [],
-   "depletion": "delay",
+   "depletion": "cooldown",
    "unclear": [
     "Non-Knight Allies are not implemented"
    ],
@@ -2029,7 +2029,7 @@
    "exert": {
     "token": "Closing",
     "n": 1,
-    "depletion": "delay"
+    "depletion": "cooldown"
    },
    "alsoReaction": true
   },
@@ -2076,7 +2076,7 @@
    ],
    "text": "Use this Technique before the Attack Roll. Gain Deadly. After the Attack Roll, for each \"10\" you rolled, gain +1 [Power]. Full Evade: Return this card to your hand.",
    "gates": [],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -2088,7 +2088,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    },
    "returnOnFullEvade": true
   },

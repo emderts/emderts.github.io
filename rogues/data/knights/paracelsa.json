@@ -1393,7 +1393,7 @@
    "gates": [
     {
      "gate": "KING",
-     "text": "This Technique's Depletion becomes [Cooldown]."
+     "text": "This Technique's Depletion becomes [Delay]."
     }
    ],
    "depletion": "discard",
@@ -1408,7 +1408,7 @@
     "KING": [
      {
       "op": "persecuted",
-      "depletion": "cooldown"
+      "depletion": "delay"
      }
     ]
    },
@@ -1438,7 +1438,7 @@
      "text": "[Reaction] Superior Reflex."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1464,7 +1464,7 @@
    "exert": {
     "token": "Opening",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1483,7 +1483,7 @@
      "text": "Stand up, then move up to 1 space."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1506,7 +1506,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1547,7 +1547,7 @@
      "text": "Improved Rush. If you have 3+ Zeal [Zeal] tokens on your Knight Board, Rush has Auto-fire 2 instead of Auto-break 1."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1573,7 +1573,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1600,7 +1600,7 @@
      "text": "2 Closing [Closing] and 2 Fire [Fire] tokens instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1626,7 +1626,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1686,7 +1686,7 @@
      "text": "2 tokens instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [
     "Handled as temporary Precision -1 tokens for the Monster (lower the next Evasion Roll difficulty)"
    ],
@@ -1708,7 +1708,7 @@
    "exert": {
     "token": "Opening",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1717,7 +1717,7 @@
    "cost": [],
    "text": "When you are about to attack, discard X Knight tokens from the Knight Pool to gain Deadly, where X is the Level of the top card of the BP deck (minimum 1). If fighting against Mobs, X is the Level of the attacked BP card instead. If you discarded a Black [Black] or Hope [Hope] token, immediately Zeal 1.",
    "gates": [],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [
     "Against Mobs the tokens are discarded once the attacked BP card is chosen"
    ],
@@ -1731,7 +1731,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1745,7 +1745,7 @@
    ],
    "text": "When you are about to exhaust (voluntarily or not) a Ranged Weapon [Gear] card, ignore it. Additionally, you may spend a Zeal [Zeal] token to ignore an Exhaust of any Gear [Gear] card instead.",
    "gates": [],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [
     "Offered right after a Gear card is exhausted (checked after each action / Attack): the Exhaust is undone"
    ],
@@ -1759,7 +1759,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1786,7 +1786,7 @@
      "text": "Up to 3 spaces instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1812,7 +1812,7 @@
    "exert": {
     "token": "Opening",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1851,7 +1851,7 @@
      "text": "Advanced Defy instead. Hope 2 instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [
     "Hope: second ability window of her Attack. Defy: when Paracelsa is the Target of a Monster Attack"
    ],
@@ -1875,7 +1875,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1936,7 +1936,7 @@
      "text": "Superior Chance."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1954,7 +1954,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -2002,7 +2002,7 @@
    ],
    "text": "Advanced Block.",
    "gates": [],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -2015,7 +2015,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -2034,7 +2034,7 @@
      "text": "Hope 3 instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -2060,7 +2060,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -2142,7 +2142,7 @@
    ],
    "text": "When you are about to attack, gain Spotlight and Heartseeker.",
    "gates": [],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -2157,7 +2157,7 @@
    "exert": {
     "token": "Closing",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -2199,7 +2199,7 @@
    ],
    "text": "After a Monster performs its movement, immediately move up to 3 spaces toward that Monster. If you have 3+ Zeal [Zeal] tokens, you may move up to your Speed [Speed] value instead.",
    "gates": [],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -2212,7 +2212,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -2260,7 +2260,7 @@
    ],
    "text": "Use this Technique when you are about to perform a Power Roll. Ignore all Responses during this Attack.",
    "gates": [],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -2272,7 +2272,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {

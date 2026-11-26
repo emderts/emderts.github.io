@@ -1287,7 +1287,7 @@
      "text": "Additionally, you may use this Technique while knocked down."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1314,7 +1314,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1337,7 +1337,7 @@
      "text": "Stand up."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1360,7 +1360,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1387,7 +1387,7 @@
      "text": "Additionally, gain +1 Speed [Speed] for this movement."
     }
    ],
-   "depletion": "delay",
+   "depletion": "cooldown",
    "unclear": [
     "Used as a free action before moving; applies to the next movement. Below KING the Difficult-Terrain cost of passing a Knight is not charged; APE +1 Speed lasts until the end of the turn"
    ],
@@ -1425,7 +1425,7 @@
    "exert": {
     "token": "Opening",
     "n": 1,
-    "depletion": "delay"
+    "depletion": "cooldown"
    }
   },
   {
@@ -1452,7 +1452,7 @@
      "text": "Additionally, Guard 1."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1489,7 +1489,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1508,7 +1508,7 @@
      "text": "Additionally, gain Provoke."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1529,7 +1529,7 @@
    "exert": {
     "token": "Opening",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1560,7 +1560,7 @@
      "text": "Additionally, you may ignore Difficult Terrain tiles during this Rush."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1584,7 +1584,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1603,7 +1603,7 @@
      "text": "BP deck instead. If fighting against Mobs, look at the leftmost unrevealed BP on the Mob track."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1626,7 +1626,7 @@
    "exert": {
     "token": "Opening",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1645,7 +1645,7 @@
      "text": "You may gain Precise instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1667,7 +1667,7 @@
    "exert": {
     "token": "Opening",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1690,7 +1690,7 @@
      "text": "Additionally, gain +1 Speed [Speed] until the end of your turn."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [
     "Jump applies to the next movement: 1 Terrain space (Advanced Jump: up to 2) including an Obstacle is ignored"
    ],
@@ -1722,7 +1722,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1832,7 +1832,7 @@
      "text": "You can only Inspire."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1855,7 +1855,7 @@
    "exert": {
     "token": "Opening",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1878,7 +1878,7 @@
      "text": "Additionally, gain Armor Re-roll 2."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1910,7 +1910,7 @@
    "exert": {
     "token": "Break",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1933,7 +1933,7 @@
      "text": "Additionally, you may immediately perform BP Suppress."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1960,7 +1960,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1983,7 +1983,7 @@
      "text": "Additionally gain +2 [Vigor]."
     }
    ],
-   "depletion": "delay",
+   "depletion": "cooldown",
    "unclear": [],
    "ops": [
     {
@@ -2013,7 +2013,7 @@
    "exert": {
     "token": "Opening",
     "n": 1,
-    "depletion": "delay"
+    "depletion": "cooldown"
    }
   },
   {
@@ -2038,7 +2038,7 @@
      "text": "5 spaces instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -2059,7 +2059,7 @@
    "exert": {
     "token": "Opening",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -2161,7 +2161,7 @@
      "text": "Additionally gain Braced until the end of this Attack (including After Attack)."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [
     "Offered when Ser Ubar becomes the Target of a Monster Attack"
    ],
@@ -2176,7 +2176,7 @@
    "exert": {
     "token": "Break",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -2195,7 +2195,7 @@
      "text": "Advanced Defy instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [
     "Offered when Ser Ubar becomes the Target of a Monster Attack"
    ],
@@ -2210,7 +2210,7 @@
    "exert": {
     "token": "Closing",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -2230,7 +2230,7 @@
      "text": "As long as this card is Delayed, gain: \"[Reaction] [Discard] Superior Reflex.\""
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -2245,7 +2245,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -2264,7 +2264,7 @@
      "text": "Additionally ignore Wound Responses during this Attack."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -2285,7 +2285,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -2347,7 +2347,7 @@
      "text": "Improved Rush instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [
     "Cost icon read as a [Combat action]"
    ],
@@ -2370,7 +2370,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {

@@ -1396,7 +1396,7 @@
      "text": "[reaction glyph] Superior Reflex."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [
     "An ornate wisp/tree-like glyph precedes 'Reflex' on each line (not in the token legend)"
    ],
@@ -1424,7 +1424,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1443,7 +1443,7 @@
      "text": "Rocksteady."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1464,7 +1464,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1542,7 +1542,7 @@
      "text": "Improved Rush instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1560,7 +1560,7 @@
    "exert": {
     "token": "Opening",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    },
    "costNote": "비용 태그 = 전투 행동 + 이동 행동 소모 (사용자 확인 2026-11-02) + Heat +2"
   },
@@ -1580,9 +1580,9 @@
      "text": "Reinforce 3 instead."
     }
    ],
-   "depletion": "delay",
+   "depletion": "cooldown",
    "unclear": [
-    "Depletion icon is a card with a clock/circular-arrow symbol; read as Delay"
+    "Depletion icon is a card with a clock/circular-arrow symbol = Cooldown (rulebook p.23 DEPLETION; corrected 2026-11-26 — it had been read as Delay)"
    ],
    "ops": [
     {
@@ -1604,7 +1604,7 @@
    "exert": {
     "token": "Opening",
     "n": 1,
-    "depletion": "delay"
+    "depletion": "cooldown"
    }
   },
   {
@@ -1627,7 +1627,7 @@
      "text": "4 instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1653,7 +1653,7 @@
    "exert": {
     "token": "Opening",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1705,7 +1705,7 @@
    ],
    "text": "Immediately Provoke or Daze.",
    "gates": [],
-   "depletion": "delay",
+   "depletion": "cooldown",
    "unclear": [],
    "ops": [
     {
@@ -1729,7 +1729,7 @@
    "exert": {
     "token": "Opening",
     "n": 1,
-    "depletion": "delay"
+    "depletion": "cooldown"
    }
   },
   {
@@ -1748,7 +1748,7 @@
      "text": "Unexhaust all Gear [Gear] cards instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1768,7 +1768,7 @@
    "exert": {
     "token": "Break",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1787,7 +1787,7 @@
      "text": "Advanced Reinforce 3 instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1809,7 +1809,7 @@
    "exert": {
     "token": "Opening",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1823,7 +1823,7 @@
    ],
    "text": "Gain Braced until your next turn (you cannot be involuntarily moved or suffer Knockdown, but you can still be Displaced).",
    "gates": [],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1836,7 +1836,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1855,7 +1855,7 @@
      "text": "When you are about to attack, if there are 3 Opening [Opening] tokens in the Knight Pool, gain Soulseeker."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1873,7 +1873,7 @@
    "exert": {
     "token": "Fleisch",
     "n": 1,
-    "depletion": "cooldown",
+    "depletion": "delay",
     "unclear": "좌상단 아이콘이 닭다리 그림 — Knight Tokens 범례에 없음, Fleisch 자원 토큰으로 판독"
    }
   },
@@ -1893,7 +1893,7 @@
      "text": "For every 3 [PowerSymbol] of your Total Power instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [
     "[PowerSymbol] = the sword glyph used for Power results",
     "[AT] = a dark hooded/creature-like glyph; the same glyph appears after 'AT' on Meat Puppet, so it is likely the monster AT stat icon"
@@ -1920,7 +1920,7 @@
    "exert": {
     "token": "Opening",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1939,7 +1939,7 @@
      "text": "As long as this card is either in the Delay or Cooldown area, gain Immune to Body Condition cards. Place that Condition card under this Technique as a reminder."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1951,7 +1951,7 @@
    "exert": {
     "token": "Fire",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1965,7 +1965,7 @@
    ],
    "text": "When you're about to resolve the Clear the Knight Pool step of your Attack, skip that step.",
    "gates": [],
-   "depletion": "delay",
+   "depletion": "cooldown",
    "unclear": [],
    "ops": [
     {
@@ -1977,7 +1977,7 @@
    "exert": {
     "token": "Opening",
     "n": 1,
-    "depletion": "delay"
+    "depletion": "cooldown"
    }
   },
   {
@@ -1991,7 +1991,7 @@
    ],
    "text": "If your Attack hits, you may use this Technique to ignore Responses during that Attack.",
    "gates": [],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -2003,7 +2003,7 @@
    "exert": {
     "token": "Break",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -2054,7 +2054,7 @@
      "text": "Motivate 5 instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -2067,7 +2067,7 @@
    "exert": {
     "token": "Opening",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -2210,7 +2210,7 @@
    ],
    "text": "Reset your [Heat].",
    "gates": [],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [
     "Right edge of this card is cut off by the scan; visible text appears complete"
    ],
@@ -2224,7 +2224,7 @@
    "exert": {
     "token": "Closing",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {

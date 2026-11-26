@@ -1233,7 +1233,7 @@
      "text": "[Reaction] Superior Reflex."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1259,7 +1259,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1278,7 +1278,7 @@
      "text": "Stand up, then immediately Inspire 1."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1300,7 +1300,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1331,7 +1331,7 @@
      "text": "3 Closing [Closing] and/or Hope [Hope] tokens instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1389,7 +1389,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1412,7 +1412,7 @@
      "text": "Motivate 3 instead."
     }
    ],
-   "depletion": "delay",
+   "depletion": "cooldown",
    "unclear": [],
    "ops": [
     {
@@ -1447,7 +1447,7 @@
    "exert": {
     "token": "Opening",
     "n": 1,
-    "depletion": "delay"
+    "depletion": "cooldown"
    }
   },
   {
@@ -1466,7 +1466,7 @@
      "text": "Gain Advanced Block instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1496,7 +1496,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1519,7 +1519,7 @@
      "text": "+3 [Precision] instead."
     }
    ],
-   "depletion": "delay",
+   "depletion": "cooldown",
    "unclear": [
     "No Exert icon on this card"
    ],
@@ -1592,7 +1592,7 @@
      "text": "Motivate 4 instead."
     }
    ],
-   "depletion": "delay",
+   "depletion": "cooldown",
    "unclear": [],
    "ops": [
     {
@@ -1627,7 +1627,7 @@
    "exert": {
     "token": "Opening",
     "n": 1,
-    "depletion": "delay"
+    "depletion": "cooldown"
    }
   },
   {
@@ -1650,7 +1650,7 @@
      "text": "Additionally, Refresh all cards in your Delay area."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1676,7 +1676,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1699,7 +1699,7 @@
      "text": "Power 3 instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1725,7 +1725,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1748,7 +1748,7 @@
      "text": "Soulseeker instead (of Heartseeker)."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1775,7 +1775,7 @@
    "exert": {
     "token": "Break",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1798,7 +1798,7 @@
      "text": "Inspire All instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [
     "Free action: Inspire only. First ability window of his Attack: Inspire and/or the Rouse token"
    ],
@@ -1838,7 +1838,7 @@
    "exert": {
     "token": "Break",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    },
    "window": "firstWindow"
   },
@@ -1862,7 +1862,7 @@
      "text": "-4 [Heat] instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1897,7 +1897,7 @@
    "exert": {
     "token": "Opening",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1920,7 +1920,7 @@
      "text": "Respectively, 3 and 4 instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1949,7 +1949,7 @@
    "exert": {
     "token": "Opening",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1968,7 +1968,7 @@
      "text": "Gain +[red Power die] instead of Spotlight, if you have both [Priority Target] and [Divine Target] tokens."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1987,7 +1987,7 @@
    "exert": {
     "token": "Break",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -2001,7 +2001,7 @@
    ],
    "text": "[Reaction] Advanced Reflex. Place the Little Ser token on any: Knight Board, Monster Sheet, space adjacent to Ser Sonch, or up to 3 spaces away from its current space.",
    "gates": [],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -2017,7 +2017,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -2036,7 +2036,7 @@
      "text": "Motivate 4 instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -2070,7 +2070,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -2113,7 +2113,7 @@
      "text": "Range 5 instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -2133,7 +2133,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -2203,7 +2203,7 @@
    ],
    "text": "When you are about to draw a BP during your Attack, draw the first BP of a chosen Level from the BP deck. If the Little Ser token is on the Monster Sheet, place 1 Power [Power] token in the Knight Pool.",
    "gates": [],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [
     "Offered at its timing"
    ],
@@ -2217,7 +2217,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {

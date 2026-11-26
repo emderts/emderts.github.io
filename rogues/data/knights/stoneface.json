@@ -1462,7 +1462,7 @@
      "text": "Up to 4 instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [
     "Offered at its timing; parts not modelled are listed on the audit page"
    ],
@@ -1476,7 +1476,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1544,7 +1544,7 @@
      "text": "Stand up, then gain Braced until the end of this turn."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1585,7 +1585,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1608,7 +1608,7 @@
      "text": "Guard 3 and Leash 2 instead."
     }
    ],
-   "depletion": "delay",
+   "depletion": "cooldown",
    "unclear": [],
    "ops": [
     {
@@ -1646,7 +1646,7 @@
    "exert": {
     "token": "Opening",
     "n": 1,
-    "depletion": "delay"
+    "depletion": "cooldown"
    }
   },
   {
@@ -1669,7 +1669,7 @@
      "text": "+2 Speed [Speed] instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1689,7 +1689,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1760,7 +1760,7 @@
      "text": "4 spaces instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [
     "The Unleash 3 variant (any adjacent miniature) is not implemented"
    ],
@@ -1788,7 +1788,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1860,7 +1860,7 @@
      "text": "Leash 3 and gain Knockback 4 instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1882,7 +1882,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1901,7 +1901,7 @@
      "text": "Advanced Reinforce 3 instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -1923,7 +1923,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -1990,7 +1990,7 @@
      "text": "This Technique's Depletion becomes [Refresh]."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [
     "The Reposition is resolved when the Technique is used (before the Attack)"
    ],
@@ -2012,7 +2012,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -2078,7 +2078,7 @@
      "text": "Unleash 6 to gain Attack Re-roll 3, Power Re-roll 3, and Auto-hope 2 instead."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [
     "No Exert icon on this card"
    ],
@@ -2117,7 +2117,7 @@
      "text": "Additionally, place a Power [Power] token in the Knight Pool."
     }
    ],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -2136,7 +2136,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -2217,7 +2217,7 @@
    ],
    "text": "When you are about to attack, gain Heartseeker and Provoke. OR When you become the Target of an Attack, gain Superior Reinforce 1.",
    "gates": [],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [
     "The defensive option (Superior Reinforce 1) is offered when Stoneface becomes the Target"
    ],
@@ -2234,7 +2234,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -2248,7 +2248,7 @@
    ],
    "text": "When you become the Target of an Attack, gain Braced and Soak 3 for this Attack.",
    "gates": [],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -2264,7 +2264,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -2311,7 +2311,7 @@
    ],
    "text": "[Reaction] Advanced Reflex.",
    "gates": [],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -2324,7 +2324,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -2344,7 +2344,7 @@
    ],
    "text": "Perform a [Move action] with +2 Speed [Speed]. You may treat any amount of spaces of this [Move action] as Pushback. If a Monster would be moved onto an Obstacle during this movement, place a temporary negative AT token in the Knight Pool (once per Clash).",
    "gates": [],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [],
    "ops": [
     {
@@ -2357,7 +2357,7 @@
    "exert": {
     "token": "Closing",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {
@@ -2438,7 +2438,7 @@
    ],
    "text": "Leash 2. Until the end of this turn, you may Exhaust your Armor [Gear] card to gain +2 Speed [Speed], Spotlight, and Auto-hope 1. Until the end of this turn, when you deal a Wound, you may discard a Condition card.",
    "gates": [],
-   "depletion": "cooldown",
+   "depletion": "delay",
    "unclear": [
     "The Armor exhaust is offered when the Technique is used"
    ],
@@ -2456,7 +2456,7 @@
    "exert": {
     "token": "PowerReroll",
     "n": 1,
-    "depletion": "cooldown"
+    "depletion": "delay"
    }
   },
   {

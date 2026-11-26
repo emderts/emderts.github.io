@@ -6463,7 +6463,8 @@
   "Repeat this Attack against another Target (once).": "다른 대상에게 이 공격을 반복합니다(한 번).",
   "For each hit gain +1 [Heat].": "명중 하나마다 [열기]를 1 얻습니다.",
   "If hit, lose -# [Vigor].": "명중하면 [활기]를 # 잃습니다.",
-  "[Peril Check]": "[위험 체크]"
+  "[Peril Check]": "[위험 체크]",
+  "This Technique's Depletion becomes [Delay].": "이 기술의 소모 방식이 [지연]이 됩니다."
  },
  "ui": {}
 }
