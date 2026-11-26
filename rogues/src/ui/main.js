@@ -422,7 +422,7 @@ const renderClash = () => {
   const keep = id => { const e = document.getElementById(id); return e ? { top: e.scrollTop, bottom: e.scrollHeight - e.scrollTop - e.clientHeight < 40 } : null; };
   const was = { lpane: keep('lpane'), mpane: keep('mpane'), kpane: keep('kpane') };
   app.replaceChildren(h('div', { class: 'battle' },
-    h('div', { class: 'bleft' }, header, h('div', { id: 'board' }, renderBoard()), h('div', { id: 'mpane', class: 'pane' }, monsterPane())),
+    h('div', { class: 'bleft' }, header, h('div', { class: 'small', style: 'margin:2px 0 6px' }, h('b', {}, 'Knight Pool: '), clash.pool.length ? poolChips(clash.pool) : '비어 있음'), h('div', { id: 'board' }, renderBoard()), h('div', { id: 'mpane', class: 'pane' }, monsterPane())),
     h('div', { class: 'bright' }, prompt, h('div', { id: 'kpane', class: 'kstat' }, clash.knights.map(knightBox)), h('div', { id: 'lpane', class: 'pane' }, logPane())),
   ), modalEl());
   const lp = document.getElementById('lpane'); if (lp) lp.scrollTop = !was.lpane || was.lpane.bottom ? lp.scrollHeight : was.lpane.top; // log sticks to the bottom unless the reader scrolled up
