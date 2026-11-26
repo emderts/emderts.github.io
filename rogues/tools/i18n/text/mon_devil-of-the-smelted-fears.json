@@ -30,7 +30,7 @@
  "If hit, lose -X [V], where X is 2 + the number of Armor [Armor] tokens on the Devil. [Peril]. Gain +2 [H].": "명중당하면 [활기]를 X 잃습니다. X는 2 + 악마 위의 방어구 토큰 수입니다. [위험 체크]. [열기]를 2 얻습니다.",
  "AFTER ATTACK: Move # adjacent knocked down Knight to the Oubliette. Ferrobaptism #.": "공격 후: 인접한 넘어진 기사 #명을 지하감옥으로 옮깁니다. 철의 세례 #.",
  "AFTER ATTACK: Ferrobaptism #. Move # adjacent knocked down Knight to the Oubliette.": "공격 후: 철의 세례 #. 인접한 넘어진 기사 #명을 지하감옥으로 옮깁니다.",
- "If hit, draw a Judicium, and for each hit add 1 You Died card to the Judicium deck according to the Massive Peril Chart (for this draw only).": "명중당하면 판결을 뽑되, 명중 하나마다 막대한 위험 표에 따라 너는 죽었다 카드 1장을 판결 덱에 추가합니다(이번 뽑기에만).",
+ "If hit, draw a Judicium, and for each hit add 1 You Died card to the Judicium deck according to the Massive Peril Chart (for this draw only).": "명중당하면 판결을 뽑되, 명중 하나마다 막대한 위험 표에 따라 ‘당신은 사망했습니다!’ 카드 1장을 판결 덱에 추가합니다(이번 뽑기에만).",
  "AFTER ATTACK: Ferrobaptism #. Discard # Gear [Gear] card and Pushback #.": "공격 후: 철의 세례 #. 장비 카드 #장을 버리고 밀쳐내기 #.",
  "[Peril Check]. Gatekeeper.": "[위험 체크]. 문지기.",
  "[Peril Check]. Knockdown.": "[위험 체크]. 넘어짐.",
