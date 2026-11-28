@@ -257,3 +257,7 @@
 - 버그: 대상 Mob이 그 공격으로 처치된 뒤 2차 능력 창에서 Gear의 Pull / Pushback / Knockback / Drag(예: Cruel Chainhooks "Pull 2")를 수행하려다 엔진 오류 → 화면이 "진행 중…"에서 멈춤. 이제 "대상이 이미 처치되어 보드에 없음"으로 건너뜀.
 - UI: 엔진 오류가 나면 로그에 "엔진 오류로 진행이 멈춤: …" 줄을 남김 (이전에는 아무 표시 없이 멈춤).
 - [해석, 확인 필요] 이 공격으로 처치된 Mob의 BP Response(Knockdown 등) 인접 판정은 그 Mob이 서 있던 칸 기준. (이전: 보드에서 이미 제거되어 "비인접"으로 무시될 수 있었음)
+
+## v0.68.23 (2026-11-28)
+- "When you are about to attack" 계열 Technique(timing beforeAttack 22종)은 행동 메뉴의 자유 행동이 아니라 공격을 선언했을 때(무기 선택 직전, Bonus Attack 포함) 사용 여부를 물음 (소유자 요청 2026-11-28).
+- 이 공격으로 처치된 Mob의 BP Response 인접 판정 = 그 Mob이 서 있던 칸 기준 (소유자 확인 2026-11-28).

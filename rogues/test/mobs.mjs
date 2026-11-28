@@ -113,4 +113,14 @@ const L = (c, cell) => c.board.label(cell);
     if (mob.dead) { killedRuns++; if (c.log.some(l => /대상이 이미 처치되어 보드에 없음/.test(l.msg))) said++; } }
   ok(!threw, 'Pull / Pushback after the Target Mob was killed does not throw' + (threw ? ': ' + threw.message : '')); ok(killedRuns > 0 && said > 0, `killed Target: Pull is skipped with a log line (${said}/${killedRuns})`); }
 
+// --- v0.68.23: "When you are about to attack" Techniques are offered when the Attack is declared, not in the action menu
+{ const c = new Clash({ data, knights: [{ def: 'paracelsa', name: 'Para' }, { def: 'fleischritter', name: 'F1' }, { def: 'fleischritter', name: 'F2' }, { def: 'fleischritter', name: 'F3' }], monster: 'ironcast-dead', level: 1, kingdom: 'principality', seed: 3 });
+  const qs = []; c.ask = async q => { qs.push(q.text || q.type); if (q.type === 'confirm') return /공격하려 할 때/.test(q.text); if (q.type === 'dice') return []; if (q.type === 'move') return null; const o = q.options || []; return o.length ? o[0].value : null; };
+  c.setup(); const k = c.knights[0]; const find = n => { let r; const w = x => { if (r) return; if (Array.isArray(x)) x.forEach(w); else if (x && typeof x === 'object') { if (x.name === n && x.timing) r = x; else Object.values(x).forEach(w); } }; w(data.knights.paracelsa); return r; };
+  k.hand.push({ ...find('Righteous Hand of God') }); const mob = c.monster.mobs[0], cell = mob.cells[0];
+  const spot = [[1, 0], [-1, 0], [0, 1], [0, -1]].map(([a, b]) => ({ c: cell.c + a, r: cell.r + b })).find(p => c.board.inside(p) && !c.board.occ.get(c.board.key(p)) && !c.board.terrainAt(p));
+  c.board.remove([k.pos]); k.pos = spot; c.board.place(k, [spot]); k.actions = { move: true, combat: true };
+  ok(!c.fx.usableTechniques(k).some(t => t.name === 'Righteous Hand of God'), 'about-to-attack Technique is not a free action in the action menu');
+  await c.knightAttack(k, {}); ok(qs.some(x => /공격하려 할 때 — Righteous Hand of God/.test(x)) && c.log.some(l => /기술 사용: Righteous Hand of God/.test(l.msg)), 'about-to-attack Technique is offered (and used) when the Attack is declared'); }
+
 console.log(fails ? `${fails} FAIL` : 'ALL PASS'); process.exit(fails ? 1 : 0);
