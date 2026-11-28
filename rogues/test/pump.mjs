@@ -42,4 +42,11 @@ const L = (c, cell) => c.board.label(cell); const P = (c, l) => c.board.parse(l)
   for (let s = 1; s <= N; s++) { const c = mk(5000 + s); const r = await c.run(); if (r === 'win') wins++; else losses++; const bad = c.log.filter(l => /\[미구현/.test(l.msg) && !/Parasitize/.test(l.msg)); if (bad.length) ok(false, `seed ${s}: ${bad[0].msg}`); }
   ok(wins + losses === N, `${N} seeded Pumpkinhead Clashes finished: ${wins} win / ${losses} lose`);
   for (const lv of [2, 3, 4]) for (const sd of [1, 2]) { const c = mk(5100 + lv * 10 + sd, lv, sd === 1 ? 'sunken' : 'principality'); const r = await c.run(); ok(['win', 'lose'].includes(r), `level ${lv} simulation finished (${r}, ${c.round} rounds)`); } }
+// --- v0.68.26: a Pumpkinhead that ends any other movement (e.g. following a Pushback) on a Campfire space dies too
+{ const c = mk(77, 2); const B = c.board, M = c.monster; const mob = M.mobs.find(m => m.side === 'pumpkin'); await c.pumpBurn(); const w0 = M.wounds;
+  let fire = null; for (const [key, t] of B.terrain) if (t.id === 'campfire') { const [cc, r] = key.split(',').map(Number); if (!B.occ.get(key)) { fire = { c: cc, r }; break; } }
+  if (!fire) { for (let r = 0; r < B.rows && !fire; r++) for (let cc = 0; cc < B.cols && !fire; cc++) { const p = { c: cc, r }; if (!B.terrainAt(p) && !B.occ.get(B.key(p))) { fire = p; B.terrain.set(B.key(p), { id: 'campfire', name: 'Campfire' }); } } }
+  B.remove(mob.cells); mob.cells = [fire]; B.place({ kind: 'mob', n: mob.n }, [fire]); await c.pumpBurn();
+  ok(mob.side === 'sapling' && M.wounds === w0 + 1, 'Pumpkinhead moved onto a Campfire by another movement → dies (Fire Walk with Me)'); }
+
 console.log(fails ? `${fails} FAIL` : 'ALL PASS'); process.exit(fails ? 1 : 0);

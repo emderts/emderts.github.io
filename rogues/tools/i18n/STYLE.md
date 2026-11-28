@@ -272,3 +272,6 @@
 ## v0.68.25 (2026-11-28)
 - Response의 "다른 기사 Bonus Attack": 수행할 기사는 Response 때가 아니라 그 Bonus Attack 직전(모든 Response·Sapling 배치·Knight Pool 정리 뒤)에 고름 (소유자 확인 2026-11-28).
 - Jump / Sinking Boots("ignore X spaces of a Terrain tile"): 무시한 Swamp / Campfire 칸은 Swamp 굴림·Campfire 효과 없음. (버그: 이동 가능 칸 계산에만 반영되고 Swamp 굴림은 그대로 했음)
+
+## v0.68.26 (2026-11-28)
+- Fire Walk with Me: Pumpkinhead가 자기 이동 외의 이동(Pushback 따라가기, 밀림/당겨짐 등)으로 Campfire 칸에 서게 돼도 사망 처리 ("moves onto a Campfire Terrain tile"). 판정은 그 행동이 끝날 때. [한계] 이런 이동 중 Campfire를 지나가기만 하고 다른 칸에서 멈춘 경우는 아직 판정하지 않음.
