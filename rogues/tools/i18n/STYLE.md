@@ -261,3 +261,10 @@
 ## v0.68.23 (2026-11-28)
 - "When you are about to attack" 계열 Technique(timing beforeAttack 22종)은 행동 메뉴의 자유 행동이 아니라 공격을 선언했을 때(무기 선택 직전, Bonus Attack 포함) 사용 여부를 물음 (소유자 요청 2026-11-28).
 - 이 공격으로 처치된 Mob의 BP Response 인접 판정 = 그 Mob이 서 있던 칸 기준 (소유자 확인 2026-11-28).
+
+## v0.68.24 (2026-11-28)
+- Judgement(p.53: Virtue test, Evasion Roll 아님 — Armor Roll·Evasion Re-roll·Block 불가): Block / Dodge / Guard / Reinforce Technique과 Dodge Gear 능력을 묻지 않음. Lesser Dodge(REACT 후속)도 적용 안 함.
+- 나머지 시점 Technique도 인쇄된 시점에 물음 (소유자 확인 2026-11-28): beforePowerRoll → Power Roll 직전, afterAttackRoll → 명중 후(1차 창 전), onClearPool → Knight Pool 정리 직전(Pass 창 전), secondWindow → 2차 창(기존). 행동 메뉴에서는 제거.
+- The Fire of my Faith: 공격받는 BP가 "BP X"(숫자 레벨 없음)이면 X = 1(카드의 "최소 1") [해석, 확인 필요]. NaN 버그 수정.
+- Scalpel(Sapling 제자리): Fool's deck 카드는 그대로 뽑되(Cursed Overgrowth 문구), 좌표는 쓰지 않으므로 좌표 선택은 묻지 않음 [해석, 확인 필요 — 아예 안 뽑는 해석도 가능].
+- i18n: "머리말: 능력문" 형태(When you trigger Overcome X in Melee range: …)를 머리말과 본문으로 나눠 번역.

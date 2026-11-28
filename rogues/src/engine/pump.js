@@ -44,11 +44,11 @@ export const PumpMixin = {
   // ---------- Cursed Overgrowth / wounds ----------
   async pumpToSapling(mob, tokens = 1, at = null) {
     const B = this.board; if (!this.pumpFools.length) { this.pumpFools = this.rng.shuffle(this.pumpFoolsDiscard); this.pumpFoolsDiscard = []; } const f = this.pumpFools.shift(); if (f) this.pumpFoolsDiscard.push(f);
-    let coord = f ? f.coord : null; if (f && !coord && f.coordChoice) coord = await this.ask({ type: 'pick', text: `Fool's deck ${f.name}: Sapling 좌표 선택`, options: f.coordChoice.map(c => ({ label: c, value: c })) }) || f.coordChoice[0];
+    let coord = f ? f.coord : null; if (f && !coord && f.coordChoice && at) coord = f.coordChoice.join('/'); /* placed in its own space (Scalpel): the coordinates are not used, so no choice is asked */ else if (f && !coord && f.coordChoice) coord = await this.ask({ type: 'pick', text: `Fool's deck ${f.name}: Sapling 좌표 선택`, options: f.coordChoice.map(c => ({ label: c, value: c })) }) || f.coordChoice[0];
     B.remove(mob.cells); mob.lastCell = mob.cells[0]; mob.cells = []; let cell = at || (coord ? B.parse(coord) : mob.lastCell);
     if (!this.pumpFreeCell(cell)) { let ring = B.neighbors(cell).filter(c => this.pumpFreeCell(c)); for (let r = 2; !ring.length && r < 8; r++) ring = B.zone([cell], r).filter(c => this.pumpFreeCell(c)); cell = ring.length > 1 ? await this.ask({ type: 'move', text: `${coord} 칸이 차 있음 — Sapling을 놓을 인접 칸`, cells: ring, options: ring.map(c => ({ label: B.label(c), value: c })) }) || ring[0] : ring[0]; }
     mob.side = 'sapling'; mob.card = mob.back; mob.red = !this.monster.hasTrait('Accelerated Regrowth'); mob.armor = 0; mob.cells = [cell]; B.place({ kind: 'mob', n: mob.n }, [cell]);
-    this.say(`Cursed Overgrowth: BP 뒤집음 → ${mob.card.name} · Fool's deck ${f ? f.name + ' ' + coord : '-'} → ${mob.red ? 'Red' : 'Green'} Sapling #${mob.n} ${B.label(cell)}`, 'bp'); this.pumpToken(mob, tokens); await this.pumpRevealed(mob);
+    this.say(`Cursed Overgrowth: BP 뒤집음 → ${mob.card.name} · Fool's deck ${f ? f.name + ' ' + coord : '-'} → ${mob.red ? 'Red' : 'Green'} Sapling #${mob.n} ${B.label(cell)}${at ? ' (무작위 좌표 대신 제자리)' : ''}`, 'bp'); this.pumpToken(mob, tokens); await this.pumpRevealed(mob);
   },
   async pumpRevealed(mob) { if (!mob.card.ops.aura || !mob.card.ops.aura.whenRevealed) return; const B = this.board; this.say(`When revealed — ${mob.card.name}: Terrain 타일에 인접한 기사는 Afflict 1`); for (const k of this.alive()) if (B.neighbors(k.pos).some(c => B.terrainAt(c))) await this.pumpAfflict(k, 1); },
   /** Called from the Knight Attack wound step. Pumpkinhead: flip happens after the responses (A.pumpFlip). Sapling: token discarded, BP → Wound Stack, AI Escalation. */

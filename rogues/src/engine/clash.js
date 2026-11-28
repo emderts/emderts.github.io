@@ -422,7 +422,7 @@ export class Clash {
     if (this.negMonPrecision) { diff = Math.max(2, diff - this.negMonPrecision); this.say(`임시 Precision -${this.negMonPrecision} 토큰: Evasion 난이도 → ${diff}+ (토큰 버림)`, 'tech'); this.negMonPrecision = 0; }
     if (this.monster.hasTrait('Jacked')) { if (this.jackedTokens >= 2) diff += 1; if (this.jackedTokens >= 5) dice += 1; }
     await this.fx.defChoose(k, 'evasion');
-    const dw = await this.fx.defenseWindow(k, { judge: !!ops.judge }); dw.block += await this.paraDefense(k); dw.evasion += k._defEvasion || 0;  this.karaTargeted(k); let evaBonus = this.fx.evasionBonus(k) + dw.evasion + this.karaEvasion(k); let virtue = null;
+    const dw = await this.fx.defenseWindow(k, { judge: !!ops.judge }); dw.block += await this.paraDefense(k, !!ops.judge); dw.evasion += k._defEvasion || 0;  this.karaTargeted(k); let evaBonus = this.fx.evasionBonus(k) + dw.evasion + this.karaEvasion(k); let virtue = null;
     let freeER = this.fx.evasionRerolls(k) + this.lsBoon(k, 'evasionReroll') + this.paraStat(k, 'evasionReroll'), cloak = 0;
     let extraGuard = this.lsBoon(k, 'guard') + (k._defGuard || 0), wilder = 0;
     if (k.perilArcDef && k.perilArcDef.bonus && /^Guard (\d+)/.test(k.perilArcDef.bonus.text || '')) extraGuard += +/^Guard (\d+)/.exec(k.perilArcDef.bonus.text)[1];
@@ -878,6 +878,7 @@ export class Clash {
     if (A.hits === dice) await this.fx.onFullHit(k, A);
     // 4. first ability window (a Chain Break here ends the attack: clear pool + second window, p.54)
     await this.fx.afterHits(k, A, roll.dice.length);
+    await this.fx.timedTechs(k, A, 'afterAttackRoll', `공격 명중 (${A.hits})`);
     await this.fx.sacrificeWindow(k, A);
     try { await this.fx.firstWindow(k, A); } catch (e) { if (!e.chainBreak) throw e; this.say(`Chain Break: ${e.message}`, 'warn'); this.clearPool(); await this.fx.secondWindow(k, A); this.currentKnightAttack = null; return; }
     // 5. determine BP
@@ -897,6 +898,7 @@ export class Clash {
     if (this.isDevil) await this.dvBargainOffer(k, A, bp); if ((!A.guardian || bp.pvKind) && bp.ops) { if (this.isYdd) this.yddReveal(k, A, bp); if (bp.ops.reveal) await this.fx.runMonsterOps(bp.ops.reveal, { attacker: k, attack: A }); if (bp.ops.ultrainstinct && !(this.dg && this.dg.flags.noUltra)) { this.say('Ultrainstinct Response'); await this.fx.runMonsterOps(bp.ops.ultrainstinct, { attacker: k, attack: A }); } } if (A.pvChain && k.alive) { if (!A.guardian) this.monster.discardBP(bp); this.clearPool(); this.currentKnightAttack = null; if (A.pvChain !== 'end') await this.pvOp({ op: 'pvAI' }, { attacker: k }); await this.afterAction(); return; } if (!k.alive) { this.monster.discardBP(bp); this.clearPool(); this.currentKnightAttack = null; return; }
     if (k.alive && A.weapon && _posKey() !== _pos0) { const tg9 = this.attackTargets(k, A.weapon); const inR = A.guardian ? tg9.includes(A.guardian) : A.mob ? tg9.includes(A.mob) : tg9.includes('boss'); if (!inR) { this.say(`Ultrainstinct: 대상이 ${A.weapon.name}의 사거리 밖 → 공격 종료 (Power Roll 없음)`, 'ai'); if (!A.guardian && !this.monster.isMob) this.monster.discardBP(bp); if (!this.fx.has(k, 'skipClearPool', A)) this.clearPool(); this.currentKnightAttack = null; await this.afterAction(); return; } }
     await this.fx.arcAt(k, A, 'power');
+    await this.fx.timedTechs(k, A, 'beforePowerRoll', 'Power Roll 직전');
     // 6. power roll
     const TIERS = ['red', 'black', 'white']; const kd = TIERS[Math.min(2, TIERS.indexOf(k.powerDie) + (A.promote || 0))]; if (A.promote) this.say(`Power Dice Promotion: Knight Power die ${k.powerDie} → ${kd}`);
     const wpOf0 = col => { const p = w.weaponPower; if (!p) return 0; if (Array.isArray(p.dice)) return p.dice.filter(c => c === col).length; if (p.dice && typeof p.dice === 'object') return p.dice[col] || 0; return p.colour === col ? p.n : 0; }; // weapon power per hit, mixed colours supported
@@ -971,6 +973,7 @@ export class Clash {
     if (this.isLh) await this.lhAfterResponses(k, A);
     if (this.monster.slain) { this.checkEnd(); }
     // 9. clear pool
+    await this.fx.timedTechs(k, A, 'onClearPool', 'Knight Pool 정리 직전');
     await this.fx.passWindow(k, A); await this.karaClearPool(k, A);
     const late = A.latePool || []; A.latePool = null;
     if (!this.fx.has(k, 'skipClearPool', A)) this.clearPool();

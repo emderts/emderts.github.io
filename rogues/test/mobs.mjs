@@ -123,4 +123,19 @@ const L = (c, cell) => c.board.label(cell);
   ok(!c.fx.usableTechniques(k).some(t => t.name === 'Righteous Hand of God'), 'about-to-attack Technique is not a free action in the action menu');
   await c.knightAttack(k, {}); ok(qs.some(x => /공격하려 할 때 — Righteous Hand of God/.test(x)) && c.log.some(l => /기술 사용: Righteous Hand of God/.test(l.msg)), 'about-to-attack Technique is offered (and used) when the Attack is declared'); }
 
+// --- v0.68.24: Techniques of a printed Attack moment are asked at that moment; Judgement offers no Block / Dodge Technique; The Fire of my Faith vs a "BP X" card
+{ const findT = (def, n) => { let r; const w = x => { if (r) return; if (Array.isArray(x)) x.forEach(w); else if (x && typeof x === 'object') { if (x.name === n && x.timing) r = x; else Object.values(x).forEach(w); } }; w(data.knights[def]); return { ...r }; };
+  const c = new Clash({ data, knights: [{ def: 'fleischritter', name: 'F0' }, { def: 'ser-sonch', name: 'S' }, { def: 'paracelsa', name: 'P' }, { def: 'fleischritter', name: 'F3' }], monster: 'ironcast-dead', level: 1, kingdom: 'principality', seed: 5 });
+  const qs = []; c.ask = async q => { qs.push(q.text || q.type); if (q.type === 'confirm') return /Power Roll 직전|정리 직전/.test(q.text); if (q.type === 'dice') return []; if (q.type === 'move') return null; const o = q.options || []; return o.length ? o[0].value : null; };
+  c.setup(); const k = c.knights[0]; k.hand.push(findT('fleischritter', 'White Meat Power Punch'), findT('fleischritter', 'Nothing Goes to Waste')); k.heat = 0; c.poolAdd('fleisch', 3); c.monster.modifiers.at = -9;
+  const mob = c.monster.mobs[0], cell = mob.cells[0]; const spot = [[1, 0], [-1, 0], [0, 1], [0, -1]].map(([a, b]) => ({ c: cell.c + a, r: cell.r + b })).find(p => c.board.inside(p) && !c.board.occ.get(c.board.key(p)) && !c.board.terrainAt(p));
+  c.board.remove([k.pos]); k.pos = spot; c.board.place(k, [spot]); k.actions = { move: true, combat: true };
+  ok(!c.fx.usableTechniques(k).some(t => ['beforePowerRoll', 'onClearPool', 'secondWindow', 'afterAttackRoll'].includes(t.timing)), 'timed Attack Techniques are not in the action menu');
+  let hit = false; for (let i = 0; i < 12 && !hit; i++) { qs.length = 0; k.actions = { move: true, combat: true }; await c.knightAttack(k, {}); hit = qs.some(x => /Power Roll 직전 — White Meat Power Punch/.test(x)); if (!c.monster.mobs.includes(mob) || mob.dead) break; }
+  ok(hit, 'White Meat Power Punch is asked right before the Power Roll');
+  // Judgement
+  const s = c.knights[1]; { let r; const w = x => { if (r) return; if (Array.isArray(x)) x.forEach(w); else if (x && typeof x === 'object') { if (x.timing === 'onDefense' && x.ops && x.ops.some(o => o.op === 'techBlock')) r = x; else Object.values(x).forEach(w); } }; w(data.knights['ser-sonch']); s.hand = [{ ...r }]; s.heat = 0; } const bn = s.hand[0].name; qs.length = 0; await c.paraDefense(s, true); ok(!qs.some(x => x.includes(bn + ' 사용?')) && c.log.some(l => /Judgement — Block \/ Dodge 기술 사용 불가/.test(l.msg)), 'Judgement: the Block Technique is not offered'); qs.length = 0; await c.paraDefense(s, false); ok(qs.some(x => x.includes(bn + ' 사용?')), 'normal Attack: the Block Technique is offered');
+  // Fire of my Faith vs BP X
+  const p = c.knights[2]; c.clearPool && (c.pool.length = 0); c.poolAdd('opening', 2); const before = c.poolCount('opening'); await c.fireOfFaithPay(p, Math.max(1, +'X' || 1), null); ok(c.poolCount('opening') === before - 1 && !c.log.some(l => /NaN/.test(l.msg)), 'The Fire of my Faith vs a BP X card: X = 1 (minimum), no NaN'); }
+
 console.log(fails ? `${fails} FAIL` : 'ALL PASS'); process.exit(fails ? 1 : 0);
