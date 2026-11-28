@@ -268,3 +268,7 @@
 - The Fire of my Faith: 공격받는 BP가 "BP X"(숫자 레벨 없음)이면 X = 1(카드의 "최소 1") [해석, 확인 필요]. NaN 버그 수정.
 - Scalpel(Sapling 제자리): Fool's deck 카드는 그대로 뽑되(Cursed Overgrowth 문구), 좌표는 쓰지 않으므로 좌표 선택은 묻지 않음 [해석, 확인 필요 — 아예 안 뽑는 해석도 가능].
 - i18n: "머리말: 능력문" 형태(When you trigger Overcome X in Melee range: …)를 머리말과 본문으로 나눠 번역.
+
+## v0.68.25 (2026-11-28)
+- Response의 "다른 기사 Bonus Attack": 수행할 기사는 Response 때가 아니라 그 Bonus Attack 직전(모든 Response·Sapling 배치·Knight Pool 정리 뒤)에 고름 (소유자 확인 2026-11-28).
+- Jump / Sinking Boots("ignore X spaces of a Terrain tile"): 무시한 Swamp / Campfire 칸은 Swamp 굴림·Campfire 효과 없음. (버그: 이동 가능 칸 계산에만 반영되고 Swamp 굴림은 그대로 했음)

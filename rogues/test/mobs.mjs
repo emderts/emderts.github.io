@@ -138,4 +138,14 @@ const L = (c, cell) => c.board.label(cell);
   // Fire of my Faith vs BP X
   const p = c.knights[2]; c.clearPool && (c.pool.length = 0); c.poolAdd('opening', 2); const before = c.poolCount('opening'); await c.fireOfFaithPay(p, Math.max(1, +'X' || 1), null); ok(c.poolCount('opening') === before - 1 && !c.log.some(l => /NaN/.test(l.msg)), 'The Fire of my Faith vs a BP X card: X = 1 (minimum), no NaN'); }
 
+// --- v0.68.25: "another Knight" Bonus Attack from a Response is chosen after the Responses; Jump / Sinking Boots ignore Swamp spaces
+{ const c = mk(901, 2); const k = c.knights[0]; const A = { knight: k, flags: new Set() }; c.currentKnightAttack = A; const qs = []; c.ask = async q => { qs.push(q.type); return q.options && q.options.length ? q.options[0].value : true; };
+  await c.fx.runMonsterOps([{ op: 'bonusAttack', who: 'otherKnight' }], { attacker: k }); ok(!qs.includes('pickKnight') && c._lateBonus && c._lateBonus.length === 1 && c._lateBonus[0].A === A, 'otherKnight Bonus Attack: the Knight is not chosen during the Response'); c.currentKnightAttack = null; c._lateBonus = null; }
+{ const c = mk(902, 2); const k = c.knights[0], B = c.board; let done = false;
+  for (let r = 0; r < B.rows && !done; r++) for (let col = 0; col + 2 < B.cols && !done; col++) { const a = { c: col, r }, m = { c: col + 1, r }, z = { c: col + 2, r }; if ([a, m, z].some(p => B.terrainAt(p) || B.occ.get(B.key(p)))) continue;
+    B.remove([k.pos]); k.pos = a; B.place(k, [a]); B.terrain.set(B.key(m), { id: 'swamp', name: 'Swamp' }); const up = { c: col + 1, r: r - 1 }, dn = { c: col + 1, r: r + 1 }; for (const p of [up, dn]) if (B.inside(p) && !B.terrainAt(p)) B.terrain.set(B.key(p), { id: 'swamp', name: 'Swamp' });
+    k.vigor = 0; k._jump = 1; c.ask = async q => q.type === 'move' ? q.cells.find(p => p.c === z.c && p.r === z.r) || null : (q.options && q.options.length ? q.options[0].value : false); await c.knightMove(k, 2);
+    ok(k.alive && k.pos.c === z.c && c.log.some(l => /Terrain 칸 1개 무시/.test(l.msg)), 'Jump 1 (Sinking Boots): the ignored Swamp space causes no Swamp roll'); done = true; }
+  ok(done, 'swamp jump scenario set up'); }
+
 console.log(fails ? `${fails} FAIL` : 'ALL PASS'); process.exit(fails ? 1 : 0);
