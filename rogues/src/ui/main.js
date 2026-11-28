@@ -24,6 +24,8 @@ let raf = 0; const scheduleRender = () => { if (raf) return; raf = requestAnimat
 // Language option: names inside the prompt text and the button labels are shown translated (values are untouched)
 const askL10n = q => (getLang() === 'en' || !q ? q : { ...q, text: trIn(q.text), options: Array.isArray(q.options) ? q.options.map(o => (o && typeof o.label === 'string' ? { ...o, label: trLabel(o.label), detail: typeof o.detail === 'string' ? trDetail(o.detail) : o.detail } : o)) : q.options });
 const askViaSheet = q => new Promise(res => { pending = { q: askL10n(q), res }; render(); });
+/** An engine error used to leave the Clash silently stuck on "진행 중…": show it in the log instead. */
+const runFail = e => { console.error(e); try { clash.say(`엔진 오류로 진행이 멈춤: ${e && e.message || e} — ${String(e && e.stack || '').split('\n').slice(1, 3).map(x => x.trim().replace(/\(?(https?|file):\/\/\S*\//, '(')).join(' ← ')} (이 줄을 캡처해서 알려주세요)`, 'warn'); } catch (x) { } pending = null; render(); };
 try { window.__kf = { get clash() { return clash; }, get camp() { return camp; }, render: () => render() }; } catch (e) { } // handle for tests / debugging
 const save = () => { if (!camp) return; try { localStorage.setItem(SAVE_KEY, JSON.stringify(camp.serialize())); } catch (e) { console.error('save failed: ' + (e && e.stack || e)); } };
 const loadSaved = () => { try { const s = localStorage.getItem(SAVE_KEY); return s ? JSON.parse(s) : null; } catch (e) { return null; } };
@@ -71,7 +73,7 @@ const startTestClash = () => {
   const seed = +$('#seed').value || Math.floor(Math.random() * 1e9); seedInput = String(seed);
   clash = new Clash({ data: DATA, knights: partyDefs().map((def, i, all) => ({ def, ...(startGearOf(i) ? { gear: ['Knighves', startGearOf(i)] } : {}), name: DATA.knights[def].name + (all.filter(x => x === def).length > 1 ? ' ' + (all.slice(0, i + 1).filter(x => x === def).length) : '') })), monster: $('#mon').value, level: +$('#lv').value, nodeLevel: +($('#nlv') ? $('#nlv').value : $('#lv').value), kingdom: 'principality', seed, listeners: { log: () => scheduleRender(), flash: onFlash } });
   clash.ask = askViaSheet; clash.setup(); screen = 'clash'; tab = 'log'; render();
-  clash.run().then(() => { pending = null; render(); });
+  clash.run().then(() => { pending = null; render(); }).catch(runFail);
 };
 
 // ---------- campaign: map ----------
@@ -135,7 +137,7 @@ const renderEncounter = () => {
 };
 const startCampaignClash = () => {
   clash = camp.buildClash({ ask: askViaSheet, listeners: { log: () => scheduleRender(), flash: onFlash } }); clash.setup(); screen = 'clash'; tab = 'log'; render();
-  clash.run().then(async () => { pending = null; render(); const res = await camp.aftermath(clash); pending = null; save(); if (res === 'replay') { startCampaignClash(); return; } screen = 'aftermath'; render(); });
+  clash.run().then(async () => { pending = null; render(); const res = await camp.aftermath(clash); pending = null; save(); if (res === 'replay') { startCampaignClash(); return; } screen = 'aftermath'; render(); }).catch(runFail);
 };
 const renderAftermath = () => {
   const last = camp.history.at(-1); const logs = camp.log.filter(l => l.round === camp.round);

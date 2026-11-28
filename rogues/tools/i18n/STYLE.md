@@ -252,3 +252,8 @@
 - 2026-11-26: Technique 소모(Depletion) 아이콘 판독 정정 — 룰북 p.23 DEPLETION: 시계/원형 화살표 카드 = Cooldown(대기), zZ 카드 = Delay(지연). 지금까지 반대로 읽어 7명 전원의 Technique·Exert 소모가 Cooldown↔Delay 뒤바뀌어 있었음(231곳). 룰북 p.23 그림(Knight Pose가 Delay 칸, Crunchy Batter가 Cooldown 칸)과 대조해 확인. 카드 문장에 글자로 적힌 "Cooldown."/"Delay."(몬스터 카드·Mortis·장비)는 아이콘이 아니므로 그대로. (소유자 제보)
 - 2026-11-26: 룰북 p.83 Knockdown — Knockdown (falling down) 카드를 가진 동안 "cannot move voluntarily, perform any actions, reactions, or free actions, or use Gear abilities or Techniques". 공격 도중 넘어진 기사는 두 번째 능력 창에서 Technique과 이동류 Gear 능력(Knockback·Pushback·Reposition 등)을 쓸 수 없다. 무기 키워드로 놓는 토큰(Break X 등)과 Heroic Arc 처리는 그대로 둠 [해석, 확인 필요].
 - 2026-11-26: 룰북 p.84 Knockback X — "If Knockback is caused by a Knight, it affects the Target only if it is adjacent or within the effective range of the Active Weapon." 기사의 Knockback/Pushback은 대상이 인접하거나 공격 Weapon 사거리 안일 때만 적용. (소유자 제보)
+
+## v0.68.22 (2026-11-28)
+- 버그: 대상 Mob이 그 공격으로 처치된 뒤 2차 능력 창에서 Gear의 Pull / Pushback / Knockback / Drag(예: Cruel Chainhooks "Pull 2")를 수행하려다 엔진 오류 → 화면이 "진행 중…"에서 멈춤. 이제 "대상이 이미 처치되어 보드에 없음"으로 건너뜀.
+- UI: 엔진 오류가 나면 로그에 "엔진 오류로 진행이 멈춤: …" 줄을 남김 (이전에는 아무 표시 없이 멈춤).
+- [해석, 확인 필요] 이 공격으로 처치된 Mob의 BP Response(Knockdown 등) 인접 판정은 그 Mob이 서 있던 칸 기준. (이전: 보드에서 이미 제거되어 "비인접"으로 무시될 수 있었음)

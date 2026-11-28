@@ -102,4 +102,15 @@ const L = (c, cell) => c.board.label(cell);
   const o = M.mobs[0]; const a0 = o.armor; c.mobStepTo(o, cell); ok(o.armor === a0 + 2 && !c.armorPiles.size, 'Armored Dead: a Mob entering the space takes the tokens');
   o.armor = 1; const cell2 = o.cells[0]; c.killMob(o); const n0 = M.mobs.length; await c.icdEndKnightRound(); ok(M.mobs.length === n0 + 1 && !c.armorPiles.size, 'Armored Dead: last token removed at End of Knight Round → Heal 1 on that space'); }
 { const c = mk(32, 4); const M = c.monster; c.round = 2; const n0 = M.mobs.length; const free = c.freeSlot(); await c.icdBeforeActivation(); ok(!free || M.mobs.length === n0 + 1 || c.log.some(l => /Routine/.test(l.msg)), 'Lifeless Army (L4): Spawn before an Activation from Round 2 (Routine if impossible)'); c.round = 1; const n1 = M.mobs.length; await c.icdBeforeActivation(); ok(M.mobs.length === n1, 'Lifeless Army: ignored during the first Round'); }
+// --- v0.68.22: the Target Mob is killed, then the 2nd ability window offers Pull / Pushback from Gear → must not throw (the Clash used to stop on "진행 중…")
+{ let killedRuns = 0, threw = null, said = 0;
+  for (let seed = 1; seed <= 30 && killedRuns < 4; seed++) { const c = mk(700 + seed, 2); const k = c.knights[0], M = c.monster; const mob = M.mobs[0]; M.modifiers.at = -9;
+    k.gear.push({ name: 'Cruel Chainhooks', type: 'support', text: 'Pull 2.', exhausted: false, discarded: false });
+    const cell = mob.cells[0]; const spot = [[1, 0], [-1, 0], [0, 1], [0, -1]].map(([dc, dr]) => ({ c: cell.c + dc, r: cell.r + dr })).find(p => c.board.inside(p) && !c.board.occ.get(c.board.key(p)) && !c.board.terrainAt(p)); if (!spot) continue;
+    c.board.remove([k.pos]); k.pos = spot; c.board.place(k, [spot]);
+    c.ask = async q => { if (q.type === 'confirm') return false; if (q.type === 'dice') return []; if (q.type === 'move') return null; if (q.type === 'order') return q.options.map(o => o.value); const o = q.options || []; if (/1차 능력 창|1차 창/.test(q.text || '')) return 'skip'; const ns = o.filter(z => z.value !== 'skip'); return o.length ? (ns[0] || o[0]).value : null; };
+    try { await c.knightAttack(k, {}); } catch (e) { threw = e; break; }
+    if (mob.dead) { killedRuns++; if (c.log.some(l => /대상이 이미 처치되어 보드에 없음/.test(l.msg))) said++; } }
+  ok(!threw, 'Pull / Pushback after the Target Mob was killed does not throw' + (threw ? ': ' + threw.message : '')); ok(killedRuns > 0 && said > 0, `killed Target: Pull is skipped with a log line (${said}/${killedRuns})`); }
+
 console.log(fails ? `${fails} FAIL` : 'ALL PASS'); process.exit(fails ? 1 : 0);
