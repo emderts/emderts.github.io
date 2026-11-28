@@ -49,4 +49,11 @@ const L = (c, cell) => c.board.label(cell); const P = (c, l) => c.board.parse(l)
   B.remove(mob.cells); mob.cells = [fire]; B.place({ kind: 'mob', n: mob.n }, [fire]); await c.pumpBurn();
   ok(mob.side === 'sapling' && M.wounds === w0 + 1, 'Pumpkinhead moved onto a Campfire by another movement → dies (Fire Walk with Me)'); }
 
+// --- v0.68.27: … and one that only passes through a Campfire space on a straight forced move
+{ const c = mk(78, 2); const B = c.board, M = c.monster; const mob = M.mobs.find(m => m.side === 'pumpkin'); let done = false;
+  for (let r = 0; r < B.rows && !done; r++) for (let cc = 0; cc + 2 < B.cols && !done; cc++) { const ps = [0, 1, 2].map(i => ({ c: cc + i, r })); if (ps.some(p => B.terrainAt(p) || B.occ.get(B.key(p)))) continue;
+    B.remove(mob.cells); mob.cells = [ps[0]]; B.place({ kind: 'mob', n: mob.n }, [ps[0]]); mob._lastKey = null; await c.pumpBurn(); const w0 = M.wounds; B.terrain.set(B.key(ps[1]), { id: 'campfire', name: 'Campfire' });
+    B.remove(mob.cells); mob.cells = [ps[2]]; B.place({ kind: 'mob', n: mob.n }, [ps[2]]); await c.pumpBurn(); ok(mob.side === 'sapling' && M.wounds === w0 + 1, 'Pumpkinhead passing through a Campfire on a straight forced move → dies'); done = true; }
+  ok(done, 'campfire pass-through scenario set up'); }
+
 console.log(fails ? `${fails} FAIL` : 'ALL PASS'); process.exit(fails ? 1 : 0);

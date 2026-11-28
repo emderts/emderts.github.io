@@ -275,3 +275,6 @@
 
 ## v0.68.26 (2026-11-28)
 - Fire Walk with Me: Pumpkinhead가 자기 이동 외의 이동(Pushback 따라가기, 밀림/당겨짐 등)으로 Campfire 칸에 서게 돼도 사망 처리 ("moves onto a Campfire Terrain tile"). 판정은 그 행동이 끝날 때. [한계] 이런 이동 중 Campfire를 지나가기만 하고 다른 칸에서 멈춘 경우는 아직 판정하지 않음.
+
+## v0.68.27 (2026-11-28)
+- Fire Walk with Me: 직선 강제 이동(Pushback 따라가기 / 밀림 / 당겨짐 / 끌림)으로 Campfire 칸을 지나가기만 해도 사망 (소유자 확인 2026-11-28). 직선이 아닌 다른 이동은 도착 칸만 판정.
